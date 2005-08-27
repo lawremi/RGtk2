@@ -1,0 +1,1222 @@
+GtkAnchorType<-c("center" = 0,
+	"north" = 1,
+	"north-west" = 2,
+	"north-east" = 3,
+	"south" = 4,
+	"south-west" = 5,
+	"south-east" = 6,
+	"west" = 7,
+	"east" = 8,
+	"n" = 9,
+	"nw" = 10,
+	"ne" = 11,
+	"s" = 12,
+	"sw" = 13,
+	"se" = 14,
+	"w" = 15,
+	"e" = 16)
+storage.mode(GtkAnchorType) <- 'integer'
+.GtkAnchorType<-c("GTK_ANCHOR_CENTER" = 0,
+	"GTK_ANCHOR_NORTH" = 1,
+	"GTK_ANCHOR_NORTH_WEST" = 2,
+	"GTK_ANCHOR_NORTH_EAST" = 3,
+	"GTK_ANCHOR_SOUTH" = 4,
+	"GTK_ANCHOR_SOUTH_WEST" = 5,
+	"GTK_ANCHOR_SOUTH_EAST" = 6,
+	"GTK_ANCHOR_WEST" = 7,
+	"GTK_ANCHOR_EAST" = 8,
+	"GTK_ANCHOR_N" = 9,
+	"GTK_ANCHOR_NW" = 10,
+	"GTK_ANCHOR_NE" = 11,
+	"GTK_ANCHOR_S" = 12,
+	"GTK_ANCHOR_SW" = 13,
+	"GTK_ANCHOR_SE" = 14,
+	"GTK_ANCHOR_W" = 15,
+	"GTK_ANCHOR_E" = 16)
+storage.mode(.GtkAnchorType) <- 'integer'
+ 
+
+GtkArrowType<-c("up" = 0,
+	"down" = 1,
+	"left" = 2,
+	"right" = 3)
+storage.mode(GtkArrowType) <- 'integer'
+.GtkArrowType<-c("GTK_ARROW_UP" = 0,
+	"GTK_ARROW_DOWN" = 1,
+	"GTK_ARROW_LEFT" = 2,
+	"GTK_ARROW_RIGHT" = 3)
+storage.mode(.GtkArrowType) <- 'integer'
+ 
+
+GtkButtonBoxStyle<-c("default-style" = 0,
+	"spread" = 1,
+	"edge" = 2,
+	"start" = 3,
+	"end" = 4)
+storage.mode(GtkButtonBoxStyle) <- 'integer'
+.GtkButtonBoxStyle<-c("GTK_BUTTONBOX_DEFAULT_STYLE" = 0,
+	"GTK_BUTTONBOX_SPREAD" = 1,
+	"GTK_BUTTONBOX_EDGE" = 2,
+	"GTK_BUTTONBOX_START" = 3,
+	"GTK_BUTTONBOX_END" = 4)
+storage.mode(.GtkButtonBoxStyle) <- 'integer'
+ 
+
+GtkButtonsType<-c("none" = 0,
+	"ok" = 1,
+	"close" = 2,
+	"cancel" = 3,
+	"yes-no" = 4,
+	"ok-cancel" = 5)
+storage.mode(GtkButtonsType) <- 'integer'
+.GtkButtonsType<-c("GTK_BUTTONS_NONE" = 0,
+	"GTK_BUTTONS_OK" = 1,
+	"GTK_BUTTONS_CLOSE" = 2,
+	"GTK_BUTTONS_CANCEL" = 3,
+	"GTK_BUTTONS_YES_NO" = 4,
+	"GTK_BUTTONS_OK_CANCEL" = 5)
+storage.mode(.GtkButtonsType) <- 'integer'
+ 
+
+GtkCellRendererMode<-c("inert" = 0,
+	"activatable" = 1,
+	"editable" = 2)
+storage.mode(GtkCellRendererMode) <- 'integer'
+.GtkCellRendererMode<-c("GTK_CELL_RENDERER_MODE_INERT" = 0,
+	"GTK_CELL_RENDERER_MODE_ACTIVATABLE" = 1,
+	"GTK_CELL_RENDERER_MODE_EDITABLE" = 2)
+storage.mode(.GtkCellRendererMode) <- 'integer'
+ 
+
+GtkCellType<-c("empty" = 0,
+	"text" = 1,
+	"pixmap" = 2,
+	"pixtext" = 3,
+	"widget" = 4)
+storage.mode(GtkCellType) <- 'integer'
+.GtkCellType<-c("GTK_CELL_EMPTY" = 0,
+	"GTK_CELL_TEXT" = 1,
+	"GTK_CELL_PIXMAP" = 2,
+	"GTK_CELL_PIXTEXT" = 3,
+	"GTK_CELL_WIDGET" = 4)
+storage.mode(.GtkCellType) <- 'integer'
+ 
+
+GtkCListDragPos<-c("none" = 0,
+	"before" = 1,
+	"into" = 2,
+	"after" = 3)
+storage.mode(GtkCListDragPos) <- 'integer'
+.GtkCListDragPos<-c("GTK_CLIST_DRAG_NONE" = 0,
+	"GTK_CLIST_DRAG_BEFORE" = 1,
+	"GTK_CLIST_DRAG_INTO" = 2,
+	"GTK_CLIST_DRAG_AFTER" = 3)
+storage.mode(.GtkCListDragPos) <- 'integer'
+ 
+
+GtkCornerType<-c("top-left" = 0,
+	"bottom-left" = 1,
+	"top-right" = 2,
+	"bottom-right" = 3)
+storage.mode(GtkCornerType) <- 'integer'
+.GtkCornerType<-c("GTK_CORNER_TOP_LEFT" = 0,
+	"GTK_CORNER_BOTTOM_LEFT" = 1,
+	"GTK_CORNER_TOP_RIGHT" = 2,
+	"GTK_CORNER_BOTTOM_RIGHT" = 3)
+storage.mode(.GtkCornerType) <- 'integer'
+ 
+
+GtkCTreeExpanderStyle<-c("none" = 0,
+	"square" = 1,
+	"triangle" = 2,
+	"circular" = 3)
+storage.mode(GtkCTreeExpanderStyle) <- 'integer'
+.GtkCTreeExpanderStyle<-c("GTK_CTREE_EXPANDER_NONE" = 0,
+	"GTK_CTREE_EXPANDER_SQUARE" = 1,
+	"GTK_CTREE_EXPANDER_TRIANGLE" = 2,
+	"GTK_CTREE_EXPANDER_CIRCULAR" = 3)
+storage.mode(.GtkCTreeExpanderStyle) <- 'integer'
+ 
+
+GtkCTreeExpansionType<-c("expand" = 0,
+	"expand-recursive" = 1,
+	"collapse" = 2,
+	"collapse-recursive" = 3,
+	"toggle" = 4,
+	"toggle-recursive" = 5)
+storage.mode(GtkCTreeExpansionType) <- 'integer'
+.GtkCTreeExpansionType<-c("GTK_CTREE_EXPANSION_EXPAND" = 0,
+	"GTK_CTREE_EXPANSION_EXPAND_RECURSIVE" = 1,
+	"GTK_CTREE_EXPANSION_COLLAPSE" = 2,
+	"GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE" = 3,
+	"GTK_CTREE_EXPANSION_TOGGLE" = 4,
+	"GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE" = 5)
+storage.mode(.GtkCTreeExpansionType) <- 'integer'
+ 
+
+GtkCTreeLineStyle<-c("none" = 0,
+	"solid" = 1,
+	"dotted" = 2,
+	"tabbed" = 3)
+storage.mode(GtkCTreeLineStyle) <- 'integer'
+.GtkCTreeLineStyle<-c("GTK_CTREE_LINES_NONE" = 0,
+	"GTK_CTREE_LINES_SOLID" = 1,
+	"GTK_CTREE_LINES_DOTTED" = 2,
+	"GTK_CTREE_LINES_TABBED" = 3)
+storage.mode(.GtkCTreeLineStyle) <- 'integer'
+ 
+
+GtkCTreePos<-c("before" = 0,
+	"as-child" = 1,
+	"after" = 2)
+storage.mode(GtkCTreePos) <- 'integer'
+.GtkCTreePos<-c("GTK_CTREE_POS_BEFORE" = 0,
+	"GTK_CTREE_POS_AS_CHILD" = 1,
+	"GTK_CTREE_POS_AFTER" = 2)
+storage.mode(.GtkCTreePos) <- 'integer'
+ 
+
+GtkCurveType<-c("linear" = 0,
+	"spline" = 1,
+	"free" = 2)
+storage.mode(GtkCurveType) <- 'integer'
+.GtkCurveType<-c("GTK_CURVE_TYPE_LINEAR" = 0,
+	"GTK_CURVE_TYPE_SPLINE" = 1,
+	"GTK_CURVE_TYPE_FREE" = 2)
+storage.mode(.GtkCurveType) <- 'integer'
+ 
+
+GtkDeleteType<-c("chars" = 0,
+	"word-ends" = 1,
+	"words" = 2,
+	"display-lines" = 3,
+	"display-line-ends" = 4,
+	"paragraph-ends" = 5,
+	"paragraphs" = 6,
+	"whitespace" = 7)
+storage.mode(GtkDeleteType) <- 'integer'
+.GtkDeleteType<-c("GTK_DELETE_CHARS" = 0,
+	"GTK_DELETE_WORD_ENDS" = 1,
+	"GTK_DELETE_WORDS" = 2,
+	"GTK_DELETE_DISPLAY_LINES" = 3,
+	"GTK_DELETE_DISPLAY_LINE_ENDS" = 4,
+	"GTK_DELETE_PARAGRAPH_ENDS" = 5,
+	"GTK_DELETE_PARAGRAPHS" = 6,
+	"GTK_DELETE_WHITESPACE" = 7)
+storage.mode(.GtkDeleteType) <- 'integer'
+ 
+
+GtkDirectionType<-c("tab-forward" = 0,
+	"tab-backward" = 1,
+	"up" = 2,
+	"down" = 3,
+	"left" = 4,
+	"right" = 5)
+storage.mode(GtkDirectionType) <- 'integer'
+.GtkDirectionType<-c("GTK_DIR_TAB_FORWARD" = 0,
+	"GTK_DIR_TAB_BACKWARD" = 1,
+	"GTK_DIR_UP" = 2,
+	"GTK_DIR_DOWN" = 3,
+	"GTK_DIR_LEFT" = 4,
+	"GTK_DIR_RIGHT" = 5)
+storage.mode(.GtkDirectionType) <- 'integer'
+ 
+
+GtkExpanderStyle<-c("collapsed" = 0,
+	"semi-collapsed" = 1,
+	"semi-expanded" = 2,
+	"expanded" = 3)
+storage.mode(GtkExpanderStyle) <- 'integer'
+.GtkExpanderStyle<-c("GTK_EXPANDER_COLLAPSED" = 0,
+	"GTK_EXPANDER_SEMI_COLLAPSED" = 1,
+	"GTK_EXPANDER_SEMI_EXPANDED" = 2,
+	"GTK_EXPANDER_EXPANDED" = 3)
+storage.mode(.GtkExpanderStyle) <- 'integer'
+ 
+
+GtkFileChooserAction<-c("open" = 0,
+	"save" = 1,
+	"select-folder" = 2,
+	"create-folder" = 3)
+storage.mode(GtkFileChooserAction) <- 'integer'
+.GtkFileChooserAction<-c("GTK_FILE_CHOOSER_ACTION_OPEN" = 0,
+	"GTK_FILE_CHOOSER_ACTION_SAVE" = 1,
+	"GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER" = 2,
+	"GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER" = 3)
+storage.mode(.GtkFileChooserAction) <- 'integer'
+ 
+
+GtkFileChooserError<-c("nonexistent" = 0,
+	"bad-filename" = 1)
+storage.mode(GtkFileChooserError) <- 'integer'
+.GtkFileChooserError<-c("GTK_FILE_CHOOSER_ERROR_NONEXISTENT" = 0,
+	"GTK_FILE_CHOOSER_ERROR_BAD_FILENAME" = 1)
+storage.mode(.GtkFileChooserError) <- 'integer'
+ 
+
+GtkIconSize<-c("invalid" = 0,
+	"menu" = 1,
+	"small-toolbar" = 2,
+	"large-toolbar" = 3,
+	"button" = 4,
+	"dnd" = 5,
+	"dialog" = 6)
+storage.mode(GtkIconSize) <- 'integer'
+.GtkIconSize<-c("GTK_ICON_SIZE_INVALID" = 0,
+	"GTK_ICON_SIZE_MENU" = 1,
+	"GTK_ICON_SIZE_SMALL_TOOLBAR" = 2,
+	"GTK_ICON_SIZE_LARGE_TOOLBAR" = 3,
+	"GTK_ICON_SIZE_BUTTON" = 4,
+	"GTK_ICON_SIZE_DND" = 5,
+	"GTK_ICON_SIZE_DIALOG" = 6)
+storage.mode(.GtkIconSize) <- 'integer'
+ 
+
+GtkIconThemeError<-c("not-found" = 0,
+	"failed" = 1)
+storage.mode(GtkIconThemeError) <- 'integer'
+.GtkIconThemeError<-c("GTK_ICON_THEME_NOT_FOUND" = 0,
+	"GTK_ICON_THEME_FAILED" = 1)
+storage.mode(.GtkIconThemeError) <- 'integer'
+ 
+
+GtkIconViewDropPosition<-c("no-drop" = 0,
+	"drop-into" = 1,
+	"drop-left" = 2,
+	"drop-right" = 3,
+	"drop-above" = 4,
+	"drop-below" = 5)
+storage.mode(GtkIconViewDropPosition) <- 'integer'
+.GtkIconViewDropPosition<-c("GTK_ICON_VIEW_NO_DROP" = 0,
+	"GTK_ICON_VIEW_DROP_INTO" = 1,
+	"GTK_ICON_VIEW_DROP_LEFT" = 2,
+	"GTK_ICON_VIEW_DROP_RIGHT" = 3,
+	"GTK_ICON_VIEW_DROP_ABOVE" = 4,
+	"GTK_ICON_VIEW_DROP_BELOW" = 5)
+storage.mode(.GtkIconViewDropPosition) <- 'integer'
+ 
+
+GtkImageType<-c("empty" = 0,
+	"pixmap" = 1,
+	"image" = 2,
+	"pixbuf" = 3,
+	"stock" = 4,
+	"icon-set" = 5,
+	"animation" = 6)
+storage.mode(GtkImageType) <- 'integer'
+.GtkImageType<-c("GTK_IMAGE_EMPTY" = 0,
+	"GTK_IMAGE_PIXMAP" = 1,
+	"GTK_IMAGE_IMAGE" = 2,
+	"GTK_IMAGE_PIXBUF" = 3,
+	"GTK_IMAGE_STOCK" = 4,
+	"GTK_IMAGE_ICON_SET" = 5,
+	"GTK_IMAGE_ANIMATION" = 6)
+storage.mode(.GtkImageType) <- 'integer'
+ 
+
+GtkIMPreeditStyle<-c("nothing" = 0,
+	"callback" = 1,
+	"none" = 2)
+storage.mode(GtkIMPreeditStyle) <- 'integer'
+.GtkIMPreeditStyle<-c("GTK_IM_PREEDIT_NOTHING" = 0,
+	"GTK_IM_PREEDIT_CALLBACK" = 1,
+	"GTK_IM_PREEDIT_NONE" = 2)
+storage.mode(.GtkIMPreeditStyle) <- 'integer'
+ 
+
+GtkIMStatusStyle<-c("nothing" = 0,
+	"callback" = 1)
+storage.mode(GtkIMStatusStyle) <- 'integer'
+.GtkIMStatusStyle<-c("GTK_IM_STATUS_NOTHING" = 0,
+	"GTK_IM_STATUS_CALLBACK" = 1)
+storage.mode(.GtkIMStatusStyle) <- 'integer'
+ 
+
+GtkJustification<-c("left" = 0,
+	"right" = 1,
+	"center" = 2,
+	"fill" = 3)
+storage.mode(GtkJustification) <- 'integer'
+.GtkJustification<-c("GTK_JUSTIFY_LEFT" = 0,
+	"GTK_JUSTIFY_RIGHT" = 1,
+	"GTK_JUSTIFY_CENTER" = 2,
+	"GTK_JUSTIFY_FILL" = 3)
+storage.mode(.GtkJustification) <- 'integer'
+ 
+
+GtkMatchType<-c("all" = 0,
+	"all-tail" = 1,
+	"head" = 2,
+	"tail" = 3,
+	"exact" = 4,
+	"last" = 5)
+storage.mode(GtkMatchType) <- 'integer'
+.GtkMatchType<-c("GTK_MATCH_ALL" = 0,
+	"GTK_MATCH_ALL_TAIL" = 1,
+	"GTK_MATCH_HEAD" = 2,
+	"GTK_MATCH_TAIL" = 3,
+	"GTK_MATCH_EXACT" = 4,
+	"GTK_MATCH_LAST" = 5)
+storage.mode(.GtkMatchType) <- 'integer'
+ 
+
+GtkMenuDirectionType<-c("parent" = 0,
+	"child" = 1,
+	"next" = 2,
+	"prev" = 3)
+storage.mode(GtkMenuDirectionType) <- 'integer'
+.GtkMenuDirectionType<-c("GTK_MENU_DIR_PARENT" = 0,
+	"GTK_MENU_DIR_CHILD" = 1,
+	"GTK_MENU_DIR_NEXT" = 2,
+	"GTK_MENU_DIR_PREV" = 3)
+storage.mode(.GtkMenuDirectionType) <- 'integer'
+ 
+
+GtkMessageType<-c("info" = 0,
+	"warning" = 1,
+	"question" = 2,
+	"error" = 3)
+storage.mode(GtkMessageType) <- 'integer'
+.GtkMessageType<-c("GTK_MESSAGE_INFO" = 0,
+	"GTK_MESSAGE_WARNING" = 1,
+	"GTK_MESSAGE_QUESTION" = 2,
+	"GTK_MESSAGE_ERROR" = 3)
+storage.mode(.GtkMessageType) <- 'integer'
+ 
+
+GtkMetricType<-c("pixels" = 0,
+	"inches" = 1,
+	"centimeters" = 2)
+storage.mode(GtkMetricType) <- 'integer'
+.GtkMetricType<-c("GTK_PIXELS" = 0,
+	"GTK_INCHES" = 1,
+	"GTK_CENTIMETERS" = 2)
+storage.mode(.GtkMetricType) <- 'integer'
+ 
+
+GtkMovementStep<-c("logical-positions" = 0,
+	"visual-positions" = 1,
+	"words" = 2,
+	"display-lines" = 3,
+	"display-line-ends" = 4,
+	"paragraphs" = 5,
+	"paragraph-ends" = 6,
+	"pages" = 7,
+	"buffer-ends" = 8,
+	"horizontal-pages" = 9)
+storage.mode(GtkMovementStep) <- 'integer'
+.GtkMovementStep<-c("GTK_MOVEMENT_LOGICAL_POSITIONS" = 0,
+	"GTK_MOVEMENT_VISUAL_POSITIONS" = 1,
+	"GTK_MOVEMENT_WORDS" = 2,
+	"GTK_MOVEMENT_DISPLAY_LINES" = 3,
+	"GTK_MOVEMENT_DISPLAY_LINE_ENDS" = 4,
+	"GTK_MOVEMENT_PARAGRAPHS" = 5,
+	"GTK_MOVEMENT_PARAGRAPH_ENDS" = 6,
+	"GTK_MOVEMENT_PAGES" = 7,
+	"GTK_MOVEMENT_BUFFER_ENDS" = 8,
+	"GTK_MOVEMENT_HORIZONTAL_PAGES" = 9)
+storage.mode(.GtkMovementStep) <- 'integer'
+ 
+
+GtkNotebookTab<-c("first" = 0,
+	"last" = 1)
+storage.mode(GtkNotebookTab) <- 'integer'
+.GtkNotebookTab<-c("GTK_NOTEBOOK_TAB_FIRST" = 0,
+	"GTK_NOTEBOOK_TAB_LAST" = 1)
+storage.mode(.GtkNotebookTab) <- 'integer'
+ 
+
+GtkOrientation<-c("horizontal" = 0,
+	"vertical" = 1)
+storage.mode(GtkOrientation) <- 'integer'
+.GtkOrientation<-c("GTK_ORIENTATION_HORIZONTAL" = 0,
+	"GTK_ORIENTATION_VERTICAL" = 1)
+storage.mode(.GtkOrientation) <- 'integer'
+ 
+
+GtkPackDirection<-c("ltr" = 0,
+	"rtl" = 1,
+	"ttb" = 2,
+	"btt" = 3)
+storage.mode(GtkPackDirection) <- 'integer'
+.GtkPackDirection<-c("GTK_PACK_DIRECTION_LTR" = 0,
+	"GTK_PACK_DIRECTION_RTL" = 1,
+	"GTK_PACK_DIRECTION_TTB" = 2,
+	"GTK_PACK_DIRECTION_BTT" = 3)
+storage.mode(.GtkPackDirection) <- 'integer'
+ 
+
+GtkPackType<-c("start" = 0,
+	"end" = 1)
+storage.mode(GtkPackType) <- 'integer'
+.GtkPackType<-c("GTK_PACK_START" = 0,
+	"GTK_PACK_END" = 1)
+storage.mode(.GtkPackType) <- 'integer'
+ 
+
+GtkPathPriorityType<-c("lowest" = 0,
+	"gtk" = 1,
+	"application" = 2,
+	"theme" = 3,
+	"rc" = 4,
+	"highest" = 5)
+storage.mode(GtkPathPriorityType) <- 'integer'
+.GtkPathPriorityType<-c("GTK_PATH_PRIO_LOWEST" = 0,
+	"GTK_PATH_PRIO_GTK" = 1,
+	"GTK_PATH_PRIO_APPLICATION" = 2,
+	"GTK_PATH_PRIO_THEME" = 3,
+	"GTK_PATH_PRIO_RC" = 4,
+	"GTK_PATH_PRIO_HIGHEST" = 5)
+storage.mode(.GtkPathPriorityType) <- 'integer'
+ 
+
+GtkPathType<-c("widget" = 0,
+	"widget-class" = 1,
+	"class" = 2)
+storage.mode(GtkPathType) <- 'integer'
+.GtkPathType<-c("GTK_PATH_WIDGET" = 0,
+	"GTK_PATH_WIDGET_CLASS" = 1,
+	"GTK_PATH_CLASS" = 2)
+storage.mode(.GtkPathType) <- 'integer'
+ 
+
+GtkPolicyType<-c("always" = 0,
+	"automatic" = 1,
+	"never" = 2)
+storage.mode(GtkPolicyType) <- 'integer'
+.GtkPolicyType<-c("GTK_POLICY_ALWAYS" = 0,
+	"GTK_POLICY_AUTOMATIC" = 1,
+	"GTK_POLICY_NEVER" = 2)
+storage.mode(.GtkPolicyType) <- 'integer'
+ 
+
+GtkPositionType<-c("left" = 0,
+	"right" = 1,
+	"top" = 2,
+	"bottom" = 3)
+storage.mode(GtkPositionType) <- 'integer'
+.GtkPositionType<-c("GTK_POS_LEFT" = 0,
+	"GTK_POS_RIGHT" = 1,
+	"GTK_POS_TOP" = 2,
+	"GTK_POS_BOTTOM" = 3)
+storage.mode(.GtkPositionType) <- 'integer'
+ 
+
+GtkPreviewType<-c("color" = 0,
+	"grayscale" = 1)
+storage.mode(GtkPreviewType) <- 'integer'
+.GtkPreviewType<-c("GTK_PREVIEW_COLOR" = 0,
+	"GTK_PREVIEW_GRAYSCALE" = 1)
+storage.mode(.GtkPreviewType) <- 'integer'
+ 
+
+GtkProgressBarOrientation<-c("left-to-right" = 0,
+	"right-to-left" = 1,
+	"bottom-to-top" = 2,
+	"top-to-bottom" = 3)
+storage.mode(GtkProgressBarOrientation) <- 'integer'
+.GtkProgressBarOrientation<-c("GTK_PROGRESS_LEFT_TO_RIGHT" = 0,
+	"GTK_PROGRESS_RIGHT_TO_LEFT" = 1,
+	"GTK_PROGRESS_BOTTOM_TO_TOP" = 2,
+	"GTK_PROGRESS_TOP_TO_BOTTOM" = 3)
+storage.mode(.GtkProgressBarOrientation) <- 'integer'
+ 
+
+GtkProgressBarStyle<-c("continuous" = 0,
+	"discrete" = 1)
+storage.mode(GtkProgressBarStyle) <- 'integer'
+.GtkProgressBarStyle<-c("GTK_PROGRESS_CONTINUOUS" = 0,
+	"GTK_PROGRESS_DISCRETE" = 1)
+storage.mode(.GtkProgressBarStyle) <- 'integer'
+ 
+
+GtkRcTokenType<-c("invalid" = 0,
+	"include" = 1,
+	"normal" = 2,
+	"active" = 3,
+	"prelight" = 4,
+	"selected" = 5,
+	"insensitive" = 6,
+	"fg" = 7,
+	"bg" = 8,
+	"text" = 9,
+	"base" = 10,
+	"xthickness" = 11,
+	"ythickness" = 12,
+	"font" = 13,
+	"fontset" = 14,
+	"font-name" = 15,
+	"bg-pixmap" = 16,
+	"pixmap-path" = 17,
+	"style" = 18,
+	"binding" = 19,
+	"bind" = 20,
+	"widget" = 21,
+	"widget-class" = 22,
+	"class" = 23,
+	"lowest" = 24,
+	"gtk" = 25,
+	"application" = 26,
+	"theme" = 27,
+	"rc" = 28,
+	"highest" = 29,
+	"engine" = 30,
+	"module-path" = 31,
+	"im-module-path" = 32,
+	"im-module-file" = 33,
+	"stock" = 34,
+	"ltr" = 35,
+	"rtl" = 36,
+	"last" = 37)
+storage.mode(GtkRcTokenType) <- 'integer'
+.GtkRcTokenType<-c("GTK_RC_TOKEN_INVALID" = 0,
+	"GTK_RC_TOKEN_INCLUDE" = 1,
+	"GTK_RC_TOKEN_NORMAL" = 2,
+	"GTK_RC_TOKEN_ACTIVE" = 3,
+	"GTK_RC_TOKEN_PRELIGHT" = 4,
+	"GTK_RC_TOKEN_SELECTED" = 5,
+	"GTK_RC_TOKEN_INSENSITIVE" = 6,
+	"GTK_RC_TOKEN_FG" = 7,
+	"GTK_RC_TOKEN_BG" = 8,
+	"GTK_RC_TOKEN_TEXT" = 9,
+	"GTK_RC_TOKEN_BASE" = 10,
+	"GTK_RC_TOKEN_XTHICKNESS" = 11,
+	"GTK_RC_TOKEN_YTHICKNESS" = 12,
+	"GTK_RC_TOKEN_FONT" = 13,
+	"GTK_RC_TOKEN_FONTSET" = 14,
+	"GTK_RC_TOKEN_FONT_NAME" = 15,
+	"GTK_RC_TOKEN_BG_PIXMAP" = 16,
+	"GTK_RC_TOKEN_PIXMAP_PATH" = 17,
+	"GTK_RC_TOKEN_STYLE" = 18,
+	"GTK_RC_TOKEN_BINDING" = 19,
+	"GTK_RC_TOKEN_BIND" = 20,
+	"GTK_RC_TOKEN_WIDGET" = 21,
+	"GTK_RC_TOKEN_WIDGET_CLASS" = 22,
+	"GTK_RC_TOKEN_CLASS" = 23,
+	"GTK_RC_TOKEN_LOWEST" = 24,
+	"GTK_RC_TOKEN_GTK" = 25,
+	"GTK_RC_TOKEN_APPLICATION" = 26,
+	"GTK_RC_TOKEN_THEME" = 27,
+	"GTK_RC_TOKEN_RC" = 28,
+	"GTK_RC_TOKEN_HIGHEST" = 29,
+	"GTK_RC_TOKEN_ENGINE" = 30,
+	"GTK_RC_TOKEN_MODULE_PATH" = 31,
+	"GTK_RC_TOKEN_IM_MODULE_PATH" = 32,
+	"GTK_RC_TOKEN_IM_MODULE_FILE" = 33,
+	"GTK_RC_TOKEN_STOCK" = 34,
+	"GTK_RC_TOKEN_LTR" = 35,
+	"GTK_RC_TOKEN_RTL" = 36,
+	"GTK_RC_TOKEN_LAST" = 37)
+storage.mode(.GtkRcTokenType) <- 'integer'
+ 
+
+GtkReliefStyle<-c("normal" = 0,
+	"half" = 1,
+	"none" = 2)
+storage.mode(GtkReliefStyle) <- 'integer'
+.GtkReliefStyle<-c("GTK_RELIEF_NORMAL" = 0,
+	"GTK_RELIEF_HALF" = 1,
+	"GTK_RELIEF_NONE" = 2)
+storage.mode(.GtkReliefStyle) <- 'integer'
+ 
+
+GtkResizeMode<-c("parent" = 0,
+	"queue" = 1,
+	"immediate" = 2)
+storage.mode(GtkResizeMode) <- 'integer'
+.GtkResizeMode<-c("GTK_RESIZE_PARENT" = 0,
+	"GTK_RESIZE_QUEUE" = 1,
+	"GTK_RESIZE_IMMEDIATE" = 2)
+storage.mode(.GtkResizeMode) <- 'integer'
+ 
+
+GtkResponseType<-c("none" = -1,
+	"reject" = -2,
+	"accept" = -3,
+	"delete-event" = -4,
+	"ok" = -5,
+	"cancel" = -6,
+	"close" = -7,
+	"yes" = -8,
+	"no" = -9,
+	"apply" = -10,
+	"help" = -11)
+storage.mode(GtkResponseType) <- 'integer'
+.GtkResponseType<-c("GTK_RESPONSE_NONE" = -1,
+	"GTK_RESPONSE_REJECT" = -2,
+	"GTK_RESPONSE_ACCEPT" = -3,
+	"GTK_RESPONSE_DELETE_EVENT" = -4,
+	"GTK_RESPONSE_OK" = -5,
+	"GTK_RESPONSE_CANCEL" = -6,
+	"GTK_RESPONSE_CLOSE" = -7,
+	"GTK_RESPONSE_YES" = -8,
+	"GTK_RESPONSE_NO" = -9,
+	"GTK_RESPONSE_APPLY" = -10,
+	"GTK_RESPONSE_HELP" = -11)
+storage.mode(.GtkResponseType) <- 'integer'
+ 
+
+GtkScrollStep<-c("steps" = 0,
+	"pages" = 1,
+	"ends" = 2,
+	"horizontal-steps" = 3,
+	"horizontal-pages" = 4,
+	"horizontal-ends" = 5)
+storage.mode(GtkScrollStep) <- 'integer'
+.GtkScrollStep<-c("GTK_SCROLL_STEPS" = 0,
+	"GTK_SCROLL_PAGES" = 1,
+	"GTK_SCROLL_ENDS" = 2,
+	"GTK_SCROLL_HORIZONTAL_STEPS" = 3,
+	"GTK_SCROLL_HORIZONTAL_PAGES" = 4,
+	"GTK_SCROLL_HORIZONTAL_ENDS" = 5)
+storage.mode(.GtkScrollStep) <- 'integer'
+ 
+
+GtkScrollType<-c("none" = 0,
+	"jump" = 1,
+	"step-backward" = 2,
+	"step-forward" = 3,
+	"page-backward" = 4,
+	"page-forward" = 5,
+	"step-up" = 6,
+	"step-down" = 7,
+	"page-up" = 8,
+	"page-down" = 9,
+	"step-left" = 10,
+	"step-right" = 11,
+	"page-left" = 12,
+	"page-right" = 13,
+	"start" = 14,
+	"end" = 15)
+storage.mode(GtkScrollType) <- 'integer'
+.GtkScrollType<-c("GTK_SCROLL_NONE" = 0,
+	"GTK_SCROLL_JUMP" = 1,
+	"GTK_SCROLL_STEP_BACKWARD" = 2,
+	"GTK_SCROLL_STEP_FORWARD" = 3,
+	"GTK_SCROLL_PAGE_BACKWARD" = 4,
+	"GTK_SCROLL_PAGE_FORWARD" = 5,
+	"GTK_SCROLL_STEP_UP" = 6,
+	"GTK_SCROLL_STEP_DOWN" = 7,
+	"GTK_SCROLL_PAGE_UP" = 8,
+	"GTK_SCROLL_PAGE_DOWN" = 9,
+	"GTK_SCROLL_STEP_LEFT" = 10,
+	"GTK_SCROLL_STEP_RIGHT" = 11,
+	"GTK_SCROLL_PAGE_LEFT" = 12,
+	"GTK_SCROLL_PAGE_RIGHT" = 13,
+	"GTK_SCROLL_START" = 14,
+	"GTK_SCROLL_END" = 15)
+storage.mode(.GtkScrollType) <- 'integer'
+ 
+
+GtkSelectionMode<-c("none" = 0,
+	"single" = 1,
+	"browse" = 2,
+	"multiple" = 3,
+	"extended" = 4)
+storage.mode(GtkSelectionMode) <- 'integer'
+.GtkSelectionMode<-c("GTK_SELECTION_NONE" = 0,
+	"GTK_SELECTION_SINGLE" = 1,
+	"GTK_SELECTION_BROWSE" = 2,
+	"GTK_SELECTION_MULTIPLE" = 3,
+	"GTK_SELECTION_EXTENDED" = 4)
+storage.mode(.GtkSelectionMode) <- 'integer'
+ 
+
+GtkShadowType<-c("none" = 0,
+	"in" = 1,
+	"out" = 2,
+	"etched-in" = 3,
+	"etched-out" = 4)
+storage.mode(GtkShadowType) <- 'integer'
+.GtkShadowType<-c("GTK_SHADOW_NONE" = 0,
+	"GTK_SHADOW_IN" = 1,
+	"GTK_SHADOW_OUT" = 2,
+	"GTK_SHADOW_ETCHED_IN" = 3,
+	"GTK_SHADOW_ETCHED_OUT" = 4)
+storage.mode(.GtkShadowType) <- 'integer'
+ 
+
+GtkSideType<-c("top" = 0,
+	"bottom" = 1,
+	"left" = 2,
+	"right" = 3)
+storage.mode(GtkSideType) <- 'integer'
+.GtkSideType<-c("GTK_SIDE_TOP" = 0,
+	"GTK_SIDE_BOTTOM" = 1,
+	"GTK_SIDE_LEFT" = 2,
+	"GTK_SIDE_RIGHT" = 3)
+storage.mode(.GtkSideType) <- 'integer'
+ 
+
+GtkSizeGroupMode<-c("none" = 0,
+	"horizontal" = 1,
+	"vertical" = 2,
+	"both" = 3)
+storage.mode(GtkSizeGroupMode) <- 'integer'
+.GtkSizeGroupMode<-c("GTK_SIZE_GROUP_NONE" = 0,
+	"GTK_SIZE_GROUP_HORIZONTAL" = 1,
+	"GTK_SIZE_GROUP_VERTICAL" = 2,
+	"GTK_SIZE_GROUP_BOTH" = 3)
+storage.mode(.GtkSizeGroupMode) <- 'integer'
+ 
+
+GtkSortType<-c("ascending" = 0,
+	"descending" = 1)
+storage.mode(GtkSortType) <- 'integer'
+.GtkSortType<-c("GTK_SORT_ASCENDING" = 0,
+	"GTK_SORT_DESCENDING" = 1)
+storage.mode(.GtkSortType) <- 'integer'
+ 
+
+GtkSpinButtonUpdatePolicy<-c("always" = 0,
+	"if-valid" = 1)
+storage.mode(GtkSpinButtonUpdatePolicy) <- 'integer'
+.GtkSpinButtonUpdatePolicy<-c("GTK_UPDATE_ALWAYS" = 0,
+	"GTK_UPDATE_IF_VALID" = 1)
+storage.mode(.GtkSpinButtonUpdatePolicy) <- 'integer'
+ 
+
+GtkSpinType<-c("step-forward" = 0,
+	"step-backward" = 1,
+	"page-forward" = 2,
+	"page-backward" = 3,
+	"home" = 4,
+	"end" = 5,
+	"user-defined" = 6)
+storage.mode(GtkSpinType) <- 'integer'
+.GtkSpinType<-c("GTK_SPIN_STEP_FORWARD" = 0,
+	"GTK_SPIN_STEP_BACKWARD" = 1,
+	"GTK_SPIN_PAGE_FORWARD" = 2,
+	"GTK_SPIN_PAGE_BACKWARD" = 3,
+	"GTK_SPIN_HOME" = 4,
+	"GTK_SPIN_END" = 5,
+	"GTK_SPIN_USER_DEFINED" = 6)
+storage.mode(.GtkSpinType) <- 'integer'
+ 
+
+GtkStateType<-c("normal" = 0,
+	"active" = 1,
+	"prelight" = 2,
+	"selected" = 3,
+	"insensitive" = 4)
+storage.mode(GtkStateType) <- 'integer'
+.GtkStateType<-c("GTK_STATE_NORMAL" = 0,
+	"GTK_STATE_ACTIVE" = 1,
+	"GTK_STATE_PRELIGHT" = 2,
+	"GTK_STATE_SELECTED" = 3,
+	"GTK_STATE_INSENSITIVE" = 4)
+storage.mode(.GtkStateType) <- 'integer'
+ 
+
+GtkSubmenuDirection<-c("left" = 0,
+	"right" = 1)
+storage.mode(GtkSubmenuDirection) <- 'integer'
+.GtkSubmenuDirection<-c("GTK_DIRECTION_LEFT" = 0,
+	"GTK_DIRECTION_RIGHT" = 1)
+storage.mode(.GtkSubmenuDirection) <- 'integer'
+ 
+
+GtkSubmenuPlacement<-c("top-bottom" = 0,
+	"left-right" = 1)
+storage.mode(GtkSubmenuPlacement) <- 'integer'
+.GtkSubmenuPlacement<-c("GTK_TOP_BOTTOM" = 0,
+	"GTK_LEFT_RIGHT" = 1)
+storage.mode(.GtkSubmenuPlacement) <- 'integer'
+ 
+
+GtkTextDirection<-c("none" = 0,
+	"ltr" = 1,
+	"rtl" = 2)
+storage.mode(GtkTextDirection) <- 'integer'
+.GtkTextDirection<-c("GTK_TEXT_DIR_NONE" = 0,
+	"GTK_TEXT_DIR_LTR" = 1,
+	"GTK_TEXT_DIR_RTL" = 2)
+storage.mode(.GtkTextDirection) <- 'integer'
+ 
+
+GtkTextWindowType<-c("private" = 0,
+	"widget" = 1,
+	"text" = 2,
+	"left" = 3,
+	"right" = 4,
+	"top" = 5,
+	"bottom" = 6)
+storage.mode(GtkTextWindowType) <- 'integer'
+.GtkTextWindowType<-c("GTK_TEXT_WINDOW_PRIVATE" = 0,
+	"GTK_TEXT_WINDOW_WIDGET" = 1,
+	"GTK_TEXT_WINDOW_TEXT" = 2,
+	"GTK_TEXT_WINDOW_LEFT" = 3,
+	"GTK_TEXT_WINDOW_RIGHT" = 4,
+	"GTK_TEXT_WINDOW_TOP" = 5,
+	"GTK_TEXT_WINDOW_BOTTOM" = 6)
+storage.mode(.GtkTextWindowType) <- 'integer'
+ 
+
+GtkToolbarChildType<-c("space" = 0,
+	"button" = 1,
+	"togglebutton" = 2,
+	"radiobutton" = 3,
+	"widget" = 4)
+storage.mode(GtkToolbarChildType) <- 'integer'
+.GtkToolbarChildType<-c("GTK_TOOLBAR_CHILD_SPACE" = 0,
+	"GTK_TOOLBAR_CHILD_BUTTON" = 1,
+	"GTK_TOOLBAR_CHILD_TOGGLEBUTTON" = 2,
+	"GTK_TOOLBAR_CHILD_RADIOBUTTON" = 3,
+	"GTK_TOOLBAR_CHILD_WIDGET" = 4)
+storage.mode(.GtkToolbarChildType) <- 'integer'
+ 
+
+GtkToolbarSpaceStyle<-c("empty" = 0,
+	"line" = 1)
+storage.mode(GtkToolbarSpaceStyle) <- 'integer'
+.GtkToolbarSpaceStyle<-c("GTK_TOOLBAR_SPACE_EMPTY" = 0,
+	"GTK_TOOLBAR_SPACE_LINE" = 1)
+storage.mode(.GtkToolbarSpaceStyle) <- 'integer'
+ 
+
+GtkToolbarStyle<-c("icons" = 0,
+	"text" = 1,
+	"both" = 2,
+	"both-horiz" = 3)
+storage.mode(GtkToolbarStyle) <- 'integer'
+.GtkToolbarStyle<-c("GTK_TOOLBAR_ICONS" = 0,
+	"GTK_TOOLBAR_TEXT" = 1,
+	"GTK_TOOLBAR_BOTH" = 2,
+	"GTK_TOOLBAR_BOTH_HORIZ" = 3)
+storage.mode(.GtkToolbarStyle) <- 'integer'
+ 
+
+GtkTreeViewColumnSizing<-c("grow-only" = 0,
+	"autosize" = 1,
+	"fixed" = 2)
+storage.mode(GtkTreeViewColumnSizing) <- 'integer'
+.GtkTreeViewColumnSizing<-c("GTK_TREE_VIEW_COLUMN_GROW_ONLY" = 0,
+	"GTK_TREE_VIEW_COLUMN_AUTOSIZE" = 1,
+	"GTK_TREE_VIEW_COLUMN_FIXED" = 2)
+storage.mode(.GtkTreeViewColumnSizing) <- 'integer'
+ 
+
+GtkTreeViewDropPosition<-c("before" = 0,
+	"after" = 1,
+	"into-or-before" = 2,
+	"into-or-after" = 3)
+storage.mode(GtkTreeViewDropPosition) <- 'integer'
+.GtkTreeViewDropPosition<-c("GTK_TREE_VIEW_DROP_BEFORE" = 0,
+	"GTK_TREE_VIEW_DROP_AFTER" = 1,
+	"GTK_TREE_VIEW_DROP_INTO_OR_BEFORE" = 2,
+	"GTK_TREE_VIEW_DROP_INTO_OR_AFTER" = 3)
+storage.mode(.GtkTreeViewDropPosition) <- 'integer'
+ 
+
+GtkUpdateType<-c("continuous" = 0,
+	"discontinuous" = 1,
+	"delayed" = 2)
+storage.mode(GtkUpdateType) <- 'integer'
+.GtkUpdateType<-c("GTK_UPDATE_CONTINUOUS" = 0,
+	"GTK_UPDATE_DISCONTINUOUS" = 1,
+	"GTK_UPDATE_DELAYED" = 2)
+storage.mode(.GtkUpdateType) <- 'integer'
+ 
+
+GtkVisibility<-c("none" = 0,
+	"partial" = 1,
+	"full" = 2)
+storage.mode(GtkVisibility) <- 'integer'
+.GtkVisibility<-c("GTK_VISIBILITY_NONE" = 0,
+	"GTK_VISIBILITY_PARTIAL" = 1,
+	"GTK_VISIBILITY_FULL" = 2)
+storage.mode(.GtkVisibility) <- 'integer'
+ 
+
+GtkWidgetHelpType<-c("tooltip" = 0,
+	"whats-this" = 1)
+storage.mode(GtkWidgetHelpType) <- 'integer'
+.GtkWidgetHelpType<-c("GTK_WIDGET_HELP_TOOLTIP" = 0,
+	"GTK_WIDGET_HELP_WHATS_THIS" = 1)
+storage.mode(.GtkWidgetHelpType) <- 'integer'
+ 
+
+GtkWindowPosition<-c("none" = 0,
+	"center" = 1,
+	"mouse" = 2,
+	"center-always" = 3,
+	"center-on-parent" = 4)
+storage.mode(GtkWindowPosition) <- 'integer'
+.GtkWindowPosition<-c("GTK_WIN_POS_NONE" = 0,
+	"GTK_WIN_POS_CENTER" = 1,
+	"GTK_WIN_POS_MOUSE" = 2,
+	"GTK_WIN_POS_CENTER_ALWAYS" = 3,
+	"GTK_WIN_POS_CENTER_ON_PARENT" = 4)
+storage.mode(.GtkWindowPosition) <- 'integer'
+ 
+
+GtkWindowType<-c("toplevel" = 0,
+	"popup" = 1)
+storage.mode(GtkWindowType) <- 'integer'
+.GtkWindowType<-c("GTK_WINDOW_TOPLEVEL" = 0,
+	"GTK_WINDOW_POPUP" = 1)
+storage.mode(.GtkWindowType) <- 'integer'
+ 
+
+GtkWrapMode<-c("none" = 0,
+	"char" = 1,
+	"word" = 2,
+	"word_char" = 3)
+storage.mode(GtkWrapMode) <- 'integer'
+.GtkWrapMode<-c("GTK_WRAP_NONE" = 0,
+	"GTK_WRAP_CHAR" = 1,
+	"GTK_WRAP_WORD" = 2,
+	"GTK_WRAP_WORD_CHAR" = 3)
+storage.mode(.GtkWrapMode) <- 'integer'
+ 
+
+GtkAccelFlags<-c("visible" = 1,
+	"locked" = 2,
+	"mask" = 4)
+storage.mode(GtkAccelFlags) <- 'numeric'
+.GtkAccelFlags<-c("GTK_ACCEL_VISIBLE" = 1,
+	"GTK_ACCEL_LOCKED" = 2,
+	"GTK_ACCEL_MASK" = 4)
+storage.mode(.GtkAccelFlags) <- 'numeric'
+ 
+
+GtkArgFlags<-c("readable" = 1,
+	"writable" = 2,
+	"construct" = 4,
+	"construct-only" = 8,
+	"child-arg" = 16)
+storage.mode(GtkArgFlags) <- 'numeric'
+.GtkArgFlags<-c("GTK_ARG_READABLE" = 1,
+	"GTK_ARG_WRITABLE" = 2,
+	"GTK_ARG_CONSTRUCT" = 4,
+	"GTK_ARG_CONSTRUCT_ONLY" = 8,
+	"GTK_ARG_CHILD_ARG" = 16)
+storage.mode(.GtkArgFlags) <- 'numeric'
+ 
+
+GtkAttachOptions<-c("expand" = 1,
+	"shrink" = 2,
+	"fill" = 4)
+storage.mode(GtkAttachOptions) <- 'numeric'
+.GtkAttachOptions<-c("GTK_EXPAND" = 1,
+	"GTK_SHRINK" = 2,
+	"GTK_FILL" = 4)
+storage.mode(.GtkAttachOptions) <- 'numeric'
+ 
+
+GtkButtonAction<-c("ignored" = 1,
+	"selects" = 2,
+	"drags" = 4,
+	"expands" = 8)
+storage.mode(GtkButtonAction) <- 'numeric'
+.GtkButtonAction<-c("GTK_BUTTON_IGNORED" = 1,
+	"GTK_BUTTON_SELECTS" = 2,
+	"GTK_BUTTON_DRAGS" = 4,
+	"GTK_BUTTON_EXPANDS" = 8)
+storage.mode(.GtkButtonAction) <- 'numeric'
+ 
+
+GtkCalendarDisplayOptions<-c("show-heading" = 1,
+	"show-day-names" = 2,
+	"no-month-change" = 4,
+	"show-week-numbers" = 8,
+	"week-start-monday" = 16)
+storage.mode(GtkCalendarDisplayOptions) <- 'numeric'
+.GtkCalendarDisplayOptions<-c("GTK_CALENDAR_SHOW_HEADING" = 1,
+	"GTK_CALENDAR_SHOW_DAY_NAMES" = 2,
+	"GTK_CALENDAR_NO_MONTH_CHANGE" = 4,
+	"GTK_CALENDAR_SHOW_WEEK_NUMBERS" = 8,
+	"GTK_CALENDAR_WEEK_START_MONDAY" = 16)
+storage.mode(.GtkCalendarDisplayOptions) <- 'numeric'
+ 
+
+GtkCellRendererState<-c("selected" = 1,
+	"prelit" = 2,
+	"insensitive" = 4,
+	"sorted" = 8,
+	"focused" = 16)
+storage.mode(GtkCellRendererState) <- 'numeric'
+.GtkCellRendererState<-c("GTK_CELL_RENDERER_SELECTED" = 1,
+	"GTK_CELL_RENDERER_PRELIT" = 2,
+	"GTK_CELL_RENDERER_INSENSITIVE" = 4,
+	"GTK_CELL_RENDERER_SORTED" = 8,
+	"GTK_CELL_RENDERER_FOCUSED" = 16)
+storage.mode(.GtkCellRendererState) <- 'numeric'
+ 
+
+GtkDebugFlag<-c("misc" = 1,
+	"plugsocket" = 2,
+	"text" = 4,
+	"tree" = 8,
+	"updates" = 16,
+	"keybindings" = 32,
+	"multihead" = 64)
+storage.mode(GtkDebugFlag) <- 'numeric'
+.GtkDebugFlag<-c("GTK_DEBUG_MISC" = 1,
+	"GTK_DEBUG_PLUGSOCKET" = 2,
+	"GTK_DEBUG_TEXT" = 4,
+	"GTK_DEBUG_TREE" = 8,
+	"GTK_DEBUG_UPDATES" = 16,
+	"GTK_DEBUG_KEYBINDINGS" = 32,
+	"GTK_DEBUG_MULTIHEAD" = 64)
+storage.mode(.GtkDebugFlag) <- 'numeric'
+ 
+
+GtkDestDefaults<-c("motion" = 1,
+	"highlight" = 2,
+	"drop" = 4,
+	"all" = 8)
+storage.mode(GtkDestDefaults) <- 'numeric'
+.GtkDestDefaults<-c("GTK_DEST_DEFAULT_MOTION" = 1,
+	"GTK_DEST_DEFAULT_HIGHLIGHT" = 2,
+	"GTK_DEST_DEFAULT_DROP" = 4,
+	"GTK_DEST_DEFAULT_ALL" = 8)
+storage.mode(.GtkDestDefaults) <- 'numeric'
+ 
+
+GtkDialogFlags<-c("modal" = 1,
+	"destroy-with-parent" = 2,
+	"no-separator" = 4)
+storage.mode(GtkDialogFlags) <- 'numeric'
+.GtkDialogFlags<-c("GTK_DIALOG_MODAL" = 1,
+	"GTK_DIALOG_DESTROY_WITH_PARENT" = 2,
+	"GTK_DIALOG_NO_SEPARATOR" = 4)
+storage.mode(.GtkDialogFlags) <- 'numeric'
+ 
+
+GtkFileFilterFlags<-c("filename" = 1,
+	"uri" = 2,
+	"display-name" = 4,
+	"mime-type" = 8)
+storage.mode(GtkFileFilterFlags) <- 'numeric'
+.GtkFileFilterFlags<-c("GTK_FILE_FILTER_FILENAME" = 1,
+	"GTK_FILE_FILTER_URI" = 2,
+	"GTK_FILE_FILTER_DISPLAY_NAME" = 4,
+	"GTK_FILE_FILTER_MIME_TYPE" = 8)
+storage.mode(.GtkFileFilterFlags) <- 'numeric'
+ 
+
+GtkIconLookupFlags<-c("no-svg" = 1,
+	"force-svg" = 2,
+	"use-builtin" = 4)
+storage.mode(GtkIconLookupFlags) <- 'numeric'
+.GtkIconLookupFlags<-c("GTK_ICON_LOOKUP_NO_SVG" = 1,
+	"GTK_ICON_LOOKUP_FORCE_SVG" = 2,
+	"GTK_ICON_LOOKUP_USE_BUILTIN" = 4)
+storage.mode(.GtkIconLookupFlags) <- 'numeric'
+ 
+
+GtkObjectFlags<-c("in-destruction" = 1,
+	"floating" = 2,
+	"reserved-1" = 4,
+	"reserved-2" = 8)
+storage.mode(GtkObjectFlags) <- 'numeric'
+.GtkObjectFlags<-c("GTK_IN_DESTRUCTION" = 1,
+	"GTK_FLOATING" = 2,
+	"GTK_RESERVED_1" = 4,
+	"GTK_RESERVED_2" = 8)
+storage.mode(.GtkObjectFlags) <- 'numeric'
+ 
+
+GtkRcFlags<-c("fg" = 1,
+	"bg" = 2,
+	"text" = 4,
+	"base" = 8)
+storage.mode(GtkRcFlags) <- 'numeric'
+.GtkRcFlags<-c("GTK_RC_FG" = 1,
+	"GTK_RC_BG" = 2,
+	"GTK_RC_TEXT" = 4,
+	"GTK_RC_BASE" = 8)
+storage.mode(.GtkRcFlags) <- 'numeric'
+ 
+
+GtkTargetFlags<-c("app" = 1,
+	"widget" = 2)
+storage.mode(GtkTargetFlags) <- 'numeric'
+.GtkTargetFlags<-c("GTK_TARGET_SAME_APP" = 1,
+	"GTK_TARGET_SAME_WIDGET" = 2)
+storage.mode(.GtkTargetFlags) <- 'numeric'
+ 
+
+GtkTextSearchFlags<-c("visible-only" = 1,
+	"text-only" = 2)
+storage.mode(GtkTextSearchFlags) <- 'numeric'
+.GtkTextSearchFlags<-c("GTK_TEXT_SEARCH_VISIBLE_ONLY" = 1,
+	"GTK_TEXT_SEARCH_TEXT_ONLY" = 2)
+storage.mode(.GtkTextSearchFlags) <- 'numeric'
+ 
+
+GtkTreeModelFlags<-c("iters-persist" = 1,
+	"list-only" = 2)
+storage.mode(GtkTreeModelFlags) <- 'numeric'
+.GtkTreeModelFlags<-c("GTK_TREE_MODEL_ITERS_PERSIST" = 1,
+	"GTK_TREE_MODEL_LIST_ONLY" = 2)
+storage.mode(.GtkTreeModelFlags) <- 'numeric'
+ 
+
+GtkUIManagerItemType<-c("auto" = 1,
+	"menubar" = 2,
+	"menu" = 4,
+	"toolbar" = 8,
+	"placeholder" = 16,
+	"popup" = 32,
+	"menuitem" = 64,
+	"toolitem" = 128,
+	"separator" = 256,
+	"accelerator" = 512)
+storage.mode(GtkUIManagerItemType) <- 'numeric'
+.GtkUIManagerItemType<-c("GTK_UI_MANAGER_AUTO" = 1,
+	"GTK_UI_MANAGER_MENUBAR" = 2,
+	"GTK_UI_MANAGER_MENU" = 4,
+	"GTK_UI_MANAGER_TOOLBAR" = 8,
+	"GTK_UI_MANAGER_PLACEHOLDER" = 16,
+	"GTK_UI_MANAGER_POPUP" = 32,
+	"GTK_UI_MANAGER_MENUITEM" = 64,
+	"GTK_UI_MANAGER_TOOLITEM" = 128,
+	"GTK_UI_MANAGER_SEPARATOR" = 256,
+	"GTK_UI_MANAGER_ACCELERATOR" = 512)
+storage.mode(.GtkUIManagerItemType) <- 'numeric'
+ 
+
+GtkWidgetFlags<-c("toplevel" = 16,
+	"no-window" = 32,
+	"realized" = 64,
+	"mapped" = 128,
+	"visible" = 256,
+	"sensitive" = 512,
+	"parent-sensitive" = 1024,
+	"can-focus" = 2048,
+	"has-focus" = 4096,
+	"can-default" = 8192,
+	"has-default" = 16384,
+	"has-grab" = 32768,
+	"rc-style" = 16384,
+	"composite-child" = 131072,
+	"no-reparent" = 262144,
+	"app-paintable" = 524288,
+	"receives-default" = 1048576,
+	"double-buffered" = 2097152,
+	"no-show-all" = 4194304)
+storage.mode(GtkWidgetFlags) <- 'numeric'
+.GtkWidgetFlags<-c("GTK_TOPLEVEL" = 16,
+	"GTK_NO_WINDOW" = 32,
+	"GTK_REALIZED" = 64,
+	"GTK_MAPPED" = 128,
+	"GTK_VISIBLE" = 256,
+	"GTK_SENSITIVE" = 512,
+	"GTK_PARENT_SENSITIVE" = 1024,
+	"GTK_CAN_FOCUS" = 2048,
+	"GTK_HAS_FOCUS" = 4096,
+	"GTK_CAN_DEFAULT" = 8192,
+	"GTK_HAS_DEFAULT" = 16384,
+	"GTK_HAS_GRAB" = 32768,
+	"GTK_RC_STYLE" = 16384,
+	"GTK_COMPOSITE_CHILD" = 131072,
+	"GTK_NO_REPARENT" = 262144,
+	"GTK_APP_PAINTABLE" = 524288,
+	"GTK_RECEIVES_DEFAULT" = 1048576,
+	"GTK_DOUBLE_BUFFERED" = 2097152,
+	"GTK_NO_SHOW_ALL" = 4194304)
+storage.mode(.GtkWidgetFlags) <- 'numeric'
+ 
+

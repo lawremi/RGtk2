@@ -1,0 +1,2 @@
+PKG_CPPFLAGS=-D_R_=1 -DUSE_R=1 $(shell @RGTK_CONFIG@ --cflags) -I$(R_HOME)/include @CPP_DEFINES@
+PKG_LIBS=$(shell @RGTK_CONFIG@ --libs)

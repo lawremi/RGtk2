@@ -1,0 +1,164 @@
+as.GdkAtom <-
+function(x)
+{
+    if (!inherits(x, "GdkAtom") && !is.numeric(x)) {
+        x <- as.character(x)
+    }
+    x
+}
+
+# the first field ('pixel') is not always necessary
+as.GdkColor <-
+function(x)
+{
+    fields <- c("red", "green", "blue")
+	if (length(x) > 3)
+		fields <- c("pixel", fields)
+	
+	x <- as.struct(x, "GdkColor", fields)
+    
+	if (length(x) > 3)
+		x[[1]] <- as.numeric(x[[1]])
+	else x[[1]] <- as.integer(x[[1]])
+    
+	x[-1] <- sapply(x[-1], as.integer) 
+
+    return(x)
+}
+
+as.GdkRectangle <-
+function(x)
+{
+    x <- as.struct(x, "GdkRectangle", c("x", "y", "width", "height"))
+    x[[1]] <- as.integer(x[[1]])
+    x[[2]] <- as.integer(x[[2]])
+    x[[3]] <- as.integer(x[[3]])
+    x[[4]] <- as.integer(x[[4]])
+
+    return(x)
+}
+as.GdkRgbCmap <-
+function(x)
+{
+	x <- as.numeric(x)
+	class(x) <- "GdkRgbCmap"
+	x
+}
+as.GdkKeymapKey <-
+function(x)
+{
+	x <- as.struct(x, "GdkKeymapKey", c("keycode", "group", "level"))
+	x[[1]] <- as.numeric(x[[1]])
+	x[[2]] <- as.integer(x[[2]])
+	x[[3]] <- as.integer(x[[3]])
+	return(x)
+}
+as.GdkGCValues <-
+function(x)
+{
+	x <- as.struct(x, "GdkGCValues", c("foreground", "background", "font", "function", "fill", "tile", "stipple", 
+		"clip.mask", "subwindow.mode", "ts.x.origin", "ts.y.origin", "clip.x.origin", "clip.y.origin", 
+		"graphics.exposures", "line.width", "line.style", "cap.style", "join.style"))
+	
+	if (!is.null(x[[1]])) x[[1]] <- as.GdkColor(x[[1]])
+	if (!is.null(x[[2]])) x[[2]] <- as.GdkColor(x[[2]])
+	if (!is.null(x[[3]])) x[[3]] <- checkPtrType(x[[3]], "GdkFont")
+	if (!is.null(x[[4]])) x[[4]] <- as.function(x[[4]])
+	# GdkFill	    fill;
+	if (!is.null(x[[6]])) x[[6]] <- checkPtrType(x[[6]], "GdkPixmap")
+	if (!is.null(x[[7]])) x[[7]] <- checkPtrType(x[[7]], "GdkPixmap")
+	if (!is.null(x[[8]])) x[[8]] <- checkPtrType(x[[8]], "GdkPixmap")
+	# GdkSubwindowMode  subwindow_mode;
+	if (!is.null(x[[10]])) x[[10]] <- as.integer(x[[10]])
+	if (!is.null(x[[11]])) x[[11]] <- as.integer(x[[11]])
+	if (!is.null(x[[12]])) x[[12]] <- as.integer(x[[12]])
+	if (!is.null(x[[13]])) x[[13]] <- as.integer(x[[13]])
+	if (!is.null(x[[14]])) x[[14]] <- as.integer(x[[14]])
+	if (!is.null(x[[15]])) x[[15]] <- as.integer(x[[15]])
+	# GdkLineStyle	    line_style;
+	# GdkCapStyle	    cap_style;
+	# GdkJoinStyle	    join_style;
+	return(x)
+}
+as.GdkGeometry <-
+function(x)
+{
+  x <- as.struct(x, "GdkGeometry", c("min.width", "min.height", "max.width", "max.height",
+  	"base.width", "base.height", "width.inc", "height.inc", "min.aspect", "max.aspect", "win.gravity"))
+  
+	if (!is.null(x[[1]])) {
+		x[[1]] <-  as.integer(x[[1]])
+		x[[2]] <-  as.integer(x[[2]])
+	}
+	if (!is.null(x[[3]])) {
+		x[[3]] <- as.integer(x[[3]])
+		x[[4]] <- as.integer(x[[4]])
+	}
+	if (!is.null(x[[4]])) {
+		 x[[5]] <- as.integer(x[[5]])
+		 x[[6]] <- as.integer(x[[6]])
+	}
+	if (!is.null(x[[7]])) {
+		x[[7]] <- as.integer(x[[7]])
+		x[[8]] <- as.integer(x[[8]])
+	}
+	if (!is.null(x[[9]])) {
+		x[[9]] <- as.numeric(x[[9]])
+		x[[10]] <- as.numeric(x[[10]])
+	}
+  
+  # GdkGravity win_gravity;
+  
+  return(x)
+}
+as.GdkWindowAttr <-
+function(x)
+{
+	x <- as.struct(x, "GdkWindowAttr", c("title", "event.mask", "x", "y", "width", "height", "wclass",
+		"visual", "colormap", "window.type", "wmclass.name", "wmclass.class", "override.redirect"))
+	if (!is.null(x[[1]])) x[[1]] <- as.character(x[[1]])
+	x[[2]] <- as.integer(x[[2]])
+	x[[3]] <- as.integer(x[[3]])
+	x[[4]] <- as.integer(x[[4]])
+	x[[5]] <- as.integer(x[[5]])
+	x[[6]] <- as.integer(x[[6]])
+	# wclass
+	if (!is.null(x[[8]])) x[[8]] <- checkPtrType(x[[8]], "GdkVisual")
+	if (!is.null(x[[9]])) x[[9]] <- checkPtrType(x[[9]], "GdkColormap")
+	if (!is.null(x[[10]])) x[[10]] <- checkPtrType(x[[10]], "GdkCursor")
+	if (!is.null(x[[11]])) {
+		x[[11]] <- as.character(x[[11]])
+		x[[12]] <- as.character(x[[12]])
+	}
+	if (!is.null(x[[13]])) x[[13]] <- as.logical(x[[13]])
+	
+	return(x)
+}
+
+as.GdkNativeWindow <-
+function(x)
+{
+	class(x) <- "GdkNativeWindow"
+	x
+}
+
+as.GdkSegment <-
+function(x)
+{
+	x <- as.struct(x, "GdkSegment", c("x1", "y1", "x2", "y2"))
+	x[[1]] <- as.integer(x[[1]])
+	x[[2]] <- as.integer(x[[2]])
+	x[[3]] <- as.integer(x[[3]])
+	x[[4]] <- as.integer(x[[4]])
+	
+	return(x)
+}
+
+as.GdkPoint <-
+function(x)
+{
+	x <- as.struct(x, "GdkPoint", c("x", "y"))
+	x[[1]] <- as.integer(x[[1]])
+	x[[2]] <- as.integer(x[[2]])
+	return(x)
+}

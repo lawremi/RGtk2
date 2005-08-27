@@ -1,0 +1,4 @@
+GTK_CFLAGS=$(shell /usr/bin/pkg-config gtk+-2.0 --cflags)
+
+PKG_CPPFLAGS=-I. -D_R_=1 -DUSE_R=1 $(GTK_CFLAGS) -I$(R_HOME)/include 
+PKG_LIBS=$(shell /usr/bin/pkg-config gtk+-2.0 --libs)

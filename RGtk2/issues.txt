@@ -1,0 +1,45 @@
+Some current issues (bugs?) with RGtk2
+----------
+
+Specifics
+---------
+
+- these functions SHOULD free a string parameter by ref: (but they don't)
+	pango_parse_markup, gtk_im_context_get_(preedit_string/surrounding), gtk_widget_(class)_path
+- pango_reorder_items should not have its members setup for finalization
+
+General
+---------
+- May need to figure out way to specify ownership in return by ref
+----> Right now a few functions are implemented manually instead
+- Need to set destroyed GtkObject variables to NULL
+- Need to manage (sink-ref) widget memory
+
+Tough Fixes (questionable worth)
+-----------
+- GTK property parsing - needs better GParamSpec support, manual GValue initialization
+- Difficult to send non-GTyped data structures to callbacks
+---> implement wrapper manually (without GClosure system)
+- Cannot return a value by reference from a callback (see GtkRcPropertyParser, GdkPixbufSaveFunc)
+---> implement manually, expect list of return values from R code
+- Should the user be able to create GdkEvents from scratch?
+- User functions without user-data are not wrappable
+---> could implement custom list of callbacks, but this is a lot work
+
+Problems with defs files (as provided by pygtk)
+--------------------
+- GtkFileInfo/GtkFileSystem etc are not public
+- gtk_init_abi_* is not part of the public api
+- gtk_ctree_base_nodes has been removed from gtk
+- gtk_icon_view_new_with_model should be marked as constructor
+- gdk_color_new, gdk_rectangle_new, gdk_pixbuf_new_from_array are not actual functions
+- In my opinion, gdk_atom_name is a function not a method, GdkAtom is not an object
+- Also, GdkRectangle is not an object and so should not have methods
+- gdk_pixbuf_get_from_drawable/image - should be functions not methods
+- GtkBindingSet, though in the API docs, is not documented, and seems internal
+- gtk_drag_get_souce_widget is in gdk.defs, but I feel that it belongs in gtk.defs
+- GtkPrivateFlags is not documented and sounds, well, private
+- Lots of strange deprecated duplicates that we need to filter out
+- Features added to pygtk (compliant to specs): in/out params, user functions, enum/flag values
+- Hacked some type names, like G(S)List[type] to specify the component type and [] indicating array
+- gdk_pixbuf_save_to_buffer is missing

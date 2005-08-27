@@ -1,0 +1,17 @@
+(define-function set_data
+  (c-name "g_object_set_data")
+  (return-type "none")
+  (parameters
+    '("GObject*" "object")
+    '("const-gchar*" "key")
+    '("gpointer" "data" (null-ok))
+  )
+)
+(define-function get_data
+  (c-name "g_object_get_data")
+  (return-type "gpointer")
+  (parameters
+    '("GObject*" "object")
+    '("const-gchar*" "key")
+  )
+)

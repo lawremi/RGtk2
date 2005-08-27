@@ -1,0 +1,24 @@
+AC_INIT(src/Rgtk.c)
+
+if test -z "${PKG_CONFIG}" ; then
+AC_PATH_PROG(PKG_CONFIG, pkg-config)
+fi
+
+dnl if test -z "${PKG_CONFIG}" ; then
+dnl  echo "Cannot find pkg-config. Please modify your path or set PKG_CONFIG to the fully qualified name."
+dnl  exit 1
+dnl fi
+
+RGTK_CONFIG="$PKG_CONFIG gtk+-2.0 libglade-2.0 firefox-gtkmozembed"
+
+AC_SUBST(R_PACKAGE_DIR)
+AC_SUBST(INSTALL_DIR)
+
+AC_SUBST(RGTK_CONFIG)
+
+AC_SUBST(CPP_DEFINES)
+
+AC_OUTPUT(src/Makevars cleanup)
+chmod +x cleanup
+
+

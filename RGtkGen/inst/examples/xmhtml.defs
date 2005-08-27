@@ -1,0 +1,195 @@
+; -*- scheme -*-
+
+(define-object GtkXmHTML (GtkContainer))
+
+(define-func gtk_xmhtml_new
+  GtkWidget
+  ())
+
+(define-func gtk_xmhtml_freeze
+  none
+  ((GtkXmHTML html)))
+
+(define-func gtk_xmhtml_thaw
+  none
+  ((GtkXmHTML html)))
+
+(define-func gtk_xmhtml_source
+  none
+  ((GtkXmHTML html)
+   (string source)))
+
+(define-func gtk_xmhtml_set_string_direction
+  none
+  ((GtkXmHTML html)
+   (int direction)))
+
+(define-func gtk_xmhtml_set_alignment
+  none
+  ((GtkXmHTML html)
+   (int alignment)))
+
+;; This doesn't seem to be defined in the library ...
+;(define-func gtk_xmhtml_outline
+;  none
+;  ((GtkXmHTML html)
+;   (int flag)))
+
+; XXXX why are these spelt this way???
+(define-func gtk_xmhtml_set_font_familty
+  none
+  ((GtkXmHTML html)
+   (string family)
+   (string sizes)))
+
+(define-func gtk_xmhtml_set_font_familty_fixed
+  none
+  ((GtkXmHTML html)
+   (string family)
+   (string sizes)))
+
+(define-func gtk_xmhtml_set_font_charset
+  none
+  ((GtkXmHTML html)
+   (string charset)))
+
+(define-func gtk_xmhtml_set_allow_body_colors
+  none
+  ((GtkXmHTML html)
+   (int enable)))
+
+(define-func gtk_xmhtml_set_hilight_on_enter
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_anchor_underline_type
+  none
+  ((GtkXmHTML html)
+   (int underline_type)))
+
+(define-func gtk_xmhtml_set_anchor_visited_underline_type
+  none
+  ((GtkXmHTML html)
+   (int underline_type)))
+
+(define-func gtk_xmhtml_set_anchor_target_underline_type
+  none
+  ((GtkXmHTML html)
+   (int underline_type)))
+
+(define-func gtk_xmhtml_set_allow_color_switching
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_dithering
+  none
+  ((GtkXmHTML html)
+   (int flag))) ; flag should be of type XmHTMLDitherType
+
+(define-func gtk_xmhtml_set_allow_font_switching
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_max_image_colors
+  none
+  ((GtkXmHTML html)
+   (int max_colours)))
+
+(define-func gtk_xmhtml_set_allow_images
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_plc_intervals
+  none
+  ((GtkXmHTML html)
+   (int min_delay)
+   (int max_delay)
+   (int def_delay)))
+
+(define-func gtk_xmhtml_set_def_body_image_url
+  none
+  ((GtkXmHTML html)
+   (string url)))
+
+(define-func gtk_xmhtml_set_anchor_buttons
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_anchor_cursor
+  none
+  ((GtkXmHTML html)
+   (GdkCursor cursor)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_topline
+  none
+  ((GtkXmHTML html)
+   (int line)))
+
+(define-func gtk_xmhtml_get_topline
+  int
+  ((GtkXmHTML html)))
+
+(define-func gtk_xmhtml_set_freeze_animations
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+;(define-func gtk_xmhtml_get_source
+;  string
+;  ((GtkXmHTML html)))
+
+(define-func gtk_xmhtml_set_screen_gamma
+  none
+  ((GtkXmHTML html)
+   (float gamma)))
+
+(define-func gtk_xmhtml_set_perfect_colors
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_uncompress_command
+  none
+  ((GtkXmHTML html)
+   (string cmd)))
+
+(define-func gtk_xmhtml_set_strict_checking
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_bad_html_warnings
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_allow_form_coloring
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_imagemap_draw
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_mime_type
+  none
+  ((GtkXmHTML html)
+   (string mime_type)))
+
+(define-func gtk_xmhtml_set_alpha_processing
+  none
+  ((GtkXmHTML html)
+   (int flag)))
+
+(define-func gtk_xmhtml_set_rgb_conv_mode
+  none
+  ((GtkXmHTML html)
+   (int val)))

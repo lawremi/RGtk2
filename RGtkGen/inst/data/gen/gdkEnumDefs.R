@@ -1,0 +1,754 @@
+GdkCursorType<-c("gdk-cursor-is-pixmap" = 0)
+storage.mode(GdkCursorType) <- 'integer'
+.GdkCursorType<-c("GDK_CURSOR_IS_PIXMAP" = 0)
+storage.mode(.GdkCursorType) <- 'integer'
+ 
+
+GdkDragProtocol<-c("motif" = 0,
+	"xdnd" = 1,
+	"rootwin" = 2,
+	"none" = 3,
+	"win32-dropfiles" = 4,
+	"ole2" = 5,
+	"local" = 6)
+storage.mode(GdkDragProtocol) <- 'integer'
+.GdkDragProtocol<-c("GDK_DRAG_PROTO_MOTIF" = 0,
+	"GDK_DRAG_PROTO_XDND" = 1,
+	"GDK_DRAG_PROTO_ROOTWIN" = 2,
+	"GDK_DRAG_PROTO_NONE" = 3,
+	"GDK_DRAG_PROTO_WIN32_DROPFILES" = 4,
+	"GDK_DRAG_PROTO_OLE2" = 5,
+	"GDK_DRAG_PROTO_LOCAL" = 6)
+storage.mode(.GdkDragProtocol) <- 'integer'
+ 
+
+GdkFilterReturn<-c("continue" = 0,
+	"translate" = 1,
+	"remove" = 2)
+storage.mode(GdkFilterReturn) <- 'integer'
+.GdkFilterReturn<-c("GDK_FILTER_CONTINUE" = 0,
+	"GDK_FILTER_TRANSLATE" = 1,
+	"GDK_FILTER_REMOVE" = 2)
+storage.mode(.GdkFilterReturn) <- 'integer'
+ 
+
+GdkEventType<-c("nothing" = 0,
+	"delete" = 1,
+	"destroy" = 2,
+	"expose" = 3,
+	"motion-notify" = 4,
+	"button-press" = 5,
+	"2button-press" = 6,
+	"3button-press" = 7,
+	"button-release" = 8,
+	"key-press" = 9,
+	"key-release" = 10,
+	"enter-notify" = 11,
+	"leave-notify" = 12,
+	"focus-change" = 13,
+	"configure" = 14,
+	"map" = 15,
+	"unmap" = 16,
+	"property-notify" = 17,
+	"selection-clear" = 18,
+	"selection-request" = 19,
+	"selection-notify" = 20,
+	"proximity-in" = 21,
+	"proximity-out" = 22,
+	"drag-enter" = 23,
+	"drag-leave" = 24,
+	"drag-motion" = 25,
+	"drag-status" = 26,
+	"drop-start" = 27,
+	"drop-finished" = 28,
+	"client-event" = 29,
+	"visibility-notify" = 30,
+	"no-expose" = 31,
+	"scroll" = 32,
+	"window-state" = 33,
+	"setting" = 34)
+storage.mode(GdkEventType) <- 'integer'
+.GdkEventType<-c("GDK_NOTHING" = 0,
+	"GDK_DELETE" = 1,
+	"GDK_DESTROY" = 2,
+	"GDK_EXPOSE" = 3,
+	"GDK_MOTION_NOTIFY" = 4,
+	"GDK_BUTTON_PRESS" = 5,
+	"GDK_2BUTTON_PRESS" = 6,
+	"GDK_3BUTTON_PRESS" = 7,
+	"GDK_BUTTON_RELEASE" = 8,
+	"GDK_KEY_PRESS" = 9,
+	"GDK_KEY_RELEASE" = 10,
+	"GDK_ENTER_NOTIFY" = 11,
+	"GDK_LEAVE_NOTIFY" = 12,
+	"GDK_FOCUS_CHANGE" = 13,
+	"GDK_CONFIGURE" = 14,
+	"GDK_MAP" = 15,
+	"GDK_UNMAP" = 16,
+	"GDK_PROPERTY_NOTIFY" = 17,
+	"GDK_SELECTION_CLEAR" = 18,
+	"GDK_SELECTION_REQUEST" = 19,
+	"GDK_SELECTION_NOTIFY" = 20,
+	"GDK_PROXIMITY_IN" = 21,
+	"GDK_PROXIMITY_OUT" = 22,
+	"GDK_DRAG_ENTER" = 23,
+	"GDK_DRAG_LEAVE" = 24,
+	"GDK_DRAG_MOTION" = 25,
+	"GDK_DRAG_STATUS" = 26,
+	"GDK_DROP_START" = 27,
+	"GDK_DROP_FINISHED" = 28,
+	"GDK_CLIENT_EVENT" = 29,
+	"GDK_VISIBILITY_NOTIFY" = 30,
+	"GDK_NO_EXPOSE" = 31,
+	"GDK_SCROLL" = 32,
+	"GDK_WINDOW_STATE" = 33,
+	"GDK_SETTING" = 34)
+storage.mode(.GdkEventType) <- 'integer'
+ 
+
+GdkVisibilityState<-c("unobscured" = 0,
+	"partial" = 1,
+	"fully-obscured" = 2)
+storage.mode(GdkVisibilityState) <- 'integer'
+.GdkVisibilityState<-c("GDK_VISIBILITY_UNOBSCURED" = 0,
+	"GDK_VISIBILITY_PARTIAL" = 1,
+	"GDK_VISIBILITY_FULLY_OBSCURED" = 2)
+storage.mode(.GdkVisibilityState) <- 'integer'
+ 
+
+GdkScrollDirection<-c("up" = 0,
+	"down" = 1,
+	"left" = 2,
+	"right" = 3)
+storage.mode(GdkScrollDirection) <- 'integer'
+.GdkScrollDirection<-c("GDK_SCROLL_UP" = 0,
+	"GDK_SCROLL_DOWN" = 1,
+	"GDK_SCROLL_LEFT" = 2,
+	"GDK_SCROLL_RIGHT" = 3)
+storage.mode(.GdkScrollDirection) <- 'integer'
+ 
+
+GdkNotifyType<-c("ancestor" = 0,
+	"virtual" = 1,
+	"inferior" = 2,
+	"nonlinear" = 3,
+	"nonlinear-virtual" = 4,
+	"unknown" = 5)
+storage.mode(GdkNotifyType) <- 'integer'
+.GdkNotifyType<-c("GDK_NOTIFY_ANCESTOR" = 0,
+	"GDK_NOTIFY_VIRTUAL" = 1,
+	"GDK_NOTIFY_INFERIOR" = 2,
+	"GDK_NOTIFY_NONLINEAR" = 3,
+	"GDK_NOTIFY_NONLINEAR_VIRTUAL" = 4,
+	"GDK_NOTIFY_UNKNOWN" = 5)
+storage.mode(.GdkNotifyType) <- 'integer'
+ 
+
+GdkCrossingMode<-c("normal" = 0,
+	"grab" = 1,
+	"ungrab" = 2)
+storage.mode(GdkCrossingMode) <- 'integer'
+.GdkCrossingMode<-c("GDK_CROSSING_NORMAL" = 0,
+	"GDK_CROSSING_GRAB" = 1,
+	"GDK_CROSSING_UNGRAB" = 2)
+storage.mode(.GdkCrossingMode) <- 'integer'
+ 
+
+GdkPropertyState<-c("new-value" = 0,
+	"delete" = 1)
+storage.mode(GdkPropertyState) <- 'integer'
+.GdkPropertyState<-c("GDK_PROPERTY_NEW_VALUE" = 0,
+	"GDK_PROPERTY_DELETE" = 1)
+storage.mode(.GdkPropertyState) <- 'integer'
+ 
+
+GdkSettingAction<-c("new" = 0,
+	"changed" = 1,
+	"deleted" = 2)
+storage.mode(GdkSettingAction) <- 'integer'
+.GdkSettingAction<-c("GDK_SETTING_ACTION_NEW" = 0,
+	"GDK_SETTING_ACTION_CHANGED" = 1,
+	"GDK_SETTING_ACTION_DELETED" = 2)
+storage.mode(.GdkSettingAction) <- 'integer'
+ 
+
+GdkFontType<-c("font" = 0,
+	"fontset" = 1)
+storage.mode(GdkFontType) <- 'integer'
+.GdkFontType<-c("GDK_FONT_FONT" = 0,
+	"GDK_FONT_FONTSET" = 1)
+storage.mode(.GdkFontType) <- 'integer'
+ 
+
+GdkCapStyle<-c("not-last" = 0,
+	"butt" = 1,
+	"round" = 2,
+	"projecting" = 3)
+storage.mode(GdkCapStyle) <- 'integer'
+.GdkCapStyle<-c("GDK_CAP_NOT_LAST" = 0,
+	"GDK_CAP_BUTT" = 1,
+	"GDK_CAP_ROUND" = 2,
+	"GDK_CAP_PROJECTING" = 3)
+storage.mode(.GdkCapStyle) <- 'integer'
+ 
+
+GdkFill<-c("solid" = 0,
+	"tiled" = 1,
+	"stippled" = 2,
+	"opaque-stippled" = 3)
+storage.mode(GdkFill) <- 'integer'
+.GdkFill<-c("GDK_SOLID" = 0,
+	"GDK_TILED" = 1,
+	"GDK_STIPPLED" = 2,
+	"GDK_OPAQUE_STIPPLED" = 3)
+storage.mode(.GdkFill) <- 'integer'
+ 
+
+GdkFunction<-c("copy" = 0,
+	"invert" = 1,
+	"xor" = 2,
+	"clear" = 3,
+	"and" = 4,
+	"and-reverse" = 5,
+	"and-invert" = 6,
+	"noop" = 7,
+	"or" = 8,
+	"equiv" = 9,
+	"or-reverse" = 10,
+	"copy-invert" = 11,
+	"or-invert" = 12,
+	"nand" = 13,
+	"nor" = 14,
+	"set" = 15)
+storage.mode(GdkFunction) <- 'integer'
+.GdkFunction<-c("GDK_COPY" = 0,
+	"GDK_INVERT" = 1,
+	"GDK_XOR" = 2,
+	"GDK_CLEAR" = 3,
+	"GDK_AND" = 4,
+	"GDK_AND_REVERSE" = 5,
+	"GDK_AND_INVERT" = 6,
+	"GDK_NOOP" = 7,
+	"GDK_OR" = 8,
+	"GDK_EQUIV" = 9,
+	"GDK_OR_REVERSE" = 10,
+	"GDK_COPY_INVERT" = 11,
+	"GDK_OR_INVERT" = 12,
+	"GDK_NAND" = 13,
+	"GDK_NOR" = 14,
+	"GDK_SET" = 15)
+storage.mode(.GdkFunction) <- 'integer'
+ 
+
+GdkJoinStyle<-c("miter" = 0,
+	"round" = 1,
+	"bevel" = 2)
+storage.mode(GdkJoinStyle) <- 'integer'
+.GdkJoinStyle<-c("GDK_JOIN_MITER" = 0,
+	"GDK_JOIN_ROUND" = 1,
+	"GDK_JOIN_BEVEL" = 2)
+storage.mode(.GdkJoinStyle) <- 'integer'
+ 
+
+GdkLineStyle<-c("solid" = 0,
+	"on-off-dash" = 1,
+	"double-dash" = 2)
+storage.mode(GdkLineStyle) <- 'integer'
+.GdkLineStyle<-c("GDK_LINE_SOLID" = 0,
+	"GDK_LINE_ON_OFF_DASH" = 1,
+	"GDK_LINE_DOUBLE_DASH" = 2)
+storage.mode(.GdkLineStyle) <- 'integer'
+ 
+
+GdkSubwindowMode<-c("clip-by-children" = 0,
+	"include-inferiors" = 1)
+storage.mode(GdkSubwindowMode) <- 'integer'
+.GdkSubwindowMode<-c("GDK_CLIP_BY_CHILDREN" = 0,
+	"GDK_INCLUDE_INFERIORS" = 1)
+storage.mode(.GdkSubwindowMode) <- 'integer'
+ 
+
+GdkImageType<-c("normal" = 0,
+	"shared" = 1,
+	"fastest" = 2)
+storage.mode(GdkImageType) <- 'integer'
+.GdkImageType<-c("GDK_IMAGE_NORMAL" = 0,
+	"GDK_IMAGE_SHARED" = 1,
+	"GDK_IMAGE_FASTEST" = 2)
+storage.mode(.GdkImageType) <- 'integer'
+ 
+
+GdkExtensionMode<-c("none" = 0,
+	"all" = 1,
+	"cursor" = 2)
+storage.mode(GdkExtensionMode) <- 'integer'
+.GdkExtensionMode<-c("GDK_EXTENSION_EVENTS_NONE" = 0,
+	"GDK_EXTENSION_EVENTS_ALL" = 1,
+	"GDK_EXTENSION_EVENTS_CURSOR" = 2)
+storage.mode(.GdkExtensionMode) <- 'integer'
+ 
+
+GdkInputSource<-c("mouse" = 0,
+	"pen" = 1,
+	"eraser" = 2,
+	"cursor" = 3)
+storage.mode(GdkInputSource) <- 'integer'
+.GdkInputSource<-c("GDK_SOURCE_MOUSE" = 0,
+	"GDK_SOURCE_PEN" = 1,
+	"GDK_SOURCE_ERASER" = 2,
+	"GDK_SOURCE_CURSOR" = 3)
+storage.mode(.GdkInputSource) <- 'integer'
+ 
+
+GdkInputMode<-c("disabled" = 0,
+	"screen" = 1,
+	"window" = 2)
+storage.mode(GdkInputMode) <- 'integer'
+.GdkInputMode<-c("GDK_MODE_DISABLED" = 0,
+	"GDK_MODE_SCREEN" = 1,
+	"GDK_MODE_WINDOW" = 2)
+storage.mode(.GdkInputMode) <- 'integer'
+ 
+
+GdkAxisUse<-c("ignore" = 0,
+	"x" = 1,
+	"y" = 2,
+	"pressure" = 3,
+	"xtilt" = 4,
+	"ytilt" = 5,
+	"wheel" = 6,
+	"last" = 7)
+storage.mode(GdkAxisUse) <- 'integer'
+.GdkAxisUse<-c("GDK_AXIS_IGNORE" = 0,
+	"GDK_AXIS_X" = 1,
+	"GDK_AXIS_Y" = 2,
+	"GDK_AXIS_PRESSURE" = 3,
+	"GDK_AXIS_XTILT" = 4,
+	"GDK_AXIS_YTILT" = 5,
+	"GDK_AXIS_WHEEL" = 6,
+	"GDK_AXIS_LAST" = 7)
+storage.mode(.GdkAxisUse) <- 'integer'
+ 
+
+GdkPropMode<-c("replace" = 0,
+	"prepend" = 1,
+	"append" = 2)
+storage.mode(GdkPropMode) <- 'integer'
+.GdkPropMode<-c("GDK_PROP_MODE_REPLACE" = 0,
+	"GDK_PROP_MODE_PREPEND" = 1,
+	"GDK_PROP_MODE_APPEND" = 2)
+storage.mode(.GdkPropMode) <- 'integer'
+ 
+
+GdkFillRule<-c("even-odd-rule" = 0,
+	"winding-rule" = 1)
+storage.mode(GdkFillRule) <- 'integer'
+.GdkFillRule<-c("GDK_EVEN_ODD_RULE" = 0,
+	"GDK_WINDING_RULE" = 1)
+storage.mode(.GdkFillRule) <- 'integer'
+ 
+
+GdkOverlapType<-c("in" = 0,
+	"out" = 1,
+	"part" = 2)
+storage.mode(GdkOverlapType) <- 'integer'
+.GdkOverlapType<-c("GDK_OVERLAP_RECTANGLE_IN" = 0,
+	"GDK_OVERLAP_RECTANGLE_OUT" = 1,
+	"GDK_OVERLAP_RECTANGLE_PART" = 2)
+storage.mode(.GdkOverlapType) <- 'integer'
+ 
+
+GdkRgbDither<-c("none" = 0,
+	"normal" = 1,
+	"max" = 2)
+storage.mode(GdkRgbDither) <- 'integer'
+.GdkRgbDither<-c("GDK_RGB_DITHER_NONE" = 0,
+	"GDK_RGB_DITHER_NORMAL" = 1,
+	"GDK_RGB_DITHER_MAX" = 2)
+storage.mode(.GdkRgbDither) <- 'integer'
+ 
+
+GdkByteOrder<-c("lsb-first" = 0,
+	"msb-first" = 1)
+storage.mode(GdkByteOrder) <- 'integer'
+.GdkByteOrder<-c("GDK_LSB_FIRST" = 0,
+	"GDK_MSB_FIRST" = 1)
+storage.mode(.GdkByteOrder) <- 'integer'
+ 
+
+GdkStatus<-c("ok" = 0,
+	"error" = 1,
+	"error-param" = 2,
+	"error-file" = 3,
+	"error-mem" = 4)
+storage.mode(GdkStatus) <- 'integer'
+.GdkStatus<-c("GDK_OK" = 0,
+	"GDK_ERROR" = 1,
+	"GDK_ERROR_PARAM" = 2,
+	"GDK_ERROR_FILE" = 3,
+	"GDK_ERROR_MEM" = 4)
+storage.mode(.GdkStatus) <- 'integer'
+ 
+
+GdkGrabStatus<-c("success" = 0,
+	"already-grabbed" = 1,
+	"invalid-time" = 2,
+	"not-viewable" = 3,
+	"frozen" = 4)
+storage.mode(GdkGrabStatus) <- 'integer'
+.GdkGrabStatus<-c("GDK_GRAB_SUCCESS" = 0,
+	"GDK_GRAB_ALREADY_GRABBED" = 1,
+	"GDK_GRAB_INVALID_TIME" = 2,
+	"GDK_GRAB_NOT_VIEWABLE" = 3,
+	"GDK_GRAB_FROZEN" = 4)
+storage.mode(.GdkGrabStatus) <- 'integer'
+ 
+
+GdkVisualType<-c("static-gray" = 0,
+	"grayscale" = 1,
+	"static-color" = 2,
+	"pseudo-color" = 3,
+	"true-color" = 4,
+	"direct-color" = 5)
+storage.mode(GdkVisualType) <- 'integer'
+.GdkVisualType<-c("GDK_VISUAL_STATIC_GRAY" = 0,
+	"GDK_VISUAL_GRAYSCALE" = 1,
+	"GDK_VISUAL_STATIC_COLOR" = 2,
+	"GDK_VISUAL_PSEUDO_COLOR" = 3,
+	"GDK_VISUAL_TRUE_COLOR" = 4,
+	"GDK_VISUAL_DIRECT_COLOR" = 5)
+storage.mode(.GdkVisualType) <- 'integer'
+ 
+
+GdkWindowClass<-c("utput" = 0,
+	"nly" = 1)
+storage.mode(GdkWindowClass) <- 'integer'
+.GdkWindowClass<-c("GDK_INPUT_OUTPUT" = 0,
+	"GDK_INPUT_ONLY" = 1)
+storage.mode(.GdkWindowClass) <- 'integer'
+ 
+
+GdkWindowType<-c("root" = 0,
+	"toplevel" = 1,
+	"child" = 2,
+	"dialog" = 3,
+	"temp" = 4,
+	"foreign" = 5)
+storage.mode(GdkWindowType) <- 'integer'
+.GdkWindowType<-c("GDK_WINDOW_ROOT" = 0,
+	"GDK_WINDOW_TOPLEVEL" = 1,
+	"GDK_WINDOW_CHILD" = 2,
+	"GDK_WINDOW_DIALOG" = 3,
+	"GDK_WINDOW_TEMP" = 4,
+	"GDK_WINDOW_FOREIGN" = 5)
+storage.mode(.GdkWindowType) <- 'integer'
+ 
+
+GdkWindowTypeHint<-c("normal" = 0,
+	"dialog" = 1,
+	"menu" = 2,
+	"toolbar" = 3,
+	"splashscreen" = 4,
+	"utility" = 5,
+	"dock" = 6,
+	"desktop" = 7)
+storage.mode(GdkWindowTypeHint) <- 'integer'
+.GdkWindowTypeHint<-c("GDK_WINDOW_TYPE_HINT_NORMAL" = 0,
+	"GDK_WINDOW_TYPE_HINT_DIALOG" = 1,
+	"GDK_WINDOW_TYPE_HINT_MENU" = 2,
+	"GDK_WINDOW_TYPE_HINT_TOOLBAR" = 3,
+	"GDK_WINDOW_TYPE_HINT_SPLASHSCREEN" = 4,
+	"GDK_WINDOW_TYPE_HINT_UTILITY" = 5,
+	"GDK_WINDOW_TYPE_HINT_DOCK" = 6,
+	"GDK_WINDOW_TYPE_HINT_DESKTOP" = 7)
+storage.mode(.GdkWindowTypeHint) <- 'integer'
+ 
+
+GdkGravity<-c("north-west" = 0,
+	"north" = 1,
+	"north-east" = 2,
+	"west" = 3,
+	"center" = 4,
+	"east" = 5,
+	"south-west" = 6,
+	"south" = 7,
+	"south-east" = 8,
+	"static" = 9)
+storage.mode(GdkGravity) <- 'integer'
+.GdkGravity<-c("GDK_GRAVITY_NORTH_WEST" = 0,
+	"GDK_GRAVITY_NORTH" = 1,
+	"GDK_GRAVITY_NORTH_EAST" = 2,
+	"GDK_GRAVITY_WEST" = 3,
+	"GDK_GRAVITY_CENTER" = 4,
+	"GDK_GRAVITY_EAST" = 5,
+	"GDK_GRAVITY_SOUTH_WEST" = 6,
+	"GDK_GRAVITY_SOUTH" = 7,
+	"GDK_GRAVITY_SOUTH_EAST" = 8,
+	"GDK_GRAVITY_STATIC" = 9)
+storage.mode(.GdkGravity) <- 'integer'
+ 
+
+GdkWindowEdge<-c("north-west" = 0,
+	"north" = 1,
+	"north-east" = 2,
+	"west" = 3,
+	"east" = 4,
+	"south-west" = 5,
+	"south" = 6,
+	"south-east" = 7)
+storage.mode(GdkWindowEdge) <- 'integer'
+.GdkWindowEdge<-c("GDK_WINDOW_EDGE_NORTH_WEST" = 0,
+	"GDK_WINDOW_EDGE_NORTH" = 1,
+	"GDK_WINDOW_EDGE_NORTH_EAST" = 2,
+	"GDK_WINDOW_EDGE_WEST" = 3,
+	"GDK_WINDOW_EDGE_EAST" = 4,
+	"GDK_WINDOW_EDGE_SOUTH_WEST" = 5,
+	"GDK_WINDOW_EDGE_SOUTH" = 6,
+	"GDK_WINDOW_EDGE_SOUTH_EAST" = 7)
+storage.mode(.GdkWindowEdge) <- 'integer'
+ 
+
+GdkPixbufAlphaMode<-c("bilevel" = 0,
+	"full" = 1)
+storage.mode(GdkPixbufAlphaMode) <- 'integer'
+.GdkPixbufAlphaMode<-c("GDK_PIXBUF_ALPHA_BILEVEL" = 0,
+	"GDK_PIXBUF_ALPHA_FULL" = 1)
+storage.mode(.GdkPixbufAlphaMode) <- 'integer'
+ 
+
+GdkColorspace<-c("b" = 0)
+storage.mode(GdkColorspace) <- 'integer'
+.GdkColorspace<-c("GDK_COLORSPACE_RGB" = 0)
+storage.mode(.GdkColorspace) <- 'integer'
+ 
+
+GdkPixbufError<-c("corrupt-image" = 0,
+	"insufficient-memory" = 1,
+	"bad-option-value" = 2,
+	"unknown-type" = 3,
+	"unsupported-operation" = 4,
+	"failed" = 5)
+storage.mode(GdkPixbufError) <- 'integer'
+.GdkPixbufError<-c("GDK_PIXBUF_ERROR_CORRUPT_IMAGE" = 0,
+	"GDK_PIXBUF_ERROR_INSUFFICIENT_MEMORY" = 1,
+	"GDK_PIXBUF_ERROR_BAD_OPTION" = 2,
+	"GDK_PIXBUF_ERROR_UNKNOWN_TYPE" = 3,
+	"GDK_PIXBUF_ERROR_UNSUPPORTED_OPERATION" = 4,
+	"GDK_PIXBUF_ERROR_FAILED" = 5)
+storage.mode(.GdkPixbufError) <- 'integer'
+ 
+
+GdkInterpType<-c("nearest" = 0,
+	"tiles" = 1,
+	"bilinear" = 2,
+	"hyper" = 3)
+storage.mode(GdkInterpType) <- 'integer'
+.GdkInterpType<-c("GDK_INTERP_NEAREST" = 0,
+	"GDK_INTERP_TILES" = 1,
+	"GDK_INTERP_BILINEAR" = 2,
+	"GDK_INTERP_HYPER" = 3)
+storage.mode(.GdkInterpType) <- 'integer'
+ 
+
+GdkDragAction<-c("default" = 1,
+	"copy" = 2,
+	"move" = 4,
+	"link" = 8,
+	"private" = 16,
+	"ask" = 32)
+storage.mode(GdkDragAction) <- 'numeric'
+.GdkDragAction<-c("GDK_ACTION_DEFAULT" = 1,
+	"GDK_ACTION_COPY" = 2,
+	"GDK_ACTION_MOVE" = 4,
+	"GDK_ACTION_LINK" = 8,
+	"GDK_ACTION_PRIVATE" = 16,
+	"GDK_ACTION_ASK" = 32)
+storage.mode(.GdkDragAction) <- 'numeric'
+ 
+
+GdkEventMask<-c("exposure-mask" = 1,
+	"pointer-motion-mask" = 2,
+	"pointer-motion-hint-mask" = 4,
+	"button-motion-mask" = 8,
+	"button1-motion-mask" = 16,
+	"button2-motion-mask" = 32,
+	"button3-motion-mask" = 64,
+	"button-press-mask" = 128,
+	"button-release-mask" = 256,
+	"key-press-mask" = 512,
+	"key-release-mask" = 1024,
+	"enter-notify-mask" = 2048,
+	"leave-notify-mask" = 4096,
+	"focus-change-mask" = 8192,
+	"structure-mask" = 16384,
+	"property-change-mask" = 32768,
+	"visibility-notify-mask" = 65536,
+	"proximity-in-mask" = 131072,
+	"proximity-out-mask" = 262144,
+	"substructure-mask" = 524288,
+	"scroll-mask" = 1048576,
+	"all-events-mask" = 2097152)
+storage.mode(GdkEventMask) <- 'numeric'
+.GdkEventMask<-c("GDK_EXPOSURE_MASK" = 1,
+	"GDK_POINTER_MOTION_MASK" = 2,
+	"GDK_POINTER_MOTION_HINT_MASK" = 4,
+	"GDK_BUTTON_MOTION_MASK" = 8,
+	"GDK_BUTTON1_MOTION_MASK" = 16,
+	"GDK_BUTTON2_MOTION_MASK" = 32,
+	"GDK_BUTTON3_MOTION_MASK" = 64,
+	"GDK_BUTTON_PRESS_MASK" = 128,
+	"GDK_BUTTON_RELEASE_MASK" = 256,
+	"GDK_KEY_PRESS_MASK" = 512,
+	"GDK_KEY_RELEASE_MASK" = 1024,
+	"GDK_ENTER_NOTIFY_MASK" = 2048,
+	"GDK_LEAVE_NOTIFY_MASK" = 4096,
+	"GDK_FOCUS_CHANGE_MASK" = 8192,
+	"GDK_STRUCTURE_MASK" = 16384,
+	"GDK_PROPERTY_CHANGE_MASK" = 32768,
+	"GDK_VISIBILITY_NOTIFY_MASK" = 65536,
+	"GDK_PROXIMITY_IN_MASK" = 131072,
+	"GDK_PROXIMITY_OUT_MASK" = 262144,
+	"GDK_SUBSTRUCTURE_MASK" = 524288,
+	"GDK_SCROLL_MASK" = 1048576,
+	"GDK_ALL_EVENTS_MASK" = 2097152)
+storage.mode(.GdkEventMask) <- 'numeric'
+ 
+
+GdkWindowState<-c("withdrawn" = 1,
+	"iconified" = 2,
+	"maximized" = 4,
+	"sticky" = 8,
+	"fullscreen" = 16,
+	"above" = 32,
+	"below" = 64)
+storage.mode(GdkWindowState) <- 'numeric'
+.GdkWindowState<-c("GDK_WINDOW_STATE_WITHDRAWN" = 1,
+	"GDK_WINDOW_STATE_ICONIFIED" = 2,
+	"GDK_WINDOW_STATE_MAXIMIZED" = 4,
+	"GDK_WINDOW_STATE_STICKY" = 8,
+	"GDK_WINDOW_STATE_FULLSCREEN" = 16,
+	"GDK_WINDOW_STATE_ABOVE" = 32,
+	"GDK_WINDOW_STATE_BELOW" = 64)
+storage.mode(.GdkWindowState) <- 'numeric'
+ 
+
+GdkModifierType<-c("shift-mask" = 1,
+	"lock-mask" = 2,
+	"control-mask" = 4,
+	"mod1-mask" = 8,
+	"mod2-mask" = 16,
+	"mod3-mask" = 32,
+	"mod4-mask" = 64,
+	"mod5-mask" = 128,
+	"button1-mask" = 256,
+	"button2-mask" = 512,
+	"button3-mask" = 1024,
+	"button4-mask" = 2048,
+	"button5-mask" = 4096,
+	"release-mask" = 8192,
+	"modifier-mask" = 16384)
+storage.mode(GdkModifierType) <- 'numeric'
+.GdkModifierType<-c("GDK_SHIFT_MASK" = 1,
+	"GDK_LOCK_MASK" = 2,
+	"GDK_CONTROL_MASK" = 4,
+	"GDK_MOD1_MASK" = 8,
+	"GDK_MOD2_MASK" = 16,
+	"GDK_MOD3_MASK" = 32,
+	"GDK_MOD4_MASK" = 64,
+	"GDK_MOD5_MASK" = 128,
+	"GDK_BUTTON1_MASK" = 256,
+	"GDK_BUTTON2_MASK" = 512,
+	"GDK_BUTTON3_MASK" = 1024,
+	"GDK_BUTTON4_MASK" = 2048,
+	"GDK_BUTTON5_MASK" = 4096,
+	"GDK_RELEASE_MASK" = 8192,
+	"GDK_MODIFIER_MASK" = 16384)
+storage.mode(.GdkModifierType) <- 'numeric'
+ 
+
+GdkInputCondition<-c("read" = 1,
+	"write" = 2,
+	"exception" = 4)
+storage.mode(GdkInputCondition) <- 'numeric'
+.GdkInputCondition<-c("GDK_INPUT_READ" = 1,
+	"GDK_INPUT_WRITE" = 2,
+	"GDK_INPUT_EXCEPTION" = 4)
+storage.mode(.GdkInputCondition) <- 'numeric'
+ 
+
+GdkWindowAttributesType<-c("title" = 1,
+	"x" = 2,
+	"y" = 4,
+	"cursor" = 8,
+	"colormap" = 16,
+	"visual" = 32,
+	"wmclass" = 64,
+	"noredir" = 128)
+storage.mode(GdkWindowAttributesType) <- 'numeric'
+.GdkWindowAttributesType<-c("GDK_WA_TITLE" = 1,
+	"GDK_WA_X" = 2,
+	"GDK_WA_Y" = 4,
+	"GDK_WA_CURSOR" = 8,
+	"GDK_WA_COLORMAP" = 16,
+	"GDK_WA_VISUAL" = 32,
+	"GDK_WA_WMCLASS" = 64,
+	"GDK_WA_NOREDIR" = 128)
+storage.mode(.GdkWindowAttributesType) <- 'numeric'
+ 
+
+GdkWindowHints<-c("pos" = 1,
+	"min-size" = 2,
+	"max-size" = 4,
+	"base-size" = 8,
+	"aspect" = 16,
+	"resize-inc" = 32,
+	"win-gravity" = 64,
+	"user-pos" = 128,
+	"user-size" = 256)
+storage.mode(GdkWindowHints) <- 'numeric'
+.GdkWindowHints<-c("GDK_HINT_POS" = 1,
+	"GDK_HINT_MIN_SIZE" = 2,
+	"GDK_HINT_MAX_SIZE" = 4,
+	"GDK_HINT_BASE_SIZE" = 8,
+	"GDK_HINT_ASPECT" = 16,
+	"GDK_HINT_RESIZE_INC" = 32,
+	"GDK_HINT_WIN_GRAVITY" = 64,
+	"GDK_HINT_USER_POS" = 128,
+	"GDK_HINT_USER_SIZE" = 256)
+storage.mode(.GdkWindowHints) <- 'numeric'
+ 
+
+GdkWMDecoration<-c("all" = 1,
+	"border" = 2,
+	"resizeh" = 4,
+	"title" = 8,
+	"menu" = 16,
+	"minimize" = 32,
+	"maximize" = 64)
+storage.mode(GdkWMDecoration) <- 'numeric'
+.GdkWMDecoration<-c("GDK_DECOR_ALL" = 1,
+	"GDK_DECOR_BORDER" = 2,
+	"GDK_DECOR_RESIZEH" = 4,
+	"GDK_DECOR_TITLE" = 8,
+	"GDK_DECOR_MENU" = 16,
+	"GDK_DECOR_MINIMIZE" = 32,
+	"GDK_DECOR_MAXIMIZE" = 64)
+storage.mode(.GdkWMDecoration) <- 'numeric'
+ 
+
+GdkWMFunction<-c("all" = 1,
+	"resize" = 2,
+	"move" = 4,
+	"minimize" = 8,
+	"maximize" = 16,
+	"close" = 32)
+storage.mode(GdkWMFunction) <- 'numeric'
+.GdkWMFunction<-c("GDK_FUNC_ALL" = 1,
+	"GDK_FUNC_RESIZE" = 2,
+	"GDK_FUNC_MOVE" = 4,
+	"GDK_FUNC_MINIMIZE" = 8,
+	"GDK_FUNC_MAXIMIZE" = 16,
+	"GDK_FUNC_CLOSE" = 32)
+storage.mode(.GdkWMFunction) <- 'numeric'
+ 
+

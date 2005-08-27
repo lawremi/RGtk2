@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title></title>
+</head>
+
+<body>
+<h1></h1>
+
+<h2>Version 2.0-0</h2>
+<dl>
+  <dt> Package pretty much rewritten for GObject-based libs (ie GTK2).
+       Supports new defs file format.
+  </dt>
+</dl>
+
+<h2>Version 0.3-1</h2>
+<dl>
+  <dt> Put the trailing NULL entry in the registration table for the C routines.
+  <dd>
+</dl>
+
+<h2>Version 0.3-0</h2>
+<dl>
+  <dt> Register the routines in the Gtk library that have no interface
+      but we can call directly. This is needed on systems for which
+      the dynamic loader does not provide access to secondary libraries.
+  <dd>
+</dl>
+
+<h2>Version 0.2-0</h2>
+<dl>
+  <dt>
+  <li> Add show and .flush to the collapsed constructor functions that
+       we generate if we are dealing with a GtkWidget or decsendant.
+  <dd>
+
+  <dt>
+  <li> Added an extra new line at the end of the -internal.Rd
+  <dd>
+
+  <dt>
+  <li> Enumerate the entire collection of R objects that are
+       automatically generated in the return
+       from generateCodeFiles() and these can be put into
+       -internal.Rd files.
+  <dd>
+</dl>
+
+<h2>Version 0.1-2</h2>
+<dl>
+  <dt> Added missing brace when generating the Internal.Rd file.
+  <dd>
+  <dt> Added description to Internal.Rd file.
+  <dd>
+
+  <dt> Handle class name capitalization properly when generating the
+      function names in the Internal.Rd file.
+  <dd>
+</dl>
+
+<h2>Version 0.1-1</h2>
+<dl>
+  <dt> Make getRawDefs() (and all functions that call it) work on the
+      vector of file names, not just the first one.
+  <dd>
+
+  <dt> Added generateInternalRd to list the functions that were created.
+  <dd>
+</dl>
+
+<h2>Version 0.1-0</h2>
+Initial release.
+
+
+<hr>
+<address><a href="http://cm.bell-labs.com/stat/duncan">Duncan Temple Lang</a>
+<a href=mailto:duncan@research.bell-labs.com>&lt;duncan@research.bell-labs.com&gt;</a></address>
+<!-- hhmts start -->
+Last modified: Wed Nov 19 08:59:10 EST 2003
+<!-- hhmts end -->
+</body> </html>
