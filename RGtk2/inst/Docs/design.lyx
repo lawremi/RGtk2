@@ -196,7 +196,7 @@ defs
  format was overhauled along with GTK+ in the transition to GTK2, and it
  contains much more information than was provided to the original RGtk.
  However, there are still a small number of functions that require manual
- implementation, usually in the case of complicated memory management.
+ implementation, such as varargs functions and cases of complicated memory management.
 \layout Subsection
 
 
@@ -463,6 +463,217 @@ Two additional GTK-related libraries are included with RGtk2.
  many major open source applications.
 \layout Section
 
+Code Example / Demo
+\layout Standard
+
+The overall process of programming with GTK+ in R is essentially the same
+ as in C.
+ Of course, in R there is no explicit memory management, the syntax is a
+ bit different, and R greatly facilitates many C chores.
+ An example is probably the best way to demonstrate how RGtk2 parallels
+ the C GTK+ API.
+ The GTK+ distribution includes a demo of a simple use of the 
+\begin_inset Quotes eld
+\end_inset 
+
+expander
+\begin_inset Quotes erd
+\end_inset 
+
+ widget.
+ 
+\layout Standard
+
+The first step is to create a dialog to contain the widget (in C):
+\layout LyX-Code
+
+window = gtk_dialog_new_with_buttons ("GtkExpander", NULL, 0, 
+\layout LyX-Code
+
+GTK_STOCK_CLOSE, GTK_RESPONSE_NONE, NULL);
+\layout Standard
+
+In RGtk2's style, the function name, gtk_dialog_new_with_buttons is collapsed to an easier to 
+type gtkDialogNewWithButtons. The constant stock item identifier is just given 
+as its string value and the enum GtkResponseType value is given as its 
+equivalent string. This is a var-args function, so C requires a NULL terminating 
+argument, but of course this is not necessary in R.
+\layout LyX-Code
+
+window <- gtkDialogNewWithButtons("GtkExpander", NULL, 0, "gtk-close", "none")
+\layout Standard
+
+Next, we want to make the dialog resizeable (in C):
+\layout LyX-Code
+
+gtk_window_set_resizable (GTK_WINDOW (window), FALSE);
+\layout Standard
+
+For calling methods, RGtk2 supports a more convenient Java-like syntax where 
+the object is given first, followed by the $ operator, then the method and 
+its arguments. Also note that in RGtk2, there is no need to cast anything.
+\layout LyX-Code
+
+window$setResizable(FALSE)
+\layout Standard
+
+Now it's time to set up a callback to the 'response' signal so that we can 
+close the dialog when the user is finished:
+\layout LyX-Code
+
+g_signal_connect (window, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+\layout Standard
+
+RGtk2 supports an alias for g_signal_connect (connectSignal) to save typing. It also takes 
+advantage of R's convenience and lets you leave off the unneeded user data parameter.
+\layout LyX-Code
+
+connectSignal(window, "response", gtkWidgetDestroy)
+\layout Standard
+
+Now we create a layout and add it to the dialog's internal layout widget (vbox):
+\layout LyX-Code
+
+vbox = gtk_vbox_new (FALSE, 5);
+\layout LyX-Code
+
+gtk_box_pack_start (GTK_BOX (GTK_DIALOG (window)->vbox), vbox, TRUE, TRUE, 0);
+\layout Standard
+
+We need to access the 'vbox' field from R, so we use the '[[' operator with the field's name:
+\layout LyX-Code
+
+vbox <- gtkVBoxNew(FALSE, 5)
+\layout LyX-Code
+
+window[["vbox"]]$packStart(vbox, TRUE, TRUE, 0)
+\layout Standard
+
+Here is the rest of the R code for the demo:
+\layout LyX-Code
+
+vbox$setBorderWidth(5)
+\layout LyX-Code
+
+label <- gtkLabelNew("Expander demo. Click on the triangle for details.")
+\layout LyX-Code
+
+vbox$packStart(label, FALSE, FALSE, 0)
+# Create the expander
+\layout LyX-Code
+
+expander <- gtkExpanderNew("Details")
+\layout LyX-Code
+
+vbox$packStart(expander, FALSE, FALSE, 0)
+\layout LyX-Code
+
+label <- gtkLabelNew("Details can be shown or hidden.")
+\layout LyX-Code
+
+expander$add(label)
+\layout LyX-Code
+
+window$showAll()
+
+\layout Standard
+
+Another reasonable introduction to the style and capabilities of RGtk2 is
+ creating an R-based web browser using GtkMozEmbed, the embedded Mozilla
+ rendering widget.
+\layout Standard
+
+The first step (after loading RGtk2) is to create our main window, set its
+ size and title, and then create the GtkMozEmbed widget. 
+\layout LyX-Code
+
+browserWindow <- gtkWindowNew("toplevel")
+\layout LyX-Code
+
+browserWindow$setTitle("RGtk web browser")
+\layout LyX-Code
+
+browserWindow$setSizeRequest(800, 500)
+\layout LyX-Code
+
+mozembed <- gtkMozEmbedNew()
+\layout Standard
+
+Next we need to define some user actions for the interface. The GTK+ API
+ includes a convenience structure, GtkActionEntry, for quickly defining and
+ creating instances of GtkAction. The structure is an example of a transparent
+ type - we define it as a list in R. The action group needs an array of
+ actions, which means we combine the entries in an R list,
+ yielding a nested list structure.
+\layout LyX-Code
+
+actionEntries <- list(
+\layout LyX-Code
+
+list("BrowserBack", "gtk-go-back", "Go _Back", "<control>B",
+\layout LyX-Code
+
+     "Go back to previous page", browserBackward.handler),
+\layout LyX-Code
+
+list("BrowserForward", "gtk-go-forward", "Go _Forward", "<control>F",
+\layout LyX-Code
+
+      "Go forward to next page", browserForward.handler),
+\layout LyX-Code
+
+list("BrowserRefresh", "gtk-refresh", "_Refresh", "<control>F",
+\layout LyX-Code
+
+     "Refresh the current page", browserRefresh.handler),
+\layout LyX-Code
+
+list("BrowserHome", "gtk-home", "Go _Home", "<control>H",
+\layout LyX-Code
+
+     "Go back to initial page", browserHome.handler),
+\layout LyX-Code
+
+list("BrowserStop", "gtk-stop", "_Stop", "<control>F",
+\layout LyX-Code
+
+     "Stop operation", browserStop.handler)
+\layout LyX-Code
+
+)
+\layout LyX-Code
+
+ag <- gtkActionGroupNew("BrowserActions")
+\layout LyX-Code
+
+ag$addActions(actionEntries, mozembed)
+\layout Standard
+
+The rest of the code necessary to create the browser may be found as a demo
+ in the RGtk2 package. There are many other demos available, mostly converted
+ from the C demos included with GTK+-2.0.
+\layout Standard
+
+\begin_inset Float figure
+wide false
+collapsed false
+
+\layout Caption
+
+A screenshot of a web browser interface constructed from R, using the GtkMozEmbe
+d widget for rendering the HTML content.
+ The navigation buttons, URL entry, and statusbar are all driven by R callbacks.
+\layout Standard
+
+\begin_inset Graphics
+        filename mozembed.jpg
+        scale 50
+		
+\end_inset
+
+\end_inset
+\layout Section
+
 Conclusion
 \layout Standard
 
@@ -475,4 +686,27 @@ In short, RGtk2 has achieved its goals of being complete and consistent
  GUI's using RGtk2.
  Finally, foreign C concepts like memory management are avoided and assimilated,
  ensuring that the learning curve for an R developer is as shallow as possible.
+\layout Standard
+
+RGtk2 does, however, have several shortcomings, which hopefully will be
+ resolved in the near future.
+ The maintenance of 
+\emph on 
+defs
+\emph default 
+ files is time-consuming and error-prone.
+ Duncan Temple Lang is finishing work on a new SWIG-inspired system for
+ generating bindings directly from C code.
+ It promises to streamline the bindings generation process.
+ Another item on the wishlist is support for implementing new GObject classes
+ purely in R; however this would be a difficult task and the great majority
+ of RGtk-based projects would not benefit from it.
+ Other possible improvements include write support for structure fields
+ (if allowed), a cleaner event loop implementation (mostly depends on
+ R itself), and the ability to wrap varargs functions automatically.
+ Except for these improvements, most of the future work on RGtk2 will be
+ keeping up with additions to the GTK+ and related API's, ensuring that
+ the R developer is never left behind.
+
+
 \the_end

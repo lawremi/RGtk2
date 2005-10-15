@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "RGtk.h"
+#include "RGtk2.h"
 
 /* debug */
 void RGtkDebug();

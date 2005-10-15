@@ -5,7 +5,7 @@
 #include "userfuncs.h"
 
 
-#include "RGtk.h"
+#include "RGtk2.h"
 
 USER_OBJECT_
 S_GTK_OBJECT_TYPE(USER_OBJECT_ s_object)

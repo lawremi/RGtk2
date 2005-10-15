@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 
 	void
 S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data); 

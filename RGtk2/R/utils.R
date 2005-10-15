@@ -37,10 +37,10 @@ function(obj, fun)
 }
 
 .RGtkCall <-
-function(name, ..., .flush = TRUE)
+function(name, ..., PACKAGE = "RGtk2", .flush = TRUE)
 {
    #print(paste("Calling", name, "with args:", paste(..., collapse=", ")))
-    val <- .Call(name, ...)
+    val <- .Call(name, ..., PACKAGE = PACKAGE)
    if(.flush)
      gdkFlush(.flush = FALSE)
 
@@ -70,7 +70,7 @@ bitOr <- function(x, y)
 
 demofile <- function(name)
 {
-	file.path(installed.packages()["RGtk", "LibPath"], "RGtk", "demo", name)
+	file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "demo", name)
 }
 
 # .Call("R_getSignalNames", gtkButton())

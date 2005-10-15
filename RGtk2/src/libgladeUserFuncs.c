@@ -1,5 +1,5 @@
 #include "libgladeUserFuncs.h"
-#include "RGtk.h"
+#include "RGtk2.h"
 
 
 GtkWidget*

@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 
 	void
 S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, gpointer s_data); 

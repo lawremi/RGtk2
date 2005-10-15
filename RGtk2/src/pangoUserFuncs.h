@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 
 	gboolean
 S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s_data); 

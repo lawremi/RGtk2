@@ -5,7 +5,7 @@
 #include "userfuncs.h"
 
 
-#include "RGtk.h"
+#include "RGtk2.h"
 
 USER_OBJECT_
 S_atk_action_get_type()

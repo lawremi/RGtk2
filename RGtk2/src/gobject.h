@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 #include "utils.h"
 
 /* GObject Properties */

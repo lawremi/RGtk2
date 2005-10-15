@@ -7,7 +7,7 @@ function(drawable = NULL, data, width, height, .flush = TRUE, .depwarn = TRUE)
 	height <- as.integer(height)
 	width <- as.integer(width)
 	
-	w <- .RGtkCall("S_gdk_bitmap_create_from_data", drawable, data, width, height, PACKAGE = "RGtk", .flush = .flush)
+	w <- .RGtkCall("S_gdk_bitmap_create_from_data", drawable, data, width, height, .flush = .flush)
 
 	return(w)
 } 
@@ -20,7 +20,7 @@ function(object, text, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         text.length <- nchar(text)
 
-        w <- .RGtkCall("S_gdk_text_extents", object, text, text.length, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gdk_text_extents", object, text, text.length, .flush = .flush)
 
         return(invisible(w))
 }
@@ -33,7 +33,7 @@ function(geometry, width, height, .flush = TRUE, .depwarn = TRUE)
         width <- as.integer(width)
         height <- as.integer(height)
 
-        w <- .RGtkCall("S_gdk_window_constrain_size", geometry, width, height, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gdk_window_constrain_size", geometry, width, height, .flush = .flush)
 
         return(invisible(w))
 }
@@ -50,7 +50,7 @@ function(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride,
         height <- as.integer(height)
         rowstride <- as.integer(rowstride)
         
-        w <- .RGtkCall("S_gdk_pixbuf_new_from_data", data, colorspace, has.alpha, bits.per.sample, width, height, rowstride, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gdk_pixbuf_new_from_data", data, colorspace, has.alpha, bits.per.sample, width, height, rowstride, .flush = .flush)
 
         return(w)
 }
@@ -62,7 +62,7 @@ function(parent, attributes, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(parent, "GdkWindow")
         attributes <- as.GdkWindowAttr(attributes)
         
-        w <- .RGtkCall("S_gdk_window_new", parent, attributes, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gdk_window_new", parent, attributes, .flush = .flush)
 
         return(w)
 }

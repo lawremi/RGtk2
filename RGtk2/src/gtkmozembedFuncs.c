@@ -5,7 +5,7 @@
 #include "userfuncs.h"
 
 
-#include "RGtk.h"
+#include "RGtk2.h"
 
 USER_OBJECT_
 S_gtk_moz_embed_get_type()

@@ -261,7 +261,7 @@ function(object, key, data = NULL, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GObject")
         key <- as.character(key)
 
-        w <- .RGtkCall("S_g_object_set_data", object, key, data, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_g_object_set_data", object, key, data, .flush = .flush)
 
         return(invisible(w))
 }
@@ -271,7 +271,7 @@ function(object, key, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GObject")
         key <- as.character(key)
 
-        w <- .RGtkCall("S_g_object_get_data", object, key, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_g_object_get_data", object, key, .flush = .flush)
 
         return(w)
 }

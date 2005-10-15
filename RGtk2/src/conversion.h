@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 
 typedef void (*RPointerFinalizer)(void *ptr);
 typedef void* (*ElementConverter)(void *element);

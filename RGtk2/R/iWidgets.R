@@ -180,10 +180,10 @@ islider <- function(min=0, max=100, value=min, horizontal=TRUE, handler=NULL, wi
 }
 
 igraphics <- function(width=400, height=300, ps=12, window=NULL) {
-    require(gtkDevice)
+    require(cairoDevice)
 	da <- gtkDrawingAreaNew()
 	da$setSizeRequest(width, height)
-	device <- asGtkDevice(da)
+	device <- asCairoDevice(da, pointsize=ps)
     obj <- list(ref=da,gdobj=da,device=device)
     class(obj) <- c("iGD", "iComponent")
     if (!is.null(window)) add(window, obj)

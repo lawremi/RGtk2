@@ -1,5 +1,5 @@
 #include "pangoUserFuncs.h"
-#include "RGtk.h"
+#include "RGtk2.h"
 
 
 gboolean

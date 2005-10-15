@@ -2,7 +2,9 @@
 #include "pangoUserFuncs.h"
 #include "gdkUserFuncs.h"
 #include "gtkUserFuncs.h"
+#ifdef HAVE_LIBGLADE
 #include "libgladeUserFuncs.h"
+#endif
 
 /*** Manuals ***/
 

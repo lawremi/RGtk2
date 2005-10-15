@@ -1,7 +1,7 @@
 #include "conversion.h"
 
 
-#include "RGtk.h"
+#include "RGtk2.h"
 
 USER_OBJECT_
 S_PangoColorGetRed (USER_OBJECT_ s_obj)

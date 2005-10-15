@@ -272,7 +272,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
 ac_unique_file="src/Rgtk.c"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG R_PACKAGE_DIR INSTALL_DIR RGTK_CONFIG CPP_DEFINES LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE GTKMOZEMBED_CFLAGS GTKMOZEMBED_LIBS HAVE_GTKMOZEMBED R_PACKAGE_DIR INSTALL_DIR DEFINES LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -713,6 +713,34 @@ ac_env_target_alias_set=${target_alias+set}
 ac_env_target_alias_value=$target_alias
 ac_cv_env_target_alias_set=${target_alias+set}
 ac_cv_env_target_alias_value=$target_alias
+ac_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_cv_env_PKG_CONFIG_set=${PKG_CONFIG+set}
+ac_cv_env_PKG_CONFIG_value=$PKG_CONFIG
+ac_env_GTK_CFLAGS_set=${GTK_CFLAGS+set}
+ac_env_GTK_CFLAGS_value=$GTK_CFLAGS
+ac_cv_env_GTK_CFLAGS_set=${GTK_CFLAGS+set}
+ac_cv_env_GTK_CFLAGS_value=$GTK_CFLAGS
+ac_env_GTK_LIBS_set=${GTK_LIBS+set}
+ac_env_GTK_LIBS_value=$GTK_LIBS
+ac_cv_env_GTK_LIBS_set=${GTK_LIBS+set}
+ac_cv_env_GTK_LIBS_value=$GTK_LIBS
+ac_env_LIBGLADE_CFLAGS_set=${LIBGLADE_CFLAGS+set}
+ac_env_LIBGLADE_CFLAGS_value=$LIBGLADE_CFLAGS
+ac_cv_env_LIBGLADE_CFLAGS_set=${LIBGLADE_CFLAGS+set}
+ac_cv_env_LIBGLADE_CFLAGS_value=$LIBGLADE_CFLAGS
+ac_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
+ac_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
+ac_cv_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
+ac_cv_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
+ac_env_GTKMOZEMBED_CFLAGS_set=${GTKMOZEMBED_CFLAGS+set}
+ac_env_GTKMOZEMBED_CFLAGS_value=$GTKMOZEMBED_CFLAGS
+ac_cv_env_GTKMOZEMBED_CFLAGS_set=${GTKMOZEMBED_CFLAGS+set}
+ac_cv_env_GTKMOZEMBED_CFLAGS_value=$GTKMOZEMBED_CFLAGS
+ac_env_GTKMOZEMBED_LIBS_set=${GTKMOZEMBED_LIBS+set}
+ac_env_GTKMOZEMBED_LIBS_value=$GTKMOZEMBED_LIBS
+ac_cv_env_GTKMOZEMBED_LIBS_set=${GTKMOZEMBED_LIBS+set}
+ac_cv_env_GTKMOZEMBED_LIBS_value=$GTKMOZEMBED_LIBS
 
 #
 # Report the --help message.
@@ -779,6 +807,28 @@ fi
 if test -n "$ac_init_help"; then
 
   cat <<\_ACEOF
+
+Optional Features:
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --disable-libglade          Enable libglade support
+  --disable-gtkmozembed         Enable gtkmozembed support
+
+Some influential environment variables:
+  PKG_CONFIG  path to pkg-config utility
+  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
+  GTK_LIBS    linker flags for GTK, overriding pkg-config
+  LIBGLADE_CFLAGS
+              C compiler flags for LIBGLADE, overriding pkg-config
+  LIBGLADE_LIBS
+              linker flags for LIBGLADE, overriding pkg-config
+  GTKMOZEMBED_CFLAGS
+              C compiler flags for GTKMOZEMBED, overriding pkg-config
+  GTKMOZEMBED_LIBS
+              linker flags for GTKMOZEMBED, overriding pkg-config
+
+Use these variables to override the choices made by `configure' or to help
+it to find libraries and programs with nonstandard names/locations.
 
 _ACEOF
 fi
@@ -1216,9 +1266,16 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-if test -z "${PKG_CONFIG}" ; then
-# Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
+DEFINES=
+
+GTK_VERSION="2.8.0"
+
+
+
+if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+	if test -n "$ac_tool_prefix"; then
+  # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
+set dummy ${ac_tool_prefix}pkg-config; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
 if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
@@ -1257,9 +1314,268 @@ echo "${ECHO_T}no" >&6
 fi
 
 fi
+if test -z "$ac_cv_path_PKG_CONFIG"; then
+  ac_pt_PKG_CONFIG=$PKG_CONFIG
+  # Extract the first word of "pkg-config", so it can be a program name with args.
+set dummy pkg-config; ac_word=$2
+echo "$as_me:$LINENO: checking for $ac_word" >&5
+echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
+if test "${ac_cv_path_ac_pt_PKG_CONFIG+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  case $ac_pt_PKG_CONFIG in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ac_pt_PKG_CONFIG="$ac_pt_PKG_CONFIG" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ac_pt_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
+    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+
+  ;;
+esac
+fi
+ac_pt_PKG_CONFIG=$ac_cv_path_ac_pt_PKG_CONFIG
+
+if test -n "$ac_pt_PKG_CONFIG"; then
+  echo "$as_me:$LINENO: result: $ac_pt_PKG_CONFIG" >&5
+echo "${ECHO_T}$ac_pt_PKG_CONFIG" >&6
+else
+  echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+fi
+
+  PKG_CONFIG=$ac_pt_PKG_CONFIG
+else
+  PKG_CONFIG="$ac_cv_path_PKG_CONFIG"
+fi
+
+fi
+if test -n "$PKG_CONFIG"; then
+	_pkg_min_version=0.9.0
+	echo "$as_me:$LINENO: checking pkg-config is at least version $_pkg_min_version" >&5
+echo $ECHO_N "checking pkg-config is at least version $_pkg_min_version... $ECHO_C" >&6
+	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
+		echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	else
+		echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6
+		PKG_CONFIG=""
+	fi
+
+fi
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for GTK" >&5
+echo $ECHO_N "checking for GTK... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= $GTK_VERSION" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= $GTK_VERSION" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	GTK_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gtk+-2.0 >= $GTK_VERSION"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$GTK_PKG_ERRORS" 1>&5
+
+	{ { echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
+echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
+echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
+   { (exit 1); exit 1; }; }
+else
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	HAVE_GTK="1"
+fi
 
 
-RGTK_CONFIG="$PKG_CONFIG gtk+-2.0 libglade-2.0 firefox-gtkmozembed"
+
+
+
+# Check whether --enable-libglade or --disable-libglade was given.
+if test "${enable_libglade+set}" = set; then
+  enableval="$enable_libglade"
+  use_libglade=$enableval
+else
+  use_libglade=no
+fi;
+
+if test "x$use_libglade" = "xyes"; then
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for LIBGLADE" >&5
+echo $ECHO_N "checking for LIBGLADE... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_LIBGLADE_CFLAGS=`$PKG_CONFIG --cflags "libglade-2.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"libglade-2.0\"") >&5
+  ($PKG_CONFIG --exists --print-errors "libglade-2.0") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_LIBGLADE_LIBS=`$PKG_CONFIG --libs "libglade-2.0" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	LIBGLADE_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "libglade-2.0"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBGLADE_PKG_ERRORS" 1>&5
+
+	{ echo "$as_me:$LINENO: WARNING: libglade not found" >&5
+echo "$as_me: WARNING: libglade not found" >&2;}
+elif test $pkg_failed = untried; then
+	{ echo "$as_me:$LINENO: WARNING: libglade not found" >&5
+echo "$as_me: WARNING: libglade not found" >&2;}
+else
+	LIBGLADE_CFLAGS=$pkg_cv_LIBGLADE_CFLAGS
+	LIBGLADE_LIBS=$pkg_cv_LIBGLADE_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	have_libglade=yes
+fi
+fi
+
+if test "x$have_libglade" = "xyes"; then
+	DEFINES="$DEFINES -DHAVE_LIBGLADE"
+else
+	rm R/libglade*
+	rm src/libglade*
+fi
+
+
+
+
+
+# Check whether --enable-gtkmozembed or --disable-gtkmozembed was given.
+if test "${enable_gtkmozembed+set}" = set; then
+  enableval="$enable_gtkmozembed"
+  use_gtkmozembed=$enableval
+else
+  use_gtkmozembed=yes
+fi;
+
+if test "x$use_gtkmozembed" = "xyes"; then
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for GTKMOZEMBED" >&5
+echo $ECHO_N "checking for GTKMOZEMBED... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"firefox-gtkmozembed\"") >&5
+  ($PKG_CONFIG --exists --print-errors "firefox-gtkmozembed") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTKMOZEMBED_CFLAGS=`$PKG_CONFIG --cflags "firefox-gtkmozembed" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"firefox-gtkmozembed\"") >&5
+  ($PKG_CONFIG --exists --print-errors "firefox-gtkmozembed") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTKMOZEMBED_LIBS=`$PKG_CONFIG --libs "firefox-gtkmozembed" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	GTKMOZEMBED_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "firefox-gtkmozembed"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$GTKMOZEMBED_PKG_ERRORS" 1>&5
+
+	{ echo "$as_me:$LINENO: WARNING: firefox-gtkmozembed not found" >&5
+echo "$as_me: WARNING: firefox-gtkmozembed not found" >&2;}
+elif test $pkg_failed = untried; then
+	{ echo "$as_me:$LINENO: WARNING: firefox-gtkmozembed not found" >&5
+echo "$as_me: WARNING: firefox-gtkmozembed not found" >&2;}
+else
+	GTKMOZEMBED_CFLAGS=$pkg_cv_GTKMOZEMBED_CFLAGS
+	GTKMOZEMBED_LIBS=$pkg_cv_GTKMOZEMBED_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	have_gtkmozembed=yes
+fi
+fi
+
+if test "x$have_gtkmozembed" = "xyes"; then
+	DEFINES="$DEFINES -DHAVE_GTKMOZEMBED"
+else
+	rm R/gtkmozembed*
+	rm src/gtkmozembed*
+fi
+
+
 
 
 
@@ -1905,10 +2221,19 @@ s,@ECHO_N@,$ECHO_N,;t t
 s,@ECHO_T@,$ECHO_T,;t t
 s,@LIBS@,$LIBS,;t t
 s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@ac_pt_PKG_CONFIG@,$ac_pt_PKG_CONFIG,;t t
+s,@GTK_CFLAGS@,$GTK_CFLAGS,;t t
+s,@GTK_LIBS@,$GTK_LIBS,;t t
+s,@HAVE_GTK@,$HAVE_GTK,;t t
+s,@LIBGLADE_CFLAGS@,$LIBGLADE_CFLAGS,;t t
+s,@LIBGLADE_LIBS@,$LIBGLADE_LIBS,;t t
+s,@HAVE_LIBGLADE@,$HAVE_LIBGLADE,;t t
+s,@GTKMOZEMBED_CFLAGS@,$GTKMOZEMBED_CFLAGS,;t t
+s,@GTKMOZEMBED_LIBS@,$GTKMOZEMBED_LIBS,;t t
+s,@HAVE_GTKMOZEMBED@,$HAVE_GTKMOZEMBED,;t t
 s,@R_PACKAGE_DIR@,$R_PACKAGE_DIR,;t t
 s,@INSTALL_DIR@,$INSTALL_DIR,;t t
-s,@RGTK_CONFIG@,$RGTK_CONFIG,;t t
-s,@CPP_DEFINES@,$CPP_DEFINES,;t t
+s,@DEFINES@,$DEFINES,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF

@@ -6,7 +6,7 @@ function(text, level, language, .flush = TRUE, .depwarn = TRUE)
         level <- as.integer(level)
         checkPtrType(language, "PangoLanguage")
 
-        w <- .RGtkCall("S_pango_get_log_attrs", text, level, language, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_get_log_attrs", text, level, language, .flush = .flush)
 
         return(invisible(w))
 }
@@ -17,7 +17,7 @@ function(object, text, embedding.level, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         embedding.level <- as.integer(embedding.level)
 
-        w <- .RGtkCall("S_pango_glyph_string_get_logical_widths", object, text, embedding.level, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_get_logical_widths", object, text, embedding.level, .flush = .flush)
 
         return(w)
 }
@@ -29,7 +29,7 @@ function(text, analysis, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         checkPtrType(analysis, "PangoAnalysis")
 
-        w <- .RGtkCall("S_pango_break", text, analysis, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_break", text, analysis,  .flush = .flush)
 
         return(invisible(w))
 }
@@ -41,7 +41,7 @@ function(text, analysis, .flush = TRUE, .depwarn = TRUE)
 pangoMatrixInit <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
-	w <- .RGtkCall("S_pango_matrix_init", PACKAGE = "RGtk", .flush = .flush)
+	w <- .RGtkCall("S_pango_matrix_init",  .flush = .flush)
 	
 	return(w)
 }
@@ -84,7 +84,7 @@ function(object, markup, accel.marker, .flush = TRUE, .depwarn = TRUE)
         length <- -1
         accel.marker <- as.character(accel.marker)
 
-        w <- .RGtkCall("S_pango_layout_set_markup_with_accel", object, markup, length, accel.marker, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_layout_set_markup_with_accel", object, markup, length, accel.marker,  .flush = .flush)
 
         return(w)
 }
@@ -95,7 +95,7 @@ function(markup.text, accel.marker, .flush = TRUE, .depwarn = TRUE, .errwarn = T
         length <- -1
         accel.marker <- as.character(accel.marker)
 
-        w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker,  .flush = .flush)
 
         if(.errwarn && !is.null(w$error))
                 warning(w$error[["message"]])
@@ -112,7 +112,7 @@ function(object, text, analysis, index, trailing, .flush = TRUE, .depwarn = TRUE
         index <- as.integer(index)
         trailing <- as.logical(trailing)
 
-        w <- .RGtkCall("S_pango_glyph_string_index_to_x", object, text, length, analysis, index, trailing, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_index_to_x", object, text, length, analysis, index, trailing,  .flush = .flush)
 
         return(w)
 }
@@ -125,7 +125,7 @@ function(object, text, analysis, x.pos, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(analysis, "PangoAnalysis")
         x.pos <- as.integer(x.pos)
 
-        w <- .RGtkCall("S_pango_glyph_string_x_to_index", object, text, length, analysis, x.pos, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_x_to_index", object, text, length, analysis, x.pos,  .flush = .flush)
 
         return(invisible(w))
 }
@@ -137,7 +137,7 @@ function(text, analysis, glyphs, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(analysis, "PangoAnalysis")
         checkPtrType(glyphs, "PangoGlyphString")
 
-        w <- .RGtkCall("S_pango_shape", text, length, analysis, glyphs, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_pango_shape", text, length, analysis, glyphs,  .flush = .flush)
 
         return(w)
 }

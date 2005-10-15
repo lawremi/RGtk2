@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 
 /* This is an simple version of the event handler for windows.
    It mimicks what we do in Rggobi, namely hijacking the hook into the

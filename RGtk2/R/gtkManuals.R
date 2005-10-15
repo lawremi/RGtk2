@@ -6,7 +6,7 @@ function(parent = NULL, flags, types, buttons, ..., show = TRUE, .flush = TRUE, 
 {
     checkPtrType(parent, "GtkWindow", nullOk = T)
 
-    w <- .RGtkCall("S_gtk_message_dialog_new", parent, flags, types, buttons, paste(...), PACKAGE='RGtk', .flush = .flush)
+    w <- .RGtkCall("S_gtk_message_dialog_new", parent, flags, types, buttons, paste(...), .flush = .flush)
 
     if(show)
         gtkWidgetShowAll(w)
@@ -19,7 +19,7 @@ function(object, ..., .flush = TRUE, .depwarn = TRUE)
 {
         checkPtrType(object, "GtkMessageDialog")
 
-        w <- .RGtkCall("S_gtk_message_dialog_format_secondary_markup", object, paste(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_message_dialog_format_secondary_markup", object, paste(...), .flush = .flush)
 
         return(invisible(w))
 }
@@ -29,7 +29,7 @@ function(object, ..., .flush = TRUE, .depwarn = TRUE)
 {
         checkPtrType(object, "GtkMessageDialog")
 
-        w <- .RGtkCall("S_gtk_message_dialog_format_secondary_text", object, paste(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_message_dialog_format_secondary_text", object, paste(...), .flush = .flush)
 
         return(invisible(w))
 }
@@ -39,7 +39,7 @@ function(parent, flags, type, buttons, ..., show = TRUE, .flush = TRUE, .depwarn
 {
         checkPtrType(parent, "GtkWindow")
 
-        w <- .RGtkCall("S_gtk_message_dialog_new_with_markup", parent, flags, type, buttons, paste(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_message_dialog_new_with_markup", parent, flags, type, buttons, paste(...), .flush = .flush)
 
         if(show)
                 gtkWidgetShowAll(w)
@@ -57,7 +57,7 @@ function(title = NULL, parent = NULL, flags = 0, ..., show = TRUE, .flush = TRUE
 		labels <- as.character(args[seq(1,length(args),by=2)])
 		responses <- args[seq(2,length(args),by=2)]
 		
-        w <- .RGtkCall("S_gtk_dialog_new_with_buttons", title, parent, flags, labels, responses, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_dialog_new_with_buttons", title, parent, flags, labels, responses, .flush = .flush)
 
         if(show)
                 gtkWidgetShowAll(w)
@@ -73,7 +73,7 @@ function(object, ..., .flush = TRUE, .depwarn = TRUE)
 		labels <- as.character(args[seq(1,length(args),by=2)])
 		responses <- args[seq(2,length(args),by=2)]
 		
-        w <- .RGtkCall("S_gtk_dialog_add_buttons", object, labels, responses, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_dialog_add_buttons", object, labels, responses, .flush = .flush)
 
         return(invisible(w))
 }
@@ -96,7 +96,7 @@ function(title, parent, action, backend, ..., show = TRUE, .flush = TRUE, .depwa
 			responses <- args[seq(2,length(args),by=2)]
 		}
 
-        w <- .RGtkCall("S_gtk_file_chooser_dialog_new_with_backend", title, parent, action, backend, labels, responses, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_file_chooser_dialog_new_with_backend", title, parent, action, backend, labels, responses, .flush = .flush)
 
         if(show)
                 gtkWidgetShowAll(w)
@@ -118,7 +118,7 @@ function(title, parent, action, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE
 #{
 #        checkPtrType(object, "GtkDialog")
 #
-#        w <- .RGtkCall("S_gtk_dialog_set_alternative_button_order", object, ..., -1, PACKAGE = "RGtk", .flush = .flush)
+#        w <- .RGtkCall("S_gtk_dialog_set_alternative_button_order", object, ..., -1, .flush = .flush)
 #
 #        return(invisible(w))
 #}
@@ -129,7 +129,7 @@ function(parent, ..., .flush = TRUE, .depwarn = TRUE)
 {
         checkPtrType(parent, "GtkWindow")
 
-        w <- .RGtkCall("S_gtk_show_about_dialog", parent, list(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_show_about_dialog", parent, list(...), .flush = .flush)
 
         return(invisible(w))
 }
@@ -141,7 +141,7 @@ function(object, tag.name, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GtkTextBuffer")
         tag.name <- as.character(tag.name)
         
-        w <- .RGtkCall("S_gtk_text_buffer_create_tag", object, tag.name, list(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_text_buffer_create_tag", object, tag.name, list(...), .flush = .flush)
 
         return(w)
 }
@@ -151,7 +151,7 @@ gtkListStoreNew <-
 function(..., .flush = TRUE, .depwarn = TRUE)
 {
         types <- checkArrType(c(...), as.GType)
-        w <- .RGtkCall("S_gtk_list_store_newv", types, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_list_store_newv", types, .flush = .flush)
 
         return(w)
 }
@@ -161,7 +161,7 @@ gtkTreeStoreNew <-
 function(..., .flush = TRUE, .depwarn = TRUE)
 {
         types <- checkArrType(c(...), as.GType)
-        w <- .RGtkCall("S_gtk_tree_store_newv", types, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_tree_store_newv", types, .flush = .flush)
 
         return(w)
 }
@@ -179,7 +179,7 @@ function(object, iter, ..., .flush = TRUE, .depwarn = TRUE)
 			values <- args[[2]]
 		else values <- args[seq(2,length(args),by=2)]
 		
-        w <- .RGtkCall("S_gtk_list_store_set", object, iter, cols, values, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_list_store_set", object, iter, cols, values, .flush = .flush)
 
         return(invisible(w))
 }
@@ -198,7 +198,7 @@ function(object, iter, ..., .flush = TRUE, .depwarn = TRUE)
 			values <- args[[2]]
 		else values <- args[seq(2,length(args),by=2)]
 		
-		w <- .RGtkCall("S_gtk_tree_store_set", object, iter, cols, values, PACKAGE = "RGtk", .flush = .flush)
+		w <- .RGtkCall("S_gtk_tree_store_set", object, iter, cols, values, .flush = .flush)
 }
 
 # reason: var args, compile into named list and send to C
@@ -209,7 +209,7 @@ function(object, cell, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(cell, "GtkCellRenderer")
 		attributes <- lapply(c(...), as.integer)
 		
-        w <- .RGtkCall("S_gtk_cell_layout_set_attributes", object, cell, attributes, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_cell_layout_set_attributes", object, cell, attributes, .flush = .flush)
 
         return(invisible(w))
 }
@@ -221,7 +221,7 @@ function(object, widget, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GtkContainer")
         checkPtrType(widget, "GtkWidget")
 
-        w <- .RGtkCall("S_gtk_container_add_with_properties", object, widget, c(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_container_add_with_properties", object, widget, c(...), .flush = .flush)
 
         return(invisible(w))
 }
@@ -233,7 +233,7 @@ function(object, child, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GtkContainer")
         checkPtrType(child, "GtkWidget")
 
-        w <- .RGtkCall("S_gtk_container_child_set", object, child, c(...), PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_container_child_set", object, child, c(...), .flush = .flush)
 
         return(invisible(w))
 }
@@ -246,7 +246,7 @@ function(object, child, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(child, "GtkWidget")
         props <- as.character(c(...))
 
-        w <- .RGtkCall("S_gtk_container_child_get", object, child, props, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_container_child_get", object, child, props, .flush = .flush)
 
         return(invisible(w))
 }
@@ -259,7 +259,7 @@ function(object, iter, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(iter, "GtkTreeIter")
 		cols <- as.integer(c(...))
 		
-        w <- .RGtkCall("S_gtk_tree_model_get", object, iter, cols, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_tree_model_get", object, iter, cols, .flush = .flush)
 
         return(w)
 }
@@ -271,7 +271,7 @@ function(..., .flush = TRUE, .depwarn = TRUE)
 {
         indices <- as.integer(c(...))
 
-        w <- .RGtkCall("S_gtk_tree_path_new_from_indices", indices, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_tree_path_new_from_indices", indices, .flush = .flush)
 
         return(w)
 }
@@ -287,7 +287,7 @@ function(object, position, title, cell, ..., .flush = TRUE, .depwarn = TRUE)
         checkPtrType(cell, "GtkCellRenderer")
 		attributes <- lapply(c(...), as.integer)
 		
-        w <- .RGtkCall("S_gtk_tree_view_insert_column_with_attributes", object, position, title, cell, attributes, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_tree_view_insert_column_with_attributes", object, position, title, cell, attributes, .flush = .flush)
 
         return(w)
 }
@@ -303,7 +303,7 @@ function(object, iter, text, ..., .flush = TRUE, .depwarn = TRUE)
 		tags <- list(...)
 		checkArrType(tags, function(x) checkPtrType(x, "GtkTextTag"))
 
-        w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags", object, iter, text, -1, tags, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags", object, iter, text, -1, tags, .flush = .flush)
 
         return(invisible(w))
 }
@@ -319,7 +319,7 @@ function(object, iter, text, ..., .flush = TRUE, .depwarn = TRUE)
 		tagNames <- list(...)
 		tagNames <- as.character(tagNames)
 
-        w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags_by_name", object, iter, text, -1, tagNames, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags_by_name", object, iter, text, -1, tagNames, .flush = .flush)
 
         return(invisible(w))
 }
@@ -336,7 +336,7 @@ function(object, targets, get.func, owner = NULL, .flush = TRUE, .depwarn = TRUE
         get.func <- as.function(get.func)
         if (!is.null( owner )) checkPtrType(owner, "GObject")
 
-        w <- .RGtkCall("S_gtk_clipboard_set_with_data", object, targets, get.func, owner, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_clipboard_set_with_data", object, targets, get.func, owner, .flush = .flush)
 
         return(w)
 }
@@ -351,7 +351,7 @@ function(object, position, columns, values, .flush = TRUE, .depwarn = TRUE)
         columns <- checkArrType(columns, function(x) { x <- as.integer(x); x })
         values <- checkArrType(values)
 
-        w <- .RGtkCall("S_gtk_list_store_insert_with_valuesv", object, position, columns, values, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_list_store_insert_with_valuesv", object, position, columns, values, .flush = .flush)
 
         return(invisible(w))
 }
@@ -365,7 +365,7 @@ function(object, iter, text, default.editable, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         default.editable <- as.logical(default.editable)
 
-        w <- .RGtkCall("S_gtk_text_buffer_insert_interactive", object, iter, text, -1, default.editable, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_text_buffer_insert_interactive", object, iter, text, -1, default.editable, .flush = .flush)
 
         return(w)
 }
@@ -376,7 +376,7 @@ function(object, text, default.editable, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         default.editable <- as.logical(default.editable)
 
-        w <- .RGtkCall("S_gtk_text_buffer_insert_interactive_at_cursor", object, text, -1, default.editable, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_text_buffer_insert_interactive_at_cursor", object, text, -1, default.editable, .flush = .flush)
 
         return(w)
 }
@@ -387,7 +387,7 @@ function(object, text, cursor.index, .flush = TRUE, .depwarn = TRUE)
         text <- as.character(text)
         cursor.index <- as.integer(cursor.index)
 
-        w <- .RGtkCall("S_gtk_im_context_set_surrounding", object, text, -1, cursor.index, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_im_context_set_surrounding", object, text, -1, cursor.index, .flush = .flush)
 
         return(invisible(w))
 }
@@ -401,7 +401,7 @@ function(object, data, max.seq.len, n.seqs, .flush = TRUE, .depwarn = TRUE)
 		max.seq.len <- as.integer(max.seq.len)
         n.seqs <- as.integer(n.seqs)
 
-        w <- .RGtkCall("S_gtk_im_context_simple_add_table", object, data, max.seq.len, n.seqs, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_im_context_simple_add_table", object, data, max.seq.len, n.seqs, .flush = .flush)
 
         return(w)
 }
@@ -416,7 +416,7 @@ function(object, type, format, data, length = length(data), .flush = TRUE, .depw
         data <- as.list(as.integer(data))
         length <- as.integer(length)
 
-        w <- .RGtkCall("S_gtk_selection_data_set", object, type, format, data, length, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_selection_data_set", object, type, format, data, length, .flush = .flush)
 
         return(invisible(w))
 }
@@ -428,7 +428,7 @@ function(object, path, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(object, "GtkIconTheme")
         path <- as.list(as.character(path))
         
-        w <- .RGtkCall("S_gtk_icon_theme_set_search_path", object, path, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_gtk_icon_theme_set_search_path", object, path, .flush = .flush)
 
         return(invisible(w))
 }
@@ -462,10 +462,10 @@ function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, 
 			if (missing(rows) || is.null(rows))
 				rows <- 0:(length(data[[1]])-1)
 			rows <- as.integer(rows)
-			w <- .RGtkCall("S_gtk_list_store_load", object, data, rows, cols, PACKAGE = "RGtk", .flush = .flush)
+			w <- .RGtkCall("S_gtk_list_store_load", object, data, rows, cols, .flush = .flush)
 		} else {
 			paths <- lapply(paths, function(path) { checkPtrType(path, "GtkTreePath"); path })
-			w <- .RGtkCall("S_gtk_list_store_load_paths", object, data, paths, cols, append, PACKAGE = "RGtk", .flush = .flush)
+			w <- .RGtkCall("S_gtk_list_store_load_paths", object, data, paths, cols, append, .flush = .flush)
 		}
 		
 		if (sorted)
@@ -487,10 +487,10 @@ function(object, rows = NULL, cols = 0:(object$getNColumns()-1), paths, frame = 
 		
 		if(missing(paths)) {
 			rows <- as.integer(rows)
-			w <- .RGtkCall("S_gtk_tree_model_unload", object, rows, cols, PACKAGE = "RGtk", .flush = .flush)
+			w <- .RGtkCall("S_gtk_tree_model_unload", object, rows, cols, .flush = .flush)
 		} else {
 			paths <- lapply(paths, function(path) { checkPtrType(path, "GtkTreePath"); path })
-			w <- .RGtkCall("S_gtk_tree_model_unload_paths", object, paths, cols, PACKAGE = "RGtk", .flush = .flush)
+			w <- .RGtkCall("S_gtk_tree_model_unload_paths", object, paths, cols, .flush = .flush)
 		}
 		
 		if (frame)

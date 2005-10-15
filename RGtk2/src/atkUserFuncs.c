@@ -1,5 +1,5 @@
 #include "atkUserFuncs.h"
-#include "RGtk.h"
+#include "RGtk2.h"
 
 
 gint

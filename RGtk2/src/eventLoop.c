@@ -1,4 +1,4 @@
-#include "RGtk.h"
+#include "RGtk2.h"
 #include "Reventloop.h"
 
 SEXP R_gIOAddWatch(int fd,  void (*handler)(void *, int, int), void *userData);

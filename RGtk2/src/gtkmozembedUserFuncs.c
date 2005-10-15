@@ -1,3 +1,3 @@
 #include "gtkmozembedUserFuncs.h"
-#include "RGtk.h"
+#include "RGtk2.h"
 

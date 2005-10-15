@@ -272,7 +272,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
 ac_unique_file="src/Rgtk.c"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG R_PACKAGE_DIR INSTALL_DIR RGTK_CONFIG CPP_DEFINES LIB@&t@OBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE GTKMOZEMBED_CFLAGS GTKMOZEMBED_LIBS HAVE_GTKMOZEMBED R_PACKAGE_DIR INSTALL_DIR CPP_DEFINES LIB@&t@OBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -780,6 +780,11 @@ if test -n "$ac_init_help"; then
 
   cat <<\_ACEOF
 
+Optional Features:
+  --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+  --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
+  --enable-libglade          Enable libglade support
+
 _ACEOF
 fi
 
@@ -1216,50 +1221,39 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-if test -z "${PKG_CONFIG}" ; then
-# Extract the first word of "pkg-config", so it can be a program name with args.
-set dummy pkg-config; ac_word=$2
-echo "$as_me:$LINENO: checking for $ac_word" >&5
-echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_PKG_CONFIG+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
+GTK_VERSION="2.8.0"
+
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_VERSION, HAVE_GTK="1",
+  { { echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
+echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
+   { (exit 1); exit 1; }; })
+
+
+
+
+
+# Check whether --enable-libglade or --disable-libglade was given.
+if test "${enable_libglade+set}" = set; then
+  enableval="$enable_libglade"
+  use_libglade=$enableval
 else
-  case $PKG_CONFIG in
-  [\\/]* | ?:[\\/]*)
-  ac_cv_path_PKG_CONFIG="$PKG_CONFIG" # Let the user override the test with a path.
-  ;;
-  *)
-  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-  for ac_exec_ext in '' $ac_executable_extensions; do
-  if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_PKG_CONFIG="$as_dir/$ac_word$ac_exec_ext"
-    echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-done
+  use_libglade=no
+fi; 
 
-  ;;
-esac
-fi
-PKG_CONFIG=$ac_cv_path_PKG_CONFIG
-
-if test -n "$PKG_CONFIG"; then
-  echo "$as_me:$LINENO: result: $PKG_CONFIG" >&5
-echo "${ECHO_T}$PKG_CONFIG" >&6
-else
-  echo "$as_me:$LINENO: result: no" >&5
-echo "${ECHO_T}no" >&6
-fi
-
-fi
+if test "x$use_libglade" = "xyes"; then
+	PKG_CHECK_MODULES(LIBGLADE, libglade-2.0, HAVE_LIBGLADE="1", { echo "$as_me:$LINENO: WARNING: libglade not found" >&5
+echo "$as_me: WARNING: libglade not found" >&2;})
 
 
-RGTK_CONFIG="$PKG_CONFIG gtk+-2.0 libglade-2.0 firefox-gtkmozembed"
+
+
+
+if test "x$use_gtkmozembed" = "xyes"; then
+	PKG_CHECK_MODULES(GTKMOZEMBED, firefox-gtkmozembed, HAVE_GTKMOZEMBED="1", 
+		{ echo "$as_me:$LINENO: WARNING: firefox-gtkmozembed not found" >&5
+echo "$as_me: WARNING: firefox-gtkmozembed not found" >&2;})
+
+
 
 
 
@@ -1904,10 +1898,17 @@ s,@ECHO_C@,$ECHO_C,;t t
 s,@ECHO_N@,$ECHO_N,;t t
 s,@ECHO_T@,$ECHO_T,;t t
 s,@LIBS@,$LIBS,;t t
-s,@PKG_CONFIG@,$PKG_CONFIG,;t t
+s,@GTK_CFLAGS@,$GTK_CFLAGS,;t t
+s,@GTK_LIBS@,$GTK_LIBS,;t t
+s,@HAVE_GTK@,$HAVE_GTK,;t t
+s,@LIBGLADE_CFLAGS@,$LIBGLADE_CFLAGS,;t t
+s,@LIBGLADE_LIBS@,$LIBGLADE_LIBS,;t t
+s,@HAVE_LIBGLADE@,$HAVE_LIBGLADE,;t t
+s,@GTKMOZEMBED_CFLAGS@,$GTKMOZEMBED_CFLAGS,;t t
+s,@GTKMOZEMBED_LIBS@,$GTKMOZEMBED_LIBS,;t t
+s,@HAVE_GTKMOZEMBED@,$HAVE_GTKMOZEMBED,;t t
 s,@R_PACKAGE_DIR@,$R_PACKAGE_DIR,;t t
 s,@INSTALL_DIR@,$INSTALL_DIR,;t t
-s,@RGTK_CONFIG@,$RGTK_CONFIG,;t t
 s,@CPP_DEFINES@,$CPP_DEFINES,;t t
 s,@LIB@&t@OBJS@,$LIB@&t@OBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
@@ -2175,5 +2176,3 @@ if test "$no_create" != yes; then
 fi
 
 chmod +x cleanup
-
-

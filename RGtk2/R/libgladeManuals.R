@@ -7,7 +7,7 @@ function(buffer, size = nchar(buffer), root = "NULL", domain = "NULL", .flush = 
         if (!is.null( root )) root <- as.character(root)
         if (!is.null( domain )) domain <- as.character(domain)
 
-        w <- .RGtkCall("S_glade_xml_new_from_buffer", buffer, size, root, domain, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_glade_xml_new_from_buffer", buffer, size, root, domain, .flush = .flush)
 
         return(w)
 }
@@ -21,7 +21,7 @@ function(object, handlername, func, .flush = TRUE, .depwarn = TRUE)
         handlername <- as.character(handlername)
         func <- as.function(func)
 
-        w <- .RGtkCall("S_glade_xml_signal_connect", object, handlername, func, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_glade_xml_signal_connect", object, handlername, func, .flush = .flush)
 
         return(invisible(w))
 }
@@ -32,7 +32,7 @@ function(object, handlername, func, user.data, .flush = TRUE, .depwarn = TRUE)
         handlername <- as.character(handlername)
         func <- as.function(func)
         
-        w <- .RGtkCall("S_glade_xml_signal_connect_data", object, handlername, func, user.data, PACKAGE = "RGtk", .flush = .flush)
+        w <- .RGtkCall("S_glade_xml_signal_connect_data", object, handlername, func, user.data, .flush = .flush)
 
         return(invisible(w))
 }

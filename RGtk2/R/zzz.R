@@ -7,7 +7,7 @@ function()
 .First.lib <-
 function(libname, pkgname)
 {
- library.dynam("RGtk", pkgname, libname)
+ library.dynam("RGtk2", pkgname, libname)
 
  if(is.function(.gtkArgs))
   args <- .gtkArgs()

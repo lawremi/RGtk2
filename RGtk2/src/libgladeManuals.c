@@ -1,4 +1,3 @@
-#include "RGtk.h"
 #include "conversion.h"
 #include "gobject.h"
 

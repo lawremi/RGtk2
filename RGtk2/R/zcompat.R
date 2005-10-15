@@ -115,7 +115,7 @@ function(w, row, cols, zeroBased = TRUE)
   
   storage.mode(which) <- "integer"
 
-  .Call("R_gtkCListGetText", w, as.integer(t(which)), PACKAGE = "RGtk")
+  .Call("R_gtkCListGetText", w, as.integer(t(which)), PACKAGE = "RGtk2")
 }
 
 
@@ -136,7 +136,7 @@ function(w, row, cols, values, zeroBased = TRUE)
 
   values <- rep(as.character(values), length = nrow(which))
   
-  invisible(.Call("R_gtkCListSetText", w, which, values, PACKAGE = "RGtk"))
+  invisible(.Call("R_gtkCListSetText", w, which, values, PACKAGE = "RGtk2"))
 }
 
 # types

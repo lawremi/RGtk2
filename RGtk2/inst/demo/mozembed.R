@@ -59,7 +59,7 @@ browserUrlEntry.handler <- function(entry, browser)
 	browser$loadUrl(entry$getText())
 }
 
-	browserWindow <- gtkWindowNew("toplevel", show = F)
+	browserWindow <- gtkWindowNew("toplevel")
 	browserWindow$setTitle("RGtk web browser")
 	browserWindow$setSizeRequest(800, 500)
 	
