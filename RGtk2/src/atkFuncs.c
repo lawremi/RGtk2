@@ -26,7 +26,7 @@ USER_OBJECT_
 S_atk_action_get_localized_name(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -43,7 +43,7 @@ USER_OBJECT_
 S_atk_action_do_action(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -76,7 +76,7 @@ USER_OBJECT_
 S_atk_action_get_description(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -93,7 +93,7 @@ USER_OBJECT_
 S_atk_action_get_name(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -110,7 +110,7 @@ USER_OBJECT_
 S_atk_action_get_keybinding(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -127,8 +127,8 @@ USER_OBJECT_
 S_atk_action_set_description(USER_OBJECT_ s_object, USER_OBJECT_ s_i, USER_OBJECT_ s_desc)
 {
 	AtkAction* object = ATK_ACTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
-	const gchar* desc = (const gchar*)asString(s_desc);
+	gint i = (gint)asCInteger(s_i);
+	const gchar* desc = (const gchar*)asCString(s_desc);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -160,9 +160,9 @@ USER_OBJECT_
 S_atk_component_contains(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	gint x = (gint)asInteger(s_x);
-	gint y = (gint)asInteger(s_y);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -179,9 +179,9 @@ USER_OBJECT_
 S_atk_component_ref_accessible_at_point(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	gint x = (gint)asInteger(s_x);
-	gint y = (gint)asInteger(s_y);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -198,7 +198,7 @@ USER_OBJECT_
 S_atk_component_get_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gint x;
@@ -219,7 +219,7 @@ USER_OBJECT_
 S_atk_component_get_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gint x;
@@ -272,7 +272,7 @@ USER_OBJECT_
 S_atk_component_remove_focus_handler(USER_OBJECT_ s_object, USER_OBJECT_ s_handler_id)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	guint handler_id = (guint)asNumeric(s_handler_id);
+	guint handler_id = (guint)asCNumeric(s_handler_id);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -287,11 +287,11 @@ USER_OBJECT_
 S_atk_component_set_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	gint x = (gint)asInteger(s_x);
-	gint y = (gint)asInteger(s_y);
-	gint width = (gint)asInteger(s_width);
-	gint height = (gint)asInteger(s_height);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	gint width = (gint)asCInteger(s_width);
+	gint height = (gint)asCInteger(s_height);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -308,9 +308,9 @@ USER_OBJECT_
 S_atk_component_set_position(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	gint x = (gint)asInteger(s_x);
-	gint y = (gint)asInteger(s_y);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -327,8 +327,8 @@ USER_OBJECT_
 S_atk_component_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
 	AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
-	gint width = (gint)asInteger(s_width);
-	gint height = (gint)asInteger(s_height);
+	gint width = (gint)asCInteger(s_width);
+	gint height = (gint)asCInteger(s_height);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -439,9 +439,9 @@ USER_OBJECT_
 S_atk_editable_text_set_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_attrib_set, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	AtkAttributeSet* attrib_set = asAtkAttributeSet(s_attrib_set);
-	gint start_offset = (gint)asInteger(s_start_offset);
-	gint end_offset = (gint)asInteger(s_end_offset);
+	AtkAttributeSet* attrib_set = asCAtkAttributeSet(s_attrib_set);
+	gint start_offset = (gint)asCInteger(s_start_offset);
+	gint end_offset = (gint)asCInteger(s_end_offset);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -459,7 +459,7 @@ USER_OBJECT_
 S_atk_editable_text_set_text_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_string)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	const gchar* string = (const gchar*)asString(s_string);
+	const gchar* string = (const gchar*)asCString(s_string);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -474,8 +474,8 @@ USER_OBJECT_
 S_atk_editable_text_copy_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	gint start_pos = (gint)asInteger(s_start_pos);
-	gint end_pos = (gint)asInteger(s_end_pos);
+	gint start_pos = (gint)asCInteger(s_start_pos);
+	gint end_pos = (gint)asCInteger(s_end_pos);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -490,8 +490,8 @@ USER_OBJECT_
 S_atk_editable_text_cut_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	gint start_pos = (gint)asInteger(s_start_pos);
-	gint end_pos = (gint)asInteger(s_end_pos);
+	gint start_pos = (gint)asCInteger(s_start_pos);
+	gint end_pos = (gint)asCInteger(s_end_pos);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -506,8 +506,8 @@ USER_OBJECT_
 S_atk_editable_text_delete_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	gint start_pos = (gint)asInteger(s_start_pos);
-	gint end_pos = (gint)asInteger(s_end_pos);
+	gint start_pos = (gint)asCInteger(s_start_pos);
+	gint end_pos = (gint)asCInteger(s_end_pos);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -522,7 +522,7 @@ USER_OBJECT_
 S_atk_editable_text_paste_text(USER_OBJECT_ s_object, USER_OBJECT_ s_position)
 {
 	AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-	gint position = (gint)asInteger(s_position);
+	gint position = (gint)asCInteger(s_position);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -599,7 +599,7 @@ USER_OBJECT_
 S_atk_hyperlink_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -617,7 +617,7 @@ USER_OBJECT_
 S_atk_hyperlink_get_object(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -745,7 +745,7 @@ USER_OBJECT_
 S_atk_hypertext_get_link(USER_OBJECT_ s_object, USER_OBJECT_ s_link_index)
 {
 	AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
-	gint link_index = (gint)asInteger(s_link_index);
+	gint link_index = (gint)asCInteger(s_link_index);
 
 	AtkHyperlink* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -778,7 +778,7 @@ USER_OBJECT_
 S_atk_hypertext_get_link_index(USER_OBJECT_ s_object, USER_OBJECT_ s_char_index)
 {
 	AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
-	gint char_index = (gint)asInteger(s_char_index);
+	gint char_index = (gint)asCInteger(s_char_index);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -844,7 +844,7 @@ USER_OBJECT_
 S_atk_image_set_image_description(USER_OBJECT_ s_object, USER_OBJECT_ s_description)
 {
 	AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
-	const gchar* description = (const gchar*)asString(s_description);
+	const gchar* description = (const gchar*)asCString(s_description);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -861,7 +861,7 @@ USER_OBJECT_
 S_atk_image_get_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
 	AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gint x;
@@ -1113,7 +1113,7 @@ USER_OBJECT_
 S_atk_object_ref_accessible_child(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1226,7 +1226,7 @@ USER_OBJECT_
 S_atk_object_set_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1241,7 +1241,7 @@ USER_OBJECT_
 S_atk_object_set_description(USER_OBJECT_ s_object, USER_OBJECT_ s_description)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	const gchar* description = (const gchar*)asString(s_description);
+	const gchar* description = (const gchar*)asCString(s_description);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1271,7 +1271,7 @@ USER_OBJECT_
 S_atk_object_set_role(USER_OBJECT_ s_object, USER_OBJECT_ s_role)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	AtkRole role = (AtkRole)asEnum(s_role, ATK_TYPE_ROLE);
+	AtkRole role = (AtkRole)asCEnum(s_role, ATK_TYPE_ROLE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1286,7 +1286,7 @@ USER_OBJECT_
 S_atk_object_remove_property_change_handler(USER_OBJECT_ s_object, USER_OBJECT_ s_handler_id)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	guint handler_id = (guint)asNumeric(s_handler_id);
+	guint handler_id = (guint)asCNumeric(s_handler_id);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1301,8 +1301,8 @@ USER_OBJECT_
 S_atk_object_notify_state_change(USER_OBJECT_ s_object, USER_OBJECT_ s_state, USER_OBJECT_ s_value)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	AtkState state = (AtkState)asNumeric(s_state);
-	gboolean value = (gboolean)asLogical(s_value);
+	AtkState state = (AtkState)asCNumeric(s_state);
+	gboolean value = (gboolean)asCLogical(s_value);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1332,8 +1332,8 @@ USER_OBJECT_
 S_atk_registry_set_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_factory_type)
 {
 	AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-	GType type = (GType)asNumeric(s_type);
-	GType factory_type = (GType)asNumeric(s_factory_type);
+	GType type = (GType)asCNumeric(s_type);
+	GType factory_type = (GType)asCNumeric(s_factory_type);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1348,7 +1348,7 @@ USER_OBJECT_
 S_atk_registry_get_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-	GType type = (GType)asNumeric(s_type);
+	GType type = (GType)asCNumeric(s_type);
 
 	GType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1365,7 +1365,7 @@ USER_OBJECT_
 S_atk_registry_get_factory(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	AtkRegistry* object = ATK_REGISTRY(getPtrValue(s_object));
-	GType type = (GType)asNumeric(s_type);
+	GType type = (GType)asCNumeric(s_type);
 
 	AtkObjectFactory* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1411,7 +1411,7 @@ S_atk_relation_get_type()
 USER_OBJECT_
 S_atk_relation_type_register(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkRelationType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1427,7 +1427,7 @@ S_atk_relation_type_register(USER_OBJECT_ s_name)
 USER_OBJECT_
 S_atk_relation_type_get_name(USER_OBJECT_ s_type)
 {
-	AtkRelationType type = (AtkRelationType)asEnum(s_type, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType type = (AtkRelationType)asCEnum(s_type, ATK_TYPE_RELATION_TYPE);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1443,7 +1443,7 @@ S_atk_relation_type_get_name(USER_OBJECT_ s_type)
 USER_OBJECT_
 S_atk_relation_type_for_name(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkRelationType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1459,9 +1459,9 @@ S_atk_relation_type_for_name(USER_OBJECT_ s_name)
 USER_OBJECT_
 S_atk_relation_new(USER_OBJECT_ s_targets, USER_OBJECT_ s_relationship)
 {
-	AtkObject** targets = (AtkObject**)asArray(s_targets, AtkObject*, getPtrValue);
+	AtkObject** targets = (AtkObject**)asCArray(s_targets, AtkObject*, getPtrValue);
 	gint n_targets = (gint)GET_LENGTH(s_targets);
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 
 	AtkRelation* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1555,7 +1555,7 @@ USER_OBJECT_
 S_atk_relation_set_contains(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship)
 {
 	AtkRelationSet* object = ATK_RELATION_SET(getPtrValue(s_object));
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1618,7 +1618,7 @@ USER_OBJECT_
 S_atk_relation_set_get_relation(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkRelationSet* object = ATK_RELATION_SET(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	AtkRelation* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1635,7 +1635,7 @@ USER_OBJECT_
 S_atk_relation_set_get_relation_by_type(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship)
 {
 	AtkRelationSet* object = ATK_RELATION_SET(getPtrValue(s_object));
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 
 	AtkRelation* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1652,7 +1652,7 @@ USER_OBJECT_
 S_atk_relation_set_add_relation_by_type(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship, USER_OBJECT_ s_target)
 {
 	AtkRelationSet* object = ATK_RELATION_SET(getPtrValue(s_object));
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 	AtkObject* target = ATK_OBJECT(getPtrValue(s_target));
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1683,7 +1683,7 @@ USER_OBJECT_
 S_atk_selection_add_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1716,7 +1716,7 @@ USER_OBJECT_
 S_atk_selection_ref_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1749,7 +1749,7 @@ USER_OBJECT_
 S_atk_selection_is_child_selected(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1766,7 +1766,7 @@ USER_OBJECT_
 S_atk_selection_remove_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1798,7 +1798,7 @@ S_atk_selection_select_all_selection(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_state_type_register(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkStateType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1814,7 +1814,7 @@ S_atk_state_type_register(USER_OBJECT_ s_name)
 USER_OBJECT_
 S_atk_state_type_get_name(USER_OBJECT_ s_type)
 {
-	AtkStateType type = (AtkStateType)asEnum(s_type, ATK_TYPE_STATE_TYPE);
+	AtkStateType type = (AtkStateType)asCEnum(s_type, ATK_TYPE_STATE_TYPE);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1830,7 +1830,7 @@ S_atk_state_type_get_name(USER_OBJECT_ s_type)
 USER_OBJECT_
 S_atk_state_type_for_name(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkStateType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1893,7 +1893,7 @@ USER_OBJECT_
 S_atk_state_set_add_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-	AtkStateType type = (AtkStateType)asEnum(s_type, ATK_TYPE_STATE_TYPE);
+	AtkStateType type = (AtkStateType)asCEnum(s_type, ATK_TYPE_STATE_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1910,7 +1910,7 @@ USER_OBJECT_
 S_atk_state_set_add_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types)
 {
 	AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-	AtkStateType* types = (AtkStateType*)asEnumArray(s_types, AtkStateType, ATK_TYPE_STATE_TYPE);
+	AtkStateType* types = (AtkStateType*)asCEnumArray(s_types, AtkStateType, ATK_TYPE_STATE_TYPE);
 	gint n_types = (gint)GET_LENGTH(s_types);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1940,7 +1940,7 @@ USER_OBJECT_
 S_atk_state_set_contains_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-	AtkStateType type = (AtkStateType)asEnum(s_type, ATK_TYPE_STATE_TYPE);
+	AtkStateType type = (AtkStateType)asCEnum(s_type, ATK_TYPE_STATE_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1957,8 +1957,8 @@ USER_OBJECT_
 S_atk_state_set_contains_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types, USER_OBJECT_ s_n_types)
 {
 	AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-	AtkStateType* types = (AtkStateType*)asEnum(s_types, ATK_TYPE_STATE_TYPE);
-	gint n_types = (gint)asInteger(s_n_types);
+	AtkStateType* types = (AtkStateType*)asCEnum(s_types, ATK_TYPE_STATE_TYPE);
+	gint n_types = (gint)asCInteger(s_n_types);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1975,7 +1975,7 @@ USER_OBJECT_
 S_atk_state_set_remove_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-	AtkStateType type = (AtkStateType)asEnum(s_type, ATK_TYPE_STATE_TYPE);
+	AtkStateType type = (AtkStateType)asCEnum(s_type, ATK_TYPE_STATE_TYPE);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2074,7 +2074,7 @@ USER_OBJECT_
 S_atk_streamable_content_get_mime_type(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
 	AtkStreamableContent* object = ATK_STREAMABLE_CONTENT(getPtrValue(s_object));
-	gint i = (gint)asInteger(s_i);
+	gint i = (gint)asCInteger(s_i);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2091,7 +2091,7 @@ USER_OBJECT_
 S_atk_streamable_content_get_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_type)
 {
 	AtkStreamableContent* object = ATK_STREAMABLE_CONTENT(getPtrValue(s_object));
-	const gchar* mime_type = (const gchar*)asString(s_mime_type);
+	const gchar* mime_type = (const gchar*)asCString(s_mime_type);
 
 	GIOChannel* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2123,8 +2123,8 @@ USER_OBJECT_
 S_atk_table_ref_at(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	gint column = (gint)asInteger(s_column);
+	gint row = (gint)asCInteger(s_row);
+	gint column = (gint)asCInteger(s_column);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2141,8 +2141,8 @@ USER_OBJECT_
 S_atk_table_get_index_at(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	gint column = (gint)asInteger(s_column);
+	gint row = (gint)asCInteger(s_row);
+	gint column = (gint)asCInteger(s_column);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2159,7 +2159,7 @@ USER_OBJECT_
 S_atk_table_get_column_at_index(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint index = (gint)asInteger(s_index);
+	gint index = (gint)asCInteger(s_index);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2176,7 +2176,7 @@ USER_OBJECT_
 S_atk_table_get_row_at_index(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint index = (gint)asInteger(s_index);
+	gint index = (gint)asCInteger(s_index);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2225,8 +2225,8 @@ USER_OBJECT_
 S_atk_table_get_column_extent_at(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	gint column = (gint)asInteger(s_column);
+	gint row = (gint)asCInteger(s_row);
+	gint column = (gint)asCInteger(s_column);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2243,8 +2243,8 @@ USER_OBJECT_
 S_atk_table_get_row_extent_at(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	gint column = (gint)asInteger(s_column);
+	gint row = (gint)asCInteger(s_row);
+	gint column = (gint)asCInteger(s_column);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2277,7 +2277,7 @@ USER_OBJECT_
 S_atk_table_get_column_description(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2294,7 +2294,7 @@ USER_OBJECT_
 S_atk_table_get_column_header(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2311,7 +2311,7 @@ USER_OBJECT_
 S_atk_table_get_row_description(USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2328,7 +2328,7 @@ USER_OBJECT_
 S_atk_table_get_row_header(USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 
 	AtkObject* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2376,8 +2376,8 @@ USER_OBJECT_
 S_atk_table_set_column_description(USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_description)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
-	const gchar* description = (const gchar*)asString(s_description);
+	gint column = (gint)asCInteger(s_column);
+	const gchar* description = (const gchar*)asCString(s_description);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2392,7 +2392,7 @@ USER_OBJECT_
 S_atk_table_set_column_header(USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_header)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 	AtkObject* header = ATK_OBJECT(getPtrValue(s_header));
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2408,8 +2408,8 @@ USER_OBJECT_
 S_atk_table_set_row_description(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_description)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	const gchar* description = (const gchar*)asString(s_description);
+	gint row = (gint)asCInteger(s_row);
+	const gchar* description = (const gchar*)asCString(s_description);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2424,7 +2424,7 @@ USER_OBJECT_
 S_atk_table_set_row_header(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_header)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 	AtkObject* header = ATK_OBJECT(getPtrValue(s_header));
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2495,7 +2495,7 @@ USER_OBJECT_
 S_atk_table_is_column_selected(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2512,7 +2512,7 @@ USER_OBJECT_
 S_atk_table_is_row_selected(USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2529,8 +2529,8 @@ USER_OBJECT_
 S_atk_table_is_selected(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
-	gint column = (gint)asInteger(s_column);
+	gint row = (gint)asCInteger(s_row);
+	gint column = (gint)asCInteger(s_column);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2547,7 +2547,7 @@ USER_OBJECT_
 S_atk_table_add_row_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2564,7 +2564,7 @@ USER_OBJECT_
 S_atk_table_remove_row_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint row = (gint)asInteger(s_row);
+	gint row = (gint)asCInteger(s_row);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2581,7 +2581,7 @@ USER_OBJECT_
 S_atk_table_add_column_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2598,7 +2598,7 @@ USER_OBJECT_
 S_atk_table_remove_column_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
 	AtkTable* object = ATK_TABLE(getPtrValue(s_object));
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2630,8 +2630,8 @@ USER_OBJECT_
 S_atk_text_get_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint start_offset = (gint)asInteger(s_start_offset);
-	gint end_offset = (gint)asInteger(s_end_offset);
+	gint start_offset = (gint)asCInteger(s_start_offset);
+	gint end_offset = (gint)asCInteger(s_end_offset);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2649,7 +2649,7 @@ USER_OBJECT_
 S_atk_text_get_character_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
+	gint offset = (gint)asCInteger(s_offset);
 
 	gunichar ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2666,8 +2666,8 @@ USER_OBJECT_
 S_atk_text_get_text_after_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
-	AtkTextBoundary boundary_type = (AtkTextBoundary)asEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
+	gint offset = (gint)asCInteger(s_offset);
+	AtkTextBoundary boundary_type = (AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2689,8 +2689,8 @@ USER_OBJECT_
 S_atk_text_get_text_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
-	AtkTextBoundary boundary_type = (AtkTextBoundary)asEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
+	gint offset = (gint)asCInteger(s_offset);
+	AtkTextBoundary boundary_type = (AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2712,8 +2712,8 @@ USER_OBJECT_
 S_atk_text_get_text_before_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
-	AtkTextBoundary boundary_type = (AtkTextBoundary)asEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
+	gint offset = (gint)asCInteger(s_offset);
+	AtkTextBoundary boundary_type = (AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2751,9 +2751,9 @@ USER_OBJECT_
 S_atk_text_get_range_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset, USER_OBJECT_ s_coord_type)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint start_offset = (gint)asInteger(s_start_offset);
-	gint end_offset = (gint)asInteger(s_end_offset);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	gint start_offset = (gint)asCInteger(s_start_offset);
+	gint end_offset = (gint)asCInteger(s_end_offset);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	AtkTextRectangle* rect = (AtkTextRectangle *)g_new0(AtkTextRectangle, 1);
@@ -2772,10 +2772,10 @@ USER_OBJECT_
 S_atk_text_get_bounded_ranges(USER_OBJECT_ s_object, USER_OBJECT_ s_rect, USER_OBJECT_ s_coord_type, USER_OBJECT_ s_x_clip_type, USER_OBJECT_ s_y_clip_type)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	AtkTextRectangle* rect = asAtkTextRectangle(s_rect);
-	AtkCoordType coord_type = (AtkCoordType)asEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
-	AtkTextClipType x_clip_type = (AtkTextClipType)asEnum(s_x_clip_type, ATK_TYPE_TEXT_CLIP_TYPE);
-	AtkTextClipType y_clip_type = (AtkTextClipType)asEnum(s_y_clip_type, ATK_TYPE_TEXT_CLIP_TYPE);
+	AtkTextRectangle* rect = asCAtkTextRectangle(s_rect);
+	AtkCoordType coord_type = (AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE);
+	AtkTextClipType x_clip_type = (AtkTextClipType)asCEnum(s_x_clip_type, ATK_TYPE_TEXT_CLIP_TYPE);
+	AtkTextClipType y_clip_type = (AtkTextClipType)asCEnum(s_y_clip_type, ATK_TYPE_TEXT_CLIP_TYPE);
 
 	AtkTextRange** ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2793,8 +2793,8 @@ USER_OBJECT_
 S_atk_text_get_character_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_coords)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
-	AtkCoordType coords = (AtkCoordType)asEnum(s_coords, ATK_TYPE_COORD_TYPE);
+	gint offset = (gint)asCInteger(s_offset);
+	AtkCoordType coords = (AtkCoordType)asCEnum(s_coords, ATK_TYPE_COORD_TYPE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gint x;
@@ -2815,7 +2815,7 @@ USER_OBJECT_
 S_atk_text_get_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
+	gint offset = (gint)asCInteger(s_offset);
 
 	AtkAttributeSet* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2870,9 +2870,9 @@ USER_OBJECT_
 S_atk_text_get_offset_at_point(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coords)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint x = (gint)asInteger(s_x);
-	gint y = (gint)asInteger(s_y);
-	AtkCoordType coords = (AtkCoordType)asEnum(s_coords, ATK_TYPE_COORD_TYPE);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	AtkCoordType coords = (AtkCoordType)asCEnum(s_coords, ATK_TYPE_COORD_TYPE);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2905,7 +2905,7 @@ USER_OBJECT_
 S_atk_text_get_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint selection_num = (gint)asInteger(s_selection_num);
+	gint selection_num = (gint)asCInteger(s_selection_num);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2927,8 +2927,8 @@ USER_OBJECT_
 S_atk_text_add_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint start_offset = (gint)asInteger(s_start_offset);
-	gint end_offset = (gint)asInteger(s_end_offset);
+	gint start_offset = (gint)asCInteger(s_start_offset);
+	gint end_offset = (gint)asCInteger(s_end_offset);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2945,7 +2945,7 @@ USER_OBJECT_
 S_atk_text_remove_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint selection_num = (gint)asInteger(s_selection_num);
+	gint selection_num = (gint)asCInteger(s_selection_num);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2962,9 +2962,9 @@ USER_OBJECT_
 S_atk_text_set_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint selection_num = (gint)asInteger(s_selection_num);
-	gint start_offset = (gint)asInteger(s_start_offset);
-	gint end_offset = (gint)asInteger(s_end_offset);
+	gint selection_num = (gint)asCInteger(s_selection_num);
+	gint start_offset = (gint)asCInteger(s_start_offset);
+	gint end_offset = (gint)asCInteger(s_end_offset);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2981,7 +2981,7 @@ USER_OBJECT_
 S_atk_text_set_caret_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
 	AtkText* object = ATK_TEXT(getPtrValue(s_object));
-	gint offset = (gint)asInteger(s_offset);
+	gint offset = (gint)asCInteger(s_offset);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2997,7 +2997,7 @@ S_atk_text_set_caret_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 USER_OBJECT_
 S_atk_attribute_set_free(USER_OBJECT_ s_object)
 {
-	AtkAttributeSet* object = asAtkAttributeSet(s_object);
+	AtkAttributeSet* object = asCAtkAttributeSet(s_object);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3012,7 +3012,7 @@ S_atk_attribute_set_free(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_text_attribute_register(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkTextAttribute ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3028,7 +3028,7 @@ S_atk_text_attribute_register(USER_OBJECT_ s_name)
 USER_OBJECT_
 S_atk_text_attribute_get_name(USER_OBJECT_ s_attr)
 {
-	AtkTextAttribute attr = (AtkTextAttribute)asEnum(s_attr, ATK_TYPE_TEXT_ATTRIBUTE);
+	AtkTextAttribute attr = (AtkTextAttribute)asCEnum(s_attr, ATK_TYPE_TEXT_ATTRIBUTE);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3044,8 +3044,8 @@ S_atk_text_attribute_get_name(USER_OBJECT_ s_attr)
 USER_OBJECT_
 S_atk_text_attribute_get_value(USER_OBJECT_ s_attr, USER_OBJECT_ s_index)
 {
-	AtkTextAttribute attr = (AtkTextAttribute)asEnum(s_attr, ATK_TYPE_TEXT_ATTRIBUTE);
-	gint index = (gint)asInteger(s_index);
+	AtkTextAttribute attr = (AtkTextAttribute)asCEnum(s_attr, ATK_TYPE_TEXT_ATTRIBUTE);
+	gint index = (gint)asCInteger(s_index);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3076,7 +3076,7 @@ S_atk_util_get_type()
 USER_OBJECT_
 S_atk_remove_focus_tracker(USER_OBJECT_ s_tracker_id)
 {
-	guint tracker_id = (guint)asNumeric(s_tracker_id);
+	guint tracker_id = (guint)asCNumeric(s_tracker_id);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3104,7 +3104,7 @@ S_atk_focus_tracker_notify(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_remove_global_event_listener(USER_OBJECT_ s_listener_id)
 {
-	guint listener_id = (guint)asNumeric(s_listener_id);
+	guint listener_id = (guint)asCNumeric(s_listener_id);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3136,7 +3136,7 @@ S_atk_add_key_event_listener(USER_OBJECT_ s_listener, USER_OBJECT_ s_data)
 USER_OBJECT_
 S_atk_remove_key_event_listener(USER_OBJECT_ s_listener_id)
 {
-	guint listener_id = (guint)asNumeric(s_listener_id);
+	guint listener_id = (guint)asCNumeric(s_listener_id);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3283,7 +3283,7 @@ USER_OBJECT_
 S_atk_value_set_current_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value)
 {
 	AtkValue* object = ATK_VALUE(getPtrValue(s_object));
-	const GValue* value = asGValue(s_value);
+	const GValue* value = asCGValue(s_value);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3301,7 +3301,7 @@ S_atk_value_set_current_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value)
 USER_OBJECT_
 S_atk_role_get_name(USER_OBJECT_ s_role)
 {
-	AtkRole role = (AtkRole)asEnum(s_role, ATK_TYPE_ROLE);
+	AtkRole role = (AtkRole)asCEnum(s_role, ATK_TYPE_ROLE);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3317,7 +3317,7 @@ S_atk_role_get_name(USER_OBJECT_ s_role)
 USER_OBJECT_
 S_atk_role_for_name(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkRole ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3333,7 +3333,7 @@ S_atk_role_for_name(USER_OBJECT_ s_name)
 USER_OBJECT_
 S_atk_role_register(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	AtkRole ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3350,7 +3350,7 @@ USER_OBJECT_
 S_atk_object_initialize(USER_OBJECT_ s_object, USER_OBJECT_ s_data)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	gpointer data = (gpointer)asGenericData(s_data);
+	gpointer data = (gpointer)asCGenericData(s_data);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3365,7 +3365,7 @@ USER_OBJECT_
 S_atk_object_add_relationship(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship, USER_OBJECT_ s_target)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 	AtkObject* target = ATK_OBJECT(getPtrValue(s_target));
 
 	gboolean ans;
@@ -3383,7 +3383,7 @@ USER_OBJECT_
 S_atk_object_remove_relationship(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship, USER_OBJECT_ s_target)
 {
 	AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
-	AtkRelationType relationship = (AtkRelationType)asEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
+	AtkRelationType relationship = (AtkRelationType)asCEnum(s_relationship, ATK_TYPE_RELATION_TYPE);
 	AtkObject* target = ATK_OBJECT(getPtrValue(s_target));
 
 	gboolean ans;
@@ -3400,7 +3400,7 @@ S_atk_object_remove_relationship(USER_OBJECT_ s_object, USER_OBJECT_ s_relations
 USER_OBJECT_
 S_atk_role_get_localized_name(USER_OBJECT_ s_role)
 {
-	AtkRole role = (AtkRole)asEnum(s_role, ATK_TYPE_ROLE);
+	AtkRole role = (AtkRole)asCEnum(s_role, ATK_TYPE_ROLE);
 
 	const gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;

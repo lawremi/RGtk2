@@ -83,7 +83,7 @@ USER_OBJECT_
 S_cairo_set_operator(USER_OBJECT_ s_cr, USER_OBJECT_ s_op)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_operator_t op = (cairo_operator_t)asEnum(s_op, CAIRO_TYPE_OPERATOR);
+	cairo_operator_t op = (cairo_operator_t)asCEnum(s_op, CAIRO_TYPE_OPERATOR);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -113,9 +113,9 @@ USER_OBJECT_
 S_cairo_set_source_rgb(USER_OBJECT_ s_cr, USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -130,10 +130,10 @@ USER_OBJECT_
 S_cairo_set_source_rgba(USER_OBJECT_ s_cr, USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue, USER_OBJECT_ s_alpha)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
-	double alpha = (double)asNumeric(s_alpha);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
+	double alpha = (double)asCNumeric(s_alpha);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -149,8 +149,8 @@ S_cairo_set_source_surface(USER_OBJECT_ s_cr, USER_OBJECT_ s_surface, USER_OBJEC
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -165,7 +165,7 @@ USER_OBJECT_
 S_cairo_set_tolerance(USER_OBJECT_ s_cr, USER_OBJECT_ s_tolerance)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double tolerance = (double)asNumeric(s_tolerance);
+	double tolerance = (double)asCNumeric(s_tolerance);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -180,7 +180,7 @@ USER_OBJECT_
 S_cairo_set_fill_rule(USER_OBJECT_ s_cr, USER_OBJECT_ s_fill_rule)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_fill_rule_t fill_rule = (cairo_fill_rule_t)asEnum(s_fill_rule, CAIRO_TYPE_FILL_RULE);
+	cairo_fill_rule_t fill_rule = (cairo_fill_rule_t)asCEnum(s_fill_rule, CAIRO_TYPE_FILL_RULE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -195,7 +195,7 @@ USER_OBJECT_
 S_cairo_set_line_width(USER_OBJECT_ s_cr, USER_OBJECT_ s_width)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double width = (double)asNumeric(s_width);
+	double width = (double)asCNumeric(s_width);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -210,7 +210,7 @@ USER_OBJECT_
 S_cairo_set_line_cap(USER_OBJECT_ s_cr, USER_OBJECT_ s_line_cap)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_line_cap_t line_cap = (cairo_line_cap_t)asEnum(s_line_cap, CAIRO_TYPE_LINE_CAP);
+	cairo_line_cap_t line_cap = (cairo_line_cap_t)asCEnum(s_line_cap, CAIRO_TYPE_LINE_CAP);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -225,7 +225,7 @@ USER_OBJECT_
 S_cairo_set_line_join(USER_OBJECT_ s_cr, USER_OBJECT_ s_line_join)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_line_join_t line_join = (cairo_line_join_t)asEnum(s_line_join, CAIRO_TYPE_LINE_JOIN);
+	cairo_line_join_t line_join = (cairo_line_join_t)asCEnum(s_line_join, CAIRO_TYPE_LINE_JOIN);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -240,9 +240,9 @@ USER_OBJECT_
 S_cairo_set_dash(USER_OBJECT_ s_cr, USER_OBJECT_ s_dashes, USER_OBJECT_ s_offset)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* dashes = (double*)asArray(s_dashes, double, asNumeric);
+	double* dashes = (double*)asCArray(s_dashes, double, asCNumeric);
 	int ndash = (int)GET_LENGTH(s_dashes);
-	double offset = (double)asNumeric(s_offset);
+	double offset = (double)asCNumeric(s_offset);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -257,7 +257,7 @@ USER_OBJECT_
 S_cairo_set_miter_limit(USER_OBJECT_ s_cr, USER_OBJECT_ s_limit)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double limit = (double)asNumeric(s_limit);
+	double limit = (double)asCNumeric(s_limit);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -272,8 +272,8 @@ USER_OBJECT_
 S_cairo_translate(USER_OBJECT_ s_cr, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double tx = (double)asNumeric(s_tx);
-	double ty = (double)asNumeric(s_ty);
+	double tx = (double)asCNumeric(s_tx);
+	double ty = (double)asCNumeric(s_ty);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -288,8 +288,8 @@ USER_OBJECT_
 S_cairo_scale(USER_OBJECT_ s_cr, USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double sx = (double)asNumeric(s_sx);
-	double sy = (double)asNumeric(s_sy);
+	double sx = (double)asCNumeric(s_sx);
+	double sy = (double)asCNumeric(s_sy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -304,7 +304,7 @@ USER_OBJECT_
 S_cairo_rotate(USER_OBJECT_ s_cr, USER_OBJECT_ s_angle)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double angle = (double)asNumeric(s_angle);
+	double angle = (double)asCNumeric(s_angle);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -363,8 +363,8 @@ USER_OBJECT_
 S_cairo_user_to_device(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* x = (double*)asArray(s_x, double, asNumeric);
-	double* y = (double*)asArray(s_y, double, asNumeric);
+	double* x = (double*)asCArray(s_x, double, asCNumeric);
+	double* y = (double*)asCArray(s_y, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -379,8 +379,8 @@ USER_OBJECT_
 S_cairo_user_to_device_distance(USER_OBJECT_ s_cr, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* dx = (double*)asArray(s_dx, double, asNumeric);
-	double* dy = (double*)asArray(s_dy, double, asNumeric);
+	double* dx = (double*)asCArray(s_dx, double, asCNumeric);
+	double* dy = (double*)asCArray(s_dy, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -395,8 +395,8 @@ USER_OBJECT_
 S_cairo_device_to_user(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* x = (double*)asArray(s_x, double, asNumeric);
-	double* y = (double*)asArray(s_y, double, asNumeric);
+	double* x = (double*)asCArray(s_x, double, asCNumeric);
+	double* y = (double*)asCArray(s_y, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -411,8 +411,8 @@ USER_OBJECT_
 S_cairo_device_to_user_distance(USER_OBJECT_ s_cr, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* dx = (double*)asArray(s_dx, double, asNumeric);
-	double* dy = (double*)asArray(s_dy, double, asNumeric);
+	double* dx = (double*)asCArray(s_dx, double, asCNumeric);
+	double* dy = (double*)asCArray(s_dy, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -441,8 +441,8 @@ USER_OBJECT_
 S_cairo_move_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -457,8 +457,8 @@ USER_OBJECT_
 S_cairo_line_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -473,12 +473,12 @@ USER_OBJECT_
 S_cairo_curve_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_x1, USER_OBJECT_ s_y1, USER_OBJECT_ s_x2, USER_OBJECT_ s_y2, USER_OBJECT_ s_x3, USER_OBJECT_ s_y3)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x1 = (double)asNumeric(s_x1);
-	double y1 = (double)asNumeric(s_y1);
-	double x2 = (double)asNumeric(s_x2);
-	double y2 = (double)asNumeric(s_y2);
-	double x3 = (double)asNumeric(s_x3);
-	double y3 = (double)asNumeric(s_y3);
+	double x1 = (double)asCNumeric(s_x1);
+	double y1 = (double)asCNumeric(s_y1);
+	double x2 = (double)asCNumeric(s_x2);
+	double y2 = (double)asCNumeric(s_y2);
+	double x3 = (double)asCNumeric(s_x3);
+	double y3 = (double)asCNumeric(s_y3);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -493,11 +493,11 @@ USER_OBJECT_
 S_cairo_arc(USER_OBJECT_ s_cr, USER_OBJECT_ s_xc, USER_OBJECT_ s_yc, USER_OBJECT_ s_radius, USER_OBJECT_ s_angle1, USER_OBJECT_ s_angle2)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double xc = (double)asNumeric(s_xc);
-	double yc = (double)asNumeric(s_yc);
-	double radius = (double)asNumeric(s_radius);
-	double angle1 = (double)asNumeric(s_angle1);
-	double angle2 = (double)asNumeric(s_angle2);
+	double xc = (double)asCNumeric(s_xc);
+	double yc = (double)asCNumeric(s_yc);
+	double radius = (double)asCNumeric(s_radius);
+	double angle1 = (double)asCNumeric(s_angle1);
+	double angle2 = (double)asCNumeric(s_angle2);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -512,11 +512,11 @@ USER_OBJECT_
 S_cairo_arc_negative(USER_OBJECT_ s_cr, USER_OBJECT_ s_xc, USER_OBJECT_ s_yc, USER_OBJECT_ s_radius, USER_OBJECT_ s_angle1, USER_OBJECT_ s_angle2)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double xc = (double)asNumeric(s_xc);
-	double yc = (double)asNumeric(s_yc);
-	double radius = (double)asNumeric(s_radius);
-	double angle1 = (double)asNumeric(s_angle1);
-	double angle2 = (double)asNumeric(s_angle2);
+	double xc = (double)asCNumeric(s_xc);
+	double yc = (double)asCNumeric(s_yc);
+	double radius = (double)asCNumeric(s_radius);
+	double angle1 = (double)asCNumeric(s_angle1);
+	double angle2 = (double)asCNumeric(s_angle2);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -531,8 +531,8 @@ USER_OBJECT_
 S_cairo_rel_move_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double dx = (double)asNumeric(s_dx);
-	double dy = (double)asNumeric(s_dy);
+	double dx = (double)asCNumeric(s_dx);
+	double dy = (double)asCNumeric(s_dy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -547,8 +547,8 @@ USER_OBJECT_
 S_cairo_rel_line_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double dx = (double)asNumeric(s_dx);
-	double dy = (double)asNumeric(s_dy);
+	double dx = (double)asCNumeric(s_dx);
+	double dy = (double)asCNumeric(s_dy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -563,12 +563,12 @@ USER_OBJECT_
 S_cairo_rel_curve_to(USER_OBJECT_ s_cr, USER_OBJECT_ s_dx1, USER_OBJECT_ s_dy1, USER_OBJECT_ s_dx2, USER_OBJECT_ s_dy2, USER_OBJECT_ s_dx3, USER_OBJECT_ s_dy3)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double dx1 = (double)asNumeric(s_dx1);
-	double dy1 = (double)asNumeric(s_dy1);
-	double dx2 = (double)asNumeric(s_dx2);
-	double dy2 = (double)asNumeric(s_dy2);
-	double dx3 = (double)asNumeric(s_dx3);
-	double dy3 = (double)asNumeric(s_dy3);
+	double dx1 = (double)asCNumeric(s_dx1);
+	double dy1 = (double)asCNumeric(s_dy1);
+	double dx2 = (double)asCNumeric(s_dx2);
+	double dy2 = (double)asCNumeric(s_dy2);
+	double dx3 = (double)asCNumeric(s_dx3);
+	double dy3 = (double)asCNumeric(s_dy3);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -583,10 +583,10 @@ USER_OBJECT_
 S_cairo_rectangle(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
-	double width = (double)asNumeric(s_width);
-	double height = (double)asNumeric(s_height);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
+	double width = (double)asCNumeric(s_width);
+	double height = (double)asCNumeric(s_height);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -629,7 +629,7 @@ USER_OBJECT_
 S_cairo_paint_with_alpha(USER_OBJECT_ s_cr, USER_OBJECT_ s_alpha)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double alpha = (double)asNumeric(s_alpha);
+	double alpha = (double)asCNumeric(s_alpha);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -660,8 +660,8 @@ S_cairo_mask_surface(USER_OBJECT_ s_cr, USER_OBJECT_ s_surface, USER_OBJECT_ s_s
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
-	double surface_x = (double)asNumeric(s_surface_x);
-	double surface_y = (double)asNumeric(s_surface_y);
+	double surface_x = (double)asCNumeric(s_surface_x);
+	double surface_y = (double)asCNumeric(s_surface_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -760,8 +760,8 @@ USER_OBJECT_
 S_cairo_in_stroke(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -778,8 +778,8 @@ USER_OBJECT_
 S_cairo_in_fill(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -878,9 +878,9 @@ USER_OBJECT_
 S_cairo_select_font_face(USER_OBJECT_ s_cr, USER_OBJECT_ s_family, USER_OBJECT_ s_slant, USER_OBJECT_ s_weight)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	const char* family = (const char*)asString(s_family);
-	cairo_font_slant_t slant = (cairo_font_slant_t)asEnum(s_slant, CAIRO_TYPE_FONT_SLANT);
-	cairo_font_weight_t weight = (cairo_font_weight_t)asEnum(s_weight, CAIRO_TYPE_FONT_WEIGHT);
+	const char* family = (const char*)asCString(s_family);
+	cairo_font_slant_t slant = (cairo_font_slant_t)asCEnum(s_slant, CAIRO_TYPE_FONT_SLANT);
+	cairo_font_weight_t weight = (cairo_font_weight_t)asCEnum(s_weight, CAIRO_TYPE_FONT_WEIGHT);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -895,7 +895,7 @@ USER_OBJECT_
 S_cairo_set_font_size(USER_OBJECT_ s_cr, USER_OBJECT_ s_size)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double size = (double)asNumeric(s_size);
+	double size = (double)asCNumeric(s_size);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -940,7 +940,7 @@ USER_OBJECT_
 S_cairo_show_text(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	const char* utf8 = (const char*)asString(s_utf8);
+	const char* utf8 = (const char*)asCString(s_utf8);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -955,8 +955,8 @@ USER_OBJECT_
 S_cairo_show_glyphs(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_num_glyphs)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_glyph_t* glyphs = asCairoGlyph(s_glyphs);
-	int num_glyphs = (int)asInteger(s_num_glyphs);
+	cairo_glyph_t* glyphs = asCCairoGlyph(s_glyphs);
+	int num_glyphs = (int)asCInteger(s_num_glyphs);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1019,7 +1019,7 @@ USER_OBJECT_
 S_cairo_text_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	const char* utf8 = (const char*)asString(s_utf8);
+	const char* utf8 = (const char*)asCString(s_utf8);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	cairo_text_extents_t* extents = (cairo_text_extents_t *)g_new0(cairo_text_extents_t, 1);
@@ -1037,7 +1037,7 @@ USER_OBJECT_
 S_cairo_glyph_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_glyph_t* glyphs = (cairo_glyph_t*)asArrayRef(s_glyphs, cairo_glyph_t, asCairoGlyph);
+	cairo_glyph_t* glyphs = (cairo_glyph_t*)asCArrayRef(s_glyphs, cairo_glyph_t, asCCairoGlyph);
 	int num_glyphs = (int)GET_LENGTH(s_glyphs);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1056,7 +1056,7 @@ USER_OBJECT_
 S_cairo_text_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	const char* utf8 = (const char*)asString(s_utf8);
+	const char* utf8 = (const char*)asCString(s_utf8);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1071,7 +1071,7 @@ USER_OBJECT_
 S_cairo_glyph_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_glyph_t* glyphs = (cairo_glyph_t*)asArrayRef(s_glyphs, cairo_glyph_t, asCairoGlyph);
+	cairo_glyph_t* glyphs = (cairo_glyph_t*)asCArrayRef(s_glyphs, cairo_glyph_t, asCCairoGlyph);
 	int num_glyphs = (int)GET_LENGTH(s_glyphs);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1165,7 +1165,7 @@ S_cairo_font_face_set_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key, US
 {
 	cairo_font_face_t* font_face = (cairo_font_face_t*)getPtrValue(s_font_face);
 	const cairo_user_data_key_t* key = (const cairo_user_data_key_t*)getPtrValue(s_key);
-	gpointer user_data = (gpointer)asGenericData(s_user_data);
+	gpointer user_data = (gpointer)asCGenericData(s_user_data);
 	cairo_destroy_func_t destroy = (cairo_destroy_func_t)R_ReleaseObject;
 
 	cairo_status_t ans;
@@ -1263,8 +1263,8 @@ USER_OBJECT_
 S_cairo_scaled_font_glyph_extents(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_num_glyphs)
 {
 	cairo_scaled_font_t* scaled_font = (cairo_scaled_font_t*)getPtrValue(s_scaled_font);
-	cairo_glyph_t* glyphs = asCairoGlyph(s_glyphs);
-	int num_glyphs = (int)asInteger(s_num_glyphs);
+	cairo_glyph_t* glyphs = asCCairoGlyph(s_glyphs);
+	int num_glyphs = (int)asCInteger(s_num_glyphs);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	cairo_text_extents_t* extents = (cairo_text_extents_t *)g_new0(cairo_text_extents_t, 1);
@@ -1346,8 +1346,8 @@ USER_OBJECT_
 S_cairo_get_current_point(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	double* x = (double*)asArray(s_x, double, asNumeric);
-	double* y = (double*)asArray(s_y, double, asNumeric);
+	double* x = (double*)asCArray(s_x, double, asCNumeric);
+	double* y = (double*)asCArray(s_y, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1506,7 +1506,7 @@ S_cairo_copy_path_flat(USER_OBJECT_ s_cr)
 USER_OBJECT_
 S_cairo_path_destroy(USER_OBJECT_ s_path)
 {
-	cairo_path_t* path = asCairoPath(s_path);
+	cairo_path_t* path = asCCairoPath(s_path);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1537,7 +1537,7 @@ S_cairo_status(USER_OBJECT_ s_cr)
 USER_OBJECT_
 S_cairo_status_to_string(USER_OBJECT_ s_status)
 {
-	cairo_status_t status = (cairo_status_t)asEnum(s_status, CAIRO_TYPE_STATUS);
+	cairo_status_t status = (cairo_status_t)asCEnum(s_status, CAIRO_TYPE_STATUS);
 
 	const char* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1555,8 +1555,8 @@ S_cairo_surface_create_similar(USER_OBJECT_ s_other, USER_OBJECT_ s_content, USE
 {
 	cairo_surface_t* other = (cairo_surface_t*)getPtrValue(s_other);
 	cairo_content_t content = (cairo_content_t)getPtrValue(s_content);
-	int width = (int)asInteger(s_width);
-	int height = (int)asInteger(s_height);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1615,7 +1615,7 @@ USER_OBJECT_
 S_cairo_surface_write_to_png(USER_OBJECT_ s_surface, USER_OBJECT_ s_filename)
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
-	const char* filename = (const char*)asString(s_filename);
+	const char* filename = (const char*)asCString(s_filename);
 
 	cairo_status_t ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1633,7 +1633,7 @@ S_cairo_surface_write_to_png_stream(USER_OBJECT_ s_surface, USER_OBJECT_ s_write
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
 	cairo_write_func_t write_func = (cairo_write_func_t)getPtrValue(s_write_func);
-	gpointer closure = (gpointer)asGenericData(s_closure);
+	gpointer closure = (gpointer)asCGenericData(s_closure);
 
 	cairo_status_t ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1668,7 +1668,7 @@ S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_O
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
 	const cairo_user_data_key_t* key = (const cairo_user_data_key_t*)getPtrValue(s_key);
-	gpointer user_data = (gpointer)asGenericData(s_user_data);
+	gpointer user_data = (gpointer)asCGenericData(s_user_data);
 	cairo_destroy_func_t destroy = (cairo_destroy_func_t)R_ReleaseObject;
 
 	cairo_status_t ans;
@@ -1686,8 +1686,8 @@ USER_OBJECT_
 S_cairo_surface_set_device_offset(USER_OBJECT_ s_surface, USER_OBJECT_ s_x_offset, USER_OBJECT_ s_y_offset)
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
-	double x_offset = (double)asNumeric(s_x_offset);
-	double y_offset = (double)asNumeric(s_y_offset);
+	double x_offset = (double)asCNumeric(s_x_offset);
+	double y_offset = (double)asCNumeric(s_y_offset);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1734,9 +1734,9 @@ S_cairo_surface_status(USER_OBJECT_ s_surface)
 USER_OBJECT_
 S_cairo_image_surface_create(USER_OBJECT_ s_format, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
-	cairo_format_t format = (cairo_format_t)asEnum(s_format, CAIRO_TYPE_FORMAT);
-	int width = (int)asInteger(s_width);
-	int height = (int)asInteger(s_height);
+	cairo_format_t format = (cairo_format_t)asCEnum(s_format, CAIRO_TYPE_FORMAT);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1752,11 +1752,11 @@ S_cairo_image_surface_create(USER_OBJECT_ s_format, USER_OBJECT_ s_width, USER_O
 USER_OBJECT_
 S_cairo_image_surface_create_for_data(USER_OBJECT_ s_data, USER_OBJECT_ s_format, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_stride)
 {
-	guchar* data = (guchar*)asArray(s_data, guchar, asInteger);
-	cairo_format_t format = (cairo_format_t)asEnum(s_format, CAIRO_TYPE_FORMAT);
-	int width = (int)asInteger(s_width);
-	int height = (int)asInteger(s_height);
-	int stride = (int)asInteger(s_stride);
+	guchar* data = (guchar*)asCArray(s_data, guchar, asCInteger);
+	cairo_format_t format = (cairo_format_t)asCEnum(s_format, CAIRO_TYPE_FORMAT);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
+	int stride = (int)asCInteger(s_stride);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1804,7 +1804,7 @@ S_cairo_image_surface_get_height(USER_OBJECT_ s_surface)
 USER_OBJECT_
 S_cairo_image_surface_create_from_png(USER_OBJECT_ s_filename)
 {
-	const char* filename = (const char*)asString(s_filename);
+	const char* filename = (const char*)asCString(s_filename);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1821,7 +1821,7 @@ USER_OBJECT_
 S_cairo_image_surface_create_from_png_stream(USER_OBJECT_ s_read_func, USER_OBJECT_ s_closure)
 {
 	cairo_read_func_t read_func = (cairo_read_func_t)getPtrValue(s_read_func);
-	gpointer closure = (gpointer)asGenericData(s_closure);
+	gpointer closure = (gpointer)asCGenericData(s_closure);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1837,9 +1837,9 @@ S_cairo_image_surface_create_from_png_stream(USER_OBJECT_ s_read_func, USER_OBJE
 USER_OBJECT_
 S_cairo_pattern_create_rgb(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
 {
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
 
 	cairo_pattern_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1855,10 +1855,10 @@ S_cairo_pattern_create_rgb(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT
 USER_OBJECT_
 S_cairo_pattern_create_rgba(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue, USER_OBJECT_ s_alpha)
 {
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
-	double alpha = (double)asNumeric(s_alpha);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
+	double alpha = (double)asCNumeric(s_alpha);
 
 	cairo_pattern_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1890,10 +1890,10 @@ S_cairo_pattern_create_for_surface(USER_OBJECT_ s_surface)
 USER_OBJECT_
 S_cairo_pattern_create_linear(USER_OBJECT_ s_x0, USER_OBJECT_ s_y0, USER_OBJECT_ s_x1, USER_OBJECT_ s_y1)
 {
-	double x0 = (double)asNumeric(s_x0);
-	double y0 = (double)asNumeric(s_y0);
-	double x1 = (double)asNumeric(s_x1);
-	double y1 = (double)asNumeric(s_y1);
+	double x0 = (double)asCNumeric(s_x0);
+	double y0 = (double)asCNumeric(s_y0);
+	double x1 = (double)asCNumeric(s_x1);
+	double y1 = (double)asCNumeric(s_y1);
 
 	cairo_pattern_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1909,12 +1909,12 @@ S_cairo_pattern_create_linear(USER_OBJECT_ s_x0, USER_OBJECT_ s_y0, USER_OBJECT_
 USER_OBJECT_
 S_cairo_pattern_create_radial(USER_OBJECT_ s_cx0, USER_OBJECT_ s_cy0, USER_OBJECT_ s_radius0, USER_OBJECT_ s_cx1, USER_OBJECT_ s_cy1, USER_OBJECT_ s_radius1)
 {
-	double cx0 = (double)asNumeric(s_cx0);
-	double cy0 = (double)asNumeric(s_cy0);
-	double radius0 = (double)asNumeric(s_radius0);
-	double cx1 = (double)asNumeric(s_cx1);
-	double cy1 = (double)asNumeric(s_cy1);
-	double radius1 = (double)asNumeric(s_radius1);
+	double cx0 = (double)asCNumeric(s_cx0);
+	double cy0 = (double)asCNumeric(s_cy0);
+	double radius0 = (double)asCNumeric(s_radius0);
+	double cx1 = (double)asCNumeric(s_cx1);
+	double cy1 = (double)asCNumeric(s_cy1);
+	double radius1 = (double)asCNumeric(s_radius1);
 
 	cairo_pattern_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1975,10 +1975,10 @@ USER_OBJECT_
 S_cairo_pattern_add_color_stop_rgb(USER_OBJECT_ s_pattern, USER_OBJECT_ s_offset, USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
 {
 	cairo_pattern_t* pattern = (cairo_pattern_t*)getPtrValue(s_pattern);
-	double offset = (double)asNumeric(s_offset);
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
+	double offset = (double)asCNumeric(s_offset);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1993,11 +1993,11 @@ USER_OBJECT_
 S_cairo_pattern_add_color_stop_rgba(USER_OBJECT_ s_pattern, USER_OBJECT_ s_offset, USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue, USER_OBJECT_ s_alpha)
 {
 	cairo_pattern_t* pattern = (cairo_pattern_t*)getPtrValue(s_pattern);
-	double offset = (double)asNumeric(s_offset);
-	double red = (double)asNumeric(s_red);
-	double green = (double)asNumeric(s_green);
-	double blue = (double)asNumeric(s_blue);
-	double alpha = (double)asNumeric(s_alpha);
+	double offset = (double)asCNumeric(s_offset);
+	double red = (double)asCNumeric(s_red);
+	double green = (double)asCNumeric(s_green);
+	double blue = (double)asCNumeric(s_blue);
+	double alpha = (double)asCNumeric(s_alpha);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2042,7 +2042,7 @@ USER_OBJECT_
 S_cairo_pattern_set_extend(USER_OBJECT_ s_pattern, USER_OBJECT_ s_extend)
 {
 	cairo_pattern_t* pattern = (cairo_pattern_t*)getPtrValue(s_pattern);
-	cairo_extend_t extend = (cairo_extend_t)asEnum(s_extend, CAIRO_TYPE_EXTEND);
+	cairo_extend_t extend = (cairo_extend_t)asCEnum(s_extend, CAIRO_TYPE_EXTEND);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2073,7 +2073,7 @@ USER_OBJECT_
 S_cairo_pattern_set_filter(USER_OBJECT_ s_pattern, USER_OBJECT_ s_filter)
 {
 	cairo_pattern_t* pattern = (cairo_pattern_t*)getPtrValue(s_pattern);
-	cairo_filter_t filter = (cairo_filter_t)asEnum(s_filter, CAIRO_TYPE_FILTER);
+	cairo_filter_t filter = (cairo_filter_t)asCEnum(s_filter, CAIRO_TYPE_FILTER);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2104,12 +2104,12 @@ USER_OBJECT_
 S_cairo_matrix_init(USER_OBJECT_ s_matrix, USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double xx = (double)asNumeric(s_xx);
-	double yx = (double)asNumeric(s_yx);
-	double xy = (double)asNumeric(s_xy);
-	double yy = (double)asNumeric(s_yy);
-	double x0 = (double)asNumeric(s_x0);
-	double y0 = (double)asNumeric(s_y0);
+	double xx = (double)asCNumeric(s_xx);
+	double yx = (double)asCNumeric(s_yx);
+	double xy = (double)asCNumeric(s_xy);
+	double yy = (double)asCNumeric(s_yy);
+	double x0 = (double)asCNumeric(s_x0);
+	double y0 = (double)asCNumeric(s_y0);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2138,8 +2138,8 @@ USER_OBJECT_
 S_cairo_matrix_init_translate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double tx = (double)asNumeric(s_tx);
-	double ty = (double)asNumeric(s_ty);
+	double tx = (double)asCNumeric(s_tx);
+	double ty = (double)asCNumeric(s_ty);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2154,8 +2154,8 @@ USER_OBJECT_
 S_cairo_matrix_init_scale(USER_OBJECT_ s_matrix, USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double sx = (double)asNumeric(s_sx);
-	double sy = (double)asNumeric(s_sy);
+	double sx = (double)asCNumeric(s_sx);
+	double sy = (double)asCNumeric(s_sy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2170,7 +2170,7 @@ USER_OBJECT_
 S_cairo_matrix_init_rotate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_radians)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double radians = (double)asNumeric(s_radians);
+	double radians = (double)asCNumeric(s_radians);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2185,8 +2185,8 @@ USER_OBJECT_
 S_cairo_matrix_translate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double tx = (double)asNumeric(s_tx);
-	double ty = (double)asNumeric(s_ty);
+	double tx = (double)asCNumeric(s_tx);
+	double ty = (double)asCNumeric(s_ty);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2201,8 +2201,8 @@ USER_OBJECT_
 S_cairo_matrix_scale(USER_OBJECT_ s_matrix, USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double sx = (double)asNumeric(s_sx);
-	double sy = (double)asNumeric(s_sy);
+	double sx = (double)asCNumeric(s_sx);
+	double sy = (double)asCNumeric(s_sy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2217,7 +2217,7 @@ USER_OBJECT_
 S_cairo_matrix_rotate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_radians)
 {
 	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
-	double radians = (double)asNumeric(s_radians);
+	double radians = (double)asCNumeric(s_radians);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2264,8 +2264,8 @@ USER_OBJECT_
 S_cairo_matrix_transform_distance(USER_OBJECT_ s_matrix, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 {
 	const cairo_matrix_t* matrix = (const cairo_matrix_t*)getPtrValue(s_matrix);
-	double* dx = (double*)asArray(s_dx, double, asNumeric);
-	double* dy = (double*)asArray(s_dy, double, asNumeric);
+	double* dx = (double*)asCArray(s_dx, double, asCNumeric);
+	double* dy = (double*)asCArray(s_dy, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2280,8 +2280,8 @@ USER_OBJECT_
 S_cairo_matrix_transform_point(USER_OBJECT_ s_matrix, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	const cairo_matrix_t* matrix = (const cairo_matrix_t*)getPtrValue(s_matrix);
-	double* x = (double*)asArray(s_x, double, asNumeric);
-	double* y = (double*)asArray(s_y, double, asNumeric);
+	double* x = (double*)asCArray(s_x, double, asCNumeric);
+	double* y = (double*)asCArray(s_y, double, asCNumeric);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2389,7 +2389,7 @@ USER_OBJECT_
 S_cairo_font_options_set_antialias(USER_OBJECT_ s_options, USER_OBJECT_ s_antialias)
 {
 	cairo_font_options_t* options = (cairo_font_options_t*)getPtrValue(s_options);
-	cairo_antialias_t antialias = (cairo_antialias_t)asEnum(s_antialias, CAIRO_TYPE_ANTIALIAS);
+	cairo_antialias_t antialias = (cairo_antialias_t)asCEnum(s_antialias, CAIRO_TYPE_ANTIALIAS);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2420,7 +2420,7 @@ USER_OBJECT_
 S_cairo_font_options_set_subpixel_order(USER_OBJECT_ s_options, USER_OBJECT_ s_subpixel_order)
 {
 	cairo_font_options_t* options = (cairo_font_options_t*)getPtrValue(s_options);
-	cairo_subpixel_order_t subpixel_order = (cairo_subpixel_order_t)asEnum(s_subpixel_order, CAIRO_TYPE_SUBPIXEL_ORDER);
+	cairo_subpixel_order_t subpixel_order = (cairo_subpixel_order_t)asCEnum(s_subpixel_order, CAIRO_TYPE_SUBPIXEL_ORDER);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2451,7 +2451,7 @@ USER_OBJECT_
 S_cairo_font_options_set_hint_style(USER_OBJECT_ s_options, USER_OBJECT_ s_hint_style)
 {
 	cairo_font_options_t* options = (cairo_font_options_t*)getPtrValue(s_options);
-	cairo_hint_style_t hint_style = (cairo_hint_style_t)asEnum(s_hint_style, CAIRO_TYPE_HINT_STYLE);
+	cairo_hint_style_t hint_style = (cairo_hint_style_t)asCEnum(s_hint_style, CAIRO_TYPE_HINT_STYLE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2482,7 +2482,7 @@ USER_OBJECT_
 S_cairo_font_options_set_hint_metrics(USER_OBJECT_ s_options, USER_OBJECT_ s_hint_metrics)
 {
 	cairo_font_options_t* options = (cairo_font_options_t*)getPtrValue(s_options);
-	cairo_hint_metrics_t hint_metrics = (cairo_hint_metrics_t)asEnum(s_hint_metrics, CAIRO_TYPE_HINT_METRICS);
+	cairo_hint_metrics_t hint_metrics = (cairo_hint_metrics_t)asCEnum(s_hint_metrics, CAIRO_TYPE_HINT_METRICS);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 

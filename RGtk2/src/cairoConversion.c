@@ -56,7 +56,7 @@ asRCairoPath(cairo_path_t *path)
 
 /** the cairo people say that we shouldn't do this - oh well */
 cairo_path_t *
-asCairoPath(USER_OBJECT_ s_path)
+asCCairoPath(USER_OBJECT_ s_path)
 {
 	cairo_path_t *path;
 	cairo_path_data_t *element;
@@ -74,7 +74,7 @@ asCairoPath(USER_OBJECT_ s_path)
 	for (i = 0; i < GET_LENGTH(s_data); i++) {
 		USER_OBJECT_ s_element = VECTOR_ELT(s_data, i);
 		int points, len;
-		cairo_path_data_type_t type = asInteger(getAttrib(s_element, install("type")));
+		cairo_path_data_type_t type = asCInteger(getAttrib(s_element, install("type")));
 		// how many points do we need for this type of element?
 		switch(type) {
 			case CAIRO_PATH_MOVE_TO:
@@ -116,13 +116,13 @@ asCairoPath(USER_OBJECT_ s_path)
 }
 
 cairo_glyph_t *
-asCairoGlyph(USER_OBJECT_ s_glyph)
+asCCairoGlyph(USER_OBJECT_ s_glyph)
 {
 	cairo_glyph_t *glyph = (cairo_glyph_t *)R_alloc(1, sizeof(cairo_glyph_t));
 	
-	glyph->index = asNumeric(VECTOR_ELT(s_glyph, 0));
-	glyph->x = asNumeric(VECTOR_ELT(s_glyph, 1));
-	glyph->y = asNumeric(VECTOR_ELT(s_glyph, 2));
+	glyph->index = asCNumeric(VECTOR_ELT(s_glyph, 0));
+	glyph->x = asCNumeric(VECTOR_ELT(s_glyph, 1));
+	glyph->y = asCNumeric(VECTOR_ELT(s_glyph, 2));
 	
 	return(glyph);
 }

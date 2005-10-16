@@ -6,7 +6,7 @@
 /* Transparents */
 
 GTimeVal*
-asGTimeVal(USER_OBJECT_ s_timeval)
+asCGTimeVal(USER_OBJECT_ s_timeval)
 {
     GTimeVal* timeval = (GTimeVal*)R_alloc(1, sizeof(GTimeVal));
     timeval->tv_sec = NUMERIC_DATA(VECTOR_ELT(s_timeval, 0))[0];
@@ -15,12 +15,12 @@ asGTimeVal(USER_OBJECT_ s_timeval)
 }
 
 GString*
-asGString(USER_OBJECT_ s_string) {
+asCGString(USER_OBJECT_ s_string) {
     return(g_string_new(CHAR_DEREF(STRING_ELT(s_string, 0))));
 }
 
 GList*
-asGList(USER_OBJECT_ s_list)
+asCGList(USER_OBJECT_ s_list)
 {
     GList* list = NULL;
     int i;
@@ -80,7 +80,7 @@ asRGListConv(GList *glist, ElementConverter converter) {
 }
 
 GSList*
-asGSList(USER_OBJECT_ s_list)
+asCGSList(USER_OBJECT_ s_list)
 {
     GSList* list = NULL;
     int i;

@@ -245,7 +245,7 @@ USER_OBJECT_
 S_g_object_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name, USER_OBJECT_ s_value)
 {
         GObject * object = G_OBJECT(getPtrValue(s_object));
-        gchar * property_name = asString(s_property_name);
+        gchar * property_name = asCString(s_property_name);
         GValue value = { 0, };
         GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(object), property_name);
 
@@ -264,7 +264,7 @@ USER_OBJECT_
 S_g_object_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name)
 {
         GObject * object = (GObject *)getPtrValue(s_object);
-        gchar * property_name = asString(s_property_name);
+        gchar * property_name = asCString(s_property_name);
 		GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(object), property_name);
 		
 		USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -373,13 +373,13 @@ parseConstructorParams(GType obj_type, char **prop_names, GParameter *params,
 }
 
 GParamSpec*
-asGParamSpec(USER_OBJECT_ s_spec)
+asCGParamSpec(USER_OBJECT_ s_spec)
 {
     GParamSpec* spec;
 
-    spec = g_param_spec_internal(asNumeric(VECTOR_ELT(s_spec,0)), asString(VECTOR_ELT(s_spec, 1)),
-                asString(VECTOR_ELT(s_spec, 2)), asString(VECTOR_ELT(s_spec, 3)),
-                (GParamFlags)asFlag(VECTOR_ELT(s_spec,4), G_TYPE_PARAM_FLAGS));
+    spec = g_param_spec_internal(asCNumeric(VECTOR_ELT(s_spec,0)), asCString(VECTOR_ELT(s_spec, 1)),
+                asCString(VECTOR_ELT(s_spec, 2)), asCString(VECTOR_ELT(s_spec, 3)),
+                (GParamFlags)asCFlag(VECTOR_ELT(s_spec,4), G_TYPE_PARAM_FLAGS));
 
     return(spec);
 }
@@ -429,8 +429,8 @@ USER_OBJECT_
 S_g_object_set_data(USER_OBJECT_ s_object, USER_OBJECT_ s_key, USER_OBJECT_ s_data)
 {
     GObject* object = (GObject*)getPtrValue(s_object);
-    const gchar* key = (const gchar*)asString(s_key);
-    gpointer data = (gpointer)asGenericData(s_data);
+    const gchar* key = (const gchar*)asCString(s_key);
+    gpointer data = (gpointer)asCGenericData(s_data);
 
     USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -442,7 +442,7 @@ USER_OBJECT_
 S_g_object_get_data(USER_OBJECT_ s_object, USER_OBJECT_ s_key)
 {
         GObject* object = (GObject*)getPtrValue(s_object);
-        const gchar* key = (const gchar*)asString(s_key);
+        const gchar* key = (const gchar*)asCString(s_key);
 
         gpointer ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -654,7 +654,7 @@ R_internal_getGSignalInfo(guint id)
     //SET_VECTOR_ELT(ans, IS_USER_SLOT, params = NEW_LOGICAL(1));
     // LOGICAL_DATA(params)[0] = info->is_user_signal;
 
-/* Has to be handled as a flag. */
+/* Has to be handled asC a flag. */
     SET_VECTOR_ELT(ans, FLAGS_SLOT, params = NEW_INTEGER(1));
      INTEGER_DATA(params)[0] = info.signal_flags;
 
@@ -675,7 +675,7 @@ R_internal_getGSignalInfo(guint id)
 
 /* GClosure */
 
- /* Free the associated R_CallbackData */
+ /* Free the asCsociated R_CallbackData */
 void
 R_freeCBData_closure(R_CallbackData *data, GClosure *closure)
 {
@@ -742,7 +742,7 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
     UNPROTECT(numProtects);
 }
 
-/* Creates a GClosure for a specified R function and associated user-data */
+/* Creates a GClosure for a specified R function and asCsociated user-data */
 GClosure*
 R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 {
@@ -778,7 +778,7 @@ R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
     return(closure);
 }
 GClosure*
-asGClosure(USER_OBJECT_ s_closure)
+asCGClosure(USER_OBJECT_ s_closure)
 {
     USER_OBJECT_ s_func, s_data = NULL_USER_OBJECT;
 	if (GET_LENGTH(s_closure) == 1)
@@ -808,48 +808,48 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
         g_value_transform(raw, value);
 	else switch(G_TYPE_FUNDAMENTAL(G_VALUE_TYPE(value))) {
 		case G_TYPE_CHAR:
-			g_value_set_char(value, asCharacter(sval));
+			g_value_set_char(value, asCCharacter(sval));
 		break;
 		case G_TYPE_UCHAR:
-			g_value_set_uchar(value, asCharacter(sval));
+			g_value_set_uchar(value, asCCharacter(sval));
 		break;
 		case G_TYPE_INT:
-			g_value_set_int(value, asInteger(sval));
+			g_value_set_int(value, asCInteger(sval));
 		break;
 		case G_TYPE_UINT:
-			g_value_set_uint(value, asInteger(sval));
+			g_value_set_uint(value, asCInteger(sval));
 		break;
 		case G_TYPE_LONG:
-			g_value_set_long(value, asInteger(sval));
+			g_value_set_long(value, asCInteger(sval));
 		break;
 		case G_TYPE_ULONG:
-			g_value_set_ulong(value, asNumeric(sval));
+			g_value_set_ulong(value, asCNumeric(sval));
 		break;
 		case G_TYPE_BOOLEAN:
-			g_value_set_boolean(value, asLogical(sval));
+			g_value_set_boolean(value, asCLogical(sval));
 		break;
 		case G_TYPE_FLOAT:
-			g_value_set_float(value, asNumeric(sval));
+			g_value_set_float(value, asCNumeric(sval));
 		break;
 		case G_TYPE_DOUBLE:
-			g_value_set_double(value, asNumeric(sval));
+			g_value_set_double(value, asCNumeric(sval));
 		break;
 		case G_TYPE_STRING:
-			g_value_set_string(value, asString(sval));
+			g_value_set_string(value, asCString(sval));
 		break;
 		case G_TYPE_ENUM:
-			g_value_set_enum(value, asEnum(sval, G_VALUE_TYPE(value)));
+			g_value_set_enum(value, asCEnum(sval, G_VALUE_TYPE(value)));
 		break;
 		case G_TYPE_FLAGS:
-			g_value_set_flags(value, asFlag(sval, G_VALUE_TYPE(value)));
+			g_value_set_flags(value, asCFlag(sval, G_VALUE_TYPE(value)));
 		break;
 		case G_TYPE_BOXED:
 			if (sval == NULL_USER_OBJECT)
 				g_value_set_boxed(value, NULL);
 			else if (G_VALUE_TYPE(value) == G_TYPE_STRV)
-				g_value_set_boxed(value, asStringArray(sval));
+				g_value_set_boxed(value, asCStringArray(sval));
 			else if (G_VALUE_TYPE(value) == GDK_TYPE_COLOR)
-				g_value_set_boxed(value, asGdkColor(sval));
+				g_value_set_boxed(value, asCGdkColor(sval));
 			else g_value_set_boxed(value, getPtrValue(sval));
 		break;
 		case G_TYPE_POINTER:
@@ -905,7 +905,7 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval)
     break;
       case STRSXP:
         g_value_init(raw, G_TYPE_STRING);
-        g_value_set_string(raw, asString(sval));
+        g_value_set_string(raw, asCString(sval));
     break;
      default:
      fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);
@@ -1037,9 +1037,9 @@ createGValueFromSValue(USER_OBJECT_ sval) {
 	{
 		USER_OBJECT_ levels;
 		if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
-			//Rprintf("getting level: %s\n", CHAR_DEREF(STRING_ELT(levels, asInteger(sval))));
+			//Rprintf("getting level: %s\n", CHAR_DEREF(STRING_ELT(levels, asCInteger(sval))));
 			g_value_init(raw, G_TYPE_STRING);
-			g_value_set_string(raw, CHAR_DEREF(STRING_ELT(levels, asInteger(sval)-1)));
+			g_value_set_string(raw, CHAR_DEREF(STRING_ELT(levels, asCInteger(sval)-1)));
 		} else {
 			g_value_init(raw, G_TYPE_INT);
 			g_value_set_int(raw, INTEGER_DATA(sval)[0]);
@@ -1051,7 +1051,7 @@ createGValueFromSValue(USER_OBJECT_ sval) {
 		g_value_set_double(raw, NUMERIC_DATA(sval)[0]);
 	break;
       case EXTPTRSXP:
-        g_value_init(raw, g_type_from_name(asString(GET_CLASS(sval))));
+        g_value_init(raw, g_type_from_name(asCString(GET_CLASS(sval))));
         if (G_VALUE_HOLDS(raw, G_TYPE_OBJECT) || G_VALUE_HOLDS(raw, G_TYPE_INTERFACE))
             g_value_set_object(raw, getPtrValue(sval));
         else if (G_VALUE_HOLDS(raw, G_TYPE_BOXED))
@@ -1062,10 +1062,10 @@ createGValueFromSValue(USER_OBJECT_ sval) {
 	  case CHARSXP:
         if (IS_VECTOR(sval) && GET_LENGTH(sval) > 1) {
             g_value_init(raw, G_TYPE_STRV);
-            g_value_set_boxed(raw, (gpointer)asStringArray(sval));
+            g_value_set_boxed(raw, (gpointer)asCStringArray(sval));
         } else {
             g_value_init(raw, G_TYPE_STRING);
-            g_value_set_string(raw, asString(sval));
+            g_value_set_string(raw, asCString(sval));
         }
     break;
      default:
@@ -1078,7 +1078,7 @@ createGValueFromSValue(USER_OBJECT_ sval) {
 }
 
 GValue*
-asGValue(USER_OBJECT_ sval)
+asCGValue(USER_OBJECT_ sval)
 { 
 	GValue *gval = createGValueFromSValue(sval);
 	if (!gval) {

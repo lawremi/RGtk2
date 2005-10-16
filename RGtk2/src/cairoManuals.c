@@ -38,7 +38,7 @@ USER_OBJECT_
 S_cairo_append_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_path)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
-	cairo_path_t* path = asCairoPath(s_path);
+	cairo_path_t* path = asCCairoPath(s_path);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 

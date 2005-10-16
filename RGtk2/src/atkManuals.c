@@ -10,8 +10,8 @@ USER_OBJECT_
 S_atk_editable_text_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_string, USER_OBJECT_ s_position)
 {
         AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
-        const gchar* string = (const gchar*)asString(s_string);
-        gint* position = (gint*)asArray(s_position, gint, asInteger);
+        const gchar* string = (const gchar*)asCString(s_string);
+        gint* position = (gint*)asCArray(s_position, gint, asCInteger);
 		gint length = strlen(string);
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 

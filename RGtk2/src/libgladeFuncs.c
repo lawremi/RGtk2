@@ -10,7 +10,7 @@
 USER_OBJECT_
 S_glade_require(USER_OBJECT_ s_library)
 {
-	const gchar* library = (const gchar*)asString(s_library);
+	const gchar* library = (const gchar*)asCString(s_library);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -24,7 +24,7 @@ S_glade_require(USER_OBJECT_ s_library)
 USER_OBJECT_
 S_glade_provide(USER_OBJECT_ s_library)
 {
-	const gchar* library = (const gchar*)asString(s_library);
+	const gchar* library = (const gchar*)asCString(s_library);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -53,9 +53,9 @@ S_glade_xml_get_type()
 USER_OBJECT_
 S_glade_xml_new(USER_OBJECT_ s_fname, USER_OBJECT_ s_root, USER_OBJECT_ s_domain)
 {
-	const char* fname = (const char*)asString(s_fname);
-	const char* root = GET_LENGTH(s_root) == 0 ? NULL : (const char*)asString(s_root);
-	const char* domain = GET_LENGTH(s_domain) == 0 ? NULL : (const char*)asString(s_domain);
+	const char* fname = (const char*)asCString(s_fname);
+	const char* root = GET_LENGTH(s_root) == 0 ? NULL : (const char*)asCString(s_root);
+	const char* domain = GET_LENGTH(s_domain) == 0 ? NULL : (const char*)asCString(s_domain);
 
 	GladeXML* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -71,10 +71,10 @@ S_glade_xml_new(USER_OBJECT_ s_fname, USER_OBJECT_ s_root, USER_OBJECT_ s_domain
 USER_OBJECT_
 S_glade_xml_new_from_buffer(USER_OBJECT_ s_buffer, USER_OBJECT_ s_size, USER_OBJECT_ s_root, USER_OBJECT_ s_domain)
 {
-	const char* buffer = (const char*)asString(s_buffer);
-	int size = (int)asInteger(s_size);
-	const char* root = GET_LENGTH(s_root) == 0 ? NULL : (const char*)asString(s_root);
-	const char* domain = GET_LENGTH(s_domain) == 0 ? NULL : (const char*)asString(s_domain);
+	const char* buffer = (const char*)asCString(s_buffer);
+	int size = (int)asCInteger(s_size);
+	const char* root = GET_LENGTH(s_root) == 0 ? NULL : (const char*)asCString(s_root);
+	const char* domain = GET_LENGTH(s_domain) == 0 ? NULL : (const char*)asCString(s_domain);
 
 	GladeXML* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -93,7 +93,7 @@ S_glade_xml_signal_connect_full(USER_OBJECT_ s_object, USER_OBJECT_ s_handler_na
 	GladeXMLConnectFunc func = (GladeXMLConnectFunc)S_GladeXMLConnectFunc;
 	GClosure* user_data = R_createGClosure(s_func, s_user_data);
 	GladeXML* object = GLADE_XML(getPtrValue(s_object));
-	const gchar* handler_name = (const gchar*)asString(s_handler_name);
+	const gchar* handler_name = (const gchar*)asCString(s_handler_name);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -126,7 +126,7 @@ USER_OBJECT_
 S_glade_xml_get_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 {
 	GladeXML* object = GLADE_XML(getPtrValue(s_object));
-	const char* name = (const char*)asString(s_name);
+	const char* name = (const char*)asCString(s_name);
 
 	GtkWidget* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -143,7 +143,7 @@ USER_OBJECT_
 S_glade_xml_get_widget_prefix(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 {
 	GladeXML* object = GLADE_XML(getPtrValue(s_object));
-	const char* name = (const char*)asString(s_name);
+	const char* name = (const char*)asCString(s_name);
 
 	GList* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;

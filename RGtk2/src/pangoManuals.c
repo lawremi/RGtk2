@@ -5,9 +5,9 @@
 USER_OBJECT_
  S_pango_get_log_attrs (USER_OBJECT_ s_text, USER_OBJECT_ s_level, USER_OBJECT_ s_language )
 {
-         const char* text = asString(s_text);
+         const char* text = asCString(s_text);
          int length = strlen(text);
-         int level = asInteger(s_level);
+         int level = asCInteger(s_level);
          PangoLanguage* language = (PangoLanguage*)getPtrValue(s_language);
          PangoLogAttr* log_attrs;
 		 int attrs_len = g_utf8_strlen(text, length) + 1;
@@ -24,7 +24,7 @@ USER_OBJECT_
 USER_OBJECT_
  S_pango_break ( USER_OBJECT_ s_text, USER_OBJECT_ s_analysis )
 {
-         const gchar* text = asString(s_text);
+         const gchar* text = asCString(s_text);
          gint length = -1;
          PangoAnalysis* analysis = (PangoAnalysis*)getPtrValue(s_analysis) ;
          PangoLogAttr* attrs;
@@ -42,9 +42,9 @@ USER_OBJECT_
  S_pango_glyph_string_get_logical_widths ( USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_embedding_level )
 {
          PangoGlyphString* object = (PangoGlyphString*)getPtrValue(s_object) ;
-         const char* text = asString(s_text);
+         const char* text = asCString(s_text);
          int length, widths_len;
-         int embedding_level = asInteger(s_embedding_level);
+         int embedding_level = asCInteger(s_embedding_level);
          USER_OBJECT_ _result = NULL_USER_OBJECT;
 
          length = strlen(text);

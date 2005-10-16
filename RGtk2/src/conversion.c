@@ -2,14 +2,14 @@
 #include "gobject.h"
 
 USER_OBJECT_
-asGenericData(USER_OBJECT_ obj)
+asCGenericData(USER_OBJECT_ obj)
 {
     R_PreserveObject(obj);
     return(obj);
 }
 
 char **
-asStringArray(USER_OBJECT_ svec)
+asCStringArray(USER_OBJECT_ svec)
 {
     char **els = NULL;
 
@@ -19,7 +19,7 @@ asStringArray(USER_OBJECT_ svec)
     if(n > 0) {
     els = (char **) R_alloc(n+1, sizeof(char*));
     for(i = 0; i < n; i++) {
-        els[i] = asString(VECTOR_ELT(svec, i));
+        els[i] = asCString(VECTOR_ELT(svec, i));
     }
         els[n] = NULL;
     }
@@ -28,28 +28,28 @@ asStringArray(USER_OBJECT_ svec)
 }
 
 gboolean
-asLogical(USER_OBJECT_ s_log)
+asCLogical(USER_OBJECT_ s_log)
 {
     if (GET_LENGTH(s_log) == 0)
 		return(FALSE);
 	return(LOGICAL_DATA(s_log)[0]);
 }
 int
-asInteger(USER_OBJECT_ s_int)
+asCInteger(USER_OBJECT_ s_int)
 {
 	if (GET_LENGTH(s_int) == 0)
 		return(0);
     return(INTEGER_DATA(s_int)[0]);
 }
 double
-asNumeric(USER_OBJECT_ s_num)
+asCNumeric(USER_OBJECT_ s_num)
 {
 	if (GET_LENGTH(s_num) == 0)
 		return(0);
     return(NUMERIC_DATA(s_num)[0]);
 }
 char *
-asString(USER_OBJECT_ s_str)
+asCString(USER_OBJECT_ s_str)
 {
     if (GET_LENGTH(s_str) == 0)
         return(NULL);
@@ -59,9 +59,9 @@ asString(USER_OBJECT_ s_str)
     return(CHAR_DEREF(s_str));
 }
 char
-asCharacter(USER_OBJECT_ s_char)
+asCCharacter(USER_OBJECT_ s_char)
 {
-    return(asString(s_char)[0]);
+    return(asCString(s_char)[0]);
 }
 
 USER_OBJECT_
@@ -234,7 +234,7 @@ toRPointerWithRef(void *val, const char *type) {
 }
 void RGtk_finalizer(USER_OBJECT_ extptr) {
     void *ptr = getPtrValue(extptr);
-    //Rprintf("finalizing a %s\n", asString(GET_CLASS(extptr)));
+    //Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));
     if (ptr) {
         ((RPointerFinalizer)getPtrValue(R_ExternalPtrTag(extptr)))(ptr);
         R_ClearExternalPtr(extptr);
@@ -254,24 +254,24 @@ getPtrValue(USER_OBJECT_ sval)
 gint
 R_asEnum(USER_OBJECT_ s_enum, USER_OBJECT_ etype)
 {
-    GType type = g_type_from_name(asString(etype));
+    GType type = g_type_from_name(asCString(etype));
     if (!type) {
-        PROBLEM "Invalid enum type %s", asString(etype)
+        PROBLEM "Invalid enum type %s", asCString(etype)
         ERROR;
     }
-    return(asEnum(s_enum, type));
+    return(asCEnum(s_enum, type));
 }
 gint
-asEnum(USER_OBJECT_ s_enum, GType etype)
+asCEnum(USER_OBJECT_ s_enum, GType etype)
 {
     GEnumClass *eclass = g_type_class_ref(etype);
     GEnumValue *evalue = NULL;
     gint eval = 0;
 
     if (IS_INTEGER(s_enum) || IS_NUMERIC(s_enum)) {
-        evalue = g_enum_get_value(eclass, asInteger(s_enum));
+        evalue = g_enum_get_value(eclass, asCInteger(s_enum));
     } else if (IS_CHARACTER(s_enum)) {
-        const gchar* ename = asString(s_enum);
+        const gchar* ename = asCString(s_enum);
         evalue = g_enum_get_value_by_name(eclass, ename);
         if (!evalue)
             evalue = g_enum_get_value_by_nick(eclass, ename);
@@ -280,7 +280,7 @@ asEnum(USER_OBJECT_ s_enum, GType etype)
     }
 
     if (!evalue) {
-        PROBLEM "Could not parse enum value %s", asString(s_enum)
+        PROBLEM "Could not parse enum value %s", asCString(s_enum)
         ERROR;
     } else eval = evalue->value;
 
@@ -290,25 +290,25 @@ asEnum(USER_OBJECT_ s_enum, GType etype)
 guint
 R_asFlag(USER_OBJECT_ s_flag, USER_OBJECT_ ftype)
 {
-    GType type = g_type_from_name(asString(ftype));
+    GType type = g_type_from_name(asCString(ftype));
     if (!type) {
-        PROBLEM "Invalid flag type %s", asString(ftype)
+        PROBLEM "Invalid flag type %s", asCString(ftype)
         ERROR;
     }
-    return(asFlag(s_flag, type));
+    return(asCFlag(s_flag, type));
 }
 guint
-asFlag(USER_OBJECT_ s_flag, GType ftype)
+asCFlag(USER_OBJECT_ s_flag, GType ftype)
 {
     GFlagsClass* fclass = g_type_class_ref(ftype);
     guint flags = 0;
 
     if (IS_INTEGER(s_flag) || IS_NUMERIC(s_flag)) {
-        if (asNumeric(s_flag) > fclass->mask) {
-            PROBLEM "The flags value %f is too high", asNumeric(s_flag)
+        if (asCNumeric(s_flag) > fclass->mask) {
+            PROBLEM "The flags value %f is too high", asCNumeric(s_flag)
             ERROR;
         }
-        flags = asNumeric(s_flag);
+        flags = asCNumeric(s_flag);
     } else {
         int i;
         for (i = 0; i < GET_LENGTH(s_flag); i++) {

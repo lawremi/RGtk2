@@ -55,7 +55,7 @@ S_pango_color_free(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_color_parse(USER_OBJECT_ s_spec)
 {
-	const char* spec = (const char*)asString(s_spec);
+	const char* spec = (const char*)asCString(s_spec);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -74,7 +74,7 @@ S_pango_color_parse(USER_OBJECT_ s_spec)
 USER_OBJECT_
 S_pango_attr_type_register(USER_OBJECT_ s_name)
 {
-	const gchar* name = (const gchar*)asString(s_name);
+	const gchar* name = (const gchar*)asCString(s_name);
 
 	PangoAttrType ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -153,7 +153,7 @@ S_pango_attr_language_new(USER_OBJECT_ s_language)
 USER_OBJECT_
 S_pango_attr_family_new(USER_OBJECT_ s_family)
 {
-	const char* family = (const char*)asString(s_family);
+	const char* family = (const char*)asCString(s_family);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -169,9 +169,9 @@ S_pango_attr_family_new(USER_OBJECT_ s_family)
 USER_OBJECT_
 S_pango_attr_foreground_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
 {
-	guint16 red = (guint16)asInteger(s_red);
-	guint16 green = (guint16)asInteger(s_green);
-	guint16 blue = (guint16)asInteger(s_blue);
+	guint16 red = (guint16)asCInteger(s_red);
+	guint16 green = (guint16)asCInteger(s_green);
+	guint16 blue = (guint16)asCInteger(s_blue);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -187,9 +187,9 @@ S_pango_attr_foreground_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJEC
 USER_OBJECT_
 S_pango_attr_background_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
 {
-	guint16 red = (guint16)asInteger(s_red);
-	guint16 green = (guint16)asInteger(s_green);
-	guint16 blue = (guint16)asInteger(s_blue);
+	guint16 red = (guint16)asCInteger(s_red);
+	guint16 green = (guint16)asCInteger(s_green);
+	guint16 blue = (guint16)asCInteger(s_blue);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -205,7 +205,7 @@ S_pango_attr_background_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJEC
 USER_OBJECT_
 S_pango_attr_size_new(USER_OBJECT_ s_size)
 {
-	int size = (int)asInteger(s_size);
+	int size = (int)asCInteger(s_size);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -221,7 +221,7 @@ S_pango_attr_size_new(USER_OBJECT_ s_size)
 USER_OBJECT_
 S_pango_attr_style_new(USER_OBJECT_ s_style)
 {
-	PangoStyle style = (PangoStyle)asEnum(s_style, PANGO_TYPE_STYLE);
+	PangoStyle style = (PangoStyle)asCEnum(s_style, PANGO_TYPE_STYLE);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -237,7 +237,7 @@ S_pango_attr_style_new(USER_OBJECT_ s_style)
 USER_OBJECT_
 S_pango_attr_weight_new(USER_OBJECT_ s_weight)
 {
-	PangoWeight weight = (PangoWeight)asEnum(s_weight, PANGO_TYPE_WEIGHT);
+	PangoWeight weight = (PangoWeight)asCEnum(s_weight, PANGO_TYPE_WEIGHT);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -253,7 +253,7 @@ S_pango_attr_weight_new(USER_OBJECT_ s_weight)
 USER_OBJECT_
 S_pango_attr_variant_new(USER_OBJECT_ s_variant)
 {
-	PangoVariant variant = (PangoVariant)asEnum(s_variant, PANGO_TYPE_VARIANT);
+	PangoVariant variant = (PangoVariant)asCEnum(s_variant, PANGO_TYPE_VARIANT);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -269,7 +269,7 @@ S_pango_attr_variant_new(USER_OBJECT_ s_variant)
 USER_OBJECT_
 S_pango_attr_stretch_new(USER_OBJECT_ s_stretch)
 {
-	PangoStretch stretch = (PangoStretch)asEnum(s_stretch, PANGO_TYPE_STRETCH);
+	PangoStretch stretch = (PangoStretch)asCEnum(s_stretch, PANGO_TYPE_STRETCH);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -301,7 +301,7 @@ S_pango_attr_font_desc_new(USER_OBJECT_ s_desc)
 USER_OBJECT_
 S_pango_attr_underline_new(USER_OBJECT_ s_underline)
 {
-	PangoUnderline underline = (PangoUnderline)asEnum(s_underline, PANGO_TYPE_UNDERLINE);
+	PangoUnderline underline = (PangoUnderline)asCEnum(s_underline, PANGO_TYPE_UNDERLINE);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -317,7 +317,7 @@ S_pango_attr_underline_new(USER_OBJECT_ s_underline)
 USER_OBJECT_
 S_pango_attr_strikethrough_new(USER_OBJECT_ s_strikethrough)
 {
-	gboolean strikethrough = (gboolean)asLogical(s_strikethrough);
+	gboolean strikethrough = (gboolean)asCLogical(s_strikethrough);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -333,7 +333,7 @@ S_pango_attr_strikethrough_new(USER_OBJECT_ s_strikethrough)
 USER_OBJECT_
 S_pango_attr_rise_new(USER_OBJECT_ s_rise)
 {
-	int rise = (int)asInteger(s_rise);
+	int rise = (int)asCInteger(s_rise);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -349,8 +349,8 @@ S_pango_attr_rise_new(USER_OBJECT_ s_rise)
 USER_OBJECT_
 S_pango_attr_shape_new(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect)
 {
-	const PangoRectangle* ink_rect = asPangoRectangle(s_ink_rect);
-	const PangoRectangle* logical_rect = asPangoRectangle(s_logical_rect);
+	const PangoRectangle* ink_rect = asCPangoRectangle(s_ink_rect);
+	const PangoRectangle* logical_rect = asCPangoRectangle(s_logical_rect);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -366,7 +366,7 @@ S_pango_attr_shape_new(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect)
 USER_OBJECT_
 S_pango_attr_scale_new(USER_OBJECT_ s_scale_factor)
 {
-	double scale_factor = (double)asNumeric(s_scale_factor);
+	double scale_factor = (double)asCNumeric(s_scale_factor);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -382,7 +382,7 @@ S_pango_attr_scale_new(USER_OBJECT_ s_scale_factor)
 USER_OBJECT_
 S_pango_attr_fallback_new(USER_OBJECT_ s_fallback)
 {
-	gboolean fallback = (gboolean)asLogical(s_fallback);
+	gboolean fallback = (gboolean)asCLogical(s_fallback);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -519,8 +519,8 @@ S_pango_attr_list_splice(USER_OBJECT_ s_object, USER_OBJECT_ s_other, USER_OBJEC
 {
 	PangoAttrList* object = (PangoAttrList*)getPtrValue(s_object);
 	PangoAttrList* other = (PangoAttrList*)getPtrValue(s_other);
-	gint pos = (gint)asInteger(s_pos);
-	gint len = (gint)asInteger(s_len);
+	gint pos = (gint)asCInteger(s_pos);
+	gint len = (gint)asCInteger(s_len);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -634,7 +634,7 @@ USER_OBJECT_
 S_pango_attr_iterator_get(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 {
 	PangoAttrIterator* object = (PangoAttrIterator*)getPtrValue(s_object);
-	PangoAttrType type = (PangoAttrType)asEnum(s_type, PANGO_TYPE_ATTR_TYPE);
+	PangoAttrType type = (PangoAttrType)asCEnum(s_type, PANGO_TYPE_ATTR_TYPE);
 
 	PangoAttribute* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -667,9 +667,9 @@ S_pango_attr_iterator_get_attrs(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_parse_markup(USER_OBJECT_ s_markup_text, USER_OBJECT_ s_length, USER_OBJECT_ s_accel_marker)
 {
-	const char* markup_text = (const char*)asString(s_markup_text);
-	int length = (int)asInteger(s_length);
-	gunichar accel_marker = (gunichar)asNumeric(s_accel_marker);
+	const char* markup_text = (const char*)asCString(s_markup_text);
+	int length = (int)asCInteger(s_length);
+	gunichar accel_marker = (gunichar)asCNumeric(s_accel_marker);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -692,8 +692,8 @@ S_pango_parse_markup(USER_OBJECT_ s_markup_text, USER_OBJECT_ s_length, USER_OBJ
 USER_OBJECT_
 S_pango_find_paragraph_boundary(USER_OBJECT_ s_text, USER_OBJECT_ s_length)
 {
-	const gchar* text = (const gchar*)asString(s_text);
-	gint length = (gint)asInteger(s_length);
+	const gchar* text = (const gchar*)asCString(s_text);
+	gint length = (gint)asCInteger(s_length);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gint paragraph_delimiter_index;
@@ -757,7 +757,7 @@ USER_OBJECT_
 S_pango_cairo_font_map_set_resolution(USER_OBJECT_ s_object, USER_OBJECT_ s_dpi)
 {
 	PangoCairoFontMap* object = PANGO_CAIRO_FONT_MAP(getPtrValue(s_object));
-	double dpi = (double)asNumeric(s_dpi);
+	double dpi = (double)asCNumeric(s_dpi);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -850,7 +850,7 @@ USER_OBJECT_
 S_pango_cairo_context_set_resolution(USER_OBJECT_ s_context, USER_OBJECT_ s_dpi)
 {
 	PangoContext* context = PANGO_CONTEXT(getPtrValue(s_context));
-	double dpi = (double)asNumeric(s_dpi);
+	double dpi = (double)asCNumeric(s_dpi);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1184,7 +1184,7 @@ USER_OBJECT_
 S_pango_context_set_base_dir(USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
 {
 	PangoContext* object = PANGO_CONTEXT(getPtrValue(s_object));
-	PangoDirection direction = (PangoDirection)asEnum(s_direction, PANGO_TYPE_DIRECTION);
+	PangoDirection direction = (PangoDirection)asCEnum(s_direction, PANGO_TYPE_DIRECTION);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1215,9 +1215,9 @@ USER_OBJECT_
 S_pango_itemize(USER_OBJECT_ s_context, USER_OBJECT_ s_text, USER_OBJECT_ s_start_index, USER_OBJECT_ s_length, USER_OBJECT_ s_attrs, USER_OBJECT_ s_cached_iter)
 {
 	PangoContext* context = PANGO_CONTEXT(getPtrValue(s_context));
-	const char* text = (const char*)asString(s_text);
-	int start_index = (int)asInteger(s_start_index);
-	int length = (int)asInteger(s_length);
+	const char* text = (const char*)asCString(s_text);
+	int start_index = (int)asCInteger(s_start_index);
+	int length = (int)asCInteger(s_length);
 	PangoAttrList* attrs = (PangoAttrList*)getPtrValue(s_attrs);
 	PangoAttrIterator* cached_iter = GET_LENGTH(s_cached_iter) == 0 ? NULL : (PangoAttrIterator*)getPtrValue(s_cached_iter);
 
@@ -1283,7 +1283,7 @@ USER_OBJECT_
 S_pango_coverage_get(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
 	PangoCoverage* object = (PangoCoverage*)getPtrValue(s_object);
-	int index = (int)asInteger(s_index);
+	int index = (int)asCInteger(s_index);
 
 	PangoCoverageLevel ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1300,8 +1300,8 @@ USER_OBJECT_
 S_pango_coverage_set(USER_OBJECT_ s_object, USER_OBJECT_ s_index, USER_OBJECT_ s_level)
 {
 	PangoCoverage* object = (PangoCoverage*)getPtrValue(s_object);
-	int index = (int)asInteger(s_index);
-	PangoCoverageLevel level = (PangoCoverageLevel)asEnum(s_level, PANGO_TYPE_COVERAGE_LEVEL);
+	int index = (int)asCInteger(s_index);
+	PangoCoverageLevel level = (PangoCoverageLevel)asCEnum(s_level, PANGO_TYPE_COVERAGE_LEVEL);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1349,7 +1349,7 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_coverage_from_bytes(USER_OBJECT_ s_bytes)
 {
-	guchar* bytes = (guchar*)asArray(s_bytes, guchar, asInteger);
+	guchar* bytes = (guchar*)asCArray(s_bytes, guchar, asCInteger);
 	int n_bytes = (int)GET_LENGTH(s_bytes);
 
 	PangoCoverage* ans;
@@ -1461,7 +1461,7 @@ USER_OBJECT_
 S_pango_font_description_set_family(USER_OBJECT_ s_object, USER_OBJECT_ s_family)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	const char* family = (const char*)asString(s_family);
+	const char* family = (const char*)asCString(s_family);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1476,7 +1476,7 @@ USER_OBJECT_
 S_pango_font_description_set_family_static(USER_OBJECT_ s_object, USER_OBJECT_ s_family)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	const char* family = (const char*)asString(s_family);
+	const char* family = (const char*)asCString(s_family);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1507,7 +1507,7 @@ USER_OBJECT_
 S_pango_font_description_set_style(USER_OBJECT_ s_object, USER_OBJECT_ s_style)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	PangoStyle style = (PangoStyle)asEnum(s_style, PANGO_TYPE_STYLE);
+	PangoStyle style = (PangoStyle)asCEnum(s_style, PANGO_TYPE_STYLE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1538,7 +1538,7 @@ USER_OBJECT_
 S_pango_font_description_set_variant(USER_OBJECT_ s_object, USER_OBJECT_ s_variant)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	PangoVariant variant = (PangoVariant)asEnum(s_variant, PANGO_TYPE_VARIANT);
+	PangoVariant variant = (PangoVariant)asCEnum(s_variant, PANGO_TYPE_VARIANT);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1569,7 +1569,7 @@ USER_OBJECT_
 S_pango_font_description_set_weight(USER_OBJECT_ s_object, USER_OBJECT_ s_weight)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	PangoWeight weight = (PangoWeight)asEnum(s_weight, PANGO_TYPE_WEIGHT);
+	PangoWeight weight = (PangoWeight)asCEnum(s_weight, PANGO_TYPE_WEIGHT);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1600,7 +1600,7 @@ USER_OBJECT_
 S_pango_font_description_set_stretch(USER_OBJECT_ s_object, USER_OBJECT_ s_stretch)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	PangoStretch stretch = (PangoStretch)asEnum(s_stretch, PANGO_TYPE_STRETCH);
+	PangoStretch stretch = (PangoStretch)asCEnum(s_stretch, PANGO_TYPE_STRETCH);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1631,7 +1631,7 @@ USER_OBJECT_
 S_pango_font_description_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_size)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	gint size = (gint)asInteger(s_size);
+	gint size = (gint)asCInteger(s_size);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1678,7 +1678,7 @@ USER_OBJECT_
 S_pango_font_description_unset_fields(USER_OBJECT_ s_object, USER_OBJECT_ s_to_unset)
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
-	PangoFontMask to_unset = (PangoFontMask)asFlag(s_to_unset, PANGO_TYPE_FONT_MASK);
+	PangoFontMask to_unset = (PangoFontMask)asCFlag(s_to_unset, PANGO_TYPE_FONT_MASK);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1694,7 +1694,7 @@ S_pango_font_description_merge(USER_OBJECT_ s_object, USER_OBJECT_ s_desc_to_mer
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
 	const PangoFontDescription* desc_to_merge = (const PangoFontDescription*)getPtrValue(s_desc_to_merge);
-	gboolean replace_existing = (gboolean)asLogical(s_replace_existing);
+	gboolean replace_existing = (gboolean)asCLogical(s_replace_existing);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1710,7 +1710,7 @@ S_pango_font_description_merge_static(USER_OBJECT_ s_object, USER_OBJECT_ s_desc
 {
 	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
 	const PangoFontDescription* desc_to_merge = (const PangoFontDescription*)getPtrValue(s_desc_to_merge);
-	gboolean replace_existing = (gboolean)asLogical(s_replace_existing);
+	gboolean replace_existing = (gboolean)asCLogical(s_replace_existing);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -1742,7 +1742,7 @@ S_pango_font_description_better_match(USER_OBJECT_ s_object, USER_OBJECT_ s_old_
 USER_OBJECT_
 S_pango_font_description_from_string(USER_OBJECT_ s_str)
 {
-	const char* str = (const char*)asString(s_str);
+	const char* str = (const char*)asCString(s_str);
 
 	PangoFontDescription* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2147,7 +2147,7 @@ S_pango_font_find_shaper(USER_OBJECT_ s_object, USER_OBJECT_ s_language, USER_OB
 {
 	PangoFont* object = PANGO_FONT(getPtrValue(s_object));
 	PangoLanguage* language = (PangoLanguage*)getPtrValue(s_language);
-	guint32 ch = (guint32)asNumeric(s_ch);
+	guint32 ch = (guint32)asCNumeric(s_ch);
 
 	PangoEngineShape* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2181,7 +2181,7 @@ USER_OBJECT_
 S_pango_font_get_glyph_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph)
 {
 	PangoFont* object = PANGO_FONT(getPtrValue(s_object));
-	PangoGlyph glyph = (PangoGlyph)asNumeric(s_glyph);
+	PangoGlyph glyph = (PangoGlyph)asCNumeric(s_glyph);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	PangoRectangle* ink_rect = (PangoRectangle *)g_new0(PangoRectangle, 1);
@@ -2258,7 +2258,7 @@ USER_OBJECT_
 S_pango_fontset_get_font(USER_OBJECT_ s_object, USER_OBJECT_ s_wc)
 {
 	PangoFontset* object = PANGO_FONTSET(getPtrValue(s_object));
-	guint wc = (guint)asNumeric(s_wc);
+	guint wc = (guint)asCNumeric(s_wc);
 
 	PangoFont* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2323,7 +2323,7 @@ USER_OBJECT_
 S_pango_glyph_string_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_new_len)
 {
 	PangoGlyphString* object = (PangoGlyphString*)getPtrValue(s_object);
-	gint new_len = (gint)asInteger(s_new_len);
+	gint new_len = (gint)asCInteger(s_new_len);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2404,8 +2404,8 @@ USER_OBJECT_
 S_pango_glyph_string_extents_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start, USER_OBJECT_ s_end, USER_OBJECT_ s_font)
 {
 	PangoGlyphString* object = (PangoGlyphString*)getPtrValue(s_object);
-	int start = (int)asInteger(s_start);
-	int end = (int)asInteger(s_end);
+	int start = (int)asCInteger(s_start);
+	int end = (int)asCInteger(s_end);
 	PangoFont* font = PANGO_FONT(getPtrValue(s_font));
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2427,11 +2427,11 @@ USER_OBJECT_
 S_pango_glyph_string_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysis, USER_OBJECT_ s_index, USER_OBJECT_ s_trailing)
 {
 	PangoGlyphString* object = (PangoGlyphString*)getPtrValue(s_object);
-	char* text = (char*)asString(s_text);
-	int length = (int)asInteger(s_length);
+	char* text = (char*)asCString(s_text);
+	int length = (int)asCInteger(s_length);
 	PangoAnalysis* analysis = (PangoAnalysis*)getPtrValue(s_analysis);
-	int index = (int)asInteger(s_index);
-	gboolean trailing = (gboolean)asLogical(s_trailing);
+	int index = (int)asCInteger(s_index);
+	gboolean trailing = (gboolean)asCLogical(s_trailing);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	int x_pos;
@@ -2449,10 +2449,10 @@ USER_OBJECT_
 S_pango_glyph_string_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysis, USER_OBJECT_ s_x_pos)
 {
 	PangoGlyphString* object = (PangoGlyphString*)getPtrValue(s_object);
-	char* text = (char*)asString(s_text);
-	int length = (int)asInteger(s_length);
+	char* text = (char*)asCString(s_text);
+	int length = (int)asCInteger(s_length);
 	PangoAnalysis* analysis = (PangoAnalysis*)getPtrValue(s_analysis);
-	int x_pos = (int)asInteger(s_x_pos);
+	int x_pos = (int)asCInteger(s_x_pos);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	int index;
@@ -2471,8 +2471,8 @@ USER_OBJECT_
 S_pango_matrix_translate(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
 	PangoMatrix* object = (PangoMatrix*)getPtrValue(s_object);
-	double tx = (double)asNumeric(s_tx);
-	double ty = (double)asNumeric(s_ty);
+	double tx = (double)asCNumeric(s_tx);
+	double ty = (double)asCNumeric(s_ty);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2487,8 +2487,8 @@ USER_OBJECT_
 S_pango_matrix_scale(USER_OBJECT_ s_object, USER_OBJECT_ s_scale_x, USER_OBJECT_ s_scale_y)
 {
 	PangoMatrix* object = (PangoMatrix*)getPtrValue(s_object);
-	double scale_x = (double)asNumeric(s_scale_x);
-	double scale_y = (double)asNumeric(s_scale_y);
+	double scale_x = (double)asCNumeric(s_scale_x);
+	double scale_y = (double)asCNumeric(s_scale_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2503,7 +2503,7 @@ USER_OBJECT_
 S_pango_matrix_rotate(USER_OBJECT_ s_object, USER_OBJECT_ s_degrees)
 {
 	PangoMatrix* object = (PangoMatrix*)getPtrValue(s_object);
-	double degrees = (double)asNumeric(s_degrees);
+	double degrees = (double)asCNumeric(s_degrees);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2548,8 +2548,8 @@ S_pango_matrix_copy(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_shape(USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysis, USER_OBJECT_ s_glyphs)
 {
-	const gchar* text = (const gchar*)asString(s_text);
-	gint length = (gint)asInteger(s_length);
+	const gchar* text = (const gchar*)asCString(s_text);
+	gint length = (gint)asCInteger(s_length);
 	PangoAnalysis* analysis = (PangoAnalysis*)getPtrValue(s_analysis);
 	PangoGlyphString* glyphs = (PangoGlyphString*)getPtrValue(s_glyphs);
 
@@ -2565,7 +2565,7 @@ S_pango_shape(USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysi
 USER_OBJECT_
 S_pango_reorder_items(USER_OBJECT_ s_logical_items)
 {
-	GList* logical_items = asGList(s_logical_items);
+	GList* logical_items = asCGList(s_logical_items);
 
 	GList* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2678,8 +2678,8 @@ USER_OBJECT_
 S_pango_layout_set_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_length)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	const char* text = (const char*)asString(s_text);
-	int length = (int)asInteger(s_length);
+	const char* text = (const char*)asCString(s_text);
+	int length = (int)asCInteger(s_length);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2710,8 +2710,8 @@ USER_OBJECT_
 S_pango_layout_set_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_markup, USER_OBJECT_ s_length)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	const char* markup = (const char*)asString(s_markup);
-	int length = (int)asInteger(s_length);
+	const char* markup = (const char*)asCString(s_markup);
+	int length = (int)asCInteger(s_length);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2726,9 +2726,9 @@ USER_OBJECT_
 S_pango_layout_set_markup_with_accel(USER_OBJECT_ s_object, USER_OBJECT_ s_markup, USER_OBJECT_ s_length, USER_OBJECT_ s_accel_marker)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	const char* markup = (const char*)asString(s_markup);
-	int length = (int)asInteger(s_length);
-	gunichar accel_marker = (gunichar)asNumeric(s_accel_marker);
+	const char* markup = (const char*)asCString(s_markup);
+	int length = (int)asCInteger(s_length);
+	gunichar accel_marker = (gunichar)asCNumeric(s_accel_marker);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	gunichar accel_char;
@@ -2777,7 +2777,7 @@ USER_OBJECT_
 S_pango_layout_set_width(USER_OBJECT_ s_object, USER_OBJECT_ s_width)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int width = (int)asInteger(s_width);
+	int width = (int)asCInteger(s_width);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2808,7 +2808,7 @@ USER_OBJECT_
 S_pango_layout_set_wrap(USER_OBJECT_ s_object, USER_OBJECT_ s_wrap)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	PangoWrapMode wrap = (PangoWrapMode)asEnum(s_wrap, PANGO_TYPE_WRAP_MODE);
+	PangoWrapMode wrap = (PangoWrapMode)asCEnum(s_wrap, PANGO_TYPE_WRAP_MODE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2839,7 +2839,7 @@ USER_OBJECT_
 S_pango_layout_set_indent(USER_OBJECT_ s_object, USER_OBJECT_ s_indent)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int indent = (int)asInteger(s_indent);
+	int indent = (int)asCInteger(s_indent);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2870,7 +2870,7 @@ USER_OBJECT_
 S_pango_layout_set_spacing(USER_OBJECT_ s_object, USER_OBJECT_ s_spacing)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int spacing = (int)asInteger(s_spacing);
+	int spacing = (int)asCInteger(s_spacing);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2901,7 +2901,7 @@ USER_OBJECT_
 S_pango_layout_set_justify(USER_OBJECT_ s_object, USER_OBJECT_ s_justify)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	gboolean justify = (gboolean)asLogical(s_justify);
+	gboolean justify = (gboolean)asCLogical(s_justify);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2932,7 +2932,7 @@ USER_OBJECT_
 S_pango_layout_set_auto_dir(USER_OBJECT_ s_object, USER_OBJECT_ s_auto_dir)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	gboolean auto_dir = (gboolean)asLogical(s_auto_dir);
+	gboolean auto_dir = (gboolean)asCLogical(s_auto_dir);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -2963,7 +2963,7 @@ USER_OBJECT_
 S_pango_layout_set_alignment(USER_OBJECT_ s_object, USER_OBJECT_ s_alignment)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	PangoAlignment alignment = (PangoAlignment)asEnum(s_alignment, PANGO_TYPE_ALIGNMENT);
+	PangoAlignment alignment = (PangoAlignment)asCEnum(s_alignment, PANGO_TYPE_ALIGNMENT);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3025,7 +3025,7 @@ USER_OBJECT_
 S_pango_layout_set_single_paragraph_mode(USER_OBJECT_ s_object, USER_OBJECT_ s_setting)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	gboolean setting = (gboolean)asLogical(s_setting);
+	gboolean setting = (gboolean)asCLogical(s_setting);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3056,7 +3056,7 @@ USER_OBJECT_
 S_pango_layout_set_ellipsize(USER_OBJECT_ s_object, USER_OBJECT_ s_ellipsize)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	PangoEllipsizeMode ellipsize = (PangoEllipsizeMode)asEnum(s_ellipsize, PANGO_TYPE_ELLIPSIZE_MODE);
+	PangoEllipsizeMode ellipsize = (PangoEllipsizeMode)asCEnum(s_ellipsize, PANGO_TYPE_ELLIPSIZE_MODE);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3120,8 +3120,8 @@ USER_OBJECT_
 S_pango_layout_index_to_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_index, USER_OBJECT_ s_pos)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int index = (int)asInteger(s_index);
-	PangoRectangle* pos = asPangoRectangle(s_pos);
+	int index = (int)asCInteger(s_index);
+	PangoRectangle* pos = asCPangoRectangle(s_pos);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3136,7 +3136,7 @@ USER_OBJECT_
 S_pango_layout_get_cursor_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int index = (int)asInteger(s_index);
+	int index = (int)asCInteger(s_index);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	PangoRectangle* strong_pos = (PangoRectangle *)g_new0(PangoRectangle, 1);
@@ -3157,10 +3157,10 @@ USER_OBJECT_
 S_pango_layout_move_cursor_visually(USER_OBJECT_ s_object, USER_OBJECT_ s_strong, USER_OBJECT_ s_old_index, USER_OBJECT_ s_old_trailing, USER_OBJECT_ s_direction)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	gboolean strong = (gboolean)asLogical(s_strong);
-	int old_index = (int)asInteger(s_old_index);
-	int old_trailing = (int)asInteger(s_old_trailing);
-	int direction = (int)asInteger(s_direction);
+	gboolean strong = (gboolean)asCLogical(s_strong);
+	int old_index = (int)asCInteger(s_old_index);
+	int old_trailing = (int)asCInteger(s_old_trailing);
+	int direction = (int)asCInteger(s_direction);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	int new_index;
@@ -3179,8 +3179,8 @@ USER_OBJECT_
 S_pango_layout_xy_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3293,7 +3293,7 @@ USER_OBJECT_
 S_pango_layout_get_line(USER_OBJECT_ s_object, USER_OBJECT_ s_line)
 {
 	PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
-	int line = (int)asInteger(s_line);
+	int line = (int)asCInteger(s_line);
 
 	PangoLayoutLine* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3310,7 +3310,7 @@ USER_OBJECT_
 S_pango_layout_line_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_x_pos)
 {
 	PangoLayoutLine* object = (PangoLayoutLine*)getPtrValue(s_object);
-	int x_pos = (int)asInteger(s_x_pos);
+	int x_pos = (int)asCInteger(s_x_pos);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3331,8 +3331,8 @@ USER_OBJECT_
 S_pango_layout_line_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index, USER_OBJECT_ s_trailing)
 {
 	PangoLayoutLine* object = (PangoLayoutLine*)getPtrValue(s_object);
-	int index = (int)asInteger(s_index);
-	gboolean trailing = (gboolean)asLogical(s_trailing);
+	int index = (int)asCInteger(s_index);
+	gboolean trailing = (gboolean)asCLogical(s_trailing);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	int x_pos;
@@ -3350,8 +3350,8 @@ USER_OBJECT_
 S_pango_layout_line_get_x_ranges(USER_OBJECT_ s_object, USER_OBJECT_ s_start_index, USER_OBJECT_ s_end_index)
 {
 	PangoLayoutLine* object = (PangoLayoutLine*)getPtrValue(s_object);
-	int start_index = (int)asInteger(s_start_index);
-	int end_index = (int)asInteger(s_end_index);
+	int start_index = (int)asCInteger(s_start_index);
+	int end_index = (int)asCInteger(s_end_index);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	int* ranges = NULL;
@@ -3732,8 +3732,8 @@ S_pango_renderer_draw_layout(USER_OBJECT_ s_object, USER_OBJECT_ s_layout, USER_
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
 	PangoLayout* layout = PANGO_LAYOUT(getPtrValue(s_layout));
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3749,8 +3749,8 @@ S_pango_renderer_draw_layout_line(USER_OBJECT_ s_object, USER_OBJECT_ s_line, US
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
 	PangoLayoutLine* line = (PangoLayoutLine*)getPtrValue(s_line);
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3767,8 +3767,8 @@ S_pango_renderer_draw_glyphs(USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OB
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
 	PangoFont* font = PANGO_FONT(getPtrValue(s_font));
 	PangoGlyphString* glyphs = (PangoGlyphString*)getPtrValue(s_glyphs);
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3783,11 +3783,11 @@ USER_OBJECT_
 S_pango_renderer_draw_rectangle(USER_OBJECT_ s_object, USER_OBJECT_ s_part, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	PangoRenderPart part = (PangoRenderPart)asEnum(s_part, PANGO_TYPE_RENDER_PART);
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
-	int width = (int)asInteger(s_width);
-	int height = (int)asInteger(s_height);
+	PangoRenderPart part = (PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3802,10 +3802,10 @@ USER_OBJECT_
 S_pango_renderer_draw_error_underline(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	int x = (int)asInteger(s_x);
-	int y = (int)asInteger(s_y);
-	int width = (int)asInteger(s_width);
-	int height = (int)asInteger(s_height);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3820,13 +3820,13 @@ USER_OBJECT_
 S_pango_renderer_draw_trapezoid(USER_OBJECT_ s_object, USER_OBJECT_ s_part, USER_OBJECT_ s_y1_, USER_OBJECT_ s_x11, USER_OBJECT_ s_x21, USER_OBJECT_ s_y2, USER_OBJECT_ s_x12, USER_OBJECT_ s_x22)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	PangoRenderPart part = (PangoRenderPart)asEnum(s_part, PANGO_TYPE_RENDER_PART);
-	double y1_ = (double)asNumeric(s_y1_);
-	double x11 = (double)asNumeric(s_x11);
-	double x21 = (double)asNumeric(s_x21);
-	double y2 = (double)asNumeric(s_y2);
-	double x12 = (double)asNumeric(s_x12);
-	double x22 = (double)asNumeric(s_x22);
+	PangoRenderPart part = (PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART);
+	double y1_ = (double)asCNumeric(s_y1_);
+	double x11 = (double)asCNumeric(s_x11);
+	double x21 = (double)asCNumeric(s_x21);
+	double y2 = (double)asCNumeric(s_y2);
+	double x12 = (double)asCNumeric(s_x12);
+	double x22 = (double)asCNumeric(s_x22);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3842,9 +3842,9 @@ S_pango_renderer_draw_glyph(USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJ
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
 	PangoFont* font = PANGO_FONT(getPtrValue(s_font));
-	PangoGlyph glyph = (PangoGlyph)asNumeric(s_glyph);
-	double x = (double)asNumeric(s_x);
-	double y = (double)asNumeric(s_y);
+	PangoGlyph glyph = (PangoGlyph)asCNumeric(s_glyph);
+	double x = (double)asCNumeric(s_x);
+	double y = (double)asCNumeric(s_y);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3887,7 +3887,7 @@ USER_OBJECT_
 S_pango_renderer_part_changed(USER_OBJECT_ s_object, USER_OBJECT_ s_part)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	PangoRenderPart part = (PangoRenderPart)asEnum(s_part, PANGO_TYPE_RENDER_PART);
+	PangoRenderPart part = (PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -3902,7 +3902,7 @@ USER_OBJECT_
 S_pango_renderer_set_color(USER_OBJECT_ s_object, USER_OBJECT_ s_part, USER_OBJECT_ s_color)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	PangoRenderPart part = (PangoRenderPart)asEnum(s_part, PANGO_TYPE_RENDER_PART);
+	PangoRenderPart part = (PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART);
 	const PangoColor* color = (const PangoColor*)getPtrValue(s_color);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3918,7 +3918,7 @@ USER_OBJECT_
 S_pango_renderer_get_color(USER_OBJECT_ s_object, USER_OBJECT_ s_part)
 {
 	PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
-	PangoRenderPart part = (PangoRenderPart)asEnum(s_part, PANGO_TYPE_RENDER_PART);
+	PangoRenderPart part = (PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART);
 
 	PangoColor* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -3965,8 +3965,8 @@ S_pango_renderer_get_matrix(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_tab_array_new(USER_OBJECT_ s_initial_size, USER_OBJECT_ s_positions_in_pixels)
 {
-	gint initial_size = (gint)asInteger(s_initial_size);
-	gboolean positions_in_pixels = (gboolean)asLogical(s_positions_in_pixels);
+	gint initial_size = (gint)asCInteger(s_initial_size);
+	gboolean positions_in_pixels = (gboolean)asCLogical(s_positions_in_pixels);
 
 	PangoTabArray* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4044,7 +4044,7 @@ USER_OBJECT_
 S_pango_tab_array_resize(USER_OBJECT_ s_object, USER_OBJECT_ s_new_size)
 {
 	PangoTabArray* object = (PangoTabArray*)getPtrValue(s_object);
-	gint new_size = (gint)asInteger(s_new_size);
+	gint new_size = (gint)asCInteger(s_new_size);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -4059,9 +4059,9 @@ USER_OBJECT_
 S_pango_tab_array_set_tab(USER_OBJECT_ s_object, USER_OBJECT_ s_tab_index, USER_OBJECT_ s_alignment, USER_OBJECT_ s_location)
 {
 	PangoTabArray* object = (PangoTabArray*)getPtrValue(s_object);
-	gint tab_index = (gint)asInteger(s_tab_index);
-	PangoTabAlign alignment = (PangoTabAlign)asEnum(s_alignment, PANGO_TYPE_TAB_ALIGN);
-	gint location = (gint)asInteger(s_location);
+	gint tab_index = (gint)asCInteger(s_tab_index);
+	PangoTabAlign alignment = (PangoTabAlign)asCEnum(s_alignment, PANGO_TYPE_TAB_ALIGN);
+	gint location = (gint)asCInteger(s_location);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -4076,7 +4076,7 @@ USER_OBJECT_
 S_pango_tab_array_get_tab(USER_OBJECT_ s_object, USER_OBJECT_ s_tab_index)
 {
 	PangoTabArray* object = (PangoTabArray*)getPtrValue(s_object);
-	gint tab_index = (gint)asInteger(s_tab_index);
+	gint tab_index = (gint)asCInteger(s_tab_index);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 	PangoTabAlign alignment;
@@ -4110,7 +4110,7 @@ S_pango_tab_array_get_positions_in_pixels(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_language_from_string(USER_OBJECT_ s_language)
 {
-	const char* language = (const char*)asString(s_language);
+	const char* language = (const char*)asCString(s_language);
 
 	PangoLanguage* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4127,7 +4127,7 @@ USER_OBJECT_
 S_pango_language_matches(USER_OBJECT_ s_object, USER_OBJECT_ s_range_list)
 {
 	PangoLanguage* object = (PangoLanguage*)getPtrValue(s_object);
-	const char* range_list = (const char*)asString(s_range_list);
+	const char* range_list = (const char*)asCString(s_range_list);
 
 	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4159,7 +4159,7 @@ S_pango_language_to_string(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_PANGO_PIXELS(USER_OBJECT_ s_size)
 {
-	gint size = (gint)asInteger(s_size);
+	gint size = (gint)asCInteger(s_size);
 
 	gint ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;

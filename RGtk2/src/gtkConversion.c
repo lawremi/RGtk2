@@ -4,20 +4,20 @@
 
 
 GtkTargetEntry*
-asGtkTargetEntry(USER_OBJECT_ s_entry) {
+asCGtkTargetEntry(USER_OBJECT_ s_entry) {
     GtkTargetEntry* entry;
     entry = (GtkTargetEntry*)R_alloc(1, sizeof(GtkTargetEntry));
-    entry->target = asString(VECTOR_ELT(s_entry, 0));
-    entry->flags = asFlag(VECTOR_ELT(s_entry, 1), GTK_TYPE_TARGET_FLAGS);
-    entry->info = asInteger(VECTOR_ELT(s_entry, 2));
+    entry->target = asCString(VECTOR_ELT(s_entry, 0));
+    entry->flags = asCFlag(VECTOR_ELT(s_entry, 1), GTK_TYPE_TARGET_FLAGS);
+    entry->info = asCInteger(VECTOR_ELT(s_entry, 2));
     return(entry);
 }
 GtkFileFilterInfo*
-asGtkFileFilterInfo(USER_OBJECT_ s_info)
+asCGtkFileFilterInfo(USER_OBJECT_ s_info)
 {
     GtkFileFilterInfo* info;
     info = (GtkFileFilterInfo*)R_alloc(1, sizeof(GtkFileFilterInfo));
-    info->contains = (GtkFileFilterFlags)asFlag(VECTOR_ELT(s_info, 0), GTK_TYPE_FILE_FILTER_FLAGS);
+    info->contains = (GtkFileFilterFlags)asCFlag(VECTOR_ELT(s_info, 0), GTK_TYPE_FILE_FILTER_FLAGS);
     info->filename = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 0));
     info->uri = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 1));
     info->display_name = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 2));
@@ -25,25 +25,25 @@ asGtkFileFilterInfo(USER_OBJECT_ s_info)
     return(info);
 }
 GtkSettingsValue*
-asGtkSettingsValue(USER_OBJECT_ s_value)
+asCGtkSettingsValue(USER_OBJECT_ s_value)
 {
     GtkSettingsValue* value;
     value = (GtkSettingsValue*)R_alloc(1, sizeof(GtkSettingsValue));
     value->origin = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_value, 0), 0));
-    value->value = *asGValue(VECTOR_ELT(s_value, 1));
+    value->value = *asCGValue(VECTOR_ELT(s_value, 1));
     return(value);
 }
 
 GtkStockItem*
-asGtkStockItem(USER_OBJECT_ s_item)
+asCGtkStockItem(USER_OBJECT_ s_item)
 {
     GtkStockItem* item;
     item = (GtkStockItem*)R_alloc(1, sizeof(GtkStockItem));
-    item->stock_id = asString(VECTOR_ELT(s_item, 0));
-    item->label = asString(VECTOR_ELT(s_item, 1));
-    item->modifier = asFlag(VECTOR_ELT(s_item,2), GDK_TYPE_MODIFIER_TYPE);
-    item->keyval = asNumeric(VECTOR_ELT(s_item,3));
-    item->translation_domain = asString(VECTOR_ELT(s_item, 4));
+    item->stock_id = asCString(VECTOR_ELT(s_item, 0));
+    item->label = asCString(VECTOR_ELT(s_item, 1));
+    item->modifier = asCFlag(VECTOR_ELT(s_item,2), GDK_TYPE_MODIFIER_TYPE);
+    item->keyval = asCNumeric(VECTOR_ELT(s_item,3));
+    item->translation_domain = asCString(VECTOR_ELT(s_item, 4));
     return(item);
 }
 USER_OBJECT_
@@ -68,12 +68,12 @@ asRGtkStockItem(GtkStockItem *item)
 }
 
 GtkItemFactoryEntry*
-asGtkItemFactoryEntry(USER_OBJECT_ s_entry)
+asCGtkItemFactoryEntry(USER_OBJECT_ s_entry)
 {
     return(R_createGtkItemFactoryEntry(s_entry, 1));
 }
 GtkItemFactoryEntry*
-asGtkItemFactoryEntry2(USER_OBJECT_ s_entry)
+asCGtkItemFactoryEntry2(USER_OBJECT_ s_entry)
 {
     return(R_createGtkItemFactoryEntry(s_entry, 2));
 }
@@ -98,9 +98,9 @@ R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype)
 }
 
 GtkAllocation*
-asGtkAllocation(USER_OBJECT_ s_alloc)
+asCGtkAllocation(USER_OBJECT_ s_alloc)
 {
-    GtkAllocation* alloc = (GtkAllocation*)asGdkRectangle(s_alloc);
+    GtkAllocation* alloc = (GtkAllocation*)asCGdkRectangle(s_alloc);
     return(alloc);
 }
 USER_OBJECT_

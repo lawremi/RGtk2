@@ -45,7 +45,7 @@ USER_OBJECT_
          GdkWindowHints flags;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        geometry = asGdkGeometry(s_geometry, &flags);
+        geometry = asCGdkGeometry(s_geometry, &flags);
           gdk_window_set_geometry_hints ( object, geometry, flags );
 
         return(_result);
@@ -63,7 +63,7 @@ USER_OBJECT_
          gint new_width  ;
          gint new_height  ;
 
-         geometry = asGdkGeometry(s_geometry, &flags);
+         geometry = asCGdkGeometry(s_geometry, &flags);
           gdk_window_constrain_size ( geometry, flags, width, height, &new_width, &new_height );
 
         _result = retByVal(_result, "new_width", asRInteger ( new_width ), "new_height", asRInteger ( new_height ), NULL);
@@ -81,7 +81,7 @@ USER_OBJECT_
          GdkGC* ans ;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        values = asGdkGCValues(s_values, &values_mask);
+        values = asCGdkGCValues(s_values, &values_mask);
 
          ans =  gdk_gc_new_with_values ( object, values, values_mask );
         _result = toRPointerWithRef ( ans, "GdkGC" );
@@ -97,7 +97,7 @@ USER_OBJECT_
          GdkGCValuesMask values_mask;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        values = asGdkGCValues(s_values, &values_mask) ;
+        values = asCGdkGCValues(s_values, &values_mask) ;
 
           gdk_gc_set_values ( object, values, values_mask );
 
@@ -122,7 +122,7 @@ USER_OBJECT_
          int height = INTEGER_DATA(s_height)[0] ;
          int rowstride = INTEGER_DATA(s_rowstride)[0] ;
          GdkPixbufDestroyNotify destroy_fn = S_GdkPixbufDestroyNotify;
-         gpointer destroy_fn_data = asGenericData(s_data) ;
+         gpointer destroy_fn_data = asCGenericData(s_data) ;
          GdkPixbuf* ans ;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -212,16 +212,16 @@ S_gdk_pixbuf_get_pixels(USER_OBJECT_ s_object)
     return(_result);
 }
 
-/* reason: GdkBitmap is an arbitrary pointer as defined by the API, but in this
+/* reason: GdkBitmap is an arbitrary pointer asC defined by the API, but in this
 	case we know it is a GObject (and so this is its constructor)
 */
 USER_OBJECT_
 S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
         GdkDrawable* drawable = GET_LENGTH(s_drawable) == 0 ? NULL : GDK_DRAWABLE(getPtrValue(s_drawable));
-        const guchar* data = (const guchar*)asArray(s_data, guchar, asInteger);
-        gint width = (gint)asInteger(s_width);
-        gint height = (gint)asInteger(s_height);
+        const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+        gint width = (gint)asCInteger(s_width);
+        gint height = (gint)asCInteger(s_height);
 
         GdkBitmap* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -239,7 +239,7 @@ S_gdk_window_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_attributes)
 {
         GdkWindow* parent = GDK_WINDOW(getPtrValue(s_parent));
 		GdkWindowAttributesType attributes_mask;
-        GdkWindowAttr* attributes = asGdkWindowAttr(s_attributes, &attributes_mask);
+        GdkWindowAttr* attributes = asCGdkWindowAttr(s_attributes, &attributes_mask);
         
         GdkWindow* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -253,18 +253,18 @@ S_gdk_window_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_attributes)
         return(_result);
 }
 
-/* reason: just send NULL as the dest and use returned value */
+/* reason: just send NULL asC the dest and use returned value */
 USER_OBJECT_
 S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
         GdkDrawable* src = GDK_DRAWABLE(getPtrValue(s_src));
         GdkColormap* cmap = GDK_COLORMAP(getPtrValue(s_cmap));
-        int src_x = (int)asInteger(s_src_x);
-        int src_y = (int)asInteger(s_src_y);
-        int dest_x = (int)asInteger(s_dest_x);
-        int dest_y = (int)asInteger(s_dest_y);
-        int width = (int)asInteger(s_width);
-        int height = (int)asInteger(s_height);
+        int src_x = (int)asCInteger(s_src_x);
+        int src_y = (int)asCInteger(s_src_y);
+        int dest_x = (int)asCInteger(s_dest_x);
+        int dest_y = (int)asCInteger(s_dest_y);
+        int width = (int)asCInteger(s_width);
+        int height = (int)asCInteger(s_height);
 
         GdkPixbuf* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -281,12 +281,12 @@ S_gdk_pixbuf_get_from_image(USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJECT
 {
         GdkImage* src = GDK_IMAGE(getPtrValue(s_src));
         GdkColormap* cmap = GDK_COLORMAP(getPtrValue(s_cmap));
-        int src_x = (int)asInteger(s_src_x);
-        int src_y = (int)asInteger(s_src_y);
-        int dest_x = (int)asInteger(s_dest_x);
-        int dest_y = (int)asInteger(s_dest_y);
-        int width = (int)asInteger(s_width);
-        int height = (int)asInteger(s_height);
+        int src_x = (int)asCInteger(s_src_x);
+        int src_y = (int)asCInteger(s_src_y);
+        int dest_x = (int)asCInteger(s_dest_x);
+        int dest_y = (int)asCInteger(s_dest_y);
+        int width = (int)asCInteger(s_width);
+        int height = (int)asCInteger(s_height);
 
         GdkPixbuf* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -340,7 +340,7 @@ USER_OBJECT_
 S_gdk_pixbuf_render_pixmap_and_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_alpha_threshold)
 {
         GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
-        int alpha_threshold = (int)asInteger(s_alpha_threshold);
+        int alpha_threshold = (int)asCInteger(s_alpha_threshold);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
         GdkPixmap* pixmap_return = NULL;
@@ -358,7 +358,7 @@ S_gdk_pixbuf_render_pixmap_and_mask_for_colormap(USER_OBJECT_ s_object, USER_OBJ
 {
         GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
         GdkColormap* colormap = GDK_COLORMAP(getPtrValue(s_colormap));
-        int alpha_threshold = (int)asInteger(s_alpha_threshold);
+        int alpha_threshold = (int)asCInteger(s_alpha_threshold);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
         GdkPixmap* pixmap_return = NULL;

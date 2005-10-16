@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "gtkFuncs.h"
 
-/* reason: needs to serve as a finalizer for the user data to the clipboard user funcs */
+/* reason: needs to serve asC a finalizer for the user data to the clipboard user funcs */
 void S_GtkClipboardClearFunc(GtkClipboard *clipboard, gpointer user_data_or_owner)
 {
     R_freeCBData(user_data_or_owner);
@@ -24,11 +24,11 @@ S_gtk_action_group_add_toggle_actions_full(USER_OBJECT_ s_action_group, USER_OBJ
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
         GtkToggleAction *action;
         USER_OBJECT_ s_entry = padVector(VECTOR_ELT(s_entries, i), 7), callback = VECTOR_ELT(s_entry, 5);
-        const gchar* accel = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 3)));
-        const gchar* tooltip = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 4)));
-        action = gtk_toggle_action_new(asString(VECTOR_ELT(s_entry, 0)), asString(VECTOR_ELT(s_entry, 2)),
-                tooltip, asString(VECTOR_ELT(s_entry, 1)));
-        gtk_toggle_action_set_active(action, asLogical(VECTOR_ELT(s_entry, 6)));
+        const gchar* accel = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 3)));
+        const gchar* tooltip = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 4)));
+        action = gtk_toggle_action_new(asCString(VECTOR_ELT(s_entry, 0)), asCString(VECTOR_ELT(s_entry, 2)),
+                tooltip, asCString(VECTOR_ELT(s_entry, 1)));
+        gtk_toggle_action_set_active(action, asCLogical(VECTOR_ELT(s_entry, 6)));
         if (GET_LENGTH(callback) > 0)
             g_signal_connect_closure(action, "toggled", R_createGClosure(callback, s_user_data), (gboolean)1);
 
@@ -46,7 +46,7 @@ S_gtk_action_group_add_toggle_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ 
 
 }
 
-/* reason: same as above basically
+/* reason: same asC above basically
 */
 USER_OBJECT_
 S_gtk_action_group_add_radio_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_value, USER_OBJECT_ s_on_change, USER_OBJECT_ s_user_data)
@@ -56,22 +56,22 @@ S_gtk_action_group_add_radio_actions_full(USER_OBJECT_ s_action_group, USER_OBJE
     int i;
 
     GtkActionGroup* group = GTK_ACTION_GROUP(getPtrValue(s_action_group));
-    int value = asInteger(s_value);
+    int value = asCInteger(s_value);
     GtkRadioAction *action;
 
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
 
         USER_OBJECT_ s_entry = padVector(VECTOR_ELT(s_entries, i), 6);
-        const gchar* accel = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 3)));
-        const gchar* tooltip = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 4)));
-        action = gtk_radio_action_new(asString(VECTOR_ELT(s_entry, 0)), asString(VECTOR_ELT(s_entry, 2)),
-                tooltip, asString(VECTOR_ELT(s_entry, 1)), asInteger(VECTOR_ELT(s_entry,5)));
+        const gchar* accel = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 3)));
+        const gchar* tooltip = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 4)));
+        action = gtk_radio_action_new(asCString(VECTOR_ELT(s_entry, 0)), asCString(VECTOR_ELT(s_entry, 2)),
+                tooltip, asCString(VECTOR_ELT(s_entry, 1)), asCInteger(VECTOR_ELT(s_entry,5)));
         /* add this radio action to the group list */
         gtk_radio_action_set_group(action, group_list);
         group_list = gtk_radio_action_get_group(action);
         if (i == 0)
             first = action;
-        if (value == asInteger(VECTOR_ELT(s_entry,5)))
+        if (value == asCInteger(VECTOR_ELT(s_entry,5)))
             gtk_toggle_action_set_active((GtkToggleAction *)action, TRUE);
 
         gtk_action_group_add_action_with_accel(group, (GtkAction*)action, accel);
@@ -90,7 +90,7 @@ S_gtk_action_group_add_radio_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ s
     return(S_gtk_action_group_add_radio_actions_full(s_action_group, s_entries, s_value, s_on_change, s_user_data));
 }
 
-/* reason: same as above
+/* reason: same asC above
 */
 USER_OBJECT_
 S_gtk_action_group_add_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_user_data)
@@ -102,10 +102,10 @@ S_gtk_action_group_add_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
         GtkAction *action;
         USER_OBJECT_ s_entry = VECTOR_ELT(s_entries, i), callback = VECTOR_ELT(s_entry, 5);
-        const gchar* accel = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 3)));
-        const gchar* tooltip = gtk_action_group_translate_string(group, asString(VECTOR_ELT(s_entry, 4)));
-        action = gtk_action_new(asString(VECTOR_ELT(s_entry, 0)), asString(VECTOR_ELT(s_entry, 2)),
-                tooltip, asString(VECTOR_ELT(s_entry, 1)));
+        const gchar* accel = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 3)));
+        const gchar* tooltip = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 4)));
+        action = gtk_action_new(asCString(VECTOR_ELT(s_entry, 0)), asCString(VECTOR_ELT(s_entry, 2)),
+                tooltip, asCString(VECTOR_ELT(s_entry, 1)));
         if (GET_LENGTH(callback) > 0)
             g_signal_connect_closure(action, "activate", R_createGClosure(callback, s_user_data), TRUE);
 
@@ -129,7 +129,7 @@ USER_OBJECT_
 {
          GtkCList* object = GTK_CLIST(getPtrValue(s_object)) ;
          gint row = INTEGER_DATA(s_row)[0] ;
-         gpointer data = asGenericData(s_data) ;
+         gpointer data = asCGenericData(s_data) ;
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -142,7 +142,7 @@ USER_OBJECT_
 {
          GtkCTree* object = GTK_CTREE(getPtrValue(s_object)) ;
          GtkCTreeNode* node = GTK_CTREE_NODE(getPtrValue(s_node)) ;
-         gpointer data = asGenericData(s_data) ;
+         gpointer data = asCGenericData(s_data) ;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
           gtk_ctree_node_set_row_data_full ( object, node, data, (GtkDestroyNotify)R_ReleaseObject );
@@ -151,7 +151,7 @@ USER_OBJECT_
 }
 
 /* reason: GtkSignalFunc is a generic user-func, cannot auto-convert
-    (even though at least in the defs it is always treated as a GtkCallback) */
+    (even though at least in the defs it is always treated asC a GtkCallback) */
 USER_OBJECT_
  S_gtk_toolbar_append_element ( USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data )
 {
@@ -251,10 +251,10 @@ USER_OBJECT_
          GtkItemFactoryEntry* (*convert)(USER_OBJECT_ s_entry);
 
         if (callback_type == 1)
-            convert = asGtkItemFactoryEntry;
-        else convert = asGtkItemFactoryEntry2;
+            convert = asCGtkItemFactoryEntry;
+        else convert = asCGtkItemFactoryEntry2;
 
-        entries = (GtkItemFactoryEntry*)asArrayRef(s_entries, GtkItemFactoryEntry, convert) ;
+        entries = (GtkItemFactoryEntry*)asCArrayRef(s_entries, GtkItemFactoryEntry, convert) ;
 
           gtk_item_factory_create_items_ac ( object, n_entries, entries, callback_data, callback_type );
 
@@ -322,7 +322,7 @@ USER_OBJECT_
      GdkGC* ans ;
     USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-    values = asGdkGCValues(s_values, &values_mask) ;
+    values = asCGdkGCValues(s_values, &values_mask) ;
      ans =  gtk_gc_get ( depth, colormap, values, values_mask );
     _result = toRPointerWithFinalizer ( ans, "GdkGC", (RPointerFinalizer)gtk_gc_release );
 
@@ -334,10 +334,10 @@ USER_OBJECT_
 S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJECT_ s_type, USER_OBJECT_ s_buttons, USER_OBJECT_ s_message_format)
 {
         GtkWindow* parent = GET_LENGTH(s_parent) == 0 ? NULL : GTK_WINDOW(getPtrValue(s_parent));
-        GtkDialogFlags flags = (GtkDialogFlags)asFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
-        GtkMessageType type = (GtkMessageType)asEnum(s_type, GTK_TYPE_MESSAGE_TYPE);
-        GtkButtonsType buttons = (GtkButtonsType)asEnum(s_buttons, GTK_TYPE_BUTTONS_TYPE);
-        const gchar* message_format = (const gchar*)asString(s_message_format);
+        GtkDialogFlags flags = (GtkDialogFlags)asCFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
+        GtkMessageType type = (GtkMessageType)asCEnum(s_type, GTK_TYPE_MESSAGE_TYPE);
+        GtkButtonsType buttons = (GtkButtonsType)asCEnum(s_buttons, GTK_TYPE_BUTTONS_TYPE);
+        const gchar* message_format = (const gchar*)asCString(s_message_format);
 
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -348,15 +348,15 @@ S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJEC
 
         return(_result);
 }
-/* reason: same as above */
+/* reason: same asC above */
 USER_OBJECT_
 S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJECT_ s_type, USER_OBJECT_ s_buttons, USER_OBJECT_ s_message_format)
 {
         GtkWindow* parent = GTK_WINDOW(getPtrValue(s_parent));
-        GtkDialogFlags flags = (GtkDialogFlags)asFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
-        GtkMessageType type = (GtkMessageType)asEnum(s_type, GTK_TYPE_MESSAGE_TYPE);
-        GtkButtonsType buttons = (GtkButtonsType)asEnum(s_buttons, GTK_TYPE_BUTTONS_TYPE);
-        const gchar* message_format = (const gchar*)asString(s_message_format);
+        GtkDialogFlags flags = (GtkDialogFlags)asCFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
+        GtkMessageType type = (GtkMessageType)asCEnum(s_type, GTK_TYPE_MESSAGE_TYPE);
+        GtkButtonsType buttons = (GtkButtonsType)asCEnum(s_buttons, GTK_TYPE_BUTTONS_TYPE);
+        const gchar* message_format = (const gchar*)asCString(s_message_format);
 
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -367,12 +367,12 @@ S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags
 
         return(_result);
 }
-/* reason: same as above */
+/* reason: same asC above */
 USER_OBJECT_
 S_gtk_message_dialog_format_secondary_text(USER_OBJECT_ s_object, USER_OBJECT_ s_message_format)
 {
         GtkMessageDialog* object = GTK_MESSAGE_DIALOG(getPtrValue(s_object));
-        const gchar* message_format = (const gchar*)asString(s_message_format);
+        const gchar* message_format = (const gchar*)asCString(s_message_format);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -381,12 +381,12 @@ S_gtk_message_dialog_format_secondary_text(USER_OBJECT_ s_object, USER_OBJECT_ s
 
         return(_result);
 }
-/* reason: same as above */
+/* reason: same asC above */
 USER_OBJECT_
 S_gtk_message_dialog_format_secondary_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_message_format)
 {
         GtkMessageDialog* object = GTK_MESSAGE_DIALOG(getPtrValue(s_object));
-        const gchar* message_format = (const gchar*)asString(s_message_format);
+        const gchar* message_format = (const gchar*)asCString(s_message_format);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -413,10 +413,10 @@ S_gtk_dialog_add_buttons(USER_OBJECT_ s_object, USER_OBJECT_ s_labels, USER_OBJE
 USER_OBJECT_
 S_gtk_file_chooser_dialog_new_with_backend(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_OBJECT_ s_action, USER_OBJECT_ s_backend, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)
 {
-        const gchar* title = (const gchar*)asString(s_title);
+        const gchar* title = (const gchar*)asCString(s_title);
         GtkWindow* parent = GTK_WINDOW(getPtrValue(s_parent));
-        GtkFileChooserAction action = (GtkFileChooserAction)asEnum(s_action, GTK_TYPE_FILE_CHOOSER_ACTION);
-        const gchar* backend = (const gchar*)asString(s_backend);
+        GtkFileChooserAction action = (GtkFileChooserAction)asCEnum(s_action, GTK_TYPE_FILE_CHOOSER_ACTION);
+        const gchar* backend = (const gchar*)asCString(s_backend);
 
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -496,7 +496,7 @@ USER_OBJECT_
 S_gtk_text_buffer_create_tag(USER_OBJECT_ s_object, USER_OBJECT_ s_tag_name, USER_OBJECT_ s_props)
 {
         GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
-        const gchar* tag_name = (const gchar*)asString(s_tag_name);
+        const gchar* tag_name = (const gchar*)asCString(s_tag_name);
 		
         GtkTextTag* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -518,8 +518,8 @@ S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s
 {
         GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
         GtkTextIter* iter = (GtkTextIter*)getPtrValue(s_iter);
-        const gchar* text = (const gchar*)asString(s_text);
-        gint len = (gint)asInteger(s_len);
+        const gchar* text = (const gchar*)asCString(s_text);
+        gint len = (gint)asCInteger(s_len);
 		
 		gint start_offset, i;
 		GtkTextIter start;
@@ -533,7 +533,7 @@ S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s
 		gtk_text_buffer_get_iter_at_offset(object, &start, start_offset);
 
 		for (i = 0; i < Rf_length(s_tag_names); i++) {
-			gtk_text_buffer_apply_tag_by_name(object, (const gchar*)asString(VECTOR_ELT(s_tag_names, i)), &start, iter);
+			gtk_text_buffer_apply_tag_by_name(object, (const gchar*)asCString(VECTOR_ELT(s_tag_names, i)), &start, iter);
 		}
 		
 		return(_result);
@@ -545,8 +545,8 @@ S_gtk_text_buffer_insert_with_tags(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, U
 {
         GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
         GtkTextIter* iter = (GtkTextIter*)getPtrValue(s_iter);
-        const gchar* text = (const gchar*)asString(s_text);
-        gint len = (gint)asInteger(s_len);
+        const gchar* text = (const gchar*)asCString(s_text);
+        gint len = (gint)asCInteger(s_len);
         
 		gint start_offset, i;
 		GtkTextIter start;
@@ -580,15 +580,15 @@ S_gtk_dialog_add_buttons_valist(GtkDialog *dialog, const gchar *first_button_tex
     return;
 
   text = first_button_text;
-  response_id = asInteger(va_arg(args, USER_OBJECT_));
+  response_id = asCInteger(va_arg(args, USER_OBJECT_));
 
   while (text != NULL)
     {
       gtk_dialog_add_button(dialog, text, response_id);
-      text = asString(va_arg(args, USER_OBJECT_));
+      text = asCString(va_arg(args, USER_OBJECT_));
       if (text == NULL)
         break;
-      response_id = asInteger(va_arg(args, USER_OBJECT_));
+      response_id = asCInteger(va_arg(args, USER_OBJECT_));
     }
 }
 
@@ -596,9 +596,9 @@ S_gtk_dialog_add_buttons_valist(GtkDialog *dialog, const gchar *first_button_tex
 USER_OBJECT_
 S_gtk_dialog_new_with_buttons(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)
 {
-        const gchar* title = (const gchar*)asString(s_title);
+        const gchar* title = (const gchar*)asCString(s_title);
         GtkWindow* parent = GET_LENGTH(s_parent) == 0 ? NULL : GTK_WINDOW(getPtrValue(s_parent));
-        GtkDialogFlags flags = (GtkDialogFlags)asFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
+        GtkDialogFlags flags = (GtkDialogFlags)asCFlag(s_flags, GTK_TYPE_DIALOG_FLAGS);
         
         GtkDialog* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -627,7 +627,7 @@ S_gtk_dialog_new_with_buttons(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_
 S_gtk_dialog_set_alternative_button_order(USER_OBJECT_ s_object, USER_OBJECT_ s_first_response_id, ...)
 {
         GtkDialog* object = GTK_DIALOG(getPtrValue(s_object));
-        gint first_response_id = (gint)asInteger(s_first_response_id);
+        gint first_response_id = (gint)asCInteger(s_first_response_id);
         GdkScreen *screen;
         va_list args;
 
@@ -648,7 +648,7 @@ S_gtk_dialog_set_alternative_button_order(USER_OBJECT_ s_object, USER_OBJECT_ s_
             // dialog_find_button is internal to GTK
             child = dialog_find_button(object, response_id);
             gtk_box_reorder_child(GTK_BOX(object->action_area), child, position);
-            response_id = asInteger(va_arg(args, USER_OBJECT_));
+            response_id = asCInteger(va_arg(args, USER_OBJECT_));
             position++;
         }
 
@@ -663,7 +663,7 @@ S_gtk_list_store_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJE
 {
 	GtkListStore* object = GTK_LIST_STORE(getPtrValue(s_object));
 	GtkTreeIter* iter = (GtkTreeIter*)getPtrValue(s_iter);
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 	GValue value = { 0, };
 	
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -723,8 +723,8 @@ S_gtk_cell_layout_set_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USE
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 		for (i = 0; i < GET_LENGTH(s_attributes); i++)
-			gtk_cell_layout_add_attribute(object, cell, asString(VECTOR_ELT(names, i)), 
-				asInteger(VECTOR_ELT(s_attributes, i)));
+			gtk_cell_layout_add_attribute(object, cell, asCString(VECTOR_ELT(names, i)), 
+				asCInteger(VECTOR_ELT(s_attributes, i)));
 
         return(_result);
 }
@@ -741,8 +741,8 @@ S_gtk_container_child_set(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 		for (i = 0; i < GET_LENGTH(s_props); i++)
-			gtk_container_child_set_property(object, child, asString(VECTOR_ELT(names, i)), 
-				asGValue(VECTOR_ELT(s_props, i)));
+			gtk_container_child_set_property(object, child, asCString(VECTOR_ELT(names, i)), 
+				asCGValue(VECTOR_ELT(s_props, i)));
 
         return(_result);
 }
@@ -785,8 +785,8 @@ USER_OBJECT_
 S_gtk_tree_view_insert_column_with_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_position, USER_OBJECT_ s_title, USER_OBJECT_ s_cell, USER_OBJECT_ s_attributes)
 {
         GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
-        gint position = (gint)asInteger(s_position), i;
-        const gchar* title = (const gchar*)asString(s_title);
+        gint position = (gint)asCInteger(s_position), i;
+        const gchar* title = (const gchar*)asCString(s_title);
         GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
 		GtkTreeViewColumn *column;
 		USER_OBJECT_ s_names;
@@ -801,7 +801,7 @@ S_gtk_tree_view_insert_column_with_attributes(USER_OBJECT_ s_object, USER_OBJECT
 		s_names = GET_NAMES(s_attributes);
 		for (i = 0; i < GET_LENGTH(s_attributes); i++) {
 			gtk_tree_view_column_add_attribute(column, cell, CHAR_DEREF(STRING_ELT(s_names, i)), 
-				asInteger(VECTOR_ELT(s_attributes, i)));
+				asCInteger(VECTOR_ELT(s_attributes, i)));
 		}
 		ans = gtk_tree_view_insert_column(object, column, position);
 		
@@ -828,11 +828,11 @@ S_gtk_tree_path_new_from_indices(USER_OBJECT_ s_indices)
 }
 
 
-/* reason: property constructor system doesn't treat text as mnemonic */
+/* reason: property constructor system doesn't treat text asC mnemonic */
 USER_OBJECT_
 S_gtk_label_new_with_mnemonic(USER_OBJECT_ s_str)
 {
-    const char* str = (const char*)asString(s_str);
+    const char* str = (const char*)asCString(s_str);
 
     GtkWidget* ans;
     USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -868,8 +868,8 @@ USER_OBJECT_
 S_gtk_editable_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_new_text, USER_OBJECT_ s_position)
 {
         GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
-        const gchar* new_text = (const gchar*)asString(s_new_text);
-        gint* position = (gint*)asArray(s_position, gint, asInteger);
+        const gchar* new_text = (const gchar*)asCString(s_new_text);
+        gint* position = (gint*)asCArray(s_position, gint, asCInteger);
 		gint new_text_length = strlen(new_text);
 		
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -880,14 +880,14 @@ S_gtk_editable_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_new_text, USER_
         return(_result);
 }
 
-/* reason: need to include max_seq_len as a parameter (left off by array length detection) */
+/* reason: need to include max_seq_len asC a parameter (left off by array length detection) */
 USER_OBJECT_
 S_gtk_im_context_simple_add_table(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USER_OBJECT_ s_max_seq_len, USER_OBJECT_ s_n_seqs)
 {
         GtkIMContextSimple* object = GTK_IM_CONTEXT_SIMPLE(getPtrValue(s_object));
-        guint16* data = (guint16*)asArray(s_data, guint16, asInteger);
-        gint max_seq_len = (gint)asInteger(s_max_seq_len);
-        gint n_seqs = (gint)asInteger(s_n_seqs);
+        guint16* data = (guint16*)asCArray(s_data, guint16, asCInteger);
+        gint max_seq_len = (gint)asCInteger(s_max_seq_len);
+        gint n_seqs = (gint)asCInteger(s_n_seqs);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -908,7 +908,7 @@ S_gtk_window_set_geometry_hints(USER_OBJECT_ s_object, USER_OBJECT_ s_geometry_w
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-		geometry = asGdkGeometry(s_geometry, &geom_mask);
+		geometry = asCGdkGeometry(s_geometry, &geom_mask);
 		
         gtk_window_set_geometry_hints(object, geometry_widget, geometry, geom_mask);
 
@@ -952,7 +952,7 @@ USER_OBJECT_
 S_gtk_icon_theme_set_search_path(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 {
         GtkIconTheme* object = GTK_ICON_THEME(getPtrValue(s_object));
-        const gchar** path = (const gchar**)asStringArray(s_path);
+        const gchar** path = (const gchar**)asCStringArray(s_path);
         gint n_elements = GET_LENGTH(s_path);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -968,7 +968,7 @@ S_gtk_tree_store_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJE
 {
 	GtkTreeStore* object = GTK_TREE_STORE(getPtrValue(s_object));
 	GtkTreeIter* iter = (GtkTreeIter*)getPtrValue(s_iter);
-	gint column = (gint)asInteger(s_column);
+	gint column = (gint)asCInteger(s_column);
 	GValue value = { 0, };
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -986,7 +986,7 @@ S_gtk_container_child_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, 
 {
 	GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
 	GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
-	const gchar* property_name = (const gchar*)asString(s_property_name);
+	const gchar* property_name = (const gchar*)asCString(s_property_name);
 	GValue value = { 0, };
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1002,7 +1002,7 @@ S_gtk_container_child_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, 
 	return(_result);
 }
 
-/* reason: need to accept GClosure as externalptr to look it up (ie, from gtk_action_get_accel_closure) */
+/* reason: need to accept GClosure asC externalptr to look it up (ie, from gtk_action_get_accel_closure) */
 USER_OBJECT_
 S_gtk_accel_group_from_accel_closure(USER_OBJECT_ s_closure)
 {
@@ -1018,7 +1018,7 @@ S_gtk_accel_group_from_accel_closure(USER_OBJECT_ s_closure)
         return(_result);
 }
 
-/* reason: need to return GClosure as a reference (don't try to convert as transparent) */
+/* reason: need to return GClosure asC a reference (don't try to convert asC transparent) */
 USER_OBJECT_
 S_gtk_action_get_accel_closure(USER_OBJECT_ s_object)
 {
@@ -1039,7 +1039,7 @@ USER_OBJECT_
 S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_paths, USER_OBJECT_ s_cols, USER_OBJECT_ s_append)
 {
 	GtkListStore *model = GTK_LIST_STORE(getPtrValue(s_model));
-	gboolean append = asLogical(s_append);
+	gboolean append = asCLogical(s_append);
 	GtkTreePath *path;
 	GtkTreeIter iter;
 	GValue value = { 0, };

@@ -1,9 +1,9 @@
 #include "conversion.h"
 
 PangoRectangle*
-asPangoRectangle(USER_OBJECT_ s_rect)
+asCPangoRectangle(USER_OBJECT_ s_rect)
 {
-    return (PangoRectangle*)asGdkRectangle(s_rect);
+    return (PangoRectangle*)asCGdkRectangle(s_rect);
 }
 
 USER_OBJECT_
@@ -78,16 +78,16 @@ asRPangoAttribute(PangoAttribute *attr)
 
 /*
 PangoMatrix*
-asPangoMatrix(USER_OBJECT_ s_matrix)
+asCPangoMatrix(USER_OBJECT_ s_matrix)
 {
     PangoMatrix* matrix = (PangoMatrix *)R_alloc(1, sizeof(PangoMatrix));
 
-    matrix->xx = asNumeric(VECTOR_ELT(s_matrix, 0));
-    matrix->xy = asNumeric(VECTOR_ELT(s_matrix, 1));
-    matrix->yx = asNumeric(VECTOR_ELT(s_matrix, 2));
-    matrix->yy = asNumeric(VECTOR_ELT(s_matrix, 3));
-    matrix->x0 = asNumeric(VECTOR_ELT(s_matrix, 4));
-    matrix->y0 = asNumeric(VECTOR_ELT(s_matrix, 5));
+    matrix->xx = asCNumeric(VECTOR_ELT(s_matrix, 0));
+    matrix->xy = asCNumeric(VECTOR_ELT(s_matrix, 1));
+    matrix->yx = asCNumeric(VECTOR_ELT(s_matrix, 2));
+    matrix->yy = asCNumeric(VECTOR_ELT(s_matrix, 3));
+    matrix->x0 = asCNumeric(VECTOR_ELT(s_matrix, 4));
+    matrix->y0 = asCNumeric(VECTOR_ELT(s_matrix, 5));
 
     return(matrix);
 }*/

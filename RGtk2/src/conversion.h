@@ -228,11 +228,11 @@ typedef void* (*ElementConverter)(void *element);
 
 /* now from R to C */
 
-#define asArrayRef(s, type, converter) \
+#define asCArrayRef(s, type, converter) \
 ({ \
-    asArray(s, type, * converter); \
+    asCArray(s, type, * converter); \
 })
-#define asArray(s_array, type, converter) \
+#define asCArray(s_array, type, converter) \
 ({ \
     int i; \
 \
@@ -245,24 +245,24 @@ typedef void* (*ElementConverter)(void *element);
     array; \
 })
 
-#define asEnumArray(s_array, type, code) \
+#define asCEnumArray(s_array, type, code) \
 ({ \
     int i; \
 \
     type* array = (type*)R_alloc(GET_LENGTH(s_array), sizeof(type)); \
 \
     for (i = 0; i < GET_LENGTH(s_array); i++) { \
-        array[i] = asEnum(VECTOR_ELT(s_array, i), code); \
+        array[i] = asCEnum(VECTOR_ELT(s_array, i), code); \
     } \
 \
     array; \
 })
 
-gboolean asLogical(USER_OBJECT_ s_log);
-int asInteger(USER_OBJECT_ s_int);
-double asNumeric(USER_OBJECT_ s_num);
-char * asString(USER_OBJECT_ s_str);
-char asCharacter(USER_OBJECT_ s_char);
+gboolean asCLogical(USER_OBJECT_ s_log);
+int asCInteger(USER_OBJECT_ s_int);
+double asCNumeric(USER_OBJECT_ s_num);
+char * asCString(USER_OBJECT_ s_str);
+char asCCharacter(USER_OBJECT_ s_char);
 
 USER_OBJECT_ asRLogical(Rboolean);
 USER_OBJECT_ asRInteger(int);
@@ -271,16 +271,16 @@ USER_OBJECT_ asRCharacter(char c);
 USER_OBJECT_ asRString(const char *);
 USER_OBJECT_ asRGdkAtom(GdkAtom);
 
-USER_OBJECT_ asGenericData(USER_OBJECT_ obj);
-char ** asStringArray(USER_OBJECT_ svec); /* NULL TERMINATES */
+USER_OBJECT_ asCGenericData(USER_OBJECT_ obj);
+char ** asCStringArray(USER_OBJECT_ svec); /* NULL TERMINATES */
 
 USER_OBJECT_ asREnum(int value, GType etype);
 USER_OBJECT_ R_createEnum(int value, const char *enumName);
 USER_OBJECT_ asRFlag(guint value, GType ftype);
 USER_OBJECT_ R_createFlag(int, const char *);
 
-guint asFlag(USER_OBJECT_ s_flag, GType ftype);
-gint asEnum(USER_OBJECT_ s_enum, GType etype);
+guint asCFlag(USER_OBJECT_ s_flag, GType ftype);
+gint asCEnum(USER_OBJECT_ s_enum, GType etype);
 
 USER_OBJECT_ toRPointerWithFinalizer(void *val, const gchar *typeName, RPointerFinalizer finalizer);
 USER_OBJECT_ toRPointerWithRef(void *val, const char *type);
@@ -300,22 +300,22 @@ void *getPtrValue(USER_OBJECT_);
 int R_setGValueFromSValue(GValue *, USER_OBJECT_);
 GValue* createGValueFromSValue(USER_OBJECT_ sval);
 USER_OBJECT_ asRGValue(GValue *);
-GValue* asGValue(USER_OBJECT_);
+GValue* asCGValue(USER_OBJECT_);
 USER_OBJECT_ asRGType(GType);
-GParamSpec* asGParamSpec(USER_OBJECT_ s_spec);
+GParamSpec* asCGParamSpec(USER_OBJECT_ s_spec);
 USER_OBJECT_ asRGParamSpec(GParamSpec* spec);
-GClosure* asGClosure(USER_OBJECT_ s_closure);
+GClosure* asCGClosure(USER_OBJECT_ s_closure);
 
 /* GLib */
 USER_OBJECT_ asRGQuark(GQuark val);
-GTimeVal* asGTimeVal(USER_OBJECT_ s_timeval);
-GString* asGString(USER_OBJECT_ s_string);
-GList* asGList(USER_OBJECT_ s_list);
+GTimeVal* asCGTimeVal(USER_OBJECT_ s_timeval);
+GString* asCGString(USER_OBJECT_ s_string);
+GList* asCGList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGList(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithRef(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGListConv(GList *glist, ElementConverter converter);
-GSList* asGSList(USER_OBJECT_ s_list);
+GSList* asCGSList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGSList(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithRef(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer);
@@ -323,61 +323,61 @@ USER_OBJECT_ asRGSListConv(GSList *gslist, ElementConverter converter);
 
 /* GDK */
 USER_OBJECT_ asRGdkAtom(GdkAtom val);
-GdkAtom asGdkAtom(USER_OBJECT_ s_atom);
-GdkAtom* asGdkAtomArray(USER_OBJECT_ s_atoms);
-GdkGeometry* asGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints);
-GdkGCValues* asGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask);
-GdkWindowAttr* asGdkWindowAttr(USER_OBJECT_ s_attr, GdkWindowAttributesType *mask);
+GdkAtom asCGdkAtom(USER_OBJECT_ s_atom);
+GdkAtom* asCGdkAtomArray(USER_OBJECT_ s_atoms);
+GdkGeometry* asCGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints);
+GdkGCValues* asCGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask);
+GdkWindowAttr* asCGdkWindowAttr(USER_OBJECT_ s_attr, GdkWindowAttributesType *mask);
 USER_OBJECT_ asRGdkTimeCoord(GdkTimeCoord *coord, int num_axes);
-GdkRectangle* asGdkRectangle(USER_OBJECT_ s_rect);
+GdkRectangle* asCGdkRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRGdkRectangle(GdkRectangle *rect);
-GdkRgbCmap* asGdkRgbCmap(USER_OBJECT_ s_cmap);
+GdkRgbCmap* asCGdkRgbCmap(USER_OBJECT_ s_cmap);
 USER_OBJECT_ asRGdkRgbCmap(GdkRgbCmap *map);
-GdkKeymapKey* asGdkKeymapKey(USER_OBJECT_ s_key);
+GdkKeymapKey* asCGdkKeymapKey(USER_OBJECT_ s_key);
 USER_OBJECT_ asRGdkKeymapKey(GdkKeymapKey* key);
-GdkPoint* asGdkPoint(USER_OBJECT_ s_point);
+GdkPoint* asCGdkPoint(USER_OBJECT_ s_point);
 USER_OBJECT_ asRGdkPoint(GdkPoint *point);
-GdkSegment* asGdkSegment(USER_OBJECT_ s_segment);
-GdkColor* asGdkColor(USER_OBJECT_ s_color);
+GdkSegment* asCGdkSegment(USER_OBJECT_ s_segment);
+GdkColor* asCGdkColor(USER_OBJECT_ s_color);
 USER_OBJECT_ asRGdkColor(GdkColor* color);
 USER_OBJECT_ asRGdkNativeWindow(GdkNativeWindow window);
-GdkNativeWindow asGdkNativeWindow(USER_OBJECT_ s_window);
+GdkNativeWindow asCGdkNativeWindow(USER_OBJECT_ s_window);
 USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 USER_OBJECT_ toRGdkEvent(GdkEvent *event, gboolean finalize);
 USER_OBJECT_ toRGdkFont(GdkFont *font);
-GdkTrapezoid * asGdkTrapezoid(USER_OBJECT_ s_trapezoid);
+GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
 
 /* GTK */
 
-GtkTargetEntry* asGtkTargetEntry(USER_OBJECT_ s_entry);
-GtkFileFilterInfo* asGtkFileFilterInfo(USER_OBJECT_ s_info);
-GtkSettingsValue* asGtkSettingsValue(USER_OBJECT_ s_value);
-GtkStockItem* asGtkStockItem(USER_OBJECT_ s_item);
+GtkTargetEntry* asCGtkTargetEntry(USER_OBJECT_ s_entry);
+GtkFileFilterInfo* asCGtkFileFilterInfo(USER_OBJECT_ s_info);
+GtkSettingsValue* asCGtkSettingsValue(USER_OBJECT_ s_value);
+GtkStockItem* asCGtkStockItem(USER_OBJECT_ s_item);
 USER_OBJECT_ asRGtkStockItem(GtkStockItem *item);
-GtkItemFactoryEntry* asGtkItemFactoryEntry(USER_OBJECT_ s_entry);
-GtkItemFactoryEntry* asGtkItemFactoryEntry2(USER_OBJECT_ s_entry);
+GtkItemFactoryEntry* asCGtkItemFactoryEntry(USER_OBJECT_ s_entry);
+GtkItemFactoryEntry* asCGtkItemFactoryEntry2(USER_OBJECT_ s_entry);
 GtkItemFactoryEntry* R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype);
-GtkAllocation* asGtkAllocation(USER_OBJECT_ s_alloc);
+GtkAllocation* asCGtkAllocation(USER_OBJECT_ s_alloc);
 USER_OBJECT_ asRGtkAllocation(GtkAllocation* alloc);
 
 /* ATK */
 
-AtkAttributeSet* asAtkAttributeSet(USER_OBJECT_ s_set);
-AtkAttribute* asAtkAttribute(USER_OBJECT_ s_attr);
+AtkAttributeSet* asCAtkAttributeSet(USER_OBJECT_ s_set);
+AtkAttribute* asCAtkAttribute(USER_OBJECT_ s_attr);
 USER_OBJECT_ asRAtkAttributeSet(AtkAttributeSet* set);
 USER_OBJECT_ asRAtkAttribute(AtkAttribute* attr);
-AtkTextRectangle* asAtkTextRectangle(USER_OBJECT_ s_rect);
+AtkTextRectangle* asCAtkTextRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRAtkTextRectangle(AtkTextRectangle *rect);
 USER_OBJECT_ asRAtkTextRange(AtkTextRange *range);
 
 /* Pango */
 
-PangoRectangle* asPangoRectangle(USER_OBJECT_ s_rect);
+PangoRectangle* asCPangoRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRPangoRectangle(PangoRectangle *rect);
 USER_OBJECT_ asRPangoAttribute(PangoAttribute *attr);
 USER_OBJECT_ toRPangoAttribute(PangoAttribute *attr, gboolean finalize);
 
 /* Cairo */
 USER_OBJECT_ asRCairoPath(cairo_path_t *path);
-cairo_path_t * asCairoPath(USER_OBJECT_ s_path);
-cairo_glyph_t * asCairoGlyph(USER_OBJECT_ s_glyph);
+cairo_path_t * asCCairoPath(USER_OBJECT_ s_path);
+cairo_glyph_t * asCCairoGlyph(USER_OBJECT_ s_glyph);

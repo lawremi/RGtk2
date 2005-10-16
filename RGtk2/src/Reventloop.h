@@ -20,7 +20,7 @@ typedef struct _R_EventLoop R_EventLoop;
   re-registered so that it can be called again.
 */
 typedef int (*R_IdleFunc)(void *);
-/** A definition for the timer action routines. This is the same as R_IdleFunc. */
+/** A definition for the timer action routines. This is the same asC R_IdleFunc. */
 typedef R_IdleFunc R_TimerFunc;
 
 /**
@@ -40,7 +40,7 @@ struct _R_EventLoop {
 
     /** a routine that is called <em>each</em> time the event loop is started. It can
      be used to initialize a toolkit; perform initialization for running the event loop
-     such as maintaining a stack of active instances.
+     such asC maintaining a stack of active instances.
     */
    void (*init)(int *argc, char ***argv);
 
@@ -72,7 +72,7 @@ struct _R_EventLoop {
       arbitrary data that is passed to the handler when it is called
       and used to parameterize the actions of that handler.
       S functions can be used by specifying a suitable handler
-      that treates the userData argument as an S function and invokes it.
+      that treates the userData argument asC an S function and invokes it.
      */
    SEXP (*addInput)(int fd, void (*handler)(void *, int, int), void *userData);
 
@@ -82,7 +82,7 @@ struct _R_EventLoop {
        These are essentially background events that should return control
        very rapidly.
       S functions can be used by specifying a suitable handler
-      that treates the userData argument as an S function and invokes it.
+      that treates the userData argument asC an S function and invokes it.
     */
    SEXP (*addIdle)(R_IdleFunc, void *userData);
 
@@ -108,15 +108,15 @@ struct _R_EventLoop {
        a field for storing data used by the event loop to perform its duties.
        This can be used in a total event-loop implementation specific manner.
        Unfortunately, without C++ classes, it is hard to get at this variable
-       without assuming it is in the active event loop (R_eloop).
+       without asCsuming it is in the active event loop (R_eloop).
        This does allow us to place instance-specific data within each instance
        of the same event loop structure. For example, if we have two <em>copies</em>
        of the Tcl event loop, we can store different data there. As each one is made
        the active event loop, the methods can find their specific instance of the data.
        <p>
-       If we wanted to make the data available to the methods without assuming
+       If we wanted to make the data available to the methods without asCsuming
        the event loop is the active one, we need to add an argument to each method.
-       This may be important if we want to run an event loop as a sub-event loop
+       This may be important if we want to run an event loop asC a sub-event loop
        (e.g. nest Gtk inside Tcl) using these structures and not swap it onto the
         R_eloop variable.
      */

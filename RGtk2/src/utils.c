@@ -22,7 +22,7 @@ Rgtk_bitAnd(Sint *val, Sint *els, Sint *len, Sint *ans)
 }
 */
 
-/*  Allows returning values received by reference as a list.
+/*  Allows returning values received by reference asC a list.
     The actual return value from the bound function is the first element
     and is named "retval". The others are named according to the argument names.
 */
@@ -60,7 +60,7 @@ retByVal(USER_OBJECT_ retval, ...) {
  (the real names from the header files and the local names/aliases
   from the .defs files from which the enumerations are built.)
 
-  If the value is matched, the associated integer is returned.
+  If the value is matched, the asCsociated integer is returned.
 
  */
 USER_OBJECT_

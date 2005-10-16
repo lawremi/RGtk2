@@ -12,18 +12,18 @@ asRGdkAtom(GdkAtom val)
   return(ans);
 }
 GdkAtom
-asGdkAtom(USER_OBJECT_ s_atom)
+asCGdkAtom(USER_OBJECT_ s_atom)
 {
     GdkAtom atom;
     if (TYPEOF(s_atom) == EXTPTRSXP)
         atom = GDK_POINTER_TO_ATOM(getPtrValue(s_atom));
     else if (IS_NUMERIC(s_atom))
-        atom = _GDK_MAKE_ATOM(asInteger(s_atom));
-    else atom = gdk_atom_intern(asString(s_atom), FALSE);
+        atom = _GDK_MAKE_ATOM(asCInteger(s_atom));
+    else atom = gdk_atom_intern(asCString(s_atom), FALSE);
     return(atom);
 }
 GdkAtom*
-asGdkAtomArray(USER_OBJECT_ s_atoms)
+asCGdkAtomArray(USER_OBJECT_ s_atoms)
 {
     int i;
     USER_OBJECT_ s_array;
@@ -36,7 +36,7 @@ asGdkAtomArray(USER_OBJECT_ s_atoms)
 
     array = (GdkAtom *)R_alloc(GET_LENGTH(s_array), sizeof(GdkAtom));
     for (i = 0; i < GET_LENGTH(s_array); i++) {
-        array[i] = asGdkAtom(VECTOR_ELT(s_array, i));
+        array[i] = asCGdkAtom(VECTOR_ELT(s_array, i));
     }
 
     UNPROTECT(1);
@@ -45,21 +45,21 @@ asGdkAtomArray(USER_OBJECT_ s_atoms)
 }
 
 GdkWindowAttr*
-asGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
+asCGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
 {
 	GdkWindowAttr* attr = (GdkWindowAttr*)R_alloc(1, sizeof(GdkWindowAttr));
 	gchar *title;
 	
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 0)) > 0) {
 		*mask |= GDK_WA_TITLE;
-		attr->title = asString(VECTOR_ELT(s_window_attr, 0));
+		attr->title = asCString(VECTOR_ELT(s_window_attr, 0));
 	}
-	attr->event_mask = asInteger(VECTOR_ELT(s_window_attr, 1));
-	attr->x = asInteger(VECTOR_ELT(s_window_attr, 2));
-	attr->y = asInteger(VECTOR_ELT(s_window_attr, 3));
-	attr->width = asInteger(VECTOR_ELT(s_window_attr, 4));
-	attr->height = asInteger(VECTOR_ELT(s_window_attr, 5));
-	attr->wclass = asEnum(VECTOR_ELT(s_window_attr, 6), GDK_TYPE_WINDOW_CLASS);
+	attr->event_mask = asCInteger(VECTOR_ELT(s_window_attr, 1));
+	attr->x = asCInteger(VECTOR_ELT(s_window_attr, 2));
+	attr->y = asCInteger(VECTOR_ELT(s_window_attr, 3));
+	attr->width = asCInteger(VECTOR_ELT(s_window_attr, 4));
+	attr->height = asCInteger(VECTOR_ELT(s_window_attr, 5));
+	attr->wclass = asCEnum(VECTOR_ELT(s_window_attr, 6), GDK_TYPE_WINDOW_CLASS);
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 7)) > 0) {
 		*mask |= GDK_WA_VISUAL;
 		attr->visual = GDK_VISUAL(getPtrValue(VECTOR_ELT(s_window_attr, 7)));
@@ -68,24 +68,24 @@ asGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
 		*mask |= GDK_WA_COLORMAP;
 		attr->colormap = GDK_COLORMAP(getPtrValue(VECTOR_ELT(s_window_attr, 8)));
 	}
-	attr->window_type = asEnum(VECTOR_ELT(s_window_attr, 9), GDK_TYPE_WINDOW_TYPE);
+	attr->window_type = asCEnum(VECTOR_ELT(s_window_attr, 9), GDK_TYPE_WINDOW_TYPE);
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 10)) > 0) {
 		*mask |= GDK_WA_CURSOR;
 		attr->cursor = (GdkCursor*)getPtrValue(VECTOR_ELT(s_window_attr, 10));
 	}
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 11)) > 0) {
 		*mask |= GDK_WA_WMCLASS;
-		attr->wmclass_name = asString(VECTOR_ELT(s_window_attr, 11));
-		attr->wmclass_class = asString(VECTOR_ELT(s_window_attr, 12));
+		attr->wmclass_name = asCString(VECTOR_ELT(s_window_attr, 11));
+		attr->wmclass_class = asCString(VECTOR_ELT(s_window_attr, 12));
 	}
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 13)) > 0) {
 		*mask |= GDK_WA_NOREDIR;
-		attr->override_redirect = asLogical(VECTOR_ELT(s_window_attr, 13));
+		attr->override_redirect = asCLogical(VECTOR_ELT(s_window_attr, 13));
 	}
 	return(attr);
 }
 GdkGeometry*
-asGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints)
+asCGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints)
 {
     GdkGeometry* geom = (GdkGeometry*)R_alloc(1, sizeof(GdkGeometry));
     *hints = 0;
@@ -122,17 +122,17 @@ asGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints)
 }
 
 GdkGCValues*
-asGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
+asCGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
 {
     GdkGCValues* values = (GdkGCValues*)R_alloc(1, sizeof(GdkGCValues));
     *mask = 0;
     if (GET_LENGTH(VECTOR_ELT(s_values, 0)) > 0) {
         *mask |= GDK_GC_FOREGROUND;
-        values->foreground = *asGdkColor(VECTOR_ELT(s_values, 0));
+        values->foreground = *asCGdkColor(VECTOR_ELT(s_values, 0));
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 1)) > 0) {
         *mask |= GDK_GC_BACKGROUND;
-        values->background = *asGdkColor(VECTOR_ELT(s_values, 1));
+        values->background = *asCGdkColor(VECTOR_ELT(s_values, 1));
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 2)) > 0) {
         *mask |= GDK_GC_FONT;
@@ -251,7 +251,7 @@ asRGdkTimeCoord(GdkTimeCoord* coord, int num_axes)
 }
 
 GdkRectangle*
-asGdkRectangle(USER_OBJECT_ s_rect)
+asCGdkRectangle(USER_OBJECT_ s_rect)
 {
     GdkRectangle* rect;
 
@@ -286,7 +286,7 @@ asRGdkRectangle(GdkRectangle *rect)
 }
 
 GdkRgbCmap*
-asGdkRgbCmap(USER_OBJECT_ s_cmap)
+asCGdkRgbCmap(USER_OBJECT_ s_cmap)
 {
     int i;
     GdkRgbCmap* cmap;
@@ -307,7 +307,7 @@ asRGdkRgbCmap(GdkRgbCmap *map)
 }
 
 GdkKeymapKey*
-asGdkKeymapKey(USER_OBJECT_ s_key)
+asCGdkKeymapKey(USER_OBJECT_ s_key)
 {
     GdkKeymapKey* key;
 
@@ -339,7 +339,7 @@ asRGdkKeymapKey(GdkKeymapKey* key)
 }
 
 GdkPoint*
-asGdkPoint(USER_OBJECT_ s_point)
+asCGdkPoint(USER_OBJECT_ s_point)
 {
     GdkPoint* point;
 
@@ -369,7 +369,7 @@ asRGdkPoint(GdkPoint *point)
 }
 
 GdkSegment*
-asGdkSegment(USER_OBJECT_ s_segment)
+asCGdkSegment(USER_OBJECT_ s_segment)
 {
     GdkSegment* segment;
 
@@ -384,7 +384,7 @@ asGdkSegment(USER_OBJECT_ s_segment)
 }
 
 GdkColor*
-asGdkColor(USER_OBJECT_ s_color)
+asCGdkColor(USER_OBJECT_ s_color)
 {
     GdkColor* color;
     int offset = 0;
@@ -393,12 +393,12 @@ asGdkColor(USER_OBJECT_ s_color)
 
     if (GET_LENGTH(s_color) == 4) {
         offset = 1;
-        color->pixel = asNumeric(VECTOR_ELT(s_color, 0));
+        color->pixel = asCNumeric(VECTOR_ELT(s_color, 0));
     }
 
-    color->red = asInteger(VECTOR_ELT(s_color, 0+offset));
-    color->green = asInteger(VECTOR_ELT(s_color, 1+offset));
-    color->blue = asInteger(VECTOR_ELT(s_color, 2+offset));
+    color->red = asCInteger(VECTOR_ELT(s_color, 0+offset));
+    color->green = asCInteger(VECTOR_ELT(s_color, 1+offset));
+    color->blue = asCInteger(VECTOR_ELT(s_color, 2+offset));
 	
 	//Rprintf("rgb: %d %d %d\n", color->red, color->green, color->blue);
 	
@@ -435,7 +435,7 @@ asRGdkNativeWindow(GdkNativeWindow window)
 }
 
 GdkNativeWindow
-asGdkNativeWindow(USER_OBJECT_ s_window)
+asCGdkNativeWindow(USER_OBJECT_ s_window)
 {
     #ifdef GDK_NATIVE_WINDOW_POINTER
     return((GdkNativeWindow)getPtrValue(s_window));
@@ -553,16 +553,16 @@ toRGdkFont(GdkFont *font)
 }
 
 GdkTrapezoid *
-asGdkTrapezoid(USER_OBJECT_ s_trapezoid)
+asCGdkTrapezoid(USER_OBJECT_ s_trapezoid)
 {
 	GdkTrapezoid *trapezoid = (GdkTrapezoid *)R_alloc(1, sizeof(GdkTrapezoid));
 	
-	trapezoid->y1 = asNumeric(VECTOR_ELT(s_trapezoid, 0));
-	trapezoid->x11 = asNumeric(VECTOR_ELT(s_trapezoid, 1));
-	trapezoid->x21 = asNumeric(VECTOR_ELT(s_trapezoid, 2));
-	trapezoid->y2 = asNumeric(VECTOR_ELT(s_trapezoid, 3));
-	trapezoid->x12 = asNumeric(VECTOR_ELT(s_trapezoid, 4));
-	trapezoid->x22 = asNumeric(VECTOR_ELT(s_trapezoid, 5));
+	trapezoid->y1 = asCNumeric(VECTOR_ELT(s_trapezoid, 0));
+	trapezoid->x11 = asCNumeric(VECTOR_ELT(s_trapezoid, 1));
+	trapezoid->x21 = asCNumeric(VECTOR_ELT(s_trapezoid, 2));
+	trapezoid->y2 = asCNumeric(VECTOR_ELT(s_trapezoid, 3));
+	trapezoid->x12 = asCNumeric(VECTOR_ELT(s_trapezoid, 4));
+	trapezoid->x22 = asCNumeric(VECTOR_ELT(s_trapezoid, 5));
 	
 	return(trapezoid);
 }

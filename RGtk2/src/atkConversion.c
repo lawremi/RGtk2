@@ -1,26 +1,26 @@
 #include "conversion.h"
 
 AtkAttributeSet*
-asAtkAttributeSet(USER_OBJECT_ s_set)
+asCAtkAttributeSet(USER_OBJECT_ s_set)
 {
     GSList* list = NULL;
     int i;
 
     for (i = 0; i < GET_LENGTH(s_set); i++)
-        g_slist_append(list, asAtkAttribute(VECTOR_ELT(s_set, i)));
+        g_slist_append(list, asCAtkAttribute(VECTOR_ELT(s_set, i)));
 
     return(list);
 }
 
 AtkAttribute*
-asAtkAttribute(USER_OBJECT_ s_attr)
+asCAtkAttribute(USER_OBJECT_ s_attr)
 {
     AtkAttribute* attr;
 
     attr = (AtkAttribute *)R_alloc(1, sizeof(AtkAttribute));
 
-    attr->name = asString(GET_NAMES(s_attr));
-    attr->value = asString(s_attr);
+    attr->name = asCString(GET_NAMES(s_attr));
+    attr->value = asCString(s_attr);
 
     return(attr);
 }
@@ -55,9 +55,9 @@ asRAtkAttribute(AtkAttribute* attr)
 }
 
 AtkTextRectangle*
-asAtkTextRectangle(USER_OBJECT_ s_rect)
+asCAtkTextRectangle(USER_OBJECT_ s_rect)
 {
-    return (AtkTextRectangle*)asGdkRectangle(s_rect);
+    return (AtkTextRectangle*)asCGdkRectangle(s_rect);
 }
 
 USER_OBJECT_

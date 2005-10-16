@@ -66,7 +66,7 @@ S_gtk_moz_embed_pop_startup()
 USER_OBJECT_
 S_gtk_moz_embed_set_comp_path(USER_OBJECT_ s_aPath)
 {
-	char* aPath = (char*)asString(s_aPath);
+	char* aPath = (char*)asCString(s_aPath);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -80,8 +80,8 @@ S_gtk_moz_embed_set_comp_path(USER_OBJECT_ s_aPath)
 USER_OBJECT_
 S_gtk_moz_embed_set_profile_path(USER_OBJECT_ s_aDir, USER_OBJECT_ s_aName)
 {
-	char* aDir = (char*)asString(s_aDir);
-	char* aName = (char*)asString(s_aName);
+	char* aDir = (char*)asCString(s_aDir);
+	char* aName = (char*)asCString(s_aName);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -96,7 +96,7 @@ USER_OBJECT_
 S_gtk_moz_embed_load_url(USER_OBJECT_ s_object, USER_OBJECT_ s_url)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	const char* url = (const char*)asString(s_url);
+	const char* url = (const char*)asCString(s_url);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -185,10 +185,10 @@ USER_OBJECT_
 S_gtk_moz_embed_render_data(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USER_OBJECT_ s_len, USER_OBJECT_ s_base_uri, USER_OBJECT_ s_mime_type)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	const char* data = (const char*)asString(s_data);
-	guint32 len = (guint32)asNumeric(s_len);
-	const char* base_uri = (const char*)asString(s_base_uri);
-	const char* mime_type = (const char*)asString(s_mime_type);
+	const char* data = (const char*)asCString(s_data);
+	guint32 len = (guint32)asCNumeric(s_len);
+	const char* base_uri = (const char*)asCString(s_base_uri);
+	const char* mime_type = (const char*)asCString(s_mime_type);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -203,8 +203,8 @@ USER_OBJECT_
 S_gtk_moz_embed_open_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_base_uri, USER_OBJECT_ s_mime_type)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	const char* base_uri = (const char*)asString(s_base_uri);
-	const char* mime_type = (const char*)asString(s_mime_type);
+	const char* base_uri = (const char*)asCString(s_base_uri);
+	const char* mime_type = (const char*)asCString(s_mime_type);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -219,8 +219,8 @@ USER_OBJECT_
 S_gtk_moz_embed_append_data(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USER_OBJECT_ s_len)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	const char* data = (const char*)asString(s_data);
-	guint32 len = (guint32)asNumeric(s_len);
+	const char* data = (const char*)asCString(s_data);
+	guint32 len = (guint32)asCNumeric(s_len);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -317,7 +317,7 @@ USER_OBJECT_
 S_gtk_moz_embed_reload(USER_OBJECT_ s_object, USER_OBJECT_ s_flags)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	gint32 flags = (gint32)asInteger(s_flags);
+	gint32 flags = (gint32)asCInteger(s_flags);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -332,7 +332,7 @@ USER_OBJECT_
 S_gtk_moz_embed_set_chrome_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_flags)
 {
 	GtkMozEmbed* object = GTK_MOZ_EMBED(getPtrValue(s_object));
-	guint32 flags = (guint32)asNumeric(s_flags);
+	guint32 flags = (guint32)asCNumeric(s_flags);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 

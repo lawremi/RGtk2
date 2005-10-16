@@ -4,8 +4,8 @@
 /* reason: we need special handling for connecting R functions to signals from the xml */
 
 /* this function connects a signal specified by 'signal_name' with the R 
-   callback embedded in a GClosure as 'user_data'. If the user data in
-   the closure is NULL, then 'connect_object' is used as the user data for the callback.
+   callback embedded in a GClosure asC 'user_data'. If the user data in
+   the closure is NULL, then 'connect_object' is used asC the user data for the callback.
 */
 void
 S_GladeXMLConnectFuncDefault(const gchar *handler_name, GObject *object,
@@ -50,7 +50,7 @@ USER_OBJECT_
 S_glade_xml_signal_connect_data(USER_OBJECT_ s_object, USER_OBJECT_ s_handlername, USER_OBJECT_ s_func, USER_OBJECT_ s_user_data)
 {
         GladeXML* object = GLADE_XML(getPtrValue(s_object));
-		const char* handlername = (const char*)asString(s_handlername);
+		const char* handlername = (const char*)asCString(s_handlername);
 		
 		USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -59,7 +59,7 @@ S_glade_xml_signal_connect_data(USER_OBJECT_ s_object, USER_OBJECT_ s_handlernam
 
         return(_result);
 }
-/* Manually wrap these since GtkSignalFunc is passed - we need to treat it as connectSignal() */
+/* Manually wrap these since GtkSignalFunc is passed - we need to treat it asC connectSignal() */
 USER_OBJECT_
 S_glade_xml_signal_connect(USER_OBJECT_ s_object, USER_OBJECT_ s_handlername, USER_OBJECT_ s_func)
 {
