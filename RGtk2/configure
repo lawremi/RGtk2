@@ -1438,7 +1438,7 @@ if test "${enable_libglade+set}" = set; then
   enableval="$enable_libglade"
   use_libglade=$enableval
 else
-  use_libglade=no
+  use_libglade=yes
 fi;
 
 if test "x$use_libglade" = "xyes"; then
