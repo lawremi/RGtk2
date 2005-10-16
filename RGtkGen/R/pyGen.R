@@ -307,7 +307,7 @@ getGenericTypeAs <- function(x) {
 
 asC <- function(t)
 {
-    paste("as", asRTypeName(t), sep="")
+    paste("asC", asRTypeName(t), sep="")
 }
 asR <- function(t)
 {
@@ -919,7 +919,7 @@ genRCode <-
   #  Generate S code for a function representing the function from the defs
   #  description `fun'.
   #
-function(fun, defs, name, sname, className = NULL, package = "RGtk")
+function(fun, defs, name, sname, className = NULL, package = "RGtk2")
 {
   if(missing(name))
     name <- fun$name
@@ -1045,10 +1045,10 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE)
          args <- nameToSArg(getArrayParamForSize(paramname, params)$name)
      } else fun <- asC(gtype) # primitive type conversion functions ~ 'asType'
  } else if(isEnum(type, defs)) { # enums and flags are converted using GEnum
-    fun <- "asEnum"
+    fun <- "asCEnum"
 	args <- c(args, defs$typecodes[[type]])
  } else if(isFlag(type, defs)) {
-     fun <- "asFlag"
+     fun <- "asCFlag"
     args <- c(args, defs$typecodes[[type]]) 
  } else if (type %in% transparentTypes) { # transparent types ~ 'asType'
     fun <- asC(type)
@@ -1065,23 +1065,23 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE)
  } else if (type == "GtkClipboardClearFunc") { # special destroy func for clipboard stuff
      args <- "S_GtkClipboardClearFunc"
  } else if (type == "GdkAtom[]") { # GdkAtom is truly annoying
-     fun <- "asGdkAtomArray"
+     fun <- "asCGdkAtomArray"
  } else if (isArray(type)) {
      #dtype <- deref(type)
      vtype <- toValidType(deref(dequalify(paramtype)))
      if (isEnum(vtype, defs)) {
-         fun <- "asEnumArray"
+         fun <- "asCEnumArray"
          args <- c(args, vtype, defs$typecodes[[vtype]])
      }  else if (isPrimitiveType(vtype) && getGenericType(vtype) == "string")
-         fun <- "asStringArray"
+         fun <- "asCStringArray"
      else {
          if (vtype %in% transparentTypes && !isPrimitiveType(vtype))
-             fun <- "asArrayRef"
-         else fun <- "asArray"
+             fun <- "asCArrayRef"
+         else fun <- "asCArray"
          args <- c(args, vtype, convertToCType(name, vtype, defs)$fun)
      }
  } else if (type == "gpointer") {
-     fun <- "asGenericData" # for associating some R object with some GObject
+     fun <- "asCGenericData" # for associating some R object with some GObject
  } else {
      fun <- "getPtrValue"
 	 if (isCairoType(type))

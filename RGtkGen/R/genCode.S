@@ -7,7 +7,7 @@ genCode <-
 #
 #
 function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), existingDefs = NULL, verbose=FALSE,
-          libName = filePrefix, package = "RGtk")
+          libName = filePrefix, package = "RGtk2")
 {
 
  toCppSymbol <- function(name) {
@@ -260,7 +260,7 @@ generateCodeFiles <-
   # code during the configuration.
   #
 function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
-          verbose=FALSE, constructorFile = "constructors.R", package = "RGtk", allDefs = NULL)
+          verbose=FALSE, constructorFile = "constructors.R", package = "RGtk2", allDefs = NULL)
 {
    # allDefs becomes the incrementally cumulated collection of definitions across the files.
   if(missing(allDefs)) {
