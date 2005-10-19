@@ -2,8 +2,18 @@
 
 window <- NULL
 
-FOLDER.NAME <- "/usr/share/gtk-2.0/demo/gnome-fs-directory.png"
-FILE.NAME <- "/usr/share/gtk-2.0/demo/gnome-fs-regular.png"
+Prefix <- ""
+prefixes = c("/usr/local", "/usr")
+for(i in prefixes) {
+   if(file.exists(i) && file.exists(paste(i, "share", "gtk-2.0", "demo", "gnome-fs-directory.png", sep = .Platform$file.sep))) {
+      Prefix <- i
+   }
+}
+
+
+FOLDER.NAME <- paste(Prefix, "share", "gtk-2.0", "demo", "gnome-fs-directory.png", sep = .Platform$file.sep)
+FILE.NAME <- paste(Prefix, "share", "gtk-2.0", "demo", "gnome-fs-regular.png", sep = .Platform$file.sep)
+
 
 file.pixbuf <- NULL
 folder.pixbuf <- NULL
