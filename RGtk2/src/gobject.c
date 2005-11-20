@@ -599,6 +599,7 @@ R_internal_getGSignalIds(GType type)
     USER_OBJECT_ ans;
     ids = g_signal_list_ids(type, &n_ids);
 
+	PROTECT(ans = NEW_LIST(n_ids));
     for(i = 0; i < n_ids; i++) {
         SET_VECTOR_ELT(ans, i, R_createGSignalId(ids[i], NULL));
     }
@@ -689,7 +690,7 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
 {
     USER_OBJECT_ sarg;
     USER_OBJECT_ val;
-    USER_OBJECT_ e, tmp, sobj;
+    USER_OBJECT_ e, tmp;
     R_CallbackData *cbdata;
     int errorOccurred = 0;
     int i, numProtects = 0;
@@ -1026,7 +1027,6 @@ GValue *
 createGValueFromSValue(USER_OBJECT_ sval) {
     //GValue *raw = (GValue *)S_alloc(1, sizeof(GValue));
     GValue *raw = (GValue *)g_new0(GValue, 1);
-    int ret = 0;
 
     switch(TYPEOF(sval)) {
       case LGLSXP:

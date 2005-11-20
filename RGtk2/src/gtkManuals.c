@@ -42,8 +42,7 @@ S_gtk_action_group_add_toggle_actions_full(USER_OBJECT_ s_action_group, USER_OBJ
 USER_OBJECT_
 S_gtk_action_group_add_toggle_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_user_data)
 {
-    S_gtk_action_group_add_toggle_actions_full(s_action_group, s_entries, s_user_data);
-
+    return(S_gtk_action_group_add_toggle_actions_full(s_action_group, s_entries, s_user_data));
 }
 
 /* reason: same asC above basically
@@ -51,13 +50,13 @@ S_gtk_action_group_add_toggle_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ 
 USER_OBJECT_
 S_gtk_action_group_add_radio_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_value, USER_OBJECT_ s_on_change, USER_OBJECT_ s_user_data)
 {
-    GtkRadioAction* first;
+    GtkRadioAction* first = NULL;
     GSList *group_list = NULL;
     int i;
 
     GtkActionGroup* group = GTK_ACTION_GROUP(getPtrValue(s_action_group));
     int value = asCInteger(s_value);
-    GtkRadioAction *action;
+    GtkRadioAction *action = NULL;
 
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
 
@@ -119,7 +118,7 @@ S_gtk_action_group_add_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_
 USER_OBJECT_
 S_gtk_action_group_add_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_user_data)
 {
-    S_gtk_action_group_add_actions_full(s_action_group, s_entries, s_user_data);
+    return(S_gtk_action_group_add_actions_full(s_action_group, s_entries, s_user_data));
 }
 
 /* Cannot set row data without a finalizer */
@@ -568,16 +567,16 @@ S_gtk_text_buffer_insert_with_tags(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, U
 
 
 /* supporting function for adding buttons to a dialog */
-static USER_OBJECT_
+USER_OBJECT_
 S_gtk_dialog_add_buttons_valist(GtkDialog *dialog, const gchar *first_button_text, va_list args)
 {
   const gchar* text;
   gint response_id;
 
-  g_return_if_fail(GTK_IS_DIALOG (dialog));
+  g_return_val_if_fail(GTK_IS_DIALOG (dialog), NULL_USER_OBJECT);
 
   if (first_button_text == NULL)
-    return;
+    return NULL_USER_OBJECT;
 
   text = first_button_text;
   response_id = asCInteger(va_arg(args, USER_OBJECT_));
@@ -590,6 +589,8 @@ S_gtk_dialog_add_buttons_valist(GtkDialog *dialog, const gchar *first_button_tex
         break;
       response_id = asCInteger(va_arg(args, USER_OBJECT_));
     }
+
+	return(NULL_USER_OBJECT);
 }
 
 /* reason: var args, must reimplement */
@@ -1040,7 +1041,6 @@ S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJE
 {
 	GtkListStore *model = GTK_LIST_STORE(getPtrValue(s_model));
 	gboolean append = asCLogical(s_append);
-	GtkTreePath *path;
 	GtkTreeIter iter;
 	GValue value = { 0, };
 	USER_OBJECT_ col;
@@ -1099,34 +1099,34 @@ S_gtk_tree_model_unload_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_paths, USER_O
 	GtkTreeIter iter;
 	GValue value = { 0, };
 	
-	USER_OBJECT_ main, col;
+	USER_OBJECT_ list;
 	
 	int i, j;
 	int ncols = GET_LENGTH(s_cols);
 	int nrows = GET_LENGTH(s_paths);
 	
-	PROTECT(main = NEW_LIST(ncols));
+	PROTECT(list = NEW_LIST(ncols));
 	for (i = 0; i < ncols; i++)
-		SET_VECTOR_ELT(main, i, NEW_LIST(nrows));
+		SET_VECTOR_ELT(list, i, NEW_LIST(nrows));
 		
 	for (i = 0; i < nrows; i++) {
 		gtk_tree_model_get_iter(model, &iter, (GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, i)));
 		for (j = 0; j < ncols; j++) {
 			gtk_tree_model_get_value(model, &iter, INTEGER_DATA(s_cols)[j], &value);
-			SET_VECTOR_ELT(VECTOR_ELT(main, j), i, asRGValue(&value));
+			SET_VECTOR_ELT(VECTOR_ELT(list, j), i, asRGValue(&value));
 			g_value_unset(&value);
 		}
 	}
 	
 	UNPROTECT(1);
 	
-	return(main);
+	return(list);
 }
 
 USER_OBJECT_
 S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ s_cols)
 {
-	USER_OBJECT_ main;
+	USER_OBJECT_ list;
 	gint i;
 	gint nrows = GET_LENGTH(s_rows);
 	
@@ -1143,15 +1143,15 @@ S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ 
 			valid = gtk_tree_model_iter_next(model, &iter);
 		}
 		
-		PROTECT(main = NEW_LIST(ncols));
+		PROTECT(list = NEW_LIST(ncols));
 		for (i = 0; i < ncols; i++)
-			SET_VECTOR_ELT(main, i, NEW_LIST(nrows));
+			SET_VECTOR_ELT(list, i, NEW_LIST(nrows));
 		
 		gtk_tree_model_get_iter_first(model, &iter);
 		for (i = 0; i < nrows; i++) {
 			for (j = 0; j < ncols; j++) {
 				gtk_tree_model_get_value(model, &iter, INTEGER_DATA(s_cols)[j], &value);
-				SET_VECTOR_ELT(VECTOR_ELT(main, j), i, asRGValue(&value));
+				SET_VECTOR_ELT(VECTOR_ELT(list, j), i, asRGValue(&value));
 				g_value_unset(&value);
 			}
 			gtk_tree_model_iter_next(model, &iter);
@@ -1163,10 +1163,10 @@ S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ 
 			SET_VECTOR_ELT(s_paths, i, 
 				toRPointerWithFinalizer(gtk_tree_path_new_from_indices(INTEGER_DATA(s_rows)[i], -1), 
 					"GtkTreePath", (RPointerFinalizer)gtk_tree_path_free));
-		main = S_gtk_tree_model_unload_paths(s_model, s_paths, s_cols);	
+		list = S_gtk_tree_model_unload_paths(s_model, s_paths, s_cols);	
 	}
 	
 	UNPROTECT(1);
 	
-	return(main);
+	return(list);
 }

@@ -67,7 +67,7 @@ USER_OBJECT_
 S_checkEnum(USER_OBJECT_ val, const char *const localNames[], const char *const realNames[],
                           const int cValues[], int len, const char *const enumName)
 {
-    int i;
+    int i = 0;
     USER_OBJECT_ names, ans = NULL_USER_OBJECT;
     if(IS_INTEGER(val) || IS_NUMERIC(val)) {
         int cval;

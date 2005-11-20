@@ -3,6 +3,9 @@
 
 #include "RSCommon.h"
 
+/* This is only defined to avoid warnings (these functions are sort of private) */
+#define PANGO_ENABLE_BACKEND
+	
 #include <glib.h>
 #include <glib-object.h>
 #include <atk/atk.h>
@@ -22,7 +25,7 @@
 #endif
 
 #ifdef G_OS_WIN32
-    /* My version of mingw-1.1 and cygwin don't provide a definition for ulong. */
+    /* My version of mingw-1.1 and cygwin don't provide a definition for ulong. - DTL */
     typedef unsigned long ulong;
     #include <sys/types.h>
 #else

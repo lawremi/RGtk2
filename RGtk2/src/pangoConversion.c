@@ -15,7 +15,7 @@ asRPangoRectangle(PangoRectangle *rect)
 USER_OBJECT_
 toRPangoAttribute(PangoAttribute *attr, gboolean finalize)
 {
-    char *type;
+    char *type = NULL;
     USER_OBJECT_ result;
 
     switch(attr->klass->type) {
@@ -55,6 +55,12 @@ toRPangoAttribute(PangoAttribute *attr, gboolean finalize)
 		 case PANGO_ATTR_SCALE:
             type = "PangoAttrFloat";
          break;
+		 case PANGO_ATTR_INVALID:
+		 	type = "PangoAttrInvalid";
+		 break;
+		 default:
+		 	PROBLEM "Error converting PangoAttribute: unknown type %d", attr->klass->type
+			ERROR;
 	}
 	
 	RPointerFinalizer finalizer = NULL;
@@ -73,7 +79,7 @@ toRPangoAttribute(PangoAttribute *attr, gboolean finalize)
 USER_OBJECT_
 asRPangoAttribute(PangoAttribute *attr)
 {
-    toRPangoAttribute(attr, TRUE);
+    return(toRPangoAttribute(attr, TRUE));
 }
 
 /*

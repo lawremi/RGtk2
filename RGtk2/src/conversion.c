@@ -142,7 +142,7 @@ asREnum(int value, GType etype)
 USER_OBJECT_
 R_createEnum(int value, const char *enumName)
 {
-    asREnum(value, g_type_from_name(enumName));
+    return(asREnum(value, g_type_from_name(enumName)));
 }
 
 USER_OBJECT_
@@ -164,7 +164,7 @@ asRFlag(guint value, GType ftype)
 USER_OBJECT_
 R_createFlag(int value, const char *flagName)
 {
-    asRFlag(value, g_type_from_name(flagName));
+    return(asRFlag(value, g_type_from_name(flagName)));
 }
 
 

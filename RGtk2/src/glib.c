@@ -238,7 +238,7 @@ R_gTimeoutHandler(R_CallbackData *cbdata)
 
     if(!errorOccurred) {
     if(TYPEOF(sval) != LGLSXP) {
-        fprintf(stderr, "This %s handler (%ud) didn't return a logical value. Removing it.\n");
+        fprintf(stderr, "This handler didn't return a logical value. Removing it.\n");
         fflush(stderr);
         val = FALSE;
     } else

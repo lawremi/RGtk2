@@ -43,3 +43,15 @@ Problems with defs files (as provided by pygtk)
 - Features added to pygtk (compliant to specs): in/out params, user functions, enum/flag values
 - Hacked some type names, like G(S)List[type] to specify the component type and [] indicating array
 - gdk_pixbuf_save_to_buffer is missing
+
+GTK 2.10 changes
+----------------
+`-> Creating explicit bindings at runtime would be impractical
+`-> Cairo and probably GtkMozEmbed would not support introspection 
+	`-> Should cairo be made a separate package? - It has little utility outside of GTK
+	`-> GtkMozEmbed could be a separate package, but it's not convenient
+`-> Syntax tricks like the '$' and '[' operators could allow us to bind to 
+	methods and fields at runtime
+	`-> What about constructors? Need a "gNew" function?
+	`-> What about ordinary functions - relatively few in number, 
+		could be explicitly bound at runtime

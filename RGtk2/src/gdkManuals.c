@@ -170,7 +170,7 @@ S_GdkEventClientGetData(USER_OBJECT_ s_obj)
 
     GdkEventClient *obj;
     gushort data_format;
-    int size, *val;
+    int size = 0, *val = NULL;
 
     obj = getPtrValue(s_obj);
 
@@ -179,15 +179,16 @@ S_GdkEventClientGetData(USER_OBJECT_ s_obj)
     if (data_format == 8) {
         size = 20;
         val = (int *)obj->data.b;
-    }
-    if (data_format == 16) {
+    } else if (data_format == 16) {
         size = 10;
         val = (int *)obj->data.s;
-    }
-    if (data_format == 32) {
+    } else if (data_format == 32) {
         size = 5;
         val = (int *)obj->data.l;
-    }
+    } else {
+		PROBLEM "Unknown data_format %d in GdkEventClient", data_format
+		ERROR;
+	}
 
     _result = asRIntegerArrayWithSize(val, size);
 

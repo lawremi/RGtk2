@@ -320,6 +320,7 @@ USER_OBJECT_ asRGSList(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithRef(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGSListConv(GSList *gslist, ElementConverter converter);
+USER_OBJECT_ asRGError(GError *error);
 
 /* GDK */
 USER_OBJECT_ asRGdkAtom(GdkAtom val);
@@ -346,6 +347,8 @@ USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 USER_OBJECT_ toRGdkEvent(GdkEvent *event, gboolean finalize);
 USER_OBJECT_ toRGdkFont(GdkFont *font);
 GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
+USER_OBJECT_ asRGdkGCValues(GdkGCValues *values);
+USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 
 /* GTK */
 

@@ -48,7 +48,6 @@ GdkWindowAttr*
 asCGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
 {
 	GdkWindowAttr* attr = (GdkWindowAttr*)R_alloc(1, sizeof(GdkWindowAttr));
-	gchar *title;
 	
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 0)) > 0) {
 		*mask |= GDK_WA_TITLE;
@@ -194,6 +193,8 @@ asCGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
         *mask |= GDK_GC_JOIN_STYLE;
         values->join_style = (GdkJoinStyle)INTEGER_DATA(VECTOR_ELT(s_values, 16))[0];
     }
+	
+	return(values);
 }
 
 USER_OBJECT_
@@ -541,7 +542,7 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
 USER_OBJECT_
 asRGdkEvent(GdkEvent *event)
 {
-    toRGdkEvent(event, TRUE);
+    return(toRGdkEvent(event, TRUE));
 }
 
 USER_OBJECT_
