@@ -119,7 +119,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  open(RFuncs, "w")
 
  cat('#include "utils.h"\n#include "conversion.h"\n#include "gobject.h"\n#include "',
-    filePrefix,'Funcs.h"\n#include "userfuncs.h"\n\n\n', file=CFuncs, sep="")
+    filePrefix,'Funcs.h"\n#include "userfuncs.h"\n#include "glib.h"\n\n\n', file=CFuncs, sep="")
  cat("#include \"", package, ".h\"\n\n", file = CFuncs, sep = "")
 
  cat("#ifndef S_", toCppSymbol(filePrefix), "_FUNCS_H\n#define S_", toCppSymbol(filePrefix),"_FUNCS_H\n", file=CHeader, sep="")

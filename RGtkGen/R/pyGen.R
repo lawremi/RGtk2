@@ -341,6 +341,13 @@ function(type)
     } else sub("\\*","",type)
 }
 
+# prepend the extern keyword to a type declaration
+extern <-
+function(type)
+{
+	paste("extern", type)
+}
+
 # find the base type for non-primitive types
 # this just removes qualifiers like 'const' and '*'
 # if complete = T then it also removes array qualifier '[]'
@@ -1255,15 +1262,17 @@ function(name, params, defs)
     found <- which("gpointer" == lapply(sorted, function(x) x$type))
     if (length(found) == 0) { # handles "global" hooks (no user-data)
         data <- paste(type, "_closure", sep="")
+		declaration <- data
         sdata <- "NULL"
     } else {
         if (length(grep("DestroyNotify", getParamTypes(params))) == 0)
             freeData <- TRUE # like for a 'foreach' func
         data <- sorted[[found[[1]]]]$name
+		declaration <- decl("GClosure*", data)
         sdata <- nameToSArg(data)
     }
     coercion <- statement(c(assign(decl(type, name), cast(type, nameToC(type))),
-        assign(decl("GClosure*", data), invoke("R_createGClosure", c(nameToSArg(name), sdata)))))
+        assign(declaration, invoke("R_createGClosure", c(nameToSArg(name), sdata)))))
     list(coercion = coercion, data = data, freeData = freeData)
 }
 
@@ -1570,7 +1579,7 @@ function(fun, defs) {
         dataName <- nameToSArg(data$name)
     } else {
         dataName <- paste(fun$name, "_closure", sep="")
-        declaration <- c(declaration, decl("GClosure*", dataName))
+        declaration <- c(declaration, extern(decl("GClosure*", dataName)))
     }
 
     hasParams <- length(params) > 0
