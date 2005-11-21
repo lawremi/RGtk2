@@ -3,9 +3,25 @@
 #include "gobject.h"
 #include "cairoFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
+
+USER_OBJECT_
+S_cairo_version_string()
+{
+
+	const char* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = cairo_version_string();
+
+	_result = asRString(ans);
+
+	return(_result);
+}
+ 
 
 USER_OBJECT_
 S_cairo_create(USER_OBJECT_ s_target)
@@ -28,10 +44,12 @@ S_cairo_reference(USER_OBJECT_ s_cr)
 {
 	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
 
+	cairo_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	cairo_reference(cr);
+	ans = cairo_reference(cr);
 
+	_result = toRPointerWithCairoRef(ans, "Cairo", cairo);
 
 	return(_result);
 }
@@ -170,6 +188,21 @@ S_cairo_set_tolerance(USER_OBJECT_ s_cr, USER_OBJECT_ s_tolerance)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	cairo_set_tolerance(cr, tolerance);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_set_antialias(USER_OBJECT_ s_cr, USER_OBJECT_ s_antialias)
+{
+	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
+	cairo_antialias_t antialias = (cairo_antialias_t)asCEnum(s_antialias, CAIRO_TYPE_ANTIALIAS);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	cairo_set_antialias(cr, antialias);
 
 
 	return(_result);
@@ -1120,10 +1153,12 @@ S_cairo_font_face_reference(USER_OBJECT_ s_font_face)
 {
 	cairo_font_face_t* font_face = (cairo_font_face_t*)getPtrValue(s_font_face);
 
+	cairo_font_face_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	cairo_font_face_reference(font_face);
+	ans = cairo_font_face_reference(font_face);
 
+	_result = toRPointerWithCairoRef(ans, "CairoFontFace", cairo_font_face);
 
 	return(_result);
 }
@@ -1219,10 +1254,12 @@ S_cairo_scaled_font_reference(USER_OBJECT_ s_scaled_font)
 {
 	cairo_scaled_font_t* scaled_font = (cairo_scaled_font_t*)getPtrValue(s_scaled_font);
 
+	cairo_scaled_font_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	cairo_scaled_font_reference(scaled_font);
+	ans = cairo_scaled_font_reference(scaled_font);
 
+	_result = toRPointerWithCairoRef(ans, "CairoScaledFont", cairo_scaled_font);
 
 	return(_result);
 }
@@ -1337,6 +1374,22 @@ S_cairo_get_tolerance(USER_OBJECT_ s_cr)
 	ans = cairo_get_tolerance(cr);
 
 	_result = asRNumeric(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_get_antialias(USER_OBJECT_ s_cr)
+{
+	cairo_t* cr = (cairo_t*)getPtrValue(s_cr);
+
+	cairo_antialias_t ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = cairo_get_antialias(cr);
+
+	_result = asREnum(ans, CAIRO_TYPE_ANTIALIAS);
 
 	return(_result);
 }
@@ -1574,10 +1627,12 @@ S_cairo_surface_reference(USER_OBJECT_ s_surface)
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
 
+	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	cairo_surface_reference(surface);
+	ans = cairo_surface_reference(surface);
 
+	_result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
 
 	return(_result);
 }
@@ -1677,6 +1732,52 @@ S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_O
 	ans = cairo_surface_set_user_data(surface, key, user_data, destroy);
 
 	_result = asREnum(ans, CAIRO_TYPE_STATUS);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_flush(USER_OBJECT_ s_surface)
+{
+	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	cairo_surface_flush(surface);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_mark_dirty(USER_OBJECT_ s_surface)
+{
+	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	cairo_surface_mark_dirty(surface);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_mark_dirty_rectangle(USER_OBJECT_ s_surface, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	cairo_surface_mark_dirty_rectangle(surface, x, y, width, height);
+
 
 	return(_result);
 }
@@ -1932,10 +2033,12 @@ S_cairo_pattern_reference(USER_OBJECT_ s_pattern)
 {
 	cairo_pattern_t* pattern = (cairo_pattern_t*)getPtrValue(s_pattern);
 
+	cairo_pattern_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	cairo_pattern_reference(pattern);
+	ans = cairo_pattern_reference(pattern);
 
+	_result = toRPointerWithCairoRef(ans, "CairoPattern", cairo_pattern);
 
 	return(_result);
 }

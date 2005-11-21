@@ -12,7 +12,12 @@ CairoStatus<-c("success" = 0,
 	"write-error" = 11,
 	"surface-finished" = 12,
 	"surface-type-mismatch" = 13,
-	"pattern-type-mismatch" = 14)
+	"pattern-type-mismatch" = 14,
+	"invalid-content" = 15,
+	"invalid-format" = 16,
+	"invalid-visual" = 17,
+	"file-not-found" = 18,
+	"invalid-dash" = 19)
 storage.mode(CairoStatus) <- 'integer'
 .CairoStatus<-c("CAIRO_STATUS_SUCCESS" = 0,
 	"CAIRO_STATUS_NO_MEMORY" = 1,
@@ -28,7 +33,12 @@ storage.mode(CairoStatus) <- 'integer'
 	"CAIRO_STATUS_WRITE_ERROR" = 11,
 	"CAIRO_STATUS_SURFACE_FINISHED" = 12,
 	"CAIRO_STATUS_SURFACE_TYPE_MISMATCH" = 13,
-	"CAIRO_STATUS_PATTERN_TYPE_MISMATCH" = 14)
+	"CAIRO_STATUS_PATTERN_TYPE_MISMATCH" = 14,
+	"CAIRO_STATUS_INVALID_CONTENT" = 15,
+	"CAIRO_STATUS_INVALID_FORMAT" = 16,
+	"CAIRO_STATUS_INVALID_VISUAL" = 17,
+	"CAIRO_STATUS_FILE_NOT_FOUND" = 18,
+	"CAIRO_STATUS_INVALID_DASH" = 19)
 storage.mode(.CairoStatus) <- 'integer'
  
 

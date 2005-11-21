@@ -1,4 +1,15 @@
 
+cairoVersionString <-
+function(.flush = TRUE, .depwarn = TRUE)
+{
+	
+
+	w <- .RGtkCall("S_cairo_version_string", PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 cairoCreate <-
 function(target, .flush = TRUE, .depwarn = TRUE)
 {
@@ -128,6 +139,18 @@ function(cr, tolerance, .flush = TRUE, .depwarn = TRUE)
 	tolerance <- as.numeric(tolerance)
 
 	w <- .RGtkCall("S_cairo_set_tolerance", cr, tolerance, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+cairoSetAntialias <-
+function(cr, antialias, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(cr, "Cairo")
+	
+
+	w <- .RGtkCall("S_cairo_set_antialias", cr, antialias, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -1025,6 +1048,17 @@ function(cr, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+cairoGetAntialias <-
+function(cr, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(cr, "Cairo")
+
+	w <- .RGtkCall("S_cairo_get_antialias", cr, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 cairoGetCurrentPoint <-
 function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
 {
@@ -1276,6 +1310,43 @@ function(surface, key, user.data, destroy, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(destroy, "CairoDestroyFunc")
 
 	w <- .RGtkCall("S_cairo_surface_set_user_data", surface, key, user.data, destroy, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+cairoSurfaceFlush <-
+function(surface, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(surface, "CairoSurface")
+
+	w <- .RGtkCall("S_cairo_surface_flush", surface, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+cairoSurfaceMarkDirty <-
+function(surface, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(surface, "CairoSurface")
+
+	w <- .RGtkCall("S_cairo_surface_mark_dirty", surface, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+cairoSurfaceMarkDirtyRectangle <-
+function(surface, x, y, width, height, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(surface, "CairoSurface")
+	x <- as.integer(x)
+	y <- as.integer(y)
+	width <- as.integer(width)
+	height <- as.integer(height)
+
+	w <- .RGtkCall("S_cairo_surface_mark_dirty_rectangle", surface, x, y, width, height, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 

@@ -1,6 +1,9 @@
 #ifndef S_CAIRO_FUNCS_H
 #define S_CAIRO_FUNCS_H
 	USER_OBJECT_
+S_cairo_version_string(); 
+
+	USER_OBJECT_
 S_cairo_create(USER_OBJECT_ s_target); 
 
 	USER_OBJECT_
@@ -32,6 +35,9 @@ S_cairo_set_source_surface(USER_OBJECT_ s_cr, USER_OBJECT_ s_surface, USER_OBJEC
 
 	USER_OBJECT_
 S_cairo_set_tolerance(USER_OBJECT_ s_cr, USER_OBJECT_ s_tolerance); 
+
+	USER_OBJECT_
+S_cairo_set_antialias(USER_OBJECT_ s_cr, USER_OBJECT_ s_antialias); 
 
 	USER_OBJECT_
 S_cairo_set_fill_rule(USER_OBJECT_ s_cr, USER_OBJECT_ s_fill_rule); 
@@ -253,6 +259,9 @@ S_cairo_get_source(USER_OBJECT_ s_cr);
 S_cairo_get_tolerance(USER_OBJECT_ s_cr); 
 
 	USER_OBJECT_
+S_cairo_get_antialias(USER_OBJECT_ s_cr); 
+
+	USER_OBJECT_
 S_cairo_get_current_point(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
 	USER_OBJECT_
@@ -314,6 +323,15 @@ S_cairo_surface_get_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key);
 
 	USER_OBJECT_
 S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data, USER_OBJECT_ s_destroy); 
+
+	USER_OBJECT_
+S_cairo_surface_flush(USER_OBJECT_ s_surface); 
+
+	USER_OBJECT_
+S_cairo_surface_mark_dirty(USER_OBJECT_ s_surface); 
+
+	USER_OBJECT_
+S_cairo_surface_mark_dirty_rectangle(USER_OBJECT_ s_surface, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
 	USER_OBJECT_
 S_cairo_surface_set_device_offset(USER_OBJECT_ s_surface, USER_OBJECT_ s_x_offset, USER_OBJECT_ s_y_offset); 
