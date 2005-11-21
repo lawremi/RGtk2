@@ -119,6 +119,11 @@
 		'("surface-finished" "CAIRO_STATUS_SURFACE_FINISHED")
 		'("surface-type-mismatch" "CAIRO_STATUS_SURFACE_TYPE_MISMATCH")
 		'("pattern-type-mismatch" "CAIRO_STATUS_PATTERN_TYPE_MISMATCH")
+		'("invalid-content" "CAIRO_STATUS_INVALID_CONTENT")
+		'("invalid-format" "CAIRO_STATUS_INVALID_FORMAT")
+		'("invalid-visual" "CAIRO_STATUS_INVALID_VISUAL")
+		'("file-not-found" "CAIRO_STATUS_FILE_NOT_FOUND")
+		'("invalid-dash" "CAIRO_STATUS_INVALID_DASH")
 	)
 )
 
@@ -307,6 +312,11 @@
 
 ;; From /usr/include/cairo/cairo.h
 
+(define-function cairo_version_string
+  (c-name "cairo_version_string")
+  (return-type "const-char*")
+)
+
 (define-function cairo_create
   (c-name "cairo_create")
   (is-constructor-of "cairo_t")
@@ -318,7 +328,7 @@
 
 (define-function cairo_reference
   (c-name "cairo_reference")
-  (return-type "none")
+  (return-type "cairo_t*")
   (parameters
     '("cairo_t*" "cr")
   )
@@ -406,6 +416,15 @@
   (parameters
     '("cairo_t*" "cr")
     '("double" "tolerance")
+  )
+)
+
+(define-function cairo_set_antialias
+  (c-name "cairo_set_antialias")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("cairo_antialias_t" "antialias")
   )
 )
 
@@ -978,7 +997,7 @@
  
 (define-function cairo_font_face_reference
   (c-name "cairo_font_face_reference")
-  (return-type "none")
+  (return-type "cairo_font_face_t*")
   (parameters
     '("cairo_font_face_t*" "font_face")
   )
@@ -1034,7 +1053,7 @@
 
 (define-function cairo_scaled_font_reference
   (c-name "cairo_scaled_font_reference")
-  (return-type "none")
+  (return-type "cairo_scaled_font_t*")
   (parameters
     '("cairo_scaled_font_t*" "scaled_font")
   )
@@ -1095,6 +1114,14 @@
 (define-function cairo_get_tolerance
   (c-name "cairo_get_tolerance")
   (return-type "double")
+  (parameters
+    '("cairo_t*" "cr")
+  )
+)
+
+(define-function cairo_get_antialias
+  (c-name "cairo_get_antialias")
+  (return-type "cairo_antialias_t")
   (parameters
     '("cairo_t*" "cr")
   )
@@ -1232,7 +1259,7 @@
 
 (define-function cairo_surface_reference
   (c-name "cairo_surface_reference")
-  (return-type "none")
+  (return-type "cairo_surface_t*")
   (parameters
     '("cairo_surface_t*" "surface")
   )
@@ -1290,6 +1317,34 @@
     '("const-cairo_user_data_key_t*" "key")
     '("gpointer" "user_data")
     '("cairo_destroy_func_t" "destroy")
+  )
+)
+
+(define-function cairo_surface_flush
+  (c-name "cairo_surface_flush")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+)
+
+(define-function cairo_surface_mark_dirty
+  (c-name "cairo_surface_mark_dirty")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+)
+
+(define-function cairo_surface_mark_dirty_rectangle
+  (c-name "cairo_surface_mark_dirty_rectangle")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+    '("int" "x")
+    '("int" "y")
+    '("int" "width")
+    '("int" "height")
   )
 )
 
@@ -1439,7 +1494,7 @@
 
 (define-function cairo_pattern_reference
   (c-name "cairo_pattern_reference")
-  (return-type "none")
+  (return-type "cairo_pattern_t*")
   (parameters
     '("cairo_pattern_t*" "pattern")
   )
