@@ -30,6 +30,7 @@ cairo_status_get_type (void)
       { CAIRO_STATUS_INVALID_FORMAT, "CAIRO_STATUS_INVALID_FORMAT", "invalid-format" },
       { CAIRO_STATUS_INVALID_VISUAL, "CAIRO_STATUS_INVALID_VISUAL", "invalid-visual" },
       { CAIRO_STATUS_FILE_NOT_FOUND, "CAIRO_STATUS_FILE_NOT_FOUND", "file-not-found" },
+      { CAIRO_STATUS_INVALID_DASH, "CAIRO_STATUS_INVALID_DASH", "invalid-dash" },
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("CairoStatus", values);
