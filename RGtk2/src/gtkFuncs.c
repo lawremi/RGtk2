@@ -6074,7 +6074,8 @@ USER_OBJECT_
 S_gtk_color_selection_set_change_palette_hook(USER_OBJECT_ s_func)
 {
 	GtkColorSelectionChangePaletteFunc func = (GtkColorSelectionChangePaletteFunc)S_GtkColorSelectionChangePaletteFunc;
-	GtkColorSelectionChangePaletteFunc_closure = R_createGClosure(s_func, NULL);
+	extern GClosure* 	GtkColorSelectionChangePaletteFunc_closure;
+GtkColorSelectionChangePaletteFunc_closure = R_createGClosure(s_func, NULL);
 
 	GtkColorSelectionChangePaletteFunc ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -6091,7 +6092,8 @@ USER_OBJECT_
 S_gtk_color_selection_set_change_palette_with_screen_hook(USER_OBJECT_ s_func)
 {
 	GtkColorSelectionChangePaletteWithScreenFunc func = (GtkColorSelectionChangePaletteWithScreenFunc)S_GtkColorSelectionChangePaletteWithScreenFunc;
-	GtkColorSelectionChangePaletteWithScreenFunc_closure = R_createGClosure(s_func, NULL);
+	extern GClosure* 	GtkColorSelectionChangePaletteWithScreenFunc_closure;
+GtkColorSelectionChangePaletteWithScreenFunc_closure = R_createGClosure(s_func, NULL);
 
 	GtkColorSelectionChangePaletteWithScreenFunc ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;

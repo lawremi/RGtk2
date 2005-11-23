@@ -115,6 +115,7 @@ S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, g
 } 
 
 
+	GClosure* GtkColorSelectionChangePaletteFunc_closure;
 void
 S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
 {
@@ -130,6 +131,7 @@ S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
 } 
 
 
+	GClosure* GtkColorSelectionChangePaletteWithScreenFunc_closure;
 void
 S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors)
 {

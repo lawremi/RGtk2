@@ -22,12 +22,10 @@ S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, g
 S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, gint s_n_atoms, gpointer s_data); 
 
 	void
-S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors);
-	extern GClosure* GtkColorSelectionChangePaletteFunc_closure; 
+S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors); 
 
 	void
-S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors);
-	extern GClosure* GtkColorSelectionChangePaletteWithScreenFunc_closure; 
+S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors); 
 
 	gboolean
 S_GtkCTreeGNodeFunc(GtkCTree* s_ctree, guint s_depth, GNode* s_gnode, GtkCTreeNode* s_cnode, gpointer s_data); 
