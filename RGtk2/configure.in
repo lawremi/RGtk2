@@ -55,7 +55,6 @@ AC_SUBST(INSTALL_DIR)
 
 AC_SUBST(DEFINES)
 
-AC_OUTPUT(src/Makevars cleanup)
-chmod +x cleanup
+AC_OUTPUT(src/Makevars)
 
 
