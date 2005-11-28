@@ -13,8 +13,7 @@ extern  __declspec(dllimport) void (* R_tcldo)();
 void
 R_gtk_handle_events()
 {
-  gboolean block = 0;
-  gtk_main_iteration_do(block);
+  R_gtk_eventHandler(NULL);
 }
 
 void
