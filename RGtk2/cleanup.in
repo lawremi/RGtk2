@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd src
-${MAKE-gmake} -f GNUmakefile.lib R_PACKAGE_DIR=@R_PACKAGE_DIR@
-
