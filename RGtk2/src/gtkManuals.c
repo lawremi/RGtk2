@@ -982,6 +982,20 @@ S_gtk_tree_store_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJE
 
 	return(_result);
 }
+
+/* reason: varargs, this time for tree store */
+USER_OBJECT_
+S_gtk_tree_store_set(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_cols, USER_OBJECT_ s_values)
+{
+		gint i;
+        USER_OBJECT_ _result = NULL_USER_OBJECT;
+        for (i = 0; i < GET_LENGTH(s_cols); i++)
+            S_gtk_tree_store_set_value(s_object, s_iter, asRInteger(INTEGER_DATA(s_cols)[i]), 
+				VECTOR_ELT(s_values, i));
+
+        return(_result);
+}
+
 USER_OBJECT_
 S_gtk_container_child_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_property_name, USER_OBJECT_ s_value)
 {
