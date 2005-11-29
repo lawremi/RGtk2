@@ -11,16 +11,16 @@ extern  __declspec(dllimport) void (* R_tcldo)();
 #endif
 
 void
-R_gtk_handle_events()
-{
-  R_gtk_eventHandler(NULL);
-}
-
-void
 R_gtk_eventHandler(void *userData)
 {
  while (gtk_events_pending())
     gtk_main_iteration();
+}
+
+void
+R_gtk_handle_events()
+{
+  R_gtk_eventHandler(NULL);
 }
 
 void
