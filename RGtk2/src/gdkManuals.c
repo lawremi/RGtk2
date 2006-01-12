@@ -213,10 +213,10 @@ S_gdk_pixbuf_get_pixels(USER_OBJECT_ s_object)
     return(_result);
 }
 
-/* reason: GdkBitmap is an arbitrary pointer asC defined by the API, but in this
+/* reason: GdkBitmap is an arbitrary pointer as defined by the API, but in this
 	case we know it is a GObject (and so this is its constructor)
 */
-USER_OBJECT_
+/*USER_OBJECT_
 S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
         GdkDrawable* drawable = GET_LENGTH(s_drawable) == 0 ? NULL : GDK_DRAWABLE(getPtrValue(s_drawable));
@@ -232,7 +232,7 @@ S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER
         _result = toRPointerWithFinalizer(ans, "GdkBitmap", (RPointerFinalizer) g_object_unref);
 
         return(_result);
-}
+}*/
 
 /* reason: GdkWindowAttr needs mask handling */
 USER_OBJECT_
@@ -372,4 +372,126 @@ S_gdk_pixbuf_render_pixmap_and_mask_for_colormap(USER_OBJECT_ s_object, USER_OBJ
 
         return(_result);
 }
+/* reason: when a color is allocated, the pixel field is set, so we must return the color as part of a list */
+USER_OBJECT_
+S_gdk_colormap_alloc_color(USER_OBJECT_ s_object, USER_OBJECT_ s_color, USER_OBJECT_ s_writeable, USER_OBJECT_ s_best_match)
+{
+	GdkColormap* object = GDK_COLORMAP(getPtrValue(s_object));
+	GdkColor* color = asCGdkColor(s_color);
+	gboolean writeable = (gboolean)asCLogical(s_writeable);
+	gboolean best_match = (gboolean)asCLogical(s_best_match);
 
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_colormap_alloc_color(object, color, writeable, best_match);
+
+	_result = retByVal(asRLogical(ans), "color", asRGdkColor(color));
+
+	return(_result);
+}
+/* reason: as above, the pixel field is set when found, must return it */
+USER_OBJECT_
+S_gdk_rgb_find_color(USER_OBJECT_ s_colormap, USER_OBJECT_ s_color)
+{
+        GdkColormap* colormap = GDK_COLORMAP(getPtrValue(s_colormap));
+        GdkColor* color = asCGdkColor(s_color);
+
+        USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+        gdk_rgb_find_color(colormap, color);
+
+		_result = asRGdkColor(color);
+		
+        return(_result);
+}
+
+/* reason: the rowstride is incorrectly identified as the buffer length */
+USER_OBJECT_
+S_gdk_draw_rgb_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_rgb_buf, USER_OBJECT_ s_rowstride)
+{
+	GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
+	GdkGC* gc = GDK_GC(getPtrValue(s_gc));
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	gint width = (gint)asCInteger(s_width);
+	gint height = (gint)asCInteger(s_height);
+	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
+	guchar* rgb_buf = (guchar*)asCArray(s_rgb_buf, guchar, asCInteger);
+	gint rowstride = (gint)asCInteger(s_rowstride);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_draw_rgb_image(object, gc, x, y, width, height, dith, rgb_buf, rowstride);
+
+
+	return(_result);
+}
+
+/* reason: if image is NULL, a new GdkImage is allocated, otherwise image is modified */
+USER_OBJECT_
+S_gdk_drawable_copy_to_image(USER_OBJECT_ s_object, USER_OBJECT_ s_image, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+        GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
+        GdkImage* image = GET_LENGTH(s_image) == 0 ? NULL : GDK_IMAGE(getPtrValue(s_image));
+        gint src_x = (gint)asCInteger(s_src_x);
+        gint src_y = (gint)asCInteger(s_src_y);
+        gint dest_x = (gint)asCInteger(s_dest_x);
+        gint dest_y = (gint)asCInteger(s_dest_y);
+        gint width = (gint)asCInteger(s_width);
+        gint height = (gint)asCInteger(s_height);
+
+        GdkImage* ans;
+        USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+        ans = gdk_drawable_copy_to_image(object, image, src_x, src_y, dest_x, dest_y, width, height);
+
+		if (image)
+			_result = toRPointerWithRef(ans, "GdkImage");
+		else _result = toRPointerWithFinalizer(ans, "GdkImage", (RPointerFinalizer)g_object_unref);
+
+        return(_result);
+}
+/* reason: need to treat data as raw */
+USER_OBJECT_
+S_gdk_pixbuf_save_to_bufferv(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_option_keys, USER_OBJECT_ s_option_values)
+{
+        GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+        const char* type = (const char*)asCString(s_type);
+        char** option_keys = (char**)asCStringArray(s_option_keys);
+        char** option_values = (char**)asCStringArray(s_option_values);
+		gint i;
+
+        USER_OBJECT_ _result = NULL_USER_OBJECT;
+        gchar* buffer = NULL;
+        gsize buffer_size;
+        GError* error = NULL;
+
+        gdk_pixbuf_save_to_bufferv(object, &buffer, &buffer_size, type, option_keys, option_values, &error);
+
+		PROTECT(_result = allocVector(RAWSXP, buffer_size));
+		
+		for (i = 0; i < buffer_size; i++)
+			RAW(_result)[i] = (Rbyte)buffer[i];
+		
+        _result = retByVal(NULL_USER_OBJECT, "buffer", _result, "buffer_size", asRNumeric(buffer_size), "error", asRGError(error), NULL);
+        CLEANUP(g_error_free, error);
+		CLEANUP(g_free, buffer);
+		
+		UNPROTECT(1);
+        return(_result);
+}
+/* reason: needed to get the GdkPixbuf error quark */
+USER_OBJECT_
+S_gdk_pixbuf_error_quark()
+{
+
+	GQuark ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_error_quark();
+
+	_result = asRGQuark(ans);
+
+	return(_result);
+}

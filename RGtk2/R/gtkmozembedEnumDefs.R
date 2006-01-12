@@ -8,6 +8,7 @@ GtkMozEmbedProgressFlags<-c("start" = 1,
 	"is-network" = 262144,
 	"is-window" = 524288)
 storage.mode(GtkMozEmbedProgressFlags) <- 'numeric'
+class(GtkMozEmbedProgressFlags) <- 'enums'
 .GtkMozEmbedProgressFlags<-c("GTK_MOZ_EMBED_FLAG_START" = 1,
 	"GTK_MOZ_EMBED_FLAG_REDIRECTING" = 2,
 	"GTK_MOZ_EMBED_FLAG_TRANSFERRING" = 4,
@@ -18,19 +19,20 @@ storage.mode(GtkMozEmbedProgressFlags) <- 'numeric'
 	"GTK_MOZ_EMBED_FLAG_IS_NETWORK" = 262144,
 	"GTK_MOZ_EMBED_FLAG_IS_WINDOW" = 524288)
 storage.mode(.GtkMozEmbedProgressFlags) <- 'numeric'
- 
+class(.GtkMozEmbedProgressFlags) <- 'enums' 
 
 GtkMozEmbedStatusFlags<-c("dns" = 2152398878,
 	"connect" = 2152398861,
 	"timeout" = 2152398862,
 	"usercanceled" = 2152398850)
 storage.mode(GtkMozEmbedStatusFlags) <- 'numeric'
+class(GtkMozEmbedStatusFlags) <- 'enums'
 .GtkMozEmbedStatusFlags<-c("GTK_MOZ_EMBED_STATUS_FAILED_DNS" = 2152398878,
 	"GTK_MOZ_EMBED_STATUS_FAILED_CONNECT" = 2152398861,
 	"GTK_MOZ_EMBED_STATUS_FAILED_TIMEOUT" = 2152398862,
 	"GTK_MOZ_EMBED_STATUS_FAILED_USERCANCELED" = 2152398850)
 storage.mode(.GtkMozEmbedStatusFlags) <- 'numeric'
- 
+class(.GtkMozEmbedStatusFlags) <- 'enums' 
 
 GtkMozEmbedReloadFlags<-c("normal" = 1,
 	"bypasscache" = 2,
@@ -38,13 +40,14 @@ GtkMozEmbedReloadFlags<-c("normal" = 1,
 	"bypassproxyandcache" = 8,
 	"charsetchange" = 16)
 storage.mode(GtkMozEmbedReloadFlags) <- 'numeric'
+class(GtkMozEmbedReloadFlags) <- 'enums'
 .GtkMozEmbedReloadFlags<-c("GTK_MOZ_EMBED_FLAG_RELOADNORMAL" = 1,
 	"GTK_MOZ_EMBED_FLAG_RELOADBYPASSCACHE" = 2,
 	"GTK_MOZ_EMBED_FLAG_RELOADBYPASSPROXY" = 4,
 	"GTK_MOZ_EMBED_FLAG_RELOADBYPASSPROXYANDCACHE" = 8,
 	"GTK_MOZ_EMBED_FLAG_RELOADCHARSETCHANGE" = 16)
 storage.mode(.GtkMozEmbedReloadFlags) <- 'numeric'
- 
+class(.GtkMozEmbedReloadFlags) <- 'enums' 
 
 GtkMozEmbedChromeFlags<-c("defaultchrome" = 1,
 	"windowborderson" = 2,
@@ -67,6 +70,7 @@ GtkMozEmbedChromeFlags<-c("defaultchrome" = 1,
 	"openasdialog" = 1073741824,
 	"openaschrome" = 2147483648)
 storage.mode(GtkMozEmbedChromeFlags) <- 'numeric'
+class(GtkMozEmbedChromeFlags) <- 'enums'
 .GtkMozEmbedChromeFlags<-c("GTK_MOZ_EMBED_FLAG_DEFAULTCHROME" = 1,
 	"GTK_MOZ_EMBED_FLAG_WINDOWBORDERSON" = 2,
 	"GTK_MOZ_EMBED_FLAG_WINDOWCLOSEON" = 4,
@@ -88,5 +92,5 @@ storage.mode(GtkMozEmbedChromeFlags) <- 'numeric'
 	"GTK_MOZ_EMBED_FLAG_OPENASDIALOG" = 1073741824,
 	"GTK_MOZ_EMBED_FLAG_OPENASCHROME" = 2147483648)
 storage.mode(.GtkMozEmbedChromeFlags) <- 'numeric'
- 
+class(.GtkMozEmbedChromeFlags) <- 'enums' 
 

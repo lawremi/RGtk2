@@ -45,6 +45,33 @@ function(fname, root = "NULL", domain = "NULL", .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+gladeXMLSignalConnect <-
+function(object, handlername, func, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GladeXML")
+	handlername <- as.character(handlername)
+	func <- as.function(func)
+
+	w <- .RGtkCall("S_glade_xml_signal_connect", object, handlername, func, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
+gladeXMLSignalConnectData <-
+function(object, handlername, func, user.data, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GladeXML")
+	handlername <- as.character(handlername)
+	func <- as.function(func)
+	
+
+	w <- .RGtkCall("S_glade_xml_signal_connect_data", object, handlername, func, user.data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
 gladeXMLSignalAutoconnect <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {

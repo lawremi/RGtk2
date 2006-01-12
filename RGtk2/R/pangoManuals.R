@@ -1,5 +1,5 @@
 # reason: we need to hide the text length parameter
-PangoGetLogAttrs <-
+pangoGetLogAttrs <-
 function(text, level, language, .flush = TRUE, .depwarn = TRUE)
 {
         text <- as.character(text)
@@ -23,7 +23,7 @@ function(object, text, embedding.level, .flush = TRUE, .depwarn = TRUE)
 }
 
 # reason: removed text length and attrs length parameters
-PangoBreak <-
+pangoBreak <-
 function(text, analysis, .flush = TRUE, .depwarn = TRUE)
 {
         text <- as.character(text)
@@ -88,7 +88,7 @@ function(object, markup, accel.marker, .flush = TRUE, .depwarn = TRUE)
 
         return(w)
 }
-PangoParseMarkup <-
+pangoParseMarkup <-
 function(markup.text, accel.marker, .flush = TRUE, .depwarn = TRUE, .errwarn = TRUE)
 {
         markup.text <- as.character(markup.text)
@@ -129,7 +129,7 @@ function(object, text, analysis, x.pos, .flush = TRUE, .depwarn = TRUE)
 
         return(invisible(w))
 }
-PangoShape <-
+pangoShape <-
 function(text, analysis, glyphs, .flush = TRUE, .depwarn = TRUE)
 {
         text <- as.character(text)
@@ -140,6 +140,22 @@ function(text, analysis, glyphs, .flush = TRUE, .depwarn = TRUE)
         w <- .RGtkCall("S_pango_shape", text, length, analysis, glyphs,  .flush = .flush)
 
         return(w)
+}
+# reason: var-args, just set aligns/positions for each one
+pangoTabArrayNewWithPositions <-
+function(size, positions.in.pixels, ..., .flush = TRUE, .depwarn = TRUE)
+{
+        size <- as.integer(size)
+        positions.in.pixels <- as.logical(positions.in.pixels)
+        args <- list(...)
+		alignments <- args[seq(1,length(args),by=2)]
+		positions <- args[seq(2,length(args),by=2)]
+		
+		array <- pangoTabArrayNew(size, positions.in.pixels)
+		for (i in 1:length(args))
+			pangoTabArraySetTab(array, i-1, alignments[[i]], positions[[i]])
+        
+		return(array)
 }
 
 # these are macros that seem simple enough to reimplement in R
@@ -164,4 +180,10 @@ function(text, analysis, glyphs, .flush = TRUE, .depwarn = TRUE)
 {
 	rect <- as.PangoRectangle(x)
 	rect$x + rect$width
+}
+
+pangoReorderItems <-
+function(logical.items, .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("wouldn't work automatically due to memory management details and the API says its useless")
 }

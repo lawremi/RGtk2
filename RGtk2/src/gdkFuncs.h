@@ -88,7 +88,7 @@ S_gdk_colormap_get_system();
 S_gdk_colormap_get_system_size(); 
 
 	USER_OBJECT_
-S_gdk_colormap_alloc_color(USER_OBJECT_ s_object, USER_OBJECT_ s_color, USER_OBJECT_ s_writeable, USER_OBJECT_ s_best_match); 
+S_gdk_colormap_free_colors(USER_OBJECT_ s_object, USER_OBJECT_ s_colors); 
 
 	USER_OBJECT_
 S_gdk_colormap_query_color(USER_OBJECT_ s_object, USER_OBJECT_ s_pixel); 
@@ -118,6 +118,9 @@ S_gdk_color_change(USER_OBJECT_ s_object, USER_OBJECT_ s_color);
 S_gdk_cursor_new(USER_OBJECT_ s_cursor_type); 
 
 	USER_OBJECT_
+S_gdk_cursor_new_from_name(USER_OBJECT_ s_display, USER_OBJECT_ s_name); 
+
+	USER_OBJECT_
 S_gdk_cursor_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_cursor_type); 
 
 	USER_OBJECT_
@@ -128,6 +131,9 @@ S_gdk_cursor_new_from_pixbuf(USER_OBJECT_ s_display, USER_OBJECT_ s_source, USER
 
 	USER_OBJECT_
 S_gdk_cursor_get_display(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_cursor_get_image(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gdk_display_get_type(); 
@@ -194,6 +200,9 @@ S_gdk_display_get_pointer(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_gdk_display_get_window_at_pointer(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_display_warp_pointer(USER_OBJECT_ s_object, USER_OBJECT_ s_screen, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
 	USER_OBJECT_
 S_gdk_display_open_default_libgtk_only(); 
@@ -757,6 +766,9 @@ S_gdk_pango_attr_stipple_new(USER_OBJECT_ s_stipple);
 S_gdk_pango_attr_embossed_new(USER_OBJECT_ s_embossed); 
 
 	USER_OBJECT_
+S_gdk_pixbuf_render_threshold_alpha(USER_OBJECT_ s_object, USER_OBJECT_ s_bitmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_alpha_threshold); 
+
+	USER_OBJECT_
 S_gdk_pixbuf_render_to_drawable(USER_OBJECT_ s_object, USER_OBJECT_ s_drawable, USER_OBJECT_ s_gc, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dither, USER_OBJECT_ s_x_dither, USER_OBJECT_ s_y_dither); 
 
 	USER_OBJECT_
@@ -767,6 +779,9 @@ S_gdk_pixmap_get_type();
 
 	USER_OBJECT_
 S_gdk_pixmap_new(USER_OBJECT_ s_drawable, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_depth); 
+
+	USER_OBJECT_
+S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_height); 
 
 	USER_OBJECT_
 S_gdk_pixmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_height, USER_OBJECT_ s_depth, USER_OBJECT_ s_fg, USER_OBJECT_ s_bg); 
@@ -796,7 +811,7 @@ S_gdk_pixmap_foreign_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid
 S_gdk_pixmap_lookup_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid); 
 
 	USER_OBJECT_
-S_gdk_atom_name(USER_OBJECT_ s_name); 
+S_gdk_atom_name(USER_OBJECT_ s_atom); 
 
 	USER_OBJECT_
 S_gdk_atom_intern(USER_OBJECT_ s_atom_name, USER_OBJECT_ s_only_if_exists); 
@@ -820,13 +835,16 @@ S_gdk_rgb_gc_set_foreground(USER_OBJECT_ s_gc, USER_OBJECT_ s_rgb);
 S_gdk_rgb_gc_set_background(USER_OBJECT_ s_gc, USER_OBJECT_ s_rgb); 
 
 	USER_OBJECT_
-S_gdk_draw_rgb_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_rgb_buf); 
-
-	USER_OBJECT_
 S_gdk_draw_rgb_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_rgb_buf, USER_OBJECT_ s_xdith, USER_OBJECT_ s_ydith); 
 
 	USER_OBJECT_
 S_gdk_draw_rgb_32_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_buf); 
+
+	USER_OBJECT_
+S_gdk_draw_rgb_32_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_buf, USER_OBJECT_ s_xdith, USER_OBJECT_ s_ydith); 
+
+	USER_OBJECT_
+S_gdk_rgb_colormap_ditherable(USER_OBJECT_ s_colormap); 
 
 	USER_OBJECT_
 S_gdk_draw_gray_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_buf); 
@@ -877,7 +895,13 @@ S_gdk_screen_get_system_visual(USER_OBJECT_ s_object);
 S_gdk_screen_get_rgb_colormap(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
+S_gdk_screen_get_rgba_colormap(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
 S_gdk_screen_get_rgb_visual(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_screen_get_rgba_visual(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gdk_screen_get_root_window(USER_OBJECT_ s_object); 
@@ -929,6 +953,9 @@ S_gdk_screen_get_default();
 
 	USER_OBJECT_
 S_gdk_screen_get_setting(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
+
+	USER_OBJECT_
+S_gdk_spawn_command_line_on_screen(USER_OBJECT_ s_screen, USER_OBJECT_ s_command_line); 
 
 	USER_OBJECT_
 S_gtk_alternative_dialog_button_order(USER_OBJECT_ s_object); 
@@ -1006,6 +1033,9 @@ S_gdk_window_at_pointer();
 S_gdk_window_show(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
+S_gdk_window_show_unraised(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
 S_gdk_window_hide(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
@@ -1019,6 +1049,9 @@ S_gdk_window_resize(USER_OBJECT_ s_object, USER_OBJECT_ s_width, USER_OBJECT_ s_
 
 	USER_OBJECT_
 S_gdk_window_move_resize(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
+
+	USER_OBJECT_
+S_gdk_window_move_region(USER_OBJECT_ s_object, USER_OBJECT_ s_region, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
 	USER_OBJECT_
 S_gdk_window_reparent(USER_OBJECT_ s_object, USER_OBJECT_ s_new_parent, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
@@ -1061,6 +1094,9 @@ S_gdk_window_scroll(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
 
 	USER_OBJECT_
 S_gdk_window_shape_combine_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_shape_mask, USER_OBJECT_ s_offset_x, USER_OBJECT_ s_offset_y); 
+
+	USER_OBJECT_
+S_gdk_window_shape_combine_region(USER_OBJECT_ s_object, USER_OBJECT_ s_shape_region, USER_OBJECT_ s_offset_x, USER_OBJECT_ s_offset_y); 
 
 	USER_OBJECT_
 S_gdk_window_set_child_shapes(USER_OBJECT_ s_object); 
@@ -1106,6 +1142,9 @@ S_gdk_window_set_skip_taskbar_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_modal);
 
 	USER_OBJECT_
 S_gdk_window_set_skip_pager_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_modal); 
+
+	USER_OBJECT_
+S_gdk_window_set_urgency_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_urgent); 
 
 	USER_OBJECT_
 S_gdk_set_sm_client_id(USER_OBJECT_ s_sm_client_id); 
@@ -1333,6 +1372,9 @@ S_gdk_pixbuf_new_from_file(USER_OBJECT_ s_filename);
 S_gdk_pixbuf_new_from_file_at_size(USER_OBJECT_ s_filename, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
 	USER_OBJECT_
+S_gdk_pixbuf_new_from_file_at_scale(USER_OBJECT_ s_filename, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_preserve_aspect_ratio); 
+
+	USER_OBJECT_
 S_gdk_pixbuf_new_from_xpm_data(USER_OBJECT_ s_data); 
 
 	USER_OBJECT_
@@ -1367,6 +1409,12 @@ S_gdk_pixbuf_composite(USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OBJECT_ 
 
 	USER_OBJECT_
 S_gdk_pixbuf_composite_color(USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_dest_width, USER_OBJECT_ s_dest_height, USER_OBJECT_ s_offset_x, USER_OBJECT_ s_offset_y, USER_OBJECT_ s_scale_x, USER_OBJECT_ s_scale_y, USER_OBJECT_ s_interp_type, USER_OBJECT_ s_overall_alpha, USER_OBJECT_ s_check_x, USER_OBJECT_ s_check_y, USER_OBJECT_ s_check_size, USER_OBJECT_ s_color1, USER_OBJECT_ s_color2); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_rotate_simple(USER_OBJECT_ s_object, USER_OBJECT_ s_angle); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_flip(USER_OBJECT_ s_object, USER_OBJECT_ s_horizontal); 
 
 	USER_OBJECT_
 S_gdk_pixbuf_scale_simple(USER_OBJECT_ s_object, USER_OBJECT_ s_dest_width, USER_OBJECT_ s_dest_height, USER_OBJECT_ s_interp_type); 
@@ -1411,7 +1459,16 @@ S_gdk_pixbuf_animation_iter_on_currently_loading_frame(USER_OBJECT_ s_object);
 S_gdk_pixbuf_animation_iter_advance(USER_OBJECT_ s_object, USER_OBJECT_ s_current_time); 
 
 	USER_OBJECT_
+S_gdk_pixbuf_simple_anim_new(USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_rate); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_simple_anim_add_frame(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbuf); 
+
+	USER_OBJECT_
 S_gdk_pixbuf_get_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_set_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key, USER_OBJECT_ s_value); 
 
 	USER_OBJECT_
 S_gdk_pixbuf_get_formats(); 
@@ -1421,6 +1478,18 @@ S_gdk_pixbuf_get_file_info(USER_OBJECT_ s_filename);
 
 	USER_OBJECT_
 S_gdk_pixbuf_format_get_name(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_format_is_scalable(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_format_is_disabled(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_format_set_disabled(USER_OBJECT_ s_object, USER_OBJECT_ s_disabled); 
+
+	USER_OBJECT_
+S_gdk_pixbuf_format_get_license(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gdk_pixbuf_format_get_description(USER_OBJECT_ s_object); 
@@ -1469,5 +1538,59 @@ S_gdk_rectangle_intersect(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2);
 
 	USER_OBJECT_
 S_gdk_rectangle_union(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2); 
+
+	USER_OBJECT_
+S_gdk_region_new(); 
+
+	USER_OBJECT_
+S_gdk_region_polygon(USER_OBJECT_ s_points, USER_OBJECT_ s_fill_rule); 
+
+	USER_OBJECT_
+S_gdk_region_copy(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_region_rectangle(USER_OBJECT_ s_rectangle); 
+
+	USER_OBJECT_
+S_gdk_region_get_clipbox(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_region_get_rectangles(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_region_empty(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gdk_region_equal(USER_OBJECT_ s_object, USER_OBJECT_ s_region2); 
+
+	USER_OBJECT_
+S_gdk_region_point_in(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
+
+	USER_OBJECT_
+S_gdk_region_rect_in(USER_OBJECT_ s_object, USER_OBJECT_ s_rect); 
+
+	USER_OBJECT_
+S_gdk_region_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy); 
+
+	USER_OBJECT_
+S_gdk_region_shrink(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy); 
+
+	USER_OBJECT_
+S_gdk_region_union_with_rect(USER_OBJECT_ s_object, USER_OBJECT_ s_rect); 
+
+	USER_OBJECT_
+S_gdk_region_intersect(USER_OBJECT_ s_object, USER_OBJECT_ s_source2); 
+
+	USER_OBJECT_
+S_gdk_region_union(USER_OBJECT_ s_object, USER_OBJECT_ s_source2); 
+
+	USER_OBJECT_
+S_gdk_region_subtract(USER_OBJECT_ s_object, USER_OBJECT_ s_source2); 
+
+	USER_OBJECT_
+S_gdk_region_xor(USER_OBJECT_ s_object, USER_OBJECT_ s_source2); 
+
+	USER_OBJECT_
+S_gdk_region_spans_intersect_foreach(USER_OBJECT_ s_object, USER_OBJECT_ s_spans, USER_OBJECT_ s_sorted, USER_OBJECT_ s_function, USER_OBJECT_ s_data); 
 
 #endif /* S_GTK_FUNCS_H */ 

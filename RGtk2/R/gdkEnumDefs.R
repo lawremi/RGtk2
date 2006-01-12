@@ -1,8 +1,9 @@
 GdkCursorType<-c("gdk-cursor-is-pixmap" = 0)
 storage.mode(GdkCursorType) <- 'integer'
+class(GdkCursorType) <- 'enums'
 .GdkCursorType<-c("GDK_CURSOR_IS_PIXMAP" = 0)
 storage.mode(.GdkCursorType) <- 'integer'
- 
+class(.GdkCursorType) <- 'enums' 
 
 GdkDragProtocol<-c("motif" = 0,
 	"xdnd" = 1,
@@ -12,6 +13,7 @@ GdkDragProtocol<-c("motif" = 0,
 	"ole2" = 5,
 	"local" = 6)
 storage.mode(GdkDragProtocol) <- 'integer'
+class(GdkDragProtocol) <- 'enums'
 .GdkDragProtocol<-c("GDK_DRAG_PROTO_MOTIF" = 0,
 	"GDK_DRAG_PROTO_XDND" = 1,
 	"GDK_DRAG_PROTO_ROOTWIN" = 2,
@@ -20,17 +22,18 @@ storage.mode(GdkDragProtocol) <- 'integer'
 	"GDK_DRAG_PROTO_OLE2" = 5,
 	"GDK_DRAG_PROTO_LOCAL" = 6)
 storage.mode(.GdkDragProtocol) <- 'integer'
- 
+class(.GdkDragProtocol) <- 'enums' 
 
 GdkFilterReturn<-c("continue" = 0,
 	"translate" = 1,
 	"remove" = 2)
 storage.mode(GdkFilterReturn) <- 'integer'
+class(GdkFilterReturn) <- 'enums'
 .GdkFilterReturn<-c("GDK_FILTER_CONTINUE" = 0,
 	"GDK_FILTER_TRANSLATE" = 1,
 	"GDK_FILTER_REMOVE" = 2)
 storage.mode(.GdkFilterReturn) <- 'integer'
- 
+class(.GdkFilterReturn) <- 'enums' 
 
 GdkEventType<-c("nothing" = 0,
 	"delete" = 1,
@@ -68,6 +71,7 @@ GdkEventType<-c("nothing" = 0,
 	"window-state" = 33,
 	"setting" = 34)
 storage.mode(GdkEventType) <- 'integer'
+class(GdkEventType) <- 'enums'
 .GdkEventType<-c("GDK_NOTHING" = 0,
 	"GDK_DELETE" = 1,
 	"GDK_DESTROY" = 2,
@@ -104,29 +108,31 @@ storage.mode(GdkEventType) <- 'integer'
 	"GDK_WINDOW_STATE" = 33,
 	"GDK_SETTING" = 34)
 storage.mode(.GdkEventType) <- 'integer'
- 
+class(.GdkEventType) <- 'enums' 
 
 GdkVisibilityState<-c("unobscured" = 0,
 	"partial" = 1,
 	"fully-obscured" = 2)
 storage.mode(GdkVisibilityState) <- 'integer'
+class(GdkVisibilityState) <- 'enums'
 .GdkVisibilityState<-c("GDK_VISIBILITY_UNOBSCURED" = 0,
 	"GDK_VISIBILITY_PARTIAL" = 1,
 	"GDK_VISIBILITY_FULLY_OBSCURED" = 2)
 storage.mode(.GdkVisibilityState) <- 'integer'
- 
+class(.GdkVisibilityState) <- 'enums' 
 
 GdkScrollDirection<-c("up" = 0,
 	"down" = 1,
 	"left" = 2,
 	"right" = 3)
 storage.mode(GdkScrollDirection) <- 'integer'
+class(GdkScrollDirection) <- 'enums'
 .GdkScrollDirection<-c("GDK_SCROLL_UP" = 0,
 	"GDK_SCROLL_DOWN" = 1,
 	"GDK_SCROLL_LEFT" = 2,
 	"GDK_SCROLL_RIGHT" = 3)
 storage.mode(.GdkScrollDirection) <- 'integer'
- 
+class(.GdkScrollDirection) <- 'enums' 
 
 GdkNotifyType<-c("ancestor" = 0,
 	"virtual" = 1,
@@ -135,6 +141,7 @@ GdkNotifyType<-c("ancestor" = 0,
 	"nonlinear-virtual" = 4,
 	"unknown" = 5)
 storage.mode(GdkNotifyType) <- 'integer'
+class(GdkNotifyType) <- 'enums'
 .GdkNotifyType<-c("GDK_NOTIFY_ANCESTOR" = 0,
 	"GDK_NOTIFY_VIRTUAL" = 1,
 	"GDK_NOTIFY_INFERIOR" = 2,
@@ -142,67 +149,73 @@ storage.mode(GdkNotifyType) <- 'integer'
 	"GDK_NOTIFY_NONLINEAR_VIRTUAL" = 4,
 	"GDK_NOTIFY_UNKNOWN" = 5)
 storage.mode(.GdkNotifyType) <- 'integer'
- 
+class(.GdkNotifyType) <- 'enums' 
 
 GdkCrossingMode<-c("normal" = 0,
 	"grab" = 1,
 	"ungrab" = 2)
 storage.mode(GdkCrossingMode) <- 'integer'
+class(GdkCrossingMode) <- 'enums'
 .GdkCrossingMode<-c("GDK_CROSSING_NORMAL" = 0,
 	"GDK_CROSSING_GRAB" = 1,
 	"GDK_CROSSING_UNGRAB" = 2)
 storage.mode(.GdkCrossingMode) <- 'integer'
- 
+class(.GdkCrossingMode) <- 'enums' 
 
 GdkPropertyState<-c("new-value" = 0,
 	"delete" = 1)
 storage.mode(GdkPropertyState) <- 'integer'
+class(GdkPropertyState) <- 'enums'
 .GdkPropertyState<-c("GDK_PROPERTY_NEW_VALUE" = 0,
 	"GDK_PROPERTY_DELETE" = 1)
 storage.mode(.GdkPropertyState) <- 'integer'
- 
+class(.GdkPropertyState) <- 'enums' 
 
 GdkSettingAction<-c("new" = 0,
 	"changed" = 1,
 	"deleted" = 2)
 storage.mode(GdkSettingAction) <- 'integer'
+class(GdkSettingAction) <- 'enums'
 .GdkSettingAction<-c("GDK_SETTING_ACTION_NEW" = 0,
 	"GDK_SETTING_ACTION_CHANGED" = 1,
 	"GDK_SETTING_ACTION_DELETED" = 2)
 storage.mode(.GdkSettingAction) <- 'integer'
- 
+class(.GdkSettingAction) <- 'enums' 
 
 GdkFontType<-c("font" = 0,
 	"fontset" = 1)
 storage.mode(GdkFontType) <- 'integer'
+class(GdkFontType) <- 'enums'
 .GdkFontType<-c("GDK_FONT_FONT" = 0,
 	"GDK_FONT_FONTSET" = 1)
 storage.mode(.GdkFontType) <- 'integer'
- 
+class(.GdkFontType) <- 'enums' 
 
 GdkCapStyle<-c("not-last" = 0,
 	"butt" = 1,
 	"round" = 2,
 	"projecting" = 3)
 storage.mode(GdkCapStyle) <- 'integer'
+class(GdkCapStyle) <- 'enums'
 .GdkCapStyle<-c("GDK_CAP_NOT_LAST" = 0,
 	"GDK_CAP_BUTT" = 1,
 	"GDK_CAP_ROUND" = 2,
 	"GDK_CAP_PROJECTING" = 3)
 storage.mode(.GdkCapStyle) <- 'integer'
- 
+class(.GdkCapStyle) <- 'enums' 
 
 GdkFill<-c("solid" = 0,
 	"tiled" = 1,
 	"stippled" = 2,
 	"opaque-stippled" = 3)
 storage.mode(GdkFill) <- 'integer'
+class(GdkFill) <- 'enums'
 .GdkFill<-c("GDK_SOLID" = 0,
 	"GDK_TILED" = 1,
 	"GDK_STIPPLED" = 2,
 	"GDK_OPAQUE_STIPPLED" = 3)
 storage.mode(.GdkFill) <- 'integer'
- 
+class(.GdkFill) <- 'enums' 
 
 GdkFunction<-c("copy" = 0,
 	"invert" = 1,
@@ -221,6 +234,7 @@ GdkFunction<-c("copy" = 0,
 	"nor" = 14,
 	"set" = 15)
 storage.mode(GdkFunction) <- 'integer'
+class(GdkFunction) <- 'enums'
 .GdkFunction<-c("GDK_COPY" = 0,
 	"GDK_INVERT" = 1,
 	"GDK_XOR" = 2,
@@ -238,77 +252,84 @@ storage.mode(GdkFunction) <- 'integer'
 	"GDK_NOR" = 14,
 	"GDK_SET" = 15)
 storage.mode(.GdkFunction) <- 'integer'
- 
+class(.GdkFunction) <- 'enums' 
 
 GdkJoinStyle<-c("miter" = 0,
 	"round" = 1,
 	"bevel" = 2)
 storage.mode(GdkJoinStyle) <- 'integer'
+class(GdkJoinStyle) <- 'enums'
 .GdkJoinStyle<-c("GDK_JOIN_MITER" = 0,
 	"GDK_JOIN_ROUND" = 1,
 	"GDK_JOIN_BEVEL" = 2)
 storage.mode(.GdkJoinStyle) <- 'integer'
- 
+class(.GdkJoinStyle) <- 'enums' 
 
 GdkLineStyle<-c("solid" = 0,
 	"on-off-dash" = 1,
 	"double-dash" = 2)
 storage.mode(GdkLineStyle) <- 'integer'
+class(GdkLineStyle) <- 'enums'
 .GdkLineStyle<-c("GDK_LINE_SOLID" = 0,
 	"GDK_LINE_ON_OFF_DASH" = 1,
 	"GDK_LINE_DOUBLE_DASH" = 2)
 storage.mode(.GdkLineStyle) <- 'integer'
- 
+class(.GdkLineStyle) <- 'enums' 
 
 GdkSubwindowMode<-c("clip-by-children" = 0,
 	"include-inferiors" = 1)
 storage.mode(GdkSubwindowMode) <- 'integer'
+class(GdkSubwindowMode) <- 'enums'
 .GdkSubwindowMode<-c("GDK_CLIP_BY_CHILDREN" = 0,
 	"GDK_INCLUDE_INFERIORS" = 1)
 storage.mode(.GdkSubwindowMode) <- 'integer'
- 
+class(.GdkSubwindowMode) <- 'enums' 
 
 GdkImageType<-c("normal" = 0,
 	"shared" = 1,
 	"fastest" = 2)
 storage.mode(GdkImageType) <- 'integer'
+class(GdkImageType) <- 'enums'
 .GdkImageType<-c("GDK_IMAGE_NORMAL" = 0,
 	"GDK_IMAGE_SHARED" = 1,
 	"GDK_IMAGE_FASTEST" = 2)
 storage.mode(.GdkImageType) <- 'integer'
- 
+class(.GdkImageType) <- 'enums' 
 
 GdkExtensionMode<-c("none" = 0,
 	"all" = 1,
 	"cursor" = 2)
 storage.mode(GdkExtensionMode) <- 'integer'
+class(GdkExtensionMode) <- 'enums'
 .GdkExtensionMode<-c("GDK_EXTENSION_EVENTS_NONE" = 0,
 	"GDK_EXTENSION_EVENTS_ALL" = 1,
 	"GDK_EXTENSION_EVENTS_CURSOR" = 2)
 storage.mode(.GdkExtensionMode) <- 'integer'
- 
+class(.GdkExtensionMode) <- 'enums' 
 
 GdkInputSource<-c("mouse" = 0,
 	"pen" = 1,
 	"eraser" = 2,
 	"cursor" = 3)
 storage.mode(GdkInputSource) <- 'integer'
+class(GdkInputSource) <- 'enums'
 .GdkInputSource<-c("GDK_SOURCE_MOUSE" = 0,
 	"GDK_SOURCE_PEN" = 1,
 	"GDK_SOURCE_ERASER" = 2,
 	"GDK_SOURCE_CURSOR" = 3)
 storage.mode(.GdkInputSource) <- 'integer'
- 
+class(.GdkInputSource) <- 'enums' 
 
 GdkInputMode<-c("disabled" = 0,
 	"screen" = 1,
 	"window" = 2)
 storage.mode(GdkInputMode) <- 'integer'
+class(GdkInputMode) <- 'enums'
 .GdkInputMode<-c("GDK_MODE_DISABLED" = 0,
 	"GDK_MODE_SCREEN" = 1,
 	"GDK_MODE_WINDOW" = 2)
 storage.mode(.GdkInputMode) <- 'integer'
- 
+class(.GdkInputMode) <- 'enums' 
 
 GdkAxisUse<-c("ignore" = 0,
 	"x" = 1,
@@ -319,6 +340,7 @@ GdkAxisUse<-c("ignore" = 0,
 	"wheel" = 6,
 	"last" = 7)
 storage.mode(GdkAxisUse) <- 'integer'
+class(GdkAxisUse) <- 'enums'
 .GdkAxisUse<-c("GDK_AXIS_IGNORE" = 0,
 	"GDK_AXIS_X" = 1,
 	"GDK_AXIS_Y" = 2,
@@ -328,53 +350,58 @@ storage.mode(GdkAxisUse) <- 'integer'
 	"GDK_AXIS_WHEEL" = 6,
 	"GDK_AXIS_LAST" = 7)
 storage.mode(.GdkAxisUse) <- 'integer'
- 
+class(.GdkAxisUse) <- 'enums' 
 
 GdkPropMode<-c("replace" = 0,
 	"prepend" = 1,
 	"append" = 2)
 storage.mode(GdkPropMode) <- 'integer'
+class(GdkPropMode) <- 'enums'
 .GdkPropMode<-c("GDK_PROP_MODE_REPLACE" = 0,
 	"GDK_PROP_MODE_PREPEND" = 1,
 	"GDK_PROP_MODE_APPEND" = 2)
 storage.mode(.GdkPropMode) <- 'integer'
- 
+class(.GdkPropMode) <- 'enums' 
 
 GdkFillRule<-c("even-odd-rule" = 0,
 	"winding-rule" = 1)
 storage.mode(GdkFillRule) <- 'integer'
+class(GdkFillRule) <- 'enums'
 .GdkFillRule<-c("GDK_EVEN_ODD_RULE" = 0,
 	"GDK_WINDING_RULE" = 1)
 storage.mode(.GdkFillRule) <- 'integer'
- 
+class(.GdkFillRule) <- 'enums' 
 
 GdkOverlapType<-c("in" = 0,
 	"out" = 1,
 	"part" = 2)
 storage.mode(GdkOverlapType) <- 'integer'
+class(GdkOverlapType) <- 'enums'
 .GdkOverlapType<-c("GDK_OVERLAP_RECTANGLE_IN" = 0,
 	"GDK_OVERLAP_RECTANGLE_OUT" = 1,
 	"GDK_OVERLAP_RECTANGLE_PART" = 2)
 storage.mode(.GdkOverlapType) <- 'integer'
- 
+class(.GdkOverlapType) <- 'enums' 
 
 GdkRgbDither<-c("none" = 0,
 	"normal" = 1,
 	"max" = 2)
 storage.mode(GdkRgbDither) <- 'integer'
+class(GdkRgbDither) <- 'enums'
 .GdkRgbDither<-c("GDK_RGB_DITHER_NONE" = 0,
 	"GDK_RGB_DITHER_NORMAL" = 1,
 	"GDK_RGB_DITHER_MAX" = 2)
 storage.mode(.GdkRgbDither) <- 'integer'
- 
+class(.GdkRgbDither) <- 'enums' 
 
 GdkByteOrder<-c("lsb-first" = 0,
 	"msb-first" = 1)
 storage.mode(GdkByteOrder) <- 'integer'
+class(GdkByteOrder) <- 'enums'
 .GdkByteOrder<-c("GDK_LSB_FIRST" = 0,
 	"GDK_MSB_FIRST" = 1)
 storage.mode(.GdkByteOrder) <- 'integer'
- 
+class(.GdkByteOrder) <- 'enums' 
 
 GdkStatus<-c("ok" = 0,
 	"error" = 1,
@@ -382,13 +409,14 @@ GdkStatus<-c("ok" = 0,
 	"error-file" = 3,
 	"error-mem" = 4)
 storage.mode(GdkStatus) <- 'integer'
+class(GdkStatus) <- 'enums'
 .GdkStatus<-c("GDK_OK" = 0,
 	"GDK_ERROR" = 1,
 	"GDK_ERROR_PARAM" = 2,
 	"GDK_ERROR_FILE" = 3,
 	"GDK_ERROR_MEM" = 4)
 storage.mode(.GdkStatus) <- 'integer'
- 
+class(.GdkStatus) <- 'enums' 
 
 GdkGrabStatus<-c("success" = 0,
 	"already-grabbed" = 1,
@@ -396,13 +424,14 @@ GdkGrabStatus<-c("success" = 0,
 	"not-viewable" = 3,
 	"frozen" = 4)
 storage.mode(GdkGrabStatus) <- 'integer'
+class(GdkGrabStatus) <- 'enums'
 .GdkGrabStatus<-c("GDK_GRAB_SUCCESS" = 0,
 	"GDK_GRAB_ALREADY_GRABBED" = 1,
 	"GDK_GRAB_INVALID_TIME" = 2,
 	"GDK_GRAB_NOT_VIEWABLE" = 3,
 	"GDK_GRAB_FROZEN" = 4)
 storage.mode(.GdkGrabStatus) <- 'integer'
- 
+class(.GdkGrabStatus) <- 'enums' 
 
 GdkVisualType<-c("static-gray" = 0,
 	"grayscale" = 1,
@@ -411,6 +440,7 @@ GdkVisualType<-c("static-gray" = 0,
 	"true-color" = 4,
 	"direct-color" = 5)
 storage.mode(GdkVisualType) <- 'integer'
+class(GdkVisualType) <- 'enums'
 .GdkVisualType<-c("GDK_VISUAL_STATIC_GRAY" = 0,
 	"GDK_VISUAL_GRAYSCALE" = 1,
 	"GDK_VISUAL_STATIC_COLOR" = 2,
@@ -418,15 +448,16 @@ storage.mode(GdkVisualType) <- 'integer'
 	"GDK_VISUAL_TRUE_COLOR" = 4,
 	"GDK_VISUAL_DIRECT_COLOR" = 5)
 storage.mode(.GdkVisualType) <- 'integer'
- 
+class(.GdkVisualType) <- 'enums' 
 
-GdkWindowClass<-c("utput" = 0,
-	"nly" = 1)
+GdkWindowClass<-c("output" = 0,
+	"only" = 1)
 storage.mode(GdkWindowClass) <- 'integer'
+class(GdkWindowClass) <- 'enums'
 .GdkWindowClass<-c("GDK_INPUT_OUTPUT" = 0,
 	"GDK_INPUT_ONLY" = 1)
 storage.mode(.GdkWindowClass) <- 'integer'
- 
+class(.GdkWindowClass) <- 'enums' 
 
 GdkWindowType<-c("root" = 0,
 	"toplevel" = 1,
@@ -435,6 +466,7 @@ GdkWindowType<-c("root" = 0,
 	"temp" = 4,
 	"foreign" = 5)
 storage.mode(GdkWindowType) <- 'integer'
+class(GdkWindowType) <- 'enums'
 .GdkWindowType<-c("GDK_WINDOW_ROOT" = 0,
 	"GDK_WINDOW_TOPLEVEL" = 1,
 	"GDK_WINDOW_CHILD" = 2,
@@ -442,7 +474,7 @@ storage.mode(GdkWindowType) <- 'integer'
 	"GDK_WINDOW_TEMP" = 4,
 	"GDK_WINDOW_FOREIGN" = 5)
 storage.mode(.GdkWindowType) <- 'integer'
- 
+class(.GdkWindowType) <- 'enums' 
 
 GdkWindowTypeHint<-c("normal" = 0,
 	"dialog" = 1,
@@ -453,6 +485,7 @@ GdkWindowTypeHint<-c("normal" = 0,
 	"dock" = 6,
 	"desktop" = 7)
 storage.mode(GdkWindowTypeHint) <- 'integer'
+class(GdkWindowTypeHint) <- 'enums'
 .GdkWindowTypeHint<-c("GDK_WINDOW_TYPE_HINT_NORMAL" = 0,
 	"GDK_WINDOW_TYPE_HINT_DIALOG" = 1,
 	"GDK_WINDOW_TYPE_HINT_MENU" = 2,
@@ -462,7 +495,7 @@ storage.mode(GdkWindowTypeHint) <- 'integer'
 	"GDK_WINDOW_TYPE_HINT_DOCK" = 6,
 	"GDK_WINDOW_TYPE_HINT_DESKTOP" = 7)
 storage.mode(.GdkWindowTypeHint) <- 'integer'
- 
+class(.GdkWindowTypeHint) <- 'enums' 
 
 GdkGravity<-c("north-west" = 0,
 	"north" = 1,
@@ -475,6 +508,7 @@ GdkGravity<-c("north-west" = 0,
 	"south-east" = 8,
 	"static" = 9)
 storage.mode(GdkGravity) <- 'integer'
+class(GdkGravity) <- 'enums'
 .GdkGravity<-c("GDK_GRAVITY_NORTH_WEST" = 0,
 	"GDK_GRAVITY_NORTH" = 1,
 	"GDK_GRAVITY_NORTH_EAST" = 2,
@@ -486,7 +520,7 @@ storage.mode(GdkGravity) <- 'integer'
 	"GDK_GRAVITY_SOUTH_EAST" = 8,
 	"GDK_GRAVITY_STATIC" = 9)
 storage.mode(.GdkGravity) <- 'integer'
- 
+class(.GdkGravity) <- 'enums' 
 
 GdkWindowEdge<-c("north-west" = 0,
 	"north" = 1,
@@ -497,6 +531,7 @@ GdkWindowEdge<-c("north-west" = 0,
 	"south" = 6,
 	"south-east" = 7)
 storage.mode(GdkWindowEdge) <- 'integer'
+class(GdkWindowEdge) <- 'enums'
 .GdkWindowEdge<-c("GDK_WINDOW_EDGE_NORTH_WEST" = 0,
 	"GDK_WINDOW_EDGE_NORTH" = 1,
 	"GDK_WINDOW_EDGE_NORTH_EAST" = 2,
@@ -506,21 +541,23 @@ storage.mode(GdkWindowEdge) <- 'integer'
 	"GDK_WINDOW_EDGE_SOUTH" = 6,
 	"GDK_WINDOW_EDGE_SOUTH_EAST" = 7)
 storage.mode(.GdkWindowEdge) <- 'integer'
- 
+class(.GdkWindowEdge) <- 'enums' 
 
 GdkPixbufAlphaMode<-c("bilevel" = 0,
 	"full" = 1)
 storage.mode(GdkPixbufAlphaMode) <- 'integer'
+class(GdkPixbufAlphaMode) <- 'enums'
 .GdkPixbufAlphaMode<-c("GDK_PIXBUF_ALPHA_BILEVEL" = 0,
 	"GDK_PIXBUF_ALPHA_FULL" = 1)
 storage.mode(.GdkPixbufAlphaMode) <- 'integer'
- 
+class(.GdkPixbufAlphaMode) <- 'enums' 
 
 GdkColorspace<-c("b" = 0)
 storage.mode(GdkColorspace) <- 'integer'
+class(GdkColorspace) <- 'enums'
 .GdkColorspace<-c("GDK_COLORSPACE_RGB" = 0)
 storage.mode(.GdkColorspace) <- 'integer'
- 
+class(.GdkColorspace) <- 'enums' 
 
 GdkPixbufError<-c("corrupt-image" = 0,
 	"insufficient-memory" = 1,
@@ -529,6 +566,7 @@ GdkPixbufError<-c("corrupt-image" = 0,
 	"unsupported-operation" = 4,
 	"failed" = 5)
 storage.mode(GdkPixbufError) <- 'integer'
+class(GdkPixbufError) <- 'enums'
 .GdkPixbufError<-c("GDK_PIXBUF_ERROR_CORRUPT_IMAGE" = 0,
 	"GDK_PIXBUF_ERROR_INSUFFICIENT_MEMORY" = 1,
 	"GDK_PIXBUF_ERROR_BAD_OPTION" = 2,
@@ -536,19 +574,44 @@ storage.mode(GdkPixbufError) <- 'integer'
 	"GDK_PIXBUF_ERROR_UNSUPPORTED_OPERATION" = 4,
 	"GDK_PIXBUF_ERROR_FAILED" = 5)
 storage.mode(.GdkPixbufError) <- 'integer'
- 
+class(.GdkPixbufError) <- 'enums' 
+
+GdkPixbufRotation<-c("none" = 0,
+	"counterclockwise" = 90,
+	"upsidedown" = 180,
+	"clockwise" = 270)
+storage.mode(GdkPixbufRotation) <- 'integer'
+class(GdkPixbufRotation) <- 'enums'
+.GdkPixbufRotation<-c("GDK_PIXBUF_ROTATE_NONE" = 0,
+	"GDK_PIXBUF_ROTATE_COUNTERCLOCKWISE" = 90,
+	"GDK_PIXBUF_ROTATE_UPSIDEDOWN" = 180,
+	"GDK_PIXBUF_ROTATE_CLOCKWISE" = 270)
+storage.mode(.GdkPixbufRotation) <- 'integer'
+class(.GdkPixbufRotation) <- 'enums' 
 
 GdkInterpType<-c("nearest" = 0,
 	"tiles" = 1,
 	"bilinear" = 2,
 	"hyper" = 3)
 storage.mode(GdkInterpType) <- 'integer'
+class(GdkInterpType) <- 'enums'
 .GdkInterpType<-c("GDK_INTERP_NEAREST" = 0,
 	"GDK_INTERP_TILES" = 1,
 	"GDK_INTERP_BILINEAR" = 2,
 	"GDK_INTERP_HYPER" = 3)
 storage.mode(.GdkInterpType) <- 'integer'
- 
+class(.GdkInterpType) <- 'enums' 
+
+GdkOwnerChange<-c("new-owner" = 0,
+	"destroy" = 1,
+	"close" = 2)
+storage.mode(GdkOwnerChange) <- 'integer'
+class(GdkOwnerChange) <- 'enums'
+.GdkOwnerChange<-c("GDK_OWNER_CHANGE_NEW_OWNER" = 0,
+	"GDK_OWNER_CHANGE_DESTROY" = 1,
+	"GDK_OWNER_CHANGE_CLOSE" = 2)
+storage.mode(.GdkOwnerChange) <- 'integer'
+class(.GdkOwnerChange) <- 'enums' 
 
 GdkDragAction<-c("default" = 1,
 	"copy" = 2,
@@ -557,6 +620,7 @@ GdkDragAction<-c("default" = 1,
 	"private" = 16,
 	"ask" = 32)
 storage.mode(GdkDragAction) <- 'numeric'
+class(GdkDragAction) <- 'enums'
 .GdkDragAction<-c("GDK_ACTION_DEFAULT" = 1,
 	"GDK_ACTION_COPY" = 2,
 	"GDK_ACTION_MOVE" = 4,
@@ -564,7 +628,7 @@ storage.mode(GdkDragAction) <- 'numeric'
 	"GDK_ACTION_PRIVATE" = 16,
 	"GDK_ACTION_ASK" = 32)
 storage.mode(.GdkDragAction) <- 'numeric'
- 
+class(.GdkDragAction) <- 'enums' 
 
 GdkEventMask<-c("exposure-mask" = 1,
 	"pointer-motion-mask" = 2,
@@ -589,6 +653,7 @@ GdkEventMask<-c("exposure-mask" = 1,
 	"scroll-mask" = 1048576,
 	"all-events-mask" = 2097152)
 storage.mode(GdkEventMask) <- 'numeric'
+class(GdkEventMask) <- 'enums'
 .GdkEventMask<-c("GDK_EXPOSURE_MASK" = 1,
 	"GDK_POINTER_MOTION_MASK" = 2,
 	"GDK_POINTER_MOTION_HINT_MASK" = 4,
@@ -612,7 +677,7 @@ storage.mode(GdkEventMask) <- 'numeric'
 	"GDK_SCROLL_MASK" = 1048576,
 	"GDK_ALL_EVENTS_MASK" = 2097152)
 storage.mode(.GdkEventMask) <- 'numeric'
- 
+class(.GdkEventMask) <- 'enums' 
 
 GdkWindowState<-c("withdrawn" = 1,
 	"iconified" = 2,
@@ -622,6 +687,7 @@ GdkWindowState<-c("withdrawn" = 1,
 	"above" = 32,
 	"below" = 64)
 storage.mode(GdkWindowState) <- 'numeric'
+class(GdkWindowState) <- 'enums'
 .GdkWindowState<-c("GDK_WINDOW_STATE_WITHDRAWN" = 1,
 	"GDK_WINDOW_STATE_ICONIFIED" = 2,
 	"GDK_WINDOW_STATE_MAXIMIZED" = 4,
@@ -630,7 +696,7 @@ storage.mode(GdkWindowState) <- 'numeric'
 	"GDK_WINDOW_STATE_ABOVE" = 32,
 	"GDK_WINDOW_STATE_BELOW" = 64)
 storage.mode(.GdkWindowState) <- 'numeric'
- 
+class(.GdkWindowState) <- 'enums' 
 
 GdkModifierType<-c("shift-mask" = 1,
 	"lock-mask" = 2,
@@ -648,6 +714,7 @@ GdkModifierType<-c("shift-mask" = 1,
 	"release-mask" = 8192,
 	"modifier-mask" = 16384)
 storage.mode(GdkModifierType) <- 'numeric'
+class(GdkModifierType) <- 'enums'
 .GdkModifierType<-c("GDK_SHIFT_MASK" = 1,
 	"GDK_LOCK_MASK" = 2,
 	"GDK_CONTROL_MASK" = 4,
@@ -664,17 +731,18 @@ storage.mode(GdkModifierType) <- 'numeric'
 	"GDK_RELEASE_MASK" = 8192,
 	"GDK_MODIFIER_MASK" = 16384)
 storage.mode(.GdkModifierType) <- 'numeric'
- 
+class(.GdkModifierType) <- 'enums' 
 
 GdkInputCondition<-c("read" = 1,
 	"write" = 2,
 	"exception" = 4)
 storage.mode(GdkInputCondition) <- 'numeric'
+class(GdkInputCondition) <- 'enums'
 .GdkInputCondition<-c("GDK_INPUT_READ" = 1,
 	"GDK_INPUT_WRITE" = 2,
 	"GDK_INPUT_EXCEPTION" = 4)
 storage.mode(.GdkInputCondition) <- 'numeric'
- 
+class(.GdkInputCondition) <- 'enums' 
 
 GdkWindowAttributesType<-c("title" = 1,
 	"x" = 2,
@@ -685,6 +753,7 @@ GdkWindowAttributesType<-c("title" = 1,
 	"wmclass" = 64,
 	"noredir" = 128)
 storage.mode(GdkWindowAttributesType) <- 'numeric'
+class(GdkWindowAttributesType) <- 'enums'
 .GdkWindowAttributesType<-c("GDK_WA_TITLE" = 1,
 	"GDK_WA_X" = 2,
 	"GDK_WA_Y" = 4,
@@ -694,7 +763,7 @@ storage.mode(GdkWindowAttributesType) <- 'numeric'
 	"GDK_WA_WMCLASS" = 64,
 	"GDK_WA_NOREDIR" = 128)
 storage.mode(.GdkWindowAttributesType) <- 'numeric'
- 
+class(.GdkWindowAttributesType) <- 'enums' 
 
 GdkWindowHints<-c("pos" = 1,
 	"min-size" = 2,
@@ -706,6 +775,7 @@ GdkWindowHints<-c("pos" = 1,
 	"user-pos" = 128,
 	"user-size" = 256)
 storage.mode(GdkWindowHints) <- 'numeric'
+class(GdkWindowHints) <- 'enums'
 .GdkWindowHints<-c("GDK_HINT_POS" = 1,
 	"GDK_HINT_MIN_SIZE" = 2,
 	"GDK_HINT_MAX_SIZE" = 4,
@@ -716,7 +786,7 @@ storage.mode(GdkWindowHints) <- 'numeric'
 	"GDK_HINT_USER_POS" = 128,
 	"GDK_HINT_USER_SIZE" = 256)
 storage.mode(.GdkWindowHints) <- 'numeric'
- 
+class(.GdkWindowHints) <- 'enums' 
 
 GdkWMDecoration<-c("all" = 1,
 	"border" = 2,
@@ -726,6 +796,7 @@ GdkWMDecoration<-c("all" = 1,
 	"minimize" = 32,
 	"maximize" = 64)
 storage.mode(GdkWMDecoration) <- 'numeric'
+class(GdkWMDecoration) <- 'enums'
 .GdkWMDecoration<-c("GDK_DECOR_ALL" = 1,
 	"GDK_DECOR_BORDER" = 2,
 	"GDK_DECOR_RESIZEH" = 4,
@@ -734,7 +805,7 @@ storage.mode(GdkWMDecoration) <- 'numeric'
 	"GDK_DECOR_MINIMIZE" = 32,
 	"GDK_DECOR_MAXIMIZE" = 64)
 storage.mode(.GdkWMDecoration) <- 'numeric'
- 
+class(.GdkWMDecoration) <- 'enums' 
 
 GdkWMFunction<-c("all" = 1,
 	"resize" = 2,
@@ -743,6 +814,7 @@ GdkWMFunction<-c("all" = 1,
 	"maximize" = 16,
 	"close" = 32)
 storage.mode(GdkWMFunction) <- 'numeric'
+class(GdkWMFunction) <- 'enums'
 .GdkWMFunction<-c("GDK_FUNC_ALL" = 1,
 	"GDK_FUNC_RESIZE" = 2,
 	"GDK_FUNC_MOVE" = 4,
@@ -750,5 +822,5 @@ storage.mode(GdkWMFunction) <- 'numeric'
 	"GDK_FUNC_MAXIMIZE" = 16,
 	"GDK_FUNC_CLOSE" = 32)
 storage.mode(.GdkWMFunction) <- 'numeric'
- 
+class(.GdkWMFunction) <- 'enums' 
 

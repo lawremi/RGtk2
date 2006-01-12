@@ -3,6 +3,7 @@
 #include "gobject.h"
 #include "gdkFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
@@ -441,19 +442,16 @@ S_gdk_colormap_get_system_size()
  
 
 USER_OBJECT_
-S_gdk_colormap_alloc_color(USER_OBJECT_ s_object, USER_OBJECT_ s_color, USER_OBJECT_ s_writeable, USER_OBJECT_ s_best_match)
+S_gdk_colormap_free_colors(USER_OBJECT_ s_object, USER_OBJECT_ s_colors)
 {
 	GdkColormap* object = GDK_COLORMAP(getPtrValue(s_object));
-	GdkColor* color = asCGdkColor(s_color);
-	gboolean writeable = (gboolean)asCLogical(s_writeable);
-	gboolean best_match = (gboolean)asCLogical(s_best_match);
+	GdkColor* colors = (GdkColor*)asCArrayRef(s_colors, GdkColor, asCGdkColor);
+	gint ncolors = (gint)GET_LENGTH(s_colors);
 
-	gboolean ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	ans = gdk_colormap_alloc_color(object, color, writeable, best_match);
+	gdk_colormap_free_colors(object, colors, ncolors);
 
-	_result = asRLogical(ans);
 
 	return(_result);
 }
@@ -621,6 +619,23 @@ S_gdk_cursor_new(USER_OBJECT_ s_cursor_type)
  
 
 USER_OBJECT_
+S_gdk_cursor_new_from_name(USER_OBJECT_ s_display, USER_OBJECT_ s_name)
+{
+	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
+	const gchar* name = (const gchar*)asCString(s_name);
+
+	GdkCursor* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_cursor_new_from_name(display, name);
+
+	_result = toRPointerWithFinalizer(ans, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_cursor_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_cursor_type)
 {
 	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
@@ -688,6 +703,22 @@ S_gdk_cursor_get_display(USER_OBJECT_ s_object)
 	ans = gdk_cursor_get_display(object);
 
 	_result = toRPointerWithRef(ans, "GdkDisplay");
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_cursor_get_image(USER_OBJECT_ s_object)
+{
+	GdkCursor* object = (GdkCursor*)getPtrValue(s_object);
+
+	GdkPixbuf* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_cursor_get_image(object);
+
+	_result = toRPointerWithRef(ans, "GdkPixbuf");
 
 	return(_result);
 }
@@ -1040,6 +1071,23 @@ S_gdk_display_get_window_at_pointer(USER_OBJECT_ s_object)
 	_result = toRPointerWithRef(ans, "GdkWindow");
 
 	_result = retByVal(_result, "win_x", asRInteger(win_x), "win_y", asRInteger(win_y), NULL);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_display_warp_pointer(USER_OBJECT_ s_object, USER_OBJECT_ s_screen, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+	GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
+	GdkScreen* screen = GDK_SCREEN(getPtrValue(s_screen));
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_display_warp_pointer(object, screen, x, y);
+
 
 	return(_result);
 }
@@ -4204,6 +4252,28 @@ S_gdk_pango_attr_embossed_new(USER_OBJECT_ s_embossed)
  
 
 USER_OBJECT_
+S_gdk_pixbuf_render_threshold_alpha(USER_OBJECT_ s_object, USER_OBJECT_ s_bitmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_alpha_threshold)
+{
+	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+	GdkBitmap* bitmap = GDK_DRAWABLE(getPtrValue(s_bitmap));
+	int src_x = (int)asCInteger(s_src_x);
+	int src_y = (int)asCInteger(s_src_y);
+	int dest_x = (int)asCInteger(s_dest_x);
+	int dest_y = (int)asCInteger(s_dest_y);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
+	int alpha_threshold = (int)asCInteger(s_alpha_threshold);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_pixbuf_render_threshold_alpha(object, bitmap, src_x, src_y, dest_x, dest_y, width, height, alpha_threshold);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_pixbuf_render_to_drawable(USER_OBJECT_ s_object, USER_OBJECT_ s_drawable, USER_OBJECT_ s_gc, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dither, USER_OBJECT_ s_x_dither, USER_OBJECT_ s_y_dither)
 {
 	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
@@ -4283,6 +4353,25 @@ S_gdk_pixmap_new(USER_OBJECT_ s_drawable, USER_OBJECT_ s_width, USER_OBJECT_ s_h
 	ans = gdk_pixmap_new(drawable, width, height, depth);
 
 	_result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_height)
+{
+	GdkDrawable* drawable = GET_LENGTH(s_drawable) == 0 ? NULL : GDK_DRAWABLE(getPtrValue(s_drawable));
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	gint width = (gint)GET_LENGTH(s_data);
+	gint height = (gint)asCInteger(s_height);
+
+	GdkBitmap* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_bitmap_create_from_data(drawable, data, width, height);
+
+	_result = toRPointerWithFinalizer(ans, "GdkBitmap", (RPointerFinalizer) g_object_unref);
 
 	return(_result);
 }
@@ -4463,14 +4552,14 @@ S_gdk_pixmap_lookup_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid)
  
 
 USER_OBJECT_
-S_gdk_atom_name(USER_OBJECT_ s_name)
+S_gdk_atom_name(USER_OBJECT_ s_atom)
 {
-	GdkAtom name = asCGdkAtom(s_name);
+	GdkAtom atom = asCGdkAtom(s_atom);
 
 	gchar* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	ans = gdk_atom_name(name);
+	ans = gdk_atom_name(atom);
 
 	_result = asRString(ans);
 	CLEANUP(g_free, ans);
@@ -4606,28 +4695,6 @@ S_gdk_rgb_gc_set_background(USER_OBJECT_ s_gc, USER_OBJECT_ s_rgb)
  
 
 USER_OBJECT_
-S_gdk_draw_rgb_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_rgb_buf)
-{
-	GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
-	GdkGC* gc = GDK_GC(getPtrValue(s_gc));
-	gint x = (gint)asCInteger(s_x);
-	gint y = (gint)asCInteger(s_y);
-	gint width = (gint)asCInteger(s_width);
-	gint height = (gint)asCInteger(s_height);
-	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* rgb_buf = (guchar*)asCArray(s_rgb_buf, guchar, asCInteger);
-	gint rowstride = (gint)GET_LENGTH(s_rgb_buf);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_draw_rgb_image(object, gc, x, y, width, height, dith, rgb_buf, rowstride);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gdk_draw_rgb_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_rgb_buf, USER_OBJECT_ s_xdith, USER_OBJECT_ s_ydith)
 {
 	GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
@@ -4668,6 +4735,46 @@ S_gdk_draw_rgb_32_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s
 
 	gdk_draw_rgb_32_image(object, gc, x, y, width, height, dith, buf, rowstride);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_draw_rgb_32_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dith, USER_OBJECT_ s_buf, USER_OBJECT_ s_xdith, USER_OBJECT_ s_ydith)
+{
+	GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
+	GdkGC* gc = GDK_GC(getPtrValue(s_gc));
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+	gint width = (gint)asCInteger(s_width);
+	gint height = (gint)asCInteger(s_height);
+	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
+	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCInteger);
+	gint rowstride = (gint)GET_LENGTH(s_buf);
+	gint xdith = (gint)asCInteger(s_xdith);
+	gint ydith = (gint)asCInteger(s_ydith);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_draw_rgb_32_image_dithalign(object, gc, x, y, width, height, dith, buf, rowstride, xdith, ydith);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_rgb_colormap_ditherable(USER_OBJECT_ s_colormap)
+{
+	GdkColormap* colormap = GDK_COLORMAP(getPtrValue(s_colormap));
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_rgb_colormap_ditherable(colormap);
+
+	_result = asRLogical(ans);
 
 	return(_result);
 }
@@ -4933,6 +5040,22 @@ S_gdk_screen_get_rgb_colormap(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
+S_gdk_screen_get_rgba_colormap(USER_OBJECT_ s_object)
+{
+	GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+
+	GdkColormap* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_screen_get_rgba_colormap(object);
+
+	_result = toRPointerWithRef(ans, "GdkColormap");
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_screen_get_rgb_visual(USER_OBJECT_ s_object)
 {
 	GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
@@ -4941,6 +5064,22 @@ S_gdk_screen_get_rgb_visual(USER_OBJECT_ s_object)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	ans = gdk_screen_get_rgb_visual(object);
+
+	_result = toRPointerWithRef(ans, "GdkVisual");
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_screen_get_rgba_visual(USER_OBJECT_ s_object)
+{
+	GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
+
+	GdkVisual* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_screen_get_rgba_visual(object);
 
 	_result = toRPointerWithRef(ans, "GdkVisual");
 
@@ -5234,6 +5373,27 @@ S_gdk_screen_get_setting(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
  
 
 USER_OBJECT_
+S_gdk_spawn_command_line_on_screen(USER_OBJECT_ s_screen, USER_OBJECT_ s_command_line)
+{
+	GdkScreen* screen = GDK_SCREEN(getPtrValue(s_screen));
+	const gchar* command_line = (const gchar*)asCString(s_command_line);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	GError* error = NULL;
+
+	ans = gdk_spawn_command_line_on_screen(screen, command_line, &error);
+
+	_result = asRLogical(ans);
+
+	_result = retByVal(_result, "error", asRGError(error), NULL);
+	CLEANUP(g_error_free, error);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_alternative_dialog_button_order(USER_OBJECT_ s_object)
 {
 	GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
@@ -5500,7 +5660,7 @@ S_gdk_visual_get_best_with_both(USER_OBJECT_ s_depth, USER_OBJECT_ s_visual_type
 
 	ans = gdk_visual_get_best_with_both(depth, visual_type);
 
-	_result = toRPointerWithFinalizer(ans, "GdkVisual", (RPointerFinalizer) g_object_unref);
+	_result = toRPointerWithRef(ans, "GdkVisual");
 
 	return(_result);
 }
@@ -5647,6 +5807,20 @@ S_gdk_window_show(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
+S_gdk_window_show_unraised(USER_OBJECT_ s_object)
+{
+	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_window_show_unraised(object);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_window_hide(USER_OBJECT_ s_object)
 {
 	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
@@ -5718,6 +5892,23 @@ S_gdk_window_move_resize(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	gdk_window_move_resize(object, x, y, width, height);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_move_region(USER_OBJECT_ s_object, USER_OBJECT_ s_region, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+	GdkRegion* region = (GdkRegion*)getPtrValue(s_region);
+	gint x = (gint)asCInteger(s_x);
+	gint y = (gint)asCInteger(s_y);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_window_move_region(object, region, x, y);
 
 
 	return(_result);
@@ -5942,6 +6133,23 @@ S_gdk_window_shape_combine_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_shape_mask
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	gdk_window_shape_combine_mask(object, shape_mask, offset_x, offset_y);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_shape_combine_region(USER_OBJECT_ s_object, USER_OBJECT_ s_shape_region, USER_OBJECT_ s_offset_x, USER_OBJECT_ s_offset_y)
+{
+	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+	GdkRegion* shape_region = GET_LENGTH(s_shape_region) == 0 ? NULL : (GdkRegion*)getPtrValue(s_shape_region);
+	gint offset_x = (gint)asCInteger(s_offset_x);
+	gint offset_y = (gint)asCInteger(s_offset_y);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_window_shape_combine_region(object, shape_region, offset_x, offset_y);
 
 
 	return(_result);
@@ -6182,6 +6390,21 @@ S_gdk_window_set_skip_pager_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_modal)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	gdk_window_set_skip_pager_hint(object, modal);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_set_urgency_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_urgent)
+{
+	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+	gboolean urgent = (gboolean)asCLogical(s_urgent);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_window_set_urgency_hint(object, urgent);
 
 
 	return(_result);
@@ -7396,6 +7619,29 @@ S_gdk_pixbuf_new_from_file_at_size(USER_OBJECT_ s_filename, USER_OBJECT_ s_width
  
 
 USER_OBJECT_
+S_gdk_pixbuf_new_from_file_at_scale(USER_OBJECT_ s_filename, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_preserve_aspect_ratio)
+{
+	const char* filename = (const char*)asCString(s_filename);
+	int width = (int)asCInteger(s_width);
+	int height = (int)asCInteger(s_height);
+	gboolean preserve_aspect_ratio = (gboolean)asCLogical(s_preserve_aspect_ratio);
+
+	GdkPixbuf* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	GError* error = NULL;
+
+	ans = gdk_pixbuf_new_from_file_at_scale(filename, width, height, preserve_aspect_ratio, &error);
+
+	_result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
+
+	_result = retByVal(_result, "error", asRGError(error), NULL);
+	CLEANUP(g_error_free, error);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_pixbuf_new_from_xpm_data(USER_OBJECT_ s_data)
 {
 	const char** data = (const char**)asCStringArray(s_data);
@@ -7654,6 +7900,40 @@ S_gdk_pixbuf_composite_color(USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OB
  
 
 USER_OBJECT_
+S_gdk_pixbuf_rotate_simple(USER_OBJECT_ s_object, USER_OBJECT_ s_angle)
+{
+	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+	GdkPixbufRotation angle = (GdkPixbufRotation)asCEnum(s_angle, GDK_TYPE_PIXBUF_ROTATION);
+
+	GdkPixbuf* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_rotate_simple(object, angle);
+
+	_result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_flip(USER_OBJECT_ s_object, USER_OBJECT_ s_horizontal)
+{
+	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+	gboolean horizontal = (gboolean)asCLogical(s_horizontal);
+
+	GdkPixbuf* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_flip(object, horizontal);
+
+	_result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_pixbuf_scale_simple(USER_OBJECT_ s_object, USER_OBJECT_ s_dest_width, USER_OBJECT_ s_dest_height, USER_OBJECT_ s_interp_type)
 {
 	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
@@ -7892,6 +8172,39 @@ S_gdk_pixbuf_animation_iter_advance(USER_OBJECT_ s_object, USER_OBJECT_ s_curren
  
 
 USER_OBJECT_
+S_gdk_pixbuf_simple_anim_new(USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_rate)
+{
+	gint width = (gint)asCInteger(s_width);
+	gint height = (gint)asCInteger(s_height);
+	gfloat rate = (gfloat)asCNumeric(s_rate);
+
+	GdkPixbufSimpleAnim* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_simple_anim_new(width, height, rate);
+
+	_result = toRPointerWithFinalizer(ans, "GdkPixbufSimpleAnim", (RPointerFinalizer) g_object_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_simple_anim_add_frame(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbuf)
+{
+	GdkPixbufSimpleAnim* object = GDK_PIXBUF_SIMPLE_ANIM(getPtrValue(s_object));
+	GdkPixbuf* pixbuf = GDK_PIXBUF(getPtrValue(s_pixbuf));
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_pixbuf_simple_anim_add_frame(object, pixbuf);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gdk_pixbuf_get_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key)
 {
 	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
@@ -7903,6 +8216,24 @@ S_gdk_pixbuf_get_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key)
 	ans = gdk_pixbuf_get_option(object, key);
 
 	_result = asRString(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_set_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key, USER_OBJECT_ s_value)
+{
+	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+	const char* key = (const char*)asCString(s_key);
+	const char* value = (const char*)asCString(s_value);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_set_option(object, key, value);
+
+	_result = asRLogical(ans);
 
 	return(_result);
 }
@@ -7953,6 +8284,70 @@ S_gdk_pixbuf_format_get_name(USER_OBJECT_ s_object)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	ans = gdk_pixbuf_format_get_name(object);
+
+	_result = asRString(ans);
+	CLEANUP(g_free, ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_format_is_scalable(USER_OBJECT_ s_object)
+{
+	GdkPixbufFormat* object = (GdkPixbufFormat*)getPtrValue(s_object);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_format_is_scalable(object);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_format_is_disabled(USER_OBJECT_ s_object)
+{
+	GdkPixbufFormat* object = (GdkPixbufFormat*)getPtrValue(s_object);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_format_is_disabled(object);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_format_set_disabled(USER_OBJECT_ s_object, USER_OBJECT_ s_disabled)
+{
+	GdkPixbufFormat* object = (GdkPixbufFormat*)getPtrValue(s_object);
+	gboolean disabled = (gboolean)asCLogical(s_disabled);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_pixbuf_format_set_disabled(object, disabled);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_format_get_license(USER_OBJECT_ s_object)
+{
+	GdkPixbufFormat* object = (GdkPixbufFormat*)getPtrValue(s_object);
+
+	gchar* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_pixbuf_format_get_license(object);
 
 	_result = asRString(ans);
 	CLEANUP(g_free, ans);
@@ -8239,6 +8634,303 @@ S_gdk_rectangle_union(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2)
 
 	_result = retByVal(_result, "dest", asRGdkRectangle(dest), NULL);
 	CLEANUP(g_free, dest);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_new()
+{
+
+	GdkRegion* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_new();
+
+	_result = toRPointerWithFinalizer(ans, "GdkRegion", (RPointerFinalizer) gdk_region_destroy);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_polygon(USER_OBJECT_ s_points, USER_OBJECT_ s_fill_rule)
+{
+	GdkPoint* points = (GdkPoint*)asCArrayRef(s_points, GdkPoint, asCGdkPoint);
+	gint npoints = (gint)GET_LENGTH(s_points);
+	GdkFillRule fill_rule = (GdkFillRule)asCEnum(s_fill_rule, GDK_TYPE_FILL_RULE);
+
+	GdkRegion* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_polygon(points, npoints, fill_rule);
+
+	_result = toRPointerWithFinalizer(ans, "GdkRegion", (RPointerFinalizer) gdk_region_destroy);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_copy(USER_OBJECT_ s_object)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+
+	GdkRegion* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_copy(object);
+
+	_result = toRPointerWithFinalizer(ans, "GdkRegion", (RPointerFinalizer) gdk_region_destroy);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_rectangle(USER_OBJECT_ s_rectangle)
+{
+	GdkRectangle* rectangle = asCGdkRectangle(s_rectangle);
+
+	GdkRegion* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_rectangle(rectangle);
+
+	_result = toRPointerWithFinalizer(ans, "GdkRegion", (RPointerFinalizer) gdk_region_destroy);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_get_clipbox(USER_OBJECT_ s_object)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	GdkRectangle* rectangle = (GdkRectangle *)g_new0(GdkRectangle, 1);
+
+	gdk_region_get_clipbox(object, rectangle);
+
+
+	_result = retByVal(_result, "rectangle", asRGdkRectangle(rectangle), NULL);
+	CLEANUP(g_free, rectangle);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_get_rectangles(USER_OBJECT_ s_object)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	GdkRectangle* rectangles = NULL;
+	gint n_rectangles;
+
+	gdk_region_get_rectangles(object, &rectangles, &n_rectangles);
+
+
+	_result = retByVal(_result, "rectangles", asRArrayRefWithSize(rectangles, asRGdkRectangle, n_rectangles), "n_rectangles", asRInteger(n_rectangles), NULL);
+	CLEANUP(g_free, rectangles);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_empty(USER_OBJECT_ s_object)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_empty(object);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_equal(USER_OBJECT_ s_object, USER_OBJECT_ s_region2)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRegion* region2 = (GdkRegion*)getPtrValue(s_region2);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_equal(object, region2);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_point_in(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	int x = (int)asCInteger(s_x);
+	int y = (int)asCInteger(s_y);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_point_in(object, x, y);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_rect_in(USER_OBJECT_ s_object, USER_OBJECT_ s_rect)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRectangle* rect = asCGdkRectangle(s_rect);
+
+	GdkOverlapType ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gdk_region_rect_in(object, rect);
+
+	_result = asREnum(ans, GDK_TYPE_OVERLAP_TYPE);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	gint dx = (gint)asCInteger(s_dx);
+	gint dy = (gint)asCInteger(s_dy);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_offset(object, dx, dy);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_shrink(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	gint dx = (gint)asCInteger(s_dx);
+	gint dy = (gint)asCInteger(s_dy);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_shrink(object, dx, dy);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_union_with_rect(USER_OBJECT_ s_object, USER_OBJECT_ s_rect)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRectangle* rect = asCGdkRectangle(s_rect);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_union_with_rect(object, rect);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_intersect(USER_OBJECT_ s_object, USER_OBJECT_ s_source2)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRegion* source2 = (GdkRegion*)getPtrValue(s_source2);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_intersect(object, source2);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_union(USER_OBJECT_ s_object, USER_OBJECT_ s_source2)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRegion* source2 = (GdkRegion*)getPtrValue(s_source2);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_union(object, source2);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_subtract(USER_OBJECT_ s_object, USER_OBJECT_ s_source2)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRegion* source2 = (GdkRegion*)getPtrValue(s_source2);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_subtract(object, source2);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_xor(USER_OBJECT_ s_object, USER_OBJECT_ s_source2)
+{
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkRegion* source2 = (GdkRegion*)getPtrValue(s_source2);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_xor(object, source2);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_region_spans_intersect_foreach(USER_OBJECT_ s_object, USER_OBJECT_ s_spans, USER_OBJECT_ s_sorted, USER_OBJECT_ s_function, USER_OBJECT_ s_data)
+{
+	GdkSpanFunc function = (GdkSpanFunc)S_GdkSpanFunc;
+	GClosure* data = R_createGClosure(s_function, s_data);
+	GdkRegion* object = (GdkRegion*)getPtrValue(s_object);
+	GdkSpan* spans = (GdkSpan*)asCArrayRef(s_spans, GdkSpan, asCGdkSpan);
+	int n_spans = (int)GET_LENGTH(s_spans);
+	gboolean sorted = (gboolean)asCLogical(s_sorted);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gdk_region_spans_intersect_foreach(object, spans, n_spans, sorted, function, data);
+
+	g_closure_sink(data);
 
 	return(_result);
 }

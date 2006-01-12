@@ -359,6 +359,17 @@
   )
 )
 
+(define-enum FileChooserConfirmation
+  (in-module "Gtk")
+  (c-name "GtkFileChooserConfirmation")
+  (gtype-id "GTK_TYPE_FILE_CHOOSER_CONFIRMATION")
+  (values
+    '("confirm" "GTK_TYPE_FILE_CHOOSER_CONFIRMATION_CONFIRM")
+    '("accept-filename" "GTK_TYPE_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME")
+	'("select-again" "GTK_TYPE_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN")
+  )
+)
+
 (define-enum IconSize
   (in-module "Gtk")
   (c-name "GtkIconSize")
@@ -513,15 +524,15 @@
   )
 )
 
-(define-enum NotebookTab
-  (in-module "Gtk")
-  (c-name "GtkNotebookTab")
-  (gtype-id "GTK_TYPE_NOTEBOOK_TAB")
-  (values
-    '("first" "GTK_NOTEBOOK_TAB_FIRST")
-    '("last" "GTK_NOTEBOOK_TAB_LAST")
-  )
-)
+;(define-enum NotebookTab
+;  (in-module "Gtk")
+;  (c-name "GtkNotebookTab")
+;  (gtype-id "GTK_TYPE_NOTEBOOK_TAB")
+;  (values
+;    '("first" "GTK_NOTEBOOK_TAB_FIRST")
+;    '("last" "GTK_NOTEBOOK_TAB_LAST")
+;  )
+;)
 
 (define-enum Orientation
   (in-module "Gtk")
@@ -1338,6 +1349,13 @@
   (gtype-id "GTK_TYPE_ACCEL_LABEL")
 )
 
+(define-object AccelMap
+  (in-module "Gtk")
+  (parent "GObject")
+  (c-name "GtkAccelMap")
+  (gtype-id "GTK_TYPE_ACCEL_MAP")
+)
+
 (define-object Accessible
   (in-module "Gtk")
   (parent "AtkObject")
@@ -1410,6 +1428,11 @@
   (parent "GtkContainer")
   (c-name "GtkBox")
   (gtype-id "GTK_TYPE_BOX")
+  (fields
+	  '("GList[GtkBoxChild]" "children")
+	  '("gint16" "spacing")
+	  '("guint" "homogeneous")
+  )
 )
 
 (define-object Button
@@ -1710,6 +1733,9 @@
   (parent "GtkContainer")
   (c-name "GtkFixed")
   (gtype-id "GTK_TYPE_FIXED")
+  (fields
+	  '("GList[GtkFixedChild]" "children")
+  )
 )
 
 (define-object FontButton
@@ -1732,9 +1758,6 @@
   (c-name "GtkFontSelectionDialog")
   (gtype-id "GTK_TYPE_FONT_SELECTION_DIALOG")
   (fields
-    '("GtkWidget*" "fontsel")
-    '("GtkWidget*" "main_vbox")
-    '("GtkWidget*" "action_area")
     '("GtkWidget*" "ok_button")
     '("GtkWidget*" "apply_button")
     '("GtkWidget*" "cancel_button")
@@ -2235,6 +2258,13 @@
   (parent "GtkContainer")
   (c-name "GtkTable")
   (gtype-id "GTK_TYPE_TABLE")
+  (fields
+	  '("GList[GtkTableChild]" "children")
+	  '("GtkTableRowCol*" "rows")
+	  '("GtkTableRowCol*" "cols")
+	  '("gint16" "nrows")
+	  '("gint16" "ncols")
+  )
 )
 
 (define-object TearoffMenuItem
@@ -2469,10 +2499,8 @@
   (c-name "GtkWidget")
   (gtype-id "GTK_TYPE_WIDGET")
   (fields
-    '("guint8" "state")
-    '("guint8" "saved_state")
-    '("gchar*" "name")
     '("GtkStyle*" "style")
+	'("GtkRequisition" "requisition")
     '("GtkAllocation" "allocation")
     '("GdkWindow*" "window")
     '("GtkWidget*" "parent")
@@ -2616,4 +2644,83 @@
         '("guint" "strikethrough")
         '("guint" "draw_bg")
     )
+)
+(define-pointer BoxChild
+	(in-module "Gtk")
+    (c-name "GtkBoxChild")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("GtkWidget*" "widget")
+		'("guint16" "padding")
+		'("guint" "expand")
+		'("guint" "fill")
+		'("guint" "pack")
+		'("guint" "is_secondary")
+	)
+)
+(define-pointer FixedChild
+	(in-module "Gtk")
+    (c-name "GtkFixedChild")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("GtkWidget*" "widget")
+		'("gint" "x")
+		'("gint" "y")
+	)
+)
+(define-pointer PreviewInfo
+	(in-module "Gtk")
+    (c-name "GtkPreviewInfo")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("guchar*" "lookup")
+		'("gdouble" "gamma")
+	)
+)
+(define-pointer TableRowCol
+	(in-module "Gtk")
+    (c-name "GtkTableRowCol")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("guint16" "requisition")
+		'("guint16" "allocation")
+		'("guint16" "spacing")
+		'("guint" "need_expand")
+		'("guint" "need_shrink")
+		'("guint" "expand")
+		'("guint" "shrink")
+		'("guint" "empty")
+	)
+)
+(define-pointer TableChild
+	(in-module "Gtk")
+    (c-name "GtkTableChild")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("GtkWidget*" "widget")
+		'("guint16" "left_attach")
+		'("guint16" "right_attach")
+		'("guint16" "top_attach")
+		'("guint16" "bottom_attach")
+		'("guint16" "xpadding")
+		'("guint16" "ypadding")
+		'("guint" "xexpand")
+		'("guint" "yexpand")
+		'("guint" "xshrink")
+		'("guint" "yshrink")
+		'("guint" "xfill")
+		'("guint" "yfill")
+	)
+)
+(define-pointer StockItem
+	(in-module "Gtk")
+    (c-name "GtkStockItem")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("gchar*" "stock_id")
+		'("gchar*" "label")
+		'("GdkModifierType" "modifier")
+		'("guint" "keyval")
+		'("gchar*" "translation_domain")
+	)
 )

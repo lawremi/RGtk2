@@ -2,18 +2,25 @@
 
 # GType support
 
+# currently just converts type name to GType object, if x isn't one already
 as.GType <- function(x)
 {
+	mapping <- c("integer" = "gint", "character" = "gchararray", "logical" = "gboolean",
+		"numeric" = "gdouble", "raw" = "guchar", "externalptr" = "gpointer") 
     type <- x
     if (is.character(type)) {
+		if (type %in% names(mapping))
+			type <- mapping[[type]]
         type <- try(gTypeFromName(type), TRUE)
         if (inherits(type, "try-error")) {
             func <- paste(tolower(substring(x, 1, 1)), substring(x, 2), "GetType", sep="")
             if (exists(func))
                 type <- do.call(func, list())
         }
-    }
-    as.numeric(type)
+    } 
+	if (!inherits(type, "GType"))
+		stop("Cannot convert ", x, " to GType")
+	type
 }
 
 gObjectTypeName <-
@@ -37,14 +44,18 @@ function(w)
  .Call("R_getInterfaces", w)
 }
 
-gTypeGetClasses <-
+gTypeGetAncestors <-
 function(type)
 {
-  if(is.character(type))
-    type <- gTypeFromName(type)
-
-  checkPtrType(type, "GType")
+  type <- as.GType(type)
   .Call("R_getGTypeHierarchy", type)
+}
+
+gTypeGetClass <-
+function(type)
+{
+	type <- as.GType(type)
+	.Call("R_getGTypeClass", type)
 }
 
 gObjectType <-
@@ -69,10 +80,10 @@ function(x,...)
 
 # GSignal support
 connectSignal <- gSignalConnect <-
-function(w, signal, f, data = NULL, after = TRUE, user.data.first = FALSE)
+function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
 {
   useData <- missing(data) == FALSE
-  checkPtrType(w, "GObject")
+  checkPtrType(obj, "GObject")
 
   if(is.null(f))
     stop("You've specified NULL as the action in setting a callback. Did you mean to use quote()")
@@ -85,38 +96,45 @@ function(w, signal, f, data = NULL, after = TRUE, user.data.first = FALSE)
     stop(paste("Callback action must be an expression, a call or a function, but instead is of type", typeof(f), ". Did you forget to use quote()"))
   }
 
-  .Call("R_connectGSignalHandler", w, f, as.character(signal), data, useData, 
+  .Call("R_connectGSignalHandler", obj, f, as.character(signal), data, useData, 
   	as.logical(after), as.logical(user.data.first))
 }
 
-disconnectSignal <- gSignalDisconnect <-
+disconnectSignal <- gSignalHandlerDisconnect <-
 function(obj, id)
 {
  checkPtrType(obj, "GObject")
  .Call("R_disconnectGSignalHandler", obj, as.integer(id))
 }
 
-blockSignal <- gSignalBlock <-
+blockSignal <- gSignalHandlerBlock <-
 function(obj, id)
 {
   checkPtrType(obj, "GObject")
  .Call("R_blockGSignalHandler", obj, as.integer(id), TRUE)
 }
 
-unblockSignal <- gSignalUnblock <-
+unblockSignal <- gSignalHandlerUnblock <-
 function(obj, id)
 {
   checkPtrType(obj, "GObject")
  .Call("R_blockGSignalHandler", obj, as.integer(id), FALSE)
 }
 
-getSignals <- gObjectGetSignals <-
-function(w)
+gSignalStopEmission <-
+function(obj, signal, detail = NULL)
 {
-  checkPtrType(w, "GObject")
-  els <- .Call("R_getSignalIds", w)
-  names(els) <- sapply(els, function(x) names(x))
+	if (!is.null(detail))
+		signal <- paste(signal, detail, sep="::")
+	.Call("R_gSignalStopEmission", obj, signal)
+}
 
+getSignals <- gObjectGetSignals <-
+function(obj)
+{
+  checkPtrType(obj, "GObject")
+  type <- gObjectType(type)
+  els <- getSignalsForType(type)
   els
 }
 
@@ -130,7 +148,7 @@ function(type)
   }
 
   checkPtrType(type, "GType")
-  els <- .Call("R_getSignalIdsByType", type)
+  els <- .Call("R_getGSignalIdsByType", type)
 
   names(els) <- sapply(els, function(x) names(x))
 
@@ -146,11 +164,14 @@ function(sig)
 }
 
 emitSignal <- gSignalEmit <-
-function(obj, signal, ..., .flush = TRUE)
+function(obj, signal, ..., detail = NULL, .flush = TRUE)
 {
   checkPtrType(obj, "GObject")
   args <- list(...)
-  .RGtkCall("R_gSignalEmit", obj, as.character(signal), args, .flush = .flush)
+  signal <- as.character(signal)
+  if (!is.null(detail))
+		signal <- paste(signal, detail, sep="::")
+  .RGtkCall("R_gSignalEmit", obj, signal, args, .flush = .flush)
 }
 
 # GObject properties
@@ -168,15 +189,7 @@ function(x)
 }
 
 gObjectGetPropInfo <-
-  #
-  # Could be done in S code more readily using
-  # {l,s}apply(class(obj), getTypeArgInfo)
-  #
-  #
-  #  strip is intended to remove the `class::'
-  #  prefix. Can do this in R or in C.
-  #
-function(obj, parents = TRUE, collapse = FALSE, strip = FALSE)
+function(obj, parents = TRUE, collapse = FALSE)
 {
   if(is.character(obj))
     obj <- gTypeFromName(obj)
@@ -196,9 +209,6 @@ function(obj, parents = TRUE, collapse = FALSE, strip = FALSE)
     vals <- list()
     sapply(v, function(x) {
                   which <- is.na(match(names(x), names(vals)))
-                  if(strip) {
-                    Names <- gsub("^.*::","",names(x)[which])
-                  } else
                     Names <- names(x)[which]
                   vals[Names] <<- x[which]
               })
@@ -206,12 +216,6 @@ function(obj, parents = TRUE, collapse = FALSE, strip = FALSE)
     #
     #unlist(v, recursive = FALSE)
     # messes up the names.
-  } else if(strip) {
-
-    v <- lapply(v, function(x) {
-                    names(x) <- gsub("^.*::","",names(x))
-                    x
-                  })
   }
 
   v
@@ -228,7 +232,7 @@ function(obj, ...)
 "[.GObject" <-
 function(x, ...)
 {
- gObjectGetProps(x, c(...))
+ gObjectGet(x, c(...))
 }
 
 gObjectSet <- gObjectSetProps <-
@@ -240,6 +244,26 @@ function(obj, ..., .flush = TRUE)
     stop("All values must have a name")
 
   invisible(.RGtkCall("R_setGObjectProps", obj, args, .flush = .flush))
+}
+
+"[<-.GObject" <-
+function(x, propNames, propValues)
+{
+	names(propValues) <- propNames
+	invisible(.RGtkCall("R_setGObjectProps", obj, propValues, .flush = .flush))
+}
+
+gObject <- gObjectNew <-
+function(type, ..., .flush = TRUE)
+{
+  args <- list(...)
+  type <- as.GType(type)
+  if (!("GObject" %in% gTypeGetAncestors(type)))
+	  stop("GType must inherit from GObject")
+  if(any(names(args) == ""))
+    stop("All values must have a name")
+
+  invisible(.RGtkCall("R_gObjectNew", type, args, .flush = .flush))
 }
 
 as.GParamSpec <- 
@@ -256,36 +280,33 @@ function(x)
 	
 
 gObjectSetData <-
-function(object, key, data = NULL, .flush = TRUE, .depwarn = TRUE)
+function(obj, key, data = NULL, .flush = TRUE, .depwarn = TRUE)
 {
-        checkPtrType(object, "GObject")
+        checkPtrType(obj, "GObject")
         key <- as.character(key)
 
-        w <- .RGtkCall("S_g_object_set_data", object, key, data, .flush = .flush)
+        w <- .RGtkCall("S_g_object_set_data", obj, key, data, .flush = .flush)
 
         return(invisible(w))
 }
 gObjectGetData <-
-function(object, key, .flush = TRUE, .depwarn = TRUE)
+function(obj, key, .flush = TRUE, .depwarn = TRUE)
 {
-        checkPtrType(object, "GObject")
+        checkPtrType(obj, "GObject")
         key <- as.character(key)
 
-        w <- .RGtkCall("S_g_object_get_data", object, key, .flush = .flush)
+        w <- .RGtkCall("S_g_object_get_data", obj, key, .flush = .flush)
 
         return(w)
 }
 
-"[<-.GObject" <-
-function(x, name, value)
-{
-  names(value) <- name
-  .RGtkCall("R_setGObjectProps", x, value,.flush = TRUE)
-
-   x
-}
-
 # Methods
+
+"$.<invalid>" <-
+function(obj, name)
+{
+	stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
+}
 
 "$.RGtkObject" <-
 function(obj, name)
@@ -311,6 +332,13 @@ function(obj, name)
  eval(substitute( function(...) {
                      sym(obj, ...)
                  }, list(obj=obj,sym=sym)))
+}
+
+# Comparing pointers
+
+"==.RGtkObject" <-
+function(x, y) {
+	ptrToNumeric(x) == ptrToNumeric(y)
 }
 
 # Fields
@@ -372,10 +400,26 @@ function(obj, name, op = "Get", error = TRUE)
  sym
 }
 
+# This attempts to coerce an R object to an RGClosure that is understood on the C side
 as.GClosure <- 
 function(x)
 {
-	x <- as.function(x)
-	class(x) <- "GClosure"
+	if (inherits(x, "GClosure"))
+		x <- to.RGClosure(x)
+	else x <- as.function(x)
+	class(x) <- "RGClosure"
 	x
+}
+
+# This attempts to convert a C GClosure to an R closure 
+# (with extra ref attribute that prevents recursion on C side)
+to.RGClosure <-
+function(c_closure)
+{
+	checkPtrType(c_closure, "GClosure")
+	closure <- function(...) {
+		.RGtkCall("R_g_closure_invoke", c_closure, c(...))
+	}
+	attr(closure, "ref") <- c_closure
+	closure
 }

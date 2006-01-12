@@ -116,7 +116,19 @@
     '("gint*" "log_clusters")
   )
 )
-
+(define-boxed Item
+    (in-module "Pango")
+    (c-name "PangoItem")
+    (gtype-id "PANGO_TYPE_ITEM")
+    (fields
+        '("gint" "offset")
+		'("gint" "length")
+		'("gint" "num_chars")
+		'("PangoAnalysis" "analysis")
+    )
+	(copy-func "pango_item_copy")
+    (release-func "pango_item_free")
+)
 (define-boxed Language
   (in-module "Pango")
   (c-name "PangoLanguage")
@@ -401,24 +413,42 @@
         '("PangoAttrType" "type")
     )
 )
-(define-pointer Item
-    (in-module "Pango")
-    (c-name "PangoItem")
-    (gtype-id "G_TYPE_POINTER")
-    (fields
-        '("gint" "offset")
-		'("gint" "length")
-		'("gint" "num_chars")
-		'("PangoAnalysis" "analysis")
-    )
-)
 (define-pointer GlyphItem
 	(in-module "Pango")
-    (c-name "PangoItem")
+    (c-name "PangoGlyphItem")
     (gtype-id "G_TYPE_POINTER")
     (fields
         '("PangoItem*" "item")
 		'("PangoGlyphString*" "glyphs")
+	)
+)
+(define-pointer GlyphInfo
+	(in-module "Pango")
+    (c-name "PangoGlyphInfo")
+    (gtype-id "G_TYPE_POINTER")
+    (fields
+		'("PangoGlyph" "glyph")
+		'("PangoGlyphGeometry" "geometry")
+		'("PangoGlyphVisAttr" "attr")
+	)
+)
+(define-pointer GlyphGeometry
+	(in-module "Pango")
+    (c-name "PangoGlyphGeometry")
+    (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("PangoGlyphUnit" "width")
+		'("PangoGlyphUnit" "x_offset")  
+		'("PangoGlyphUnit" "y_offset")
+	)
+)
+
+(define-pointer GlyphVisAttr
+	(in-module "Pango")
+    (c-name "PangoGlyphVisAttr")
+    (gtype-id "G_TYPE_POINTER")
+    (fields
+		'("guint" "is_cluster_start")
 	)
 )
 

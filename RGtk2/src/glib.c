@@ -53,6 +53,20 @@ asRGListWithRef(GList *glist, const gchar* type)
 	return(asRGListWithFinalizer(glist, type, g_object_unref));
 }
 USER_OBJECT_
+asRGListWithSink(GList *glist, const gchar* type)
+{
+	USER_OBJECT_ list;
+    GList * cur = glist;
+    int size = g_list_length(glist), i;
+    PROTECT(list = NEW_LIST(size));
+    for (i = 0; i < size; i++) {
+        SET_VECTOR_ELT(list, i, toRPointerWithSink(cur->data, type));
+        cur = g_list_next(cur);
+    }
+    UNPROTECT(1);
+    return list;
+}
+USER_OBJECT_
 asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer) {
     USER_OBJECT_ list;
     GList * cur = glist;
@@ -114,6 +128,21 @@ asRGSListWithRef(GSList *gslist, const gchar* type)
 	return(asRGSListWithFinalizer(gslist, type, g_object_unref));
 }
 USER_OBJECT_
+asRGSListWithSink(GSList *gslist, const gchar* type) { 
+    USER_OBJECT_ list;
+    GSList * cur = gslist;
+    int l = g_slist_length(gslist), i;
+    PROTECT(list = NEW_LIST(l));
+    for (i = 0; i < l; i++) {
+        USER_OBJECT_ element;
+        element = toRPointerWithSink(cur->data, type);
+        SET_VECTOR_ELT(list, i, element);
+        cur = g_slist_next(cur);
+    }
+    UNPROTECT(1);
+    return list;
+}
+USER_OBJECT_
 asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer) { 
     USER_OBJECT_ list;
     GSList * cur = gslist;
@@ -161,6 +190,14 @@ GSListFreeStrings(GSList *gslist)
 		cur = g_slist_next(cur);
 	}
 	
+}
+
+USER_OBJECT_
+R_gQuarkFromString(USER_OBJECT_ s_string)
+{
+	const gchar *string = asCString(s_string);
+	GQuark quark = g_quark_from_string(string);
+	return(asRGQuark(quark));
 }
 
 USER_OBJECT_
@@ -326,4 +363,18 @@ void free_g_string(GString* string) {
     g_string_free(string, (gboolean)1);
 }
 
+/* The G_FILE_ERROR quark */
+USER_OBJECT_
+S_g_file_error_quark()
+{
+
+	GQuark ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = g_file_error_quark();
+
+	_result = asRGQuark(ans);
+
+	return(_result);
+}
 

@@ -3,7 +3,7 @@
 
 
 void
-S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, gpointer s_data)
+S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, gchar* s_link, gpointer s_data)
 {
 	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
 
@@ -84,7 +84,7 @@ S_GtkClipboardImageReceivedFunc(GtkClipboard* s_clipboard, GdkPixbuf* s_image, g
 
 
 void
-S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, gpointer s_data)
+S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, gchar* s_text, gpointer s_data)
 {
 	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
 
@@ -117,7 +117,7 @@ S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, g
 
 	GClosure* GtkColorSelectionChangePaletteFunc_closure;
 void
-S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
+S_GtkColorSelectionChangePaletteFunc(GdkColor* s_colors, gint s_n_colors)
 {
 	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
 
@@ -133,7 +133,7 @@ S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
 
 	GClosure* GtkColorSelectionChangePaletteWithScreenFunc_closure;
 void
-S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors)
+S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, GdkColor* s_colors, gint s_n_colors)
 {
 	GValue * params = (GValue *)S_alloc(3, sizeof(GValue));
 
@@ -190,7 +190,7 @@ S_GtkCTreeFunc(GtkCTree* s_ctree, GtkCTreeNode* s_node, gpointer s_data)
 
 
 gboolean
-S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data)
+S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data)
 {
 	GValue * params = (GValue *)S_alloc(3, sizeof(GValue));
 
@@ -213,7 +213,7 @@ S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_k
 
 
 gboolean
-S_GtkFileFilterFunc(const GtkFileFilterInfo* s_filter_info, gpointer s_data)
+S_GtkFileFilterFunc(GtkFileFilterInfo* s_filter_info, gpointer s_data)
 {
 	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
 
@@ -247,7 +247,7 @@ S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer
 
 
 void
-S_GtkTranslateFunc(const gchar* s_path, gpointer s_func_data)
+S_GtkTranslateFunc(gchar* s_path, gpointer s_func_data)
 {
 	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
 
@@ -513,7 +513,7 @@ S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer
 
 
 gboolean
-S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data)
+S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data)
 {
 	GValue * params = (GValue *)S_alloc(4, sizeof(GValue));
 
@@ -589,7 +589,7 @@ S_GtkCallback(GtkWidget* s_child, gpointer s_data)
 
 
 void
-S_GtkAccelMapForeach(gpointer s_data, const gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed)
+S_GtkAccelMapForeach(gpointer s_data, gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed)
 {
 	GValue * params = (GValue *)S_alloc(4, sizeof(GValue));
 
@@ -623,6 +623,32 @@ S_GtkAccelGroupFindFunc(GtkAccelKey* s_key, GClosure* s_closure, gpointer s_data
 	g_value_set_pointer(&params[1], s_closure);
 
 	g_closure_invoke(s_data, ans, 2, params, NULL);
+
+	return(g_value_get_boolean(ans));
+} 
+
+
+	GClosure* GtkAccelGroupActivate_closure;
+gboolean
+S_GtkAccelGroupActivate(GtkAccelGroup* s_accel_group, GObject* s_acceleratable, guint s_keyval, GdkModifierType s_modifier)
+{
+	GValue * params = (GValue *)S_alloc(4, sizeof(GValue));
+
+	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+
+	g_value_init(ans, G_TYPE_BOOLEAN);
+
+	g_value_init(&params[0], GTK_TYPE_ACCEL_GROUP);
+	g_value_init(&params[1], G_TYPE_OBJECT);
+	g_value_init(&params[2], G_TYPE_UINT);
+	g_value_init(&params[3], GDK_TYPE_MODIFIER_TYPE);
+
+	g_value_set_object(&params[0], s_accel_group);
+	g_value_set_pointer(&params[1], s_acceleratable);
+	g_value_set_uint(&params[2], s_keyval);
+	g_value_set_flags(&params[3], s_modifier);
+
+	g_closure_invoke(GtkAccelGroupActivate_closure, ans, 4, params, NULL);
 
 	return(g_value_get_boolean(ans));
 } 

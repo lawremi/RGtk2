@@ -3,6 +3,7 @@
 #include "gobject.h"
 #include "gtkmozembedFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
@@ -31,7 +32,7 @@ S_gtk_moz_embed_new()
 
 	ans = gtk_moz_embed_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -368,7 +369,7 @@ S_gtk_moz_embed_single_get()
 
 	ans = gtk_moz_embed_single_get();
 
-	_result = toRPointer(ans, "GtkMozEmbedSingle");
+	_result = toRPointerWithSink(ans, "GtkMozEmbedSingle");
 
 	return(_result);
 }

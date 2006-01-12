@@ -121,3 +121,4 @@ S_pango_attr_iterator_get_font(USER_OBJECT_ s_object)
 
 	return(_result);
 }
+

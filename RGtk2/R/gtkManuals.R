@@ -2,11 +2,11 @@
 
 # reason: var args, paste 'em together
 gtkMessageDialogNew <-
-function(parent = NULL, flags, types, buttons, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(parent = NULL, flags, type, buttons, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
     checkPtrType(parent, "GtkWindow", nullOk = T)
 
-    w <- .RGtkCall("S_gtk_message_dialog_new", parent, flags, types, buttons, paste(...), .flush = .flush)
+    w <- .RGtkCall("S_gtk_message_dialog_new", parent, flags, type, buttons, paste(...), .flush = .flush)
 
     if(show)
         gtkWidgetShowAll(w)
@@ -81,10 +81,10 @@ function(object, ..., .flush = TRUE, .depwarn = TRUE)
 
 # reason: var-args for the buttons, compile into vectors of labels and responses (if given)
 gtkFileChooserDialogNewWithBackend <-
-function(title, parent, action, backend, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(title = NULL, parent = NULL, action, backend, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
         title <- as.character(title)
-        checkPtrType(parent, "GtkWindow")
+        checkPtrType(parent, "GtkWindow", nullOk = T)
         backend <- as.character(backend)
         
 		args <- list(...)
@@ -104,7 +104,7 @@ function(title, parent, action, backend, ..., show = TRUE, .flush = TRUE, .depwa
         return(w)
 }
 gtkFileChooserDialogNew <-
-function(title, parent, action, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(title = NULL, parent = NULL, action, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
         w <- gtkFileChooserDialogNewWithBackend(title, parent, action, NULL, ..., show=show, .flush=.flush, .depwarn=.depwarn)
 
@@ -147,7 +147,7 @@ function(object, tag.name, ..., .flush = TRUE, .depwarn = TRUE)
 }
 
 # reason: var args, just compile into an array and send to alternate function
-gtkListStoreNew <-
+gtkListStore <- gtkListStoreNew <-
 function(..., .flush = TRUE, .depwarn = TRUE)
 {
         types <- checkArrType(c(...), as.GType)
@@ -292,7 +292,7 @@ function(object, position, title, cell, ..., .flush = TRUE, .depwarn = TRUE)
         return(w)
 }
 
-# reason: NULL terminate var args
+# reason: var-args, collect into vectors
 
 gtkTextBufferInsertWithTags <-
 function(object, iter, text, ..., .flush = TRUE, .depwarn = TRUE)
@@ -432,12 +432,138 @@ function(object, path, .flush = TRUE, .depwarn = TRUE)
 
         return(invisible(w))
 }
+# reason: var-args
+gtkDialogSetAlternativeButtonOrder <-
+function(object, ..., .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkDialog")
+        new.order <- list(...)
+		
+		w <- gtkDialogSetAlternativeButtonOrderFromArray(object, new.order, .flush, .depwarn)
 
-# EXPERIMENTAL LIST STORE ACCESS
+        return(invisible(w))
+}
+# reason: more var-args
+gtkListStoreInsertWithValues <-
+function(object, position, ..., .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkListStore")
+        position <- as.integer(position)
+
+		args <- list(...)
+		columns <- as.integer(args[seq(1,length(args),by=2)])
+		values <- args[seq(2,length(args),by=2)]
+		
+        w <- gtkListStoreInsertWithValuesv(object, position, columns, values, .flush, .depwarn)
+
+        return(w)
+}
+# reason: user func has no userdata, so we can't support it... maybe in the future
+gtkMenuAttachToWidget <-
+function(object, attach.widget, .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkMenu")
+        checkPtrType(attach.widget, "GtkWidget")
+
+        w <- .RGtkCall("S_gtk_menu_attach_to_widget", object, attach.widget, PACKAGE = "RGtk2", .flush = .flush)
+
+        return(invisible(w))
+}
+
+# reason: var-args, let's just go right to gObjectSet
+gtkWidgetSet <- gObjectSet
+
+# reason: these two are var-args and we're just going to tie them into gObjectNew
+gtkWidgetNew <-
+function(type, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+{
+	if (!("GtkWidget" %in% gTypeGetAncestors(type)))
+		stop("GType must inherit from GtkWidget")
+	gObjectNew(type, ...)
+}
+gtkObject <- gtkObjectNew <-
+function(type, ..., .flush = TRUE, .depwarn = TRUE)
+{
+	if (!("GtkObject" %in% gTypeGetClasses(type)))
+		stop("GType must inherit from GtkObject")
+	gObjectNew(type, ...)
+}
+
+# reason: var-args, just use _style_get_property for each
+gtkWidgetStyleGet <-
+function(object, ..., .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkWidget")
+        props <- c(...)
+		w <- sapply(props, function(prop) { gtkWidgetStyleGetProperty(object, prop, .flush, .depwarn) })
+        return(invisible(w))
+}
+
+# reason: var-args, just reimplement in R
+gtkTreeViewColumnNewWithAttributes <-
+function(title, cell, ..., .flush = TRUE, .depwarn = TRUE)
+{
+		title <- as.character(title)
+		checkPtrType(cell, "GtkCellRenderer")
+		
+		column <- gtkTreeViewColumnNew(.flush, .depwarn)
+		column$setTitle(title, .flush, .depwarn)
+		column$packStart(cell, TRUE, .flush, .depwarn)
+		column$setAttributes(cell, ..., .flush = .flush, .depwarn = .depwarn)
+		
+        return(column)
+}
+# reason: var-args, just implement in R using _add_attribute for each
+gtkTreeViewColumnSetAttributes <-
+function(object, cell.renderer, ..., .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkTreeViewColumn")
+        checkPtrType(cell.renderer, "GtkCellRenderer")
+		attributes <- lapply(c(...), as.integer)
+		print(attributes)
+		
+		object$clearAttributes(cell.renderer, .flush, .depwarn)
+		w <- sapply(names(attributes), function(attr) { 
+			object$addAttribute(cell.renderer, attr, attributes[[attr]], .flush, .depwarn) 
+		})
+        
+        return(invisible(w))
+}
+
+# EXPERIMENTAL TREE MODEL ACCESS
+
+# Loads data into the specified rows (or paths) and columns of a list store
 gtkListStoreLoad <-
 function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, .flush = TRUE, .depwarn = TRUE)
 {
         checkPtrType(object, "GtkListStore")
+		
+		w <- gtkTreeModelLoad(object, data, rows, cols, paths, append, type = "list", .flush, .depwarn)
+		
+		return(invisible(w))
+}
+# Loads data into the specified rows (or paths) and columns of a tree store
+# Here, the rows should be vectors that describe path locations within the tree
+gtkTreeStoreLoad <-
+function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, .flush = TRUE, .depwarn = TRUE)
+{
+        checkPtrType(object, "GtkTreeStore")
+		
+		w <- gtkTreeModelLoad(object, data, rows, cols, paths, append, type = "tree", .flush, .depwarn) 
+		
+        return(invisible(w))
+}
+
+# The (private) main function for loading data into a tree or list store
+# If the column names have not been set for the model, this function sets them
+# to the column names of the data frame. If append is TRUE the data is added
+# to the end of the model. Otherwise, if there are no paths and the rows are not specified, 
+# they are assumed to be the sequence from 0 to the number of rows in the data.
+# The columns can be indices or names. Sorting is temporarily disabled for this operation.
+gtkTreeModelLoad <-
+function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, type = c("list", "tree"), .flush = TRUE, .depwarn = TRUE)
+{		
+		type <- match.arg(type)
 		
 		col.names <- object$getData("colnames")
 		if (is.null(col.names)) {
@@ -453,19 +579,25 @@ function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, 
 		}
 		cols <- as.integer(cols)
 		
+		if (length(cols) != length(data))
+			stop("The number of specified columns (", length(cols), ")",
+				" does not match the number of columns (", length(data), ") in the data")
+		
 		sort <- object$getSortColumnId()
 		sorted <- sort["sort_column_id"] %in% cols
 		if (sorted)
 			object$setSortColumnId(-2, sort[["order"]]) # -2 means unsorted
 		
-		if (missing(paths) && !append) {
+		if (missing(paths) && (!append || type == "tree")) {
 			if (missing(rows) || is.null(rows))
 				rows <- 0:(length(data[[1]])-1)
-			rows <- as.integer(rows)
-			w <- .RGtkCall("S_gtk_list_store_load", object, data, rows, cols, .flush = .flush)
+			if (type == "tree")
+				rows <- lapply(rows, as.integer)
+			else rows <- as.integer(rows)
+			w <- .RGtkCall(paste("S_gtk_", type, "_store_load", sep=""), object, data, rows, cols, append, .flush = .flush)
 		} else {
 			paths <- lapply(paths, function(path) { checkPtrType(path, "GtkTreePath"); path })
-			w <- .RGtkCall("S_gtk_list_store_load_paths", object, data, paths, cols, append, .flush = .flush)
+			w <- .RGtkCall(paste("S_gtk_", type, "_store_load_paths", sep=""), object, data, paths, cols, append, .flush = .flush)
 		}
 		
 		if (sorted)
@@ -473,42 +605,101 @@ function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F, 
 		
         return(invisible(w))
 }
+# Unloads a tree model. If there are no paths, the rows must must be indices or 
+# vectors of indices if accessing multiple levels. Columns may be indices or names.
+# If this model has column names, they are the column names of the returned structure.
+# This structure is a data frame if 'frame' is TRUE. The attribute "paths" contains
+# indices or vectors of indices (in the case of multiple levels) describing the location
+# of each row of the data frame in the tree model.
 gtkTreeModelUnload <-
 function(object, rows = NULL, cols = 0:(object$getNColumns()-1), paths, frame = T, .flush = TRUE, .depwarn = TRUE)
 {
         checkPtrType(object, "GtkTreeModel")
 		
 		col.names <- object$getData("colnames")
-		if (is.character(cols) && !is.null(col.names)) {
+		if (is.character(cols)) {
+			if (is.null(col.names))
+				stop("Specifying column names is not allowed - this tree model does not have any")
 			m <- match(cols, col.names)
+			if (any(is.na(m)))
+				stop("Invalid column names: ", paste(cols[is.na(m)], collapse=", "))
 			cols[!is.na(m)] <- m[!is.na(m)]-1
 		}
 		cols <- as.integer(cols)
 		
 		if(missing(paths)) {
-			rows <- as.integer(rows)
-			w <- .RGtkCall("S_gtk_tree_model_unload", object, rows, cols, .flush = .flush)
+			rows <- lapply(rows, as.integer)
+			data <- .RGtkCall("S_gtk_tree_model_unload", object, rows, cols, .flush = .flush)
 		} else {
 			paths <- lapply(paths, function(path) { checkPtrType(path, "GtkTreePath"); path })
-			w <- .RGtkCall("S_gtk_tree_model_unload_paths", object, paths, cols, .flush = .flush)
+			data <- .RGtkCall("S_gtk_tree_model_unload_paths", object, paths, cols, .flush = .flush)
+		}
+		
+		if (length(rows) == 0) {
+			rows <- data[[2]]
+			data <- data[[1]]
 		}
 		
 		if (frame)
-			w <- as.data.frame(sapply(w, unlist))
+			data <- as.data.frame(sapply(data, unlist))
 		
-		if (length(w) > 0 && length(col.names) > 0) {
-			names(w) <- col.names[cols+1]
+		attr(data, "paths") <- rows
+		
+		if (length(data) > 0 && length(col.names) > 0) {
+			names(data) <- col.names[cols+1]
 		}
-        
-		return(w)
+		
+		return(data)
 }
 
-"[<-.GtkListStore" <-
+# we can't do "GtkTreeModel" here because it's an interface, not a class
+"[<-.GtkListStore" <- "[<-.GtkTreeStore" <-
 function(model, rows = NULL, cols = 0:(length(data)-1), value) {
 	model$load(value, rows, cols)
 	model
 }
-"[.GtkListStore" <-
+"[.GtkListStore" <- "[.GtkTreeStore" <-
 function(model, rows = NULL, cols = 0:(object$getNColumns()-1)) {
 	model$unload(rows, cols)
+}
+
+# aliases for error domains
+GTK_ICON_THEME_ERROR <- gtkIconThemeErrorQuark
+GTK_FILE_CHOOSER_ERROR <- gtkFileChooserErrorQuark
+
+# NOT IMPLEMENTED FUNCS #
+
+gtkAccelGroupQuery <- 
+function(object, accel.key, accel.mods, .flush = TRUE, .depwarn = TRUE) 
+{
+	notimplemented("returns an array of an undocumented structure, so you probably shouldn't use it") 
+}
+
+gtkCListSetCompareFunc <- 
+function(object, cmp.func, .flush = TRUE, .depwarn = TRUE) {
+	notimplemented("does not provide user-data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
+}
+
+gtkCTreeSetDragCompareFunc <-
+function(object, cmp.func, .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("does not provide user data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
+}
+
+gtkItemFactoryCreateMenuEntries <-
+function(entries, .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("accepts as input an array of an undocumented structure, so you probably shouldn't use it. Besides, it's deprecated")
+}
+
+gtkSettingsInstallPropertyParser <-
+function(pspec, parser, .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
+}
+
+gtkWidgetClassInstallStylePropertyParser <-
+function(klass, pspec, parser, .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
 }

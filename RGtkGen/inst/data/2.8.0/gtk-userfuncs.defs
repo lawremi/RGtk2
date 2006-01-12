@@ -317,6 +317,16 @@
       '("gpointer" "data")
   )
 )
+(define-user-function Activate
+  (c-name "GtkAccelGroupActivate")
+  (return-type "gboolean")
+  (parameters
+      '("GtkAccelGroup*" "accel_group")
+      '("GObject*" "acceleratable")
+	  '("guint" "keyval")
+      '("GdkModifierType" "modifier")
+  )
+)
 (define-user-function TextTagTableForeach
   (c-name "GtkTextTagTableForeach")
   (return-type "none")

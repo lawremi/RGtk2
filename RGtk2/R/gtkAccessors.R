@@ -47,6 +47,27 @@ function(obj)
   v <- .Call('S_GtkBinGetChild', obj)
   v
 } 
+gtkBoxGetChildren <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBox')
+  v <- .Call('S_GtkBoxGetChildren', obj)
+  v
+} 
+gtkBoxGetSpacing <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBox')
+  v <- .Call('S_GtkBoxGetSpacing', obj)
+  v
+} 
+gtkBoxGetHomogeneous <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBox')
+  v <- .Call('S_GtkBoxGetHomogeneous', obj)
+  v
+} 
 gtkCheckMenuItemGetActive <-
 function(obj)
 {
@@ -278,25 +299,11 @@ function(obj)
   v <- .Call('S_GtkFileSelectionGetActionArea', obj)
   v
 } 
-gtkFontSelectionDialogGetFontsel <-
+gtkFixedGetChildren <-
 function(obj)
 {
-  checkPtrType(obj, 'GtkFontSelectionDialog')
-  v <- .Call('S_GtkFontSelectionDialogGetFontsel', obj)
-  v
-} 
-gtkFontSelectionDialogGetMainVbox <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkFontSelectionDialog')
-  v <- .Call('S_GtkFontSelectionDialogGetMainVbox', obj)
-  v
-} 
-gtkFontSelectionDialogGetActionArea <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkFontSelectionDialog')
-  v <- .Call('S_GtkFontSelectionDialogGetActionArea', obj)
+  checkPtrType(obj, 'GtkFixed')
+  v <- .Call('S_GtkFixedGetChildren', obj)
   v
 } 
 gtkFontSelectionDialogGetOkButton <-
@@ -551,6 +558,41 @@ function(obj)
   v <- .Call('S_GtkStyleGetBgPixmap', obj)
   v
 } 
+gtkTableGetChildren <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTable')
+  v <- .Call('S_GtkTableGetChildren', obj)
+  v
+} 
+gtkTableGetRows <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTable')
+  v <- .Call('S_GtkTableGetRows', obj)
+  v
+} 
+gtkTableGetCols <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTable')
+  v <- .Call('S_GtkTableGetCols', obj)
+  v
+} 
+gtkTableGetNrows <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTable')
+  v <- .Call('S_GtkTableGetNrows', obj)
+  v
+} 
+gtkTableGetNcols <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTable')
+  v <- .Call('S_GtkTableGetNcols', obj)
+  v
+} 
 gtkTextBufferGetTagTable <-
 function(obj)
 {
@@ -565,32 +607,18 @@ function(obj)
   v <- .Call('S_GtkToggleButtonGetDrawIndicator', obj)
   v
 } 
-gtkWidgetGetState <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkWidget')
-  v <- .Call('S_GtkWidgetGetState', obj)
-  v
-} 
-gtkWidgetGetSavedState <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkWidget')
-  v <- .Call('S_GtkWidgetGetSavedState', obj)
-  v
-} 
-gtkWidgetGetName <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkWidget')
-  v <- .Call('S_GtkWidgetGetName', obj)
-  v
-} 
 gtkWidgetGetStyle <-
 function(obj)
 {
   checkPtrType(obj, 'GtkWidget')
   v <- .Call('S_GtkWidgetGetStyle', obj)
+  v
+} 
+gtkWidgetGetRequisition <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkWidget')
+  v <- .Call('S_GtkWidgetGetRequisition', obj)
   v
 } 
 gtkWidgetGetAllocation <-
@@ -1249,5 +1277,229 @@ function(obj)
 {
   checkPtrType(obj, 'GtkTextAppearance')
   v <- .Call('S_GtkTextAppearanceGetDrawBg', obj)
+  v
+} 
+gtkBoxChildGetWidget <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetWidget', obj)
+  v
+} 
+gtkBoxChildGetPadding <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetPadding', obj)
+  v
+} 
+gtkBoxChildGetExpand <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetExpand', obj)
+  v
+} 
+gtkBoxChildGetFill <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetFill', obj)
+  v
+} 
+gtkBoxChildGetPack <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetPack', obj)
+  v
+} 
+gtkBoxChildGetIsSecondary <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkBoxChild')
+  v <- .Call('S_GtkBoxChildGetIsSecondary', obj)
+  v
+} 
+gtkFixedChildGetWidget <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkFixedChild')
+  v <- .Call('S_GtkFixedChildGetWidget', obj)
+  v
+} 
+gtkFixedChildGetX <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkFixedChild')
+  v <- .Call('S_GtkFixedChildGetX', obj)
+  v
+} 
+gtkFixedChildGetY <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkFixedChild')
+  v <- .Call('S_GtkFixedChildGetY', obj)
+  v
+} 
+gtkPreviewInfoGetLookup <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkPreviewInfo')
+  v <- .Call('S_GtkPreviewInfoGetLookup', obj)
+  v
+} 
+gtkPreviewInfoGetGamma <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkPreviewInfo')
+  v <- .Call('S_GtkPreviewInfoGetGamma', obj)
+  v
+} 
+gtkTableRowColGetRequisition <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetRequisition', obj)
+  v
+} 
+gtkTableRowColGetAllocation <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetAllocation', obj)
+  v
+} 
+gtkTableRowColGetSpacing <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetSpacing', obj)
+  v
+} 
+gtkTableRowColGetNeedExpand <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetNeedExpand', obj)
+  v
+} 
+gtkTableRowColGetNeedShrink <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetNeedShrink', obj)
+  v
+} 
+gtkTableRowColGetExpand <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetExpand', obj)
+  v
+} 
+gtkTableRowColGetShrink <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetShrink', obj)
+  v
+} 
+gtkTableRowColGetEmpty <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableRowCol')
+  v <- .Call('S_GtkTableRowColGetEmpty', obj)
+  v
+} 
+gtkTableChildGetWidget <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetWidget', obj)
+  v
+} 
+gtkTableChildGetLeftAttach <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetLeftAttach', obj)
+  v
+} 
+gtkTableChildGetRightAttach <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetRightAttach', obj)
+  v
+} 
+gtkTableChildGetTopAttach <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetTopAttach', obj)
+  v
+} 
+gtkTableChildGetBottomAttach <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetBottomAttach', obj)
+  v
+} 
+gtkTableChildGetXpadding <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetXpadding', obj)
+  v
+} 
+gtkTableChildGetYpadding <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetYpadding', obj)
+  v
+} 
+gtkTableChildGetXexpand <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetXexpand', obj)
+  v
+} 
+gtkTableChildGetYexpand <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetYexpand', obj)
+  v
+} 
+gtkTableChildGetXshrink <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetXshrink', obj)
+  v
+} 
+gtkTableChildGetYshrink <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetYshrink', obj)
+  v
+} 
+gtkTableChildGetXfill <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetXfill', obj)
+  v
+} 
+gtkTableChildGetYfill <-
+function(obj)
+{
+  checkPtrType(obj, 'GtkTableChild')
+  v <- .Call('S_GtkTableChildGetYfill', obj)
   v
 } 

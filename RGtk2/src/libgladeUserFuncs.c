@@ -29,12 +29,12 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
 
 	g_closure_invoke(s_user_data, ans, 7, params, NULL);
 
-	return(g_value_get_pointer(ans));
+	return(g_value_get_object(ans));
 } 
 
 
 void
-S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gchar* s_signal_name, const gchar* s_signal_data, GObject* s_connect_object, gboolean s_after, gpointer s_user_data)
+S_GladeXMLConnectFunc(gchar* s_handler_name, GObject* s_object, gchar* s_signal_name, gchar* s_signal_data, GObject* s_connect_object, gboolean s_after, gpointer s_user_data)
 {
 	GValue * params = (GValue *)S_alloc(6, sizeof(GValue));
 

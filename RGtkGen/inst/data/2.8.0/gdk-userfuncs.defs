@@ -34,3 +34,11 @@
       '("gpointer" "data")
   )
 )
+(define-user-function SpanFunc
+  (c-name "GdkSpanFunc")
+  (return-type "none")
+  (parameters
+      '("GdkSpan*" "span")
+      '("gpointer" "data")
+  )
+)

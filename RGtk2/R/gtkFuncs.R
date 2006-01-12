@@ -2029,22 +2029,28 @@ function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 
 
 gtkButtonNewFromStock <-
-function(stock.id, .flush = TRUE, .depwarn = TRUE)
+function(stock.id, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
 	stock.id <- as.character(stock.id)
 
 	w <- .RGtkCall("S_gtk_button_new_from_stock", stock.id, PACKAGE = "RGtk2", .flush = .flush)
+
+	if(show)
+		gtkWidgetShowAll(w)
 
 	return(w)
 } 
 
 
 gtkButtonNewWithMnemonic <-
-function(label, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
 	label <- as.character(label)
 
 	w <- .RGtkCall("S_gtk_button_new_with_mnemonic", label, PACKAGE = "RGtk2", .flush = .flush)
+
+	if(show)
+		gtkWidgetShowAll(w)
 
 	return(w)
 } 
@@ -3312,6 +3318,18 @@ function(object, text, len = "-1", .flush = TRUE, .depwarn = TRUE)
 	len <- as.integer(len)
 
 	w <- .RGtkCall("S_gtk_clipboard_set_text", object, text, len, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
+gtkClipboardSetImage <-
+function(object, pixbuf, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkClipboard")
+	checkPtrType(pixbuf, "GdkPixbuf")
+
+	w <- .RGtkCall("S_gtk_clipboard_set_image", object, pixbuf, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
 } 
@@ -5164,6 +5182,17 @@ function(object, add.tearoffs, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_combo_box_set_add_tearoffs", object, add.tearoffs, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
+} 
+
+
+gtkComboBoxGetAddTearoffs <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkComboBox")
+
+	w <- .RGtkCall("S_gtk_combo_box_get_add_tearoffs", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
 } 
 
 
@@ -7604,6 +7633,30 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+gtkEntryLayoutIndexToTextIndex <-
+function(object, layout.index, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkEntry")
+	layout.index <- as.integer(layout.index)
+
+	w <- .RGtkCall("S_gtk_entry_layout_index_to_text_index", object, layout.index, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
+gtkEntryTextIndexToLayoutIndex <-
+function(object, text.index, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkEntry")
+	text.index <- as.integer(text.index)
+
+	w <- .RGtkCall("S_gtk_entry_text_index_to_layout_index", object, text.index, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
 gtkEntrySetAlignment <-
 function(object, xalign, .flush = TRUE, .depwarn = TRUE)
 {
@@ -8843,13 +8896,16 @@ function(title, action, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 
 
 gtkFileChooserButtonNewWithBackend <-
-function(title, action, backend, .flush = TRUE, .depwarn = TRUE)
+function(title, action, backend, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
 	title <- as.character(title)
 	
 	backend <- as.character(backend)
 
 	w <- .RGtkCall("S_gtk_file_chooser_button_new_with_backend", title, action, backend, PACKAGE = "RGtk2", .flush = .flush)
+
+	if(show)
+		gtkWidgetShowAll(w)
 
 	return(w)
 } 
@@ -8949,12 +9005,15 @@ function(action, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 
 
 gtkFileChooserWidgetNewWithBackend <-
-function(action, backend, .flush = TRUE, .depwarn = TRUE)
+function(action, backend, show = TRUE, .flush = TRUE, .depwarn = TRUE)
 {
 	
 	backend <- as.character(backend)
 
 	w <- .RGtkCall("S_gtk_file_chooser_widget_new_with_backend", action, backend, PACKAGE = "RGtk2", .flush = .flush)
+
+	if(show)
+		gtkWidgetShowAll(w)
 
 	return(w)
 } 
@@ -10292,28 +10351,6 @@ function(pixbuf, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkIconSetRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkIconSet")
-
-	w <- .RGtkCall("S_gtk_icon_set_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(w)
-} 
-
-
-gtkIconSetUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkIconSet")
-
-	w <- .RGtkCall("S_gtk_icon_set_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkIconSetCopy <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {
@@ -10395,17 +10432,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_icon_source_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkIconSourceFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkIconSource")
-
-	w <- .RGtkCall("S_gtk_icon_source_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -10839,17 +10865,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_icon_info_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkIconInfoFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkIconInfo")
-
-	w <- .RGtkCall("S_gtk_icon_info_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -13384,21 +13399,6 @@ function(object, items, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkListRemoveItemsNoUnref <-
-function(object, items, .flush = TRUE, .depwarn = TRUE)
-{
-	if (.depwarn)
-		warning("This function is deprecated: use GtkListStore/GtkTreeView")
-
-	checkPtrType(object, "GtkList")
-	items <- as.GList(items)
-
-	w <- .RGtkCall("S_gtk_list_remove_items_no_unref", object, items, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkListClearItems <-
 function(object, start, end, .flush = TRUE, .depwarn = TRUE)
 {
@@ -15753,17 +15753,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkObjectDestroy <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkObject")
-
-	w <- .RGtkCall("S_gtk_object_destroy", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkOldEditableGetType <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
@@ -16162,7 +16151,7 @@ gtkPreviewUninit <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	
 
@@ -16251,7 +16240,7 @@ gtkPreviewSetGamma <-
 function(gamma, .flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	gamma <- as.numeric(gamma)
 
@@ -16265,7 +16254,7 @@ gtkPreviewSetColorCube <-
 function(nred.shades, ngreen.shades, nblue.shades, ngray.shades, .flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	nred.shades <- as.numeric(nred.shades)
 	ngreen.shades <- as.numeric(ngreen.shades)
@@ -16282,7 +16271,7 @@ gtkPreviewSetInstallCmap <-
 function(install.cmap, .flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	install.cmap <- as.integer(install.cmap)
 
@@ -16296,7 +16285,7 @@ gtkPreviewSetReserved <-
 function(nreserved, .flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	nreserved <- as.integer(nreserved)
 
@@ -16310,7 +16299,7 @@ gtkPreviewSetDither <-
 function(object, dither, .flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	checkPtrType(object, "GtkPreview")
 	
@@ -16325,7 +16314,7 @@ gtkPreviewGetVisual <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	
 
@@ -16339,7 +16328,7 @@ gtkPreviewGetCmap <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	
 
@@ -16353,7 +16342,7 @@ gtkPreviewGetInfo <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	
 
@@ -16367,7 +16356,7 @@ gtkPreviewReset <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
 	if (.depwarn)
-		warning("This function is deprecated: use GtkPixbuf")
+		warning("This function is deprecated: use GtkImage")
 
 	
 
@@ -17553,28 +17542,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkRcStyleRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkRcStyle")
-
-	w <- .RGtkCall("S_gtk_rc_style_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-gtkRcStyleUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkRcStyle")
-
-	w <- .RGtkCall("S_gtk_rc_style_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkRcFindModuleInPath <-
 function(module.file, .flush = TRUE, .depwarn = TRUE)
 {
@@ -18058,28 +18025,6 @@ function(targets, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkTargetListRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTargetList")
-
-	w <- .RGtkCall("S_gtk_target_list_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-gtkTargetListUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTargetList")
-
-	w <- .RGtkCall("S_gtk_target_list_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkTargetListAdd <-
 function(object, target, flags, info, .flush = TRUE, .depwarn = TRUE)
 {
@@ -18298,17 +18243,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_selection_data_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkSelectionDataFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkSelectionData")
-
-	w <- .RGtkCall("S_gtk_selection_data_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -19217,17 +19151,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkStockItemFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	object <- as.GtkStockItem(object)
-
-	w <- .RGtkCall("S_gtk_stock_item_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkStockSetTranslateFunc <-
 function(domain, func, data, .flush = TRUE, .depwarn = TRUE)
 {
@@ -19292,28 +19215,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(object, "GtkStyle")
 
 	w <- .RGtkCall("S_gtk_style_detach", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-gtkStyleRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkStyle")
-
-	w <- .RGtkCall("S_gtk_style_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(w)
-} 
-
-
-gtkStyleUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkStyle")
-
-	w <- .RGtkCall("S_gtk_style_unref", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
 } 
@@ -20203,17 +20104,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_border_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkBorderFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkBorder")
-
-	w <- .RGtkCall("S_gtk_border_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -21236,17 +21126,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_text_iter_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkTextIterFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTextIter")
-
-	w <- .RGtkCall("S_gtk_text_iter_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -22437,28 +22316,6 @@ function(object, dest, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(dest, "GtkTextAttributes")
 
 	w <- .RGtkCall("S_gtk_text_attributes_copy_values", object, dest, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-gtkTextAttributesUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTextAttributes")
-
-	w <- .RGtkCall("S_gtk_text_attributes_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-gtkTextAttributesRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTextAttributes")
-
-	w <- .RGtkCall("S_gtk_text_attributes_ref", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
 } 
@@ -23752,6 +23609,87 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+gtkToolbarAppendItem <-
+function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data = "NULL", .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+
+	w <- .RGtkCall("S_gtk_toolbar_append_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkToolbarPrependItem <-
+function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+
+	w <- .RGtkCall("S_gtk_toolbar_prepend_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkToolbarInsertItem <-
+function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+	position <- as.integer(position)
+
+	w <- .RGtkCall("S_gtk_toolbar_insert_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkToolbarInsertStock <-
+function(object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	stock.id <- as.character(stock.id)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	callback <- as.function(callback)
+	
+	position <- as.integer(position)
+
+	w <- .RGtkCall("S_gtk_toolbar_insert_stock", object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 gtkToolbarAppendSpace <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {
@@ -23795,6 +23733,73 @@ function(object, position, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_toolbar_remove_space", object, position, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
+} 
+
+
+gtkToolbarAppendElement <-
+function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	
+	checkPtrType(widget, "GtkWidget")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+
+	w <- .RGtkCall("S_gtk_toolbar_append_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkToolbarPrependElement <-
+function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	
+	checkPtrType(widget, "GtkWidget")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+
+	w <- .RGtkCall("S_gtk_toolbar_prepend_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkToolbarInsertElement <-
+function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: see gtkToolbarInsert()")
+
+	checkPtrType(object, "GtkToolbar")
+	
+	checkPtrType(widget, "GtkWidget")
+	text <- as.character(text)
+	tooltip.text <- as.character(tooltip.text)
+	tooltip.private.text <- as.character(tooltip.private.text)
+	checkPtrType(icon, "GtkWidget")
+	callback <- as.function(callback)
+	
+	position <- as.integer(position)
+
+	w <- .RGtkCall("S_gtk_toolbar_insert_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
 } 
 
 
@@ -24699,17 +24704,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkTreePathFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTreePath")
-
-	w <- .RGtkCall("S_gtk_tree_path_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkTreePathCopy <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {
@@ -24881,17 +24875,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkTreeRowReferenceFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTreeRowReference")
-
-	w <- .RGtkCall("S_gtk_tree_row_reference_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkTreeRowReferenceInserted <-
 function(proxy, path, .flush = TRUE, .depwarn = TRUE)
 {
@@ -24938,17 +24921,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_tree_iter_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-gtkTreeIterFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkTreeIter")
-
-	w <- .RGtkCall("S_gtk_tree_iter_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -25278,12 +25250,12 @@ function(.flush = TRUE, .depwarn = TRUE)
 
 
 gtkTreeModelFilterNew <-
-function(object, root = "NULL", .flush = TRUE, .depwarn = TRUE)
+function(child.model, root = "NULL", .flush = TRUE, .depwarn = TRUE)
 {
-	checkPtrType(object, "GtkTreeModel")
+	checkPtrType(child.model, "GtkTreeModel")
 	if (!is.null( root )) checkPtrType(root, "GtkTreePath")
 
-	w <- .RGtkCall("S_gtk_tree_model_filter_new", object, root, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_gtk_tree_model_filter_new", child.model, root, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -26635,6 +26607,17 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(object, "GtkTreeView")
 
 	w <- .RGtkCall("S_gtk_tree_view_get_visible_rect", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+gtkTreeViewGetVisibleRange <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkTreeView")
+
+	w <- .RGtkCall("S_gtk_tree_view_get_visible_range", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -28064,28 +28047,6 @@ function(.flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkWidgetRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkWidget")
-
-	w <- .RGtkCall("S_gtk_widget_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(w)
-} 
-
-
-gtkWidgetUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkWidget")
-
-	w <- .RGtkCall("S_gtk_widget_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkWidgetDestroy <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {
@@ -28399,6 +28360,17 @@ function(object, accel.path, accel.group, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_widget_set_accel_path", object, accel.path, accel.group, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
+} 
+
+
+gtkWidgetListAccelClosures <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "GtkWidget")
+
+	w <- .RGtkCall("S_gtk_widget_list_accel_closures", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
 } 
 
 
@@ -29523,17 +29495,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-gtkRequisitionFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkRequisition")
-
-	w <- .RGtkCall("S_gtk_requisition_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 gtkWindowGetType <-
 function(.flush = TRUE, .depwarn = TRUE)
 {
@@ -30539,18 +30500,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_gtk_window_get_position", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
-} 
-
-
-gtkWindowParseGeometry <-
-function(object, geometry, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "GtkWindow")
-	geometry <- as.character(geometry)
-
-	w <- .RGtkCall("S_gtk_window_parse_geometry", object, geometry, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(w)
 } 
 
 

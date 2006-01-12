@@ -11,6 +11,9 @@ function(x)
 as.GdkColor <-
 function(x)
 {
+	if (is.character(x))
+		return(gdkColorParse(x)$color)
+		
     fields <- c("red", "green", "blue")
 	if (length(x) > 3)
 		fields <- c("pixel", fields)
@@ -37,6 +40,18 @@ function(x)
 
     return(x)
 }
+
+as.GdkSpan <-
+function(x)
+{
+    x <- as.struct(x, "GdkSpan", c("x", "y", "width"))
+    x[[1]] <- as.integer(x[[1]])
+    x[[2]] <- as.integer(x[[2]])
+    x[[3]] <- as.integer(x[[3]])
+    
+    return(x)
+}
+
 as.GdkRgbCmap <-
 function(x)
 {

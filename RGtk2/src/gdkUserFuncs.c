@@ -46,7 +46,7 @@ S_GdkInputFunction(gpointer s_data, gint s_source, GdkInputCondition s_condition
 
 
 gboolean
-S_GdkPixbufSaveFunc(const gchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
+S_GdkPixbufSaveFunc(gchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
 {
 	GValue * params = (GValue *)S_alloc(3, sizeof(GValue));
 
@@ -65,5 +65,18 @@ S_GdkPixbufSaveFunc(const gchar* s_buf, gsize s_count, GError** s_error, gpointe
 	g_closure_invoke(s_data, ans, 3, params, NULL);
 
 	return(g_value_get_boolean(ans));
+} 
+
+
+void
+S_GdkSpanFunc(GdkSpan* s_span, gpointer s_data)
+{
+	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
+
+	g_value_init(&params[0], G_TYPE_POINTER);
+
+	g_value_set_pointer(&params[0], s_span);
+
+	g_closure_invoke(s_data, NULL, 1, params, NULL);
 } 
 

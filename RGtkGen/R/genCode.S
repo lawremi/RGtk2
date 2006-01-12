@@ -236,9 +236,8 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
     # Note the name to get this to be the final name so it is sourced() last
     # if the S files are listed by named.
 
-    # not worrying about this for now - mikel
-#  tmp = outputConstructors(defs, getFileName("zConstructors.R"), libName)
-#  definedRFuncs = c(definedRFuncs, tmp$funcNames, tmp$copies)
+	tmp = outputConstructors(defs, getFileName("zConstructors.R"))
+	definedRFuncs = c(definedRFuncs, sapply(names(defs$objects), changeCapitalization, FALSE))
 
   list(varargs = varargs, definedRFuncs = definedRFuncs)
 }
@@ -260,7 +259,7 @@ generateCodeFiles <-
   # code during the configuration.
   #
 function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
-          verbose=FALSE, constructorFile = "constructors.R", package = "RGtk2", allDefs = NULL)
+          verbose=FALSE, package = "RGtk2", allDefs = NULL)
 {
    # allDefs becomes the incrementally cumulated collection of definitions across the files.
   if(missing(allDefs)) {
@@ -331,14 +330,8 @@ function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
   invisible(list(allDefs = allDefs, klasses = klasses, definedRFuncs = definedRFuncs))
 }
 
-
-
-##########################
-# DEPRECATED STUFF
-##########################
-if(FALSE) {
 outputConstructors <-
-function(defs, constructorFile, prefix)
+function(defs, constructorFile)
 {
   cons <- collapseConstructors(, defs)
 
@@ -350,34 +343,18 @@ function(defs, constructorFile, prefix)
     on.exit(close(constructors))
   }
 
-   # The cons object has two types of constructors: a) definitions in the form of S code,
-   # and b)
+   # write out the constructors
   for(i in cons$defs) {
-    cat(i, "\n\n", file = constructors)
+    cat(i, file = constructors)
   }
-
-  if(length(cons$copies) > 0)
-    cat(paste(cons$copies, "<-", paste(cons$copies, "New", sep="")), "\n\n", sep="\n", file = constructors)
-
-  cat("\n\n", file = constructors)
-
-  loadClasses <- defs$objects
-  rms <- c(grep("^Gdk", names(defs$objects)), grep("^GtkWindow", names(defs$objects)))
-  if(any(is.na(rms)))
-    loadClasses <- loadClasses[-rms[!is.na(rms)]]
-
-  if(length(loadClasses))
-    klassNames <- paste("\"", sort(names(loadClasses)), "\"", collapse=", ", sep="")
-  else
-    klassNames <- ""
-
-  varName <- paste(".", prefix, "Classes", sep ="")
-  cat(varName, " <- c(", klassNames, ")\n\n", file = constructors)
 
   invisible(cons)
 }
 
-
+##########################
+# DEPRECATED STUFF
+##########################
+if(FALSE) {
 createRegistrationTables =
 function(symbols, classes, out = NULL)
 {

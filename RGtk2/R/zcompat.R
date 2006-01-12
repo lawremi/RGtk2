@@ -143,7 +143,7 @@ function(w, row, cols, values, zeroBased = TRUE)
 
 gtkObjectGetTypeName <- gObjectTypeName
 gtkObjectGetClasses <- gObjectGetClasses
-gtkTypeGetClasses <- gTypeGetClasses
+gtkTypeGetClasses <- gTypeGetAncestors
 gtkObjectGetType <- gObjectType
 gtkGetType <- gTypeFromName
 
@@ -178,9 +178,9 @@ gtkShow <- function(..., all=TRUE, .flush = TRUE)
 	sapply(widgets, func, .flush = .flush)
 }
 gtkAddCallback <- gtkObjectAddCallback <- gSignalConnect
-gtkObjectRemoveCallback <- gtkObjectDisconnectCallback <- gSignalDisconnect
-gtkObjectBlockCallback <- gSignalBlock
-gtkObjectUnblockCallback <- gSignalUnblock
+gtkObjectRemoveCallback <- gtkObjectDisconnectCallback <- gSignalHandlerDisconnect
+gtkObjectBlockCallback <- gSignalHandlerBlock
+gtkObjectUnblockCallback <- gSignalHandlerUnblock
 gtkAddTimeout <- gTimeoutAdd
 gtkRemoveTimeout <- gtkRemoveIdle <- gSourceRemove
 gtkAddIdle <- gIdleAdd

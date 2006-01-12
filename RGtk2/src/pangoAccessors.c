@@ -88,6 +88,62 @@ S_PangoGlyphStringGetLogClusters (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
+S_PangoItemGetOffset (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoItem *obj;
+   gint val;
+
+   obj = (PangoItem*)getPtrValue(s_obj) ;
+   val = obj->offset;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoItemGetLength (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoItem *obj;
+   gint val;
+
+   obj = (PangoItem*)getPtrValue(s_obj) ;
+   val = obj->length;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoItemGetNumChars (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoItem *obj;
+   gint val;
+
+   obj = (PangoItem*)getPtrValue(s_obj) ;
+   val = obj->num_chars;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoItemGetAnalysis (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoItem *obj;
+   PangoAnalysis val;
+
+   obj = (PangoItem*)getPtrValue(s_obj) ;
+   val = obj->analysis;
+   _result = toRPointer(&val, "PangoAnalysis");
+
+   return(_result);
+} 
+USER_OBJECT_
 S_PangoLayoutLineGetLayout (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
@@ -139,7 +195,7 @@ S_PangoLayoutLineGetRuns (USER_OBJECT_ s_obj)
 
    obj = (PangoLayoutLine*)getPtrValue(s_obj) ;
    val = obj->runs;
-   _result = asRGSList(val, "PangoGlyphItem");
+   _result = asRGSListWithFinalizer(val, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free);
 
    return(_result);
 } 
@@ -438,58 +494,128 @@ S_PangoAttrClassGetType (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
-S_PangoItemGetOffset (USER_OBJECT_ s_obj)
+S_PangoGlyphItemGetItem (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
 
-   PangoItem *obj;
-   gint val;
+   PangoGlyphItem *obj;
+   PangoItem* val;
 
-   obj = (PangoItem*)getPtrValue(s_obj) ;
-   val = obj->offset;
+   obj = (PangoGlyphItem*)getPtrValue(s_obj) ;
+   val = obj->item;
+   _result = toRPointer(val, "PangoItem");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoGlyphItemGetGlyphs (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoGlyphItem *obj;
+   PangoGlyphString* val;
+
+   obj = (PangoGlyphItem*)getPtrValue(s_obj) ;
+   val = obj->glyphs;
+   _result = toRPointer(val, "PangoGlyphString");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoGlyphInfoGetGlyph (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoGlyphInfo *obj;
+   PangoGlyph val;
+
+   obj = (PangoGlyphInfo*)getPtrValue(s_obj) ;
+   val = obj->glyph;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoGlyphInfoGetGeometry (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoGlyphInfo *obj;
+   PangoGlyphGeometry val;
+
+   obj = (PangoGlyphInfo*)getPtrValue(s_obj) ;
+   val = obj->geometry;
+   _result = toRPointer(&val, "PangoGlyphGeometry");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoGlyphInfoGetAttr (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoGlyphInfo *obj;
+   PangoGlyphVisAttr val;
+
+   obj = (PangoGlyphInfo*)getPtrValue(s_obj) ;
+   val = obj->attr;
+   _result = toRPointer(&val, "PangoGlyphVisAttr");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_PangoGlyphGeometryGetWidth (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   PangoGlyphGeometry *obj;
+   PangoGlyphUnit val;
+
+   obj = (PangoGlyphGeometry*)getPtrValue(s_obj) ;
+   val = obj->width;
    _result = asRInteger(val);
 
    return(_result);
 } 
 USER_OBJECT_
-S_PangoItemGetLength (USER_OBJECT_ s_obj)
+S_PangoGlyphGeometryGetXOffset (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
 
-   PangoItem *obj;
-   gint val;
+   PangoGlyphGeometry *obj;
+   PangoGlyphUnit val;
 
-   obj = (PangoItem*)getPtrValue(s_obj) ;
-   val = obj->length;
+   obj = (PangoGlyphGeometry*)getPtrValue(s_obj) ;
+   val = obj->x_offset;
    _result = asRInteger(val);
 
    return(_result);
 } 
 USER_OBJECT_
-S_PangoItemGetNumChars (USER_OBJECT_ s_obj)
+S_PangoGlyphGeometryGetYOffset (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
 
-   PangoItem *obj;
-   gint val;
+   PangoGlyphGeometry *obj;
+   PangoGlyphUnit val;
 
-   obj = (PangoItem*)getPtrValue(s_obj) ;
-   val = obj->num_chars;
+   obj = (PangoGlyphGeometry*)getPtrValue(s_obj) ;
+   val = obj->y_offset;
    _result = asRInteger(val);
 
    return(_result);
 } 
 USER_OBJECT_
-S_PangoItemGetAnalysis (USER_OBJECT_ s_obj)
+S_PangoGlyphVisAttrGetIsClusterStart (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
 
-   PangoItem *obj;
-   PangoAnalysis val;
+   PangoGlyphVisAttr *obj;
+   guint val;
 
-   obj = (PangoItem*)getPtrValue(s_obj) ;
-   val = obj->analysis;
-   _result = toRPointer(&val, "PangoAnalysis");
+   obj = (PangoGlyphVisAttr*)getPtrValue(s_obj) ;
+   val = obj->is_cluster_start;
+   _result = asRNumeric(val);
 
    return(_result);
 } 

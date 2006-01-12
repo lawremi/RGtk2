@@ -232,6 +232,7 @@ toRPointerWithRef(void *val, const char *type) {
         g_object_ref(G_OBJECT(val));
     return(toRPointerWithFinalizer(val, type, g_object_unref));
 }
+
 void RGtk_finalizer(USER_OBJECT_ extptr) {
     void *ptr = getPtrValue(extptr);
     //Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));

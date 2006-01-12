@@ -150,7 +150,7 @@ USER_OBJECT_
 }
 
 /* reason: GtkSignalFunc is a generic user-func, cannot auto-convert
-    (even though at least in the defs it is always treated asC a GtkCallback) */
+    (even though at least in the defs it is always treated as a GtkCallback)
 USER_OBJECT_
  S_gtk_toolbar_append_element ( USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data )
 {
@@ -215,7 +215,7 @@ USER_OBJECT_
 
 
         return(_result);
-}
+}*/
 
 /* reason: GtkItemFactoryEntry has a context-dependent GCallback
     Also, the callback data is external to the struct...
@@ -343,7 +343,7 @@ S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJEC
 
         ans = gtk_message_dialog_new(parent, flags, type, buttons, message_format);
 
-        _result = toRPointer(ans, "GtkWidget");
+        _result = toRPointerWithSink(ans, "GtkWidget");
 
         return(_result);
 }
@@ -362,7 +362,7 @@ S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags
 
         ans = gtk_message_dialog_new_with_markup(parent, flags, type, buttons, message_format);
 
-        _result = toRPointer(ans, "GtkWidget");
+        _result = toRPointerWithSink(ans, "GtkWidget");
 
         return(_result);
 }
@@ -425,7 +425,7 @@ S_gtk_file_chooser_dialog_new_with_backend(USER_OBJECT_ s_title, USER_OBJECT_ s_
 		if (parent)
 			gtk_window_set_transient_for(GTK_WINDOW(ans), parent);
 
-        _result = PROTECT(toRPointer(ans, "GtkWidget"));
+        _result = PROTECT(toRPointerWithSink(ans, "GtkWidget"));
 		
 		S_gtk_dialog_add_buttons(_result, s_labels, s_responses);
 		
@@ -613,7 +613,7 @@ S_gtk_dialog_new_with_buttons(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_
 		gtk_window_set_destroy_with_parent(GTK_WINDOW(ans), flags & GTK_DIALOG_DESTROY_WITH_PARENT);
 		gtk_dialog_set_has_separator(ans, !(flags & GTK_DIALOG_NO_SEPARATOR));
 		
-        _result = PROTECT(toRPointer(ans, "GtkWidget"));
+        _result = PROTECT(toRPointerWithSink(ans, "GtkWidget"));
 		
 		S_gtk_dialog_add_buttons(_result, s_labels, s_responses);
 
@@ -840,7 +840,7 @@ S_gtk_label_new_with_mnemonic(USER_OBJECT_ s_str)
 
     ans = gtk_label_new_with_mnemonic(str);
 
-    _result = toRPointer(ans, "GtkWidget");
+    _result = toRPointerWithSink(ans, "GtkWidget");
 
     return(_result);
 }
@@ -1017,36 +1017,28 @@ S_gtk_container_child_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, 
 	return(_result);
 }
 
-/* reason: need to accept GClosure asC externalptr to look it up (ie, from gtk_action_get_accel_closure) */
+/* reason: need to leave off the callback because no user data */
 USER_OBJECT_
-S_gtk_accel_group_from_accel_closure(USER_OBJECT_ s_closure)
+S_gtk_menu_attach_to_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_attach_widget)
 {
-        GClosure* closure = (GClosure *)getPtrValue(s_closure);
+        GtkMenu* object = GTK_MENU(getPtrValue(s_object));
+        GtkWidget* attach_widget = GTK_WIDGET(getPtrValue(s_attach_widget));
 
-        GtkAccelGroup* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        ans = gtk_accel_group_from_accel_closure(closure);
-
-        _result = toRPointerWithRef(ans, "GtkAccelGroup");
+        gtk_menu_attach_to_widget(object, attach_widget, NULL);
 
         return(_result);
 }
 
-/* reason: need to return GClosure asC a reference (don't try to convert asC transparent) */
-USER_OBJECT_
-S_gtk_action_get_accel_closure(USER_OBJECT_ s_object)
+/* reason: while GtkSignalFunc is a void function, the only place the bindings
+	use it is with the gtk_toolbar_* functions. in that case, it takes a 
+	widget and a user data pointer, just like GtkCallback.
+*/
+void
+S_GtkSignalFunc(GtkWidget* s_child, gpointer s_data)
 {
-        GtkAction* object = GTK_ACTION(getPtrValue(s_object));
-
-        GClosure* ans;
-        USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-        ans = gtk_action_get_accel_closure(object);
-
-        _result = toRPointer(ans, "GClosure");
-
-        return(_result);
+	S_GtkCallback(s_child, s_data);
 }
 
 /* some functions for fast GtkTreeModel access */
@@ -1071,7 +1063,7 @@ S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJE
 		col = VECTOR_ELT(s_data, i);
 		//Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);
 		for (j = 0; j < nrows; j++) {
-			//Rprintf("row: %d\n", INTEGER_DATA(s_rows)[j]);
+			//Rprintf("row: %d\n", j);
 			if (append || !gtk_tree_model_get_iter(GTK_TREE_MODEL(model), &iter, 
 					(GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, j))))
 				gtk_list_store_append(model, &iter);
@@ -1085,7 +1077,7 @@ S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJE
 	return(NULL_USER_OBJECT);
 }
 USER_OBJECT_
-S_gtk_list_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_rows, USER_OBJECT_ s_cols)
+S_gtk_list_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_rows, USER_OBJECT_ s_cols, USER_OBJECT_ s_append)
 {
 	int i;
 	int nrows = GET_LENGTH(s_rows);
@@ -1106,6 +1098,72 @@ S_gtk_list_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_
 	return(NULL_USER_OBJECT);
 }
 
+/* Assumes there is a flat data frame with paths specifying structure */
+USER_OBJECT_
+S_gtk_tree_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_paths, USER_OBJECT_ s_cols, USER_OBJECT_ s_append)
+{
+	GtkTreeStore *model = GTK_TREE_STORE(getPtrValue(s_model));
+	gboolean append = asCLogical(s_append);
+	GtkTreeIter iter;
+	GValue value = { 0, };
+	USER_OBJECT_ col;
+	
+	int i, j;
+	int ncols = GET_LENGTH(s_cols);
+	int nrows = GET_LENGTH(s_paths);
+
+	if (append)
+		nrows = GET_LENGTH(s_data);
+	
+	for (i = 0; i < ncols; i++) {
+		GType vtype = gtk_tree_model_get_column_type(GTK_TREE_MODEL(model), INTEGER_DATA(s_cols)[i]);
+		col = VECTOR_ELT(s_data, i);
+		//Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);
+		for (j = 0; j < nrows; j++) {
+			GtkTreePath *path = (GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, j));
+			if (!gtk_tree_model_get_iter(GTK_TREE_MODEL(model), &iter, path) || append) {
+				GtkTreeIter parent;
+				gtk_tree_path_up(path);
+				gtk_tree_model_get_iter(GTK_TREE_MODEL(model), &parent, path);
+				gtk_tree_store_append(model, &iter, &parent);
+			}
+			g_value_init(&value, vtype);
+			R_setGValueFromSValue(&value, VECTOR_ELT(col, j));
+			gtk_tree_store_set_value(model, &iter, INTEGER_DATA(s_cols)[i], &value);
+			g_value_unset(&value);
+		}
+	}
+	
+	return(NULL_USER_OBJECT);
+}
+
+/* Rows specify the vector equivalents of tree paths */
+USER_OBJECT_
+S_gtk_tree_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_rows, USER_OBJECT_ s_cols, USER_OBJECT_ s_append)
+{
+	int i, j;
+	int nrows = GET_LENGTH(s_rows);
+	
+	USER_OBJECT_ s_paths;
+	
+	PROTECT(s_paths = NEW_LIST(nrows));
+	//Rprintf("Loading %d paths\n", nrows);
+	for (i = 0; i < nrows; i++) {
+		GtkTreePath *path = gtk_tree_path_new();
+		for (j = 0; j < GET_LENGTH(VECTOR_ELT(s_rows, i)); j++) 
+			gtk_tree_path_append_index(path, INTEGER_DATA(VECTOR_ELT(s_rows, i))[j]);
+		gtk_tree_path_append_index(path, i);
+		SET_VECTOR_ELT(s_paths, i, 	toRPointerWithFinalizer(path, "GtkTreePath", 
+			(RPointerFinalizer)gtk_tree_path_free));
+	}
+	
+	S_gtk_list_store_load_paths(s_model, s_data, s_paths, s_cols, s_append);
+	
+	UNPROTECT(1);
+	
+	return(NULL_USER_OBJECT);
+}
+
 USER_OBJECT_
 S_gtk_tree_model_unload_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_paths, USER_OBJECT_ s_cols)
 {
@@ -1113,7 +1171,7 @@ S_gtk_tree_model_unload_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_paths, USER_O
 	GtkTreeIter iter;
 	GValue value = { 0, };
 	
-	USER_OBJECT_ list;
+	USER_OBJECT_ list, s_indices, result;
 	
 	int i, j;
 	int ncols = GET_LENGTH(s_cols);
@@ -1122,65 +1180,73 @@ S_gtk_tree_model_unload_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_paths, USER_O
 	PROTECT(list = NEW_LIST(ncols));
 	for (i = 0; i < ncols; i++)
 		SET_VECTOR_ELT(list, i, NEW_LIST(nrows));
+	PROTECT(s_indices = NEW_LIST(nrows)); 
 		
 	for (i = 0; i < nrows; i++) {
-		gtk_tree_model_get_iter(model, &iter, (GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, i)));
+		USER_OBJECT_ s_index;
+		GtkTreePath *path = getPtrValue(VECTOR_ELT(s_paths, i));
+		gtk_tree_model_get_iter(model, &iter, path);
 		for (j = 0; j < ncols; j++) {
 			gtk_tree_model_get_value(model, &iter, INTEGER_DATA(s_cols)[j], &value);
 			SET_VECTOR_ELT(VECTOR_ELT(list, j), i, asRGValue(&value));
 			g_value_unset(&value);
 		}
+		s_index = asRIntegerArrayWithSize(gtk_tree_path_get_indices(path), 
+					gtk_tree_path_get_depth(path));
+		SET_VECTOR_ELT(s_indices, i, s_index);
 	}
 	
-	UNPROTECT(1);
+	result = NEW_LIST(2);
+	SET_VECTOR_ELT(result, 0, list);
+	SET_VECTOR_ELT(result, 1, s_indices);
+		
+	UNPROTECT(2);
 	
-	return(list);
+	return(result);
+}
+
+gboolean
+get_tree_model_paths(GtkTreeModel *model, GtkTreePath *path, GtkTreeIter *iter, GList **paths)
+{
+	*paths = g_list_append(*paths, gtk_tree_path_copy(path));
+	return(FALSE);
 }
 
 USER_OBJECT_
 S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ s_cols)
 {
-	USER_OBJECT_ list;
-	gint i;
-	gint nrows = GET_LENGTH(s_rows);
+	USER_OBJECT_ result;
+	USER_OBJECT_ s_paths;
+	gint i, j;
+	gint nrows = GET_LENGTH(s_rows), npaths;
 	
 	if (!nrows) {
 		GtkTreeModel *model = GTK_TREE_MODEL(getPtrValue(s_model));
-		GtkTreeIter iter;
-		GValue value = { 0, };
-		gint ncols = GET_LENGTH(s_cols), j;
-		gboolean valid;
-
-		valid = gtk_tree_model_get_iter_first(model, &iter);
-		while(valid) {
-			nrows++;
-			valid = gtk_tree_model_iter_next(model, &iter);
-		}
-		
-		PROTECT(list = NEW_LIST(ncols));
-		for (i = 0; i < ncols; i++)
-			SET_VECTOR_ELT(list, i, NEW_LIST(nrows));
-		
-		gtk_tree_model_get_iter_first(model, &iter);
-		for (i = 0; i < nrows; i++) {
-			for (j = 0; j < ncols; j++) {
-				gtk_tree_model_get_value(model, &iter, INTEGER_DATA(s_cols)[j], &value);
-				SET_VECTOR_ELT(VECTOR_ELT(list, j), i, asRGValue(&value));
-				g_value_unset(&value);
-			}
-			gtk_tree_model_iter_next(model, &iter);
+		GList *paths = NULL;
+		gtk_tree_model_foreach(model, (GtkTreeModelForeachFunc)get_tree_model_paths, &paths);
+		npaths = g_list_length(paths);
+		PROTECT(s_paths = NEW_LIST(npaths));
+		for (i = 0; i < npaths; i++, paths = g_list_next(paths)) {
+			SET_VECTOR_ELT(s_paths, i, 	toRPointerWithFinalizer((GtkTreePath *)paths->data, 
+					"GtkTreePath", (RPointerFinalizer)gtk_tree_path_free));
 		}
 	} else {
-		USER_OBJECT_ s_paths;
 		PROTECT(s_paths = NEW_LIST(nrows));
-		for (i = 0; i < nrows; i++)
-			SET_VECTOR_ELT(s_paths, i, 
-				toRPointerWithFinalizer(gtk_tree_path_new_from_indices(INTEGER_DATA(s_rows)[i], -1), 
+		for (i = 0; i < nrows; i++) {
+			GtkTreePath *path = gtk_tree_path_new();
+			for (j = 0; j < GET_LENGTH(VECTOR_ELT(s_rows, i)); j++) 
+				gtk_tree_path_append_index(path, INTEGER_DATA(VECTOR_ELT(s_rows, i))[j]);
+			SET_VECTOR_ELT(s_paths, i, toRPointerWithFinalizer(path, 
 					"GtkTreePath", (RPointerFinalizer)gtk_tree_path_free));
-		list = S_gtk_tree_model_unload_paths(s_model, s_paths, s_cols);	
+		}
 	}
 	
-	UNPROTECT(1);
+	result = S_gtk_tree_model_unload_paths(s_model, s_paths, s_cols);
 	
-	return(list);
+	if (nrows)
+		result = VECTOR_ELT(result, 0);
+	
+	UNPROTECT(1);
+
+	return(result);
 }

@@ -213,7 +213,36 @@
     '("gboolean" "best_match" (in))
   )
 )
-
+(define-method alloc_colors
+	(of-object "GdkColormap")
+	(c-name "gdk_colormap_alloc_colors")
+	(return-type "none")
+	(parameters
+		'("GdkColor[]" "colors")
+		'("gint" "ncolors")
+		'("gboolean" "writeable")
+        '("gboolean" "best_match")
+        '("gboolean[]" "success" (out))
+	)
+)
+(define-method free_colors
+	(of-object "GdkColormap")
+	(c-name "gdk_colormap_free_colors")
+	(return-type "none")
+	(parameters
+		'("GdkColor[]" "colors")
+        '("gint" "ncolors")
+	)
+)
+(define-function colors_store
+	(c-name "gdk_colors_store")
+	(return-type "none")
+	(parameters
+		'("GdkColormap*" "colormap")
+		'("GdkColor[]" "colors")
+        '("gint" "ncolors")
+	)
+)
 (define-method query_color
   (of-object "GdkColormap")
   (c-name "gdk_colormap_query_color")
@@ -295,6 +324,17 @@
   )
 )
 
+(define-function cursor_new_from_name
+  (is-constructor-of "GdkCursor")
+  (c-name "gdk_cursor_new_from_name")
+  (caller-owns-return #t)
+  (return-type "GdkCursor*")
+  (parameters
+	'("GdkDisplay*" "display" (in))
+    '("const-gchar*" "name" (in))
+  )
+)
+
 (define-function cursor_new_for_display
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new_for_display")
@@ -338,6 +378,12 @@
   (of-object "GdkCursor")
   (c-name "gdk_cursor_get_display")
   (return-type "GdkDisplay*")
+)
+
+(define-method get_image
+  (of-object "GdkCursor")
+  (c-name "gdk_cursor_get_image")
+  (return-type "GdkPixbuf*")
 )
 
 (define-function gdk_display_get_type
@@ -514,6 +560,17 @@
   (parameters
     '("const-GdkDisplayPointerHooks*" "new_hooks" (in))
   )
+)
+
+(define-method warp_pointer
+	(of-object "GdkDisplay")
+	(c-name "gdk_display_warp_pointer")
+	(return-type "none")
+	(parameters
+		'("GdkScreen*" "screen")
+		'("gint" "x")
+		'("gint" "y")
+	)
 )
 
 (define-function display_open_default_libgtk_only
@@ -1168,6 +1225,21 @@
   (parameters
     '("gint" "x" (in))
     '("gint" "y" (in))
+    '("gint" "width" (in))
+    '("gint" "height" (in))
+  )
+)
+
+(define-method copy_to_image
+  (of-object "GdkDrawable")
+  (c-name "gdk_drawable_copy_to_image")
+  (return-type "GdkImage*")
+  (parameters
+	  '("GdkImage*" "image" (null-ok) (in))
+    '("gint" "src_x" (in))
+    '("gint" "src_y" (in))
+	'("gint" "dest_x" (in))
+	'("gint" "dest_y" (in))
     '("gint" "width" (in))
     '("gint" "height" (in))
   )
@@ -2268,6 +2340,22 @@
   )
 )
 
+(define-method render_threshold_alpha
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_render_threshold_alpha")
+  (return-type "none")
+  (parameters
+    '("GdkBitmap*" "bitmap" (in))
+    '("int" "src_x" (in))
+    '("int" "src_y" (in))
+    '("int" "dest_x" (in))
+    '("int" "dest_y" (in))
+    '("int" "width" (in) (default "-1"))
+    '("int" "height" (in) (default "-1"))
+    '("int" "alpha_threshold" (in))
+  )
+)
+
 (define-method render_to_drawable
   (of-object "GdkPixbuf")
   (c-name "gdk_pixbuf_render_to_drawable")
@@ -2276,12 +2364,12 @@
   (parameters
     '("GdkDrawable*" "drawable" (in))
     '("GdkGC*" "gc" (in))
-    '("int" "src_x" (in))
-    '("int" "src_y" (in))
+    '("int" "src_x" (in) (default "0"))
+    '("int" "src_y" (in) (default "0"))
     '("int" "dest_x" (in))
     '("int" "dest_y" (in))
-    '("int" "width" (in))
-    '("int" "height" (in))
+    '("int" "width" (in) (default "-1"))
+    '("int" "height" (in) (default "-1"))
     '("GdkRgbDither" "dither" (in) (default "GDK_RGB_DITHER_NORMAL"))
     '("gint" "x_dither" (in) (default "0"))
     '("gint" "y_dither" (in) (default "0"))
@@ -2295,14 +2383,14 @@
   (deprecated "use gtk.gdk.Drawable.draw_pixbuf")
   (parameters
     '("GdkDrawable*" "drawable" (in))
-    '("int" "src_x" (in))
-    '("int" "src_y" (in))
+    '("int" "src_x" (in) (default "0"))
+    '("int" "src_y" (in) (default "0"))
     '("int" "dest_x" (in))
     '("int" "dest_y" (in))
-    '("int" "width" (in))
-    '("int" "height" (in))
-    '("GdkPixbufAlphaMode" "alpha_mode" (in))
-    '("int" "alpha_threshold" (in))
+    '("int" "width" (in) (default "-1"))
+    '("int" "height" (in) (default "-1"))
+    '("GdkPixbufAlphaMode" "alpha_mode" (in) (null-ok))
+    '("int" "alpha_threshold" (in) (null-ok))
     '("GdkRgbDither" "dither" (in) (default "GDK_RGB_DITHER_NORMAL"))
     '("gint" "x_dither" (in) (default "0"))
     '("gint" "y_dither" (in) (default "0"))
@@ -2502,7 +2590,7 @@
   (caller-owns-return #t)
   (return-type "gchar*")
   (parameters
-    '("GdkAtom" "name" (in))
+    '("GdkAtom" "atom" (in))
   )
 )
 
@@ -2631,6 +2719,41 @@
   )
 )
 
+(define-method draw_rgb_32_image_dithalign
+  (of-object "GdkDrawable")
+  (c-name "gdk_draw_rgb_32_image_dithalign")
+  (return-type "none")
+  (parameters
+    '("GdkGC*" "gc" (in))
+    '("gint" "x" (in))
+    '("gint" "y" (in))
+    '("gint" "width" (in))
+    '("gint" "height" (in))
+    '("GdkRgbDither" "dith" (in))
+    '("guchar*" "buf" (in))
+    '("gint" "rowstride" (in))
+	'("gint" "xdith" (in))
+	'("gint" "ydith" (in))
+  )
+)
+
+(define-function rgb_find_color
+	(c-name "gdk_rgb_find_color")
+	(return-type "none")
+	(parameters
+		'("GdkColormap*" "colormap")
+		'("GdkColor*" "color")
+	)
+)
+
+(define-function rgb_colormap_ditherable
+	(c-name "gdk_rgb_colormap_ditherable")
+	(return-type "gboolean")
+	(parameters
+		'("GdkColormap*" "colormap")
+	)
+)
+
 (define-method draw_gray_image
   (of-object "GdkDrawable")
   (c-name "gdk_draw_gray_image")
@@ -2755,11 +2878,23 @@
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_rgb_colormap")
   (return-type "GdkColormap*")
+) 
+
+(define-method get_rgba_colormap
+  (of-object "GdkScreen")
+  (c-name "gdk_screen_get_rgba_colormap")
+  (return-type "GdkColormap*")
 )
 
 (define-method get_rgb_visual
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_rgb_visual")
+  (return-type "GdkVisual*")
+)
+
+(define-method get_rgba_visual
+  (of-object "GdkScreen")
+  (c-name "gdk_screen_get_rgba_visual")
   (return-type "GdkVisual*")
 )
 
@@ -2882,6 +3017,32 @@
   (parameters
     '("const-gchar*" "name" (in))
     '("GValue*" "value" (out))
+  )
+)
+
+;(define-function spawn_on_screen
+;  (c-name "gdk_spawn_on_screen")
+;  (return-type "gboolean")
+;  (parameters
+	  ;'("GdkScreen*" "screen")
+      ;'("const-gchar*" "working_directory")
+      ;'("gchar**" "argv")
+      ;'("gchar**" "envp")
+      ;'("GSpawnFlags" "flags")
+      ;'("GSpawnChildSetupFunc" "child_setup")
+      ;'("gpointer" "user_data")
+      ;'("gint*" "child_pid" (out))
+      ;'("GError**" "error" (out))
+  ;)
+;)
+
+(define-function spawn_command_line_on_screen
+  (c-name "gdk_spawn_command_line_on_screen")
+  (return-type "gboolean")
+  (parameters
+	  '("GdkScreen*" "screen")
+	  '("const-gchar*" "command_line")
+      '("GError**" "error" (out))
   )
 )
 
@@ -3015,9 +3176,7 @@
 )
 
 (define-function visual_get_best_with_both
-  (is-constructor-of "GdkVisual")
   (c-name "gdk_visual_get_best_with_both")
-  (caller-owns-return #t)
   (return-type "GdkVisual*")
   (parameters
     '("gint" "depth" (in))
@@ -3117,6 +3276,12 @@
   (return-type "none")
 )
 
+(define-method show_unraised
+  (of-object "GdkWindow")
+  (c-name "gdk_window_show_unraised")
+  (return-type "none")
+)
+
 (define-method hide
   (of-object "GdkWindow")
   (c-name "gdk_window_hide")
@@ -3158,6 +3323,17 @@
     '("gint" "y" (in))
     '("gint" "width" (in))
     '("gint" "height" (in))
+  )
+)
+
+(define-method move_region
+  (of-object "GdkWindow")
+  (c-name "gdk_window_move_region")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "region" (in))
+    '("gint" "x" (in))
+    '("gint" "y" (in))
   )
 )
 
@@ -3291,6 +3467,18 @@
   )
 )
 
+(define-method shape_combine_region
+  (of-object "GdkWindow")
+  (c-name "gdk_window_shape_combine_region")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "shape_region" (in) (null-ok))
+    '("gint" "offset_x" (in))
+    '("gint" "offset_y" (in))
+  )
+)
+
+
 (define-method set_child_shapes
   (of-object "GdkWindow")
   (c-name "gdk_window_set_child_shapes")
@@ -3414,6 +3602,15 @@
   (return-type "none")
   (parameters
     '("gboolean" "modal" (in))
+  )
+)
+
+(define-method set_urgency_hint
+  (of-object "GdkWindow")
+  (c-name "gdk_window_set_urgency_hint")
+  (return-type "none")
+  (parameters
+    '("gboolean" "urgent" (in))
   )
 )
 
@@ -3923,14 +4120,6 @@
   (return-type "none")
 )
 
-(define-function gdk_set_pointer_hooks
-  (c-name "gdk_set_pointer_hooks")
-  (return-type "GdkPointerHooks*")
-  (parameters
-    '("const-GdkPointerHooks*" "new_hooks" (in))
-  )
-)
-
 (define-method finish
   (of-object "GdkDragContext")
   (c-name "gtk_drag_finish")
@@ -4075,6 +4264,7 @@
 )
 
 (define-function pixbuf_new_from_file
+  (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_file")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -4085,6 +4275,7 @@
 )
 
 (define-function pixbuf_new_from_file_at_size
+  (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_file_at_size")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -4096,7 +4287,22 @@
   )
 )
 
+(define-function pixbuf_new_from_file_at_scale
+  (is-constructor-of "GdkPixbuf")
+  (c-name "gdk_pixbuf_new_from_file_at_scale")
+  (caller-owns-return #t)
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("const-char*" "filename" (in))
+    '("int" "width" (in))
+    '("int" "height" (in))
+	'("gboolean" "preserve_aspect_ratio" (in))
+    '("GError**" "error" (out))
+  )
+)
+
 (define-function pixbuf_new_from_data
+  (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_data")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -4114,6 +4320,7 @@
 )
 
 (define-function pixbuf_new_from_xpm_data
+  (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_xpm_data")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -4123,6 +4330,7 @@
 )
 
 (define-function pixbuf_new_from_inline
+  (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_inline")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -4201,6 +4409,33 @@
   (parameters
 	  '("GdkPixbufSaveFunc" "save_func")
       '("gpointer" "user_data")
+      '("const-char*" "type")
+	  '("char**" "option_keys")
+      '("char**" "option_values")
+      '("GError**" "error" (out))
+  )
+)
+
+(define-method save_to_buffer
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_save_to_buffer")
+  (return-type "none")
+  (parameters
+	  '("gchar**" "buffer" (out))
+      '("gsize*" "buffer_size" (out))
+      '("const-char*" "type")
+      '("GError**" "error" (out))
+  )
+  (varargs #t)
+)
+
+(define-method save_to_bufferv
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_save_to_bufferv")
+  (return-type "none")
+  (parameters
+	  '("gchar**" "buffer" (out))
+      '("gsize*" "buffer_size" (out))
       '("const-char*" "type")
 	  '("char**" "option_keys")
       '("char**" "option_values")
@@ -4305,6 +4540,26 @@
     '("int" "check_size" (in))
     '("guint32" "color1" (in))
     '("guint32" "color2" (in))
+  )
+)
+
+(define-method rotate_simple
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_rotate_simple")
+  (caller-owns-return #t)
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("GdkPixbufRotation" "angle")
+  )
+)
+
+(define-method flip
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_flip")
+  (caller-owns-return #t)
+  (return-type "GdkPixbuf*")
+  (parameters
+    '("gboolean" "horizontal")
   )
 )
 
@@ -4417,12 +4672,41 @@
   )
 )
 
+(define-function gdk_pixbuf_simple_anim_new
+	(is-constructor-of "GdkPixbufSimpleAnim")
+	(return-type "GdkPixbufSimpleAnim*")
+	(c-name "gdk_pixbuf_simple_anim_new")
+	(parameters
+		'("gint" "width")
+        '("gint" "height")
+        '("gfloat" "rate")
+	)
+)
+(define-method add_frame
+	(of-object "GdkPixbufSimpleAnim")
+	(c-name "gdk_pixbuf_simple_anim_add_frame")
+	(return-type "none")
+	(parameters
+        '("GdkPixbuf*" "pixbuf")
+	)
+)
+
 (define-method get_option
   (of-object "GdkPixbuf")
   (c-name "gdk_pixbuf_get_option")
   (return-type "const-char*")
   (parameters
     '("const-char*" "key" (in))
+  )
+)
+
+(define-method set_option
+  (of-object "GdkPixbuf")
+  (c-name "gdk_pixbuf_set_option")
+  (return-type "gboolean")
+  (parameters
+    '("const-char*" "key" (in))
+	'("const-char*" "value" (in))
   )
 )
 
@@ -4445,6 +4729,34 @@
 (define-method get_name
   (of-object "GdkPixbufFormat")
   (c-name "gdk_pixbuf_format_get_name")
+  (caller-owns-return #t)
+  (return-type "gchar*")
+)
+
+(define-method is_scalable
+  (of-object "GdkPixbufFormat")
+  (c-name "gdk_pixbuf_format_is_scalable")
+  (return-type "gboolean")
+)
+
+(define-method is_disabled
+  (of-object "GdkPixbufFormat")
+  (c-name "gdk_pixbuf_format_is_disabled")
+  (return-type "gboolean")
+)
+
+(define-method set_disabled
+  (of-object "GdkPixbufFormat")
+  (c-name "gdk_pixbuf_format_set_disabled")
+  (return-type "none")
+  (parameters
+	  '("gboolean" "disabled")
+  )
+)
+
+(define-method get_license
+  (of-object "GdkPixbufFormat")
+  (c-name "gdk_pixbuf_format_get_license")
   (caller-owns-return #t)
   (return-type "gchar*")
 )
@@ -4482,6 +4794,7 @@
 )
 
 (define-function gdk_pixbuf_loader_new
+  (is-constructor-of "GdkPixbufLoader")
   (c-name "gdk_pixbuf_loader_new")
   (caller-owns-return #t)
   (return-type "GdkPixbufLoader*")
@@ -4500,6 +4813,7 @@
 )
 
 (define-function pixbuf_loader_new_with_mime_type
+  (is-constructor-of "GdkPixbufLoader")
   (c-name "gdk_pixbuf_loader_new_with_mime_type")
   (caller-owns-return #t)
   (return-type "GdkPixbufLoader*")
@@ -4574,5 +4888,170 @@
     '("GdkRectangle*" "src1" (in))
     '("GdkRectangle*" "src2" (in))
     '("GdkRectangle*" "dest" (out))
+  )
+)
+
+;; From /home/larman/research/src/gtk+-2.8.8/gdk/gdkregion.h
+
+(define-function gdk_region_new
+  (c-name "gdk_region_new")
+  (is-constructor-of "GdkRegion")
+  (return-type "GdkRegion*")
+)
+
+(define-function gdk_region_polygon
+  (c-name "gdk_region_polygon")
+  (return-type "GdkRegion*")
+  (parameters
+    '("GdkPoint[]" "points")
+    '("gint" "npoints")
+    '("GdkFillRule" "fill_rule")
+  )
+)
+
+(define-method copy
+  (of-object "GdkRegion")
+  (c-name "gdk_region_copy")
+  (caller-owns-return #t)
+  (return-type "GdkRegion*")
+)
+
+(define-function gdk_region_rectangle
+  (c-name "gdk_region_rectangle")
+  (is-constructor-of "GdkRegion")
+  (return-type "GdkRegion*")
+  (parameters
+    '("GdkRectangle*" "rectangle")
+  )
+)
+
+(define-method get_clipbox
+  (of-object "GdkRegion")
+  (c-name "gdk_region_get_clipbox")
+  (return-type "none")
+  (parameters
+	  '("GdkRectangle*" "rectangle" (out))
+  )
+)
+
+(define-method get_rectangles
+  (of-object "GdkRegion")
+  (c-name "gdk_region_get_rectangles")
+  (return-type "none")
+  (parameters
+	  '("GdkRectangle*[]" "rectangles" (out))
+	  '("gint*" "n_rectangles" (out))
+  )
+)
+
+(define-method empty
+  (of-object "GdkRegion")
+  (c-name "gdk_region_empty")
+  (return-type "gboolean")
+)
+
+(define-method equal
+  (of-object "GdkRegion")
+  (c-name "gdk_region_equal")
+  (return-type "gboolean")
+  (parameters
+    '("GdkRegion*" "region2")
+  )
+)
+
+(define-method point_in
+  (of-object "GdkRegion")
+  (c-name "gdk_region_point_in")
+  (return-type "gboolean")
+  (parameters
+    '("int" "x")
+    '("int" "y")
+  )
+)
+
+(define-method rect_in
+  (of-object "GdkRegion")
+  (c-name "gdk_region_rect_in")
+  (return-type "GdkOverlapType")
+  (parameters
+    '("GdkRectangle*" "rect")
+  )
+)
+
+(define-method offset
+  (of-object "GdkRegion")
+  (c-name "gdk_region_offset")
+  (return-type "none")
+  (parameters
+    '("gint" "dx")
+    '("gint" "dy")
+  )
+)
+
+(define-method shrink
+  (of-object "GdkRegion")
+  (c-name "gdk_region_shrink")
+  (return-type "none")
+  (parameters
+    '("gint" "dx")
+    '("gint" "dy")
+  )
+)
+
+(define-method union_with_rect
+  (of-object "GdkRegion")
+  (c-name "gdk_region_union_with_rect")
+  (return-type "none")
+  (parameters
+    '("GdkRectangle*" "rect")
+  )
+)
+
+(define-method intersect
+  (of-object "GdkRegion")
+  (c-name "gdk_region_intersect")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "source2")
+  )
+)
+
+(define-method union
+  (of-object "GdkRegion")
+  (c-name "gdk_region_union")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "source2")
+  )
+)
+
+(define-method subtract
+  (of-object "GdkRegion")
+  (c-name "gdk_region_subtract")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "source2")
+  )
+)
+
+(define-method xor
+  (of-object "GdkRegion")
+  (c-name "gdk_region_xor")
+  (return-type "none")
+  (parameters
+    '("GdkRegion*" "source2")
+  )
+)
+
+(define-method spans_intersect_foreach
+  (of-object "GdkRegion")
+  (c-name "gdk_region_spans_intersect_foreach")
+  (return-type "none")
+  (parameters
+    '("GdkSpan[]" "spans")
+    '("int" "n_spans")
+    '("gboolean" "sorted")
+    '("GdkSpanFunc" "function")
+    '("gpointer" "data")
   )
 )

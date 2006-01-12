@@ -37,7 +37,16 @@ S_pango_attr_foreground_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJEC
 S_pango_attr_background_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue); 
 
 	USER_OBJECT_
+S_pango_attr_strikethrough_color_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue); 
+
+	USER_OBJECT_
+S_pango_attr_underline_color_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue); 
+
+	USER_OBJECT_
 S_pango_attr_size_new(USER_OBJECT_ s_size); 
+
+	USER_OBJECT_
+S_pango_attr_size_new_absolute(USER_OBJECT_ s_size); 
 
 	USER_OBJECT_
 S_pango_attr_style_new(USER_OBJECT_ s_style); 
@@ -65,6 +74,12 @@ S_pango_attr_rise_new(USER_OBJECT_ s_rise);
 
 	USER_OBJECT_
 S_pango_attr_shape_new(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect); 
+
+	USER_OBJECT_
+S_pango_attr_shape_new_with_data(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect, USER_OBJECT_ s_data); 
+
+	USER_OBJECT_
+S_pango_attr_letter_spacing_new(USER_OBJECT_ s_letter_spacing); 
 
 	USER_OBJECT_
 S_pango_attr_scale_new(USER_OBJECT_ s_scale_factor); 
@@ -196,6 +211,15 @@ S_pango_context_get_font_map(USER_OBJECT_ s_object);
 S_pango_context_list_families(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
+S_pango_get_mirror_char(USER_OBJECT_ s_ch); 
+
+	USER_OBJECT_
+S_pango_unichar_direction(USER_OBJECT_ s_ch); 
+
+	USER_OBJECT_
+S_pango_find_base_dir(USER_OBJECT_ s_text, USER_OBJECT_ s_length); 
+
+	USER_OBJECT_
 S_pango_context_load_font(USER_OBJECT_ s_object, USER_OBJECT_ s_desc); 
 
 	USER_OBJECT_
@@ -203,6 +227,9 @@ S_pango_context_load_fontset(USER_OBJECT_ s_object, USER_OBJECT_ s_desc, USER_OB
 
 	USER_OBJECT_
 S_pango_context_set_matrix(USER_OBJECT_ s_object, USER_OBJECT_ s_matrix); 
+
+	USER_OBJECT_
+S_pango_context_get_matrix(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_pango_context_get_metrics(USER_OBJECT_ s_object, USER_OBJECT_ s_desc, USER_OBJECT_ s_language); 
@@ -227,6 +254,12 @@ S_pango_context_get_base_dir(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_pango_itemize(USER_OBJECT_ s_context, USER_OBJECT_ s_text, USER_OBJECT_ s_start_index, USER_OBJECT_ s_length, USER_OBJECT_ s_attrs, USER_OBJECT_ s_cached_iter); 
+
+	USER_OBJECT_
+S_pango_itemize_with_base_dir(USER_OBJECT_ s_context, USER_OBJECT_ s_base_dir, USER_OBJECT_ s_text, USER_OBJECT_ s_start_index, USER_OBJECT_ s_length, USER_OBJECT_ s_attrs, USER_OBJECT_ s_cached_iter); 
+
+	USER_OBJECT_
+S_pango_coverage_new(); 
 
 	USER_OBJECT_
 S_pango_coverage_ref(USER_OBJECT_ s_object); 
@@ -302,6 +335,12 @@ S_pango_font_description_set_stretch(USER_OBJECT_ s_object, USER_OBJECT_ s_stret
 
 	USER_OBJECT_
 S_pango_font_description_get_stretch(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_pango_font_description_set_absolute_size(USER_OBJECT_ s_object, USER_OBJECT_ s_size); 
+
+	USER_OBJECT_
+S_pango_font_description_get_size_is_absolute(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_pango_font_description_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_size); 
@@ -409,6 +448,9 @@ S_pango_font_get_metrics(USER_OBJECT_ s_object, USER_OBJECT_ s_language);
 S_pango_font_get_glyph_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph); 
 
 	USER_OBJECT_
+S_pango_font_get_font_map(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
 S_pango_font_map_load_font(USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_desc); 
 
 	USER_OBJECT_
@@ -454,6 +496,15 @@ S_pango_glyph_string_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER
 S_pango_glyph_string_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysis, USER_OBJECT_ s_x_pos); 
 
 	USER_OBJECT_
+S_pango_glyph_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_text, USER_OBJECT_ s_split_index); 
+
+	USER_OBJECT_
+S_pango_glyph_item_apply_attrs(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_list); 
+
+	USER_OBJECT_
+S_pango_glyph_item_letter_space(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_log_attrs, USER_OBJECT_ s_letter_spacing); 
+
+	USER_OBJECT_
 S_pango_matrix_translate(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
 
 	USER_OBJECT_
@@ -470,6 +521,15 @@ S_pango_matrix_copy(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_pango_shape(USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysis, USER_OBJECT_ s_glyphs); 
+
+	USER_OBJECT_
+S_pango_item_copy(USER_OBJECT_ s_item); 
+
+	USER_OBJECT_
+S_pango_item_new(); 
+
+	USER_OBJECT_
+S_pango_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_split_index, USER_OBJECT_ s_split_offset); 
 
 	USER_OBJECT_
 S_pango_reorder_items(USER_OBJECT_ s_logical_items); 

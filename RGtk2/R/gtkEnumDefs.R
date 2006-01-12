@@ -16,6 +16,7 @@ GtkAnchorType<-c("center" = 0,
 	"w" = 15,
 	"e" = 16)
 storage.mode(GtkAnchorType) <- 'integer'
+class(GtkAnchorType) <- 'enums'
 .GtkAnchorType<-c("GTK_ANCHOR_CENTER" = 0,
 	"GTK_ANCHOR_NORTH" = 1,
 	"GTK_ANCHOR_NORTH_WEST" = 2,
@@ -34,19 +35,20 @@ storage.mode(GtkAnchorType) <- 'integer'
 	"GTK_ANCHOR_W" = 15,
 	"GTK_ANCHOR_E" = 16)
 storage.mode(.GtkAnchorType) <- 'integer'
- 
+class(.GtkAnchorType) <- 'enums' 
 
 GtkArrowType<-c("up" = 0,
 	"down" = 1,
 	"left" = 2,
 	"right" = 3)
 storage.mode(GtkArrowType) <- 'integer'
+class(GtkArrowType) <- 'enums'
 .GtkArrowType<-c("GTK_ARROW_UP" = 0,
 	"GTK_ARROW_DOWN" = 1,
 	"GTK_ARROW_LEFT" = 2,
 	"GTK_ARROW_RIGHT" = 3)
 storage.mode(.GtkArrowType) <- 'integer'
- 
+class(.GtkArrowType) <- 'enums' 
 
 GtkButtonBoxStyle<-c("default-style" = 0,
 	"spread" = 1,
@@ -54,13 +56,14 @@ GtkButtonBoxStyle<-c("default-style" = 0,
 	"start" = 3,
 	"end" = 4)
 storage.mode(GtkButtonBoxStyle) <- 'integer'
+class(GtkButtonBoxStyle) <- 'enums'
 .GtkButtonBoxStyle<-c("GTK_BUTTONBOX_DEFAULT_STYLE" = 0,
 	"GTK_BUTTONBOX_SPREAD" = 1,
 	"GTK_BUTTONBOX_EDGE" = 2,
 	"GTK_BUTTONBOX_START" = 3,
 	"GTK_BUTTONBOX_END" = 4)
 storage.mode(.GtkButtonBoxStyle) <- 'integer'
- 
+class(.GtkButtonBoxStyle) <- 'enums' 
 
 GtkButtonsType<-c("none" = 0,
 	"ok" = 1,
@@ -69,6 +72,7 @@ GtkButtonsType<-c("none" = 0,
 	"yes-no" = 4,
 	"ok-cancel" = 5)
 storage.mode(GtkButtonsType) <- 'integer'
+class(GtkButtonsType) <- 'enums'
 .GtkButtonsType<-c("GTK_BUTTONS_NONE" = 0,
 	"GTK_BUTTONS_OK" = 1,
 	"GTK_BUTTONS_CLOSE" = 2,
@@ -76,17 +80,18 @@ storage.mode(GtkButtonsType) <- 'integer'
 	"GTK_BUTTONS_YES_NO" = 4,
 	"GTK_BUTTONS_OK_CANCEL" = 5)
 storage.mode(.GtkButtonsType) <- 'integer'
- 
+class(.GtkButtonsType) <- 'enums' 
 
 GtkCellRendererMode<-c("inert" = 0,
 	"activatable" = 1,
 	"editable" = 2)
 storage.mode(GtkCellRendererMode) <- 'integer'
+class(GtkCellRendererMode) <- 'enums'
 .GtkCellRendererMode<-c("GTK_CELL_RENDERER_MODE_INERT" = 0,
 	"GTK_CELL_RENDERER_MODE_ACTIVATABLE" = 1,
 	"GTK_CELL_RENDERER_MODE_EDITABLE" = 2)
 storage.mode(.GtkCellRendererMode) <- 'integer'
- 
+class(.GtkCellRendererMode) <- 'enums' 
 
 GtkCellType<-c("empty" = 0,
 	"text" = 1,
@@ -94,49 +99,53 @@ GtkCellType<-c("empty" = 0,
 	"pixtext" = 3,
 	"widget" = 4)
 storage.mode(GtkCellType) <- 'integer'
+class(GtkCellType) <- 'enums'
 .GtkCellType<-c("GTK_CELL_EMPTY" = 0,
 	"GTK_CELL_TEXT" = 1,
 	"GTK_CELL_PIXMAP" = 2,
 	"GTK_CELL_PIXTEXT" = 3,
 	"GTK_CELL_WIDGET" = 4)
 storage.mode(.GtkCellType) <- 'integer'
- 
+class(.GtkCellType) <- 'enums' 
 
 GtkCListDragPos<-c("none" = 0,
 	"before" = 1,
 	"into" = 2,
 	"after" = 3)
 storage.mode(GtkCListDragPos) <- 'integer'
+class(GtkCListDragPos) <- 'enums'
 .GtkCListDragPos<-c("GTK_CLIST_DRAG_NONE" = 0,
 	"GTK_CLIST_DRAG_BEFORE" = 1,
 	"GTK_CLIST_DRAG_INTO" = 2,
 	"GTK_CLIST_DRAG_AFTER" = 3)
 storage.mode(.GtkCListDragPos) <- 'integer'
- 
+class(.GtkCListDragPos) <- 'enums' 
 
 GtkCornerType<-c("top-left" = 0,
 	"bottom-left" = 1,
 	"top-right" = 2,
 	"bottom-right" = 3)
 storage.mode(GtkCornerType) <- 'integer'
+class(GtkCornerType) <- 'enums'
 .GtkCornerType<-c("GTK_CORNER_TOP_LEFT" = 0,
 	"GTK_CORNER_BOTTOM_LEFT" = 1,
 	"GTK_CORNER_TOP_RIGHT" = 2,
 	"GTK_CORNER_BOTTOM_RIGHT" = 3)
 storage.mode(.GtkCornerType) <- 'integer'
- 
+class(.GtkCornerType) <- 'enums' 
 
 GtkCTreeExpanderStyle<-c("none" = 0,
 	"square" = 1,
 	"triangle" = 2,
 	"circular" = 3)
 storage.mode(GtkCTreeExpanderStyle) <- 'integer'
+class(GtkCTreeExpanderStyle) <- 'enums'
 .GtkCTreeExpanderStyle<-c("GTK_CTREE_EXPANDER_NONE" = 0,
 	"GTK_CTREE_EXPANDER_SQUARE" = 1,
 	"GTK_CTREE_EXPANDER_TRIANGLE" = 2,
 	"GTK_CTREE_EXPANDER_CIRCULAR" = 3)
 storage.mode(.GtkCTreeExpanderStyle) <- 'integer'
- 
+class(.GtkCTreeExpanderStyle) <- 'enums' 
 
 GtkCTreeExpansionType<-c("expand" = 0,
 	"expand-recursive" = 1,
@@ -145,6 +154,7 @@ GtkCTreeExpansionType<-c("expand" = 0,
 	"toggle" = 4,
 	"toggle-recursive" = 5)
 storage.mode(GtkCTreeExpansionType) <- 'integer'
+class(GtkCTreeExpansionType) <- 'enums'
 .GtkCTreeExpansionType<-c("GTK_CTREE_EXPANSION_EXPAND" = 0,
 	"GTK_CTREE_EXPANSION_EXPAND_RECURSIVE" = 1,
 	"GTK_CTREE_EXPANSION_COLLAPSE" = 2,
@@ -152,39 +162,42 @@ storage.mode(GtkCTreeExpansionType) <- 'integer'
 	"GTK_CTREE_EXPANSION_TOGGLE" = 4,
 	"GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE" = 5)
 storage.mode(.GtkCTreeExpansionType) <- 'integer'
- 
+class(.GtkCTreeExpansionType) <- 'enums' 
 
 GtkCTreeLineStyle<-c("none" = 0,
 	"solid" = 1,
 	"dotted" = 2,
 	"tabbed" = 3)
 storage.mode(GtkCTreeLineStyle) <- 'integer'
+class(GtkCTreeLineStyle) <- 'enums'
 .GtkCTreeLineStyle<-c("GTK_CTREE_LINES_NONE" = 0,
 	"GTK_CTREE_LINES_SOLID" = 1,
 	"GTK_CTREE_LINES_DOTTED" = 2,
 	"GTK_CTREE_LINES_TABBED" = 3)
 storage.mode(.GtkCTreeLineStyle) <- 'integer'
- 
+class(.GtkCTreeLineStyle) <- 'enums' 
 
 GtkCTreePos<-c("before" = 0,
 	"as-child" = 1,
 	"after" = 2)
 storage.mode(GtkCTreePos) <- 'integer'
+class(GtkCTreePos) <- 'enums'
 .GtkCTreePos<-c("GTK_CTREE_POS_BEFORE" = 0,
 	"GTK_CTREE_POS_AS_CHILD" = 1,
 	"GTK_CTREE_POS_AFTER" = 2)
 storage.mode(.GtkCTreePos) <- 'integer'
- 
+class(.GtkCTreePos) <- 'enums' 
 
 GtkCurveType<-c("linear" = 0,
 	"spline" = 1,
 	"free" = 2)
 storage.mode(GtkCurveType) <- 'integer'
+class(GtkCurveType) <- 'enums'
 .GtkCurveType<-c("GTK_CURVE_TYPE_LINEAR" = 0,
 	"GTK_CURVE_TYPE_SPLINE" = 1,
 	"GTK_CURVE_TYPE_FREE" = 2)
 storage.mode(.GtkCurveType) <- 'integer'
- 
+class(.GtkCurveType) <- 'enums' 
 
 GtkDeleteType<-c("chars" = 0,
 	"word-ends" = 1,
@@ -195,6 +208,7 @@ GtkDeleteType<-c("chars" = 0,
 	"paragraphs" = 6,
 	"whitespace" = 7)
 storage.mode(GtkDeleteType) <- 'integer'
+class(GtkDeleteType) <- 'enums'
 .GtkDeleteType<-c("GTK_DELETE_CHARS" = 0,
 	"GTK_DELETE_WORD_ENDS" = 1,
 	"GTK_DELETE_WORDS" = 2,
@@ -204,7 +218,7 @@ storage.mode(GtkDeleteType) <- 'integer'
 	"GTK_DELETE_PARAGRAPHS" = 6,
 	"GTK_DELETE_WHITESPACE" = 7)
 storage.mode(.GtkDeleteType) <- 'integer'
- 
+class(.GtkDeleteType) <- 'enums' 
 
 GtkDirectionType<-c("tab-forward" = 0,
 	"tab-backward" = 1,
@@ -213,6 +227,7 @@ GtkDirectionType<-c("tab-forward" = 0,
 	"left" = 4,
 	"right" = 5)
 storage.mode(GtkDirectionType) <- 'integer'
+class(GtkDirectionType) <- 'enums'
 .GtkDirectionType<-c("GTK_DIR_TAB_FORWARD" = 0,
 	"GTK_DIR_TAB_BACKWARD" = 1,
 	"GTK_DIR_UP" = 2,
@@ -220,39 +235,53 @@ storage.mode(GtkDirectionType) <- 'integer'
 	"GTK_DIR_LEFT" = 4,
 	"GTK_DIR_RIGHT" = 5)
 storage.mode(.GtkDirectionType) <- 'integer'
- 
+class(.GtkDirectionType) <- 'enums' 
 
 GtkExpanderStyle<-c("collapsed" = 0,
 	"semi-collapsed" = 1,
 	"semi-expanded" = 2,
 	"expanded" = 3)
 storage.mode(GtkExpanderStyle) <- 'integer'
+class(GtkExpanderStyle) <- 'enums'
 .GtkExpanderStyle<-c("GTK_EXPANDER_COLLAPSED" = 0,
 	"GTK_EXPANDER_SEMI_COLLAPSED" = 1,
 	"GTK_EXPANDER_SEMI_EXPANDED" = 2,
 	"GTK_EXPANDER_EXPANDED" = 3)
 storage.mode(.GtkExpanderStyle) <- 'integer'
- 
+class(.GtkExpanderStyle) <- 'enums' 
 
 GtkFileChooserAction<-c("open" = 0,
 	"save" = 1,
 	"select-folder" = 2,
 	"create-folder" = 3)
 storage.mode(GtkFileChooserAction) <- 'integer'
+class(GtkFileChooserAction) <- 'enums'
 .GtkFileChooserAction<-c("GTK_FILE_CHOOSER_ACTION_OPEN" = 0,
 	"GTK_FILE_CHOOSER_ACTION_SAVE" = 1,
 	"GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER" = 2,
 	"GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER" = 3)
 storage.mode(.GtkFileChooserAction) <- 'integer'
- 
+class(.GtkFileChooserAction) <- 'enums' 
 
 GtkFileChooserError<-c("nonexistent" = 0,
 	"bad-filename" = 1)
 storage.mode(GtkFileChooserError) <- 'integer'
+class(GtkFileChooserError) <- 'enums'
 .GtkFileChooserError<-c("GTK_FILE_CHOOSER_ERROR_NONEXISTENT" = 0,
 	"GTK_FILE_CHOOSER_ERROR_BAD_FILENAME" = 1)
 storage.mode(.GtkFileChooserError) <- 'integer'
- 
+class(.GtkFileChooserError) <- 'enums' 
+
+GtkFileChooserConfirmation<-c("confirm" = 0,
+	"accept-filename" = 1,
+	"select-again" = 2)
+storage.mode(GtkFileChooserConfirmation) <- 'integer'
+class(GtkFileChooserConfirmation) <- 'enums'
+.GtkFileChooserConfirmation<-c("GTK_TYPE_FILE_CHOOSER_CONFIRMATION_CONFIRM" = 0,
+	"GTK_TYPE_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME" = 1,
+	"GTK_TYPE_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN" = 2)
+storage.mode(.GtkFileChooserConfirmation) <- 'integer'
+class(.GtkFileChooserConfirmation) <- 'enums' 
 
 GtkIconSize<-c("invalid" = 0,
 	"menu" = 1,
@@ -262,6 +291,7 @@ GtkIconSize<-c("invalid" = 0,
 	"dnd" = 5,
 	"dialog" = 6)
 storage.mode(GtkIconSize) <- 'integer'
+class(GtkIconSize) <- 'enums'
 .GtkIconSize<-c("GTK_ICON_SIZE_INVALID" = 0,
 	"GTK_ICON_SIZE_MENU" = 1,
 	"GTK_ICON_SIZE_SMALL_TOOLBAR" = 2,
@@ -270,15 +300,16 @@ storage.mode(GtkIconSize) <- 'integer'
 	"GTK_ICON_SIZE_DND" = 5,
 	"GTK_ICON_SIZE_DIALOG" = 6)
 storage.mode(.GtkIconSize) <- 'integer'
- 
+class(.GtkIconSize) <- 'enums' 
 
 GtkIconThemeError<-c("not-found" = 0,
 	"failed" = 1)
 storage.mode(GtkIconThemeError) <- 'integer'
+class(GtkIconThemeError) <- 'enums'
 .GtkIconThemeError<-c("GTK_ICON_THEME_NOT_FOUND" = 0,
 	"GTK_ICON_THEME_FAILED" = 1)
 storage.mode(.GtkIconThemeError) <- 'integer'
- 
+class(.GtkIconThemeError) <- 'enums' 
 
 GtkIconViewDropPosition<-c("no-drop" = 0,
 	"drop-into" = 1,
@@ -287,6 +318,7 @@ GtkIconViewDropPosition<-c("no-drop" = 0,
 	"drop-above" = 4,
 	"drop-below" = 5)
 storage.mode(GtkIconViewDropPosition) <- 'integer'
+class(GtkIconViewDropPosition) <- 'enums'
 .GtkIconViewDropPosition<-c("GTK_ICON_VIEW_NO_DROP" = 0,
 	"GTK_ICON_VIEW_DROP_INTO" = 1,
 	"GTK_ICON_VIEW_DROP_LEFT" = 2,
@@ -294,7 +326,7 @@ storage.mode(GtkIconViewDropPosition) <- 'integer'
 	"GTK_ICON_VIEW_DROP_ABOVE" = 4,
 	"GTK_ICON_VIEW_DROP_BELOW" = 5)
 storage.mode(.GtkIconViewDropPosition) <- 'integer'
- 
+class(.GtkIconViewDropPosition) <- 'enums' 
 
 GtkImageType<-c("empty" = 0,
 	"pixmap" = 1,
@@ -304,6 +336,7 @@ GtkImageType<-c("empty" = 0,
 	"icon-set" = 5,
 	"animation" = 6)
 storage.mode(GtkImageType) <- 'integer'
+class(GtkImageType) <- 'enums'
 .GtkImageType<-c("GTK_IMAGE_EMPTY" = 0,
 	"GTK_IMAGE_PIXMAP" = 1,
 	"GTK_IMAGE_IMAGE" = 2,
@@ -312,37 +345,40 @@ storage.mode(GtkImageType) <- 'integer'
 	"GTK_IMAGE_ICON_SET" = 5,
 	"GTK_IMAGE_ANIMATION" = 6)
 storage.mode(.GtkImageType) <- 'integer'
- 
+class(.GtkImageType) <- 'enums' 
 
 GtkIMPreeditStyle<-c("nothing" = 0,
 	"callback" = 1,
 	"none" = 2)
 storage.mode(GtkIMPreeditStyle) <- 'integer'
+class(GtkIMPreeditStyle) <- 'enums'
 .GtkIMPreeditStyle<-c("GTK_IM_PREEDIT_NOTHING" = 0,
 	"GTK_IM_PREEDIT_CALLBACK" = 1,
 	"GTK_IM_PREEDIT_NONE" = 2)
 storage.mode(.GtkIMPreeditStyle) <- 'integer'
- 
+class(.GtkIMPreeditStyle) <- 'enums' 
 
 GtkIMStatusStyle<-c("nothing" = 0,
 	"callback" = 1)
 storage.mode(GtkIMStatusStyle) <- 'integer'
+class(GtkIMStatusStyle) <- 'enums'
 .GtkIMStatusStyle<-c("GTK_IM_STATUS_NOTHING" = 0,
 	"GTK_IM_STATUS_CALLBACK" = 1)
 storage.mode(.GtkIMStatusStyle) <- 'integer'
- 
+class(.GtkIMStatusStyle) <- 'enums' 
 
 GtkJustification<-c("left" = 0,
 	"right" = 1,
 	"center" = 2,
 	"fill" = 3)
 storage.mode(GtkJustification) <- 'integer'
+class(GtkJustification) <- 'enums'
 .GtkJustification<-c("GTK_JUSTIFY_LEFT" = 0,
 	"GTK_JUSTIFY_RIGHT" = 1,
 	"GTK_JUSTIFY_CENTER" = 2,
 	"GTK_JUSTIFY_FILL" = 3)
 storage.mode(.GtkJustification) <- 'integer'
- 
+class(.GtkJustification) <- 'enums' 
 
 GtkMatchType<-c("all" = 0,
 	"all-tail" = 1,
@@ -351,6 +387,7 @@ GtkMatchType<-c("all" = 0,
 	"exact" = 4,
 	"last" = 5)
 storage.mode(GtkMatchType) <- 'integer'
+class(GtkMatchType) <- 'enums'
 .GtkMatchType<-c("GTK_MATCH_ALL" = 0,
 	"GTK_MATCH_ALL_TAIL" = 1,
 	"GTK_MATCH_HEAD" = 2,
@@ -358,41 +395,44 @@ storage.mode(GtkMatchType) <- 'integer'
 	"GTK_MATCH_EXACT" = 4,
 	"GTK_MATCH_LAST" = 5)
 storage.mode(.GtkMatchType) <- 'integer'
- 
+class(.GtkMatchType) <- 'enums' 
 
 GtkMenuDirectionType<-c("parent" = 0,
 	"child" = 1,
 	"next" = 2,
 	"prev" = 3)
 storage.mode(GtkMenuDirectionType) <- 'integer'
+class(GtkMenuDirectionType) <- 'enums'
 .GtkMenuDirectionType<-c("GTK_MENU_DIR_PARENT" = 0,
 	"GTK_MENU_DIR_CHILD" = 1,
 	"GTK_MENU_DIR_NEXT" = 2,
 	"GTK_MENU_DIR_PREV" = 3)
 storage.mode(.GtkMenuDirectionType) <- 'integer'
- 
+class(.GtkMenuDirectionType) <- 'enums' 
 
 GtkMessageType<-c("info" = 0,
 	"warning" = 1,
 	"question" = 2,
 	"error" = 3)
 storage.mode(GtkMessageType) <- 'integer'
+class(GtkMessageType) <- 'enums'
 .GtkMessageType<-c("GTK_MESSAGE_INFO" = 0,
 	"GTK_MESSAGE_WARNING" = 1,
 	"GTK_MESSAGE_QUESTION" = 2,
 	"GTK_MESSAGE_ERROR" = 3)
 storage.mode(.GtkMessageType) <- 'integer'
- 
+class(.GtkMessageType) <- 'enums' 
 
 GtkMetricType<-c("pixels" = 0,
 	"inches" = 1,
 	"centimeters" = 2)
 storage.mode(GtkMetricType) <- 'integer'
+class(GtkMetricType) <- 'enums'
 .GtkMetricType<-c("GTK_PIXELS" = 0,
 	"GTK_INCHES" = 1,
 	"GTK_CENTIMETERS" = 2)
 storage.mode(.GtkMetricType) <- 'integer'
- 
+class(.GtkMetricType) <- 'enums' 
 
 GtkMovementStep<-c("logical-positions" = 0,
 	"visual-positions" = 1,
@@ -405,6 +445,7 @@ GtkMovementStep<-c("logical-positions" = 0,
 	"buffer-ends" = 8,
 	"horizontal-pages" = 9)
 storage.mode(GtkMovementStep) <- 'integer'
+class(GtkMovementStep) <- 'enums'
 .GtkMovementStep<-c("GTK_MOVEMENT_LOGICAL_POSITIONS" = 0,
 	"GTK_MOVEMENT_VISUAL_POSITIONS" = 1,
 	"GTK_MOVEMENT_WORDS" = 2,
@@ -416,43 +457,38 @@ storage.mode(GtkMovementStep) <- 'integer'
 	"GTK_MOVEMENT_BUFFER_ENDS" = 8,
 	"GTK_MOVEMENT_HORIZONTAL_PAGES" = 9)
 storage.mode(.GtkMovementStep) <- 'integer'
- 
-
-GtkNotebookTab<-c("first" = 0,
-	"last" = 1)
-storage.mode(GtkNotebookTab) <- 'integer'
-.GtkNotebookTab<-c("GTK_NOTEBOOK_TAB_FIRST" = 0,
-	"GTK_NOTEBOOK_TAB_LAST" = 1)
-storage.mode(.GtkNotebookTab) <- 'integer'
- 
+class(.GtkMovementStep) <- 'enums' 
 
 GtkOrientation<-c("horizontal" = 0,
 	"vertical" = 1)
 storage.mode(GtkOrientation) <- 'integer'
+class(GtkOrientation) <- 'enums'
 .GtkOrientation<-c("GTK_ORIENTATION_HORIZONTAL" = 0,
 	"GTK_ORIENTATION_VERTICAL" = 1)
 storage.mode(.GtkOrientation) <- 'integer'
- 
+class(.GtkOrientation) <- 'enums' 
 
 GtkPackDirection<-c("ltr" = 0,
 	"rtl" = 1,
 	"ttb" = 2,
 	"btt" = 3)
 storage.mode(GtkPackDirection) <- 'integer'
+class(GtkPackDirection) <- 'enums'
 .GtkPackDirection<-c("GTK_PACK_DIRECTION_LTR" = 0,
 	"GTK_PACK_DIRECTION_RTL" = 1,
 	"GTK_PACK_DIRECTION_TTB" = 2,
 	"GTK_PACK_DIRECTION_BTT" = 3)
 storage.mode(.GtkPackDirection) <- 'integer'
- 
+class(.GtkPackDirection) <- 'enums' 
 
 GtkPackType<-c("start" = 0,
 	"end" = 1)
 storage.mode(GtkPackType) <- 'integer'
+class(GtkPackType) <- 'enums'
 .GtkPackType<-c("GTK_PACK_START" = 0,
 	"GTK_PACK_END" = 1)
 storage.mode(.GtkPackType) <- 'integer'
- 
+class(.GtkPackType) <- 'enums' 
 
 GtkPathPriorityType<-c("lowest" = 0,
 	"gtk" = 1,
@@ -461,6 +497,7 @@ GtkPathPriorityType<-c("lowest" = 0,
 	"rc" = 4,
 	"highest" = 5)
 storage.mode(GtkPathPriorityType) <- 'integer'
+class(GtkPathPriorityType) <- 'enums'
 .GtkPathPriorityType<-c("GTK_PATH_PRIO_LOWEST" = 0,
 	"GTK_PATH_PRIO_GTK" = 1,
 	"GTK_PATH_PRIO_APPLICATION" = 2,
@@ -468,67 +505,73 @@ storage.mode(GtkPathPriorityType) <- 'integer'
 	"GTK_PATH_PRIO_RC" = 4,
 	"GTK_PATH_PRIO_HIGHEST" = 5)
 storage.mode(.GtkPathPriorityType) <- 'integer'
- 
+class(.GtkPathPriorityType) <- 'enums' 
 
 GtkPathType<-c("widget" = 0,
 	"widget-class" = 1,
 	"class" = 2)
 storage.mode(GtkPathType) <- 'integer'
+class(GtkPathType) <- 'enums'
 .GtkPathType<-c("GTK_PATH_WIDGET" = 0,
 	"GTK_PATH_WIDGET_CLASS" = 1,
 	"GTK_PATH_CLASS" = 2)
 storage.mode(.GtkPathType) <- 'integer'
- 
+class(.GtkPathType) <- 'enums' 
 
 GtkPolicyType<-c("always" = 0,
 	"automatic" = 1,
 	"never" = 2)
 storage.mode(GtkPolicyType) <- 'integer'
+class(GtkPolicyType) <- 'enums'
 .GtkPolicyType<-c("GTK_POLICY_ALWAYS" = 0,
 	"GTK_POLICY_AUTOMATIC" = 1,
 	"GTK_POLICY_NEVER" = 2)
 storage.mode(.GtkPolicyType) <- 'integer'
- 
+class(.GtkPolicyType) <- 'enums' 
 
 GtkPositionType<-c("left" = 0,
 	"right" = 1,
 	"top" = 2,
 	"bottom" = 3)
 storage.mode(GtkPositionType) <- 'integer'
+class(GtkPositionType) <- 'enums'
 .GtkPositionType<-c("GTK_POS_LEFT" = 0,
 	"GTK_POS_RIGHT" = 1,
 	"GTK_POS_TOP" = 2,
 	"GTK_POS_BOTTOM" = 3)
 storage.mode(.GtkPositionType) <- 'integer'
- 
+class(.GtkPositionType) <- 'enums' 
 
 GtkPreviewType<-c("color" = 0,
 	"grayscale" = 1)
 storage.mode(GtkPreviewType) <- 'integer'
+class(GtkPreviewType) <- 'enums'
 .GtkPreviewType<-c("GTK_PREVIEW_COLOR" = 0,
 	"GTK_PREVIEW_GRAYSCALE" = 1)
 storage.mode(.GtkPreviewType) <- 'integer'
- 
+class(.GtkPreviewType) <- 'enums' 
 
 GtkProgressBarOrientation<-c("left-to-right" = 0,
 	"right-to-left" = 1,
 	"bottom-to-top" = 2,
 	"top-to-bottom" = 3)
 storage.mode(GtkProgressBarOrientation) <- 'integer'
+class(GtkProgressBarOrientation) <- 'enums'
 .GtkProgressBarOrientation<-c("GTK_PROGRESS_LEFT_TO_RIGHT" = 0,
 	"GTK_PROGRESS_RIGHT_TO_LEFT" = 1,
 	"GTK_PROGRESS_BOTTOM_TO_TOP" = 2,
 	"GTK_PROGRESS_TOP_TO_BOTTOM" = 3)
 storage.mode(.GtkProgressBarOrientation) <- 'integer'
- 
+class(.GtkProgressBarOrientation) <- 'enums' 
 
 GtkProgressBarStyle<-c("continuous" = 0,
 	"discrete" = 1)
 storage.mode(GtkProgressBarStyle) <- 'integer'
+class(GtkProgressBarStyle) <- 'enums'
 .GtkProgressBarStyle<-c("GTK_PROGRESS_CONTINUOUS" = 0,
 	"GTK_PROGRESS_DISCRETE" = 1)
 storage.mode(.GtkProgressBarStyle) <- 'integer'
- 
+class(.GtkProgressBarStyle) <- 'enums' 
 
 GtkRcTokenType<-c("invalid" = 0,
 	"include" = 1,
@@ -569,6 +612,7 @@ GtkRcTokenType<-c("invalid" = 0,
 	"rtl" = 36,
 	"last" = 37)
 storage.mode(GtkRcTokenType) <- 'integer'
+class(GtkRcTokenType) <- 'enums'
 .GtkRcTokenType<-c("GTK_RC_TOKEN_INVALID" = 0,
 	"GTK_RC_TOKEN_INCLUDE" = 1,
 	"GTK_RC_TOKEN_NORMAL" = 2,
@@ -608,27 +652,29 @@ storage.mode(GtkRcTokenType) <- 'integer'
 	"GTK_RC_TOKEN_RTL" = 36,
 	"GTK_RC_TOKEN_LAST" = 37)
 storage.mode(.GtkRcTokenType) <- 'integer'
- 
+class(.GtkRcTokenType) <- 'enums' 
 
 GtkReliefStyle<-c("normal" = 0,
 	"half" = 1,
 	"none" = 2)
 storage.mode(GtkReliefStyle) <- 'integer'
+class(GtkReliefStyle) <- 'enums'
 .GtkReliefStyle<-c("GTK_RELIEF_NORMAL" = 0,
 	"GTK_RELIEF_HALF" = 1,
 	"GTK_RELIEF_NONE" = 2)
 storage.mode(.GtkReliefStyle) <- 'integer'
- 
+class(.GtkReliefStyle) <- 'enums' 
 
 GtkResizeMode<-c("parent" = 0,
 	"queue" = 1,
 	"immediate" = 2)
 storage.mode(GtkResizeMode) <- 'integer'
+class(GtkResizeMode) <- 'enums'
 .GtkResizeMode<-c("GTK_RESIZE_PARENT" = 0,
 	"GTK_RESIZE_QUEUE" = 1,
 	"GTK_RESIZE_IMMEDIATE" = 2)
 storage.mode(.GtkResizeMode) <- 'integer'
- 
+class(.GtkResizeMode) <- 'enums' 
 
 GtkResponseType<-c("none" = -1,
 	"reject" = -2,
@@ -642,6 +688,7 @@ GtkResponseType<-c("none" = -1,
 	"apply" = -10,
 	"help" = -11)
 storage.mode(GtkResponseType) <- 'integer'
+class(GtkResponseType) <- 'enums'
 .GtkResponseType<-c("GTK_RESPONSE_NONE" = -1,
 	"GTK_RESPONSE_REJECT" = -2,
 	"GTK_RESPONSE_ACCEPT" = -3,
@@ -654,7 +701,7 @@ storage.mode(GtkResponseType) <- 'integer'
 	"GTK_RESPONSE_APPLY" = -10,
 	"GTK_RESPONSE_HELP" = -11)
 storage.mode(.GtkResponseType) <- 'integer'
- 
+class(.GtkResponseType) <- 'enums' 
 
 GtkScrollStep<-c("steps" = 0,
 	"pages" = 1,
@@ -663,6 +710,7 @@ GtkScrollStep<-c("steps" = 0,
 	"horizontal-pages" = 4,
 	"horizontal-ends" = 5)
 storage.mode(GtkScrollStep) <- 'integer'
+class(GtkScrollStep) <- 'enums'
 .GtkScrollStep<-c("GTK_SCROLL_STEPS" = 0,
 	"GTK_SCROLL_PAGES" = 1,
 	"GTK_SCROLL_ENDS" = 2,
@@ -670,7 +718,7 @@ storage.mode(GtkScrollStep) <- 'integer'
 	"GTK_SCROLL_HORIZONTAL_PAGES" = 4,
 	"GTK_SCROLL_HORIZONTAL_ENDS" = 5)
 storage.mode(.GtkScrollStep) <- 'integer'
- 
+class(.GtkScrollStep) <- 'enums' 
 
 GtkScrollType<-c("none" = 0,
 	"jump" = 1,
@@ -689,6 +737,7 @@ GtkScrollType<-c("none" = 0,
 	"start" = 14,
 	"end" = 15)
 storage.mode(GtkScrollType) <- 'integer'
+class(GtkScrollType) <- 'enums'
 .GtkScrollType<-c("GTK_SCROLL_NONE" = 0,
 	"GTK_SCROLL_JUMP" = 1,
 	"GTK_SCROLL_STEP_BACKWARD" = 2,
@@ -706,7 +755,7 @@ storage.mode(GtkScrollType) <- 'integer'
 	"GTK_SCROLL_START" = 14,
 	"GTK_SCROLL_END" = 15)
 storage.mode(.GtkScrollType) <- 'integer'
- 
+class(.GtkScrollType) <- 'enums' 
 
 GtkSelectionMode<-c("none" = 0,
 	"single" = 1,
@@ -714,13 +763,14 @@ GtkSelectionMode<-c("none" = 0,
 	"multiple" = 3,
 	"extended" = 4)
 storage.mode(GtkSelectionMode) <- 'integer'
+class(GtkSelectionMode) <- 'enums'
 .GtkSelectionMode<-c("GTK_SELECTION_NONE" = 0,
 	"GTK_SELECTION_SINGLE" = 1,
 	"GTK_SELECTION_BROWSE" = 2,
 	"GTK_SELECTION_MULTIPLE" = 3,
 	"GTK_SELECTION_EXTENDED" = 4)
 storage.mode(.GtkSelectionMode) <- 'integer'
- 
+class(.GtkSelectionMode) <- 'enums' 
 
 GtkShadowType<-c("none" = 0,
 	"in" = 1,
@@ -728,53 +778,58 @@ GtkShadowType<-c("none" = 0,
 	"etched-in" = 3,
 	"etched-out" = 4)
 storage.mode(GtkShadowType) <- 'integer'
+class(GtkShadowType) <- 'enums'
 .GtkShadowType<-c("GTK_SHADOW_NONE" = 0,
 	"GTK_SHADOW_IN" = 1,
 	"GTK_SHADOW_OUT" = 2,
 	"GTK_SHADOW_ETCHED_IN" = 3,
 	"GTK_SHADOW_ETCHED_OUT" = 4)
 storage.mode(.GtkShadowType) <- 'integer'
- 
+class(.GtkShadowType) <- 'enums' 
 
 GtkSideType<-c("top" = 0,
 	"bottom" = 1,
 	"left" = 2,
 	"right" = 3)
 storage.mode(GtkSideType) <- 'integer'
+class(GtkSideType) <- 'enums'
 .GtkSideType<-c("GTK_SIDE_TOP" = 0,
 	"GTK_SIDE_BOTTOM" = 1,
 	"GTK_SIDE_LEFT" = 2,
 	"GTK_SIDE_RIGHT" = 3)
 storage.mode(.GtkSideType) <- 'integer'
- 
+class(.GtkSideType) <- 'enums' 
 
 GtkSizeGroupMode<-c("none" = 0,
 	"horizontal" = 1,
 	"vertical" = 2,
 	"both" = 3)
 storage.mode(GtkSizeGroupMode) <- 'integer'
+class(GtkSizeGroupMode) <- 'enums'
 .GtkSizeGroupMode<-c("GTK_SIZE_GROUP_NONE" = 0,
 	"GTK_SIZE_GROUP_HORIZONTAL" = 1,
 	"GTK_SIZE_GROUP_VERTICAL" = 2,
 	"GTK_SIZE_GROUP_BOTH" = 3)
 storage.mode(.GtkSizeGroupMode) <- 'integer'
- 
+class(.GtkSizeGroupMode) <- 'enums' 
 
 GtkSortType<-c("ascending" = 0,
 	"descending" = 1)
 storage.mode(GtkSortType) <- 'integer'
+class(GtkSortType) <- 'enums'
 .GtkSortType<-c("GTK_SORT_ASCENDING" = 0,
 	"GTK_SORT_DESCENDING" = 1)
 storage.mode(.GtkSortType) <- 'integer'
- 
+class(.GtkSortType) <- 'enums' 
 
 GtkSpinButtonUpdatePolicy<-c("always" = 0,
 	"if-valid" = 1)
 storage.mode(GtkSpinButtonUpdatePolicy) <- 'integer'
+class(GtkSpinButtonUpdatePolicy) <- 'enums'
 .GtkSpinButtonUpdatePolicy<-c("GTK_UPDATE_ALWAYS" = 0,
 	"GTK_UPDATE_IF_VALID" = 1)
 storage.mode(.GtkSpinButtonUpdatePolicy) <- 'integer'
- 
+class(.GtkSpinButtonUpdatePolicy) <- 'enums' 
 
 GtkSpinType<-c("step-forward" = 0,
 	"step-backward" = 1,
@@ -784,6 +839,7 @@ GtkSpinType<-c("step-forward" = 0,
 	"end" = 5,
 	"user-defined" = 6)
 storage.mode(GtkSpinType) <- 'integer'
+class(GtkSpinType) <- 'enums'
 .GtkSpinType<-c("GTK_SPIN_STEP_FORWARD" = 0,
 	"GTK_SPIN_STEP_BACKWARD" = 1,
 	"GTK_SPIN_PAGE_FORWARD" = 2,
@@ -792,7 +848,7 @@ storage.mode(GtkSpinType) <- 'integer'
 	"GTK_SPIN_END" = 5,
 	"GTK_SPIN_USER_DEFINED" = 6)
 storage.mode(.GtkSpinType) <- 'integer'
- 
+class(.GtkSpinType) <- 'enums' 
 
 GtkStateType<-c("normal" = 0,
 	"active" = 1,
@@ -800,39 +856,43 @@ GtkStateType<-c("normal" = 0,
 	"selected" = 3,
 	"insensitive" = 4)
 storage.mode(GtkStateType) <- 'integer'
+class(GtkStateType) <- 'enums'
 .GtkStateType<-c("GTK_STATE_NORMAL" = 0,
 	"GTK_STATE_ACTIVE" = 1,
 	"GTK_STATE_PRELIGHT" = 2,
 	"GTK_STATE_SELECTED" = 3,
 	"GTK_STATE_INSENSITIVE" = 4)
 storage.mode(.GtkStateType) <- 'integer'
- 
+class(.GtkStateType) <- 'enums' 
 
 GtkSubmenuDirection<-c("left" = 0,
 	"right" = 1)
 storage.mode(GtkSubmenuDirection) <- 'integer'
+class(GtkSubmenuDirection) <- 'enums'
 .GtkSubmenuDirection<-c("GTK_DIRECTION_LEFT" = 0,
 	"GTK_DIRECTION_RIGHT" = 1)
 storage.mode(.GtkSubmenuDirection) <- 'integer'
- 
+class(.GtkSubmenuDirection) <- 'enums' 
 
 GtkSubmenuPlacement<-c("top-bottom" = 0,
 	"left-right" = 1)
 storage.mode(GtkSubmenuPlacement) <- 'integer'
+class(GtkSubmenuPlacement) <- 'enums'
 .GtkSubmenuPlacement<-c("GTK_TOP_BOTTOM" = 0,
 	"GTK_LEFT_RIGHT" = 1)
 storage.mode(.GtkSubmenuPlacement) <- 'integer'
- 
+class(.GtkSubmenuPlacement) <- 'enums' 
 
 GtkTextDirection<-c("none" = 0,
 	"ltr" = 1,
 	"rtl" = 2)
 storage.mode(GtkTextDirection) <- 'integer'
+class(GtkTextDirection) <- 'enums'
 .GtkTextDirection<-c("GTK_TEXT_DIR_NONE" = 0,
 	"GTK_TEXT_DIR_LTR" = 1,
 	"GTK_TEXT_DIR_RTL" = 2)
 storage.mode(.GtkTextDirection) <- 'integer'
- 
+class(.GtkTextDirection) <- 'enums' 
 
 GtkTextWindowType<-c("private" = 0,
 	"widget" = 1,
@@ -842,6 +902,7 @@ GtkTextWindowType<-c("private" = 0,
 	"top" = 5,
 	"bottom" = 6)
 storage.mode(GtkTextWindowType) <- 'integer'
+class(GtkTextWindowType) <- 'enums'
 .GtkTextWindowType<-c("GTK_TEXT_WINDOW_PRIVATE" = 0,
 	"GTK_TEXT_WINDOW_WIDGET" = 1,
 	"GTK_TEXT_WINDOW_TEXT" = 2,
@@ -850,7 +911,7 @@ storage.mode(GtkTextWindowType) <- 'integer'
 	"GTK_TEXT_WINDOW_TOP" = 5,
 	"GTK_TEXT_WINDOW_BOTTOM" = 6)
 storage.mode(.GtkTextWindowType) <- 'integer'
- 
+class(.GtkTextWindowType) <- 'enums' 
 
 GtkToolbarChildType<-c("space" = 0,
 	"button" = 1,
@@ -858,83 +919,91 @@ GtkToolbarChildType<-c("space" = 0,
 	"radiobutton" = 3,
 	"widget" = 4)
 storage.mode(GtkToolbarChildType) <- 'integer'
+class(GtkToolbarChildType) <- 'enums'
 .GtkToolbarChildType<-c("GTK_TOOLBAR_CHILD_SPACE" = 0,
 	"GTK_TOOLBAR_CHILD_BUTTON" = 1,
 	"GTK_TOOLBAR_CHILD_TOGGLEBUTTON" = 2,
 	"GTK_TOOLBAR_CHILD_RADIOBUTTON" = 3,
 	"GTK_TOOLBAR_CHILD_WIDGET" = 4)
 storage.mode(.GtkToolbarChildType) <- 'integer'
- 
+class(.GtkToolbarChildType) <- 'enums' 
 
 GtkToolbarSpaceStyle<-c("empty" = 0,
 	"line" = 1)
 storage.mode(GtkToolbarSpaceStyle) <- 'integer'
+class(GtkToolbarSpaceStyle) <- 'enums'
 .GtkToolbarSpaceStyle<-c("GTK_TOOLBAR_SPACE_EMPTY" = 0,
 	"GTK_TOOLBAR_SPACE_LINE" = 1)
 storage.mode(.GtkToolbarSpaceStyle) <- 'integer'
- 
+class(.GtkToolbarSpaceStyle) <- 'enums' 
 
 GtkToolbarStyle<-c("icons" = 0,
 	"text" = 1,
 	"both" = 2,
 	"both-horiz" = 3)
 storage.mode(GtkToolbarStyle) <- 'integer'
+class(GtkToolbarStyle) <- 'enums'
 .GtkToolbarStyle<-c("GTK_TOOLBAR_ICONS" = 0,
 	"GTK_TOOLBAR_TEXT" = 1,
 	"GTK_TOOLBAR_BOTH" = 2,
 	"GTK_TOOLBAR_BOTH_HORIZ" = 3)
 storage.mode(.GtkToolbarStyle) <- 'integer'
- 
+class(.GtkToolbarStyle) <- 'enums' 
 
 GtkTreeViewColumnSizing<-c("grow-only" = 0,
 	"autosize" = 1,
 	"fixed" = 2)
 storage.mode(GtkTreeViewColumnSizing) <- 'integer'
+class(GtkTreeViewColumnSizing) <- 'enums'
 .GtkTreeViewColumnSizing<-c("GTK_TREE_VIEW_COLUMN_GROW_ONLY" = 0,
 	"GTK_TREE_VIEW_COLUMN_AUTOSIZE" = 1,
 	"GTK_TREE_VIEW_COLUMN_FIXED" = 2)
 storage.mode(.GtkTreeViewColumnSizing) <- 'integer'
- 
+class(.GtkTreeViewColumnSizing) <- 'enums' 
 
 GtkTreeViewDropPosition<-c("before" = 0,
 	"after" = 1,
 	"into-or-before" = 2,
 	"into-or-after" = 3)
 storage.mode(GtkTreeViewDropPosition) <- 'integer'
+class(GtkTreeViewDropPosition) <- 'enums'
 .GtkTreeViewDropPosition<-c("GTK_TREE_VIEW_DROP_BEFORE" = 0,
 	"GTK_TREE_VIEW_DROP_AFTER" = 1,
 	"GTK_TREE_VIEW_DROP_INTO_OR_BEFORE" = 2,
 	"GTK_TREE_VIEW_DROP_INTO_OR_AFTER" = 3)
 storage.mode(.GtkTreeViewDropPosition) <- 'integer'
- 
+class(.GtkTreeViewDropPosition) <- 'enums' 
 
 GtkUpdateType<-c("continuous" = 0,
 	"discontinuous" = 1,
 	"delayed" = 2)
 storage.mode(GtkUpdateType) <- 'integer'
+class(GtkUpdateType) <- 'enums'
 .GtkUpdateType<-c("GTK_UPDATE_CONTINUOUS" = 0,
 	"GTK_UPDATE_DISCONTINUOUS" = 1,
 	"GTK_UPDATE_DELAYED" = 2)
 storage.mode(.GtkUpdateType) <- 'integer'
- 
+class(.GtkUpdateType) <- 'enums' 
 
 GtkVisibility<-c("none" = 0,
 	"partial" = 1,
 	"full" = 2)
 storage.mode(GtkVisibility) <- 'integer'
+class(GtkVisibility) <- 'enums'
 .GtkVisibility<-c("GTK_VISIBILITY_NONE" = 0,
 	"GTK_VISIBILITY_PARTIAL" = 1,
 	"GTK_VISIBILITY_FULL" = 2)
 storage.mode(.GtkVisibility) <- 'integer'
- 
+class(.GtkVisibility) <- 'enums' 
 
 GtkWidgetHelpType<-c("tooltip" = 0,
 	"whats-this" = 1)
 storage.mode(GtkWidgetHelpType) <- 'integer'
+class(GtkWidgetHelpType) <- 'enums'
 .GtkWidgetHelpType<-c("GTK_WIDGET_HELP_TOOLTIP" = 0,
 	"GTK_WIDGET_HELP_WHATS_THIS" = 1)
 storage.mode(.GtkWidgetHelpType) <- 'integer'
- 
+class(.GtkWidgetHelpType) <- 'enums' 
 
 GtkWindowPosition<-c("none" = 0,
 	"center" = 1,
@@ -942,43 +1011,47 @@ GtkWindowPosition<-c("none" = 0,
 	"center-always" = 3,
 	"center-on-parent" = 4)
 storage.mode(GtkWindowPosition) <- 'integer'
+class(GtkWindowPosition) <- 'enums'
 .GtkWindowPosition<-c("GTK_WIN_POS_NONE" = 0,
 	"GTK_WIN_POS_CENTER" = 1,
 	"GTK_WIN_POS_MOUSE" = 2,
 	"GTK_WIN_POS_CENTER_ALWAYS" = 3,
 	"GTK_WIN_POS_CENTER_ON_PARENT" = 4)
 storage.mode(.GtkWindowPosition) <- 'integer'
- 
+class(.GtkWindowPosition) <- 'enums' 
 
 GtkWindowType<-c("toplevel" = 0,
 	"popup" = 1)
 storage.mode(GtkWindowType) <- 'integer'
+class(GtkWindowType) <- 'enums'
 .GtkWindowType<-c("GTK_WINDOW_TOPLEVEL" = 0,
 	"GTK_WINDOW_POPUP" = 1)
 storage.mode(.GtkWindowType) <- 'integer'
- 
+class(.GtkWindowType) <- 'enums' 
 
 GtkWrapMode<-c("none" = 0,
 	"char" = 1,
 	"word" = 2,
 	"word_char" = 3)
 storage.mode(GtkWrapMode) <- 'integer'
+class(GtkWrapMode) <- 'enums'
 .GtkWrapMode<-c("GTK_WRAP_NONE" = 0,
 	"GTK_WRAP_CHAR" = 1,
 	"GTK_WRAP_WORD" = 2,
 	"GTK_WRAP_WORD_CHAR" = 3)
 storage.mode(.GtkWrapMode) <- 'integer'
- 
+class(.GtkWrapMode) <- 'enums' 
 
 GtkAccelFlags<-c("visible" = 1,
 	"locked" = 2,
 	"mask" = 4)
 storage.mode(GtkAccelFlags) <- 'numeric'
+class(GtkAccelFlags) <- 'enums'
 .GtkAccelFlags<-c("GTK_ACCEL_VISIBLE" = 1,
 	"GTK_ACCEL_LOCKED" = 2,
 	"GTK_ACCEL_MASK" = 4)
 storage.mode(.GtkAccelFlags) <- 'numeric'
- 
+class(.GtkAccelFlags) <- 'enums' 
 
 GtkArgFlags<-c("readable" = 1,
 	"writable" = 2,
@@ -986,35 +1059,38 @@ GtkArgFlags<-c("readable" = 1,
 	"construct-only" = 8,
 	"child-arg" = 16)
 storage.mode(GtkArgFlags) <- 'numeric'
+class(GtkArgFlags) <- 'enums'
 .GtkArgFlags<-c("GTK_ARG_READABLE" = 1,
 	"GTK_ARG_WRITABLE" = 2,
 	"GTK_ARG_CONSTRUCT" = 4,
 	"GTK_ARG_CONSTRUCT_ONLY" = 8,
 	"GTK_ARG_CHILD_ARG" = 16)
 storage.mode(.GtkArgFlags) <- 'numeric'
- 
+class(.GtkArgFlags) <- 'enums' 
 
 GtkAttachOptions<-c("expand" = 1,
 	"shrink" = 2,
 	"fill" = 4)
 storage.mode(GtkAttachOptions) <- 'numeric'
+class(GtkAttachOptions) <- 'enums'
 .GtkAttachOptions<-c("GTK_EXPAND" = 1,
 	"GTK_SHRINK" = 2,
 	"GTK_FILL" = 4)
 storage.mode(.GtkAttachOptions) <- 'numeric'
- 
+class(.GtkAttachOptions) <- 'enums' 
 
 GtkButtonAction<-c("ignored" = 1,
 	"selects" = 2,
 	"drags" = 4,
 	"expands" = 8)
 storage.mode(GtkButtonAction) <- 'numeric'
+class(GtkButtonAction) <- 'enums'
 .GtkButtonAction<-c("GTK_BUTTON_IGNORED" = 1,
 	"GTK_BUTTON_SELECTS" = 2,
 	"GTK_BUTTON_DRAGS" = 4,
 	"GTK_BUTTON_EXPANDS" = 8)
 storage.mode(.GtkButtonAction) <- 'numeric'
- 
+class(.GtkButtonAction) <- 'enums' 
 
 GtkCalendarDisplayOptions<-c("show-heading" = 1,
 	"show-day-names" = 2,
@@ -1022,13 +1098,14 @@ GtkCalendarDisplayOptions<-c("show-heading" = 1,
 	"show-week-numbers" = 8,
 	"week-start-monday" = 16)
 storage.mode(GtkCalendarDisplayOptions) <- 'numeric'
+class(GtkCalendarDisplayOptions) <- 'enums'
 .GtkCalendarDisplayOptions<-c("GTK_CALENDAR_SHOW_HEADING" = 1,
 	"GTK_CALENDAR_SHOW_DAY_NAMES" = 2,
 	"GTK_CALENDAR_NO_MONTH_CHANGE" = 4,
 	"GTK_CALENDAR_SHOW_WEEK_NUMBERS" = 8,
 	"GTK_CALENDAR_WEEK_START_MONDAY" = 16)
 storage.mode(.GtkCalendarDisplayOptions) <- 'numeric'
- 
+class(.GtkCalendarDisplayOptions) <- 'enums' 
 
 GtkCellRendererState<-c("selected" = 1,
 	"prelit" = 2,
@@ -1036,13 +1113,14 @@ GtkCellRendererState<-c("selected" = 1,
 	"sorted" = 8,
 	"focused" = 16)
 storage.mode(GtkCellRendererState) <- 'numeric'
+class(GtkCellRendererState) <- 'enums'
 .GtkCellRendererState<-c("GTK_CELL_RENDERER_SELECTED" = 1,
 	"GTK_CELL_RENDERER_PRELIT" = 2,
 	"GTK_CELL_RENDERER_INSENSITIVE" = 4,
 	"GTK_CELL_RENDERER_SORTED" = 8,
 	"GTK_CELL_RENDERER_FOCUSED" = 16)
 storage.mode(.GtkCellRendererState) <- 'numeric'
- 
+class(.GtkCellRendererState) <- 'enums' 
 
 GtkDebugFlag<-c("misc" = 1,
 	"plugsocket" = 2,
@@ -1052,6 +1130,7 @@ GtkDebugFlag<-c("misc" = 1,
 	"keybindings" = 32,
 	"multihead" = 64)
 storage.mode(GtkDebugFlag) <- 'numeric'
+class(GtkDebugFlag) <- 'enums'
 .GtkDebugFlag<-c("GTK_DEBUG_MISC" = 1,
 	"GTK_DEBUG_PLUGSOCKET" = 2,
 	"GTK_DEBUG_TEXT" = 4,
@@ -1060,99 +1139,108 @@ storage.mode(GtkDebugFlag) <- 'numeric'
 	"GTK_DEBUG_KEYBINDINGS" = 32,
 	"GTK_DEBUG_MULTIHEAD" = 64)
 storage.mode(.GtkDebugFlag) <- 'numeric'
- 
+class(.GtkDebugFlag) <- 'enums' 
 
 GtkDestDefaults<-c("motion" = 1,
 	"highlight" = 2,
 	"drop" = 4,
 	"all" = 8)
 storage.mode(GtkDestDefaults) <- 'numeric'
+class(GtkDestDefaults) <- 'enums'
 .GtkDestDefaults<-c("GTK_DEST_DEFAULT_MOTION" = 1,
 	"GTK_DEST_DEFAULT_HIGHLIGHT" = 2,
 	"GTK_DEST_DEFAULT_DROP" = 4,
 	"GTK_DEST_DEFAULT_ALL" = 8)
 storage.mode(.GtkDestDefaults) <- 'numeric'
- 
+class(.GtkDestDefaults) <- 'enums' 
 
 GtkDialogFlags<-c("modal" = 1,
 	"destroy-with-parent" = 2,
 	"no-separator" = 4)
 storage.mode(GtkDialogFlags) <- 'numeric'
+class(GtkDialogFlags) <- 'enums'
 .GtkDialogFlags<-c("GTK_DIALOG_MODAL" = 1,
 	"GTK_DIALOG_DESTROY_WITH_PARENT" = 2,
 	"GTK_DIALOG_NO_SEPARATOR" = 4)
 storage.mode(.GtkDialogFlags) <- 'numeric'
- 
+class(.GtkDialogFlags) <- 'enums' 
 
 GtkFileFilterFlags<-c("filename" = 1,
 	"uri" = 2,
 	"display-name" = 4,
 	"mime-type" = 8)
 storage.mode(GtkFileFilterFlags) <- 'numeric'
+class(GtkFileFilterFlags) <- 'enums'
 .GtkFileFilterFlags<-c("GTK_FILE_FILTER_FILENAME" = 1,
 	"GTK_FILE_FILTER_URI" = 2,
 	"GTK_FILE_FILTER_DISPLAY_NAME" = 4,
 	"GTK_FILE_FILTER_MIME_TYPE" = 8)
 storage.mode(.GtkFileFilterFlags) <- 'numeric'
- 
+class(.GtkFileFilterFlags) <- 'enums' 
 
 GtkIconLookupFlags<-c("no-svg" = 1,
 	"force-svg" = 2,
 	"use-builtin" = 4)
 storage.mode(GtkIconLookupFlags) <- 'numeric'
+class(GtkIconLookupFlags) <- 'enums'
 .GtkIconLookupFlags<-c("GTK_ICON_LOOKUP_NO_SVG" = 1,
 	"GTK_ICON_LOOKUP_FORCE_SVG" = 2,
 	"GTK_ICON_LOOKUP_USE_BUILTIN" = 4)
 storage.mode(.GtkIconLookupFlags) <- 'numeric'
- 
+class(.GtkIconLookupFlags) <- 'enums' 
 
 GtkObjectFlags<-c("in-destruction" = 1,
 	"floating" = 2,
 	"reserved-1" = 4,
 	"reserved-2" = 8)
 storage.mode(GtkObjectFlags) <- 'numeric'
+class(GtkObjectFlags) <- 'enums'
 .GtkObjectFlags<-c("GTK_IN_DESTRUCTION" = 1,
 	"GTK_FLOATING" = 2,
 	"GTK_RESERVED_1" = 4,
 	"GTK_RESERVED_2" = 8)
 storage.mode(.GtkObjectFlags) <- 'numeric'
- 
+class(.GtkObjectFlags) <- 'enums' 
 
 GtkRcFlags<-c("fg" = 1,
 	"bg" = 2,
 	"text" = 4,
 	"base" = 8)
 storage.mode(GtkRcFlags) <- 'numeric'
+class(GtkRcFlags) <- 'enums'
 .GtkRcFlags<-c("GTK_RC_FG" = 1,
 	"GTK_RC_BG" = 2,
 	"GTK_RC_TEXT" = 4,
 	"GTK_RC_BASE" = 8)
 storage.mode(.GtkRcFlags) <- 'numeric'
- 
+class(.GtkRcFlags) <- 'enums' 
 
 GtkTargetFlags<-c("app" = 1,
 	"widget" = 2)
 storage.mode(GtkTargetFlags) <- 'numeric'
+class(GtkTargetFlags) <- 'enums'
 .GtkTargetFlags<-c("GTK_TARGET_SAME_APP" = 1,
 	"GTK_TARGET_SAME_WIDGET" = 2)
 storage.mode(.GtkTargetFlags) <- 'numeric'
- 
+class(.GtkTargetFlags) <- 'enums' 
 
 GtkTextSearchFlags<-c("visible-only" = 1,
 	"text-only" = 2)
 storage.mode(GtkTextSearchFlags) <- 'numeric'
+class(GtkTextSearchFlags) <- 'enums'
 .GtkTextSearchFlags<-c("GTK_TEXT_SEARCH_VISIBLE_ONLY" = 1,
 	"GTK_TEXT_SEARCH_TEXT_ONLY" = 2)
 storage.mode(.GtkTextSearchFlags) <- 'numeric'
- 
+class(.GtkTextSearchFlags) <- 'enums' 
 
 GtkTreeModelFlags<-c("iters-persist" = 1,
 	"list-only" = 2)
 storage.mode(GtkTreeModelFlags) <- 'numeric'
+class(GtkTreeModelFlags) <- 'enums'
 .GtkTreeModelFlags<-c("GTK_TREE_MODEL_ITERS_PERSIST" = 1,
 	"GTK_TREE_MODEL_LIST_ONLY" = 2)
 storage.mode(.GtkTreeModelFlags) <- 'numeric'
- 
+class(.GtkTreeModelFlags) <- 'enums' 
 
 GtkUIManagerItemType<-c("auto" = 1,
 	"menubar" = 2,
@@ -1165,6 +1253,7 @@ GtkUIManagerItemType<-c("auto" = 1,
 	"separator" = 256,
 	"accelerator" = 512)
 storage.mode(GtkUIManagerItemType) <- 'numeric'
+class(GtkUIManagerItemType) <- 'enums'
 .GtkUIManagerItemType<-c("GTK_UI_MANAGER_AUTO" = 1,
 	"GTK_UI_MANAGER_MENUBAR" = 2,
 	"GTK_UI_MANAGER_MENU" = 4,
@@ -1176,7 +1265,7 @@ storage.mode(GtkUIManagerItemType) <- 'numeric'
 	"GTK_UI_MANAGER_SEPARATOR" = 256,
 	"GTK_UI_MANAGER_ACCELERATOR" = 512)
 storage.mode(.GtkUIManagerItemType) <- 'numeric'
- 
+class(.GtkUIManagerItemType) <- 'enums' 
 
 GtkWidgetFlags<-c("toplevel" = 16,
 	"no-window" = 32,
@@ -1198,6 +1287,7 @@ GtkWidgetFlags<-c("toplevel" = 16,
 	"double-buffered" = 2097152,
 	"no-show-all" = 4194304)
 storage.mode(GtkWidgetFlags) <- 'numeric'
+class(GtkWidgetFlags) <- 'enums'
 .GtkWidgetFlags<-c("GTK_TOPLEVEL" = 16,
 	"GTK_NO_WINDOW" = 32,
 	"GTK_REALIZED" = 64,
@@ -1218,5 +1308,5 @@ storage.mode(GtkWidgetFlags) <- 'numeric'
 	"GTK_DOUBLE_BUFFERED" = 2097152,
 	"GTK_NO_SHOW_ALL" = 4194304)
 storage.mode(.GtkWidgetFlags) <- 'numeric'
- 
+class(.GtkWidgetFlags) <- 'enums' 
 

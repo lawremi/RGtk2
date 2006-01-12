@@ -281,6 +281,16 @@
 		'("reflect" "CAIRO_EXTEND_REFLECT")
 	)
 )
+(define-enum content
+	(in-module "cairo")
+	(c-name "cairo_content_t")
+	(gtype-id "CAIRO_TYPE_CONTENT")
+	(values
+		'("color" "CAIRO_CONTENT_COLOR" "0x1000")
+		'("alpha" "CAIRO_CONTENT_ALPHA" "0x2000")
+		'("color-alpha" "CAIRO_CONTENT_COLOR_ALPHA" "0x3000")
+	)
+)
 (define-enum filter
 	(in-module "cairo")
 	(c-name "cairo_filter_t")
@@ -297,18 +307,26 @@
 
 ;; user functions
 
-;(define-user-function write_func
-;	(in-module "cairo")
-;	(c-name "cairo_write_func_t")
-;	(return-type "cairo_status_t")
-;	(parameters
-;		'("gpointer" "closure")
-;		'("const-guchar*" "data")
- ;       '("guint" "length")
-	;)
-;)
-
-;; useless to implement read_func, since it requires return by ref
+(define-user-function write_func
+	(in-module "cairo")
+	(c-name "cairo_write_func_t")
+	(return-type "cairo_status_t")
+	(parameters
+		'("gpointer" "closure")
+		'("const-guchar*" "data")
+        '("guint" "length")
+	)
+)
+(define-user-function read_func
+	(in-module "cairo")
+	(c-name "cairo_read_func_t")
+	(return-type "cairo_status_t")
+	(parameters
+		'("gpointer" "closure")
+		'("guchar*" "data" (out))
+        '("guint" "length")
+	)
+)
 
 ;; From /usr/include/cairo/cairo.h
 
@@ -1597,7 +1615,7 @@
   (c-name "cairo_matrix_init")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+	  '("cairo_matrix_t*" "matrix" (out))
     '("double" "xx")
     '("double" "yx")
     '("double" "xy")
@@ -1611,7 +1629,7 @@
   (c-name "cairo_matrix_init_identity")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+	  '("cairo_matrix_t*" "matrix" (out))
   )
 )
 
@@ -1619,7 +1637,7 @@
   (c-name "cairo_matrix_init_translate")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+	  '("cairo_matrix_t*" "matrix" (out))
     '("double" "tx")
     '("double" "ty")
   )
@@ -1629,7 +1647,7 @@
   (c-name "cairo_matrix_init_scale")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+	  '("cairo_matrix_t*" "matrix" (out))
     '("double" "sx")
     '("double" "sy")
   )
@@ -1639,7 +1657,7 @@
   (c-name "cairo_matrix_init_rotate")
   (return-type "none")
   (parameters
-    '("cairo_matrix_t*" "matrix")
+	  '("cairo_matrix_t*" "matrix" (out))
     '("double" "radians")
   )
 )

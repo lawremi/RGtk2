@@ -547,6 +547,9 @@ S_atk_text_attribute_register(USER_OBJECT_ s_name);
 S_atk_text_attribute_get_name(USER_OBJECT_ s_attr); 
 
 	USER_OBJECT_
+S_atk_text_attribute_for_name(USER_OBJECT_ s_name); 
+
+	USER_OBJECT_
 S_atk_text_attribute_get_value(USER_OBJECT_ s_attr, USER_OBJECT_ s_index); 
 
 	USER_OBJECT_

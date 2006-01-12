@@ -2123,17 +2123,6 @@ function(object, offset, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-atkAttributeSetFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	object <- as.AtkAttributeSet(object)
-
-	w <- .RGtkCall("S_atk_attribute_set_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 atkTextAttributeRegister <-
 function(name, .flush = TRUE, .depwarn = TRUE)
 {
@@ -2151,6 +2140,17 @@ function(attr, .flush = TRUE, .depwarn = TRUE)
 	
 
 	w <- .RGtkCall("S_atk_text_attribute_get_name", attr, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+atkTextAttributeForName <-
+function(name, .flush = TRUE, .depwarn = TRUE)
+{
+	name <- as.character(name)
+
+	w <- .RGtkCall("S_atk_text_attribute_for_name", name, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 

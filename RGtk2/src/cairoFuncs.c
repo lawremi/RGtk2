@@ -1607,7 +1607,7 @@ USER_OBJECT_
 S_cairo_surface_create_similar(USER_OBJECT_ s_other, USER_OBJECT_ s_content, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
 	cairo_surface_t* other = (cairo_surface_t*)getPtrValue(s_other);
-	cairo_content_t content = (cairo_content_t)getPtrValue(s_content);
+	cairo_content_t content = (cairo_content_t)asCEnum(s_content, CAIRO_TYPE_CONTENT);
 	int width = (int)asCInteger(s_width);
 	int height = (int)asCInteger(s_height);
 
@@ -1686,9 +1686,9 @@ S_cairo_surface_write_to_png(USER_OBJECT_ s_surface, USER_OBJECT_ s_filename)
 USER_OBJECT_
 S_cairo_surface_write_to_png_stream(USER_OBJECT_ s_surface, USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure)
 {
+	cairo_write_func_t write_func = (cairo_write_func_t)S_cairo_write_func_t;
+	GClosure* closure = R_createGClosure(s_write_func, s_closure);
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
-	cairo_write_func_t write_func = (cairo_write_func_t)getPtrValue(s_write_func);
-	gpointer closure = (gpointer)asCGenericData(s_closure);
 
 	cairo_status_t ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1696,6 +1696,7 @@ S_cairo_surface_write_to_png_stream(USER_OBJECT_ s_surface, USER_OBJECT_ s_write
 	ans = cairo_surface_write_to_png_stream(surface, write_func, closure);
 
 	_result = asREnum(ans, CAIRO_TYPE_STATUS);
+	g_closure_sink(closure);
 
 	return(_result);
 }
@@ -1921,8 +1922,8 @@ S_cairo_image_surface_create_from_png(USER_OBJECT_ s_filename)
 USER_OBJECT_
 S_cairo_image_surface_create_from_png_stream(USER_OBJECT_ s_read_func, USER_OBJECT_ s_closure)
 {
-	cairo_read_func_t read_func = (cairo_read_func_t)getPtrValue(s_read_func);
-	gpointer closure = (gpointer)asCGenericData(s_closure);
+	cairo_read_func_t read_func = (cairo_read_func_t)S_cairo_read_func_t;
+	GClosure* closure = R_createGClosure(s_read_func, s_closure);
 
 	cairo_surface_t* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -1930,6 +1931,7 @@ S_cairo_image_surface_create_from_png_stream(USER_OBJECT_ s_read_func, USER_OBJE
 	ans = cairo_image_surface_create_from_png_stream(read_func, closure);
 
 	_result = toRPointerWithFinalizer(ans, "CairoSurface", (RPointerFinalizer) cairo_surface_destroy);
+	g_closure_sink(closure);
 
 	return(_result);
 }
@@ -2204,9 +2206,8 @@ S_cairo_pattern_get_filter(USER_OBJECT_ s_pattern)
  
 
 USER_OBJECT_
-S_cairo_matrix_init(USER_OBJECT_ s_matrix, USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0)
+S_cairo_matrix_init(USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0)
 {
-	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
 	double xx = (double)asCNumeric(s_xx);
 	double yx = (double)asCNumeric(s_yx);
 	double xy = (double)asCNumeric(s_xy);
@@ -2215,70 +2216,81 @@ S_cairo_matrix_init(USER_OBJECT_ s_matrix, USER_OBJECT_ s_xx, USER_OBJECT_ s_yx,
 	double y0 = (double)asCNumeric(s_y0);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	cairo_matrix_t* matrix = (cairo_matrix_t *)g_new0(cairo_matrix_t, 1);
 
 	cairo_matrix_init(matrix, xx, yx, xy, yy, x0, y0);
 
 
+	_result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+
 	return(_result);
 }
  
 
 USER_OBJECT_
-S_cairo_matrix_init_identity(USER_OBJECT_ s_matrix)
+S_cairo_matrix_init_identity()
 {
-	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	cairo_matrix_t* matrix = (cairo_matrix_t *)g_new0(cairo_matrix_t, 1);
 
 	cairo_matrix_init_identity(matrix);
 
 
+	_result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+
 	return(_result);
 }
  
 
 USER_OBJECT_
-S_cairo_matrix_init_translate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
+S_cairo_matrix_init_translate(USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
-	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
 	double tx = (double)asCNumeric(s_tx);
 	double ty = (double)asCNumeric(s_ty);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	cairo_matrix_t* matrix = (cairo_matrix_t *)g_new0(cairo_matrix_t, 1);
 
 	cairo_matrix_init_translate(matrix, tx, ty);
 
 
+	_result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+
 	return(_result);
 }
  
 
 USER_OBJECT_
-S_cairo_matrix_init_scale(USER_OBJECT_ s_matrix, USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
+S_cairo_matrix_init_scale(USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
 {
-	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
 	double sx = (double)asCNumeric(s_sx);
 	double sy = (double)asCNumeric(s_sy);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	cairo_matrix_t* matrix = (cairo_matrix_t *)g_new0(cairo_matrix_t, 1);
 
 	cairo_matrix_init_scale(matrix, sx, sy);
 
+
+	_result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
 
 	return(_result);
 }
  
 
 USER_OBJECT_
-S_cairo_matrix_init_rotate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_radians)
+S_cairo_matrix_init_rotate(USER_OBJECT_ s_radians)
 {
-	cairo_matrix_t* matrix = (cairo_matrix_t*)getPtrValue(s_matrix);
 	double radians = (double)asCNumeric(s_radians);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	cairo_matrix_t* matrix = (cairo_matrix_t *)g_new0(cairo_matrix_t, 1);
 
 	cairo_matrix_init_rotate(matrix, radians);
 
+
+	_result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
 
 	return(_result);
 }

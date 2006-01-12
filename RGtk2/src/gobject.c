@@ -69,6 +69,16 @@ R_getGTypeHierarchy(USER_OBJECT_ sobj)
   return(R_internal_getGTypeHierarchy(type));
 }
 
+USER_OBJECT_
+R_getGTypeClass(USER_OBJECT_ sobj)
+{
+  GType type;
+  type = (GType) NUMERIC_POINTER(sobj)[0];
+
+  return(toRPointerWithFinalizer(g_type_class_ref(type), "GTypeClass", 
+  	(RPointerFinalizer)g_type_class_unref));
+}
+
 /**
  Gets the name of the type of the object.
  */
@@ -241,22 +251,29 @@ R_internal_getClassParamSpecs(GObjectClass *class)
     return(ans);
 }
 
+R_setGValueForProperty(GValue *value, GObjectClass *class, const gchar *property_name, USER_OBJECT_ s_value)
+{
+	GParamSpec *spec = g_object_class_find_property(class, property_name);
+	
+	if (!spec) {
+		PROBLEM "Invalid property %s!\n", property_name
+		ERROR;
+    }
+    g_value_init(value, G_PARAM_SPEC_VALUE_TYPE(spec));
+    R_setGValueFromSValue(value, s_value);
+}
+
 USER_OBJECT_
 S_g_object_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name, USER_OBJECT_ s_value)
 {
         GObject * object = G_OBJECT(getPtrValue(s_object));
-        gchar * property_name = asCString(s_property_name);
+		gchar * property_name = asCString(s_property_name);
         GValue value = { 0, };
-        GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(object), property_name);
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        if (!spec) {
-            PROBLEM "Invalid property %s!\n", property_name
-            ERROR;
-        }
-        g_value_init(&value, G_PARAM_SPEC_VALUE_TYPE(spec));
-        R_setGValueFromSValue(&value, s_value);
+		R_setGValueForProperty(&value, G_OBJECT_GET_CLASS(object), property_name, s_value);
+		
         g_object_set_property(object, property_name, &value);
         return(_result);
 }
@@ -316,6 +333,30 @@ R_setGObjectProps(USER_OBJECT_ sobj, USER_OBJECT_ svals)
     }
 
     return(ans);
+}
+
+USER_OBJECT_
+R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
+{
+    USER_OBJECT_ argNames = GET_NAMES(svals);
+	GType type = asCNumeric(stype);
+    int i,n = GET_LENGTH(argNames);
+	GParameter *params = g_new0(GParameter, n);
+	GObjectClass *class = g_type_class_peek(type);
+	GObject *ans;
+
+	USER_OBJECT_ result = NULL_USER_OBJECT;
+    
+    for(i = 0; i < n; i++) {
+		params[i].name = CHAR_DEREF(STRING_ELT(argNames, i));
+        R_setGValueForProperty(&params[i].value, class, params[i].name, VECTOR_ELT(svals, i));
+    }
+
+	ans = g_object_newv(type, n, params);
+	g_free(params);
+	result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
+	
+    return(result);
 }
 
 // adapted from pygtk, needed to handle their "property-based constructors"...
@@ -539,26 +580,40 @@ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
     instance_and_args = g_new0(GValue, n+1);
 
     sigName = CHAR_DEREF(STRING_ELT(signal, 0));
-    sigId = g_signal_parse_name(sigName, G_OBJECT_TYPE(obj), &sigId, &detail, TRUE);
+    g_signal_parse_name(sigName, G_OBJECT_TYPE(obj), &sigId, &detail, TRUE);
     g_signal_query(sigId, &query);
 
+	g_value_init(&instance_and_args[0], G_OBJECT_TYPE(obj));
+	g_value_set_object(&instance_and_args[0], G_OBJECT(obj));
     for(i = 0; i < n; i++) {
         g_value_init(&instance_and_args[i+1], query.param_types[i]);
         R_setGValueFromSValue(&instance_and_args[i+1], VECTOR_ELT(sargs, i));
     }
 
-
-    if (query.return_type != G_TYPE_NONE)
-        g_value_init(&return_value, query.return_type);
-    g_signal_emitv(instance_and_args, sigId, detail, &return_value);
+    if (query.return_type != G_TYPE_NONE) {
+		g_value_init(&return_value, query.return_type);
+	    g_signal_emitv(instance_and_args, sigId, detail, &return_value);
+	} else g_signal_emitv(instance_and_args, sigId, detail, NULL);
 
     if(query.return_type != G_TYPE_NONE) {
        ans = asRGValue(&return_value);
+	   g_value_unset(&return_value);
     }
 
+	for(i = 0; i < n+1; i++)
+		g_value_unset(&instance_and_args[i]);
+	
     g_free(instance_and_args);
 
     return(ans);
+}
+
+USER_OBJECT_
+R_gSignalStopEmssion(USER_OBJECT_ s_obj, USER_OBJECT_ s_signal)
+{
+	gpointer obj = getPtrValue(s_obj);
+	const gchar *signal = asCString(s_signal);
+	g_signal_stop_emission_by_name(obj, signal);
 }
 
 USER_OBJECT_
@@ -570,22 +625,6 @@ R_getGSignalIdsByType(USER_OBJECT_ className)
     if(type == 0 || type == G_TYPE_INVALID) {
     PROBLEM "No type for class %s",
         CHAR_DEREF(STRING_ELT(className, 0))
-        ERROR;
-    }
-    return(R_internal_getGSignalIds(type));
-}
-
-
-USER_OBJECT_
-R_getGSignalIds(USER_OBJECT_ sobj)
-{
-    GType type;
-    GObject *obj;
-
-    obj = G_OBJECT(getPtrValue(sobj));
-    type = G_OBJECT_TYPE(obj);
-    if(type == 0 || type == G_TYPE_INVALID) {
-    PROBLEM "No type for object"
         ERROR;
     }
     return(R_internal_getGSignalIds(type));
@@ -630,7 +669,7 @@ R_createGSignalId(guint id, const char *val)
 }
 
 USER_OBJECT_
-R_gtkGetGSignalInfo(USER_OBJECT_ sid)
+R_getGSignalInfo(USER_OBJECT_ sid)
 {
     return(R_internal_getGSignalInfo(NUMERIC_DATA(sid)[0]));
 }
@@ -655,7 +694,7 @@ R_internal_getGSignalInfo(guint id)
     //SET_VECTOR_ELT(ans, IS_USER_SLOT, params = NEW_LOGICAL(1));
     // LOGICAL_DATA(params)[0] = info->is_user_signal;
 
-/* Has to be handled asC a flag. */
+/* Has to be handled as a flag. */
     SET_VECTOR_ELT(ans, FLAGS_SLOT, params = NEW_INTEGER(1));
      INTEGER_DATA(params)[0] = info.signal_flags;
 
@@ -675,6 +714,22 @@ R_internal_getGSignalInfo(guint id)
 }
 
 /* GClosure */
+
+USER_OBJECT_
+R_g_closure_invoke(USER_OBJECT_ s_closure, USER_OBJECT_ s_args)
+{
+	GClosure *closure = (GClosure *)getPtrValue(s_closure);
+	GValue *args = g_new0(GValue, GET_LENGTH(s_args));
+	GValue ret = { 0, };
+	gint i;
+	
+	for(i = 0; i < GET_LENGTH(s_args); i++) {
+		initGValueFromSValue(VECTOR_ELT(s_args, i), &args[i]);
+	}
+	g_closure_invoke(closure, &ret, GET_LENGTH(s_args), args, NULL);
+	g_free(args);
+	return(asRGValue(&ret));
+}
 
  /* Free the asCsociated R_CallbackData */
 void
@@ -782,6 +837,9 @@ GClosure*
 asCGClosure(USER_OBJECT_ s_closure)
 {
     USER_OBJECT_ s_func, s_data = NULL_USER_OBJECT;
+	s_func = getAttrib(s_closure, install("ref"));
+	if (s_func != NULL_USER_OBJECT)
+		return((GClosure *)getPtrValue(s_func));
 	if (GET_LENGTH(s_closure) == 1)
         s_func = s_closure;
     else {
@@ -789,6 +847,11 @@ asCGClosure(USER_OBJECT_ s_closure)
         s_data = VECTOR_ELT(s_closure, 1);
     }
     return(R_createGClosure(s_func, s_data));
+}
+USER_OBJECT_
+asRGClosure(GClosure *closure)
+{
+	return(toRPointer(closure, "GClosure"));
 }
 
 /* GValue */
@@ -861,7 +924,7 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
 			g_value_set_object(value, sval == NULL_USER_OBJECT ? NULL : getPtrValue(sval));
 		break;
 		case G_TYPE_INVALID:
-			fprintf(stderr, "Invalid type\n");fflush(stderr);
+			fprintf(stderr, "Attempt to set invalid type\n");fflush(stderr);
 		break;
 		case G_TYPE_NONE:
 			fprintf(stderr, "None type\n");fflush(stderr);
@@ -1001,7 +1064,7 @@ asRGValue(GValue *value)
       break;
 
       case G_TYPE_INVALID:
-      fprintf(stderr, "Invalid type\n");fflush(stderr);
+      fprintf(stderr, "Attempt to get invalid type\n");fflush(stderr);
       break;
 
       case G_TYPE_NONE:
@@ -1027,8 +1090,16 @@ GValue *
 createGValueFromSValue(USER_OBJECT_ sval) {
     //GValue *raw = (GValue *)S_alloc(1, sizeof(GValue));
     GValue *raw = (GValue *)g_new0(GValue, 1);
+	if (!initGValueFromSValue(sval, raw)) {
+		g_free(raw);
+		raw = NULL;
+	}
+    return(raw);
+}
 
-    switch(TYPEOF(sval)) {
+gboolean
+initGValueFromSValue(USER_OBJECT_ sval, GValue *raw) {
+	switch(TYPEOF(sval)) {
       case LGLSXP:
         g_value_init(raw, G_TYPE_BOOLEAN);
         g_value_set_boolean(raw, LOGICAL_DATA(sval)[0]);
@@ -1070,11 +1141,9 @@ createGValueFromSValue(USER_OBJECT_ sval) {
     break;
      default:
      //fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);
-	 g_free(raw);
-	 raw = NULL;
+	 return(FALSE);
     }
-
-    return(raw);
+	return(TRUE);
 }
 
 GValue*

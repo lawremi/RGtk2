@@ -59,7 +59,7 @@ S_glade_xml_signal_connect_data(USER_OBJECT_ s_object, USER_OBJECT_ s_handlernam
 
         return(_result);
 }
-/* Manually wrap these since GtkSignalFunc is passed - we need to treat it asC connectSignal() */
+/* Manually wrap these since GtkSignalFunc is passed - we need to treat it as connectSignal() */
 USER_OBJECT_
 S_glade_xml_signal_connect(USER_OBJECT_ s_object, USER_OBJECT_ s_handlername, USER_OBJECT_ s_func)
 {

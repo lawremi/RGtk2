@@ -704,6 +704,62 @@ S_GdkEventSelectionGetRequestor (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
+S_GdkEventDNDGetContext (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventDND *obj;
+   GdkDragContext* val;
+
+   obj = (GdkEventDND*)getPtrValue(s_obj) ;
+   val = obj->context;
+   _result = toRPointerWithRef(val, "GdkDragContext");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventDNDGetTime (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventDND *obj;
+   guint32 val;
+
+   obj = (GdkEventDND*)getPtrValue(s_obj) ;
+   val = obj->time;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventDNDGetXRoot (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventDND *obj;
+   gshort val;
+
+   obj = (GdkEventDND*)getPtrValue(s_obj) ;
+   val = obj->x_root;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventDNDGetYRoot (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventDND *obj;
+   gshort val;
+
+   obj = (GdkEventDND*)getPtrValue(s_obj) ;
+   val = obj->y_root;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
 S_GdkEventExposeGetArea (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
@@ -1469,7 +1525,7 @@ S_GdkEventOwnerChangeGetReason (USER_OBJECT_ s_obj)
 
    obj = (GdkEventOwnerChange*)getPtrValue(s_obj) ;
    val = obj->reason;
-   _result = toRPointer(&val, "GdkOwnerChange");
+   _result = asREnum(val, GDK_TYPE_OWNER_CHANGE);
 
    return(_result);
 } 
@@ -1526,6 +1582,146 @@ S_GdkEventClientGetMessageType (USER_OBJECT_ s_obj)
    obj = (GdkEventClient*)getPtrValue(s_obj) ;
    val = obj->message_type;
    _result = asRGdkAtom(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventGrabBrokenGetKeyboard (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventGrabBroken *obj;
+   gboolean val;
+
+   obj = (GdkEventGrabBroken*)getPtrValue(s_obj) ;
+   val = obj->keyboard;
+   _result = asRLogical(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventGrabBrokenGetImplicit (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventGrabBroken *obj;
+   gboolean val;
+
+   obj = (GdkEventGrabBroken*)getPtrValue(s_obj) ;
+   val = obj->implicit;
+   _result = asRLogical(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkEventGrabBrokenGetGrabWindow (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkEventGrabBroken *obj;
+   GdkWindow* val;
+
+   obj = (GdkEventGrabBroken*)getPtrValue(s_obj) ;
+   val = obj->grab_window;
+   _result = toRPointerWithRef(val, "GdkWindow");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkDeviceKeyGetKeyval (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkDeviceKey *obj;
+   guint val;
+
+   obj = (GdkDeviceKey*)getPtrValue(s_obj) ;
+   val = obj->keyval;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkDeviceKeyGetModifiers (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkDeviceKey *obj;
+   GdkModifierType val;
+
+   obj = (GdkDeviceKey*)getPtrValue(s_obj) ;
+   val = obj->modifiers;
+   _result = asRFlag(val, GDK_TYPE_MODIFIER_TYPE);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkDeviceAxisGetUse (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkDeviceAxis *obj;
+   GdkAxisUse val;
+
+   obj = (GdkDeviceAxis*)getPtrValue(s_obj) ;
+   val = obj->use;
+   _result = asREnum(val, GDK_TYPE_AXIS_USE);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkDeviceAxisGetMin (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkDeviceAxis *obj;
+   gdouble val;
+
+   obj = (GdkDeviceAxis*)getPtrValue(s_obj) ;
+   val = obj->min;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkDeviceAxisGetMax (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkDeviceAxis *obj;
+   gdouble val;
+
+   obj = (GdkDeviceAxis*)getPtrValue(s_obj) ;
+   val = obj->max;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkPangoAttrEmbossedGetEmbossed (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkPangoAttrEmbossed *obj;
+   gboolean val;
+
+   obj = (GdkPangoAttrEmbossed*)getPtrValue(s_obj) ;
+   val = obj->embossed;
+   _result = asRLogical(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkPangoAttrStippleGetStipple (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GdkPangoAttrStipple *obj;
+   GdkBitmap* val;
+
+   obj = (GdkPangoAttrStipple*)getPtrValue(s_obj) ;
+   val = obj->stipple;
+   _result = toRPointerWithRef(val, "GdkBitmap");
 
    return(_result);
 } 

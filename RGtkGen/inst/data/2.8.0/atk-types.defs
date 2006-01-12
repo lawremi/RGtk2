@@ -313,6 +313,7 @@
   (c-name "AtkTextAttribute")
   (gtype-id "ATK_TYPE_TEXT_ATTRIBUTE")
   (values
+	  '("invalid" "ATK_TEXT_ATTR_INVALID")
     '("left-margin" "ATK_TEXT_ATTR_LEFT_MARGIN")
     '("right-margin" "ATK_TEXT_ATTR_RIGHT_MARGIN")
     '("indent" "ATK_TEXT_ATTR_INDENT")
@@ -340,6 +341,7 @@
     '("stretch" "ATK_TEXT_ATTR_STRETCH")
     '("variant" "ATK_TEXT_ATTR_VARIANT")
     '("style" "ATK_TEXT_ATTR_STYLE")
+	'("last-defined" "ATK_TEXT_ATTR_LAST_DEFINED")
   )
 )
 

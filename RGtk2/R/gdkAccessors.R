@@ -348,6 +348,34 @@ function(obj)
   v <- .Call('S_GdkEventSelectionGetRequestor', obj)
   v
 } 
+gdkEventDNDGetContext <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventDND')
+  v <- .Call('S_GdkEventDNDGetContext', obj)
+  v
+} 
+gdkEventDNDGetTime <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventDND')
+  v <- .Call('S_GdkEventDNDGetTime', obj)
+  v
+} 
+gdkEventDNDGetXRoot <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventDND')
+  v <- .Call('S_GdkEventDNDGetXRoot', obj)
+  v
+} 
+gdkEventDNDGetYRoot <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventDND')
+  v <- .Call('S_GdkEventDNDGetYRoot', obj)
+  v
+} 
 gdkEventExposeGetArea <-
 function(obj)
 {
@@ -759,5 +787,75 @@ function(obj)
 {
   checkPtrType(obj, 'GdkEventClient')
   v <- .Call('S_GdkEventClientGetMessageType', obj)
+  v
+} 
+gdkEventGrabBrokenGetKeyboard <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventGrabBroken')
+  v <- .Call('S_GdkEventGrabBrokenGetKeyboard', obj)
+  v
+} 
+gdkEventGrabBrokenGetImplicit <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventGrabBroken')
+  v <- .Call('S_GdkEventGrabBrokenGetImplicit', obj)
+  v
+} 
+gdkEventGrabBrokenGetGrabWindow <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkEventGrabBroken')
+  v <- .Call('S_GdkEventGrabBrokenGetGrabWindow', obj)
+  v
+} 
+gdkDeviceKeyGetKeyval <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkDeviceKey')
+  v <- .Call('S_GdkDeviceKeyGetKeyval', obj)
+  v
+} 
+gdkDeviceKeyGetModifiers <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkDeviceKey')
+  v <- .Call('S_GdkDeviceKeyGetModifiers', obj)
+  v
+} 
+gdkDeviceAxisGetUse <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkDeviceAxis')
+  v <- .Call('S_GdkDeviceAxisGetUse', obj)
+  v
+} 
+gdkDeviceAxisGetMin <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkDeviceAxis')
+  v <- .Call('S_GdkDeviceAxisGetMin', obj)
+  v
+} 
+gdkDeviceAxisGetMax <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkDeviceAxis')
+  v <- .Call('S_GdkDeviceAxisGetMax', obj)
+  v
+} 
+gdkPangoAttrEmbossedGetEmbossed <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkPangoAttrEmbossed')
+  v <- .Call('S_GdkPangoAttrEmbossedGetEmbossed', obj)
+  v
+} 
+gdkPangoAttrStippleGetStipple <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkPangoAttrStipple')
+  v <- .Call('S_GdkPangoAttrStippleGetStipple', obj)
   v
 } 

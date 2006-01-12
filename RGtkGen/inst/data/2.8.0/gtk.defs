@@ -1398,6 +1398,7 @@
 )
 
 (define-function gtk_button_new_from_stock
+	(is-constructor-of "GtkButton")
   (c-name "gtk_button_new_from_stock")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
@@ -1407,6 +1408,7 @@
 )
 
 (define-function gtk_button_new_with_mnemonic
+	(is-constructor-of "GtkButton")
   (c-name "gtk_button_new_with_mnemonic")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
@@ -2277,6 +2279,15 @@
   (parameters
     '("const-gchar*" "text" (in))
     '("gint" "len" (in) (default "-1"))
+  )
+)
+
+(define-method set_image
+  (of-object "GtkClipboard")
+  (c-name "gtk_clipboard_set_image")
+  (return-type "none")
+  (parameters
+    '("GdkPixbuf*" "pixbuf" (in))
   )
 )
 
@@ -3588,6 +3599,12 @@
   (parameters
     '("gboolean" "add_tearoffs" (in))
   )
+)
+
+(define-method get_add_tearoffs
+  (of-object "GtkComboBox")
+  (c-name "gtk_combo_box_get_add_tearoffs")
+  (return-type "gboolean")
 )
 
 (define-method get_focus_on_click
@@ -5429,6 +5446,23 @@
   )
 )
 
+(define-method layout_index_to_text_index
+	(of-object "GtkEntry")
+	(c-name "gtk_entry_layout_index_to_text_index")
+	(return-type "none")
+	(parameters
+		'("gint" "layout_index")
+	)
+)
+(define-method text_index_to_layout_index
+	(of-object "GtkEntry")
+	(c-name "gtk_entry_text_index_to_layout_index")
+	(return-type "none")
+	(parameters
+		'("gint" "text_index")
+	)
+)
+
 (define-method set_alignment
   (of-object "GtkEntry")
   (c-name "gtk_entry_set_alignment")
@@ -6244,6 +6278,7 @@
 
 (define-function file_chooser_button_new_with_backend
   (c-name "gtk_file_chooser_button_new_with_backend")
+  (is-constructor-of "GtkFileChooserButton")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
@@ -6303,8 +6338,8 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("const-gchar*" "title" (in))
-    '("GtkWindow*" "parent" (in))
+	  '("const-gchar*" "title" (in) (null-ok))
+	  '("GtkWindow*" "parent" (in) (null-ok))
     '("GtkFileChooserAction" "action" (in))
     '("const-gchar*" "first_button_text" (in))
   )
@@ -6313,11 +6348,12 @@
 
 (define-function file_chooser_dialog_new_with_backend
   (c-name "gtk_file_chooser_dialog_new_with_backend")
+  (is-constructor-of "GtkFileChooserDialog")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("const-gchar*" "title" (in))
-    '("GtkWindow*" "parent" (in))
+	  '("const-gchar*" "title" (in) (null-ok))
+	  '("GtkWindow*" "parent" (in) (null-ok))
     '("GtkFileChooserAction" "action" (in))
     '("const-gchar*" "backend" (in))
     '("const-gchar*" "first_button_text" (in))
@@ -6342,6 +6378,7 @@
 
 (define-function file_chooser_widget_new_with_backend
   (c-name "gtk_file_chooser_widget_new_with_backend")
+  (is-constructor-of "GtkFileChooserWidget")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
@@ -11342,7 +11379,7 @@
 (define-function preview_uninit
   (c-name "gtk_preview_uninit")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
 )
 
 (define-function gtk_preview_new
@@ -11406,7 +11443,7 @@
 (define-function preview_set_gamma
   (c-name "gtk_preview_set_gamma")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
   (parameters
     '("double" "gamma" (in))
   )
@@ -11415,7 +11452,7 @@
 (define-function preview_set_color_cube
   (c-name "gtk_preview_set_color_cube")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
   (parameters
     '("guint" "nred_shades" (in))
     '("guint" "ngreen_shades" (in))
@@ -11427,7 +11464,7 @@
 (define-function preview_set_install_cmap
   (c-name "gtk_preview_set_install_cmap")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
   (parameters
     '("gint" "install_cmap" (in))
   )
@@ -11436,7 +11473,7 @@
 (define-function preview_set_reserved
   (c-name "gtk_preview_set_reserved")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
   (parameters
     '("gint" "nreserved" (in))
   )
@@ -11446,7 +11483,7 @@
   (of-object "GtkPreview")
   (c-name "gtk_preview_set_dither")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
   (parameters
     '("GdkRgbDither" "dither" (in))
   )
@@ -11455,25 +11492,25 @@
 (define-function preview_get_visual
   (c-name "gtk_preview_get_visual")
   (return-type "GdkVisual*")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
 )
 
 (define-function preview_get_cmap
   (c-name "gtk_preview_get_cmap")
   (return-type "GdkColormap*")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
 )
 
 (define-function preview_get_info
   (c-name "gtk_preview_get_info")
   (return-type "GtkPreviewInfo*")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
 )
 
 (define-function preview_reset
   (c-name "gtk_preview_reset")
   (return-type "none")
-  (deprecated "use GtkPixbuf")
+  (deprecated "use GtkImage")
 )
 
 (define-function gtk_progress_get_type
@@ -16728,6 +16765,7 @@
     '("GtkSignalFunc" "callback" (in))
     '("gpointer" "user_data" (in) (default "NULL") (null-ok))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method prepend_item
@@ -16742,6 +16780,7 @@
     '("GtkSignalFunc" "callback" (in))
     '("gpointer" "user_data" (in))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method insert_item
@@ -16757,6 +16796,7 @@
     '("gpointer" "user_data" (in))
     '("gint" "position" (in))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method insert_stock
@@ -16771,6 +16811,7 @@
     '("gpointer" "user_data" (in))
     '("gint" "position" (in))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method append_space
@@ -16817,6 +16858,7 @@
     '("GtkSignalFunc" "callback" (in))
     '("gpointer" "user_data" (in) (null-ok))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method prepend_element
@@ -16833,6 +16875,7 @@
     '("GtkSignalFunc" "callback" (in))
     '("gpointer" "user_data" (in) (null-ok))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method insert_element
@@ -16850,6 +16893,7 @@
     '("gpointer" "user_data" (in) (null-ok))
     '("gint" "position" (in))
   )
+  (deprecated "see gtkToolbarInsert()")
 )
 
 (define-method append_widget
@@ -17883,11 +17927,12 @@
   (return-type "GType")
 )
 
-(define-method filter_new
-  (of-object "GtkTreeModel")
+(define-function tree_model_filter_new
+  (is-constructor-of "GtkTreeModel")
   (c-name "gtk_tree_model_filter_new")
   (return-type "GtkTreeModel*")
   (parameters
+	'("GtkTreeModel*" "child_model" (in))
     '("GtkTreePath*" "root" (in) (default "NULL") (null-ok))
   )
 )
@@ -18912,6 +18957,16 @@
   (return-type "none")
   (parameters
     '("GdkRectangle*" "visible_rect" (out))
+  )
+)
+
+(define-method get_visible_range
+  (of-object "GtkTreeView")
+  (c-name "gtk_tree_view_get_visible_range")
+  (return-type "gboolean")
+  (parameters
+    '("GtkTreePath**" "start_path" (out))
+    '("GtkTreePath**" "end_path" (out))
   )
 )
 

@@ -3,6 +3,7 @@
 #include "gobject.h"
 #include "libgladeFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
@@ -133,7 +134,7 @@ S_glade_xml_get_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 
 	ans = glade_xml_get_widget(object, name);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -150,7 +151,7 @@ S_glade_xml_get_widget_prefix(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 
 	ans = glade_xml_get_widget_prefix(object, name);
 
-	_result = asRGList(ans, "GtkWidget");
+	_result = asRGListWithSink(ans, "GtkWidget");
 
 	return(_result);
 }

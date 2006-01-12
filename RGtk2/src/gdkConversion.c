@@ -286,6 +286,20 @@ asRGdkRectangle(GdkRectangle *rect)
     return(s_rect);
 }
 
+GdkSpan*
+asCGdkSpan(USER_OBJECT_ s_span)
+{
+    GdkSpan* span;
+
+    span = (GdkSpan*)R_alloc(1, sizeof(GdkSpan));
+
+    span->x = INTEGER_DATA(VECTOR_ELT(s_span, 0))[0];
+    span->y = INTEGER_DATA(VECTOR_ELT(s_span, 1))[0];
+    span->width = INTEGER_DATA(VECTOR_ELT(s_span, 2))[0];
+
+    return(span);
+}
+
 GdkRgbCmap*
 asCGdkRgbCmap(USER_OBJECT_ s_cmap)
 {
@@ -521,6 +535,9 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
          case GDK_OWNER_CHANGE:
             type = "GdkEventOwnerChanged";
             break;
+		 case GDK_GRAB_BROKEN:
+		 	type = "GdkEventGrabBroken";
+			break;
          default:
             type = "GdkEventAny";
     }

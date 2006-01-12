@@ -186,7 +186,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   # define mapping between type name and code, could be done at run-time but this is more efficient
   typecodes <- sapply(c(defs$objects, defs$interfaces, defs$boxes, defs$enums, defs$flags, defs$pointers),
                 function(x) { x$typecode })
-
+  
   typecodes <- c(CPrimitiveToGType, typecodes)
   typecodes[["GObject"]] <- "G_TYPE_OBJECT" # not included in defs
   typecodes[["GObjectClass"]] <- "G_TYPE_OBJECT"
@@ -278,16 +278,21 @@ function(x)
 {
     getGenericType(toValidType(deref(x)))
 }
-# generates the function used on the R side for coercing a primitive type
-getGenericTypeCoerce <- function(x) {
-    t <- getGenericType(x)
+
+getGenericRType <- function(x) {
+	t <- getGenericType(x)
     if (is.null(t))
         t <- getGenericTypeRef(x)
     if (is.null(t))
         return(NULL)
     if (t == "string")
         t <- "character"
-    asCoerce(t)
+	t
+}
+
+# generates the function used on the R side for coercing a primitive type
+getGenericTypeCoerce <- function(x) {
+    asCoerce(getGenericRType(x))
 }
 
 # converting generic types
@@ -514,12 +519,18 @@ function(fun)
 {
   !is.null(fun$constructorof)
 }
+getConstructors <-
+function(type, defs)
+{
+	names(defs$fun)[type == sapply(defs$fun, function(x) x$constructorof)]
+}
 # gets the first constructor for a type
 getConstructor <-
 function(type, defs)
 {
-	names(defs$fun)[match(type, sapply(defs$fun, function(x) x$constructorof))][1]
+	getConstructors(type, defs)[1]
 }
+
 
 isMethod <-
 function(fun)
@@ -700,6 +711,10 @@ function(param)
 getParamTypes <- function(params) {
     sapply(params, function(param) param$type)
 }
+# simply gets the names of defs param definitions
+getParamNames <- function(params) {
+	sapply(params, function(param) param$name)
+}
 
 ###############################################
 # Code Generation
@@ -752,16 +767,30 @@ declareFunction <- function(ret, name, ptypes, pnames) {
         nameToC(name), "(", args, ")",
     sep="")
 }
+
+s_signature <- function(formal_args)
+{
+	args <- as.character(formal_args)
+	if (length(names(formal_args)) == 0)
+		argDecls <- nameToS(args)
+	else {
+		names(args) <- nameToS(names(formal_args))
+		argDecls <- sapply(names(args), function(name) {
+			if (is.null(args[[name]]))
+				args[[name]] <- "NULL"
+			if (nchar(as.character(args[[name]])) > 0) # assign defaults if available
+				named(name, args[[name]])
+			else name
+		})
+	}
+	paste(argDecls, collapse=", ")
+}
+
 # declares a function in R
 declareRFunction <- function(name, args)
-{
-    argDecls <- sapply(names(args), function(name) {
-        if (nchar(args[[name]]) > 0) # assign defaults if available
-            named(name, args[[name]])
-        else name
-    })
-    paste(name, " <-", "\n",
-    "function(",  paste(argDecls, collapse=", "), ")", sep="")
+{    
+    paste(name, " <-", "\n", 
+	"function(", s_signature(args), ")", sep="")
 }
 
 # invokes the named function with the given args, as a vector
@@ -773,7 +802,7 @@ invokev <- function(name, ...) {
     paste(name, "(", paste(...,sep=", "), ")", sep="")
 }
 # assigns a value in C
-assign <- function(var, val) {
+cassign <- function(var, val) {
     paste(var, "=", val)
 }
 # assigns a value in R
@@ -1238,7 +1267,9 @@ function(var, ptype, fun = NULL, defs)
                 postfix <- "WithFinalizer"
                 args <- c(args, paste("(RPointerFinalizer)", finalizer))
             }
-        } else if ((isObject(type, defs) || isInterface(type,defs)) && !inheritsClass(type, defs$objects, "GtkObject"))
+        } else if (inheritsClass(type, defs$objects, "GtkObject"))
+			postfix <- "WithSink" # we claim ownership of GtkObjects
+		else if (isObject(type, defs) || isInterface(type,defs))
             postfix <- "WithRef" # GObject, non-constructor and caller doesn't own return -> WithRef
         fn <- paste("toRPointer", postfix, sep="")
     }
@@ -1261,18 +1292,20 @@ function(name, params, defs)
     sorted <- c(params[(func+1):length(params)], rev(params[1:(func-1)]))
     found <- which("gpointer" == lapply(sorted, function(x) x$type))
     if (length(found) == 0) { # handles "global" hooks (no user-data)
-        data <- paste(type, "_closure", sep="")
-		declaration <- data
+		data <- paste(type, "_closure", sep="") # cannot init extern declaration
+        data <- paste(statement(data), data, sep="\n")
         sdata <- "NULL"
     } else {
         if (length(grep("DestroyNotify", getParamTypes(params))) == 0)
             freeData <- TRUE # like for a 'foreach' func
         data <- sorted[[found[[1]]]]$name
-		declaration <- decl("GClosure*", data)
         sdata <- nameToSArg(data)
     }
-    coercion <- statement(c(assign(decl(type, name), cast(type, nameToC(type))),
-        assign(declaration, invoke("R_createGClosure", c(nameToSArg(name), sdata)))))
+	declaration <- decl("GClosure*", data)
+	if (length(found) == 0) # import global symbol with 'extern'
+		declaration <- extern(declaration)
+    coercion <- statement(c(cassign(decl(type, name), cast(type, nameToC(type))),
+        cassign(declaration, invoke("R_createGClosure", c(nameToSArg(name), sdata)))))
     list(coercion = coercion, data = data, freeData = freeData)
 }
 
@@ -1289,7 +1322,7 @@ function(fun, defs, name)
  if(fun$"return" != "none") {
    retVal <- "ans"
    ansDecl <- statement(decl(fun$"return", "ans"))
-   cvtResult  <- statement(assign("_result", convertToR("ans", fun$"return", fun, defs)$code))
+   cvtResult  <- statement(cassign("_result", convertToR("ans", fun$"return", fun, defs)$code))
    if (fun$owns == 1) {
 	   clean <- getCleanup(fun$return, "ans")
 	   if (!is.null(clean))
@@ -1351,7 +1384,7 @@ function(fun, defs, name)
             if (!is.null(clean))
                  cleanup <<- c(cleanup, clean)
             coerceCode <- convertToCType(name, type, defs, inParams, tmpParams[[name]]$nullok == "1")$code
-            statement(assign(decl(type, name), coerceCode))
+            statement(cassign(decl(type, name), coerceCode))
         }))
    }
  }
@@ -1360,8 +1393,8 @@ function(fun, defs, name)
      obj <- defs$objects[[fun$constructorof]]
      if (length(inParams) > 0) {
          declCode <- statement(c(
-            assign(decl("char *", "prop_names[]"), arrinit(c(lit(sapply(inParams, function(x) x$pname)), "NULL"))),
-            assign(decl("USER_OBJECT_", "args[]"), arrinit(nameToSArg(names(inParams))))))
+            cassign(decl("char *", "prop_names[]"), arrinit(c(lit(sapply(inParams, function(x) x$pname)), "NULL"))),
+            cassign(decl("USER_OBJECT_", "args[]"), arrinit(nameToSArg(names(inParams))))))
          argCallNames <- c(obj$typecode, "prop_names", "args", length(inParams))
      } else argCallNames <- c(obj$typecode, "NULL", "NULL", "0")
      call <- "propertyConstructor"
@@ -1392,7 +1425,7 @@ function(fun, defs, name)
 		 }
          out <- decl(type, name)
          if (length(alloc) > 0)
-             out <- assign(out, alloc)
+             out <- cassign(out, alloc)
          statement(out)
      })
 
@@ -1404,13 +1437,13 @@ function(fun, defs, name)
 
      if (!is.null(outRetParams)) {
          outRet <- c("",
-         statement(assign("_result", invoke("retByVal", c("_result", outRetParams, "NULL")))))
+         statement(cassign("_result", invoke("retByVal", c("_result", outRetParams, "NULL")))))
      }
  }
 
  invocation <- invoke(call, argCallNames)
  if (length(retVal) > 0) {
-     invocation <- assign(retVal, invocation)
+     invocation <- cassign(retVal, invocation)
  }
  invocation <- statement(invocation)
 
@@ -1423,7 +1456,7 @@ function(fun, defs, name)
   declCode,
   "",
   ansDecl,
-  statement(assign(decl("USER_OBJECT_", "_result"), "NULL_USER_OBJECT")),
+  statement(cassign(decl("USER_OBJECT_", "_result"), "NULL_USER_OBJECT")),
   outDecl,
   "",
   invocation,
@@ -1502,10 +1535,10 @@ function(params, defs)
 # should be self-explanatory. tired of documenting and baby is crying.
 
 declareParamGValues <- function(names, name="params") {
-    assign(decl("GValue *", name), salloc(length(names), "GValue"))
+    cassign(decl("GValue *", name), salloc(length(names), "GValue"))
 }
 declareReturnGValue <- function(name="ans") {
-    assign(decl("GValue *", name), salloc(1, "GValue"))
+    cassign(decl("GValue *", name), salloc(1, "GValue"))
 }
 declareReturnValue <- function(type, name="_result") {
     decl(type, name)
@@ -1558,13 +1591,14 @@ invokeGClosure <- function(nparams, dataName = "data", retName = "ans", paramsNa
     invokev("g_closure_invoke", dataName , retName, nparams, paramsName, hint)
 }
 
-returnFromGValue <- function(type, name = "ans") {
-    returnValue(invoke(paste("g_value_get_", getGValueToken(type), sep=""), name))
+returnFromGValue <- function(type, defs, name = "ans") {
+    returnValue(invoke(paste("g_value_get_", getGValueToken(type, defs), sep=""), name))
 }
 
 genUserFunctionCode <-
 function(fun, defs) {
-    header <- declareFunction(fun$return, fun$name, getParamTypes(fun$parameters), names(fun$parameters))
+	code <- ""
+    header <- declareFunction(fun$return, fun$name, dequalify(getParamTypes(fun$parameters)), names(fun$parameters))
     declaration <- header
 
     params <- fun$parameters
@@ -1579,7 +1613,7 @@ function(fun, defs) {
         dataName <- nameToSArg(data$name)
     } else {
         dataName <- paste(fun$name, "_closure", sep="")
-        declaration <- c(declaration, extern(decl("GClosure*", dataName)))
+        code <- c(code, statement(decl("GClosure*", dataName)))
     }
 
     hasParams <- length(params) > 0
@@ -1592,7 +1626,7 @@ function(fun, defs) {
     if (!hasReturn)
         retName <- "NULL"
 
-    code <- c("",
+    code <- c(code,
     header,
     "{")
     if (hasParams) {
@@ -1615,7 +1649,7 @@ function(fun, defs) {
     statement(invokeGClosure(length(params), dataName, retName=retName, paramsName=paramsName)))
     if (hasReturn) {
         code <- c(code, "",
-        statement(returnFromGValue(fun$return)))
+        statement(returnFromGValue(fun$return, defs)))
     }
     code <- c(code,"}")
     list(code=paste(code,collapse="\n"), decl=statement(declaration))
@@ -1675,17 +1709,22 @@ function(enum, name, defs = NULL, local = T, isEnum = T)
  rName <- asRTypeName(name)
  
  storageMode <- "integer"
- if (inherits(enum, "FlagDef"))
+ className <- "enums"
+ if (inherits(enum, "FlagDef")) {
 	 storageMode <- "numeric"
+ 	 classname <- "flags"
+ }
  
  localVals <- paste(paste("\"", names(enum$values), "\"", sep=""), enum$values, sep=" = ")
 
- rvector <- paste(rName, "<-", "c(", paste(localVals, collapse=",\n\t") ,")\nstorage.mode(", rName,") <- '", storageMode, "'", sep="")
+ rvector <- paste(rName, "<-", "c(", paste(localVals, collapse=",\n\t") ,")\nstorage.mode(", rName,") <- '", 
+ 	storageMode, "'\nclass(", rName, ") <- '", className, "'", sep="")
 
  tmp <- paste(".", rName, sep="")
  robjectNames = c(rName, tmp)
  tmpVals <- paste(paste("\"", enum$names, "\"", sep=""), enum$values, sep=" = ", collapse=",\n\t")
- tmp <- paste(tmp, "<-", "c(", tmpVals ,")\nstorage.mode(", tmp,") <- '", storageMode, "'\n", sep="")
+ tmp <- paste(tmp, "<-", "c(", tmpVals ,")\nstorage.mode(", tmp,") <- '", 
+    storageMode, "'\nclass(", tmp, ") <- '", className, "'", sep="")
 
  rvector <- paste(rvector, tmp, sep="\n")
 

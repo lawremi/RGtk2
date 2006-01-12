@@ -36,3 +36,8 @@ function(object, handlername, func, user.data, .flush = TRUE, .depwarn = TRUE)
 
         return(invisible(w))
 }
+gladeXMLConstruct <-
+function(object, fname, root = "NULL", domain = "NULL", .flush = TRUE, .depwarn = TRUE)
+{
+	notimplemented("makes no sense for R, just use gladeXMLNew()")
+}

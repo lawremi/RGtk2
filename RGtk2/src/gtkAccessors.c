@@ -97,7 +97,49 @@ S_GtkBinGetChild (USER_OBJECT_ s_obj)
 
    obj = GTK_BIN(getPtrValue(s_obj)) ;
    val = obj->child;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxGetChildren (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBox *obj;
+   GList* val;
+
+   obj = GTK_BOX(getPtrValue(s_obj)) ;
+   val = obj->children;
+   _result = asRGList(val, "GtkBoxChild");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxGetSpacing (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBox *obj;
+   gint16 val;
+
+   obj = GTK_BOX(getPtrValue(s_obj)) ;
+   val = obj->spacing;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxGetHomogeneous (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBox *obj;
+   guint val;
+
+   obj = GTK_BOX(getPtrValue(s_obj)) ;
+   val = obj->homogeneous;
+   _result = asRNumeric(val);
 
    return(_result);
 } 
@@ -125,7 +167,7 @@ S_GtkColorSelectionDialogGetColorsel (USER_OBJECT_ s_obj)
 
    obj = GTK_COLOR_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->colorsel;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -139,7 +181,7 @@ S_GtkColorSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 
    obj = GTK_COLOR_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->ok_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -153,7 +195,7 @@ S_GtkColorSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 
    obj = GTK_COLOR_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->cancel_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -167,7 +209,7 @@ S_GtkColorSelectionDialogGetHelpButton (USER_OBJECT_ s_obj)
 
    obj = GTK_COLOR_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->help_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -181,7 +223,7 @@ S_GtkComboGetEntry (USER_OBJECT_ s_obj)
 
    obj = GTK_COMBO(getPtrValue(s_obj)) ;
    val = obj->entry;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -195,7 +237,7 @@ S_GtkComboGetList (USER_OBJECT_ s_obj)
 
    obj = GTK_COMBO(getPtrValue(s_obj)) ;
    val = obj->list;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -209,7 +251,7 @@ S_GtkContainerGetFocusChild (USER_OBJECT_ s_obj)
 
    obj = GTK_CONTAINER(getPtrValue(s_obj)) ;
    val = obj->focus_child;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -293,7 +335,7 @@ S_GtkDialogGetVbox (USER_OBJECT_ s_obj)
 
    obj = GTK_DIALOG(getPtrValue(s_obj)) ;
    val = obj->vbox;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -307,7 +349,7 @@ S_GtkDialogGetActionArea (USER_OBJECT_ s_obj)
 
    obj = GTK_DIALOG(getPtrValue(s_obj)) ;
    val = obj->action_area;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -321,7 +363,7 @@ S_GtkFileSelectionGetDirList (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->dir_list;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -335,7 +377,7 @@ S_GtkFileSelectionGetFileList (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->file_list;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -349,7 +391,7 @@ S_GtkFileSelectionGetSelectionEntry (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->selection_entry;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -363,7 +405,7 @@ S_GtkFileSelectionGetSelectionText (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->selection_text;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -377,7 +419,7 @@ S_GtkFileSelectionGetMainVbox (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->main_vbox;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -391,7 +433,7 @@ S_GtkFileSelectionGetOkButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->ok_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -405,7 +447,7 @@ S_GtkFileSelectionGetCancelButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->cancel_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -419,7 +461,7 @@ S_GtkFileSelectionGetHelpButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->help_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -433,7 +475,7 @@ S_GtkFileSelectionGetHistoryPulldown (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->history_pulldown;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -447,7 +489,7 @@ S_GtkFileSelectionGetHistoryMenu (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->history_menu;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -461,7 +503,7 @@ S_GtkFileSelectionGetFileopDialog (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->fileop_dialog;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -475,7 +517,7 @@ S_GtkFileSelectionGetFileopEntry (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->fileop_entry;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -503,7 +545,7 @@ S_GtkFileSelectionGetFileopCDir (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->fileop_c_dir;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -517,7 +559,7 @@ S_GtkFileSelectionGetFileopDelFile (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->fileop_del_file;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -531,7 +573,7 @@ S_GtkFileSelectionGetFileopRenFile (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->fileop_ren_file;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -545,7 +587,7 @@ S_GtkFileSelectionGetButtonArea (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->button_area;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -559,49 +601,21 @@ S_GtkFileSelectionGetActionArea (USER_OBJECT_ s_obj)
 
    obj = GTK_FILE_SELECTION(getPtrValue(s_obj)) ;
    val = obj->action_area;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
 USER_OBJECT_
-S_GtkFontSelectionDialogGetFontsel (USER_OBJECT_ s_obj)
+S_GtkFixedGetChildren (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
 
-   GtkFontSelectionDialog *obj;
-   GtkWidget* val;
+   GtkFixed *obj;
+   GList* val;
 
-   obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
-   val = obj->fontsel;
-   _result = toRPointer(val, "GtkWidget");
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkFontSelectionDialogGetMainVbox (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkFontSelectionDialog *obj;
-   GtkWidget* val;
-
-   obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
-   val = obj->main_vbox;
-   _result = toRPointer(val, "GtkWidget");
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkFontSelectionDialogGetActionArea (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkFontSelectionDialog *obj;
-   GtkWidget* val;
-
-   obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
-   val = obj->action_area;
-   _result = toRPointer(val, "GtkWidget");
+   obj = GTK_FIXED(getPtrValue(s_obj)) ;
+   val = obj->children;
+   _result = asRGList(val, "GtkFixedChild");
 
    return(_result);
 } 
@@ -615,7 +629,7 @@ S_GtkFontSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->ok_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -629,7 +643,7 @@ S_GtkFontSelectionDialogGetApplyButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->apply_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -643,7 +657,7 @@ S_GtkFontSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 
    obj = GTK_FONT_SELECTION_DIALOG(getPtrValue(s_obj)) ;
    val = obj->cancel_button;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -657,7 +671,7 @@ S_GtkGammaCurveGetTable (USER_OBJECT_ s_obj)
 
    obj = GTK_GAMMA_CURVE(getPtrValue(s_obj)) ;
    val = obj->table;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -671,7 +685,7 @@ S_GtkGammaCurveGetCurve (USER_OBJECT_ s_obj)
 
    obj = GTK_GAMMA_CURVE(getPtrValue(s_obj)) ;
    val = obj->curve;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -699,7 +713,7 @@ S_GtkGammaCurveGetGammaDialog (USER_OBJECT_ s_obj)
 
    obj = GTK_GAMMA_CURVE(getPtrValue(s_obj)) ;
    val = obj->gamma_dialog;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -713,7 +727,7 @@ S_GtkGammaCurveGetGammaText (USER_OBJECT_ s_obj)
 
    obj = GTK_GAMMA_CURVE(getPtrValue(s_obj)) ;
    val = obj->gamma_text;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -741,7 +755,7 @@ S_GtkMessageDialogGetImage (USER_OBJECT_ s_obj)
 
    obj = GTK_MESSAGE_DIALOG(getPtrValue(s_obj)) ;
    val = obj->image;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -755,7 +769,7 @@ S_GtkMessageDialogGetLabel (USER_OBJECT_ s_obj)
 
    obj = GTK_MESSAGE_DIALOG(getPtrValue(s_obj)) ;
    val = obj->label;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -1110,6 +1124,76 @@ S_GtkStyleGetBgPixmap (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
+S_GtkTableGetChildren (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTable *obj;
+   GList* val;
+
+   obj = GTK_TABLE(getPtrValue(s_obj)) ;
+   val = obj->children;
+   _result = asRGList(val, "GtkTableChild");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableGetRows (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTable *obj;
+   GtkTableRowCol* val;
+
+   obj = GTK_TABLE(getPtrValue(s_obj)) ;
+   val = obj->rows;
+   _result = toRPointer(val, "GtkTableRowCol");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableGetCols (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTable *obj;
+   GtkTableRowCol* val;
+
+   obj = GTK_TABLE(getPtrValue(s_obj)) ;
+   val = obj->cols;
+   _result = toRPointer(val, "GtkTableRowCol");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableGetNrows (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTable *obj;
+   gint16 val;
+
+   obj = GTK_TABLE(getPtrValue(s_obj)) ;
+   val = obj->nrows;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableGetNcols (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTable *obj;
+   gint16 val;
+
+   obj = GTK_TABLE(getPtrValue(s_obj)) ;
+   val = obj->ncols;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
 S_GtkTextBufferGetTagTable (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
@@ -1138,48 +1222,6 @@ S_GtkToggleButtonGetDrawIndicator (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
-S_GtkWidgetGetState (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkWidget *obj;
-   guint8 val;
-
-   obj = GTK_WIDGET(getPtrValue(s_obj)) ;
-   val = obj->state;
-   _result = asRInteger(val);
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkWidgetGetSavedState (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkWidget *obj;
-   guint8 val;
-
-   obj = GTK_WIDGET(getPtrValue(s_obj)) ;
-   val = obj->saved_state;
-   _result = asRInteger(val);
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkWidgetGetName (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkWidget *obj;
-   gchar* val;
-
-   obj = GTK_WIDGET(getPtrValue(s_obj)) ;
-   val = obj->name;
-   _result = asRString(val);
-
-   return(_result);
-} 
-USER_OBJECT_
 S_GtkWidgetGetStyle (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
@@ -1190,6 +1232,20 @@ S_GtkWidgetGetStyle (USER_OBJECT_ s_obj)
    obj = GTK_WIDGET(getPtrValue(s_obj)) ;
    val = obj->style;
    _result = toRPointerWithRef(val, "GtkStyle");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkWidgetGetRequisition (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkWidget *obj;
+   GtkRequisition val;
+
+   obj = GTK_WIDGET(getPtrValue(s_obj)) ;
+   val = obj->requisition;
+   _result = toRPointer(&val, "GtkRequisition");
 
    return(_result);
 } 
@@ -1231,7 +1287,7 @@ S_GtkWidgetGetParent (USER_OBJECT_ s_obj)
 
    obj = GTK_WIDGET(getPtrValue(s_obj)) ;
    val = obj->parent;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -1301,7 +1357,7 @@ S_GtkWindowGetFocusWidget (USER_OBJECT_ s_obj)
 
    obj = GTK_WINDOW(getPtrValue(s_obj)) ;
    val = obj->focus_widget;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -1315,7 +1371,7 @@ S_GtkWindowGetDefaultWidget (USER_OBJECT_ s_obj)
 
    obj = GTK_WINDOW(getPtrValue(s_obj)) ;
    val = obj->default_widget;
-   _result = toRPointer(val, "GtkWidget");
+   _result = toRPointerWithSink(val, "GtkWidget");
 
    return(_result);
 } 
@@ -1329,7 +1385,7 @@ S_GtkWindowGetTransientParent (USER_OBJECT_ s_obj)
 
    obj = GTK_WINDOW(getPtrValue(s_obj)) ;
    val = obj->transient_parent;
-   _result = toRPointer(val, "GtkWindow");
+   _result = toRPointerWithSink(val, "GtkWindow");
 
    return(_result);
 } 
@@ -2505,6 +2561,454 @@ S_GtkTextAppearanceGetDrawBg (USER_OBJECT_ s_obj)
 
    obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
    val = obj->draw_bg;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetWidget (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   GtkWidget* val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->widget;
+   _result = toRPointerWithSink(val, "GtkWidget");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetPadding (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   guint16 val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->padding;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetExpand (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   guint val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->expand;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetFill (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   guint val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->fill;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetPack (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   guint val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->pack;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkBoxChildGetIsSecondary (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkBoxChild *obj;
+   guint val;
+
+   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   val = obj->is_secondary;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkFixedChildGetWidget (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkFixedChild *obj;
+   GtkWidget* val;
+
+   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   val = obj->widget;
+   _result = toRPointerWithSink(val, "GtkWidget");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkFixedChildGetX (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkFixedChild *obj;
+   gint val;
+
+   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   val = obj->x;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkFixedChildGetY (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkFixedChild *obj;
+   gint val;
+
+   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   val = obj->y;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkPreviewInfoGetLookup (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkPreviewInfo *obj;
+   guchar* val;
+
+   obj = (GtkPreviewInfo*)getPtrValue(s_obj) ;
+   val = obj->lookup;
+   _result = asRIntegerArray(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkPreviewInfoGetGamma (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkPreviewInfo *obj;
+   gdouble val;
+
+   obj = (GtkPreviewInfo*)getPtrValue(s_obj) ;
+   val = obj->gamma;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetRequisition (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint16 val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->requisition;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetAllocation (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint16 val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->allocation;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetSpacing (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint16 val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->spacing;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetNeedExpand (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->need_expand;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetNeedShrink (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->need_shrink;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetExpand (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->expand;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetShrink (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->shrink;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableRowColGetEmpty (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableRowCol *obj;
+   guint val;
+
+   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   val = obj->empty;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetWidget (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   GtkWidget* val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->widget;
+   _result = toRPointerWithSink(val, "GtkWidget");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetLeftAttach (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->left_attach;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetRightAttach (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->right_attach;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetTopAttach (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->top_attach;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetBottomAttach (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->bottom_attach;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetXpadding (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->xpadding;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetYpadding (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint16 val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->ypadding;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetXexpand (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->xexpand;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetYexpand (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->yexpand;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetXshrink (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->xshrink;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetYshrink (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->yshrink;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetXfill (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->xfill;
+   _result = asRNumeric(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GtkTableChildGetYfill (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result;
+
+   GtkTableChild *obj;
+   guint val;
+
+   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   val = obj->yfill;
    _result = asRNumeric(val);
 
    return(_result);

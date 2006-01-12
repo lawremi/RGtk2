@@ -65,17 +65,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoAttributeDestroy <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoAttribute")
-
-	w <- .RGtkCall("S_pango_attribute_destroy", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 pangoAttributeEqual <-
 function(object, attr2, .flush = TRUE, .depwarn = TRUE)
 {
@@ -136,12 +125,49 @@ function(red, green, blue, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+pangoAttrStrikethroughColorNew <-
+function(red, green, blue, .flush = TRUE, .depwarn = TRUE)
+{
+	red <- as.integer(red)
+	green <- as.integer(green)
+	blue <- as.integer(blue)
+
+	w <- .RGtkCall("S_pango_attr_strikethrough_color_new", red, green, blue, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoAttrUnderlineColorNew <-
+function(red, green, blue, .flush = TRUE, .depwarn = TRUE)
+{
+	red <- as.integer(red)
+	green <- as.integer(green)
+	blue <- as.integer(blue)
+
+	w <- .RGtkCall("S_pango_attr_underline_color_new", red, green, blue, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 pangoAttrSizeNew <-
 function(size, .flush = TRUE, .depwarn = TRUE)
 {
 	size <- as.integer(size)
 
 	w <- .RGtkCall("S_pango_attr_size_new", size, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoAttrSizeNewAbsolute <-
+function(size, .flush = TRUE, .depwarn = TRUE)
+{
+	size <- as.integer(size)
+
+	w <- .RGtkCall("S_pango_attr_size_new_absolute", size, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -247,6 +273,30 @@ function(ink.rect, logical.rect, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+pangoAttrShapeNewWithData <-
+function(ink.rect, logical.rect, data, .flush = TRUE, .depwarn = TRUE)
+{
+	ink.rect <- as.PangoRectangle(ink.rect)
+	logical.rect <- as.PangoRectangle(logical.rect)
+	
+
+	w <- .RGtkCall("S_pango_attr_shape_new_with_data", ink.rect, logical.rect, data, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoAttrLetterSpacingNew <-
+function(letter.spacing, .flush = TRUE, .depwarn = TRUE)
+{
+	letter.spacing <- as.integer(letter.spacing)
+
+	w <- .RGtkCall("S_pango_attr_letter_spacing_new", letter.spacing, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 pangoAttrScaleNew <-
 function(scale.factor, .flush = TRUE, .depwarn = TRUE)
 {
@@ -288,28 +338,6 @@ function(.flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_pango_attr_list_new", PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-pangoAttrListRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoAttrList")
-
-	w <- .RGtkCall("S_pango_attr_list_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
-pangoAttrListUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoAttrList")
-
-	w <- .RGtkCall("S_pango_attr_list_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -431,17 +459,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoAttrIteratorDestroy <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoAttrIterator")
-
-	w <- .RGtkCall("S_pango_attr_iterator_destroy", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 pangoAttrIteratorGet <-
 function(object, type, .flush = TRUE, .depwarn = TRUE)
 {
@@ -471,6 +488,22 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(object, "PangoAttrIterator")
 
 	w <- .RGtkCall("S_pango_attr_iterator_get_attrs", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoParseMarkup <-
+function(markup.text, length = "-1", accel.marker = "0", .flush = TRUE, .depwarn = TRUE, .errwarn = TRUE)
+{
+	markup.text <- as.character(markup.text)
+	length <- as.integer(length)
+	accel.marker <- as.numeric(accel.marker)
+
+	w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker, PACKAGE = "RGtk2", .flush = .flush)
+
+	if(.errwarn && !is.null(w$error))
+		warning(w$error[["message"]])
 
 	return(w)
 } 
@@ -744,6 +777,43 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+pangoGetMirrorChar <-
+function(ch, .flush = TRUE, .depwarn = TRUE)
+{
+	if (.depwarn)
+		warning("This function is deprecated: Use should g_unichar_get_mirror_char() instead (but RGtk2 doesn't support this)")
+
+	ch <- as.numeric(ch)
+
+	w <- .RGtkCall("S_pango_get_mirror_char", ch, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoUnicharDirection <-
+function(ch, .flush = TRUE, .depwarn = TRUE)
+{
+	ch <- as.numeric(ch)
+
+	w <- .RGtkCall("S_pango_unichar_direction", ch, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoFindBaseDir <-
+function(text, length = "-1", .flush = TRUE, .depwarn = TRUE)
+{
+	text <- as.character(text)
+	length <- as.integer(length)
+
+	w <- .RGtkCall("S_pango_find_base_dir", text, length, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 pangoContextLoadFont <-
 function(object, desc, .flush = TRUE, .depwarn = TRUE)
 {
@@ -778,6 +848,17 @@ function(object, matrix, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_pango_context_set_matrix", object, matrix, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
+} 
+
+
+pangoContextGetMatrix <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "PangoContext")
+
+	w <- .RGtkCall("S_pango_context_get_matrix", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
 } 
 
 
@@ -879,25 +960,31 @@ function(context, text, start.index, length, attrs, cached.iter = "NULL", .flush
 } 
 
 
-pangoCoverageRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
+pangoItemizeWithBaseDir <-
+function(context, base.dir, text, start.index, length, attrs, cached.iter = "NULL", .flush = TRUE, .depwarn = TRUE)
 {
-	checkPtrType(object, "PangoCoverage")
+	checkPtrType(context, "PangoContext")
+	
+	text <- as.character(text)
+	start.index <- as.integer(start.index)
+	length <- as.integer(length)
+	checkPtrType(attrs, "PangoAttrList")
+	if (!is.null( cached.iter )) checkPtrType(cached.iter, "PangoAttrIterator")
 
-	w <- .RGtkCall("S_pango_coverage_ref", object, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_pango_itemize_with_base_dir", context, base.dir, text, start.index, length, attrs, cached.iter, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
 
 
-pangoCoverageUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
+pangoCoverageNew <-
+function(.flush = TRUE, .depwarn = TRUE)
 {
-	checkPtrType(object, "PangoCoverage")
+	
 
-	w <- .RGtkCall("S_pango_coverage_unref", object, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_pango_coverage_new", PACKAGE = "RGtk2", .flush = .flush)
 
-	return(invisible(w))
+	return(w)
 } 
 
 
@@ -1027,17 +1114,6 @@ function(object, desc2, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoFontDescriptionFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoFontDescription")
-
-	w <- .RGtkCall("S_pango_font_description_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 pangoFontDescriptionSetFamily <-
 function(object, family, .flush = TRUE, .depwarn = TRUE)
 {
@@ -1160,6 +1236,29 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	checkPtrType(object, "PangoFontDescription")
 
 	w <- .RGtkCall("S_pango_font_description_get_stretch", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoFontDescriptionSetAbsoluteSize <-
+function(object, size, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "PangoFontDescription")
+	size <- as.numeric(size)
+
+	w <- .RGtkCall("S_pango_font_description_set_absolute_size", object, size, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(invisible(w))
+} 
+
+
+pangoFontDescriptionGetSizeIsAbsolute <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "PangoFontDescription")
+
+	w <- .RGtkCall("S_pango_font_description_get_size_is_absolute", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -1291,28 +1390,6 @@ function(.flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_pango_font_metrics_get_type", PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-pangoFontMetricsRef <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoFontMetrics")
-
-	w <- .RGtkCall("S_pango_font_metrics_ref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(w)
-} 
-
-
-pangoFontMetricsUnref <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoFontMetrics")
-
-	w <- .RGtkCall("S_pango_font_metrics_unref", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 
@@ -1563,6 +1640,17 @@ function(object, glyph, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
+pangoFontGetFontMap <-
+function(object, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(object, "PangoFont")
+
+	w <- .RGtkCall("S_pango_font_get_font_map", object, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
 pangoFontMapLoadFont <-
 function(object, context, desc, .flush = TRUE, .depwarn = TRUE)
 {
@@ -1682,17 +1770,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoGlyphStringFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoGlyphString")
-
-	w <- .RGtkCall("S_pango_glyph_string_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 pangoGlyphStringExtents <-
 function(object, font, .flush = TRUE, .depwarn = TRUE)
 {
@@ -1716,6 +1793,46 @@ function(object, start, end, font, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_pango_glyph_string_extents_range", object, start, end, font, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(invisible(w))
+} 
+
+
+pangoGlyphItemSplit <-
+function(orig, text, split.index, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(orig, "PangoGlyphItem")
+	text <- as.character(text)
+	split.index <- as.integer(split.index)
+
+	w <- .RGtkCall("S_pango_glyph_item_split", orig, text, split.index, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoGlyphItemApplyAttrs <-
+function(glyph.item, text, list, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(glyph.item, "PangoGlyphItem")
+	text <- as.character(text)
+	checkPtrType(list, "PangoAttrList")
+
+	w <- .RGtkCall("S_pango_glyph_item_apply_attrs", glyph.item, text, list, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoGlyphItemLetterSpace <-
+function(glyph.item, text, log.attrs, letter.spacing, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(glyph.item, "PangoGlyphItem")
+	text <- as.character(text)
+	checkPtrType(log.attrs, "PangoLogAttr")
+	letter.spacing <- as.integer(letter.spacing)
+
+	w <- .RGtkCall("S_pango_glyph_item_letter_space", glyph.item, text, log.attrs, letter.spacing, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
 } 
 
 
@@ -1780,12 +1897,36 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoReorderItems <-
-function(logical.items, .flush = TRUE, .depwarn = TRUE)
+pangoItemCopy <-
+function(item, .flush = TRUE, .depwarn = TRUE)
 {
-	logical.items <- as.GList(logical.items)
+	checkPtrType(item, "PangoItem")
 
-	w <- .RGtkCall("S_pango_reorder_items", logical.items, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_pango_item_copy", item, PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoItemNew <-
+function(.flush = TRUE, .depwarn = TRUE)
+{
+	
+
+	w <- .RGtkCall("S_pango_item_new", PACKAGE = "RGtk2", .flush = .flush)
+
+	return(w)
+} 
+
+
+pangoItemSplit <-
+function(orig, split.index, split.offset, .flush = TRUE, .depwarn = TRUE)
+{
+	checkPtrType(orig, "PangoItem")
+	split.index <- as.integer(split.index)
+	split.offset <- as.integer(split.offset)
+
+	w <- .RGtkCall("S_pango_item_split", orig, split.index, split.offset, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
 } 
@@ -2383,17 +2524,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 } 
 
 
-pangoLayoutIterFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoLayoutIter")
-
-	w <- .RGtkCall("S_pango_layout_iter_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
-} 
-
-
 pangoLayoutIterGetIndex <-
 function(object, .flush = TRUE, .depwarn = TRUE)
 {
@@ -2790,17 +2920,6 @@ function(object, .flush = TRUE, .depwarn = TRUE)
 	w <- .RGtkCall("S_pango_tab_array_copy", object, PACKAGE = "RGtk2", .flush = .flush)
 
 	return(w)
-} 
-
-
-pangoTabArrayFree <-
-function(object, .flush = TRUE, .depwarn = TRUE)
-{
-	checkPtrType(object, "PangoTabArray")
-
-	w <- .RGtkCall("S_pango_tab_array_free", object, PACKAGE = "RGtk2", .flush = .flush)
-
-	return(invisible(w))
 } 
 
 

@@ -409,19 +409,19 @@ S_cairo_pattern_set_filter(USER_OBJECT_ s_pattern, USER_OBJECT_ s_filter);
 S_cairo_pattern_get_filter(USER_OBJECT_ s_pattern); 
 
 	USER_OBJECT_
-S_cairo_matrix_init(USER_OBJECT_ s_matrix, USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0); 
+S_cairo_matrix_init(USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0); 
 
 	USER_OBJECT_
-S_cairo_matrix_init_identity(USER_OBJECT_ s_matrix); 
+S_cairo_matrix_init_identity(); 
 
 	USER_OBJECT_
-S_cairo_matrix_init_translate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
+S_cairo_matrix_init_translate(USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
 
 	USER_OBJECT_
-S_cairo_matrix_init_scale(USER_OBJECT_ s_matrix, USER_OBJECT_ s_sx, USER_OBJECT_ s_sy); 
+S_cairo_matrix_init_scale(USER_OBJECT_ s_sx, USER_OBJECT_ s_sy); 
 
 	USER_OBJECT_
-S_cairo_matrix_init_rotate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_radians); 
+S_cairo_matrix_init_rotate(USER_OBJECT_ s_radians); 
 
 	USER_OBJECT_
 S_cairo_matrix_translate(USER_OBJECT_ s_matrix, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 

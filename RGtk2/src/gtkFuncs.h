@@ -145,6 +145,9 @@ S_gtk_accel_groups_from_object(USER_OBJECT_ s_object);
 S_gtk_accel_group_find(USER_OBJECT_ s_object, USER_OBJECT_ s_find_func, USER_OBJECT_ s_data); 
 
 	USER_OBJECT_
+S_gtk_accel_group_from_accel_closure(USER_OBJECT_ s_closure); 
+
+	USER_OBJECT_
 S_gtk_accelerator_valid(USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers); 
 
 	USER_OBJECT_
@@ -287,6 +290,9 @@ S_gtk_action_disconnect_accelerator(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_gtk_action_get_accel_path(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gtk_action_get_accel_closure(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_action_block_activate_from(USER_OBJECT_ s_object, USER_OBJECT_ s_proxy); 
@@ -808,6 +814,9 @@ S_gtk_clipboard_clear(USER_OBJECT_ s_object);
 S_gtk_clipboard_set_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_len); 
 
 	USER_OBJECT_
+S_gtk_clipboard_set_image(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbuf); 
+
+	USER_OBJECT_
 S_gtk_clipboard_request_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_target, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
 
 	USER_OBJECT_
@@ -1256,6 +1265,9 @@ S_gtk_combo_box_get_column_span_column(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_gtk_combo_box_set_add_tearoffs(USER_OBJECT_ s_object, USER_OBJECT_ s_add_tearoffs); 
+
+	USER_OBJECT_
+S_gtk_combo_box_get_add_tearoffs(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_combo_box_get_focus_on_click(USER_OBJECT_ s_object); 
@@ -1829,6 +1841,12 @@ S_gtk_entry_get_layout(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_gtk_entry_get_layout_offsets(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gtk_entry_layout_index_to_text_index(USER_OBJECT_ s_object, USER_OBJECT_ s_layout_index); 
+
+	USER_OBJECT_
+S_gtk_entry_text_index_to_layout_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text_index); 
 
 	USER_OBJECT_
 S_gtk_entry_set_alignment(USER_OBJECT_ s_object, USER_OBJECT_ s_xalign); 
@@ -5755,6 +5773,18 @@ S_gtk_toolbar_get_show_arrow(USER_OBJECT_ s_object);
 S_gtk_toolbar_get_relief_style(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
+S_gtk_toolbar_append_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+	USER_OBJECT_
+S_gtk_toolbar_prepend_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+	USER_OBJECT_
+S_gtk_toolbar_insert_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position); 
+
+	USER_OBJECT_
+S_gtk_toolbar_insert_stock(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position); 
+
+	USER_OBJECT_
 S_gtk_toolbar_append_space(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
@@ -5765,6 +5795,15 @@ S_gtk_toolbar_insert_space(USER_OBJECT_ s_object, USER_OBJECT_ s_position);
 
 	USER_OBJECT_
 S_gtk_toolbar_remove_space(USER_OBJECT_ s_object, USER_OBJECT_ s_position); 
+
+	USER_OBJECT_
+S_gtk_toolbar_append_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+	USER_OBJECT_
+S_gtk_toolbar_prepend_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
+
+	USER_OBJECT_
+S_gtk_toolbar_insert_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position); 
 
 	USER_OBJECT_
 S_gtk_toolbar_append_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text); 
@@ -6142,7 +6181,7 @@ S_gtk_tree_model_rows_reordered(USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER
 S_gtk_tree_model_filter_get_type(); 
 
 	USER_OBJECT_
-S_gtk_tree_model_filter_new(USER_OBJECT_ s_object, USER_OBJECT_ s_root); 
+S_gtk_tree_model_filter_new(USER_OBJECT_ s_child_model, USER_OBJECT_ s_root); 
 
 	USER_OBJECT_
 S_gtk_tree_model_filter_set_visible_func(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
@@ -6476,6 +6515,9 @@ S_gtk_tree_view_get_background_area(USER_OBJECT_ s_object, USER_OBJECT_ s_path, 
 
 	USER_OBJECT_
 S_gtk_tree_view_get_visible_rect(USER_OBJECT_ s_object); 
+
+	USER_OBJECT_
+S_gtk_tree_view_get_visible_range(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_tree_view_widget_to_tree_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wx, USER_OBJECT_ s_wy); 
@@ -6914,6 +6956,9 @@ S_gtk_widget_remove_accelerator(USER_OBJECT_ s_object, USER_OBJECT_ s_accel_grou
 
 	USER_OBJECT_
 S_gtk_widget_set_accel_path(USER_OBJECT_ s_object, USER_OBJECT_ s_accel_path, USER_OBJECT_ s_accel_group); 
+
+	USER_OBJECT_
+S_gtk_widget_list_accel_closures(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_widget_can_activate_accel(USER_OBJECT_ s_object, USER_OBJECT_ s_signal_id); 

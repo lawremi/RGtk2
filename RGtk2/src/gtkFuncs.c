@@ -96,7 +96,7 @@ S_gtk_about_dialog_new()
 
 	ans = gtk_about_dialog_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -774,6 +774,22 @@ S_gtk_accel_group_find(USER_OBJECT_ s_object, USER_OBJECT_ s_find_func, USER_OBJ
  
 
 USER_OBJECT_
+S_gtk_accel_group_from_accel_closure(USER_OBJECT_ s_closure)
+{
+	GClosure* closure = asCGClosure(s_closure);
+
+	GtkAccelGroup* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_accel_group_from_accel_closure(closure);
+
+	_result = toRPointerWithRef(ans, "GtkAccelGroup");
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_accelerator_valid(USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifiers)
 {
 	guint keyval = (guint)asCNumeric(s_keyval);
@@ -899,7 +915,7 @@ S_gtk_accel_label_new(USER_OBJECT_ s_string)
 
 	ans = propertyConstructor(GTK_TYPE_ACCEL_LABEL, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -931,7 +947,7 @@ S_gtk_accel_label_get_accel_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_accel_label_get_accel_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -1221,7 +1237,7 @@ S_gtk_accel_map_get()
 
 	ans = gtk_accel_map_get();
 
-	_result = toRPointer(ans, "GtkAccelMap");
+	_result = toRPointerWithRef(ans, "GtkAccelMap");
 
 	return(_result);
 }
@@ -1393,7 +1409,7 @@ S_gtk_action_create_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_icon_size)
 
 	ans = gtk_action_create_icon(object, icon_size);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -1409,7 +1425,7 @@ S_gtk_action_create_menu_item(USER_OBJECT_ s_object)
 
 	ans = gtk_action_create_menu_item(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -1425,7 +1441,7 @@ S_gtk_action_create_tool_item(USER_OBJECT_ s_object)
 
 	ans = gtk_action_create_tool_item(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -1471,7 +1487,7 @@ S_gtk_action_get_proxies(USER_OBJECT_ s_object)
 
 	ans = gtk_action_get_proxies(object);
 
-	_result = asRGSList(ans, "GtkWidget");
+	_result = asRGSListWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -1517,6 +1533,22 @@ S_gtk_action_get_accel_path(USER_OBJECT_ s_object)
 	ans = gtk_action_get_accel_path(object);
 
 	_result = asRString(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_action_get_accel_closure(USER_OBJECT_ s_object)
+{
+	GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+
+	GClosure* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_action_get_accel_closure(object);
+
+	_result = asRGClosure(ans);
 
 	return(_result);
 }
@@ -1877,7 +1909,7 @@ S_gtk_adjustment_new(USER_OBJECT_ s_value, USER_OBJECT_ s_lower, USER_OBJECT_ s_
 
 	ans = propertyConstructor(GTK_TYPE_ADJUSTMENT, prop_names, args, 6);
 
-	_result = toRPointer(ans, "GtkObject");
+	_result = toRPointerWithSink(ans, "GtkObject");
 
 	return(_result);
 }
@@ -1984,7 +2016,7 @@ S_gtk_alignment_new(USER_OBJECT_ s_xalign, USER_OBJECT_ s_yalign, USER_OBJECT_ s
 
 	ans = propertyConstructor(GTK_TYPE_ALIGNMENT, prop_names, args, 4);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2072,7 +2104,7 @@ S_gtk_arrow_new(USER_OBJECT_ s_arrow_type, USER_OBJECT_ s_shadow_type)
 
 	ans = propertyConstructor(GTK_TYPE_ARROW, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2120,7 +2152,7 @@ S_gtk_aspect_frame_new(USER_OBJECT_ s_label, USER_OBJECT_ s_xalign, USER_OBJECT_
 
 	ans = propertyConstructor(GTK_TYPE_ASPECT_FRAME, prop_names, args, 5);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2316,7 +2348,7 @@ S_gtk_bin_get_child(USER_OBJECT_ s_object)
 
 	ans = gtk_bin_get_child(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2545,7 +2577,7 @@ S_gtk_button_new()
 
 	ans = gtk_button_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2561,7 +2593,7 @@ S_gtk_button_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_button_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2577,7 +2609,7 @@ S_gtk_button_new_from_stock(USER_OBJECT_ s_stock_id)
 
 	ans = gtk_button_new_from_stock(stock_id);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2593,7 +2625,7 @@ S_gtk_button_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_button_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2883,7 +2915,7 @@ S_gtk_button_get_image(USER_OBJECT_ s_object)
 
 	ans = gtk_button_get_image(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -2913,7 +2945,7 @@ S_gtk_calendar_new()
 
 	ans = gtk_calendar_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3466,7 +3498,7 @@ S_gtk_cell_renderer_combo_new()
 
 	ans = gtk_cell_renderer_combo_new();
 
-	_result = toRPointer(ans, "GtkCellRenderer");
+	_result = toRPointerWithSink(ans, "GtkCellRenderer");
 
 	return(_result);
 }
@@ -3496,7 +3528,7 @@ S_gtk_cell_renderer_pixbuf_new()
 
 	ans = gtk_cell_renderer_pixbuf_new();
 
-	_result = toRPointer(ans, "GtkCellRenderer");
+	_result = toRPointerWithSink(ans, "GtkCellRenderer");
 
 	return(_result);
 }
@@ -3526,7 +3558,7 @@ S_gtk_cell_renderer_progress_new()
 
 	ans = gtk_cell_renderer_progress_new();
 
-	_result = toRPointer(ans, "GtkCellRenderer");
+	_result = toRPointerWithSink(ans, "GtkCellRenderer");
 
 	return(_result);
 }
@@ -3556,7 +3588,7 @@ S_gtk_cell_renderer_text_new()
 
 	ans = gtk_cell_renderer_text_new();
 
-	_result = toRPointer(ans, "GtkCellRenderer");
+	_result = toRPointerWithSink(ans, "GtkCellRenderer");
 
 	return(_result);
 }
@@ -3601,7 +3633,7 @@ S_gtk_cell_renderer_toggle_new()
 
 	ans = gtk_cell_renderer_toggle_new();
 
-	_result = toRPointer(ans, "GtkCellRenderer");
+	_result = toRPointerWithSink(ans, "GtkCellRenderer");
 
 	return(_result);
 }
@@ -3693,7 +3725,7 @@ S_gtk_cell_view_new()
 
 	ans = gtk_cell_view_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3709,7 +3741,7 @@ S_gtk_cell_view_new_with_text(USER_OBJECT_ s_text)
 
 	ans = gtk_cell_view_new_with_text(text);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3725,7 +3757,7 @@ S_gtk_cell_view_new_with_markup(USER_OBJECT_ s_markup)
 
 	ans = gtk_cell_view_new_with_markup(markup);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3741,7 +3773,7 @@ S_gtk_cell_view_new_with_pixbuf(USER_OBJECT_ s_pixbuf)
 
 	ans = gtk_cell_view_new_with_pixbuf(pixbuf);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3838,7 +3870,7 @@ S_gtk_cell_view_get_cell_renderers(USER_OBJECT_ s_object)
 
 	ans = gtk_cell_view_get_cell_renderers(object);
 
-	_result = asRGList(ans, "GtkCellRenderer");
+	_result = asRGListWithSink(ans, "GtkCellRenderer");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -3899,7 +3931,7 @@ S_gtk_check_button_new()
 
 	ans = gtk_check_button_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3915,7 +3947,7 @@ S_gtk_check_button_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_check_button_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3931,7 +3963,7 @@ S_gtk_check_button_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_check_button_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3961,7 +3993,7 @@ S_gtk_check_menu_item_new()
 
 	ans = gtk_check_menu_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3977,7 +4009,7 @@ S_gtk_check_menu_item_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_check_menu_item_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -3993,7 +4025,7 @@ S_gtk_check_menu_item_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_check_menu_item_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -4269,6 +4301,21 @@ S_gtk_clipboard_set_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT
  
 
 USER_OBJECT_
+S_gtk_clipboard_set_image(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbuf)
+{
+	GtkClipboard* object = GTK_CLIPBOARD(getPtrValue(s_object));
+	GdkPixbuf* pixbuf = GDK_PIXBUF(getPtrValue(s_pixbuf));
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gtk_clipboard_set_image(object, pixbuf);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_clipboard_request_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_target, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data)
 {
 	GtkClipboardReceivedFunc callback = (GtkClipboardReceivedFunc)S_GtkClipboardReceivedFunc;
@@ -4482,7 +4529,7 @@ S_gtk_clist_new(USER_OBJECT_ s_columns)
 
 	ans = gtk_clist_new(columns);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -4499,7 +4546,7 @@ S_gtk_clist_new_with_titles(USER_OBJECT_ s_columns, USER_OBJECT_ s_titles)
 
 	ans = gtk_clist_new_with_titles(columns, titles);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -4545,7 +4592,7 @@ S_gtk_clist_get_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_clist_get_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -4561,7 +4608,7 @@ S_gtk_clist_get_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_clist_get_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -4818,7 +4865,7 @@ S_gtk_clist_get_column_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 
 	ans = gtk_clist_get_column_widget(object, column);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -5653,7 +5700,7 @@ S_gtk_color_button_new()
 
 	ans = gtk_color_button_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -5669,7 +5716,7 @@ S_gtk_color_button_new_with_color(USER_OBJECT_ s_color)
 
 	ans = gtk_color_button_new_with_color(color);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -5822,7 +5869,7 @@ S_gtk_color_selection_new()
 
 	ans = gtk_color_selection_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6179,7 +6226,7 @@ S_gtk_color_selection_dialog_new(USER_OBJECT_ s_title)
 
 	ans = propertyConstructor(GTK_TYPE_COLOR_SELECTION_DIALOG, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6209,7 +6256,7 @@ S_gtk_combo_new()
 
 	ans = gtk_combo_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6346,7 +6393,7 @@ S_gtk_combo_box_new()
 
 	ans = gtk_combo_box_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6362,7 +6409,7 @@ S_gtk_combo_box_new_with_model(USER_OBJECT_ s_model)
 
 	ans = gtk_combo_box_new_with_model(model);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6518,7 +6565,7 @@ S_gtk_combo_box_new_text()
 
 	ans = gtk_combo_box_new_text();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6677,6 +6724,22 @@ S_gtk_combo_box_set_add_tearoffs(USER_OBJECT_ s_object, USER_OBJECT_ s_add_tearo
  
 
 USER_OBJECT_
+S_gtk_combo_box_get_add_tearoffs(USER_OBJECT_ s_object)
+{
+	GtkComboBox* object = GTK_COMBO_BOX(getPtrValue(s_object));
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_combo_box_get_add_tearoffs(object);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_combo_box_get_focus_on_click(USER_OBJECT_ s_object)
 {
 	GtkComboBox* object = GTK_COMBO_BOX(getPtrValue(s_object));
@@ -6797,7 +6860,7 @@ S_gtk_combo_box_entry_new()
 
 	ans = gtk_combo_box_entry_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6814,7 +6877,7 @@ S_gtk_combo_box_entry_new_with_model(USER_OBJECT_ s_model, USER_OBJECT_ s_text_c
 
 	ans = gtk_combo_box_entry_new_with_model(model, text_column);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -6860,7 +6923,7 @@ S_gtk_combo_box_entry_new_text()
 
 	ans = gtk_combo_box_entry_new_text();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -7031,7 +7094,7 @@ S_gtk_container_get_children(USER_OBJECT_ s_object)
 
 	ans = gtk_container_get_children(object);
 
-	_result = asRGList(ans, "GtkWidget");
+	_result = asRGListWithSink(ans, "GtkWidget");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -7048,7 +7111,7 @@ S_gtk_container_children(USER_OBJECT_ s_object)
 
 	ans = gtk_container_children(object);
 
-	_result = asRGList(ans, "GtkWidget");
+	_result = asRGListWithSink(ans, "GtkWidget");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -7100,7 +7163,7 @@ S_gtk_container_get_focus_chain(USER_OBJECT_ s_object)
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "focusable_widgets", asRGList(focusable_widgets, "GtkWidget"), NULL);
+	_result = retByVal(_result, "focusable_widgets", asRGListWithSink(focusable_widgets, "GtkWidget"), NULL);
 	CLEANUP(g_list_free, focusable_widgets);
 
 	return(_result);
@@ -7176,7 +7239,7 @@ S_gtk_container_get_focus_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_container_get_focus_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -7207,7 +7270,7 @@ S_gtk_container_get_focus_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_container_get_focus_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -7362,7 +7425,7 @@ S_gtk_ctree_new_with_titles(USER_OBJECT_ s_columns, USER_OBJECT_ s_tree_column, 
 
 	ans = gtk_ctree_new_with_titles(columns, tree_column, titles);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -7379,7 +7442,7 @@ S_gtk_ctree_new(USER_OBJECT_ s_columns, USER_OBJECT_ s_tree_column)
 
 	ans = gtk_ctree_new(columns, tree_column);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -8513,7 +8576,7 @@ S_gtk_curve_new()
 
 	ans = gtk_curve_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -8621,7 +8684,7 @@ S_gtk_dialog_new()
 
 	ans = gtk_dialog_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -8655,7 +8718,7 @@ S_gtk_dialog_add_button(USER_OBJECT_ s_object, USER_OBJECT_ s_button_text, USER_
 
 	ans = gtk_dialog_add_button(object, button_text, response_id);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -9238,7 +9301,7 @@ S_gtk_drag_get_source_widget(USER_OBJECT_ s_context)
 
 	ans = gtk_drag_get_source_widget(context);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -9283,7 +9346,7 @@ S_gtk_drawing_area_new()
 
 	ans = gtk_drawing_area_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -9533,7 +9596,7 @@ S_gtk_entry_new()
 
 	ans = gtk_entry_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -9549,7 +9612,7 @@ S_gtk_entry_new_with_max_length(USER_OBJECT_ s_max)
 
 	ans = gtk_entry_new_with_max_length(max);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -9807,6 +9870,36 @@ S_gtk_entry_get_layout_offsets(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
+S_gtk_entry_layout_index_to_text_index(USER_OBJECT_ s_object, USER_OBJECT_ s_layout_index)
+{
+	GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+	gint layout_index = (gint)asCInteger(s_layout_index);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gtk_entry_layout_index_to_text_index(object, layout_index);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_entry_text_index_to_layout_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text_index)
+{
+	GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+	gint text_index = (gint)asCInteger(s_text_index);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	gtk_entry_text_index_to_layout_index(object, text_index);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_entry_set_alignment(USER_OBJECT_ s_object, USER_OBJECT_ s_xalign)
 {
 	GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
@@ -9984,7 +10077,7 @@ S_gtk_entry_completion_get_entry(USER_OBJECT_ s_object)
 
 	ans = gtk_entry_completion_get_entry(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -10323,7 +10416,7 @@ S_gtk_event_box_new()
 
 	ans = gtk_event_box_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -10417,7 +10510,7 @@ S_gtk_expander_new(USER_OBJECT_ s_label)
 
 	ans = propertyConstructor(GTK_TYPE_EXPANDER, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -10433,7 +10526,7 @@ S_gtk_expander_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_expander_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -10619,7 +10712,7 @@ S_gtk_expander_get_label_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_expander_get_label_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11114,7 +11207,7 @@ S_gtk_file_chooser_get_preview_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_file_chooser_get_preview_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11241,7 +11334,7 @@ S_gtk_file_chooser_get_extra_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_file_chooser_get_extra_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11287,7 +11380,7 @@ S_gtk_file_chooser_list_filters(USER_OBJECT_ s_object)
 
 	ans = gtk_file_chooser_list_filters(object);
 
-	_result = asRGSList(ans, "GtkFileFilter");
+	_result = asRGSListWithSink(ans, "GtkFileFilter");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -11319,7 +11412,7 @@ S_gtk_file_chooser_get_filter(USER_OBJECT_ s_object)
 
 	ans = gtk_file_chooser_get_filter(object);
 
-	_result = toRPointer(ans, "GtkFileFilter");
+	_result = toRPointerWithSink(ans, "GtkFileFilter");
 
 	return(_result);
 }
@@ -11471,7 +11564,7 @@ S_gtk_file_chooser_button_new(USER_OBJECT_ s_title, USER_OBJECT_ s_action)
 
 	ans = gtk_file_chooser_button_new(title, action);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11489,7 +11582,7 @@ S_gtk_file_chooser_button_new_with_backend(USER_OBJECT_ s_title, USER_OBJECT_ s_
 
 	ans = gtk_file_chooser_button_new_with_backend(title, action, backend);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11505,7 +11598,7 @@ S_gtk_file_chooser_button_new_with_dialog(USER_OBJECT_ s_dialog)
 
 	ans = gtk_file_chooser_button_new_with_dialog(dialog);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11613,7 +11706,7 @@ S_gtk_file_chooser_widget_new(USER_OBJECT_ s_action)
 
 	ans = gtk_file_chooser_widget_new(action);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11630,7 +11723,7 @@ S_gtk_file_chooser_widget_new_with_backend(USER_OBJECT_ s_action, USER_OBJECT_ s
 
 	ans = gtk_file_chooser_widget_new_with_backend(action, backend);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11660,7 +11753,7 @@ S_gtk_file_filter_new()
 
 	ans = gtk_file_filter_new();
 
-	_result = toRPointer(ans, "GtkFileFilter");
+	_result = toRPointerWithSink(ans, "GtkFileFilter");
 
 	return(_result);
 }
@@ -11818,7 +11911,7 @@ S_gtk_file_selection_new(USER_OBJECT_ s_title)
 
 	ans = propertyConstructor(GTK_TYPE_FILE_SELECTION, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -11970,7 +12063,7 @@ S_gtk_fixed_new()
 
 	ans = gtk_fixed_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12065,7 +12158,7 @@ S_gtk_font_button_new()
 
 	ans = gtk_font_button_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12081,7 +12174,7 @@ S_gtk_font_button_new_with_font(USER_OBJECT_ s_fontname)
 
 	ans = gtk_font_button_new_with_font(fontname);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12299,7 +12392,7 @@ S_gtk_font_selection_new()
 
 	ans = gtk_font_selection_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12412,7 +12505,7 @@ S_gtk_font_selection_dialog_new(USER_OBJECT_ s_title)
 
 	ans = propertyConstructor(GTK_TYPE_FONT_SELECTION_DIALOG, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12525,7 +12618,7 @@ S_gtk_frame_new(USER_OBJECT_ s_label)
 
 	ans = propertyConstructor(GTK_TYPE_FRAME, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12587,7 +12680,7 @@ S_gtk_frame_get_label_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_frame_get_label_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12682,7 +12775,7 @@ S_gtk_gamma_curve_new()
 
 	ans = gtk_gamma_curve_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12726,7 +12819,7 @@ S_gtk_handle_box_new()
 
 	ans = gtk_handle_box_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12849,7 +12942,7 @@ S_gtk_hbutton_box_new()
 
 	ans = gtk_hbutton_box_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12939,7 +13032,7 @@ S_gtk_hbox_new(USER_OBJECT_ s_homogeneous, USER_OBJECT_ s_spacing)
 
 	ans = propertyConstructor(GTK_TYPE_HBOX, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12969,7 +13062,7 @@ S_gtk_hpaned_new()
 
 	ans = gtk_hpaned_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -12999,7 +13092,7 @@ S_gtk_hruler_new()
 
 	ans = gtk_hruler_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -13031,7 +13124,7 @@ S_gtk_hscale_new(USER_OBJECT_ s_adjustment)
 
 	ans = propertyConstructor(GTK_TYPE_HSCALE, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -13049,7 +13142,7 @@ S_gtk_hscale_new_with_range(USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OBJECT_
 
 	ans = gtk_hscale_new_with_range(min, max, step);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -13081,7 +13174,7 @@ S_gtk_hscrollbar_new(USER_OBJECT_ s_adjustment)
 
 	ans = propertyConstructor(GTK_TYPE_HSCROLLBAR, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -13111,7 +13204,7 @@ S_gtk_hseparator_new()
 
 	ans = gtk_hseparator_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -14326,7 +14419,7 @@ S_gtk_icon_view_new()
 
 	ans = gtk_icon_view_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -14343,7 +14436,7 @@ S_gtk_icon_view_new_with_model(USER_OBJECT_ s_model)
 
 	ans = propertyConstructor(GTK_TYPE_ICON_VIEW, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -14724,7 +14817,7 @@ S_gtk_icon_view_get_item_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OB
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointer(cell, "GtkCellRenderer"), NULL);
+	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
 
 	return(_result);
 }
@@ -14936,7 +15029,7 @@ S_gtk_icon_view_get_cursor(USER_OBJECT_ s_object)
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointer(cell, "GtkCellRenderer"), NULL);
+	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
 
 	return(_result);
 }
@@ -15151,7 +15244,7 @@ S_gtk_image_new()
 
 	ans = gtk_image_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15168,7 +15261,7 @@ S_gtk_image_new_from_pixmap(USER_OBJECT_ s_pixmap, USER_OBJECT_ s_mask)
 
 	ans = gtk_image_new_from_pixmap(pixmap, mask);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15185,7 +15278,7 @@ S_gtk_image_new_from_image(USER_OBJECT_ s_image, USER_OBJECT_ s_mask)
 
 	ans = gtk_image_new_from_image(image, mask);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15201,7 +15294,7 @@ S_gtk_image_new_from_file(USER_OBJECT_ s_filename)
 
 	ans = gtk_image_new_from_file(filename);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15217,7 +15310,7 @@ S_gtk_image_new_from_pixbuf(USER_OBJECT_ s_pixbuf)
 
 	ans = gtk_image_new_from_pixbuf(pixbuf);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15234,7 +15327,7 @@ S_gtk_image_new_from_stock(USER_OBJECT_ s_stock_id, USER_OBJECT_ s_size)
 
 	ans = gtk_image_new_from_stock(stock_id, size);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15251,7 +15344,7 @@ S_gtk_image_new_from_icon_set(USER_OBJECT_ s_icon_set, USER_OBJECT_ s_size)
 
 	ans = gtk_image_new_from_icon_set(icon_set, size);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15267,7 +15360,7 @@ S_gtk_image_new_from_animation(USER_OBJECT_ s_animation)
 
 	ans = gtk_image_new_from_animation(animation);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15561,7 +15654,7 @@ S_gtk_image_new_from_icon_name(USER_OBJECT_ s_icon_name, USER_OBJECT_ s_size)
 
 	ans = gtk_image_new_from_icon_name(icon_name, size);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15656,7 +15749,7 @@ S_gtk_image_menu_item_new()
 
 	ans = gtk_image_menu_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15672,7 +15765,7 @@ S_gtk_image_menu_item_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_image_menu_item_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15688,7 +15781,7 @@ S_gtk_image_menu_item_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_image_menu_item_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15705,7 +15798,7 @@ S_gtk_image_menu_item_new_from_stock(USER_OBJECT_ s_stock_id, USER_OBJECT_ s_acc
 
 	ans = gtk_image_menu_item_new_from_stock(stock_id, accel_group);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15736,7 +15829,7 @@ S_gtk_image_menu_item_get_image(USER_OBJECT_ s_object)
 
 	ans = gtk_image_menu_item_get_image(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -15959,7 +16052,7 @@ S_gtk_im_context_simple_new()
 
 	ans = gtk_im_context_simple_new();
 
-	_result = toRPointer(ans, "GtkIMContext");
+	_result = toRPointerWithSink(ans, "GtkIMContext");
 
 	return(_result);
 }
@@ -15989,7 +16082,7 @@ S_gtk_im_multicontext_new()
 
 	ans = gtk_im_multicontext_new();
 
-	_result = toRPointer(ans, "GtkIMContext");
+	_result = toRPointerWithSink(ans, "GtkIMContext");
 
 	return(_result);
 }
@@ -16034,7 +16127,7 @@ S_gtk_input_dialog_new()
 
 	ans = gtk_input_dialog_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16064,7 +16157,7 @@ S_gtk_invisible_new()
 
 	ans = gtk_invisible_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16080,7 +16173,7 @@ S_gtk_invisible_new_for_screen(USER_OBJECT_ s_screen)
 
 	ans = gtk_invisible_new_for_screen(screen);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16201,7 +16294,7 @@ S_gtk_item_factory_new(USER_OBJECT_ s_container_type, USER_OBJECT_ s_path, USER_
 
 	ans = gtk_item_factory_new(container_type, path, accel_group);
 
-	_result = toRPointer(ans, "GtkItemFactory");
+	_result = toRPointerWithSink(ans, "GtkItemFactory");
 
 	return(_result);
 }
@@ -16252,7 +16345,7 @@ S_gtk_item_factory_from_widget(USER_OBJECT_ s_widget)
 
 	ans = gtk_item_factory_from_widget(widget);
 
-	_result = toRPointer(ans, "GtkItemFactory");
+	_result = toRPointerWithSink(ans, "GtkItemFactory");
 
 	return(_result);
 }
@@ -16285,7 +16378,7 @@ S_gtk_item_factory_get_item(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
 	ans = gtk_item_factory_get_item(object, path);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16302,7 +16395,7 @@ S_gtk_item_factory_get_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
 	ans = gtk_item_factory_get_widget(object, path);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16319,7 +16412,7 @@ S_gtk_item_factory_get_widget_by_action(USER_OBJECT_ s_object, USER_OBJECT_ s_ac
 
 	ans = gtk_item_factory_get_widget_by_action(object, action);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16336,7 +16429,7 @@ S_gtk_item_factory_get_item_by_action(USER_OBJECT_ s_object, USER_OBJECT_ s_acti
 
 	ans = gtk_item_factory_get_item_by_action(object, action);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16485,7 +16578,7 @@ S_gtk_item_factory_from_path(USER_OBJECT_ s_path)
 
 	ans = gtk_item_factory_from_path(path);
 
-	_result = toRPointer(ans, "GtkItemFactory");
+	_result = toRPointerWithSink(ans, "GtkItemFactory");
 
 	return(_result);
 }
@@ -16532,7 +16625,7 @@ S_gtk_label_new(USER_OBJECT_ s_str)
 
 	ans = propertyConstructor(GTK_TYPE_LABEL, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -16764,7 +16857,7 @@ S_gtk_label_get_mnemonic_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_label_get_mnemonic_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -17193,7 +17286,7 @@ S_gtk_layout_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
 
 	ans = propertyConstructor(GTK_TYPE_LAYOUT, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -17277,7 +17370,7 @@ S_gtk_layout_get_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_layout_get_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -17293,7 +17386,7 @@ S_gtk_layout_get_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_layout_get_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -17381,7 +17474,7 @@ S_gtk_list_new()
 
 	ans = gtk_list_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -17776,7 +17869,7 @@ S_gtk_list_item_new()
 
 	ans = gtk_list_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -17792,7 +17885,7 @@ S_gtk_list_item_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_list_item_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -18302,7 +18395,7 @@ S_gtk_grab_get_current()
 
 	ans = gtk_grab_get_current();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -18677,7 +18770,7 @@ S_gtk_get_event_widget(USER_OBJECT_ s_event)
 
 	ans = gtk_get_event_widget(event);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -18722,7 +18815,7 @@ S_gtk_menu_new()
 
 	ans = gtk_menu_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -18787,7 +18880,7 @@ S_gtk_menu_get_active(USER_OBJECT_ s_object)
 
 	ans = gtk_menu_get_active(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -18878,7 +18971,7 @@ S_gtk_menu_get_attach_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_menu_get_attach_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19035,7 +19128,7 @@ S_gtk_menu_bar_new()
 
 	ans = gtk_menu_bar_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19127,7 +19220,7 @@ S_gtk_menu_item_new()
 
 	ans = gtk_menu_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19143,7 +19236,7 @@ S_gtk_menu_item_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_menu_item_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19159,7 +19252,7 @@ S_gtk_menu_item_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_menu_item_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19190,7 +19283,7 @@ S_gtk_menu_item_get_submenu(USER_OBJECT_ s_object)
 
 	ans = gtk_menu_item_get_submenu(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19548,7 +19641,7 @@ S_gtk_menu_tool_button_new(USER_OBJECT_ s_icon_widget, USER_OBJECT_ s_label)
 
 	ans = gtk_menu_tool_button_new(icon_widget, label);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -19564,7 +19657,7 @@ S_gtk_menu_tool_button_new_from_stock(USER_OBJECT_ s_stock_id)
 
 	ans = gtk_menu_tool_button_new_from_stock(stock_id);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -19595,7 +19688,7 @@ S_gtk_menu_tool_button_get_menu(USER_OBJECT_ s_object)
 
 	ans = gtk_menu_tool_button_get_menu(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19755,7 +19848,7 @@ S_gtk_notebook_new()
 
 	ans = gtk_notebook_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -19916,7 +20009,7 @@ S_gtk_notebook_get_nth_page(USER_OBJECT_ s_object, USER_OBJECT_ s_page_num)
 
 	ans = gtk_notebook_get_nth_page(object, page_num);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20221,7 +20314,7 @@ S_gtk_notebook_get_tab_label(USER_OBJECT_ s_object, USER_OBJECT_ s_child)
 
 	ans = gtk_notebook_get_tab_label(object, child);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20287,7 +20380,7 @@ S_gtk_notebook_get_menu_label(USER_OBJECT_ s_object, USER_OBJECT_ s_child)
 
 	ans = gtk_notebook_get_menu_label(object, child);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20539,7 +20632,7 @@ S_gtk_option_menu_new()
 
 	ans = gtk_option_menu_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20555,7 +20648,7 @@ S_gtk_option_menu_get_menu(USER_OBJECT_ s_object)
 
 	ans = gtk_option_menu_get_menu(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20741,7 +20834,7 @@ S_gtk_paned_get_child1(USER_OBJECT_ s_object)
 
 	ans = gtk_paned_get_child1(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20757,7 +20850,7 @@ S_gtk_paned_get_child2(USER_OBJECT_ s_object)
 
 	ans = gtk_paned_get_child2(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20806,7 +20899,7 @@ S_gtk_pixmap_new(USER_OBJECT_ s_pixmap, USER_OBJECT_ s_mask)
 
 	ans = gtk_pixmap_new(pixmap, mask);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20901,7 +20994,7 @@ S_gtk_plug_new(USER_OBJECT_ s_socket_id)
 
 	ans = gtk_plug_new(socket_id);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20934,7 +21027,7 @@ S_gtk_plug_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_socket_id)
 
 	ans = gtk_plug_new_for_display(display, socket_id);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -20994,7 +21087,7 @@ S_gtk_preview_new(USER_OBJECT_ s_type)
 
 	ans = gtk_preview_new(type);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21449,7 +21542,7 @@ S_gtk_progress_bar_new()
 
 	ans = gtk_progress_bar_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21603,7 +21696,7 @@ S_gtk_progress_bar_new_with_adjustment(USER_OBJECT_ s_adjustment)
 
 	ans = gtk_progress_bar_new_with_adjustment(adjustment);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21821,7 +21914,7 @@ S_gtk_radio_button_new(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_button_new(group);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -21838,7 +21931,7 @@ S_gtk_radio_button_new_from_widget(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_button_new_from_widget(group);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21855,7 +21948,7 @@ S_gtk_radio_button_new_with_label(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 
 	ans = gtk_radio_button_new_with_label(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -21873,7 +21966,7 @@ S_gtk_radio_button_new_with_label_from_widget(USER_OBJECT_ s_group, USER_OBJECT_
 
 	ans = gtk_radio_button_new_with_label_from_widget(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21890,7 +21983,7 @@ S_gtk_radio_button_new_with_mnemonic(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 
 	ans = gtk_radio_button_new_with_mnemonic(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -21908,7 +22001,7 @@ S_gtk_radio_button_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_OBJE
 
 	ans = gtk_radio_button_new_with_mnemonic_from_widget(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -21924,7 +22017,7 @@ S_gtk_radio_button_get_group(USER_OBJECT_ s_object)
 
 	ans = gtk_radio_button_get_group(object);
 
-	_result = asRGSList(ans, "GtkRadioButton");
+	_result = asRGSListWithSink(ans, "GtkRadioButton");
 
 	return(_result);
 }
@@ -21956,7 +22049,7 @@ S_gtk_radio_button_group(USER_OBJECT_ s_object)
 
 	ans = gtk_radio_button_group(object);
 
-	_result = asRGSList(ans, "GtkRadioButton");
+	_result = asRGSListWithSink(ans, "GtkRadioButton");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -21988,7 +22081,7 @@ S_gtk_radio_menu_item_new(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_menu_item_new(group);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -22006,7 +22099,7 @@ S_gtk_radio_menu_item_new_with_label(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 
 	ans = gtk_radio_menu_item_new_with_label(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -22024,7 +22117,7 @@ S_gtk_radio_menu_item_new_with_mnemonic(USER_OBJECT_ s_group, USER_OBJECT_ s_lab
 
 	ans = gtk_radio_menu_item_new_with_mnemonic(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -22041,7 +22134,7 @@ S_gtk_radio_menu_item_new_from_widget(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_menu_item_new_from_widget(group);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -22058,7 +22151,7 @@ S_gtk_radio_menu_item_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_O
 
 	ans = gtk_radio_menu_item_new_with_mnemonic_from_widget(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -22075,7 +22168,7 @@ S_gtk_radio_menu_item_new_with_label_from_widget(USER_OBJECT_ s_group, USER_OBJE
 
 	ans = gtk_radio_menu_item_new_with_label_from_widget(group, label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -22091,7 +22184,7 @@ S_gtk_radio_menu_item_get_group(USER_OBJECT_ s_object)
 
 	ans = gtk_radio_menu_item_get_group(object);
 
-	_result = asRGSList(ans, "GtkRadioMenuItem");
+	_result = asRGSListWithSink(ans, "GtkRadioMenuItem");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -22124,7 +22217,7 @@ S_gtk_radio_menu_item_group(USER_OBJECT_ s_object)
 
 	ans = gtk_radio_menu_item_group(object);
 
-	_result = asRGSList(ans, "GtkRadioMenuItem");
+	_result = asRGSListWithSink(ans, "GtkRadioMenuItem");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -22156,7 +22249,7 @@ S_gtk_radio_tool_button_new(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_tool_button_new(group);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -22174,7 +22267,7 @@ S_gtk_radio_tool_button_new_from_stock(USER_OBJECT_ s_group, USER_OBJECT_ s_stoc
 
 	ans = gtk_radio_tool_button_new_from_stock(group, stock_id);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
@@ -22191,7 +22284,7 @@ S_gtk_radio_tool_button_new_from_widget(USER_OBJECT_ s_group)
 
 	ans = gtk_radio_tool_button_new_from_widget(group);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -22208,7 +22301,7 @@ S_gtk_radio_tool_button_new_with_stock_from_widget(USER_OBJECT_ s_group, USER_OB
 
 	ans = gtk_radio_tool_button_new_with_stock_from_widget(group, stock_id);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -22240,7 +22333,7 @@ S_gtk_radio_tool_button_get_group(USER_OBJECT_ s_object)
 
 	ans = gtk_radio_tool_button_get_group(object);
 
-	_result = asRGSList(ans, "GtkRadioToolButton");
+	_result = asRGSListWithSink(ans, "GtkRadioToolButton");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -22318,7 +22411,7 @@ S_gtk_range_get_adjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_range_get_adjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -23150,7 +23243,7 @@ S_gtk_scrolled_window_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment
 
 	ans = propertyConstructor(GTK_TYPE_SCROLLED_WINDOW, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -23196,7 +23289,7 @@ S_gtk_scrolled_window_get_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_scrolled_window_get_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -23212,7 +23305,7 @@ S_gtk_scrolled_window_get_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_scrolled_window_get_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -23228,7 +23321,7 @@ S_gtk_scrolled_window_get_hscrollbar(USER_OBJECT_ s_object)
 
 	ans = gtk_scrolled_window_get_hscrollbar(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -23244,7 +23337,7 @@ S_gtk_scrolled_window_get_vscrollbar(USER_OBJECT_ s_object)
 
 	ans = gtk_scrolled_window_get_vscrollbar(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -23868,7 +23961,7 @@ S_gtk_separator_menu_item_new()
 
 	ans = gtk_separator_menu_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -23898,7 +23991,7 @@ S_gtk_separator_tool_item_new()
 
 	ans = gtk_separator_tool_item_new();
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -24331,7 +24424,7 @@ S_gtk_socket_new()
 
 	ans = gtk_socket_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -24426,7 +24519,7 @@ S_gtk_spin_button_new(USER_OBJECT_ s_adjustment, USER_OBJECT_ s_climb_rate, USER
 
 	ans = propertyConstructor(GTK_TYPE_SPIN_BUTTON, prop_names, args, 3);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -24444,7 +24537,7 @@ S_gtk_spin_button_new_with_range(USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OB
 
 	ans = gtk_spin_button_new_with_range(min, max, step);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -24475,7 +24568,7 @@ S_gtk_spin_button_get_adjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_spin_button_get_adjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -24805,7 +24898,7 @@ S_gtk_statusbar_new()
 
 	ans = gtk_statusbar_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -26294,7 +26387,7 @@ S_gtk_table_new(USER_OBJECT_ s_rows, USER_OBJECT_ s_columns, USER_OBJECT_ s_homo
 
 	ans = propertyConstructor(GTK_TYPE_TABLE, prop_names, args, 3);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -26541,7 +26634,7 @@ S_gtk_tearoff_menu_item_new()
 
 	ans = gtk_tearoff_menu_item_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -27498,7 +27591,7 @@ S_gtk_text_child_anchor_get_widgets(USER_OBJECT_ s_object)
 
 	ans = gtk_text_child_anchor_get_widgets(object);
 
-	_result = asRGList(ans, "GtkWidget");
+	_result = asRGListWithSink(ans, "GtkWidget");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -29462,7 +29555,7 @@ S_gtk_text_view_new()
 
 	ans = gtk_text_view_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -29479,7 +29572,7 @@ S_gtk_text_view_new_with_buffer(USER_OBJECT_ s_buffer)
 
 	ans = propertyConstructor(GTK_TYPE_TEXT_VIEW, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30424,7 +30517,7 @@ S_gtk_tips_query_new()
 
 	ans = gtk_tips_query_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30621,7 +30714,7 @@ S_gtk_toggle_button_new()
 
 	ans = gtk_toggle_button_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30637,7 +30730,7 @@ S_gtk_toggle_button_new_with_label(USER_OBJECT_ s_label)
 
 	ans = gtk_toggle_button_new_with_label(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30653,7 +30746,7 @@ S_gtk_toggle_button_new_with_mnemonic(USER_OBJECT_ s_label)
 
 	ans = gtk_toggle_button_new_with_mnemonic(label);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30805,7 +30898,7 @@ S_gtk_toggle_tool_button_new()
 
 	ans = gtk_toggle_tool_button_new();
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -30821,7 +30914,7 @@ S_gtk_toggle_tool_button_new_from_stock(USER_OBJECT_ s_stock_id)
 
 	ans = gtk_toggle_tool_button_new_from_stock(stock_id);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -30882,7 +30975,7 @@ S_gtk_toolbar_new()
 
 	ans = gtk_toolbar_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -30948,7 +31041,7 @@ S_gtk_toolbar_get_nth_item(USER_OBJECT_ s_object, USER_OBJECT_ s_n)
 
 	ans = gtk_toolbar_get_nth_item(object, n);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -31036,6 +31129,99 @@ S_gtk_toolbar_get_relief_style(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
+S_gtk_toolbar_append_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_append_item(object, text, tooltip_text, tooltip_private_text, icon, callback, user_data);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_prepend_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_prepend_item(object, text, tooltip_text, tooltip_private_text, icon, callback, user_data);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_insert_item(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+	gint position = (gint)asCInteger(s_position);
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_insert_item(object, text, tooltip_text, tooltip_private_text, icon, callback, user_data, position);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_insert_stock(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	const gchar* stock_id = (const gchar*)asCString(s_stock_id);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	gint position = (gint)asCInteger(s_position);
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_insert_stock(object, stock_id, tooltip_text, tooltip_private_text, callback, user_data, position);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_gtk_toolbar_append_space(USER_OBJECT_ s_object)
 {
 	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
@@ -31088,6 +31274,82 @@ S_gtk_toolbar_remove_space(USER_OBJECT_ s_object, USER_OBJECT_ s_position)
 
 	gtk_toolbar_remove_space(object, position);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_append_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	GtkToolbarChildType type = (GtkToolbarChildType)asCEnum(s_type, GTK_TYPE_TOOLBAR_CHILD_TYPE);
+	GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_append_element(object, type, widget, text, tooltip_text, tooltip_private_text, icon, callback, user_data);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_prepend_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	GtkToolbarChildType type = (GtkToolbarChildType)asCEnum(s_type, GTK_TYPE_TOOLBAR_CHILD_TYPE);
+	GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_prepend_element(object, type, widget, text, tooltip_text, tooltip_private_text, icon, callback, user_data);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_toolbar_insert_element(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data, USER_OBJECT_ s_position)
+{
+	GtkSignalFunc callback = (GtkSignalFunc)S_GtkSignalFunc;
+	GClosure* user_data = R_createGClosure(s_callback, s_user_data);
+	GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+	GtkToolbarChildType type = (GtkToolbarChildType)asCEnum(s_type, GTK_TYPE_TOOLBAR_CHILD_TYPE);
+	GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+	const char* text = (const char*)asCString(s_text);
+	const char* tooltip_text = (const char*)asCString(s_tooltip_text);
+	const char* tooltip_private_text = (const char*)asCString(s_tooltip_private_text);
+	GtkWidget* icon = GTK_WIDGET(getPtrValue(s_icon));
+	gint position = (gint)asCInteger(s_position);
+
+	GtkWidget* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_toolbar_insert_element(object, type, widget, text, tooltip_text, tooltip_private_text, icon, callback, user_data, position);
+
+	_result = toRPointerWithSink(ans, "GtkWidget");
+	g_closure_sink(user_data);
 
 	return(_result);
 }
@@ -31323,7 +31585,7 @@ S_gtk_tool_button_new(USER_OBJECT_ s_icon_widget, USER_OBJECT_ s_label)
 
 	ans = gtk_tool_button_new(icon_widget, label);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -31339,7 +31601,7 @@ S_gtk_tool_button_new_from_stock(USER_OBJECT_ s_stock_id)
 
 	ans = gtk_tool_button_new_from_stock(stock_id);
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -31494,7 +31756,7 @@ S_gtk_tool_button_get_icon_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_tool_button_get_icon_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -31525,7 +31787,7 @@ S_gtk_tool_button_get_label_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_tool_button_get_label_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -31555,7 +31817,7 @@ S_gtk_tool_item_new()
 
 	ans = gtk_tool_item_new();
 
-	_result = toRPointer(ans, "GtkToolItem");
+	_result = toRPointerWithSink(ans, "GtkToolItem");
 
 	return(_result);
 }
@@ -31838,7 +32100,7 @@ S_gtk_tool_item_retrieve_proxy_menu_item(USER_OBJECT_ s_object)
 
 	ans = gtk_tool_item_retrieve_proxy_menu_item(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -31871,7 +32133,7 @@ S_gtk_tool_item_get_proxy_menu_item(USER_OBJECT_ s_object, USER_OBJECT_ s_menu_i
 
 	ans = gtk_tool_item_get_proxy_menu_item(object, menu_item_id);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -31915,7 +32177,7 @@ S_gtk_tooltips_new()
 
 	ans = gtk_tooltips_new();
 
-	_result = toRPointer(ans, "GtkTooltips");
+	_result = toRPointerWithSink(ans, "GtkTooltips");
 
 	return(_result);
 }
@@ -32025,7 +32287,7 @@ S_gtk_tooltips_get_info_from_tip_window(USER_OBJECT_ s_object)
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "tooltips", toRPointer(tooltips, "GtkTooltips"), "current_widget", toRPointer(current_widget, "GtkWidget"), NULL);
+	_result = retByVal(_result, "tooltips", toRPointerWithSink(tooltips, "GtkTooltips"), "current_widget", toRPointerWithSink(current_widget, "GtkWidget"), NULL);
 
 	return(_result);
 }
@@ -33112,17 +33374,17 @@ S_gtk_tree_model_filter_get_type()
  
 
 USER_OBJECT_
-S_gtk_tree_model_filter_new(USER_OBJECT_ s_object, USER_OBJECT_ s_root)
+S_gtk_tree_model_filter_new(USER_OBJECT_ s_child_model, USER_OBJECT_ s_root)
 {
-	GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+	GtkTreeModel* child_model = GTK_TREE_MODEL(getPtrValue(s_child_model));
 	GtkTreePath* root = GET_LENGTH(s_root) == 0 ? NULL : (GtkTreePath*)getPtrValue(s_root);
 
 	GtkTreeModel* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-	ans = gtk_tree_model_filter_new(object, root);
+	ans = gtk_tree_model_filter_new(child_model, root);
 
-	_result = toRPointerWithRef(ans, "GtkTreeModel");
+	_result = toRPointerWithFinalizer(ans, "GtkTreeModel", (RPointerFinalizer) g_object_unref);
 
 	return(_result);
 }
@@ -33545,7 +33807,7 @@ S_gtk_tree_selection_get_tree_view(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_selection_get_tree_view(object);
 
-	_result = toRPointer(ans, "GtkTreeView");
+	_result = toRPointerWithSink(ans, "GtkTreeView");
 
 	return(_result);
 }
@@ -34220,7 +34482,7 @@ S_gtk_tree_view_new()
 
 	ans = gtk_tree_view_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -34237,7 +34499,7 @@ S_gtk_tree_view_new_with_model(USER_OBJECT_ s_model)
 
 	ans = propertyConstructor(GTK_TYPE_TREE_VIEW, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -34300,7 +34562,7 @@ S_gtk_tree_view_get_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_get_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -34331,7 +34593,7 @@ S_gtk_tree_view_get_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_get_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -34528,7 +34790,7 @@ S_gtk_tree_view_get_column(USER_OBJECT_ s_object, USER_OBJECT_ s_n)
 
 	ans = gtk_tree_view_get_column(object, n);
 
-	_result = toRPointer(ans, "GtkTreeViewColumn");
+	_result = toRPointerWithSink(ans, "GtkTreeViewColumn");
 
 	return(_result);
 }
@@ -34544,7 +34806,7 @@ S_gtk_tree_view_get_columns(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_get_columns(object);
 
-	_result = asRGList(ans, "GtkTreeViewColumn");
+	_result = asRGListWithSink(ans, "GtkTreeViewColumn");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -34592,7 +34854,7 @@ S_gtk_tree_view_get_expander_column(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_get_expander_column(object);
 
-	_result = toRPointer(ans, "GtkTreeViewColumn");
+	_result = toRPointerWithSink(ans, "GtkTreeViewColumn");
 
 	return(_result);
 }
@@ -34854,7 +35116,7 @@ S_gtk_tree_view_get_cursor(USER_OBJECT_ s_object)
 	gtk_tree_view_get_cursor(object, &path, &focus_column);
 
 
-	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "focus_column", toRPointer(focus_column, "GtkTreeViewColumn"), NULL);
+	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "focus_column", toRPointerWithSink(focus_column, "GtkTreeViewColumn"), NULL);
 
 	return(_result);
 }
@@ -34894,7 +35156,7 @@ S_gtk_tree_view_get_path_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OB
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "column", toRPointer(column, "GtkTreeViewColumn"), "cell_x", asRInteger(cell_x), "cell_y", asRInteger(cell_y), NULL);
+	_result = retByVal(_result, "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "column", toRPointerWithSink(column, "GtkTreeViewColumn"), "cell_x", asRInteger(cell_x), "cell_y", asRInteger(cell_y), NULL);
 
 	return(_result);
 }
@@ -34953,6 +35215,26 @@ S_gtk_tree_view_get_visible_rect(USER_OBJECT_ s_object)
 
 	_result = retByVal(_result, "visible_rect", asRGdkRectangle(visible_rect), NULL);
 	CLEANUP(g_free, visible_rect);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_tree_view_get_visible_range(USER_OBJECT_ s_object)
+{
+	GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	GtkTreePath* start_path = NULL;
+	GtkTreePath* end_path = NULL;
+
+	ans = gtk_tree_view_get_visible_range(object, &start_path, &end_path);
+
+	_result = asRLogical(ans);
+
+	_result = retByVal(_result, "start_path", toRPointerWithFinalizer(start_path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "end_path", toRPointerWithFinalizer(end_path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
 
 	return(_result);
 }
@@ -35394,7 +35676,7 @@ S_gtk_tree_view_column_new()
 
 	ans = gtk_tree_view_column_new();
 
-	_result = toRPointer(ans, "GtkTreeViewColumn");
+	_result = toRPointerWithSink(ans, "GtkTreeViewColumn");
 
 	return(_result);
 }
@@ -35456,7 +35738,7 @@ S_gtk_tree_view_column_get_cell_renderers(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_column_get_cell_renderers(object);
 
-	_result = asRGList(ans, "GtkCellRenderer");
+	_result = asRGListWithSink(ans, "GtkCellRenderer");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);
@@ -35878,7 +36160,7 @@ S_gtk_tree_view_column_get_widget(USER_OBJECT_ s_object)
 
 	ans = gtk_tree_view_column_get_widget(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36248,7 +36530,7 @@ S_gtk_ui_manager_get_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
 	ans = gtk_ui_manager_get_widget(object, path);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36265,7 +36547,7 @@ S_gtk_ui_manager_get_toplevels(USER_OBJECT_ s_object, USER_OBJECT_ s_types)
 
 	ans = gtk_ui_manager_get_toplevels(object, types);
 
-	_result = asRGSList(ans, "GtkWidget");
+	_result = asRGSListWithSink(ans, "GtkWidget");
 	CLEANUP(g_slist_free, ans);
 
 	return(_result);
@@ -36438,7 +36720,7 @@ S_gtk_vbutton_box_new()
 
 	ans = gtk_vbutton_box_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36528,7 +36810,7 @@ S_gtk_vbox_new(USER_OBJECT_ s_homogeneous, USER_OBJECT_ s_spacing)
 
 	ans = propertyConstructor(GTK_TYPE_VBOX, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36560,7 +36842,7 @@ S_gtk_viewport_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
 
 	ans = propertyConstructor(GTK_TYPE_VIEWPORT, prop_names, args, 2);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36576,7 +36858,7 @@ S_gtk_viewport_get_hadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_viewport_get_hadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -36592,7 +36874,7 @@ S_gtk_viewport_get_vadjustment(USER_OBJECT_ s_object)
 
 	ans = gtk_viewport_get_vadjustment(object);
 
-	_result = toRPointer(ans, "GtkAdjustment");
+	_result = toRPointerWithSink(ans, "GtkAdjustment");
 
 	return(_result);
 }
@@ -36683,7 +36965,7 @@ S_gtk_vpaned_new()
 
 	ans = gtk_vpaned_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36713,7 +36995,7 @@ S_gtk_vruler_new()
 
 	ans = gtk_vruler_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36745,7 +37027,7 @@ S_gtk_vscale_new(USER_OBJECT_ s_adjustment)
 
 	ans = propertyConstructor(GTK_TYPE_VSCALE, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36763,7 +37045,7 @@ S_gtk_vscale_new_with_range(USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OBJECT_
 
 	ans = gtk_vscale_new_with_range(min, max, step);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36795,7 +37077,7 @@ S_gtk_vscrollbar_new(USER_OBJECT_ s_adjustment)
 
 	ans = propertyConstructor(GTK_TYPE_VSCROLLBAR, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36825,7 +37107,7 @@ S_gtk_vseparator_new()
 
 	ans = gtk_vseparator_new();
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -36856,7 +37138,7 @@ S_gtk_widget_ref(USER_OBJECT_ s_object)
 
 	ans = gtk_widget_ref(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -37266,6 +37548,23 @@ S_gtk_widget_set_accel_path(USER_OBJECT_ s_object, USER_OBJECT_ s_accel_path, US
 
 	gtk_widget_set_accel_path(object, accel_path, accel_group);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_widget_list_accel_closures(USER_OBJECT_ s_object)
+{
+	GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+	GList* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = gtk_widget_list_accel_closures(object);
+
+	_result = asRGListConv(ans, (ElementConverter)asRGClosure);
+	CLEANUP(g_list_free, ans);
 
 	return(_result);
 }
@@ -37687,7 +37986,7 @@ S_gtk_widget_get_parent(USER_OBJECT_ s_object)
 
 	ans = gtk_widget_get_parent(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -37863,7 +38162,7 @@ S_gtk_widget_get_toplevel(USER_OBJECT_ s_object)
 
 	ans = gtk_widget_get_toplevel(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -37880,7 +38179,7 @@ S_gtk_widget_get_ancestor(USER_OBJECT_ s_object, USER_OBJECT_ s_widget_type)
 
 	ans = gtk_widget_get_ancestor(object, widget_type);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -38838,7 +39137,7 @@ S_gtk_window_new(USER_OBJECT_ s_type)
 
 	ans = propertyConstructor(GTK_TYPE_WINDOW, prop_names, args, 1);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -39008,7 +39307,7 @@ S_gtk_window_get_focus(USER_OBJECT_ s_object)
 
 	ans = gtk_window_get_focus(object);
 
-	_result = toRPointer(ans, "GtkWidget");
+	_result = toRPointerWithSink(ans, "GtkWidget");
 
 	return(_result);
 }
@@ -39070,7 +39369,7 @@ S_gtk_window_get_transient_for(USER_OBJECT_ s_object)
 
 	ans = gtk_window_get_transient_for(object);
 
-	_result = toRPointer(ans, "GtkWindow");
+	_result = toRPointerWithSink(ans, "GtkWindow");
 
 	return(_result);
 }
@@ -39687,7 +39986,7 @@ S_gtk_window_list_toplevels()
 
 	ans = gtk_window_list_toplevels();
 
-	_result = asRGList(ans, "GtkWindow");
+	_result = asRGListWithSink(ans, "GtkWindow");
 	CLEANUP(g_list_free, ans);
 
 	return(_result);

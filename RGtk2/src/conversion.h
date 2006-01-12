@@ -305,6 +305,7 @@ USER_OBJECT_ asRGType(GType);
 GParamSpec* asCGParamSpec(USER_OBJECT_ s_spec);
 USER_OBJECT_ asRGParamSpec(GParamSpec* spec);
 GClosure* asCGClosure(USER_OBJECT_ s_closure);
+USER_OBJECT_ asRGClosure(GClosure *closure);
 
 /* GLib */
 USER_OBJECT_ asRGQuark(GQuark val);
@@ -313,11 +314,13 @@ GString* asCGString(USER_OBJECT_ s_string);
 GList* asCGList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGList(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithRef(GList *glist, const gchar* type);
+USER_OBJECT_ asRGListWithSink(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGListConv(GList *glist, ElementConverter converter);
 GSList* asCGSList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGSList(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithRef(GSList *gslist, const gchar* type);
+USER_OBJECT_ asRGSListWithSink(GSList *gslist, const gchar* type); 
 USER_OBJECT_ asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGSListConv(GSList *gslist, ElementConverter converter);
 USER_OBJECT_ asRGError(GError *error);
@@ -349,6 +352,7 @@ USER_OBJECT_ toRGdkFont(GdkFont *font);
 GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
 USER_OBJECT_ asRGdkGCValues(GdkGCValues *values);
 USER_OBJECT_ asRGdkEvent(GdkEvent *event);
+GdkSpan* asCGdkSpan(USER_OBJECT_ s_span);
 
 /* GTK */
 
@@ -362,6 +366,7 @@ GtkItemFactoryEntry* asCGtkItemFactoryEntry2(USER_OBJECT_ s_entry);
 GtkItemFactoryEntry* R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype);
 GtkAllocation* asCGtkAllocation(USER_OBJECT_ s_alloc);
 USER_OBJECT_ asRGtkAllocation(GtkAllocation* alloc);
+USER_OBJECT_ toRPointerWithSink(void *val, const char *type);
 
 /* ATK */
 

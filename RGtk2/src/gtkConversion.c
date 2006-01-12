@@ -113,3 +113,44 @@ asRGtkAllocation(GtkAllocation* alloc)
     return(s_alloc);
 }
 
+void 
+R_gtk_object_destroyed(GtkObject *val, USER_OBJECT_ s_val)
+{
+	SET_CLASS(s_val, asRString("<invalid>"));
+	R_ClearExternalPtr(s_val);
+	g_object_unref(G_OBJECT(val));
+}
+
+void R_gtk_object_finalizer(USER_OBJECT_ extptr) {
+	void *ptr = getPtrValue(extptr);
+    //Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));
+    if (ptr) {
+		g_signal_handlers_disconnect_by_func(ptr, R_gtk_object_destroyed, extptr);
+		g_object_unref(ptr);
+		R_ClearExternalPtr(extptr);
+	}
+}
+
+/* All GtkObjects need to be sunk, because otherwise memory would leak if
+   it got "lost" before being added to a parent. By sinking it, we own it,
+   so we have to add the first non-floating reference and then register it
+   for finalization. We also need to connect to the "destroy" signal in case
+   it was explicitly destroyed. It is then our responsibility to release all
+   references. When we do that, we also clear the "class" attribute so that
+   the user can't use the object anymore, since it's invalid. The finalization
+   step therefore not only releases our reference but also disconnects from
+   the "destroy" signal since the R object is no longer valid.
+*/
+USER_OBJECT_
+toRPointerWithSink(void *val, const char *type) {
+	USER_OBJECT_ s_val;
+	if (val) {
+		g_object_ref(G_OBJECT(val));
+		gtk_object_sink(GTK_OBJECT(val));
+	}
+	s_val = toRPointer(val, type);
+	R_RegisterCFinalizer(s_val, R_gtk_object_finalizer);
+	g_signal_connect(G_OBJECT(val), "destroy", G_CALLBACK(R_gtk_object_destroyed), s_val);
+	return(s_val);
+}
+

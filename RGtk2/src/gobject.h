@@ -1,6 +1,8 @@
 #include "RGtk2.h"
 #include "utils.h"
 
+USER_OBJECT_ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals);
+
 /* GObject Properties */
 
 gpointer propertyConstructor(GType obj_type, char **prop_names, USER_OBJECT_ *args, int nargs);
@@ -22,7 +24,6 @@ USER_OBJECT_ R_disconnectGSignalHandler(USER_OBJECT_ swidget, USER_OBJECT_ sid);
 USER_OBJECT_ R_blockGSignalHandler(USER_OBJECT_ swidget, USER_OBJECT_ sid, USER_OBJECT_ on);
 USER_OBJECT_ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs);
 USER_OBJECT_ R_getGSignalIdsByType(USER_OBJECT_ className);
-USER_OBJECT_ R_getGSignalIds(USER_OBJECT_ sobj);
 USER_OBJECT_ R_internal_getGSignalIds(GType type);
 USER_OBJECT_ R_createGSignalId(guint id, const char *val);
 USER_OBJECT_ R_getGSignalInfo(USER_OBJECT_ sid);

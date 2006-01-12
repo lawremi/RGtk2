@@ -2,7 +2,7 @@
 ; object definitions ...
 (define-object Bitmap
   (in-module "Gdk")
-  (parent "GObject")
+  (parent "GdkPixmap")
   (c-name "GdkBitmap")
   (gtype-id "GDK_TYPE_DRAWABLE")
 )
@@ -116,6 +116,13 @@
   (parent "GObject")
   (c-name "GdkPixbufAnimation")
   (gtype-id "GDK_TYPE_PIXBUF_ANIMATION")
+)
+
+(define-object PixbufSimpleAnim
+  (in-module "Gdk")
+  (parent "GdkPixbufAnimation")
+  (c-name "GdkPixbufSimpleAnim")
+  (gtype-id "GDK_TYPE_PIXBUF_SIMPLE_ANIM")
 )
 
 (define-object PixbufAnimationIter
@@ -748,8 +755,8 @@
   (c-name "GdkWindowClass")
   (gtype-id "GDK_TYPE_WINDOW_CLASS")
   (values
-    '("utput" "GDK_INPUT_OUTPUT")
-    '("nly" "GDK_INPUT_ONLY")
+    '("output" "GDK_INPUT_OUTPUT")
+    '("only" "GDK_INPUT_ONLY")
   )
 )
 
@@ -912,6 +919,18 @@
   )
 )
 
+(define-enum PixbufRotation
+  (in-module "Gdk")
+  (c-name "GdkPixbufRotation")
+  (gtype-id "GDK_TYPE_PIXBUF_ROTATION")
+  (values
+	  '("none" "GDK_PIXBUF_ROTATE_NONE" "0")
+	  '("counterclockwise" "GDK_PIXBUF_ROTATE_COUNTERCLOCKWISE" "90")
+	  '("upsidedown" "GDK_PIXBUF_ROTATE_UPSIDEDOWN" "180")
+	  '("clockwise" "GDK_PIXBUF_ROTATE_CLOCKWISE" "270")
+  )
+)
+	  
 (define-enum InterpType
   (in-module "Gdk")
   (c-name "GdkInterpType")
@@ -924,6 +943,17 @@
   )
 )
 
+(define-enum GdkOwnerChange
+  (in-module "Gdk")
+  (c-name "GdkOwnerChange")
+  (gtype-id "GDK_TYPE_OWNER_CHANGE")
+  (values
+	  '("new-owner" "GDK_OWNER_CHANGE_NEW_OWNER")
+	  '("destroy" "GDK_OWNER_CHANGE_DESTROY")
+	  '("close" "GDK_OWNER_CHANGE_CLOSE")
+  )
+)
+  
 ;; pointers
 (define-pointer PixbufFormat
   (in-module "Gdk")
@@ -934,6 +964,11 @@
   (in-module "Gdk")
   (c-name "GdkRegion")
   (gtype-id "G_TYPE_POINTER")
+)
+(define-pointer Span
+	(in-module "Gdk")
+	(c-name "GdkSpan")
+	(gtype-id "G_TYPE_POINTER")
 )
 (define-pointer Trapezoid
 	(in-module "Gdk")
@@ -953,11 +988,11 @@
   (c-name "GdkNativeWindow")
   (gtype-id "G_TYPE_POINTER")
 )
-(define-pointer XEvent
-  (in-module "Gdk")
-  (c-name "GdkXEvent")
-  (gtype-id "G_TYPE_POINTER")
-)
+;(define-pointer XEvent
+;  (in-module "Gdk")
+;  (c-name "GdkXEvent")
+;  (gtype-id "G_TYPE_POINTER")
+;)
 
 ;; event structs
 
@@ -996,6 +1031,17 @@
       '("GdkAtom" "property")
       '("guint32" "time")
       '("GdkNativeWindow" "requestor")
+  )
+)
+(define-pointer EventDND
+  (in-module "Gdk")
+  (c-name "GdkEventDND")
+  (gtype-id "G_TYPE_POINTER")
+  (fields
+	  '("GdkDragContext*" "context")
+	  '("guint32" "time")
+	  '("gshort" "x_root")
+	  '("gshort" "y_root")
   )
 )
 (define-pointer EventExpose
@@ -1170,4 +1216,53 @@
   (fields
       '("GdkAtom" "message_type")
   )
+)
+(define-pointer EventGrabBroken
+  (in-module "Gdk")
+  (c-name "GdkEventGrabBroken")
+  (gtype-id "G_TYPE_POINTER")
+  (fields
+	  '("gboolean" "keyboard")
+	  '("gboolean" "implicit")
+	  '("GdkWindow*" "grab_window")
+  )
+)
+
+;; devices
+(define-pointer DeviceKey
+	(in-module "Gdk")
+    (c-name "GdkDeviceKey")
+	(gtype-id "G_TYPE_POINTER")
+    (fields
+		'("guint" "keyval")
+		'("GdkModifierType" "modifiers")
+	)
+)
+(define-pointer DeviceAxis
+	(in-module "Gdk")
+    (c-name "GdkDeviceAxis")
+	(gtype-id "G_TYPE_POINTER")
+    (fields
+		'("GdkAxisUse" "use")
+		'("gdouble"    "min")
+		'("gdouble"    "max")
+	)
+)
+
+;; Pango Attributes - Unfortunately there's no way to identify these automatically - user must cast
+(define-pointer PangoAttrEmbossed
+	(in-module "Gdk")
+    (c-name "GdkPangoAttrEmbossed")
+	(gtype-id "G_TYPE_POINTER")
+    (fields
+		'("gboolean" "embossed")
+	)
+)
+(define-pointer PangoAttrStipple
+	(in-module "Gdk")
+    (c-name "GdkPangoAttrStipple")
+	(gtype-id "G_TYPE_POINTER")
+    (fields
+		'("GdkBitmap*" "stipple")
+	)
 )

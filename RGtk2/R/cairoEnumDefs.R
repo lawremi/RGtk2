@@ -19,6 +19,7 @@ CairoStatus<-c("success" = 0,
 	"file-not-found" = 18,
 	"invalid-dash" = 19)
 storage.mode(CairoStatus) <- 'integer'
+class(CairoStatus) <- 'enums'
 .CairoStatus<-c("CAIRO_STATUS_SUCCESS" = 0,
 	"CAIRO_STATUS_NO_MEMORY" = 1,
 	"CAIRO_STATUS_INVALID_RESTORE" = 2,
@@ -40,7 +41,7 @@ storage.mode(CairoStatus) <- 'integer'
 	"CAIRO_STATUS_FILE_NOT_FOUND" = 18,
 	"CAIRO_STATUS_INVALID_DASH" = 19)
 storage.mode(.CairoStatus) <- 'integer'
- 
+class(.CairoStatus) <- 'enums' 
 
 CairoOperator<-c("clear" = 0,
 	"source" = 1,
@@ -57,6 +58,7 @@ CairoOperator<-c("clear" = 0,
 	"add" = 12,
 	"saturate" = 13)
 storage.mode(CairoOperator) <- 'integer'
+class(CairoOperator) <- 'enums'
 .CairoOperator<-c("CAIRO_OPERATOR_CLEAR" = 0,
 	"CAIRO_OPERATOR_SOURCE" = 1,
 	"CAIRO_OPERATOR_OVER" = 2,
@@ -72,65 +74,71 @@ storage.mode(CairoOperator) <- 'integer'
 	"CAIRO_OPERATOR_ADD" = 12,
 	"CAIRO_OPERATOR_SATURATE" = 13)
 storage.mode(.CairoOperator) <- 'integer'
- 
+class(.CairoOperator) <- 'enums' 
 
 CairoFillRule<-c("winding" = 0,
 	"even-odd" = 1)
 storage.mode(CairoFillRule) <- 'integer'
+class(CairoFillRule) <- 'enums'
 .CairoFillRule<-c("CAIRO_FILL_RULE_WINDING" = 0,
 	"CAIRO_FILL_RULE_EVEN_ODD" = 1)
 storage.mode(.CairoFillRule) <- 'integer'
- 
+class(.CairoFillRule) <- 'enums' 
 
 CairoLineCap<-c("butt" = 0,
 	"round" = 1,
 	"square" = 2)
 storage.mode(CairoLineCap) <- 'integer'
+class(CairoLineCap) <- 'enums'
 .CairoLineCap<-c("CAIRO_LINE_CAP_BUTT" = 0,
 	"CAIRO_LINE_CAP_ROUND" = 1,
 	"CAIRO_LINE_CAP_SQUARE" = 2)
 storage.mode(.CairoLineCap) <- 'integer'
- 
+class(.CairoLineCap) <- 'enums' 
 
 CairoLineJoin<-c("miter" = 0,
 	"round" = 1,
 	"bevel" = 2)
 storage.mode(CairoLineJoin) <- 'integer'
+class(CairoLineJoin) <- 'enums'
 .CairoLineJoin<-c("CAIRO_LINE_JOIN_MITER" = 0,
 	"CAIRO_LINE_JOIN_ROUND" = 1,
 	"CAIRO_LINE_JOIN_BEVEL" = 2)
 storage.mode(.CairoLineJoin) <- 'integer'
- 
+class(.CairoLineJoin) <- 'enums' 
 
 CairoFontSlant<-c("normal" = 0,
 	"italic" = 1,
 	"oblique" = 2)
 storage.mode(CairoFontSlant) <- 'integer'
+class(CairoFontSlant) <- 'enums'
 .CairoFontSlant<-c("CAIRO_FONT_SLANT_NORMAL" = 0,
 	"CAIRO_FONT_SLANT_ITALIC" = 1,
 	"CAIRO_FONT_SLANT_OBLIQUE" = 2)
 storage.mode(.CairoFontSlant) <- 'integer'
- 
+class(.CairoFontSlant) <- 'enums' 
 
 CairoFontWeight<-c("normal" = 0,
 	"bold" = 1)
 storage.mode(CairoFontWeight) <- 'integer'
+class(CairoFontWeight) <- 'enums'
 .CairoFontWeight<-c("CAIRO_FONT_WEIGHT_NORMAL" = 0,
 	"CAIRO_FONT_WEIGHT_BOLD" = 1)
 storage.mode(.CairoFontWeight) <- 'integer'
- 
+class(.CairoFontWeight) <- 'enums' 
 
 CairoAntialias<-c("default" = 0,
 	"none" = 1,
 	"gray" = 2,
 	"subpixel" = 3)
 storage.mode(CairoAntialias) <- 'integer'
+class(CairoAntialias) <- 'enums'
 .CairoAntialias<-c("CAIRO_ANTIALIAS_DEFAULT" = 0,
 	"CAIRO_ANTIALIAS_NONE" = 1,
 	"CAIRO_ANTIALIAS_GRAY" = 2,
 	"CAIRO_ANTIALIAS_SUBPIXEL" = 3)
 storage.mode(.CairoAntialias) <- 'integer'
- 
+class(.CairoAntialias) <- 'enums' 
 
 CairoSubpixelOrder<-c("default" = 0,
 	"rgb" = 1,
@@ -138,13 +146,14 @@ CairoSubpixelOrder<-c("default" = 0,
 	"vrgb" = 3,
 	"vbgr" = 4)
 storage.mode(CairoSubpixelOrder) <- 'integer'
+class(CairoSubpixelOrder) <- 'enums'
 .CairoSubpixelOrder<-c("CAIRO_SUBPIXEL_ORDER_DEFAULT" = 0,
 	"CAIRO_SUBPIXEL_ORDER_RGB" = 1,
 	"CAIRO_SUBPIXEL_ORDER_BGR" = 2,
 	"CAIRO_SUBPIXEL_ORDER_VRGB" = 3,
 	"CAIRO_SUBPIXEL_ORDER_VBGR" = 4)
 storage.mode(.CairoSubpixelOrder) <- 'integer'
- 
+class(.CairoSubpixelOrder) <- 'enums' 
 
 CairoHintStyle<-c("default" = 0,
 	"none" = 1,
@@ -152,57 +161,73 @@ CairoHintStyle<-c("default" = 0,
 	"medium" = 3,
 	"full" = 4)
 storage.mode(CairoHintStyle) <- 'integer'
+class(CairoHintStyle) <- 'enums'
 .CairoHintStyle<-c("CAIRO_HINT_STYLE_DEFAULT" = 0,
 	"CAIRO_HINT_STYLE_NONE" = 1,
 	"CAIRO_HINT_STYLE_SLIGHT" = 2,
 	"CAIRO_HINT_STYLE_MEDIUM" = 3,
 	"CAIRO_HINT_STYLE_FULL" = 4)
 storage.mode(.CairoHintStyle) <- 'integer'
- 
+class(.CairoHintStyle) <- 'enums' 
 
 CairoHintMetrics<-c("default" = 0,
 	"off" = 1,
 	"on" = 2)
 storage.mode(CairoHintMetrics) <- 'integer'
+class(CairoHintMetrics) <- 'enums'
 .CairoHintMetrics<-c("CAIRO_HINT_METRICS_DEFAULT" = 0,
 	"CAIRO_HINT_METRICS_OFF" = 1,
 	"CAIRO_HINT_METRICS_ON" = 2)
 storage.mode(.CairoHintMetrics) <- 'integer'
- 
+class(.CairoHintMetrics) <- 'enums' 
 
 CairoPathDataType<-c("move-to" = 0,
 	"line-to" = 1,
 	"curve-to" = 2,
 	"close-path" = 3)
 storage.mode(CairoPathDataType) <- 'integer'
+class(CairoPathDataType) <- 'enums'
 .CairoPathDataType<-c("CAIRO_PATH_MOVE_TO" = 0,
 	"CAIRO_PATH_LINE_TO" = 1,
 	"CAIRO_PATH_CURVE_TO" = 2,
 	"CAIRO_PATH_CLOSE_PATH" = 3)
 storage.mode(.CairoPathDataType) <- 'integer'
- 
+class(.CairoPathDataType) <- 'enums' 
 
 CairoFormat<-c("argb32" = 0,
 	"rgb24" = 1,
 	"a8" = 2,
 	"a1" = 3)
 storage.mode(CairoFormat) <- 'integer'
+class(CairoFormat) <- 'enums'
 .CairoFormat<-c("CAIRO_FORMAT_ARGB32" = 0,
 	"CAIRO_FORMAT_RGB24" = 1,
 	"CAIRO_FORMAT_A8" = 2,
 	"CAIRO_FORMAT_A1" = 3)
 storage.mode(.CairoFormat) <- 'integer'
- 
+class(.CairoFormat) <- 'enums' 
 
 CairoExtend<-c("none" = 0,
 	"repeat" = 1,
 	"reflect" = 2)
 storage.mode(CairoExtend) <- 'integer'
+class(CairoExtend) <- 'enums'
 .CairoExtend<-c("CAIRO_EXTEND_NONE" = 0,
 	"CAIRO_EXTEND_REPEAT" = 1,
 	"CAIRO_EXTEND_REFLECT" = 2)
 storage.mode(.CairoExtend) <- 'integer'
- 
+class(.CairoExtend) <- 'enums' 
+
+CairoContent<-c("color" = 4096,
+	"alpha" = 8192,
+	"color-alpha" = 12288)
+storage.mode(CairoContent) <- 'integer'
+class(CairoContent) <- 'enums'
+.CairoContent<-c("CAIRO_CONTENT_COLOR" = 4096,
+	"CAIRO_CONTENT_ALPHA" = 8192,
+	"CAIRO_CONTENT_COLOR_ALPHA" = 12288)
+storage.mode(.CairoContent) <- 'integer'
+class(.CairoContent) <- 'enums' 
 
 CairoFilter<-c("fast" = 0,
 	"good" = 1,
@@ -211,6 +236,7 @@ CairoFilter<-c("fast" = 0,
 	"bilinear" = 4,
 	"gaussian" = 5)
 storage.mode(CairoFilter) <- 'integer'
+class(CairoFilter) <- 'enums'
 .CairoFilter<-c("CAIRO_FILTER_FAST" = 0,
 	"CAIRO_FILTER_GOOD" = 1,
 	"CAIRO_FILTER_BEST" = 2,
@@ -218,5 +244,5 @@ storage.mode(CairoFilter) <- 'integer'
 	"CAIRO_FILTER_BILINEAR" = 4,
 	"CAIRO_FILTER_GAUSSIAN" = 5)
 storage.mode(.CairoFilter) <- 'integer'
- 
+class(.CairoFilter) <- 'enums' 
 

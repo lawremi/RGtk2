@@ -3,6 +3,7 @@
 #include "gobject.h"
 #include "pangoFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
@@ -203,6 +204,42 @@ S_pango_attr_background_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJEC
  
 
 USER_OBJECT_
+S_pango_attr_strikethrough_color_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
+{
+	guint16 red = (guint16)asCInteger(s_red);
+	guint16 green = (guint16)asCInteger(s_green);
+	guint16 blue = (guint16)asCInteger(s_blue);
+
+	PangoAttribute* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_attr_strikethrough_color_new(red, green, blue);
+
+	_result = asRPangoAttribute(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_attr_underline_color_new(USER_OBJECT_ s_red, USER_OBJECT_ s_green, USER_OBJECT_ s_blue)
+{
+	guint16 red = (guint16)asCInteger(s_red);
+	guint16 green = (guint16)asCInteger(s_green);
+	guint16 blue = (guint16)asCInteger(s_blue);
+
+	PangoAttribute* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_attr_underline_color_new(red, green, blue);
+
+	_result = asRPangoAttribute(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_pango_attr_size_new(USER_OBJECT_ s_size)
 {
 	int size = (int)asCInteger(s_size);
@@ -211,6 +248,22 @@ S_pango_attr_size_new(USER_OBJECT_ s_size)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	ans = pango_attr_size_new(size);
+
+	_result = asRPangoAttribute(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_attr_size_new_absolute(USER_OBJECT_ s_size)
+{
+	int size = (int)asCInteger(s_size);
+
+	PangoAttribute* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_attr_size_new_absolute(size);
 
 	_result = asRPangoAttribute(ans);
 
@@ -356,6 +409,41 @@ S_pango_attr_shape_new(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	ans = pango_attr_shape_new(ink_rect, logical_rect);
+
+	_result = asRPangoAttribute(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_attr_shape_new_with_data(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect, USER_OBJECT_ s_data)
+{
+	const PangoRectangle* ink_rect = asCPangoRectangle(s_ink_rect);
+	const PangoRectangle* logical_rect = asCPangoRectangle(s_logical_rect);
+	gpointer data = (gpointer)asCGenericData(s_data);
+	GDestroyNotify destroy_func = (GDestroyNotify)R_ReleaseObject;
+
+	PangoAttribute* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_attr_shape_new_with_data(ink_rect, logical_rect, data, NULL, destroy_func);
+
+	_result = asRPangoAttribute(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_attr_letter_spacing_new(USER_OBJECT_ s_letter_spacing)
+{
+	int letter_spacing = (int)asCInteger(s_letter_spacing);
+
+	PangoAttribute* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_attr_letter_spacing_new(letter_spacing);
 
 	_result = asRPangoAttribute(ans);
 
@@ -1051,6 +1139,58 @@ S_pango_context_list_families(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
+S_pango_get_mirror_char(USER_OBJECT_ s_ch)
+{
+	gunichar ch = (gunichar)asCNumeric(s_ch);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+	gunichar mirrored_ch;
+
+	ans = pango_get_mirror_char(ch, &mirrored_ch);
+
+	_result = asRLogical(ans);
+
+	_result = retByVal(_result, "mirrored_ch", asRNumeric(mirrored_ch), NULL);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_unichar_direction(USER_OBJECT_ s_ch)
+{
+	gunichar ch = (gunichar)asCNumeric(s_ch);
+
+	PangoDirection ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_unichar_direction(ch);
+
+	_result = asREnum(ans, PANGO_TYPE_DIRECTION);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_find_base_dir(USER_OBJECT_ s_text, USER_OBJECT_ s_length)
+{
+	const gchar* text = (const gchar*)asCString(s_text);
+	gint length = (gint)asCInteger(s_length);
+
+	PangoDirection ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_find_base_dir(text, length);
+
+	_result = asREnum(ans, PANGO_TYPE_DIRECTION);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_pango_context_load_font(USER_OBJECT_ s_object, USER_OBJECT_ s_desc)
 {
 	PangoContext* object = PANGO_CONTEXT(getPtrValue(s_object));
@@ -1095,6 +1235,22 @@ S_pango_context_set_matrix(USER_OBJECT_ s_object, USER_OBJECT_ s_matrix)
 
 	pango_context_set_matrix(object, matrix);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_context_get_matrix(USER_OBJECT_ s_object)
+{
+	PangoContext* object = PANGO_CONTEXT(getPtrValue(s_object));
+
+	const PangoMatrix* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_context_get_matrix(object);
+
+	_result = toRPointer(ans, "PangoMatrix");
 
 	return(_result);
 }
@@ -1234,6 +1390,44 @@ S_pango_itemize(USER_OBJECT_ s_context, USER_OBJECT_ s_text, USER_OBJECT_ s_star
  
 
 USER_OBJECT_
+S_pango_itemize_with_base_dir(USER_OBJECT_ s_context, USER_OBJECT_ s_base_dir, USER_OBJECT_ s_text, USER_OBJECT_ s_start_index, USER_OBJECT_ s_length, USER_OBJECT_ s_attrs, USER_OBJECT_ s_cached_iter)
+{
+	PangoContext* context = PANGO_CONTEXT(getPtrValue(s_context));
+	PangoDirection base_dir = (PangoDirection)asCEnum(s_base_dir, PANGO_TYPE_DIRECTION);
+	const char* text = (const char*)asCString(s_text);
+	int start_index = (int)asCInteger(s_start_index);
+	int length = (int)asCInteger(s_length);
+	PangoAttrList* attrs = (PangoAttrList*)getPtrValue(s_attrs);
+	PangoAttrIterator* cached_iter = GET_LENGTH(s_cached_iter) == 0 ? NULL : (PangoAttrIterator*)getPtrValue(s_cached_iter);
+
+	GList* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_itemize_with_base_dir(context, base_dir, text, start_index, length, attrs, cached_iter);
+
+	_result = asRGListWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
+	CLEANUP(g_list_free, ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_coverage_new()
+{
+
+	PangoCoverage* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_coverage_new();
+
+	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_pango_coverage_ref(USER_OBJECT_ s_object)
 {
 	PangoCoverage* object = (PangoCoverage*)getPtrValue(s_object);
@@ -1243,7 +1437,7 @@ S_pango_coverage_ref(USER_OBJECT_ s_object)
 
 	ans = pango_coverage_ref(object);
 
-	_result = toRPointer(ans, "PangoCoverage");
+	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
 
 	return(_result);
 }
@@ -1273,7 +1467,7 @@ S_pango_coverage_copy(USER_OBJECT_ s_object)
 
 	ans = pango_coverage_copy(object);
 
-	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) g_free);
+	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
 
 	return(_result);
 }
@@ -1357,7 +1551,7 @@ S_pango_coverage_from_bytes(USER_OBJECT_ s_bytes)
 
 	ans = pango_coverage_from_bytes(bytes, n_bytes);
 
-	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) g_free);
+	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
 
 	return(_result);
 }
@@ -1622,6 +1816,37 @@ S_pango_font_description_get_stretch(USER_OBJECT_ s_object)
 	ans = pango_font_description_get_stretch(object);
 
 	_result = asREnum(ans, PANGO_TYPE_STRETCH);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_font_description_set_absolute_size(USER_OBJECT_ s_object, USER_OBJECT_ s_size)
+{
+	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
+	double size = (double)asCNumeric(s_size);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	pango_font_description_set_absolute_size(object, size);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_font_description_get_size_is_absolute(USER_OBJECT_ s_object)
+{
+	PangoFontDescription* object = (PangoFontDescription*)getPtrValue(s_object);
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_font_description_get_size_is_absolute(object);
+
+	_result = asRLogical(ans);
 
 	return(_result);
 }
@@ -2136,7 +2361,7 @@ S_pango_font_get_coverage(USER_OBJECT_ s_object, USER_OBJECT_ s_language)
 
 	ans = pango_font_get_coverage(object, language);
 
-	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) g_free);
+	_result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
 
 	return(_result);
 }
@@ -2193,6 +2418,22 @@ S_pango_font_get_glyph_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph)
 	_result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
 	CLEANUP(g_free, ink_rect);
 	CLEANUP(g_free, logical_rect);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_font_get_font_map(USER_OBJECT_ s_object)
+{
+	PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+
+	PangoFontMap* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_font_get_font_map(object);
+
+	_result = toRPointerWithRef(ans, "PangoFontMap");
 
 	return(_result);
 }
@@ -2468,6 +2709,60 @@ S_pango_glyph_string_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER
  
 
 USER_OBJECT_
+S_pango_glyph_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_text, USER_OBJECT_ s_split_index)
+{
+	PangoGlyphItem* orig = (PangoGlyphItem*)getPtrValue(s_orig);
+	const char* text = (const char*)asCString(s_text);
+	int split_index = (int)asCInteger(s_split_index);
+
+	PangoGlyphItem* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_glyph_item_split(orig, text, split_index);
+
+	_result = toRPointerWithFinalizer(ans, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_apply_attrs(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_list)
+{
+	PangoGlyphItem* glyph_item = (PangoGlyphItem*)getPtrValue(s_glyph_item);
+	const char* text = (const char*)asCString(s_text);
+	PangoAttrList* list = (PangoAttrList*)getPtrValue(s_list);
+
+	GSList* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_glyph_item_apply_attrs(glyph_item, text, list);
+
+	_result = asRGSListWithFinalizer(ans, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free);
+	CLEANUP(g_slist_free, ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_item_letter_space(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_log_attrs, USER_OBJECT_ s_letter_spacing)
+{
+	PangoGlyphItem* glyph_item = (PangoGlyphItem*)getPtrValue(s_glyph_item);
+	const char* text = (const char*)asCString(s_text);
+	PangoLogAttr* log_attrs = (PangoLogAttr*)getPtrValue(s_log_attrs);
+	int letter_spacing = (int)asCInteger(s_letter_spacing);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	pango_glyph_item_letter_space(glyph_item, text, log_attrs, letter_spacing);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
 S_pango_matrix_translate(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 {
 	PangoMatrix* object = (PangoMatrix*)getPtrValue(s_object);
@@ -2557,6 +2852,55 @@ S_pango_shape(USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysi
 
 	pango_shape(text, length, analysis, glyphs);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_item_copy(USER_OBJECT_ s_item)
+{
+	PangoItem* item = (PangoItem*)getPtrValue(s_item);
+
+	PangoItem* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_item_copy(item);
+
+	_result = toRPointerWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_item_new()
+{
+
+	PangoItem* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_item_new();
+
+	_result = toRPointerWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_split_index, USER_OBJECT_ s_split_offset)
+{
+	PangoItem* orig = (PangoItem*)getPtrValue(s_orig);
+	int split_index = (int)asCInteger(s_split_index);
+	int split_offset = (int)asCInteger(s_split_offset);
+
+	PangoItem* ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = pango_item_split(orig, split_index, split_offset);
+
+	_result = toRPointerWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
 
 	return(_result);
 }
@@ -3473,12 +3817,12 @@ S_pango_layout_iter_get_run(USER_OBJECT_ s_object)
 {
 	PangoLayoutIter* object = (PangoLayoutIter*)getPtrValue(s_object);
 
-	PangoLayoutRun* ans;
+	PangoGlyphItem* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	ans = pango_layout_iter_get_run(object);
 
-	_result = toRPointer(ans, "PangoLayoutRun");
+	_result = toRPointerWithFinalizer(ans, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free);
 
 	return(_result);
 }

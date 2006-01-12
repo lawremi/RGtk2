@@ -40,6 +40,34 @@ function(obj)
   v <- .Call('S_PangoGlyphStringGetLogClusters', obj)
   v
 } 
+pangoItemGetOffset <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoItem')
+  v <- .Call('S_PangoItemGetOffset', obj)
+  v
+} 
+pangoItemGetLength <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoItem')
+  v <- .Call('S_PangoItemGetLength', obj)
+  v
+} 
+pangoItemGetNumChars <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoItem')
+  v <- .Call('S_PangoItemGetNumChars', obj)
+  v
+} 
+pangoItemGetAnalysis <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoItem')
+  v <- .Call('S_PangoItemGetAnalysis', obj)
+  v
+} 
 pangoLayoutLineGetLayout <-
 function(obj)
 {
@@ -215,32 +243,67 @@ function(obj)
   v <- .Call('S_PangoAttrClassGetType', obj)
   v
 } 
-pangoItemGetOffset <-
+pangoGlyphItemGetItem <-
 function(obj)
 {
-  checkPtrType(obj, 'PangoItem')
-  v <- .Call('S_PangoItemGetOffset', obj)
+  checkPtrType(obj, 'PangoGlyphItem')
+  v <- .Call('S_PangoGlyphItemGetItem', obj)
   v
 } 
-pangoItemGetLength <-
+pangoGlyphItemGetGlyphs <-
 function(obj)
 {
-  checkPtrType(obj, 'PangoItem')
-  v <- .Call('S_PangoItemGetLength', obj)
+  checkPtrType(obj, 'PangoGlyphItem')
+  v <- .Call('S_PangoGlyphItemGetGlyphs', obj)
   v
 } 
-pangoItemGetNumChars <-
+pangoGlyphInfoGetGlyph <-
 function(obj)
 {
-  checkPtrType(obj, 'PangoItem')
-  v <- .Call('S_PangoItemGetNumChars', obj)
+  checkPtrType(obj, 'PangoGlyphInfo')
+  v <- .Call('S_PangoGlyphInfoGetGlyph', obj)
   v
 } 
-pangoItemGetAnalysis <-
+pangoGlyphInfoGetGeometry <-
 function(obj)
 {
-  checkPtrType(obj, 'PangoItem')
-  v <- .Call('S_PangoItemGetAnalysis', obj)
+  checkPtrType(obj, 'PangoGlyphInfo')
+  v <- .Call('S_PangoGlyphInfoGetGeometry', obj)
+  v
+} 
+pangoGlyphInfoGetAttr <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoGlyphInfo')
+  v <- .Call('S_PangoGlyphInfoGetAttr', obj)
+  v
+} 
+pangoGlyphGeometryGetWidth <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoGlyphGeometry')
+  v <- .Call('S_PangoGlyphGeometryGetWidth', obj)
+  v
+} 
+pangoGlyphGeometryGetXOffset <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoGlyphGeometry')
+  v <- .Call('S_PangoGlyphGeometryGetXOffset', obj)
+  v
+} 
+pangoGlyphGeometryGetYOffset <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoGlyphGeometry')
+  v <- .Call('S_PangoGlyphGeometryGetYOffset', obj)
+  v
+} 
+pangoGlyphVisAttrGetIsClusterStart <-
+function(obj)
+{
+  checkPtrType(obj, 'PangoGlyphVisAttr')
+  v <- .Call('S_PangoGlyphVisAttrGetIsClusterStart', obj)
   v
 } 
 pangoAttrStringGetValue <-

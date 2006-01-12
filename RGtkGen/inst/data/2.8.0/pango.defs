@@ -101,9 +101,37 @@
     '("guint16" "blue" (in))
   )
 )
+(define-function AttrStrikethrough
+  (c-name "pango_attr_strikethrough_color_new")
+  (caller-owns-return #t)
+  (return-type "PangoAttribute*")
+  (parameters
+    '("guint16" "red" (in))
+    '("guint16" "green" (in))
+    '("guint16" "blue" (in))
+  )
+)
+(define-function AttrUnderline
+  (c-name "pango_attr_underline_color_new")
+  (caller-owns-return #t)
+  (return-type "PangoAttribute*")
+  (parameters
+    '("guint16" "red" (in))
+    '("guint16" "green" (in))
+    '("guint16" "blue" (in))
+  )
+)
 
 (define-function AttrSize
   (c-name "pango_attr_size_new")
+  (caller-owns-return #t)
+  (return-type "PangoAttribute*")
+  (parameters
+    '("int" "size" (in))
+  )
+)
+(define-function AttrSize
+  (c-name "pango_attr_size_new_absolute")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
   (parameters
@@ -190,6 +218,27 @@
   (parameters
     '("const-PangoRectangle*" "ink_rect" (in))
     '("const-PangoRectangle*" "logical_rect" (in))
+  )
+)
+(define-function AttrShape
+  (c-name "pango_attr_shape_new_with_data")
+  (caller-owns-return #t)
+  (return-type "PangoAttribute*")
+  (parameters
+    '("const-PangoRectangle*" "ink_rect" (in))
+    '("const-PangoRectangle*" "logical_rect" (in))
+	'("gpointer" "data")
+    '("PangoAttrDataCopyFunc" "copy_func")
+    '("GDestroyNotify" "destroy_func")
+  )
+)
+
+(define-function AttrLetterSpacing
+  (c-name "pango_attr_letter_spacing_new")
+  (caller-owns-return #t)
+  (return-type "PangoAttribute*")
+  (parameters
+    '("int" "letter_spacing" (in))
   )
 )
 
@@ -359,8 +408,8 @@
   (return-type "gboolean")
   (parameters
     '("const-char*" "markup_text" (in))
-    '("int" "length" (in))
-    '("gunichar" "accel_marker" (in))
+    '("int" "length" (in) (default "-1"))
+    '("gunichar" "accel_marker" (in) (default "0"))
     '("PangoAttrList**" "attr_list" (out))
     '("char**" "text" (out))
     '("gunichar*" "accel_char" (out))
@@ -397,9 +446,10 @@
   (parameters
     '("const-char*" "text" (in))
     '("int" "length" (in))
-    '("int" "level" (in))
+    '("int" "level" (in) (default "-1"))
     '("PangoLanguage*" "language" (in))
     '("PangoLogAttr[]" "log_attrs" (out))
+	'("int" "attrs_len" (in))
   )
 )
 
@@ -592,6 +642,33 @@
   )
 )
 
+(define-function get_mirror_char
+	(c-name "pango_get_mirror_char")
+	(return-type "gboolean")
+	(parameters
+		'("gunichar" "ch")
+		'("gunichar*" "mirrored_ch" (out))
+	)
+	(deprecated "Use should g_unichar_get_mirror_char() instead (but RGtk2 doesn't support this)")
+)
+
+(define-function unichar_direction
+	(c-name "pango_unichar_direction")
+	(return-type "PangoDirection")
+	(parameters
+		'("gunichar" "ch")
+	)
+)
+
+(define-function find_base_dir
+	(c-name "pango_find_base_dir")
+	(return-type "PangoDirection")
+	(parameters
+		'("const-gchar*" "text")
+		'("gint" "length" (default "-1"))
+	)
+)
+
 (define-method load_font
   (of-object "PangoContext")
   (c-name "pango_context_load_font")
@@ -618,6 +695,11 @@
   (parameters
     '("const-PangoMatrix*" "matrix")
   )
+)
+(define-method get_matrix
+  (of-object "PangoContext")
+  (c-name "pango_context_get_matrix")
+  (return-type "const-PangoMatrix*")
 )
 
 (define-method get_metrics
@@ -688,6 +770,26 @@
     '("PangoAttrList*" "attrs" (in))
     '("PangoAttrIterator*" "cached_iter" (in) (default "NULL") (null-ok))
   )
+)
+(define-function itemize_with_base_dir
+  (c-name "pango_itemize_with_base_dir")
+  (caller-owns-return #t)
+  (return-type "GList[PangoItem]")
+  (parameters
+    '("PangoContext*" "context" (in))
+	'("PangoDirection" "base_dir" (in))
+    '("const-char*" "text" (in))
+    '("int" "start_index" (in))
+    '("int" "length" (in))
+    '("PangoAttrList*" "attrs" (in))
+    '("PangoAttrIterator*" "cached_iter" (in) (default "NULL") (null-ok))
+  )
+)
+
+(define-function pango_coverage_new
+	(c-name "pango_coverage_new")
+	(is-constructor-of "PangoCoverage")
+	(return-type "PangoCoverage*")
 )
 
 (define-method ref
@@ -891,6 +993,21 @@
   (of-object "PangoFontDescription")
   (c-name "pango_font_description_get_stretch")
   (return-type "PangoStretch")
+)
+
+(define-method set_absolute_size
+  (of-object "PangoFontDescription")
+  (c-name "pango_font_description_set_absolute_size")
+  (return-type "none")
+  (parameters
+    '("double" "size" (in))
+  )
+)
+
+(define-method get_size_is_absolute
+  (of-object "PangoFontDescription")
+  (c-name "pango_font_description_get_size_is_absolute")
+  (return-type "gboolean")
 )
 
 (define-method set_size
@@ -1150,6 +1267,12 @@
   )
 )
 
+(define-method get_font_map
+	(of-object "PangoFont")
+	(c-name "pango_font_get_font_map")
+	(return-type "PangoFontMap*")
+)
+	
 (define-method load_font
   (of-object "PangoFontMap")
   (c-name "pango_font_map_load_font")
@@ -1337,6 +1460,39 @@
   )
 )
 
+(define-function split
+	(c-name "pango_glyph_item_split")
+	(return-type "PangoGlyphItem*")
+	(caller-owns-return "#t")
+	(parameters
+		'("PangoGlyphItem*" "orig")
+        '("const-char*" "text")
+        '("int" "split_index")
+	)
+)
+
+(define-function apply_attrs
+	(c-name "pango_glyph_item_apply_attrs")
+	(return-type "GSList[PangoGlyphItem]")
+	(caller-owns-return "#t")
+	(parameters
+		'("PangoGlyphItem*" "glyph_item")
+		'("const-char*" "text")
+        '("PangoAttrList*" "list")
+	)
+)
+
+(define-function pango_glyph_item_letter_space
+	(c-name "pango_glyph_item_letter_space")
+	(return-type "none")
+	(parameters
+		'("PangoGlyphItem*" "glyph_item")
+        '("const-char*" "text")
+        '("PangoLogAttr*" "log_attrs")
+        '("int" "letter_spacing")
+	)
+)
+
 (define-method translate
   (of-object "PangoMatrix")
   (c-name "pango_matrix_translate")
@@ -1393,6 +1549,29 @@
   )
 )
 
+(define-function item_copy
+	(c-name "pango_item_copy")
+	(caller-owns-return #t)
+	(return-type "PangoItem*")
+	(parameters
+		'("PangoItem*" "item")
+	)
+)
+(define-function item_new
+	(c-name "pango_item_new")
+	(caller-owns-return #t)
+	(return-type "PangoItem*")
+)
+(define-function item_split
+	(c-name "pango_item_split")
+	(caller-owns-return #t)
+	(return-type "PangoItem*")
+	(parameters
+		'("PangoItem*" "orig")
+        '("int" "split_index")
+        '("int" "split_offset")
+	)
+)
 (define-function reorder_items
   (c-name "pango_reorder_items")
   (caller-owns-return #t)
@@ -1856,7 +2035,7 @@
 (define-method get_run
   (of-object "PangoLayoutIter")
   (c-name "pango_layout_iter_get_run")
-  (return-type "PangoLayoutRun*")
+  (return-type "PangoGlyphItem*")
 )
 
 (define-method get_line

@@ -3,6 +3,7 @@
 #include "gobject.h"
 #include "atkFuncs.h"
 #include "userfuncs.h"
+#include "glib.h"
 
 
 #include "RGtk2.h"
@@ -3036,6 +3037,22 @@ S_atk_text_attribute_get_name(USER_OBJECT_ s_attr)
 	ans = atk_text_attribute_get_name(attr);
 
 	_result = asRString(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_atk_text_attribute_for_name(USER_OBJECT_ s_name)
+{
+	const gchar* name = (const gchar*)asCString(s_name);
+
+	AtkTextAttribute ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = atk_text_attribute_for_name(name);
+
+	_result = asREnum(ans, ATK_TYPE_TEXT_ATTRIBUTE);
 
 	return(_result);
 }
