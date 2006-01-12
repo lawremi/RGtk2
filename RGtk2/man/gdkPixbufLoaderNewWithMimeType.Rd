@@ -1,0 +1,19 @@
+\alias{gdkPixbufLoaderNewWithMimeType}
+\name{gdkPixbufLoaderNewWithMimeType}
+\title{gdkPixbufLoaderNewWithMimeType}
+\description{Creates a new pixbuf loader object that always attempts to parse
+image data as if it were an image of mime type \code{mime.type}, instead of
+identifying the type automatically. Useful if you want an error if
+the image isn't the expected mime type, for loading image formats
+that can't be reliably identified by looking at the data, or if
+the user manually forces a specific mime type.}
+\usage{gdkPixbufLoaderNewWithMimeType(mime.type)}
+\arguments{\item{\code{mime.type}}{[char]  the mime type to be loaded }}
+\details{  Since  2.4}
+\value{
+A list containing the following elements:
+\item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
+\item{\code{error}}{[\code{\link{GError}}]  return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors}
+}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

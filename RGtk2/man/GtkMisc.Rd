@@ -1,0 +1,70 @@
+\alias{GtkMisc}
+\name{GtkMisc}
+\title{GtkMisc}
+\description{Base class for widgets with alignments and padding}
+\usage{
+\link{gtkMiscSetAlignment}(object, xalign, yalign)
+\link{gtkMiscSetPadding}(object, xpad, ypad)
+\link{gtkMiscGetAlignment}(object)
+\link{gtkMiscGetPadding}(object)
+}
+\details{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
+is used to derive subclasses which have alignment and padding attributes.
+  
+The horizontal and vertical padding attributes allows extra space to be
+added around the widget.
+  
+The horizontal and vertical alignment attributes enable the widget to be
+positioned within its allocated area. Note that if the widget is added to
+a container in such a way that it expands automatically to fill its
+allocated area, the alignment settings will not alter the widgets position.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkMisc
+                     +----\link{GtkLabel}
+                     +----\link{GtkArrow}
+                     +----\link{GtkImage}
+                     +----\link{GtkPixmap}}}
+\section{Structures}{\describe{\item{\code{GtkMisc}}{
+The \code{\link{GtkMisc}} struct contains the following fields.
+(These fields should be considered read-only. They should never be set by
+an application.)
+
+\tabular{ll}{
+\code{numeric}     \code{xalign}  ; \tab the horizontal alignment, from 0 (left) to 1 (right). \cr
+\code{numeric}     \code{yalign}  ; \tab the vertical alignment, from 0 (top) to 1 (bottom). \cr
+\code{integer}     \code{xpad}  ; \tab the amount of space to add on the left and right of the widget,
+in pixels. \cr
+\code{integer}     \code{ypad}  ; \tab the amount of space to add on the top and bottom of the widget,
+in pixels. \cr
+}
+
+}}}
+\section{Interfaces}{GtkMisc implements
+ AtkImplementorIface.}
+\section{Properties}{\describe{
+\item{\code{xalign} [numeric : Read / Write]}{
+
+The horizontal alignment, from 0 (left) to 1 (right). Reversed for RTL layouts.  Allowed values: [0,1]  Default value: 0.5
+
+}
+\item{\code{xpad} [integer : Read / Write]}{
+
+The amount of space to add on the left and right of the widget, in pixels.  Allowed values: >= 0  Default value: 0
+
+}
+\item{\code{yalign} [numeric : Read / Write]}{
+
+The vertical alignment, from 0 (top) to 1 (bottom).  Allowed values: [0,1]  Default value: 0.5
+
+}
+\item{\code{ypad} [integer : Read / Write]}{
+
+The amount of space to add on the top and bottom of the widget, in pixels.  Allowed values: >= 0  Default value: 0
+
+}
+}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMisc.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

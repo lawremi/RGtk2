@@ -1,0 +1,43 @@
+\alias{GtkToggleAction}
+\alias{gtkToggleAction}
+\name{GtkToggleAction}
+\title{GtkToggleAction}
+\description{An action which can be toggled between two states}
+\usage{
+\link{gtkToggleActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
+\link{gtkToggleActionToggled}(object)
+\link{gtkToggleActionSetActive}(object, is.active)
+\link{gtkToggleActionGetActive}(object)
+\link{gtkToggleActionSetDrawAsRadio}(object, draw.as.radio)
+\link{gtkToggleActionGetDrawAsRadio}(object)
+gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
+}
+\details{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
+"active" state specifying whether the action has been checked or not.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkAction}
+         +----GtkToggleAction
+               +----\link{GtkRadioAction}}}
+\section{Structures}{\describe{\item{\code{GtkToggleAction}}{
+The \code{GtkToggleAction} struct contains only 
+private members and should not be accessed directly.
+
+}}}
+\section{Convenient Construction}{\code{gtkToggleAction} is the equivalent of \code{\link{gtkToggleActionNew}}.}
+\section{Signals}{\describe{\item{\code{toggled(toggleaction, user.data)}}{
+
+
+\describe{
+\item{\code{toggleaction}}{[\code{\link{GtkToggleAction}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}}}
+\section{Properties}{\describe{\item{\code{draw-as-radio} [logical : Read / Write]}{
+
+Whether the proxies for this action look like radio action proxies.  Default value: FALSE
+
+}}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToggleAction.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

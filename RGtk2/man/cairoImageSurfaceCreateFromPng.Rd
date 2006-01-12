@@ -1,0 +1,17 @@
+\alias{cairoImageSurfaceCreateFromPng}
+\name{cairoImageSurfaceCreateFromPng}
+\title{cairoImageSurfaceCreateFromPng}
+\description{Creates a new image surface and initializes the contents to the
+given PNG file.}
+\usage{cairoImageSurfaceCreateFromPng(filename)}
+\arguments{\item{\code{filename}}{[char]  name of PNG file to load }}
+\value{[\code{\link{cairo_surface_t}}]  a new \code{\link{cairo_surface_t}} initialized with the contents
+of the PNG file, or a "nil" surface if any error occurred. A nil
+surface can be checked for with cairo_surface_status(surface) which
+may return one of the following values: 
+
+CAIRO_STATUS_NO_MEMORY
+CAIRO_STATUS_FILE_NOT_FOUND
+CAIRO_STATUS_READ_ERROR}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

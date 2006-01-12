@@ -1,0 +1,16 @@
+\alias{gtkPlugConstructForDisplay}
+\name{gtkPlugConstructForDisplay}
+\title{gtkPlugConstructForDisplay}
+\description{Finish the initialization of \code{plug} for a given \code{\link{GtkSocket}} identified by
+\code{socket.id} which is currently displayed on \code{display}.
+This function will generally only be used by classes deriving from \code{\link{GtkPlug}}.}
+\usage{gtkPlugConstructForDisplay(object, display, socket.id)}
+\arguments{
+\item{\code{object}}{[\code{\link{GtkPlug}}]  a \code{\link{GtkPlug}}.}
+\item{\code{display}}{[\code{\link{GdkDisplay}}]  the \code{\link{GdkDisplay}} associated with \code{socket.id}'s 
+     \code{\link{GtkSocket}}.}
+\item{\code{socket.id}}{[\code{\link{GdkNativeWindow}}]  the XID of the socket's window.}
+}
+\details{  Since  2.2}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

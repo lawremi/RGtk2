@@ -1,0 +1,40 @@
+\alias{GtkCellEditable}
+\name{GtkCellEditable}
+\title{GtkCellEditable}
+\description{Interface for widgets which can are used for editing cells}
+\usage{
+\link{gtkCellEditableStartEditing}(object, event = NULL)
+\link{gtkCellEditableEditingDone}(object)
+\link{gtkCellEditableRemoveWidget}(object)
+}
+\details{The \code{\link{GtkCellEditable}} interface must be implemented for widgets
+to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
+\section{Hierarchy}{\preformatted{  GInterface
+   +----GtkCellEditable}}
+\section{Structures}{\describe{\item{\code{GtkCellEditable}}{\emph{undocumented
+}}}}
+\section{Implementations}{GtkCellEditable is implemented by
+ \code{\link{GtkEntry}},  \code{\link{GtkComboBox}},  \code{\link{GtkSpinButton}} and  \code{\link{GtkComboBoxEntry}}.}
+\section{Signals}{\describe{
+\item{\code{editing-done(celleditable, user.data)}}{
+
+
+\describe{
+\item{\code{celleditable}}{[\code{\link{GtkCellEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{remove-widget(celleditable, user.data)}}{
+
+
+\describe{
+\item{\code{celleditable}}{[\code{\link{GtkCellEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellEditable.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

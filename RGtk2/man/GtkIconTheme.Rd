@@ -1,0 +1,157 @@
+\alias{GtkIconTheme}
+\alias{GtkIconInfo}
+\alias{gtkIconTheme}
+\alias{GtkIconLookupFlags}
+\alias{GtkIconThemeError}
+\name{GtkIconTheme}
+\title{GtkIconTheme}
+\description{Looking up icons by name}
+\usage{
+\link{gtkIconThemeNew}()
+\link{gtkIconThemeGetDefault}()
+\link{gtkIconThemeGetForScreen}(screen)
+\link{gtkIconThemeSetScreen}(object, screen)
+\link{gtkIconThemeSetSearchPath}(object, path)
+\link{gtkIconThemeGetSearchPath}(object)
+\link{gtkIconThemeAppendSearchPath}(object, path)
+\link{gtkIconThemePrependSearchPath}(object, path)
+\link{gtkIconThemeSetCustomTheme}(object, theme.name)
+\link{gtkIconThemeHasIcon}(object, icon.name)
+\link{gtkIconThemeLookupIcon}(object, icon.name, size, flags)
+\link{gtkIconThemeLoadIcon}(object, icon.name, size, flags)
+\link{gtkIconThemeListIcons}(object, context = NULL)
+\link{gtkIconThemeGetIconSizes}(object, icon.name)
+\link{gtkIconThemeGetExampleIconName}(object)
+\link{gtkIconThemeRescanIfNeeded}(object)
+\link{gtkIconThemeAddBuiltinIcon}(icon.name, size, pixbuf)
+\link{gtkIconInfoCopy}(object)
+\link{gtkIconInfoGetBaseSize}(object)
+\link{gtkIconInfoGetFilename}(object)
+\link{gtkIconInfoGetBuiltinPixbuf}(object)
+\link{gtkIconInfoLoadIcon}(object)
+\link{gtkIconInfoSetRawCoordinates}(object, raw.coordinates)
+\link{gtkIconInfoGetEmbeddedRect}(object)
+\link{gtkIconInfoGetAttachPoints}(object)
+\link{gtkIconInfoGetDisplayName}(object)
+gtkIconTheme()
+}
+\details{\code{\link{GtkIconTheme}} provides a facility for looking up icons by name
+and size. The main reason for using a name rather than simply
+providing a filename is to allow different icons to be used
+depending on what \dfn{icon theme} is selecetd
+by the user. The operation of icon themes on Linux and Unix
+follows the Icon
+Theme Specification (\url{http://www.freedesktop.org/Standards/icon-theme-spec}). There is a default icon theme,
+named \code{hicolor} where applications should install
+their icons, but more additional application themes can be
+installed as operating system vendors and users choose.
+  
+Named icons are similar to the 
+facility, and the distinction between the two may be a bit confusing.
+A few things to keep in mind:
+  \itemize{
+\item Stock images usually are used in conjunction with
+., such as \code{GTK_STOCK_OK} or
+\code{GTK_STOCK_OPEN}. Named icons are easier to set up and therefore
+are more useful for new icons that an application wants to
+add, such as application icons or window icons.
+\item Stock images can only be loaded at the symbolic sizes defined
+by the \code{\link{GtkIconSize}} enumeration, or by custom sizes defined
+by \code{\link{gtkIconSizeRegister}}, while named icons are more flexible
+and any pixel size can be specified.
+\item Because stock images are closely tied to stock items, and thus
+to actions in the user interface, stock images may come in
+multiple variants for different widget states or writing
+directions. 
+}  
+A good rule of thumb is that if there is a stock image for what
+you want to use, use it, otherwise use a named icon. It turns
+out that internally stock images are generally defined in
+terms of one or more named icons. (An example of the
+more than one case is icons that depend on writing direction;
+GTK_STOCK_GO_FORWARD uses the two themed icons
+"gtk-stock-go-forward-ltr" and "gtk-stock-go-forward-rtl".)
+  
+In many cases, named themes are used indirectly, via \code{\link{GtkImage}}
+or stock items, rather than directly, but looking up icons
+directly is also simple. The \code{\link{GtkIconTheme}} object acts
+as a database of all the icons in the current theme. You
+can create new \code{\link{GtkIconTheme}} objects, but its much more
+efficient to use the standard icon theme for the \code{\link{GdkScreen}}
+so that the icon information is shared with other people
+looking up icons. In the case where the default screen is
+being used, looking up an icon can be as simple as:
+  \preformatted{
+icon_theme <- gtkIconThemeGetDefault()
+result <- icon_theme$loadIcon("my-icon-name", 48, 0)
+if (!result[[1]])
+  {
+    warning("Couldn't load icon: ", result$error$message)
+  }
+else
+  {
+	pixbuf <- result[[1]]
+    # Use the pixbuf
+  }
+}}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkIconTheme}}
+\section{Structures}{\describe{
+\item{\code{GtkIconInfo}}{
+Contains information found when looking up an icon in
+an icon theme.
+
+}
+\item{\code{GtkIconTheme}}{
+Acts as a database of information about an icon theme.
+Normally, you retrieve the icon theme for a particular
+screen using \code{\link{gtkIconThemeGetForScreen}} and it
+will contain information about current icon theme for
+that screen, but you can also create a new \code{\link{GtkIconTheme}}
+object and set the icon theme name explicitely using
+\code{\link{gtkIconThemeSetCustomTheme}}.
+
+}
+}}
+\section{Convenient Construction}{\code{gtkIconTheme} is the equivalent of \code{\link{gtkIconThemeNew}}.}
+\section{Enums and Flags}{\describe{
+\item{\code{enum GtkIconLookupFlags}}{
+Used to specify options for \code{\link{gtkIconThemeLookupIcon}}  
+
+\describe{
+\item{\code{GTK_ICON_LOOKUP_NO_SVG (no-svg)}}{ Never return SVG icons, even if gdk-pixbuf
+  supports them. Cannot be used together with \code{GTK_ICON_LOOKUP_FORCE_SVG}.}
+\item{\code{GTK_ICON_LOOKUP_FORCE_SVG (force-svg)}}{ Return SVG icons, even if gdk-pixbuf
+  doesn't support them.
+  Cannot be used together with \code{GTK_ICON_LOOKUP_NO_SVG}.}
+\item{\code{GTK_ICON_LOOKUP_USE_BUILTIN (use-builtin)}}{ When passed to
+  \code{\link{gtkIconThemeLookupIcon}} includes builtin icons
+  as well as files. For a builtin icon, \code{\link{gtkIconInfoGetFilename}}
+  returns \code{NULL} and you need to call \code{\link{gtkIconInfoGetBuiltinPixbuf}}.}
+}
+
+}
+\item{\code{enum GtkIconThemeError}}{
+Error codes for GtkIconTheme operations.  
+
+\describe{
+\item{\code{GTK_ICON_THEME_NOT_FOUND (not-found)}}{ The icon specified does not exist in the theme}
+\item{\code{GTK_ICON_THEME_FAILED (failed)}}{ An unspecified error occurred.}
+}
+
+}
+}}
+\section{Signals}{\describe{\item{\code{changed(icon.theme, user.data)}}{
+Emitted when the current icon theme is switched or GTK+ detects
+that a change has occurred in the contents of the current
+icon theme.  
+
+\describe{
+\item{\code{icon.theme}}{[\code{\link{GtkIconTheme}}]  the icon theme}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkIconTheme.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

@@ -1,0 +1,23 @@
+\alias{cairoRectangle}
+\name{cairoRectangle}
+\title{cairoRectangle}
+\description{Adds a closed-subpath rectangle of the given size to the current
+path at position (\code{x}, \code{y}) in user-space coordinates.}
+\usage{cairoRectangle(cr, x, y, width, height)}
+\arguments{
+\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{x}}{[numeric]  the X coordinate of the top left corner of the rectangle}
+\item{\code{y}}{[numeric]  the Y coordinate to the top left corner of the rectangle}
+\item{\code{width}}{[numeric]  the width of the rectangle}
+\item{\code{height}}{[numeric]  the height of the rectangle}
+}
+\details{This function is logically equivalent to:
+\preformatted{
+cr$moveTo(x, y)
+cr$relLineTo(width, 0)
+cr$relLineTo(0, height)
+cr$relLineTo(-width, 0)
+cr$closePath()
+}  }
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

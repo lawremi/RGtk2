@@ -1,0 +1,169 @@
+\alias{GtkPaned}
+\name{GtkPaned}
+\title{GtkPaned}
+\description{Base class for widgets with two adjustable panes}
+\usage{
+\link{gtkPanedAdd1}(object, child)
+\link{gtkPanedAdd2}(object, child)
+\link{gtkPanedPack1}(object, child, resize = FALSE, shrink = TRUE)
+\link{gtkPanedPack2}(object, child, resize = TRUE, shrink = TRUE)
+\link{gtkPanedGetChild1}(object)
+\link{gtkPanedGetChild2}(object)
+\link{gtkPanedSetPosition}(object, position)
+\link{gtkPanedGetPosition}(object)
+}
+\details{\code{\link{GtkPaned}} is the base class for widgets with two panes,
+arranged either horizontally (\code{\link{GtkHPaned}}) or
+vertically (\code{\link{GtkVPaned}}). Child widgets are 
+added to the panes of the widget with
+\code{\link{gtkPanedPack1}} and \code{\link{gtkPanedPack2}}. The division
+beween the two children is set by default from the
+size requests of the children, but it can be adjusted
+by the user.
+  
+A paned widget draws a separator between the two
+child widgets and a small handle that the user
+can drag to adjust the division. It does not
+draw any relief around the children or around
+the separator. (The space in which the separator
+is called the gutter.) Often, it is useful
+to put each child inside a \code{\link{GtkFrame}} with the
+shadow type set to \code{GTK_SHADOW_IN} so that the
+gutter appears as a ridge.
+  
+Each child has two options that can be set, 
+\code{resize} and \code{shrink}. If \code{resize} is true, then when the
+\code{\link{GtkPaned}} is resized, that child will expand
+or shrink along with the paned widget. If \code{shrink}
+is true, then when that child can be made smaller
+than its requisition by the user. Setting \code{shrink}
+to \code{FALSE} allows the application to set a minimum
+size. If \code{resize} is false for both children, then
+this is treated as if \code{resize} is true for both
+children.
+  
+The application can set the position of the slider
+as if it were set by the user, by calling
+\code{\link{gtkPanedSetPosition}}.
+  \preformatted{
+hpaned <- gtkHPaned()
+frame1 <- gtkFrame()
+frame2 <- gtkFrame()
+frame1$setShadowType("in")
+frame2$setShadowType("in")
+
+hpaned$setSizeRequest(200 + hpaned$styleGet("handle-size"), -1)
+
+hpaned$pack1(frame1, TRUE, FALSE)
+frame1$setSizeRequest(50, -1)
+
+hpaned$pack2(frame2, FALSE, FALSE)
+frame2$setSizeRequest(50, -1)
+
+}}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkPaned
+                           +----\link{GtkHPaned}
+                           +----\link{GtkVPaned}}}
+\section{Structures}{\describe{\item{\code{GtkPaned}}{\emph{undocumented
+}}}}
+\section{Interfaces}{GtkPaned implements
+ AtkImplementorIface.}
+\section{Signals}{\describe{
+\item{\code{accept-position(paned, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{cancel-position(paned, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{cycle-child-focus(paned, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{arg1}}{[logical] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{cycle-handle-focus(paned, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{arg1}}{[logical] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-handle(paned, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{toggle-handle-focus(paned, user.data)}}{
+
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+}}
+\section{Properties}{\describe{
+\item{\code{max-position} [integer : Read]}{
+
+The largest possible value for the position property. This property is derived from the
+size and shrinkability of the widget's children.  
+
+  Allowed values: >= 0  Default value: 2147483647  Since  2.4
+
+}
+\item{\code{min-position} [integer : Read]}{
+
+The smallest possible value for the position property. This property is derived from the
+size and shrinkability of the widget's children.  
+
+  Allowed values: >= 0  Default value: 0  Since  2.4
+
+}
+\item{\code{position} [integer : Read / Write]}{
+
+Position of paned separator in pixels (0 means all the way to the left/top).  Allowed values: >= 0  Default value: 0
+
+}
+\item{\code{position-set} [logical : Read / Write]}{
+
+TRUE if the Position property should be used.  Default value: FALSE
+
+}
+}}
+\section{Style Properties}{\describe{\item{\code{handle-size} [integer : Read]}{
+
+Width of handle.  Allowed values: >= 0  Default value: 5
+
+}}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPaned.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

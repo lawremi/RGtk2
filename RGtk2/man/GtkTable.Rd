@@ -1,0 +1,141 @@
+\alias{GtkTable}
+\alias{GtkTableChild}
+\alias{GtkTableRowCol}
+\alias{gtkTable}
+\name{GtkTable}
+\title{GtkTable}
+\description{Pack widgets in regular patterns}
+\usage{
+\link{gtkTableNew}(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
+\link{gtkTableResize}(object, rows, columns)
+\link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = GTK_EXPAND|GTK_FILL, yoptions = GTK_EXPAND|GTK_FILL, xpadding = 0, ypadding = 0)
+\link{gtkTableAttachDefaults}(object, widget, left.attach, right.attach, top.attach, bottom.attach)
+\link{gtkTableSetRowSpacing}(object, row, spacing)
+\link{gtkTableSetColSpacing}(object, column, spacing)
+\link{gtkTableSetRowSpacings}(object, spacing)
+\link{gtkTableSetColSpacings}(object, spacing)
+\link{gtkTableSetHomogeneous}(object, homogeneous)
+\link{gtkTableGetDefaultRowSpacing}(object)
+\link{gtkTableGetHomogeneous}(object)
+\link{gtkTableGetRowSpacing}(object, row)
+\link{gtkTableGetColSpacing}(object, column)
+\link{gtkTableGetDefaultColSpacing}(object)
+gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
+}
+\details{The \code{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
+columns, making it easy to align many widgets next to each other,
+horizontally and vertically.
+  
+Tables are created with a call to \code{\link{gtkTableNew}}, the size of which can
+later be changed with \code{\link{gtkTableResize}}.
+  
+Widgets can be added to a table using \code{\link{gtkTableAttach}} or the more
+convenient (but slightly less flexible) \code{\link{gtkTableAttachDefaults}}.
+  
+To alter the space next to a specific row, use \code{\link{gtkTableSetRowSpacing}},
+and for a column, \code{\link{gtkTableSetColSpacing}}.  
+The gaps between \emph{all} rows or columns can be changed by calling
+\code{\link{gtkTableSetRowSpacings}} or \code{\link{gtkTableSetColSpacings}} respectively.
+  
+\code{\link{gtkTableSetHomogeneous}}, can be used to set whether all cells in the
+table will resize themselves to the size of the largest widget in the table.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkTable}}
+\section{Structures}{\describe{
+\item{\code{GtkTable}}{
+The \code{GtkTable} structure holds the data for the actual table itself. 
+
+\code{children} is a \code{list} of all the widgets the table contains. \code{rows} and \code{columns} are pointers to \code{\link{GtkTableRowCol}} structures, which contain the default spacing and expansion details for the \code{\link{GtkTable}}'s rows and columns, respectively.
+  
+\code{nrows} and \code{ncols} are 16bit integers storing the number of rows and columns the table has. 
+
+\describe{
+\item{\code{children}}{[list] }
+\item{\code{rows}}{[\code{\link{GtkTableRowCol}}] }
+\item{\code{cols}}{[\code{\link{GtkTableRowCol}}] }
+\item{\code{nrows}}{[integer] }
+\item{\code{ncols}}{[integer] }
+}
+
+}
+\item{\code{GtkTableChild}}{
+The \code{widget} field is a pointer to the widget that 
+this \code{GtkTableChild} structure is keeping track of.
+The \code{left_attach},
+\code{right_attach},
+\code{top_attach}, and
+\code{bottom_attach} fields specify the row and column
+numbers which make up the invisible rectangle that the child widget is packed into.
+  
+\code{xpadding} and \code{ypadding}
+specify the space between this widget and the surrounding table cells.
+
+\describe{
+\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{leftAttach}}{[integer] }
+\item{\code{rightAttach}}{[integer] }
+\item{\code{topAttach}}{[integer] }
+\item{\code{bottomAttach}}{[integer] }
+\item{\code{xpadding}}{[integer] }
+\item{\code{ypadding}}{[integer] }
+\item{\code{xexpand}}{[numeric] }
+\item{\code{yexpand}}{[numeric] }
+\item{\code{xshrink}}{[numeric] }
+\item{\code{yshrink}}{[numeric] }
+\item{\code{xfill}}{[numeric] }
+\item{\code{yfill}}{[numeric] }
+}
+
+}
+\item{\code{GtkTableRowCol}}{
+These fields should be considered read-only and not be modified directly.
+
+\describe{
+\item{\code{requisition}}{[integer] }
+\item{\code{allocation}}{[integer] }
+\item{\code{spacing}}{[integer] }
+\item{\code{needExpand}}{[numeric] }
+\item{\code{needShrink}}{[numeric] }
+\item{\code{expand}}{[numeric] }
+\item{\code{shrink}}{[numeric] }
+\item{\code{empty}}{[numeric] }
+}
+
+}
+}}
+\section{Convenient Construction}{\code{gtkTable} is the equivalent of \code{\link{gtkTableNew}}.}
+\section{Interfaces}{GtkTable implements
+ AtkImplementorIface.}
+\section{Properties}{\describe{
+\item{\code{column-spacing} [numeric : Read / Write]}{
+
+The amount of space between two consecutive columns.  Default value: 0
+
+}
+\item{\code{homogeneous} [logical : Read / Write]}{
+
+If TRUE this means the table cells are all the same width/height.  Default value: FALSE
+
+}
+\item{\code{n-columns} [numeric : Read / Write]}{
+
+The number of columns in the table.  Default value: 0
+
+}
+\item{\code{n-rows} [numeric : Read / Write]}{
+
+The number of rows in the table.  Default value: 0
+
+}
+\item{\code{row-spacing} [numeric : Read / Write]}{
+
+The amount of space between two consecutive rows.  Default value: 0
+
+}
+}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTable.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

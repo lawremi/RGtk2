@@ -1,0 +1,209 @@
+\alias{GtkActionGroup}
+\alias{GtkActionEntry}
+\alias{GtkToggleActionEntry}
+\alias{GtkRadioActionEntry}
+\alias{gtkActionGroup}
+\name{GtkActionGroup}
+\title{GtkActionGroup}
+\description{A group of actions}
+\usage{
+\link{gtkActionGroupNew}(name = NULL)
+\link{gtkActionGroupGetName}(object)
+\link{gtkActionGroupGetSensitive}(object)
+\link{gtkActionGroupSetSensitive}(object, sensitive)
+\link{gtkActionGroupGetVisible}(object)
+\link{gtkActionGroupSetVisible}(object, visible)
+\link{gtkActionGroupGetAction}(object, action.name)
+\link{gtkActionGroupListActions}(object)
+\link{gtkActionGroupAddAction}(object, action)
+\link{gtkActionGroupAddActionWithAccel}(object, action, accelerator = NULL)
+\link{gtkActionGroupRemoveAction}(object, action)
+\link{gtkActionGroupAddActions}(object, entries, user.data = NULL)
+\link{gtkActionGroupAddActionsFull}(object, entries, user.data = NULL)
+\link{gtkActionGroupAddToggleActions}(object, entries, user.data = NULL)
+\link{gtkActionGroupAddToggleActionsFull}(object, entries, user.data = NULL)
+\link{gtkActionGroupAddRadioActions}(object, entries, value, on.change = NULL, user.data = NULL)
+\link{gtkActionGroupAddRadioActionsFull}(object, entries, value, on.change = NULL, user.data = NULL)
+\link{gtkActionGroupSetTranslateFunc}(object, func, data = NULL)
+\link{gtkActionGroupSetTranslationDomain}(object, domain)
+\link{gtkActionGroupTranslateString}(object, string)
+gtkActionGroup(name = NULL)
+}
+\details{Actions are organised into groups.  An action group is essentially a
+map from names to \code{\link{GtkAction}} objects.
+  
+All actions that would make sense to use in a particular context
+should be in a single group.  Multiple action groups may be used for a
+particular user interface.  In fact, it is expected that most nontrivial 
+applications will make use of multiple groups.  For example, in an application
+that can edit multiple documents, one group holding global actions 
+(e.g. quit, about, new), and one group per document holding actions that 
+act on that document (eg. save, cut/copy/paste, etc).  Each window's menus 
+would be constructed from a combination of two action groups.
+  
+Accelerators are handled by the GTK+ accelerator map. All actions are assigned an 
+accelerator path (which normally has the form 
+\code{<Actions>/}) 
+and a shortcut is associated with this accelerator path. All menuitems and 
+toolitems take on this accelerator path. The GTK+ accelerator map code makes 
+sure that the correct shortcut is displayed next to the menu item.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkActionGroup}}
+\section{Structures}{\describe{
+\item{\code{GtkActionGroup}}{
+The \code{GtkActionGroup} struct contains only private 
+members and should not be accessed directly.
+
+}
+\item{\code{GtkActionEntry}}{
+\code{GtkActionEntry} structs are used with 
+\code{\link{gtkActionGroupAddActions}} to construct actions.
+\strong{\code{GtkActionEntry} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{name}}{[character] The name of the action.}
+\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{label}}{[character] The label for the action. This field should typically be marked for 
+    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
+    \code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{[character] The tooltip for the action. This field should typically be marked 
+    for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{callback}}{[GCallback] The function to call when the action is activated.}
+}
+
+}
+\item{\code{GtkToggleActionEntry}}{
+\code{GtkToggleActionEntry} structs are used with 
+\code{\link{gtkActionGroupAddToggleActions}} to construct toggle actions.
+\strong{\code{GtkToggleActionEntry} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{name}}{[character] The name of the action.}
+\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{label}}{[character] The label for the action. This field should typically be marked for 
+    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
+    \code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{[character] The tooltip for the action. This field should typically be marked 
+    for translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{callback}}{[GCallback] The function to call when the action is activated.}
+\item{\code{is_active}}{[logical] The initial state of the toggle action.}
+}
+
+}
+\item{\code{GtkRadioActionEntry}}{
+\code{GtkRadioActionEntry} structs are used with 
+\code{\link{gtkActionGroupAddRadioActions}} to construct groups of radio actions.
+\strong{\code{GtkRadioActionEntry} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{name}}{[character] The name of the action.}
+\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{label}}{[character] The label for the action. This field should typically be marked for 
+    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
+    \code{\link{gtkAcceleratorParse}}.}
+\item{\code{tooltip}}{[character] The tooltip for the action. This field should typically be marked for 
+    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+\item{\code{value}}{[integer] The value to set on the radio action. See \code{\link{gtkRadioActionGetCurrentValue}}.}
+}
+
+}
+}}
+\section{Convenient Construction}{\code{gtkActionGroup} is the equivalent of \code{\link{gtkActionGroupNew}}.}
+\section{Signals}{\describe{
+\item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
+The connect_proxy signal is emitted after connecting a proxy to 
+an action in the group. Note that the proxy may have been connected 
+to a different action before.
+  
+This is intended for simple customizations for which a custom action
+class would be too clumsy, e.g. showing tooltips for menuitems in the
+statusbar.
+  
+\code{\link{GtkUIManager}} proxies the signal and provides global notification 
+just before any action is connected to a proxy, which is probably more
+convenient to use.  
+
+  Since  2.4
+
+\describe{
+\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
+The disconnect_proxy signal is emitted after disconnecting a proxy 
+from an action in the group. 
+  
+\code{\link{GtkUIManager}} proxies the signal and provides global notification 
+just before any action is connected to a proxy, which is probably more
+convenient to use.  
+
+  Since  2.4
+
+\describe{
+\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{post-activate(action.group, action, user.data)}}{
+The post_activate signal is emitted just after the \code{action} in the
+\code{action.group} is activated
+  
+This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global
+notification just after any action is activated.  
+
+  Since  2.4
+
+\describe{
+\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{pre-activate(action.group, action, user.data)}}{
+The pre_activate signal is emitted just before the \code{action} in the
+\code{action.group} is activated
+  
+This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global
+notification just before any action is activated.  
+
+  Since  2.4
+
+\describe{
+\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+}}
+\section{Properties}{\describe{
+\item{\code{name} [character : Read / Write / Construct Only]}{
+
+A name for the action group.  Default value: NULL
+
+}
+\item{\code{sensitive} [logical : Read / Write]}{
+
+Whether the action group is enabled.  Default value: TRUE
+
+}
+\item{\code{visible} [logical : Read / Write]}{
+
+Whether the action group is visible.  Default value: TRUE
+
+}
+}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkActionGroup.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

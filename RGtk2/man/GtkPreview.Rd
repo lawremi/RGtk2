@@ -1,0 +1,68 @@
+\alias{GtkPreview}
+\alias{GtkPreviewInfo}
+\alias{gtkPreview}
+\name{GtkPreview}
+\title{GtkPreview}
+\description{A widget to display RGB or grayscale data}
+\usage{
+\link{gtkPreviewUninit}()
+\link{gtkPreviewNew}(type, show = TRUE)
+\link{gtkPreviewSize}(object, width, height)
+\link{gtkPreviewPut}(object, window, gc, srcx, srcy, destx, desty, width, height)
+\link{gtkPreviewDrawRow}(object, data, y, w)
+\link{gtkPreviewSetExpand}(object, expand)
+\link{gtkPreviewSetGamma}(gamma)
+\link{gtkPreviewSetColorCube}(nred.shades, ngreen.shades, nblue.shades, ngray.shades)
+\link{gtkPreviewSetInstallCmap}(install.cmap)
+\link{gtkPreviewSetReserved}(nreserved)
+\link{gtkPreviewSetDither}(object, dither)
+\link{gtkPreviewGetVisual}()
+\link{gtkPreviewGetCmap}()
+\link{gtkPreviewGetInfo}()
+\link{gtkPreviewReset}()
+gtkPreview(type, show = TRUE)
+}
+\details{The \code{\link{GtkPreview}} widget provides a simple interface 
+used to display images as RGB or grayscale data.
+It's deprecated; just use a \code{\link{GdkPixbuf}} displayed by a \code{\link{GtkImage}}, or
+perhaps a \code{\link{GtkDrawingArea}}. \code{\link{GtkPreview}} has no advantage over those 
+approaches.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkPreview}}
+\section{Structures}{\describe{
+\item{\code{GtkPreview}}{
+\strong{WARNING: \code{GtkPreview} is deprecated and should not be used in newly-written code.}
+The \code{\link{GtkPreview}} struct contains private data only, and
+should be accessed using the functions below.
+
+}
+\item{\code{GtkPreviewInfo}}{
+\strong{WARNING: \code{GtkPreviewInfo} is deprecated and should not be used in newly-written code.}
+Contains information about global properties
+of preview widgets.
+
+The \code{\link{GtkPreviewInfo}} struct contains the following fields.
+(These fields should be considered read-only. They should never be set by
+an application.)
+
+\tabular{ll}{
+\code{\link{GdkVisual}}   *visual; \tab the visual used by all previews. \cr
+\code{\link{GdkColormap}}   *cmap; \tab the colormap used by all previews. \cr
+gdouble gamma; \tab the gamma correction value used by all previews (See   \code{\link{gtkPreviewSetGamma}}  ). \cr
+}
+
+}
+}}
+\section{Convenient Construction}{\code{gtkPreview} is the equivalent of \code{\link{gtkPreviewNew}}.}
+\section{Interfaces}{GtkPreview implements
+ AtkImplementorIface.}
+\section{Properties}{\describe{\item{\code{expand} [logical : Read / Write]}{
+
+Whether the preview widget should take up the entire space it is allocated.  Default value: FALSE
+
+}}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPreview.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

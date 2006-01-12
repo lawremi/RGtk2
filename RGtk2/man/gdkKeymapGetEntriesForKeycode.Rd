@@ -1,0 +1,23 @@
+\alias{gdkKeymapGetEntriesForKeycode}
+\name{gdkKeymapGetEntriesForKeycode}
+\title{gdkKeymapGetEntriesForKeycode}
+\description{Returns the keyvals bound to \code{hardware.keycode}.
+The Nth \code{\link{GdkKeymapKey}} in \code{keys} is bound to the Nth
+keyval in \code{keyvals}.
+When a keycode is pressed by the user, the keyval from
+this list of entries is selected by considering the effective
+keyboard group and level. See \code{\link{gdkKeymapTranslateKeyboardState}}.}
+\usage{gdkKeymapGetEntriesForKeycode(object, hardware.keycode)}
+\arguments{
+\item{\code{object}}{[\code{\link{GdkKeymap}}]  a \code{\link{GdkKeymap}} or \code{NULL} to use the default keymap}
+\item{\code{hardware.keycode}}{[numeric]  a keycode}
+}
+\value{
+A list containing the following elements:
+\item{retval}{[logical]  \code{TRUE} if there were any entries}
+\item{\code{keys}}{[\code{\link{GdkKeymapKey}}]  return location for list of \code{\link{GdkKeymapKey}}, or NULL}
+\item{\code{keyvals}}{[numeric]  return location for list of keyvals, or NULL}
+\item{\code{n.entries}}{[integer]  length of \code{keys} and \code{keyvals}}
+}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

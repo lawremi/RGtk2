@@ -1,0 +1,10 @@
+\alias{pangoLayoutGetSingleParagraphMode}
+\name{pangoLayoutGetSingleParagraphMode}
+\title{pangoLayoutGetSingleParagraphMode}
+\description{Obtains the value set by \code{\link{pangoLayoutSetSingleParagraphMode}}.}
+\usage{pangoLayoutGetSingleParagraphMode(object)}
+\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\value{[logical]  \code{TRUE} if the layout does not break paragraphs at 
+paragraph separator characters}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

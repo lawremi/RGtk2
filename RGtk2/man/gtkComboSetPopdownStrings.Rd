@@ -1,0 +1,15 @@
+\alias{gtkComboSetPopdownStrings}
+\name{gtkComboSetPopdownStrings}
+\title{gtkComboSetPopdownStrings}
+\description{
+Convenience function to set all of the items in the popup list.
+(See the example above.)
+\strong{WARNING: \code{gtk_combo_set_popdown_strings} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+}
+\usage{gtkComboSetPopdownStrings(object, strings)}
+\arguments{
+\item{\code{object}}{[\code{\link{GtkCombo}}] a \code{\link{GtkCombo}}.}
+\item{\code{strings}}{[list] a list of strings, or \code{NULL} to clear the popup list}
+}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}

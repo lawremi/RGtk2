@@ -1,0 +1,177 @@
+\alias{GtkOldEditable}
+\alias{GtkTextFunction}
+\name{GtkOldEditable}
+\title{GtkOldEditable}
+\description{Base class for text-editing widgets}
+\usage{
+\link{gtkOldEditableClaimSelection}(object, claim, time = GDK_CURRENT_TIME)
+\link{gtkOldEditableChanged}(object)
+}
+\details{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
+in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkOldEditable
+                     +----GtkText}}
+\section{Structures}{\describe{\item{\code{GtkOldEditable}}{
+\strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.}
+
+
+}}}
+\section{User Functions}{\describe{\item{\code{GtkTextFunction(editable, time.)}}{
+
+
+\describe{
+\item{\code{editable}}{[\code{\link{GtkOldEditable}}] }
+\item{\code{time.}}{[numeric] }
+}
+
+}}}
+\section{Interfaces}{GtkOldEditable implements
+ AtkImplementorIface and  \code{\link{GtkEditable}}.}
+\section{Signals}{\describe{
+\item{\code{activate(oldeditable, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{copy-clipboard(oldeditable, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{cut-clipboard(oldeditable, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{kill-char(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{kill-line(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{kill-word(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-cursor(oldeditable, arg1, arg2, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{arg2}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-page(oldeditable, arg1, arg2, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{arg2}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-to-column(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-to-row(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{move-word(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{paste-clipboard(oldeditable, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{set-editable(oldeditable, arg1, user.data)}}{
+
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[logical] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+}}
+\section{Properties}{\describe{
+\item{\code{editable} [logical : Read / Write]}{
+
+  Default value: FALSE
+
+}
+\item{\code{text-position} [integer : Read / Write]}{
+
+  Default value: 0
+
+}
+}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkOldEditable.html}}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}
