@@ -4,7 +4,9 @@
 \description{
 This function is equivalent to \code{\link{gObjectSetData}},
 the \code{\link{GObject}} variant should be used instead.
-\strong{WARNING: \code{gdk_drawable_set_data} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_drawable_set_data} is deprecated and should not be used in newly-written code.  
+This function is equivalent to \code{\link{gObjectSetData}},
+the \code{\link{GObject}} variant should be used instead.  }
 }
 \usage{gdkDrawableSetData(object, key, data)}
 \arguments{

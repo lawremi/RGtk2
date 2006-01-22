@@ -3,7 +3,8 @@
 \name{GdkDisplay}
 \title{GdkDisplay}
 \description{Controls the keyboard/mouse pointer grabs and a set of   s}
-\usage{
+\usage{gdkDisplay(display.name)}
+\section{Methods and Functions}{
 \link{gdkDisplayOpen}(display.name)
 \link{gdkDisplayGetDefault}()
 \link{gdkDisplayGetName}(object)
@@ -37,9 +38,10 @@
 \link{gdkDisplayRequestSelectionNotification}(object, selection)
 \link{gdkDisplaySupportsClipboardPersistence}(object)
 \link{gdkDisplayStoreClipboard}(object, clipboard.window, targets)
-gdkDisplay(display.name)
 }
-\details{\code{\link{GdkDisplay}} objects purpose are two fold:
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkDisplay}}
+\section{Detailed Description}{\code{\link{GdkDisplay}} objects purpose are two fold:
 \itemize{
 \item To grab/ungrab keyboard focus and mouse pointer
 \item To manage and provide information about the \code{\link{GdkScreen}}(s) 
@@ -53,8 +55,6 @@ gdkDisplay(display.name)
   It is used to open and keep track of various \code{\link{GdkScreen}} objects currently 
   instanciated by the application. It is also used to grab and release the keyboard 
   and the mouse pointer.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkDisplay}}
 \section{Structures}{\describe{\item{\code{GdkDisplay}}{
 The \code{GdkDisplay} struct is the GDK representation
 of an X display. All its fields are private and should not be accessed directly. 

@@ -3,7 +3,8 @@
 \title{gtkCTreeExpand}
 \description{
 Expand one node.
-\strong{WARNING: \code{gtk_ctree_expand} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_expand} is deprecated and should not be used in newly-written code.  
+Expand one node.}
 }
 \usage{gtkCTreeExpand(object, node)}
 \arguments{

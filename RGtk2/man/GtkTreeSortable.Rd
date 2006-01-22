@@ -3,7 +3,7 @@
 \name{GtkTreeSortable}
 \title{GtkTreeSortable}
 \description{The interface for sortable models used by GtkTreeView}
-\usage{
+\section{Methods and Functions}{
 \link{gtkTreeSortableSortColumnChanged}(object)
 \link{gtkTreeSortableGetSortColumnId}(object)
 \link{gtkTreeSortableSetSortColumnId}(object, sort.column.id, order)
@@ -11,11 +11,13 @@
 \link{gtkTreeSortableSetDefaultSortFunc}(object, sort.func, user.data = NULL)
 \link{gtkTreeSortableHasDefaultSortFunc}(object)
 }
-\details{\code{\link{GtkTreeSortable}} is an interface to be implemented by tree models which
-support sorting. The \code{\link{GtkTreeView}} uses the methods provided by this interface
-to sort the model.}
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkTreeSortable}}
+\section{Implementations}{GtkTreeSortable is implemented by
+ \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
+\section{Detailed Description}{\code{\link{GtkTreeSortable}} is an interface to be implemented by tree models which
+support sorting. The \code{\link{GtkTreeView}} uses the methods provided by this interface
+to sort the model.}
 \section{Structures}{\describe{\item{\code{GtkTreeSortable}}{\emph{undocumented
 }}}}
 \section{User Functions}{\describe{\item{\code{GtkTreeIterCompareFunc(model, a, b, user.data)}}{
@@ -39,8 +41,6 @@ for the "price" column could be one which returns
 }
 
 }}}
-\section{Implementations}{GtkTreeSortable is implemented by
- \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
 \section{Signals}{\describe{\item{\code{sort-column-changed(treesortable, user.data)}}{
 
 

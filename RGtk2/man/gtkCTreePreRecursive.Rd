@@ -6,7 +6,11 @@ Recursively apply a function to all nodes of the tree at or below a certain
 node.
 The function is called for each node after it has been called
 for its parent.
-\strong{WARNING: \code{gtk_ctree_pre_recursive} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_pre_recursive} is deprecated and should not be used in newly-written code.  
+Recursively apply a function to all nodes of the tree at or below a certain
+node.
+The function is called for each node after it has been called
+for its parent.}
 }
 \usage{gtkCTreePreRecursive(object, node, func, data = NULL)}
 \arguments{

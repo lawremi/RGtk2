@@ -4,7 +4,7 @@
 \name{pango-PangoRenderer}
 \title{PangoRenderer}
 \description{Rendering driver base class}
-\usage{
+\section{Methods and Functions}{
 \link{pangoRendererDrawLayout}(object, layout, x, y)
 \link{pangoRendererDrawLayoutLine}(object, line, x, y)
 \link{pangoRendererDrawGlyphs}(object, font, glyphs, x, y)
@@ -20,7 +20,7 @@
 \link{pangoRendererSetMatrix}(object, matrix)
 \link{pangoRendererGetMatrix}(object)
 }
-\details{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
+\section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
 rendering a PangoLayout or PangoLayoutLine. By subclassing
 PangoRenderer and overriding operations such as \code{draw.glyphs} and
 \code{draw.rectangle}, renderers for particular font backends and

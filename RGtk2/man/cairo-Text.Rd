@@ -5,7 +5,7 @@
 \name{cairo-Text}
 \title{Text}
 \description{Rendering text and sets of glyphs}
-\usage{
+\section{Methods and Functions}{
 \link{cairoSelectFontFace}(cr, family, slant, weight)
 \link{cairoSetFontSize}(cr, size)
 \link{cairoSetFontMatrix}(cr, matrix)

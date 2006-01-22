@@ -4,7 +4,7 @@
 \name{cairo-cairo-surface-t}
 \title{cairo_surface_t}
 \description{Base class for surfaces}
-\usage{
+\section{Methods and Functions}{
 \link{cairoSurfaceCreateSimilar}(other, content, width, height)
 \link{cairoSurfaceDestroy}(surface)
 \link{cairoSurfaceFinish}(surface)

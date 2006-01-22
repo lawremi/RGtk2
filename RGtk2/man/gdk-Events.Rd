@@ -5,7 +5,7 @@
 \name{gdk-Events}
 \title{Events}
 \description{Functions for handling events from the window system}
-\usage{
+\section{Methods and Functions}{
 \link{gdkEventsPending}()
 \link{gdkEventPeek}()
 \link{gdkEventGet}()
@@ -26,7 +26,7 @@
 \link{gdkEventGetScreen}(object)
 \link{gdkSettingGet}(name)
 }
-\details{This section describes functions dealing with events from the window system.
+\section{Detailed Description}{This section describes functions dealing with events from the window system.
   
 In GTK+ applications the events are handled automatically in
 \code{\link{gtkMainDoEvent}} and passed on to the appropriate widgets, so these

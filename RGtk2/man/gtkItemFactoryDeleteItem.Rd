@@ -4,7 +4,9 @@
 \description{
 Deletes the menu item which was created for \code{path} by the given
 item factory.
-\strong{WARNING: \code{gtk_item_factory_delete_item} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_delete_item} is deprecated and should not be used in newly-written code.  
+Deletes the menu item which was created for \code{path} by the given
+item factory.  }
 }
 \usage{gtkItemFactoryDeleteItem(object, path)}
 \arguments{

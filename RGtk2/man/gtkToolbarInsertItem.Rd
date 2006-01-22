@@ -4,7 +4,12 @@
 \description{
 Inserts a new item into the toolbar. You must specify the position in the
 toolbar where it will be inserted.
-\strong{WARNING: \code{gtk_toolbar_insert_item} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_insert_item} is deprecated and should not be used in newly-written code.  
+Inserts a new item into the toolbar. You must specify the position in the
+toolbar where it will be inserted.
+  
+\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 }
 \usage{gtkToolbarInsertItem(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)}
 \arguments{

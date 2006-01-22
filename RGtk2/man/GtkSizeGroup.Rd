@@ -4,7 +4,8 @@
 \name{GtkSizeGroup}
 \title{GtkSizeGroup}
 \description{Grouping widgets so they request the same size}
-\usage{
+\usage{gtkSizeGroup(mode = NULL)}
+\section{Methods and Functions}{
 \link{gtkSizeGroupNew}(mode = NULL)
 \link{gtkSizeGroupSetMode}(object, mode)
 \link{gtkSizeGroupGetMode}(object)
@@ -12,9 +13,10 @@
 \link{gtkSizeGroupGetIgnoreHidden}(object)
 \link{gtkSizeGroupAddWidget}(object, widget)
 \link{gtkSizeGroupRemoveWidget}(object, widget)
-gtkSizeGroup(mode = NULL)
 }
-\details{\code{\link{GtkSizeGroup}} provides a mechanism for grouping a number of widgets
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkSizeGroup}}
+\section{Detailed Description}{\code{\link{GtkSizeGroup}} provides a mechanism for grouping a number of widgets
 together so they all request the same amount of space.  This is
 typically useful when you want a column of widgets to have the same
 size, but you can't use a \code{\link{GtkTable}} widget.
@@ -47,8 +49,6 @@ of type \code{GTK_SIZE_GROUP_HORIZONTAL} or \code{GTK_SIZE_GROUP_BOTH}, and the
 vertical size from the vertical requisition of all widgets that can be
 reached from the widget by a chain of size groups of type
 \code{GTK_SIZE_GROUP_VERTICAL} or \code{GTK_SIZE_GROUP_BOTH}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkSizeGroup}}
 \section{Structures}{\describe{\item{\code{GtkSizeGroup}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkSizeGroup} is the equivalent of \code{\link{gtkSizeGroupNew}}.}

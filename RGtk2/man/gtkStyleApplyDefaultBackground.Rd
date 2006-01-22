@@ -1,6 +1,8 @@
 \alias{gtkStyleApplyDefaultBackground}
 \name{gtkStyleApplyDefaultBackground}
 \title{gtkStyleApplyDefaultBackground}
+\description{\emph{undocumented
+}}
 \usage{gtkStyleApplyDefaultBackground(object, window, set.bg, state.type, area = NULL, x, y, width, height)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkStyle}}] }

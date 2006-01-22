@@ -3,11 +3,19 @@
 \name{GtkInputDialog}
 \title{GtkInputDialog}
 \description{Configure devices for the XInput extension}
-\usage{
-\link{gtkInputDialogNew}(show = TRUE)
-gtkInputDialog(show = TRUE)
-}
-\details{ NOTE this widget is considered too specialized/little-used for
+\usage{gtkInputDialog(show = TRUE)}
+\section{Methods and Functions}{\link{gtkInputDialogNew}(show = TRUE)}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkInputDialog}}
+\section{Interfaces}{GtkInputDialog implements
+ AtkImplementorIface.}
+\section{Detailed Description}{ NOTE this widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
  widget does work and is useful in some applications; it's just not
@@ -29,19 +37,9 @@ the dialog, and one for saving the changes.
 No actions are bound to these by default.
 The changes that the user makes take effect
 immediately. }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkInputDialog}}
 \section{Structures}{\describe{\item{\code{GtkInputDialog}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkInputDialog} is the equivalent of \code{\link{gtkInputDialogNew}}.}
-\section{Interfaces}{GtkInputDialog implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{disable-device(inputdialog, deviceid, user.data)}}{
 This signal is emitted when the user changes the 

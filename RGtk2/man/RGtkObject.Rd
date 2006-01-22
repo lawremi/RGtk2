@@ -1,7 +1,7 @@
 \name{RGtkObject}
 \alias{RGtkObject}
-\alias{"[[.RGtkObject"}
-\alias{"$.RGtkObject"}
+\alias{[[.RGtkObject}
+\alias{$.RGtkObject}
 \title{The base object of RGtk2}
 \description{
 \code{RGtkObject} identifies an external object as being owned by \link{RGtk}.
@@ -11,7 +11,7 @@ Practically, it allows convenience operators to be specified for any external ob
 "[[.RGtkObject"(x, field)
 "$.RGtkObject"(x, method)
 }
-\parameters{
+\arguments{
 \item{x}{The \code{RGtkObject} to which the method or field belongs}
 \item{field}{The name of the field whose value will be retrieved}
 \item{method}{The name of the method that will be expanded to a function}

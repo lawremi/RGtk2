@@ -3,7 +3,8 @@
 \name{GtkCombo}
 \title{GtkCombo}
 \description{A text entry field with a dropdown list}
-\usage{
+\usage{gtkCombo(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkComboNew}(show = TRUE)
 \link{gtkComboSetPopdownStrings}(object, strings)
 \link{gtkComboSetValueInList}(object, val, ok.if.empty)
@@ -12,9 +13,17 @@
 \link{gtkComboSetCaseSensitive}(object, val)
 \link{gtkComboSetItemString}(object, item, item.value)
 \link{gtkComboDisableActivate}(object)
-gtkCombo(show = TRUE)
 }
-\details{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkHBox}
+                                 +----GtkCombo}}
+\section{Interfaces}{GtkCombo implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
 list. The drop-down list is displayed when the user clicks on a small arrow
 button to the right of the entry field.
   
@@ -64,15 +73,11 @@ As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\li
   # Now we simply add the item to the combo's list.
   combo[["list"]]$add(item)
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkCombo}}
 \section{Structures}{\describe{\item{\code{GtkCombo}}{
-\strong{WARNING: \code{GtkCombo} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{GtkCombo} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
+The \code{\link{GtkFixedChild}} struct contains the following fields.
+(These fields should be considered read-only. They should never be set by
+an application.)}
 The \code{\link{GtkFixedChild}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
@@ -84,8 +89,6 @@ an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkCombo} is the equivalent of \code{\link{gtkComboNew}}.}
-\section{Interfaces}{GtkCombo implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{allow-empty} [logical : Read / Write]}{
 

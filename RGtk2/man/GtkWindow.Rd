@@ -3,7 +3,8 @@
 \name{GtkWindow}
 \title{GtkWindow}
 \description{Toplevel which can contain other widgets}
-\usage{
+\usage{gtkWindow(type = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkWindowNew}(type = NULL, show = TRUE)
 \link{gtkWindowSetTitle}(object, title)
 \link{gtkWindowSetWmclass}(object, wmclass.name, wmclass.class)
@@ -94,7 +95,6 @@
 \link{gtkWindowSetIconFromFile}(object, filename)
 \link{gtkWindowSetIconName}(object, name = NULL)
 \link{gtkWindowSetAutoStartupNotification}(setting)
-gtkWindow(type = NULL, show = TRUE)
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -104,6 +104,8 @@ gtkWindow(type = NULL, show = TRUE)
                            +----GtkWindow
                                  +----\link{GtkDialog}
                                  +----\link{GtkPlug}}}
+\section{Interfaces}{GtkWindow implements
+ AtkImplementorIface.}
 \section{Structures}{\describe{\item{\code{GtkWindow}}{
 
 
@@ -146,8 +148,6 @@ gtkWindow(type = NULL, show = TRUE)
 
 }}}
 \section{Convenient Construction}{\code{gtkWindow} is the equivalent of \code{\link{gtkWindowNew}}.}
-\section{Interfaces}{GtkWindow implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{activate-default(window, user.data)}}{
 

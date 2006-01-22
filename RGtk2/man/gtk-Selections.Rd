@@ -5,7 +5,8 @@
 \name{gtk-Selections}
 \title{Selections}
 \description{Functions for handling inter-process communication via selections}
-\usage{
+\usage{gtkTargetEntry(target, flags, info)}
+\section{Methods and Functions}{
 \link{gtkTargetListNew}(targets)
 \link{gtkTargetListAdd}(object, target, flags, info)
 \link{gtkTargetListAddTable}(object, targets)
@@ -33,9 +34,8 @@
 \link{gtkSelectionRemoveAll}(object)
 \link{gtkSelectionClear}(object, event)
 \link{gtkSelectionDataCopy}(object)
-gtkTargetEntry(target, flags, info)
 }
-\details{The selection mechanism provides the basis for different types
+\section{Detailed Description}{The selection mechanism provides the basis for different types
 of communication between processes. In particular, drag and drop and
 \code{\link{GtkClipboard}} work via selections. You will very seldom or
 never need to use most of the functions in this section directly;

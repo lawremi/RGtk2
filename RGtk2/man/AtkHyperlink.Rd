@@ -2,7 +2,7 @@
 \name{AtkHyperlink}
 \title{AtkHyperlink}
 \description{An ATK object which encapsulates a link or set of links in a hypertext document.}
-\usage{
+\section{Methods and Functions}{
 \link{atkHyperlinkGetUri}(object, i)
 \link{atkHyperlinkGetObject}(object, i)
 \link{atkHyperlinkGetEndIndex}(object)
@@ -12,16 +12,16 @@
 \link{atkHyperlinkGetNAnchors}(object)
 \link{atkHyperlinkIsSelectedLink}(object)
 }
-\details{An ATK object which encapsulates a link or set of links in a hypertext document.
-It implements the AtkAction interface.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkHyperlink}}
+\section{Interfaces}{AtkHyperlink implements
+ \code{\link{AtkAction}}.}
+\section{Detailed Description}{An ATK object which encapsulates a link or set of links in a hypertext document.
+It implements the AtkAction interface.}
 \section{Structures}{\describe{\item{\code{AtkHyperlink}}{
 The AtkHyperlink structure should not be accessed directly.
 
 }}}
-\section{Interfaces}{AtkHyperlink implements
- \code{\link{AtkAction}}.}
 \section{Signals}{\describe{\item{\code{link-activated(atkhyperlink, user.data)}}{
 The signal link-activated is emitted when a link is activated.
 

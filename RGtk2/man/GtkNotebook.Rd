@@ -3,7 +3,8 @@
 \name{GtkNotebook}
 \title{GtkNotebook}
 \description{A tabbed notebook container}
-\usage{
+\usage{gtkNotebook(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkNotebookNew}(show = TRUE)
 \link{gtkNotebookAppendPage}(object, child, tab.label = NULL)
 \link{gtkNotebookAppendPageMenu}(object, child, tab.label = NULL, menu.label = NULL)
@@ -44,9 +45,15 @@
 \link{gtkNotebookGetTabLabelText}(object, child)
 \link{gtkNotebookGetTabPos}(object)
 \link{gtkNotebookSetCurrentPage}(object, page.num)
-gtkNotebook(show = TRUE)
 }
-\details{The \code{\link{GtkNotebook}} widget is a \code{\link{GtkContainer}} whose children are pages that
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkNotebook}}
+\section{Interfaces}{GtkNotebook implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkNotebook}} widget is a \code{\link{GtkContainer}} whose children are pages that
 can be switched between using tab labels along one edge.
   
 There are many configuration options for \code{\link{GtkNotebook}}. Among other
@@ -56,11 +63,6 @@ tabs to fit the noteobook should be made bigger or scrolling
 arrows added (see gtk_notebook_set_scrollable), and whether there
 will be a popup menu allowing the users to switch pages.
 (see \code{gtkNotebookEnablePopup()}, \code{gtkNoteobookDisablePopup()})}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkNotebook}}
 \section{Structures}{\describe{\item{\code{GtkNotebook}}{
 
 
@@ -68,8 +70,6 @@ will be a popup menu allowing the users to switch pages.
 
 }}}
 \section{Convenient Construction}{\code{gtkNotebook} is the equivalent of \code{\link{gtkNotebookNew}}.}
-\section{Interfaces}{GtkNotebook implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{change-current-page(notebook, arg1, user.data)}}{
 

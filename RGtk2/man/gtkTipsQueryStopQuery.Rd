@@ -3,7 +3,8 @@
 \title{gtkTipsQueryStopQuery}
 \description{
 Stops a query.
-\strong{WARNING: \code{gtk_tips_query_stop_query} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_tips_query_stop_query} is deprecated and should not be used in newly-written code.  
+Stops a query.}
 }
 \usage{gtkTipsQueryStopQuery(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTipsQuery}}] a \code{\link{GtkTipsQuery}}.}}

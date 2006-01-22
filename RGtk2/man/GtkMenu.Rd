@@ -5,7 +5,8 @@
 \name{GtkMenu}
 \title{GtkMenu}
 \description{A menu widget}
-\usage{
+\usage{gtkMenu(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkMenuNew}(show = TRUE)
 \link{gtkMenuSetScreen}(object, screen = NULL)
 \link{gtkMenuReorderChild}(object, child, position)
@@ -27,9 +28,16 @@
 \link{gtkMenuGetAttachWidget}(object)
 \link{gtkMenuGetForAttachWidget}(object)
 \link{gtkMenuSetMonitor}(object, monitor.num)
-gtkMenu(show = TRUE)
 }
-\details{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkMenuShell}
+                           +----GtkMenu}}
+\section{Interfaces}{GtkMenu implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
 a list of \code{\link{GtkMenuItem}} objects which can be navigated and activated by the 
 user to perform application functions.
   
@@ -72,12 +80,6 @@ my_popup_handler <- function(widget, event)
 }
 
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkMenuShell}
-                           +----GtkMenu}}
 \section{Structures}{\describe{\item{\code{GtkMenu}}{
 The \code{\link{GtkMenu}} struct contains private data only, and
 should be accessed using the functions below.
@@ -114,8 +116,6 @@ will be called when the menu is later detached from the widget.
 
 }
 }}
-\section{Interfaces}{GtkMenu implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{move-scroll(menu, arg1, user.data)}}{
 
 

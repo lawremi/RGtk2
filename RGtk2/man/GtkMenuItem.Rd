@@ -3,7 +3,8 @@
 \name{GtkMenuItem}
 \title{GtkMenuItem}
 \description{The widget used for item in menus}
-\usage{
+\usage{gtkMenuItem(label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkMenuItemNew}(show = TRUE)
 \link{gtkMenuItemNewWithLabel}(label, show = TRUE)
 \link{gtkMenuItemNewWithMnemonic}(label, show = TRUE)
@@ -18,14 +19,7 @@
 \link{gtkMenuItemToggleSizeAllocate}(object, allocation)
 \link{gtkMenuItemGetRightJustified}(object)
 \link{gtkMenuItemGetSubmenu}(object)
-gtkMenuItem(label, show = TRUE)
 }
-\details{The \code{\link{GtkMenuItem}} widget and the derived widgets are the only valid
-childs for menus. Their function is to correctly handle highlighting,
-alignment, events and submenus.
-  
-As it derives from \code{\link{GtkBin}} it can hold any valid child widget, altough
-only a few are really useful.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -37,11 +31,17 @@ only a few are really useful.}
                                        +----\link{GtkImageMenuItem}
                                        +----\link{GtkSeparatorMenuItem}
                                        +----\link{GtkTearoffMenuItem}}}
+\section{Interfaces}{GtkMenuItem implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkMenuItem}} widget and the derived widgets are the only valid
+childs for menus. Their function is to correctly handle highlighting,
+alignment, events and submenus.
+  
+As it derives from \code{\link{GtkBin}} it can hold any valid child widget, altough
+only a few are really useful.}
 \section{Structures}{\describe{\item{\code{GtkMenuItem}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkMenuItem} is the result of collapsing the constructors of \code{GtkMenuItem} (\code{\link{gtkMenuItemNew}}, \code{\link{gtkMenuItemNewWithLabel}}, \code{\link{gtkMenuItemNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkMenuItem implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{activate(menuitem, user.data)}}{
 Emitted when the item is activated.

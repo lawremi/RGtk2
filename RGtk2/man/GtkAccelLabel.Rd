@@ -3,16 +3,24 @@
 \name{GtkAccelLabel}
 \title{GtkAccelLabel}
 \description{A label which displays an accelerator key on the right of the text}
-\usage{
+\usage{gtkAccelLabel(string = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkAccelLabelNew}(string = NULL, show = TRUE)
 \link{gtkAccelLabelSetAccelClosure}(object, accel.closure)
 \link{gtkAccelLabelGetAccelWidget}(object)
 \link{gtkAccelLabelSetAccelWidget}(object, accel.widget)
 \link{gtkAccelLabelGetAccelWidth}(object)
 \link{gtkAccelLabelRefetch}(object)
-gtkAccelLabel(string = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkAccelLabel}} widget is a subclass of \code{\link{GtkLabel}} that also displays an
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkMisc}
+                     +----\link{GtkLabel}
+                           +----GtkAccelLabel}}
+\section{Interfaces}{GtkAccelLabel implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkAccelLabel}} widget is a subclass of \code{\link{GtkLabel}} that also displays an
 accelerator key on the right of the label text, e.g. 'Ctl+S'.
 It is commonly used in menus to show the keyboard short-cuts for commands.
   
@@ -53,20 +61,12 @@ though it is almost always used to display just one accelerator key.
   save_item$addAccelerator("activate", accel_group, .gdkS, 
   	"control-mask", "visible")
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----\link{GtkLabel}
-                           +----GtkAccelLabel}}
 \section{Structures}{\describe{\item{\code{GtkAccelLabel}}{
 The \code{\link{GtkAccelLabel}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkAccelLabel} is the equivalent of \code{\link{gtkAccelLabelNew}}.}
-\section{Interfaces}{GtkAccelLabel implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{accel-closure} [\code{\link{GClosure}} : Read / Write]}{
 

@@ -164,14 +164,14 @@ function(sig)
 }
 
 emitSignal <- gSignalEmit <-
-function(obj, signal, ..., detail = NULL, .flush = TRUE)
+function(obj, signal, ..., detail = NULL)
 {
   checkPtrType(obj, "GObject")
   args <- list(...)
   signal <- as.character(signal)
   if (!is.null(detail))
 		signal <- paste(signal, detail, sep="::")
-  .RGtkCall("R_gSignalEmit", obj, signal, args, .flush = .flush)
+  .RGtkCall("R_gSignalEmit", obj, signal, args)
 }
 
 # GObject properties

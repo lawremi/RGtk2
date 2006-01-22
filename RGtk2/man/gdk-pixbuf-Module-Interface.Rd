@@ -8,7 +8,7 @@
 \name{gdk-pixbuf-Module-Interface}
 \title{Module Interface}
 \description{Extending }
-\usage{
+\section{Methods and Functions}{
 \link{gdkPixbufSetOption}(object, key, value)
 \link{gdkPixbufGetFormats}()
 \link{gdkPixbufFormatGetName}(object)
@@ -21,7 +21,7 @@
 \link{gdkPixbufFormatSetDisabled}(object, disabled)
 \link{gdkPixbufFormatGetLicense}(object)
 }
-\details{If \command{gdk-pixbuf} has been compiled with GModule support, it can be extended by
+\section{Detailed Description}{If \command{gdk-pixbuf} has been compiled with GModule support, it can be extended by
 modules which can load (and perhaps also save) new image and animation
 formats. Each loadable module must export a
 \code{GdkPixbufModuleFillInfoFunc} function named \code{fillInfo} and

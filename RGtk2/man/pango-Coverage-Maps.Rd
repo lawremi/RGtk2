@@ -4,7 +4,7 @@
 \name{pango-Coverage-Maps}
 \title{Coverage Maps}
 \description{Unicode character range coverage storage}
-\usage{
+\section{Methods and Functions}{
 \link{pangoCoverageNew}()
 \link{pangoCoverageCopy}(object)
 \link{pangoCoverageGet}(object, index)
@@ -13,7 +13,7 @@
 \link{pangoCoverageToBytes}(object)
 \link{pangoCoverageFromBytes}(bytes)
 }
-\details{It is often necessary in Pango to determine if a particular font can
+\section{Detailed Description}{It is often necessary in Pango to determine if a particular font can
 represent a particular character, and also how well it can represent
 that character. The \code{\link{PangoCoverage}} is a data structure that is used
 to represent that information.}

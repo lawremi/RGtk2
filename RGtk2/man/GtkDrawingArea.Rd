@@ -3,12 +3,19 @@
 \name{GtkDrawingArea}
 \title{GtkDrawingArea}
 \description{A widget for custom user interface elements}
-\usage{
+\usage{gtkDrawingArea(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkDrawingAreaNew}(show = TRUE)
 \link{gtkDrawingAreaSize}(object, width, height)
-gtkDrawingArea(show = TRUE)
 }
-\details{The \code{\link{GtkDrawingArea}} widget is used for creating custom user interface
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkDrawingArea
+                     +----\link{GtkCurve}}}
+\section{Interfaces}{GtkDrawingArea implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkDrawingArea}} widget is used for creating custom user interface
 elements. It's essentially a blank widget; you can draw on
 \code{widget->window}. After creating a drawing area,
 the application may want to connect to:
@@ -66,19 +73,12 @@ should probably draw some user-visible indication that the drawing
 area is focused. Use the \code{gtkHasFocus()} function in your expose event
 handler to decide whether to draw the focus indicator. See
 \code{\link{gtkPaintFocus}} for one way to draw focus.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkDrawingArea
-                     +----\link{GtkCurve}}}
 \section{Structures}{\describe{\item{\code{GtkDrawingArea}}{
 The \code{\link{GtkDrawingArea}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkDrawingArea} is the equivalent of \code{\link{gtkDrawingAreaNew}}.}
-\section{Interfaces}{GtkDrawingArea implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkDrawingArea.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{

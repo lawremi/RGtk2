@@ -3,19 +3,21 @@
 \name{GtkOldEditable}
 \title{GtkOldEditable}
 \description{Base class for text-editing widgets}
-\usage{
+\section{Methods and Functions}{
 \link{gtkOldEditableClaimSelection}(object, claim, time = GDK_CURRENT_TIME)
 \link{gtkOldEditableChanged}(object)
 }
-\details{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----GtkOldEditable
                      +----GtkText}}
+\section{Interfaces}{GtkOldEditable implements
+ AtkImplementorIface and  \code{\link{GtkEditable}}.}
+\section{Detailed Description}{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
+in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \section{Structures}{\describe{\item{\code{GtkOldEditable}}{
-\strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.  }
 
 
 }}}
@@ -28,8 +30,6 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 }}}
-\section{Interfaces}{GtkOldEditable implements
- AtkImplementorIface and  \code{\link{GtkEditable}}.}
 \section{Signals}{\describe{
 \item{\code{activate(oldeditable, user.data)}}{
 

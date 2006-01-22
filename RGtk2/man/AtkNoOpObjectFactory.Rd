@@ -3,16 +3,14 @@
 \name{AtkNoOpObjectFactory}
 \title{AtkNoOpObjectFactory}
 \description{The AtkObjectFactory which creates an AtkNoOpObject.}
-\usage{
-\link{atkNoOpObjectFactoryNew}()
-atkNoOpObjectFactory()
-}
-\details{The AtkObjectFactory which creates an AtkNoOpObject. An instance of this is
-created by an AtkRegistry if no factory type has not been specified to
-create an accessible object of a particular type.}
+\usage{atkNoOpObjectFactory()}
+\section{Methods and Functions}{\link{atkNoOpObjectFactoryNew}()}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{AtkObjectFactory}
          +----AtkNoOpObjectFactory}}
+\section{Detailed Description}{The AtkObjectFactory which creates an AtkNoOpObject. An instance of this is
+created by an AtkRegistry if no factory type has not been specified to
+create an accessible object of a particular type.}
 \section{Structures}{\describe{\item{\code{AtkNoOpObjectFactory}}{
 The AtkNoOpObjectFactory structure should not be accessed directly.
 

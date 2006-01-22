@@ -16,7 +16,7 @@
 \name{pango-Fonts}
 \title{Fonts}
 \description{Structures representing abstract fonts}
-\usage{
+\section{Methods and Functions}{
 \link{pangoFontDescriptionNew}()
 \link{pangoFontDescriptionCopy}(object)
 \link{pangoFontDescriptionCopyStatic}(object)
@@ -40,7 +40,6 @@
 \link{pangoFontDescriptionGetSetFields}(object)
 \link{pangoFontDescriptionUnsetFields}(object, to.unset)
 \link{pangoFontDescriptionMerge}(object, desc.to.merge, replace.existing)
-\link{pangoFontDescriptionMergeStatic}(object, desc.to.merge, replace.existing)
 \link{pangoFontDescriptionBetterMatch}(object, old.match = NULL, new.match)
 \link{pangoFontDescriptionFromString}(str)
 \link{pangoFontDescriptionToString}(object)
@@ -72,12 +71,6 @@
 \link{pangoFontsetGetMetrics}(object)
 \link{pangoFontsetForeach}(object, func, data)
 }
-\details{Pango supports a flexible architecture where a
-particular rendering architecture can supply an
-implementation of fonts. The \code{\link{PangoFont}} structure
-represents an abstract rendering-system-indepent font.
-Pango provides routines to list available fonts, and
-to load a font of a given description.}
 \section{Hierarchy}{\preformatted{
   \link{GObject}
    +----PangoFont
@@ -96,6 +89,14 @@ to load a font of a given description.}
    +----\link{PangoFontset}
          +----PangoFontsetSimple
 }}
+\section{Interface Derivations}{PangoFontMap is required by
+ \code{\link{PangoCairoFontMap}}.}
+\section{Detailed Description}{Pango supports a flexible architecture where a
+particular rendering architecture can supply an
+implementation of fonts. The \code{\link{PangoFont}} structure
+represents an abstract rendering-system-indepent font.
+Pango provides routines to list available fonts, and
+to load a font of a given description.}
 \section{Structures}{\describe{
 \item{\code{PangoFontDescription}}{
 The \code{\link{PangoFontDescription}} structure represents the description
@@ -257,8 +258,6 @@ the fonts in a fontset.
 }
 
 }}}
-\section{Interface Derivations}{PangoFontMap is required by
- \code{\link{PangoCairoFontMap}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

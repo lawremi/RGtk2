@@ -3,7 +3,8 @@
 \name{GdkPixbufLoader}
 \title{GdkPixbufLoader}
 \description{Application-driven progressive image loading.}
-\usage{
+\usage{gdkPixbufLoader(image.type, mime.type)}
+\section{Methods and Functions}{
 \link{gdkPixbufLoaderNew}()
 \link{gdkPixbufLoaderNewWithType}(image.type)
 \link{gdkPixbufLoaderNewWithMimeType}(mime.type)
@@ -13,9 +14,10 @@
 \link{gdkPixbufLoaderGetPixbuf}(object)
 \link{gdkPixbufLoaderGetAnimation}(object)
 \link{gdkPixbufLoaderClose}(object)
-gdkPixbufLoader(image.type, mime.type)
 }
-\details{    \code{\link{GdkPixbufLoader}} provides a way for applications to drive the
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkPixbufLoader}}
+\section{Detailed Description}{    \code{\link{GdkPixbufLoader}} provides a way for applications to drive the
     process of loading an image, by letting them send the image data
     directly to the loader instead of having the loader read the data
     from a file.  Applications can use this functionality instead of
@@ -56,8 +58,6 @@ gdkPixbufLoader(image.type, mime.type)
       to get the \code{\link{GdkPixbufAnimation}} struct and \code{\link{gdkPixbufAnimationGetIter}}
       to get an \code{\link{GdkPixbufAnimationIter}} for displaying it. 
     }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkPixbufLoader}}
 \section{Structures}{\describe{\item{\code{GdkPixbufLoader}}{
 The \code{GdkPixbufLoader} struct contains only private
 fields. 

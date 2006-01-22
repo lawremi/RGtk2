@@ -3,7 +3,8 @@
 \title{gtkCTreeMove}
 \description{
 Move a node in the tree to another location.
-\strong{WARNING: \code{gtk_ctree_move} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_move} is deprecated and should not be used in newly-written code.  
+Move a node in the tree to another location.}
 }
 \usage{gtkCTreeMove(object, node, new.parent = NULL, new.sibling = NULL)}
 \arguments{

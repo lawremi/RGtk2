@@ -5,15 +5,25 @@
 \name{GtkMessageDialog}
 \title{GtkMessageDialog}
 \description{A convenient message window}
-\usage{
+\usage{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkMessageDialogNew}(parent = NULL, flags, type, buttons, ..., show = TRUE)
 \link{gtkMessageDialogNewWithMarkup}(parent, flags, type, buttons, ..., show = TRUE)
 \link{gtkMessageDialogSetMarkup}(object, str)
 \link{gtkMessageDialogFormatSecondaryText}(object, ...)
 \link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)
-gtkMessageDialog(parent, flags, buttons, ..., types, type, show = TRUE)
 }
-\details{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkMessageDialog}}
+\section{Interfaces}{GtkMessageDialog implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
 message (Error, Question, etc.) alongside some message text. It's simply a 
 convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}} 
 from \code{\link{GtkDialog}} without too much effort, but \code{\link{GtkMessageDialog}} saves typing.
@@ -41,14 +51,6 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
  # Destroy the dialog when the user responds to it (e.g. clicks a button)
  gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkMessageDialog}}
 \section{Structures}{\describe{\item{\code{GtkMessageDialog}}{
 
 
@@ -87,8 +89,6 @@ then call \code{\link{gtkDialogAddButtons}}.
 
 }
 }}
-\section{Interfaces}{GtkMessageDialog implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{buttons} [\code{\link{GtkButtonsType}} : Write / Construct Only]}{
 

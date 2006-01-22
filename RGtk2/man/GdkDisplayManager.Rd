@@ -2,18 +2,18 @@
 \name{GdkDisplayManager}
 \title{GdkDisplayManager}
 \description{Maintains a list of all open   s}
-\usage{
+\section{Methods and Functions}{
 \link{gdkDisplayManagerGet}()
 \link{gdkDisplayManagerGetDefaultDisplay}(object)
 \link{gdkDisplayManagerSetDefaultDisplay}(object, display)
 \link{gdkDisplayManagerListDisplays}(object)
 \link{gdkDisplayGetCorePointer}(object)
 }
-\details{The purpose of the \code{\link{GdkDisplayManager}} singleton object is to offer
-notification when displays appear or disappear or the default display 
-changes.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkDisplayManager}}
+\section{Detailed Description}{The purpose of the \code{\link{GdkDisplayManager}} singleton object is to offer
+notification when displays appear or disappear or the default display 
+changes.}
 \section{Structures}{\describe{\item{\code{GdkDisplayManager}}{
 The \code{GdkDisplayManager} struct has no interesting 
 fields.

@@ -3,15 +3,24 @@
 \name{GtkVButtonBox}
 \title{GtkVButtonBox}
 \description{A container for arranging buttons vertically}
-\usage{
+\usage{gtkVButtonBox(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkVButtonBoxNew}(show = TRUE)
 \link{gtkVButtonBoxGetSpacingDefault}()
 \link{gtkVButtonBoxSetSpacingDefault}(spacing)
 \link{gtkVButtonBoxGetLayoutDefault}()
 \link{gtkVButtonBoxSetLayoutDefault}(layout)
-gtkVButtonBox(show = TRUE)
 }
-\details{A button box should be used to provide a consistent layout of buttons
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkButtonBox}
+                                 +----GtkVButtonBox}}
+\section{Interfaces}{GtkVButtonBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A button box should be used to provide a consistent layout of buttons
 throughout your application. The layout/spacing can be altered by the
 programmer, or if desired, by the user to alter the 'feel' of a
 program to a small degree.
@@ -28,20 +37,11 @@ on it.
 The spacing between buttons can be set with \code{\link{gtkBoxSetSpacing}}. The
 arrangement and layout of the buttons can be changed with
 \code{\link{gtkButtonBoxSetLayout}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkButtonBox}
-                                 +----GtkVButtonBox}}
 \section{Structures}{\describe{\item{\code{GtkVButtonBox}}{
 GtkVButtonBox does not contain any public fields.
 
 }}}
 \section{Convenient Construction}{\code{gtkVButtonBox} is the equivalent of \code{\link{gtkVButtonBoxNew}}.}
-\section{Interfaces}{GtkVButtonBox implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkVButtonBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

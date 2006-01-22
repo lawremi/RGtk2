@@ -3,7 +3,8 @@
 \title{gtkCTreeNodeSetCellStyle}
 \description{
 Set the style of an individual cell.
-\strong{WARNING: \code{gtk_ctree_node_set_cell_style} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_node_set_cell_style} is deprecated and should not be used in newly-written code.  
+Set the style of an individual cell.}
 }
 \usage{gtkCTreeNodeSetCellStyle(object, node, column, style)}
 \arguments{

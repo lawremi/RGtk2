@@ -3,13 +3,13 @@
 \name{cairo-Image-Surfaces}
 \title{Image Surfaces}
 \description{Rendering to memory buffers}
-\usage{
+\section{Methods and Functions}{
 \link{cairoImageSurfaceCreate}(format, width, height)
 \link{cairoImageSurfaceCreateForData}(data, format, width, height, stride)
 \link{cairoImageSurfaceGetWidth}(surface)
 \link{cairoImageSurfaceGetHeight}(surface)
 }
-\details{    Image surfaces provide the ability to render to memory buffers
+\section{Detailed Description}{    Image surfaces provide the ability to render to memory buffers
     either allocated by cairo or by the calling code.  The supported
     image formats are those defined in \code{\link{cairo_format_t}}.
   }

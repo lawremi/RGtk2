@@ -2,7 +2,7 @@
 \name{GtkContainer}
 \title{GtkContainer}
 \description{Base class for widgets which contain other widgets}
-\usage{
+\section{Methods and Functions}{
 \link{gtkContainerAdd}(object, widget)
 \link{gtkContainerRemove}(object, widget)
 \link{gtkContainerAddWithProperties}(object, widget, ...)
@@ -35,7 +35,29 @@
 \link{gtkContainerClassInstallChildProperty}(cclass, property.id, pspec)
 \link{gtkContainerClassListChildProperties}(cclass)
 }
-\details{A GTK+ user interface is constructed by nesting widgets inside widgets. Container widgets are the inner
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkContainer
+                     +----\link{GtkBin}
+                     +----\link{GtkBox}
+                     +----\link{GtkCList}
+                     +----\link{GtkFixed}
+                     +----\link{GtkPaned}
+                     +----\link{GtkIconView}
+                     +----\link{GtkLayout}
+                     +----\link{GtkList}
+                     +----\link{GtkMenuShell}
+                     +----\link{GtkNotebook}
+                     +----\link{GtkSocket}
+                     +----\link{GtkTable}
+                     +----\link{GtkTextView}
+                     +----\link{GtkToolbar}
+                     +----GtkTree
+                     +----\link{GtkTreeView}}}
+\section{Interfaces}{GtkContainer implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. Container widgets are the inner
 nodes in the resulting tree of widgets: they contain other widgets. So, for example, you might have a 
 \code{\link{GtkWindow}} containing a \code{\link{GtkFrame}} containing a GtkLabel. If you wanted an image instead of a textual label 
 inside the frame, you might replace the \code{\link{GtkLabel}} widget with a \code{\link{GtkImage}} widget.
@@ -96,26 +118,6 @@ To obtain the value of a child property, use
 \code{\link{gtkContainerChildGetProperty}}, \code{\link{gtkContainerChildGet}} or
 \code{gtkContainerChildGetValist()}. To emit notification about child property 
 changes, use \code{\link{gtkWidgetChildNotify}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkContainer
-                     +----\link{GtkBin}
-                     +----\link{GtkBox}
-                     +----\link{GtkCList}
-                     +----\link{GtkFixed}
-                     +----\link{GtkPaned}
-                     +----\link{GtkIconView}
-                     +----\link{GtkLayout}
-                     +----\link{GtkList}
-                     +----\link{GtkMenuShell}
-                     +----\link{GtkNotebook}
-                     +----\link{GtkSocket}
-                     +----\link{GtkTable}
-                     +----\link{GtkTextView}
-                     +----\link{GtkToolbar}
-                     +----GtkTree
-                     +----\link{GtkTreeView}}}
 \section{Structures}{\describe{\item{\code{GtkContainer}}{
 
 
@@ -129,8 +131,6 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 }
 
 }}}
-\section{Interfaces}{GtkContainer implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{add(container, widget, user.data)}}{
 

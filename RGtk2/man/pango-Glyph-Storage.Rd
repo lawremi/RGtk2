@@ -9,7 +9,7 @@
 \name{pango-Glyph-Storage}
 \title{Glyph Storage}
 \description{Structures for storing information about glyphs}
-\usage{
+\section{Methods and Functions}{
 \link{pangoMatrixCopy}(object)
 \link{pangoMatrixTranslate}(object, tx, ty)
 \link{pangoMatrixScale}(object, scale.x, scale.y)
@@ -27,7 +27,7 @@
 \link{pangoGlyphItemApplyAttrs}(glyph.item, text, list)
 \link{pangoGlyphItemLetterSpace}(glyph.item, text, log.attrs, letter.spacing)
 }
-\details{\code{\link{pangoShape}} produces a string of glyphs which
+\section{Detailed Description}{\code{\link{pangoShape}} produces a string of glyphs which
 can be measured or drawn to the screen. The following
 structures are used to store information about
 glyphs.}

@@ -3,11 +3,16 @@
 \name{GtkVRuler}
 \title{GtkVRuler}
 \description{A vertical ruler.}
-\usage{
-\link{gtkVRulerNew}(show = TRUE)
-gtkVRuler(show = TRUE)
-}
-\details{\emph{  
+\usage{gtkVRuler(show = TRUE)}
+\section{Methods and Functions}{\link{gtkVRulerNew}(show = TRUE)}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkRuler}
+                     +----GtkVRuler}}
+\section{Interfaces}{GtkVRuler implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\emph{  
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -22,19 +27,12 @@ the location of the mouse on the window and to show the size of the window in
 specified units. The available units of measurement are GTK_PIXELS, GTK_INCHES
 and GTK_CENTIMETERS. GTK_PIXELS is the default. 
 rulers.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRuler}
-                     +----GtkVRuler}}
 \section{Structures}{\describe{\item{\code{GtkVRuler}}{
 The \code{\link{GtkVRuler}} struct contains private data and should be accessed
 using the functions below. 
 
 }}}
 \section{Convenient Construction}{\code{gtkVRuler} is the equivalent of \code{\link{gtkVRulerNew}}.}
-\section{Interfaces}{GtkVRuler implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkVRuler.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

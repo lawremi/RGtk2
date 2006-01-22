@@ -3,7 +3,7 @@
 \title{AtkAction}
 \description{The ATK interface provided by UI components which the user can
 activate/interact with,}
-\usage{
+\section{Methods and Functions}{
 \link{atkActionDoAction}(object, i)
 \link{atkActionGetNActions}(object)
 \link{atkActionGetDescription}(object, i)
@@ -12,7 +12,11 @@ activate/interact with,}
 \link{atkActionGetKeybinding}(object, i)
 \link{atkActionSetDescription}(object, i, desc)
 }
-\details{\code{\link{AtkAction}} should be implemented by instances of \code{\link{AtkObject}} classes with
+\section{Hierarchy}{\preformatted{  GInterface
+   +----AtkAction}}
+\section{Implementations}{AtkAction is implemented by
+ \code{\link{AtkHyperlink}} and  \code{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\code{\link{AtkAction}} should be implemented by instances of \code{\link{AtkObject}} classes with
 which the user can interact directly, i.e. buttons, checkboxes,
 scrollbars,  e.g. components which are not "passive"
 providers of UI information.
@@ -36,14 +40,10 @@ AtkActions.  Where mouse and keyboard actions are redundant in effect,
 \code{\link{AtkAction}} should expose only one action rather than exposing redundant
 actions if possible.  By convention we have been using "mouse centric"
 terminology for \code{\link{AtkAction}} names.}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----AtkAction}}
 \section{Structures}{\describe{\item{\code{AtkAction}}{
 The AtkAction structure does not contain any fields.
 
 }}}
-\section{Implementations}{AtkAction is implemented by
- \code{\link{AtkHyperlink}} and  \code{\link{AtkNoOpObject}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

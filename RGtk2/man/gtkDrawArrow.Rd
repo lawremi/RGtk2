@@ -4,7 +4,9 @@
 \description{
 Draws an arrow in the given rectangle on \code{window} using the given 
 parameters. \code{arrow.type} determines the direction of the arrow.
-\strong{WARNING: \code{gtk_draw_arrow} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintArrow}} instead.}
+\strong{WARNING: \code{gtk_draw_arrow} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintArrow}} instead.  
+Draws an arrow in the given rectangle on \code{window} using the given 
+parameters. \code{arrow.type} determines the direction of the arrow.  }
 }
 \usage{gtkDrawArrow(object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)}
 \arguments{

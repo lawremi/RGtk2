@@ -5,7 +5,10 @@
 Changes the value of the first \code{ncolors} colors in
 a private colormap. This function is obsolete and
 should not be used. See \code{\link{gdkColorChange}}.
-\strong{WARNING: \code{gdk_colors_store} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_colors_store} is deprecated and should not be used in newly-written code.  
+Changes the value of the first \code{ncolors} colors in
+a private colormap. This function is obsolete and
+should not be used. See \code{\link{gdkColorChange}}.  }
 }
 \usage{gdkColorsStore(object, colors)}
 \arguments{\item{\code{colors}}{[\code{\link{GdkColor}}]  the new color values.}}

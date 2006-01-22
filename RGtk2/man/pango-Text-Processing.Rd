@@ -7,7 +7,7 @@
 \name{pango-Text-Processing}
 \title{Rendering}
 \description{Functions to run the rendering pipeline}
-\usage{
+\section{Methods and Functions}{
 \link{pangoItemize}(context, text, start.index, length, attrs, cached.iter = NULL)
 \link{pangoItemizeWithBaseDir}(context, base.dir, text, start.index, length, attrs, cached.iter = NULL)
 \link{pangoItemCopy}(item)
@@ -36,12 +36,12 @@
 \link{pangoFindParagraphBoundary}(text, length = -1)
 \link{pangoShape}(text, analysis, glyphs)
 }
-\details{The Pango rendering pipeline takes a string of
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----PangoContext}}
+\section{Detailed Description}{The Pango rendering pipeline takes a string of
 Unicode characters and converts it into glyphs.
 The functions described in this section accomplish
 various steps of this process.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----PangoContext}}
 \section{Structures}{\describe{
 \item{\code{PangoContext}}{
 The \code{\link{PangoContext}} structure stores global information

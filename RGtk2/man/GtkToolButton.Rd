@@ -3,7 +3,8 @@
 \name{GtkToolButton}
 \title{GtkToolButton}
 \description{A GtkToolItem subclass that displays buttons}
-\usage{
+\usage{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkToolButtonNew}(icon.widget = NULL, label = NULL, show = TRUE)
 \link{gtkToolButtonNewFromStock}(stock.id)
 \link{gtkToolButtonSetLabel}(object, label = NULL)
@@ -18,9 +19,19 @@
 \link{gtkToolButtonGetIconWidget}(object)
 \link{gtkToolButtonSetLabelWidget}(object, label.widget = NULL)
 \link{gtkToolButtonGetLabelWidget}(object)
-gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)
 }
-\details{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkToolItem}
+                                 +----GtkToolButton
+                                       +----\link{GtkMenuToolButton}
+                                       +----\link{GtkToggleToolButton}}}
+\section{Interfaces}{GtkToolButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
   
 Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
 \code{gtkToolButtonNewWithStock()} to create a \code{\link{GtkToolButton}}
@@ -38,23 +49,12 @@ The icon of a \code{\link{GtkToolButton}} is determined by the properties
 that widget is used as the icon. Otherwise, if "stock_id" is
 non-\code{NULL}, the icon is determined by the stock item. Otherwise,
 the button does not have a label.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkToolItem}
-                                 +----GtkToolButton
-                                       +----\link{GtkMenuToolButton}
-                                       +----\link{GtkToggleToolButton}}}
 \section{Structures}{\describe{\item{\code{GtkToolButton}}{
 The \code{\link{GtkToolButton}} struct contains only private. It should only be
 accessed with the function described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkToolButton} is the equivalent of \code{\link{gtkToolButtonNew}}.}
-\section{Interfaces}{GtkToolButton implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{clicked(toolbutton, user.data)}}{
 This signal is emitted when the tool button is clicked with the mouse
 or activated with the keyboard.  

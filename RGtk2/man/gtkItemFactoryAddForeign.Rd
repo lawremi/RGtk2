@@ -7,7 +7,14 @@ the ::activate signal to be emitted if the accelerator is activated.
 \strong{WARNING: \code{gtk_item_factory_add_foreign} is deprecated and should not be used in newly-written code. The recommended API for this purpose are the functions 
 \code{\link{gtkMenuItemSetAccelPath}} and \code{\link{gtkWidgetSetAccelPath}}; don't 
 use \code{\link{gtkItemFactoryAddForeign}} in new code, since it is likely to
-be removed in the future.}
+be removed in the future.  
+Installs an accelerator for \code{accel.widget} in \code{accel.group}, that causes
+the ::activate signal to be emitted if the accelerator is activated.
+  
+This function can be used to make widgets participate in the accel
+saving/restoring functionality provided by \code{\link{gtkAccelMapSave}} and
+\code{\link{gtkAccelMapLoad}}, even if they haven't been created by an item
+factory.  }
 }
 \usage{gtkItemFactoryAddForeign(accel.widget, full.path, accel.group, keyval, modifiers)}
 \arguments{

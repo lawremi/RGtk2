@@ -5,7 +5,10 @@
 Gets the current string of text within the \code{\link{GtkLabel}} and writes it to
 the given \code{str} argument.  It does not make a copy of this string so you
 must not write to it.
-\strong{WARNING: \code{gtk_label_get} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_label_get} is deprecated and should not be used in newly-written code.  
+Gets the current string of text within the \code{\link{GtkLabel}} and writes it to
+the given \code{str} argument.  It does not make a copy of this string so you
+must not write to it.}
 }
 \usage{gtkLabelGet(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkLabel}}] The \code{\link{GtkLabel}} widget you want to get the text from.}}

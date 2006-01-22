@@ -3,7 +3,8 @@
 \title{gtkCListUnselectAll}
 \description{
 Unselects all rows in the CList.
-\strong{WARNING: \code{gtk_clist_unselect_all} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_unselect_all} is deprecated and should not be used in newly-written code.  
+Unselects all rows in the CList.}
 }
 \usage{gtkCListUnselectAll(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}}

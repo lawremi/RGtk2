@@ -3,7 +3,8 @@
 \title{gtkToolbarAppendWidget}
 \description{
 Adds a widget to the end of the given toolbar.
-\strong{WARNING: \code{gtk_toolbar_append_widget} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_append_widget} is deprecated and should not be used in newly-written code.  
+Adds a widget to the end of the given toolbar.  }
 }
 \usage{gtkToolbarAppendWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}
 \arguments{

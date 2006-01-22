@@ -3,16 +3,8 @@
 \name{GtkHBox}
 \title{GtkHBox}
 \description{A horizontal container box}
-\usage{
-\link{gtkHBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)
-gtkHBox(homogeneous = NULL, spacing = NULL, show = TRUE)
-}
-\details{GtkHBox is a container that organizes child widgets into a single row.
-  
-Use the \code{\link{GtkBox}} packing interface to determine the arrangement,
-spacing, width, and alignment of GtkHBox children.
-  
-All children are allocated the same height.}
+\usage{gtkHBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
+\section{Methods and Functions}{\link{gtkHBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -22,11 +14,17 @@ All children are allocated the same height.}
                                  +----\link{GtkCombo}
                                  +----\link{GtkFileChooserButton}
                                  +----\link{GtkStatusbar}}}
+\section{Interfaces}{GtkHBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{GtkHBox is a container that organizes child widgets into a single row.
+  
+Use the \code{\link{GtkBox}} packing interface to determine the arrangement,
+spacing, width, and alignment of GtkHBox children.
+  
+All children are allocated the same height.}
 \section{Structures}{\describe{\item{\code{GtkHBox}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkHBox} is the equivalent of \code{\link{gtkHBoxNew}}.}
-\section{Interfaces}{GtkHBox implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkHBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

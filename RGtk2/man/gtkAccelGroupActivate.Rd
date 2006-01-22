@@ -1,6 +1,8 @@
 \alias{gtkAccelGroupActivate}
 \name{gtkAccelGroupActivate}
 \title{gtkAccelGroupActivate}
+\description{\emph{undocumented
+}}
 \usage{gtkAccelGroupActivate(object, accel.quark, acceleratable, accel.key, accel.mods)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkAccelGroup}}] }

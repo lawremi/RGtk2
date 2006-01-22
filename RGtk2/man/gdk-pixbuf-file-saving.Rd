@@ -3,7 +3,7 @@
 \name{gdk-pixbuf-file-saving}
 \title{File saving}
 \description{Saving a pixbuf to a file.}
-\usage{
+\section{Methods and Functions}{
 \link{gdkPixbufSavev}(object, filename, type, option.keys, option.values)
 \link{gdkPixbufSave}(object, filename, type, ...)
 \link{gdkPixbufSaveToCallback}(object, save.func, user.data, type)
@@ -11,7 +11,7 @@
 \link{gdkPixbufSaveToBuffer}(object, type, ...)
 \link{gdkPixbufSaveToBufferv}(object, type, option.keys, option.values)
 }
-\details{These functions allow to save a \code{\link{GdkPixbuf}} in a number of 
+\section{Detailed Description}{These functions allow to save a \code{\link{GdkPixbuf}} in a number of 
 file formats. The formatted data can be written to a file
 or to a memory buffer. \command{gdk-pixbuf} can also call a user-defined
 callback on the data, which allows to e.g. write the image 

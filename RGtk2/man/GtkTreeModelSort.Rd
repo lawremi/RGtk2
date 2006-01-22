@@ -3,7 +3,8 @@
 \name{GtkTreeModelSort}
 \title{GtkTreeModelSort}
 \description{A GtkTreeModel which makes an underlying tree model sortable}
-\usage{
+\usage{gtkTreeModelSort(child.model = NULL)}
+\section{Methods and Functions}{
 \link{gtkTreeModelSortNewWithModel}(child.model = NULL)
 \link{gtkTreeModelSortGetModel}(object)
 \link{gtkTreeModelSortConvertChildPathToPath}(object, child.path)
@@ -13,9 +14,12 @@
 \link{gtkTreeModelSortResetDefaultSortFunc}(object)
 \link{gtkTreeModelSortClearCache}(object)
 \link{gtkTreeModelSortIterIsValid}(object, iter)
-gtkTreeModelSort(child.model = NULL)
 }
-\details{The \code{\link{GtkTreeModelSort}} is a model which implements the \code{\link{GtkTreeSortable}}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTreeModelSort}}
+\section{Interfaces}{GtkTreeModelSort implements
+ \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}} and  \code{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \code{\link{GtkTreeModelSort}} is a model which implements the \code{\link{GtkTreeSortable}}
 interface.  It does not hold any data itself, but rather is created with
 a child model and proxies its data.  It has identical column types to
 this child model, and the changes in the child are propagated.  The
@@ -68,7 +72,7 @@ selection_changed <- function(selection, data)
 
    # Look up the current value on the selected row and get a new value
    # to change it to.
-  some_data <- selected$model$get(selected$iter, 0)
+  some_data <- selected$model$get(selected$iter, COLUMN_1)
 
   modified_data <- change_the_data(some_data)
 
@@ -79,18 +83,14 @@ selection_changed <- function(selection, data)
   # example, the child model is a GtkListStore.  It could be any other
   # type of model, though.
   child_model <- sort_model$getModel()
-  child_model$set(child_iter, 0, modified_data)
+  child_model$set(child_iter, COLUMN_1, modified_data)
 }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTreeModelSort}}
 \section{Structures}{\describe{\item{\code{GtkTreeModelSort}}{
 This should not be accessed directly.  Use the accessor functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkTreeModelSort} is the equivalent of \code{\link{gtkTreeModelSortNewWithModel}}.}
-\section{Interfaces}{GtkTreeModelSort implements
- \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}} and  \code{\link{GtkTreeSortable}}.}
 \section{Properties}{\describe{\item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write / Construct Only]}{
 
 The model for the TreeModelSort to sort.

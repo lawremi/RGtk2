@@ -3,7 +3,7 @@
 \title{gtkCTreeSetExpanderStyle}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_set_expander_style} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_set_expander_style} is deprecated and should not be used in newly-written code.  }
 }
 \usage{gtkCTreeSetExpanderStyle(object, expander.style)}
 \arguments{

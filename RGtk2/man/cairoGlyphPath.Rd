@@ -1,6 +1,8 @@
 \alias{cairoGlyphPath}
 \name{cairoGlyphPath}
 \title{cairoGlyphPath}
+\description{\emph{undocumented
+}}
 \usage{cairoGlyphPath(cr, glyphs)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

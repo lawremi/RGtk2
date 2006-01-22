@@ -3,7 +3,7 @@
 \name{gdk-General}
 \title{General}
 \description{Library initialization and miscellaneous functions}
-\usage{
+\section{Methods and Functions}{
 \link{gdkNotifyStartupComplete}()
 \link{gdkGetProgramClass}()
 \link{gdkSetProgramClass}(program.class)
@@ -21,7 +21,7 @@
 \link{gdkKeyboardUngrab}(time = GDK_CURRENT_TIME)
 \link{gdkBeep}()
 }
-\details{This section describes the GDK initialization functions and miscellaneous
+\section{Detailed Description}{This section describes the GDK initialization functions and miscellaneous
 utility functions.}
 \section{Enums and Flags}{\describe{\item{\code{enum GdkGrabStatus}}{
 Returned by \code{\link{gdkPointerGrab}} and \code{\link{gdkKeyboardGrab}} to indicate 

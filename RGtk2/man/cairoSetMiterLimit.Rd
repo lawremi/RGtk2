@@ -1,6 +1,8 @@
 \alias{cairoSetMiterLimit}
 \name{cairoSetMiterLimit}
 \title{cairoSetMiterLimit}
+\description{\emph{undocumented
+}}
 \usage{cairoSetMiterLimit(cr, limit)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

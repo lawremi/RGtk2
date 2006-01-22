@@ -3,7 +3,8 @@
 \name{GtkList}
 \title{GtkList}
 \description{Widget for packing a list of selectable items}
-\usage{
+\usage{gtkList(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkListNew}(show = TRUE)
 \link{gtkListInsertItems}(object, items, position)
 \link{gtkListAppendItems}(object, items)
@@ -28,9 +29,15 @@
 \link{gtkListToggleRow}(object, item)
 \link{gtkListUndoSelection}(object)
 \link{gtkListEndDragSelection}(object)
-gtkList(show = TRUE)
 }
-\details{The \code{\link{GtkList}} widget is a container whose children are displayed
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkList}}
+\section{Interfaces}{GtkList implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkList}} widget is a container whose children are displayed
 vertically in order, and can be selected.
 
 The list has many selection modes, which are programmer selective and
@@ -38,19 +45,12 @@ depend on how many elements are able to be selected at the same time.
   
 GtkList has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkList}}
 \section{Structures}{\describe{\item{\code{GtkList}}{
-\strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.  }
 
 
 }}}
 \section{Convenient Construction}{\code{gtkList} is the equivalent of \code{\link{gtkListNew}}.}
-\section{Interfaces}{GtkList implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{select-child(list, widget, user.data)}}{
 The child \code{widget} has just been selected.

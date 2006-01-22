@@ -3,7 +3,10 @@
 \title{gdkFontGetDisplay}
 \description{
 Returns the \code{\link{GdkDisplay}} for \code{font}.
-\strong{WARNING: \code{gdk_font_get_display} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_font_get_display} is deprecated and should not be used in newly-written code.  
+Returns the \code{\link{GdkDisplay}} for \code{font}.  
+
+  Since  2.2}
 }
 \usage{gdkFontGetDisplay(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkFont}}]  the \code{\link{GdkFont}}.}}

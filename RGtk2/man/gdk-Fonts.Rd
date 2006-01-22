@@ -4,7 +4,7 @@
 \name{gdk-Fonts}
 \title{Fonts}
 \description{Loading and manipulating fonts}
-\usage{
+\section{Methods and Functions}{
 \link{gdkFontLoad}(font.name)
 \link{gdkFontLoadForDisplay}(display, font.name)
 \link{gdkFontsetLoad}(fontset.name)
@@ -28,7 +28,7 @@
 \link{gdkTextHeight}(object, text, text.length = -1)
 \link{gdkCharHeight}(object, character)
 }
-\details{The \code{\link{GdkFont}} data type represents a font for drawing on
+\section{Detailed Description}{The \code{\link{GdkFont}} data type represents a font for drawing on
 the screen. These functions provide support for
 loading fonts, and also for determining the dimensions
 of characters and strings when drawn with a particular
@@ -164,7 +164,11 @@ here).
     }
 }}
 \section{Structures}{\describe{\item{\code{GdkFont}}{
-\strong{WARNING: \code{GdkFont} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GdkFont} is deprecated and should not be used in newly-written code.  
+The \code{GdkFont} structure represents a font or fontset. It
+contains the following public fields. A new \code{GdkFont}
+structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
+and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}}
 The \code{GdkFont} structure represents a font or fontset. It
 contains the following public fields. A new \code{GdkFont}
 structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
@@ -181,7 +185,9 @@ descends below the baseline.}
 
 }}}
 \section{Enums and Flags}{\describe{\item{\code{enum GdkFontType}}{
-\strong{WARNING: \code{GdkFontType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GdkFontType} is deprecated and should not be used in newly-written code.  
+Indicates the type of a font. The possible values
+are currently:}
 Indicates the type of a font. The possible values
 are currently:
 

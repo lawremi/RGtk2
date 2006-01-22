@@ -3,7 +3,8 @@
 \title{gtkCTreeUnselect}
 \description{
 Unselect the given node and emit the appropriate signal.
-\strong{WARNING: \code{gtk_ctree_unselect} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_unselect} is deprecated and should not be used in newly-written code.  
+Unselect the given node and emit the appropriate signal.}
 }
 \usage{gtkCTreeUnselect(object, node)}
 \arguments{

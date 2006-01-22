@@ -4,7 +4,7 @@
 \name{gdk-Keyboard-Handling}
 \title{Key Values}
 \description{Functions for manipulating keyboard codes}
-\usage{
+\section{Methods and Functions}{
 \link{gdkKeymapGetDefault}()
 \link{gdkKeymapGetForDisplay}(display)
 \link{gdkKeymapLookupKey}(object, key)
@@ -22,7 +22,9 @@
 \link{gdkKeyvalToUnicode}(keyval)
 \link{gdkUnicodeToKeyval}(wc)
 }
-\details{Key values are the codes which are sent whenever a key is pressed or released.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkKeymap}}
+\section{Detailed Description}{Key values are the codes which are sent whenever a key is pressed or released.
 They appear in the \code{keyval} field of the
 \code{\link{GdkEventKey}} structure, which is passed to signal handlers for the
 "key-press-event" and "key-release-event" signals.
@@ -79,8 +81,6 @@ goes ahead and performs the keymap lookup in addition to telling you which
 effective group/level values were used for the lookup.  \code{\link{GdkEventKey}} already
 contains this keyval, however, so you don't normally need to call
 \code{\link{gdkKeymapTranslateKeyboardState}} just to get the keyval.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkKeymap}}
 \section{Structures}{\describe{
 \item{\code{GdkKeymap}}{
 A \code{GdkKeymap} defines the translation from keyboard state

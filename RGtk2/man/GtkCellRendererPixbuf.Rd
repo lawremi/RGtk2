@@ -3,11 +3,13 @@
 \name{GtkCellRendererPixbuf}
 \title{GtkCellRendererPixbuf}
 \description{Renders a pixbuf in a cell}
-\usage{
-\link{gtkCellRendererPixbufNew}()
-gtkCellRendererPixbuf()
-}
-\details{A \code{\link{GtkCellRendererPixbuf}} can be used to render an image in a cell. It allows to render 
+\usage{gtkCellRendererPixbuf()}
+\section{Methods and Functions}{\link{gtkCellRendererPixbufNew}()}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkCellRenderer}
+               +----GtkCellRendererPixbuf}}
+\section{Detailed Description}{A \code{\link{GtkCellRendererPixbuf}} can be used to render an image in a cell. It allows to render 
 either a given \code{\link{GdkPixbuf}} (set via the 
 pixbuf property) or a stock icon 
 (set via the stock-id property).
@@ -22,10 +24,6 @@ is-expanded property is \code{FALSE} and
 the 
 pixbuf-expander-closed 
 property is set to a pixbuf, it renders that one. }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererPixbuf}}
 \section{Structures}{\describe{\item{\code{GtkCellRendererPixbuf}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkCellRendererPixbuf} is the equivalent of \code{\link{gtkCellRendererPixbufNew}}.}

@@ -3,7 +3,8 @@
 \name{GtkLayout}
 \title{GtkLayout}
 \description{Infinite scrollable area containing child widgets and/or custom drawing}
-\usage{
+\usage{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkLayoutNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 \link{gtkLayoutPut}(object, child.widget, x, y)
 \link{gtkLayoutMove}(object, child.widget, x, y)
@@ -15,9 +16,15 @@
 \link{gtkLayoutGetVadjustment}(object)
 \link{gtkLayoutSetHadjustment}(object, adjustment = NULL)
 \link{gtkLayoutSetVadjustment}(object, adjustment = NULL)
-gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 }
-\details{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkLayout}}
+\section{Interfaces}{GtkLayout implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
 and doesn't do anything but paint a blank background by default. It's
 different in that it supports scrolling natively (you can add it to a
 \code{\link{GtkScrolledWindow}}), and it can contain child widgets, since it's a
@@ -28,11 +35,6 @@ When handling expose events on a \code{\link{GtkLayout}}, you must draw to
 GTK_LAYOUT (layout)->bin_window, rather than to 
 GTK_WIDGET (layout)->window, as you would for a drawing
 area.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkLayout}}
 \section{Structures}{\describe{\item{\code{GtkLayout}}{
 
 
@@ -40,8 +42,6 @@ area.}
 
 }}}
 \section{Convenient Construction}{\code{gtkLayout} is the equivalent of \code{\link{gtkLayoutNew}}.}
-\section{Interfaces}{GtkLayout implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{set-scroll-adjustments(layout, arg1, arg2, user.data)}}{
 
 

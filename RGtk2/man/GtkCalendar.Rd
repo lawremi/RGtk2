@@ -4,7 +4,8 @@
 \name{GtkCalendar}
 \title{GtkCalendar}
 \description{Displays a calendar and allows the user to select a date}
-\usage{
+\usage{gtkCalendar(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCalendarNew}(show = TRUE)
 \link{gtkCalendarSelectMonth}(object, month, year)
 \link{gtkCalendarSelectDay}(object, day)
@@ -17,9 +18,14 @@
 \link{gtkCalendarGetDate}(object)
 \link{gtkCalendarFreeze}(object)
 \link{gtkCalendarThaw}(object)
-gtkCalendar(show = TRUE)
 }
-\details{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkCalendar}}
+\section{Interfaces}{GtkCalendar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
 It can be created with \code{\link{gtkCalendarNew}}.
   
 The month and year currently displayed can be altered with 
@@ -35,10 +41,6 @@ The way in which the calendar itself is displayed can be altered using
   
 The selected date can be retrieved from a \code{\link{GtkCalendar}} using
 \code{\link{gtkCalendarGetDate}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkCalendar}}
 \section{Structures}{\describe{\item{\code{GtkCalendar}}{
 \code{num_marked_dates} is an integer containing the
 number of days that have a mark over them.
@@ -69,8 +71,6 @@ These options can be used to influence the display and behaviour of a \code{\lin
 }
 
 }}}
-\section{Interfaces}{GtkCalendar implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{day-selected(calendar, user.data)}}{
 Emitted when the user selects a day.

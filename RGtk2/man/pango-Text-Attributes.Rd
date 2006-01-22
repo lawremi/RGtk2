@@ -20,7 +20,7 @@
 \name{pango-Text-Attributes}
 \title{Text Attributes}
 \description{Font and other attributes for annotating text}
-\usage{
+\section{Methods and Functions}{
 \link{pangoParseMarkup}(markup.text, accel.marker)
 \link{pangoAttrTypeRegister}(name)
 \link{pangoAttributeCopy}(object)
@@ -66,7 +66,7 @@
 \link{pangoAttrIteratorGetFont}(object)
 \link{pangoAttrIteratorGetAttrs}(object)
 }
-\details{Attributed text is used in a number of places in Pango. It
+\section{Detailed Description}{Attributed text is used in a number of places in Pango. It
 is used as the input to the itemization process and also when
 creating a \code{\link{PangoLayout}}. The data types and functions in
 this section are used to represent and manipulate sets

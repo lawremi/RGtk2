@@ -10,7 +10,7 @@
 \name{gdk-Input-Devices}
 \title{Input Devices}
 \description{Functions for handling extended input devices}
-\usage{
+\section{Methods and Functions}{
 \link{gdkDevicesList}()
 \link{gdkDeviceSetSource}(object, source)
 \link{gdkDeviceSetMode}(object, mode)
@@ -22,7 +22,7 @@
 \link{gdkDeviceGetAxis}(object, axes, use)
 \link{gdkInputSetExtensionEvents}(object, mask, mode)
 }
-\details{In addition to the normal keyboard and mouse input devices, GTK+ also
+\section{Detailed Description}{In addition to the normal keyboard and mouse input devices, GTK+ also
 contains support for \dfn{extended input devices}. In
 particular, this support is targeted at graphics tablets. Graphics
 tablets typically return sub-pixel positioning information and possibly

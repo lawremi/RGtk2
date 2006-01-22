@@ -5,7 +5,8 @@
 \name{GtkProgressBar}
 \title{GtkProgressBar}
 \description{A widget which indicates progress visually}
-\usage{
+\usage{gtkProgressBar(adjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkProgressBarNew}(show = TRUE)
 \link{gtkProgressBarPulse}(object)
 \link{gtkProgressBarSetText}(object, text)
@@ -24,9 +25,15 @@
 \link{gtkProgressBarSetActivityStep}(object, step)
 \link{gtkProgressBarSetActivityBlocks}(object, blocks)
 \link{gtkProgressBarUpdate}(object, percentage)
-gtkProgressBar(adjustment = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkProgressBar}} is typically used to display the progress of a long
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkProgress}
+                     +----GtkProgressBar}}
+\section{Interfaces}{GtkProgressBar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkProgressBar}} is typically used to display the progress of a long
 running operation.  It provides a visual clue that processing
 is underway.  The \code{\link{GtkProgressBar}} can be used in two different
 modes: percentage mode and activity mode.
@@ -60,11 +67,6 @@ functions: \code{\link{gtkProgressBarNew}}, \code{\link{gtkProgressBarPulse}},
 These have been grouped at the beginning of this section, followed by 
 a large chunk of deprecated 1.2 compatibility functions.
   }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkProgress}
-                     +----GtkProgressBar}}
 \section{Structures}{\describe{\item{\code{GtkProgressBar}}{
 The \code{\link{GtkProgressBar}} struct contains private data only, 
 and should be accessed using the functions below.
@@ -94,8 +96,6 @@ An enumeration representing the styles for drawing the progress bar.
 
 }
 }}
-\section{Interfaces}{GtkProgressBar implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{activity-blocks} [numeric : Read / Write]}{
 

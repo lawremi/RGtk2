@@ -7,6 +7,10 @@
 \title{GtkTextView}
 \description{Widget that displays a }
 \usage{
+gtkTextView(buffer = NULL, show = TRUE)
+gtkTextChildAnchor()
+}
+\section{Methods and Functions}{
 \link{gtkTextViewNew}(show = TRUE)
 \link{gtkTextViewNewWithBuffer}(buffer = NULL, show = TRUE)
 \link{gtkTextViewSetBuffer}(object, buffer)
@@ -67,13 +71,7 @@
 \link{gtkTextViewSetAcceptsTab}(object, accepts.tab)
 \link{gtkTextViewGetAcceptsTab}(object)
 \link{gtkTextViewGetDefaultAttributes}(object)
-gtkTextView(buffer = NULL, show = TRUE)
-gtkTextChildAnchor()
 }
-\details{You may wish to begin by reading the text widget
-conceptual overview which gives an overview of all the objects and data
-types related to the text widget and how they work together.
-  }
 \section{Hierarchy}{\preformatted{
   \link{GObject}
    +----\link{GtkObject}
@@ -83,6 +81,12 @@ types related to the text widget and how they work together.
   \link{GObject}
    +----GtkTextChildAnchor
 }}
+\section{Interfaces}{GtkTextView implements
+ AtkImplementorIface.}
+\section{Detailed Description}{You may wish to begin by reading the text widget
+conceptual overview which gives an overview of all the objects and data
+types related to the text widget and how they work together.
+  }
 \section{Structures}{\describe{
 \item{\code{GtkTextView}}{\emph{undocumented
 }}
@@ -119,8 +123,6 @@ multiple views.
 }
 
 }}}
-\section{Interfaces}{GtkTextView implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{backspace(textview, user.data)}}{
 

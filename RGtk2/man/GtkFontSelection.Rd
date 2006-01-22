@@ -3,16 +3,25 @@
 \name{GtkFontSelection}
 \title{GtkFontSelection}
 \description{A widget for selecting fonts}
-\usage{
+\usage{gtkFontSelection(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFontSelectionNew}(show = TRUE)
 \link{gtkFontSelectionGetFont}(object)
 \link{gtkFontSelectionGetFontName}(object)
 \link{gtkFontSelectionSetFontName}(object, fontname)
 \link{gtkFontSelectionGetPreviewText}(object)
 \link{gtkFontSelectionSetPreviewText}(object, text)
-gtkFontSelection(show = TRUE)
 }
-\details{The \code{\link{GtkFontSelection}} widget lists the available fonts, styles and sizes,
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkVBox}
+                                 +----GtkFontSelection}}
+\section{Interfaces}{GtkFontSelection implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkFontSelection}} widget lists the available fonts, styles and sizes,
 allowing the user to select a font.
 It is used in the \code{\link{GtkFontSelectionDialog}} widget to provide a dialog box for
 selecting fonts.
@@ -25,21 +34,12 @@ or \code{\link{gtkFontSelectionGetFontName}}.
   
 To change the text which is shown in the preview area, use
 \code{\link{gtkFontSelectionSetPreviewText}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkVBox}
-                                 +----GtkFontSelection}}
 \section{Structures}{\describe{\item{\code{GtkFontSelection}}{
 The \code{\link{GtkFontSelection}} struct contains private data only, and should
 only be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkFontSelection} is the equivalent of \code{\link{gtkFontSelectionNew}}.}
-\section{Interfaces}{GtkFontSelection implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{font} [\code{\link{GdkFont}} : Read]}{
 

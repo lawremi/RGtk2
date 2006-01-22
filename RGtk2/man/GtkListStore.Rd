@@ -3,7 +3,8 @@
 \name{GtkListStore}
 \title{GtkListStore}
 \description{A list-like data structure that can be used with the }
-\usage{
+\usage{gtkListStore(..., value)}
+\section{Methods and Functions}{
 \link{gtkListStoreNew}(...)
 \link{gtkListStoreNewv}(value)
 \link{gtkListStoreSetColumnTypes}(object, types)
@@ -23,9 +24,12 @@
 \link{gtkListStoreSwap}(object, a, b)
 \link{gtkListStoreMoveBefore}(object, iter, position = NULL)
 \link{gtkListStoreMoveAfter}(object, iter, position = NULL)
-gtkListStore(..., value)
 }
-\details{The \code{\link{GtkListStore}} object is a list model for use with a \code{\link{GtkTreeView}}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkListStore}}
+\section{Interfaces}{GtkListStore implements
+ \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \code{\link{GtkListStore}} object is a list model for use with a \code{\link{GtkTreeView}}
 widget.  It implements the \code{\link{GtkTreeModel}} interface, and consequentialy,
 can use all of the methods available there.  It also implements the
 \code{\link{GtkTreeSortable}} interface so it can be sorted by the view.
@@ -64,13 +68,9 @@ insertion and deletion, and not fast at random data access.  The
 that \code{\link{GtkTreeIter}}s can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
 run on older versions of GTK+, it is worth keeping the iter around.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkListStore}}
 \section{Structures}{\describe{\item{\code{GtkListStore}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkListStore} is the result of collapsing the constructors of \code{GtkListStore} (\code{\link{gtkListStoreNew}}, \code{\link{gtkListStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkListStore implements
- \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkListStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{

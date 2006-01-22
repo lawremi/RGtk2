@@ -3,7 +3,8 @@
 \title{gtkCListSetSelectable}
 \description{
 Sets whether the specified row is selectable or not.
-\strong{WARNING: \code{gtk_clist_set_selectable} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_selectable} is deprecated and should not be used in newly-written code.  
+Sets whether the specified row is selectable or not.}
 }
 \usage{gtkCListSetSelectable(object, row, selectable)}
 \arguments{

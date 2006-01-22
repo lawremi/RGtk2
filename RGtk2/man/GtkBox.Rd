@@ -3,7 +3,7 @@
 \name{GtkBox}
 \title{GtkBox}
 \description{Base class for box containers}
-\usage{
+\section{Methods and Functions}{
 \link{gtkBoxPackStart}(object, child, expand = TRUE, fill = TRUE, padding = 0)
 \link{gtkBoxPackEnd}(object, child, expand = TRUE, fill = TRUE, padding = 0)
 \link{gtkBoxPackStartDefaults}(object, widget)
@@ -16,7 +16,17 @@
 \link{gtkBoxQueryChildPacking}(object, child)
 \link{gtkBoxSetChildPacking}(object, child, expand, fill, padding, pack.type)
 }
-\details{GtkBox is an abstract widget which encapsulates functionallity for a
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkBox
+                           +----\link{GtkButtonBox}
+                           +----\link{GtkVBox}
+                           +----\link{GtkHBox}}}
+\section{Interfaces}{GtkBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{GtkBox is an abstract widget which encapsulates functionallity for a
 particular kind of container, one that organizes a variable number of
 widgets into a rectangular area.  GtkBox currently has two derived
 classes, \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
@@ -64,14 +74,6 @@ Use \code{\link{gtkBoxSetChildPacking}} to reset the
 \code{expand}, \code{fill},
 and \code{padding} attributes of any GtkBox child.
 Use \code{\link{gtkBoxQueryChildPacking}} to query these fields.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkBox
-                           +----\link{GtkButtonBox}
-                           +----\link{GtkVBox}
-                           +----\link{GtkHBox}}}
 \section{Structures}{\describe{
 \item{\code{GtkBox}}{
 The \code{\link{GtkBox}} describes an instance of GtkBox and contains the following fields.
@@ -120,8 +122,6 @@ the start (top/left) or end (bottom/right) of the GtkBox. \cr
 
 }
 }}
-\section{Interfaces}{GtkBox implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{homogeneous} [logical : Read / Write]}{
 

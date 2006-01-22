@@ -4,7 +4,9 @@
 \description{
 Sets the sort type of the \code{GtkClist}. This is either GTK_SORT_ASCENDING for
 ascening sort or GTK_SORT_DESCENDING for descending sort.
-\strong{WARNING: \code{gtk_clist_set_sort_type} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_sort_type} is deprecated and should not be used in newly-written code.  
+Sets the sort type of the \code{GtkClist}. This is either GTK_SORT_ASCENDING for
+ascening sort or GTK_SORT_DESCENDING for descending sort.}
 }
 \usage{gtkCListSetSortType(object, sort.type)}
 \arguments{

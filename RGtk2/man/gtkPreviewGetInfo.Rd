@@ -4,7 +4,9 @@
 \description{
 Return a \code{\link{GtkPreviewInfo}} structure containing 
 global information about preview widgets.
-\strong{WARNING: \code{gtk_preview_get_info} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_preview_get_info} is deprecated and should not be used in newly-written code.  
+Return a \code{\link{GtkPreviewInfo}} structure containing 
+global information about preview widgets.}
 }
 \usage{gtkPreviewGetInfo()}
 \value{[\code{\link{GtkPreviewInfo}}] a \code{\link{GtkPreviewInfo}} structure.}

@@ -2,7 +2,7 @@
 \name{GtkProgress}
 \title{GtkProgress}
 \description{Base class for GtkProgressBar}
-\usage{
+\section{Methods and Functions}{
 \link{gtkProgressSetShowText}(object, show.text)
 \link{gtkProgressSetTextAlignment}(object, x.align, y.align)
 \link{gtkProgressSetFormatString}(object, format)
@@ -17,21 +17,21 @@
 \link{gtkProgressGetPercentageFromValue}(object, value)
 \link{gtkProgressConfigure}(object, value, min, max)
 }
-\details{A \code{\link{GtkProgress}} is the abstract base class used to derive
-a \code{\link{GtkProgressBar}} which provides a visual representation of
-the progress of a long running operation.  }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----GtkProgress
                      +----\link{GtkProgressBar}}}
+\section{Interfaces}{GtkProgress implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
+a \code{\link{GtkProgressBar}} which provides a visual representation of
+the progress of a long running operation.  }
 \section{Structures}{\describe{\item{\code{GtkProgress}}{
 The \code{\link{GtkProgress}} struct contains private data only.
 and should be accessed using the functions below.
 
 }}}
-\section{Interfaces}{GtkProgress implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{activity-mode} [logical : Read / Write]}{
 

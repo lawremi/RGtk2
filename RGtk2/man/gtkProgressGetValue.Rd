@@ -3,7 +3,8 @@
 \title{gtkProgressGetValue}
 \description{
 Returns the current progress complete value.
-\strong{WARNING: \code{gtk_progress_get_value} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_progress_get_value} is deprecated and should not be used in newly-written code.  
+Returns the current progress complete value.}
 }
 \usage{gtkProgressGetValue(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}}

@@ -3,7 +3,8 @@
 \name{GtkFileChooserButton}
 \title{GtkFileChooserButton}
 \description{A button to launch a file selection dialog}
-\usage{
+\usage{gtkFileChooserButton(title, action, backend, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFileChooserButtonNew}(title, action, show = TRUE)
 \link{gtkFileChooserButtonNewWithBackend}(title, action, backend, show = TRUE)
 \link{gtkFileChooserButtonNewWithDialog}(dialog)
@@ -11,9 +12,17 @@
 \link{gtkFileChooserButtonSetTitle}(object, title)
 \link{gtkFileChooserButtonGetWidthChars}(object)
 \link{gtkFileChooserButtonSetWidthChars}(object, n.chars)
-gtkFileChooserButton(title, action, backend, show = TRUE)
 }
-\details{The \code{\link{GtkFileChooserButton}} is a widget that lets the user select a
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkHBox}
+                                 +----GtkFileChooserButton}}
+\section{Interfaces}{GtkFileChooserButton implements
+ AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
+\section{Detailed Description}{The \code{\link{GtkFileChooserButton}} is a widget that lets the user select a
 file.  It implements the \code{\link{GtkFileChooser}} interface.  Visually, it is a
 file name with a button to bring up a \code{\link{GtkFileChooserDialog}}.
 The user can then use that dialog to change the file associated with
@@ -32,20 +41,11 @@ more space, you should call \code{\link{gtkWidgetSizeRequest}},
 \code{\link{gtkFileChooserButtonSetWidthChars}}, or pack the button in
 such a way that other interface elements give space to the widget.
   }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkFileChooserButton}}
 \section{Structures}{\describe{\item{\code{GtkFileChooserButton}}{
 This should not be accessed directly.  Use the accessor functions below. 
 
 }}}
 \section{Convenient Construction}{\code{gtkFileChooserButton} is the result of collapsing the constructors of \code{GtkFileChooserButton} (\code{\link{gtkFileChooserButtonNew}}, \code{\link{gtkFileChooserButtonNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkFileChooserButton implements
- AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
 \section{Properties}{\describe{
 \item{\code{dialog} [\code{\link{GtkFileChooserDialog}} : Write / Construct Only]}{
 

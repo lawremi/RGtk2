@@ -5,7 +5,8 @@
 \name{gdk-Colormaps-and-Colors}
 \title{Colormaps and Colors}
 \description{Manipulation of colors and colormaps}
-\usage{
+\usage{gdkColormap(visual, allocate)}
+\section{Methods and Functions}{
 \link{gdkColormapNew}(visual, allocate)
 \link{gdkColormapGetSystem}()
 \link{gdkColormapGetSystemSize}()
@@ -21,9 +22,8 @@
 \link{gdkColorParse}(spec)
 \link{gdkColorAlloc}(object, color)
 \link{gdkColorChange}(object, color)
-gdkColormap(visual, allocate)
 }
-\details{These functions are used to modify colormaps.
+\section{Detailed Description}{These functions are used to modify colormaps.
 A colormap is an object that contains the mapping
 between the color values stored in memory and
 the RGB values that are used to display color

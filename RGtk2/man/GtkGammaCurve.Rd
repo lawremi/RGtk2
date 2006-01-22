@@ -3,11 +3,18 @@
 \name{GtkGammaCurve}
 \title{GtkGammaCurve}
 \description{a subclass of    for editing gamma curves.}
-\usage{
-\link{gtkGammaCurveNew}(show = TRUE)
-gtkGammaCurve(show = TRUE)
-}
-\details{\emph{  
+\usage{gtkGammaCurve(show = TRUE)}
+\section{Methods and Functions}{\link{gtkGammaCurveNew}(show = TRUE)}
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkVBox}
+                                 +----GtkGammaCurve}}
+\section{Interfaces}{GtkGammaCurve implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\emph{  
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -25,13 +32,6 @@ mouse just like a \code{\link{GtkCurve}} widget. On the right of the curve it al
 5 buttons, 3 of which change between the 3 curve modes (spline, linear and
 free), and the other 2 set the curve to a particular gamma value, or reset it
 to a straight line.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkVBox}
-                                 +----GtkGammaCurve}}
 \section{Structures}{\describe{\item{\code{GtkGammaCurve}}{
 The \code{\link{GtkGammaCurve}} struct contains private data only, and
 should be accessed using the functions below.
@@ -46,8 +46,6 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkGammaCurve} is the equivalent of \code{\link{gtkGammaCurveNew}}.}
-\section{Interfaces}{GtkGammaCurve implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkGammaCurve.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

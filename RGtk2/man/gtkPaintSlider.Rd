@@ -1,6 +1,8 @@
 \alias{gtkPaintSlider}
 \name{gtkPaintSlider}
 \title{gtkPaintSlider}
+\description{\emph{undocumented
+}}
 \usage{gtkPaintSlider(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkStyle}}] }

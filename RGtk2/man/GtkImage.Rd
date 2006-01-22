@@ -4,7 +4,8 @@
 \name{GtkImage}
 \title{GtkImage}
 \description{A widget displaying an image}
-\usage{
+\usage{gtkImage(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkImageGetIconSet}(object)
 \link{gtkImageGetImage}(object)
 \link{gtkImageGetPixbuf}(object)
@@ -35,9 +36,15 @@
 \link{gtkImageGet}(object)
 \link{gtkImageSetPixelSize}(object, pixel.size)
 \link{gtkImageGetPixelSize}(object)
-gtkImage(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkImage}} widget displays an image. Various kinds of object 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkMisc}
+                     +----GtkImage}}
+\section{Interfaces}{GtkImage implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkImage}} widget displays an image. Various kinds of object 
 can be displayed as an image; most typically, you would load a 
 \code{\link{GdkPixbuf}} ("pixel buffer") from a file, and then display that. 
 There's a convenience function to do this, \code{\link{gtkImageNewFromFile}},
@@ -106,11 +113,6 @@ called \command{gdk-pixbuf-csource}. This program
 allows you to convert an image into a C variable declaration, which
 can then be loaded into a \code{\link{GdkPixbuf}} using
 \code{gdkPixbufNewFromInline()}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----GtkImage}}
 \section{Structures}{\describe{\item{\code{GtkImage}}{
 This struct contain private data only and should be accessed by the functions
 below.
@@ -137,8 +139,6 @@ functions), but they will all return \code{NULL} values.
 }
 
 }}}
-\section{Interfaces}{GtkImage implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{file} [character : Read / Write]}{
 

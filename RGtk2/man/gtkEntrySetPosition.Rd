@@ -5,7 +5,10 @@
 Sets the cursor position in an entry to the given 
 value. This function is obsolete. You should use
 \code{\link{gtkEditableSetPosition}} instead.
-\strong{WARNING: \code{gtk_entry_set_position} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_entry_set_position} is deprecated and should not be used in newly-written code.  
+Sets the cursor position in an entry to the given 
+value. This function is obsolete. You should use
+\code{\link{gtkEditableSetPosition}} instead.}
 }
 \usage{gtkEntrySetPosition(object, position)}
 \arguments{

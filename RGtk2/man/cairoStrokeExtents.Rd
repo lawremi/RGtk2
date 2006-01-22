@@ -1,6 +1,8 @@
 \alias{cairoStrokeExtents}
 \name{cairoStrokeExtents}
 \title{cairoStrokeExtents}
+\description{\emph{undocumented
+}}
 \usage{cairoStrokeExtents(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{cairo_t}}] }}
 \value{

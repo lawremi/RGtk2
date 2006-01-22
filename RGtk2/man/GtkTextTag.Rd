@@ -6,7 +6,8 @@
 \name{GtkTextTag}
 \title{GtkTextTag}
 \description{A tag that can be applied to text in a }
-\usage{
+\usage{gtkTextTag(name = NULL)}
+\section{Methods and Functions}{
 \link{gtkTextTagNew}(name = NULL)
 \link{gtkTextTagGetPriority}(object)
 \link{gtkTextTagSetPriority}(object, priority)
@@ -14,9 +15,10 @@
 \link{gtkTextAttributesNew}()
 \link{gtkTextAttributesCopy}(object)
 \link{gtkTextAttributesCopyValues}(object, dest)
-gtkTextTag(name = NULL)
 }
-\details{You may wish to begin by reading the text widget
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTextTag}}
+\section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   
@@ -28,8 +30,6 @@ See \command{gtk-demo} for numerous examples.
   
 The "invisible" property was not implemented for GTK+ 2.0; it's
 planned to be implemented in future releases.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTextTag}}
 \section{Structures}{\describe{
 \item{\code{GtkTextTag}}{\emph{undocumented
 }}

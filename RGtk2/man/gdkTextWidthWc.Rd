@@ -3,7 +3,8 @@
 \title{gdkTextWidthWc}
 \description{
 Determines the width of a given wide-character string.
-\strong{WARNING: \code{gdk_text_width_wc} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_text_width_wc} is deprecated and should not be used in newly-written code.  
+Determines the width of a given wide-character string.  }
 }
 \usage{gdkTextWidthWc(object, text)}
 \arguments{

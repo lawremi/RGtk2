@@ -3,7 +3,8 @@
 \name{GtkTextBuffer}
 \title{GtkTextBuffer}
 \description{Stores attributed text for display in a }
-\usage{
+\usage{gtkTextBuffer(table = NULL)}
+\section{Methods and Functions}{
 \link{gtkTextBufferNew}(table = NULL)
 \link{gtkTextBufferGetLineCount}(object)
 \link{gtkTextBufferGetCharCount}(object)
@@ -61,14 +62,13 @@
 \link{gtkTextBufferEndUserAction}(object)
 \link{gtkTextBufferAddSelectionClipboard}(object, clipboard)
 \link{gtkTextBufferRemoveSelectionClipboard}(object, clipboard)
-gtkTextBuffer(table = NULL)
 }
-\details{You may wish to begin by reading the text widget
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTextBuffer}}
+\section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTextBuffer}}
 \section{Structures}{\describe{\item{\code{GtkTextBuffer}}{
 
 

@@ -5,7 +5,8 @@
 \name{GtkStyle}
 \title{Styles}
 \description{Functions for drawing widget parts}
-\usage{
+\usage{gtkStyle()}
+\section{Methods and Functions}{
 \link{gtkStyleNew}()
 \link{gtkStyleCopy}(object)
 \link{gtkStyleAttach}(object, window)
@@ -60,7 +61,6 @@
 \link{gtkPaintResizeGrip}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, edge, x, y, width, height)
 \link{gtkDrawInsertionCursor}(widget, drawable, area = NULL, location, is.primary, direction, draw.arrow)
 \link{gtkBorderCopy}(object)
-gtkStyle()
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkStyle}}

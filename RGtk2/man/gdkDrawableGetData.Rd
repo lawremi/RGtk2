@@ -4,7 +4,9 @@
 \description{
 Equivalent to \code{\link{gObjectGetData}}; the \code{\link{GObject}} variant should be
 used instead.
-\strong{WARNING: \code{gdk_drawable_get_data} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_drawable_get_data} is deprecated and should not be used in newly-written code.  
+Equivalent to \code{\link{gObjectGetData}}; the \code{\link{GObject}} variant should be
+used instead.  }
 }
 \usage{gdkDrawableGetData(object, key)}
 \arguments{

@@ -4,7 +4,9 @@
 \description{
 Returns the white color for a given colormap. The resulting
 value has already allocated been allocated.
-\strong{WARNING: \code{gdk_color_white} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_color_white} is deprecated and should not be used in newly-written code.  
+Returns the white color for a given colormap. The resulting
+value has already allocated been allocated.  }
 }
 \usage{gdkColorWhite(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}.}}

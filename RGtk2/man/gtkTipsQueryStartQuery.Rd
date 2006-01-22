@@ -5,7 +5,10 @@
 Starts a query.
 The \code{\link{GtkTipsQuery}} widget will take control of the mouse and as the mouse
 moves it will display the tooltip of the widget beneath the mouse.
-\strong{WARNING: \code{gtk_tips_query_start_query} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_tips_query_start_query} is deprecated and should not be used in newly-written code.  
+Starts a query.
+The \code{\link{GtkTipsQuery}} widget will take control of the mouse and as the mouse
+moves it will display the tooltip of the widget beneath the mouse.}
 }
 \usage{gtkTipsQueryStartQuery(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTipsQuery}}] a \code{\link{GtkTipsQuery}}.}}

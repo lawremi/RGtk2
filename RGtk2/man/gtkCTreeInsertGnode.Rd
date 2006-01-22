@@ -3,7 +3,8 @@
 \title{gtkCTreeInsertGnode}
 \description{
 FIXME
-\strong{WARNING: \code{gtk_ctree_insert_gnode} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_insert_gnode} is deprecated and should not be used in newly-written code.  
+FIXME}
 }
 \usage{gtkCTreeInsertGnode(object, parent, sibling, gnode, func, data = NULL)}
 \arguments{

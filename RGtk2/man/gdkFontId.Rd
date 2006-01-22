@@ -3,7 +3,8 @@
 \title{gdkFontId}
 \description{
 Returns the X Font ID for the given font.
-\strong{WARNING: \code{gdk_font_id} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_font_id} is deprecated and should not be used in newly-written code.  
+Returns the X Font ID for the given font.  }
 }
 \usage{gdkFontId(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}.}}

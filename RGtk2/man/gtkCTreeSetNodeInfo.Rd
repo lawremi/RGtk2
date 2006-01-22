@@ -4,7 +4,9 @@
 \description{
 Change the information. Most parameters correspond 
 to the parameters of \code{\link{gtkCTreeInsertNode}}.
-\strong{WARNING: \code{gtk_ctree_set_node_info} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_set_node_info} is deprecated and should not be used in newly-written code.  
+Change the information. Most parameters correspond 
+to the parameters of \code{\link{gtkCTreeInsertNode}}.}
 }
 \usage{gtkCTreeSetNodeInfo(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf, expanded)}
 \arguments{

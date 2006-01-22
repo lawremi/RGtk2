@@ -5,7 +5,8 @@
 \title{AtkRelation}
 \description{An object used to describe a relation between a object and one or more
 other objects.}
-\usage{
+\usage{atkRelation(targets, relationship)}
+\section{Methods and Functions}{
 \link{atkRelationTypeRegister}(name)
 \link{atkRelationTypeGetName}(type)
 \link{atkRelationTypeForName}(name)
@@ -13,13 +14,12 @@ other objects.}
 \link{atkRelationGetRelationType}(object)
 \link{atkRelationGetTarget}(object)
 \link{atkRelationAddTarget}(object, target)
-atkRelation(targets, relationship)
 }
-\details{An AtkRelation describes a relation between an object and one or more
-other objects. The actual relations that an object has with other objects
-are defined as an AtkRelationSet, which is a set of AtkRelations.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRelation}}
+\section{Detailed Description}{An AtkRelation describes a relation between an object and one or more
+other objects. The actual relations that an object has with other objects
+are defined as an AtkRelationSet, which is a set of AtkRelations.}
 \section{Structures}{\describe{\item{\code{AtkRelation}}{
 The AtkRelation structure should not be accessed directly.
 

@@ -5,7 +5,8 @@
 \name{GtkTreeViewColumn}
 \title{GtkTreeViewColumn}
 \description{A visible column in a    widget}
-\usage{
+\usage{gtkTreeViewColumn(title, cell, ...)}
+\section{Methods and Functions}{
 \link{gtkTreeViewColumnNew}()
 \link{gtkTreeViewColumnNewWithAttributes}(title, cell, ...)
 \link{gtkTreeViewColumnPackStart}(object, cell, expand = TRUE)
@@ -56,18 +57,19 @@
 \link{gtkTreeViewColumnCellIsVisible}(object)
 \link{gtkTreeViewColumnFocusCell}(object, cell)
 \link{gtkTreeViewColumnQueueResize}(object)
-gtkTreeViewColumn(title, cell, ...)
 }
-\details{The GtkTreeViewColumn object represents a visible column in a \code{\link{GtkTreeView}} widget.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----GtkTreeViewColumn}}
+\section{Interfaces}{GtkTreeViewColumn implements
+ \code{\link{GtkCellLayout}}.}
+\section{Detailed Description}{The GtkTreeViewColumn object represents a visible column in a \code{\link{GtkTreeView}} widget.
 It allows to set properties of the column header, and functions as a holding pen for 
 the cell renderers which determine how the data in the column is displayed.
   
 Please refer to the tree widget conceptual overview 
 for an overview of all the objects and data types related to the tree widget and how 
 they work together.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkTreeViewColumn}}
 \section{Structures}{\describe{\item{\code{GtkTreeViewColumn}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkTreeViewColumn} is the result of collapsing the constructors of \code{GtkTreeViewColumn} (\code{\link{gtkTreeViewColumnNew}}, \code{\link{gtkTreeViewColumnNewWithAttributes}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
@@ -100,8 +102,6 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 }
 
 }}}
-\section{Interfaces}{GtkTreeViewColumn implements
- \code{\link{GtkCellLayout}}.}
 \section{Signals}{\describe{\item{\code{clicked(treeviewcolumn, user.data)}}{
 
 

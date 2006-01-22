@@ -3,14 +3,22 @@
 \name{GtkAlignment}
 \title{GtkAlignment}
 \description{A widget which controls the alignment and size of its child}
-\usage{
+\usage{gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkAlignmentNew}(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)
 \link{gtkAlignmentSet}(object, xalign, yalign, xscale, yscale)
 \link{gtkAlignmentGetPadding}(object)
 \link{gtkAlignmentSetPadding}(object, padding.top, padding.bottom, padding.left, padding.right)
-gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----GtkAlignment}}
+\section{Interfaces}{GtkAlignment implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
   
 The scale settings are used to specify how much the child widget should
@@ -22,20 +30,12 @@ The align settings are used to place the child widget within the available
 area. The values range from 0 (top or left) to 1 (bottom or right).
 Of course, if the scale settings are both set to 1, the alignment settings
 have no effect.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkAlignment}}
 \section{Structures}{\describe{\item{\code{GtkAlignment}}{
 The \code{\link{GtkAlignment}} struct contains private data only, and should
 be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkAlignment} is the equivalent of \code{\link{gtkAlignmentNew}}.}
-\section{Interfaces}{GtkAlignment implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{bottom-padding} [numeric : Read / Write]}{
 

@@ -3,7 +3,8 @@
 \title{gtkListItemNewWithLabel}
 \description{
 Creates a new \code{\link{GtkListItem}} with a child label containing the given string.
-\strong{WARNING: \code{gtk_list_item_new_with_label} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_list_item_new_with_label} is deprecated and should not be used in newly-written code.  
+Creates a new \code{\link{GtkListItem}} with a child label containing the given string.}
 }
 \usage{gtkListItemNewWithLabel(label, show = TRUE)}
 \arguments{\item{\code{label}}{[character] the string to use for the child label.}}

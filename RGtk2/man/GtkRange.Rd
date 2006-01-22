@@ -2,7 +2,7 @@
 \name{GtkRange}
 \title{GtkRange}
 \description{Base class for widgets which visualize an adjustment}
-\usage{
+\section{Methods and Functions}{
 \link{gtkRangeGetAdjustment}(object)
 \link{gtkRangeSetUpdatePolicy}(object, policy)
 \link{gtkRangeSetAdjustment}(object, adjustment)
@@ -20,10 +20,10 @@
                +----GtkRange
                      +----\link{GtkScale}
                      +----\link{GtkScrollbar}}}
-\section{Structures}{\describe{\item{\code{GtkRange}}{\emph{undocumented
-}}}}
 \section{Interfaces}{GtkRange implements
  AtkImplementorIface.}
+\section{Structures}{\describe{\item{\code{GtkRange}}{\emph{undocumented
+}}}}
 \section{Signals}{\describe{
 \item{\code{adjust-bounds(range, arg1, user.data)}}{
 

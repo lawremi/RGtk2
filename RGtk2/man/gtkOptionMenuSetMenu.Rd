@@ -5,7 +5,10 @@
 Provides the \code{\link{GtkMenu}} that is popped up to allow the user to choose
 a new value.  You should provide a simple menu avoiding the
 use of tearoff menu items, submenus, and accelerators.
-\strong{WARNING: \code{gtk_option_menu_set_menu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{gtk_option_menu_set_menu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
+Provides the \code{\link{GtkMenu}} that is popped up to allow the user to choose
+a new value.  You should provide a simple menu avoiding the
+use of tearoff menu items, submenus, and accelerators.}
 }
 \usage{gtkOptionMenuSetMenu(object, menu)}
 \arguments{

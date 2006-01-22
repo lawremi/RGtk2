@@ -3,7 +3,8 @@
 \name{GtkHandleBox}
 \title{GtkHandleBox}
 \description{a widget for detachable window portions}
-\usage{
+\usage{gtkHandleBox(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkHandleBoxNew}(show = TRUE)
 \link{gtkHandleBoxSetShadowType}(object, type)
 \link{gtkHandleBoxSetHandlePosition}(object, position)
@@ -11,9 +12,16 @@
 \link{gtkHandleBoxGetHandlePosition}(object)
 \link{gtkHandleBoxGetShadowType}(object)
 \link{gtkHandleBoxGetSnapEdge}(object)
-gtkHandleBox(show = TRUE)
 }
-\details{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----GtkHandleBox}}
+\section{Interfaces}{GtkHandleBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
 off". It is a bin widget which displays its child and a handle that
 the user can drag to tear off a separate window (the \dfn{float
 window}) containing the child widget. A thin
@@ -34,12 +42,6 @@ instance, if the handlebox is packed at the bottom of a VBox, then
 when the handlebox is detached, the bottom edge of the handlebox's
 allocation will remain fixed as the height of the handlebox shrinks,
 so the snap edge should be set to \code{GTK_POS_BOTTOM}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkHandleBox}}
 \section{Structures}{\describe{\item{\code{GtkHandleBox}}{
 The \code{\link{GtkHandleBox}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
@@ -58,8 +60,6 @@ child is attached or detached. \cr
 
 }}}
 \section{Convenient Construction}{\code{gtkHandleBox} is the equivalent of \code{\link{gtkHandleBoxNew}}.}
-\section{Interfaces}{GtkHandleBox implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{child-attached(handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the

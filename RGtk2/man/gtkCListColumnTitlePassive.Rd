@@ -4,7 +4,9 @@
 \description{
 Causes the specified column title button to become passive, i.e., does
 not respond to events, such as the user clicking on it.
-\strong{WARNING: \code{gtk_clist_column_title_passive} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_column_title_passive} is deprecated and should not be used in newly-written code.  
+Causes the specified column title button to become passive, i.e., does
+not respond to events, such as the user clicking on it.}
 }
 \usage{gtkCListColumnTitlePassive(object, column)}
 \arguments{

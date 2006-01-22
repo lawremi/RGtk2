@@ -2,7 +2,7 @@
 \name{AtkStreamableContent}
 \title{AtkStreamableContent}
 \description{The ATK interface which provides access to streamable content.}
-\usage{
+\section{Methods and Functions}{
 \link{atkStreamableContentGetNMimeTypes}(object)
 \link{atkStreamableContentGetMimeType}(object, i)
 \link{atkStreamableContentGetStream}(object, mime.type)

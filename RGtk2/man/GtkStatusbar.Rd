@@ -3,7 +3,8 @@
 \name{GtkStatusbar}
 \title{GtkStatusbar}
 \description{Report messages of minor importance to the user}
-\usage{
+\usage{gtkStatusbar(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkStatusbarNew}(show = TRUE)
 \link{gtkStatusbarGetContextId}(object, context.description)
 \link{gtkStatusbarPush}(object, context.id, text)
@@ -11,9 +12,17 @@
 \link{gtkStatusbarRemove}(object, context.id, message.id)
 \link{gtkStatusbarSetHasResizeGrip}(object, setting)
 \link{gtkStatusbarGetHasResizeGrip}(object)
-gtkStatusbar(show = TRUE)
 }
-\details{A \code{\link{GtkStatusbar}} is usually placed along the bottom of an application's main
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----\link{GtkHBox}
+                                 +----GtkStatusbar}}
+\section{Interfaces}{GtkStatusbar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkStatusbar}} is usually placed along the bottom of an application's main
 \code{\link{GtkWindow}}. It may provide a regular commentary of the application's status
 (as is usually the case in a web browser, for example), or may be used to
 simply output a message when the status changes, (when an upload is complete
@@ -36,20 +45,11 @@ Status bars are created using \code{\link{gtkStatusbarNew}}.
 Messages are added to the bar's stack with \code{\link{gtkStatusbarPush}}.
   
 The message at the top of the stack can be removed using \code{\link{gtkStatusbarPop}}. A message can be removed from anywhere in the stack if its message_id was recorded at the time it was added. This is done using \code{\link{gtkStatusbarRemove}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkStatusbar}}
 \section{Structures}{\describe{\item{\code{GtkStatusbar}}{
 Contains private data that should be modified with the functions described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkStatusbar} is the equivalent of \code{\link{gtkStatusbarNew}}.}
-\section{Interfaces}{GtkStatusbar implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{text-popped(statusbar, context.id, text, user.data)}}{
 Is emitted whenever a new message is popped off a statusbar's stack.

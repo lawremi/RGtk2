@@ -14,7 +14,7 @@ gTypeGetAncestors(type)
 gTypeFromName(name)
 gTypeGetClass(type)
 }
-\parameters{
+\arguments{
 \item{type}{The \code{GType}, either its name or numeric value, see below}
 \item{name}{The name of a \code{GType}}
 }

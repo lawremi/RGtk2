@@ -3,7 +3,8 @@
 \name{GtkToggleButton}
 \title{GtkToggleButton}
 \description{Create buttons which retain their state}
-\usage{
+\usage{gtkToggleButton(label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkToggleButtonNew}(show = TRUE)
 \link{gtkToggleButtonNewWithLabel}(label, show = TRUE)
 \link{gtkToggleButtonNewWithMnemonic}(label, show = TRUE)
@@ -14,9 +15,18 @@
 \link{gtkToggleButtonSetActive}(object, is.active)
 \link{gtkToggleButtonGetInconsistent}(object)
 \link{gtkToggleButtonSetInconsistent}(object, setting)
-gtkToggleButton(label, show = TRUE)
 }
-\details{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkButton}
+                                 +----GtkToggleButton
+                                       +----\link{GtkCheckButton}}}
+\section{Interfaces}{GtkToggleButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
   
@@ -50,14 +60,6 @@ make_toggles <- function() {
    dialog$showAll()
 }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkToggleButton
-                                       +----\link{GtkCheckButton}}}
 \section{Structures}{\describe{\item{\code{GtkToggleButton}}{
 The \code{\link{GtkToggleButton}} struct contains private data only, and should be manipulated using the functions below.
 
@@ -65,8 +67,6 @@ The \code{\link{GtkToggleButton}} struct contains private data only, and should 
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleButton} is the result of collapsing the constructors of \code{GtkToggleButton} (\code{\link{gtkToggleButtonNew}}, \code{\link{gtkToggleButtonNewWithLabel}}, \code{\link{gtkToggleButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkToggleButton implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{toggled(togglebutton, user.data)}}{
 Should be connected if you wish to perform an action whenever the
 \code{\link{GtkToggleButton}}'s state is changed.

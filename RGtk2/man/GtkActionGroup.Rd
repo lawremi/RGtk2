@@ -6,7 +6,8 @@
 \name{GtkActionGroup}
 \title{GtkActionGroup}
 \description{A group of actions}
-\usage{
+\usage{gtkActionGroup(name = NULL)}
+\section{Methods and Functions}{
 \link{gtkActionGroupNew}(name = NULL)
 \link{gtkActionGroupGetName}(object)
 \link{gtkActionGroupGetSensitive}(object)
@@ -27,9 +28,10 @@
 \link{gtkActionGroupSetTranslateFunc}(object, func, data = NULL)
 \link{gtkActionGroupSetTranslationDomain}(object, domain)
 \link{gtkActionGroupTranslateString}(object, string)
-gtkActionGroup(name = NULL)
 }
-\details{Actions are organised into groups.  An action group is essentially a
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkActionGroup}}
+\section{Detailed Description}{Actions are organised into groups.  An action group is essentially a
 map from names to \code{\link{GtkAction}} objects.
   
 All actions that would make sense to use in a particular context
@@ -47,8 +49,6 @@ accelerator path (which normally has the form
 and a shortcut is associated with this accelerator path. All menuitems and 
 toolitems take on this accelerator path. The GTK+ accelerator map code makes 
 sure that the correct shortcut is displayed next to the menu item.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkActionGroup}}
 \section{Structures}{\describe{
 \item{\code{GtkActionGroup}}{
 The \code{GtkActionGroup} struct contains only private 

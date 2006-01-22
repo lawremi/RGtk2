@@ -4,7 +4,7 @@
 \name{gtk-Accelerator-Maps}
 \title{Accelerator Maps}
 \description{Loadable keyboard accelerator specifications}
-\usage{
+\section{Methods and Functions}{
 \link{gtkAccelMapAddEntry}(accel.path, accel.key, accel.mods)
 \link{gtkAccelMapLookupEntry}(accel.path)
 \link{gtkAccelMapChangeEntry}(accel.path, accel.key, accel.mods, replace)

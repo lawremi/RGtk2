@@ -5,7 +5,8 @@
 \name{GtkDialog}
 \title{GtkDialog}
 \description{Create popup windows}
-\usage{
+\usage{gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkDialogNew}(show = TRUE)
 \link{gtkDialogNewWithButtons}(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
 \link{gtkDialogRun}(object)
@@ -21,9 +22,24 @@
 \link{gtkAlternativeDialogButtonOrder}(object)
 \link{gtkDialogSetAlternativeButtonOrder}(object, ...)
 \link{gtkDialogSetAlternativeButtonOrderFromArray}(object, new.order)
-gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
 }
-\details{Dialog boxes are a convenient way to prompt the user for a small amount of
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----GtkDialog
+                                       +----\link{GtkAboutDialog}
+                                       +----\link{GtkColorSelectionDialog}
+                                       +----\link{GtkFileChooserDialog}
+                                       +----\link{GtkFileSelection}
+                                       +----\link{GtkFontSelectionDialog}
+                                       +----\link{GtkInputDialog}
+                                       +----\link{GtkMessageDialog}}}
+\section{Interfaces}{GtkDialog implements
+ AtkImplementorIface.}
+\section{Detailed Description}{Dialog boxes are a convenient way to prompt the user for a small amount of
 input, e.g. to display a message, ask a question, or anything else that does 
 not require extensive effort on the user's part.
   
@@ -85,20 +101,6 @@ quick_message <- function(message) {
    dialog$showAll()
 }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----GtkDialog
-                                       +----\link{GtkAboutDialog}
-                                       +----\link{GtkColorSelectionDialog}
-                                       +----\link{GtkFileChooserDialog}
-                                       +----\link{GtkFileSelection}
-                                       +----\link{GtkFontSelectionDialog}
-                                       +----\link{GtkInputDialog}
-                                       +----\link{GtkMessageDialog}}}
 \section{Structures}{\describe{\item{\code{GtkDialog}}{
 \code{vbox} is a \code{\link{GtkVBox}} - the main part of the
 dialog box.
@@ -150,8 +152,6 @@ application-defined response ids.
 
 }
 }}
-\section{Interfaces}{GtkDialog implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{close(dialog, user.data)}}{
 

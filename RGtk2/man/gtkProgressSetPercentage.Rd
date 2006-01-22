@@ -3,7 +3,8 @@
 \title{gtkProgressSetPercentage}
 \description{
 Sets the current percentage completion for the \code{\link{GtkProgress}}.
-\strong{WARNING: \code{gtk_progress_set_percentage} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_progress_set_percentage} is deprecated and should not be used in newly-written code.  
+Sets the current percentage completion for the \code{\link{GtkProgress}}.}
 }
 \usage{gtkProgressSetPercentage(object, percentage)}
 \arguments{

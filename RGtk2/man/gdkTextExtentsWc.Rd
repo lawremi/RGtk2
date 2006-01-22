@@ -3,7 +3,8 @@
 \title{gdkTextExtentsWc}
 \description{
 Gets the metrics of a string of wide characters.
-\strong{WARNING: \code{gdk_text_extents_wc} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_text_extents_wc} is deprecated and should not be used in newly-written code.  
+Gets the metrics of a string of wide characters.  }
 }
 \usage{gdkTextExtentsWc(object, text)}
 \arguments{

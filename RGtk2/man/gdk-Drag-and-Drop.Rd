@@ -6,7 +6,8 @@
 \name{gdk-Drag-and-Drop}
 \title{Drag and Drop}
 \description{Functions for controlling drag and drop handling}
-\usage{
+\usage{gdkDragContext()}
+\section{Methods and Functions}{
 \link{gdkDragGetSelection}(object)
 \link{gdkDragAbort}(object, time)
 \link{gdkDropReply}(object, ok, time = GDK_CURRENT_TIME)
@@ -21,9 +22,8 @@
 \link{gdkDragGetProtocolForDisplay}(display, xid, protocol)
 \link{gdkDragStatus}(object, action, time = GDK_CURRENT_TIME)
 \link{gdkDragDropSucceeded}(object)
-gdkDragContext()
 }
-\details{These functions provide a low level interface for drag and drop.
+\section{Detailed Description}{These functions provide a low level interface for drag and drop.
 The X backend of GDK supports both the Xdnd and Motif drag and drop protocols 
 transparently, the Win32 backend supports the WM_DROPFILES protocol.
   

@@ -5,7 +5,8 @@
 \name{GtkTable}
 \title{GtkTable}
 \description{Pack widgets in regular patterns}
-\usage{
+\usage{gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkTableNew}(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
 \link{gtkTableResize}(object, rows, columns)
 \link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = GTK_EXPAND|GTK_FILL, yoptions = GTK_EXPAND|GTK_FILL, xpadding = 0, ypadding = 0)
@@ -20,9 +21,15 @@
 \link{gtkTableGetRowSpacing}(object, row)
 \link{gtkTableGetColSpacing}(object, column)
 \link{gtkTableGetDefaultColSpacing}(object)
-gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkTable}}
+\section{Interfaces}{GtkTable implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
 columns, making it easy to align many widgets next to each other,
 horizontally and vertically.
   
@@ -39,11 +46,6 @@ The gaps between \emph{all} rows or columns can be changed by calling
   
 \code{\link{gtkTableSetHomogeneous}}, can be used to set whether all cells in the
 table will resize themselves to the size of the largest widget in the table.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkTable}}
 \section{Structures}{\describe{
 \item{\code{GtkTable}}{
 The \code{GtkTable} structure holds the data for the actual table itself. 
@@ -107,8 +109,6 @@ These fields should be considered read-only and not be modified directly.
 }
 }}
 \section{Convenient Construction}{\code{gtkTable} is the equivalent of \code{\link{gtkTableNew}}.}
-\section{Interfaces}{GtkTable implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{column-spacing} [numeric : Read / Write]}{
 

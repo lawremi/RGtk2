@@ -3,7 +3,7 @@
 \title{AtkRegistry}
 \description{An object used to store the GType of the factories used to create an accessible
 object for an object of a particular GType.}
-\usage{
+\section{Methods and Functions}{
 \link{atkRegistrySetFactoryType}(object, type, factory.type)
 \link{atkRegistryGetFactoryType}(object, type)
 \link{atkRegistryGetFactory}(object, type)

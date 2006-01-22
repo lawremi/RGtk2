@@ -3,16 +3,19 @@
 \name{GtkAdjustment}
 \title{GtkAdjustment}
 \description{A GtkObject representing an adjustable bounded value}
-\usage{
+\usage{gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}
+\section{Methods and Functions}{
 \link{gtkAdjustmentNew}(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)
 \link{gtkAdjustmentGetValue}(object)
 \link{gtkAdjustmentSetValue}(object, value)
 \link{gtkAdjustmentClampPage}(object, lower, upper)
 \link{gtkAdjustmentChanged}(object)
 \link{gtkAdjustmentValueChanged}(object)
-gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)
 }
-\details{The \code{\link{GtkAdjustment}} object represents a value which has an associated lower
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----GtkAdjustment}}
+\section{Detailed Description}{The \code{\link{GtkAdjustment}} object represents a value which has an associated lower
 and upper bound, together with step and page increments, and a page size.
 It is used within several GTK+ widgets, including
 \code{\link{GtkSpinButton}}, \code{\link{GtkViewport}}, and \code{\link{GtkRange}} (which is a base class for
@@ -25,9 +28,6 @@ The owner of the \code{\link{GtkAdjustment}} typically calls the
 \code{\link{gtkAdjustmentValueChanged}} and \code{\link{gtkAdjustmentChanged}} functions
 after changing the value and its bounds. This results in the emission of the
 "value_changed" or "changed" signal respectively.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkAdjustment}}
 \section{Structures}{\describe{\item{\code{GtkAdjustment}}{
 The \code{\link{GtkAdjustment}} struct contains the following fields.
 

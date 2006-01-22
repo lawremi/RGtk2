@@ -88,7 +88,12 @@ parseConcept <- function(doc, defs, verbose) {
 	if (verbose)
 		print(concept["name"])
 	concept["description"] <- markup(getNodeSet(entry, desc_path))
-	concept[["usage"]] <- toRFuncs(sapply(getNodeSet(doc, func_names_path), xmlValue))
+	concept[["Methods and Functions"]] <- toRFuncs(sapply(getNodeSet(doc, func_names_path), xmlValue))
+	concept[["Hierarchy"]] <- toHierarchy(getNodeSet(entry, hierarchy_path))
+	concept[["Implementations"]] <- markup(getNodeSet(entry, impl_path))
+	concept[["Interfaces"]] <- markup(getNodeSet(entry, interface_path))
+	concept[["Interface Derivations"]] <- markup(getNodeSet(entry, derived_path))
+	concept["Detailed Description"] <- markup(getNodeSet(entry, details_path))
 	sapply(getNodeSet(entry, extras_path), function(extra) {
 		id <- xmlGetAttr(extra, "id")
 		if (!is.null(id)) {
@@ -101,7 +106,6 @@ parseConcept <- function(doc, defs, verbose) {
 			return()
 		concept[title] <<- markup(getNodeSet(extra, "/*[name() != 'title']"))
 	})
-	concept[["Hierarchy"]] <- toHierarchy(getNodeSet(entry, hierarchy_path))
 	structs <- toRStructs(getNodeSet(entry, struct_path), defs)
 	concept[["Structures"]] <- structs$code
 	concept[["alias"]] <- c(concept[["alias"]], structs$names)
@@ -118,10 +122,6 @@ parseConcept <- function(doc, defs, verbose) {
 	concept[["alias"]] <- c(concept[["alias"]], userfuncs$names)
 	concept[["User Functions"]] <- userfuncs$code
 	concept[["alias"]] <- c(concept[["alias"]], enums$names)
-	concept[["Implementations"]] <- markup(getNodeSet(entry, impl_path))
-	concept[["Interfaces"]] <- markup(getNodeSet(entry, interface_path))
-	concept[["Interface Derivations"]] <- markup(getNodeSet(entry, derived_path))
-	concept["details"] <- markup(getNodeSet(entry, details_path))
 	if (concept["name"] %in% names(customNotes))
 		concept["note"] <- customNotes[[concept[["name"]]]]
 	concept["Signals"] <- toSignals(getNodeSet(entry, signals_path))
@@ -653,13 +653,13 @@ rd_table <- function(rows, columns = rep("l", length(rows))) {
 }
 
 writeRd <- function(doc, output) {
-	required <- c("name", "alias", "title", "keyword")
+	required <- c("name", "alias", "title", "description", "keyword")
 	first <- c("name", "title", "description", "usage", "arguments", "details", "value")
 	last <- c("references", "note", "author", "seealso", "examples", "keyword")
 	standard <- c(first, last)
 	doc["author"] <- "Derived by RGtkGen from GTK+ documentation"
-	doc <- doc[sapply(doc, length) > 0 & sapply(doc, function(element) any(sapply(element, nchar) > 0))]
-			| names(doc) %in% required
+	doc <- doc[sapply(doc, length) > 0 & sapply(doc, function(element) any(sapply(element, nchar) > 0))
+			| names(doc) %in% required]
 	common <- standard[standard %in% names(doc)]
 	rd_doc <- list()
 	rd_doc["alias"] <- list(unique(sapply(doc[["alias"]], function(alias) rd("alias", alias))))
@@ -692,5 +692,6 @@ filter <- function(text) {
 xmlValue.XMLInternalNode =
 function(node, ignoreComments = FALSE)
 {
+	#xmlValue(as(node, "XMLNode"))
 	.Call("RS_XML_xmlNodeValue", node)
 }

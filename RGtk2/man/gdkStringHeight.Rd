@@ -6,7 +6,11 @@ Determines the total height of a given nul-terminated
 string. This value is not generally useful, because you
 cannot determine how this total height will be drawn in
 relation to the baseline. See \code{\link{gdkStringExtents}}.
-\strong{WARNING: \code{gdk_string_height} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_string_height} is deprecated and should not be used in newly-written code.  
+Determines the total height of a given nul-terminated
+string. This value is not generally useful, because you
+cannot determine how this total height will be drawn in
+relation to the baseline. See \code{\link{gdkStringExtents}}.  }
 }
 \usage{gdkStringHeight(object, string)}
 \arguments{

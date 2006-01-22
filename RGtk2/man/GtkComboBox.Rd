@@ -3,7 +3,8 @@
 \name{GtkComboBox}
 \title{GtkComboBox}
 \description{A widget used to choose from a list of items}
-\usage{
+\usage{gtkComboBox(model, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkComboBoxNew}(show = TRUE)
 \link{gtkComboBoxNewWithModel}(model, show = TRUE)
 \link{gtkComboBoxGetWrapWidth}(object)
@@ -33,9 +34,17 @@
 \link{gtkComboBoxGetAddTearoffs}(object)
 \link{gtkComboBoxSetFocusOnClick}(object, focus.on.click)
 \link{gtkComboBoxGetFocusOnClick}(object)
-gtkComboBox(model, show = TRUE)
 }
-\details{A \code{\link{GtkComboBox}} is a widget that allows the user to choose from a
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----GtkComboBox
+                                 +----\link{GtkComboBoxEntry}}}
+\section{Interfaces}{GtkComboBox implements
+ AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
+\section{Detailed Description}{A \code{\link{GtkComboBox}} is a widget that allows the user to choose from a
 list of valid choices.  The \code{\link{GtkComboBox}} displays the selected 
 choice.  When activated, the \code{\link{GtkComboBox}} displays a popup 
 which allows the user to make a new choice. The style in which 
@@ -57,18 +66,9 @@ the data in a model. It consists of the functions \code{\link{gtkComboBoxNewText
 \code{\link{gtkComboBoxAppendText}}, \code{\link{gtkComboBoxInsertText}}, 
 \code{\link{gtkComboBoxPrependText}}, \code{\link{gtkComboBoxRemoveText}} and 
 \code{\link{gtkComboBoxGetActiveText}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkComboBox
-                                 +----\link{GtkComboBoxEntry}}}
 \section{Structures}{\describe{\item{\code{GtkComboBox}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkComboBox} is the result of collapsing the constructors of \code{GtkComboBox} (\code{\link{gtkComboBoxNew}}, \code{\link{gtkComboBoxNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkComboBox implements
- AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Signals}{\describe{\item{\code{changed(widget, user.data)}}{
 The changed signal gets emitted when the active
 item is changed. The can be due to the user selecting

@@ -3,10 +3,10 @@
 \name{GtkIMContextSimple}
 \title{GtkIMContextSimple}
 \description{An input method context supporting table-based input methods}
-\usage{
+\usage{gtkIMContextSimple()}
+\section{Methods and Functions}{
 \link{gtkIMContextSimpleNew}()
 \link{gtkIMContextSimpleAddTable}(object, data, max.seq.len, n.seqs)
-gtkIMContextSimple()
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkIMContext}

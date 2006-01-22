@@ -3,7 +3,8 @@
 \title{gtkCTreeCollapseToDepth}
 \description{
 Collapse a node and its children up to the depth given.
-\strong{WARNING: \code{gtk_ctree_collapse_to_depth} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_collapse_to_depth} is deprecated and should not be used in newly-written code.  
+Collapse a node and its children up to the depth given.}
 }
 \usage{gtkCTreeCollapseToDepth(object, node, depth)}
 \arguments{

@@ -3,7 +3,7 @@
 \name{GtkMenuShell}
 \title{GtkMenuShell}
 \description{A base class for menu objects}
-\usage{
+\section{Methods and Functions}{
 \link{gtkMenuShellAppend}(object, child)
 \link{gtkMenuShellPrepend}(object, child)
 \link{gtkMenuShellInsert}(object, child, position)
@@ -16,13 +16,6 @@
 \link{gtkMenuShellSetTakeFocus}(object, take.focus)
 \link{gtkMenuShellGetTakeFocus}(object)
 }
-\details{A \code{\link{GtkMenuShell}} is the abstract base class used to derive the 
-\code{\link{GtkMenu}} and \code{\link{GtkMenuBar}} subclasses.  
-  
-A \code{\link{GtkMenuShell}} is a container of \code{\link{GtkMenuItem}} objects arranged in a 
-list which can be navigated, selected, and activated by the user to perform
-application functions.  A \code{\link{GtkMenuItem}} can have a submenu associated with it,
-allowing for nested hierarchical menus.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -30,6 +23,15 @@ allowing for nested hierarchical menus.}
                      +----GtkMenuShell
                            +----\link{GtkMenuBar}
                            +----\link{GtkMenu}}}
+\section{Interfaces}{GtkMenuShell implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkMenuShell}} is the abstract base class used to derive the 
+\code{\link{GtkMenu}} and \code{\link{GtkMenuBar}} subclasses.  
+  
+A \code{\link{GtkMenuShell}} is a container of \code{\link{GtkMenuItem}} objects arranged in a 
+list which can be navigated, selected, and activated by the user to perform
+application functions.  A \code{\link{GtkMenuItem}} can have a submenu associated with it,
+allowing for nested hierarchical menus.}
 \section{Structures}{\describe{\item{\code{GtkMenuShell}}{
 The \code{\link{GtkMenuShell}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
@@ -49,8 +51,6 @@ GTK_MENU_DIR_PREV \tab To the previous menu item. \cr
 }
 
 }}}
-\section{Interfaces}{GtkMenuShell implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{activate-current(menushell, force.hide, user.data)}}{
 An action signal that activates the current menu item within the menu

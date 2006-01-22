@@ -4,7 +4,7 @@
 \name{gdk-Cursors}
 \title{Cursors}
 \description{Standard and pixmap cursors}
-\usage{
+\section{Methods and Functions}{
 \link{gdkCursorNew}(cursor.type)
 \link{gdkCursorNewFromPixmap}(source, mask, fg, bg, x, y)
 \link{gdkCursorNewFromPixbuf}(display, source, x, y)
@@ -13,7 +13,7 @@
 \link{gdkCursorGetDisplay}(object)
 \link{gdkCursorGetImage}(object)
 }
-\details{These functions are used to create and destroy cursors.
+\section{Detailed Description}{These functions are used to create and destroy cursors.
 There is a number of standard cursors, but it is also
 possible to construct new cursors from pixmaps and
 pixbufs. There may be limitations as to what kinds of

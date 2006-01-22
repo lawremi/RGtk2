@@ -3,17 +3,13 @@
 \name{GtkListItem}
 \title{GtkListItem}
 \description{An item in a GtkList}
-\usage{
+\usage{gtkListItem(label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkListItemNew}(show = TRUE)
 \link{gtkListItemNewWithLabel}(label, show = TRUE)
 \link{gtkListItemSelect}(object)
 \link{gtkListItemDeselect}(object)
-gtkListItem(label, show = TRUE)
 }
-\details{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
-  
-GtkList has has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -21,15 +17,21 @@ in newly written code. Use \code{\link{GtkTreeView}} instead.}
                      +----\link{GtkBin}
                            +----\link{GtkItem}
                                  +----GtkListItem}}
+\section{Interfaces}{GtkListItem implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
+  
+GtkList has has been deprecated since GTK+ 2.0 and should not be used
+in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\code{GtkListItem}}{
-\strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.  
+The \code{\link{GtkListItem}} struct contains private data only, and should
+only be accessed using the functions below.}
 The \code{\link{GtkListItem}} struct contains private data only, and should
 only be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkListItem} is the result of collapsing the constructors of \code{GtkListItem} (\code{\link{gtkListItemNew}}, \code{\link{gtkListItemNewWithLabel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkListItem implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{end-selection(listitem, user.data)}}{
 

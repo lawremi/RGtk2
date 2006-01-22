@@ -3,7 +3,7 @@
 \name{GtkCellLayout}
 \title{GtkCellLayout}
 \description{An interface for packing cells}
-\usage{
+\section{Methods and Functions}{
 \link{gtkCellLayoutPackStart}(object, cell, expand = TRUE)
 \link{gtkCellLayoutPackEnd}(object, cell, expand = TRUE)
 \link{gtkCellLayoutReorder}(object, cell, position)
@@ -13,11 +13,13 @@
 \link{gtkCellLayoutSetCellDataFunc}(object, cell, func, func.data = NULL)
 \link{gtkCellLayoutClearAttributes}(object, cell)
 }
-\details{\code{\link{GtkCellLayout}} is an interface to be implemented by all objects which
-want to provide a \code{GtkTreeViewColumn-like} API for packing cells, setting
-attributes and data funcs. }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkCellLayout}}
+\section{Implementations}{GtkCellLayout is implemented by
+ \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkTreeViewColumn}},  \code{\link{GtkComboBox}},  \code{\link{GtkIconView}} and  \code{\link{GtkComboBoxEntry}}.}
+\section{Detailed Description}{\code{\link{GtkCellLayout}} is an interface to be implemented by all objects which
+want to provide a \code{GtkTreeViewColumn-like} API for packing cells, setting
+attributes and data funcs. }
 \section{Structures}{\describe{\item{\code{GtkCellLayout}}{\emph{undocumented
 }}}}
 \section{User Functions}{\describe{\item{\code{GtkCellLayoutDataFunc(cell.layout, cell, tree.model, iter, data)}}{
@@ -33,8 +35,6 @@ as appropriate.
 }
 
 }}}
-\section{Implementations}{GtkCellLayout is implemented by
- \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkTreeViewColumn}},  \code{\link{GtkComboBox}},  \code{\link{GtkIconView}} and  \code{\link{GtkComboBoxEntry}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellLayout.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

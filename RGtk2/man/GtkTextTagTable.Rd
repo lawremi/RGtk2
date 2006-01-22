@@ -4,21 +4,21 @@
 \name{GtkTextTagTable}
 \title{GtkTextTagTable}
 \description{Collection of tags that can be used together}
-\usage{
+\usage{gtkTextTagTable()}
+\section{Methods and Functions}{
 \link{gtkTextTagTableNew}()
 \link{gtkTextTagTableAdd}(object, tag)
 \link{gtkTextTagTableRemove}(object, tag)
 \link{gtkTextTagTableLookup}(object, name)
 \link{gtkTextTagTableForeach}(object, func, data = NULL)
 \link{gtkTextTagTableGetSize}(object)
-gtkTextTagTable()
 }
-\details{You may wish to begin by reading the text widget
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTextTagTable}}
+\section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTextTagTable}}
 \section{Structures}{\describe{\item{\code{GtkTextTagTable}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkTextTagTable} is the equivalent of \code{\link{gtkTextTagTableNew}}.}

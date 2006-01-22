@@ -3,7 +3,11 @@
 \title{gtkToolbarPrependItem}
 \description{
 Adds a new button to the beginning (top or left edges) of the given toolbar.
-\strong{WARNING: \code{gtk_toolbar_prepend_item} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_prepend_item} is deprecated and should not be used in newly-written code.  
+Adds a new button to the beginning (top or left edges) of the given toolbar.
+  
+\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 }
 \usage{gtkToolbarPrependItem(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)}
 \arguments{

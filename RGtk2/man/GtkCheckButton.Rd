@@ -3,15 +3,12 @@
 \name{GtkCheckButton}
 \title{GtkCheckButton}
 \description{Create widgets with a discrete toggle button}
-\usage{
+\usage{gtkCheckButton(label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCheckButtonNew}(show = TRUE)
 \link{gtkCheckButtonNewWithLabel}(label, show = TRUE)
 \link{gtkCheckButtonNewWithMnemonic}(label, show = TRUE)
-gtkCheckButton(label, show = TRUE)
 }
-\details{A \code{\link{GtkCheckButton}} places a discrete \code{\link{GtkToggleButton}} next to a widget, (usually a \code{\link{GtkLabel}}). See the section on \code{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.
-  
-The important signal ('toggled') is also inherited from \code{\link{GtkToggleButton}}.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -21,13 +18,16 @@ The important signal ('toggled') is also inherited from \code{\link{GtkToggleBut
                                  +----\link{GtkToggleButton}
                                        +----GtkCheckButton
                                              +----\link{GtkRadioButton}}}
+\section{Interfaces}{GtkCheckButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkCheckButton}} places a discrete \code{\link{GtkToggleButton}} next to a widget, (usually a \code{\link{GtkLabel}}). See the section on \code{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.
+  
+The important signal ('toggled') is also inherited from \code{\link{GtkToggleButton}}.}
 \section{Structures}{\describe{\item{\code{GtkCheckButton}}{
 \code{toggle_button} is a \code{\link{GtkToggleButton}} representing the actual toggle button that composes the check button.
 
 }}}
 \section{Convenient Construction}{\code{gtkCheckButton} is the result of collapsing the constructors of \code{GtkCheckButton} (\code{\link{gtkCheckButtonNew}}, \code{\link{gtkCheckButtonNewWithLabel}}, \code{\link{gtkCheckButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkCheckButton implements
- AtkImplementorIface.}
 \section{Style Properties}{\describe{
 \item{\code{indicator-size} [integer : Read]}{
 

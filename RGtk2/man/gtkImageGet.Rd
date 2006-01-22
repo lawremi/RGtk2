@@ -3,7 +3,8 @@
 \title{gtkImageGet}
 \description{
 Gets the \code{\link{GtkImage}}.
-\strong{WARNING: \code{gtk_image_get} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_image_get} is deprecated and should not be used in newly-written code.  
+Gets the \code{\link{GtkImage}}.}
 }
 \usage{gtkImageGet(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkImage}}] a \code{\link{GtkImage}}}}

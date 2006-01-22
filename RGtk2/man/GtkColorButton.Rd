@@ -3,7 +3,8 @@
 \name{GtkColorButton}
 \title{GtkColorButton}
 \description{A button to launch a color selection dialog}
-\usage{
+\usage{gtkColorButton(color, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkColorButtonNew}(show = TRUE)
 \link{gtkColorButtonNewWithColor}(color, show = TRUE)
 \link{gtkColorButtonSetColor}(object, color)
@@ -14,10 +15,7 @@
 \link{gtkColorButtonGetUseAlpha}(object)
 \link{gtkColorButtonSetTitle}(object, title)
 \link{gtkColorButtonGetTitle}(object)
-gtkColorButton(color, show = TRUE)
 }
-\details{The \code{\link{GtkColorButton}} is a button which displays the currently selected color an allows to open a color 
-selection dialog to change the color. It is suitable widget for selecting a color in a preference dialog.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -25,11 +23,13 @@ selection dialog to change the color. It is suitable widget for selecting a colo
                      +----\link{GtkBin}
                            +----\link{GtkButton}
                                  +----GtkColorButton}}
+\section{Interfaces}{GtkColorButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkColorButton}} is a button which displays the currently selected color an allows to open a color 
+selection dialog to change the color. It is suitable widget for selecting a color in a preference dialog.}
 \section{Structures}{\describe{\item{\code{GtkColorButton}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkColorButton} is the result of collapsing the constructors of \code{GtkColorButton} (\code{\link{gtkColorButtonNew}}, \code{\link{gtkColorButtonNewWithColor}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkColorButton implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{color-set(widget, user.data)}}{
 The ::color-set signal is emitted when the user selects a color. When handling this signal,
 use \code{\link{gtkColorButtonGetColor}} and \code{\link{gtkColorButtonGetAlpha}} to find out which color 

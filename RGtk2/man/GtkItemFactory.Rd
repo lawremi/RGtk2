@@ -9,7 +9,8 @@
 \name{GtkItemFactory}
 \title{GtkItemFactory}
 \description{A factory for menus}
-\usage{
+\usage{gtkItemFactory(container.type, path, accel.group = NULL)}
+\section{Methods and Functions}{
 \link{gtkItemFactoryNew}(container.type, path, accel.group = NULL)
 \link{gtkItemFactoryConstruct}(object, container.type, path, accel.group)
 \link{gtkItemFactoryAddForeign}(accel.widget, full.path, accel.group, keyval, modifiers)
@@ -33,20 +34,19 @@
 \link{gtkItemFactoryCreateMenuEntries}(entries)
 \link{gtkItemFactoriesPathDelete}(ifactory.path, path)
 \link{gtkItemFactorySetTranslateFunc}(object, func, data = NULL)
-gtkItemFactory(container.type, path, accel.group = NULL)
 }
-\details{As of GTK+ 2.4, \code{\link{GtkItemFactory}} has been deprecated in favour of \code{\link{GtkUIManager}}.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----GtkItemFactory}}
+\section{Detailed Description}{As of GTK+ 2.4, \code{\link{GtkItemFactory}} has been deprecated in favour of \code{\link{GtkUIManager}}.}
 \section{Structures}{\describe{
 \item{\code{GtkItemFactory}}{
-\strong{WARNING: \code{GtkItemFactory} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkItemFactory} is deprecated and should not be used in newly-written code.  }
 
 
 }
 \item{\code{GtkItemFactoryEntry}}{
-\strong{WARNING: \code{GtkItemFactoryEntry} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkItemFactoryEntry} is deprecated and should not be used in newly-written code.  }
 
 \strong{\code{GtkItemFactoryEntry} is a \link{transparent-type}.}
 

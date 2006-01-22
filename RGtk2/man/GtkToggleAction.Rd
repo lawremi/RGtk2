@@ -3,21 +3,21 @@
 \name{GtkToggleAction}
 \title{GtkToggleAction}
 \description{An action which can be toggled between two states}
-\usage{
+\usage{gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
+\section{Methods and Functions}{
 \link{gtkToggleActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 \link{gtkToggleActionToggled}(object)
 \link{gtkToggleActionSetActive}(object, is.active)
 \link{gtkToggleActionGetActive}(object)
 \link{gtkToggleActionSetDrawAsRadio}(object, draw.as.radio)
 \link{gtkToggleActionGetDrawAsRadio}(object)
-gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 }
-\details{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
-"active" state specifying whether the action has been checked or not.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkAction}
          +----GtkToggleAction
                +----\link{GtkRadioAction}}}
+\section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
+"active" state specifying whether the action has been checked or not.}
 \section{Structures}{\describe{\item{\code{GtkToggleAction}}{
 The \code{GtkToggleAction} struct contains only 
 private members and should not be accessed directly.

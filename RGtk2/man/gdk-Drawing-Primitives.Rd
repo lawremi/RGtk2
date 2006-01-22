@@ -5,7 +5,7 @@
 \name{gdk-Drawing-Primitives}
 \title{Drawing Primitives}
 \description{Functions for drawing points, lines, arcs, and text}
-\usage{
+\section{Methods and Functions}{
 \link{gdkDrawableSetData}(object, key, data)
 \link{gdkDrawableGetData}(object, key)
 \link{gdkDrawableGetDisplay}(object)
@@ -41,7 +41,11 @@
 \link{gdkDrawableGetImage}(object, x, y, width, height)
 \link{gdkDrawableCopyToImage}(object, image = NULL, src.x, src.y, dest.x, dest.y, width, height)
 }
-\details{These functions provide support for drawing points, lines, arcs and text
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkDrawable
+         +----\link{GdkWindow}
+         +----\link{GdkPixmap}}}
+\section{Detailed Description}{These functions provide support for drawing points, lines, arcs and text
 onto what are called 'drawables'. Drawables, as the name suggests, are things
 which support drawing onto them, and are either \code{\link{GdkWindow}} or \code{\link{GdkPixmap}}
 objects.
@@ -57,10 +61,6 @@ Some of the drawing operations take Pango data structures like \code{\link{Pango
 \code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}} as arguments. If you're using GTK+, the ususal 
 way to obtain these structures is via \code{\link{gtkWidgetCreatePangoContext}} or
 \code{\link{gtkWidgetCreatePangoLayout}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkDrawable
-         +----\link{GdkWindow}
-         +----\link{GdkPixmap}}}
 \section{Structures}{\describe{
 \item{\code{GdkDrawable}}{
 An opaque structure representing an object that can be

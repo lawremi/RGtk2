@@ -3,7 +3,8 @@
 \name{GtkToolItem}
 \title{GtkToolItem}
 \description{The base class of widgets that can be added to GtkToolbar}
-\usage{
+\usage{gtkToolItem(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkToolItemNew}(show = TRUE)
 \link{gtkToolItemSetHomogeneous}(object, homogeneous)
 \link{gtkToolItemGetHomogeneous}(object)
@@ -26,16 +27,7 @@
 \link{gtkToolItemGetProxyMenuItem}(object, menu.item.id)
 \link{gtkToolItemSetProxyMenuItem}(object, menu.item.id, menu.item = NULL)
 \link{gtkToolItemRebuildMenu}(object)
-gtkToolItem(show = TRUE)
 }
-\details{\code{\link{GtkToolItem}}s are widgets that can appear on a toolbar. To
-create a toolbar item that contain something else than a button, use
-\code{\link{gtkToolItemNew}}. Use \code{\link{gtkContainerAdd}} to add a child
-widget to the tool item.
-  
-For toolbar items that contain buttons, see the \code{\link{GtkToolButton}},
-\code{\link{GtkToggleToolButton}} and \code{\link{GtkRadioToolButton}} classes.
-  \code{\link{GtkToolbar}}  }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -44,14 +36,22 @@ For toolbar items that contain buttons, see the \code{\link{GtkToolButton}},
                            +----GtkToolItem
                                  +----\link{GtkToolButton}
                                  +----\link{GtkSeparatorToolItem}}}
+\section{Interfaces}{GtkToolItem implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkToolItem}}s are widgets that can appear on a toolbar. To
+create a toolbar item that contain something else than a button, use
+\code{\link{gtkToolItemNew}}. Use \code{\link{gtkContainerAdd}} to add a child
+widget to the tool item.
+  
+For toolbar items that contain buttons, see the \code{\link{GtkToolButton}},
+\code{\link{GtkToggleToolButton}} and \code{\link{GtkRadioToolButton}} classes.
+  \code{\link{GtkToolbar}}  }
 \section{Structures}{\describe{\item{\code{GtkToolItem}}{
 The GtkToolItem struct contains only private data. It should only be
 accessed through the functions described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkToolItem} is the equivalent of \code{\link{gtkToolItemNew}}.}
-\section{Interfaces}{GtkToolItem implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{create-menu-proxy(toolitem, user.data)}}{
 This signal is emitted when the toolbar needs information from \code{tool.item}

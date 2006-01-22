@@ -3,16 +3,25 @@
 \name{GtkOptionMenu}
 \title{GtkOptionMenu}
 \description{A widget used to choose from a list of valid choices}
-\usage{
+\usage{gtkOptionMenu(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkOptionMenuNew}(show = TRUE)
 \link{gtkOptionMenuGetMenu}(object)
 \link{gtkOptionMenuSetMenu}(object, menu)
 \link{gtkOptionMenuRemoveMenu}(object)
 \link{gtkOptionMenuSetHistory}(object, index)
 \link{gtkOptionMenuGetHistory}(object)
-gtkOptionMenu(show = TRUE)
 }
-\details{A \code{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkButton}
+                                 +----GtkOptionMenu}}
+\section{Interfaces}{GtkOptionMenu implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
 list of valid choices.  The \code{\link{GtkOptionMenu}} displays the selected 
 choice.  When activated the \code{\link{GtkOptionMenu}} displays a popup \code{\link{GtkMenu}} 
 which allows the user to make a new choice.
@@ -26,22 +35,15 @@ the option menu; in the "changed" signal, check the new selected
 menu item with \code{\link{gtkOptionMenuGetHistory}}.
   
 As of GTK+ 2.4, \code{\link{GtkOptionMenu}} has been deprecated in favor of \code{\link{GtkComboBox}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkOptionMenu}}
 \section{Structures}{\describe{\item{\code{GtkOptionMenu}}{
-\strong{WARNING: \code{GtkOptionMenu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{GtkOptionMenu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
+The \code{\link{GtkOptionMenu}} struct contains private data only, and 
+should be accessed using the functions below.}
 The \code{\link{GtkOptionMenu}} struct contains private data only, and 
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkOptionMenu} is the equivalent of \code{\link{gtkOptionMenuNew}}.}
-\section{Interfaces}{GtkOptionMenu implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{changed(optionmenu, user.data)}}{
 
 

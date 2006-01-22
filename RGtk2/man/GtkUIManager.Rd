@@ -4,7 +4,8 @@
 \name{GtkUIManager}
 \title{GtkUIManager}
 \description{Constructing menus and toolbars from an XML description}
-\usage{
+\usage{gtkUIManager()}
+\section{Methods and Functions}{
 \link{gtkUIManagerNew}()
 \link{gtkUIManagerSetAddTearoffs}(object, add.tearoffs)
 \link{gtkUIManagerGetAddTearoffs}(object)
@@ -22,9 +23,10 @@
 \link{gtkUIManagerRemoveUi}(object, merge.id)
 \link{gtkUIManagerGetUi}(object)
 \link{gtkUIManagerEnsureUpdate}(object)
-gtkUIManager()
 }
-\details{A \code{\link{GtkUIManager}} constructs a user interface (menus and toolbars) from
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkUIManager}}
+\section{Detailed Description}{A \code{\link{GtkUIManager}} constructs a user interface (menus and toolbars) from
 one or more UI definitions, which reference actions from one or more 
 action groups. }
 \section{UI Definitions}{The UI definitions are specified in an XML format which can be
@@ -155,8 +157,6 @@ impossible to know in advance whether they will end up empty after merging.
 }
 The behaviour is chosen based on the "hide_if_empty" property of the action 
 to which the submenu is associated.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkUIManager}}
 \section{Structures}{\describe{\item{\code{GtkUIManager}}{
 The \code{GtkUIManager} struct contains only private
 members and should not be accessed directly.

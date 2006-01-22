@@ -254,7 +254,7 @@ Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
 
 }
 \item{\code{enum GtkMatchType}}{
-\strong{WARNING: \code{GtkMatchType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkMatchType} is deprecated and should not be used in newly-written code.  }
 
 
 \describe{
@@ -387,7 +387,9 @@ tabs of a \code{\link{GtkNotebook}}, the handle of a \code{\link{GtkHandleBox}} 
 
 }
 \item{\code{enum GtkPreviewType}}{
-\strong{WARNING: \code{GtkPreviewType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkPreviewType} is deprecated and should not be used in newly-written code.  
+An enumeration which describes whether a preview
+contains grayscale or red-green-blue data.}
 An enumeration which describes whether a preview
 contains grayscale or red-green-blue data.
 
@@ -512,7 +514,7 @@ does}
 
 }
 \item{\code{enum GtkSideType}}{
-\strong{WARNING: \code{GtkSideType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkSideType} is deprecated and should not be used in newly-written code.  }
 
 
 \describe{
@@ -545,7 +547,8 @@ unresponsive to user actions.}
 
 }
 \item{\code{enum GtkSubmenuDirection}}{
-\strong{WARNING: \code{GtkSubmenuDirection} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkSubmenuDirection} is deprecated and should not be used in newly-written code.  
+Indicates the direction a sub-menu will appear.}
 Indicates the direction a sub-menu will appear.
 
 \describe{
@@ -556,7 +559,7 @@ Indicates the direction a sub-menu will appear.
 
 }
 \item{\code{enum GtkSubmenuPlacement}}{
-\strong{WARNING: \code{GtkSubmenuPlacement} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkSubmenuPlacement} is deprecated and should not be used in newly-written code.  }
 
 
 \describe{

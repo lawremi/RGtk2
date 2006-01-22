@@ -2,7 +2,7 @@
 \name{GtkPaned}
 \title{GtkPaned}
 \description{Base class for widgets with two adjustable panes}
-\usage{
+\section{Methods and Functions}{
 \link{gtkPanedAdd1}(object, child)
 \link{gtkPanedAdd2}(object, child)
 \link{gtkPanedPack1}(object, child, resize = FALSE, shrink = TRUE)
@@ -12,7 +12,16 @@
 \link{gtkPanedSetPosition}(object, position)
 \link{gtkPanedGetPosition}(object)
 }
-\details{\code{\link{GtkPaned}} is the base class for widgets with two panes,
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkPaned
+                           +----\link{GtkHPaned}
+                           +----\link{GtkVPaned}}}
+\section{Interfaces}{GtkPaned implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkPaned}} is the base class for widgets with two panes,
 arranged either horizontally (\code{\link{GtkHPaned}}) or
 vertically (\code{\link{GtkVPaned}}). Child widgets are 
 added to the panes of the widget with
@@ -61,17 +70,8 @@ hpaned$pack2(frame2, FALSE, FALSE)
 frame2$setSizeRequest(50, -1)
 
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkPaned
-                           +----\link{GtkHPaned}
-                           +----\link{GtkVPaned}}}
 \section{Structures}{\describe{\item{\code{GtkPaned}}{\emph{undocumented
 }}}}
-\section{Interfaces}{GtkPaned implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{accept-position(paned, user.data)}}{
 

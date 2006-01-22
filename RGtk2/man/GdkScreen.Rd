@@ -2,7 +2,7 @@
 \name{GdkScreen}
 \title{GdkScreen}
 \description{Object representing a physical screen}
-\usage{
+\section{Methods and Functions}{
 \link{gdkScreenGetDefault}()
 \link{gdkScreenGetDefaultColormap}(object)
 \link{gdkScreenSetDefaultColormap}(object, colormap)
@@ -30,7 +30,9 @@
 \link{gdkScreenGetSetting}(object, name)
 \link{gdkSpawnCommandLineOnScreen}(screen, command.line)
 }
-\details{  \code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkScreen}}
+\section{Detailed Description}{  \code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
   throughout GDK and GTK+ to specify which screen the top level windows
   are to be displayed on. 
   It is also used to query the screen specification and default settings such as 
@@ -38,8 +40,6 @@
   the screen width (\code{\link{gdkScreenGetWidth}}), etc.
   Note that a screen may consist of multiple monitors which are merged to
 form a large screen area. }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkScreen}}
 \section{Structures}{\describe{\item{\code{GdkScreen}}{
 This is a currently just a placeholder typedef for the first argument of 
 the \code{window.at.pointer} function in \code{GdkPointerHooks}. It will be used

@@ -4,7 +4,9 @@
 \description{
 Determines the width of a given wide character. (Encoded
 in the wide-character encoding of the current locale).
-\strong{WARNING: \code{gdk_char_width_wc} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_char_width_wc} is deprecated and should not be used in newly-written code.  
+Determines the width of a given wide character. (Encoded
+in the wide-character encoding of the current locale).  }
 }
 \usage{gdkCharWidthWc(object, character)}
 \arguments{

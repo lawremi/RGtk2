@@ -3,7 +3,8 @@
 \title{gtkCListSetRowStyle}
 \description{
 Sets the style for all cells in the specified row.
-\strong{WARNING: \code{gtk_clist_set_row_style} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_row_style} is deprecated and should not be used in newly-written code.  
+Sets the style for all cells in the specified row.}
 }
 \usage{gtkCListSetRowStyle(object, row, style)}
 \arguments{

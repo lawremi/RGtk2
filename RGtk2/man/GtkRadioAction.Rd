@@ -3,20 +3,20 @@
 \name{GtkRadioAction}
 \title{GtkRadioAction}
 \description{An action of which only one in a group can be active}
-\usage{
+\usage{gtkRadioAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}
+\section{Methods and Functions}{
 \link{gtkRadioActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)
 \link{gtkRadioActionGetGroup}(object)
 \link{gtkRadioActionSetGroup}(object, group)
 \link{gtkRadioActionGetCurrentValue}(object)
-gtkRadioAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)
 }
-\details{A \code{\link{GtkRadioAction}} is similar to \code{\link{GtkRadioMenuItem}}. A number of radio
-actions can be linked together so that only one may be active at any 
-one time.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkAction}
          +----\link{GtkToggleAction}
                +----GtkRadioAction}}
+\section{Detailed Description}{A \code{\link{GtkRadioAction}} is similar to \code{\link{GtkRadioMenuItem}}. A number of radio
+actions can be linked together so that only one may be active at any 
+one time.}
 \section{Structures}{\describe{\item{\code{GtkRadioAction}}{
 The \code{GtkRadioAction} struct contains 
 only private members and should not be accessed directly.

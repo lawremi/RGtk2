@@ -3,22 +3,22 @@
 \name{GtkCellRendererToggle}
 \title{GtkCellRendererToggle}
 \description{Renders a toggle button in a cell}
-\usage{
+\usage{gtkCellRendererToggle()}
+\section{Methods and Functions}{
 \link{gtkCellRendererToggleNew}()
 \link{gtkCellRendererToggleGetRadio}(object)
 \link{gtkCellRendererToggleSetRadio}(object, radio)
 \link{gtkCellRendererToggleGetActive}(object)
 \link{gtkCellRendererToggleSetActive}(object, setting)
-gtkCellRendererToggle()
 }
-\details{\code{\link{GtkCellRendererToggle}} renders a toggle button in a cell. The 
-button is drawn as a radio- or checkbutton, depending on the 
-radio 
-property. When activated, it emits the toggled signal.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkCellRenderer}
                +----GtkCellRendererToggle}}
+\section{Detailed Description}{\code{\link{GtkCellRendererToggle}} renders a toggle button in a cell. The 
+button is drawn as a radio- or checkbutton, depending on the 
+radio 
+property. When activated, it emits the toggled signal.}
 \section{Structures}{\describe{\item{\code{GtkCellRendererToggle}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkCellRendererToggle} is the equivalent of \code{\link{gtkCellRendererToggleNew}}.}

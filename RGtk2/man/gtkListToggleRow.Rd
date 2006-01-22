@@ -5,7 +5,10 @@
 Toggles the child \code{item} of list. If the selection mode of \code{list} is
 \code{GTK_SELECTION_BROWSE}, the item is selected, and the others are
 unselected.
-\strong{WARNING: \code{gtk_list_toggle_row} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_list_toggle_row} is deprecated and should not be used in newly-written code.  
+Toggles the child \code{item} of list. If the selection mode of \code{list} is
+\code{GTK_SELECTION_BROWSE}, the item is selected, and the others are
+unselected.}
 }
 \usage{gtkListToggleRow(object, item)}
 \arguments{

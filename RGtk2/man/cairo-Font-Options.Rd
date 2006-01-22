@@ -6,7 +6,7 @@
 \name{cairo-Font-Options}
 \title{Font Options}
 \description{How a font should be rendered}
-\usage{
+\section{Methods and Functions}{
 \link{cairoFontOptionsCreate}()
 \link{cairoFontOptionsCopy}(original)
 \link{cairoFontOptionsStatus}(options)

@@ -3,7 +3,8 @@
 \title{gtkCListGetPixmap}
 \description{
 Gets the pixmap and bitmap mask of the specified cell.  The returned mask value can be NULL.
-\strong{WARNING: \code{gtk_clist_get_pixmap} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_get_pixmap} is deprecated and should not be used in newly-written code.  
+Gets the pixmap and bitmap mask of the specified cell.  The returned mask value can be NULL.}
 }
 \usage{gtkCListGetPixmap(object, row, column)}
 \arguments{

@@ -3,7 +3,8 @@
 \title{gtkPreviewDrawRow}
 \description{
 Sets the data for a portion of a row.
-\strong{WARNING: \code{gtk_preview_draw_row} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_preview_draw_row} is deprecated and should not be used in newly-written code.  
+Sets the data for a portion of a row.}
 }
 \usage{gtkPreviewDrawRow(object, data, y, w)}
 \arguments{

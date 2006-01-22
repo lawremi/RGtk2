@@ -4,7 +4,7 @@
 \name{GtkCellRenderer}
 \title{GtkCellRenderer}
 \description{An object for rendering a single cell on a }
-\usage{
+\section{Methods and Functions}{
 \link{gtkCellRendererGetSize}(object, widget, cell.area = NULL)
 \link{gtkCellRendererRender}(object, window, widget, background.area, cell.area, expose.area, flags)
 \link{gtkCellRendererActivate}(object, event, widget, path, background.area, cell.area, flags)
@@ -14,7 +14,14 @@
 \link{gtkCellRendererGetFixedSize}(object)
 \link{gtkCellRendererSetFixedSize}(object, width, height)
 }
-\details{The \code{\link{GtkCellRenderer}} is a base class of a set of objects used for
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----GtkCellRenderer
+               +----\link{GtkCellRendererText}
+               +----\link{GtkCellRendererPixbuf}
+               +----\link{GtkCellRendererProgress}
+               +----\link{GtkCellRendererToggle}}}
+\section{Detailed Description}{The \code{\link{GtkCellRenderer}} is a base class of a set of objects used for
 rendering a cell to a \code{\link{GdkDrawable}}.  These objects are used primarily by
 the \code{\link{GtkTreeView}} widget, though they aren't tied to them in any
 specific way.  It is worth noting that \code{\link{GtkCellRenderer}} is not a
@@ -43,13 +50,6 @@ allows the user to edit the text using a \code{\link{GtkEntry}}.
 To make a cell renderer activatable or editable, you have to 
 implement the \code{activate} or \code{start.editing} virtual functions, 
 respectively.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkCellRenderer
-               +----\link{GtkCellRendererText}
-               +----\link{GtkCellRendererPixbuf}
-               +----\link{GtkCellRendererProgress}
-               +----\link{GtkCellRendererToggle}}}
 \section{Structures}{\describe{\item{\code{GtkCellRenderer}}{\emph{undocumented
 }}}}
 \section{Enums and Flags}{\describe{

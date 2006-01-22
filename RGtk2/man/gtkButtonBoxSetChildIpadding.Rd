@@ -5,7 +5,9 @@
 Changes the amount of internal padding used by all buttons in a given button
 box.
 \strong{WARNING: \code{gtk_button_box_set_child_ipadding} is deprecated and should not be used in newly-written code. Use the style properties
-\code{"child-internal-pad-x/-y"} instead.}
+\code{"child-internal-pad-x/-y"} instead.  
+Changes the amount of internal padding used by all buttons in a given button
+box.}
 }
 \usage{gtkButtonBoxSetChildIpadding(object, ipad.x, ipad.y)}
 \arguments{

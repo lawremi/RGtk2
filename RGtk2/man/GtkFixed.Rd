@@ -4,15 +4,22 @@
 \name{GtkFixed}
 \title{GtkFixed}
 \description{A container which allows you to position widgets at fixed coordinates}
-\usage{
+\usage{gtkFixed(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFixedNew}(show = TRUE)
 \link{gtkFixedPut}(object, widget, x, y)
 \link{gtkFixedMove}(object, widget, x, y)
 \link{gtkFixedGetHasWindow}(object)
 \link{gtkFixedSetHasWindow}(object, has.window)
-gtkFixed(show = TRUE)
 }
-\details{The \code{\link{GtkFixed}} widget is a container which can place child widgets at fixed
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkFixed}}
+\section{Interfaces}{GtkFixed implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkFixed}} widget is a container which can place child widgets at fixed
 positions and with fixed sizes, given in pixels. \code{\link{GtkFixed}} performs no
 automatic layout management.
   
@@ -45,11 +52,6 @@ a long-term maintenance problem for your application.
 If you know none of these things are an issue for your application,
 and prefer the simplicity of \code{\link{GtkFixed}}, by all means use the
 widget. But you should be aware of the tradeoffs.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkFixed}}
 \section{Structures}{\describe{
 \item{\code{GtkFixed}}{
 The \code{\link{GtkFixed}} struct contains the following fields.
@@ -76,8 +78,6 @@ container. \cr
 }
 }}
 \section{Convenient Construction}{\code{gtkFixed} is the equivalent of \code{\link{gtkFixedNew}}.}
-\section{Interfaces}{GtkFixed implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFixed.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

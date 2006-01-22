@@ -1,6 +1,8 @@
 \alias{cairoPatternSetExtend}
 \name{cairoPatternSetExtend}
 \title{cairoPatternSetExtend}
+\description{\emph{undocumented
+}}
 \usage{cairoPatternSetExtend(pattern, extend)}
 \arguments{
 \item{\code{pattern}}{[\code{\link{cairo_pattern_t}}] }

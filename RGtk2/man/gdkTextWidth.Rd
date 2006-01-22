@@ -3,7 +3,8 @@
 \title{gdkTextWidth}
 \description{
 Determines the width of a given string.
-\strong{WARNING: \code{gdk_text_width} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_text_width} is deprecated and should not be used in newly-written code.  
+Determines the width of a given string.  }
 }
 \usage{gdkTextWidth(object, text, text.length = -1)}
 \arguments{

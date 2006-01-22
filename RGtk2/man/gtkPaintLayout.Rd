@@ -1,6 +1,8 @@
 \alias{gtkPaintLayout}
 \name{gtkPaintLayout}
 \title{gtkPaintLayout}
+\description{\emph{undocumented
+}}
 \usage{gtkPaintLayout(object, window, state.type, use.text, area = NULL, widget = NULL, detail = NULL, x, y, layout)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkStyle}}] }

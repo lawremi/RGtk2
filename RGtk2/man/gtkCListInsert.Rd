@@ -3,7 +3,8 @@
 \title{gtkCListInsert}
 \description{
 Adds a row of text to the CList at the specified position.
-\strong{WARNING: \code{gtk_clist_insert} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_insert} is deprecated and should not be used in newly-written code.  
+Adds a row of text to the CList at the specified position.}
 }
 \usage{gtkCListInsert(object, row, text)}
 \arguments{

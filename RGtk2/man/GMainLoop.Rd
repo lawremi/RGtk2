@@ -9,11 +9,11 @@ GLib provides an event-loop to all GLib-based libraries and applications.
 RGtk2 is one such library.
 }
 \usage{
-gTimeOutAdd(interval, f, data = NULL)
+gTimeoutAdd(interval, f, data = NULL)
 gIdleAdd(f, data = NULL)
 gSourceRemove(id)
 }
-\parameters{
+\arguments{
 \item{interval}{The time interval which determines the frequency of the handler call}
 \item{f}{An R function that is called by the loop}
 \item{data}{Any R object that is passed to the R function as the last parameter}

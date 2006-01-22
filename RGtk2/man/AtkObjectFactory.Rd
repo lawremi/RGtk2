@@ -3,19 +3,19 @@
 \title{AtkObjectFactory}
 \description{The base object class for a factory used to create accessible objects for 
 objects of a specific GType.}
-\usage{
+\section{Methods and Functions}{
 \link{atkObjectFactoryCreateAccessible}(object, obj)
 \link{atkObjectFactoryGetAccessibleType}(object)
 \link{atkObjectFactoryInvalidate}(object)
 }
-\details{This class is the base object class for a factory used to create an 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----AtkObjectFactory
+         +----\link{AtkNoOpObjectFactory}}}
+\section{Detailed Description}{This class is the base object class for a factory used to create an 
 accessible object for a specific GType. The function 
 \code{\link{atkRegistrySetFactoryType}} is normally called to store 
 in the registry the factory type to be used to create an accessible of a
 particular GType.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----AtkObjectFactory
-         +----\link{AtkNoOpObjectFactory}}}
 \section{Structures}{\describe{\item{\code{AtkObjectFactory}}{
 The AtkObjectFactory structure should not be accessed directly.
 

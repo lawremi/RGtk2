@@ -3,7 +3,8 @@
 \title{gtkPaintString}
 \description{
 Draws a text string on \code{window} with the given parameters.
-\strong{WARNING: \code{gtk_paint_string} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintLayout}} instead.}
+\strong{WARNING: \code{gtk_paint_string} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintLayout}} instead.  
+Draws a text string on \code{window} with the given parameters.  }
 }
 \usage{gtkPaintString(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)}
 \arguments{

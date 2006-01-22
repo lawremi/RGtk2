@@ -3,7 +3,8 @@
 \title{gtkCTreeFindNodePtr}
 \description{
 Finds the node pointer given a \code{\link{GtkCTreeRow}} structure.
-\strong{WARNING: \code{gtk_ctree_find_node_ptr} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_find_node_ptr} is deprecated and should not be used in newly-written code.  
+Finds the node pointer given a \code{\link{GtkCTreeRow}} structure.}
 }
 \usage{gtkCTreeFindNodePtr(object, ctree.row)}
 \arguments{

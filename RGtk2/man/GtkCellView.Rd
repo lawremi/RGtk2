@@ -3,7 +3,8 @@
 \name{GtkCellView}
 \title{GtkCellView}
 \description{A widget displaying a single row of a GtkTreeModel}
-\usage{
+\usage{gtkCellView(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCellViewNew}(show = TRUE)
 \link{gtkCellViewNewWithText}(text)
 \link{gtkCellViewNewWithMarkup}(markup)
@@ -14,21 +15,20 @@
 \link{gtkCellViewGetSizeOfRow}(object, path)
 \link{gtkCellViewSetBackgroundColor}(object, color)
 \link{gtkCellViewGetCellRenderers}(object)
-gtkCellView(show = TRUE)
 }
-\details{A \code{\link{GtkCellView}} displays a single row of a \code{\link{GtkTreeModel}}, using
-cell renderers just like \code{\link{GtkTreeView}}. \code{\link{GtkCellView}} doesn't support
-some of the more complex features of \code{\link{GtkTreeView}}, like cell editing
-and drag and drop.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----GtkCellView}}
+\section{Interfaces}{GtkCellView implements
+ AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
+\section{Detailed Description}{A \code{\link{GtkCellView}} displays a single row of a \code{\link{GtkTreeModel}}, using
+cell renderers just like \code{\link{GtkTreeView}}. \code{\link{GtkCellView}} doesn't support
+some of the more complex features of \code{\link{GtkTreeView}}, like cell editing
+and drag and drop.}
 \section{Structures}{\describe{\item{\code{GtkCellView}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkCellView} is the equivalent of \code{\link{gtkCellViewNew}}.}
-\section{Interfaces}{GtkCellView implements
- AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
 \section{Properties}{\describe{
 \item{\code{background} [character : Write]}{
 

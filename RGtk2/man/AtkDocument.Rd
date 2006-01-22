@@ -2,15 +2,15 @@
 \name{AtkDocument}
 \title{AtkDocument}
 \description{The ATK interface which allows access to a DOM associated with on object.}
-\usage{
+\section{Methods and Functions}{
 \link{atkDocumentGetDocumentType}(object)
 \link{atkDocumentGetDocument}(object)
 }
-\details{The AtkDocument interface should be supported by any object that has an
-associated document object model (DOM). This interface provides the
-standard mechanism allowing an assistive technology access to the DOM.}
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkDocument}}
+\section{Detailed Description}{The AtkDocument interface should be supported by any object that has an
+associated document object model (DOM). This interface provides the
+standard mechanism allowing an assistive technology access to the DOM.}
 \section{Structures}{\describe{\item{\code{AtkDocument}}{
 The AtkDocument structure does not contain any fields.
 

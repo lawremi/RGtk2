@@ -2,13 +2,13 @@
 \name{gdk-pixbuf-file-loading}
 \title{File Loading}
 \description{Loading a pixbuf from a file.}
-\usage{
+\section{Methods and Functions}{
 \link{gdkPixbufNewFromFile}(filename)
 \link{gdkPixbufNewFromFileAtSize}(filename, width, height)
 \link{gdkPixbufNewFromFileAtScale}(filename, width, height, preserve.aspect.ratio)
 \link{gdkPixbufGetFileInfo}(filename)
 }
-\details{    The \command{gdk-pixbuf} library provides a simple mechanism for loading
+\section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism for loading
     an image from a file in synchronous fashion.  This means that the
     library takes control of the application while the file is being
     loaded; from the user's point of view, the application will block

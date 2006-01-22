@@ -8,7 +8,8 @@
 \name{GtkCList}
 \title{GtkCList}
 \description{A multi-columned scrolling list widget}
-\usage{
+\usage{gtkCList(columns = 1, titles, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCListNew}(columns = 1, show = TRUE)
 \link{gtkCListNewWithTitles}(columns = 1, titles, show = TRUE)
 \link{gtkCListSetShadowType}(object, type)
@@ -82,29 +83,34 @@
 \link{gtkCListSetReorderable}(object, reorderable)
 \link{gtkCListSetUseDragIcons}(object, use.icons)
 \link{gtkCListSetVadjustment}(object, adjustment)
-gtkCList(columns = 1, titles, show = TRUE)
 }
-\details{The \code{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
-It can display data in nicely aligned vertical columns, with titles 
-at the top of the list.
-  
-GtkCList has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----\link{GtkContainer}
                      +----GtkCList
                            +----\link{GtkCTree}}}
+\section{Interfaces}{GtkCList implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
+It can display data in nicely aligned vertical columns, with titles 
+at the top of the list.
+  
+GtkCList has been deprecated since GTK+ 2.0 and should not be used
+in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{
 \item{\code{GtkCList}}{
-\strong{WARNING: \code{GtkCList} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCList} is deprecated and should not be used in newly-written code.  
+This is the embodiment of the \code{\link{GtkCList}} widget.  This structure contains
+only private data, and should be accessed only via the CList API.}
 This is the embodiment of the \code{\link{GtkCList}} widget.  This structure contains
 only private data, and should be accessed only via the CList API.
 
 }
 \item{\code{GtkCListRow}}{
-\strong{WARNING: \code{GtkCListRow} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCListRow} is deprecated and should not be used in newly-written code.  
+A structure that the \code{\link{GtkCList}} widget uses to keep track of information
+about its rows.}
 A structure that the \code{\link{GtkCList}} widget uses to keep track of information
 about its rows.
 
@@ -126,7 +132,10 @@ about its rows.
 \section{Convenient Construction}{\code{gtkCList} is the result of collapsing the constructors of \code{GtkCList} (\code{\link{gtkCListNew}}, \code{\link{gtkCListNewWithTitles}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
 \item{\code{enum GtkCellType}}{
-\strong{WARNING: \code{GtkCellType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCellType} is deprecated and should not be used in newly-written code.  
+Identifies the type of element in the current cell of the CList.  Cells can
+contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
+was never completed.}
 Identifies the type of element in the current cell of the CList.  Cells can
 contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
 was never completed.
@@ -146,7 +155,9 @@ was never completed.
 
 }
 \item{\code{enum GtkButtonAction}}{
-\strong{WARNING: \code{GtkButtonAction} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkButtonAction} is deprecated and should not be used in newly-written code.  
+Values for specifying what mouse button events a CList will
+react to.}
 Values for specifying what mouse button events a CList will
 react to.
 
@@ -163,7 +174,8 @@ react to.
 
 }
 \item{\code{enum GtkCListDragPos}}{
-\strong{WARNING: \code{GtkCListDragPos} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCListDragPos} is deprecated and should not be used in newly-written code.  
+An enumeration for drag operations.}
 An enumeration for drag operations.
 
 \describe{
@@ -189,8 +201,6 @@ Function prototype for the compare function callback.
 }
 
 }}}
-\section{Interfaces}{GtkCList implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{abort-column-resize(clist, user.data)}}{
 This signal is emitted when a column resize is aborted.

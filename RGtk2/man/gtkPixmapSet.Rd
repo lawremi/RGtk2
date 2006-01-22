@@ -3,7 +3,8 @@
 \title{gtkPixmapSet}
 \description{
 Sets the \code{\link{GdkPixmap}} and \code{\link{GdkBitmap}} mask.
-\strong{WARNING: \code{gtk_pixmap_set} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_pixmap_set} is deprecated and should not be used in newly-written code.  
+Sets the \code{\link{GdkPixmap}} and \code{\link{GdkBitmap}} mask.}
 }
 \usage{gtkPixmapSet(object, val, mask = NULL)}
 \arguments{

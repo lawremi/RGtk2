@@ -4,7 +4,7 @@
 \name{cairo-Paths}
 \title{Paths}
 \description{Creating paths and manipulating path data}
-\usage{
+\section{Methods and Functions}{
 \link{cairoCopyPath}(cr)
 \link{cairoCopyPathFlat}(cr)
 \link{cairoAppendPath}(cr, path)

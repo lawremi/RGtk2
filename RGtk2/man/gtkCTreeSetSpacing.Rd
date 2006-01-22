@@ -3,7 +3,8 @@
 \title{gtkCTreeSetSpacing}
 \description{
 The spacing between the tree graphic and the actual node content.
-\strong{WARNING: \code{gtk_ctree_set_spacing} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_set_spacing} is deprecated and should not be used in newly-written code.  
+The spacing between the tree graphic and the actual node content.}
 }
 \usage{gtkCTreeSetSpacing(object, spacing)}
 \arguments{

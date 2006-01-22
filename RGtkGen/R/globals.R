@@ -146,7 +146,7 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_cop
  "gtk_tree_store_set_valist", "gtk_tree_model_get_valist", "gtk_list_store_set_valist", 
  "gtk_container_child_get_valist", "gtk_container_child_set_valist", "cairo_read_func_t", "cairo_write_func_t")
 
-mem_funcs <- c("atk_text_free_ranges", 
+mem_funcs <- c("atk_text_free_ranges", "pango_font_description_merge_static",
 "pango_font_descriptions_free", "pango_matrix_free", "pango_glyph_item_free", "pango_layout_line_ref",
 "pango_layout_line_unref", "pango_item_free",  "gdk_colormap_ref", "gdk_colormap_unref",
  "gdk_device_free_history","gdk_color_free", "gdk_colors_free", "gdk_cursor_ref", "gdk_cursor_unref",

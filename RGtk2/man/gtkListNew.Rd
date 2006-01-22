@@ -3,7 +3,8 @@
 \title{gtkListNew}
 \description{
 Creates a new \code{\link{GtkList}}.
-\strong{WARNING: \code{gtk_list_new} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_list_new} is deprecated and should not be used in newly-written code.  
+Creates a new \code{\link{GtkList}}.}
 }
 \usage{gtkListNew(show = TRUE)}
 \value{[\code{\link{GtkWidget}}] the newly-created \code{\link{GtkList}}}

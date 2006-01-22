@@ -3,7 +3,7 @@
 \name{gtk-Stock-Items}
 \title{Stock Items}
 \description{Prebuilt common menu/toolbar items and corresponding icons}
-\usage{
+\section{Methods and Functions}{
 \link{gtkStockAdd}(items)
 \link{gtkStockAddStatic}(items)
 \link{gtkStockItemCopy}(object)
@@ -11,7 +11,7 @@
 \link{gtkStockLookup}(stock.id)
 \link{gtkStockSetTranslateFunc}(domain, func, data)
 }
-\details{Stock items represent commonly-used menu or toolbar items such as
+\section{Detailed Description}{Stock items represent commonly-used menu or toolbar items such as
 "Open" or "Exit". Each stock item is identified by a stock ID; 
 stock IDs are just strings, but functions such as \code{GTK_STOCK_OPEN} are
 provided to avoid typing mistakes in the strings.

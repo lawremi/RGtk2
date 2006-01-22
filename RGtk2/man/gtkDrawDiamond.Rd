@@ -4,7 +4,9 @@
 \description{
 Draws a diamond in the given rectangle on \code{window} using the given
 parameters.
-\strong{WARNING: \code{gtk_draw_diamond} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintDiamond}} instead.}
+\strong{WARNING: \code{gtk_draw_diamond} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintDiamond}} instead.  
+Draws a diamond in the given rectangle on \code{window} using the given
+parameters.  }
 }
 \usage{gtkDrawDiamond(object, window, state.type, shadow.type, x, y, width, height)}
 \arguments{

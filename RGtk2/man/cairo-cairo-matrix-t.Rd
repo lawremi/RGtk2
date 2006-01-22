@@ -3,7 +3,7 @@
 \name{cairo-cairo-matrix-t}
 \title{cairo_matrix_t}
 \description{Generic matrix operations}
-\usage{
+\section{Methods and Functions}{
 \link{cairoMatrixInit}(xx, yx, xy, yy, x0, y0)
 \link{cairoMatrixInitIdentity}()
 \link{cairoMatrixInitTranslate}(tx, ty)
@@ -17,7 +17,7 @@
 \link{cairoMatrixTransformDistance}(matrix, dx, dy)
 \link{cairoMatrixTransformPoint}(matrix, x, y)
 }
-\details{    \code{\link{cairo_matrix_t}} is used throughout cairo to convert between different
+\section{Detailed Description}{    \code{\link{cairo_matrix_t}} is used throughout cairo to convert between different
     coordinate spaces.  A \code{\link{cairo_matrix_t}} holds an affine transformation,
     such as a scale, rotation, shear, or a combination of these.
     The transformation of a point (\code{x},\code{y})

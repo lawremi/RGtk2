@@ -3,7 +3,8 @@
 \title{gtkNotebookSetTabVborder}
 \description{
 Sets the width of the vertical border of tab labels.
-\strong{WARNING: \code{gtk_notebook_set_tab_vborder} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_notebook_set_tab_vborder} is deprecated and should not be used in newly-written code.  
+Sets the width of the vertical border of tab labels.  }
 }
 \usage{gtkNotebookSetTabVborder(object, tab.vborder)}
 \arguments{

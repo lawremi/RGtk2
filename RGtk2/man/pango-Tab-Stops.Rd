@@ -4,7 +4,7 @@
 \name{pango-Tab-Stops}
 \title{Tab Stops}
 \description{Structures for storing Tab Stops}
-\usage{
+\section{Methods and Functions}{
 \link{pangoTabArrayNew}(initial.size, positions.in.pixels)
 \link{pangoTabArrayNewWithPositions}(size, positions.in.pixels, ...)
 \link{pangoTabArrayCopy}(object)

@@ -3,15 +3,24 @@
 \name{GtkPlug}
 \title{GtkPlug}
 \description{Toplevel for embedding into other processes}
-\usage{
+\usage{gtkPlug(socket.id, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkPlugConstruct}(object, socket.id)
 \link{gtkPlugConstructForDisplay}(object, display, socket.id)
 \link{gtkPlugNew}(socket.id, show = TRUE)
 \link{gtkPlugNewForDisplay}(display, socket.id)
 \link{gtkPlugGetId}(object)
-gtkPlug(socket.id, show = TRUE)
 }
-\details{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----GtkPlug}}
+\section{Interfaces}{GtkPlug implements
+ AtkImplementorIface.}
+\section{Detailed Description}{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
 process creates a \code{\link{GtkSocket}} widget and, passes the
@@ -23,18 +32,9 @@ inside the first applications window.
 The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.
   }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----GtkPlug}}
 \section{Structures}{\describe{\item{\code{GtkPlug}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkPlug} is the equivalent of \code{\link{gtkPlugNew}}.}
-\section{Interfaces}{GtkPlug implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{embedded(plug, user.data)}}{
 
 

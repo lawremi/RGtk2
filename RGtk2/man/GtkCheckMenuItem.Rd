@@ -3,7 +3,8 @@
 \name{GtkCheckMenuItem}
 \title{GtkCheckMenuItem}
 \description{A menu item with a check box}
-\usage{
+\usage{gtkCheckMenuItem(label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCheckMenuItemNew}(show = TRUE)
 \link{gtkCheckMenuItemNewWithLabel}(label, show = TRUE)
 \link{gtkCheckMenuItemNewWithMnemonic}(label, show = TRUE)
@@ -15,15 +16,7 @@
 \link{gtkCheckMenuItemSetInconsistent}(object, setting)
 \link{gtkCheckMenuItemSetDrawAsRadio}(object, draw.as.radio)
 \link{gtkCheckMenuItemGetDrawAsRadio}(object)
-gtkCheckMenuItem(label, show = TRUE)
 }
-\details{A \code{\link{GtkCheckMenuItem}} is a menu item that maintains the state of a boolean 
-value in addition to a \code{\link{GtkMenuItem}}'s usual role in activating application
-code.
-  
-A check box indicating the state of the boolean value is displayed
-at the left side of the \code{\link{GtkMenuItem}}.  Activating the \code{\link{GtkMenuItem}} 
-toggles the value.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -33,6 +26,15 @@ toggles the value.}
                                  +----\link{GtkMenuItem}
                                        +----GtkCheckMenuItem
                                              +----\link{GtkRadioMenuItem}}}
+\section{Interfaces}{GtkCheckMenuItem implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkCheckMenuItem}} is a menu item that maintains the state of a boolean 
+value in addition to a \code{\link{GtkMenuItem}}'s usual role in activating application
+code.
+  
+A check box indicating the state of the boolean value is displayed
+at the left side of the \code{\link{GtkMenuItem}}.  Activating the \code{\link{GtkMenuItem}} 
+toggles the value.}
 \section{Structures}{\describe{\item{\code{GtkCheckMenuItem}}{
 The \code{\link{GtkCheckMenuItem}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
@@ -42,8 +44,6 @@ an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkCheckMenuItem} is the result of collapsing the constructors of \code{GtkCheckMenuItem} (\code{\link{gtkCheckMenuItemNew}}, \code{\link{gtkCheckMenuItemNewWithLabel}}, \code{\link{gtkCheckMenuItemNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkCheckMenuItem implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{toggled(checkmenuitem, user.data)}}{
 This signal is emitted when the state of the check box is changed.
   

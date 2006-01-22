@@ -3,7 +3,8 @@
 \title{gtkCListSetColumnTitle}
 \description{
 Sets the title for the specified column.
-\strong{WARNING: \code{gtk_clist_set_column_title} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_column_title} is deprecated and should not be used in newly-written code.  
+Sets the title for the specified column.}
 }
 \usage{gtkCListSetColumnTitle(object, column, title)}
 \arguments{

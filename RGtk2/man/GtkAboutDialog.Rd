@@ -4,7 +4,8 @@
 \name{GtkAboutDialog}
 \title{GtkAboutDialog}
 \description{Display information about an application}
-\usage{
+\usage{gtkAboutDialog(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkAboutDialogNew}(show = TRUE)
 \link{gtkAboutDialogGetName}(object)
 \link{gtkAboutDialogSetName}(object, name = NULL)
@@ -37,9 +38,18 @@
 \link{gtkAboutDialogSetEmailHook}(func, data = NULL)
 \link{gtkAboutDialogSetUrlHook}(func, data = NULL)
 \link{gtkShowAboutDialog}(parent, ...)
-gtkAboutDialog(show = TRUE)
 }
-\details{The \code{\link{GtkAboutDialog}} offers a simple way to display information about
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkAboutDialog}}
+\section{Interfaces}{GtkAboutDialog implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkAboutDialog}} offers a simple way to display information about
 a program like its logo, name, copyright, website and license. It is
 also possible to give credits to the authors, documenters, translators
 and artists who have worked on the program. An about dialog is typically
@@ -58,14 +68,6 @@ recognized by looking for \code{http://url}, with
 To make constructing a \code{\link{GtkAboutDialog}} as convenient as possible, you can
 use the function \code{\link{gtkShowAboutDialog}} which constructs and shows a dialog 
 and keeps it around so that it can be shown again.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkAboutDialog}}
 \section{Structures}{\describe{\item{\code{GtkAboutDialog}}{
 The \code{GtkAboutDialog} struct contains
 only private fields and should not be directly accessed.
@@ -85,8 +87,6 @@ link is activated.
 }
 
 }}}
-\section{Interfaces}{GtkAboutDialog implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{artists} [character list : Read / Write]}{
 

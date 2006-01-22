@@ -1,6 +1,8 @@
 \alias{cairoPatternSetFilter}
 \name{cairoPatternSetFilter}
 \title{cairoPatternSetFilter}
+\description{\emph{undocumented
+}}
 \usage{cairoPatternSetFilter(pattern, filter)}
 \arguments{
 \item{\code{pattern}}{[\code{\link{cairo_pattern_t}}] }

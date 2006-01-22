@@ -9,7 +9,7 @@
 \name{gdk-Points-Rectangles-and-Regions}
 \title{Points, Rectangles and Regions}
 \description{Simple graphical data types}
-\usage{
+\section{Methods and Functions}{
 \link{gdkRectangleIntersect}(src1, src2)
 \link{gdkRectangleUnion}(src1, src2)
 \link{gdkRegionNew}()
@@ -31,7 +31,7 @@
 \link{gdkRegionXor}(object, source2)
 \link{gdkRegionSpansIntersectForeach}(object, spans, sorted, fun, data)
 }
-\details{GDK provides the \code{\link{GdkPoint}}, \code{\link{GdkRectangle}}, \code{\link{GdkRegion}} and \code{\link{GdkSpan}} data types
+\section{Detailed Description}{GDK provides the \code{\link{GdkPoint}}, \code{\link{GdkRectangle}}, \code{\link{GdkRegion}} and \code{\link{GdkSpan}} data types
 for representing pixels and sets of pixels on the screen.
   
 \code{\link{GdkPoint}} is a simple structure containing an x and y coordinate of a point.

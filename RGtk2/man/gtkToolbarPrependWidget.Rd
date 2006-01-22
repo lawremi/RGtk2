@@ -3,7 +3,8 @@
 \title{gtkToolbarPrependWidget}
 \description{
 Adds a widget to the beginning of the given toolbar.
-\strong{WARNING: \code{gtk_toolbar_prepend_widget} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_prepend_widget} is deprecated and should not be used in newly-written code.  
+Adds a widget to the beginning of the given toolbar.  }
 }
 \usage{gtkToolbarPrependWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}
 \arguments{

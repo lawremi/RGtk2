@@ -4,7 +4,9 @@
 \description{
 Draws a horizontal line from (\code{x1}, \code{y}) to (\code{x2}, \code{y}) in \code{window}
 using the given style and state.
-\strong{WARNING: \code{gtk_draw_hline} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintHline}} instead.}
+\strong{WARNING: \code{gtk_draw_hline} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintHline}} instead.  
+Draws a horizontal line from (\code{x1}, \code{y}) to (\code{x2}, \code{y}) in \code{window}
+using the given style and state.  }
 }
 \usage{gtkDrawHline(object, window, state.type, x1, x2, y)}
 \arguments{

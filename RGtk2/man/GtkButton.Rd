@@ -3,7 +3,8 @@
 \name{GtkButton}
 \title{GtkButton}
 \description{A widget that creates a signal when clicked on}
-\usage{
+\usage{gtkButton(label, stock.id, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkButtonNew}(show = TRUE)
 \link{gtkButtonNewWithLabel}(label, show = TRUE)
 \link{gtkButtonNewWithMnemonic}(label, show = TRUE)
@@ -27,15 +28,7 @@
 \link{gtkButtonGetAlignment}(object)
 \link{gtkButtonSetImage}(object, image)
 \link{gtkButtonGetImage}(object)
-gtkButton(label, stock.id, show = TRUE)
 }
-\details{The \code{\link{GtkButton}} widget is generally used to attach a function to that
-is called when the button is pressed.  The various signals and how to use
-them are outlined below.
-  
-The \code{\link{GtkButton}} widget can hold any valid child widget.  That is it can
-hold most any other standard \code{\link{GtkWidget}}.  The most commonly used child is
-the \code{\link{GtkLabel}}.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -46,13 +39,20 @@ the \code{\link{GtkLabel}}.}
                                  +----\link{GtkColorButton}
                                  +----\link{GtkFontButton}
                                  +----\link{GtkOptionMenu}}}
+\section{Interfaces}{GtkButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkButton}} widget is generally used to attach a function to that
+is called when the button is pressed.  The various signals and how to use
+them are outlined below.
+  
+The \code{\link{GtkButton}} widget can hold any valid child widget.  That is it can
+hold most any other standard \code{\link{GtkWidget}}.  The most commonly used child is
+the \code{\link{GtkLabel}}.}
 \section{Structures}{\describe{\item{\code{GtkButton}}{
 This should not be accessed directly.  Use the accessor functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkButton} is the result of collapsing the constructors of \code{GtkButton} (\code{\link{gtkButtonNew}}, \code{\link{gtkButtonNewWithLabel}}, \code{\link{gtkButtonNewFromStock}}, \code{\link{gtkButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkButton implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{activate(widget, user.data)}}{
 The "activate" signal on GtkButton is an action signal and

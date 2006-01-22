@@ -1,6 +1,8 @@
 \alias{gtkWidgetMnemonicActivate}
 \name{gtkWidgetMnemonicActivate}
 \title{gtkWidgetMnemonicActivate}
+\description{\emph{undocumented
+}}
 \usage{gtkWidgetMnemonicActivate(object, group.cycling)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}] }

@@ -3,7 +3,7 @@
 \title{gtkCTreeFind}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_find} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_find} is deprecated and should not be used in newly-written code.  }
 }
 \usage{gtkCTreeFind(object, node, child)}
 \arguments{

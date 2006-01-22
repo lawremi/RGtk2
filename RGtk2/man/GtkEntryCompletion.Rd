@@ -4,7 +4,8 @@
 \name{GtkEntryCompletion}
 \title{GtkEntryCompletion}
 \description{Completion functionality for GtkEntry}
-\usage{
+\usage{gtkEntryCompletion()}
+\section{Methods and Functions}{
 \link{gtkEntryCompletionNew}()
 \link{gtkEntryCompletionGetEntry}(object)
 \link{gtkEntryCompletionSetModel}(object, model = NULL)
@@ -27,9 +28,12 @@
 \link{gtkEntryCompletionGetPopupSetWidth}(object)
 \link{gtkEntryCompletionSetPopupSingleMatch}(object, popup.single.match)
 \link{gtkEntryCompletionGetPopupSingleMatch}(object)
-gtkEntryCompletion()
 }
-\details{\code{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkEntryCompletion}}
+\section{Interfaces}{GtkEntryCompletion implements
+ \code{\link{GtkCellLayout}}.}
+\section{Detailed Description}{\code{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
 \code{\link{GtkEntry}} to provide the completion functionality. It implements the
 \code{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the 
 \code{\link{GtkTreeView}} with completion matches. 
@@ -55,8 +59,6 @@ entry when they are selected, \code{\link{GtkEntryCompletion}} also allows to di
 "actions" in the popup window. Their appearance is similar to menuitems, 
 to differentiate them clearly from completion strings. When an action is 
 selected, the ::action-activated signal is emitted.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkEntryCompletion}}
 \section{Structures}{\describe{\item{\code{GtkEntryCompletion}}{
 The GtkEntryCompletion struct contains only private data.
 
@@ -77,8 +79,6 @@ to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_complet
 }
 
 }}}
-\section{Interfaces}{GtkEntryCompletion implements
- \code{\link{GtkCellLayout}}.}
 \section{Signals}{\describe{
 \item{\code{action-activated(widget, index, user.data)}}{
 Gets emitted when an action is activated.  

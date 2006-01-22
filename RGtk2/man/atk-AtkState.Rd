@@ -3,12 +3,12 @@
 \name{atk-AtkState}
 \title{AtkState}
 \description{An AtkState describes a component's particular state.}
-\usage{
+\section{Methods and Functions}{
 \link{atkStateTypeRegister}(name)
 \link{atkStateTypeGetName}(type)
 \link{atkStateTypeForName}(name)
 }
-\details{An AtkState describes a component's particular state. The actual state of
+\section{Detailed Description}{An AtkState describes a component's particular state. The actual state of
 an component is described by its AtkStateSet, which is a set of AtkStates.}
 \section{Enums and Flags}{\describe{\item{\code{enum AtkStateType}}{
 The possible types of states of an object  

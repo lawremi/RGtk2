@@ -1,6 +1,8 @@
 \alias{gtkMenuGetForAttachWidget}
 \name{gtkMenuGetForAttachWidget}
 \title{gtkMenuGetForAttachWidget}
+\description{\emph{undocumented
+}}
 \usage{gtkMenuGetForAttachWidget(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}
 * Returns a list of the menus which are attached to this widget.

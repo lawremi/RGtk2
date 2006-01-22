@@ -4,7 +4,7 @@
 \name{GtkTreeSelection}
 \title{GtkTreeSelection}
 \description{The selection object for }
-\usage{
+\section{Methods and Functions}{
 \link{gtkTreeSelectionSetMode}(object, type)
 \link{gtkTreeSelectionGetMode}(object)
 \link{gtkTreeSelectionSetSelectFunction}(object, func, data = NULL)
@@ -25,7 +25,9 @@
 \link{gtkTreeSelectionSelectRange}(object, start.path, end.path)
 \link{gtkTreeSelectionUnselectRange}(object, start.path, end.path)
 }
-\details{The \code{\link{GtkTreeSelection}} object is a helper object to manage the selection
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTreeSelection}}
+\section{Detailed Description}{The \code{\link{GtkTreeSelection}} object is a helper object to manage the selection
 for a \code{\link{GtkTreeView}} widget.  The \code{\link{GtkTreeSelection}} object is
 automatically created when a new \code{\link{GtkTreeView}} widget is created, and
 cannot exist independentally of this widget.  The primary reason the
@@ -48,8 +50,6 @@ only emit one signal when a range of rows is selected.  Additionally, it
 may on occasion emit a "changed" signal when nothing has happened
 (mostly as a result of programmers calling select_row on an already
 selected row).}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTreeSelection}}
 \section{Structures}{\describe{\item{\code{GtkTreeSelection}}{\emph{undocumented
 }}}}
 \section{User Functions}{\describe{

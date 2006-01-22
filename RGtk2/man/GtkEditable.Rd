@@ -2,7 +2,7 @@
 \name{GtkEditable}
 \title{GtkEditable}
 \description{Interface for text-editing widgets}
-\usage{
+\section{Methods and Functions}{
 \link{gtkEditableSelectRegion}(object, start, end)
 \link{gtkEditableGetSelectionBounds}(object)
 \link{gtkEditableInsertText}(object, new.text, position = 0)
@@ -17,7 +17,11 @@
 \link{gtkEditableSetEditable}(object, is.editable)
 \link{gtkEditableGetEditable}(object)
 }
-\details{The \code{\link{GtkEditable}} interface is an interface which should be implemented by
+\section{Hierarchy}{\preformatted{  GInterface
+   +----GtkEditable}}
+\section{Implementations}{GtkEditable is implemented by
+ \code{\link{GtkEntry}},  \code{\link{GtkOldEditable}},  \code{\link{GtkSpinButton}} and  GtkText.}
+\section{Detailed Description}{The \code{\link{GtkEditable}} interface is an interface which should be implemented by
 text editing widgets, such as \code{\link{GtkEntry}} and \code{GtkText}. It contains functions 
 for generically manipulating an editable widget, a large number of action 
 signals used for key bindings, and several signals that an application can 
@@ -36,8 +40,6 @@ insert_text_handler <- function(editable, text, length, position, id)
   gSignalHandlerUnblock(editable, id)
 }
 }}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----GtkEditable}}
 \section{Structures}{\describe{\item{\code{GtkEditable}}{
 The \code{\link{GtkEditable}} structure contains the following fields.
 (These fields should be considered read-only. They should
@@ -53,8 +55,6 @@ editable by the user. \cr
 }
 
 }}}
-\section{Implementations}{GtkEditable is implemented by
- \code{\link{GtkEntry}},  \code{\link{GtkOldEditable}},  \code{\link{GtkSpinButton}} and  GtkText.}
 \section{Signals}{\describe{
 \item{\code{changed(editable, user.data)}}{
 Indicates that the user has changed the contents

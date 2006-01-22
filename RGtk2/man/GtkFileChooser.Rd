@@ -5,7 +5,7 @@
 \name{GtkFileChooser}
 \title{GtkFileChooser}
 \description{File chooser interface used by GtkFileChooserWidget and GtkFileChooserDialog}
-\usage{
+\section{Methods and Functions}{
 \link{gtkFileChooserErrorQuark}()
 \link{gtkFileChooserSetAction}(object, action)
 \link{gtkFileChooserGetAction}(object)
@@ -56,7 +56,11 @@
 \link{gtkFileChooserRemoveShortcutFolderUri}(object, uri)
 \link{gtkFileChooserListShortcutFolderUris}(object)
 }
-\details{      \code{\link{GtkFileChooser}} is an interface that can be implemented by file
+\section{Hierarchy}{\preformatted{  GInterface
+   +----GtkFileChooser}}
+\section{Implementations}{GtkFileChooser is implemented by
+ \code{\link{GtkFileChooserWidget}},  \code{\link{GtkFileChooserButton}} and  \code{\link{GtkFileChooserDialog}}.}
+\section{Detailed Description}{      \code{\link{GtkFileChooser}} is an interface that can be implemented by file
       selection widgets.  In GTK+, the main objects that implement this
       interface are \code{\link{GtkFileChooserWidget}}, \code{\link{GtkFileChooserDialog}}, and
       \code{\link{GtkFileChooserButton}}.  You do not need to write an object that
@@ -167,10 +171,10 @@ my_file_chooser$setExtraWidget(toggle)
 
 	\tabular{ll}{
 Signal name \tab Default key combinations \cr
-location-popup \tab 		    \kbd{Control}-\kbd{L}  ;
+location-popup \tab 		    \kbd{Control}-\kbd{L}-\kbd{/}  ;
 		    \kbd{/}  
 		 \cr
-up-folder \tab 		    \kbd{Alt}-\kbd{Up}  \emph{		      
+up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \emph{		      
 		      Both the individual Up key and the numeric
 		      keypad's Up key are supported.
 		      
@@ -217,7 +221,7 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	  the file he wishes to select.  The
 	  \code{path} argument is a string that gets
 	  put in the text entry for the file name.  By default this is bound to
-	  \kbd{Control}-\kbd{L}
+	  \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{/}
 	  with a \code{path} string of "" (the empty
 	  string); it is also bound to \kbd{/} with a
 	  \code{path} string of "\code{/}"
@@ -321,8 +325,6 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 	      }
 }
       }
-\section{Hierarchy}{\preformatted{  GInterface
-   +----GtkFileChooser}}
 \section{Structures}{\describe{\item{\code{GtkFileChooser}}{\emph{undocumented
 }}}}
 \section{Enums and Flags}{\describe{
@@ -380,8 +382,6 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 
 }
 }}
-\section{Implementations}{GtkFileChooser is implemented by
- \code{\link{GtkFileChooserWidget}},  \code{\link{GtkFileChooserButton}} and  \code{\link{GtkFileChooserDialog}}.}
 \section{Signals}{\describe{
 \item{\code{confirm-overwrite(filechooser, user.data)}}{
       This signal gets emitted whenever it is appropriate to present a

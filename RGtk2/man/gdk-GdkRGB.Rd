@@ -4,7 +4,7 @@
 \name{gdk-GdkRGB}
 \title{GdkRGB}
 \description{Renders RGB, grayscale, or indexed image data to a GdkDrawable}
-\usage{
+\section{Methods and Functions}{
 \link{gdkDrawRgbImage}(object, gc, x, y, width, height, dith, rgb.buf, rowstride)
 \link{gdkDrawRgbImageDithalign}(object, gc, x, y, width, height, dith, rgb.buf, xdith, ydith)
 \link{gdkDrawIndexedImage}(object, gc, x, y, width, height, dith, buf, cmap)
@@ -24,7 +24,7 @@
 \link{gdkRgbColormapDitherable}(colormap)
 \link{gdkRgbSetVerbose}(verbose)
 }
-\details{GdkRGB is a low-level module which renders RGB, grayscale, and indexed
+\section{Detailed Description}{GdkRGB is a low-level module which renders RGB, grayscale, and indexed
 colormap images to a \code{\link{GdkDrawable}}. It does this as efficiently as
 possible, handling issues such as colormaps, visuals, dithering,
 temporary buffers, and so on. Most code should use the higher-level

@@ -2,7 +2,7 @@
 \name{cairo-Transformations}
 \title{Transformations}
 \description{Manipulating the current transformation matrix}
-\usage{
+\section{Methods and Functions}{
 \link{cairoTranslate}(cr, tx, ty)
 \link{cairoScale}(cr, sx, sy)
 \link{cairoRotate}(cr, angle)

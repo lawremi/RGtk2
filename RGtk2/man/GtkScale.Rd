@@ -2,7 +2,7 @@
 \name{GtkScale}
 \title{GtkScale}
 \description{Base class for GtkHScale and GtkVScale}
-\usage{
+\section{Methods and Functions}{
 \link{gtkScaleSetDigits}(object, digits)
 \link{gtkScaleSetDrawValue}(object, draw.value)
 \link{gtkScaleSetValuePos}(object, pos)
@@ -12,7 +12,16 @@
 \link{gtkScaleGetLayout}(object)
 \link{gtkScaleGetLayoutOffsets}(object)
 }
-\details{A \code{\link{GtkScale}} is a slider control used to select a numeric value.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkRange}
+                     +----GtkScale
+                           +----\link{GtkHScale}
+                           +----\link{GtkVScale}}}
+\section{Interfaces}{GtkScale implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkScale}} is a slider control used to select a numeric value.
 To use it, you'll probably want to investigate the methods on 
 its base class, \code{\link{GtkRange}}, in addition to the methods for \code{\link{GtkScale}} itself.
 To set the value of a scale, you would normally use \code{\link{gtkRangeSetValue}}. 
@@ -22,13 +31,6 @@ signal.
 The \code{\link{GtkScale}} widget is an abstract class, used only for deriving the
 subclasses \code{\link{GtkHScale}} and \code{\link{GtkVScale}}. To create a scale widget, 
 call \code{\link{gtkHScaleNewWithRange}} or \code{\link{gtkVScaleNewWithRange}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----GtkScale
-                           +----\link{GtkHScale}
-                           +----\link{GtkVScale}}}
 \section{Structures}{\describe{\item{\code{GtkScale}}{
 The \code{\link{GtkScale}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
@@ -42,8 +44,6 @@ slider. \cr
 }
 
 }}}
-\section{Interfaces}{GtkScale implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{format-value(scale, arg1, user.data)}}{
 Signal which allows you to change how the scale value is displayed.  Connect a
 signal handler which returns an allocated string representing \code{value}.

@@ -5,7 +5,10 @@
 Sets a widget to be used as the specified column's title.  This
 can be used to place a pixmap or something else as the column
 title, instead of the standard text.
-\strong{WARNING: \code{gtk_clist_set_column_widget} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_column_widget} is deprecated and should not be used in newly-written code.  
+Sets a widget to be used as the specified column's title.  This
+can be used to place a pixmap or something else as the column
+title, instead of the standard text.}
 }
 \usage{gtkCListSetColumnWidget(object, column, widget)}
 \arguments{

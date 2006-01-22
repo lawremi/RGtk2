@@ -3,7 +3,8 @@
 \name{GtkRadioButton}
 \title{GtkRadioButton}
 \description{A choice from multiple check buttons}
-\usage{
+\usage{gtkRadioButton(group, label, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkRadioButtonNew}(group = NULL, show = TRUE)
 \link{gtkRadioButtonNewFromWidget}(group, show = TRUE)
 \link{gtkRadioButtonNewWithLabel}(group = NULL, label, show = TRUE)
@@ -12,9 +13,19 @@
 \link{gtkRadioButtonNewWithMnemonicFromWidget}(group, label, show = TRUE)
 \link{gtkRadioButtonSetGroup}(object, group)
 \link{gtkRadioButtonGetGroup}(object)
-gtkRadioButton(group, label, show = TRUE)
 }
-\details{A single radio button performs the same basic function as a \code{\link{GtkCheckButton}},
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkButton}
+                                 +----\link{GtkToggleButton}
+                                       +----\link{GtkCheckButton}
+                                             +----GtkRadioButton}}
+\section{Interfaces}{GtkRadioButton implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A single radio button performs the same basic function as a \code{\link{GtkCheckButton}},
 as its position in the object hierarchy reflects. It is only when multiple
 radio buttons are grouped together that they become a different user
 interface component in their own right.  
@@ -68,23 +79,12 @@ When an unselected button in the group is clicked the clicked button
 receives the "toggled" signal, as does the previously selected button.
 Inside the "toggled" handler, \code{\link{gtkToggleButtonGetActive}} can be used 
 to determine if the button has been selected or deselected.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----\link{GtkToggleButton}
-                                       +----\link{GtkCheckButton}
-                                             +----GtkRadioButton}}
 \section{Structures}{\describe{\item{\code{GtkRadioButton}}{
 Contains only private data that should be read and manipulated using the
 functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkRadioButton} is the result of collapsing the constructors of \code{GtkRadioButton} (\code{\link{gtkRadioButtonNew}}, \code{\link{gtkRadioButtonNewFromWidget}}, \code{\link{gtkRadioButtonNewWithLabel}}, \code{\link{gtkRadioButtonNewWithLabelFromWidget}}, \code{\link{gtkRadioButtonNewWithMnemonic}}, \code{\link{gtkRadioButtonNewWithMnemonicFromWidget}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkRadioButton implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{group-changed(style, user.data)}}{
 Emitted when the group of radio buttons that a radio button belongs
 to changes. This is emitted when a radio button switches from

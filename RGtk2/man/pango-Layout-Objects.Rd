@@ -9,7 +9,8 @@
 \name{pango-Layout-Objects}
 \title{Layout Objects}
 \description{Highlevel layout driver objects}
-\usage{
+\usage{pangoLayout(context)}
+\section{Methods and Functions}{
 \link{pangoLayoutNew}(context)
 \link{pangoLayoutCopy}(object)
 \link{pangoLayoutGetContext}(object)
@@ -75,9 +76,8 @@
 \link{pangoLayoutLineIndexToX}(object, index, trailing)
 \link{pangoLayoutLineXToIndex}(object, x.pos)
 \link{pangoLayoutLineGetXRanges}(object, start.index, end.index)
-pangoLayout(context)
 }
-\details{While complete access to the layout capabilities of Pango is provided
+\section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
 that functionality directly involves writing a fairly large amount
 of code. The objects and functions in this structure provide a

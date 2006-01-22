@@ -6,7 +6,8 @@
 \name{GtkIconTheme}
 \title{GtkIconTheme}
 \description{Looking up icons by name}
-\usage{
+\usage{gtkIconTheme()}
+\section{Methods and Functions}{
 \link{gtkIconThemeNew}()
 \link{gtkIconThemeGetDefault}()
 \link{gtkIconThemeGetForScreen}(screen)
@@ -33,9 +34,10 @@
 \link{gtkIconInfoGetEmbeddedRect}(object)
 \link{gtkIconInfoGetAttachPoints}(object)
 \link{gtkIconInfoGetDisplayName}(object)
-gtkIconTheme()
 }
-\details{\code{\link{GtkIconTheme}} provides a facility for looking up icons by name
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkIconTheme}}
+\section{Detailed Description}{\code{\link{GtkIconTheme}} provides a facility for looking up icons by name
 and size. The main reason for using a name rather than simply
 providing a filename is to allow different icons to be used
 depending on what \dfn{icon theme} is selecetd
@@ -94,8 +96,6 @@ else
     # Use the pixbuf
   }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkIconTheme}}
 \section{Structures}{\describe{
 \item{\code{GtkIconInfo}}{
 Contains information found when looking up an icon in

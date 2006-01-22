@@ -3,7 +3,7 @@
 \title{AtkTable}
 \description{The ATK interface implemented for UI components which contain tabular or
 row/column information.}
-\usage{
+\section{Methods and Functions}{
 \link{atkTableRefAt}(object, row, column)
 \link{atkTableGetIndexAt}(object, row, column)
 \link{atkTableGetColumnAtIndex}(object, index)
@@ -34,7 +34,11 @@ row/column information.}
 \link{atkTableRemoveColumnSelection}(object, column)
 \link{atkTableRemoveRowSelection}(object, row)
 }
-\details{\code{\link{AtkTable}} should be implemented by components which present elements
+\section{Hierarchy}{\preformatted{  GInterface
+   +----AtkTable}}
+\section{Implementations}{AtkTable is implemented by
+ \code{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\code{\link{AtkTable}} should be implemented by components which present elements
 ordered via rows and columns.  It may also be used to present
 tree-structured information if the nodes of the trees can be said to
 contain multiple "columns".  Individual elements of an \code{\link{AtkTable}} are
@@ -51,14 +55,10 @@ offering simplified summary information, as well as row and column
 headers and captions.  Headers and captions are \code{AtkObjects} which may
 implement other interfaces (\code{\link{AtkText}}, \code{\link{AtkImage}}, etc.) as appropriate.
 \code{\link{AtkTable}} summaries may themselves be (simplified) \code{AtkTables}, etc.}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----AtkTable}}
 \section{Structures}{\describe{\item{\code{AtkTable}}{
 The AtkTable structure does not contain any fields.
 
 }}}
-\section{Implementations}{AtkTable is implemented by
- \code{\link{AtkNoOpObject}}.}
 \section{Signals}{\describe{
 \item{\code{column-deleted(atktable, arg1, arg2, user.data)}}{
 The "column-deleted" signal is emitted by an object which implements the 

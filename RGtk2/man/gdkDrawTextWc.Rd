@@ -5,7 +5,10 @@
 Draws a number of wide characters using the given font of fontset.
 If the font is a 1-byte font, the string is converted into 1-byte 
 characters (discarding the high bytes) before output.
-\strong{WARNING: \code{gdk_draw_text_wc} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.}
+\strong{WARNING: \code{gdk_draw_text_wc} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.  
+Draws a number of wide characters using the given font of fontset.
+If the font is a 1-byte font, the string is converted into 1-byte 
+characters (discarding the high bytes) before output.  }
 }
 \usage{gdkDrawTextWc(object, font, gc, x, text)}
 \arguments{

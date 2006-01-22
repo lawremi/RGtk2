@@ -3,7 +3,8 @@
 \name{AtkRelationSet}
 \title{AtkRelationSet}
 \description{A set of AtkRelations, normally the set of AtkRelations which an AtkObject has.}
-\usage{
+\usage{atkRelationSet()}
+\section{Methods and Functions}{
 \link{atkRelationSetNew}()
 \link{atkRelationSetContains}(object, relationship)
 \link{atkRelationSetRemove}(object, relation)
@@ -12,7 +13,6 @@
 \link{atkRelationSetGetRelation}(object, i)
 \link{atkRelationSetGetRelationByType}(object, relationship)
 \link{atkRelationSetAddRelationByType}(object, relationship, target)
-atkRelationSet()
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRelationSet}}

@@ -2,13 +2,11 @@
 \name{GtkItem}
 \title{GtkItem}
 \description{Abstract base class for GtkMenuItem, GtkListItem and GtkTreeItem}
-\usage{
+\section{Methods and Functions}{
 \link{gtkItemSelect}(object)
 \link{gtkItemDeselect}(object)
 \link{gtkItemToggle}(object)
 }
-\details{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
-and \code{GtkTreeItem}.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -18,13 +16,15 @@ and \code{GtkTreeItem}.}
                                  +----\link{GtkMenuItem}
                                  +----\link{GtkListItem}
                                  +----GtkTreeItem}}
+\section{Interfaces}{GtkItem implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
+and \code{GtkTreeItem}.}
 \section{Structures}{\describe{\item{\code{GtkItem}}{
 The \code{\link{GtkItem}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
-\section{Interfaces}{GtkItem implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{deselect(item, user.data)}}{
 Emitted when the item is deselected.

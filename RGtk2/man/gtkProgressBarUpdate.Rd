@@ -4,7 +4,9 @@
 \description{
 This function is deprecated.  Please use \code{\link{gtkProgressSetValue}} or
 \code{\link{gtkProgressSetPercentage}} instead.
-\strong{WARNING: \code{gtk_progress_bar_update} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_progress_bar_update} is deprecated and should not be used in newly-written code.  
+This function is deprecated.  Please use \code{\link{gtkProgressSetValue}} or
+\code{\link{gtkProgressSetPercentage}} instead.}
 }
 \usage{gtkProgressBarUpdate(object, percentage)}
 \arguments{

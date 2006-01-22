@@ -3,7 +3,8 @@
 \name{GtkViewport}
 \title{GtkViewport}
 \description{An adapter which makes widgets scrollable}
-\usage{
+\usage{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkViewportNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 \link{gtkViewportGetHadjustment}(object)
 \link{gtkViewportGetVadjustment}(object)
@@ -11,7 +12,6 @@
 \link{gtkViewportSetVadjustment}(object, adjustment = NULL)
 \link{gtkViewportSetShadowType}(object, type)
 \link{gtkViewportGetShadowType}(object)
-gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -19,11 +19,11 @@ gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)
                +----\link{GtkContainer}
                      +----\link{GtkBin}
                            +----GtkViewport}}
+\section{Interfaces}{GtkViewport implements
+ AtkImplementorIface.}
 \section{Structures}{\describe{\item{\code{GtkViewport}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkViewport} is the equivalent of \code{\link{gtkViewportNew}}.}
-\section{Interfaces}{GtkViewport implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{set-scroll-adjustments(viewport, arg1, arg2, user.data)}}{
 
 

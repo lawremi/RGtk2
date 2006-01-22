@@ -3,7 +3,8 @@
 \title{gtkCListAppend}
 \description{
 Adds a row to the CList at the bottom.
-\strong{WARNING: \code{gtk_clist_append} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_append} is deprecated and should not be used in newly-written code.  
+Adds a row to the CList at the bottom.}
 }
 \usage{gtkCListAppend(object, text)}
 \arguments{

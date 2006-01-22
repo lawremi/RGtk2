@@ -3,12 +3,22 @@
 \name{GtkFileChooserDialog}
 \title{GtkFileChooserDialog}
 \description{A file chooser dialog, suitable for "File/Open" or "File/Save" commands}
-\usage{
+\usage{gtkFileChooserDialog(title = NULL, parent = NULL, action, ..., backend, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFileChooserDialogNew}(title = NULL, parent = NULL, action, ..., show = TRUE)
 \link{gtkFileChooserDialogNewWithBackend}(title = NULL, parent = NULL, action, backend, ..., show = TRUE)
-gtkFileChooserDialog(title, parent, action, ..., backend, show = TRUE)
 }
-\details{      \code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkFileChooserDialog}}
+\section{Interfaces}{GtkFileChooserDialog implements
+ AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
+\section{Detailed Description}{      \code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
       "File/Open" or "File/Save as" commands.  This widget works by
       putting a \code{\link{GtkFileChooserWidget}} inside a \code{\link{GtkDialog}}.  It exposes
       the \code{GtkFileChooserIface} interface, so you can use all of the
@@ -74,19 +84,9 @@ dialog = gtk_file_chooser_dialog_new ("Open File",
 	proper operation.
         
     }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkFileChooserDialog}}
 \section{Structures}{\describe{\item{\code{GtkFileChooserDialog}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkFileChooserDialog} is the result of collapsing the constructors of \code{GtkFileChooserDialog} (\code{\link{gtkFileChooserDialogNew}}, \code{\link{gtkFileChooserDialogNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkFileChooserDialog implements
- AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFileChooserDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{

@@ -3,7 +3,8 @@
 \name{GtkFileSelection}
 \title{GtkFileSelection}
 \description{Prompt the user for a file or directory name}
-\usage{
+\usage{gtkFileSelection(title = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFileSelectionNew}(title = NULL, show = TRUE)
 \link{gtkFileSelectionSetFilename}(object, filename)
 \link{gtkFileSelectionGetFilename}(object)
@@ -13,9 +14,18 @@
 \link{gtkFileSelectionGetSelections}(object)
 \link{gtkFileSelectionSetSelectMultiple}(object, select.multiple)
 \link{gtkFileSelectionGetSelectMultiple}(object)
-gtkFileSelection(title = NULL, show = TRUE)
 }
-\details{\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkFileSelection}}
+\section{Interfaces}{GtkFileSelection implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
 the user. It will create a new dialog window containing a directory list, 
 and a file list corresponding to the current working directory. The filesystem 
 can be navigated using the directory list or the drop-down history menu. 
@@ -63,14 +73,6 @@ create_file_selection <- function() {
    file_selector$show()
 }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkFileSelection}}
 \section{Structures}{\describe{\item{\code{GtkFileSelection}}{
 The \code{\link{GtkFileSelection}} struct contains the following \code{\link{GtkWidget}} fields:
 
@@ -83,8 +85,6 @@ The \code{\link{GtkFileSelection}} struct contains the following \code{\link{Gtk
 
 }}}
 \section{Convenient Construction}{\code{gtkFileSelection} is the equivalent of \code{\link{gtkFileSelectionNew}}.}
-\section{Interfaces}{GtkFileSelection implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{filename} [character : Read / Write]}{
 

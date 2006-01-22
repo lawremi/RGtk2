@@ -5,7 +5,10 @@
 Recursively apply a function to nodes up to a certain depth.
 The function is called for each node after it has been called
 for that node's children.
-\strong{WARNING: \code{gtk_ctree_post_recursive_to_depth} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_post_recursive_to_depth} is deprecated and should not be used in newly-written code.  
+Recursively apply a function to nodes up to a certain depth.
+The function is called for each node after it has been called
+for that node's children.}
 }
 \usage{gtkCTreePostRecursiveToDepth(object, node, depth, func, data = NULL)}
 \arguments{

@@ -3,10 +3,10 @@
 \name{GtkIMMulticontext}
 \title{GtkIMMulticontext}
 \description{An input method context supporting multiple, loadable input methods}
-\usage{
+\usage{gtkIMMulticontext()}
+\section{Methods and Functions}{
 \link{gtkIMMulticontextNew}()
 \link{gtkIMMulticontextAppendMenuitems}(object, menushell)
-gtkIMMulticontext()
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkIMContext}

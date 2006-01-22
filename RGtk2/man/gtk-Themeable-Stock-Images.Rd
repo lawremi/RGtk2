@@ -7,7 +7,8 @@
 \name{gtk-Themeable-Stock-Images}
 \title{Themeable Stock Images}
 \description{Manipulating stock icons}
-\usage{
+\usage{gtkIconFactory()}
+\section{Methods and Functions}{
 \link{gtkIconSourceCopy}(object)
 \link{gtkIconFactoryAdd}(object, stock.id, icon.set)
 \link{gtkIconFactoryAddDefault}(object)
@@ -46,9 +47,10 @@
 \link{gtkIconSourceSetSizeWildcarded}(object, setting)
 \link{gtkIconSourceSetState}(object, state)
 \link{gtkIconSourceSetStateWildcarded}(object, setting)
-gtkIconFactory()
 }
-\details{Browse the available stock icons in the list of stock IDs found here. You can also use 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkIconFactory}}
+\section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use 
 the \command{gtk-demo} application for this purpose.
   
  An icon factory manages a collection of \code{\link{GtkIconSet}}; a \code{\link{GtkIconSet}} manages a
@@ -67,8 +69,6 @@ To display an icon, always use \code{\link{gtkStyleLookupIconSet}} on the widget
 will display the icon, or the convenience function
 \code{\link{gtkWidgetRenderIcon}}. These functions take the theme into account when
 looking up the icon to use for a given stock ID.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkIconFactory}}
 \section{Structures}{\describe{
 \item{\code{GtkIconSource}}{\emph{undocumented
 }}

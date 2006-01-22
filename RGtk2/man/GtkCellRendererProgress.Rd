@@ -3,10 +3,8 @@
 \name{GtkCellRendererProgress}
 \title{GtkCellRendererProgress}
 \description{Renders numbers as progress bars}
-\usage{
-\link{gtkCellRendererProgressNew}()
-gtkCellRendererProgress()
-}
+\usage{gtkCellRendererProgress()}
+\section{Methods and Functions}{\link{gtkCellRendererProgressNew}()}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkCellRenderer}

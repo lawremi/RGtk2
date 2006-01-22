@@ -3,11 +3,11 @@
 \name{GtkWindowGroup}
 \title{GtkWindowGroup}
 \description{Limit the effect of grabs}
-\usage{
+\usage{gtkWindowGroup()}
+\section{Methods and Functions}{
 \link{gtkWindowGroupNew}()
 \link{gtkWindowGroupAddWindow}(object, window)
 \link{gtkWindowGroupRemoveWindow}(object, window)
-gtkWindowGroup()
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkWindowGroup}}

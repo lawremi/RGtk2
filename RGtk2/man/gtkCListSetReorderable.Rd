@@ -3,7 +3,8 @@
 \title{gtkCListSetReorderable}
 \description{
 Sets whether the CList's rows are re-orderable using drag-and-drop.
-\strong{WARNING: \code{gtk_clist_set_reorderable} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_reorderable} is deprecated and should not be used in newly-written code.  
+Sets whether the CList's rows are re-orderable using drag-and-drop.}
 }
 \usage{gtkCListSetReorderable(object, reorderable)}
 \arguments{

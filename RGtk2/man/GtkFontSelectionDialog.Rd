@@ -3,16 +3,26 @@
 \name{GtkFontSelectionDialog}
 \title{GtkFontSelectionDialog}
 \description{A dialog box for selecting fonts}
-\usage{
+\usage{gtkFontSelectionDialog(title = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkFontSelectionDialogNew}(title = NULL, show = TRUE)
 \link{gtkFontSelectionDialogGetFont}(object)
 \link{gtkFontSelectionDialogGetFontName}(object)
 \link{gtkFontSelectionDialogSetFontName}(object, fontname)
 \link{gtkFontSelectionDialogGetPreviewText}(object)
 \link{gtkFontSelectionDialogSetPreviewText}(object, text)
-gtkFontSelectionDialog(title = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkFontSelectionDialog}} widget is a dialog box for selecting a font.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----\link{GtkWindow}
+                                 +----\link{GtkDialog}
+                                       +----GtkFontSelectionDialog}}
+\section{Interfaces}{GtkFontSelectionDialog implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkFontSelectionDialog}} widget is a dialog box for selecting a font.
   
 To set the font which is initially selected, use
 \code{\link{gtkFontSelectionDialogSetFontName}}.
@@ -22,14 +32,6 @@ or \code{\link{gtkFontSelectionDialogGetFontName}}.
   
 To change the text which is shown in the preview area, use
 \code{\link{gtkFontSelectionDialogSetPreviewText}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkFontSelectionDialog}}
 \section{Structures}{\describe{\item{\code{GtkFontSelectionDialog}}{
 
 
@@ -42,8 +44,6 @@ by default but you can show/hide it}
 
 }}}
 \section{Convenient Construction}{\code{gtkFontSelectionDialog} is the equivalent of \code{\link{gtkFontSelectionDialogNew}}.}
-\section{Interfaces}{GtkFontSelectionDialog implements
- AtkImplementorIface.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFontSelectionDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,14 @@ Reparents a pre-existing toplevel window into a \code{\link{GtkSocket}}. This is
 meant to embed clients that do not know about embedding into a
 \code{\link{GtkSocket}}, however doing so is inherently unreliable, and using
 this function is not recommended.
-\strong{WARNING: \code{gtk_socket_steal} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_socket_steal} is deprecated and should not be used in newly-written code.  
+Reparents a pre-existing toplevel window into a \code{\link{GtkSocket}}. This is
+meant to embed clients that do not know about embedding into a
+\code{\link{GtkSocket}}, however doing so is inherently unreliable, and using
+this function is not recommended.
+  
+The \code{\link{GtkSocket}} must have already be added into a toplevel window
+ before you can make this call.  }
 }
 \usage{gtkSocketSteal(object, wid)}
 \arguments{

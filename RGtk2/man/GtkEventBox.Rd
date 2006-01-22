@@ -3,31 +3,31 @@
 \name{GtkEventBox}
 \title{GtkEventBox}
 \description{A widget used to catch events for widgets which do not have their own window}
-\usage{
+\usage{gtkEventBox(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkEventBoxNew}(show = TRUE)
 \link{gtkEventBoxSetAboveChild}(object, above.child)
 \link{gtkEventBoxGetAboveChild}(object)
 \link{gtkEventBoxSetVisibleWindow}(object, visible.window)
 \link{gtkEventBoxGetVisibleWindow}(object)
-gtkEventBox(show = TRUE)
 }
-\details{The \code{\link{GtkEventBox}} widget is a subclass of \code{\link{GtkBin}} which also has its own window.
-It is useful since it allows you to catch events for widgets which do not
-have their own window.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----\link{GtkContainer}
                      +----\link{GtkBin}
                            +----GtkEventBox}}
+\section{Interfaces}{GtkEventBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkEventBox}} widget is a subclass of \code{\link{GtkBin}} which also has its own window.
+It is useful since it allows you to catch events for widgets which do not
+have their own window.}
 \section{Structures}{\describe{\item{\code{GtkEventBox}}{
 The \code{\link{GtkEventBox}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkEventBox} is the equivalent of \code{\link{gtkEventBoxNew}}.}
-\section{Interfaces}{GtkEventBox implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{above-child} [logical : Read / Write]}{
 

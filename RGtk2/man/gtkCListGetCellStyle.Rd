@@ -3,7 +3,8 @@
 \title{gtkCListGetCellStyle}
 \description{
 Gets the current style of the specified cell.
-\strong{WARNING: \code{gtk_clist_get_cell_style} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_get_cell_style} is deprecated and should not be used in newly-written code.  
+Gets the current style of the specified cell.}
 }
 \usage{gtkCListGetCellStyle(object, row, column)}
 \arguments{

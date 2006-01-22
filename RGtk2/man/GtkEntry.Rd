@@ -3,7 +3,8 @@
 \name{GtkEntry}
 \title{GtkEntry}
 \description{A single line text entry field}
-\usage{
+\usage{gtkEntry(max = 0, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkEntryNew}(show = TRUE)
 \link{gtkEntryNewWithMaxLength}(max = 0, show = TRUE)
 \link{gtkEntrySetText}(object, text)
@@ -33,25 +34,24 @@
 \link{gtkEntryGetVisibility}(object)
 \link{gtkEntrySetCompletion}(object, completion)
 \link{gtkEntryGetCompletion}(object)
-gtkEntry(max = 0, show = TRUE)
 }
-\details{The \code{\link{GtkEntry}} widget is a single line text entry
-widget. A fairly large set of key bindings are supported
-by default. If the entered text is longer than the allocation
-of the widget, the widget will scroll so that the cursor
-position is visible. }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----GtkEntry
                      +----\link{GtkSpinButton}}}
+\section{Interfaces}{GtkEntry implements
+ AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
+\section{Detailed Description}{The \code{\link{GtkEntry}} widget is a single line text entry
+widget. A fairly large set of key bindings are supported
+by default. If the entered text is longer than the allocation
+of the widget, the widget will scroll so that the cursor
+position is visible. }
 \section{Structures}{\describe{\item{\code{GtkEntry}}{
 The \code{\link{GtkEntry}} struct contains only private data.
 
 }}}
 \section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkEntry implements
- AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
 \section{Signals}{\describe{
 \item{\code{activate(entry, user.data)}}{
 

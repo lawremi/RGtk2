@@ -12,7 +12,8 @@
 \name{gdk-Graphics-Contexts}
 \title{Graphics Contexts}
 \description{Objects to encapsulate drawing properties}
-\usage{
+\usage{gdkGC(drawable)}
+\section{Methods and Functions}{
 \link{gdkGCNew}(drawable)
 \link{gdkGCNewWithValues}(object, values)
 \link{gdkGCGetScreen}(object)
@@ -40,9 +41,10 @@
 \link{gdkGCSetColormap}(object, colormap)
 \link{gdkGCGetColormap}(object)
 \link{gdkGCOffset}(object, x.offset, y.offset)
-gdkGC(drawable)
 }
-\details{All drawing operations in GDK take a 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GdkGC}}
+\section{Detailed Description}{All drawing operations in GDK take a 
 \dfn{graphics context} (GC) argument. 
 A graphics context encapsulates information about
 the way things are drawn, such as the foreground
@@ -58,8 +60,6 @@ or can be set one-by-one using functions such
 as \code{\link{gdkGCSetForeground}}. A few of the values
 in the GC, such as the dash pattern, can only
 be set by the latter method.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GdkGC}}
 \section{Structures}{\describe{
 \item{\code{GdkGC}}{
 The \code{\link{GdkGC}} structure represents a graphics context.

@@ -2,19 +2,19 @@
 \name{GtkCellEditable}
 \title{GtkCellEditable}
 \description{Interface for widgets which can are used for editing cells}
-\usage{
+\section{Methods and Functions}{
 \link{gtkCellEditableStartEditing}(object, event = NULL)
 \link{gtkCellEditableEditingDone}(object)
 \link{gtkCellEditableRemoveWidget}(object)
 }
-\details{The \code{\link{GtkCellEditable}} interface must be implemented for widgets
-to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkCellEditable}}
-\section{Structures}{\describe{\item{\code{GtkCellEditable}}{\emph{undocumented
-}}}}
 \section{Implementations}{GtkCellEditable is implemented by
  \code{\link{GtkEntry}},  \code{\link{GtkComboBox}},  \code{\link{GtkSpinButton}} and  \code{\link{GtkComboBoxEntry}}.}
+\section{Detailed Description}{The \code{\link{GtkCellEditable}} interface must be implemented for widgets
+to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
+\section{Structures}{\describe{\item{\code{GtkCellEditable}}{\emph{undocumented
+}}}}
 \section{Signals}{\describe{
 \item{\code{editing-done(celleditable, user.data)}}{
 

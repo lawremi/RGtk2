@@ -30,7 +30,7 @@
 \name{gdk-Event-Structures}
 \title{Event Structures}
 \description{Data structures specific to each type of event}
-\details{The event structs contain data specific to each type of event in GDK.
+\section{Detailed Description}{The event structs contain data specific to each type of event in GDK.
   \emph{  
 A common mistake is to forget to set the event mask of a widget so that the
 required events are received. See \code{\link{gtkWidgetSetEvents}}.

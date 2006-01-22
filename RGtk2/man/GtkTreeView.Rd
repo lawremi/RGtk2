@@ -9,7 +9,8 @@
 \name{GtkTreeView}
 \title{GtkTreeView}
 \description{A widget for displaying both trees and lists}
-\usage{
+\usage{gtkTreeView(model = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkTreeViewNew}(show = TRUE)
 \link{gtkTreeViewNewWithModel}(model = NULL, show = TRUE)
 \link{gtkTreeViewGetModel}(object)
@@ -82,18 +83,19 @@
 \link{gtkTreeViewSetDestroyCountFunc}(object, func, data = NULL)
 \link{gtkTreeViewGetRowSeparatorFunc}(object)
 \link{gtkTreeViewSetRowSeparatorFunc}(object, func, data = NULL)
-gtkTreeView(model = NULL, show = TRUE)
 }
-\details{Widget that displays any object that implements the \code{\link{GtkTreeModel}} interface.
-  
-Please refer to the tree widget conceptual overview 
-for an overview of all the objects and data types related to the tree widget and how 
-they work together.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----\link{GtkContainer}
                      +----GtkTreeView}}
+\section{Interfaces}{GtkTreeView implements
+ AtkImplementorIface.}
+\section{Detailed Description}{Widget that displays any object that implements the \code{\link{GtkTreeModel}} interface.
+  
+Please refer to the tree widget conceptual overview 
+for an overview of all the objects and data types related to the tree widget and how 
+they work together.}
 \section{Structures}{\describe{\item{\code{GtkTreeView}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkTreeView} is the result of collapsing the constructors of \code{GtkTreeView} (\code{\link{gtkTreeViewNew}}, \code{\link{gtkTreeViewNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
@@ -183,8 +185,6 @@ returns.
 
 }
 }}
-\section{Interfaces}{GtkTreeView implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{columns-changed(treeview, user.data)}}{
 

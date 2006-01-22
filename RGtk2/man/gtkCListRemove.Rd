@@ -3,7 +3,8 @@
 \title{gtkCListRemove}
 \description{
 Removes the specified row from the CList.
-\strong{WARNING: \code{gtk_clist_remove} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_remove} is deprecated and should not be used in newly-written code.  
+Removes the specified row from the CList.}
 }
 \usage{gtkCListRemove(object, row)}
 \arguments{

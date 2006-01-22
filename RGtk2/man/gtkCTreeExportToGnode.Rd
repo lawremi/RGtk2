@@ -3,7 +3,8 @@
 \title{gtkCTreeExportToGnode}
 \description{
 FIXME
-\strong{WARNING: \code{gtk_ctree_export_to_gnode} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_export_to_gnode} is deprecated and should not be used in newly-written code.  
+FIXME}
 }
 \usage{gtkCTreeExportToGnode(object, parent, sibling, node, func, data = NULL)}
 \arguments{

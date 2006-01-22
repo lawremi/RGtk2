@@ -3,7 +3,8 @@
 \title{gtkVButtonBoxGetLayoutDefault}
 \description{
 Retrieves the current layout used to arrange buttons in button box widgets.
-\strong{WARNING: \code{gtk_vbutton_box_get_layout_default} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_vbutton_box_get_layout_default} is deprecated and should not be used in newly-written code.  
+Retrieves the current layout used to arrange buttons in button box widgets.}
 }
 \usage{gtkVButtonBoxGetLayoutDefault()}
 \value{[\code{\link{GtkButtonBoxStyle}}] the current \code{\link{GtkButtonBoxStyle}}.}

@@ -3,7 +3,8 @@
 \title{gtkOldEditableClaimSelection}
 \description{
 Claims or gives up ownership of the selection.
-\strong{WARNING: \code{gtk_old_editable_claim_selection} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_old_editable_claim_selection} is deprecated and should not be used in newly-written code.  
+Claims or gives up ownership of the selection.  }
 }
 \usage{gtkOldEditableClaimSelection(object, claim, time = GDK_CURRENT_TIME)}
 \arguments{

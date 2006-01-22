@@ -3,7 +3,8 @@
 \name{GtkScrolledWindow}
 \title{GtkScrolledWindow}
 \description{Adds scrollbars to its child widget}
-\usage{
+\usage{gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkScrolledWindowNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 \link{gtkScrolledWindowGetHadjustment}(object)
 \link{gtkScrolledWindowGetVadjustment}(object)
@@ -18,9 +19,16 @@
 \link{gtkScrolledWindowGetPlacement}(object)
 \link{gtkScrolledWindowGetPolicy}(object)
 \link{gtkScrolledWindowGetShadowType}(object)
-gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 }
-\details{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----GtkScrolledWindow}}
+\section{Interfaces}{GtkScrolledWindow implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container 
 the accepts a single child widget. \code{\link{GtkScrolledWindow}} adds scrollbars
 to the child widget and optionally draws a beveled frame around the 
 child widget.
@@ -64,20 +72,12 @@ for example the PageDown key).
 If a \code{\link{GtkScrolledWindow}} doesn't behave quite as you would like, or
 doesn't have exactly the right layout, it's very possible to set up
 your own scrolling with \code{\link{GtkScrollbar}} and for example a \code{\link{GtkTable}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkScrolledWindow}}
 \section{Structures}{\describe{\item{\code{GtkScrolledWindow}}{
 There are no public fields in the \code{\link{GtkScrolledWindow}} struct; it should 
 only be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkScrolledWindow} is the equivalent of \code{\link{gtkScrolledWindowNew}}.}
-\section{Interfaces}{GtkScrolledWindow implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{move-focus-out(scrolledwindow, arg1, user.data)}}{
 

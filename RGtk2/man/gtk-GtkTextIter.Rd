@@ -5,7 +5,7 @@
 \name{gtk-GtkTextIter}
 \title{GtkTextIter}
 \description{Text buffer iterator}
-\usage{
+\section{Methods and Functions}{
 \link{gtkTextIterGetBuffer}(object)
 \link{gtkTextIterCopy}(object)
 \link{gtkTextIterGetOffset}(object)
@@ -96,7 +96,7 @@
 \link{gtkTextIterInRange}(object, start, end)
 \link{gtkTextIterOrder}(object, second)
 }
-\details{You may wish to begin by reading the text widget
+\section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }

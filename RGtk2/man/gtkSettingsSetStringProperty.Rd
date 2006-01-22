@@ -1,6 +1,8 @@
 \alias{gtkSettingsSetStringProperty}
 \name{gtkSettingsSetStringProperty}
 \title{gtkSettingsSetStringProperty}
+\description{\emph{undocumented
+}}
 \usage{gtkSettingsSetStringProperty(object, name, v.string, origin)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkSettings}}] }

@@ -1,6 +1,8 @@
 \alias{cairoShowGlyphs}
 \name{cairoShowGlyphs}
 \title{cairoShowGlyphs}
+\description{\emph{undocumented
+}}
 \usage{cairoShowGlyphs(cr, glyphs, num.glyphs)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

@@ -1,6 +1,8 @@
 \alias{cairoInFill}
 \name{cairoInFill}
 \title{cairoInFill}
+\description{\emph{undocumented
+}}
 \usage{cairoInFill(cr, x, y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

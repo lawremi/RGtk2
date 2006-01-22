@@ -5,7 +5,13 @@
 If \code{ch} has the Unicode mirrored property and there is another unicode
 character that typically has a glyph that is the mirror image of \code{ch}'s
 glyph, puts that character in the address pointed to by \code{mirrored.ch}.
-\strong{WARNING: \code{pango_get_mirror_char} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{pango_get_mirror_char} is deprecated and should not be used in newly-written code.  
+If \code{ch} has the Unicode mirrored property and there is another unicode
+character that typically has a glyph that is the mirror image of \code{ch}'s
+glyph, puts that character in the address pointed to by \code{mirrored.ch}.
+  
+Use \code{gUnicharGetMirrorChar()} instead; the docs for that function
+provide full details.  }
 }
 \usage{pangoGetMirrorChar(ch)}
 \arguments{\item{\code{ch}}{[numeric]  a unicode character}}

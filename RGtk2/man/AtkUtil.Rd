@@ -8,7 +8,7 @@
 \name{AtkUtil}
 \title{AtkUtil}
 \description{This is a utility class which supports the adding and removal of event listeners.}
-\usage{
+\section{Methods and Functions}{
 \link{atkAddFocusTracker}(focus.tracker)
 \link{atkRemoveFocusTracker}(tracker.id)
 \link{atkFocusTrackerInit}(add.function)
@@ -22,11 +22,11 @@
 \link{atkGetToolkitName}()
 \link{atkGetToolkitVersion}()
 }
-\details{This is a utility class which supports the adding and removal of event 
-listeners. The adding and removing of the listeners must be done in the 
-same thread. The file also contains a number of utility functions.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkUtil}}
+\section{Detailed Description}{This is a utility class which supports the adding and removal of event 
+listeners. The adding and removing of the listeners must be done in the 
+same thread. The file also contains a number of utility functions.}
 \section{Structures}{\describe{
 \item{\code{AtkUtil}}{
 The AtkObject structure should not be accessed directly.

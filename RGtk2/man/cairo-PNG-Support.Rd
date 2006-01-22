@@ -2,7 +2,7 @@
 \name{cairo-PNG-Support}
 \title{PNG Support}
 \description{Reading and writing PNG images}
-\usage{
+\section{Methods and Functions}{
 \link{cairoImageSurfaceCreateFromPng}(filename)
 \link{cairoImageSurfaceCreateFromPngStream}(con)
 \link{cairoSurfaceWriteToPng}(surface, filename)

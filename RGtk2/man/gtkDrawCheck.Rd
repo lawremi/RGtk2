@@ -4,7 +4,9 @@
 \description{
 Draws a check button indicator in the given rectangle on \code{window} with 
 the given parameters.
-\strong{WARNING: \code{gtk_draw_check} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintCheck}} instead.}
+\strong{WARNING: \code{gtk_draw_check} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintCheck}} instead.  
+Draws a check button indicator in the given rectangle on \code{window} with 
+the given parameters.  }
 }
 \usage{gtkDrawCheck(object, window, state.type, shadow.type, x, y, width, height)}
 \arguments{

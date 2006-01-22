@@ -4,7 +4,7 @@
 \name{gtk-Drag-and-Drop}
 \title{Drag and Drop}
 \description{Functions for controlling drag and drop handling}
-\usage{
+\section{Methods and Functions}{
 \link{gtkDragDestSet}(object, flags, targets, actions)
 \link{gtkDragDestSetProxy}(object, proxy.window, protocol, use.coordinates)
 \link{gtkDragDestUnset}(object)
@@ -40,7 +40,7 @@
 \link{gtkDragSourceAddImageTargets}(object)
 \link{gtkDragSourceAddUriTargets}(object)
 }
-\details{GTK+ has a rich set of functions for doing inter-process
+\section{Detailed Description}{GTK+ has a rich set of functions for doing inter-process
 communication via the drag-and-drop metaphor. GTK+
 can do drag-and-drop (DND) via multiple protocols.
 The currently supported protocols are the Xdnd and

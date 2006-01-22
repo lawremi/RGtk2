@@ -4,7 +4,9 @@
 \description{
 Deletes the menu items which were created from the \code{entries} by the given
 item factory.
-\strong{WARNING: \code{gtk_item_factory_delete_entries} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_delete_entries} is deprecated and should not be used in newly-written code.  
+Deletes the menu items which were created from the \code{entries} by the given
+item factory.  }
 }
 \usage{gtkItemFactoryDeleteEntries(object, entries)}
 \arguments{

@@ -3,14 +3,21 @@
 \name{GtkSocket}
 \title{GtkSocket}
 \description{Container for widgets from other processes}
-\usage{
+\usage{gtkSocket(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkSocketNew}(show = TRUE)
 \link{gtkSocketSteal}(object, wid)
 \link{gtkSocketAddId}(object, window.id)
 \link{gtkSocketGetId}(object)
-gtkSocket(show = TRUE)
 }
-\details{Together with \code{\link{GtkPlug}}, \code{\link{GtkSocket}} provides the ability
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkSocket}}
+\section{Interfaces}{GtkSocket implements
+ AtkImplementorIface.}
+\section{Detailed Description}{Together with \code{\link{GtkPlug}}, \code{\link{GtkSocket}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
 process creates a \code{\link{GtkSocket}} widget and, passes the
@@ -65,11 +72,6 @@ as between a \code{\link{GtkPlug}} and a \code{\link{GtkSocket}}.  \emph{
 The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.
   }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkSocket}}
 \section{Structures}{\describe{\item{\code{GtkSocket}}{
 The \code{\link{GtkSocket}} structure contains the \code{plug_window}
 field.  (This field should be considered read-only. It should
@@ -77,8 +79,6 @@ never be set by an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkSocket} is the equivalent of \code{\link{gtkSocketNew}}.}
-\section{Interfaces}{GtkSocket implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{plug-added(socket, user.data)}}{
 This signal is emitted when a client is successfully

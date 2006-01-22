@@ -3,7 +3,8 @@
 \title{gtkNotebookSetHomogeneousTabs}
 \description{
 Sets whether the tabs must have all the same size or not.
-\strong{WARNING: \code{gtk_notebook_set_homogeneous_tabs} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_notebook_set_homogeneous_tabs} is deprecated and should not be used in newly-written code.  
+Sets whether the tabs must have all the same size or not.  }
 }
 \usage{gtkNotebookSetHomogeneousTabs(object, homogeneous)}
 \arguments{

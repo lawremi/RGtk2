@@ -1,6 +1,8 @@
 \alias{cairoFillExtents}
 \name{cairoFillExtents}
 \title{cairoFillExtents}
+\description{\emph{undocumented
+}}
 \usage{cairoFillExtents(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{cairo_t}}] }}
 \value{

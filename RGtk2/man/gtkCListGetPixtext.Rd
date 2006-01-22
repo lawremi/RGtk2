@@ -3,7 +3,8 @@
 \title{gtkCListGetPixtext}
 \description{
 Gets the text, pixmap and bitmap mask for the specified cell.
-\strong{WARNING: \code{gtk_clist_get_pixtext} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_get_pixtext} is deprecated and should not be used in newly-written code.  
+Gets the text, pixmap and bitmap mask for the specified cell.}
 }
 \usage{gtkCListGetPixtext(object, row, column)}
 \arguments{

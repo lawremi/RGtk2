@@ -8,7 +8,7 @@
 \name{cairo-cairo-t}
 \title{cairo_t}
 \description{The cairo drawing context}
-\usage{
+\section{Methods and Functions}{
 \link{cairoCreate}(target)
 \link{cairoSave}(cr)
 \link{cairoRestore}(cr)
@@ -54,7 +54,7 @@
 \link{cairoCopyPage}(cr)
 \link{cairoShowPage}(cr)
 }
-\details{    \code{\link{cairo_t}} is the main object used when drawing with cairo. To
+\section{Detailed Description}{    \code{\link{cairo_t}} is the main object used when drawing with cairo. To
     draw with cairo, you create a \code{\link{cairo_t}}, set the target surface,
     and drawing options for the \code{\link{cairo_t}}, create shapes with
     functions like \code{\link{cairoMoveTo}} and \code{\link{cairoLineTo}}, and then

@@ -3,7 +3,8 @@
 \name{GtkCurve}
 \title{GtkCurve}
 \description{Allows direct editing of a curve}
-\usage{
+\usage{gtkCurve(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCurveNew}(show = TRUE)
 \link{gtkCurveReset}(object)
 \link{gtkCurveSetGamma}(object, gamma)
@@ -11,9 +12,15 @@
 \link{gtkCurveGetVector}(object, veclen)
 \link{gtkCurveSetVector}(object, vector)
 \link{gtkCurveSetCurveType}(object, type)
-gtkCurve(show = TRUE)
 }
-\details{\emph{  
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkDrawingArea}
+                     +----GtkCurve}}
+\section{Interfaces}{GtkCurve implements
+ AtkImplementorIface.}
+\section{Detailed Description}{\emph{  
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -31,19 +38,12 @@ In spline mode the user places points on the curve which are automatically
 connected together into a smooth curve. In linear mode the user places points
 on the curve which are connected by straight lines. In free mode the user can
 draw the points of the curve freely, and they are not connected at all.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkDrawingArea}
-                     +----GtkCurve}}
 \section{Structures}{\describe{\item{\code{GtkCurve}}{
 The \code{\link{GtkCurve}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkCurve} is the equivalent of \code{\link{gtkCurveNew}}.}
-\section{Interfaces}{GtkCurve implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{curve-type-changed(curve, user.data)}}{
 Emitted when the curve type has been changed.
 The curve type can be changed explicitly with a call to

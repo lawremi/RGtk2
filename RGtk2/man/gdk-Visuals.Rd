@@ -5,7 +5,7 @@
 \name{gdk-Visuals}
 \title{Visuals}
 \description{Low-level display hardware information}
-\usage{
+\section{Methods and Functions}{
 \link{gdkQueryDepths}()
 \link{gdkQueryVisualTypes}()
 \link{gdkListVisuals}()
@@ -18,7 +18,7 @@
 \link{gdkVisualGetBestWithBoth}(depth, visual.type)
 \link{gdkVisualGetScreen}(object)
 }
-\details{A \code{\link{GdkVisual}} describes a particular video hardware display format. It includes
+\section{Detailed Description}{A \code{\link{GdkVisual}} describes a particular video hardware display format. It includes
 information about the number of bits used for each color, the way the bits are
 translated into an RGB value for display, and the way the bits are stored in 
 memory. For example, a piece of display hardware might support 24-bit color, 

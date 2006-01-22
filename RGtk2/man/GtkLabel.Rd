@@ -3,7 +3,8 @@
 \name{GtkLabel}
 \title{GtkLabel}
 \description{A widget that displays a small to medium amount of text}
-\usage{
+\usage{gtkLabel(str = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkLabelNew}(str = NULL, show = TRUE)
 \link{gtkLabelSetText}(object, str)
 \link{gtkLabelSetAttributes}(object, attrs)
@@ -45,9 +46,17 @@
 \link{gtkLabelSetUseUnderline}(object, setting)
 \link{gtkLabelSetSingleLineMode}(object, single.line.mode)
 \link{gtkLabelSetAngle}(object, angle)
-gtkLabel(str = NULL, show = TRUE)
 }
-\details{The \code{\link{GtkLabel}} widget displays a small amount of text. As the name
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkMisc}
+                     +----GtkLabel
+                           +----\link{GtkAccelLabel}
+                           +----\link{GtkTipsQuery}}}
+\section{Interfaces}{GtkLabel implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkLabel}} widget displays a small amount of text. As the name
 implies, most labels are used to label another widget such as a
 \code{\link{GtkButton}}, a \code{\link{GtkMenuItem}}, or a \code{\link{GtkOptionMenu}}.}
 \section{Mnemonics}{Labels may contain \dfn{mnemonics}. Mnemonics are
@@ -126,21 +135,12 @@ Labels can automatically wrap text if you call
 \code{\link{gtkLabelSetJustify}} sets how the lines in a label align 
 with one another. If you want to set how the label as a whole 
 aligns in its available space, see \code{\link{gtkMiscSetAlignment}}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----GtkLabel
-                           +----\link{GtkAccelLabel}
-                           +----\link{GtkTipsQuery}}}
 \section{Structures}{\describe{\item{\code{GtkLabel}}{
 This should not be accessed directly.  Use the accessor functions as
 described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkLabel} is the result of collapsing the constructors of \code{GtkLabel} (\code{\link{gtkLabelNew}}, \code{\link{gtkLabelNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Interfaces}{GtkLabel implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{copy-clipboard(label, user.data)}}{
 

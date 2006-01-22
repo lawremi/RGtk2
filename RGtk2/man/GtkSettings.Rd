@@ -3,7 +3,7 @@
 \name{GtkSettings}
 \title{Settings}
 \description{Sharing settings between applications}
-\usage{
+\section{Methods and Functions}{
 \link{gtkSettingsGetDefault}()
 \link{gtkSettingsGetForScreen}(screen)
 \link{gtkSettingsInstallProperty}(pspec)

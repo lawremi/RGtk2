@@ -1,6 +1,8 @@
 \alias{gtkSettingsInstallPropertyParser}
 \name{gtkSettingsInstallPropertyParser}
 \title{gtkSettingsInstallPropertyParser}
+\description{\emph{undocumented
+}}
 \usage{gtkSettingsInstallPropertyParser(pspec, parser)}
 \arguments{
 \item{\code{pspec}}{[\code{\link{GParamSpec}}] }

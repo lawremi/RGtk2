@@ -7,7 +7,12 @@ only be an approximation of the Pango font, and
 internationalization will not be handled correctly. This function
 should only be used for legacy code that cannot be easily converted
 to use Pango. Using Pango directly will produce better results.
-\strong{WARNING: \code{gdk_font_from_description} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gdk_font_from_description} is deprecated and should not be used in newly-written code.  
+Load a \code{\link{GdkFont}} based on a Pango font description. This font will
+only be an approximation of the Pango font, and
+internationalization will not be handled correctly. This function
+should only be used for legacy code that cannot be easily converted
+to use Pango. Using Pango directly will produce better results.  }
 }
 \usage{gdkFontFromDescription(font.desc)}
 \arguments{\item{\code{font.desc}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}.}}

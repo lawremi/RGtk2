@@ -3,7 +3,16 @@
 \title{gtkToolbarInsertElement}
 \description{
 Inserts a new element in the toolbar at the given position. 
-\strong{WARNING: \code{gtk_toolbar_insert_element} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_insert_element} is deprecated and should not be used in newly-written code.  
+Inserts a new element in the toolbar at the given position. 
+  
+If \code{type} == \code{GTK_TOOLBAR_CHILD_WIDGET}, \code{widget} is used as the new element.
+If \code{type} == \code{GTK_TOOLBAR_CHILD_RADIOBUTTON}, \code{widget} is used to determine
+the radio group for the new element. In all other cases, \code{widget} must
+be \code{NULL}.
+  
+\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 }
 \usage{gtkToolbarInsertElement(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position)}
 \arguments{

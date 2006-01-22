@@ -4,7 +4,9 @@
 \description{
 Specifies if the arrow (cursor) keys can be used to step through the items in
 the list. This is on by default.
-\strong{WARNING: \code{gtk_combo_set_use_arrows} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{gtk_combo_set_use_arrows} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
+Specifies if the arrow (cursor) keys can be used to step through the items in
+the list. This is on by default.}
 }
 \usage{gtkComboSetUseArrows(object, val)}
 \arguments{

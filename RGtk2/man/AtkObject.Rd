@@ -7,7 +7,7 @@
 \name{AtkObject}
 \title{AtkObject}
 \description{The base object class for the Accessibility Toolkit API.}
-\usage{
+\section{Methods and Functions}{
 \link{atkRoleRegister}(name)
 \link{atkImplementorRefAccessible}(object)
 \link{atkObjectGetName}(object)
@@ -35,7 +35,11 @@
 \link{atkRoleGetLocalizedName}(role)
 \link{atkRoleForName}(name)
 }
-\details{This class is the primary class for accessibility support via
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----AtkObject
+         +----\link{AtkGObjectAccessible}
+         +----\link{AtkNoOpObject}}}
+\section{Detailed Description}{This class is the primary class for accessibility support via
 the Accessibility ToolKit (ATK).  Objects which are instances
 of \code{\link{AtkObject}} (or instances of AtkObject-derived types) are
 queried for properties which relate basic (and generic) properties of a
@@ -50,10 +54,6 @@ on a call to #\code{\link{gtkWidgetGetAccessible}}), either via ATK support
 built into the toolkit for the widget class or ancestor class, or in
 the case of custom widgets, if the inherited \code{\link{AtkObject}} implementation
 is insufficient, via instances of a new \code{\link{AtkObject}} subclass. }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----AtkObject
-         +----\link{AtkGObjectAccessible}
-         +----\link{AtkNoOpObject}}}
 \section{Structures}{\describe{
 \item{\code{AtkObject}}{
 The AtkObject structure should not be accessed directly.

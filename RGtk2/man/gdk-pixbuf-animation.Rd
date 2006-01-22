@@ -8,6 +8,10 @@
 \title{Animations}
 \description{Animated images.}
 \usage{
+gdkPixbufAnimation(filename)
+gdkPixbufSimpleAnim(width, height, rate)
+}
+\section{Methods and Functions}{
 \link{gdkPixbufAnimationNewFromFile}(filename)
 \link{gdkPixbufAnimationGetWidth}(object)
 \link{gdkPixbufAnimationGetHeight}(object)
@@ -20,10 +24,14 @@
 \link{gdkPixbufAnimationIterGetPixbuf}(object)
 \link{gdkPixbufSimpleAnimNew}(width, height, rate)
 \link{gdkPixbufSimpleAnimAddFrame}(object, pixbuf)
-gdkPixbufAnimation(filename)
-gdkPixbufSimpleAnim(width, height, rate)
 }
-\details{    The \command{gdk-pixbuf} library provides a simple mechanism to load and represent
+\section{Hierarchy}{\preformatted{
+  \link{GObject}
+   +----GdkPixbufAnimation
+  \link{GObject}
+   +----GdkPixbufAnimationIter
+}}
+\section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism to load and represent
     animations. An animation is conceptually a series of frames to be displayed
     over time. Each frame is the same size. The animation may not be represented
     as a series of frames internally; for example, it may be stored as a 
@@ -31,12 +39,6 @@ gdkPixbufSimpleAnim(width, height, rate)
     an animation you don't need to understand its representation, however; you just
     ask \command{gdk-pixbuf} what should be displayed at a given point in time. 
   }
-\section{Hierarchy}{\preformatted{
-  \link{GObject}
-   +----GdkPixbufAnimation
-  \link{GObject}
-   +----GdkPixbufAnimationIter
-}}
 \section{Structures}{\describe{
 \item{\code{GdkPixbufAnimation}}{\emph{undocumented
 }}

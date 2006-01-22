@@ -2,7 +2,7 @@
 \name{atk-AtkStateSet}
 \title{AtkStateSet}
 \description{An AtkStateSet determines a component's state set.}
-\usage{
+\section{Methods and Functions}{
 \link{atkStateSetNew}()
 \link{atkStateSetIsEmpty}(object)
 \link{atkStateSetAddState}(object, type)
@@ -15,7 +15,7 @@
 \link{atkStateSetOrSets}(object, compare.set)
 \link{atkStateSetXorSets}(object, compare.set)
 }
-\details{An AtkStateSet determines a component's state set. It is composed of a set 
+\section{Detailed Description}{An AtkStateSet determines a component's state set. It is composed of a set 
 of AtkStates.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/atk-AtkStateSet.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

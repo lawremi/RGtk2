@@ -8,7 +8,13 @@ the class hierarchy of the widget. This is equivalent to a:
 class PATTERN style STYLE
 }
 statement in a RC file.
-\strong{WARNING: \code{gtk_rc_add_class_style} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_rc_add_class_style} is deprecated and should not be used in newly-written code.  
+Adds a \code{\link{GtkRcStyle}} that will be looked up by a matching against
+the class hierarchy of the widget. This is equivalent to a:
+\code{
+class PATTERN style STYLE
+}
+statement in a RC file.}
 }
 \usage{gtkRcAddClassStyle(object, pattern)}
 \arguments{

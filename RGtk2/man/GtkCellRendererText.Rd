@@ -3,23 +3,23 @@
 \name{GtkCellRendererText}
 \title{GtkCellRendererText}
 \description{Renders text in a cell}
-\usage{
+\usage{gtkCellRendererText()}
+\section{Methods and Functions}{
 \link{gtkCellRendererTextNew}()
 \link{gtkCellRendererTextSetFixedHeightFromFont}(object, number.of.rows)
-gtkCellRendererText()
 }
-\details{A \code{\link{GtkCellRendererText}} renders a given text in its cell, using the font, color and 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkCellRenderer}
+               +----GtkCellRendererText
+                     +----\link{GtkCellRendererCombo}}}
+\section{Detailed Description}{A \code{\link{GtkCellRendererText}} renders a given text in its cell, using the font, color and 
 style information provided by its properties. The text will be ellipsized if it is 
 too long and the ellipsize 
 property allows it.
   
 If the mode is \code{GTK_CELL_RENDERER_MODE_EDITABLE},
 the \code{\link{GtkCellRendererText}} allows to edit its text using an entry.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererText
-                     +----\link{GtkCellRendererCombo}}}
 \section{Structures}{\describe{\item{\code{GtkCellRendererText}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkCellRendererText} is the equivalent of \code{\link{gtkCellRendererTextNew}}.}

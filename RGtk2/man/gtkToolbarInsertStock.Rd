@@ -5,7 +5,13 @@
 Inserts a stock item at the specified position of the toolbar.  If
 \code{stock.id} is not a known stock item ID, it's inserted verbatim,
 except that underscores used to mark mnemonics are removed.
-\strong{WARNING: \code{gtk_toolbar_insert_stock} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_toolbar_insert_stock} is deprecated and should not be used in newly-written code.  
+Inserts a stock item at the specified position of the toolbar.  If
+\code{stock.id} is not a known stock item ID, it's inserted verbatim,
+except that underscores used to mark mnemonics are removed.
+  
+\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 }
 \usage{gtkToolbarInsertStock(object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position)}
 \arguments{

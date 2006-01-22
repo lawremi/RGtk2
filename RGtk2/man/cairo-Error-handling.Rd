@@ -3,7 +3,7 @@
 \name{cairo-Error-handling}
 \title{Error handling}
 \description{Decoding cairo's status}
-\usage{\link{cairoStatusToString}(status)}
+\section{Methods and Functions}{\link{cairoStatusToString}(status)}
 \section{Enums and Flags}{\describe{\item{\code{enum cairo_status_t}}{
 \code{\link{cairo_status_t}} is used to indicate errors that can occur when
 using Cairo. In some cases it is returned directly by functions.

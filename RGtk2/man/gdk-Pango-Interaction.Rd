@@ -6,7 +6,8 @@
 \name{gdk-Pango-Interaction}
 \title{Pango Interaction}
 \description{Using Pango in GDK}
-\usage{
+\usage{gdkPangoRenderer(screen)}
+\section{Methods and Functions}{
 \link{gdkPangoRendererNew}(screen)
 \link{gdkPangoRendererGetDefault}(screen)
 \link{gdkPangoRendererSetDrawable}(object, drawable = NULL)
@@ -20,9 +21,11 @@
 \link{gdkPangoAttrStippleNew}(stipple)
 \link{gdkPangoLayoutGetClipRegion}(layout, x.origin, index.ranges)
 \link{gdkPangoLayoutLineGetClipRegion}(line, x.origin, index.ranges)
-gdkPangoRenderer(screen)
 }
-\details{Pango is the text layout system used by GDK and GTK+. The functions
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{PangoRenderer}
+         +----GdkPangoRenderer}}
+\section{Detailed Description}{Pango is the text layout system used by GDK and GTK+. The functions
 and types in this section are used to render Pango objects to GDK.
 drawables, and also extend the set of Pango attributes to include
 stippling and embossing.
@@ -131,9 +134,6 @@ window$showAll()
 }  
   \emph{Output of   }
   }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{PangoRenderer}
-         +----GdkPangoRenderer}}
 \section{Structures}{\describe{
 \item{\code{GdkPangoRenderer}}{
 \code{\link{GdkPangoRenderer}} is a subclass of \code{\link{PangoRenderer}} used for rendering

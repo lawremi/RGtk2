@@ -4,14 +4,14 @@
 \name{gdk-Properties-and-Atoms}
 \title{Properties and Atoms}
 \description{Functions to manipulate properties on windows}
-\usage{
+\section{Methods and Functions}{
 \link{gdkAtomIntern}(atom.name, only.if.exists = FALSE)
 \link{gdkAtomName}(atom)
 \link{gdkPropertyGet}(object, property, type, offset, length, pdelete)
 \link{gdkPropertyChange}(object, property, type, format, mode, data)
 \link{gdkPropertyDelete}(object, property)
 }
-\details{Each window under X can have any number of associated
+\section{Detailed Description}{Each window under X can have any number of associated
 \dfn{properties} attached to it.
 Properties are arbitrary chunks of data identified by
 \dfn{atom}s. (An \dfn{atom}

@@ -5,7 +5,7 @@
 \name{cairo-Scaled-Fonts}
 \title{Scaled Fonts}
 \description{Caching metrics for a particular font size}
-\usage{
+\section{Methods and Functions}{
 \link{cairoScaledFontCreate}(font.face, font.matrix, ctm, option)
 \link{cairoScaledFontStatus}(scaled.font)
 \link{cairoScaledFontExtents}(scaled.font)

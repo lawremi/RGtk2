@@ -3,7 +3,7 @@
 \title{AtkSelection}
 \description{The ATK interface implemented by container objects whose    children
 can be selected.}
-\usage{
+\section{Methods and Functions}{
 \link{atkSelectionAddSelection}(object, i)
 \link{atkSelectionClearSelection}(object)
 \link{atkSelectionRefSelection}(object, i)
@@ -12,7 +12,11 @@ can be selected.}
 \link{atkSelectionRemoveSelection}(object, i)
 \link{atkSelectionSelectAllSelection}(object)
 }
-\details{\code{\link{AtkSelection}} should be implemented by UI components with children which
+\section{Hierarchy}{\preformatted{  GInterface
+   +----AtkSelection}}
+\section{Implementations}{AtkSelection is implemented by
+ \code{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\code{\link{AtkSelection}} should be implemented by UI components with children which
 are exposed by \code{atk_object_ref_child} and \code{atk_object_get_n_children}, if
 the use of the parent UI component ordinarily involves selection of one
 or more of the objects corresponding to those \code{\link{AtkObject}} children - for
@@ -21,14 +25,10 @@ example, selectable lists.
 Note that other types of "selection" (for instance text selection) are
 accomplished a other ATK interfaces - \code{\link{AtkSelection}} is limited to the
 selection/deselection of children.}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----AtkSelection}}
 \section{Structures}{\describe{\item{\code{AtkSelection}}{
 The AtkAction structure does not contain any fields.
 
 }}}
-\section{Implementations}{AtkSelection is implemented by
- \code{\link{AtkNoOpObject}}.}
 \section{Signals}{\describe{\item{\code{selection-changed(atkselection, user.data)}}{
 The "selection-changed" signal is emitted by an object which implements 
 AtkSelection interface when the selection changes.

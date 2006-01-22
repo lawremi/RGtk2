@@ -8,7 +8,7 @@
 \name{AtkText}
 \title{AtkText}
 \description{The ATK interface implemented by components with text content.}
-\usage{
+\section{Methods and Functions}{
 \link{atkTextGetText}(object, start.offset, end.offset)
 \link{atkTextGetCharacterAtOffset}(object, offset)
 \link{atkTextGetTextAfterOffset}(object, offset, boundary.type)
@@ -33,7 +33,11 @@
 \link{atkTextAttributeForName}(name)
 \link{atkTextAttributeGetValue}(attr, index)
 }
-\details{\code{\link{AtkText}} should be implemented by \code{AtkObjects} on behalf of widgets that
+\section{Hierarchy}{\preformatted{  GInterface
+   +----AtkText}}
+\section{Implementations}{AtkText is implemented by
+ \code{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\code{\link{AtkText}} should be implemented by \code{AtkObjects} on behalf of widgets that
 have text content which is either attributed or otherwise non-trivial.
 \code{AtkObjects} whose text content is simple, unattributed, and very brief
 may expose that content via \code{\link{atkObjectGetName}} instead; however if the
@@ -50,8 +54,6 @@ calculations.  Note that the text strings are exposed as UTF-8, and are
 therefore potentially multi-byte, and caret-to-byte offset mapping makes
 no assumptions about the character length; also bounding box
 glyph-to-offset mapping may be complex for languages which use ligatures.}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----AtkText}}
 \section{Structures}{\describe{
 \item{\code{AtkText}}{
 The AtkText structure does not contain any fields.
@@ -165,8 +167,6 @@ Describes the text attributes supported
 
 }
 }}
-\section{Implementations}{AtkText is implemented by
- \code{\link{AtkNoOpObject}}.}
 \section{Signals}{\describe{
 \item{\code{text-attributes-changed(atktext, user.data)}}{
 The "text-attributes-changed" signal is emitted when the text attributes of 

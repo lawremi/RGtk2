@@ -5,7 +5,7 @@
 \name{cairo-Patterns}
 \title{Patterns}
 \description{Gradients and filtered sources}
-\usage{
+\section{Methods and Functions}{
 \link{cairoPatternAddColorStopRgb}(pattern, offset, red, green, blue)
 \link{cairoPatternAddColorStopRgba}(pattern, offset, red, green, blue, alpha)
 \link{cairoPatternCreateRgb}(red, green, blue)

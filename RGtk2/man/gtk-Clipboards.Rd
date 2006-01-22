@@ -10,7 +10,8 @@
 \name{gtk-Clipboards}
 \title{Clipboards}
 \description{Storing data on clipboards}
-\usage{
+\usage{gtkClipboard(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)}
+\section{Methods and Functions}{
 \link{gtkClipboardGet}(selection = GDK_SELECTION_CLIPBOARD)
 \link{gtkClipboardGetForDisplay}(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)
 \link{gtkClipboardGetDisplay}(object)
@@ -33,9 +34,10 @@
 \link{gtkClipboardWaitIsTargetAvailable}(object, target)
 \link{gtkClipboardSetCanStore}(object, targets)
 \link{gtkClipboardStore}(object)
-gtkClipboard(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)
 }
-\details{    The \code{\link{GtkClipboard}} object represents a clipboard of data shared
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkClipboard}}
+\section{Detailed Description}{    The \code{\link{GtkClipboard}} object represents a clipboard of data shared
     between different processes or between different widgets in
     the same process. Each clipboard is identified by a name encoded as a
     \code{\link{GdkAtom}}. (Conversion to and from strings can be done with
@@ -93,8 +95,6 @@ gtkClipboard(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIP
     and converting the results into the UTF-8 encoding. (The standard
     form for representing strings in GTK+.)
   }
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkClipboard}}
 \section{Structures}{\describe{\item{\code{GtkClipboard}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkClipboard} is the equivalent of \code{\link{gtkClipboardGetForDisplay}}.}

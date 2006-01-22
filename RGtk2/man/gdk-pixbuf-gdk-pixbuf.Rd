@@ -7,7 +7,8 @@
 \name{gdk-pixbuf-gdk-pixbuf}
 \title{The GdkPixbuf Structure}
 \description{Information that describes an image.}
-\usage{
+\usage{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride)}
+\section{Methods and Functions}{
 \link{gdkPixbufGetColorspace}(object)
 \link{gdkPixbufGetNChannels}(object)
 \link{gdkPixbufGetHasAlpha}(object)
@@ -17,13 +18,12 @@
 \link{gdkPixbufGetHeight}(object)
 \link{gdkPixbufGetRowstride}(object)
 \link{gdkPixbufGetOption}(object, key)
-gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride)
 }
-\details{    The \code{GdkPixbuf} structure contains
-    information that describes an image in memory.
-  }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkPixbuf}}
+\section{Detailed Description}{    The \code{GdkPixbuf} structure contains
+    information that describes an image in memory.
+  }
 \section{Structures}{\describe{\item{\code{GdkPixbuf}}{
     This is the main structure in the \command{gdk-pixbuf} library.  It is
     used to represent images.  It contains information about the

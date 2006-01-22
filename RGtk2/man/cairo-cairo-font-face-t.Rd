@@ -3,7 +3,7 @@
 \name{cairo-cairo-font-face-t}
 \title{cairo_font_face_t}
 \description{Base class for fonts}
-\usage{
+\section{Methods and Functions}{
 \link{cairoFontFaceStatus}(font.face)
 \link{cairoFontFaceGetUserData}(font.face, key)
 \link{cairoFontFaceSetUserData}(font.face, key, user.data, destroy)

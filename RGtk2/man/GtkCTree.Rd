@@ -12,7 +12,8 @@
 \name{GtkCTree}
 \title{GtkCTree}
 \description{A widget displaying a hierarchical tree}
-\usage{
+\usage{gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkCTreeNewWithTitles}(columns = 1, tree.column = 0, titles, show = TRUE)
 \link{gtkCTreeNew}(columns = 1, tree.column = 0, show = TRUE)
 \link{gtkCTreeInsertNode}(object, parent, sibling, text, spacing = 5, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf = 1, expanded = 0)
@@ -79,9 +80,16 @@
 \link{gtkCTreeSortRecursive}(object, node)
 \link{gtkCTreeNodeNth}(object, row)
 \link{gtkCTreeSetShowStub}(object, show.stub)
-gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)
 }
-\details{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkCList}
+                           +----GtkCTree}}
+\section{Interfaces}{GtkCTree implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree 
 to the user, for example a directory tree.
   
 The tree is internally represented as a set of \code{\link{GtkCTreeNode}} structures.
@@ -97,15 +105,23 @@ inserted just before the sibling.
   
 GtkCTree has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkCList}
-                           +----GtkCTree}}
 \section{Structures}{\describe{
 \item{\code{GtkCTree}}{
-\strong{WARNING: \code{GtkCTree} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTree} is deprecated and should not be used in newly-written code.  
+The \code{\link{GtkCTree}} contains the following user-accessible fields.
+These fields should be considered read-only; to set the values,
+use the methods below.
+
+\tabular{ll}{
+\code{integer}     \code{tree_indent}  ; \tab The number of pixels each successive level of the tree is
+indented in the display. \cr
+\code{integer}     \code{tree_spacing}  ; \tab The space in pixels between the graphical tree and the text in the
+node. \cr
+\code{integer}     \code{tree_column}  ; \tab The index of the column for which the tree graphics is drawn.  \cr
+\code{\link{GtkCTreeLineStyle}}     \code{line_style}  ; \tab The style in which the lines in the tree graphics are drawn. \cr
+\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab The style in which the expander buttons are drawn. \cr
+\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab FIXME. \cr
+}}
 The \code{\link{GtkCTree}} contains the following user-accessible fields.
 These fields should be considered read-only; to set the values,
 use the methods below.
@@ -123,7 +139,24 @@ node. \cr
 
 }
 \item{\code{GtkCTreeRow}}{
-\strong{WARNING: \code{GtkCTreeRow} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreeRow} is deprecated and should not be used in newly-written code.  
+A structure representing a single row in the tree graph.
+The values inside the structure should be considered read-only.
+This structure is derived from the \code{\link{GtkCListRow}} structure.
+
+\tabular{ll}{
+\code{\link{GtkCTreeNode}}   *  \code{parent}  ; \tab The parent node of the node corresponding to this row. \cr
+\code{\link{GtkCTreeNode}}   *  \code{sibling}  ; \tab The next sibling node of the node corresponding to this row. \cr
+\code{\link{GtkCTreeNode}}   *  \code{children}  ; \tab The first child node corresponding to this row; to access
+the other children, just use the siblings of that node. \cr
+\code{\link{GdkPixmap}}   *  \code{pixmap_closed}  ; \tab  The pixmap to be shown when the node is collapsed. \cr
+\code{\link{GdkBitmap}}   *  \code{mask_closed}  ; \tab  The mask for the above pixmap. \cr
+\code{\link{GdkPixmap}}   *  \code{pixmap_opened}  ; \tab  The pixmap to be shown when the node is expanded. \cr
+\code{\link{GdkBitmap}}   *  \code{mask_opened}  ; \tab  The mask for the above pixmap. \cr
+\code{integer}     \code{level}  ; \tab The level of this node in the tree. \cr
+\code{numeric}     \code{is_leaf}   : 1; \tab Whether this row is a leaf. \cr
+\code{numeric}     \code{expanded}   : 1; \tab Whether the children of this row are visible. \cr
+}}
 A structure representing a single row in the tree graph.
 The values inside the structure should be considered read-only.
 This structure is derived from the \code{\link{GtkCListRow}} structure.
@@ -144,7 +177,10 @@ the other children, just use the siblings of that node. \cr
 
 }
 \item{\code{GtkCTreeNode}}{
-\strong{WARNING: \code{GtkCTreeNode} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreeNode} is deprecated and should not be used in newly-written code.  
+This structure is opaque - you should use the
+functions \code{GTK_CTREE_ROW}, \code{GTK_CTREE_NODE_NEXT} etc. as well
+as the functions below to access it.}
 This structure is opaque - you should use the
 functions \code{GTK_CTREE_ROW}, \code{GTK_CTREE_NODE_NEXT} etc. as well
 as the functions below to access it.
@@ -154,7 +190,14 @@ as the functions below to access it.
 \section{Convenient Construction}{\code{gtkCTree} is the result of collapsing the constructors of \code{GtkCTree} (\code{\link{gtkCTreeNewWithTitles}}, \code{\link{gtkCTreeNew}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
 \item{\code{enum GtkCTreePos}}{
-\strong{WARNING: \code{GtkCTreePos} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreePos} is deprecated and should not be used in newly-written code.  
+A value specifying the position of a new node relative to an old one.
+
+\tabular{ll}{
+GTK_CTREE_POS_BEFORE \tab As a sibling, before the specified node. \cr
+GTK_CTREE_POS_AS_CHILD \tab As a child of the specified node. \cr
+GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
+}}
 A value specifying the position of a new node relative to an old one.
 
 \tabular{ll}{
@@ -165,7 +208,15 @@ GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
 
 }
 \item{\code{enum GtkCTreeLineStyle}}{
-\strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.  
+The appearance of the lines in the tree graphics.
+
+\tabular{ll}{
+GTK_CTREE_LINES_NONE \tab No lines. \cr
+GTK_CTREE_LINES_SOLID \tab Solid lines. \cr
+GTK_CTREE_LINES_DOTTED \tab Dotted lines. \cr
+GTK_CTREE_LINES_TABBED \tab FIXME. \cr
+}}
 The appearance of the lines in the tree graphics.
 
 \tabular{ll}{
@@ -177,7 +228,17 @@ GTK_CTREE_LINES_TABBED \tab FIXME. \cr
 
 }
 \item{\code{enum GtkCTreeExpanderStyle}}{
-\strong{WARNING: \code{GtkCTreeExpanderStyle} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreeExpanderStyle} is deprecated and should not be used in newly-written code.  
+The appearance of the expander buttons, i.e. the small buttons
+which expand or contract parts of the tree when pressed.
+
+
+\tabular{ll}{
+GTK_CTREE_EXPANDER_NONE \tab No expanders. \cr
+GTK_CTREE_EXPANDER_SQUARE \tab Square expanders. \cr
+GTK_CTREE_EXPANDER_TRIANGLE \tab Triangular expanders. \cr
+GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
+}}
 The appearance of the expander buttons, i.e. the small buttons
 which expand or contract parts of the tree when pressed.
 
@@ -191,7 +252,17 @@ GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
 
 }
 \item{\code{enum GtkCTreeExpansionType}}{
-\strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.  
+How to expand or collapse a part of a tree.
+
+\tabular{ll}{
+GTK_CTREE_EXPANSION_EXPAND \tab Expand this node. \cr
+GTK_CTREE_EXPANSION_EXPAND_RECURSIVE \tab Expand this node and everything below it in the hierarchy. \cr
+GTK_CTREE_EXPANSION_COLLAPSE \tab Collapse this node. \cr
+GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE \tab Collapse this node and everything below it in the hierarchy. \cr
+GTK_CTREE_EXPANSION_TOGGLE \tab Toggle this node (i.e. expand if collapsed and vice versa). \cr
+GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE \tab Toggle this node and everything below it in the hierarchy. \cr
+}}
 How to expand or collapse a part of a tree.
 
 \tabular{ll}{
@@ -240,8 +311,6 @@ FIXME
 
 }
 }}
-\section{Interfaces}{GtkCTree implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{change-focus-row-expansion(ctree, expansion, user.data)}}{
 The row which has the focus is either collapsed or expanded

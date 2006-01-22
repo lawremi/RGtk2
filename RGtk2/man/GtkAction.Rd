@@ -3,7 +3,8 @@
 \name{GtkAction}
 \title{GtkAction}
 \description{An action which can be triggered by a menu or toolbar item}
-\usage{
+\usage{gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
+\section{Methods and Functions}{
 \link{gtkActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 \link{gtkActionGetName}(object)
 \link{gtkActionIsSensitive}(object)
@@ -27,9 +28,11 @@
 \link{gtkActionSetAccelPath}(object, accel.path)
 \link{gtkActionGetAccelClosure}(object)
 \link{gtkActionSetAccelGroup}(object, accel.group)
-gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 }
-\details{Actions represent operations that the user can be perform, along with
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkAction
+         +----\link{GtkToggleAction}}}
+\section{Detailed Description}{Actions represent operations that the user can be perform, along with
 some information how it should be presented in the interface. Each action 
 provides methods to create icons, menu items and toolbar items representing 
 itself.
@@ -59,9 +62,6 @@ other proxy widgets.  Proxies mirror the state of the action (text
 label, tooltip, icon, visible, sensitive, etc), and should change when
 the action's state changes. When the proxy is activated, it should
 activate its action.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkAction
-         +----\link{GtkToggleAction}}}
 \section{Structures}{\describe{\item{\code{GtkAction}}{
 The \code{GtkAction} struct contains only private members
 and should not be accessed directly.

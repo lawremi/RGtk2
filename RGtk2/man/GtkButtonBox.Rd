@@ -2,7 +2,7 @@
 \name{GtkButtonBox}
 \title{GtkButtonBox}
 \description{Base class for    and }
-\usage{
+\section{Methods and Functions}{
 \link{gtkButtonBoxGetLayout}(object)
 \link{gtkButtonBoxGetChildSize}(object)
 \link{gtkButtonBoxGetChildIpadding}(object)
@@ -12,7 +12,17 @@
 \link{gtkButtonBoxSetChildIpadding}(object, ipad.x, ipad.y)
 \link{gtkButtonBoxSetChildSecondary}(object, child, is.secondary)
 }
-\details{The primary purpose of this class is to keep track of the various properties
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBox}
+                           +----GtkButtonBox
+                                 +----\link{GtkHButtonBox}
+                                 +----\link{GtkVButtonBox}}}
+\section{Interfaces}{GtkButtonBox implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The primary purpose of this class is to keep track of the various properties
 of \code{\link{GtkHButtonBox}} and \code{\link{GtkVButtonBox}} widgets.
   
 \code{\link{gtkButtonBoxGetChildSize}} retrieves the minimum width and height 
@@ -32,20 +42,10 @@ used to spread the buttons in a button box across the container, respectively.
 The main purpose of GtkButtonBox is to make sure the children have all the same size.
 Therefore it ignores the homogeneous property which it inherited from GtkBox, and always
 behaves as if homogeneous was \code{TRUE}.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----GtkButtonBox
-                                 +----\link{GtkHButtonBox}
-                                 +----\link{GtkVButtonBox}}}
 \section{Structures}{\describe{\item{\code{GtkButtonBox}}{
 This is a read-only struct; no members should be modified directly.
 
 }}}
-\section{Interfaces}{GtkButtonBox implements
- AtkImplementorIface.}
 \section{Properties}{\describe{\item{\code{layout-style} [\code{\link{GtkButtonBoxStyle}} : Read / Write]}{
 
 How to layout the buttons in the box. Possible values are default, spread, edge, start and end.  Default value: GTK_BUTTONBOX_DEFAULT_STYLE

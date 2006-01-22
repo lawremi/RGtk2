@@ -4,7 +4,7 @@
 \name{gdk-pixbuf-scaling}
 \title{Scaling}
 \description{Scaling pixbufs and scaling and compositing pixbufs}
-\usage{
+\section{Methods and Functions}{
 \link{gdkPixbufScaleSimple}(object, dest.width, dest.height, interp.type)
 \link{gdkPixbufScale}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type)
 \link{gdkPixbufCompositeColorSimple}(object, dest.width, dest.height, interp.type, overall.alpha, check.size, color1, color2)
@@ -13,7 +13,7 @@
 \link{gdkPixbufRotateSimple}(object, angle)
 \link{gdkPixbufFlip}(object, horizontal)
 }
-\details{    The \command{gdk-pixbuf} contains functions to scale pixbufs, to scale
+\section{Detailed Description}{    The \command{gdk-pixbuf} contains functions to scale pixbufs, to scale
     pixbufs and composite against an existing image, and to scale
     pixbufs and composite against a solid color or checkerboard.
     Compositing a checkerboard is a common way to show an image with

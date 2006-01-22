@@ -3,7 +3,7 @@
 \title{gtkCTreeNodeGetSelectable}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_node_get_selectable} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_node_get_selectable} is deprecated and should not be used in newly-written code.  }
 }
 \usage{gtkCTreeNodeGetSelectable(object, node)}
 \arguments{

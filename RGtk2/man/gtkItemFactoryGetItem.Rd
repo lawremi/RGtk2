@@ -3,7 +3,12 @@
 \title{gtkItemFactoryGetItem}
 \description{
 Obtains the menu item which corresponds to \code{path}. 
-\strong{WARNING: \code{gtk_item_factory_get_item} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_get_item} is deprecated and should not be used in newly-written code.  
+Obtains the menu item which corresponds to \code{path}. 
+  
+If the widget corresponding to \code{path} is a menu item which opens a 
+submenu, then the item is returned. If you are interested in the submenu, 
+use \code{\link{gtkItemFactoryGetWidget}} instead.  }
 }
 \usage{gtkItemFactoryGetItem(object, path)}
 \arguments{

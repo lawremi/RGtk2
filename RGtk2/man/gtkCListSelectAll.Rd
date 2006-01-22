@@ -4,7 +4,9 @@
 \description{
 Selects all rows in the CList.  This function has no affect for a
 CList in "single" or "browse" selection mode.
-\strong{WARNING: \code{gtk_clist_select_all} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_select_all} is deprecated and should not be used in newly-written code.  
+Selects all rows in the CList.  This function has no affect for a
+CList in "single" or "browse" selection mode.}
 }
 \usage{gtkCListSelectAll(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}}

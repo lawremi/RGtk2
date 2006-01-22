@@ -2,11 +2,11 @@
 \name{gtk-Graphics-Contexts}
 \title{Graphics Contexts}
 \description{A shared pool of GdkGC objects}
-\usage{
+\section{Methods and Functions}{
 \link{gtkGcGet}(depth, colormap, values)
 \link{gtkGcRelease}(gc)
 }
-\details{These functions provide access to a shared pool of \code{\link{GdkGC}} objects.
+\section{Detailed Description}{These functions provide access to a shared pool of \code{\link{GdkGC}} objects.
 When a new \code{\link{GdkGC}} is needed, \code{\link{gtkGcGet}} is called with the required depth,
 colormap and \code{\link{GdkGCValues}}. If a \code{\link{GdkGC}} with the required properties already
 exists then that is returned. If not, a new \code{\link{GdkGC}} is created.

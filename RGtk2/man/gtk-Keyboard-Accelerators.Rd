@@ -7,7 +7,8 @@
 \name{gtk-Keyboard-Accelerators}
 \title{Accelerator Groups}
 \description{Groups of global keyboard accelerators for an entire GtkWindow}
-\usage{
+\usage{gtkAccelGroup()}
+\section{Methods and Functions}{
 \link{gtkAccelGroupNew}()
 \link{gtkAccelGroupConnect}(object, accel.key, accel.mods, accel.flags, closure)
 \link{gtkAccelGroupConnectByPath}(object, accel.path, closure)
@@ -27,9 +28,10 @@
 \link{gtkAcceleratorGetLabel}(accelerator.key, accelerator.mods)
 \link{gtkAcceleratorSetDefaultModMask}(default.mod.mask)
 \link{gtkAcceleratorGetDefaultModMask}()
-gtkAccelGroup()
 }
-\details{A \code{\link{GtkAccelGroup}} represents a group of keyboard accelerators,
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkAccelGroup}}
+\section{Detailed Description}{A \code{\link{GtkAccelGroup}} represents a group of keyboard accelerators,
 typically attached to a toplevel \code{\link{GtkWindow}} (with
 \code{\link{gtkWindowAddAccelGroup}}). Usually you won't need to create a
 \code{\link{GtkAccelGroup}} directly; instead, when using \code{\link{GtkItemFactory}}, GTK+
@@ -44,8 +46,6 @@ menu item. Mnemonics are shortcuts for GUI elements such as text
 entries or buttons; they appear as underlined characters. See
 \code{\link{gtkLabelNewWithMnemonic}}. Menu items can have both accelerators
 and mnemonics, of course.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkAccelGroup}}
 \section{Structures}{\describe{
 \item{\code{GtkAccelGroup}}{
 An object representing and maintaining a group of accelerators.

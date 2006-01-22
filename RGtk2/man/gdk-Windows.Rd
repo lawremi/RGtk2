@@ -18,7 +18,8 @@
 \name{gdk-Windows}
 \title{Windows}
 \description{Onscreen display areas in the target window system}
-\usage{
+\usage{gdkWindow(parent = NULL, attributes)}
+\section{Methods and Functions}{
 \link{gdkWindowNew}(parent = NULL, attributes)
 \link{gdkWindowDestroy}(object)
 \link{gdkWindowGetWindowType}(object)
@@ -120,16 +121,15 @@
 \link{gdkWindowGetToplevels}()
 \link{gdkGetDefaultRootWindow}()
 \link{gdkSetPointerHooks}(object, new.hooks)
-gdkWindow(parent = NULL, attributes)
 }
-\details{A \code{\link{GdkWindow}} is a rectangular region on the screen. It's a low-level object,
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GdkDrawable}
+         +----GdkWindow}}
+\section{Detailed Description}{A \code{\link{GdkWindow}} is a rectangular region on the screen. It's a low-level object,
 used to implement high-level objects such as \code{\link{GtkWidget}} and \code{\link{GtkWindow}} on the
 GTK+ level. A \code{\link{GtkWindow}} is a toplevel window, the thing a user might think of 
 as a "window" with a titlebar and so on; a \code{\link{GtkWindow}} may contain many \code{\link{GdkWindow}}. 
 For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GdkDrawable}
-         +----GdkWindow}}
 \section{Structures}{\describe{
 \item{\code{struct GdkWindow}}{
 An opaque structure representing an onscreen drawable.

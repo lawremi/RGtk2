@@ -2,14 +2,14 @@
 \name{gdk-pixbuf-creating}
 \title{Image Data in Memory}
 \description{Creating a pixbuf from image data that is already in memory.}
-\usage{
+\section{Methods and Functions}{
 \link{gdkPixbufNew}(colorspace, has.alpha, bits.per.sample, width, height)
 \link{gdkPixbufNewFromData}(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
 \link{gdkPixbufNewFromXpmData}(data)
 \link{gdkPixbufNewSubpixbuf}(object, src.x, src.y, width, height)
 \link{gdkPixbufCopy}(object)
 }
-\details{    The most basic way to create a pixbuf is to wrap an existing pixel
+\section{Detailed Description}{    The most basic way to create a pixbuf is to wrap an existing pixel
     buffer with a \code{\link{GdkPixbuf}} structure.  You can use the
     \code{\link{gdkPixbufNewFromData}} function to do this You need to specify
     the destroy notification function that will be called when the

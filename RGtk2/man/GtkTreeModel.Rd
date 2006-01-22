@@ -7,7 +7,7 @@
 \name{GtkTreeModel}
 \title{GtkTreeModel}
 \description{The tree interface used by }
-\usage{
+\section{Methods and Functions}{
 \link{gtkTreePathNew}()
 \link{gtkTreePathNewFromString}(path)
 \link{gtkTreePathNewFromIndices}(...)
@@ -60,7 +60,13 @@
 \link{gtkTreeModelRowDeleted}(object, path)
 \link{gtkTreeModelRowsReordered}(object, path, iter, new.order)
 }
-\details{The \code{\link{GtkTreeModel}} interface defines a generic tree interface for use by
+\section{Hierarchy}{\preformatted{  GInterface
+   +----GtkTreeModel}}
+\section{Implementations}{GtkTreeModel is implemented by
+ \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}},  \code{\link{GtkListStore}} and  \code{\link{GtkTreeModelFilter}}.}
+\section{Interface Derivations}{GtkTreeModel is required by
+ \code{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \code{\link{GtkTreeModel}} interface defines a generic tree interface for use by
 the \code{\link{GtkTreeView}} widget.  It is an abstract interface, and is designed
 to be usable with any appropriate data structure.  The programmer just
 has to implement this interface on their own data type for it to be
@@ -185,8 +191,6 @@ such a function, see the \code{\link{GtkListStore}} documentation.
       result <- list_store$iterNext()
     }
 }}
-\section{Hierarchy}{\preformatted{  GInterface
-   +----GtkTreeModel}}
 \section{Structures}{\describe{
 \item{\code{GtkTreeModel}}{\emph{undocumented
 }}
@@ -233,10 +237,6 @@ section.
 }
 
 }}}
-\section{Implementations}{GtkTreeModel is implemented by
- \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}},  \code{\link{GtkListStore}} and  \code{\link{GtkTreeModelFilter}}.}
-\section{Interface Derivations}{GtkTreeModel is required by
- \code{\link{GtkTreeSortable}}.}
 \section{Signals}{\describe{
 \item{\code{row-changed(treemodel, arg1, arg2, user.data)}}{
 

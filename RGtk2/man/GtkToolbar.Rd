@@ -5,7 +5,8 @@
 \name{GtkToolbar}
 \title{GtkToolbar}
 \description{Create bars of buttons and other widgets}
-\usage{
+\usage{gtkToolbar(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkToolbarNew}(show = TRUE)
 \link{gtkToolbarInsert}(object, item, pos)
 \link{gtkToolbarGetItemIndex}(object, item)
@@ -40,9 +41,15 @@
 \link{gtkToolbarSetIconSize}(object, icon.size)
 \link{gtkToolbarRemoveSpace}(object, position)
 \link{gtkToolbarUnsetStyle}(object)
-gtkToolbar(show = TRUE)
 }
-\details{A toolbar is created with a call to \code{\link{gtkToolbarNew}}.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----GtkToolbar}}
+\section{Interfaces}{GtkToolbar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A toolbar is created with a call to \code{\link{gtkToolbarNew}}.
   
 A toolbar can contain instances of a subclass of \code{\link{GtkToolItem}}. To add
 a \code{\link{GtkToolItem}} to the a toolbar, use \code{\link{gtkToolbarInsert}}. To remove
@@ -57,11 +64,6 @@ toolbar.
   
 Creating a context menu for the toolbar can be done by connecting to
 the \code{\link{GtkToolbar}}::popup-context-menu signal.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkToolbar}}
 \section{Structures}{\describe{\item{\code{GtkToolbar}}{
 The \code{\link{GtkToolbar}} struct only contains private data and should only be
 accessed through the function described below.
@@ -70,7 +72,9 @@ accessed through the function described below.
 \section{Convenient Construction}{\code{gtkToolbar} is the equivalent of \code{\link{gtkToolbarNew}}.}
 \section{Enums and Flags}{\describe{
 \item{\code{enum GtkToolbarChildType}}{
-\strong{WARNING: \code{GtkToolbarChildType} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkToolbarChildType} is deprecated and should not be used in newly-written code.  
+\code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added 
+to a \code{\link{GtkToolbar}}.}
 \code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added 
 to a \code{\link{GtkToolbar}}.
 
@@ -95,8 +99,6 @@ to a \code{\link{GtkToolbar}}.
 
 }
 }}
-\section{Interfaces}{GtkToolbar implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{focus-home-or-end(toolbar, focus.home, user.data)}}{
 A keybinding signal used internally by GTK+. This signal can't

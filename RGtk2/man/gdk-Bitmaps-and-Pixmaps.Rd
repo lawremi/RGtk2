@@ -5,7 +5,8 @@
 \name{gdk-Bitmaps-and-Pixmaps}
 \title{Bitmaps and Pixmaps}
 \description{Offscreen drawables}
-\usage{
+\usage{gdkPixmap(drawable = NULL, width, height, depth = -1)}
+\section{Methods and Functions}{
 \link{gdkPixmapNew}(drawable = NULL, width, height, depth = -1)
 \link{gdkBitmapCreateFromData}(drawable = NULL, data, width, height)
 \link{gdkPixmapCreateFromData}(drawable = NULL, data, height, depth, fg, bg)
@@ -13,17 +14,16 @@
 \link{gdkPixmapColormapCreateFromXpm}(drawable, colormap, transparent.color, filename)
 \link{gdkPixmapCreateFromXpmD}(drawable, transparent.color, data)
 \link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)
-gdkPixmap(drawable = NULL, width, height, depth = -1)
 }
-\details{Pixmaps are offscreen drawables. They can be drawn upon with the
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GdkDrawable}
+         +----GdkPixmap}}
+\section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the
 standard drawing primitives, then copied to another drawable (such as
 a \code{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
 is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GdkDrawable}
-         +----GdkPixmap}}
 \section{Structures}{\describe{
 \item{\code{struct GdkPixmap}}{
 An opaque structure representing an offscreen drawable.

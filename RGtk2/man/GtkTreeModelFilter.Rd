@@ -4,8 +4,8 @@
 \name{GtkTreeModelFilter}
 \title{GtkTreeModelFilter}
 \description{A GtkTreeModel which hides parts of an underlying tree model}
-\usage{
-\link{gtkTreeModelFilterNew}(object, root = NULL)
+\section{Methods and Functions}{
+\link{gtkTreeModelFilterNew}(child.model, root = NULL)
 \link{gtkTreeModelFilterSetVisibleFunc}(object, func, data = NULL)
 \link{gtkTreeModelFilterSetModifyFunc}(object, types, func, data = NULL)
 \link{gtkTreeModelFilterSetVisibleColumn}(object, column)
@@ -17,7 +17,11 @@
 \link{gtkTreeModelFilterRefilter}(object)
 \link{gtkTreeModelFilterClearCache}(object)
 }
-\details{A \code{\link{GtkTreeModelFilter}} is a tree model which wraps another tree model,
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GtkTreeModelFilter}}
+\section{Interfaces}{GtkTreeModelFilter implements
+ \code{\link{GtkTreeModel}} and  \code{\link{GtkTreeDragSource}}.}
+\section{Detailed Description}{A \code{\link{GtkTreeModelFilter}} is a tree model which wraps another tree model,
 and can do the following things:
 \itemize{
 \item Filter specific rows, based on data from a "visible column", a column
@@ -32,8 +36,6 @@ the given child model.
 \item Set a different root node, also known as a "virtual root". You can pass in 
 a \code{\link{GtkTreePath}} indicating the root node for the filter at construction time.
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GtkTreeModelFilter}}
 \section{Structures}{\describe{\item{\code{GtkTreeModelFilter}}{
 The GtkTreeModelFilter struct contains only private fields.
 
@@ -69,8 +71,6 @@ particularly efficient operation.
 
 }
 }}
-\section{Interfaces}{GtkTreeModelFilter implements
- \code{\link{GtkTreeModel}} and  \code{\link{GtkTreeDragSource}}.}
 \section{Properties}{\describe{
 \item{\code{child-model} [\code{\link{GtkTreeModel}} : Read / Write / Construct Only]}{
 

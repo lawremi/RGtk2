@@ -3,7 +3,8 @@
 \title{gtkCListSetRowData}
 \description{
 Sets data for the specified row.  This is the same as calling gtk_clist_set_row_data_full(clist, row, data, NULL).
-\strong{WARNING: \code{gtk_clist_set_row_data} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_row_data} is deprecated and should not be used in newly-written code.  
+Sets data for the specified row.  This is the same as calling gtk_clist_set_row_data_full(clist, row, data, NULL).}
 }
 \usage{gtkCListSetRowData(object, row, data = NULL)}
 \arguments{

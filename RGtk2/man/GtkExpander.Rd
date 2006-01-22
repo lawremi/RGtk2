@@ -3,7 +3,8 @@
 \name{GtkExpander}
 \title{GtkExpander}
 \description{A container which can hide its child}
-\usage{
+\usage{gtkExpander(label = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkExpanderNew}(label = NULL, show = TRUE)
 \link{gtkExpanderNewWithMnemonic}(label = NULL)
 \link{gtkExpanderSetExpanded}(object, expanded)
@@ -18,9 +19,16 @@
 \link{gtkExpanderGetUseMarkup}(object)
 \link{gtkExpanderSetLabelWidget}(object, label.widget = NULL)
 \link{gtkExpanderGetLabelWidget}(object)
-gtkExpander(label = NULL, show = TRUE)
 }
-\details{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking on an expander triangle similar to 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkContainer}
+                     +----\link{GtkBin}
+                           +----GtkExpander}}
+\section{Interfaces}{GtkExpander implements
+ AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking on an expander triangle similar to 
 the triangles used in a \code{\link{GtkTreeView}}.
   
     Normally you use an expander as you would use any other descendant
@@ -62,17 +70,9 @@ expander_callback (GObject    *object,
 }
 
     }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkExpander}}
 \section{Structures}{\describe{\item{\code{GtkExpander}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkExpander} is the equivalent of \code{\link{gtkExpanderNew}}.}
-\section{Interfaces}{GtkExpander implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{activate(expander, user.data)}}{
 
 

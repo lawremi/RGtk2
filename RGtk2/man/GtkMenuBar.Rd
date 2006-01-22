@@ -4,21 +4,23 @@
 \name{GtkMenuBar}
 \title{GtkMenuBar}
 \description{A subclass widget for    which holds    widgets}
-\usage{
+\usage{gtkMenuBar(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkMenuBarNew}(show = TRUE)
 \link{gtkMenuBarSetPackDirection}(object, pack.dir)
 \link{gtkMenuBarGetPackDirection}(object)
 \link{gtkMenuBarSetChildPackDirection}(object, child.pack.dir)
 \link{gtkMenuBarGetChildPackDirection}(object)
-gtkMenuBar(show = TRUE)
 }
-\details{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \code{gtk_menu_bar_set_shadow_type} function.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----\link{GtkContainer}
                      +----\link{GtkMenuShell}
                            +----GtkMenuBar}}
+\section{Interfaces}{GtkMenuBar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \code{gtk_menu_bar_set_shadow_type} function.}
 \section{Structures}{\describe{\item{\code{GtkMenuBar}}{
 The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)
 
@@ -39,8 +41,6 @@ The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields
 }
 
 }}}
-\section{Interfaces}{GtkMenuBar implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{child-pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
 

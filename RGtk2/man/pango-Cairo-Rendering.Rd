@@ -3,7 +3,7 @@
 \name{pango-Cairo-Rendering}
 \title{Cairo Rendering}
 \description{Rendering with the Cairo backend}
-\usage{
+\section{Methods and Functions}{
 \link{pangoCairoFontMapNew}()
 \link{pangoCairoFontMapGetDefault}()
 \link{pangoCairoFontMapSetResolution}(object, dpi)
@@ -23,7 +23,9 @@
 \link{pangoCairoLayoutLinePath}(cr, line)
 \link{pangoCairoLayoutPath}(cr, layout)
 }
-\details{The Cairo library (\url{http://cairographics.org}) is a
+\section{Hierarchy}{\preformatted{  GInterface
+   +----PangoCairoFontMap}}
+\section{Detailed Description}{The Cairo library (\url{http://cairographics.org}) is a
 vector graphics library with a powerful rendering model. It has such
 features as anti-aliased primitives, alpha-compositing, and
 gradients. Multiple backends for Cairo are available, to allow
@@ -117,8 +119,6 @@ window$showAll()
 }  
   \emph{Output of   }
   }
-\section{Hierarchy}{\preformatted{  GInterface
-   +----PangoCairoFontMap}}
 \section{Structures}{\describe{\item{\code{PangoCairoFontMap}}{
 \code{\link{PangoCairoFontMap}} is an interface exported by font maps for
 use with Cairo. The actual type of the font map will depend

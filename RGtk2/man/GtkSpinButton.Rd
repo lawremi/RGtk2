@@ -5,7 +5,8 @@
 \name{GtkSpinButton}
 \title{GtkSpinButton}
 \description{Retrieve an integer or floating-point number from the user}
-\usage{
+\usage{gtkSpinButton(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkSpinButtonConfigure}(object, adjustment = NULL, climb.rate, digits)
 \link{gtkSpinButtonNew}(adjustment = NULL, climb.rate = NULL, digits = NULL, show = TRUE)
 \link{gtkSpinButtonNewWithRange}(min, max, step, show = TRUE)
@@ -30,9 +31,15 @@
 \link{gtkSpinButtonGetUpdatePolicy}(object)
 \link{gtkSpinButtonGetValue}(object)
 \link{gtkSpinButtonGetWrap}(object)
-gtkSpinButton(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)
 }
-\details{A \code{\link{GtkSpinButton}} is an ideal way to allow the user to set the value of some 
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkEntry}
+                     +----GtkSpinButton}}
+\section{Interfaces}{GtkSpinButton implements
+ AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
+\section{Detailed Description}{A \code{\link{GtkSpinButton}} is an ideal way to allow the user to set the value of some 
 attribute. Rather than having to directly type a number into a \code{\link{GtkEntry}}, 
 \code{\link{GtkSpinButton}} allows the user to click on one of two arrows to increment or 
 decrement the displayed value. A value can still be typed in, with the bonus 
@@ -86,11 +93,6 @@ create_floating_spin_button <- function() {
    window$showAll()
 }
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkEntry}
-                     +----GtkSpinButton}}
 \section{Structures}{\describe{\item{\code{GtkSpinButton}}{
 \code{entry} is the \code{\link{GtkEntry}} part of the \code{\link{GtkSpinButton}} 
 widget, and can be used accordingly. All other fields contain private data 
@@ -119,8 +121,6 @@ GTK_SPIN_USER_DEFINED \tab The programmer must specify the exact amount to spin 
 
 }
 }}
-\section{Interfaces}{GtkSpinButton implements
- AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
 \section{Signals}{\describe{
 \item{\code{change-value(spinbutton, arg1, user.data)}}{
 

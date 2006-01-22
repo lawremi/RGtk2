@@ -3,7 +3,8 @@
 \title{gtkCTreeToggleExpansionRecursive}
 \description{
 Toggle the expansion of a node and all its children.
-\strong{WARNING: \code{gtk_ctree_toggle_expansion_recursive} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_toggle_expansion_recursive} is deprecated and should not be used in newly-written code.  
+Toggle the expansion of a node and all its children.}
 }
 \usage{gtkCTreeToggleExpansionRecursive(object, node)}
 \arguments{

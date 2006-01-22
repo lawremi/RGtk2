@@ -4,7 +4,8 @@
 \name{GtkTooltips}
 \title{GtkTooltips}
 \description{Add tips to your widgets}
-\usage{
+\usage{gtkTooltips()}
+\section{Methods and Functions}{
 \link{gtkTooltipsNew}()
 \link{gtkTooltipsEnable}(object)
 \link{gtkTooltipsDisable}(object)
@@ -13,9 +14,11 @@
 \link{gtkTooltipsDataGet}(widget)
 \link{gtkTooltipsForceWindow}(object)
 \link{gtkTooltipsGetInfoFromTipWindow}(object)
-gtkTooltips()
 }
-\details{Tooltips are the messages that appear next to a widget when the mouse pointer is held over it for a short amount of time. They are especially helpful for adding more verbose descriptions of things such as buttons in a toolbar.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----GtkTooltips}}
+\section{Detailed Description}{Tooltips are the messages that appear next to a widget when the mouse pointer is held over it for a short amount of time. They are especially helpful for adding more verbose descriptions of things such as buttons in a toolbar.
   
 An individual tooltip belongs to a group of tooltips. A group is created with a call to \code{\link{gtkTooltipsNew}}. Every tooltip in the group can then be turned off with a call to \code{\link{gtkTooltipsDisable}} and enabled with \code{\link{gtkTooltipsEnable}}.
   
@@ -60,9 +63,6 @@ Information about the tooltip (if any) associated with an arbitrary widget can b
 				  "old one. Otherwise, you will be prompted for",
 				  "a filename.")) 
 }}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkTooltips}}
 \section{Structures}{\describe{
 \item{\code{GtkTooltips}}{
 Holds information about a group of tooltips. Fields should be changed using the functions provided, rather than directly accessing the struct's members.

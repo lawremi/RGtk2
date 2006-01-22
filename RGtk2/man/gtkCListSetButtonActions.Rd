@@ -4,7 +4,9 @@
 \description{
 Sets the action(s) that the specified mouse button will have
 on the CList.
-\strong{WARNING: \code{gtk_clist_set_button_actions} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_button_actions} is deprecated and should not be used in newly-written code.  
+Sets the action(s) that the specified mouse button will have
+on the CList.}
 }
 \usage{gtkCListSetButtonActions(object, button, button.actions)}
 \arguments{

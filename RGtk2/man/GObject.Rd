@@ -8,8 +8,8 @@
 \alias{gObjectSetData}
 \alias{gObjectNew}
 \alias{gObjectGetSignals}
-\alias{"[.GObject"}
-\alias{"[<-.GObject"}
+\alias{[.GObject}
+\alias{[<-.GObject}
 \description{
 GObject is the fundamental type providing the common attributes and 
 methods for all object types in GTK+, Pango and other libraries based on GObject.

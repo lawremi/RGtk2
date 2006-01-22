@@ -5,7 +5,8 @@
 \name{GtkColorSelection}
 \title{GtkColorSelection}
 \description{A widget used to select a color}
-\usage{
+\usage{gtkColorSelection(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkColorSelectionNew}(show = TRUE)
 \link{gtkColorSelectionSetUpdatePolicy}(object, policy)
 \link{gtkColorSelectionSetHasOpacityControl}(object, has.opacity)
@@ -27,13 +28,7 @@
 \link{gtkColorSelectionSetChangePaletteWithScreenHook}(func)
 \link{gtkColorSelectionSetColor}(object, color)
 \link{gtkColorSelectionGetColor}(object)
-gtkColorSelection(show = TRUE)
 }
-\details{The \code{\link{GtkColorSelection}} is a widget that is used to select 
-a color.  It consists of a color wheel and number of sliders
-and entry boxes for color parameters such as hue, saturation,
-value, red, green, blue, and opacity.  It is found on the standard 
-color selection dialog box \code{\link{GtkColorSelectionDialog}}.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
@@ -41,6 +36,13 @@ color selection dialog box \code{\link{GtkColorSelectionDialog}}.}
                      +----\link{GtkBox}
                            +----\link{GtkVBox}
                                  +----GtkColorSelection}}
+\section{Interfaces}{GtkColorSelection implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkColorSelection}} is a widget that is used to select 
+a color.  It consists of a color wheel and number of sliders
+and entry boxes for color parameters such as hue, saturation,
+value, red, green, blue, and opacity.  It is found on the standard 
+color selection dialog box \code{\link{GtkColorSelectionDialog}}.}
 \section{Structures}{\describe{\item{\code{GtkColorSelection}}{
 The \code{\link{GtkColorSelection}} struct contains private data only, 
 and should be accessed using the functions below.
@@ -68,8 +70,6 @@ and should be accessed using the functions below.
 
 }
 }}
-\section{Interfaces}{GtkColorSelection implements
- AtkImplementorIface.}
 \section{Signals}{\describe{\item{\code{color-changed(colorselection, user.data)}}{
 This signal is emitted when the color changes in the \code{\link{GtkColorSelection}}
 according to its update policy.

@@ -5,16 +5,16 @@
 \name{gdk-Images}
 \title{Images}
 \description{A client-side area for bit-mapped graphics}
-\usage{
+\usage{gdkImage(type, visual, width, height)}
+\section{Methods and Functions}{
 \link{gdkImageNew}(type, visual, width, height)
 \link{gdkImageGet}(object, x, y, width, height)
 \link{gdkImageGetColormap}(object)
 \link{gdkImageSetColormap}(object, colormap)
 \link{gdkImagePutPixel}(object, x, y, pixel)
 \link{gdkImageGetPixel}(object, x, y)
-gdkImage(type, visual, width, height)
 }
-\details{The \code{\link{GdkImage}} type represents an area for drawing graphics.
+\section{Detailed Description}{The \code{\link{GdkImage}} type represents an area for drawing graphics.
 It has now been superceded to a large extent by the much more flexible
 GdkRGB functions.
   

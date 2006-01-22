@@ -4,7 +4,9 @@
 \description{
 Returns the last child of the last child of the last child...
 of the given node.
-\strong{WARNING: \code{gtk_ctree_last} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_last} is deprecated and should not be used in newly-written code.  
+Returns the last child of the last child of the last child...
+of the given node.}
 }
 \usage{gtkCTreeLast(object, node)}
 \arguments{

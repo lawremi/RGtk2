@@ -2,7 +2,16 @@
 \name{GtkScrollbar}
 \title{GtkScrollbar}
 \description{Base class for GtkHScrollbar and GtkVScrollbar}
-\details{The \code{\link{GtkScrollbar}} widget is an abstract base class for \code{\link{GtkHScrollbar}} and
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkRange}
+                     +----GtkScrollbar
+                           +----\link{GtkHScrollbar}
+                           +----\link{GtkVScrollbar}}}
+\section{Interfaces}{GtkScrollbar implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkScrollbar}} widget is an abstract base class for \code{\link{GtkHScrollbar}} and
 \code{\link{GtkVScrollbar}}. It is not very useful in itself.
   
 The position of the thumb in a scrollbar is controlled by the scroll
@@ -13,19 +22,10 @@ page_size." The "page_size" field represents the size of the visible
 scrollable area. The "step_increment" and "page_increment" fields are
 used when the user asks to step down (using the small stepper arrows)
 or page down (using for example the PageDown key).}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----GtkScrollbar
-                           +----\link{GtkHScrollbar}
-                           +----\link{GtkVScrollbar}}}
 \section{Structures}{\describe{\item{\code{GtkScrollbar}}{
 The \code{\link{GtkScrollbar}} struct does not contain any public data.
 
 }}}
-\section{Interfaces}{GtkScrollbar implements
- AtkImplementorIface.}
 \section{Style Properties}{\describe{
 \item{\code{fixed-slider-length} [logical : Read]}{
 

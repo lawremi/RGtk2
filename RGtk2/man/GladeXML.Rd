@@ -5,7 +5,8 @@
 \name{GladeXML}
 \title{GladeXML}
 \description{Allows dynamic loading of user interfaces from XML descriptions.}
-\usage{
+\usage{gladeXML(root = NULL, domain = NULL, fname, buffer, size = nchar(buffer))}
+\section{Methods and Functions}{
 \link{gladeXMLNew}(fname, root = NULL, domain = NULL)
 \link{gladeXMLNewFromBuffer}(buffer, size = nchar(buffer), root = NULL, domain = NULL)
 \link{gladeXMLConstruct}(object, fname, root = NULL, domain = NULL)
@@ -19,9 +20,10 @@
 \link{gladeXMLSignalConnectFull}(object, handler.name, func, user.data)
 \link{gladeXMLSignalAutoconnectFull}(object, func, user.data)
 \link{gladeSetCustomHandler}(handler, user.data)
-gladeXML(root = NULL, domain = NULL, fname, buffer, size = nchar(buffer))
 }
-\details{This object represents an `instantiation' of an XML interface description.
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----GladeXML}}
+\section{Detailed Description}{This object represents an `instantiation' of an XML interface description.
 When one of these objects is created, the XML file is read, and the
 interface is created.  The GladeXML object then provides an interface for
 accessing the widgets in the interface by the names assigned to them
@@ -31,8 +33,6 @@ The GladeXML object can also be used to connect handlers to the named
 signals in the description.  Libglade also provides an interface by which
 it can look up the signal handler names in the program's symbol table and
 automatically connect as many handlers up as it can that way.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----GladeXML}}
 \section{Structures}{\describe{\item{\code{GladeXML}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gladeXML} is the result of collapsing the constructors of \code{GladeXML} (\code{\link{gladeXMLNew}}, \code{\link{gladeXMLNewFromBuffer}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}

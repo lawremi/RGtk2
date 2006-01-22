@@ -19,11 +19,11 @@ gSignalConnect(obj, signal, f, data = NULL, after = FALSE, user.data.first = FAL
 gSignalHandlerDisconnect(obj, id)
 gSignalHandlerBlock(obj, id)
 gSignalHandlerUnblock(obj, id)
-gSignalEmit(obj, signal, ..., detail = NULL, .flush = TRUE)
+gSignalEmit(obj, signal, ..., detail = NULL)
 gSignalStopEmission(obj, signal, detail = NULL)
 gSignalGetInfo(sig)
 }
-\parameters{
+\arguments{
 \item{obj}{The object that owns the signal}
 \item{signal}{The detailed name of the signal}
 \item{f}{The R function to connect as a callback}
@@ -31,6 +31,7 @@ gSignalGetInfo(sig)
 \item{after}{Whether \code{f} will be called before or after the default handler}
 \item{user.data.first}{Whether the \code{data} is the first or last argument to the callback}
 \item{id}{The signal handler id obtained upon connection to the signal}
+\item{...}{Arguments to pass to the signal handlers}
 \item{detail}{Optional separate argument for the \emph{detail} portion of the signal}
 \item{sig}{A signal id provided by \code{\link{gObjectGetSignals}}.}
 }

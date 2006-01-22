@@ -5,7 +5,8 @@
 \name{GtkIconView}
 \title{GtkIconView}
 \description{A widget which displays a list of icons in a grid}
-\usage{
+\usage{gtkIconView(model = NULL, show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkIconViewNew}(show = TRUE)
 \link{gtkIconViewNewWithModel}(model = NULL, show = TRUE)
 \link{gtkIconViewSetModel}(object, model = NULL)
@@ -56,19 +57,20 @@
 \link{gtkIconViewGetDragDestItem}(object)
 \link{gtkIconViewGetDestItemAtPos}(object, drag.x, drag.y)
 \link{gtkIconViewCreateDragIcon}(object, path)
-gtkIconView(model = NULL, show = TRUE)
 }
-\details{\code{\link{GtkIconView}} provides an alternative view on a list model. 
-It displays the model as a grid of icons with labels. Like 
-\code{\link{GtkTreeView}}, it allows to select one or multiple items 
-(depending on the selection mode, see \code{\link{gtkIconViewSetSelectionMode}}).
-In addition to selection with the arrow keys, \code{\link{GtkIconView}} supports
-rubberband selection, which is controlled by dragging the pointer.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}
                +----\link{GtkContainer}
                      +----GtkIconView}}
+\section{Interfaces}{GtkIconView implements
+ AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
+\section{Detailed Description}{\code{\link{GtkIconView}} provides an alternative view on a list model. 
+It displays the model as a grid of icons with labels. Like 
+\code{\link{GtkTreeView}}, it allows to select one or multiple items 
+(depending on the selection mode, see \code{\link{gtkIconViewSetSelectionMode}}).
+In addition to selection with the arrow keys, \code{\link{GtkIconView}} supports
+rubberband selection, which is controlled by dragging the pointer.}
 \section{Structures}{\describe{\item{\code{GtkIconView}}{
 The \code{GtkIconView} struct contains only
 private fields and should not be directly accessed.
@@ -105,8 +107,6 @@ selected rows.  It will be called on every selected row in the view.
 }
 
 }}}
-\section{Interfaces}{GtkIconView implements
- AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
 \section{Signals}{\describe{
 \item{\code{activate-cursor-item(iconview, user.data)}}{
 

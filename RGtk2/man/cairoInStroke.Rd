@@ -1,6 +1,8 @@
 \alias{cairoInStroke}
 \name{cairoInStroke}
 \title{cairoInStroke}
+\description{\emph{undocumented
+}}
 \usage{cairoInStroke(cr, x, y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

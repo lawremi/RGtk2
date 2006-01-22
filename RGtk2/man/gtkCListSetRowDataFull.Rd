@@ -3,7 +3,8 @@
 \title{gtkCListSetRowDataFull}
 \description{
 Sets the data for specified row, with a callback when the row is destroyed.
-\strong{WARNING: \code{gtk_clist_set_row_data_full} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_set_row_data_full} is deprecated and should not be used in newly-written code.  
+Sets the data for specified row, with a callback when the row is destroyed.}
 }
 \usage{gtkCListSetRowDataFull(object, row, data = NULL)}
 \arguments{

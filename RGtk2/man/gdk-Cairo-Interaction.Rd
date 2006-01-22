@@ -2,14 +2,14 @@
 \name{gdk-Cairo-Interaction}
 \title{Cairo Interaction}
 \description{Functions to support using Cairo}
-\usage{
+\section{Methods and Functions}{
 \link{gdkCairoCreate}(drawable)
 \link{gdkCairoSetSourceColor}(cr, color)
 \link{gdkCairoSetSourcePixbuf}(cr, pixbuf, pixbuf.x, pixbuf.y)
 \link{gdkCairoRectangle}(cr, rectangle)
 \link{gdkCairoRegion}(cr, region)
 }
-\details{Cairo (\url{http://cairographics.org}) is a graphics 
+\section{Detailed Description}{Cairo (\url{http://cairographics.org}) is a graphics 
 library that supports vector graphics and image compositing that
 can be used with GDK. Since 2.8, GTK+ does most of its drawing
 using Cairo. 

@@ -3,7 +3,8 @@
 \title{gtkCTreeFindAllByRowData}
 \description{
 Finds all nodes in the tree under \code{node} that have the given user data pointer.
-\strong{WARNING: \code{gtk_ctree_find_all_by_row_data} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_ctree_find_all_by_row_data} is deprecated and should not be used in newly-written code.  
+Finds all nodes in the tree under \code{node} that have the given user data pointer.}
 }
 \usage{gtkCTreeFindAllByRowData(object, node, data = NULL)}
 \arguments{

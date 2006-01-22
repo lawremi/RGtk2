@@ -1,6 +1,8 @@
 \alias{cairoTextPath}
 \name{cairoTextPath}
 \title{cairoTextPath}
+\description{\emph{undocumented
+}}
 \usage{cairoTextPath(cr, utf8)}
 \arguments{
 \item{\code{cr}}{[\code{\link{cairo_t}}] }

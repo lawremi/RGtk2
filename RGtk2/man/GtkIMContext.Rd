@@ -2,7 +2,7 @@
 \name{GtkIMContext}
 \title{GtkIMContext}
 \description{Base class for input method contexts}
-\usage{
+\section{Methods and Functions}{
 \link{gtkIMContextSetClientWindow}(object, window)
 \link{gtkIMContextGetPreeditString}(object)
 \link{gtkIMContextFilterKeypress}(object, event)

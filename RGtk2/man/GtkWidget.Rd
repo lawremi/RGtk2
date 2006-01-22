@@ -10,7 +10,8 @@
 \name{GtkWidget}
 \title{GtkWidget}
 \description{Base class for all widgets}
-\usage{
+\usage{gtkWidget(type, ..., show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkWidgetNew}(type, ..., show = TRUE)
 \link{gtkWidgetDestroy}(object)
 \link{gtkWidgetSet}(obj, ...)
@@ -137,21 +138,7 @@
 \link{gtkWidgetAddMnemonicLabel}(object, label)
 \link{gtkWidgetRemoveMnemonicLabel}(object, label)
 \link{gtkRequisitionCopy}(object)
-gtkWidget(type, ..., show = TRUE)
 }
-\details{\code{GtkWidget} introduces \dfn{style 
-properties} - these are basically object properties that are stored
-not on the object, but in the style object associated to the widget. Style
-properties are set in resource files.
-This mechanism is used for configuring such things as the location of the
-scrollbar arrows through the theme, giving theme authors more control over the
-look of applications without the need to write a theme engine in C.
-  
-Use \code{\link{gtkWidgetClassInstallStyleProperty}} to install style properties for 
-a widget class, \code{\link{gtkWidgetClassFindStyleProperty}} or
-\code{\link{gtkWidgetClassListStyleProperties}} to get information about existing
-style properties and \code{\link{gtkWidgetStyleGetProperty}}, \code{\link{gtkWidgetStyleGet}} or
-\code{gtkWidgetStyleGetValist()} to obtain the value of a style property.}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----GtkWidget
@@ -168,6 +155,23 @@ style properties and \code{\link{gtkWidgetStyleGetProperty}}, \code{\link{gtkWid
                +----\link{GtkOldEditable}
                +----\link{GtkPreview}
                +----\link{GtkProgress}}}
+\section{Interfaces}{GtkWidget implements
+ AtkImplementorIface.}
+\section{Interface Derivations}{GtkWidget is required by
+ \code{\link{GtkFileChooser}} and  \code{\link{GtkCellEditable}}.}
+\section{Detailed Description}{\code{GtkWidget} introduces \dfn{style 
+properties} - these are basically object properties that are stored
+not on the object, but in the style object associated to the widget. Style
+properties are set in resource files.
+This mechanism is used for configuring such things as the location of the
+scrollbar arrows through the theme, giving theme authors more control over the
+look of applications without the need to write a theme engine in C.
+  
+Use \code{\link{gtkWidgetClassInstallStyleProperty}} to install style properties for 
+a widget class, \code{\link{gtkWidgetClassFindStyleProperty}} or
+\code{\link{gtkWidgetClassListStyleProperties}} to get information about existing
+style properties and \code{\link{gtkWidgetStyleGetProperty}}, \code{\link{gtkWidgetStyleGet}} or
+\code{gtkWidgetStyleGetValist()} to obtain the value of a style property.}
 \section{Structures}{\describe{
 \item{\code{GtkWidget}}{
 
@@ -301,10 +305,6 @@ the children of a container, see \code{\link{gtkContainerForeach}}.
 }
 
 }}}
-\section{Interfaces}{GtkWidget implements
- AtkImplementorIface.}
-\section{Interface Derivations}{GtkWidget is required by
- \code{\link{GtkFileChooser}} and  \code{\link{GtkCellEditable}}.}
 \section{Signals}{\describe{
 \item{\code{accel-closures-changed(widget, user.data)}}{
 
@@ -483,8 +483,9 @@ drag_data_received <- function(widget, drag_context, x, y, data, info, time)
           dialog$destroy()
 		  
 		  gtkDragFinish(drag_context, TRUE, response == "yes", time)
+		}
     } else gtkDragFinish(drag_context, FALSE, FALSE, time)
- }
+}
 
 }  
 

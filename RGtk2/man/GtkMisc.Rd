@@ -2,13 +2,23 @@
 \name{GtkMisc}
 \title{GtkMisc}
 \description{Base class for widgets with alignments and padding}
-\usage{
+\section{Methods and Functions}{
 \link{gtkMiscSetAlignment}(object, xalign, yalign)
 \link{gtkMiscSetPadding}(object, xpad, ypad)
 \link{gtkMiscGetAlignment}(object)
 \link{gtkMiscGetPadding}(object)
 }
-\details{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----GtkMisc
+                     +----\link{GtkLabel}
+                     +----\link{GtkArrow}
+                     +----\link{GtkImage}
+                     +----\link{GtkPixmap}}}
+\section{Interfaces}{GtkMisc implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
   
 The horizontal and vertical padding attributes allows extra space to be
@@ -18,14 +28,6 @@ The horizontal and vertical alignment attributes enable the widget to be
 positioned within its allocated area. Note that if the widget is added to
 a container in such a way that it expands automatically to fill its
 allocated area, the alignment settings will not alter the widgets position.}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkMisc
-                     +----\link{GtkLabel}
-                     +----\link{GtkArrow}
-                     +----\link{GtkImage}
-                     +----\link{GtkPixmap}}}
 \section{Structures}{\describe{\item{\code{GtkMisc}}{
 The \code{\link{GtkMisc}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
@@ -41,8 +43,6 @@ in pixels. \cr
 }
 
 }}}
-\section{Interfaces}{GtkMisc implements
- AtkImplementorIface.}
 \section{Properties}{\describe{
 \item{\code{xalign} [numeric : Read / Write]}{
 

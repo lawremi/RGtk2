@@ -1,6 +1,8 @@
 \alias{cairoScaledFontGlyphExtents}
 \name{cairoScaledFontGlyphExtents}
 \title{cairoScaledFontGlyphExtents}
+\description{\emph{undocumented
+}}
 \usage{cairoScaledFontGlyphExtents(scaled.font, glyphs, num.glyphs)}
 \arguments{
 \item{\code{scaled.font}}{[\code{\link{cairo_scaled_font_t}}] }

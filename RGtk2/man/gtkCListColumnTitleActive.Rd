@@ -5,7 +5,10 @@
 Sets the specified column in the \code{\link{GtkCList}} to become selectable.  You can
 then respond to events from the user clicking on a title button, and take
 appropriate action.
-\strong{WARNING: \code{gtk_clist_column_title_active} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_column_title_active} is deprecated and should not be used in newly-written code.  
+Sets the specified column in the \code{\link{GtkCList}} to become selectable.  You can
+then respond to events from the user clicking on a title button, and take
+appropriate action.}
 }
 \usage{gtkCListColumnTitleActive(object, column)}
 \arguments{

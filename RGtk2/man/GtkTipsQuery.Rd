@@ -3,15 +3,23 @@
 \name{GtkTipsQuery}
 \title{GtkTipsQuery}
 \description{Displays help about widgets in the user interface}
-\usage{
+\usage{gtkTipsQuery(show = TRUE)}
+\section{Methods and Functions}{
 \link{gtkTipsQueryNew}(show = TRUE)
 \link{gtkTipsQueryStartQuery}(object)
 \link{gtkTipsQueryStopQuery}(object)
 \link{gtkTipsQuerySetCaller}(object, caller)
 \link{gtkTipsQuerySetLabels}(object, label.inactive, label.no.tip)
-gtkTipsQuery(show = TRUE)
 }
-\details{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display
+\section{Hierarchy}{\preformatted{  \link{GObject}
+   +----\link{GtkObject}
+         +----\link{GtkWidget}
+               +----\link{GtkMisc}
+                     +----\link{GtkLabel}
+                           +----GtkTipsQuery}}
+\section{Interfaces}{GtkTipsQuery implements
+ AtkImplementorIface.}
+\section{Detailed Description}{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display
 help about widgets in a user interface.
   
 A query is started with a call to \code{\link{gtkTipsQueryStartQuery}}, usually
@@ -30,21 +38,15 @@ stop the query and return the interface to its normal state.
 The \code{\link{gtkTipsQuerySetCaller}} function can be used to specify a widget
 which the user can select to stop the query (often the same button used to
 start the query).}
-\section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----\link{GtkLabel}
-                           +----GtkTipsQuery}}
 \section{Structures}{\describe{\item{\code{GtkTipsQuery}}{
-\strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.  
+The \code{\link{GtkTipsQuery}} struct contains private data only, and
+should be accessed using the functions below.}
 The \code{\link{GtkTipsQuery}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkTipsQuery} is the equivalent of \code{\link{gtkTipsQueryNew}}.}
-\section{Interfaces}{GtkTipsQuery implements
- AtkImplementorIface.}
 \section{Signals}{\describe{
 \item{\code{start-query(tipsquery, user.data)}}{
 Emitted when the query is started.

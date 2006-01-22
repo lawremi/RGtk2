@@ -3,7 +3,8 @@
 \title{gtkCListSelectRow}
 \description{
 Selects the specified row.  Causes the "select-row" signal to be emitted for the specified row and column.
-\strong{WARNING: \code{gtk_clist_select_row} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_clist_select_row} is deprecated and should not be used in newly-written code.  
+Selects the specified row.  Causes the "select-row" signal to be emitted for the specified row and column.}
 }
 \usage{gtkCListSelectRow(object, row, column)}
 \arguments{
