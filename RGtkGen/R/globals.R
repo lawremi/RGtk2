@@ -184,7 +184,8 @@ undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
 "cairo-xlib", "glade-build", "glade-parser", "glade-init", "gtkmain")
 
 # some sections are not appropriate for the R documentation
-omittedSections <- c("image-data")
+omittedSections <- c("image-data", "Pathnames and patterns", "Toplevel declarations", 
+	"Styles", "Key bindings")
 
 libraryDescriptions <-
 c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interfaces allowing accessibility technologies to interact with a graphical user interface. For example, a screen reader uses ATK to discover the text in an interface and read it to blind users. GTK+ widgets have built-in support for accessibility using the ATK framework.",

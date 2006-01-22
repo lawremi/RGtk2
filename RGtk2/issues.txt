@@ -1,13 +1,7 @@
 TODO for RELEASE
 ----------------
-
-1) Document the code!
-
-TODO: 
-need to document the manual stuff
-remove sentences with hidden parameter - NECESSARY?
 	
-2) Carry out steps in "Writing Portable R Packages" in guide.
+1) Carry out steps in "Writing Portable R Packages" in guide.
 
 Some current issues (bugs?) with RGtk2
 ----------

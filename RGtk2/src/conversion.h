@@ -299,6 +299,8 @@ void *getPtrValue(USER_OBJECT_);
 /* GObject */
 int R_setGValueFromSValue(GValue *, USER_OBJECT_);
 GValue* createGValueFromSValue(USER_OBJECT_ sval);
+gboolean initGValueFromSValue(USER_OBJECT_ sval, GValue *raw);
+gboolean initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw);
 USER_OBJECT_ asRGValue(GValue *);
 GValue* asCGValue(USER_OBJECT_);
 USER_OBJECT_ asRGType(GType);

@@ -47,3 +47,4 @@ USER_OBJECT_ R_getObjectType(USER_OBJECT_ sobj);
 USER_OBJECT_ R_getTypeFromName(USER_OBJECT_ name);
 USER_OBJECT_ R_getInterfaces(USER_OBJECT_ type);
 USER_OBJECT_ R_internal_getInterfaces(GType type);
+GType getSValueGType(USER_OBJECT_ sval);

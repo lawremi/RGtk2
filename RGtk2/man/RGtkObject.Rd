@@ -15,6 +15,7 @@ Practically, it allows convenience operators to be specified for any external ob
 \item{x}{The \code{RGtkObject} to which the method or field belongs}
 \item{field}{The name of the field whose value will be retrieved}
 \item{method}{The name of the method that will be expanded to a function}
+}
 \value{
 A context-dependent value resulting from the specified API call.
 }

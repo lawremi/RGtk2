@@ -28,7 +28,7 @@ gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
 }
 \arguments{
 \item{obj}{an instance of a \code{GObject}}
-\item{type}{the type of \code{GObject} to create
+\item{type}{the type of \code{GObject} to create}
 \item{key}{the unique identifier under which the data is stored}
 \item{data}{the data to store with the \code{GObject}}
 \item{...}{named arguments of properties to set or names of properties to retrieve}

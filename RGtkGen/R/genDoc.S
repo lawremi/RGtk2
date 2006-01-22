@@ -97,6 +97,8 @@ parseConcept <- function(doc, defs, verbose) {
 			concept[["aliases"]] <- c(concept[["aliases"]], linkend_to_func(id))
 		}
 		title <- xmlValue(getNodeSet(extra, "/title/text()")[[1]])
+		if (title %in% omittedSections)
+			return()
 		concept[title] <<- markup(getNodeSet(extra, "/*[name() != 'title']"))
 	})
 	concept[["Hierarchy"]] <- toHierarchy(getNodeSet(entry, hierarchy_path))
@@ -651,11 +653,13 @@ rd_table <- function(rows, columns = rep("l", length(rows))) {
 }
 
 writeRd <- function(doc, output) {
+	required <- c("name", "alias", "title", "keyword")
 	first <- c("name", "title", "description", "usage", "arguments", "details", "value")
 	last <- c("references", "note", "author", "seealso", "examples", "keyword")
 	standard <- c(first, last)
 	doc["author"] <- "Derived by RGtkGen from GTK+ documentation"
 	doc <- doc[sapply(doc, length) > 0 & sapply(doc, function(element) any(sapply(element, nchar) > 0))]
+			| names(doc) %in% required
 	common <- standard[standard %in% names(doc)]
 	rd_doc <- list()
 	rd_doc["alias"] <- list(unique(sapply(doc[["alias"]], function(alias) rd("alias", alias))))
