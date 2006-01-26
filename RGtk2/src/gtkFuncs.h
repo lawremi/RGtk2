@@ -1,16 +1,22 @@
 #ifndef S_GTK_FUNCS_H
 #define S_GTK_FUNCS_H
 	USER_OBJECT_
-S_GTK_OBJECT_TYPE(USER_OBJECT_ s_object); 
-
-	USER_OBJECT_
-S_GTK_CHECK_TYPE(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
-
-	USER_OBJECT_
 S_GTK_OBJECT_FLAGS(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_GTK_WIDGET_SET_FLAGS(USER_OBJECT_ s_wid, USER_OBJECT_ s_flags); 
+
+	USER_OBJECT_
+S_GTK_WIDGET_UNSET_FLAGS(USER_OBJECT_ s_wid, USER_OBJECT_ s_flags); 
+
+	USER_OBJECT_
+S_GTK_WIDGET_IS_SENSITIVE(USER_OBJECT_ s_wid); 
+
+	USER_OBJECT_
+S_GTK_WIDGET_STATE(USER_OBJECT_ s_wid); 
+
+	USER_OBJECT_
+S_GTK_WIDGET_SAVED_STATE(USER_OBJECT_ s_wid); 
 
 	USER_OBJECT_
 S_gtk_about_dialog_get_type(); 
@@ -170,9 +176,6 @@ S_gtk_accel_label_get_type();
 
 	USER_OBJECT_
 S_gtk_accel_label_new(USER_OBJECT_ s_string); 
-
-	USER_OBJECT_
-S_gtk_accel_label_accelerator_width(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_accel_label_get_accel_widget(USER_OBJECT_ s_object); 
@@ -3502,9 +3505,6 @@ S_gtk_idle_remove(USER_OBJECT_ s_idle_handler_id);
 S_gtk_idle_remove_by_data(USER_OBJECT_ s_data); 
 
 	USER_OBJECT_
-S_gtk_input_add_full(USER_OBJECT_ s_source, USER_OBJECT_ s_condition, USER_OBJECT_ s_function, USER_OBJECT_ s_data); 
-
-	USER_OBJECT_
 S_gtk_input_remove(USER_OBJECT_ s_input_handler_id); 
 
 	USER_OBJECT_
@@ -3925,9 +3925,6 @@ S_gtk_paned_get_child1(USER_OBJECT_ s_object);
 S_gtk_paned_get_child2(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
-S_gtk_paned_compute_position(USER_OBJECT_ s_object, USER_OBJECT_ s_allocation, USER_OBJECT_ s_child1_req, USER_OBJECT_ s_child2_req); 
-
-	USER_OBJECT_
 S_gtk_pixmap_get_type(); 
 
 	USER_OBJECT_
@@ -4328,12 +4325,6 @@ S_gtk_ruler_set_metric(USER_OBJECT_ s_object, USER_OBJECT_ s_metric);
 
 	USER_OBJECT_
 S_gtk_ruler_set_range(USER_OBJECT_ s_object, USER_OBJECT_ s_lower, USER_OBJECT_ s_upper, USER_OBJECT_ s_position, USER_OBJECT_ s_max_size); 
-
-	USER_OBJECT_
-S_gtk_ruler_draw_ticks(USER_OBJECT_ s_object); 
-
-	USER_OBJECT_
-S_gtk_ruler_draw_pos(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_ruler_get_metric(USER_OBJECT_ s_object); 

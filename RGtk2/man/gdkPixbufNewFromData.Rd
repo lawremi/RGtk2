@@ -5,7 +5,7 @@
 images with 8 bits per sample are supported.}
 \usage{gdkPixbufNewFromData(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)}
 \arguments{
-\item{\code{data}}{[integer]  Image data in 8-bit/sample packed format.}
+\item{\code{data}}{[raw]  Image data in 8-bit/sample packed format.}
 \item{\code{colorspace}}{[\code{\link{GdkColorspace}}]  Colorspace for the image data.}
 \item{\code{has.alpha}}{[logical]  Whether the data has an opacity channel.}
 \item{\code{bits.per.sample}}{[integer]  Number of bits per sample.}

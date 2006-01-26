@@ -4,7 +4,7 @@
 \description{Grabs the keyboard so that all events are passed to this
 application until the keyboard is ungrabbed with \code{\link{gdkKeyboardUngrab}}.
 This overrides any previous keyboard grab by this client.}
-\usage{gdkKeyboardGrab(window, owner.events = FALSE, time = GDK_CURRENT_TIME)}
+\usage{gdkKeyboardGrab(window, owner.events = FALSE, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{window}}{[\code{\link{GdkWindow}}] the \code{\link{GdkWindow}} which will own the grab (the grab window).}
 \item{\code{owner.events}}{[logical] if \code{FALSE} then all keyboard events are reported with respect to

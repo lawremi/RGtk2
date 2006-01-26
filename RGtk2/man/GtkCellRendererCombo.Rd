@@ -3,8 +3,10 @@
 \name{GtkCellRendererCombo}
 \title{GtkCellRendererCombo}
 \description{Renders a combobox in a cell}
-\usage{gtkCellRendererCombo()}
-\section{Methods and Functions}{\link{gtkCellRendererComboNew}()}
+\section{Methods and Functions}{
+\code{\link{gtkCellRendererComboNew}()}\cr
+\code{gtkCellRendererCombo()}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkCellRenderer}

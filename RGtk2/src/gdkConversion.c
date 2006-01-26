@@ -4,8 +4,8 @@ USER_OBJECT_
 asRGdkAtom(GdkAtom val)
 {
   USER_OBJECT_ ans;
-  ans = toRPointer(GDK_ATOM_TO_POINTER(val), "GdkAtom");
   char *tmp;
+  ans = toRPointer(GDK_ATOM_TO_POINTER(val), "GdkAtom");
   tmp = gdk_atom_name(val);
   if(tmp)
      setAttrib(ans, install("name"), asRString(tmp));
@@ -201,6 +201,9 @@ USER_OBJECT_
 asRGdkGCValues(GdkGCValues *values)
 {
     USER_OBJECT_ s_values;
+	static char *names[] = { "foreground", "background", "font", "function", "fill", "tile", "stipple", 
+		"clip.mask", "subwindow.mode", "ts.x.origin", "ts.y.origin", "clip.x.origin", "clip.y.origin", 
+		"graphics.exposures", "line.width", "line.style", "cap.style", "join.style", NULL };
 
     PROTECT(s_values = NEW_LIST(18));
 
@@ -223,9 +226,6 @@ asRGdkGCValues(GdkGCValues *values)
     SET_VECTOR_ELT(s_values, 16, asREnum(values->cap_style, GDK_TYPE_CAP_STYLE));
     SET_VECTOR_ELT(s_values, 17, asREnum(values->join_style, GDK_TYPE_JOIN_STYLE));
 
-	static char *names[] = { "foreground", "background", "font", "function", "fill", "tile", "stipple", 
-		"clip.mask", "subwindow.mode", "ts.x.origin", "ts.y.origin", "clip.x.origin", "clip.y.origin", 
-		"graphics.exposures", "line.width", "line.style", "cap.style", "join.style", NULL };
 	SET_NAMES(s_values, asRStringArray(names));
 	
     UNPROTECT(1);
@@ -237,13 +237,13 @@ USER_OBJECT_
 asRGdkTimeCoord(GdkTimeCoord* coord, int num_axes)
 {
     USER_OBJECT_ s_coord;
+	static char *names[] = { "time", "axes", NULL };
 
     PROTECT(s_coord = NEW_LIST(2));
 
     SET_VECTOR_ELT(s_coord, 0, asRNumeric(coord->time));
     SET_VECTOR_ELT(s_coord, 1, asRNumericArrayWithSize(coord->axes, num_axes));
 	
-	static char *names[] = { "time", "axes", NULL };
 	SET_NAMES(s_coord, asRStringArray(names));
 
     UNPROTECT(1);
@@ -270,6 +270,7 @@ USER_OBJECT_
 asRGdkRectangle(GdkRectangle *rect)
 {
     USER_OBJECT_ s_rect;
+	static char *names[] = { "x", "y", "width", "height", NULL };
 
     PROTECT(s_rect = NEW_LIST(4));
 
@@ -278,7 +279,6 @@ asRGdkRectangle(GdkRectangle *rect)
     SET_VECTOR_ELT(s_rect, 2, asRInteger(rect->width));
     SET_VECTOR_ELT(s_rect, 3, asRInteger(rect->height));
 	
-	static char *names[] = { "x", "y", "width", "height", NULL };
 	SET_NAMES(s_rect, asRStringArray(names));
 
     UNPROTECT(1);
@@ -338,6 +338,7 @@ USER_OBJECT_
 asRGdkKeymapKey(GdkKeymapKey* key)
 {
     USER_OBJECT_ s_key;
+	static char *names[] = { "keycode", "group", "level", NULL };
 
     PROTECT(s_key = NEW_LIST(3));
 
@@ -345,7 +346,6 @@ asRGdkKeymapKey(GdkKeymapKey* key)
     SET_VECTOR_ELT(s_key, 1, asRInteger(key->group));
     SET_VECTOR_ELT(s_key, 2, asRInteger(key->level));
 	
-	static char *names[] = { "keycode", "group", "level", NULL };
 	SET_NAMES(s_key, asRStringArray(names));
 
     UNPROTECT(1);
@@ -369,13 +369,13 @@ USER_OBJECT_
 asRGdkPoint(GdkPoint *point)
 {
     USER_OBJECT_ s_point;
+	static char *names[] = { "x", "y", NULL };
 
     PROTECT(s_point = NEW_LIST(2));
 
     SET_VECTOR_ELT(s_point, 0, asRInteger(point->x));
     SET_VECTOR_ELT(s_point, 1, asRInteger(point->y));
 
-	static char *names[] = { "x", "y", NULL };
 	SET_NAMES(s_point, asRStringArray(names));
 	
     UNPROTECT(1);
@@ -415,7 +415,7 @@ asCGdkColor(USER_OBJECT_ s_color)
     color->green = asCInteger(VECTOR_ELT(s_color, 1+offset));
     color->blue = asCInteger(VECTOR_ELT(s_color, 2+offset));
 	
-	//Rprintf("rgb: %d %d %d\n", color->red, color->green, color->blue);
+	/*Rprintf("rgb: %d %d %d\n", color->red, color->green, color->blue);*/
 	
     return(color);
 }
@@ -423,6 +423,7 @@ USER_OBJECT_
 asRGdkColor(GdkColor* color)
 {
     USER_OBJECT_ s_color;
+	static char *names[] = { "pixel", "red", "green", "blue", NULL };
 
     PROTECT(s_color = NEW_LIST(4));
 
@@ -431,7 +432,6 @@ asRGdkColor(GdkColor* color)
     SET_VECTOR_ELT(s_color, 2, asRInteger(color->green));
     SET_VECTOR_ELT(s_color, 3, asRInteger(color->blue));
 
-	static char *names[] = { "pixel", "red", "green", "blue", NULL };
 	SET_NAMES(s_color, asRStringArray(names));
 	
     UNPROTECT(1);
@@ -466,6 +466,7 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
     char *type;
     //USER_OBJECT_ classes;
     USER_OBJECT_ result;
+	RPointerFinalizer finalizer = NULL;
 
     switch(event->type) {
          case GDK_EXPOSE:
@@ -542,7 +543,6 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
             type = "GdkEventAny";
     }
 
-    RPointerFinalizer finalizer = NULL;
     if (finalize)
         finalizer = (RPointerFinalizer)gdk_event_free;
 

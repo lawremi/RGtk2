@@ -6,11 +6,7 @@ This is a deprecated wrapper for \code{\link{gdkDrawableGetImage}};
 \code{\link{gdkDrawableGetImage}} should be used instead. Or even better: in
 most cases \code{\link{gdkPixbufGetFromDrawable}} is the most convenient
 choice.
-\strong{WARNING: \code{gdk_image_get} is deprecated and should not be used in newly-written code.  
-This is a deprecated wrapper for \code{\link{gdkDrawableGetImage}};
-\code{\link{gdkDrawableGetImage}} should be used instead. Or even better: in
-most cases \code{\link{gdkPixbufGetFromDrawable}} is the most convenient
-choice.  }
+\strong{WARNING: \code{gdk_image_get} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkImageGet(object, x, y, width, height)}
 \arguments{

@@ -272,7 +272,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
 ac_unique_file="src/Rgtk.c"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE GTKMOZEMBED_CFLAGS GTKMOZEMBED_LIBS HAVE_GTKMOZEMBED R_PACKAGE_DIR INSTALL_DIR DEFINES LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE GTKMOZEMBED_CFLAGS GTKMOZEMBED_LIBS HAVE_GTKMOZEMBED R_PACKAGE_DIR INSTALL_DIR DEFINES PKG_CFLAGS PKG_LIBS LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -1584,6 +1584,12 @@ fi
 
 
 
+PKG_CFLAGS=${PKG_CFLAGS}
+PKG_LIBS=${PKG_LIBS}
+
+
+
+
           ac_config_files="$ac_config_files src/Makevars"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -2233,6 +2239,8 @@ s,@HAVE_GTKMOZEMBED@,$HAVE_GTKMOZEMBED,;t t
 s,@R_PACKAGE_DIR@,$R_PACKAGE_DIR,;t t
 s,@INSTALL_DIR@,$INSTALL_DIR,;t t
 s,@DEFINES@,$DEFINES,;t t
+s,@PKG_CFLAGS@,$PKG_CFLAGS,;t t
+s,@PKG_LIBS@,$PKG_LIBS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF

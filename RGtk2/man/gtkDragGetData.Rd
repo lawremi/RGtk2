@@ -9,7 +9,7 @@ signal parameter being negative. However, when \code{\link{gtkDragGetData}}
 is called implicitely because the \code{GTK_DEST_DEFAULT_DROP} was set, 
 then the widget will not receive notification of failed
 drops.}
-\usage{gtkDragGetData(object, context, target, time = GDK_CURRENT_TIME)}
+\usage{gtkDragGetData(object, context, target, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}] the widget that will receive the "drag_data_received"
  signal.}

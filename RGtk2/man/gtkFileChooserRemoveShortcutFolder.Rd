@@ -2,10 +2,11 @@
 \name{gtkFileChooserRemoveShortcutFolder}
 \title{gtkFileChooserRemoveShortcutFolder}
 \description{Removes a folder from a file chooser's list of shortcut folders.}
-\usage{gtkFileChooserRemoveShortcutFolder(object, folder)}
+\usage{gtkFileChooserRemoveShortcutFolder(object, folder, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
 \item{\code{folder}}{[char]  filename of the folder to remove}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.4}
 \value{

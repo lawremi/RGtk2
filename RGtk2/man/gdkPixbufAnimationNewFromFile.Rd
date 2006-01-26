@@ -5,8 +5,11 @@
 detected automatically.  If the file's format does not support multi-frame
 images, then an animation with a single frame will be created. Possible errors
 are in the \code{GDK_PIXBUF_ERROR} and \code{G_FILE_ERROR} domains.}
-\usage{gdkPixbufAnimationNewFromFile(filename)}
-\arguments{\item{\code{filename}}{[char]  Name of file to load, in the GLib file name encoding}}
+\usage{gdkPixbufAnimationNewFromFile(filename, .errwarn = TRUE)}
+\arguments{
+\item{\code{filename}}{[char]  Name of file to load, in the GLib file name encoding}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
+}
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbufAnimation}}]  A newly-created animation with a reference count of 1, or \code{NULL}

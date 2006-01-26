@@ -7,23 +7,20 @@
 \name{gdk-pixbuf-animation}
 \title{Animations}
 \description{Animated images.}
-\usage{
-gdkPixbufAnimation(filename)
-gdkPixbufSimpleAnim(width, height, rate)
-}
 \section{Methods and Functions}{
-\link{gdkPixbufAnimationNewFromFile}(filename)
-\link{gdkPixbufAnimationGetWidth}(object)
-\link{gdkPixbufAnimationGetHeight}(object)
-\link{gdkPixbufAnimationGetIter}(object, start.time)
-\link{gdkPixbufAnimationIsStaticImage}(object)
-\link{gdkPixbufAnimationGetStaticImage}(object)
-\link{gdkPixbufAnimationIterAdvance}(object, current.time)
-\link{gdkPixbufAnimationIterGetDelayTime}(object)
-\link{gdkPixbufAnimationIterOnCurrentlyLoadingFrame}(object)
-\link{gdkPixbufAnimationIterGetPixbuf}(object)
-\link{gdkPixbufSimpleAnimNew}(width, height, rate)
-\link{gdkPixbufSimpleAnimAddFrame}(object, pixbuf)
+\code{\link{gdkPixbufAnimationNewFromFile}(filename, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufAnimationGetWidth}(object)}\cr
+\code{\link{gdkPixbufAnimationGetHeight}(object)}\cr
+\code{\link{gdkPixbufAnimationGetIter}(object, start.time)}\cr
+\code{\link{gdkPixbufAnimationIsStaticImage}(object)}\cr
+\code{\link{gdkPixbufAnimationGetStaticImage}(object)}\cr
+\code{\link{gdkPixbufAnimationIterAdvance}(object, current.time)}\cr
+\code{\link{gdkPixbufAnimationIterGetDelayTime}(object)}\cr
+\code{\link{gdkPixbufAnimationIterOnCurrentlyLoadingFrame}(object)}\cr
+\code{\link{gdkPixbufAnimationIterGetPixbuf}(object)}\cr
+\code{\link{gdkPixbufSimpleAnimNew}(width, height, rate)}\cr
+\code{\link{gdkPixbufSimpleAnimAddFrame}(object, pixbuf)}\cr
+\code{gdkPixbufAnimation(filename, .errwarn = TRUE)}\cr\code{gdkPixbufSimpleAnim(width, height, rate)}
 }
 \section{Hierarchy}{\preformatted{
   \link{GObject}

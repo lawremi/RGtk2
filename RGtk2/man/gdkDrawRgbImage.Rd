@@ -13,7 +13,7 @@ contents are ignored).}
 \item{\code{width}}{[integer] The width of the rectangle to be drawn.}
 \item{\code{height}}{[integer] The height of the rectangle to be drawn.}
 \item{\code{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
-\item{\code{rgb.buf}}{[integer] The pixel data, represented as packed 24-bit data.}
+\item{\code{rgb.buf}}{[raw] The pixel data, represented as packed 24-bit data.}
 \item{\code{rowstride}}{[integer] The number of bytes from the start of one row in \code{rgb.buf} to the
 start of the next.}
 }

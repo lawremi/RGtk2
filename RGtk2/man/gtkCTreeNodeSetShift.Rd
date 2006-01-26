@@ -3,8 +3,7 @@
 \title{gtkCTreeNodeSetShift}
 \description{
 Shift the given cell the given amounts in pixels.
-\strong{WARNING: \code{gtk_ctree_node_set_shift} is deprecated and should not be used in newly-written code.  
-Shift the given cell the given amounts in pixels.}
+\strong{WARNING: \code{gtk_ctree_node_set_shift} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNodeSetShift(object, node, column, vertical, horizontal)}
 \arguments{

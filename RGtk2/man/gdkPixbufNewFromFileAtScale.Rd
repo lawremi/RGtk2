@@ -6,12 +6,13 @@ detected automatically. If \code{NULL} is returned, then \code{error} will be se
 Possible errors are in the \code{GDK_PIXBUF_ERROR} and \code{G_FILE_ERROR} domains.
 The image will be scaled to fit in the requested size, optionally preserving
 the image's aspect ratio. }
-\usage{gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio)}
+\usage{gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio, .errwarn = TRUE)}
 \arguments{
 \item{\code{filename}}{[char]  Name of file to load, in the GLib file name encoding}
 \item{\code{width}}{[integer]  The width the image should have or -1 to not constrain the width}
 \item{\code{height}}{[integer]  The height the image should have or -1 to not constrain the height}
 \item{\code{preserve.aspect.ratio}}{[logical]  \code{TRUE} to preserve the image's aspect ratio}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{When preserving the aspect ratio, a \code{width} of -1 will cause the image
 to be scaled to the exact given height, and a \code{height} of -1 will cause

@@ -4,24 +4,24 @@
 \title{Cairo Rendering}
 \description{Rendering with the Cairo backend}
 \section{Methods and Functions}{
-\link{pangoCairoFontMapNew}()
-\link{pangoCairoFontMapGetDefault}()
-\link{pangoCairoFontMapSetResolution}(object, dpi)
-\link{pangoCairoFontMapGetResolution}(object)
-\link{pangoCairoFontMapCreateContext}(object)
-\link{pangoCairoContextSetResolution}(context, dpi)
-\link{pangoCairoContextGetResolution}(context)
-\link{pangoCairoContextSetFontOptions}(context, options)
-\link{pangoCairoContextGetFontOptions}(context)
-\link{pangoCairoUpdateContext}(cr, context)
-\link{pangoCairoCreateLayout}(cr)
-\link{pangoCairoUpdateLayout}(cr, layout)
-\link{pangoCairoShowGlyphString}(cr, font, glyphs)
-\link{pangoCairoShowLayoutLine}(cr, line)
-\link{pangoCairoShowLayout}(cr, layout)
-\link{pangoCairoGlyphStringPath}(cr, font, glyphs)
-\link{pangoCairoLayoutLinePath}(cr, line)
-\link{pangoCairoLayoutPath}(cr, layout)
+\code{\link{pangoCairoFontMapNew}()}\cr
+\code{\link{pangoCairoFontMapGetDefault}()}\cr
+\code{\link{pangoCairoFontMapSetResolution}(object, dpi)}\cr
+\code{\link{pangoCairoFontMapGetResolution}(object)}\cr
+\code{\link{pangoCairoFontMapCreateContext}(object)}\cr
+\code{\link{pangoCairoContextSetResolution}(context, dpi)}\cr
+\code{\link{pangoCairoContextGetResolution}(context)}\cr
+\code{\link{pangoCairoContextSetFontOptions}(context, options)}\cr
+\code{\link{pangoCairoContextGetFontOptions}(context)}\cr
+\code{\link{pangoCairoUpdateContext}(cr, context)}\cr
+\code{\link{pangoCairoCreateLayout}(cr)}\cr
+\code{\link{pangoCairoUpdateLayout}(cr, layout)}\cr
+\code{\link{pangoCairoShowGlyphString}(cr, font, glyphs)}\cr
+\code{\link{pangoCairoShowLayoutLine}(cr, line)}\cr
+\code{\link{pangoCairoShowLayout}(cr, layout)}\cr
+\code{\link{pangoCairoGlyphStringPath}(cr, font, glyphs)}\cr
+\code{\link{pangoCairoLayoutLinePath}(cr, line)}\cr
+\code{\link{pangoCairoLayoutPath}(cr, layout)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----PangoCairoFontMap}}

@@ -6,11 +6,7 @@ Determines the total height of a given string.
 This value is not generally useful, because you cannot
 determine how this total height will be drawn in
 relation to the baseline. See \code{\link{gdkTextExtents}}.
-\strong{WARNING: \code{gdk_text_height} is deprecated and should not be used in newly-written code.  
-Determines the total height of a given string.
-This value is not generally useful, because you cannot
-determine how this total height will be drawn in
-relation to the baseline. See \code{\link{gdkTextExtents}}.  }
+\strong{WARNING: \code{gdk_text_height} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkTextHeight(object, text, text.length = -1)}
 \arguments{

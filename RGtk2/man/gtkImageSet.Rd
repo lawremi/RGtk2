@@ -3,8 +3,7 @@
 \title{gtkImageSet}
 \description{
 Sets the \code{\link{GtkImage}}.
-\strong{WARNING: \code{gtk_image_set} is deprecated and should not be used in newly-written code.  
-Sets the \code{\link{GtkImage}}.}
+\strong{WARNING: \code{gtk_image_set} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkImageSet(object, val, mask)}
 \arguments{

@@ -3,13 +3,13 @@
 \name{GtkPlug}
 \title{GtkPlug}
 \description{Toplevel for embedding into other processes}
-\usage{gtkPlug(socket.id, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkPlugConstruct}(object, socket.id)
-\link{gtkPlugConstructForDisplay}(object, display, socket.id)
-\link{gtkPlugNew}(socket.id, show = TRUE)
-\link{gtkPlugNewForDisplay}(display, socket.id)
-\link{gtkPlugGetId}(object)
+\code{\link{gtkPlugConstruct}(object, socket.id)}\cr
+\code{\link{gtkPlugConstructForDisplay}(object, display, socket.id)}\cr
+\code{\link{gtkPlugNew}(socket.id, show = TRUE)}\cr
+\code{\link{gtkPlugNewForDisplay}(display, socket.id)}\cr
+\code{\link{gtkPlugGetId}(object)}\cr
+\code{gtkPlug(socket.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

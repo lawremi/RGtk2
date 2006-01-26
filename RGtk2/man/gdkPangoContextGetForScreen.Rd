@@ -11,7 +11,7 @@ instead of this function, to get the appropriate context for
 the widget you intend to render text onto.
   
 The newly created context will have the default font options
-(see \code{\link{cairo_font_options_t}}) for the screen; if these options
+(see \code{\link{CairoFontOptions}}) for the screen; if these options
 change it will not be updated. Using \code{\link{gtkWidgetGetPangoContext}}
 is more convenient if you want to keep a context around and track
 changes to the screen's font rendering settings.  

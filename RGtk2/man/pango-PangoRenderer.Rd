@@ -5,20 +5,21 @@
 \title{PangoRenderer}
 \description{Rendering driver base class}
 \section{Methods and Functions}{
-\link{pangoRendererDrawLayout}(object, layout, x, y)
-\link{pangoRendererDrawLayoutLine}(object, line, x, y)
-\link{pangoRendererDrawGlyphs}(object, font, glyphs, x, y)
-\link{pangoRendererDrawRectangle}(object, part, x, y, width, height)
-\link{pangoRendererDrawErrorUnderline}(object, x, y, width, height)
-\link{pangoRendererDrawTrapezoid}(object, part, y1., x11, x21, y2, x12, x22)
-\link{pangoRendererDrawGlyph}(object, font, glyph, x, y)
-\link{pangoRendererActivate}(object)
-\link{pangoRendererDeactivate}(object)
-\link{pangoRendererPartChanged}(object, part)
-\link{pangoRendererSetColor}(object, part, color)
-\link{pangoRendererGetColor}(object, part)
-\link{pangoRendererSetMatrix}(object, matrix)
-\link{pangoRendererGetMatrix}(object)
+\code{\link{pangoRendererDrawLayout}(object, layout, x, y)}\cr
+\code{\link{pangoRendererDrawLayoutLine}(object, line, x, y)}\cr
+\code{\link{pangoRendererDrawGlyphs}(object, font, glyphs, x, y)}\cr
+\code{\link{pangoRendererDrawRectangle}(object, part, x, y, width, height)}\cr
+\code{\link{pangoRendererDrawErrorUnderline}(object, x, y, width, height)}\cr
+\code{\link{pangoRendererDrawTrapezoid}(object, part, y1., x11, x21, y2, x12, x22)}\cr
+\code{\link{pangoRendererDrawGlyph}(object, font, glyph, x, y)}\cr
+\code{\link{pangoRendererActivate}(object)}\cr
+\code{\link{pangoRendererDeactivate}(object)}\cr
+\code{\link{pangoRendererPartChanged}(object, part)}\cr
+\code{\link{pangoRendererSetColor}(object, part, color)}\cr
+\code{\link{pangoRendererGetColor}(object, part)}\cr
+\code{\link{pangoRendererSetMatrix}(object, matrix)}\cr
+\code{\link{pangoRendererGetMatrix}(object)}\cr
+
 }
 \section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
 rendering a PangoLayout or PangoLayoutLine. By subclassing
@@ -36,7 +37,7 @@ render Pango objects such as \code{\link{PangoGlyphString}} and
    be \code{NULL}, which should be treated the same as the identity matrix.}}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum PangoRenderPart}}{
+\section{Enums and Flags}{\describe{\item{\code{PangoRenderPart}}{
 \code{\link{PangoRenderPart}} defines different items to render for such
 purposes as setting colors.  
 

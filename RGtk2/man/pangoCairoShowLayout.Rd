@@ -6,7 +6,7 @@ The top-left corner of the \code{\link{PangoLayout}} will be drawn
 at the current point of the cairo context.}
 \usage{pangoCairoShowLayout(cr, layout)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a Cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}
 \item{\code{layout}}{[\code{\link{PangoLayout}}]  a Pango layout}
 }
 \details{  Since  1.10}

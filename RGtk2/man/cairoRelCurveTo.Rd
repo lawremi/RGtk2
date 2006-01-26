@@ -9,7 +9,7 @@ point by (\code{dx3}, \code{dy3}), using points offset by (\code{dx1}, \code{dy1
 point will be offset by (\code{dx3}, \code{dy3}).}
 \usage{cairoRelCurveTo(cr, dx1, dy1, dx2, dy2, dx3, dy3)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{dx1}}{[numeric]  the X offset to the first control point}
 \item{\code{dy1}}{[numeric]  the Y offset to the first control point}
 \item{\code{dx2}}{[numeric]  the X offset to the second control point}

@@ -3,13 +3,13 @@
 \name{GtkTipsQuery}
 \title{GtkTipsQuery}
 \description{Displays help about widgets in the user interface}
-\usage{gtkTipsQuery(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkTipsQueryNew}(show = TRUE)
-\link{gtkTipsQueryStartQuery}(object)
-\link{gtkTipsQueryStopQuery}(object)
-\link{gtkTipsQuerySetCaller}(object, caller)
-\link{gtkTipsQuerySetLabels}(object, label.inactive, label.no.tip)
+\code{\link{gtkTipsQueryNew}(show = TRUE)}\cr
+\code{\link{gtkTipsQueryStartQuery}(object)}\cr
+\code{\link{gtkTipsQueryStopQuery}(object)}\cr
+\code{\link{gtkTipsQuerySetCaller}(object, caller)}\cr
+\code{\link{gtkTipsQuerySetLabels}(object, label.inactive, label.no.tip)}\cr
+\code{gtkTipsQuery(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -39,9 +39,7 @@ The \code{\link{gtkTipsQuerySetCaller}} function can be used to specify a widget
 which the user can select to stop the query (often the same button used to
 start the query).}
 \section{Structures}{\describe{\item{\code{GtkTipsQuery}}{
-\strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.  
-The \code{\link{GtkTipsQuery}} struct contains private data only, and
-should be accessed using the functions below.}
+\strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkTipsQuery}} struct contains private data only, and
 should be accessed using the functions below.
 

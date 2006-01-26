@@ -4,35 +4,35 @@
 \description{The ATK interface implemented for UI components which contain tabular or
 row/column information.}
 \section{Methods and Functions}{
-\link{atkTableRefAt}(object, row, column)
-\link{atkTableGetIndexAt}(object, row, column)
-\link{atkTableGetColumnAtIndex}(object, index)
-\link{atkTableGetRowAtIndex}(object, index)
-\link{atkTableGetNColumns}(object)
-\link{atkTableGetNRows}(object)
-\link{atkTableGetColumnExtentAt}(object, row, column)
-\link{atkTableGetRowExtentAt}(object, row, column)
-\link{atkTableGetCaption}(object)
-\link{atkTableGetColumnDescription}(object, column)
-\link{atkTableGetRowDescription}(object, row)
-\link{atkTableGetColumnHeader}(object, column)
-\link{atkTableGetRowHeader}(object, row)
-\link{atkTableGetSummary}(object)
-\link{atkTableSetCaption}(object, caption)
-\link{atkTableSetRowDescription}(object, row, description)
-\link{atkTableSetColumnDescription}(object, column, description)
-\link{atkTableSetRowHeader}(object, row, header)
-\link{atkTableSetColumnHeader}(object, column, header)
-\link{atkTableSetSummary}(object, accessible)
-\link{atkTableGetSelectedColumns}(object)
-\link{atkTableGetSelectedRows}(object)
-\link{atkTableIsColumnSelected}(object, column)
-\link{atkTableIsRowSelected}(object, row)
-\link{atkTableIsSelected}(object, row, column)
-\link{atkTableAddColumnSelection}(object, column)
-\link{atkTableAddRowSelection}(object, row)
-\link{atkTableRemoveColumnSelection}(object, column)
-\link{atkTableRemoveRowSelection}(object, row)
+\code{\link{atkTableRefAt}(object, row, column)}\cr
+\code{\link{atkTableGetIndexAt}(object, row, column)}\cr
+\code{\link{atkTableGetColumnAtIndex}(object, index)}\cr
+\code{\link{atkTableGetRowAtIndex}(object, index)}\cr
+\code{\link{atkTableGetNColumns}(object)}\cr
+\code{\link{atkTableGetNRows}(object)}\cr
+\code{\link{atkTableGetColumnExtentAt}(object, row, column)}\cr
+\code{\link{atkTableGetRowExtentAt}(object, row, column)}\cr
+\code{\link{atkTableGetCaption}(object)}\cr
+\code{\link{atkTableGetColumnDescription}(object, column)}\cr
+\code{\link{atkTableGetRowDescription}(object, row)}\cr
+\code{\link{atkTableGetColumnHeader}(object, column)}\cr
+\code{\link{atkTableGetRowHeader}(object, row)}\cr
+\code{\link{atkTableGetSummary}(object)}\cr
+\code{\link{atkTableSetCaption}(object, caption)}\cr
+\code{\link{atkTableSetRowDescription}(object, row, description)}\cr
+\code{\link{atkTableSetColumnDescription}(object, column, description)}\cr
+\code{\link{atkTableSetRowHeader}(object, row, header)}\cr
+\code{\link{atkTableSetColumnHeader}(object, column, header)}\cr
+\code{\link{atkTableSetSummary}(object, accessible)}\cr
+\code{\link{atkTableGetSelectedColumns}(object)}\cr
+\code{\link{atkTableGetSelectedRows}(object)}\cr
+\code{\link{atkTableIsColumnSelected}(object, column)}\cr
+\code{\link{atkTableIsRowSelected}(object, row)}\cr
+\code{\link{atkTableIsSelected}(object, row, column)}\cr
+\code{\link{atkTableAddColumnSelection}(object, column)}\cr
+\code{\link{atkTableAddRowSelection}(object, row)}\cr
+\code{\link{atkTableRemoveColumnSelection}(object, column)}\cr
+\code{\link{atkTableRemoveRowSelection}(object, row)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkTable}}

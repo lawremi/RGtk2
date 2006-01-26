@@ -10,134 +10,134 @@
 \name{GtkWidget}
 \title{GtkWidget}
 \description{Base class for all widgets}
-\usage{gtkWidget(type, ..., show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkWidgetNew}(type, ..., show = TRUE)
-\link{gtkWidgetDestroy}(object)
-\link{gtkWidgetSet}(obj, ...)
-\link{gtkWidgetUnparent}(object)
-\link{gtkWidgetShow}(object)
-\link{gtkWidgetShowNow}(object)
-\link{gtkWidgetHide}(object)
-\link{gtkWidgetShowAll}(object)
-\link{gtkWidgetHideAll}(object)
-\link{gtkWidgetMap}(object)
-\link{gtkWidgetUnmap}(object)
-\link{gtkWidgetRealize}(object)
-\link{gtkWidgetUnrealize}(object)
-\link{gtkWidgetQueueDraw}(object)
-\link{gtkWidgetQueueResize}(object)
-\link{gtkWidgetQueueResizeNoRedraw}(object)
-\link{gtkWidgetDraw}(object, area)
-\link{gtkWidgetSizeRequest}(object)
-\link{gtkWidgetGetChildRequisition}(object)
-\link{gtkWidgetSizeAllocate}(object, allocation)
-\link{gtkWidgetAddAccelerator}(object, accel.signal, accel.group, accel.key, accel.mods, accel.flags)
-\link{gtkWidgetRemoveAccelerator}(object, accel.group, accel.key, accel.mods)
-\link{gtkWidgetSetAccelPath}(object, accel.path, accel.group)
-\link{gtkWidgetListAccelClosures}(object)
-\link{gtkWidgetCanActivateAccel}(object, signal.id)
-\link{gtkWidgetEvent}(object, event)
-\link{gtkWidgetActivate}(object)
-\link{gtkWidgetReparent}(object, new.parent)
-\link{gtkWidgetIntersect}(object, area, intersection)
-\link{gtkWidgetIsFocus}(object)
-\link{gtkWidgetGrabFocus}(object)
-\link{gtkWidgetGrabDefault}(object)
-\link{gtkWidgetSetName}(object, name)
-\link{gtkWidgetGetName}(object)
-\link{gtkWidgetSetState}(object, state)
-\link{gtkWidgetSetSensitive}(object, sensitive)
-\link{gtkWidgetSetParent}(object, parent)
-\link{gtkWidgetSetParentWindow}(object, parent.window)
-\link{gtkWidgetGetParentWindow}(object)
-\link{gtkWidgetSetUposition}(object, x, y)
-\link{gtkWidgetSetUsize}(object, width, height)
-\link{gtkWidgetSetEvents}(object, events)
-\link{gtkWidgetAddEvents}(object, events)
-\link{gtkWidgetSetExtensionEvents}(object, mode)
-\link{gtkWidgetGetExtensionEvents}(object)
-\link{gtkWidgetGetToplevel}(object)
-\link{gtkWidgetGetAncestor}(object, widget.type)
-\link{gtkWidgetGetColormap}(object)
-\link{gtkWidgetSetColormap}(object, colormap)
-\link{gtkWidgetGetVisual}(object)
-\link{gtkWidgetGetEvents}(object)
-\link{gtkWidgetGetPointer}(object)
-\link{gtkWidgetIsAncestor}(object, ancestor)
-\link{gtkWidgetTranslateCoordinates}(object, dest.widget, src.x, src.y)
-\link{gtkWidgetHideOnDelete}(object)
-\link{gtkWidgetSetStyle}(object, style = NULL)
-\link{gtkWidgetEnsureStyle}(object)
-\link{gtkWidgetGetStyle}(object)
-\link{gtkWidgetResetRcStyles}(object)
-\link{gtkWidgetPushColormap}(cmap)
-\link{gtkWidgetPopColormap}()
-\link{gtkWidgetSetDefaultColormap}(colormap)
-\link{gtkWidgetGetDefaultStyle}()
-\link{gtkWidgetGetDefaultColormap}()
-\link{gtkWidgetGetDefaultVisual}()
-\link{gtkWidgetSetDirection}(object, dir)
-\link{gtkWidgetGetDirection}(object)
-\link{gtkWidgetSetDefaultDirection}(dir)
-\link{gtkWidgetGetDefaultDirection}()
-\link{gtkWidgetShapeCombineMask}(object, shape.mask, offset.x, offset.y)
-\link{gtkWidgetPath}(object)
-\link{gtkWidgetClassPath}(object)
-\link{gtkWidgetGetCompositeName}(object)
-\link{gtkWidgetModifyStyle}(object, style)
-\link{gtkWidgetGetModifierStyle}(object)
-\link{gtkWidgetModifyFg}(object, state, color = NULL)
-\link{gtkWidgetModifyBg}(object, state, color = NULL)
-\link{gtkWidgetModifyText}(object, state, color = NULL)
-\link{gtkWidgetModifyBase}(object, state, color = NULL)
-\link{gtkWidgetModifyFont}(object, font.desc = NULL)
-\link{gtkWidgetCreatePangoContext}(object)
-\link{gtkWidgetGetPangoContext}(object)
-\link{gtkWidgetCreatePangoLayout}(object, text)
-\link{gtkWidgetRenderIcon}(object, stock.id, size, detail = NULL)
-\link{gtkWidgetPopCompositeChild}()
-\link{gtkWidgetPushCompositeChild}()
-\link{gtkWidgetQueueClear}(object)
-\link{gtkWidgetQueueClearArea}(object, x, y, width, height)
-\link{gtkWidgetQueueDrawArea}(object, x, y, width, height)
-\link{gtkWidgetResetShapes}(object)
-\link{gtkWidgetSetAppPaintable}(object, app.paintable)
-\link{gtkWidgetSetDoubleBuffered}(object, double.buffered)
-\link{gtkWidgetSetRedrawOnAllocate}(object, redraw.on.allocate)
-\link{gtkWidgetSetCompositeName}(object, name)
-\link{gtkWidgetSetScrollAdjustments}(object, hadjustment = NULL, vadjustment = NULL)
-\link{gtkWidgetMnemonicActivate}(object, group.cycling)
-\link{gtkWidgetClassInstallStyleProperty}(klass, pspec)
-\link{gtkWidgetClassInstallStylePropertyParser}(klass, pspec, parser)
-\link{gtkWidgetClassFindStyleProperty}(klass, property.name)
-\link{gtkWidgetClassListStyleProperties}(klass)
-\link{gtkWidgetRegionIntersect}(object, region)
-\link{gtkWidgetSendExpose}(object, event)
-\link{gtkWidgetStyleGet}(object, ...)
-\link{gtkWidgetStyleGetProperty}(object, property.name)
-\link{gtkWidgetGetAccessible}(object)
-\link{gtkWidgetChildFocus}(object, direction)
-\link{gtkWidgetChildNotify}(object, child.property)
-\link{gtkWidgetFreezeChildNotify}(object)
-\link{gtkWidgetGetChildVisible}(object)
-\link{gtkWidgetGetParent}(object)
-\link{gtkWidgetGetSettings}(object)
-\link{gtkWidgetGetClipboard}(object, selection)
-\link{gtkWidgetGetDisplay}(object)
-\link{gtkWidgetGetRootWindow}(object)
-\link{gtkWidgetGetScreen}(object)
-\link{gtkWidgetHasScreen}(object)
-\link{gtkWidgetGetSizeRequest}(object)
-\link{gtkWidgetSetChildVisible}(object, is.visible)
-\link{gtkWidgetSetSizeRequest}(object, width, height)
-\link{gtkWidgetThawChildNotify}(object)
-\link{gtkWidgetSetNoShowAll}(object, no.show.all)
-\link{gtkWidgetGetNoShowAll}(object)
-\link{gtkWidgetListMnemonicLabels}(object)
-\link{gtkWidgetAddMnemonicLabel}(object, label)
-\link{gtkWidgetRemoveMnemonicLabel}(object, label)
-\link{gtkRequisitionCopy}(object)
+\code{\link{gtkWidgetNew}(type, ..., show = TRUE)}\cr
+\code{\link{gtkWidgetDestroy}(object, ...)}\cr
+\code{\link{gtkWidgetSet}(obj, ... = TRUE)}\cr
+\code{\link{gtkWidgetUnparent}(object)}\cr
+\code{\link{gtkWidgetShow}(object)}\cr
+\code{\link{gtkWidgetShowNow}(object)}\cr
+\code{\link{gtkWidgetHide}(object)}\cr
+\code{\link{gtkWidgetShowAll}(object)}\cr
+\code{\link{gtkWidgetHideAll}(object)}\cr
+\code{\link{gtkWidgetMap}(object)}\cr
+\code{\link{gtkWidgetUnmap}(object)}\cr
+\code{\link{gtkWidgetRealize}(object)}\cr
+\code{\link{gtkWidgetUnrealize}(object)}\cr
+\code{\link{gtkWidgetQueueDraw}(object)}\cr
+\code{\link{gtkWidgetQueueResize}(object)}\cr
+\code{\link{gtkWidgetQueueResizeNoRedraw}(object)}\cr
+\code{\link{gtkWidgetDraw}(object, area)}\cr
+\code{\link{gtkWidgetSizeRequest}(object)}\cr
+\code{\link{gtkWidgetGetChildRequisition}(object)}\cr
+\code{\link{gtkWidgetSizeAllocate}(object, allocation)}\cr
+\code{\link{gtkWidgetAddAccelerator}(object, accel.signal, accel.group, accel.key, accel.mods, accel.flags)}\cr
+\code{\link{gtkWidgetRemoveAccelerator}(object, accel.group, accel.key, accel.mods)}\cr
+\code{\link{gtkWidgetSetAccelPath}(object, accel.path, accel.group)}\cr
+\code{\link{gtkWidgetListAccelClosures}(object)}\cr
+\code{\link{gtkWidgetCanActivateAccel}(object, signal.id)}\cr
+\code{\link{gtkWidgetEvent}(object, event)}\cr
+\code{\link{gtkWidgetActivate}(object)}\cr
+\code{\link{gtkWidgetReparent}(object, new.parent)}\cr
+\code{\link{gtkWidgetIntersect}(object, area, intersection)}\cr
+\code{\link{gtkWidgetIsFocus}(object)}\cr
+\code{\link{gtkWidgetGrabFocus}(object)}\cr
+\code{\link{gtkWidgetGrabDefault}(object)}\cr
+\code{\link{gtkWidgetSetName}(object, name)}\cr
+\code{\link{gtkWidgetGetName}(object)}\cr
+\code{\link{gtkWidgetSetState}(object, state)}\cr
+\code{\link{gtkWidgetSetSensitive}(object, sensitive)}\cr
+\code{\link{gtkWidgetSetParent}(object, parent)}\cr
+\code{\link{gtkWidgetSetParentWindow}(object, parent.window)}\cr
+\code{\link{gtkWidgetGetParentWindow}(object)}\cr
+\code{\link{gtkWidgetSetUposition}(object, x, y)}\cr
+\code{\link{gtkWidgetSetUsize}(object, width, height)}\cr
+\code{\link{gtkWidgetSetEvents}(object, events)}\cr
+\code{\link{gtkWidgetAddEvents}(object, events)}\cr
+\code{\link{gtkWidgetSetExtensionEvents}(object, mode)}\cr
+\code{\link{gtkWidgetGetExtensionEvents}(object)}\cr
+\code{\link{gtkWidgetGetToplevel}(object)}\cr
+\code{\link{gtkWidgetGetAncestor}(object, widget.type)}\cr
+\code{\link{gtkWidgetGetColormap}(object)}\cr
+\code{\link{gtkWidgetSetColormap}(object, colormap)}\cr
+\code{\link{gtkWidgetGetVisual}(object)}\cr
+\code{\link{gtkWidgetGetEvents}(object)}\cr
+\code{\link{gtkWidgetGetPointer}(object)}\cr
+\code{\link{gtkWidgetIsAncestor}(object, ancestor)}\cr
+\code{\link{gtkWidgetTranslateCoordinates}(object, dest.widget, src.x, src.y)}\cr
+\code{\link{gtkWidgetHideOnDelete}(object)}\cr
+\code{\link{gtkWidgetSetStyle}(object, style = NULL)}\cr
+\code{\link{gtkWidgetEnsureStyle}(object)}\cr
+\code{\link{gtkWidgetGetStyle}(object)}\cr
+\code{\link{gtkWidgetResetRcStyles}(object)}\cr
+\code{\link{gtkWidgetPushColormap}(cmap)}\cr
+\code{\link{gtkWidgetPopColormap}()}\cr
+\code{\link{gtkWidgetSetDefaultColormap}(colormap)}\cr
+\code{\link{gtkWidgetGetDefaultStyle}()}\cr
+\code{\link{gtkWidgetGetDefaultColormap}()}\cr
+\code{\link{gtkWidgetGetDefaultVisual}()}\cr
+\code{\link{gtkWidgetSetDirection}(object, dir)}\cr
+\code{\link{gtkWidgetGetDirection}(object)}\cr
+\code{\link{gtkWidgetSetDefaultDirection}(dir)}\cr
+\code{\link{gtkWidgetGetDefaultDirection}()}\cr
+\code{\link{gtkWidgetShapeCombineMask}(object, shape.mask, offset.x, offset.y)}\cr
+\code{\link{gtkWidgetPath}(object)}\cr
+\code{\link{gtkWidgetClassPath}(object)}\cr
+\code{\link{gtkWidgetGetCompositeName}(object)}\cr
+\code{\link{gtkWidgetModifyStyle}(object, style)}\cr
+\code{\link{gtkWidgetGetModifierStyle}(object)}\cr
+\code{\link{gtkWidgetModifyFg}(object, state, color = NULL)}\cr
+\code{\link{gtkWidgetModifyBg}(object, state, color = NULL)}\cr
+\code{\link{gtkWidgetModifyText}(object, state, color = NULL)}\cr
+\code{\link{gtkWidgetModifyBase}(object, state, color = NULL)}\cr
+\code{\link{gtkWidgetModifyFont}(object, font.desc = NULL)}\cr
+\code{\link{gtkWidgetCreatePangoContext}(object)}\cr
+\code{\link{gtkWidgetGetPangoContext}(object)}\cr
+\code{\link{gtkWidgetCreatePangoLayout}(object, text)}\cr
+\code{\link{gtkWidgetRenderIcon}(object, stock.id, size, detail = NULL)}\cr
+\code{\link{gtkWidgetPopCompositeChild}()}\cr
+\code{\link{gtkWidgetPushCompositeChild}()}\cr
+\code{\link{gtkWidgetQueueClear}(object)}\cr
+\code{\link{gtkWidgetQueueClearArea}(object, x, y, width, height)}\cr
+\code{\link{gtkWidgetQueueDrawArea}(object, x, y, width, height)}\cr
+\code{\link{gtkWidgetResetShapes}(object)}\cr
+\code{\link{gtkWidgetSetAppPaintable}(object, app.paintable)}\cr
+\code{\link{gtkWidgetSetDoubleBuffered}(object, double.buffered)}\cr
+\code{\link{gtkWidgetSetRedrawOnAllocate}(object, redraw.on.allocate)}\cr
+\code{\link{gtkWidgetSetCompositeName}(object, name)}\cr
+\code{\link{gtkWidgetSetScrollAdjustments}(object, hadjustment = NULL, vadjustment = NULL)}\cr
+\code{\link{gtkWidgetMnemonicActivate}(object, group.cycling)}\cr
+\code{\link{gtkWidgetClassInstallStyleProperty}(klass, pspec)}\cr
+\code{\link{gtkWidgetClassInstallStylePropertyParser}(klass, pspec, parser)}\cr
+\code{\link{gtkWidgetClassFindStyleProperty}(klass, property.name)}\cr
+\code{\link{gtkWidgetClassListStyleProperties}(klass)}\cr
+\code{\link{gtkWidgetRegionIntersect}(object, region)}\cr
+\code{\link{gtkWidgetSendExpose}(object, event)}\cr
+\code{\link{gtkWidgetStyleGet}(object, ...)}\cr
+\code{\link{gtkWidgetStyleGetProperty}(object, property.name)}\cr
+\code{\link{gtkWidgetGetAccessible}(object)}\cr
+\code{\link{gtkWidgetChildFocus}(object, direction)}\cr
+\code{\link{gtkWidgetChildNotify}(object, child.property)}\cr
+\code{\link{gtkWidgetFreezeChildNotify}(object)}\cr
+\code{\link{gtkWidgetGetChildVisible}(object)}\cr
+\code{\link{gtkWidgetGetParent}(object)}\cr
+\code{\link{gtkWidgetGetSettings}(object)}\cr
+\code{\link{gtkWidgetGetClipboard}(object, selection)}\cr
+\code{\link{gtkWidgetGetDisplay}(object)}\cr
+\code{\link{gtkWidgetGetRootWindow}(object)}\cr
+\code{\link{gtkWidgetGetScreen}(object)}\cr
+\code{\link{gtkWidgetHasScreen}(object)}\cr
+\code{\link{gtkWidgetGetSizeRequest}(object)}\cr
+\code{\link{gtkWidgetSetChildVisible}(object, is.visible)}\cr
+\code{\link{gtkWidgetSetSizeRequest}(object, width, height)}\cr
+\code{\link{gtkWidgetThawChildNotify}(object)}\cr
+\code{\link{gtkWidgetSetNoShowAll}(object, no.show.all)}\cr
+\code{\link{gtkWidgetGetNoShowAll}(object)}\cr
+\code{\link{gtkWidgetListMnemonicLabels}(object)}\cr
+\code{\link{gtkWidgetAddMnemonicLabel}(object, label)}\cr
+\code{\link{gtkWidgetRemoveMnemonicLabel}(object, label)}\cr
+\code{\link{gtkRequisitionCopy}(object)}\cr
+\code{gtkWidget(type, ..., show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -216,7 +216,7 @@ A \code{GtkRequisition} represents the desired size of a widget. See
 }}
 \section{Convenient Construction}{\code{gtkWidget} is the equivalent of \code{\link{gtkWidgetNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkWidgetFlags}}{
+\item{\code{GtkWidgetFlags}}{
 Tells about certain properties of the widget.
 
 \describe{
@@ -270,7 +270,7 @@ Tells about certain properties of the widget.
 }
 
 }
-\item{\code{enum GtkWidgetHelpType}}{
+\item{\code{GtkWidgetHelpType}}{
 
 
 \describe{
@@ -281,7 +281,7 @@ Tells about certain properties of the widget.
 }
 
 }
-\item{\code{enum GtkTextDirection}}{
+\item{\code{GtkTextDirection}}{
 
 
 \describe{

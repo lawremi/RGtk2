@@ -3,15 +3,15 @@
 \name{GtkHandleBox}
 \title{GtkHandleBox}
 \description{a widget for detachable window portions}
-\usage{gtkHandleBox(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkHandleBoxNew}(show = TRUE)
-\link{gtkHandleBoxSetShadowType}(object, type)
-\link{gtkHandleBoxSetHandlePosition}(object, position)
-\link{gtkHandleBoxSetSnapEdge}(object, edge)
-\link{gtkHandleBoxGetHandlePosition}(object)
-\link{gtkHandleBoxGetShadowType}(object)
-\link{gtkHandleBoxGetSnapEdge}(object)
+\code{\link{gtkHandleBoxNew}(show = TRUE)}\cr
+\code{\link{gtkHandleBoxSetShadowType}(object, type)}\cr
+\code{\link{gtkHandleBoxSetHandlePosition}(object, position)}\cr
+\code{\link{gtkHandleBoxSetSnapEdge}(object, edge)}\cr
+\code{\link{gtkHandleBoxGetHandlePosition}(object)}\cr
+\code{\link{gtkHandleBoxGetShadowType}(object)}\cr
+\code{\link{gtkHandleBoxGetSnapEdge}(object)}\cr
+\code{gtkHandleBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

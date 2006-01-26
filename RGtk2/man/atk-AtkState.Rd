@@ -4,13 +4,13 @@
 \title{AtkState}
 \description{An AtkState describes a component's particular state.}
 \section{Methods and Functions}{
-\link{atkStateTypeRegister}(name)
-\link{atkStateTypeGetName}(type)
-\link{atkStateTypeForName}(name)
+\code{\link{atkStateTypeRegister}(name)}\cr
+\code{\link{atkStateTypeGetName}(type)}\cr
+\code{\link{atkStateTypeForName}(name)}\cr
 }
 \section{Detailed Description}{An AtkState describes a component's particular state. The actual state of
 an component is described by its AtkStateSet, which is a set of AtkStates.}
-\section{Enums and Flags}{\describe{\item{\code{enum AtkStateType}}{
+\section{Enums and Flags}{\describe{\item{\code{AtkStateType}}{
 The possible types of states of an object  
 
 \describe{

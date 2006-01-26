@@ -5,23 +5,23 @@
 \name{GtkDialog}
 \title{GtkDialog}
 \description{Create popup windows}
-\usage{gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkDialogNew}(show = TRUE)
-\link{gtkDialogNewWithButtons}(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
-\link{gtkDialogRun}(object)
-\link{gtkDialogResponse}(object, response.id)
-\link{gtkDialogAddButton}(object, button.text, response.id)
-\link{gtkDialogAddButtons}(object, ...)
-\link{gtkDialogAddActionWidget}(object, child, response.id)
-\link{gtkDialogGetHasSeparator}(object)
-\link{gtkDialogSetDefaultResponse}(object, response.id)
-\link{gtkDialogSetHasSeparator}(object, setting)
-\link{gtkDialogSetResponseSensitive}(object, response.id, setting)
-\link{gtkDialogGetResponseForWidget}(object, widget)
-\link{gtkAlternativeDialogButtonOrder}(object)
-\link{gtkDialogSetAlternativeButtonOrder}(object, ...)
-\link{gtkDialogSetAlternativeButtonOrderFromArray}(object, new.order)
+\code{\link{gtkDialogNew}(show = TRUE)}\cr
+\code{\link{gtkDialogNewWithButtons}(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}\cr
+\code{\link{gtkDialogRun}(object)}\cr
+\code{\link{gtkDialogResponse}(object, response.id)}\cr
+\code{\link{gtkDialogAddButton}(object, button.text, response.id)}\cr
+\code{\link{gtkDialogAddButtons}(object, ...)}\cr
+\code{\link{gtkDialogAddActionWidget}(object, child, response.id)}\cr
+\code{\link{gtkDialogGetHasSeparator}(object)}\cr
+\code{\link{gtkDialogSetDefaultResponse}(object, response.id)}\cr
+\code{\link{gtkDialogSetHasSeparator}(object, setting)}\cr
+\code{\link{gtkDialogSetResponseSensitive}(object, response.id, setting)}\cr
+\code{\link{gtkDialogGetResponseForWidget}(object, widget)}\cr
+\code{\link{gtkAlternativeDialogButtonOrder}(object)}\cr
+\code{\link{gtkDialogSetAlternativeButtonOrder}(object, ...)}\cr
+\code{\link{gtkDialogSetAlternativeButtonOrderFromArray}(object, new.order)}\cr
+\code{gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -117,7 +117,7 @@ as any other \code{\link{GtkHButtonBox}}.
 }}}
 \section{Convenient Construction}{\code{gtkDialog} is the result of collapsing the constructors of \code{GtkDialog} (\code{\link{gtkDialogNew}}, \code{\link{gtkDialogNewWithButtons}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkDialogFlags}}{
+\item{\code{GtkDialogFlags}}{
 Flags used to influence dialog construction.
 
 \describe{
@@ -130,7 +130,7 @@ Flags used to influence dialog construction.
 }
 
 }
-\item{\code{enum GtkResponseType}}{
+\item{\code{GtkResponseType}}{
 Predefined values for use as response ids in \code{\link{gtkDialogAddButton}}.
 All predefined values are negative, GTK+ leaves positive values for
 application-defined response ids. 

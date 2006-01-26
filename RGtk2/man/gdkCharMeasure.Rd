@@ -6,11 +6,7 @@ Determines the distance from the origin to the rightmost
 portion of a character when drawn. This is not the
 correct value for determining the origin of the next
 portion when drawing text in multiple pieces.
-\strong{WARNING: \code{gdk_char_measure} is deprecated and should not be used in newly-written code.  
-Determines the distance from the origin to the rightmost
-portion of a character when drawn. This is not the
-correct value for determining the origin of the next
-portion when drawing text in multiple pieces.  }
+\strong{WARNING: \code{gdk_char_measure} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkCharMeasure(object, character)}
 \arguments{

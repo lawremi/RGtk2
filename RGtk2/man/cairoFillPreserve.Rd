@@ -6,7 +6,7 @@ current fill rule, (each sub-path is implicitly closed before being
 filled). Unlike \code{\link{cairoFill}}, cairo_fill_preserve preserves the
 path within the cairo context.}
 \usage{cairoFillPreserve(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{See \code{\link{cairoSetFillRule}} and \code{\link{cairoFill}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

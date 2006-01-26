@@ -5,7 +5,7 @@
 this call the current point will be (\code{x}, \code{y}).}
 \usage{cairoMoveTo(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{x}}{[numeric]  the X coordinate of the new position}
 \item{\code{y}}{[numeric]  the Y coordinate of the new position}
 }

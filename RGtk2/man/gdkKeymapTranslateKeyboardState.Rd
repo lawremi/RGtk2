@@ -31,7 +31,7 @@ all_accels_mask <- GdkModifierType["control-mask"] |
 state <- gdkKeymapTranslateKeyboardState(keymap, event[["hardware_keycode"]],
                                      event[["state"]], event[["group"]])
 if (state$keyval == .gdkPlus &&
-  flag(event[["state"]]) & !flag(state$consumed) & 
+  as.flag(event[["state"]]) & !as.flag(state$consumed) & 
   all_accels_mask == GdkModifierType["control-mask"])
 	print("Control was pressed")
 }  
@@ -43,8 +43,8 @@ modifiers, by doing:
   \preformatted{
 # XXX Don't do this XXX
 if (state$keyval == accel_keyval &&
- (flag(event[["state"]]) & !flag(state$consumed) & all_accel_mask) == 
-  accel_mods & !flag(state$consumed))
+ (as.flag(event[["state"]]) & !as.flag(state$consumed) & all_accel_mask) == 
+  accel_mods & !as.flag(state$consumed))
  	print("Accellerator was pressed")
 }  
   

@@ -4,13 +4,13 @@
 \description{The ATK interface provided by UI components which the user can
 activate/interact with,}
 \section{Methods and Functions}{
-\link{atkActionDoAction}(object, i)
-\link{atkActionGetNActions}(object)
-\link{atkActionGetDescription}(object, i)
-\link{atkActionGetName}(object, i)
-\link{atkActionGetLocalizedName}(object, i)
-\link{atkActionGetKeybinding}(object, i)
-\link{atkActionSetDescription}(object, i, desc)
+\code{\link{atkActionDoAction}(object, i)}\cr
+\code{\link{atkActionGetNActions}(object)}\cr
+\code{\link{atkActionGetDescription}(object, i)}\cr
+\code{\link{atkActionGetName}(object, i)}\cr
+\code{\link{atkActionGetLocalizedName}(object, i)}\cr
+\code{\link{atkActionGetKeybinding}(object, i)}\cr
+\code{\link{atkActionSetDescription}(object, i, desc)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkAction}}

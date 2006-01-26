@@ -5,9 +5,7 @@
 Retrieves the current width and height of all child widgets in a button box.
 \code{min.width} and \code{min.height} are filled with those values, respectively.
 \strong{WARNING: \code{gtk_button_box_get_child_size} is deprecated and should not be used in newly-written code. Use the style properties
-\code{"child-min-width/-height"} instead.  
-Retrieves the current width and height of all child widgets in a button box.
-\code{min.width} and \code{min.height} are filled with those values, respectively.}
+\code{"child-min-width/-height"} instead.}
 }
 \usage{gtkButtonBoxGetChildSize(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkButtonBox}}] a \code{\link{GtkButtonBox}}.}}

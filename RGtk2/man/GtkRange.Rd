@@ -3,16 +3,17 @@
 \title{GtkRange}
 \description{Base class for widgets which visualize an adjustment}
 \section{Methods and Functions}{
-\link{gtkRangeGetAdjustment}(object)
-\link{gtkRangeSetUpdatePolicy}(object, policy)
-\link{gtkRangeSetAdjustment}(object, adjustment)
-\link{gtkRangeGetInverted}(object)
-\link{gtkRangeSetInverted}(object, setting)
-\link{gtkRangeGetUpdatePolicy}(object)
-\link{gtkRangeGetValue}(object)
-\link{gtkRangeSetIncrements}(object, step, page)
-\link{gtkRangeSetRange}(object, min, max)
-\link{gtkRangeSetValue}(object, value)
+\code{\link{gtkRangeGetAdjustment}(object)}\cr
+\code{\link{gtkRangeSetUpdatePolicy}(object, policy)}\cr
+\code{\link{gtkRangeSetAdjustment}(object, adjustment)}\cr
+\code{\link{gtkRangeGetInverted}(object)}\cr
+\code{\link{gtkRangeSetInverted}(object, setting)}\cr
+\code{\link{gtkRangeGetUpdatePolicy}(object)}\cr
+\code{\link{gtkRangeGetValue}(object)}\cr
+\code{\link{gtkRangeSetIncrements}(object, step, page)}\cr
+\code{\link{gtkRangeSetRange}(object, min, max)}\cr
+\code{\link{gtkRangeSetValue}(object, value)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

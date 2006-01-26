@@ -5,62 +5,62 @@
 \name{GtkStyle}
 \title{Styles}
 \description{Functions for drawing widget parts}
-\usage{gtkStyle()}
 \section{Methods and Functions}{
-\link{gtkStyleNew}()
-\link{gtkStyleCopy}(object)
-\link{gtkStyleAttach}(object, window)
-\link{gtkStyleDetach}(object)
-\link{gtkStyleSetBackground}(object, window, state.type)
-\link{gtkStyleApplyDefaultBackground}(object, window, set.bg, state.type, area = NULL, x, y, width, height)
-\link{gtkStyleLookupIconSet}(object, stock.id)
-\link{gtkStyleRenderIcon}(object, source, direction, state, size, widget = NULL, detail = NULL)
-\link{gtkStyleGetFont}(object)
-\link{gtkStyleSetFont}(object, font)
-\link{gtkDrawHline}(object, window, state.type, x1, x2, y)
-\link{gtkDrawVline}(object, window, state.type, y1, y2, x)
-\link{gtkDrawShadow}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawPolygon}(object, window, state.type, shadow.type, points, fill)
-\link{gtkDrawArrow}(object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)
-\link{gtkDrawDiamond}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawString}(object, window, state.type, x, y, string)
-\link{gtkDrawBox}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawBoxGap}(object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)
-\link{gtkDrawCheck}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawExtension}(object, window, state.type, shadow.type, x, y, width, height, gap.side)
-\link{gtkDrawFlatBox}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawFocus}(object, window, x, y, width, height)
-\link{gtkDrawHandle}(object, window, state.type, shadow.type, x, y, width, height, orientation)
-\link{gtkDrawOption}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawShadowGap}(object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)
-\link{gtkDrawSlider}(object, window, state.type, shadow.type, x, y, width, height, orientation)
-\link{gtkDrawTab}(object, window, state.type, shadow.type, x, y, width, height)
-\link{gtkDrawExpander}(object, window, state.type, x, y, is.open)
-\link{gtkDrawLayout}(object, window, state.type, use.text, x, y, layout)
-\link{gtkDrawResizeGrip}(object, window, state.type, edge, x, y, width, height)
-\link{gtkPaintArrow}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, arrow.type, fill, x, y, width, height)
-\link{gtkPaintBox}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintBoxGap}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)
-\link{gtkPaintCheck}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintDiamond}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintExtension}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side)
-\link{gtkPaintFlatBox}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintFocus}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintHandle}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)
-\link{gtkPaintHline}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x1, x2, y)
-\link{gtkPaintOption}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintPolygon}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, points, fill)
-\link{gtkPaintShadow}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintShadowGap}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)
-\link{gtkPaintSlider}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)
-\link{gtkPaintString}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)
-\link{gtkPaintTab}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)
-\link{gtkPaintVline}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, y1, y2, x)
-\link{gtkPaintExpander}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, expander.style)
-\link{gtkPaintLayout}(object, window, state.type, use.text, area = NULL, widget = NULL, detail = NULL, x, y, layout)
-\link{gtkPaintResizeGrip}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, edge, x, y, width, height)
-\link{gtkDrawInsertionCursor}(widget, drawable, area = NULL, location, is.primary, direction, draw.arrow)
-\link{gtkBorderCopy}(object)
+\code{\link{gtkStyleNew}()}\cr
+\code{\link{gtkStyleCopy}(object)}\cr
+\code{\link{gtkStyleAttach}(object, window)}\cr
+\code{\link{gtkStyleDetach}(object)}\cr
+\code{\link{gtkStyleSetBackground}(object, window, state.type)}\cr
+\code{\link{gtkStyleApplyDefaultBackground}(object, window, set.bg, state.type, area = NULL, x, y, width, height)}\cr
+\code{\link{gtkStyleLookupIconSet}(object, stock.id)}\cr
+\code{\link{gtkStyleRenderIcon}(object, source, direction, state, size, widget = NULL, detail = NULL)}\cr
+\code{\link{gtkStyleGetFont}(object)}\cr
+\code{\link{gtkStyleSetFont}(object, font)}\cr
+\code{\link{gtkDrawHline}(object, window, state.type, x1, x2, y)}\cr
+\code{\link{gtkDrawVline}(object, window, state.type, y1, y2, x)}\cr
+\code{\link{gtkDrawShadow}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawPolygon}(object, window, state.type, shadow.type, points, fill)}\cr
+\code{\link{gtkDrawArrow}(object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)}\cr
+\code{\link{gtkDrawDiamond}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawString}(object, window, state.type, x, y, string)}\cr
+\code{\link{gtkDrawBox}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawBoxGap}(object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)}\cr
+\code{\link{gtkDrawCheck}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawExtension}(object, window, state.type, shadow.type, x, y, width, height, gap.side)}\cr
+\code{\link{gtkDrawFlatBox}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawFocus}(object, window, x, y, width, height)}\cr
+\code{\link{gtkDrawHandle}(object, window, state.type, shadow.type, x, y, width, height, orientation)}\cr
+\code{\link{gtkDrawOption}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawShadowGap}(object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)}\cr
+\code{\link{gtkDrawSlider}(object, window, state.type, shadow.type, x, y, width, height, orientation)}\cr
+\code{\link{gtkDrawTab}(object, window, state.type, shadow.type, x, y, width, height)}\cr
+\code{\link{gtkDrawExpander}(object, window, state.type, x, y, is.open)}\cr
+\code{\link{gtkDrawLayout}(object, window, state.type, use.text, x, y, layout)}\cr
+\code{\link{gtkDrawResizeGrip}(object, window, state.type, edge, x, y, width, height)}\cr
+\code{\link{gtkPaintArrow}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, arrow.type, fill, x, y, width, height)}\cr
+\code{\link{gtkPaintBox}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintBoxGap}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)}\cr
+\code{\link{gtkPaintCheck}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintDiamond}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintExtension}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side)}\cr
+\code{\link{gtkPaintFlatBox}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintFocus}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintHandle}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)}\cr
+\code{\link{gtkPaintHline}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x1, x2, y)}\cr
+\code{\link{gtkPaintOption}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintPolygon}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, points, fill)}\cr
+\code{\link{gtkPaintShadow}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintShadowGap}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, gap.side, gap.x, gap.width)}\cr
+\code{\link{gtkPaintSlider}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height, orientation)}\cr
+\code{\link{gtkPaintString}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)}\cr
+\code{\link{gtkPaintTab}(object, window, state.type, shadow.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}\cr
+\code{\link{gtkPaintVline}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, y1, y2, x)}\cr
+\code{\link{gtkPaintExpander}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, expander.style)}\cr
+\code{\link{gtkPaintLayout}(object, window, state.type, use.text, area = NULL, widget = NULL, detail = NULL, x, y, layout)}\cr
+\code{\link{gtkPaintResizeGrip}(object, window, state.type, area = NULL, widget = NULL, detail = NULL, edge, x, y, width, height)}\cr
+\code{\link{gtkDrawInsertionCursor}(widget, drawable, area = NULL, location, is.primary, direction, draw.arrow)}\cr
+\code{\link{gtkBorderCopy}(object)}\cr
+\code{gtkStyle()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkStyle}}

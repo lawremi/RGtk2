@@ -3,10 +3,10 @@
 \name{GtkDrawingArea}
 \title{GtkDrawingArea}
 \description{A widget for custom user interface elements}
-\usage{gtkDrawingArea(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkDrawingAreaNew}(show = TRUE)
-\link{gtkDrawingAreaSize}(object, width, height)
+\code{\link{gtkDrawingAreaNew}(show = TRUE)}\cr
+\code{\link{gtkDrawingAreaSize}(object, width, height)}\cr
+\code{gtkDrawingArea(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

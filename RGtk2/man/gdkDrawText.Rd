@@ -3,8 +3,7 @@
 \title{gdkDrawText}
 \description{
 Draws a number of characters in the given font or fontset.
-\strong{WARNING: \code{gdk_draw_text} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.  
-Draws a number of characters in the given font or fontset.  }
+\strong{WARNING: \code{gdk_draw_text} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.}
 }
 \usage{gdkDrawText(object, font, gc, x, y, text, text.length)}
 \arguments{

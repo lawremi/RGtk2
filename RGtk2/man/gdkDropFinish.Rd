@@ -2,7 +2,7 @@
 \name{gdkDropFinish}
 \title{gdkDropFinish}
 \description{Ends the drag operation after a drop.}
-\usage{gdkDropFinish(object, success, time = GDK_CURRENT_TIME)}
+\usage{gdkDropFinish(object, success, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDragContext}}]  a \code{GtkDragContext}.}
 \item{\code{success}}{[logical]  \code{TRUE} if the data was successfully received.}

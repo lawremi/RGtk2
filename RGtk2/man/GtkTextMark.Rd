@@ -3,12 +3,13 @@
 \title{GtkTextMark}
 \description{A position in the buffer preserved across buffer modifications}
 \section{Methods and Functions}{
-\link{gtkTextMarkSetVisible}(object, setting)
-\link{gtkTextMarkGetVisible}(object)
-\link{gtkTextMarkGetDeleted}(object)
-\link{gtkTextMarkGetName}(object)
-\link{gtkTextMarkGetBuffer}(object)
-\link{gtkTextMarkGetLeftGravity}(object)
+\code{\link{gtkTextMarkSetVisible}(object, setting)}\cr
+\code{\link{gtkTextMarkGetVisible}(object)}\cr
+\code{\link{gtkTextMarkGetDeleted}(object)}\cr
+\code{\link{gtkTextMarkGetName}(object)}\cr
+\code{\link{gtkTextMarkGetBuffer}(object)}\cr
+\code{\link{gtkTextMarkGetLeftGravity}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTextMark}}

@@ -3,8 +3,7 @@
 \title{gtkDrawPolygon}
 \description{
 Draws a polygon on \code{window} with the given parameters.
-\strong{WARNING: \code{gtk_draw_polygon} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintPolygon}} instead.  
-Draws a polygon on \code{window} with the given parameters.  }
+\strong{WARNING: \code{gtk_draw_polygon} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintPolygon}} instead.}
 }
 \usage{gtkDrawPolygon(object, window, state.type, shadow.type, points, fill)}
 \arguments{

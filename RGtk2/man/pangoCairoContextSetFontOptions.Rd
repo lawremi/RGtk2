@@ -7,7 +7,7 @@ derives from the target surface.}
 \usage{pangoCairoContextSetFontOptions(context, options)}
 \arguments{
 \item{\code{context}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}, from \code{\link{pangoCairoFontMapCreateContext}}}
-\item{\code{options}}{[\code{\link{cairo_font_options_t}}]  a \code{\link{cairo_font_options_t}}, or \code{NULL} to unset any previously set
+\item{\code{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}}, or \code{NULL} to unset any previously set
           options. A copy is made.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

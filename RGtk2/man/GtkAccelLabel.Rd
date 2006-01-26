@@ -3,14 +3,14 @@
 \name{GtkAccelLabel}
 \title{GtkAccelLabel}
 \description{A label which displays an accelerator key on the right of the text}
-\usage{gtkAccelLabel(string = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkAccelLabelNew}(string = NULL, show = TRUE)
-\link{gtkAccelLabelSetAccelClosure}(object, accel.closure)
-\link{gtkAccelLabelGetAccelWidget}(object)
-\link{gtkAccelLabelSetAccelWidget}(object, accel.widget)
-\link{gtkAccelLabelGetAccelWidth}(object)
-\link{gtkAccelLabelRefetch}(object)
+\code{\link{gtkAccelLabelNew}(string = NULL, show = TRUE)}\cr
+\code{\link{gtkAccelLabelSetAccelClosure}(object, accel.closure)}\cr
+\code{\link{gtkAccelLabelGetAccelWidget}(object)}\cr
+\code{\link{gtkAccelLabelSetAccelWidget}(object, accel.widget)}\cr
+\code{\link{gtkAccelLabelGetAccelWidth}(object)}\cr
+\code{\link{gtkAccelLabelRefetch}(object)}\cr
+\code{gtkAccelLabel(string = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

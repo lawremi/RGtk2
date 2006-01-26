@@ -7,17 +7,17 @@
 \name{gtk-gtkfilefilter}
 \title{GtkFileFilter}
 \description{A filter for selecting a file subset}
-\usage{gtkFileFilter()}
 \section{Methods and Functions}{
-\link{gtkFileFilterNew}()
-\link{gtkFileFilterSetName}(object, name)
-\link{gtkFileFilterGetName}(object)
-\link{gtkFileFilterAddMimeType}(object, mime.type)
-\link{gtkFileFilterAddPattern}(object, pattern)
-\link{gtkFileFilterAddPixbufFormats}(object)
-\link{gtkFileFilterAddCustom}(object, needed, func, data = NULL)
-\link{gtkFileFilterGetNeeded}(object)
-\link{gtkFileFilterFilter}(object, filter.info)
+\code{\link{gtkFileFilterNew}()}\cr
+\code{\link{gtkFileFilterSetName}(object, name)}\cr
+\code{\link{gtkFileFilterGetName}(object)}\cr
+\code{\link{gtkFileFilterAddMimeType}(object, mime.type)}\cr
+\code{\link{gtkFileFilterAddPattern}(object, pattern)}\cr
+\code{\link{gtkFileFilterAddPixbufFormats}(object)}\cr
+\code{\link{gtkFileFilterAddCustom}(object, needed, func, data = NULL)}\cr
+\code{\link{gtkFileFilterGetNeeded}(object)}\cr
+\code{\link{gtkFileFilterFilter}(object, filter.info)}\cr
+\code{gtkFileFilter()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -62,7 +62,7 @@ to pass information about the tested file to
 }
 }}
 \section{Convenient Construction}{\code{gtkFileFilter} is the equivalent of \code{\link{gtkFileFilterNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkFileFilterFlags}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkFileFilterFlags}}{
 These flags indicate what parts of a \code{\link{GtkFileFilterInfo}} struct
 are filled or need to be filled. 
 

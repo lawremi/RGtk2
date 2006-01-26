@@ -4,13 +4,13 @@
 \name{GtkFixed}
 \title{GtkFixed}
 \description{A container which allows you to position widgets at fixed coordinates}
-\usage{gtkFixed(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFixedNew}(show = TRUE)
-\link{gtkFixedPut}(object, widget, x, y)
-\link{gtkFixedMove}(object, widget, x, y)
-\link{gtkFixedGetHasWindow}(object)
-\link{gtkFixedSetHasWindow}(object, has.window)
+\code{\link{gtkFixedNew}(show = TRUE)}\cr
+\code{\link{gtkFixedPut}(object, widget, x, y)}\cr
+\code{\link{gtkFixedMove}(object, widget, x, y)}\cr
+\code{\link{gtkFixedGetHasWindow}(object)}\cr
+\code{\link{gtkFixedSetHasWindow}(object, has.window)}\cr
+\code{gtkFixed(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

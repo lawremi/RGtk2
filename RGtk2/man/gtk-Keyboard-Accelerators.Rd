@@ -7,27 +7,27 @@
 \name{gtk-Keyboard-Accelerators}
 \title{Accelerator Groups}
 \description{Groups of global keyboard accelerators for an entire GtkWindow}
-\usage{gtkAccelGroup()}
 \section{Methods and Functions}{
-\link{gtkAccelGroupNew}()
-\link{gtkAccelGroupConnect}(object, accel.key, accel.mods, accel.flags, closure)
-\link{gtkAccelGroupConnectByPath}(object, accel.path, closure)
-\link{gtkAccelGroupDisconnect}(object, closure)
-\link{gtkAccelGroupDisconnectKey}(object, accel.key, accel.mods)
-\link{gtkAccelGroupQuery}(object, accel.key, accel.mods)
-\link{gtkAccelGroupActivate}(object, accel.quark, acceleratable, accel.key, accel.mods)
-\link{gtkAccelGroupLock}(object)
-\link{gtkAccelGroupUnlock}(object)
-\link{gtkAccelGroupFromAccelClosure}(closure)
-\link{gtkAccelGroupsActivate}(object, accel.key, accel.mods)
-\link{gtkAccelGroupsFromObject}(object)
-\link{gtkAccelGroupFind}(object, find.func, data = NULL)
-\link{gtkAcceleratorValid}(keyval, modifiers)
-\link{gtkAcceleratorParse}(accelerator)
-\link{gtkAcceleratorName}(accelerator.key, accelerator.mods)
-\link{gtkAcceleratorGetLabel}(accelerator.key, accelerator.mods)
-\link{gtkAcceleratorSetDefaultModMask}(default.mod.mask)
-\link{gtkAcceleratorGetDefaultModMask}()
+\code{\link{gtkAccelGroupNew}()}\cr
+\code{\link{gtkAccelGroupConnect}(object, accel.key, accel.mods, accel.flags, closure)}\cr
+\code{\link{gtkAccelGroupConnectByPath}(object, accel.path, closure)}\cr
+\code{\link{gtkAccelGroupDisconnect}(object, closure)}\cr
+\code{\link{gtkAccelGroupDisconnectKey}(object, accel.key, accel.mods)}\cr
+\code{\link{gtkAccelGroupQuery}(object, accel.key, accel.mods)}\cr
+\code{\link{gtkAccelGroupActivate}(object, accel.quark, acceleratable, accel.key, accel.mods)}\cr
+\code{\link{gtkAccelGroupLock}(object)}\cr
+\code{\link{gtkAccelGroupUnlock}(object)}\cr
+\code{\link{gtkAccelGroupFromAccelClosure}(closure)}\cr
+\code{\link{gtkAccelGroupsActivate}(object, accel.key, accel.mods)}\cr
+\code{\link{gtkAccelGroupsFromObject}(object)}\cr
+\code{\link{gtkAccelGroupFind}(object, find.func, data = NULL)}\cr
+\code{\link{gtkAcceleratorValid}(keyval, modifiers)}\cr
+\code{\link{gtkAcceleratorParse}(accelerator)}\cr
+\code{\link{gtkAcceleratorName}(accelerator.key, accelerator.mods)}\cr
+\code{\link{gtkAcceleratorGetLabel}(accelerator.key, accelerator.mods)}\cr
+\code{\link{gtkAcceleratorSetDefaultModMask}(default.mod.mask)}\cr
+\code{\link{gtkAcceleratorGetDefaultModMask}()}\cr
+\code{gtkAccelGroup()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkAccelGroup}}

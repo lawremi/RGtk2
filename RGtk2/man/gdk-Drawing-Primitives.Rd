@@ -6,40 +6,41 @@
 \title{Drawing Primitives}
 \description{Functions for drawing points, lines, arcs, and text}
 \section{Methods and Functions}{
-\link{gdkDrawableSetData}(object, key, data)
-\link{gdkDrawableGetData}(object, key)
-\link{gdkDrawableGetDisplay}(object)
-\link{gdkDrawableGetScreen}(object)
-\link{gdkDrawableGetVisual}(object)
-\link{gdkDrawableSetColormap}(object, colormap)
-\link{gdkDrawableGetColormap}(object)
-\link{gdkDrawableGetDepth}(object)
-\link{gdkDrawableGetSize}(object)
-\link{gdkDrawableGetClipRegion}(object)
-\link{gdkDrawableGetVisibleRegion}(object)
-\link{gdkDrawPoint}(object, gc, x, y)
-\link{gdkDrawPoints}(object, gc, points)
-\link{gdkDrawLine}(object, gc, x1, y1, x2, y2)
-\link{gdkDrawLines}(object, gc, points)
-\link{gdkDrawPixbuf}(object, gc = NULL, pixbuf, src.x, src.y, dest.x, dest.y, width = -1, height = -1, dither = GDK_RGB_DITHER_NORMAL, x.dither = 0, y.dither = 0)
-\link{gdkDrawSegments}(object, gc, segs)
-\link{gdkDrawRectangle}(object, gc, filled, x, y, width, height)
-\link{gdkDrawArc}(object, gc, filled, x, y, width, height, angle1, angle2)
-\link{gdkDrawPolygon}(object, gc, filled, points)
-\link{gdkDrawTrapezoids}(drawable, gc, trapezoids)
-\link{gdkDrawGlyphs}(object, gc, font, x, y, glyphs)
-\link{gdkDrawGlyphsTransformed}(drawable, gc, matrix, font, x, y, glyphs)
-\link{gdkDrawLayoutLine}(object, gc, x, y, line)
-\link{gdkDrawLayoutLineWithColors}(drawable, gc, x, y, line, foreground, background)
-\link{gdkDrawLayout}(object, gc, x, y, layout)
-\link{gdkDrawLayoutWithColors}(drawable, gc, x, y, layout, foreground, background)
-\link{gdkDrawString}(object, font, gc, x, y, string)
-\link{gdkDrawText}(object, font, gc, x, y, text, text.length)
-\link{gdkDrawTextWc}(object, font, gc, x, text)
-\link{gdkDrawDrawable}(object, gc, src, xsrc, ysrc, xdest, ydest, width, height)
-\link{gdkDrawImage}(object, gc, image, xsrc, ysrc, xdest, ydest, width, height)
-\link{gdkDrawableGetImage}(object, x, y, width, height)
-\link{gdkDrawableCopyToImage}(object, image = NULL, src.x, src.y, dest.x, dest.y, width, height)
+\code{\link{gdkDrawableSetData}(object, key, data)}\cr
+\code{\link{gdkDrawableGetData}(object, key)}\cr
+\code{\link{gdkDrawableGetDisplay}(object)}\cr
+\code{\link{gdkDrawableGetScreen}(object)}\cr
+\code{\link{gdkDrawableGetVisual}(object)}\cr
+\code{\link{gdkDrawableSetColormap}(object, colormap)}\cr
+\code{\link{gdkDrawableGetColormap}(object)}\cr
+\code{\link{gdkDrawableGetDepth}(object)}\cr
+\code{\link{gdkDrawableGetSize}(object)}\cr
+\code{\link{gdkDrawableGetClipRegion}(object)}\cr
+\code{\link{gdkDrawableGetVisibleRegion}(object)}\cr
+\code{\link{gdkDrawPoint}(object, gc, x, y)}\cr
+\code{\link{gdkDrawPoints}(object, gc, points)}\cr
+\code{\link{gdkDrawLine}(object, gc, x1, y1, x2, y2)}\cr
+\code{\link{gdkDrawLines}(object, gc, points)}\cr
+\code{\link{gdkDrawPixbuf}(object, gc = NULL, pixbuf, src.x, src.y, dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}\cr
+\code{\link{gdkDrawSegments}(object, gc, segs)}\cr
+\code{\link{gdkDrawRectangle}(object, gc, filled, x, y, width, height)}\cr
+\code{\link{gdkDrawArc}(object, gc, filled, x, y, width, height, angle1, angle2)}\cr
+\code{\link{gdkDrawPolygon}(object, gc, filled, points)}\cr
+\code{\link{gdkDrawTrapezoids}(drawable, gc, trapezoids)}\cr
+\code{\link{gdkDrawGlyphs}(object, gc, font, x, y, glyphs)}\cr
+\code{\link{gdkDrawGlyphsTransformed}(drawable, gc, matrix, font, x, y, glyphs)}\cr
+\code{\link{gdkDrawLayoutLine}(object, gc, x, y, line)}\cr
+\code{\link{gdkDrawLayoutLineWithColors}(drawable, gc, x, y, line, foreground, background)}\cr
+\code{\link{gdkDrawLayout}(object, gc, x, y, layout)}\cr
+\code{\link{gdkDrawLayoutWithColors}(drawable, gc, x, y, layout, foreground, background)}\cr
+\code{\link{gdkDrawString}(object, font, gc, x, y, string)}\cr
+\code{\link{gdkDrawText}(object, font, gc, x, y, text, text.length)}\cr
+\code{\link{gdkDrawTextWc}(object, font, gc, x, text)}\cr
+\code{\link{gdkDrawDrawable}(object, gc, src, xsrc, ysrc, xdest, ydest, width, height)}\cr
+\code{\link{gdkDrawImage}(object, gc, image, xsrc, ysrc, xdest, ydest, width, height)}\cr
+\code{\link{gdkDrawableGetImage}(object, x, y, width, height)}\cr
+\code{\link{gdkDrawableCopyToImage}(object, image = NULL, src.x, src.y, dest.x, dest.y, width, height)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkDrawable

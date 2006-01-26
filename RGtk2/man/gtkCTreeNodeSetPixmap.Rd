@@ -3,8 +3,7 @@
 \title{gtkCTreeNodeSetPixmap}
 \description{
 FIXME
-\strong{WARNING: \code{gtk_ctree_node_set_pixmap} is deprecated and should not be used in newly-written code.  
-FIXME}
+\strong{WARNING: \code{gtk_ctree_node_set_pixmap} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNodeSetPixmap(object, node, column, pixmap, mask = NULL)}
 \arguments{

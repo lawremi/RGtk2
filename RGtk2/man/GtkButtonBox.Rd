@@ -3,14 +3,15 @@
 \title{GtkButtonBox}
 \description{Base class for    and }
 \section{Methods and Functions}{
-\link{gtkButtonBoxGetLayout}(object)
-\link{gtkButtonBoxGetChildSize}(object)
-\link{gtkButtonBoxGetChildIpadding}(object)
-\link{gtkButtonBoxGetChildSecondary}(object, child)
-\link{gtkButtonBoxSetLayout}(object, layout.style)
-\link{gtkButtonBoxSetChildSize}(object, min.width, min.height)
-\link{gtkButtonBoxSetChildIpadding}(object, ipad.x, ipad.y)
-\link{gtkButtonBoxSetChildSecondary}(object, child, is.secondary)
+\code{\link{gtkButtonBoxGetLayout}(object)}\cr
+\code{\link{gtkButtonBoxGetChildSize}(object)}\cr
+\code{\link{gtkButtonBoxGetChildIpadding}(object)}\cr
+\code{\link{gtkButtonBoxGetChildSecondary}(object, child)}\cr
+\code{\link{gtkButtonBoxSetLayout}(object, layout.style)}\cr
+\code{\link{gtkButtonBoxSetChildSize}(object, min.width, min.height)}\cr
+\code{\link{gtkButtonBoxSetChildIpadding}(object, ipad.x, ipad.y)}\cr
+\code{\link{gtkButtonBoxSetChildSecondary}(object, child, is.secondary)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

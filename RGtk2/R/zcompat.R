@@ -157,7 +157,7 @@ function(title="My RGtk2 Window", show = TRUE)
 	window
 }
 gtkAdd <-
-function(parent, ..., .flush = TRUE)
+function(parent, ...)
 {
   widgets <- list(...)
   if(length(widgets) == 0)
@@ -169,13 +169,13 @@ function(parent, ..., .flush = TRUE)
 
   sapply(widgets, function(widget) parent$add(widget))
 }
-gtkShow <- function(..., all=TRUE, .flush = TRUE)
+gtkShow <- function(..., all=TRUE)
 {
 	widgets <- list(...)
 	func <- gtkWidgetShow
 	if (all)
 		func <- gtkWidgetShowAll
-	sapply(widgets, func, .flush = .flush)
+	sapply(widgets, func)
 }
 gtkAddCallback <- gtkObjectAddCallback <- gSignalConnect
 gtkObjectRemoveCallback <- gtkObjectDisconnectCallback <- gSignalHandlerDisconnect

@@ -8,11 +8,12 @@ is not and may contain embedded  nuls.
 If \code{error} is set, \code{FALSE} will be returned and \code{string} will be set to
 \code{NULL}. Possible errors include those in the \code{GDK_PIXBUF_ERROR}
 domain.}
-\usage{gdkPixbufSaveToBuffer(object, type, ...)}
+\usage{gdkPixbufSaveToBuffer(object, type, ..., .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}.}
 \item{\code{type}}{[char]  name of file format.}
 \item{\code{...}}{ list of key-value save options}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{See \code{\link{gdkPixbufSave}} for more details.  
 

@@ -102,20 +102,6 @@ S_GtkBinGetChild (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
-S_GtkBoxGetChildren (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkBox *obj;
-   GList* val;
-
-   obj = GTK_BOX(getPtrValue(s_obj)) ;
-   val = obj->children;
-   _result = asRGList(val, "GtkBoxChild");
-
-   return(_result);
-} 
-USER_OBJECT_
 S_GtkBoxGetSpacing (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result;
@@ -1861,7 +1847,7 @@ S_GtkSelectionDataGetData (USER_OBJECT_ s_obj)
 
    obj = (GtkSelectionData*)getPtrValue(s_obj) ;
    val = obj->data;
-   _result = asRIntegerArray(val);
+   _result = asRRawArray(val);
 
    return(_result);
 } 
@@ -2701,7 +2687,7 @@ S_GtkPreviewInfoGetLookup (USER_OBJECT_ s_obj)
 
    obj = (GtkPreviewInfo*)getPtrValue(s_obj) ;
    val = obj->lookup;
-   _result = asRIntegerArray(val);
+   _result = asRRawArray(val);
 
    return(_result);
 } 

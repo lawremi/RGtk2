@@ -17,17 +17,17 @@ gtkArrow <- gtkArrowNew
 gtkAspectFrame <- gtkAspectFrameNew
 
 gtkButton <-
-function(label, stock.id, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, stock.id, show = TRUE)
 {
 	if (!missing(stock.id)) {
-		gtkButtonNewFromStock(stock.id, show, .flush, .depwarn)
+		gtkButtonNewFromStock(stock.id, show)
 	}
 	else {
 		if (!missing(label)) {
-			gtkButtonNewWithLabel(label, show, .flush, .depwarn)
+			gtkButtonNewWithLabel(label, show)
 		}
 		else {
-			gtkButtonNew(show, .flush, .depwarn)
+			gtkButtonNew(show)
 		}
 	}
 }
@@ -47,48 +47,48 @@ gtkCellRendererToggle <- gtkCellRendererToggleNew
 gtkCellView <- gtkCellViewNew
 
 gtkCheckButton <-
-function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkCheckButtonNewWithLabel(label, show, .flush, .depwarn)
+		gtkCheckButtonNewWithLabel(label, show)
 	}
 	else {
-		gtkCheckButtonNew(show, .flush, .depwarn)
+		gtkCheckButtonNew(show)
 	}
 }
 
 gtkCheckMenuItem <-
-function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkCheckMenuItemNewWithLabel(label, show, .flush, .depwarn)
+		gtkCheckMenuItemNewWithLabel(label, show)
 	}
 	else {
-		gtkCheckMenuItemNew(show, .flush, .depwarn)
+		gtkCheckMenuItemNew(show)
 	}
 }
 
 gtkClipboard <- gtkClipboardGetForDisplay
 
 gtkCList <-
-function(columns = 1, titles, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(columns = 1, titles, show = TRUE)
 {
 	if (!missing(titles)) {
-		gtkCListNewWithTitles(columns, titles, show, .flush, .depwarn)
+		gtkCListNewWithTitles(columns, titles, show)
 	}
 	else {
-		gtkCListNew(columns, show, .flush, .depwarn)
+		gtkCListNew(columns, show)
 	}
 }
 
 gtkColorButton <-
-function(color, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(color, show = TRUE)
 {
 	if (!missing(color)) {
-		gtkColorButtonNewWithColor(color, show, .flush, .depwarn)
+		gtkColorButtonNewWithColor(color, show)
 	}
 	else {
-		gtkColorButtonNew(show, .flush, .depwarn)
+		gtkColorButtonNew(show)
 	}
 }
 
@@ -99,52 +99,52 @@ gtkColorSelectionDialog <- gtkColorSelectionDialogNew
 gtkCombo <- gtkComboNew
 
 gtkComboBox <-
-function(model, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(model, show = TRUE)
 {
 	if (!missing(model)) {
-		gtkComboBoxNewWithModel(model, show, .flush, .depwarn)
+		gtkComboBoxNewWithModel(model, show)
 	}
 	else {
-		gtkComboBoxNew(show, .flush, .depwarn)
+		gtkComboBoxNew(show)
 	}
 }
 
 gtkComboBoxEntry <- gtkComboBoxEntryNew
 
 gtkCTree <-
-function(columns = 1, tree.column = 0, titles, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(columns = 1, tree.column = 0, titles, show = TRUE)
 {
 	if (!missing(titles)) {
-		gtkCTreeNewWithTitles(columns, tree.column, titles, show, .flush, .depwarn)
+		gtkCTreeNewWithTitles(columns, tree.column, titles, show)
 	}
 	else {
-		gtkCTreeNew(columns, tree.column, show, .flush, .depwarn)
+		gtkCTreeNew(columns, tree.column, show)
 	}
 }
 
 gtkCurve <- gtkCurveNew
 
 gtkDialog <-
-function(title = NULL, parent = NULL, flags = 0, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
 {
 	if (!missing(title)) {
-		gtkDialogNewWithButtons(title, parent, flags, ..., show = show, .flush = .flush, .depwarn = .depwarn)
+		gtkDialogNewWithButtons(title, parent, flags, ..., show = show)
 	}
 	else {
-		gtkDialogNew(show, .flush, .depwarn)
+		gtkDialogNew(show)
 	}
 }
 
 gtkDrawingArea <- gtkDrawingAreaNew
 
 gtkEntry <-
-function(max = 0, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(max = 0, show = TRUE)
 {
 	if (!missing(max)) {
-		gtkEntryNewWithMaxLength(max, show, .flush, .depwarn)
+		gtkEntryNewWithMaxLength(max, show)
 	}
 	else {
-		gtkEntryNew(show, .flush, .depwarn)
+		gtkEntryNew(show)
 	}
 }
 
@@ -155,35 +155,35 @@ gtkEventBox <- gtkEventBoxNew
 gtkExpander <- gtkExpanderNew
 
 gtkFileChooserButton <-
-function(title, action, backend, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(title, action, backend, show = TRUE)
 {
 	if (!missing(backend)) {
-		gtkFileChooserButtonNewWithBackend(title, action, backend, show, .flush, .depwarn)
+		gtkFileChooserButtonNewWithBackend(title, action, backend, show)
 	}
 	else {
-		gtkFileChooserButtonNew(title, action, show, .flush, .depwarn)
+		gtkFileChooserButtonNew(title, action, show)
 	}
 }
 
 gtkFileChooserDialog <-
-function(title = NULL, parent = NULL, action, ..., backend, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(title = NULL, parent = NULL, action, ..., backend, show = TRUE)
 {
 	if (!missing(backend)) {
-		gtkFileChooserDialogNewWithBackend(title, parent, action, backend, ..., show = show, .flush = .flush, .depwarn = .depwarn)
+		gtkFileChooserDialogNewWithBackend(title, parent, action, backend, ..., show = show)
 	}
 	else {
-		gtkFileChooserDialogNew(title, parent, action, ..., show = show, .flush = .flush, .depwarn = .depwarn)
+		gtkFileChooserDialogNew(title, parent, action, ..., show = show)
 	}
 }
 
 gtkFileChooserWidget <-
-function(action, backend, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(action, backend, show = TRUE)
 {
 	if (!missing(backend)) {
-		gtkFileChooserWidgetNewWithBackend(action, backend, show, .flush, .depwarn)
+		gtkFileChooserWidgetNewWithBackend(action, backend, show)
 	}
 	else {
-		gtkFileChooserWidgetNew(action, show, .flush, .depwarn)
+		gtkFileChooserWidgetNew(action, show)
 	}
 }
 
@@ -214,13 +214,13 @@ gtkHPaned <- gtkHPanedNew
 gtkHRuler <- gtkHRulerNew
 
 gtkHScale <-
-function(adjustment = NULL, min, max, step, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(adjustment = NULL, min, max, step, show = TRUE)
 {
 	if (!missing(adjustment)) {
-		gtkHScaleNew(adjustment, show, .flush, .depwarn)
+		gtkHScaleNew(adjustment, show)
 	}
 	else {
-		gtkHScaleNewWithRange(min, max, step, show, .flush, .depwarn)
+		gtkHScaleNewWithRange(min, max, step, show)
 	}
 }
 
@@ -233,36 +233,36 @@ gtkIconFactory <- gtkIconFactoryNew
 gtkIconTheme <- gtkIconThemeNew
 
 gtkIconView <-
-function(model = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(model = NULL, show = TRUE)
 {
 	if (!missing(model)) {
-		gtkIconViewNewWithModel(model, show, .flush, .depwarn)
+		gtkIconViewNewWithModel(model, show)
 	}
 	else {
-		gtkIconViewNew(show, .flush, .depwarn)
+		gtkIconViewNew(show)
 	}
 }
 
 gtkImage <-
-function(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)
 {
 	if (!missing(pixmap)) {
-		gtkImageNewFromPixmap(pixmap, mask, show, .flush, .depwarn)
+		gtkImageNewFromPixmap(pixmap, mask, show)
 	}
 	else {
 		if (!missing(mask)) {
-			gtkImageNewFromImage(image, mask, show, .flush, .depwarn)
+			gtkImageNewFromImage(image, mask, show)
 		}
 		else {
 			if (!missing(filename)) {
-				gtkImageNewFromFile(filename, show, .flush, .depwarn)
+				gtkImageNewFromFile(filename, show)
 			}
 			else {
 				if (!missing(pixbuf)) {
-					gtkImageNewFromPixbuf(pixbuf, show, .flush, .depwarn)
+					gtkImageNewFromPixbuf(pixbuf, show)
 				}
 				else {
-					gtkImageNew(show, .flush, .depwarn)
+					gtkImageNew(show)
 				}
 			}
 		}
@@ -270,17 +270,17 @@ function(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show
 }
 
 gtkImageMenuItem <-
-function(label, stock.id, accel.group, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, stock.id, accel.group, show = TRUE)
 {
 	if (!missing(stock.id)) {
-		gtkImageMenuItemNewFromStock(stock.id, accel.group, show, .flush, .depwarn)
+		gtkImageMenuItemNewFromStock(stock.id, accel.group, show)
 	}
 	else {
 		if (!missing(label)) {
-			gtkImageMenuItemNewWithLabel(label, show, .flush, .depwarn)
+			gtkImageMenuItemNewWithLabel(label, show)
 		}
 		else {
-			gtkImageMenuItemNew(show, .flush, .depwarn)
+			gtkImageMenuItemNew(show)
 		}
 	}
 }
@@ -292,22 +292,22 @@ gtkIMMulticontext <- gtkIMMulticontextNew
 gtkInputDialog <- gtkInputDialogNew
 
 gtkInvisible <-
-function(screen, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(screen, show = TRUE)
 {
 	if (!missing(screen)) {
-		gtkInvisibleNewForScreen(screen, show, .flush, .depwarn)
+		gtkInvisibleNewForScreen(screen, show)
 	}
 	else {
-		gtkInvisibleNew(show, .flush, .depwarn)
+		gtkInvisibleNew(show)
 	}
 }
 
 gtkItemFactory <- gtkItemFactoryNew
 
 gtkLabel <-
-function(str = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(str = NULL, show = TRUE)
 {
-	gtkLabelNew(str, show, .flush, .depwarn)
+	gtkLabelNew(str, show)
 }
 
 gtkLayout <- gtkLayoutNew
@@ -315,24 +315,24 @@ gtkLayout <- gtkLayoutNew
 gtkList <- gtkListNew
 
 gtkListItem <-
-function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkListItemNewWithLabel(label, show, .flush, .depwarn)
+		gtkListItemNewWithLabel(label, show)
 	}
 	else {
-		gtkListItemNew(show, .flush, .depwarn)
+		gtkListItemNew(show)
 	}
 }
 
 gtkListStore <-
-function(..., value, .flush = TRUE, .depwarn = TRUE)
+function(..., value)
 {
 	if (!missing(...)) {
-		gtkListStoreNew(..., .flush = .flush, .depwarn = .depwarn)
+		gtkListStoreNew(...)
 	}
 	else {
-		gtkListStoreNewv(value, .flush, .depwarn)
+		gtkListStoreNewv(value)
 	}
 }
 
@@ -341,22 +341,22 @@ gtkMenu <- gtkMenuNew
 gtkMenuBar <- gtkMenuBarNew
 
 gtkMenuItem <-
-function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkMenuItemNewWithLabel(label, show, .flush, .depwarn)
+		gtkMenuItemNewWithLabel(label, show)
 	}
 	else {
-		gtkMenuItemNew(show, .flush, .depwarn)
+		gtkMenuItemNew(show)
 	}
 }
 
 gtkMenuToolButton <- gtkMenuToolButtonNew
 
 gtkMessageDialog <-
-function(parent, flags, type, buttons, ..., show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(parent, flags, type, buttons, ..., show = TRUE)
 {
-	gtkMessageDialogNew(parent, flags, type, buttons, ..., show = show, .flush = .flush, .depwarn = .depwarn)
+	gtkMessageDialogNew(parent, flags, type, buttons, ..., show = show)
 }
 
 gtkNotebook <- gtkNotebookNew
@@ -370,48 +370,48 @@ gtkPlug <- gtkPlugNew
 gtkPreview <- gtkPreviewNew
 
 gtkProgressBar <-
-function(adjustment = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(adjustment = NULL, show = TRUE)
 {
 	if (!missing(adjustment)) {
-		gtkProgressBarNewWithAdjustment(adjustment, show, .flush, .depwarn)
+		gtkProgressBarNewWithAdjustment(adjustment, show)
 	}
 	else {
-		gtkProgressBarNew(show, .flush, .depwarn)
+		gtkProgressBarNew(show)
 	}
 }
 
 gtkRadioAction <- gtkRadioActionNew
 
 gtkRadioButton <-
-function(group, label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(group, label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkRadioButtonNewWithLabel(group, label, show, .flush, .depwarn)
+		gtkRadioButtonNewWithLabel(group, label, show)
 	}
 	else {
-		gtkRadioButtonNew(group, show, .flush, .depwarn)
+		gtkRadioButtonNew(group, show)
 	}
 }
 
 gtkRadioMenuItem <-
-function(group, label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(group, label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkRadioMenuItemNewWithLabel(group, label, show, .flush, .depwarn)
+		gtkRadioMenuItemNewWithLabel(group, label, show)
 	}
 	else {
-		gtkRadioMenuItemNew(group, show, .flush, .depwarn)
+		gtkRadioMenuItemNew(group, show)
 	}
 }
 
 gtkRadioToolButton <-
-function(group, stock.id, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(group, stock.id, show = TRUE)
 {
 	if (!missing(stock.id)) {
-		gtkRadioToolButtonNewFromStock(group, stock.id, show, .flush, .depwarn)
+		gtkRadioToolButtonNewFromStock(group, stock.id, show)
 	}
 	else {
-		gtkRadioToolButtonNew(group, show, .flush, .depwarn)
+		gtkRadioToolButtonNew(group, show)
 	}
 }
 
@@ -426,13 +426,13 @@ gtkSizeGroup <- gtkSizeGroupNew
 gtkSocket <- gtkSocketNew
 
 gtkSpinButton <-
-function(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)
 {
 	if (!missing(adjustment)) {
-		gtkSpinButtonNew(adjustment, climb.rate, digits, show, .flush, .depwarn)
+		gtkSpinButtonNew(adjustment, climb.rate, digits, show)
 	}
 	else {
-		gtkSpinButtonNewWithRange(min, max, step, show, .flush, .depwarn)
+		gtkSpinButtonNewWithRange(min, max, step, show)
 	}
 }
 
@@ -453,13 +453,13 @@ gtkTextTag <- gtkTextTagNew
 gtkTextTagTable <- gtkTextTagTableNew
 
 gtkTextView <-
-function(buffer = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(buffer = NULL, show = TRUE)
 {
 	if (!missing(buffer)) {
-		gtkTextViewNewWithBuffer(buffer, show, .flush, .depwarn)
+		gtkTextViewNewWithBuffer(buffer, show)
 	}
 	else {
-		gtkTextViewNew(show, .flush, .depwarn)
+		gtkTextViewNew(show)
 	}
 }
 
@@ -468,13 +468,13 @@ gtkTipsQuery <- gtkTipsQueryNew
 gtkToggleAction <- gtkToggleActionNew
 
 gtkToggleButton <-
-function(label, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(label, show = TRUE)
 {
 	if (!missing(label)) {
-		gtkToggleButtonNewWithLabel(label, show, .flush, .depwarn)
+		gtkToggleButtonNewWithLabel(label, show)
 	}
 	else {
-		gtkToggleButtonNew(show, .flush, .depwarn)
+		gtkToggleButtonNew(show)
 	}
 }
 
@@ -491,35 +491,35 @@ gtkTooltips <- gtkTooltipsNew
 gtkTreeModelSort <- gtkTreeModelSortNewWithModel
 
 gtkTreeStore <-
-function(..., types, .flush = TRUE, .depwarn = TRUE)
+function(..., types)
 {
 	if (!missing(...)) {
-		gtkTreeStoreNew(..., .flush = .flush, .depwarn = .depwarn)
+		gtkTreeStoreNew(...)
 	}
 	else {
-		gtkTreeStoreNewv(types, .flush, .depwarn)
+		gtkTreeStoreNewv(types)
 	}
 }
 
 gtkTreeView <-
-function(model = NULL, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(model = NULL, show = TRUE)
 {
 	if (!missing(model)) {
-		gtkTreeViewNewWithModel(model, show, .flush, .depwarn)
+		gtkTreeViewNewWithModel(model, show)
 	}
 	else {
-		gtkTreeViewNew(show, .flush, .depwarn)
+		gtkTreeViewNew(show)
 	}
 }
 
 gtkTreeViewColumn <-
-function(title, cell, ..., .flush = TRUE, .depwarn = TRUE)
+function(title, cell, ...)
 {
 	if (!missing(title)) {
-		gtkTreeViewColumnNewWithAttributes(title, cell, ..., .flush = .flush, .depwarn = .depwarn)
+		gtkTreeViewColumnNewWithAttributes(title, cell, ...)
 	}
 	else {
-		gtkTreeViewColumnNew(.flush, .depwarn)
+		gtkTreeViewColumnNew()
 	}
 }
 
@@ -536,13 +536,13 @@ gtkVPaned <- gtkVPanedNew
 gtkVRuler <- gtkVRulerNew
 
 gtkVScale <-
-function(adjustment = NULL, min, max, step, show = TRUE, .flush = TRUE, .depwarn = TRUE)
+function(adjustment = NULL, min, max, step, show = TRUE)
 {
 	if (!missing(adjustment)) {
-		gtkVScaleNew(adjustment, show, .flush, .depwarn)
+		gtkVScaleNew(adjustment, show)
 	}
 	else {
-		gtkVScaleNewWithRange(min, max, step, show, .flush, .depwarn)
+		gtkVScaleNewWithRange(min, max, step, show)
 	}
 }
 

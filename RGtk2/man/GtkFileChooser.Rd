@@ -6,55 +6,55 @@
 \title{GtkFileChooser}
 \description{File chooser interface used by GtkFileChooserWidget and GtkFileChooserDialog}
 \section{Methods and Functions}{
-\link{gtkFileChooserErrorQuark}()
-\link{gtkFileChooserSetAction}(object, action)
-\link{gtkFileChooserGetAction}(object)
-\link{gtkFileChooserSetLocalOnly}(object, local.only)
-\link{gtkFileChooserGetLocalOnly}(object)
-\link{gtkFileChooserSetSelectMultiple}(object, select.multiple)
-\link{gtkFileChooserGetSelectMultiple}(object)
-\link{gtkFileChooserSetShowHidden}(object, show.hidden)
-\link{gtkFileChooserGetShowHidden}(object)
-\link{gtkFileChooserSetDoOverwriteConfirmation}(object, do.overwrite.confirmation)
-\link{gtkFileChooserGetDoOverwriteConfirmation}(object)
-\link{gtkFileChooserSetCurrentName}(object, name)
-\link{gtkFileChooserGetFilename}(object)
-\link{gtkFileChooserSetFilename}(object, filename)
-\link{gtkFileChooserSelectFilename}(object, filename)
-\link{gtkFileChooserUnselectFilename}(object, filename)
-\link{gtkFileChooserSelectAll}(object)
-\link{gtkFileChooserUnselectAll}(object)
-\link{gtkFileChooserGetFilenames}(object)
-\link{gtkFileChooserSetCurrentFolder}(object, filename)
-\link{gtkFileChooserGetCurrentFolder}(object)
-\link{gtkFileChooserGetUri}(object)
-\link{gtkFileChooserSetUri}(object, uri)
-\link{gtkFileChooserSelectUri}(object, uri)
-\link{gtkFileChooserUnselectUri}(object, uri)
-\link{gtkFileChooserGetUris}(object)
-\link{gtkFileChooserSetCurrentFolderUri}(object, uri)
-\link{gtkFileChooserGetCurrentFolderUri}(object)
-\link{gtkFileChooserSetPreviewWidget}(object, preview.widget)
-\link{gtkFileChooserGetPreviewWidget}(object)
-\link{gtkFileChooserSetPreviewWidgetActive}(object, active)
-\link{gtkFileChooserGetPreviewWidgetActive}(object)
-\link{gtkFileChooserSetUsePreviewLabel}(object, use.label)
-\link{gtkFileChooserGetUsePreviewLabel}(object)
-\link{gtkFileChooserGetPreviewFilename}(object)
-\link{gtkFileChooserGetPreviewUri}(object)
-\link{gtkFileChooserSetExtraWidget}(object, extra.widget)
-\link{gtkFileChooserGetExtraWidget}(object)
-\link{gtkFileChooserAddFilter}(object, filter)
-\link{gtkFileChooserRemoveFilter}(object, filter)
-\link{gtkFileChooserListFilters}(object)
-\link{gtkFileChooserSetFilter}(object, filter)
-\link{gtkFileChooserGetFilter}(object)
-\link{gtkFileChooserAddShortcutFolder}(object, folder)
-\link{gtkFileChooserRemoveShortcutFolder}(object, folder)
-\link{gtkFileChooserListShortcutFolders}(object)
-\link{gtkFileChooserAddShortcutFolderUri}(object, uri)
-\link{gtkFileChooserRemoveShortcutFolderUri}(object, uri)
-\link{gtkFileChooserListShortcutFolderUris}(object)
+\code{\link{gtkFileChooserErrorQuark}()}\cr
+\code{\link{gtkFileChooserSetAction}(object, action)}\cr
+\code{\link{gtkFileChooserGetAction}(object)}\cr
+\code{\link{gtkFileChooserSetLocalOnly}(object, local.only)}\cr
+\code{\link{gtkFileChooserGetLocalOnly}(object)}\cr
+\code{\link{gtkFileChooserSetSelectMultiple}(object, select.multiple)}\cr
+\code{\link{gtkFileChooserGetSelectMultiple}(object)}\cr
+\code{\link{gtkFileChooserSetShowHidden}(object, show.hidden)}\cr
+\code{\link{gtkFileChooserGetShowHidden}(object)}\cr
+\code{\link{gtkFileChooserSetDoOverwriteConfirmation}(object, do.overwrite.confirmation)}\cr
+\code{\link{gtkFileChooserGetDoOverwriteConfirmation}(object)}\cr
+\code{\link{gtkFileChooserSetCurrentName}(object, name)}\cr
+\code{\link{gtkFileChooserGetFilename}(object)}\cr
+\code{\link{gtkFileChooserSetFilename}(object, filename)}\cr
+\code{\link{gtkFileChooserSelectFilename}(object, filename)}\cr
+\code{\link{gtkFileChooserUnselectFilename}(object, filename)}\cr
+\code{\link{gtkFileChooserSelectAll}(object)}\cr
+\code{\link{gtkFileChooserUnselectAll}(object)}\cr
+\code{\link{gtkFileChooserGetFilenames}(object)}\cr
+\code{\link{gtkFileChooserSetCurrentFolder}(object, filename)}\cr
+\code{\link{gtkFileChooserGetCurrentFolder}(object)}\cr
+\code{\link{gtkFileChooserGetUri}(object)}\cr
+\code{\link{gtkFileChooserSetUri}(object, uri)}\cr
+\code{\link{gtkFileChooserSelectUri}(object, uri)}\cr
+\code{\link{gtkFileChooserUnselectUri}(object, uri)}\cr
+\code{\link{gtkFileChooserGetUris}(object)}\cr
+\code{\link{gtkFileChooserSetCurrentFolderUri}(object, uri)}\cr
+\code{\link{gtkFileChooserGetCurrentFolderUri}(object)}\cr
+\code{\link{gtkFileChooserSetPreviewWidget}(object, preview.widget)}\cr
+\code{\link{gtkFileChooserGetPreviewWidget}(object)}\cr
+\code{\link{gtkFileChooserSetPreviewWidgetActive}(object, active)}\cr
+\code{\link{gtkFileChooserGetPreviewWidgetActive}(object)}\cr
+\code{\link{gtkFileChooserSetUsePreviewLabel}(object, use.label)}\cr
+\code{\link{gtkFileChooserGetUsePreviewLabel}(object)}\cr
+\code{\link{gtkFileChooserGetPreviewFilename}(object)}\cr
+\code{\link{gtkFileChooserGetPreviewUri}(object)}\cr
+\code{\link{gtkFileChooserSetExtraWidget}(object, extra.widget)}\cr
+\code{\link{gtkFileChooserGetExtraWidget}(object)}\cr
+\code{\link{gtkFileChooserAddFilter}(object, filter)}\cr
+\code{\link{gtkFileChooserRemoveFilter}(object, filter)}\cr
+\code{\link{gtkFileChooserListFilters}(object)}\cr
+\code{\link{gtkFileChooserSetFilter}(object, filter)}\cr
+\code{\link{gtkFileChooserGetFilter}(object)}\cr
+\code{\link{gtkFileChooserAddShortcutFolder}(object, folder, .errwarn = TRUE)}\cr
+\code{\link{gtkFileChooserRemoveShortcutFolder}(object, folder, .errwarn = TRUE)}\cr
+\code{\link{gtkFileChooserListShortcutFolders}(object)}\cr
+\code{\link{gtkFileChooserAddShortcutFolderUri}(object, uri, .errwarn = TRUE)}\cr
+\code{\link{gtkFileChooserRemoveShortcutFolderUri}(object, uri, .errwarn = TRUE)}\cr
+\code{\link{gtkFileChooserListShortcutFolderUris}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkFileChooser}}
@@ -328,7 +328,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 \section{Structures}{\describe{\item{\code{GtkFileChooser}}{\emph{undocumented
 }}}}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkFileChooserAction}}{
+\item{\code{GtkFileChooserAction}}{
       Describes whether a \code{\link{GtkFileChooser}} is being used to open
       existing files or to save to a possibly new file.
     
@@ -348,7 +348,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 }
 
 }
-\item{\code{enum GtkFileChooserConfirmation}}{
+\item{\code{GtkFileChooserConfirmation}}{
       Used as a return value of handlers for the confirm-overwrite
       signal of a \code{GtkFileChooser}.  This value
       determines whether the file chooser will present the stock
@@ -370,7 +370,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 }
 
 }
-\item{\code{enum GtkFileChooserError}}{
+\item{\code{GtkFileChooserError}}{
       These identify the various errors that can occur while calling
       \code{\link{GtkFileChooser}} functions.
     

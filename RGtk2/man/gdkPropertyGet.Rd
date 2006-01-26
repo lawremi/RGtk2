@@ -37,7 +37,7 @@ A list containing the following elements:
                 elements should be be calculated via
                 \code{actual.length}/sizeof(glong) to ensure portability to
                 64 bit systems.}
-\item{\code{data}}{[integer] location to store a pointer to the data. The retrieved
+\item{\code{data}}{[raw] location to store a pointer to the data. The retrieved
        data should be freed with \code{gFree()} when you are finished
        using it.}
 }

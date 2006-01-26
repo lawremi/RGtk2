@@ -6,25 +6,25 @@
 \title{Events}
 \description{Functions for handling events from the window system}
 \section{Methods and Functions}{
-\link{gdkEventsPending}()
-\link{gdkEventPeek}()
-\link{gdkEventGet}()
-\link{gdkEventGetGraphicsExpose}(window)
-\link{gdkEventPut}(object)
-\link{gdkEventNew}(type)
-\link{gdkEventCopy}(object)
-\link{gdkEventGetTime}(object)
-\link{gdkEventGetState}(object, state)
-\link{gdkEventGetAxis}(object, axis.use)
-\link{gdkEventGetCoords}(object)
-\link{gdkEventGetRootCoords}(object)
-\link{gdkEventHandlerSet}(func, data)
-\link{gdkAddClientMessageFilter}(message.type, func, data)
-\link{gdkGetShowEvents}()
-\link{gdkSetShowEvents}(show.events)
-\link{gdkEventSetScreen}(object, screen)
-\link{gdkEventGetScreen}(object)
-\link{gdkSettingGet}(name)
+\code{\link{gdkEventsPending}()}\cr
+\code{\link{gdkEventPeek}()}\cr
+\code{\link{gdkEventGet}()}\cr
+\code{\link{gdkEventGetGraphicsExpose}(window)}\cr
+\code{\link{gdkEventPut}(object)}\cr
+\code{\link{gdkEventNew}(type)}\cr
+\code{\link{gdkEventCopy}(object)}\cr
+\code{\link{gdkEventGetTime}(object)}\cr
+\code{\link{gdkEventGetState}(object, state)}\cr
+\code{\link{gdkEventGetAxis}(object, axis.use)}\cr
+\code{\link{gdkEventGetCoords}(object)}\cr
+\code{\link{gdkEventGetRootCoords}(object)}\cr
+\code{\link{gdkEventHandlerSet}(func, data)}\cr
+\code{\link{gdkAddClientMessageFilter}(message.type, func, data)}\cr
+\code{\link{gdkGetShowEvents}()}\cr
+\code{\link{gdkSetShowEvents}(show.events)}\cr
+\code{\link{gdkEventSetScreen}(object, screen)}\cr
+\code{\link{gdkEventGetScreen}(object)}\cr
+\code{\link{gdkSettingGet}(name)}\cr
 }
 \section{Detailed Description}{This section describes functions dealing with events from the window system.
   
@@ -33,7 +33,7 @@ In GTK+ applications the events are handled automatically in
 functions are rarely needed. Though some of the fields in the
 Event Structures are useful.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkEventType}}{
+\item{\code{GdkEventType}}{
 Specifies the type of the event.
   
 Do not confuse these events with the signals that GTK+ widgets emit.
@@ -92,7 +92,7 @@ for the possible window states}
 }
 
 }
-\item{\code{enum GdkEventMask}}{
+\item{\code{GdkEventMask}}{
 A set of bit-flags to indicate which events a window is to receive.
 Most of these masks map onto one or more of the \code{\link{GdkEventType}} event types
 above.

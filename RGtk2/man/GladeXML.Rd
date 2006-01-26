@@ -5,21 +5,21 @@
 \name{GladeXML}
 \title{GladeXML}
 \description{Allows dynamic loading of user interfaces from XML descriptions.}
-\usage{gladeXML(root = NULL, domain = NULL, fname, buffer, size = nchar(buffer))}
 \section{Methods and Functions}{
-\link{gladeXMLNew}(fname, root = NULL, domain = NULL)
-\link{gladeXMLNewFromBuffer}(buffer, size = nchar(buffer), root = NULL, domain = NULL)
-\link{gladeXMLConstruct}(object, fname, root = NULL, domain = NULL)
-\link{gladeXMLSignalConnect}(object, handlername, func)
-\link{gladeXMLSignalConnectData}(object, handlername, func, user.data)
-\link{gladeXMLSignalAutoconnect}(object)
-\link{gladeXMLGetWidget}(object, name)
-\link{gladeXMLGetWidgetPrefix}(object, name)
-\link{gladeGetWidgetName}(widget)
-\link{gladeGetWidgetTree}(widget)
-\link{gladeXMLSignalConnectFull}(object, handler.name, func, user.data)
-\link{gladeXMLSignalAutoconnectFull}(object, func, user.data)
-\link{gladeSetCustomHandler}(handler, user.data)
+\code{\link{gladeXMLNew}(fname, root = NULL, domain = NULL)}\cr
+\code{\link{gladeXMLNewFromBuffer}(buffer, size = nchar(buffer), root = NULL, domain = NULL)}\cr
+\code{\link{gladeXMLConstruct}(object, fname, root = NULL, domain = NULL)}\cr
+\code{\link{gladeXMLSignalConnect}(object, handlername, func)}\cr
+\code{\link{gladeXMLSignalConnectData}(object, handlername, func, user.data)}\cr
+\code{\link{gladeXMLSignalAutoconnect}(object)}\cr
+\code{\link{gladeXMLGetWidget}(object, name)}\cr
+\code{\link{gladeXMLGetWidgetPrefix}(object, name)}\cr
+\code{\link{gladeGetWidgetName}(widget)}\cr
+\code{\link{gladeGetWidgetTree}(widget)}\cr
+\code{\link{gladeXMLSignalConnectFull}(object, handler.name, func, user.data)}\cr
+\code{\link{gladeXMLSignalAutoconnectFull}(object, func, user.data)}\cr
+\code{\link{gladeSetCustomHandler}(handler, user.data)}\cr
+\code{gladeXML(root = NULL, domain = NULL, fname, buffer, size = nchar(buffer))}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GladeXML}}

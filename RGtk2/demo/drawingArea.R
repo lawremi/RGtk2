@@ -1,5 +1,3 @@
-require(RGtk)
-
 window <- NULL
 # Pixmap for scribble area, to store current scribbles
 pixmap <- NULL
@@ -27,7 +25,7 @@ scribble.expose.event <- function(widget, event, data)
   #
 
   gdkDrawDrawable(widget[["window"]],
-             widget[["style"]][["fgGc"]][[widget[["state"]]+1]],
+             widget[["style"]][["fgGc"]][[widget$state()+1]],
              pixmap,
              event[["area"]][["x"]], event[["area"]][["y"]],
              event[["area"]][["x"]], event[["area"]][["y"]],

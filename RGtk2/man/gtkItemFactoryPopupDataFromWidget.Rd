@@ -5,10 +5,7 @@
 Obtains the \code{popup.data} which was passed to 
 \code{\link{gtkItemFactoryPopupWithData}}. This data is available until the menu
 is popped down again.
-\strong{WARNING: \code{gtk_item_factory_popup_data_from_widget} is deprecated and should not be used in newly-written code.  
-Obtains the \code{popup.data} which was passed to 
-\code{\link{gtkItemFactoryPopupWithData}}. This data is available until the menu
-is popped down again.  }
+\strong{WARNING: \code{gtk_item_factory_popup_data_from_widget} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoryPopupDataFromWidget(widget)}
 \arguments{\item{\code{widget}}{[\code{\link{GtkWidget}}]  a widget}}

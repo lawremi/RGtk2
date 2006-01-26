@@ -3,16 +3,16 @@
 \name{AtkRelationSet}
 \title{AtkRelationSet}
 \description{A set of AtkRelations, normally the set of AtkRelations which an AtkObject has.}
-\usage{atkRelationSet()}
 \section{Methods and Functions}{
-\link{atkRelationSetNew}()
-\link{atkRelationSetContains}(object, relationship)
-\link{atkRelationSetRemove}(object, relation)
-\link{atkRelationSetAdd}(object, relation)
-\link{atkRelationSetGetNRelations}(object)
-\link{atkRelationSetGetRelation}(object, i)
-\link{atkRelationSetGetRelationByType}(object, relationship)
-\link{atkRelationSetAddRelationByType}(object, relationship, target)
+\code{\link{atkRelationSetNew}()}\cr
+\code{\link{atkRelationSetContains}(object, relationship)}\cr
+\code{\link{atkRelationSetRemove}(object, relation)}\cr
+\code{\link{atkRelationSetAdd}(object, relation)}\cr
+\code{\link{atkRelationSetGetNRelations}(object)}\cr
+\code{\link{atkRelationSetGetRelation}(object, i)}\cr
+\code{\link{atkRelationSetGetRelationByType}(object, relationship)}\cr
+\code{\link{atkRelationSetAddRelationByType}(object, relationship, target)}\cr
+\code{atkRelationSet()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRelationSet}}

@@ -5,8 +5,8 @@
 \details{
 This is a transparent type, represented by a list with the following fields:
 \describe{
-\item{tv_secs}{seconds}
-\item{tv_usecs}{microseconds}
+\item{tv\_secs}{seconds}
+\item{tv\_usecs}{microseconds}
 }
 }
 \author{Michael Lawrence}

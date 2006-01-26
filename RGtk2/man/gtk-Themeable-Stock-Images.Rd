@@ -7,46 +7,46 @@
 \name{gtk-Themeable-Stock-Images}
 \title{Themeable Stock Images}
 \description{Manipulating stock icons}
-\usage{gtkIconFactory()}
 \section{Methods and Functions}{
-\link{gtkIconSourceCopy}(object)
-\link{gtkIconFactoryAdd}(object, stock.id, icon.set)
-\link{gtkIconFactoryAddDefault}(object)
-\link{gtkIconFactoryLookup}(object, stock.id)
-\link{gtkIconFactoryLookupDefault}(stock.id)
-\link{gtkIconFactoryNew}()
-\link{gtkIconFactoryRemoveDefault}(object)
-\link{gtkIconSetAddSource}(object, source)
-\link{gtkIconSetCopy}(object)
-\link{gtkIconSetNew}()
-\link{gtkIconSetNewFromPixbuf}(pixbuf)
-\link{gtkIconSetRenderIcon}(object, style, direction, state, size, widget = NULL, detail = NULL)
-\link{gtkIconSizeLookup}(size)
-\link{gtkIconSizeLookupForSettings}(settings, size)
-\link{gtkIconSizeRegister}(name, width, height)
-\link{gtkIconSizeRegisterAlias}(alias, target)
-\link{gtkIconSizeFromName}(name)
-\link{gtkIconSizeGetName}(size)
-\link{gtkIconSetGetSizes}(object)
-\link{gtkIconSourceGetDirection}(object)
-\link{gtkIconSourceGetDirectionWildcarded}(object)
-\link{gtkIconSourceGetFilename}(object)
-\link{gtkIconSourceGetPixbuf}(object)
-\link{gtkIconSourceGetIconName}(object)
-\link{gtkIconSourceGetSize}(object)
-\link{gtkIconSourceGetSizeWildcarded}(object)
-\link{gtkIconSourceGetState}(object)
-\link{gtkIconSourceGetStateWildcarded}(object)
-\link{gtkIconSourceNew}()
-\link{gtkIconSourceSetDirection}(object, direction)
-\link{gtkIconSourceSetDirectionWildcarded}(object, setting)
-\link{gtkIconSourceSetFilename}(object, filename)
-\link{gtkIconSourceSetPixbuf}(object, pixbuf)
-\link{gtkIconSourceSetIconName}(object, icon.name)
-\link{gtkIconSourceSetSize}(object, size)
-\link{gtkIconSourceSetSizeWildcarded}(object, setting)
-\link{gtkIconSourceSetState}(object, state)
-\link{gtkIconSourceSetStateWildcarded}(object, setting)
+\code{\link{gtkIconSourceCopy}(object)}\cr
+\code{\link{gtkIconFactoryAdd}(object, stock.id, icon.set)}\cr
+\code{\link{gtkIconFactoryAddDefault}(object)}\cr
+\code{\link{gtkIconFactoryLookup}(object, stock.id)}\cr
+\code{\link{gtkIconFactoryLookupDefault}(stock.id)}\cr
+\code{\link{gtkIconFactoryNew}()}\cr
+\code{\link{gtkIconFactoryRemoveDefault}(object)}\cr
+\code{\link{gtkIconSetAddSource}(object, source)}\cr
+\code{\link{gtkIconSetCopy}(object)}\cr
+\code{\link{gtkIconSetNew}()}\cr
+\code{\link{gtkIconSetNewFromPixbuf}(pixbuf)}\cr
+\code{\link{gtkIconSetRenderIcon}(object, style, direction, state, size, widget = NULL, detail = NULL)}\cr
+\code{\link{gtkIconSizeLookup}(size)}\cr
+\code{\link{gtkIconSizeLookupForSettings}(settings, size)}\cr
+\code{\link{gtkIconSizeRegister}(name, width, height)}\cr
+\code{\link{gtkIconSizeRegisterAlias}(alias, target)}\cr
+\code{\link{gtkIconSizeFromName}(name)}\cr
+\code{\link{gtkIconSizeGetName}(size)}\cr
+\code{\link{gtkIconSetGetSizes}(object)}\cr
+\code{\link{gtkIconSourceGetDirection}(object)}\cr
+\code{\link{gtkIconSourceGetDirectionWildcarded}(object)}\cr
+\code{\link{gtkIconSourceGetFilename}(object)}\cr
+\code{\link{gtkIconSourceGetPixbuf}(object)}\cr
+\code{\link{gtkIconSourceGetIconName}(object)}\cr
+\code{\link{gtkIconSourceGetSize}(object)}\cr
+\code{\link{gtkIconSourceGetSizeWildcarded}(object)}\cr
+\code{\link{gtkIconSourceGetState}(object)}\cr
+\code{\link{gtkIconSourceGetStateWildcarded}(object)}\cr
+\code{\link{gtkIconSourceNew}()}\cr
+\code{\link{gtkIconSourceSetDirection}(object, direction)}\cr
+\code{\link{gtkIconSourceSetDirectionWildcarded}(object, setting)}\cr
+\code{\link{gtkIconSourceSetFilename}(object, filename)}\cr
+\code{\link{gtkIconSourceSetPixbuf}(object, pixbuf)}\cr
+\code{\link{gtkIconSourceSetIconName}(object, icon.name)}\cr
+\code{\link{gtkIconSourceSetSize}(object, size)}\cr
+\code{\link{gtkIconSourceSetSizeWildcarded}(object, setting)}\cr
+\code{\link{gtkIconSourceSetState}(object, state)}\cr
+\code{\link{gtkIconSourceSetStateWildcarded}(object, setting)}\cr
+\code{gtkIconFactory()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkIconFactory}}
@@ -78,7 +78,7 @@ looking up the icon to use for a given stock ID.}
 }}
 }}
 \section{Convenient Construction}{\code{gtkIconFactory} is the equivalent of \code{\link{gtkIconFactoryNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkIconSize}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkIconSize}}{
 
 
 \describe{

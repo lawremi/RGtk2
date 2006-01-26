@@ -3,13 +3,13 @@
 \title{AtkEditableText}
 \description{The ATK interface implemented by components containing user-editable text content.}
 \section{Methods and Functions}{
-\link{atkEditableTextSetRunAttributes}(object, attrib.set, start.offset, end.offset)
-\link{atkEditableTextSetTextContents}(object, string)
-\link{atkEditableTextInsertText}(object, string, position)
-\link{atkEditableTextCopyText}(object, start.pos, end.pos)
-\link{atkEditableTextCutText}(object, start.pos, end.pos)
-\link{atkEditableTextDeleteText}(object, start.pos, end.pos)
-\link{atkEditableTextPasteText}(object, position)
+\code{\link{atkEditableTextSetRunAttributes}(object, attrib.set, start.offset, end.offset)}\cr
+\code{\link{atkEditableTextSetTextContents}(object, string)}\cr
+\code{\link{atkEditableTextInsertText}(object, string, position)}\cr
+\code{\link{atkEditableTextCopyText}(object, start.pos, end.pos)}\cr
+\code{\link{atkEditableTextCutText}(object, start.pos, end.pos)}\cr
+\code{\link{atkEditableTextDeleteText}(object, start.pos, end.pos)}\cr
+\code{\link{atkEditableTextPasteText}(object, position)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkEditableText}}

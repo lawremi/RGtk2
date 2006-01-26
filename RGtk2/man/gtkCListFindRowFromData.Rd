@@ -3,8 +3,7 @@
 \title{gtkCListFindRowFromData}
 \description{
 Searches the CList for the row with the specified data.
-\strong{WARNING: \code{gtk_clist_find_row_from_data} is deprecated and should not be used in newly-written code.  
-Searches the CList for the row with the specified data.}
+\strong{WARNING: \code{gtk_clist_find_row_from_data} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListFindRowFromData(object, data)}
 \arguments{

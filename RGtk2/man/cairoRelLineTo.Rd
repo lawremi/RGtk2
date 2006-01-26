@@ -7,7 +7,7 @@ current point by (\code{dx}, \code{dy}) in user space. After this call the
 current point will be offset by (\code{dx}, \code{dy}).}
 \usage{cairoRelLineTo(cr, dx, dy)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{dx}}{[numeric]  the X offset to the end of the new line}
 \item{\code{dy}}{[numeric]  the Y offset to the end of the new line}
 }

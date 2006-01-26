@@ -3,8 +3,7 @@
 \title{gtkPixmapNew}
 \description{
 Creates a new \code{\link{GtkPixmap}}, using the given GDK pixmap and mask.
-\strong{WARNING: \code{gtk_pixmap_new} is deprecated and should not be used in newly-written code.  
-Creates a new \code{\link{GtkPixmap}}, using the given GDK pixmap and mask.}
+\strong{WARNING: \code{gtk_pixmap_new} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPixmapNew(pixmap, mask = NULL, show = TRUE)}
 \arguments{

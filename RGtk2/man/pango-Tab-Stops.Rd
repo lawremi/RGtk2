@@ -5,22 +5,22 @@
 \title{Tab Stops}
 \description{Structures for storing Tab Stops}
 \section{Methods and Functions}{
-\link{pangoTabArrayNew}(initial.size, positions.in.pixels)
-\link{pangoTabArrayNewWithPositions}(size, positions.in.pixels, ...)
-\link{pangoTabArrayCopy}(object)
-\link{pangoTabArrayGetSize}(object)
-\link{pangoTabArrayResize}(object, new.size)
-\link{pangoTabArraySetTab}(object, tab.index, alignment, location)
-\link{pangoTabArrayGetTab}(object, tab.index)
-\link{pangoTabArrayGetTabs}(object)
-\link{pangoTabArrayGetPositionsInPixels}(object)
+\code{\link{pangoTabArrayNew}(initial.size, positions.in.pixels)}\cr
+\code{\link{pangoTabArrayNewWithPositions}(size, positions.in.pixels, ...)}\cr
+\code{\link{pangoTabArrayCopy}(object)}\cr
+\code{\link{pangoTabArrayGetSize}(object)}\cr
+\code{\link{pangoTabArrayResize}(object, new.size)}\cr
+\code{\link{pangoTabArraySetTab}(object, tab.index, alignment, location)}\cr
+\code{\link{pangoTabArrayGetTab}(object, tab.index)}\cr
+\code{\link{pangoTabArrayGetTabs}(object)}\cr
+\code{\link{pangoTabArrayGetPositionsInPixels}(object)}\cr
 }
 \section{Structures}{\describe{\item{\code{PangoTabArray}}{
 A \code{PangoTabArray} struct contains a list
 of tab stops. Each tab stop has an alignment and a position.
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum PangoTabAlign}}{
+\section{Enums and Flags}{\describe{\item{\code{PangoTabAlign}}{
 A \code{\link{PangoTabAlign}} specifies where a tab stop appears relative to the text.
 
 \describe{\item{\code{PANGO_TAB_LEFT (left)}}{the tab stop appears to the left of the text.}}

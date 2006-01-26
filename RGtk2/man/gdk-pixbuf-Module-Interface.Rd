@@ -9,17 +9,17 @@
 \title{Module Interface}
 \description{Extending }
 \section{Methods and Functions}{
-\link{gdkPixbufSetOption}(object, key, value)
-\link{gdkPixbufGetFormats}()
-\link{gdkPixbufFormatGetName}(object)
-\link{gdkPixbufFormatGetDescription}(object)
-\link{gdkPixbufFormatGetMimeTypes}(object)
-\link{gdkPixbufFormatGetExtensions}(object)
-\link{gdkPixbufFormatIsWritable}(object)
-\link{gdkPixbufFormatIsScalable}(object)
-\link{gdkPixbufFormatIsDisabled}(object)
-\link{gdkPixbufFormatSetDisabled}(object, disabled)
-\link{gdkPixbufFormatGetLicense}(object)
+\code{\link{gdkPixbufSetOption}(object, key, value)}\cr
+\code{\link{gdkPixbufGetFormats}()}\cr
+\code{\link{gdkPixbufFormatGetName}(object)}\cr
+\code{\link{gdkPixbufFormatGetDescription}(object)}\cr
+\code{\link{gdkPixbufFormatGetMimeTypes}(object)}\cr
+\code{\link{gdkPixbufFormatGetExtensions}(object)}\cr
+\code{\link{gdkPixbufFormatIsWritable}(object)}\cr
+\code{\link{gdkPixbufFormatIsScalable}(object)}\cr
+\code{\link{gdkPixbufFormatIsDisabled}(object)}\cr
+\code{\link{gdkPixbufFormatSetDisabled}(object, disabled)}\cr
+\code{\link{gdkPixbufFormatGetLicense}(object)}\cr
 }
 \section{Detailed Description}{If \command{gdk-pixbuf} has been compiled with GModule support, it can be extended by
 modules which can load (and perhaps also save) new image and animation

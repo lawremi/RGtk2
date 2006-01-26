@@ -4,9 +4,7 @@
 \description{
 Causes the column specified for the \code{\link{GtkCList}} to be set to
 a specified width.
-\strong{WARNING: \code{gtk_clist_set_column_width} is deprecated and should not be used in newly-written code.  
-Causes the column specified for the \code{\link{GtkCList}} to be set to
-a specified width.}
+\strong{WARNING: \code{gtk_clist_set_column_width} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetColumnWidth(object, column, width)}
 \arguments{

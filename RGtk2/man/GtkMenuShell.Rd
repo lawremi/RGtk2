@@ -4,17 +4,18 @@
 \title{GtkMenuShell}
 \description{A base class for menu objects}
 \section{Methods and Functions}{
-\link{gtkMenuShellAppend}(object, child)
-\link{gtkMenuShellPrepend}(object, child)
-\link{gtkMenuShellInsert}(object, child, position)
-\link{gtkMenuShellDeactivate}(object)
-\link{gtkMenuShellSelectItem}(object, menu.item)
-\link{gtkMenuShellSelectFirst}(object, search.sensitive)
-\link{gtkMenuShellDeselect}(object)
-\link{gtkMenuShellActivateItem}(object, menu.item, force.deactivate)
-\link{gtkMenuShellCancel}(object)
-\link{gtkMenuShellSetTakeFocus}(object, take.focus)
-\link{gtkMenuShellGetTakeFocus}(object)
+\code{\link{gtkMenuShellAppend}(object, child)}\cr
+\code{\link{gtkMenuShellPrepend}(object, child)}\cr
+\code{\link{gtkMenuShellInsert}(object, child, position)}\cr
+\code{\link{gtkMenuShellDeactivate}(object)}\cr
+\code{\link{gtkMenuShellSelectItem}(object, menu.item)}\cr
+\code{\link{gtkMenuShellSelectFirst}(object, search.sensitive)}\cr
+\code{\link{gtkMenuShellDeselect}(object)}\cr
+\code{\link{gtkMenuShellActivateItem}(object, menu.item, force.deactivate)}\cr
+\code{\link{gtkMenuShellCancel}(object)}\cr
+\code{\link{gtkMenuShellSetTakeFocus}(object, take.focus)}\cr
+\code{\link{gtkMenuShellGetTakeFocus}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -40,7 +41,7 @@ an application.)
 \tabular{ll}{\code{list}   *children; \tab The list of   \code{\link{GtkMenuItem}}   objects contained by this   \code{\link{GtkMenuShell}}  . \cr}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkMenuDirectionType}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkMenuDirectionType}}{
 An enumeration representing directional movements within a menu.
 
 \tabular{ll}{

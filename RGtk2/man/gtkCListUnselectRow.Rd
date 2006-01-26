@@ -3,8 +3,7 @@
 \title{gtkCListUnselectRow}
 \description{
 Unselects the specified row.  Causes the "unselect-row" signal to be emitted for the specified row and column.
-\strong{WARNING: \code{gtk_clist_unselect_row} is deprecated and should not be used in newly-written code.  
-Unselects the specified row.  Causes the "unselect-row" signal to be emitted for the specified row and column.}
+\strong{WARNING: \code{gtk_clist_unselect_row} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListUnselectRow(object, row, column)}
 \arguments{

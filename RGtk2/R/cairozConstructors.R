@@ -1,52 +1,52 @@
 cairo <- cairoCreate
 
 cairoPattern <-
-function(red, green, blue, alpha, surface, x0, y0, x1, y1, cx0, cy0, radius0, cx1, cy1, radius1, .flush = TRUE, .depwarn = TRUE)
+function(red, green, blue, alpha, surface, x0, y0, x1, y1, cx0, cy0, radius0, cx1, cy1, radius1)
 {
 	if (!missing(red)) {
 		if (!missing(alpha)) {
-			cairoPatternCreateRgba(red, green, blue, alpha, .flush, .depwarn)
+			cairoPatternCreateRgba(red, green, blue, alpha)
 		}
 		else {
-			cairoPatternCreateRgb(red, green, blue, .flush, .depwarn)
+			cairoPatternCreateRgb(red, green, blue)
 		}
 	}
 	else {
 		if (!missing(surface)) {
-			cairoPatternCreateForSurface(surface, .flush, .depwarn)
+			cairoPatternCreateForSurface(surface)
 		}
 		else {
 			if (!missing(x0)) {
-				cairoPatternCreateLinear(x0, y0, x1, y1, .flush, .depwarn)
+				cairoPatternCreateLinear(x0, y0, x1, y1)
 			}
 			else {
-				cairoPatternCreateRadial(cx0, cy0, radius0, cx1, cy1, radius1, .flush, .depwarn)
+				cairoPatternCreateRadial(cx0, cy0, radius0, cx1, cy1, radius1)
 			}
 		}
 	}
 }
 
 cairoSurface <-
-function(width, height, format, other, content, data, stride, filename, con, .flush = TRUE, .depwarn = TRUE)
+function(width, height, format, other, content, data, stride, filename, con)
 {
 	if (!missing(other)) {
-		cairoSurfaceCreateSimilar(other, content, width, height, .flush, .depwarn)
+		cairoSurfaceCreateSimilar(other, content, width, height)
 	}
 	else {
 		if (!missing(width)) {
 			if (!missing(data)) {
-				cairoImageSurfaceCreateForData(data, format, width, height, stride, .flush, .depwarn)
+				cairoImageSurfaceCreateForData(data, format, width, height, stride)
 			}
 			else {
-				cairoImageSurfaceCreate(format, width, height, .flush, .depwarn)
+				cairoImageSurfaceCreate(format, width, height)
 			}
 		}
 		else {
 			if (!missing(filename)) {
-				cairoImageSurfaceCreateFromPng(filename, .flush, .depwarn)
+				cairoImageSurfaceCreateFromPng(filename)
 			}
 			else {
-				cairoImageSurfaceCreateFromPngStream(con, .flush, .depwarn)
+				cairoImageSurfaceCreateFromPngStream(con)
 			}
 		}
 	}

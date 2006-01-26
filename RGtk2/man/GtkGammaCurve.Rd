@@ -3,8 +3,10 @@
 \name{GtkGammaCurve}
 \title{GtkGammaCurve}
 \description{a subclass of    for editing gamma curves.}
-\usage{gtkGammaCurve(show = TRUE)}
-\section{Methods and Functions}{\link{gtkGammaCurveNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkGammaCurveNew}(show = TRUE)}\cr
+\code{gtkGammaCurve(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

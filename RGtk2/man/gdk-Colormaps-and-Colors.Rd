@@ -5,23 +5,23 @@
 \name{gdk-Colormaps-and-Colors}
 \title{Colormaps and Colors}
 \description{Manipulation of colors and colormaps}
-\usage{gdkColormap(visual, allocate)}
 \section{Methods and Functions}{
-\link{gdkColormapNew}(visual, allocate)
-\link{gdkColormapGetSystem}()
-\link{gdkColormapGetSystemSize}()
-\link{gdkColormapAllocColors}(colormap, colors, writeable, best.match)
-\link{gdkColormapAllocColor}(object, color, writeable, best.match)
-\link{gdkColormapFreeColors}(object, colors)
-\link{gdkColormapQueryColor}(object, pixel)
-\link{gdkColormapGetVisual}(object)
-\link{gdkColormapGetScreen}(object)
-\link{gdkColorsStore}(object, colors)
-\link{gdkColorWhite}(object)
-\link{gdkColorBlack}(object)
-\link{gdkColorParse}(spec)
-\link{gdkColorAlloc}(object, color)
-\link{gdkColorChange}(object, color)
+\code{\link{gdkColormapNew}(visual, allocate)}\cr
+\code{\link{gdkColormapGetSystem}()}\cr
+\code{\link{gdkColormapGetSystemSize}()}\cr
+\code{\link{gdkColormapAllocColors}(colormap, colors, writeable, best.match)}\cr
+\code{\link{gdkColormapAllocColor}(object, color, writeable, best.match)}\cr
+\code{\link{gdkColormapFreeColors}(object, colors)}\cr
+\code{\link{gdkColormapQueryColor}(object, pixel)}\cr
+\code{\link{gdkColormapGetVisual}(object)}\cr
+\code{\link{gdkColormapGetScreen}(object)}\cr
+\code{\link{gdkColorsStore}(object, colors)}\cr
+\code{\link{gdkColorWhite}(object)}\cr
+\code{\link{gdkColorBlack}(object)}\cr
+\code{\link{gdkColorParse}(spec)}\cr
+\code{\link{gdkColorAlloc}(object, color)}\cr
+\code{\link{gdkColorChange}(object, color)}\cr
+\code{gdkColormap(visual, allocate)}
 }
 \section{Detailed Description}{These functions are used to modify colormaps.
 A colormap is an object that contains the mapping

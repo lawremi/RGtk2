@@ -3,8 +3,10 @@
 \name{GtkCellRendererPixbuf}
 \title{GtkCellRendererPixbuf}
 \description{Renders a pixbuf in a cell}
-\usage{gtkCellRendererPixbuf()}
-\section{Methods and Functions}{\link{gtkCellRendererPixbufNew}()}
+\section{Methods and Functions}{
+\code{\link{gtkCellRendererPixbufNew}()}\cr
+\code{gtkCellRendererPixbuf()}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkCellRenderer}

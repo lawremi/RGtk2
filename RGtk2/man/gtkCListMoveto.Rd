@@ -4,9 +4,7 @@
 \description{
 Tells the CList widget to visually move to the specified 
 row and column.
-\strong{WARNING: \code{gtk_clist_moveto} is deprecated and should not be used in newly-written code.  
-Tells the CList widget to visually move to the specified 
-row and column.}
+\strong{WARNING: \code{gtk_clist_moveto} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListMoveto(object, row, column, row.align, col.align)}
 \arguments{

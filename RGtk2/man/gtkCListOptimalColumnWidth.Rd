@@ -4,9 +4,7 @@
 \description{
 Gets the required width in pixels that is needed to show
 everything in the specified column.
-\strong{WARNING: \code{gtk_clist_optimal_column_width} is deprecated and should not be used in newly-written code.  
-Gets the required width in pixels that is needed to show
-everything in the specified column.}
+\strong{WARNING: \code{gtk_clist_optimal_column_width} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListOptimalColumnWidth(object, column)}
 \arguments{

@@ -3,7 +3,7 @@
 \title{gtkCTreeIsHotSpot}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_is_hot_spot} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{gtk_ctree_is_hot_spot} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeIsHotSpot(object, x, y)}
 \arguments{

@@ -3,14 +3,14 @@
 \name{GtkAdjustment}
 \title{GtkAdjustment}
 \description{A GtkObject representing an adjustable bounded value}
-\usage{gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}
 \section{Methods and Functions}{
-\link{gtkAdjustmentNew}(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)
-\link{gtkAdjustmentGetValue}(object)
-\link{gtkAdjustmentSetValue}(object, value)
-\link{gtkAdjustmentClampPage}(object, lower, upper)
-\link{gtkAdjustmentChanged}(object)
-\link{gtkAdjustmentValueChanged}(object)
+\code{\link{gtkAdjustmentNew}(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}\cr
+\code{\link{gtkAdjustmentGetValue}(object)}\cr
+\code{\link{gtkAdjustmentSetValue}(object, value)}\cr
+\code{\link{gtkAdjustmentClampPage}(object, lower, upper)}\cr
+\code{\link{gtkAdjustmentChanged}(object)}\cr
+\code{\link{gtkAdjustmentValueChanged}(object)}\cr
+\code{gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

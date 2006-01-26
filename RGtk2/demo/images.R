@@ -1,4 +1,4 @@
-# source("~/research/RGtk/inst/demo/images.R")
+# source("~/research/RGtk2/RGtk2/demo/images.R")
 
 window <- NULL
 pixbuf.loader <- NULL

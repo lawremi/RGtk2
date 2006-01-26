@@ -9,18 +9,19 @@
 \title{AtkUtil}
 \description{This is a utility class which supports the adding and removal of event listeners.}
 \section{Methods and Functions}{
-\link{atkAddFocusTracker}(focus.tracker)
-\link{atkRemoveFocusTracker}(tracker.id)
-\link{atkFocusTrackerInit}(add.function)
-\link{atkFocusTrackerNotify}(object)
-\link{atkAddGlobalEventListener}(listener, event.type)
-\link{atkRemoveGlobalEventListener}(listener.id)
-\link{atkAddKeyEventListener}(listener, data)
-\link{atkRemoveKeyEventListener}(listener.id)
-\link{atkGetRoot}()
-\link{atkGetFocusObject}()
-\link{atkGetToolkitName}()
-\link{atkGetToolkitVersion}()
+\code{\link{atkAddFocusTracker}(focus.tracker)}\cr
+\code{\link{atkRemoveFocusTracker}(tracker.id)}\cr
+\code{\link{atkFocusTrackerInit}(add.function)}\cr
+\code{\link{atkFocusTrackerNotify}(object)}\cr
+\code{\link{atkAddGlobalEventListener}(listener, event.type)}\cr
+\code{\link{atkRemoveGlobalEventListener}(listener.id)}\cr
+\code{\link{atkAddKeyEventListener}(listener, data)}\cr
+\code{\link{atkRemoveKeyEventListener}(listener.id)}\cr
+\code{\link{atkGetRoot}()}\cr
+\code{\link{atkGetFocusObject}()}\cr
+\code{\link{atkGetToolkitName}()}\cr
+\code{\link{atkGetToolkitVersion}()}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkUtil}}
@@ -48,7 +49,7 @@ The AtkKeyEventStruct describes a keyboard event.
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum AtkCoordType}}{
+\item{\code{AtkCoordType}}{
 Specifies how xy coordinates are to be interpreted. Used by functions such
 as \code{\link{atkComponentGetPosition}} and \code{\link{atkTextGetCharacterExtents}}  
 
@@ -59,7 +60,7 @@ top-level window}
 }
 
 }
-\item{\code{enum AtkKeyEventType}}{
+\item{\code{AtkKeyEventType}}{
 Specifies the type of a keyboard evemt.  
 
 \describe{

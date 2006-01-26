@@ -7,7 +7,7 @@ position (\code{x3}, \code{y3}) in user-space coordinates, using (\code{x1}, \co
 will be (\code{x3}, \code{y3}).}
 \usage{cairoCurveTo(cr, x1, y1, x2, y2, x3, y3)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{x1}}{[numeric]  the X coordinate of the first control point}
 \item{\code{y1}}{[numeric]  the Y coordinate of the first control point}
 \item{\code{x2}}{[numeric]  the X coordinate of the second control point}

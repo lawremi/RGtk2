@@ -3,13 +3,13 @@
 \name{GtkVButtonBox}
 \title{GtkVButtonBox}
 \description{A container for arranging buttons vertically}
-\usage{gtkVButtonBox(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkVButtonBoxNew}(show = TRUE)
-\link{gtkVButtonBoxGetSpacingDefault}()
-\link{gtkVButtonBoxSetSpacingDefault}(spacing)
-\link{gtkVButtonBoxGetLayoutDefault}()
-\link{gtkVButtonBoxSetLayoutDefault}(layout)
+\code{\link{gtkVButtonBoxNew}(show = TRUE)}\cr
+\code{\link{gtkVButtonBoxGetSpacingDefault}()}\cr
+\code{\link{gtkVButtonBoxSetSpacingDefault}(spacing)}\cr
+\code{\link{gtkVButtonBoxGetLayoutDefault}()}\cr
+\code{\link{gtkVButtonBoxSetLayoutDefault}(layout)}\cr
+\code{gtkVButtonBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

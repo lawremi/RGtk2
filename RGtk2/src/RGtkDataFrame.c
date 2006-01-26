@@ -301,8 +301,6 @@ rgtk_data_frame_get_value (GtkTreeModel *tree_model,
 			  GValue       *value)
 {
   RGtkDataFrame *data_frame = (RGtkDataFrame*)tree_model;
-  USER_OBJECT_ vector;
-  gint row;
   
   g_return_if_fail (RGTK_IS_DATA_FRAME (tree_model));
   g_return_if_fail (column < GET_LENGTH(RGTK_DATA_FRAME (tree_model)->frame));
@@ -411,7 +409,7 @@ R_rgtk_data_frame_get(USER_OBJECT_ s_data_frame)
 static USER_OBJECT_
 rgtk_data_frame_get (RGtkDataFrame *data_frame)
 {
-	g_return_if_fail (RGTK_IS_DATA_FRAME (data_frame));
+	g_return_val_if_fail (RGTK_IS_DATA_FRAME (data_frame), NULL_USER_OBJECT);
 	return(data_frame->frame);
 }
 

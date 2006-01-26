@@ -2,12 +2,12 @@
 \name{cairoSetLineJoin}
 \title{cairoSetLineJoin}
 \description{Sets the current line join style within the cairo context. See
-\code{\link{cairo_line_join_t}} for details about how the available line join
+\code{\link{CairoLineJoin}} for details about how the available line join
 styles are drawn.}
 \usage{cairoSetLineJoin(cr, line.join)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context, as a \code{\link{cairo_t}}}
-\item{\code{line.join}}{[\code{\link{cairo_line_join_t}}]  a line joint style, as a \code{\link{cairo_line_join_t}}}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context, as a \code{\link{Cairo}}}
+\item{\code{line.join}}{[\code{\link{CairoLineJoin}}]  a line joint style, as a \code{\link{CairoLineJoin}}}
 }
 \details{As with the other stroke parameters, the current line join style is
 examined by \code{\link{cairoStroke}}, \code{\link{cairoStrokeExtents}}, and

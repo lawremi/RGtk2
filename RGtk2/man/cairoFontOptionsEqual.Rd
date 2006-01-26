@@ -4,9 +4,9 @@
 \description{Compares two font options objects for equality.}
 \usage{cairoFontOptionsEqual(options, other)}
 \arguments{
-\item{\code{options}}{[\code{\link{cairo_font_options_t}}]  a \code{\link{cairo_font_options_t}}}
-\item{\code{other}}{[\code{\link{cairo_font_options_t}}]  another \code{\link{cairo_font_options_t}}}
+\item{\code{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}}}
+\item{\code{other}}{[\code{\link{CairoFontOptions}}]  another \code{\link{CairoFontOptions}}}
 }
-\value{[cairo_bool_t]  \code{TRUE} if all fields of the two font options objects match}
+\value{[logical]  \code{TRUE} if all fields of the two font options objects match}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

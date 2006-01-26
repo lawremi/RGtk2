@@ -4,10 +4,11 @@
 \description{An object used to store the GType of the factories used to create an accessible
 object for an object of a particular GType.}
 \section{Methods and Functions}{
-\link{atkRegistrySetFactoryType}(object, type, factory.type)
-\link{atkRegistryGetFactoryType}(object, type)
-\link{atkRegistryGetFactory}(object, type)
-\link{atkGetDefaultRegistry}()
+\code{\link{atkRegistrySetFactoryType}(object, type, factory.type)}\cr
+\code{\link{atkRegistryGetFactoryType}(object, type)}\cr
+\code{\link{atkRegistryGetFactory}(object, type)}\cr
+\code{\link{atkGetDefaultRegistry}()}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRegistry}}

@@ -6,17 +6,18 @@
 \title{Visuals}
 \description{Low-level display hardware information}
 \section{Methods and Functions}{
-\link{gdkQueryDepths}()
-\link{gdkQueryVisualTypes}()
-\link{gdkListVisuals}()
-\link{gdkVisualGetBestDepth}()
-\link{gdkVisualGetBestType}()
-\link{gdkVisualGetSystem}()
-\link{gdkVisualGetBest}()
-\link{gdkVisualGetBestWithDepth}(depth)
-\link{gdkVisualGetBestWithType}(visual.type)
-\link{gdkVisualGetBestWithBoth}(depth, visual.type)
-\link{gdkVisualGetScreen}(object)
+\code{\link{gdkQueryDepths}()}\cr
+\code{\link{gdkQueryVisualTypes}()}\cr
+\code{\link{gdkListVisuals}()}\cr
+\code{\link{gdkVisualGetBestDepth}()}\cr
+\code{\link{gdkVisualGetBestType}()}\cr
+\code{\link{gdkVisualGetSystem}()}\cr
+\code{\link{gdkVisualGetBest}()}\cr
+\code{\link{gdkVisualGetBestWithDepth}(depth)}\cr
+\code{\link{gdkVisualGetBestWithType}(visual.type)}\cr
+\code{\link{gdkVisualGetBestWithBoth}(depth, visual.type)}\cr
+\code{\link{gdkVisualGetScreen}(object)}\cr
+
 }
 \section{Detailed Description}{A \code{\link{GdkVisual}} describes a particular video hardware display format. It includes
 information about the number of bits used for each color, the way the bits are
@@ -97,7 +98,7 @@ a particular visual.
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkVisualType}}{
+\item{\code{GdkVisualType}}{
 A set of values that describe the manner in which the
 pixel values for a visual are converted into RGB
 values for display.
@@ -121,7 +122,7 @@ values for display.
 }
 
 }
-\item{\code{enum GdkByteOrder}}{
+\item{\code{GdkByteOrder}}{
 A set of values describing the possible byte-orders
 for storing pixel values in memory.
 

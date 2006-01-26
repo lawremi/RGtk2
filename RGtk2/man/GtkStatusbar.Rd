@@ -3,15 +3,15 @@
 \name{GtkStatusbar}
 \title{GtkStatusbar}
 \description{Report messages of minor importance to the user}
-\usage{gtkStatusbar(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkStatusbarNew}(show = TRUE)
-\link{gtkStatusbarGetContextId}(object, context.description)
-\link{gtkStatusbarPush}(object, context.id, text)
-\link{gtkStatusbarPop}(object, context.id)
-\link{gtkStatusbarRemove}(object, context.id, message.id)
-\link{gtkStatusbarSetHasResizeGrip}(object, setting)
-\link{gtkStatusbarGetHasResizeGrip}(object)
+\code{\link{gtkStatusbarNew}(show = TRUE)}\cr
+\code{\link{gtkStatusbarGetContextId}(object, context.description)}\cr
+\code{\link{gtkStatusbarPush}(object, context.id, text)}\cr
+\code{\link{gtkStatusbarPop}(object, context.id)}\cr
+\code{\link{gtkStatusbarRemove}(object, context.id, message.id)}\cr
+\code{\link{gtkStatusbarSetHasResizeGrip}(object, setting)}\cr
+\code{\link{gtkStatusbarGetHasResizeGrip}(object)}\cr
+\code{gtkStatusbar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

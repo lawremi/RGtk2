@@ -3,8 +3,10 @@
 \name{GtkInputDialog}
 \title{GtkInputDialog}
 \description{Configure devices for the XInput extension}
-\usage{gtkInputDialog(show = TRUE)}
-\section{Methods and Functions}{\link{gtkInputDialogNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkInputDialogNew}(show = TRUE)}\cr
+\code{gtkInputDialog(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

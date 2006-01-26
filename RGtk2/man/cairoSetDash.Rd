@@ -8,7 +8,7 @@ of the stroke. The \code{offset} specifies an offset into the pattern at
 which the stroke begins.}
 \usage{cairoSetDash(cr, dashes, offset)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{dashes}}{[numeric]  a list specifying alternate lengths of on and off po}
 \item{\code{offset}}{[numeric]  an offset into the dash pattern at which the stroke should start}
 }

@@ -3,8 +3,7 @@
 \title{gtkCListNewWithTitles}
 \description{
 Creates a new \code{\link{GtkCList}} widget with column titles for use.
-\strong{WARNING: \code{gtk_clist_new_with_titles} is deprecated and should not be used in newly-written code.  
-Creates a new \code{\link{GtkCList}} widget with column titles for use.}
+\strong{WARNING: \code{gtk_clist_new_with_titles} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListNewWithTitles(columns = 1, titles, show = TRUE)}
 \arguments{

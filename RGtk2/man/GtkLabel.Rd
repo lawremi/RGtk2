@@ -3,49 +3,49 @@
 \name{GtkLabel}
 \title{GtkLabel}
 \description{A widget that displays a small to medium amount of text}
-\usage{gtkLabel(str = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkLabelNew}(str = NULL, show = TRUE)
-\link{gtkLabelSetText}(object, str)
-\link{gtkLabelSetAttributes}(object, attrs)
-\link{gtkLabelSetMarkup}(object, str)
-\link{gtkLabelSetMarkupWithMnemonic}(object, str)
-\link{gtkLabelSetPattern}(object, pattern)
-\link{gtkLabelSetJustify}(object, jtype)
-\link{gtkLabelSetEllipsize}(object, mode)
-\link{gtkLabelSetWidthChars}(object, n.chars)
-\link{gtkLabelSetMaxWidthChars}(object, n.chars)
-\link{gtkLabelGet}(object)
-\link{gtkLabelParseUline}(object, string)
-\link{gtkLabelSetLineWrap}(object, wrap)
-\link{gtkLabelGetLayoutOffsets}(object)
-\link{gtkLabelGetMnemonicKeyval}(object)
-\link{gtkLabelGetSelectable}(object)
-\link{gtkLabelGetText}(object)
-\link{gtkLabelNewWithMnemonic}(str = NULL, show = TRUE)
-\link{gtkLabelSelectRegion}(object, start.offset, end.offset)
-\link{gtkLabelSetMnemonicWidget}(object, widget)
-\link{gtkLabelSetSelectable}(object, setting)
-\link{gtkLabelSetTextWithMnemonic}(object, str)
-\link{gtkLabelGetAttributes}(object)
-\link{gtkLabelGetJustify}(object)
-\link{gtkLabelGetEllipsize}(object)
-\link{gtkLabelGetWidthChars}(object)
-\link{gtkLabelGetMaxWidthChars}(object)
-\link{gtkLabelGetLabel}(object)
-\link{gtkLabelGetLayout}(object)
-\link{gtkLabelGetLineWrap}(object)
-\link{gtkLabelGetMnemonicWidget}(object)
-\link{gtkLabelGetSelectionBounds}(object)
-\link{gtkLabelGetUseMarkup}(object)
-\link{gtkLabelGetUseUnderline}(object)
-\link{gtkLabelGetSingleLineMode}(object)
-\link{gtkLabelGetAngle}(object)
-\link{gtkLabelSetLabel}(object, str)
-\link{gtkLabelSetUseMarkup}(object, setting)
-\link{gtkLabelSetUseUnderline}(object, setting)
-\link{gtkLabelSetSingleLineMode}(object, single.line.mode)
-\link{gtkLabelSetAngle}(object, angle)
+\code{\link{gtkLabelNew}(str = NULL, show = TRUE)}\cr
+\code{\link{gtkLabelSetText}(object, str)}\cr
+\code{\link{gtkLabelSetAttributes}(object, attrs)}\cr
+\code{\link{gtkLabelSetMarkup}(object, str)}\cr
+\code{\link{gtkLabelSetMarkupWithMnemonic}(object, str)}\cr
+\code{\link{gtkLabelSetPattern}(object, pattern)}\cr
+\code{\link{gtkLabelSetJustify}(object, jtype)}\cr
+\code{\link{gtkLabelSetEllipsize}(object, mode)}\cr
+\code{\link{gtkLabelSetWidthChars}(object, n.chars)}\cr
+\code{\link{gtkLabelSetMaxWidthChars}(object, n.chars)}\cr
+\code{\link{gtkLabelGet}(object)}\cr
+\code{\link{gtkLabelParseUline}(object, string)}\cr
+\code{\link{gtkLabelSetLineWrap}(object, wrap)}\cr
+\code{\link{gtkLabelGetLayoutOffsets}(object)}\cr
+\code{\link{gtkLabelGetMnemonicKeyval}(object)}\cr
+\code{\link{gtkLabelGetSelectable}(object)}\cr
+\code{\link{gtkLabelGetText}(object)}\cr
+\code{\link{gtkLabelNewWithMnemonic}(str = NULL, show = TRUE)}\cr
+\code{\link{gtkLabelSelectRegion}(object, start.offset, end.offset)}\cr
+\code{\link{gtkLabelSetMnemonicWidget}(object, widget)}\cr
+\code{\link{gtkLabelSetSelectable}(object, setting)}\cr
+\code{\link{gtkLabelSetTextWithMnemonic}(object, str)}\cr
+\code{\link{gtkLabelGetAttributes}(object)}\cr
+\code{\link{gtkLabelGetJustify}(object)}\cr
+\code{\link{gtkLabelGetEllipsize}(object)}\cr
+\code{\link{gtkLabelGetWidthChars}(object)}\cr
+\code{\link{gtkLabelGetMaxWidthChars}(object)}\cr
+\code{\link{gtkLabelGetLabel}(object)}\cr
+\code{\link{gtkLabelGetLayout}(object)}\cr
+\code{\link{gtkLabelGetLineWrap}(object)}\cr
+\code{\link{gtkLabelGetMnemonicWidget}(object)}\cr
+\code{\link{gtkLabelGetSelectionBounds}(object)}\cr
+\code{\link{gtkLabelGetUseMarkup}(object)}\cr
+\code{\link{gtkLabelGetUseUnderline}(object)}\cr
+\code{\link{gtkLabelGetSingleLineMode}(object)}\cr
+\code{\link{gtkLabelGetAngle}(object)}\cr
+\code{\link{gtkLabelSetLabel}(object, str)}\cr
+\code{\link{gtkLabelSetUseMarkup}(object, setting)}\cr
+\code{\link{gtkLabelSetUseUnderline}(object, setting)}\cr
+\code{\link{gtkLabelSetSingleLineMode}(object, single.line.mode)}\cr
+\code{\link{gtkLabelSetAngle}(object, angle)}\cr
+\code{gtkLabel(str = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,9 +3,9 @@
 \title{GtkCellEditable}
 \description{Interface for widgets which can are used for editing cells}
 \section{Methods and Functions}{
-\link{gtkCellEditableStartEditing}(object, event = NULL)
-\link{gtkCellEditableEditingDone}(object)
-\link{gtkCellEditableRemoveWidget}(object)
+\code{\link{gtkCellEditableStartEditing}(object, event = NULL)}\cr
+\code{\link{gtkCellEditableEditingDone}(object)}\cr
+\code{\link{gtkCellEditableRemoveWidget}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkCellEditable}}

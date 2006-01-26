@@ -3,13 +3,13 @@
 \name{GtkComboBoxEntry}
 \title{GtkComboBoxEntry}
 \description{A text entry field with a dropdown list}
-\usage{gtkComboBoxEntry(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkComboBoxEntryNew}(show = TRUE)
-\link{gtkComboBoxEntryNewWithModel}(model, text.column)
-\link{gtkComboBoxEntryNewText}()
-\link{gtkComboBoxEntrySetTextColumn}(object, text.column)
-\link{gtkComboBoxEntryGetTextColumn}(object)
+\code{\link{gtkComboBoxEntryNew}(show = TRUE)}\cr
+\code{\link{gtkComboBoxEntryNewWithModel}(model, text.column)}\cr
+\code{\link{gtkComboBoxEntryNewText}()}\cr
+\code{\link{gtkComboBoxEntrySetTextColumn}(object, text.column)}\cr
+\code{\link{gtkComboBoxEntryGetTextColumn}(object)}\cr
+\code{gtkComboBoxEntry(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

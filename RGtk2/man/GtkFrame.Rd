@@ -3,17 +3,17 @@
 \name{GtkFrame}
 \title{GtkFrame}
 \description{A bin with a decorative frame and optional label}
-\usage{gtkFrame(label = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFrameNew}(label = NULL, show = TRUE)
-\link{gtkFrameSetLabel}(object, label = NULL)
-\link{gtkFrameSetLabelWidget}(object, label.widget)
-\link{gtkFrameSetLabelAlign}(object, xalign, yalign)
-\link{gtkFrameSetShadowType}(object, type)
-\link{gtkFrameGetLabel}(object)
-\link{gtkFrameGetLabelAlign}(object)
-\link{gtkFrameGetLabelWidget}(object)
-\link{gtkFrameGetShadowType}(object)
+\code{\link{gtkFrameNew}(label = NULL, show = TRUE)}\cr
+\code{\link{gtkFrameSetLabel}(object, label = NULL)}\cr
+\code{\link{gtkFrameSetLabelWidget}(object, label.widget)}\cr
+\code{\link{gtkFrameSetLabelAlign}(object, xalign, yalign)}\cr
+\code{\link{gtkFrameSetShadowType}(object, type)}\cr
+\code{\link{gtkFrameGetLabel}(object)}\cr
+\code{\link{gtkFrameGetLabelAlign}(object)}\cr
+\code{\link{gtkFrameGetLabelWidget}(object)}\cr
+\code{\link{gtkFrameGetShadowType}(object)}\cr
+\code{gtkFrame(label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,8 +3,10 @@
 \name{AtkNoOpObjectFactory}
 \title{AtkNoOpObjectFactory}
 \description{The AtkObjectFactory which creates an AtkNoOpObject.}
-\usage{atkNoOpObjectFactory()}
-\section{Methods and Functions}{\link{atkNoOpObjectFactoryNew}()}
+\section{Methods and Functions}{
+\code{\link{atkNoOpObjectFactoryNew}()}\cr
+\code{atkNoOpObjectFactory()}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{AtkObjectFactory}
          +----AtkNoOpObjectFactory}}

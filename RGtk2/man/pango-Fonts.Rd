@@ -17,59 +17,60 @@
 \title{Fonts}
 \description{Structures representing abstract fonts}
 \section{Methods and Functions}{
-\link{pangoFontDescriptionNew}()
-\link{pangoFontDescriptionCopy}(object)
-\link{pangoFontDescriptionCopyStatic}(object)
-\link{pangoFontDescriptionHash}(object)
-\link{pangoFontDescriptionEqual}(object, desc2)
-\link{pangoFontDescriptionSetFamily}(object, family)
-\link{pangoFontDescriptionSetFamilyStatic}(object, family)
-\link{pangoFontDescriptionGetFamily}(object)
-\link{pangoFontDescriptionSetStyle}(object, style)
-\link{pangoFontDescriptionGetStyle}(object)
-\link{pangoFontDescriptionSetVariant}(object, variant)
-\link{pangoFontDescriptionGetVariant}(object)
-\link{pangoFontDescriptionSetWeight}(object, weight)
-\link{pangoFontDescriptionGetWeight}(object)
-\link{pangoFontDescriptionSetStretch}(object, stretch)
-\link{pangoFontDescriptionGetStretch}(object)
-\link{pangoFontDescriptionSetSize}(object, size)
-\link{pangoFontDescriptionGetSize}(object)
-\link{pangoFontDescriptionSetAbsoluteSize}(object, size)
-\link{pangoFontDescriptionGetSizeIsAbsolute}(object)
-\link{pangoFontDescriptionGetSetFields}(object)
-\link{pangoFontDescriptionUnsetFields}(object, to.unset)
-\link{pangoFontDescriptionMerge}(object, desc.to.merge, replace.existing)
-\link{pangoFontDescriptionBetterMatch}(object, old.match = NULL, new.match)
-\link{pangoFontDescriptionFromString}(str)
-\link{pangoFontDescriptionToString}(object)
-\link{pangoFontDescriptionToFilename}(object)
-\link{pangoFontMetricsGetAscent}(object)
-\link{pangoFontMetricsGetDescent}(object)
-\link{pangoFontMetricsGetApproximateCharWidth}(object)
-\link{pangoFontMetricsGetApproximateDigitWidth}(object)
-\link{pangoFontMetricsGetUnderlineThickness}(object)
-\link{pangoFontMetricsGetUnderlinePosition}(object)
-\link{pangoFontMetricsGetStrikethroughThickness}(object)
-\link{pangoFontMetricsGetStrikethroughPosition}(object)
-\link{pangoFontFindShaper}(object, language, ch)
-\link{pangoFontDescribe}(object)
-\link{pangoFontGetCoverage}(object, language)
-\link{pangoFontGetGlyphExtents}(object, glyph)
-\link{pangoFontGetMetrics}(object, language = NULL)
-\link{pangoFontGetFontMap}(object)
-\link{pangoFontFamilyGetName}(object)
-\link{pangoFontFamilyIsMonospace}(object)
-\link{pangoFontFamilyListFaces}(object)
-\link{pangoFontFaceGetFaceName}(object)
-\link{pangoFontFaceListSizes}(object)
-\link{pangoFontFaceDescribe}(object)
-\link{pangoFontMapLoadFont}(object, context, desc)
-\link{pangoFontMapLoadFontset}(object, context, desc, language)
-\link{pangoFontMapListFamilies}(object)
-\link{pangoFontsetGetFont}(object, wc)
-\link{pangoFontsetGetMetrics}(object)
-\link{pangoFontsetForeach}(object, func, data)
+\code{\link{pangoFontDescriptionNew}()}\cr
+\code{\link{pangoFontDescriptionCopy}(object)}\cr
+\code{\link{pangoFontDescriptionCopyStatic}(object)}\cr
+\code{\link{pangoFontDescriptionHash}(object)}\cr
+\code{\link{pangoFontDescriptionEqual}(object, desc2)}\cr
+\code{\link{pangoFontDescriptionSetFamily}(object, family)}\cr
+\code{\link{pangoFontDescriptionSetFamilyStatic}(object, family)}\cr
+\code{\link{pangoFontDescriptionGetFamily}(object)}\cr
+\code{\link{pangoFontDescriptionSetStyle}(object, style)}\cr
+\code{\link{pangoFontDescriptionGetStyle}(object)}\cr
+\code{\link{pangoFontDescriptionSetVariant}(object, variant)}\cr
+\code{\link{pangoFontDescriptionGetVariant}(object)}\cr
+\code{\link{pangoFontDescriptionSetWeight}(object, weight)}\cr
+\code{\link{pangoFontDescriptionGetWeight}(object)}\cr
+\code{\link{pangoFontDescriptionSetStretch}(object, stretch)}\cr
+\code{\link{pangoFontDescriptionGetStretch}(object)}\cr
+\code{\link{pangoFontDescriptionSetSize}(object, size)}\cr
+\code{\link{pangoFontDescriptionGetSize}(object)}\cr
+\code{\link{pangoFontDescriptionSetAbsoluteSize}(object, size)}\cr
+\code{\link{pangoFontDescriptionGetSizeIsAbsolute}(object)}\cr
+\code{\link{pangoFontDescriptionGetSetFields}(object)}\cr
+\code{\link{pangoFontDescriptionUnsetFields}(object, to.unset)}\cr
+\code{\link{pangoFontDescriptionMerge}(object, desc.to.merge, replace.existing)}\cr
+\code{\link{pangoFontDescriptionBetterMatch}(object, old.match = NULL, new.match)}\cr
+\code{\link{pangoFontDescriptionFromString}(str)}\cr
+\code{\link{pangoFontDescriptionToString}(object)}\cr
+\code{\link{pangoFontDescriptionToFilename}(object)}\cr
+\code{\link{pangoFontMetricsGetAscent}(object)}\cr
+\code{\link{pangoFontMetricsGetDescent}(object)}\cr
+\code{\link{pangoFontMetricsGetApproximateCharWidth}(object)}\cr
+\code{\link{pangoFontMetricsGetApproximateDigitWidth}(object)}\cr
+\code{\link{pangoFontMetricsGetUnderlineThickness}(object)}\cr
+\code{\link{pangoFontMetricsGetUnderlinePosition}(object)}\cr
+\code{\link{pangoFontMetricsGetStrikethroughThickness}(object)}\cr
+\code{\link{pangoFontMetricsGetStrikethroughPosition}(object)}\cr
+\code{\link{pangoFontFindShaper}(object, language, ch)}\cr
+\code{\link{pangoFontDescribe}(object)}\cr
+\code{\link{pangoFontGetCoverage}(object, language)}\cr
+\code{\link{pangoFontGetGlyphExtents}(object, glyph)}\cr
+\code{\link{pangoFontGetMetrics}(object, language = NULL)}\cr
+\code{\link{pangoFontGetFontMap}(object)}\cr
+\code{\link{pangoFontFamilyGetName}(object)}\cr
+\code{\link{pangoFontFamilyIsMonospace}(object)}\cr
+\code{\link{pangoFontFamilyListFaces}(object)}\cr
+\code{\link{pangoFontFaceGetFaceName}(object)}\cr
+\code{\link{pangoFontFaceListSizes}(object)}\cr
+\code{\link{pangoFontFaceDescribe}(object)}\cr
+\code{\link{pangoFontMapLoadFont}(object, context, desc)}\cr
+\code{\link{pangoFontMapLoadFontset}(object, context, desc, language)}\cr
+\code{\link{pangoFontMapListFamilies}(object)}\cr
+\code{\link{pangoFontsetGetFont}(object, wc)}\cr
+\code{\link{pangoFontsetGetMetrics}(object)}\cr
+\code{\link{pangoFontsetForeach}(object, func, data)}\cr
+
 }
 \section{Hierarchy}{\preformatted{
   \link{GObject}
@@ -170,7 +171,7 @@ which the creator provides when constructing the
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum PangoStyle}}{
+\item{\code{PangoStyle}}{
 An enumeration specifying the various slant styles possible for a font.  
 
 \describe{
@@ -180,7 +181,7 @@ An enumeration specifying the various slant styles possible for a font.
 }
 
 }
-\item{\code{enum PangoWeight}}{
+\item{\code{PangoWeight}}{
 An enumeration specifying the weight (boldness) of a font. This is a numerical
 value ranging from 100 to 900, but there are some predefined values:
 
@@ -195,7 +196,7 @@ value ranging from 100 to 900, but there are some predefined values:
 }
 
 }
-\item{\code{enum PangoVariant}}{
+\item{\code{PangoVariant}}{
 An enumeration specifying capitalization variant of the font.
 
 \describe{
@@ -205,7 +206,7 @@ An enumeration specifying capitalization variant of the font.
 }
 
 }
-\item{\code{enum PangoStretch}}{
+\item{\code{PangoStretch}}{
 An enumeration specifying the width of the font relative to other designs
 within a family.
 
@@ -230,7 +231,7 @@ within a family.
 }
 
 }
-\item{\code{enum PangoFontMask}}{
+\item{\code{PangoFontMask}}{
 The bits in a \code{\link{PangoFontMask}} correspond to fields in a  
 \code{\link{PangoFontDescription}} that have been set.
 

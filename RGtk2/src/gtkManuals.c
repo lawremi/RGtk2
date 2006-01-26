@@ -253,7 +253,7 @@ USER_OBJECT_
             convert = asCGtkItemFactoryEntry;
         else convert = asCGtkItemFactoryEntry2;
 
-        entries = (GtkItemFactoryEntry*)asCArrayRef(s_entries, GtkItemFactoryEntry, convert) ;
+        entries = asCArrayRef(s_entries, GtkItemFactoryEntry, convert) ;
 
           gtk_item_factory_create_items_ac ( object, n_entries, entries, callback_data, callback_type );
 
@@ -513,12 +513,12 @@ S_gtk_text_buffer_create_tag(USER_OBJECT_ s_object, USER_OBJECT_ s_tag_name, USE
 /* reason: var-args, reimplemented using a list from R */
 
 USER_OBJECT_
-S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_text, USER_OBJECT_ s_len, USER_OBJECT_ s_tag_names)
+S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_text, USER_OBJECT_ s_tag_names)
 {
         GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
         GtkTextIter* iter = (GtkTextIter*)getPtrValue(s_iter);
         const gchar* text = (const gchar*)asCString(s_text);
-        gint len = (gint)asCInteger(s_len);
+        gint len = -1;
 		
 		gint start_offset, i;
 		GtkTextIter start;
@@ -531,7 +531,7 @@ S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s
 
 		gtk_text_buffer_get_iter_at_offset(object, &start, start_offset);
 
-		for (i = 0; i < Rf_length(s_tag_names); i++) {
+		for (i = 0; i < GET_LENGTH(s_tag_names); i++) {
 			gtk_text_buffer_apply_tag_by_name(object, (const gchar*)asCString(VECTOR_ELT(s_tag_names, i)), &start, iter);
 		}
 		
@@ -1061,9 +1061,9 @@ S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJE
 	for (i = 0; i < ncols; i++) {
 		GType vtype = gtk_tree_model_get_column_type(GTK_TREE_MODEL(model), INTEGER_DATA(s_cols)[i]);
 		col = VECTOR_ELT(s_data, i);
-		//Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);
+		/*Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);*/
 		for (j = 0; j < nrows; j++) {
-			//Rprintf("row: %d\n", j);
+			/*Rprintf("row: %d\n", j);*/
 			if (append || !gtk_tree_model_get_iter(GTK_TREE_MODEL(model), &iter, 
 					(GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, j))))
 				gtk_list_store_append(model, &iter);
@@ -1085,7 +1085,7 @@ S_gtk_list_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_
 	USER_OBJECT_ s_paths;
 	
 	PROTECT(s_paths = NEW_LIST(nrows));
-	//Rprintf("Loading %d paths\n", nrows);
+	/*Rprintf("Loading %d paths\n", nrows);*/
 	for (i = 0; i < nrows; i++)
 		SET_VECTOR_ELT(s_paths, i, 
 			toRPointerWithFinalizer(gtk_tree_path_new_from_indices(INTEGER_DATA(s_rows)[i], -1), 
@@ -1118,7 +1118,7 @@ S_gtk_tree_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJE
 	for (i = 0; i < ncols; i++) {
 		GType vtype = gtk_tree_model_get_column_type(GTK_TREE_MODEL(model), INTEGER_DATA(s_cols)[i]);
 		col = VECTOR_ELT(s_data, i);
-		//Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);
+		/*Rprintf("col: %d\n", INTEGER_DATA(s_cols)[i]);*/
 		for (j = 0; j < nrows; j++) {
 			GtkTreePath *path = (GtkTreePath*)getPtrValue(VECTOR_ELT(s_paths, j));
 			if (!gtk_tree_model_get_iter(GTK_TREE_MODEL(model), &iter, path) || append) {
@@ -1147,7 +1147,7 @@ S_gtk_tree_store_load(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_
 	USER_OBJECT_ s_paths;
 	
 	PROTECT(s_paths = NEW_LIST(nrows));
-	//Rprintf("Loading %d paths\n", nrows);
+	/*Rprintf("Loading %d paths\n", nrows);*/
 	for (i = 0; i < nrows; i++) {
 		GtkTreePath *path = gtk_tree_path_new();
 		for (j = 0; j < GET_LENGTH(VECTOR_ELT(s_rows, i)); j++) 

@@ -4,20 +4,20 @@
 \name{GtkCalendar}
 \title{GtkCalendar}
 \description{Displays a calendar and allows the user to select a date}
-\usage{gtkCalendar(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCalendarNew}(show = TRUE)
-\link{gtkCalendarSelectMonth}(object, month, year)
-\link{gtkCalendarSelectDay}(object, day)
-\link{gtkCalendarMarkDay}(object, day)
-\link{gtkCalendarUnmarkDay}(object, day)
-\link{gtkCalendarClearMarks}(object)
-\link{gtkCalendarGetDisplayOptions}(object)
-\link{gtkCalendarSetDisplayOptions}(object, flags)
-\link{gtkCalendarDisplayOptions}(object, flags)
-\link{gtkCalendarGetDate}(object)
-\link{gtkCalendarFreeze}(object)
-\link{gtkCalendarThaw}(object)
+\code{\link{gtkCalendarNew}(show = TRUE)}\cr
+\code{\link{gtkCalendarSelectMonth}(object, month, year)}\cr
+\code{\link{gtkCalendarSelectDay}(object, day)}\cr
+\code{\link{gtkCalendarMarkDay}(object, day)}\cr
+\code{\link{gtkCalendarUnmarkDay}(object, day)}\cr
+\code{\link{gtkCalendarClearMarks}(object)}\cr
+\code{\link{gtkCalendarGetDisplayOptions}(object)}\cr
+\code{\link{gtkCalendarSetDisplayOptions}(object, flags)}\cr
+\code{\link{gtkCalendarDisplayOptions}(object, flags)}\cr
+\code{\link{gtkCalendarGetDate}(object)}\cr
+\code{\link{gtkCalendarFreeze}(object)}\cr
+\code{\link{gtkCalendarThaw}(object)}\cr
+\code{gtkCalendar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -57,7 +57,7 @@ struct should only be modified using the functions provided below.
 
 }}}
 \section{Convenient Construction}{\code{gtkCalendar} is the equivalent of \code{\link{gtkCalendarNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkCalendarDisplayOptions}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkCalendarDisplayOptions}}{
 These options can be used to influence the display and behaviour of a \code{\link{GtkCalendar}}.
 
 \describe{

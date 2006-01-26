@@ -3,22 +3,22 @@
 \name{GtkScrolledWindow}
 \title{GtkScrolledWindow}
 \description{Adds scrollbars to its child widget}
-\usage{gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkScrolledWindowNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
-\link{gtkScrolledWindowGetHadjustment}(object)
-\link{gtkScrolledWindowGetVadjustment}(object)
-\link{gtkScrolledWindowGetHscrollbar}(object)
-\link{gtkScrolledWindowGetVscrollbar}(object)
-\link{gtkScrolledWindowSetPolicy}(object, hscrollbar.policy, vscrollbar.policy)
-\link{gtkScrolledWindowAddWithViewport}(object, child)
-\link{gtkScrolledWindowSetPlacement}(object, window.placement)
-\link{gtkScrolledWindowSetShadowType}(object, type)
-\link{gtkScrolledWindowSetHadjustment}(object, hadjustment)
-\link{gtkScrolledWindowSetVadjustment}(object, hadjustment)
-\link{gtkScrolledWindowGetPlacement}(object)
-\link{gtkScrolledWindowGetPolicy}(object)
-\link{gtkScrolledWindowGetShadowType}(object)
+\code{\link{gtkScrolledWindowNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)}\cr
+\code{\link{gtkScrolledWindowGetHadjustment}(object)}\cr
+\code{\link{gtkScrolledWindowGetVadjustment}(object)}\cr
+\code{\link{gtkScrolledWindowGetHscrollbar}(object)}\cr
+\code{\link{gtkScrolledWindowGetVscrollbar}(object)}\cr
+\code{\link{gtkScrolledWindowSetPolicy}(object, hscrollbar.policy, vscrollbar.policy)}\cr
+\code{\link{gtkScrolledWindowAddWithViewport}(object, child)}\cr
+\code{\link{gtkScrolledWindowSetPlacement}(object, window.placement)}\cr
+\code{\link{gtkScrolledWindowSetShadowType}(object, type)}\cr
+\code{\link{gtkScrolledWindowSetHadjustment}(object, hadjustment)}\cr
+\code{\link{gtkScrolledWindowSetVadjustment}(object, hadjustment)}\cr
+\code{\link{gtkScrolledWindowGetPlacement}(object)}\cr
+\code{\link{gtkScrolledWindowGetPolicy}(object)}\cr
+\code{\link{gtkScrolledWindowGetShadowType}(object)}\cr
+\code{gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

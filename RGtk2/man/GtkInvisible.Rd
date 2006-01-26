@@ -3,12 +3,12 @@
 \name{GtkInvisible}
 \title{GtkInvisible}
 \description{A widget which is not displayed}
-\usage{gtkInvisible(screen, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkInvisibleNew}(show = TRUE)
-\link{gtkInvisibleNewForScreen}(screen, show = TRUE)
-\link{gtkInvisibleSetScreen}(object, screen)
-\link{gtkInvisibleGetScreen}(object)
+\code{\link{gtkInvisibleNew}(show = TRUE)}\cr
+\code{\link{gtkInvisibleNewForScreen}(screen, show = TRUE)}\cr
+\code{\link{gtkInvisibleSetScreen}(object, screen)}\cr
+\code{\link{gtkInvisibleGetScreen}(object)}\cr
+\code{gtkInvisible(screen, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

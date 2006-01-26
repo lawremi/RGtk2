@@ -3,37 +3,37 @@
 \name{GtkComboBox}
 \title{GtkComboBox}
 \description{A widget used to choose from a list of items}
-\usage{gtkComboBox(model, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkComboBoxNew}(show = TRUE)
-\link{gtkComboBoxNewWithModel}(model, show = TRUE)
-\link{gtkComboBoxGetWrapWidth}(object)
-\link{gtkComboBoxSetWrapWidth}(object, width)
-\link{gtkComboBoxGetRowSpanColumn}(object)
-\link{gtkComboBoxSetRowSpanColumn}(object, row.span)
-\link{gtkComboBoxGetColumnSpanColumn}(object)
-\link{gtkComboBoxSetColumnSpanColumn}(object, column.span)
-\link{gtkComboBoxGetActive}(object)
-\link{gtkComboBoxSetActive}(object, index)
-\link{gtkComboBoxGetActiveIter}(object)
-\link{gtkComboBoxSetActiveIter}(object, iter)
-\link{gtkComboBoxGetModel}(object)
-\link{gtkComboBoxSetModel}(object, model = NULL)
-\link{gtkComboBoxNewText}()
-\link{gtkComboBoxAppendText}(object, text)
-\link{gtkComboBoxInsertText}(object, position, text)
-\link{gtkComboBoxPrependText}(object, text)
-\link{gtkComboBoxRemoveText}(object, position)
-\link{gtkComboBoxGetActiveText}(object)
-\link{gtkComboBoxPopup}(object)
-\link{gtkComboBoxPopdown}(object)
-\link{gtkComboBoxGetPopupAccessible}(object)
-\link{gtkComboBoxGetRowSeparatorFunc}(object)
-\link{gtkComboBoxSetRowSeparatorFunc}(object, func, data = NULL)
-\link{gtkComboBoxSetAddTearoffs}(object, add.tearoffs)
-\link{gtkComboBoxGetAddTearoffs}(object)
-\link{gtkComboBoxSetFocusOnClick}(object, focus.on.click)
-\link{gtkComboBoxGetFocusOnClick}(object)
+\code{\link{gtkComboBoxNew}(show = TRUE)}\cr
+\code{\link{gtkComboBoxNewWithModel}(model, show = TRUE)}\cr
+\code{\link{gtkComboBoxGetWrapWidth}(object)}\cr
+\code{\link{gtkComboBoxSetWrapWidth}(object, width)}\cr
+\code{\link{gtkComboBoxGetRowSpanColumn}(object)}\cr
+\code{\link{gtkComboBoxSetRowSpanColumn}(object, row.span)}\cr
+\code{\link{gtkComboBoxGetColumnSpanColumn}(object)}\cr
+\code{\link{gtkComboBoxSetColumnSpanColumn}(object, column.span)}\cr
+\code{\link{gtkComboBoxGetActive}(object)}\cr
+\code{\link{gtkComboBoxSetActive}(object, index)}\cr
+\code{\link{gtkComboBoxGetActiveIter}(object)}\cr
+\code{\link{gtkComboBoxSetActiveIter}(object, iter)}\cr
+\code{\link{gtkComboBoxGetModel}(object)}\cr
+\code{\link{gtkComboBoxSetModel}(object, model = NULL)}\cr
+\code{\link{gtkComboBoxNewText}()}\cr
+\code{\link{gtkComboBoxAppendText}(object, text)}\cr
+\code{\link{gtkComboBoxInsertText}(object, position, text)}\cr
+\code{\link{gtkComboBoxPrependText}(object, text)}\cr
+\code{\link{gtkComboBoxRemoveText}(object, position)}\cr
+\code{\link{gtkComboBoxGetActiveText}(object)}\cr
+\code{\link{gtkComboBoxPopup}(object)}\cr
+\code{\link{gtkComboBoxPopdown}(object)}\cr
+\code{\link{gtkComboBoxGetPopupAccessible}(object)}\cr
+\code{\link{gtkComboBoxGetRowSeparatorFunc}(object)}\cr
+\code{\link{gtkComboBoxSetRowSeparatorFunc}(object, func, data = NULL)}\cr
+\code{\link{gtkComboBoxSetAddTearoffs}(object, add.tearoffs)}\cr
+\code{\link{gtkComboBoxGetAddTearoffs}(object)}\cr
+\code{\link{gtkComboBoxSetFocusOnClick}(object, focus.on.click)}\cr
+\code{\link{gtkComboBoxGetFocusOnClick}(object)}\cr
+\code{gtkComboBox(model, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

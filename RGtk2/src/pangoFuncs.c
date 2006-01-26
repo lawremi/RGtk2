@@ -1533,7 +1533,7 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object)
 	pango_coverage_to_bytes(object, &bytes, &n_bytes);
 
 
-	_result = retByVal(_result, "bytes", asRIntegerArrayWithSize(bytes, n_bytes), "n_bytes", asRInteger(n_bytes), NULL);
+	_result = retByVal(_result, "bytes", asRRawArrayWithSize(bytes, n_bytes), "n_bytes", asRInteger(n_bytes), NULL);
 	CLEANUP(g_free, bytes);
 
 	return(_result);
@@ -1543,7 +1543,7 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object)
 USER_OBJECT_
 S_pango_coverage_from_bytes(USER_OBJECT_ s_bytes)
 {
-	guchar* bytes = (guchar*)asCArray(s_bytes, guchar, asCInteger);
+	guchar* bytes = (guchar*)asCArray(s_bytes, guchar, asCRaw);
 	int n_bytes = (int)GET_LENGTH(s_bytes);
 
 	PangoCoverage* ans;

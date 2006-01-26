@@ -3,7 +3,7 @@
 \title{gtkCTreeNodeIsVisible}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_node_is_visible} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{gtk_ctree_node_is_visible} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNodeIsVisible(object, node)}
 \arguments{

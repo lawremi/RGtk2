@@ -1,9 +1,9 @@
-\alias{GDKPixbuf}
-\name{GDKPixbuf}
-\title{GDKPixbuf}
+\alias{GDK-Pixbuf}
+\name{GDK-Pixbuf}
+\title{GDK-Pixbuf}
 \description{This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \code{\link{GdkPixbuf}} in combination with \code{\link{GtkImage}} to display images.}
 \details{
-The RGtk binding to the GDKPixbuf library consists of the following components:
+The RGtk binding to the GDK-Pixbuf library consists of the following components:
 \describe{
 \item{\link{gdk-pixbuf-animation}}{Animated images.}
 \item{\link{gdk-pixbuf-creating}}{Creating a pixbuf from image data that is already in memory.}
@@ -17,6 +17,6 @@ The RGtk binding to the GDKPixbuf library consists of the following components:
 \item{\link{gdk-pixbuf-util}}{Utility and miscellaneous convenience functions.}
 }
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/gdkpixbuf}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

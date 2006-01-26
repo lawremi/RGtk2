@@ -3,12 +3,12 @@
 \name{GtkPixmap}
 \title{GtkPixmap}
 \description{A widget displaying a graphical image or icon}
-\usage{gtkPixmap(pixmap, mask = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkPixmapNew}(pixmap, mask = NULL, show = TRUE)
-\link{gtkPixmapSet}(object, val, mask = NULL)
-\link{gtkPixmapGet}(object)
-\link{gtkPixmapSetBuildInsensitive}(object, build)
+\code{\link{gtkPixmapNew}(pixmap, mask = NULL, show = TRUE)}\cr
+\code{\link{gtkPixmapSet}(object, val, mask = NULL)}\cr
+\code{\link{gtkPixmapGet}(object)}\cr
+\code{\link{gtkPixmapSetBuildInsensitive}(object, build)}\cr
+\code{gtkPixmap(pixmap, mask = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -30,9 +30,7 @@ application, look at \code{\link{GtkImage}} and \code{GdkRGB}.
 GtkPixmap has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkImage}} instead.}
 \section{Structures}{\describe{\item{\code{GtkPixmap}}{
-\strong{WARNING: \code{GtkPixmap} is deprecated and should not be used in newly-written code.  
-The \code{\link{GtkPixmap}} struct contains private data only, and
-should be accessed using the functions below.}
+\strong{WARNING: \code{GtkPixmap} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkPixmap}} struct contains private data only, and
 should be accessed using the functions below.
 

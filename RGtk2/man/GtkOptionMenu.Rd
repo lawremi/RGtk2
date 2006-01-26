@@ -3,14 +3,14 @@
 \name{GtkOptionMenu}
 \title{GtkOptionMenu}
 \description{A widget used to choose from a list of valid choices}
-\usage{gtkOptionMenu(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkOptionMenuNew}(show = TRUE)
-\link{gtkOptionMenuGetMenu}(object)
-\link{gtkOptionMenuSetMenu}(object, menu)
-\link{gtkOptionMenuRemoveMenu}(object)
-\link{gtkOptionMenuSetHistory}(object, index)
-\link{gtkOptionMenuGetHistory}(object)
+\code{\link{gtkOptionMenuNew}(show = TRUE)}\cr
+\code{\link{gtkOptionMenuGetMenu}(object)}\cr
+\code{\link{gtkOptionMenuSetMenu}(object, menu)}\cr
+\code{\link{gtkOptionMenuRemoveMenu}(object)}\cr
+\code{\link{gtkOptionMenuSetHistory}(object, index)}\cr
+\code{\link{gtkOptionMenuGetHistory}(object)}\cr
+\code{gtkOptionMenu(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -36,9 +36,7 @@ menu item with \code{\link{gtkOptionMenuGetHistory}}.
   
 As of GTK+ 2.4, \code{\link{GtkOptionMenu}} has been deprecated in favor of \code{\link{GtkComboBox}}.}
 \section{Structures}{\describe{\item{\code{GtkOptionMenu}}{
-\strong{WARNING: \code{GtkOptionMenu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
-The \code{\link{GtkOptionMenu}} struct contains private data only, and 
-should be accessed using the functions below.}
+\strong{WARNING: \code{GtkOptionMenu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 The \code{\link{GtkOptionMenu}} struct contains private data only, and 
 should be accessed using the functions below.
 

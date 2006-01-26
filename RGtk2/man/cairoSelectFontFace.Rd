@@ -10,10 +10,10 @@ comprehensive font handling and text layout library in addition to
 cairo.}
 \usage{cairoSelectFontFace(cr, family, slant, weight)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a \code{\link{cairo_t}}}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
 \item{\code{family}}{[char]  a font family name, encoded in UTF-8}
-\item{\code{slant}}{[\code{\link{cairo_font_slant_t}}]  the slant for the font}
-\item{\code{weight}}{[\code{\link{cairo_font_weight_t}}]  the weight for the font}
+\item{\code{slant}}{[\code{\link{CairoFontSlant}}]  the slant for the font}
+\item{\code{weight}}{[\code{\link{CairoFontWeight}}]  the weight for the font}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

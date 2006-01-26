@@ -2,7 +2,7 @@
 \name{gdkDropReply}
 \title{gdkDropReply}
 \description{Accepts or rejects a drop. }
-\usage{gdkDropReply(object, ok, time = GDK_CURRENT_TIME)}
+\usage{gdkDropReply(object, ok, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDragContext}}]  a \code{\link{GdkDragContext}}.}
 \item{\code{ok}}{[logical]  \code{TRUE} if the drop is accepted.}

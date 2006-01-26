@@ -5,7 +5,7 @@
 conceptually the final point reached by the path so far.}
 \usage{cairoGetCurrentPoint(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{x}}{[numeric]  return value for X coordinate of the current point}
 \item{\code{y}}{[numeric]  return value for Y coordinate of the current point}
 }

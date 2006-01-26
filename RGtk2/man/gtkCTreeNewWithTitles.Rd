@@ -3,8 +3,7 @@
 \title{gtkCTreeNewWithTitles}
 \description{
 Create a new \code{\link{GtkCTree}} widget with the given titles for the columns.
-\strong{WARNING: \code{gtk_ctree_new_with_titles} is deprecated and should not be used in newly-written code.  
-Create a new \code{\link{GtkCTree}} widget with the given titles for the columns.}
+\strong{WARNING: \code{gtk_ctree_new_with_titles} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNewWithTitles(columns = 1, tree.column = 0, titles, show = TRUE)}
 \arguments{

@@ -5,32 +5,32 @@
 \name{GtkSpinButton}
 \title{GtkSpinButton}
 \description{Retrieve an integer or floating-point number from the user}
-\usage{gtkSpinButton(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkSpinButtonConfigure}(object, adjustment = NULL, climb.rate, digits)
-\link{gtkSpinButtonNew}(adjustment = NULL, climb.rate = NULL, digits = NULL, show = TRUE)
-\link{gtkSpinButtonNewWithRange}(min, max, step, show = TRUE)
-\link{gtkSpinButtonSetAdjustment}(object, adjustment)
-\link{gtkSpinButtonGetAdjustment}(object)
-\link{gtkSpinButtonSetDigits}(object, digits)
-\link{gtkSpinButtonSetIncrements}(object, step, page)
-\link{gtkSpinButtonSetRange}(object, min, max)
-\link{gtkSpinButtonGetValueAsInt}(object)
-\link{gtkSpinButtonSetValue}(object, value)
-\link{gtkSpinButtonSetUpdatePolicy}(object, policy)
-\link{gtkSpinButtonSetNumeric}(object, numeric)
-\link{gtkSpinButtonSpin}(object, direction, increment)
-\link{gtkSpinButtonSetWrap}(object, wrap)
-\link{gtkSpinButtonSetSnapToTicks}(object, snap.to.ticks)
-\link{gtkSpinButtonUpdate}(object)
-\link{gtkSpinButtonGetDigits}(object)
-\link{gtkSpinButtonGetIncrements}(object)
-\link{gtkSpinButtonGetNumeric}(object)
-\link{gtkSpinButtonGetRange}(object)
-\link{gtkSpinButtonGetSnapToTicks}(object)
-\link{gtkSpinButtonGetUpdatePolicy}(object)
-\link{gtkSpinButtonGetValue}(object)
-\link{gtkSpinButtonGetWrap}(object)
+\code{\link{gtkSpinButtonConfigure}(object, adjustment = NULL, climb.rate, digits)}\cr
+\code{\link{gtkSpinButtonNew}(adjustment = NULL, climb.rate = NULL, digits = NULL, show = TRUE)}\cr
+\code{\link{gtkSpinButtonNewWithRange}(min, max, step, show = TRUE)}\cr
+\code{\link{gtkSpinButtonSetAdjustment}(object, adjustment)}\cr
+\code{\link{gtkSpinButtonGetAdjustment}(object)}\cr
+\code{\link{gtkSpinButtonSetDigits}(object, digits)}\cr
+\code{\link{gtkSpinButtonSetIncrements}(object, step, page)}\cr
+\code{\link{gtkSpinButtonSetRange}(object, min, max)}\cr
+\code{\link{gtkSpinButtonGetValueAsInt}(object)}\cr
+\code{\link{gtkSpinButtonSetValue}(object, value)}\cr
+\code{\link{gtkSpinButtonSetUpdatePolicy}(object, policy)}\cr
+\code{\link{gtkSpinButtonSetNumeric}(object, numeric)}\cr
+\code{\link{gtkSpinButtonSpin}(object, direction, increment)}\cr
+\code{\link{gtkSpinButtonSetWrap}(object, wrap)}\cr
+\code{\link{gtkSpinButtonSetSnapToTicks}(object, snap.to.ticks)}\cr
+\code{\link{gtkSpinButtonUpdate}(object)}\cr
+\code{\link{gtkSpinButtonGetDigits}(object)}\cr
+\code{\link{gtkSpinButtonGetIncrements}(object)}\cr
+\code{\link{gtkSpinButtonGetNumeric}(object)}\cr
+\code{\link{gtkSpinButtonGetRange}(object)}\cr
+\code{\link{gtkSpinButtonGetSnapToTicks}(object)}\cr
+\code{\link{gtkSpinButtonGetUpdatePolicy}(object)}\cr
+\code{\link{gtkSpinButtonGetValue}(object)}\cr
+\code{\link{gtkSpinButtonGetWrap}(object)}\cr
+\code{gtkSpinButton(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -101,14 +101,14 @@ and should only be modified using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkSpinButton} is the result of collapsing the constructors of \code{GtkSpinButton} (\code{\link{gtkSpinButtonNew}}, \code{\link{gtkSpinButtonNewWithRange}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkSpinButtonUpdatePolicy}}{
+\item{\code{GtkSpinButtonUpdatePolicy}}{
 \tabular{ll}{
 GTK_UPDATE_ALWAYS \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is always displayed. \cr
 GTK_UPDATE_IF_VALID \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \code{\link{GtkAdjustment}}  . \cr
 }
 
 }
-\item{\code{enum GtkSpinType}}{
+\item{\code{GtkSpinType}}{
 \tabular{ll}{
 GTK_SPIN_STEP_FORWARD, 
 GTK_SPIN_STEP_BACKWARD, 

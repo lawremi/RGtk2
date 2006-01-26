@@ -3,41 +3,41 @@
 \name{GdkDisplay}
 \title{GdkDisplay}
 \description{Controls the keyboard/mouse pointer grabs and a set of   s}
-\usage{gdkDisplay(display.name)}
 \section{Methods and Functions}{
-\link{gdkDisplayOpen}(display.name)
-\link{gdkDisplayGetDefault}()
-\link{gdkDisplayGetName}(object)
-\link{gdkDisplayGetNScreens}(object)
-\link{gdkDisplayGetScreen}(object, screen.num)
-\link{gdkDisplayGetDefaultScreen}(object)
-\link{gdkDisplayPointerUngrab}(object, time. = GDK_CURRENT_TIME)
-\link{gdkDisplayKeyboardUngrab}(object, time. = GDK_CURRENT_TIME)
-\link{gdkDisplayPointerIsGrabbed}(object)
-\link{gdkDisplayBeep}(object)
-\link{gdkDisplaySync}(object)
-\link{gdkDisplayFlush}(object)
-\link{gdkDisplayClose}(object)
-\link{gdkDisplayListDevices}(object)
-\link{gdkDisplayGetEvent}(object)
-\link{gdkDisplayPeekEvent}(object)
-\link{gdkDisplayPutEvent}(object, event)
-\link{gdkDisplayAddClientMessageFilter}(object, message.type, func, data)
-\link{gdkDisplaySetDoubleClickTime}(object, msec)
-\link{gdkDisplaySetDoubleClickDistance}(object, distance)
-\link{gdkDisplayGetPointer}(object)
-\link{gdkDisplayGetWindowAtPointer}(object)
-\link{gdkDisplaySetPointerHooks}(object, new.hooks)
-\link{gdkDisplayWarpPointer}(object, screen, x, y)
-\link{gdkDisplaySupportsCursorColor}(object)
-\link{gdkDisplaySupportsCursorAlpha}(object)
-\link{gdkDisplayGetDefaultCursorSize}(object)
-\link{gdkDisplayGetMaximalCursorSize}(object)
-\link{gdkDisplayGetDefaultGroup}(object)
-\link{gdkDisplaySupportsSelectionNotification}(object)
-\link{gdkDisplayRequestSelectionNotification}(object, selection)
-\link{gdkDisplaySupportsClipboardPersistence}(object)
-\link{gdkDisplayStoreClipboard}(object, clipboard.window, targets)
+\code{\link{gdkDisplayOpen}(display.name)}\cr
+\code{\link{gdkDisplayGetDefault}()}\cr
+\code{\link{gdkDisplayGetName}(object)}\cr
+\code{\link{gdkDisplayGetNScreens}(object)}\cr
+\code{\link{gdkDisplayGetScreen}(object, screen.num)}\cr
+\code{\link{gdkDisplayGetDefaultScreen}(object)}\cr
+\code{\link{gdkDisplayPointerUngrab}(object, time. = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkDisplayKeyboardUngrab}(object, time. = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkDisplayPointerIsGrabbed}(object)}\cr
+\code{\link{gdkDisplayBeep}(object)}\cr
+\code{\link{gdkDisplaySync}(object)}\cr
+\code{\link{gdkDisplayFlush}(object)}\cr
+\code{\link{gdkDisplayClose}(object)}\cr
+\code{\link{gdkDisplayListDevices}(object)}\cr
+\code{\link{gdkDisplayGetEvent}(object)}\cr
+\code{\link{gdkDisplayPeekEvent}(object)}\cr
+\code{\link{gdkDisplayPutEvent}(object, event)}\cr
+\code{\link{gdkDisplayAddClientMessageFilter}(object, message.type, func, data)}\cr
+\code{\link{gdkDisplaySetDoubleClickTime}(object, msec)}\cr
+\code{\link{gdkDisplaySetDoubleClickDistance}(object, distance)}\cr
+\code{\link{gdkDisplayGetPointer}(object)}\cr
+\code{\link{gdkDisplayGetWindowAtPointer}(object)}\cr
+\code{\link{gdkDisplaySetPointerHooks}(object, new.hooks)}\cr
+\code{\link{gdkDisplayWarpPointer}(object, screen, x, y)}\cr
+\code{\link{gdkDisplaySupportsCursorColor}(object)}\cr
+\code{\link{gdkDisplaySupportsCursorAlpha}(object)}\cr
+\code{\link{gdkDisplayGetDefaultCursorSize}(object)}\cr
+\code{\link{gdkDisplayGetMaximalCursorSize}(object)}\cr
+\code{\link{gdkDisplayGetDefaultGroup}(object)}\cr
+\code{\link{gdkDisplaySupportsSelectionNotification}(object)}\cr
+\code{\link{gdkDisplayRequestSelectionNotification}(object, selection)}\cr
+\code{\link{gdkDisplaySupportsClipboardPersistence}(object)}\cr
+\code{\link{gdkDisplayStoreClipboard}(object, clipboard.window, targets)}\cr
+\code{gdkDisplay(display.name)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkDisplay}}

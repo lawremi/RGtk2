@@ -1,7 +1,18 @@
 TODO for RELEASE
 ----------------
-	
-1) Carry out steps in "Writing Portable R Packages" in guide.
+
+NAMESPACE should include:
+Any case of gtk, pango, atk, glade, gdk, g as prefices followed by a capital letter
+Operators: [, $, |, &, !
+iWidget stuff
+Old RGtk functions
+names.GObject
+
+NAMESPACE should NOT include:
+The coercion (as.) methods (invoked implicitly)
+*GetType() methods (express type as string)
+gObjectGetClasses gObjectGetInterfaces gObjectGetProps
+gObjectSetProps gObjectType gObjectTypeName gTypeGetSignal
 
 Some current issues (bugs?) with RGtk2
 ----------
@@ -14,6 +25,8 @@ Specifics
 - these functions SHOULD free a string parameter by ref: (but they don't)
 	pango_parse_markup, gtk_im_context_get_(preedit_string/surrounding), gtk_widget_(class)_path
 ----> Wait introspection support
+- CTREE_NODE_NEXT and CTREE_NODE_PREV are missing
+- Problem with "destroy with parent" dialog that is explicitly destroyed
 	  
 General
 ---------
@@ -21,6 +34,7 @@ General
 Easy Fixes:
 -----------
 guchar * data should go to raw vector
+support translation of messages
 
 Tough Fixes (questionable worth)
 -----------
@@ -136,3 +150,36 @@ Problems with defs files (as provided by pygtk)
 - Hacked some type names, like G(S)List[type] to specify the component type and [] indicating array
 - gdk_pixbuf_save_to_buffer is missing
 - THERES A LOT MORE MISSING
+
+Functions currently UNDOCUMENTED:
+
+  Will Document: $.<invalid>, [iWidgets], [GetField], [old stuff]
+  	cairo cairoFontOptions cairoPattern cairoScaledFont cairoSurface 
+	macros : gtkWidgetSetFlags pangoLanguageToString pangoAscent  
+		pangoDescent pangoLbearing pangoPixels pangoRbearing pangoMatrixInit
+  
+  Should not exist (in defs?): 
+  GdkInputCondition GdkStatus GtkArgFlags GtkDebugFlag
+  	GtkObjectFlags gdkSelectionConvert 
+   gdkSelectionOwnerSet
+  gdkSelectionOwnerSetForDisplay 
+  gdkSelectionSendNotify gdkSelectionSendNotifyForDisplay
+  gdkThreadsEnter gdkThreadsInit gdkThreadsLeave
+  gdkWindowForeignNew gdkWindowForeignNewForDisplay
+  gdkWindowLookup gdkWindowLookupForDisplay 
+  gladeProvide gladeRequire 
+  gtkCheckType gtkCheckVersion
+   gtkObjectNew gtkObjectRef
+  gtkObjectRemoveCallback gtkObjectSetArgs gtkObjectSignalEmit
+  gtkObjectSink gtkObjectType gtkObjectUnblockCallback gtkObjectUnref
+  gtkRemoveIdle gtkRemoveTimeout gtkSetLocale
+  gtkWindowAddEmbeddedXid  
+  gtkWindowRemoveEmbeddedXid
+  
+  Exclude from NAMESPACE: as.*, GetType
+  
+  Reference doc bugs: atkStateSet 
+  
+  compatibility macros: gtkCheckMenuItemSetState, gtkContainerChildren,
+  	gtkMenuItemRightJustify, gtkNotebookSetPage, gtkRadioButtonGroup
+    gtkRadioMenuItemGroup, gtkStyleApplyDefaultPixmap gtkToggleButtonSetState  

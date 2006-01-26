@@ -3,9 +3,9 @@
 \title{AtkHypertext}
 \description{The ATK interface which provides standard mechanism for manipulating hyperlinks.}
 \section{Methods and Functions}{
-\link{atkHypertextGetLink}(object, link.index)
-\link{atkHypertextGetNLinks}(object)
-\link{atkHypertextGetLinkIndex}(object, char.index)
+\code{\link{atkHypertextGetLink}(object, link.index)}\cr
+\code{\link{atkHypertextGetNLinks}(object)}\cr
+\code{\link{atkHypertextGetLinkIndex}(object, char.index)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkHypertext}}

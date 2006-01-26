@@ -41,6 +41,13 @@ asCInteger(USER_OBJECT_ s_int)
 		return(0);
     return(INTEGER_DATA(s_int)[0]);
 }
+guchar
+asCRaw(USER_OBJECT_ s_raw)
+{
+	if (GET_LENGTH(s_raw) == 0)
+		return(0);
+    return(RAW(s_raw)[0]);
+}
 double
 asCNumeric(USER_OBJECT_ s_num)
 {
@@ -70,6 +77,15 @@ asRLogical(Rboolean val)
   USER_OBJECT_ ans;
   ans = NEW_LOGICAL(1);
   LOGICAL_DATA(ans)[0] = val;
+
+  return(ans);
+}
+USER_OBJECT_
+asRRaw(guchar val)
+{
+  USER_OBJECT_ ans;
+  ans = NEW_RAW(1);
+  RAW(ans)[0] = val;
 
   return(ans);
 }
@@ -235,7 +251,7 @@ toRPointerWithRef(void *val, const char *type) {
 
 void RGtk_finalizer(USER_OBJECT_ extptr) {
     void *ptr = getPtrValue(extptr);
-    //Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));
+    /*Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));*/
     if (ptr) {
         ((RPointerFinalizer)getPtrValue(R_ExternalPtrTag(extptr)))(ptr);
         R_ClearExternalPtr(extptr);
@@ -314,7 +330,7 @@ asCFlag(USER_OBJECT_ s_flag, GType ftype)
         int i;
         for (i = 0; i < GET_LENGTH(s_flag); i++) {
             const gchar *fname = CHAR_DEREF(STRING_ELT(s_flag, i));
-            //Rprintf("Searching for flag value %s\n", fname);
+            /*Rprintf("Searching for flag value %s\n", fname);*/
             GFlagsValue *fvalue = g_flags_get_value_by_name(fclass, fname);
             if (!fvalue)
                 fvalue = g_flags_get_value_by_nick(fclass, fname);

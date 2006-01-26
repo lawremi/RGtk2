@@ -5,14 +5,15 @@
 \title{GtkCellRenderer}
 \description{An object for rendering a single cell on a }
 \section{Methods and Functions}{
-\link{gtkCellRendererGetSize}(object, widget, cell.area = NULL)
-\link{gtkCellRendererRender}(object, window, widget, background.area, cell.area, expose.area, flags)
-\link{gtkCellRendererActivate}(object, event, widget, path, background.area, cell.area, flags)
-\link{gtkCellRendererStartEditing}(object, event, widget, path, background.area, cell.area, flags)
-\link{gtkCellRendererEditingCanceled}(object)
-\link{gtkCellRendererStopEditing}(object, canceled)
-\link{gtkCellRendererGetFixedSize}(object)
-\link{gtkCellRendererSetFixedSize}(object, width, height)
+\code{\link{gtkCellRendererGetSize}(object, widget, cell.area = NULL)}\cr
+\code{\link{gtkCellRendererRender}(object, window, widget, background.area, cell.area, expose.area, flags)}\cr
+\code{\link{gtkCellRendererActivate}(object, event, widget, path, background.area, cell.area, flags)}\cr
+\code{\link{gtkCellRendererStartEditing}(object, event, widget, path, background.area, cell.area, flags)}\cr
+\code{\link{gtkCellRendererEditingCanceled}(object)}\cr
+\code{\link{gtkCellRendererStopEditing}(object, canceled)}\cr
+\code{\link{gtkCellRendererGetFixedSize}(object)}\cr
+\code{\link{gtkCellRendererSetFixedSize}(object, width, height)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -53,7 +54,7 @@ respectively.}
 \section{Structures}{\describe{\item{\code{GtkCellRenderer}}{\emph{undocumented
 }}}}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkCellRendererState}}{
+\item{\code{GtkCellRendererState}}{
 Tells how a cell is to be rendererd.
 
 \describe{
@@ -67,7 +68,7 @@ probably has a selection colored background to render to.}
 }
 
 }
-\item{\code{enum GtkCellRendererMode}}{
+\item{\code{GtkCellRendererMode}}{
 Identifies how the user can interact with a particular cell.
 
 \describe{

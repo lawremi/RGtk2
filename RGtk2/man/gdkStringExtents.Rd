@@ -3,8 +3,7 @@
 \title{gdkStringExtents}
 \description{
 Gets the metrics of a string.
-\strong{WARNING: \code{gdk_string_extents} is deprecated and should not be used in newly-written code.  
-Gets the metrics of a string.  }
+\strong{WARNING: \code{gdk_string_extents} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkStringExtents(object, string)}
 \arguments{

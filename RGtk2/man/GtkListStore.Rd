@@ -3,27 +3,27 @@
 \name{GtkListStore}
 \title{GtkListStore}
 \description{A list-like data structure that can be used with the }
-\usage{gtkListStore(..., value)}
 \section{Methods and Functions}{
-\link{gtkListStoreNew}(...)
-\link{gtkListStoreNewv}(value)
-\link{gtkListStoreSetColumnTypes}(object, types)
-\link{gtkListStoreSet}(object, iter, ...)
-\link{gtkListStoreSetValue}(object, iter, column, value)
-\link{gtkListStoreRemove}(object, iter)
-\link{gtkListStoreInsert}(object, position)
-\link{gtkListStoreInsertBefore}(object, sibling)
-\link{gtkListStoreInsertAfter}(object, sibling)
-\link{gtkListStoreInsertWithValues}(object, position, ...)
-\link{gtkListStoreInsertWithValuesv}(object, position, columns, values)
-\link{gtkListStorePrepend}(object, iter)
-\link{gtkListStoreAppend}(object)
-\link{gtkListStoreClear}(object)
-\link{gtkListStoreIterIsValid}(object, iter)
-\link{gtkListStoreReorder}(object, new.order)
-\link{gtkListStoreSwap}(object, a, b)
-\link{gtkListStoreMoveBefore}(object, iter, position = NULL)
-\link{gtkListStoreMoveAfter}(object, iter, position = NULL)
+\code{\link{gtkListStoreNew}(...)}\cr
+\code{\link{gtkListStoreNewv}(value)}\cr
+\code{\link{gtkListStoreSetColumnTypes}(object, types)}\cr
+\code{\link{gtkListStoreSet}(object, iter, ...)}\cr
+\code{\link{gtkListStoreSetValue}(object, iter, column, value)}\cr
+\code{\link{gtkListStoreRemove}(object, iter)}\cr
+\code{\link{gtkListStoreInsert}(object, position)}\cr
+\code{\link{gtkListStoreInsertBefore}(object, sibling)}\cr
+\code{\link{gtkListStoreInsertAfter}(object, sibling)}\cr
+\code{\link{gtkListStoreInsertWithValues}(object, position, ...)}\cr
+\code{\link{gtkListStoreInsertWithValuesv}(object, position, columns, values)}\cr
+\code{\link{gtkListStorePrepend}(object, iter)}\cr
+\code{\link{gtkListStoreAppend}(object)}\cr
+\code{\link{gtkListStoreClear}(object)}\cr
+\code{\link{gtkListStoreIterIsValid}(object, iter)}\cr
+\code{\link{gtkListStoreReorder}(object, new.order)}\cr
+\code{\link{gtkListStoreSwap}(object, a, b)}\cr
+\code{\link{gtkListStoreMoveBefore}(object, iter, position = NULL)}\cr
+\code{\link{gtkListStoreMoveAfter}(object, iter, position = NULL)}\cr
+\code{gtkListStore(..., value)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkListStore}}

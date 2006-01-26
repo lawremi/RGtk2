@@ -3,10 +3,11 @@
 \title{gtkWindowSetIconFromFile}
 \description{Sets the icon for \code{window}.  
 Warns on failure if \code{err} is \code{NULL}.}
-\usage{gtkWindowSetIconFromFile(object, filename)}
+\usage{gtkWindowSetIconFromFile(object, filename, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
 \item{\code{filename}}{[character]  location of icon file}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{This function is equivalent to calling \code{\link{gtkWindowSetIcon}}
 with a pixbuf created by loading the image from \code{filename}.  

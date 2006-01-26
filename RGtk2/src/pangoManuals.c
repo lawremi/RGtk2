@@ -46,10 +46,11 @@ USER_OBJECT_
          int length, widths_len;
          int embedding_level = asCInteger(s_embedding_level);
          USER_OBJECT_ _result = NULL_USER_OBJECT;
+		 int* logical_widths;
 
          length = strlen(text);
 		 widths_len = g_utf8_strlen(text, length);
-         int* logical_widths = (int *)R_alloc(widths_len, sizeof(int));
+		 logical_widths = (int *)R_alloc(widths_len, sizeof(int));
           pango_glyph_string_get_logical_widths ( object, text, length, embedding_level, logical_widths );
 
         _result = retByVal(_result, "logical_widths", asRIntegerArrayWithSize ( logical_widths, widths_len ), NULL);

@@ -6,22 +6,22 @@
 \name{gdk-Drag-and-Drop}
 \title{Drag and Drop}
 \description{Functions for controlling drag and drop handling}
-\usage{gdkDragContext()}
 \section{Methods and Functions}{
-\link{gdkDragGetSelection}(object)
-\link{gdkDragAbort}(object, time)
-\link{gdkDropReply}(object, ok, time = GDK_CURRENT_TIME)
-\link{gdkDragContextNew}()
-\link{gdkDragDrop}(object, time)
-\link{gdkDragFindWindow}(object, drag.window, x.root, y.root)
-\link{gdkDragFindWindowForScreen}(object, drag.window, screen, x.root, y.root)
-\link{gdkDragBegin}(object, targets)
-\link{gdkDragMotion}(object, dest.window, protocol, x.root, y.root, suggested.action, possible.actions, time)
-\link{gdkDropFinish}(object, success, time = GDK_CURRENT_TIME)
-\link{gdkDragGetProtocol}(xid)
-\link{gdkDragGetProtocolForDisplay}(display, xid, protocol)
-\link{gdkDragStatus}(object, action, time = GDK_CURRENT_TIME)
-\link{gdkDragDropSucceeded}(object)
+\code{\link{gdkDragGetSelection}(object)}\cr
+\code{\link{gdkDragAbort}(object, time)}\cr
+\code{\link{gdkDropReply}(object, ok, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkDragContextNew}()}\cr
+\code{\link{gdkDragDrop}(object, time)}\cr
+\code{\link{gdkDragFindWindow}(object, drag.window, x.root, y.root)}\cr
+\code{\link{gdkDragFindWindowForScreen}(object, drag.window, screen, x.root, y.root)}\cr
+\code{\link{gdkDragBegin}(object, targets)}\cr
+\code{\link{gdkDragMotion}(object, dest.window, protocol, x.root, y.root, suggested.action, possible.actions, time)}\cr
+\code{\link{gdkDropFinish}(object, success, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkDragGetProtocol}(xid)}\cr
+\code{\link{gdkDragGetProtocolForDisplay}(display, xid, protocol)}\cr
+\code{\link{gdkDragStatus}(object, action, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkDragDropSucceeded}(object)}\cr
+\code{gdkDragContext()}
 }
 \section{Detailed Description}{These functions provide a low level interface for drag and drop.
 The X backend of GDK supports both the Xdnd and Motif drag and drop protocols 
@@ -51,7 +51,7 @@ drag in progress. It is used on both source and destination sides.
 }}}
 \section{Convenient Construction}{\code{gdkDragContext} is the equivalent of \code{\link{gdkDragContextNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkDragProtocol}}{
+\item{\code{GdkDragProtocol}}{
 Used in \code{\link{GdkDragContext}} to indicate the protocol according to
 which DND is done.
 
@@ -67,7 +67,7 @@ which DND is done.
 }
 
 }
-\item{\code{enum GdkDragAction}}{
+\item{\code{GdkDragAction}}{
 Used in \code{\link{GdkDragContext}} to indicate what the destination
 should do with the dropped data.
 

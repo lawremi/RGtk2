@@ -4,10 +4,10 @@
 \description{The ATK interface implemented by valuators and components which display or
 select a value from a bounded range of values.}
 \section{Methods and Functions}{
-\link{atkValueGetCurrentValue}(object)
-\link{atkValueGetMaximumValue}(object)
-\link{atkValueGetMinimumValue}(object)
-\link{atkValueSetCurrentValue}(object, value)
+\code{\link{atkValueGetCurrentValue}(object)}\cr
+\code{\link{atkValueGetMaximumValue}(object)}\cr
+\code{\link{atkValueGetMinimumValue}(object)}\cr
+\code{\link{atkValueSetCurrentValue}(object, value)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkValue}}

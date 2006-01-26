@@ -66,18 +66,18 @@ asCCairoPath(USER_OBJECT_ s_path)
 	GSList *data = NULL, *cur;
 	gint i,j;
 	
-	// init path structure
+	/* init path structure */
 	path = (cairo_path_t*)R_alloc(1, sizeof(cairo_path_t));
 	
-	// set status code
+	/* set status code */
 	path->status = CAIRO_STATUS_SUCCESS;
 	
-	// for each path element, create points according to type and store in list
+	/* for each path element, create points according to type and store in list */
 	for (i = 0; i < GET_LENGTH(s_path); i++) {
 		USER_OBJECT_ s_element = VECTOR_ELT(s_path, i);
 		int points = 0, len;
 		cairo_path_data_type_t type = asCInteger(getAttrib(s_element, install("type")));
-		// how many points do we need for this type of element?
+		/* how many points do we need for this type of element? */
 		switch(type) {
 			case CAIRO_PATH_MOVE_TO:
 			case CAIRO_PATH_LINE_TO:
@@ -93,24 +93,24 @@ asCCairoPath(USER_OBJECT_ s_path)
 				PROBLEM "Converting Cairo path: did not understand type %d", type
 				ERROR;
 		}
-		len = points + 1; // have to include header
+		len = points + 1; /* have to include header */
 		element = (cairo_path_data_t*)R_alloc(len, sizeof(cairo_path_data_t));
-		// define header element
+		/* define header element */
 		element[0].header.type = type;
 		element[0].header.length = len;
-		g_slist_append(data, &element[0]); // add header to list
-		for (j = 1; j < len; j++) { // define points
+		g_slist_append(data, &element[0]); /* add header to list */
+		for (j = 1; j < len; j++) { /* define points */
 			element[j].point.x = INTEGER_DATA(s_element)[2*j];
 			element[j].point.y = INTEGER_DATA(s_element)[2*j+1];
-			g_slist_append(data, &element[j]); // add point to list
+			g_slist_append(data, &element[j]); /* add point to list */
 		}
 	}
 	
-	// initialize the path's data array
+	/* initialize the path's data array */
 	path->num_data = g_slist_length(data);
 	path->data = (cairo_path_data_t*)R_alloc(path->num_data, sizeof(cairo_path_data_t));
 	
-	// copy list into array
+	/* copy list into array */
 	cur = data;
 	for(i = 0; i < path->num_data; i++) {
 		path->data[i] = ((cairo_path_data_t*)cur->data)[0];

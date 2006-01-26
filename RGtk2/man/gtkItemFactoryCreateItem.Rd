@@ -3,8 +3,7 @@
 \title{gtkItemFactoryCreateItem}
 \description{
 Creates an item for \code{entry}.
-\strong{WARNING: \code{gtk_item_factory_create_item} is deprecated and should not be used in newly-written code.  
-Creates an item for \code{entry}.  }
+\strong{WARNING: \code{gtk_item_factory_create_item} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoryCreateItem(object, entry, callback.data = NULL, callback.type)}
 \arguments{

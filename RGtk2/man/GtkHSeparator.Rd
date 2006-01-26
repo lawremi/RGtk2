@@ -3,8 +3,10 @@
 \name{GtkHSeparator}
 \title{GtkHSeparator}
 \description{A horizontal separator}
-\usage{gtkHSeparator(show = TRUE)}
-\section{Methods and Functions}{\link{gtkHSeparatorNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkHSeparatorNew}(show = TRUE)}\cr
+\code{gtkHSeparator(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

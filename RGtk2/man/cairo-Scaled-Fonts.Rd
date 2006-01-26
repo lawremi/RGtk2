@@ -1,26 +1,28 @@
 \alias{cairo-Scaled-Fonts}
-\alias{cairo_scaled_font_t}
-\alias{cairo_font_extents_t}
-\alias{cairo_text_extents_t}
+\alias{CairoScaledFont}
+\alias{CairoFontExtents}
+\alias{CairoTextExtents}
+\alias{cairoScaledFont}
 \name{cairo-Scaled-Fonts}
 \title{Scaled Fonts}
 \description{Caching metrics for a particular font size}
 \section{Methods and Functions}{
-\link{cairoScaledFontCreate}(font.face, font.matrix, ctm, option)
-\link{cairoScaledFontStatus}(scaled.font)
-\link{cairoScaledFontExtents}(scaled.font)
-\link{cairoScaledFontGlyphExtents}(scaled.font, glyphs, num.glyphs)
+\code{\link{cairoScaledFontCreate}(font.face, font.matrix, ctm, option)}\cr
+\code{\link{cairoScaledFontStatus}(scaled.font)}\cr
+\code{\link{cairoScaledFontExtents}(scaled.font)}\cr
+\code{\link{cairoScaledFontGlyphExtents}(scaled.font, glyphs, num.glyphs)}\cr
+\code{cairoScaledFont(font.face, font.matrix, ctm, option)}
 }
 \section{Structures}{\describe{
-\item{\code{cairo_scaled_font_t}}{
-A \code{\link{cairo_scaled_font_t}} is a font scaled to a particular size and device
+\item{\code{CairoScaledFont}}{
+A \code{\link{CairoScaledFont}} is a font scaled to a particular size and device
 resolution. A cairo_scaled_font_t is most useful for low-level font
 usage where a library or application wants to cache a reference
 to a scaled font to speed up the computation of metrics.  
 
 }
-\item{\code{cairo_font_extents_t}}{
-The \code{\link{cairo_text_extents_t}} structure stores metric information for
+\item{\code{CairoFontExtents}}{
+The \code{\link{CairoTextExtents}} structure stores metric information for
 a font. Values are given in the current user-space coordinate
 system.
   
@@ -62,8 +64,8 @@ matrix), but otherwise will remain unchanged.
 }
 
 }
-\item{\code{cairo_text_extents_t}}{
-The \code{\link{cairo_text_extents_t}} structure stores the extents of a single
+\item{\code{CairoTextExtents}}{
+The \code{\link{CairoTextExtents}} structure stores the extents of a single
 glyph or a string of glyphs in user-space coordinates. Because text
 extents are in user-space coordinates, they are mostly, but not
 entirely, independent of the current transformation matrix. If you call
@@ -92,6 +94,7 @@ but otherwise will remain unchanged.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Scaled-Fonts.html}}
+\section{Convenient Construction}{\code{cairoScaledFont} is the equivalent of \code{\link{cairoScaledFontCreate}}.}
+\references{\url{http://www.cairographics.org/manual/cairo-Scaled-Fonts.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

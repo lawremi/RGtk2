@@ -3,13 +3,13 @@
 \name{GtkEventBox}
 \title{GtkEventBox}
 \description{A widget used to catch events for widgets which do not have their own window}
-\usage{gtkEventBox(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkEventBoxNew}(show = TRUE)
-\link{gtkEventBoxSetAboveChild}(object, above.child)
-\link{gtkEventBoxGetAboveChild}(object)
-\link{gtkEventBoxSetVisibleWindow}(object, visible.window)
-\link{gtkEventBoxGetVisibleWindow}(object)
+\code{\link{gtkEventBoxNew}(show = TRUE)}\cr
+\code{\link{gtkEventBoxSetAboveChild}(object, above.child)}\cr
+\code{\link{gtkEventBoxGetAboveChild}(object)}\cr
+\code{\link{gtkEventBoxSetVisibleWindow}(object, visible.window)}\cr
+\code{\link{gtkEventBoxGetVisibleWindow}(object)}\cr
+\code{gtkEventBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

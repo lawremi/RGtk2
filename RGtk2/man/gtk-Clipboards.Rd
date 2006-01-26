@@ -10,30 +10,30 @@
 \name{gtk-Clipboards}
 \title{Clipboards}
 \description{Storing data on clipboards}
-\usage{gtkClipboard(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)}
 \section{Methods and Functions}{
-\link{gtkClipboardGet}(selection = GDK_SELECTION_CLIPBOARD)
-\link{gtkClipboardGetForDisplay}(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)
-\link{gtkClipboardGetDisplay}(object)
-\link{gtkClipboardSetWithData}(object, targets, get.func, user.data = NULL)
-\link{gtkClipboardSetWithOwner}(object, targets, get.func, owner = NULL)
-\link{gtkClipboardGetOwner}(object)
-\link{gtkClipboardClear}(object)
-\link{gtkClipboardSetText}(object, text, len = -1)
-\link{gtkClipboardSetImage}(object, pixbuf)
-\link{gtkClipboardRequestContents}(object, target, callback, user.data = NULL)
-\link{gtkClipboardRequestText}(object, callback, user.data = NULL)
-\link{gtkClipboardRequestImage}(object, callback, user.data = NULL)
-\link{gtkClipboardRequestTargets}(object, callback, user.data = NULL)
-\link{gtkClipboardWaitForContents}(object, target)
-\link{gtkClipboardWaitForText}(object)
-\link{gtkClipboardWaitForImage}(object)
-\link{gtkClipboardWaitIsTextAvailable}(object)
-\link{gtkClipboardWaitIsImageAvailable}(object)
-\link{gtkClipboardWaitForTargets}(object)
-\link{gtkClipboardWaitIsTargetAvailable}(object, target)
-\link{gtkClipboardSetCanStore}(object, targets)
-\link{gtkClipboardStore}(object)
+\code{\link{gtkClipboardGet}(selection = "GDK_SELECTION_CLIPBOARD")}\cr
+\code{\link{gtkClipboardGetForDisplay}(display, selection = "GDK_SELECTION_CLIPBOARD")}\cr
+\code{\link{gtkClipboardGetDisplay}(object)}\cr
+\code{\link{gtkClipboardSetWithData}(object, targets, get.func, user.data = NULL)}\cr
+\code{\link{gtkClipboardSetWithOwner}(object, targets, get.func, owner = NULL)}\cr
+\code{\link{gtkClipboardGetOwner}(object)}\cr
+\code{\link{gtkClipboardClear}(object)}\cr
+\code{\link{gtkClipboardSetText}(object, text, len = -1)}\cr
+\code{\link{gtkClipboardSetImage}(object, pixbuf)}\cr
+\code{\link{gtkClipboardRequestContents}(object, target, callback, user.data = NULL)}\cr
+\code{\link{gtkClipboardRequestText}(object, callback, user.data = NULL)}\cr
+\code{\link{gtkClipboardRequestImage}(object, callback, user.data = NULL)}\cr
+\code{\link{gtkClipboardRequestTargets}(object, callback, user.data = NULL)}\cr
+\code{\link{gtkClipboardWaitForContents}(object, target)}\cr
+\code{\link{gtkClipboardWaitForText}(object)}\cr
+\code{\link{gtkClipboardWaitForImage}(object)}\cr
+\code{\link{gtkClipboardWaitIsTextAvailable}(object)}\cr
+\code{\link{gtkClipboardWaitIsImageAvailable}(object)}\cr
+\code{\link{gtkClipboardWaitForTargets}(object)}\cr
+\code{\link{gtkClipboardWaitIsTargetAvailable}(object, target)}\cr
+\code{\link{gtkClipboardSetCanStore}(object, targets)}\cr
+\code{\link{gtkClipboardStore}(object)}\cr
+\code{gtkClipboard(display, selection = "GDK_SELECTION_CLIPBOARD")}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkClipboard}}

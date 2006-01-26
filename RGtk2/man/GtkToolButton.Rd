@@ -3,22 +3,22 @@
 \name{GtkToolButton}
 \title{GtkToolButton}
 \description{A GtkToolItem subclass that displays buttons}
-\usage{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkToolButtonNew}(icon.widget = NULL, label = NULL, show = TRUE)
-\link{gtkToolButtonNewFromStock}(stock.id)
-\link{gtkToolButtonSetLabel}(object, label = NULL)
-\link{gtkToolButtonGetLabel}(object)
-\link{gtkToolButtonSetUseUnderline}(object, use.underline)
-\link{gtkToolButtonGetUseUnderline}(object)
-\link{gtkToolButtonSetStockId}(object, stock.id = NULL)
-\link{gtkToolButtonGetStockId}(object)
-\link{gtkToolButtonSetIconName}(object, icon.name)
-\link{gtkToolButtonGetIconName}(object)
-\link{gtkToolButtonSetIconWidget}(object, icon.widget = NULL)
-\link{gtkToolButtonGetIconWidget}(object)
-\link{gtkToolButtonSetLabelWidget}(object, label.widget = NULL)
-\link{gtkToolButtonGetLabelWidget}(object)
+\code{\link{gtkToolButtonNew}(icon.widget = NULL, label = NULL, show = TRUE)}\cr
+\code{\link{gtkToolButtonNewFromStock}(stock.id)}\cr
+\code{\link{gtkToolButtonSetLabel}(object, label = NULL)}\cr
+\code{\link{gtkToolButtonGetLabel}(object)}\cr
+\code{\link{gtkToolButtonSetUseUnderline}(object, use.underline)}\cr
+\code{\link{gtkToolButtonGetUseUnderline}(object)}\cr
+\code{\link{gtkToolButtonSetStockId}(object, stock.id = NULL)}\cr
+\code{\link{gtkToolButtonGetStockId}(object)}\cr
+\code{\link{gtkToolButtonSetIconName}(object, icon.name)}\cr
+\code{\link{gtkToolButtonGetIconName}(object)}\cr
+\code{\link{gtkToolButtonSetIconWidget}(object, icon.widget = NULL)}\cr
+\code{\link{gtkToolButtonGetIconWidget}(object)}\cr
+\code{\link{gtkToolButtonSetLabelWidget}(object, label.widget = NULL)}\cr
+\code{\link{gtkToolButtonGetLabelWidget}(object)}\cr
+\code{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

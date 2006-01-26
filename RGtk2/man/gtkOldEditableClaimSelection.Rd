@@ -3,10 +3,9 @@
 \title{gtkOldEditableClaimSelection}
 \description{
 Claims or gives up ownership of the selection.
-\strong{WARNING: \code{gtk_old_editable_claim_selection} is deprecated and should not be used in newly-written code.  
-Claims or gives up ownership of the selection.  }
+\strong{WARNING: \code{gtk_old_editable_claim_selection} is deprecated and should not be used in newly-written code.}
 }
-\usage{gtkOldEditableClaimSelection(object, claim, time = GDK_CURRENT_TIME)}
+\usage{gtkOldEditableClaimSelection(object, claim, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkOldEditable}}]  a \code{\link{GtkOldEditable}}}
 \item{\code{claim}}{[logical]  if \code{TRUE}, claim ownership of the selection, if \code{FALSE}, give

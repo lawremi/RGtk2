@@ -3,15 +3,15 @@
 \name{GtkFileChooserButton}
 \title{GtkFileChooserButton}
 \description{A button to launch a file selection dialog}
-\usage{gtkFileChooserButton(title, action, backend, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFileChooserButtonNew}(title, action, show = TRUE)
-\link{gtkFileChooserButtonNewWithBackend}(title, action, backend, show = TRUE)
-\link{gtkFileChooserButtonNewWithDialog}(dialog)
-\link{gtkFileChooserButtonGetTitle}(object)
-\link{gtkFileChooserButtonSetTitle}(object, title)
-\link{gtkFileChooserButtonGetWidthChars}(object)
-\link{gtkFileChooserButtonSetWidthChars}(object, n.chars)
+\code{\link{gtkFileChooserButtonNew}(title, action, show = TRUE)}\cr
+\code{\link{gtkFileChooserButtonNewWithBackend}(title, action, backend, show = TRUE)}\cr
+\code{\link{gtkFileChooserButtonNewWithDialog}(dialog)}\cr
+\code{\link{gtkFileChooserButtonGetTitle}(object)}\cr
+\code{\link{gtkFileChooserButtonSetTitle}(object, title)}\cr
+\code{\link{gtkFileChooserButtonGetWidthChars}(object)}\cr
+\code{\link{gtkFileChooserButtonSetWidthChars}(object, n.chars)}\cr
+\code{gtkFileChooserButton(title, action, backend, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

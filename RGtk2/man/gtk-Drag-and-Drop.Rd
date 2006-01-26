@@ -5,40 +5,40 @@
 \title{Drag and Drop}
 \description{Functions for controlling drag and drop handling}
 \section{Methods and Functions}{
-\link{gtkDragDestSet}(object, flags, targets, actions)
-\link{gtkDragDestSetProxy}(object, proxy.window, protocol, use.coordinates)
-\link{gtkDragDestUnset}(object)
-\link{gtkDragDestFindTarget}(object, context, target.list)
-\link{gtkDragDestGetTargetList}(object)
-\link{gtkDragDestSetTargetList}(object, target.list)
-\link{gtkDragDestAddTextTargets}(object)
-\link{gtkDragDestAddImageTargets}(object)
-\link{gtkDragDestAddUriTargets}(object)
-\link{gtkDragFinish}(object, success, del, time = GDK_CURRENT_TIME)
-\link{gtkDragGetData}(object, context, target, time = GDK_CURRENT_TIME)
-\link{gtkDragGetSourceWidget}(context)
-\link{gtkDragHighlight}(object)
-\link{gtkDragUnhighlight}(object)
-\link{gtkDragBegin}(object, targets, actions, button, event)
-\link{gtkDragSetIconWidget}(object, widget, hot.x, hot.y)
-\link{gtkDragSetIconPixmap}(object, colormap, pixmap, mask, hot.x, hot.y)
-\link{gtkDragSetIconPixbuf}(object, pixbuf, hot.x, hot.y)
-\link{gtkDragSetIconStock}(object, stock.id, hot.x, hot.y)
-\link{gtkDragSetIconName}(object, icon.name, hot.x, hot.y)
-\link{gtkDragSetIconDefault}(object)
-\link{gtkDragSetDefaultIcon}(colormap, pixmap, mask, hot.x, hot.y)
-\link{gtkDragCheckThreshold}(object, start.x, start.y, current.x, current.y)
-\link{gtkDragSourceSet}(object, start.button.mask, targets, actions)
-\link{gtkDragSourceSetIcon}(object, colormap, pixmap, mask = NULL)
-\link{gtkDragSourceSetIconPixbuf}(object, pixbuf)
-\link{gtkDragSourceSetIconStock}(object, stock.id)
-\link{gtkDragSourceSetIconName}(widget, icon.name)
-\link{gtkDragSourceUnset}(object)
-\link{gtkDragSourceSetTargetList}(object, target.list)
-\link{gtkDragSourceGetTargetList}(object)
-\link{gtkDragSourceAddTextTargets}(object)
-\link{gtkDragSourceAddImageTargets}(object)
-\link{gtkDragSourceAddUriTargets}(object)
+\code{\link{gtkDragDestSet}(object, flags, targets, actions)}\cr
+\code{\link{gtkDragDestSetProxy}(object, proxy.window, protocol, use.coordinates)}\cr
+\code{\link{gtkDragDestUnset}(object)}\cr
+\code{\link{gtkDragDestFindTarget}(object, context, target.list)}\cr
+\code{\link{gtkDragDestGetTargetList}(object)}\cr
+\code{\link{gtkDragDestSetTargetList}(object, target.list)}\cr
+\code{\link{gtkDragDestAddTextTargets}(object)}\cr
+\code{\link{gtkDragDestAddImageTargets}(object)}\cr
+\code{\link{gtkDragDestAddUriTargets}(object)}\cr
+\code{\link{gtkDragFinish}(object, success, del, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkDragGetData}(object, context, target, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkDragGetSourceWidget}(context)}\cr
+\code{\link{gtkDragHighlight}(object)}\cr
+\code{\link{gtkDragUnhighlight}(object)}\cr
+\code{\link{gtkDragBegin}(object, targets, actions, button, event)}\cr
+\code{\link{gtkDragSetIconWidget}(object, widget, hot.x, hot.y)}\cr
+\code{\link{gtkDragSetIconPixmap}(object, colormap, pixmap, mask, hot.x, hot.y)}\cr
+\code{\link{gtkDragSetIconPixbuf}(object, pixbuf, hot.x, hot.y)}\cr
+\code{\link{gtkDragSetIconStock}(object, stock.id, hot.x, hot.y)}\cr
+\code{\link{gtkDragSetIconName}(object, icon.name, hot.x, hot.y)}\cr
+\code{\link{gtkDragSetIconDefault}(object)}\cr
+\code{\link{gtkDragSetDefaultIcon}(colormap, pixmap, mask, hot.x, hot.y)}\cr
+\code{\link{gtkDragCheckThreshold}(object, start.x, start.y, current.x, current.y)}\cr
+\code{\link{gtkDragSourceSet}(object, start.button.mask, targets, actions)}\cr
+\code{\link{gtkDragSourceSetIcon}(object, colormap, pixmap, mask = NULL)}\cr
+\code{\link{gtkDragSourceSetIconPixbuf}(object, pixbuf)}\cr
+\code{\link{gtkDragSourceSetIconStock}(object, stock.id)}\cr
+\code{\link{gtkDragSourceSetIconName}(widget, icon.name)}\cr
+\code{\link{gtkDragSourceUnset}(object)}\cr
+\code{\link{gtkDragSourceSetTargetList}(object, target.list)}\cr
+\code{\link{gtkDragSourceGetTargetList}(object)}\cr
+\code{\link{gtkDragSourceAddTextTargets}(object)}\cr
+\code{\link{gtkDragSourceAddImageTargets}(object)}\cr
+\code{\link{gtkDragSourceAddUriTargets}(object)}\cr
 }
 \section{Detailed Description}{GTK+ has a rich set of functions for doing inter-process
 communication via the drag-and-drop metaphor. GTK+
@@ -52,7 +52,7 @@ Selections.
 Also, the Drag and Drop API makes use of signals
 in the \code{\link{GtkWidget}} class.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkDestDefaults}}{
+\item{\code{GtkDestDefaults}}{
 The \code{\link{GtkDestDefaults}} enumeration specifies the various
 types of action that will be taken on behalf
 of the user for a drag destination site.
@@ -79,7 +79,7 @@ of the user for a drag destination site.
 }
 
 }
-\item{\code{enum GtkTargetFlags}}{
+\item{\code{GtkTargetFlags}}{
 The \code{\link{GtkTargetFlags}} enumeration is used to specify
 constraints on an entry in a \code{GtkTargetTable}. 
 

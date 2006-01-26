@@ -4,9 +4,7 @@
 \description{
 Draws a focus indicator around the given rectangle on \code{window} using the
 given style.
-\strong{WARNING: \code{gtk_draw_focus} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintFocus}} instead.  
-Draws a focus indicator around the given rectangle on \code{window} using the
-given style.  }
+\strong{WARNING: \code{gtk_draw_focus} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintFocus}} instead.}
 }
 \usage{gtkDrawFocus(object, window, x, y, width, height)}
 \arguments{

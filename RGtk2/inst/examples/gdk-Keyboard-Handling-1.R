@@ -4,6 +4,6 @@ all_accels_mask <- GdkModifierType["control-mask"] |
 state <- gdkKeymapTranslateKeyboardState(keymap, event[["hardware_keycode"]],
                                      event[["state"]], event[["group"]])
 if (state$keyval == .gdkPlus &&
-  flag(event[["state"]]) & !flag(state$consumed) & 
+  as.flag(event[["state"]]) & !as.flag(state$consumed) & 
   all_accels_mask == GdkModifierType["control-mask"])
 	print("Control was pressed")

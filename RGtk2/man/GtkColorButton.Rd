@@ -3,18 +3,18 @@
 \name{GtkColorButton}
 \title{GtkColorButton}
 \description{A button to launch a color selection dialog}
-\usage{gtkColorButton(color, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkColorButtonNew}(show = TRUE)
-\link{gtkColorButtonNewWithColor}(color, show = TRUE)
-\link{gtkColorButtonSetColor}(object, color)
-\link{gtkColorButtonGetColor}(object, color)
-\link{gtkColorButtonSetAlpha}(object, alpha)
-\link{gtkColorButtonGetAlpha}(object)
-\link{gtkColorButtonSetUseAlpha}(object, use.alpha)
-\link{gtkColorButtonGetUseAlpha}(object)
-\link{gtkColorButtonSetTitle}(object, title)
-\link{gtkColorButtonGetTitle}(object)
+\code{\link{gtkColorButtonNew}(show = TRUE)}\cr
+\code{\link{gtkColorButtonNewWithColor}(color, show = TRUE)}\cr
+\code{\link{gtkColorButtonSetColor}(object, color)}\cr
+\code{\link{gtkColorButtonGetColor}(object, color)}\cr
+\code{\link{gtkColorButtonSetAlpha}(object, alpha)}\cr
+\code{\link{gtkColorButtonGetAlpha}(object)}\cr
+\code{\link{gtkColorButtonSetUseAlpha}(object, use.alpha)}\cr
+\code{\link{gtkColorButtonGetUseAlpha}(object)}\cr
+\code{\link{gtkColorButtonSetTitle}(object, title)}\cr
+\code{\link{gtkColorButtonGetTitle}(object)}\cr
+\code{gtkColorButton(color, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

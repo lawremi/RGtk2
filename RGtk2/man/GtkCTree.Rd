@@ -12,74 +12,74 @@
 \name{GtkCTree}
 \title{GtkCTree}
 \description{A widget displaying a hierarchical tree}
-\usage{gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCTreeNewWithTitles}(columns = 1, tree.column = 0, titles, show = TRUE)
-\link{gtkCTreeNew}(columns = 1, tree.column = 0, show = TRUE)
-\link{gtkCTreeInsertNode}(object, parent, sibling, text, spacing = 5, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf = 1, expanded = 0)
-\link{gtkCTreeRemoveNode}(object, node)
-\link{gtkCTreeInsertGnode}(object, parent, sibling, gnode, func, data = NULL)
-\link{gtkCTreeExportToGnode}(object, parent, sibling, node, func, data = NULL)
-\link{gtkCTreePostRecursive}(object, node, func, data = NULL)
-\link{gtkCTreePostRecursiveToDepth}(object, node, depth, func, data = NULL)
-\link{gtkCTreePreRecursive}(object, node, func, data = NULL)
-\link{gtkCTreePreRecursiveToDepth}(object, node, depth, func, data = NULL)
-\link{gtkCTreeIsViewable}(object, node)
-\link{gtkCTreeLast}(object, node)
-\link{gtkCTreeFindNodePtr}(object, ctree.row)
-\link{gtkCTreeFind}(object, node, child)
-\link{gtkCTreeIsAncestor}(object, node, child)
-\link{gtkCTreeFindByRowData}(object, node, data = NULL)
-\link{gtkCTreeFindAllByRowData}(object, node, data = NULL)
-\link{gtkCTreeFindByRowDataCustom}(object, node, data = NULL, func)
-\link{gtkCTreeFindAllByRowDataCustom}(object, node, data = NULL, func)
-\link{gtkCTreeIsHotSpot}(object, x, y)
-\link{gtkCTreeMove}(object, node, new.parent = NULL, new.sibling = NULL)
-\link{gtkCTreeExpand}(object, node)
-\link{gtkCTreeExpandRecursive}(object, node)
-\link{gtkCTreeExpandToDepth}(object, node, depth)
-\link{gtkCTreeCollapse}(object, node)
-\link{gtkCTreeCollapseRecursive}(object, node)
-\link{gtkCTreeCollapseToDepth}(object, node, depth)
-\link{gtkCTreeToggleExpansion}(object, node)
-\link{gtkCTreeToggleExpansionRecursive}(object, node)
-\link{gtkCTreeSelect}(object, node)
-\link{gtkCTreeSelectRecursive}(object, node)
-\link{gtkCTreeUnselect}(object, node)
-\link{gtkCTreeUnselectRecursive}(object, node)
-\link{gtkCTreeRealSelectRecursive}(object, node, state)
-\link{gtkCTreeNodeSetText}(object, node, column, text)
-\link{gtkCTreeNodeSetPixmap}(object, node, column, pixmap, mask = NULL)
-\link{gtkCTreeNodeSetPixtext}(object, node, column, text, spacing, pixmap, mask = NULL)
-\link{gtkCTreeSetNodeInfo}(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf, expanded)
-\link{gtkCTreeNodeSetShift}(object, node, column, vertical, horizontal)
-\link{gtkCTreeNodeSetSelectable}(object, node, selectable)
-\link{gtkCTreeNodeGetSelectable}(object, node)
-\link{gtkCTreeNodeGetCellType}(object, node, column)
-\link{gtkCTreeNodeGetText}(object, node, column)
-\link{gtkCTreeNodeGetPixmap}(object, node, column)
-\link{gtkCTreeNodeGetPixtext}(object, node, column)
-\link{gtkCTreeGetNodeInfo}(object, node)
-\link{gtkCTreeNodeSetRowStyle}(object, node, style)
-\link{gtkCTreeNodeGetRowStyle}(object, node)
-\link{gtkCTreeNodeSetCellStyle}(object, node, column, style)
-\link{gtkCTreeNodeGetCellStyle}(object, node, column)
-\link{gtkCTreeNodeSetForeground}(object, node, color)
-\link{gtkCTreeNodeSetBackground}(object, node, color)
-\link{gtkCTreeNodeSetRowData}(object, node, data)
-\link{gtkCTreeNodeSetRowDataFull}(object, node, data)
-\link{gtkCTreeNodeGetRowData}(object, node)
-\link{gtkCTreeNodeMoveto}(object, node, column, row.align, col.align)
-\link{gtkCTreeNodeIsVisible}(object, node)
-\link{gtkCTreeSetIndent}(object, indent)
-\link{gtkCTreeSetSpacing}(object, spacing)
-\link{gtkCTreeSetLineStyle}(object, line.style)
-\link{gtkCTreeSetExpanderStyle}(object, expander.style)
-\link{gtkCTreeSetDragCompareFunc}(object, cmp.func)
-\link{gtkCTreeSortNode}(object, node)
-\link{gtkCTreeSortRecursive}(object, node)
-\link{gtkCTreeNodeNth}(object, row)
-\link{gtkCTreeSetShowStub}(object, show.stub)
+\code{\link{gtkCTreeNewWithTitles}(columns = 1, tree.column = 0, titles, show = TRUE)}\cr
+\code{\link{gtkCTreeNew}(columns = 1, tree.column = 0, show = TRUE)}\cr
+\code{\link{gtkCTreeInsertNode}(object, parent, sibling, text, spacing = 5, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf = 1, expanded = 0)}\cr
+\code{\link{gtkCTreeRemoveNode}(object, node)}\cr
+\code{\link{gtkCTreeInsertGnode}(object, parent, sibling, gnode, func, data = NULL)}\cr
+\code{\link{gtkCTreeExportToGnode}(object, parent, sibling, node, func, data = NULL)}\cr
+\code{\link{gtkCTreePostRecursive}(object, node, func, data = NULL)}\cr
+\code{\link{gtkCTreePostRecursiveToDepth}(object, node, depth, func, data = NULL)}\cr
+\code{\link{gtkCTreePreRecursive}(object, node, func, data = NULL)}\cr
+\code{\link{gtkCTreePreRecursiveToDepth}(object, node, depth, func, data = NULL)}\cr
+\code{\link{gtkCTreeIsViewable}(object, node)}\cr
+\code{\link{gtkCTreeLast}(object, node)}\cr
+\code{\link{gtkCTreeFindNodePtr}(object, ctree.row)}\cr
+\code{\link{gtkCTreeFind}(object, node, child)}\cr
+\code{\link{gtkCTreeIsAncestor}(object, node, child)}\cr
+\code{\link{gtkCTreeFindByRowData}(object, node, data = NULL)}\cr
+\code{\link{gtkCTreeFindAllByRowData}(object, node, data = NULL)}\cr
+\code{\link{gtkCTreeFindByRowDataCustom}(object, node, data = NULL, func)}\cr
+\code{\link{gtkCTreeFindAllByRowDataCustom}(object, node, data = NULL, func)}\cr
+\code{\link{gtkCTreeIsHotSpot}(object, x, y)}\cr
+\code{\link{gtkCTreeMove}(object, node, new.parent = NULL, new.sibling = NULL)}\cr
+\code{\link{gtkCTreeExpand}(object, node)}\cr
+\code{\link{gtkCTreeExpandRecursive}(object, node)}\cr
+\code{\link{gtkCTreeExpandToDepth}(object, node, depth)}\cr
+\code{\link{gtkCTreeCollapse}(object, node)}\cr
+\code{\link{gtkCTreeCollapseRecursive}(object, node)}\cr
+\code{\link{gtkCTreeCollapseToDepth}(object, node, depth)}\cr
+\code{\link{gtkCTreeToggleExpansion}(object, node)}\cr
+\code{\link{gtkCTreeToggleExpansionRecursive}(object, node)}\cr
+\code{\link{gtkCTreeSelect}(object, node)}\cr
+\code{\link{gtkCTreeSelectRecursive}(object, node)}\cr
+\code{\link{gtkCTreeUnselect}(object, node)}\cr
+\code{\link{gtkCTreeUnselectRecursive}(object, node)}\cr
+\code{\link{gtkCTreeRealSelectRecursive}(object, node, state)}\cr
+\code{\link{gtkCTreeNodeSetText}(object, node, column, text)}\cr
+\code{\link{gtkCTreeNodeSetPixmap}(object, node, column, pixmap, mask = NULL)}\cr
+\code{\link{gtkCTreeNodeSetPixtext}(object, node, column, text, spacing, pixmap, mask = NULL)}\cr
+\code{\link{gtkCTreeSetNodeInfo}(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf, expanded)}\cr
+\code{\link{gtkCTreeNodeSetShift}(object, node, column, vertical, horizontal)}\cr
+\code{\link{gtkCTreeNodeSetSelectable}(object, node, selectable)}\cr
+\code{\link{gtkCTreeNodeGetSelectable}(object, node)}\cr
+\code{\link{gtkCTreeNodeGetCellType}(object, node, column)}\cr
+\code{\link{gtkCTreeNodeGetText}(object, node, column)}\cr
+\code{\link{gtkCTreeNodeGetPixmap}(object, node, column)}\cr
+\code{\link{gtkCTreeNodeGetPixtext}(object, node, column)}\cr
+\code{\link{gtkCTreeGetNodeInfo}(object, node)}\cr
+\code{\link{gtkCTreeNodeSetRowStyle}(object, node, style)}\cr
+\code{\link{gtkCTreeNodeGetRowStyle}(object, node)}\cr
+\code{\link{gtkCTreeNodeSetCellStyle}(object, node, column, style)}\cr
+\code{\link{gtkCTreeNodeGetCellStyle}(object, node, column)}\cr
+\code{\link{gtkCTreeNodeSetForeground}(object, node, color)}\cr
+\code{\link{gtkCTreeNodeSetBackground}(object, node, color)}\cr
+\code{\link{gtkCTreeNodeSetRowData}(object, node, data)}\cr
+\code{\link{gtkCTreeNodeSetRowDataFull}(object, node, data)}\cr
+\code{\link{gtkCTreeNodeGetRowData}(object, node)}\cr
+\code{\link{gtkCTreeNodeMoveto}(object, node, column, row.align, col.align)}\cr
+\code{\link{gtkCTreeNodeIsVisible}(object, node)}\cr
+\code{\link{gtkCTreeSetIndent}(object, indent)}\cr
+\code{\link{gtkCTreeSetSpacing}(object, spacing)}\cr
+\code{\link{gtkCTreeSetLineStyle}(object, line.style)}\cr
+\code{\link{gtkCTreeSetExpanderStyle}(object, expander.style)}\cr
+\code{\link{gtkCTreeSetDragCompareFunc}(object, cmp.func)}\cr
+\code{\link{gtkCTreeSortNode}(object, node)}\cr
+\code{\link{gtkCTreeSortRecursive}(object, node)}\cr
+\code{\link{gtkCTreeNodeNth}(object, row)}\cr
+\code{\link{gtkCTreeSetShowStub}(object, show.stub)}\cr
+\code{gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -107,21 +107,7 @@ GtkCTree has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{
 \item{\code{GtkCTree}}{
-\strong{WARNING: \code{GtkCTree} is deprecated and should not be used in newly-written code.  
-The \code{\link{GtkCTree}} contains the following user-accessible fields.
-These fields should be considered read-only; to set the values,
-use the methods below.
-
-\tabular{ll}{
-\code{integer}     \code{tree_indent}  ; \tab The number of pixels each successive level of the tree is
-indented in the display. \cr
-\code{integer}     \code{tree_spacing}  ; \tab The space in pixels between the graphical tree and the text in the
-node. \cr
-\code{integer}     \code{tree_column}  ; \tab The index of the column for which the tree graphics is drawn.  \cr
-\code{\link{GtkCTreeLineStyle}}     \code{line_style}  ; \tab The style in which the lines in the tree graphics are drawn. \cr
-\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab The style in which the expander buttons are drawn. \cr
-\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab FIXME. \cr
-}}
+\strong{WARNING: \code{GtkCTree} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkCTree}} contains the following user-accessible fields.
 These fields should be considered read-only; to set the values,
 use the methods below.
@@ -139,24 +125,7 @@ node. \cr
 
 }
 \item{\code{GtkCTreeRow}}{
-\strong{WARNING: \code{GtkCTreeRow} is deprecated and should not be used in newly-written code.  
-A structure representing a single row in the tree graph.
-The values inside the structure should be considered read-only.
-This structure is derived from the \code{\link{GtkCListRow}} structure.
-
-\tabular{ll}{
-\code{\link{GtkCTreeNode}}   *  \code{parent}  ; \tab The parent node of the node corresponding to this row. \cr
-\code{\link{GtkCTreeNode}}   *  \code{sibling}  ; \tab The next sibling node of the node corresponding to this row. \cr
-\code{\link{GtkCTreeNode}}   *  \code{children}  ; \tab The first child node corresponding to this row; to access
-the other children, just use the siblings of that node. \cr
-\code{\link{GdkPixmap}}   *  \code{pixmap_closed}  ; \tab  The pixmap to be shown when the node is collapsed. \cr
-\code{\link{GdkBitmap}}   *  \code{mask_closed}  ; \tab  The mask for the above pixmap. \cr
-\code{\link{GdkPixmap}}   *  \code{pixmap_opened}  ; \tab  The pixmap to be shown when the node is expanded. \cr
-\code{\link{GdkBitmap}}   *  \code{mask_opened}  ; \tab  The mask for the above pixmap. \cr
-\code{integer}     \code{level}  ; \tab The level of this node in the tree. \cr
-\code{numeric}     \code{is_leaf}   : 1; \tab Whether this row is a leaf. \cr
-\code{numeric}     \code{expanded}   : 1; \tab Whether the children of this row are visible. \cr
-}}
+\strong{WARNING: \code{GtkCTreeRow} is deprecated and should not be used in newly-written code.}
 A structure representing a single row in the tree graph.
 The values inside the structure should be considered read-only.
 This structure is derived from the \code{\link{GtkCListRow}} structure.
@@ -177,10 +146,7 @@ the other children, just use the siblings of that node. \cr
 
 }
 \item{\code{GtkCTreeNode}}{
-\strong{WARNING: \code{GtkCTreeNode} is deprecated and should not be used in newly-written code.  
-This structure is opaque - you should use the
-functions \code{GTK_CTREE_ROW}, \code{GTK_CTREE_NODE_NEXT} etc. as well
-as the functions below to access it.}
+\strong{WARNING: \code{GtkCTreeNode} is deprecated and should not be used in newly-written code.}
 This structure is opaque - you should use the
 functions \code{GTK_CTREE_ROW}, \code{GTK_CTREE_NODE_NEXT} etc. as well
 as the functions below to access it.
@@ -189,15 +155,8 @@ as the functions below to access it.
 }}
 \section{Convenient Construction}{\code{gtkCTree} is the result of collapsing the constructors of \code{GtkCTree} (\code{\link{gtkCTreeNewWithTitles}}, \code{\link{gtkCTreeNew}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkCTreePos}}{
-\strong{WARNING: \code{GtkCTreePos} is deprecated and should not be used in newly-written code.  
-A value specifying the position of a new node relative to an old one.
-
-\tabular{ll}{
-GTK_CTREE_POS_BEFORE \tab As a sibling, before the specified node. \cr
-GTK_CTREE_POS_AS_CHILD \tab As a child of the specified node. \cr
-GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
-}}
+\item{\code{GtkCTreePos}}{
+\strong{WARNING: \code{GtkCTreePos} is deprecated and should not be used in newly-written code.}
 A value specifying the position of a new node relative to an old one.
 
 \tabular{ll}{
@@ -207,16 +166,8 @@ GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
 }
 
 }
-\item{\code{enum GtkCTreeLineStyle}}{
-\strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.  
-The appearance of the lines in the tree graphics.
-
-\tabular{ll}{
-GTK_CTREE_LINES_NONE \tab No lines. \cr
-GTK_CTREE_LINES_SOLID \tab Solid lines. \cr
-GTK_CTREE_LINES_DOTTED \tab Dotted lines. \cr
-GTK_CTREE_LINES_TABBED \tab FIXME. \cr
-}}
+\item{\code{GtkCTreeLineStyle}}{
+\strong{WARNING: \code{GtkCTreeLineStyle} is deprecated and should not be used in newly-written code.}
 The appearance of the lines in the tree graphics.
 
 \tabular{ll}{
@@ -227,18 +178,8 @@ GTK_CTREE_LINES_TABBED \tab FIXME. \cr
 }
 
 }
-\item{\code{enum GtkCTreeExpanderStyle}}{
-\strong{WARNING: \code{GtkCTreeExpanderStyle} is deprecated and should not be used in newly-written code.  
-The appearance of the expander buttons, i.e. the small buttons
-which expand or contract parts of the tree when pressed.
-
-
-\tabular{ll}{
-GTK_CTREE_EXPANDER_NONE \tab No expanders. \cr
-GTK_CTREE_EXPANDER_SQUARE \tab Square expanders. \cr
-GTK_CTREE_EXPANDER_TRIANGLE \tab Triangular expanders. \cr
-GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
-}}
+\item{\code{GtkCTreeExpanderStyle}}{
+\strong{WARNING: \code{GtkCTreeExpanderStyle} is deprecated and should not be used in newly-written code.}
 The appearance of the expander buttons, i.e. the small buttons
 which expand or contract parts of the tree when pressed.
 
@@ -251,18 +192,8 @@ GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
 }
 
 }
-\item{\code{enum GtkCTreeExpansionType}}{
-\strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.  
-How to expand or collapse a part of a tree.
-
-\tabular{ll}{
-GTK_CTREE_EXPANSION_EXPAND \tab Expand this node. \cr
-GTK_CTREE_EXPANSION_EXPAND_RECURSIVE \tab Expand this node and everything below it in the hierarchy. \cr
-GTK_CTREE_EXPANSION_COLLAPSE \tab Collapse this node. \cr
-GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE \tab Collapse this node and everything below it in the hierarchy. \cr
-GTK_CTREE_EXPANSION_TOGGLE \tab Toggle this node (i.e. expand if collapsed and vice versa). \cr
-GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE \tab Toggle this node and everything below it in the hierarchy. \cr
-}}
+\item{\code{GtkCTreeExpansionType}}{
+\strong{WARNING: \code{GtkCTreeExpansionType} is deprecated and should not be used in newly-written code.}
 How to expand or collapse a part of a tree.
 
 \tabular{ll}{

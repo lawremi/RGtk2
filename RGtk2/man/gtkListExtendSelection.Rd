@@ -4,9 +4,7 @@
 \description{
 Extends the selection by moving the anchor according to \code{scroll.type}. Only
 in \code{GTK_SELECTION_EXTENDED}.
-\strong{WARNING: \code{gtk_list_extend_selection} is deprecated and should not be used in newly-written code.  
-Extends the selection by moving the anchor according to \code{scroll.type}. Only
-in \code{GTK_SELECTION_EXTENDED}.}
+\strong{WARNING: \code{gtk_list_extend_selection} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListExtendSelection(object, scroll.type, position, auto.start.selection)}
 \arguments{

@@ -9,73 +9,73 @@
 \name{pango-Layout-Objects}
 \title{Layout Objects}
 \description{Highlevel layout driver objects}
-\usage{pangoLayout(context)}
 \section{Methods and Functions}{
-\link{pangoLayoutNew}(context)
-\link{pangoLayoutCopy}(object)
-\link{pangoLayoutGetContext}(object)
-\link{pangoLayoutContextChanged}(object)
-\link{pangoLayoutSetText}(object, text, length = -1)
-\link{pangoLayoutGetText}(object)
-\link{pangoLayoutSetMarkup}(object, markup, length = -1)
-\link{pangoLayoutSetMarkupWithAccel}(object, markup, accel.marker)
-\link{pangoLayoutSetAttributes}(object, attrs)
-\link{pangoLayoutGetAttributes}(object)
-\link{pangoLayoutSetFontDescription}(object, desc = NULL)
-\link{pangoLayoutGetFontDescription}(object)
-\link{pangoLayoutSetWidth}(object, width)
-\link{pangoLayoutGetWidth}(object)
-\link{pangoLayoutSetWrap}(object, wrap)
-\link{pangoLayoutGetWrap}(object)
-\link{pangoLayoutSetEllipsize}(object, ellipsize)
-\link{pangoLayoutGetEllipsize}(object)
-\link{pangoLayoutSetIndent}(object, indent)
-\link{pangoLayoutGetIndent}(object)
-\link{pangoLayoutGetSpacing}(object)
-\link{pangoLayoutSetSpacing}(object, spacing)
-\link{pangoLayoutSetJustify}(object, justify)
-\link{pangoLayoutGetJustify}(object)
-\link{pangoLayoutSetAutoDir}(object, auto.dir)
-\link{pangoLayoutGetAutoDir}(object)
-\link{pangoLayoutSetAlignment}(object, alignment)
-\link{pangoLayoutGetAlignment}(object)
-\link{pangoLayoutSetTabs}(object, tabs = NULL)
-\link{pangoLayoutGetTabs}(object)
-\link{pangoLayoutSetSingleParagraphMode}(object, setting)
-\link{pangoLayoutGetSingleParagraphMode}(object)
-\link{pangoLayoutGetLogAttrs}(object)
-\link{pangoLayoutXyToIndex}(object, x, y)
-\link{pangoLayoutIndexToPos}(object, index, pos)
-\link{pangoLayoutGetCursorPos}(object, index)
-\link{pangoLayoutMoveCursorVisually}(object, strong, old.index, old.trailing, direction)
-\link{pangoLayoutGetExtents}(object)
-\link{pangoLayoutGetPixelExtents}(object)
-\link{pangoLayoutGetSize}(object)
-\link{pangoLayoutGetPixelSize}(object)
-\link{pangoLayoutGetLineCount}(object)
-\link{pangoLayoutGetLine}(object, line)
-\link{pangoLayoutGetLines}(object)
-\link{pangoLayoutGetIter}(object)
-\link{pangoLayoutIterNextRun}(object)
-\link{pangoLayoutIterNextChar}(object)
-\link{pangoLayoutIterNextCluster}(object)
-\link{pangoLayoutIterNextLine}(object)
-\link{pangoLayoutIterAtLastLine}(object)
-\link{pangoLayoutIterGetIndex}(object)
-\link{pangoLayoutIterGetBaseline}(object)
-\link{pangoLayoutIterGetRun}(object)
-\link{pangoLayoutIterGetLine}(object)
-\link{pangoLayoutIterGetCharExtents}(object)
-\link{pangoLayoutIterGetClusterExtents}(object)
-\link{pangoLayoutIterGetRunExtents}(object)
-\link{pangoLayoutIterGetLineYrange}(object)
-\link{pangoLayoutIterGetLineExtents}(object)
-\link{pangoLayoutIterGetLayoutExtents}(object)
-\link{pangoLayoutLineGetExtents}(object)
-\link{pangoLayoutLineGetPixelExtents}(object)
-\link{pangoLayoutLineIndexToX}(object, index, trailing)
-\link{pangoLayoutLineXToIndex}(object, x.pos)
-\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)
+\code{\link{pangoLayoutNew}(context)}\cr
+\code{\link{pangoLayoutCopy}(object)}\cr
+\code{\link{pangoLayoutGetContext}(object)}\cr
+\code{\link{pangoLayoutContextChanged}(object)}\cr
+\code{\link{pangoLayoutSetText}(object, text, length = -1)}\cr
+\code{\link{pangoLayoutGetText}(object)}\cr
+\code{\link{pangoLayoutSetMarkup}(object, markup, length = -1)}\cr
+\code{\link{pangoLayoutSetMarkupWithAccel}(object, markup, accel.marker)}\cr
+\code{\link{pangoLayoutSetAttributes}(object, attrs)}\cr
+\code{\link{pangoLayoutGetAttributes}(object)}\cr
+\code{\link{pangoLayoutSetFontDescription}(object, desc = NULL)}\cr
+\code{\link{pangoLayoutGetFontDescription}(object)}\cr
+\code{\link{pangoLayoutSetWidth}(object, width)}\cr
+\code{\link{pangoLayoutGetWidth}(object)}\cr
+\code{\link{pangoLayoutSetWrap}(object, wrap)}\cr
+\code{\link{pangoLayoutGetWrap}(object)}\cr
+\code{\link{pangoLayoutSetEllipsize}(object, ellipsize)}\cr
+\code{\link{pangoLayoutGetEllipsize}(object)}\cr
+\code{\link{pangoLayoutSetIndent}(object, indent)}\cr
+\code{\link{pangoLayoutGetIndent}(object)}\cr
+\code{\link{pangoLayoutGetSpacing}(object)}\cr
+\code{\link{pangoLayoutSetSpacing}(object, spacing)}\cr
+\code{\link{pangoLayoutSetJustify}(object, justify)}\cr
+\code{\link{pangoLayoutGetJustify}(object)}\cr
+\code{\link{pangoLayoutSetAutoDir}(object, auto.dir)}\cr
+\code{\link{pangoLayoutGetAutoDir}(object)}\cr
+\code{\link{pangoLayoutSetAlignment}(object, alignment)}\cr
+\code{\link{pangoLayoutGetAlignment}(object)}\cr
+\code{\link{pangoLayoutSetTabs}(object, tabs = NULL)}\cr
+\code{\link{pangoLayoutGetTabs}(object)}\cr
+\code{\link{pangoLayoutSetSingleParagraphMode}(object, setting)}\cr
+\code{\link{pangoLayoutGetSingleParagraphMode}(object)}\cr
+\code{\link{pangoLayoutGetLogAttrs}(object)}\cr
+\code{\link{pangoLayoutXyToIndex}(object, x, y)}\cr
+\code{\link{pangoLayoutIndexToPos}(object, index, pos)}\cr
+\code{\link{pangoLayoutGetCursorPos}(object, index)}\cr
+\code{\link{pangoLayoutMoveCursorVisually}(object, strong, old.index, old.trailing, direction)}\cr
+\code{\link{pangoLayoutGetExtents}(object)}\cr
+\code{\link{pangoLayoutGetPixelExtents}(object)}\cr
+\code{\link{pangoLayoutGetSize}(object)}\cr
+\code{\link{pangoLayoutGetPixelSize}(object)}\cr
+\code{\link{pangoLayoutGetLineCount}(object)}\cr
+\code{\link{pangoLayoutGetLine}(object, line)}\cr
+\code{\link{pangoLayoutGetLines}(object)}\cr
+\code{\link{pangoLayoutGetIter}(object)}\cr
+\code{\link{pangoLayoutIterNextRun}(object)}\cr
+\code{\link{pangoLayoutIterNextChar}(object)}\cr
+\code{\link{pangoLayoutIterNextCluster}(object)}\cr
+\code{\link{pangoLayoutIterNextLine}(object)}\cr
+\code{\link{pangoLayoutIterAtLastLine}(object)}\cr
+\code{\link{pangoLayoutIterGetIndex}(object)}\cr
+\code{\link{pangoLayoutIterGetBaseline}(object)}\cr
+\code{\link{pangoLayoutIterGetRun}(object)}\cr
+\code{\link{pangoLayoutIterGetLine}(object)}\cr
+\code{\link{pangoLayoutIterGetCharExtents}(object)}\cr
+\code{\link{pangoLayoutIterGetClusterExtents}(object)}\cr
+\code{\link{pangoLayoutIterGetRunExtents}(object)}\cr
+\code{\link{pangoLayoutIterGetLineYrange}(object)}\cr
+\code{\link{pangoLayoutIterGetLineExtents}(object)}\cr
+\code{\link{pangoLayoutIterGetLayoutExtents}(object)}\cr
+\code{\link{pangoLayoutLineGetExtents}(object)}\cr
+\code{\link{pangoLayoutLineGetPixelExtents}(object)}\cr
+\code{\link{pangoLayoutLineIndexToX}(object, index, trailing)}\cr
+\code{\link{pangoLayoutLineXToIndex}(object, x.pos)}\cr
+\code{\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)}\cr
+\code{pangoLayout(context)}
 }
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
@@ -133,7 +133,7 @@ code specific to each rendering system.
 }}
 \section{Convenient Construction}{\code{pangoLayout} is the equivalent of \code{\link{pangoLayoutNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum PangoWrapMode}}{
+\item{\code{PangoWrapMode}}{
 A PangoWrapMode describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
 
 \describe{
@@ -142,7 +142,7 @@ A PangoWrapMode describes how to wrap the lines of a \code{\link{PangoLayout}} t
 }
 
 }
-\item{\code{enum PangoEllipsizeMode}}{
+\item{\code{PangoEllipsizeMode}}{
 The \code{\link{PangoEllipsizeMode}} type describes what sort of (if any)
 ellipsization should be applied to a line of text. In
 the ellipsization process characters are removed from the
@@ -157,7 +157,7 @@ with an ellipsis.
 }
 
 }
-\item{\code{enum PangoAlignment}}{
+\item{\code{PangoAlignment}}{
 A PangoAlignment describes how to align the lines of a \code{\link{PangoLayout}} within the
 available space. If the \code{\link{PangoLayout}} is set to justify
 using \code{\link{pangoLayoutSetJustify}}, then this only has an effect

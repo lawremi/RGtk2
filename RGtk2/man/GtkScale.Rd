@@ -3,14 +3,15 @@
 \title{GtkScale}
 \description{Base class for GtkHScale and GtkVScale}
 \section{Methods and Functions}{
-\link{gtkScaleSetDigits}(object, digits)
-\link{gtkScaleSetDrawValue}(object, draw.value)
-\link{gtkScaleSetValuePos}(object, pos)
-\link{gtkScaleGetDigits}(object)
-\link{gtkScaleGetDrawValue}(object)
-\link{gtkScaleGetValuePos}(object)
-\link{gtkScaleGetLayout}(object)
-\link{gtkScaleGetLayoutOffsets}(object)
+\code{\link{gtkScaleSetDigits}(object, digits)}\cr
+\code{\link{gtkScaleSetDrawValue}(object, draw.value)}\cr
+\code{\link{gtkScaleSetValuePos}(object, pos)}\cr
+\code{\link{gtkScaleGetDigits}(object)}\cr
+\code{\link{gtkScaleGetDrawValue}(object)}\cr
+\code{\link{gtkScaleGetValuePos}(object)}\cr
+\code{\link{gtkScaleGetLayout}(object)}\cr
+\code{\link{gtkScaleGetLayoutOffsets}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

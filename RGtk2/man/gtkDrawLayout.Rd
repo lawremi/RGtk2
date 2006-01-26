@@ -3,7 +3,7 @@
 \title{gtkDrawLayout}
 \description{
 
-\strong{WARNING: \code{gtk_draw_layout} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{gtk_draw_layout} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkDrawLayout(object, window, state.type, use.text, x, y, layout)}
 \arguments{

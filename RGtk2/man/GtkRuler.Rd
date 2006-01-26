@@ -3,10 +3,11 @@
 \title{GtkRuler}
 \description{Base class for horizontal or vertical rulers}
 \section{Methods and Functions}{
-\link{gtkRulerSetMetric}(object, metric)
-\link{gtkRulerSetRange}(object, lower, upper, position, max.size)
-\link{gtkRulerGetMetric}(object)
-\link{gtkRulerGetRange}(object)
+\code{\link{gtkRulerSetMetric}(object, metric)}\cr
+\code{\link{gtkRulerSetRange}(object, lower, upper, position, max.size)}\cr
+\code{\link{gtkRulerGetMetric}(object)}\cr
+\code{\link{gtkRulerGetRange}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

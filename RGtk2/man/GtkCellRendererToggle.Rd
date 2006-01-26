@@ -3,13 +3,13 @@
 \name{GtkCellRendererToggle}
 \title{GtkCellRendererToggle}
 \description{Renders a toggle button in a cell}
-\usage{gtkCellRendererToggle()}
 \section{Methods and Functions}{
-\link{gtkCellRendererToggleNew}()
-\link{gtkCellRendererToggleGetRadio}(object)
-\link{gtkCellRendererToggleSetRadio}(object, radio)
-\link{gtkCellRendererToggleGetActive}(object)
-\link{gtkCellRendererToggleSetActive}(object, setting)
+\code{\link{gtkCellRendererToggleNew}()}\cr
+\code{\link{gtkCellRendererToggleGetRadio}(object)}\cr
+\code{\link{gtkCellRendererToggleSetRadio}(object, radio)}\cr
+\code{\link{gtkCellRendererToggleGetActive}(object)}\cr
+\code{\link{gtkCellRendererToggleSetActive}(object, setting)}\cr
+\code{gtkCellRendererToggle()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

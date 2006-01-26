@@ -5,22 +5,23 @@
 \title{Key Values}
 \description{Functions for manipulating keyboard codes}
 \section{Methods and Functions}{
-\link{gdkKeymapGetDefault}()
-\link{gdkKeymapGetForDisplay}(display)
-\link{gdkKeymapLookupKey}(object, key)
-\link{gdkKeymapTranslateKeyboardState}(object, hardware.keycode, state, group)
-\link{gdkKeymapGetEntriesForKeyval}(object, keyval)
-\link{gdkKeymapGetEntriesForKeycode}(object, hardware.keycode)
-\link{gdkKeymapGetDirection}(object)
-\link{gdkKeyvalName}(keyval)
-\link{gdkKeyvalFromName}(keyval.name)
-\link{gdkKeyvalConvertCase}(symbol)
-\link{gdkKeyvalToUpper}(keyval)
-\link{gdkKeyvalToLower}(keyval)
-\link{gdkKeyvalIsUpper}(keyval)
-\link{gdkKeyvalIsLower}(keyval)
-\link{gdkKeyvalToUnicode}(keyval)
-\link{gdkUnicodeToKeyval}(wc)
+\code{\link{gdkKeymapGetDefault}()}\cr
+\code{\link{gdkKeymapGetForDisplay}(display)}\cr
+\code{\link{gdkKeymapLookupKey}(object, key)}\cr
+\code{\link{gdkKeymapTranslateKeyboardState}(object, hardware.keycode, state, group)}\cr
+\code{\link{gdkKeymapGetEntriesForKeyval}(object, keyval)}\cr
+\code{\link{gdkKeymapGetEntriesForKeycode}(object, hardware.keycode)}\cr
+\code{\link{gdkKeymapGetDirection}(object)}\cr
+\code{\link{gdkKeyvalName}(keyval)}\cr
+\code{\link{gdkKeyvalFromName}(keyval.name)}\cr
+\code{\link{gdkKeyvalConvertCase}(symbol)}\cr
+\code{\link{gdkKeyvalToUpper}(keyval)}\cr
+\code{\link{gdkKeyvalToLower}(keyval)}\cr
+\code{\link{gdkKeyvalIsUpper}(keyval)}\cr
+\code{\link{gdkKeyvalIsLower}(keyval)}\cr
+\code{\link{gdkKeyvalToUnicode}(keyval)}\cr
+\code{\link{gdkUnicodeToKeyval}(wc)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkKeymap}}

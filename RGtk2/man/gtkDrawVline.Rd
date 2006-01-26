@@ -4,9 +4,7 @@
 \description{
 Draws a vertical line from (\code{x}, \code{y1.}) to (\code{x}, \code{y2.}) in \code{window}
 using the given style and state.
-\strong{WARNING: \code{gtk_draw_vline} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintVline}} instead.  
-Draws a vertical line from (\code{x}, \code{y1.}) to (\code{x}, \code{y2.}) in \code{window}
-using the given style and state.  }
+\strong{WARNING: \code{gtk_draw_vline} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintVline}} instead.}
 }
 \usage{gtkDrawVline(object, window, state.type, y1, y2, x)}
 \arguments{

@@ -1196,7 +1196,7 @@ S_cairo_font_face_get_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key)
  
 
 USER_OBJECT_
-S_cairo_font_face_set_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data, USER_OBJECT_ s_destroy)
+S_cairo_font_face_set_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data)
 {
 	cairo_font_face_t* font_face = (cairo_font_face_t*)getPtrValue(s_font_face);
 	const cairo_user_data_key_t* key = (const cairo_user_data_key_t*)getPtrValue(s_key);
@@ -1720,7 +1720,7 @@ S_cairo_surface_get_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key)
  
 
 USER_OBJECT_
-S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data, USER_OBJECT_ s_destroy)
+S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data)
 {
 	cairo_surface_t* surface = (cairo_surface_t*)getPtrValue(s_surface);
 	const cairo_user_data_key_t* key = (const cairo_user_data_key_t*)getPtrValue(s_key);
@@ -1854,7 +1854,7 @@ S_cairo_image_surface_create(USER_OBJECT_ s_format, USER_OBJECT_ s_width, USER_O
 USER_OBJECT_
 S_cairo_image_surface_create_for_data(USER_OBJECT_ s_data, USER_OBJECT_ s_format, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_stride)
 {
-	guchar* data = (guchar*)asCArray(s_data, guchar, asCInteger);
+	guchar* data = (guchar*)asCArray(s_data, guchar, asCRaw);
 	cairo_format_t format = (cairo_format_t)asCEnum(s_format, CAIRO_TYPE_FORMAT);
 	int width = (int)asCInteger(s_width);
 	int height = (int)asCInteger(s_height);

@@ -5,10 +5,11 @@
 spawned in such an environment that on calling \code{\link{gdkDisplayOpen}}
 it would be returned a \code{\link{GdkDisplay}} with \code{screen} as the default
 screen.}
-\usage{gdkSpawnCommandLineOnScreen(screen, command.line)}
+\usage{gdkSpawnCommandLineOnScreen(screen, command.line, .errwarn = TRUE)}
 \arguments{
 \item{\code{screen}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}
 \item{\code{command.line}}{[character]  a command line}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{This is useful for applications which wish to launch an application
 on a specific screen.  

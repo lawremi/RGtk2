@@ -3,11 +3,12 @@
 \title{GdkDisplayManager}
 \description{Maintains a list of all open   s}
 \section{Methods and Functions}{
-\link{gdkDisplayManagerGet}()
-\link{gdkDisplayManagerGetDefaultDisplay}(object)
-\link{gdkDisplayManagerSetDefaultDisplay}(object, display)
-\link{gdkDisplayManagerListDisplays}(object)
-\link{gdkDisplayGetCorePointer}(object)
+\code{\link{gdkDisplayManagerGet}()}\cr
+\code{\link{gdkDisplayManagerGetDefaultDisplay}(object)}\cr
+\code{\link{gdkDisplayManagerSetDefaultDisplay}(object, display)}\cr
+\code{\link{gdkDisplayManagerListDisplays}(object)}\cr
+\code{\link{gdkDisplayGetCorePointer}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkDisplayManager}}

@@ -9,8 +9,11 @@ that differ slightly from their nominal sizes, and in addition GTK+
 will avoid scaling icons that it considers sufficiently close to the
 requested size or for which the source image would have to be scaled
 up too far. (This maintains sharpness.)}
-\usage{gtkIconInfoLoadIcon(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure from \code{\link{gtkIconThemeLookupIcon}}}}
+\usage{gtkIconInfoLoadIcon(object, .errwarn = TRUE)}
+\arguments{
+\item{\code{object}}{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure from \code{\link{gtkIconThemeLookupIcon}}}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
+}
 \details{  Since  2.4}
 \value{
 A list containing the following elements:

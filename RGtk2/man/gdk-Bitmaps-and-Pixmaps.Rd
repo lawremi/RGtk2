@@ -5,15 +5,15 @@
 \name{gdk-Bitmaps-and-Pixmaps}
 \title{Bitmaps and Pixmaps}
 \description{Offscreen drawables}
-\usage{gdkPixmap(drawable = NULL, width, height, depth = -1)}
 \section{Methods and Functions}{
-\link{gdkPixmapNew}(drawable = NULL, width, height, depth = -1)
-\link{gdkBitmapCreateFromData}(drawable = NULL, data, width, height)
-\link{gdkPixmapCreateFromData}(drawable = NULL, data, height, depth, fg, bg)
-\link{gdkPixmapCreateFromXpm}(drawable, transparent.color, filename)
-\link{gdkPixmapColormapCreateFromXpm}(drawable, colormap, transparent.color, filename)
-\link{gdkPixmapCreateFromXpmD}(drawable, transparent.color, data)
-\link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)
+\code{\link{gdkPixmapNew}(drawable = NULL, width, height, depth = -1)}\cr
+\code{\link{gdkBitmapCreateFromData}(drawable = NULL, data, width, height)}\cr
+\code{\link{gdkPixmapCreateFromData}(drawable = NULL, data, height, depth, fg, bg)}\cr
+\code{\link{gdkPixmapCreateFromXpm}(drawable, transparent.color, filename)}\cr
+\code{\link{gdkPixmapColormapCreateFromXpm}(drawable, colormap, transparent.color, filename)}\cr
+\code{\link{gdkPixmapCreateFromXpmD}(drawable, transparent.color, data)}\cr
+\code{\link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)}\cr
+\code{gdkPixmap(drawable = NULL, width, height, depth = -1)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GdkDrawable}
@@ -25,7 +25,7 @@ is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}
 \section{Structures}{\describe{
-\item{\code{struct GdkPixmap}}{
+\item{\code{GdkPixmap}}{
 An opaque structure representing an offscreen drawable.
 Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}},
 and \code{\link{GdkWindow}}, can often be used interchangeably. 
@@ -33,7 +33,7 @@ The type \code{\link{GdkDrawable}} refers generically to any of
 these types.
 
 }
-\item{\code{struct GdkBitmap}}{
+\item{\code{GdkBitmap}}{
 An opaque structure representing an offscreen drawable of depth
 1. Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}}, and
 \code{\link{GdkWindow}}, can often be used interchangeably.  The type \code{\link{GdkDrawable}}

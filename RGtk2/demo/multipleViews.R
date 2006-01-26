@@ -1,4 +1,4 @@
-# source("/home/larman/research/RGtk/inst/demo/multipleViews.R")
+# source("/home/larman/research/RGtk2/RGtk2/demo/multipleViews.R")
 
 gray50.width <- 2
 gray50.height <- 2

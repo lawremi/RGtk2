@@ -4,38 +4,38 @@
 \name{GtkImage}
 \title{GtkImage}
 \description{A widget displaying an image}
-\usage{gtkImage(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkImageGetIconSet}(object)
-\link{gtkImageGetImage}(object)
-\link{gtkImageGetPixbuf}(object)
-\link{gtkImageGetPixmap}(object)
-\link{gtkImageGetStock}(object)
-\link{gtkImageGetAnimation}(object)
-\link{gtkImageGetIconName}(object)
-\link{gtkImageGetStorageType}(object)
-\link{gtkImageNewFromFile}(filename, show = TRUE)
-\link{gtkImageNewFromIconSet}(icon.set, size)
-\link{gtkImageNewFromImage}(image = NULL, mask = NULL, show = TRUE)
-\link{gtkImageNewFromPixbuf}(pixbuf = NULL, show = TRUE)
-\link{gtkImageNewFromPixmap}(pixmap = NULL, mask = NULL, show = TRUE)
-\link{gtkImageNewFromStock}(stock.id, size)
-\link{gtkImageNewFromAnimation}(animation)
-\link{gtkImageNewFromIconName}(icon.name, size)
-\link{gtkImageSetFromFile}(object, filename = NULL)
-\link{gtkImageSetFromIconSet}(object, icon.set, size)
-\link{gtkImageSetFromImage}(object, gdk.image = NULL, mask = NULL)
-\link{gtkImageSetFromPixbuf}(object, pixbuf = NULL)
-\link{gtkImageSetFromPixmap}(object, pixmap, mask = NULL)
-\link{gtkImageSetFromStock}(object, stock.id, size)
-\link{gtkImageSetFromAnimation}(object, animation)
-\link{gtkImageSetFromIconName}(object, icon.name, size)
-\link{gtkImageClear}(object)
-\link{gtkImageNew}(show = TRUE)
-\link{gtkImageSet}(object, val, mask)
-\link{gtkImageGet}(object)
-\link{gtkImageSetPixelSize}(object, pixel.size)
-\link{gtkImageGetPixelSize}(object)
+\code{\link{gtkImageGetIconSet}(object)}\cr
+\code{\link{gtkImageGetImage}(object)}\cr
+\code{\link{gtkImageGetPixbuf}(object)}\cr
+\code{\link{gtkImageGetPixmap}(object)}\cr
+\code{\link{gtkImageGetStock}(object)}\cr
+\code{\link{gtkImageGetAnimation}(object)}\cr
+\code{\link{gtkImageGetIconName}(object)}\cr
+\code{\link{gtkImageGetStorageType}(object)}\cr
+\code{\link{gtkImageNewFromFile}(filename, show = TRUE)}\cr
+\code{\link{gtkImageNewFromIconSet}(icon.set, size)}\cr
+\code{\link{gtkImageNewFromImage}(image = NULL, mask = NULL, show = TRUE)}\cr
+\code{\link{gtkImageNewFromPixbuf}(pixbuf = NULL, show = TRUE)}\cr
+\code{\link{gtkImageNewFromPixmap}(pixmap = NULL, mask = NULL, show = TRUE)}\cr
+\code{\link{gtkImageNewFromStock}(stock.id, size)}\cr
+\code{\link{gtkImageNewFromAnimation}(animation)}\cr
+\code{\link{gtkImageNewFromIconName}(icon.name, size)}\cr
+\code{\link{gtkImageSetFromFile}(object, filename = NULL)}\cr
+\code{\link{gtkImageSetFromIconSet}(object, icon.set, size)}\cr
+\code{\link{gtkImageSetFromImage}(object, gdk.image = NULL, mask = NULL)}\cr
+\code{\link{gtkImageSetFromPixbuf}(object, pixbuf = NULL)}\cr
+\code{\link{gtkImageSetFromPixmap}(object, pixmap, mask = NULL)}\cr
+\code{\link{gtkImageSetFromStock}(object, stock.id, size)}\cr
+\code{\link{gtkImageSetFromAnimation}(object, animation)}\cr
+\code{\link{gtkImageSetFromIconName}(object, icon.name, size)}\cr
+\code{\link{gtkImageClear}(object)}\cr
+\code{\link{gtkImageNew}(show = TRUE)}\cr
+\code{\link{gtkImageSet}(object, val, mask)}\cr
+\code{\link{gtkImageGet}(object)}\cr
+\code{\link{gtkImageSetPixelSize}(object, pixel.size)}\cr
+\code{\link{gtkImageGetPixelSize}(object)}\cr
+\code{gtkImage(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -119,7 +119,7 @@ below.
 
 }}}
 \section{Convenient Construction}{\code{gtkImage} is the result of collapsing the constructors of \code{GtkImage} (\code{\link{gtkImageNew}}, \code{\link{gtkImageNewFromPixmap}}, \code{\link{gtkImageNewFromImage}}, \code{\link{gtkImageNewFromFile}}, \code{\link{gtkImageNewFromPixbuf}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkImageType}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkImageType}}{
 Describes the image data representation used by a \code{\link{GtkImage}}. If you
 want to get the image from the widget, you can only get the
 currently-stored representation. e.g.  if the

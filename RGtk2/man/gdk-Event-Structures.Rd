@@ -412,7 +412,7 @@ can also cause \code{\link{GdkEventGrabBroken}} events.
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkScrollDirection}}{
+\item{\code{GdkScrollDirection}}{
 Specifies the direction for \code{\link{GdkEventScroll}}. 
 
 \describe{
@@ -423,7 +423,7 @@ Specifies the direction for \code{\link{GdkEventScroll}}.
 }
 
 }
-\item{\code{enum GdkVisibilityState}}{
+\item{\code{GdkVisibilityState}}{
 Specifies the visiblity status of a window for a \code{\link{GdkEventVisibility}}.
 
 \describe{
@@ -433,7 +433,7 @@ Specifies the visiblity status of a window for a \code{\link{GdkEventVisibility}
 }
 
 }
-\item{\code{enum GdkCrossingMode}}{
+\item{\code{GdkCrossingMode}}{
 Specifies the crossing mode for \code{\link{GdkEventCrossing}}.
 
 \describe{
@@ -443,7 +443,7 @@ Specifies the crossing mode for \code{\link{GdkEventCrossing}}.
 }
 
 }
-\item{\code{enum GdkNotifyType}}{
+\item{\code{GdkNotifyType}}{
 Specifies the kind of crossing for \code{\link{GdkEventCrossing}}.
   
 See the X11 protocol specification of \code{LeaveNotify} for
@@ -466,7 +466,7 @@ full details of crossing event generation.
 }
 
 }
-\item{\code{enum GdkPropertyState}}{
+\item{\code{GdkPropertyState}}{
 Specifies the type of a property change for a \code{\link{GdkEventProperty}}.
 
 \describe{
@@ -475,7 +475,7 @@ Specifies the type of a property change for a \code{\link{GdkEventProperty}}.
 }
 
 }
-\item{\code{enum GdkWindowState}}{
+\item{\code{GdkWindowState}}{
 Specifies the state of a toplevel window.
 
 \describe{
@@ -489,7 +489,7 @@ Specifies the state of a toplevel window.
 }
 
 }
-\item{\code{enum GdkSettingAction}}{
+\item{\code{GdkSettingAction}}{
 Specifies the kind of modification applied to a setting in a \code{\link{GdkEventSetting}}.
 
 \describe{
@@ -499,7 +499,7 @@ Specifies the kind of modification applied to a setting in a \code{\link{GdkEven
 }
 
 }
-\item{\code{enum GdkOwnerChange}}{
+\item{\code{GdkOwnerChange}}{
 Specifies why a selection ownership was changed.
 
 \describe{

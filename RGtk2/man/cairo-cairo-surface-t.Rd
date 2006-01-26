@@ -1,35 +1,38 @@
 \alias{cairo-cairo-surface-t}
-\alias{cairo_surface_t}
-\alias{cairo_content_t}
+\alias{CairoSurface}
+\alias{cairoSurface}
+\alias{CairoContent}
 \name{cairo-cairo-surface-t}
 \title{cairo_surface_t}
 \description{Base class for surfaces}
 \section{Methods and Functions}{
-\link{cairoSurfaceCreateSimilar}(other, content, width, height)
-\link{cairoSurfaceDestroy}(surface)
-\link{cairoSurfaceFinish}(surface)
-\link{cairoSurfaceFlush}(surface)
-\link{cairoSurfaceGetFontOptions}(surface)
-\link{cairoSurfaceSetUserData}(surface, key, user.data, destroy)
-\link{cairoSurfaceGetUserData}(surface, key)
-\link{cairoSurfaceMarkDirty}(surface)
-\link{cairoSurfaceMarkDirtyRectangle}(surface, x, y, width, height)
-\link{cairoSurfaceReference}(surface)
-\link{cairoSurfaceSetDeviceOffset}(surface, x.offset, y.offset)
-\link{cairoSurfaceStatus}(surface)
+\code{\link{cairoSurfaceCreateSimilar}(other, content, width, height)}\cr
+\code{\link{cairoSurfaceDestroy}(surface)}\cr
+\code{\link{cairoSurfaceFinish}(surface)}\cr
+\code{\link{cairoSurfaceFlush}(surface)}\cr
+\code{\link{cairoSurfaceGetFontOptions}(surface)}\cr
+\code{\link{cairoSurfaceSetUserData}(surface, key, user.data)}\cr
+\code{\link{cairoSurfaceGetUserData}(surface, key)}\cr
+\code{\link{cairoSurfaceMarkDirty}(surface)}\cr
+\code{\link{cairoSurfaceMarkDirtyRectangle}(surface, x, y, width, height)}\cr
+\code{\link{cairoSurfaceReference}(surface)}\cr
+\code{\link{cairoSurfaceSetDeviceOffset}(surface, x.offset, y.offset)}\cr
+\code{\link{cairoSurfaceStatus}(surface)}\cr
+\code{cairoSurface(width, height, format, other, content, data, stride, filename, con)}
 }
-\section{Structures}{\describe{\item{\code{cairo_surface_t}}{
-A \code{\link{cairo_surface_t}} represents an image, either as the destination
+\section{Structures}{\describe{\item{\code{CairoSurface}}{
+A \code{\link{CairoSurface}} represents an image, either as the destination
 of a drawing operation or as source when drawing onto another
 surface. There are different subtypes of cairo_surface_t for
 different drawing backends; for example, \code{\link{cairoImageSurfaceCreate}}
 creates a bitmap image in memory.
   
-Memory management of \code{\link{cairo_surface_t}} is done with
+Memory management of \code{\link{CairoSurface}} is done with
 \code{\link{cairoSurfaceReference}} and \code{\link{cairoSurfaceDestroy}}.  
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum cairo_content_t}}{
+\section{Convenient Construction}{\code{cairoSurface} is the result of collapsing the constructors of \code{cairo_surface_t} (\code{\link{cairoSurfaceCreateSimilar}}, \code{\link{cairoImageSurfaceCreate}}, \code{\link{cairoImageSurfaceCreateForData}}, \code{\link{cairoImageSurfaceCreateFromPng}}, \code{\link{cairoImageSurfaceCreateFromPngStream}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Enums and Flags}{\describe{\item{\code{CairoContent}}{
 \code{cairo.content.t} is used to describe the content that a surface will
 contain, whether color information, alpha information (translucence
 vs. opacity), or both.
@@ -45,6 +48,6 @@ implementation can detect the error if users confuse the two types.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-cairo-surface-t.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-cairo-surface-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

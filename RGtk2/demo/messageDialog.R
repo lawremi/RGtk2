@@ -17,7 +17,7 @@ message.dialog.clicked <- function(button, user.data)
 interactive.dialog.clicked <- function(button, user.data)
 {
   dialog <- gtkDialogNewWithButtons("Interactive Dialog",
-                    window, c("modal", "destroy-with-parent"),
+                    window, "modal",
                     "gtk-ok", GtkResponseType["ok"],
                     "_Non-stock Button", GtkResponseType["cancel"])
 

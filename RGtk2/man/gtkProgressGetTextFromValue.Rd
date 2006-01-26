@@ -4,9 +4,7 @@
 \description{
 Returns the text indicating the progress based on the supplied value.
 The current value for the \code{\link{GtkProgress}} remains unchanged.  
-\strong{WARNING: \code{gtk_progress_get_text_from_value} is deprecated and should not be used in newly-written code.  
-Returns the text indicating the progress based on the supplied value.
-The current value for the \code{\link{GtkProgress}} remains unchanged.  }
+\strong{WARNING: \code{gtk_progress_get_text_from_value} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressGetTextFromValue(object, value)}
 \arguments{

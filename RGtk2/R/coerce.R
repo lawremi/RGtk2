@@ -1,18 +1,3 @@
-as.enum <-
-function(val, type)
-{
-  if(inherits(val, type))
-    return(val)
-  .Call("R_asEnum", val, type)
-}
-as.flag <-
-function(val, type)
-{
-  if(inherits(val, type))
-    return(val)
-  .Call("R_asFlag", val, type)
-}
-
 as.struct <-
 function(x, type, fields)
 {
@@ -32,4 +17,20 @@ function(x, type, fields)
     class(struct) <- type
 
     struct
+}
+if (FALSE) {
+as.enum <-
+function(val, type)
+{
+  if(inherits(val, type))
+    return(val)
+  .Call("R_asEnum", val, type, PACKAGE="RGtk2")
+}
+as.flag <-
+function(val, type)
+{
+  if(inherits(val, type))
+    return(val)
+  .Call("R_asFlag", val, type, PACKAGE="RGtk2")
+}
 }

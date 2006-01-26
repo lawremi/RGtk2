@@ -3,8 +3,10 @@
 \name{GtkVRuler}
 \title{GtkVRuler}
 \description{A vertical ruler.}
-\usage{gtkVRuler(show = TRUE)}
-\section{Methods and Functions}{\link{gtkVRulerNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkVRulerNew}(show = TRUE)}\cr
+\code{gtkVRuler(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

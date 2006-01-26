@@ -8,32 +8,33 @@
 \title{AtkObject}
 \description{The base object class for the Accessibility Toolkit API.}
 \section{Methods and Functions}{
-\link{atkRoleRegister}(name)
-\link{atkImplementorRefAccessible}(object)
-\link{atkObjectGetName}(object)
-\link{atkObjectGetDescription}(object)
-\link{atkObjectGetParent}(object)
-\link{atkObjectGetNAccessibleChildren}(object)
-\link{atkObjectRefAccessibleChild}(object, i)
-\link{atkObjectRefRelationSet}(object)
-\link{atkObjectGetLayer}(object)
-\link{atkObjectGetMdiZorder}(object)
-\link{atkObjectGetRole}(object)
-\link{atkObjectRefStateSet}(object)
-\link{atkObjectGetIndexInParent}(object)
-\link{atkObjectSetName}(object, name)
-\link{atkObjectSetDescription}(object, description)
-\link{atkObjectSetParent}(object, parent)
-\link{atkObjectSetRole}(object, role)
-\link{atkObjectConnectPropertyChangeHandler}(object, handler)
-\link{atkObjectRemovePropertyChangeHandler}(object, handler.id)
-\link{atkObjectNotifyStateChange}(object, state, value)
-\link{atkObjectInitialize}(object, data)
-\link{atkObjectAddRelationship}(object, relationship, target)
-\link{atkObjectRemoveRelationship}(object, relationship, target)
-\link{atkRoleGetName}(role)
-\link{atkRoleGetLocalizedName}(role)
-\link{atkRoleForName}(name)
+\code{\link{atkRoleRegister}(name)}\cr
+\code{\link{atkImplementorRefAccessible}(object)}\cr
+\code{\link{atkObjectGetName}(object)}\cr
+\code{\link{atkObjectGetDescription}(object)}\cr
+\code{\link{atkObjectGetParent}(object)}\cr
+\code{\link{atkObjectGetNAccessibleChildren}(object)}\cr
+\code{\link{atkObjectRefAccessibleChild}(object, i)}\cr
+\code{\link{atkObjectRefRelationSet}(object)}\cr
+\code{\link{atkObjectGetLayer}(object)}\cr
+\code{\link{atkObjectGetMdiZorder}(object)}\cr
+\code{\link{atkObjectGetRole}(object)}\cr
+\code{\link{atkObjectRefStateSet}(object)}\cr
+\code{\link{atkObjectGetIndexInParent}(object)}\cr
+\code{\link{atkObjectSetName}(object, name)}\cr
+\code{\link{atkObjectSetDescription}(object, description)}\cr
+\code{\link{atkObjectSetParent}(object, parent)}\cr
+\code{\link{atkObjectSetRole}(object, role)}\cr
+\code{\link{atkObjectConnectPropertyChangeHandler}(object, handler)}\cr
+\code{\link{atkObjectRemovePropertyChangeHandler}(object, handler.id)}\cr
+\code{\link{atkObjectNotifyStateChange}(object, state, value)}\cr
+\code{\link{atkObjectInitialize}(object, data)}\cr
+\code{\link{atkObjectAddRelationship}(object, relationship, target)}\cr
+\code{\link{atkObjectRemoveRelationship}(object, relationship, target)}\cr
+\code{\link{atkRoleGetName}(role)}\cr
+\code{\link{atkRoleGetLocalizedName}(role)}\cr
+\code{\link{atkRoleForName}(name)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkObject
@@ -65,7 +66,7 @@ The AtkImplementor structure does not contain any fields.
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum AtkRole}}{
+\item{\code{AtkRole}}{
 Describes the role of an object
   
 These are the built-in enumerated roles that UI components can have in
@@ -154,7 +155,7 @@ ATK_ROLE_LAST_DEFINED is not necessarily an error.
 }
 
 }
-\item{\code{enum AtkLayer}}{
+\item{\code{AtkLayer}}{
 Describes the layer of a component
   
 These enumerated "layer values" are used when determining which UI

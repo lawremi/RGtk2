@@ -4,9 +4,7 @@
 \description{
 Allows you to set the \code{\link{GtkAdjustment}} to be used for the vertical
 aspect of the \code{\link{GtkCList}} widget.
-\strong{WARNING: \code{gtk_clist_set_vadjustment} is deprecated and should not be used in newly-written code.  
-Allows you to set the \code{\link{GtkAdjustment}} to be used for the vertical
-aspect of the \code{\link{GtkCList}} widget.}
+\strong{WARNING: \code{gtk_clist_set_vadjustment} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetVadjustment(object, adjustment)}
 \arguments{

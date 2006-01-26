@@ -5,13 +5,14 @@
 and renders it into a pixbuf. This is a convenience function;
 if more details about the icon are needed, use
 \code{\link{gtkIconThemeLookupIcon}} followed by \code{\link{gtkIconInfoLoadIcon}}.}
-\usage{gtkIconThemeLoadIcon(object, icon.name, size, flags)}
+\usage{gtkIconThemeLoadIcon(object, icon.name, size, flags, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
 \item{\code{icon.name}}{[character]  the name of the icon to lookup}
 \item{\code{size}}{[integer]  the desired icon size. The resulting icon may not be
        exactly this size; see \code{\link{gtkIconInfoLoadIcon}}.}
 \item{\code{flags}}{[\code{\link{GtkIconLookupFlags}}]  flags modifying the behavior of the icon lookup}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Note that you probably want to listen for icon theme changes and
 update the icon. This is usually done by connecting to the 

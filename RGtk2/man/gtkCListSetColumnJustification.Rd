@@ -4,9 +4,7 @@
 \description{
 Sets the justification to be used for all text in the specified
 column.
-\strong{WARNING: \code{gtk_clist_set_column_justification} is deprecated and should not be used in newly-written code.  
-Sets the justification to be used for all text in the specified
-column.}
+\strong{WARNING: \code{gtk_clist_set_column_justification} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetColumnJustification(object, column, justification)}
 \arguments{

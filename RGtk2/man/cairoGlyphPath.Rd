@@ -5,8 +5,8 @@
 }}
 \usage{cairoGlyphPath(cr, glyphs)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}] }
-\item{\code{glyphs}}{[\code{\link{cairo_glyph_t}}] }
+\item{\code{cr}}{[\code{\link{Cairo}}] }
+\item{\code{glyphs}}{[\code{\link{CairoGlyph}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -3,17 +3,17 @@
 \title{AtkStateSet}
 \description{An AtkStateSet determines a component's state set.}
 \section{Methods and Functions}{
-\link{atkStateSetNew}()
-\link{atkStateSetIsEmpty}(object)
-\link{atkStateSetAddState}(object, type)
-\link{atkStateSetAddStates}(object, types)
-\link{atkStateSetClearStates}(object)
-\link{atkStateSetContainsState}(object, type)
-\link{atkStateSetContainsStates}(object, types, n.types)
-\link{atkStateSetRemoveState}(object, type)
-\link{atkStateSetAndSets}(object, compare.set)
-\link{atkStateSetOrSets}(object, compare.set)
-\link{atkStateSetXorSets}(object, compare.set)
+\code{\link{atkStateSetNew}()}\cr
+\code{\link{atkStateSetIsEmpty}(object)}\cr
+\code{\link{atkStateSetAddState}(object, type)}\cr
+\code{\link{atkStateSetAddStates}(object, types)}\cr
+\code{\link{atkStateSetClearStates}(object)}\cr
+\code{\link{atkStateSetContainsState}(object, type)}\cr
+\code{\link{atkStateSetContainsStates}(object, types, n.types)}\cr
+\code{\link{atkStateSetRemoveState}(object, type)}\cr
+\code{\link{atkStateSetAndSets}(object, compare.set)}\cr
+\code{\link{atkStateSetOrSets}(object, compare.set)}\cr
+\code{\link{atkStateSetXorSets}(object, compare.set)}\cr
 }
 \section{Detailed Description}{An AtkStateSet determines a component's state set. It is composed of a set 
 of AtkStates.}

@@ -3,17 +3,17 @@
 \name{GtkFileSelection}
 \title{GtkFileSelection}
 \description{Prompt the user for a file or directory name}
-\usage{gtkFileSelection(title = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFileSelectionNew}(title = NULL, show = TRUE)
-\link{gtkFileSelectionSetFilename}(object, filename)
-\link{gtkFileSelectionGetFilename}(object)
-\link{gtkFileSelectionComplete}(object, pattern)
-\link{gtkFileSelectionShowFileopButtons}(object)
-\link{gtkFileSelectionHideFileopButtons}(object)
-\link{gtkFileSelectionGetSelections}(object)
-\link{gtkFileSelectionSetSelectMultiple}(object, select.multiple)
-\link{gtkFileSelectionGetSelectMultiple}(object)
+\code{\link{gtkFileSelectionNew}(title = NULL, show = TRUE)}\cr
+\code{\link{gtkFileSelectionSetFilename}(object, filename)}\cr
+\code{\link{gtkFileSelectionGetFilename}(object)}\cr
+\code{\link{gtkFileSelectionComplete}(object, pattern)}\cr
+\code{\link{gtkFileSelectionShowFileopButtons}(object)}\cr
+\code{\link{gtkFileSelectionHideFileopButtons}(object)}\cr
+\code{\link{gtkFileSelectionGetSelections}(object)}\cr
+\code{\link{gtkFileSelectionSetSelectMultiple}(object, select.multiple)}\cr
+\code{\link{gtkFileSelectionGetSelectMultiple}(object)}\cr
+\code{gtkFileSelection(title = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

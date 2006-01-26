@@ -6,95 +6,95 @@
 \title{GtkTextIter}
 \description{Text buffer iterator}
 \section{Methods and Functions}{
-\link{gtkTextIterGetBuffer}(object)
-\link{gtkTextIterCopy}(object)
-\link{gtkTextIterGetOffset}(object)
-\link{gtkTextIterGetLine}(object)
-\link{gtkTextIterGetLineOffset}(object)
-\link{gtkTextIterGetLineIndex}(object)
-\link{gtkTextIterGetVisibleLineIndex}(object)
-\link{gtkTextIterGetVisibleLineOffset}(object)
-\link{gtkTextIterGetChar}(object)
-\link{gtkTextIterGetSlice}(object, end)
-\link{gtkTextIterGetText}(object, end)
-\link{gtkTextIterGetVisibleSlice}(object, end)
-\link{gtkTextIterGetVisibleText}(object, end)
-\link{gtkTextIterGetPixbuf}(object)
-\link{gtkTextIterGetMarks}(object)
-\link{gtkTextIterGetToggledTags}(object, toggled.on)
-\link{gtkTextIterGetChildAnchor}(object)
-\link{gtkTextIterBeginsTag}(object, tag = NULL)
-\link{gtkTextIterEndsTag}(object, tag = NULL)
-\link{gtkTextIterTogglesTag}(object, tag = NULL)
-\link{gtkTextIterHasTag}(object, tag)
-\link{gtkTextIterGetTags}(object)
-\link{gtkTextIterEditable}(object, default.setting)
-\link{gtkTextIterCanInsert}(object, default.editability)
-\link{gtkTextIterStartsWord}(object)
-\link{gtkTextIterEndsWord}(object)
-\link{gtkTextIterInsideWord}(object)
-\link{gtkTextIterStartsLine}(object)
-\link{gtkTextIterEndsLine}(object)
-\link{gtkTextIterStartsSentence}(object)
-\link{gtkTextIterEndsSentence}(object)
-\link{gtkTextIterInsideSentence}(object)
-\link{gtkTextIterIsCursorPosition}(object)
-\link{gtkTextIterGetCharsInLine}(object)
-\link{gtkTextIterGetBytesInLine}(object)
-\link{gtkTextIterGetAttributes}(object, values)
-\link{gtkTextIterGetLanguage}(object)
-\link{gtkTextIterIsEnd}(object)
-\link{gtkTextIterIsStart}(object)
-\link{gtkTextIterForwardChar}(object)
-\link{gtkTextIterBackwardChar}(object)
-\link{gtkTextIterForwardChars}(object, count)
-\link{gtkTextIterBackwardChars}(object, count)
-\link{gtkTextIterForwardLine}(object)
-\link{gtkTextIterBackwardLine}(object)
-\link{gtkTextIterForwardLines}(object, count)
-\link{gtkTextIterBackwardLines}(object, count)
-\link{gtkTextIterForwardWordEnds}(object, count)
-\link{gtkTextIterBackwardWordStarts}(object, count)
-\link{gtkTextIterForwardWordEnd}(object)
-\link{gtkTextIterBackwardWordStart}(object)
-\link{gtkTextIterForwardCursorPosition}(object)
-\link{gtkTextIterBackwardCursorPosition}(object)
-\link{gtkTextIterForwardCursorPositions}(object, count)
-\link{gtkTextIterBackwardCursorPositions}(object, count)
-\link{gtkTextIterBackwardSentenceStart}(object)
-\link{gtkTextIterBackwardSentenceStarts}(object, count)
-\link{gtkTextIterForwardSentenceEnd}(object)
-\link{gtkTextIterForwardSentenceEnds}(object, count)
-\link{gtkTextIterForwardVisibleWordEnds}(object, count)
-\link{gtkTextIterBackwardVisibleWordStarts}(object, count)
-\link{gtkTextIterForwardVisibleWordEnd}(object)
-\link{gtkTextIterBackwardVisibleWordStart}(object)
-\link{gtkTextIterForwardVisibleCursorPosition}(object)
-\link{gtkTextIterBackwardVisibleCursorPosition}(object)
-\link{gtkTextIterForwardVisibleCursorPositions}(object, count)
-\link{gtkTextIterBackwardVisibleCursorPositions}(object, count)
-\link{gtkTextIterForwardVisibleLine}(object)
-\link{gtkTextIterBackwardVisibleLine}(object)
-\link{gtkTextIterForwardVisibleLines}(object, count)
-\link{gtkTextIterBackwardVisibleLines}(object, count)
-\link{gtkTextIterSetOffset}(object, char.offset)
-\link{gtkTextIterSetLine}(object, line.number)
-\link{gtkTextIterSetLineOffset}(object, char.on.line)
-\link{gtkTextIterSetLineIndex}(object, byte.on.line)
-\link{gtkTextIterSetVisibleLineIndex}(object, byte.on.line)
-\link{gtkTextIterSetVisibleLineOffset}(object, char.on.line)
-\link{gtkTextIterForwardToEnd}(object)
-\link{gtkTextIterForwardToLineEnd}(object)
-\link{gtkTextIterForwardToTagToggle}(object, tag = NULL)
-\link{gtkTextIterBackwardToTagToggle}(object, tag = NULL)
-\link{gtkTextIterForwardFindChar}(object, pred, user.data = NULL, limit)
-\link{gtkTextIterBackwardFindChar}(object, pred, user.data = NULL, limit)
-\link{gtkTextIterForwardSearch}(object, str, flags, limit = NULL)
-\link{gtkTextIterBackwardSearch}(object, str, flags, limit = NULL)
-\link{gtkTextIterEqual}(object, rhs)
-\link{gtkTextIterCompare}(object, rhs)
-\link{gtkTextIterInRange}(object, start, end)
-\link{gtkTextIterOrder}(object, second)
+\code{\link{gtkTextIterGetBuffer}(object)}\cr
+\code{\link{gtkTextIterCopy}(object)}\cr
+\code{\link{gtkTextIterGetOffset}(object)}\cr
+\code{\link{gtkTextIterGetLine}(object)}\cr
+\code{\link{gtkTextIterGetLineOffset}(object)}\cr
+\code{\link{gtkTextIterGetLineIndex}(object)}\cr
+\code{\link{gtkTextIterGetVisibleLineIndex}(object)}\cr
+\code{\link{gtkTextIterGetVisibleLineOffset}(object)}\cr
+\code{\link{gtkTextIterGetChar}(object)}\cr
+\code{\link{gtkTextIterGetSlice}(object, end)}\cr
+\code{\link{gtkTextIterGetText}(object, end)}\cr
+\code{\link{gtkTextIterGetVisibleSlice}(object, end)}\cr
+\code{\link{gtkTextIterGetVisibleText}(object, end)}\cr
+\code{\link{gtkTextIterGetPixbuf}(object)}\cr
+\code{\link{gtkTextIterGetMarks}(object)}\cr
+\code{\link{gtkTextIterGetToggledTags}(object, toggled.on)}\cr
+\code{\link{gtkTextIterGetChildAnchor}(object)}\cr
+\code{\link{gtkTextIterBeginsTag}(object, tag = NULL)}\cr
+\code{\link{gtkTextIterEndsTag}(object, tag = NULL)}\cr
+\code{\link{gtkTextIterTogglesTag}(object, tag = NULL)}\cr
+\code{\link{gtkTextIterHasTag}(object, tag)}\cr
+\code{\link{gtkTextIterGetTags}(object)}\cr
+\code{\link{gtkTextIterEditable}(object, default.setting)}\cr
+\code{\link{gtkTextIterCanInsert}(object, default.editability)}\cr
+\code{\link{gtkTextIterStartsWord}(object)}\cr
+\code{\link{gtkTextIterEndsWord}(object)}\cr
+\code{\link{gtkTextIterInsideWord}(object)}\cr
+\code{\link{gtkTextIterStartsLine}(object)}\cr
+\code{\link{gtkTextIterEndsLine}(object)}\cr
+\code{\link{gtkTextIterStartsSentence}(object)}\cr
+\code{\link{gtkTextIterEndsSentence}(object)}\cr
+\code{\link{gtkTextIterInsideSentence}(object)}\cr
+\code{\link{gtkTextIterIsCursorPosition}(object)}\cr
+\code{\link{gtkTextIterGetCharsInLine}(object)}\cr
+\code{\link{gtkTextIterGetBytesInLine}(object)}\cr
+\code{\link{gtkTextIterGetAttributes}(object, values)}\cr
+\code{\link{gtkTextIterGetLanguage}(object)}\cr
+\code{\link{gtkTextIterIsEnd}(object)}\cr
+\code{\link{gtkTextIterIsStart}(object)}\cr
+\code{\link{gtkTextIterForwardChar}(object)}\cr
+\code{\link{gtkTextIterBackwardChar}(object)}\cr
+\code{\link{gtkTextIterForwardChars}(object, count)}\cr
+\code{\link{gtkTextIterBackwardChars}(object, count)}\cr
+\code{\link{gtkTextIterForwardLine}(object)}\cr
+\code{\link{gtkTextIterBackwardLine}(object)}\cr
+\code{\link{gtkTextIterForwardLines}(object, count)}\cr
+\code{\link{gtkTextIterBackwardLines}(object, count)}\cr
+\code{\link{gtkTextIterForwardWordEnds}(object, count)}\cr
+\code{\link{gtkTextIterBackwardWordStarts}(object, count)}\cr
+\code{\link{gtkTextIterForwardWordEnd}(object)}\cr
+\code{\link{gtkTextIterBackwardWordStart}(object)}\cr
+\code{\link{gtkTextIterForwardCursorPosition}(object)}\cr
+\code{\link{gtkTextIterBackwardCursorPosition}(object)}\cr
+\code{\link{gtkTextIterForwardCursorPositions}(object, count)}\cr
+\code{\link{gtkTextIterBackwardCursorPositions}(object, count)}\cr
+\code{\link{gtkTextIterBackwardSentenceStart}(object)}\cr
+\code{\link{gtkTextIterBackwardSentenceStarts}(object, count)}\cr
+\code{\link{gtkTextIterForwardSentenceEnd}(object)}\cr
+\code{\link{gtkTextIterForwardSentenceEnds}(object, count)}\cr
+\code{\link{gtkTextIterForwardVisibleWordEnds}(object, count)}\cr
+\code{\link{gtkTextIterBackwardVisibleWordStarts}(object, count)}\cr
+\code{\link{gtkTextIterForwardVisibleWordEnd}(object)}\cr
+\code{\link{gtkTextIterBackwardVisibleWordStart}(object)}\cr
+\code{\link{gtkTextIterForwardVisibleCursorPosition}(object)}\cr
+\code{\link{gtkTextIterBackwardVisibleCursorPosition}(object)}\cr
+\code{\link{gtkTextIterForwardVisibleCursorPositions}(object, count)}\cr
+\code{\link{gtkTextIterBackwardVisibleCursorPositions}(object, count)}\cr
+\code{\link{gtkTextIterForwardVisibleLine}(object)}\cr
+\code{\link{gtkTextIterBackwardVisibleLine}(object)}\cr
+\code{\link{gtkTextIterForwardVisibleLines}(object, count)}\cr
+\code{\link{gtkTextIterBackwardVisibleLines}(object, count)}\cr
+\code{\link{gtkTextIterSetOffset}(object, char.offset)}\cr
+\code{\link{gtkTextIterSetLine}(object, line.number)}\cr
+\code{\link{gtkTextIterSetLineOffset}(object, char.on.line)}\cr
+\code{\link{gtkTextIterSetLineIndex}(object, byte.on.line)}\cr
+\code{\link{gtkTextIterSetVisibleLineIndex}(object, byte.on.line)}\cr
+\code{\link{gtkTextIterSetVisibleLineOffset}(object, char.on.line)}\cr
+\code{\link{gtkTextIterForwardToEnd}(object)}\cr
+\code{\link{gtkTextIterForwardToLineEnd}(object)}\cr
+\code{\link{gtkTextIterForwardToTagToggle}(object, tag = NULL)}\cr
+\code{\link{gtkTextIterBackwardToTagToggle}(object, tag = NULL)}\cr
+\code{\link{gtkTextIterForwardFindChar}(object, pred, user.data = NULL, limit)}\cr
+\code{\link{gtkTextIterBackwardFindChar}(object, pred, user.data = NULL, limit)}\cr
+\code{\link{gtkTextIterForwardSearch}(object, str, flags, limit = NULL)}\cr
+\code{\link{gtkTextIterBackwardSearch}(object, str, flags, limit = NULL)}\cr
+\code{\link{gtkTextIterEqual}(object, rhs)}\cr
+\code{\link{gtkTextIterCompare}(object, rhs)}\cr
+\code{\link{gtkTextIterInRange}(object, start, end)}\cr
+\code{\link{gtkTextIterOrder}(object, second)}\cr
 }
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
@@ -102,7 +102,7 @@ types related to the text widget and how they work together.
   }
 \section{Structures}{\describe{\item{\code{GtkTextIter}}{\emph{undocumented
 }}}}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkTextSearchFlags}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkTextSearchFlags}}{
 
 
 \describe{

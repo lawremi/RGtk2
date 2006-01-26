@@ -3,8 +3,10 @@
 \name{GtkVSeparator}
 \title{GtkVSeparator}
 \description{A vertical separator}
-\usage{gtkVSeparator(show = TRUE)}
-\section{Methods and Functions}{\link{gtkVSeparatorNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkVSeparatorNew}(show = TRUE)}\cr
+\code{gtkVSeparator(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

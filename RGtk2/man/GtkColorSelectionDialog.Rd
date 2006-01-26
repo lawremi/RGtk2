@@ -3,8 +3,10 @@
 \name{GtkColorSelectionDialog}
 \title{GtkColorSelectionDialog}
 \description{A standard dialog box for selecting a color}
-\usage{gtkColorSelectionDialog(title = NULL, show = TRUE)}
-\section{Methods and Functions}{\link{gtkColorSelectionDialogNew}(title = NULL, show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkColorSelectionDialogNew}(title = NULL, show = TRUE)}\cr
+\code{gtkColorSelectionDialog(title = NULL, show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

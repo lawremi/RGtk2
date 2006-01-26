@@ -4,9 +4,7 @@
 \description{
 Retrieves the index of the currently selected menu item. The menu
 items are numbered from top to bottom, starting with 0.
-\strong{WARNING: \code{gtk_option_menu_get_history} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
-Retrieves the index of the currently selected menu item. The menu
-items are numbered from top to bottom, starting with 0.  }
+\strong{WARNING: \code{gtk_option_menu_get_history} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 }
 \usage{gtkOptionMenuGetHistory(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkOptionMenu}}]  a \code{\link{GtkOptionMenu}}}}

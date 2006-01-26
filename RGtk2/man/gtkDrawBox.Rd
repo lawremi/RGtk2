@@ -3,8 +3,7 @@
 \title{gtkDrawBox}
 \description{
 Draws a box on \code{window} with the given parameters.
-\strong{WARNING: \code{gtk_draw_box} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintBox}} instead.  
-Draws a box on \code{window} with the given parameters.  }
+\strong{WARNING: \code{gtk_draw_box} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintBox}} instead.}
 }
 \usage{gtkDrawBox(object, window, state.type, shadow.type, x, y, width, height)}
 \arguments{

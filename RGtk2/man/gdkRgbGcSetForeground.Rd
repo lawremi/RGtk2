@@ -4,9 +4,7 @@
 \description{
 Sets the foreground color in \code{gc} to the specified color (or the
 closest approximation, in the case of limited visuals).
-\strong{WARNING: \code{gdk_rgb_gc_set_foreground} is deprecated and should not be used in newly-written code.  
-Sets the foreground color in \code{gc} to the specified color (or the
-closest approximation, in the case of limited visuals).}
+\strong{WARNING: \code{gdk_rgb_gc_set_foreground} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkRgbGcSetForeground(gc, rgb)}
 \arguments{

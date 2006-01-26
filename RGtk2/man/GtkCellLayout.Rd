@@ -4,14 +4,14 @@
 \title{GtkCellLayout}
 \description{An interface for packing cells}
 \section{Methods and Functions}{
-\link{gtkCellLayoutPackStart}(object, cell, expand = TRUE)
-\link{gtkCellLayoutPackEnd}(object, cell, expand = TRUE)
-\link{gtkCellLayoutReorder}(object, cell, position)
-\link{gtkCellLayoutClear}(object)
-\link{gtkCellLayoutSetAttributes}(object, cell, ...)
-\link{gtkCellLayoutAddAttribute}(object, cell, attribute, column)
-\link{gtkCellLayoutSetCellDataFunc}(object, cell, func, func.data = NULL)
-\link{gtkCellLayoutClearAttributes}(object, cell)
+\code{\link{gtkCellLayoutPackStart}(object, cell, expand = TRUE)}\cr
+\code{\link{gtkCellLayoutPackEnd}(object, cell, expand = TRUE)}\cr
+\code{\link{gtkCellLayoutReorder}(object, cell, position)}\cr
+\code{\link{gtkCellLayoutClear}(object)}\cr
+\code{\link{gtkCellLayoutSetAttributes}(object, cell, ...)}\cr
+\code{\link{gtkCellLayoutAddAttribute}(object, cell, attribute, column)}\cr
+\code{\link{gtkCellLayoutSetCellDataFunc}(object, cell, func, func.data = NULL)}\cr
+\code{\link{gtkCellLayoutClearAttributes}(object, cell)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkCellLayout}}

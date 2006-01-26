@@ -3,22 +3,22 @@
 \name{GtkFontButton}
 \title{GtkFontButton}
 \description{A button to launch a font selection dialog}
-\usage{gtkFontButton(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFontButtonNew}(show = TRUE)
-\link{gtkFontButtonNewWithFont}(fontname)
-\link{gtkFontButtonSetFontName}(object, fontname)
-\link{gtkFontButtonGetFontName}(object)
-\link{gtkFontButtonSetShowStyle}(object, show.style)
-\link{gtkFontButtonGetShowStyle}(object)
-\link{gtkFontButtonSetShowSize}(object, show.size)
-\link{gtkFontButtonGetShowSize}(object)
-\link{gtkFontButtonSetUseFont}(object, use.font)
-\link{gtkFontButtonGetUseFont}(object)
-\link{gtkFontButtonSetUseSize}(object, use.size)
-\link{gtkFontButtonGetUseSize}(object)
-\link{gtkFontButtonSetTitle}(object, title)
-\link{gtkFontButtonGetTitle}(object)
+\code{\link{gtkFontButtonNew}(show = TRUE)}\cr
+\code{\link{gtkFontButtonNewWithFont}(fontname)}\cr
+\code{\link{gtkFontButtonSetFontName}(object, fontname)}\cr
+\code{\link{gtkFontButtonGetFontName}(object)}\cr
+\code{\link{gtkFontButtonSetShowStyle}(object, show.style)}\cr
+\code{\link{gtkFontButtonGetShowStyle}(object)}\cr
+\code{\link{gtkFontButtonSetShowSize}(object, show.size)}\cr
+\code{\link{gtkFontButtonGetShowSize}(object)}\cr
+\code{\link{gtkFontButtonSetUseFont}(object, use.font)}\cr
+\code{\link{gtkFontButtonGetUseFont}(object)}\cr
+\code{\link{gtkFontButtonSetUseSize}(object, use.size)}\cr
+\code{\link{gtkFontButtonGetUseSize}(object)}\cr
+\code{\link{gtkFontButtonSetTitle}(object, title)}\cr
+\code{\link{gtkFontButtonGetTitle}(object)}\cr
+\code{gtkFontButton(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,13 +3,13 @@
 \name{GtkHButtonBox}
 \title{GtkHButtonBox}
 \description{A container for arranging buttons horizontally}
-\usage{gtkHButtonBox(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkHButtonBoxNew}(show = TRUE)
-\link{gtkHButtonBoxGetSpacingDefault}()
-\link{gtkHButtonBoxGetLayoutDefault}()
-\link{gtkHButtonBoxSetSpacingDefault}(spacing)
-\link{gtkHButtonBoxSetLayoutDefault}(layout)
+\code{\link{gtkHButtonBoxNew}(show = TRUE)}\cr
+\code{\link{gtkHButtonBoxGetSpacingDefault}()}\cr
+\code{\link{gtkHButtonBoxGetLayoutDefault}()}\cr
+\code{\link{gtkHButtonBoxSetSpacingDefault}(spacing)}\cr
+\code{\link{gtkHButtonBoxSetLayoutDefault}(layout)}\cr
+\code{gtkHButtonBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

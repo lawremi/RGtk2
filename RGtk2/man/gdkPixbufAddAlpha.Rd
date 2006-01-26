@@ -10,9 +10,9 @@ is initialized to 255 (full opacity).}
 \item{\code{object}}{[\code{\link{GdkPixbuf}}]  A \code{\link{GdkPixbuf}}.}
 \item{\code{substitute.color}}{[logical]  Whether to set a color to zero opacity.  If this
 is \code{FALSE}, then the (\code{r}, \code{g}, \code{b}) arguments will be ignored.}
-\item{\code{r}}{[integer]  Red value to substitute.}
-\item{\code{g}}{[integer]  Green value to substitute.}
-\item{\code{b}}{[integer]  Blue value to substitute.}
+\item{\code{r}}{[raw]  Red value to substitute.}
+\item{\code{g}}{[raw]  Green value to substitute.}
+\item{\code{b}}{[raw]  Blue value to substitute.}
 }
 \details{If \code{substitute.color} is \code{TRUE}, then the color specified by (\code{r}, \code{g}, \code{b}) will be
 assigned zero opacity. That is, if you pass (255, 255, 255) for the

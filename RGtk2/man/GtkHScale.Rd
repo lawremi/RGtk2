@@ -3,10 +3,10 @@
 \name{GtkHScale}
 \title{GtkHScale}
 \description{A horizontal slider widget for selecting a value from a range}
-\usage{gtkHScale(adjustment = NULL, min, max, step, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkHScaleNew}(adjustment = NULL, show = TRUE)
-\link{gtkHScaleNewWithRange}(min, max, step, show = TRUE)
+\code{\link{gtkHScaleNew}(adjustment = NULL, show = TRUE)}\cr
+\code{\link{gtkHScaleNewWithRange}(min, max, step, show = TRUE)}\cr
+\code{gtkHScale(adjustment = NULL, min, max, step, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

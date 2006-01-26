@@ -3,11 +3,11 @@
 \name{GtkSeparatorToolItem}
 \title{GtkSeparatorToolItem}
 \description{A toolbar item that separates groups of other toolbar items}
-\usage{gtkSeparatorToolItem(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkSeparatorToolItemNew}(show = TRUE)
-\link{gtkSeparatorToolItemSetDraw}(object, draw)
-\link{gtkSeparatorToolItemGetDraw}(object)
+\code{\link{gtkSeparatorToolItemNew}(show = TRUE)}\cr
+\code{\link{gtkSeparatorToolItemSetDraw}(object, draw)}\cr
+\code{\link{gtkSeparatorToolItemGetDraw}(object)}\cr
+\code{gtkSeparatorToolItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

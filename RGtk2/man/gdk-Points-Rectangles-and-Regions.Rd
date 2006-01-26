@@ -10,26 +10,26 @@
 \title{Points, Rectangles and Regions}
 \description{Simple graphical data types}
 \section{Methods and Functions}{
-\link{gdkRectangleIntersect}(src1, src2)
-\link{gdkRectangleUnion}(src1, src2)
-\link{gdkRegionNew}()
-\link{gdkRegionPolygon}(points, fill.rule)
-\link{gdkRegionCopy}(object)
-\link{gdkRegionRectangle}(rectangle)
-\link{gdkRegionGetClipbox}(object)
-\link{gdkRegionGetRectangles}(object)
-\link{gdkRegionEmpty}(object)
-\link{gdkRegionEqual}(object, region2)
-\link{gdkRegionPointIn}(object, x, y)
-\link{gdkRegionRectIn}(object, rect)
-\link{gdkRegionOffset}(object, dx, dy)
-\link{gdkRegionShrink}(object, dx, dy)
-\link{gdkRegionUnionWithRect}(object, rect)
-\link{gdkRegionIntersect}(object, source2)
-\link{gdkRegionUnion}(object, source2)
-\link{gdkRegionSubtract}(object, source2)
-\link{gdkRegionXor}(object, source2)
-\link{gdkRegionSpansIntersectForeach}(object, spans, sorted, fun, data)
+\code{\link{gdkRectangleIntersect}(src1, src2)}\cr
+\code{\link{gdkRectangleUnion}(src1, src2)}\cr
+\code{\link{gdkRegionNew}()}\cr
+\code{\link{gdkRegionPolygon}(points, fill.rule)}\cr
+\code{\link{gdkRegionCopy}(object)}\cr
+\code{\link{gdkRegionRectangle}(rectangle)}\cr
+\code{\link{gdkRegionGetClipbox}(object)}\cr
+\code{\link{gdkRegionGetRectangles}(object)}\cr
+\code{\link{gdkRegionEmpty}(object)}\cr
+\code{\link{gdkRegionEqual}(object, region2)}\cr
+\code{\link{gdkRegionPointIn}(object, x, y)}\cr
+\code{\link{gdkRegionRectIn}(object, rect)}\cr
+\code{\link{gdkRegionOffset}(object, dx, dy)}\cr
+\code{\link{gdkRegionShrink}(object, dx, dy)}\cr
+\code{\link{gdkRegionUnionWithRect}(object, rect)}\cr
+\code{\link{gdkRegionIntersect}(object, source2)}\cr
+\code{\link{gdkRegionUnion}(object, source2)}\cr
+\code{\link{gdkRegionSubtract}(object, source2)}\cr
+\code{\link{gdkRegionXor}(object, source2)}\cr
+\code{\link{gdkRegionSpansIntersectForeach}(object, spans, sorted, fun, data)}\cr
 }
 \section{Detailed Description}{GDK provides the \code{\link{GdkPoint}}, \code{\link{GdkRectangle}}, \code{\link{GdkRegion}} and \code{\link{GdkSpan}} data types
 for representing pixels and sets of pixels on the screen.
@@ -90,7 +90,7 @@ at the pixel with coordinates \code{x}, \code{y} and ending before \code{x} + \c
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkFillRule}}{
+\item{\code{GdkFillRule}}{
 The method for determining which pixels are included in a region, when
 creating a \code{\link{GdkRegion}} from a polygon.
 The fill rule is only relevant for polygons which overlap themselves.
@@ -102,7 +102,7 @@ included in the region, while areas overlapped an even number of times are not.}
 }
 
 }
-\item{\code{enum GdkOverlapType}}{
+\item{\code{GdkOverlapType}}{
 Specifies the possible values returned by \code{\link{gdkRegionRectIn}}.
 
 \describe{

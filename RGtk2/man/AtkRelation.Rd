@@ -5,15 +5,15 @@
 \title{AtkRelation}
 \description{An object used to describe a relation between a object and one or more
 other objects.}
-\usage{atkRelation(targets, relationship)}
 \section{Methods and Functions}{
-\link{atkRelationTypeRegister}(name)
-\link{atkRelationTypeGetName}(type)
-\link{atkRelationTypeForName}(name)
-\link{atkRelationNew}(targets, relationship)
-\link{atkRelationGetRelationType}(object)
-\link{atkRelationGetTarget}(object)
-\link{atkRelationAddTarget}(object, target)
+\code{\link{atkRelationTypeRegister}(name)}\cr
+\code{\link{atkRelationTypeGetName}(type)}\cr
+\code{\link{atkRelationTypeForName}(name)}\cr
+\code{\link{atkRelationNew}(targets, relationship)}\cr
+\code{\link{atkRelationGetRelationType}(object)}\cr
+\code{\link{atkRelationGetTarget}(object)}\cr
+\code{\link{atkRelationAddTarget}(object, target)}\cr
+\code{atkRelation(targets, relationship)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRelation}}
@@ -25,7 +25,7 @@ The AtkRelation structure should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{atkRelation} is the equivalent of \code{\link{atkRelationNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum AtkRelationType}}{
+\section{Enums and Flags}{\describe{\item{\code{AtkRelationType}}{
 Describes the type of the relation  
 
 \describe{

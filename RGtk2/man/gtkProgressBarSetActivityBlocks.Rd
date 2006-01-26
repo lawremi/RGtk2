@@ -4,9 +4,7 @@
 \description{
 Sets the number of blocks used when the progress bar is in activity
 mode.  Larger numbers make the visible block smaller.
-\strong{WARNING: \code{gtk_progress_bar_set_activity_blocks} is deprecated and should not be used in newly-written code.  
-Sets the number of blocks used when the progress bar is in activity
-mode.  Larger numbers make the visible block smaller.}
+\strong{WARNING: \code{gtk_progress_bar_set_activity_blocks} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressBarSetActivityBlocks(object, blocks)}
 \arguments{

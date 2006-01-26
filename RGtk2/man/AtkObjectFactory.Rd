@@ -4,9 +4,10 @@
 \description{The base object class for a factory used to create accessible objects for 
 objects of a specific GType.}
 \section{Methods and Functions}{
-\link{atkObjectFactoryCreateAccessible}(object, obj)
-\link{atkObjectFactoryGetAccessibleType}(object)
-\link{atkObjectFactoryInvalidate}(object)
+\code{\link{atkObjectFactoryCreateAccessible}(object, obj)}\cr
+\code{\link{atkObjectFactoryGetAccessibleType}(object)}\cr
+\code{\link{atkObjectFactoryInvalidate}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkObjectFactory

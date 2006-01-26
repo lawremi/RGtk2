@@ -6,31 +6,32 @@
 \title{Resource Files}
 \description{Routines for handling resource files}
 \section{Methods and Functions}{
-\link{gtkRcScannerNew}()
-\link{gtkRcGetStyle}(object)
-\link{gtkRcGetStyleByPaths}(settings, widget.path, class.path, type)
-\link{gtkRcAddWidgetNameStyle}(object, pattern)
-\link{gtkRcAddWidgetClassStyle}(object, pattern)
-\link{gtkRcAddClassStyle}(object, pattern)
-\link{gtkRcParse}(filename)
-\link{gtkRcParseString}(rc.string)
-\link{gtkRcReparseAll}()
-\link{gtkRcReparseAllForSettings}(settings, force.load)
-\link{gtkRcResetStyles}(settings)
-\link{gtkRcAddDefaultFile}(filename)
-\link{gtkRcGetDefaultFiles}()
-\link{gtkRcSetDefaultFiles}(filenames)
-\link{gtkRcParseColor}(scanner, color)
-\link{gtkRcParseState}(scanner, state)
-\link{gtkRcParsePriority}(scanner, priority)
-\link{gtkRcFindModuleInPath}(module.file)
-\link{gtkRcFindPixmapInPath}(settings, scanner = NULL, pixmap.file)
-\link{gtkRcGetModuleDir}()
-\link{gtkRcGetImModulePath}()
-\link{gtkRcGetImModuleFile}()
-\link{gtkRcGetThemeDir}()
-\link{gtkRcStyleNew}()
-\link{gtkRcStyleCopy}(object)
+\code{\link{gtkRcScannerNew}()}\cr
+\code{\link{gtkRcGetStyle}(object)}\cr
+\code{\link{gtkRcGetStyleByPaths}(settings, widget.path, class.path, type)}\cr
+\code{\link{gtkRcAddWidgetNameStyle}(object, pattern)}\cr
+\code{\link{gtkRcAddWidgetClassStyle}(object, pattern)}\cr
+\code{\link{gtkRcAddClassStyle}(object, pattern)}\cr
+\code{\link{gtkRcParse}(filename)}\cr
+\code{\link{gtkRcParseString}(rc.string)}\cr
+\code{\link{gtkRcReparseAll}()}\cr
+\code{\link{gtkRcReparseAllForSettings}(settings, force.load)}\cr
+\code{\link{gtkRcResetStyles}(settings)}\cr
+\code{\link{gtkRcAddDefaultFile}(filename)}\cr
+\code{\link{gtkRcGetDefaultFiles}()}\cr
+\code{\link{gtkRcSetDefaultFiles}(filenames)}\cr
+\code{\link{gtkRcParseColor}(scanner, color)}\cr
+\code{\link{gtkRcParseState}(scanner, state)}\cr
+\code{\link{gtkRcParsePriority}(scanner, priority)}\cr
+\code{\link{gtkRcFindModuleInPath}(module.file)}\cr
+\code{\link{gtkRcFindPixmapInPath}(settings, scanner = NULL, pixmap.file)}\cr
+\code{\link{gtkRcGetModuleDir}()}\cr
+\code{\link{gtkRcGetImModulePath}()}\cr
+\code{\link{gtkRcGetImModuleFile}()}\cr
+\code{\link{gtkRcGetThemeDir}()}\cr
+\code{\link{gtkRcStyleNew}()}\cr
+\code{\link{gtkRcStyleCopy}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkRcStyle}}
@@ -71,7 +72,7 @@ This can later be composited together with other
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkRcFlags}}{
+\item{\code{GtkRcFlags}}{
 The \code{\link{GtkRcFlags}} enumeration is used as a bitmask
 to specify which fields of a \code{\link{GtkRcStyle}} have been
 set for each state.
@@ -84,7 +85,7 @@ set for each state.
 }
 
 }
-\item{\code{enum GtkRcTokenType}}{
+\item{\code{GtkRcTokenType}}{
 The \code{\link{GtkRcTokenType}} enumeration represents the tokens
 in the RC file. It is exposed so that theme engines
 can reuse these tokens when parsing the theme-engine

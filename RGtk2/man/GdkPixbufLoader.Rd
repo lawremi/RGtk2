@@ -3,17 +3,17 @@
 \name{GdkPixbufLoader}
 \title{GdkPixbufLoader}
 \description{Application-driven progressive image loading.}
-\usage{gdkPixbufLoader(image.type, mime.type)}
 \section{Methods and Functions}{
-\link{gdkPixbufLoaderNew}()
-\link{gdkPixbufLoaderNewWithType}(image.type)
-\link{gdkPixbufLoaderNewWithMimeType}(mime.type)
-\link{gdkPixbufLoaderGetFormat}(object)
-\link{gdkPixbufLoaderWrite}(object, buf)
-\link{gdkPixbufLoaderSetSize}(object, width, height)
-\link{gdkPixbufLoaderGetPixbuf}(object)
-\link{gdkPixbufLoaderGetAnimation}(object)
-\link{gdkPixbufLoaderClose}(object)
+\code{\link{gdkPixbufLoaderNew}()}\cr
+\code{\link{gdkPixbufLoaderNewWithType}(image.type, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufLoaderNewWithMimeType}(mime.type, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufLoaderGetFormat}(object)}\cr
+\code{\link{gdkPixbufLoaderWrite}(object, buf, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufLoaderSetSize}(object, width, height)}\cr
+\code{\link{gdkPixbufLoaderGetPixbuf}(object)}\cr
+\code{\link{gdkPixbufLoaderGetAnimation}(object)}\cr
+\code{\link{gdkPixbufLoaderClose}(object, .errwarn = TRUE)}\cr
+\code{gdkPixbufLoader(image.type, mime.type, .errwarn = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkPixbufLoader}}

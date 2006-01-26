@@ -3,13 +3,7 @@
 \title{gdkFontsetLoadForDisplay}
 \description{
 Loads a fontset for use on \code{display}.
-\strong{WARNING: \code{gdk_fontset_load_for_display} is deprecated and should not be used in newly-written code.  
-Loads a fontset for use on \code{display}.
-  
-The fontset may be newly loaded or looked up in a cache. 
-You should make no assumptions about the initial reference count.  
-
-  Since  2.2}
+\strong{WARNING: \code{gdk_fontset_load_for_display} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkFontsetLoadForDisplay(display, fontset.name)}
 \arguments{

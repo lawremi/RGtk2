@@ -3,8 +3,10 @@
 \name{GtkHBox}
 \title{GtkHBox}
 \description{A horizontal container box}
-\usage{gtkHBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
-\section{Methods and Functions}{\link{gtkHBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkHBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}\cr
+\code{gtkHBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

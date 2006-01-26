@@ -6,7 +6,7 @@
 and target surface of a Cairo context.}
 \usage{pangoCairoUpdateLayout(cr, layout)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a Cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}
 \item{\code{layout}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}, from \code{\link{pangoCairoCreateLayout}}}
 }
 \details{  Since  1.10}

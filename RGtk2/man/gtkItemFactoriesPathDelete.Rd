@@ -3,8 +3,7 @@
 \title{gtkItemFactoriesPathDelete}
 \description{
 Deletes all widgets constructed from the specified path.
-\strong{WARNING: \code{gtk_item_factories_path_delete} is deprecated and should not be used in newly-written code.  
-Deletes all widgets constructed from the specified path.  }
+\strong{WARNING: \code{gtk_item_factories_path_delete} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoriesPathDelete(ifactory.path, path)}
 \arguments{

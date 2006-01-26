@@ -3,19 +3,20 @@
 \title{GtkProgress}
 \description{Base class for GtkProgressBar}
 \section{Methods and Functions}{
-\link{gtkProgressSetShowText}(object, show.text)
-\link{gtkProgressSetTextAlignment}(object, x.align, y.align)
-\link{gtkProgressSetFormatString}(object, format)
-\link{gtkProgressSetAdjustment}(object, adjustment)
-\link{gtkProgressSetPercentage}(object, percentage)
-\link{gtkProgressSetValue}(object, value)
-\link{gtkProgressGetValue}(object)
-\link{gtkProgressSetActivityMode}(object, activity.mode)
-\link{gtkProgressGetCurrentText}(object)
-\link{gtkProgressGetTextFromValue}(object, value)
-\link{gtkProgressGetCurrentPercentage}(object)
-\link{gtkProgressGetPercentageFromValue}(object, value)
-\link{gtkProgressConfigure}(object, value, min, max)
+\code{\link{gtkProgressSetShowText}(object, show.text)}\cr
+\code{\link{gtkProgressSetTextAlignment}(object, x.align, y.align)}\cr
+\code{\link{gtkProgressSetFormatString}(object, format)}\cr
+\code{\link{gtkProgressSetAdjustment}(object, adjustment)}\cr
+\code{\link{gtkProgressSetPercentage}(object, percentage)}\cr
+\code{\link{gtkProgressSetValue}(object, value)}\cr
+\code{\link{gtkProgressGetValue}(object)}\cr
+\code{\link{gtkProgressSetActivityMode}(object, activity.mode)}\cr
+\code{\link{gtkProgressGetCurrentText}(object)}\cr
+\code{\link{gtkProgressGetTextFromValue}(object, value)}\cr
+\code{\link{gtkProgressGetCurrentPercentage}(object)}\cr
+\code{\link{gtkProgressGetPercentageFromValue}(object, value)}\cr
+\code{\link{gtkProgressConfigure}(object, value, min, max)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

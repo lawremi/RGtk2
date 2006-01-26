@@ -3,8 +3,7 @@
 \title{gtkCTreeSetDragCompareFunc}
 \description{
 FIXME
-\strong{WARNING: \code{gtk_ctree_set_drag_compare_func} is deprecated and should not be used in newly-written code.  
-FIXME}
+\strong{WARNING: \code{gtk_ctree_set_drag_compare_func} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeSetDragCompareFunc(object, cmp.func)}
 \arguments{

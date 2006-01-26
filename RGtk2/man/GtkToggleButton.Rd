@@ -3,18 +3,18 @@
 \name{GtkToggleButton}
 \title{GtkToggleButton}
 \description{Create buttons which retain their state}
-\usage{gtkToggleButton(label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkToggleButtonNew}(show = TRUE)
-\link{gtkToggleButtonNewWithLabel}(label, show = TRUE)
-\link{gtkToggleButtonNewWithMnemonic}(label, show = TRUE)
-\link{gtkToggleButtonSetMode}(object, draw.indicator)
-\link{gtkToggleButtonGetMode}(object)
-\link{gtkToggleButtonToggled}(object)
-\link{gtkToggleButtonGetActive}(object)
-\link{gtkToggleButtonSetActive}(object, is.active)
-\link{gtkToggleButtonGetInconsistent}(object)
-\link{gtkToggleButtonSetInconsistent}(object, setting)
+\code{\link{gtkToggleButtonNew}(show = TRUE)}\cr
+\code{\link{gtkToggleButtonNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkToggleButtonNewWithMnemonic}(label, show = TRUE)}\cr
+\code{\link{gtkToggleButtonSetMode}(object, draw.indicator)}\cr
+\code{\link{gtkToggleButtonGetMode}(object)}\cr
+\code{\link{gtkToggleButtonToggled}(object)}\cr
+\code{\link{gtkToggleButtonGetActive}(object)}\cr
+\code{\link{gtkToggleButtonSetActive}(object, is.active)}\cr
+\code{\link{gtkToggleButtonGetInconsistent}(object)}\cr
+\code{\link{gtkToggleButtonSetInconsistent}(object, setting)}\cr
+\code{gtkToggleButton(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

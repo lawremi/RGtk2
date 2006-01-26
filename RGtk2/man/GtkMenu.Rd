@@ -5,29 +5,29 @@
 \name{GtkMenu}
 \title{GtkMenu}
 \description{A menu widget}
-\usage{gtkMenu(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkMenuNew}(show = TRUE)
-\link{gtkMenuSetScreen}(object, screen = NULL)
-\link{gtkMenuReorderChild}(object, child, position)
-\link{gtkMenuAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach)
-\link{gtkMenuPopup}(object, parent.menu.shell, parent.menu.item, func, data = NULL, button, activate.time)
-\link{gtkMenuSetAccelGroup}(object, accel.group)
-\link{gtkMenuGetAccelGroup}(object)
-\link{gtkMenuSetAccelPath}(object, accel.path)
-\link{gtkMenuSetTitle}(object, title)
-\link{gtkMenuGetTearoffState}(object)
-\link{gtkMenuGetTitle}(object)
-\link{gtkMenuPopdown}(object)
-\link{gtkMenuReposition}(object)
-\link{gtkMenuGetActive}(object)
-\link{gtkMenuSetActive}(object, index)
-\link{gtkMenuSetTearoffState}(object, torn.off)
-\link{gtkMenuAttachToWidget}(object, attach.widget)
-\link{gtkMenuDetach}(object)
-\link{gtkMenuGetAttachWidget}(object)
-\link{gtkMenuGetForAttachWidget}(object)
-\link{gtkMenuSetMonitor}(object, monitor.num)
+\code{\link{gtkMenuNew}(show = TRUE)}\cr
+\code{\link{gtkMenuSetScreen}(object, screen = NULL)}\cr
+\code{\link{gtkMenuReorderChild}(object, child, position)}\cr
+\code{\link{gtkMenuAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach)}\cr
+\code{\link{gtkMenuPopup}(object, parent.menu.shell, parent.menu.item, func, data = NULL, button, activate.time)}\cr
+\code{\link{gtkMenuSetAccelGroup}(object, accel.group)}\cr
+\code{\link{gtkMenuGetAccelGroup}(object)}\cr
+\code{\link{gtkMenuSetAccelPath}(object, accel.path)}\cr
+\code{\link{gtkMenuSetTitle}(object, title)}\cr
+\code{\link{gtkMenuGetTearoffState}(object)}\cr
+\code{\link{gtkMenuGetTitle}(object)}\cr
+\code{\link{gtkMenuPopdown}(object)}\cr
+\code{\link{gtkMenuReposition}(object)}\cr
+\code{\link{gtkMenuGetActive}(object)}\cr
+\code{\link{gtkMenuSetActive}(object, index)}\cr
+\code{\link{gtkMenuSetTearoffState}(object, torn.off)}\cr
+\code{\link{gtkMenuAttachToWidget}(object, attach.widget)}\cr
+\code{\link{gtkMenuDetach}(object)}\cr
+\code{\link{gtkMenuGetAttachWidget}(object)}\cr
+\code{\link{gtkMenuGetForAttachWidget}(object)}\cr
+\code{\link{gtkMenuSetMonitor}(object, monitor.num)}\cr
+\code{gtkMenu(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

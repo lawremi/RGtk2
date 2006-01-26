@@ -1,20 +1,20 @@
 \alias{cairo-Image-Surfaces}
-\alias{cairo_format_t}
+\alias{CairoFormat}
 \name{cairo-Image-Surfaces}
 \title{Image Surfaces}
 \description{Rendering to memory buffers}
 \section{Methods and Functions}{
-\link{cairoImageSurfaceCreate}(format, width, height)
-\link{cairoImageSurfaceCreateForData}(data, format, width, height, stride)
-\link{cairoImageSurfaceGetWidth}(surface)
-\link{cairoImageSurfaceGetHeight}(surface)
+\code{\link{cairoImageSurfaceCreate}(format, width, height)}\cr
+\code{\link{cairoImageSurfaceCreateForData}(data, format, width, height, stride)}\cr
+\code{\link{cairoImageSurfaceGetWidth}(surface)}\cr
+\code{\link{cairoImageSurfaceGetHeight}(surface)}\cr
 }
 \section{Detailed Description}{    Image surfaces provide the ability to render to memory buffers
     either allocated by cairo or by the calling code.  The supported
-    image formats are those defined in \code{\link{cairo_format_t}}.
+    image formats are those defined in \code{\link{CairoFormat}}.
   }
-\section{Enums and Flags}{\describe{\item{\code{enum cairo_format_t}}{
-\code{\link{cairo_format_t}} is used to identify the memory format of
+\section{Enums and Flags}{\describe{\item{\code{CairoFormat}}{
+\code{\link{CairoFormat}} is used to identify the memory format of
 image data.  
 
 \describe{
@@ -37,6 +37,6 @@ image data.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Image-Surfaces.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Image-Surfaces.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

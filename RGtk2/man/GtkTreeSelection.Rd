@@ -5,25 +5,26 @@
 \title{GtkTreeSelection}
 \description{The selection object for }
 \section{Methods and Functions}{
-\link{gtkTreeSelectionSetMode}(object, type)
-\link{gtkTreeSelectionGetMode}(object)
-\link{gtkTreeSelectionSetSelectFunction}(object, func, data = NULL)
-\link{gtkTreeSelectionGetUserData}(object)
-\link{gtkTreeSelectionGetTreeView}(object)
-\link{gtkTreeSelectionGetSelected}(object)
-\link{gtkTreeSelectionSelectedForeach}(object, func, data = NULL)
-\link{gtkTreeSelectionGetSelectedRows}(object)
-\link{gtkTreeSelectionCountSelectedRows}(object)
-\link{gtkTreeSelectionSelectPath}(object, path)
-\link{gtkTreeSelectionUnselectPath}(object, path)
-\link{gtkTreeSelectionPathIsSelected}(object, path)
-\link{gtkTreeSelectionSelectIter}(object, iter)
-\link{gtkTreeSelectionUnselectIter}(object, iter)
-\link{gtkTreeSelectionIterIsSelected}(object, iter)
-\link{gtkTreeSelectionSelectAll}(object)
-\link{gtkTreeSelectionUnselectAll}(object)
-\link{gtkTreeSelectionSelectRange}(object, start.path, end.path)
-\link{gtkTreeSelectionUnselectRange}(object, start.path, end.path)
+\code{\link{gtkTreeSelectionSetMode}(object, type)}\cr
+\code{\link{gtkTreeSelectionGetMode}(object)}\cr
+\code{\link{gtkTreeSelectionSetSelectFunction}(object, func, data = NULL)}\cr
+\code{\link{gtkTreeSelectionGetUserData}(object)}\cr
+\code{\link{gtkTreeSelectionGetTreeView}(object)}\cr
+\code{\link{gtkTreeSelectionGetSelected}(object)}\cr
+\code{\link{gtkTreeSelectionSelectedForeach}(object, func, data = NULL)}\cr
+\code{\link{gtkTreeSelectionGetSelectedRows}(object)}\cr
+\code{\link{gtkTreeSelectionCountSelectedRows}(object)}\cr
+\code{\link{gtkTreeSelectionSelectPath}(object, path)}\cr
+\code{\link{gtkTreeSelectionUnselectPath}(object, path)}\cr
+\code{\link{gtkTreeSelectionPathIsSelected}(object, path)}\cr
+\code{\link{gtkTreeSelectionSelectIter}(object, iter)}\cr
+\code{\link{gtkTreeSelectionUnselectIter}(object, iter)}\cr
+\code{\link{gtkTreeSelectionIterIsSelected}(object, iter)}\cr
+\code{\link{gtkTreeSelectionSelectAll}(object)}\cr
+\code{\link{gtkTreeSelectionUnselectAll}(object)}\cr
+\code{\link{gtkTreeSelectionSelectRange}(object, start.path, end.path)}\cr
+\code{\link{gtkTreeSelectionUnselectRange}(object, start.path, end.path)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTreeSelection}}

@@ -1,88 +1,88 @@
 
 cairoVersionString <-
-function(.flush = TRUE, .depwarn = TRUE)
+function()
 {
 	
 
-	w <- .RGtkCall("S_cairo_version_string", PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_version_string", PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoCreate <-
-function(target, .flush = TRUE, .depwarn = TRUE)
+function(target)
 {
 	checkPtrType(target, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_create", target, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_create", target, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSave <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_save", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_save", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRestore <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_restore", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_restore", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetOperator <-
-function(cr, op, .flush = TRUE, .depwarn = TRUE)
+function(cr, op)
 {
 	checkPtrType(cr, "Cairo")
 	
 
-	w <- .RGtkCall("S_cairo_set_operator", cr, op, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_operator", cr, op, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetSource <-
-function(cr, source, .flush = TRUE, .depwarn = TRUE)
+function(cr, source)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(source, "CairoPattern")
 
-	w <- .RGtkCall("S_cairo_set_source", cr, source, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_source", cr, source, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetSourceRgb <-
-function(cr, red, green, blue, .flush = TRUE, .depwarn = TRUE)
+function(cr, red, green, blue)
 {
 	checkPtrType(cr, "Cairo")
 	red <- as.numeric(red)
 	green <- as.numeric(green)
 	blue <- as.numeric(blue)
 
-	w <- .RGtkCall("S_cairo_set_source_rgb", cr, red, green, blue, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_source_rgb", cr, red, green, blue, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetSourceRgba <-
-function(cr, red, green, blue, alpha, .flush = TRUE, .depwarn = TRUE)
+function(cr, red, green, blue, alpha)
 {
 	checkPtrType(cr, "Cairo")
 	red <- as.numeric(red)
@@ -90,287 +90,287 @@ function(cr, red, green, blue, alpha, .flush = TRUE, .depwarn = TRUE)
 	blue <- as.numeric(blue)
 	alpha <- as.numeric(alpha)
 
-	w <- .RGtkCall("S_cairo_set_source_rgba", cr, red, green, blue, alpha, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_source_rgba", cr, red, green, blue, alpha, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetSourceSurface <-
-function(cr, surface, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, surface, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(surface, "CairoSurface")
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 
-	w <- .RGtkCall("S_cairo_set_source_surface", cr, surface, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_source_surface", cr, surface, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetTolerance <-
-function(cr, tolerance, .flush = TRUE, .depwarn = TRUE)
+function(cr, tolerance)
 {
 	checkPtrType(cr, "Cairo")
 	tolerance <- as.numeric(tolerance)
 
-	w <- .RGtkCall("S_cairo_set_tolerance", cr, tolerance, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_tolerance", cr, tolerance, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetAntialias <-
-function(cr, antialias, .flush = TRUE, .depwarn = TRUE)
+function(cr, antialias)
 {
 	checkPtrType(cr, "Cairo")
 	
 
-	w <- .RGtkCall("S_cairo_set_antialias", cr, antialias, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_antialias", cr, antialias, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetFillRule <-
-function(cr, fill.rule, .flush = TRUE, .depwarn = TRUE)
+function(cr, fill.rule)
 {
 	checkPtrType(cr, "Cairo")
 	
 
-	w <- .RGtkCall("S_cairo_set_fill_rule", cr, fill.rule, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_fill_rule", cr, fill.rule, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetLineWidth <-
-function(cr, width, .flush = TRUE, .depwarn = TRUE)
+function(cr, width)
 {
 	checkPtrType(cr, "Cairo")
 	width <- as.numeric(width)
 
-	w <- .RGtkCall("S_cairo_set_line_width", cr, width, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_line_width", cr, width, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetLineCap <-
-function(cr, line.cap, .flush = TRUE, .depwarn = TRUE)
+function(cr, line.cap)
 {
 	checkPtrType(cr, "Cairo")
 	
 
-	w <- .RGtkCall("S_cairo_set_line_cap", cr, line.cap, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_line_cap", cr, line.cap, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetLineJoin <-
-function(cr, line.join, .flush = TRUE, .depwarn = TRUE)
+function(cr, line.join)
 {
 	checkPtrType(cr, "Cairo")
 	
 
-	w <- .RGtkCall("S_cairo_set_line_join", cr, line.join, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_line_join", cr, line.join, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetDash <-
-function(cr, dashes, offset, .flush = TRUE, .depwarn = TRUE)
+function(cr, dashes, offset)
 {
 	checkPtrType(cr, "Cairo")
 	dashes <- as.list(as.numeric(dashes))
 	offset <- as.numeric(offset)
 
-	w <- .RGtkCall("S_cairo_set_dash", cr, dashes, offset, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_dash", cr, dashes, offset, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoSetMiterLimit <-
-function(cr, limit, .flush = TRUE, .depwarn = TRUE)
+function(cr, limit)
 {
 	checkPtrType(cr, "Cairo")
 	limit <- as.numeric(limit)
 
-	w <- .RGtkCall("S_cairo_set_miter_limit", cr, limit, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_miter_limit", cr, limit, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoTranslate <-
-function(cr, tx, ty, .flush = TRUE, .depwarn = TRUE)
+function(cr, tx, ty)
 {
 	checkPtrType(cr, "Cairo")
 	tx <- as.numeric(tx)
 	ty <- as.numeric(ty)
 
-	w <- .RGtkCall("S_cairo_translate", cr, tx, ty, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_translate", cr, tx, ty, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoScale <-
-function(cr, sx, sy, .flush = TRUE, .depwarn = TRUE)
+function(cr, sx, sy)
 {
 	checkPtrType(cr, "Cairo")
 	sx <- as.numeric(sx)
 	sy <- as.numeric(sy)
 
-	w <- .RGtkCall("S_cairo_scale", cr, sx, sy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_scale", cr, sx, sy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRotate <-
-function(cr, angle, .flush = TRUE, .depwarn = TRUE)
+function(cr, angle)
 {
 	checkPtrType(cr, "Cairo")
 	angle <- as.numeric(angle)
 
-	w <- .RGtkCall("S_cairo_rotate", cr, angle, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_rotate", cr, angle, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoTransform <-
-function(cr, matrix, .flush = TRUE, .depwarn = TRUE)
+function(cr, matrix)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_transform", cr, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_transform", cr, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetMatrix <-
-function(cr, matrix, .flush = TRUE, .depwarn = TRUE)
+function(cr, matrix)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_set_matrix", cr, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_matrix", cr, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoIdentityMatrix <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_identity_matrix", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_identity_matrix", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoUserToDevice <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.list(as.numeric(x))
 	y <- as.list(as.numeric(y))
 
-	w <- .RGtkCall("S_cairo_user_to_device", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_user_to_device", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoUserToDeviceDistance <-
-function(cr, dx, dy, .flush = TRUE, .depwarn = TRUE)
+function(cr, dx, dy)
 {
 	checkPtrType(cr, "Cairo")
 	dx <- as.list(as.numeric(dx))
 	dy <- as.list(as.numeric(dy))
 
-	w <- .RGtkCall("S_cairo_user_to_device_distance", cr, dx, dy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_user_to_device_distance", cr, dx, dy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoDeviceToUser <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.list(as.numeric(x))
 	y <- as.list(as.numeric(y))
 
-	w <- .RGtkCall("S_cairo_device_to_user", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_device_to_user", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoDeviceToUserDistance <-
-function(cr, dx, dy, .flush = TRUE, .depwarn = TRUE)
+function(cr, dx, dy)
 {
 	checkPtrType(cr, "Cairo")
 	dx <- as.list(as.numeric(dx))
 	dy <- as.list(as.numeric(dy))
 
-	w <- .RGtkCall("S_cairo_device_to_user_distance", cr, dx, dy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_device_to_user_distance", cr, dx, dy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoNewPath <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_new_path", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_new_path", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMoveTo <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 
-	w <- .RGtkCall("S_cairo_move_to", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_move_to", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoLineTo <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 
-	w <- .RGtkCall("S_cairo_line_to", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_line_to", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoCurveTo <-
-function(cr, x1, y1, x2, y2, x3, y3, .flush = TRUE, .depwarn = TRUE)
+function(cr, x1, y1, x2, y2, x3, y3)
 {
 	checkPtrType(cr, "Cairo")
 	x1 <- as.numeric(x1)
@@ -380,14 +380,14 @@ function(cr, x1, y1, x2, y2, x3, y3, .flush = TRUE, .depwarn = TRUE)
 	x3 <- as.numeric(x3)
 	y3 <- as.numeric(y3)
 
-	w <- .RGtkCall("S_cairo_curve_to", cr, x1, y1, x2, y2, x3, y3, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_curve_to", cr, x1, y1, x2, y2, x3, y3, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoArc <-
-function(cr, xc, yc, radius, angle1, angle2, .flush = TRUE, .depwarn = TRUE)
+function(cr, xc, yc, radius, angle1, angle2)
 {
 	checkPtrType(cr, "Cairo")
 	xc <- as.numeric(xc)
@@ -396,14 +396,14 @@ function(cr, xc, yc, radius, angle1, angle2, .flush = TRUE, .depwarn = TRUE)
 	angle1 <- as.numeric(angle1)
 	angle2 <- as.numeric(angle2)
 
-	w <- .RGtkCall("S_cairo_arc", cr, xc, yc, radius, angle1, angle2, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_arc", cr, xc, yc, radius, angle1, angle2, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoArcNegative <-
-function(cr, xc, yc, radius, angle1, angle2, .flush = TRUE, .depwarn = TRUE)
+function(cr, xc, yc, radius, angle1, angle2)
 {
 	checkPtrType(cr, "Cairo")
 	xc <- as.numeric(xc)
@@ -412,40 +412,40 @@ function(cr, xc, yc, radius, angle1, angle2, .flush = TRUE, .depwarn = TRUE)
 	angle1 <- as.numeric(angle1)
 	angle2 <- as.numeric(angle2)
 
-	w <- .RGtkCall("S_cairo_arc_negative", cr, xc, yc, radius, angle1, angle2, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_arc_negative", cr, xc, yc, radius, angle1, angle2, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRelMoveTo <-
-function(cr, dx, dy, .flush = TRUE, .depwarn = TRUE)
+function(cr, dx, dy)
 {
 	checkPtrType(cr, "Cairo")
 	dx <- as.numeric(dx)
 	dy <- as.numeric(dy)
 
-	w <- .RGtkCall("S_cairo_rel_move_to", cr, dx, dy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_rel_move_to", cr, dx, dy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRelLineTo <-
-function(cr, dx, dy, .flush = TRUE, .depwarn = TRUE)
+function(cr, dx, dy)
 {
 	checkPtrType(cr, "Cairo")
 	dx <- as.numeric(dx)
 	dy <- as.numeric(dy)
 
-	w <- .RGtkCall("S_cairo_rel_line_to", cr, dx, dy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_rel_line_to", cr, dx, dy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRelCurveTo <-
-function(cr, dx1, dy1, dx2, dy2, dx3, dy3, .flush = TRUE, .depwarn = TRUE)
+function(cr, dx1, dy1, dx2, dy2, dx3, dy3)
 {
 	checkPtrType(cr, "Cairo")
 	dx1 <- as.numeric(dx1)
@@ -455,14 +455,14 @@ function(cr, dx1, dy1, dx2, dy2, dx3, dy3, .flush = TRUE, .depwarn = TRUE)
 	dx3 <- as.numeric(dx3)
 	dy3 <- as.numeric(dy3)
 
-	w <- .RGtkCall("S_cairo_rel_curve_to", cr, dx1, dy1, dx2, dy2, dx3, dy3, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_rel_curve_to", cr, dx1, dy1, dx2, dy2, dx3, dy3, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoRectangle <-
-function(cr, x, y, width, height, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y, width, height)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.numeric(x)
@@ -470,798 +470,796 @@ function(cr, x, y, width, height, .flush = TRUE, .depwarn = TRUE)
 	width <- as.numeric(width)
 	height <- as.numeric(height)
 
-	w <- .RGtkCall("S_cairo_rectangle", cr, x, y, width, height, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_rectangle", cr, x, y, width, height, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoClosePath <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_close_path", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_close_path", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPaint <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_paint", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_paint", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPaintWithAlpha <-
-function(cr, alpha, .flush = TRUE, .depwarn = TRUE)
+function(cr, alpha)
 {
 	checkPtrType(cr, "Cairo")
 	alpha <- as.numeric(alpha)
 
-	w <- .RGtkCall("S_cairo_paint_with_alpha", cr, alpha, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_paint_with_alpha", cr, alpha, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMask <-
-function(cr, pattern, .flush = TRUE, .depwarn = TRUE)
+function(cr, pattern)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(pattern, "CairoPattern")
 
-	w <- .RGtkCall("S_cairo_mask", cr, pattern, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_mask", cr, pattern, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMaskSurface <-
-function(cr, surface, surface.x, surface.y, .flush = TRUE, .depwarn = TRUE)
+function(cr, surface, surface.x, surface.y)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(surface, "CairoSurface")
 	surface.x <- as.numeric(surface.x)
 	surface.y <- as.numeric(surface.y)
 
-	w <- .RGtkCall("S_cairo_mask_surface", cr, surface, surface.x, surface.y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_mask_surface", cr, surface, surface.x, surface.y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoStroke <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_stroke", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_stroke", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoStrokePreserve <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_stroke_preserve", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_stroke_preserve", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFill <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_fill", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_fill", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFillPreserve <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_fill_preserve", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_fill_preserve", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoCopyPage <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_copy_page", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_copy_page", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoShowPage <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_show_page", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_show_page", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoInStroke <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 
-	w <- .RGtkCall("S_cairo_in_stroke", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_in_stroke", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoInFill <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.numeric(x)
 	y <- as.numeric(y)
 
-	w <- .RGtkCall("S_cairo_in_fill", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_in_fill", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoStrokeExtents <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_stroke_extents", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_stroke_extents", cr, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoFillExtents <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_fill_extents", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_fill_extents", cr, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoResetClip <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_reset_clip", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_reset_clip", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoClip <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_clip", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_clip", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoClipPreserve <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_clip_preserve", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_clip_preserve", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSelectFontFace <-
-function(cr, family, slant, weight, .flush = TRUE, .depwarn = TRUE)
+function(cr, family, slant, weight)
 {
 	checkPtrType(cr, "Cairo")
 	family <- as.character(family)
 	
 	
 
-	w <- .RGtkCall("S_cairo_select_font_face", cr, family, slant, weight, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_select_font_face", cr, family, slant, weight, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetFontSize <-
-function(cr, size, .flush = TRUE, .depwarn = TRUE)
+function(cr, size)
 {
 	checkPtrType(cr, "Cairo")
 	size <- as.numeric(size)
 
-	w <- .RGtkCall("S_cairo_set_font_size", cr, size, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_font_size", cr, size, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSetFontMatrix <-
-function(cr, matrix, .flush = TRUE, .depwarn = TRUE)
+function(cr, matrix)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_set_font_matrix", cr, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_font_matrix", cr, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetFontMatrix <-
-function(cr, matrix, .flush = TRUE, .depwarn = TRUE)
+function(cr, matrix)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_get_font_matrix", cr, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_font_matrix", cr, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoShowText <-
-function(cr, utf8, .flush = TRUE, .depwarn = TRUE)
+function(cr, utf8)
 {
 	checkPtrType(cr, "Cairo")
 	utf8 <- as.character(utf8)
 
-	w <- .RGtkCall("S_cairo_show_text", cr, utf8, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_show_text", cr, utf8, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoShowGlyphs <-
-function(cr, glyphs, num.glyphs, .flush = TRUE, .depwarn = TRUE)
+function(cr, glyphs, num.glyphs)
 {
 	checkPtrType(cr, "Cairo")
 	glyphs <- as.cairo_glyph_t(glyphs)
 	num.glyphs <- as.integer(num.glyphs)
 
-	w <- .RGtkCall("S_cairo_show_glyphs", cr, glyphs, num.glyphs, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_show_glyphs", cr, glyphs, num.glyphs, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetFontFace <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_font_face", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_font_face", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontExtents <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_font_extents", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_extents", cr, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoSetFontFace <-
-function(cr, font.face, .flush = TRUE, .depwarn = TRUE)
+function(cr, font.face)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(font.face, "CairoFontFace")
 
-	w <- .RGtkCall("S_cairo_set_font_face", cr, font.face, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_font_face", cr, font.face, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoTextExtents <-
-function(cr, utf8, .flush = TRUE, .depwarn = TRUE)
+function(cr, utf8)
 {
 	checkPtrType(cr, "Cairo")
 	utf8 <- as.character(utf8)
 
-	w <- .RGtkCall("S_cairo_text_extents", cr, utf8, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_text_extents", cr, utf8, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoGlyphExtents <-
-function(cr, glyphs, .flush = TRUE, .depwarn = TRUE)
+function(cr, glyphs)
 {
 	checkPtrType(cr, "Cairo")
 	glyphs <- lapply(glyphs, function(x) { x <- as.cairo_glyph_t(x); x })
 
-	w <- .RGtkCall("S_cairo_glyph_extents", cr, glyphs, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_glyph_extents", cr, glyphs, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoTextPath <-
-function(cr, utf8, .flush = TRUE, .depwarn = TRUE)
+function(cr, utf8)
 {
 	checkPtrType(cr, "Cairo")
 	utf8 <- as.character(utf8)
 
-	w <- .RGtkCall("S_cairo_text_path", cr, utf8, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_text_path", cr, utf8, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGlyphPath <-
-function(cr, glyphs, .flush = TRUE, .depwarn = TRUE)
+function(cr, glyphs)
 {
 	checkPtrType(cr, "Cairo")
 	glyphs <- lapply(glyphs, function(x) { x <- as.cairo_glyph_t(x); x })
 
-	w <- .RGtkCall("S_cairo_glyph_path", cr, glyphs, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_glyph_path", cr, glyphs, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoSetFontOptions <-
-function(cr, options, .flush = TRUE, .depwarn = TRUE)
+function(cr, options)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_set_font_options", cr, options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_set_font_options", cr, options, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetFontOptions <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_font_options", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_font_options", cr, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoFontFaceGetUserData <-
-function(font.face, key, .flush = TRUE, .depwarn = TRUE)
+function(font.face, key)
 {
 	checkPtrType(font.face, "CairoFontFace")
 	checkPtrType(key, "CairoUserDataKey")
 
-	w <- .RGtkCall("S_cairo_font_face_get_user_data", font.face, key, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_face_get_user_data", font.face, key, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontFaceSetUserData <-
-function(font.face, key, user.data, destroy, .flush = TRUE, .depwarn = TRUE)
+function(font.face, key, user.data)
 {
 	checkPtrType(font.face, "CairoFontFace")
 	checkPtrType(key, "CairoUserDataKey")
 	
-	checkPtrType(destroy, "CairoDestroyFunc")
 
-	w <- .RGtkCall("S_cairo_font_face_set_user_data", font.face, key, user.data, destroy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_face_set_user_data", font.face, key, user.data, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontFaceStatus <-
-function(font.face, .flush = TRUE, .depwarn = TRUE)
+function(font.face)
 {
 	checkPtrType(font.face, "CairoFontFace")
 
-	w <- .RGtkCall("S_cairo_font_face_status", font.face, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_face_status", font.face, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoScaledFontCreate <-
-function(font.face, font.matrix, ctm, option, .flush = TRUE, .depwarn = TRUE)
+function(font.face, font.matrix, ctm, option)
 {
 	checkPtrType(font.face, "CairoFontFace")
 	checkPtrType(font.matrix, "CairoMatrix")
 	checkPtrType(ctm, "CairoMatrix")
 	checkPtrType(option, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_scaled_font_create", font.face, font.matrix, ctm, option, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_scaled_font_create", font.face, font.matrix, ctm, option, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoScaledFontExtents <-
-function(scaled.font, .flush = TRUE, .depwarn = TRUE)
+function(scaled.font)
 {
 	checkPtrType(scaled.font, "CairoScaledFont")
 
-	w <- .RGtkCall("S_cairo_scaled_font_extents", scaled.font, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_scaled_font_extents", scaled.font, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoScaledFontGlyphExtents <-
-function(scaled.font, glyphs, num.glyphs, .flush = TRUE, .depwarn = TRUE)
+function(scaled.font, glyphs, num.glyphs)
 {
 	checkPtrType(scaled.font, "CairoScaledFont")
 	glyphs <- as.cairo_glyph_t(glyphs)
 	num.glyphs <- as.integer(num.glyphs)
 
-	w <- .RGtkCall("S_cairo_scaled_font_glyph_extents", scaled.font, glyphs, num.glyphs, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_scaled_font_glyph_extents", scaled.font, glyphs, num.glyphs, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoScaledFontStatus <-
-function(scaled.font, .flush = TRUE, .depwarn = TRUE)
+function(scaled.font)
 {
 	checkPtrType(scaled.font, "CairoScaledFont")
 
-	w <- .RGtkCall("S_cairo_scaled_font_status", scaled.font, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_scaled_font_status", scaled.font, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetOperator <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_operator", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_operator", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetSource <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_source", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_source", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetTolerance <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_tolerance", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_tolerance", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetAntialias <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_antialias", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_antialias", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetCurrentPoint <-
-function(cr, x, y, .flush = TRUE, .depwarn = TRUE)
+function(cr, x, y)
 {
 	checkPtrType(cr, "Cairo")
 	x <- as.list(as.numeric(x))
 	y <- as.list(as.numeric(y))
 
-	w <- .RGtkCall("S_cairo_get_current_point", cr, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_current_point", cr, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetFillRule <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_fill_rule", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_fill_rule", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetLineWidth <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_line_width", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_line_width", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetLineCap <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_line_cap", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_line_cap", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetLineJoin <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_line_join", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_line_join", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetMiterLimit <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_miter_limit", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_miter_limit", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetMatrix <-
-function(cr, matrix, .flush = TRUE, .depwarn = TRUE)
+function(cr, matrix)
 {
 	checkPtrType(cr, "Cairo")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_get_matrix", cr, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_matrix", cr, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoGetTarget <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_get_target", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_get_target", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoCopyPath <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_copy_path", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_copy_path", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoCopyPathFlat <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_copy_path_flat", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_copy_path_flat", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoAppendPath <-
-function(cr, path, .flush = TRUE, .depwarn = TRUE)
+function(cr, path)
 {
 	checkPtrType(cr, "Cairo")
 	path <- as.cairo_path_t(path)
 
-	w <- .RGtkCall("S_cairo_append_path", cr, path, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_append_path", cr, path, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoStatus <-
-function(cr, .flush = TRUE, .depwarn = TRUE)
+function(cr)
 {
 	checkPtrType(cr, "Cairo")
 
-	w <- .RGtkCall("S_cairo_status", cr, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_status", cr, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoStatusToString <-
-function(status, .flush = TRUE, .depwarn = TRUE)
+function(status)
 {
 	
 
-	w <- .RGtkCall("S_cairo_status_to_string", status, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_status_to_string", status, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceCreateSimilar <-
-function(other, content, width, height, .flush = TRUE, .depwarn = TRUE)
+function(other, content, width, height)
 {
 	checkPtrType(other, "CairoSurface")
 	
 	width <- as.integer(width)
 	height <- as.integer(height)
 
-	w <- .RGtkCall("S_cairo_surface_create_similar", other, content, width, height, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_create_similar", other, content, width, height, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceReference <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_reference", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_reference", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceDestroy <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_destroy", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_destroy", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceFinish <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_finish", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_finish", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceWriteToPng <-
-function(surface, filename, .flush = TRUE, .depwarn = TRUE)
+function(surface, filename)
 {
 	checkPtrType(surface, "CairoSurface")
 	filename <- as.character(filename)
 
-	w <- .RGtkCall("S_cairo_surface_write_to_png", surface, filename, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_write_to_png", surface, filename, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceWriteToPngStream <-
-function(surface, write.func, closure, .flush = TRUE, .depwarn = TRUE)
+function(surface, write.func, closure)
 {
 	checkPtrType(surface, "CairoSurface")
 	write.func <- as.function(write.func)
 	
 
-	w <- .RGtkCall("S_cairo_surface_write_to_png_stream", surface, write.func, closure, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_write_to_png_stream", surface, write.func, closure, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceGetUserData <-
-function(surface, key, .flush = TRUE, .depwarn = TRUE)
+function(surface, key)
 {
 	checkPtrType(surface, "CairoSurface")
 	checkPtrType(key, "CairoUserDataKey")
 
-	w <- .RGtkCall("S_cairo_surface_get_user_data", surface, key, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_get_user_data", surface, key, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceSetUserData <-
-function(surface, key, user.data, destroy, .flush = TRUE, .depwarn = TRUE)
+function(surface, key, user.data)
 {
 	checkPtrType(surface, "CairoSurface")
 	checkPtrType(key, "CairoUserDataKey")
 	
-	checkPtrType(destroy, "CairoDestroyFunc")
 
-	w <- .RGtkCall("S_cairo_surface_set_user_data", surface, key, user.data, destroy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_set_user_data", surface, key, user.data, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceFlush <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_flush", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_flush", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceMarkDirty <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_mark_dirty", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_mark_dirty", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceMarkDirtyRectangle <-
-function(surface, x, y, width, height, .flush = TRUE, .depwarn = TRUE)
+function(surface, x, y, width, height)
 {
 	checkPtrType(surface, "CairoSurface")
 	x <- as.integer(x)
@@ -1269,174 +1267,174 @@ function(surface, x, y, width, height, .flush = TRUE, .depwarn = TRUE)
 	width <- as.integer(width)
 	height <- as.integer(height)
 
-	w <- .RGtkCall("S_cairo_surface_mark_dirty_rectangle", surface, x, y, width, height, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_mark_dirty_rectangle", surface, x, y, width, height, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceSetDeviceOffset <-
-function(surface, x.offset, y.offset, .flush = TRUE, .depwarn = TRUE)
+function(surface, x.offset, y.offset)
 {
 	checkPtrType(surface, "CairoSurface")
 	x.offset <- as.numeric(x.offset)
 	y.offset <- as.numeric(y.offset)
 
-	w <- .RGtkCall("S_cairo_surface_set_device_offset", surface, x.offset, y.offset, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_set_device_offset", surface, x.offset, y.offset, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoSurfaceGetFontOptions <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_get_font_options", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_get_font_options", surface, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoSurfaceStatus <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_surface_status", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_surface_status", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceCreate <-
-function(format, width, height, .flush = TRUE, .depwarn = TRUE)
+function(format, width, height)
 {
 	
 	width <- as.integer(width)
 	height <- as.integer(height)
 
-	w <- .RGtkCall("S_cairo_image_surface_create", format, width, height, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_create", format, width, height, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceCreateForData <-
-function(data, format, width, height, stride, .flush = TRUE, .depwarn = TRUE)
+function(data, format, width, height, stride)
 {
-	data <- as.list(as.integer(data))
+	data <- as.list(as.raw(data))
 	
 	width <- as.integer(width)
 	height <- as.integer(height)
 	stride <- as.integer(stride)
 
-	w <- .RGtkCall("S_cairo_image_surface_create_for_data", data, format, width, height, stride, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_create_for_data", data, format, width, height, stride, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceGetWidth <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_image_surface_get_width", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_get_width", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceGetHeight <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_image_surface_get_height", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_get_height", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceCreateFromPng <-
-function(filename, .flush = TRUE, .depwarn = TRUE)
+function(filename)
 {
 	filename <- as.character(filename)
 
-	w <- .RGtkCall("S_cairo_image_surface_create_from_png", filename, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_create_from_png", filename, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoImageSurfaceCreateFromPngStream <-
-function(read.func, closure, .flush = TRUE, .depwarn = TRUE)
+function(read.func, closure)
 {
 	read.func <- as.function(read.func)
 	
 
-	w <- .RGtkCall("S_cairo_image_surface_create_from_png_stream", read.func, closure, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_image_surface_create_from_png_stream", read.func, closure, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternCreateRgb <-
-function(red, green, blue, .flush = TRUE, .depwarn = TRUE)
+function(red, green, blue)
 {
 	red <- as.numeric(red)
 	green <- as.numeric(green)
 	blue <- as.numeric(blue)
 
-	w <- .RGtkCall("S_cairo_pattern_create_rgb", red, green, blue, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_create_rgb", red, green, blue, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternCreateRgba <-
-function(red, green, blue, alpha, .flush = TRUE, .depwarn = TRUE)
+function(red, green, blue, alpha)
 {
 	red <- as.numeric(red)
 	green <- as.numeric(green)
 	blue <- as.numeric(blue)
 	alpha <- as.numeric(alpha)
 
-	w <- .RGtkCall("S_cairo_pattern_create_rgba", red, green, blue, alpha, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_create_rgba", red, green, blue, alpha, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternCreateForSurface <-
-function(surface, .flush = TRUE, .depwarn = TRUE)
+function(surface)
 {
 	checkPtrType(surface, "CairoSurface")
 
-	w <- .RGtkCall("S_cairo_pattern_create_for_surface", surface, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_create_for_surface", surface, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternCreateLinear <-
-function(x0, y0, x1, y1, .flush = TRUE, .depwarn = TRUE)
+function(x0, y0, x1, y1)
 {
 	x0 <- as.numeric(x0)
 	y0 <- as.numeric(y0)
 	x1 <- as.numeric(x1)
 	y1 <- as.numeric(y1)
 
-	w <- .RGtkCall("S_cairo_pattern_create_linear", x0, y0, x1, y1, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_create_linear", x0, y0, x1, y1, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternCreateRadial <-
-function(cx0, cy0, radius0, cx1, cy1, radius1, .flush = TRUE, .depwarn = TRUE)
+function(cx0, cy0, radius0, cx1, cy1, radius1)
 {
 	cx0 <- as.numeric(cx0)
 	cy0 <- as.numeric(cy0)
@@ -1445,25 +1443,25 @@ function(cx0, cy0, radius0, cx1, cy1, radius1, .flush = TRUE, .depwarn = TRUE)
 	cy1 <- as.numeric(cy1)
 	radius1 <- as.numeric(radius1)
 
-	w <- .RGtkCall("S_cairo_pattern_create_radial", cx0, cy0, radius0, cx1, cy1, radius1, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_create_radial", cx0, cy0, radius0, cx1, cy1, radius1, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternStatus <-
-function(pattern, .flush = TRUE, .depwarn = TRUE)
+function(pattern)
 {
 	checkPtrType(pattern, "CairoPattern")
 
-	w <- .RGtkCall("S_cairo_pattern_status", pattern, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_status", pattern, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternAddColorStopRgb <-
-function(pattern, offset, red, green, blue, .flush = TRUE, .depwarn = TRUE)
+function(pattern, offset, red, green, blue)
 {
 	checkPtrType(pattern, "CairoPattern")
 	offset <- as.numeric(offset)
@@ -1471,14 +1469,14 @@ function(pattern, offset, red, green, blue, .flush = TRUE, .depwarn = TRUE)
 	green <- as.numeric(green)
 	blue <- as.numeric(blue)
 
-	w <- .RGtkCall("S_cairo_pattern_add_color_stop_rgb", pattern, offset, red, green, blue, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_add_color_stop_rgb", pattern, offset, red, green, blue, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternAddColorStopRgba <-
-function(pattern, offset, red, green, blue, alpha, .flush = TRUE, .depwarn = TRUE)
+function(pattern, offset, red, green, blue, alpha)
 {
 	checkPtrType(pattern, "CairoPattern")
 	offset <- as.numeric(offset)
@@ -1487,84 +1485,84 @@ function(pattern, offset, red, green, blue, alpha, .flush = TRUE, .depwarn = TRU
 	blue <- as.numeric(blue)
 	alpha <- as.numeric(alpha)
 
-	w <- .RGtkCall("S_cairo_pattern_add_color_stop_rgba", pattern, offset, red, green, blue, alpha, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_add_color_stop_rgba", pattern, offset, red, green, blue, alpha, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternSetMatrix <-
-function(pattern, matrix, .flush = TRUE, .depwarn = TRUE)
+function(pattern, matrix)
 {
 	checkPtrType(pattern, "CairoPattern")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_pattern_set_matrix", pattern, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_set_matrix", pattern, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternGetMatrix <-
-function(pattern, matrix, .flush = TRUE, .depwarn = TRUE)
+function(pattern, matrix)
 {
 	checkPtrType(pattern, "CairoPattern")
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_pattern_get_matrix", pattern, matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_get_matrix", pattern, matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternSetExtend <-
-function(pattern, extend, .flush = TRUE, .depwarn = TRUE)
+function(pattern, extend)
 {
 	checkPtrType(pattern, "CairoPattern")
 	
 
-	w <- .RGtkCall("S_cairo_pattern_set_extend", pattern, extend, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_set_extend", pattern, extend, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternGetExtend <-
-function(pattern, .flush = TRUE, .depwarn = TRUE)
+function(pattern)
 {
 	checkPtrType(pattern, "CairoPattern")
 
-	w <- .RGtkCall("S_cairo_pattern_get_extend", pattern, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_get_extend", pattern, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternSetFilter <-
-function(pattern, filter, .flush = TRUE, .depwarn = TRUE)
+function(pattern, filter)
 {
 	checkPtrType(pattern, "CairoPattern")
 	
 
-	w <- .RGtkCall("S_cairo_pattern_set_filter", pattern, filter, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_set_filter", pattern, filter, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoPatternGetFilter <-
-function(pattern, .flush = TRUE, .depwarn = TRUE)
+function(pattern)
 {
 	checkPtrType(pattern, "CairoPattern")
 
-	w <- .RGtkCall("S_cairo_pattern_get_filter", pattern, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_pattern_get_filter", pattern, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixInit <-
-function(xx, yx, xy, yy, x0, y0, .flush = TRUE, .depwarn = TRUE)
+function(xx, yx, xy, yy, x0, y0)
 {
 	xx <- as.numeric(xx)
 	yx <- as.numeric(yx)
@@ -1573,290 +1571,290 @@ function(xx, yx, xy, yy, x0, y0, .flush = TRUE, .depwarn = TRUE)
 	x0 <- as.numeric(x0)
 	y0 <- as.numeric(y0)
 
-	w <- .RGtkCall("S_cairo_matrix_init", xx, yx, xy, yy, x0, y0, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_init", xx, yx, xy, yy, x0, y0, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoMatrixInitIdentity <-
-function(.flush = TRUE, .depwarn = TRUE)
+function()
 {
 	
 
-	w <- .RGtkCall("S_cairo_matrix_init_identity", PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_init_identity", PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoMatrixInitTranslate <-
-function(tx, ty, .flush = TRUE, .depwarn = TRUE)
+function(tx, ty)
 {
 	tx <- as.numeric(tx)
 	ty <- as.numeric(ty)
 
-	w <- .RGtkCall("S_cairo_matrix_init_translate", tx, ty, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_init_translate", tx, ty, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoMatrixInitScale <-
-function(sx, sy, .flush = TRUE, .depwarn = TRUE)
+function(sx, sy)
 {
 	sx <- as.numeric(sx)
 	sy <- as.numeric(sy)
 
-	w <- .RGtkCall("S_cairo_matrix_init_scale", sx, sy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_init_scale", sx, sy, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoMatrixInitRotate <-
-function(radians, .flush = TRUE, .depwarn = TRUE)
+function(radians)
 {
 	radians <- as.numeric(radians)
 
-	w <- .RGtkCall("S_cairo_matrix_init_rotate", radians, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_init_rotate", radians, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 
 
 
 cairoMatrixTranslate <-
-function(matrix, tx, ty, .flush = TRUE, .depwarn = TRUE)
+function(matrix, tx, ty)
 {
 	checkPtrType(matrix, "CairoMatrix")
 	tx <- as.numeric(tx)
 	ty <- as.numeric(ty)
 
-	w <- .RGtkCall("S_cairo_matrix_translate", matrix, tx, ty, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_translate", matrix, tx, ty, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixScale <-
-function(matrix, sx, sy, .flush = TRUE, .depwarn = TRUE)
+function(matrix, sx, sy)
 {
 	checkPtrType(matrix, "CairoMatrix")
 	sx <- as.numeric(sx)
 	sy <- as.numeric(sy)
 
-	w <- .RGtkCall("S_cairo_matrix_scale", matrix, sx, sy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_scale", matrix, sx, sy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixRotate <-
-function(matrix, radians, .flush = TRUE, .depwarn = TRUE)
+function(matrix, radians)
 {
 	checkPtrType(matrix, "CairoMatrix")
 	radians <- as.numeric(radians)
 
-	w <- .RGtkCall("S_cairo_matrix_rotate", matrix, radians, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_rotate", matrix, radians, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixInvert <-
-function(matrix, .flush = TRUE, .depwarn = TRUE)
+function(matrix)
 {
 	checkPtrType(matrix, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_matrix_invert", matrix, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_invert", matrix, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixMultiply <-
-function(result, a, b, .flush = TRUE, .depwarn = TRUE)
+function(result, a, b)
 {
 	checkPtrType(result, "CairoMatrix")
 	checkPtrType(a, "CairoMatrix")
 	checkPtrType(b, "CairoMatrix")
 
-	w <- .RGtkCall("S_cairo_matrix_multiply", result, a, b, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_multiply", result, a, b, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixTransformDistance <-
-function(matrix, dx, dy, .flush = TRUE, .depwarn = TRUE)
+function(matrix, dx, dy)
 {
 	checkPtrType(matrix, "CairoMatrix")
 	dx <- as.list(as.numeric(dx))
 	dy <- as.list(as.numeric(dy))
 
-	w <- .RGtkCall("S_cairo_matrix_transform_distance", matrix, dx, dy, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_transform_distance", matrix, dx, dy, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoMatrixTransformPoint <-
-function(matrix, x, y, .flush = TRUE, .depwarn = TRUE)
+function(matrix, x, y)
 {
 	checkPtrType(matrix, "CairoMatrix")
 	x <- as.list(as.numeric(x))
 	y <- as.list(as.numeric(y))
 
-	w <- .RGtkCall("S_cairo_matrix_transform_point", matrix, x, y, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_matrix_transform_point", matrix, x, y, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsCreate <-
-function(.flush = TRUE, .depwarn = TRUE)
+function()
 {
 	
 
-	w <- .RGtkCall("S_cairo_font_options_create", PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_create", PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsCopy <-
-function(original, .flush = TRUE, .depwarn = TRUE)
+function(original)
 {
 	checkPtrType(original, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_copy", original, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_copy", original, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsStatus <-
-function(options, .flush = TRUE, .depwarn = TRUE)
+function(options)
 {
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_status", options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_status", options, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsMerge <-
-function(options, other, .flush = TRUE, .depwarn = TRUE)
+function(options, other)
 {
 	checkPtrType(options, "CairoFontOptions")
 	checkPtrType(other, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_merge", options, other, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_merge", options, other, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsEqual <-
-function(options, other, .flush = TRUE, .depwarn = TRUE)
+function(options, other)
 {
 	checkPtrType(options, "CairoFontOptions")
 	checkPtrType(other, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_equal", options, other, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_equal", options, other, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsSetAntialias <-
-function(options, antialias, .flush = TRUE, .depwarn = TRUE)
+function(options, antialias)
 {
 	checkPtrType(options, "CairoFontOptions")
 	
 
-	w <- .RGtkCall("S_cairo_font_options_set_antialias", options, antialias, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_set_antialias", options, antialias, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsGetAntialias <-
-function(options, .flush = TRUE, .depwarn = TRUE)
+function(options)
 {
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_get_antialias", options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_get_antialias", options, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsSetSubpixelOrder <-
-function(options, subpixel.order, .flush = TRUE, .depwarn = TRUE)
+function(options, subpixel.order)
 {
 	checkPtrType(options, "CairoFontOptions")
 	
 
-	w <- .RGtkCall("S_cairo_font_options_set_subpixel_order", options, subpixel.order, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_set_subpixel_order", options, subpixel.order, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsGetSubpixelOrder <-
-function(options, .flush = TRUE, .depwarn = TRUE)
+function(options)
 {
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_get_subpixel_order", options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_get_subpixel_order", options, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsSetHintStyle <-
-function(options, hint.style, .flush = TRUE, .depwarn = TRUE)
+function(options, hint.style)
 {
 	checkPtrType(options, "CairoFontOptions")
 	
 
-	w <- .RGtkCall("S_cairo_font_options_set_hint_style", options, hint.style, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_set_hint_style", options, hint.style, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsGetHintStyle <-
-function(options, .flush = TRUE, .depwarn = TRUE)
+function(options)
 {
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_get_hint_style", options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_get_hint_style", options, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsSetHintMetrics <-
-function(options, hint.metrics, .flush = TRUE, .depwarn = TRUE)
+function(options, hint.metrics)
 {
 	checkPtrType(options, "CairoFontOptions")
 	
 
-	w <- .RGtkCall("S_cairo_font_options_set_hint_metrics", options, hint.metrics, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_set_hint_metrics", options, hint.metrics, PACKAGE = "RGtk2")
 
 	return(w)
 } 
 
 
 cairoFontOptionsGetHintMetrics <-
-function(options, .flush = TRUE, .depwarn = TRUE)
+function(options)
 {
 	checkPtrType(options, "CairoFontOptions")
 
-	w <- .RGtkCall("S_cairo_font_options_get_hint_metrics", options, PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_cairo_font_options_get_hint_metrics", options, PACKAGE = "RGtk2")
 
 	return(w)
 } 

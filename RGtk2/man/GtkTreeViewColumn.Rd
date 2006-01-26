@@ -5,58 +5,58 @@
 \name{GtkTreeViewColumn}
 \title{GtkTreeViewColumn}
 \description{A visible column in a    widget}
-\usage{gtkTreeViewColumn(title, cell, ...)}
 \section{Methods and Functions}{
-\link{gtkTreeViewColumnNew}()
-\link{gtkTreeViewColumnNewWithAttributes}(title, cell, ...)
-\link{gtkTreeViewColumnPackStart}(object, cell, expand = TRUE)
-\link{gtkTreeViewColumnPackEnd}(object, cell, expand = TRUE)
-\link{gtkTreeViewColumnClear}(object)
-\link{gtkTreeViewColumnGetCellRenderers}(object)
-\link{gtkTreeViewColumnAddAttribute}(object, cell.renderer, attribute, column)
-\link{gtkTreeViewColumnSetAttributes}(object, cell.renderer, ...)
-\link{gtkTreeViewColumnSetCellDataFunc}(object, cell.renderer, func, func.data = NULL)
-\link{gtkTreeViewColumnClearAttributes}(object, cell.renderer)
-\link{gtkTreeViewColumnSetSpacing}(object, spacing)
-\link{gtkTreeViewColumnGetSpacing}(object)
-\link{gtkTreeViewColumnSetVisible}(object, visible)
-\link{gtkTreeViewColumnGetVisible}(object)
-\link{gtkTreeViewColumnSetResizable}(object, resizable)
-\link{gtkTreeViewColumnGetResizable}(object)
-\link{gtkTreeViewColumnSetSizing}(object, type)
-\link{gtkTreeViewColumnGetSizing}(object)
-\link{gtkTreeViewColumnGetWidth}(object)
-\link{gtkTreeViewColumnGetFixedWidth}(object)
-\link{gtkTreeViewColumnSetFixedWidth}(object, fixed.width)
-\link{gtkTreeViewColumnSetMinWidth}(object, min.width)
-\link{gtkTreeViewColumnGetMinWidth}(object)
-\link{gtkTreeViewColumnSetMaxWidth}(object, max.width)
-\link{gtkTreeViewColumnGetMaxWidth}(object)
-\link{gtkTreeViewColumnClicked}(object)
-\link{gtkTreeViewColumnSetTitle}(object, title)
-\link{gtkTreeViewColumnGetTitle}(object)
-\link{gtkTreeViewColumnSetExpand}(object, expand)
-\link{gtkTreeViewColumnGetExpand}(object)
-\link{gtkTreeViewColumnSetClickable}(object, active)
-\link{gtkTreeViewColumnGetClickable}(object)
-\link{gtkTreeViewColumnSetWidget}(object, widget = NULL)
-\link{gtkTreeViewColumnGetWidget}(object)
-\link{gtkTreeViewColumnSetAlignment}(object, xalign)
-\link{gtkTreeViewColumnGetAlignment}(object)
-\link{gtkTreeViewColumnSetReorderable}(object, reorderable)
-\link{gtkTreeViewColumnGetReorderable}(object)
-\link{gtkTreeViewColumnSetSortColumnId}(object, sort.column.id)
-\link{gtkTreeViewColumnGetSortColumnId}(object)
-\link{gtkTreeViewColumnSetSortIndicator}(object, setting)
-\link{gtkTreeViewColumnGetSortIndicator}(object)
-\link{gtkTreeViewColumnSetSortOrder}(object, order)
-\link{gtkTreeViewColumnGetSortOrder}(object)
-\link{gtkTreeViewColumnCellSetCellData}(object, tree.model, iter, is.expander, is.expanded)
-\link{gtkTreeViewColumnCellGetSize}(object)
-\link{gtkTreeViewColumnCellGetPosition}(object, cell.renderer)
-\link{gtkTreeViewColumnCellIsVisible}(object)
-\link{gtkTreeViewColumnFocusCell}(object, cell)
-\link{gtkTreeViewColumnQueueResize}(object)
+\code{\link{gtkTreeViewColumnNew}()}\cr
+\code{\link{gtkTreeViewColumnNewWithAttributes}(title, cell, ...)}\cr
+\code{\link{gtkTreeViewColumnPackStart}(object, cell, expand = TRUE)}\cr
+\code{\link{gtkTreeViewColumnPackEnd}(object, cell, expand = TRUE)}\cr
+\code{\link{gtkTreeViewColumnClear}(object)}\cr
+\code{\link{gtkTreeViewColumnGetCellRenderers}(object)}\cr
+\code{\link{gtkTreeViewColumnAddAttribute}(object, cell.renderer, attribute, column)}\cr
+\code{\link{gtkTreeViewColumnSetAttributes}(object, cell.renderer, ...)}\cr
+\code{\link{gtkTreeViewColumnSetCellDataFunc}(object, cell.renderer, func, func.data = NULL)}\cr
+\code{\link{gtkTreeViewColumnClearAttributes}(object, cell.renderer)}\cr
+\code{\link{gtkTreeViewColumnSetSpacing}(object, spacing)}\cr
+\code{\link{gtkTreeViewColumnGetSpacing}(object)}\cr
+\code{\link{gtkTreeViewColumnSetVisible}(object, visible)}\cr
+\code{\link{gtkTreeViewColumnGetVisible}(object)}\cr
+\code{\link{gtkTreeViewColumnSetResizable}(object, resizable)}\cr
+\code{\link{gtkTreeViewColumnGetResizable}(object)}\cr
+\code{\link{gtkTreeViewColumnSetSizing}(object, type)}\cr
+\code{\link{gtkTreeViewColumnGetSizing}(object)}\cr
+\code{\link{gtkTreeViewColumnGetWidth}(object)}\cr
+\code{\link{gtkTreeViewColumnGetFixedWidth}(object)}\cr
+\code{\link{gtkTreeViewColumnSetFixedWidth}(object, fixed.width)}\cr
+\code{\link{gtkTreeViewColumnSetMinWidth}(object, min.width)}\cr
+\code{\link{gtkTreeViewColumnGetMinWidth}(object)}\cr
+\code{\link{gtkTreeViewColumnSetMaxWidth}(object, max.width)}\cr
+\code{\link{gtkTreeViewColumnGetMaxWidth}(object)}\cr
+\code{\link{gtkTreeViewColumnClicked}(object)}\cr
+\code{\link{gtkTreeViewColumnSetTitle}(object, title)}\cr
+\code{\link{gtkTreeViewColumnGetTitle}(object)}\cr
+\code{\link{gtkTreeViewColumnSetExpand}(object, expand)}\cr
+\code{\link{gtkTreeViewColumnGetExpand}(object)}\cr
+\code{\link{gtkTreeViewColumnSetClickable}(object, active)}\cr
+\code{\link{gtkTreeViewColumnGetClickable}(object)}\cr
+\code{\link{gtkTreeViewColumnSetWidget}(object, widget = NULL)}\cr
+\code{\link{gtkTreeViewColumnGetWidget}(object)}\cr
+\code{\link{gtkTreeViewColumnSetAlignment}(object, xalign)}\cr
+\code{\link{gtkTreeViewColumnGetAlignment}(object)}\cr
+\code{\link{gtkTreeViewColumnSetReorderable}(object, reorderable)}\cr
+\code{\link{gtkTreeViewColumnGetReorderable}(object)}\cr
+\code{\link{gtkTreeViewColumnSetSortColumnId}(object, sort.column.id)}\cr
+\code{\link{gtkTreeViewColumnGetSortColumnId}(object)}\cr
+\code{\link{gtkTreeViewColumnSetSortIndicator}(object, setting)}\cr
+\code{\link{gtkTreeViewColumnGetSortIndicator}(object)}\cr
+\code{\link{gtkTreeViewColumnSetSortOrder}(object, order)}\cr
+\code{\link{gtkTreeViewColumnGetSortOrder}(object)}\cr
+\code{\link{gtkTreeViewColumnCellSetCellData}(object, tree.model, iter, is.expander, is.expanded)}\cr
+\code{\link{gtkTreeViewColumnCellGetSize}(object)}\cr
+\code{\link{gtkTreeViewColumnCellGetPosition}(object, cell.renderer)}\cr
+\code{\link{gtkTreeViewColumnCellIsVisible}(object)}\cr
+\code{\link{gtkTreeViewColumnFocusCell}(object, cell)}\cr
+\code{\link{gtkTreeViewColumnQueueResize}(object)}\cr
+\code{gtkTreeViewColumn(title, cell, ...)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -73,7 +73,7 @@ they work together.}
 \section{Structures}{\describe{\item{\code{GtkTreeViewColumn}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkTreeViewColumn} is the result of collapsing the constructors of \code{GtkTreeViewColumn} (\code{\link{gtkTreeViewColumnNew}}, \code{\link{gtkTreeViewColumnNewWithAttributes}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkTreeViewColumnSizing}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkTreeViewColumnSizing}}{
 The sizing method the column uses to determine its width.  Please note
 that \code{GTK.TREE.VIEW.COLUMN.AUTOSIZE} are inefficient for large views, and
 can make columns appear choppy.

@@ -7,8 +7,11 @@ identifying the type automatically. Useful if you want an error if
 the image isn't the expected type, for loading image formats
 that can't be reliably identified by looking at the data, or if
 the user manually forces a specific type.}
-\usage{gdkPixbufLoaderNewWithType(image.type)}
-\arguments{\item{\code{image.type}}{[char]  name of the image format to be loaded with the image}}
+\usage{gdkPixbufLoaderNewWithType(image.type, .errwarn = TRUE)}
+\arguments{
+\item{\code{image.type}}{[char]  name of the image format to be loaded with the image}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
+}
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}

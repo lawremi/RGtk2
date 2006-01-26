@@ -9,7 +9,8 @@
 badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks", "GtkRcPropertyParser", "GtkMenuDetachFunc",
     "va_list", "GtkMenuEntry", "GtkCListCompareFunc", "GtkCTreeCompareDragFunc", "GtkAccelGroupEntry",
     "AtkEventListener", "AtkEventListenerInit", "AtkFocusHandler",
-    "AtkPropertyChangeHandler", "AtkPropertyValues", "PangoFontsetSimple")
+    "AtkPropertyChangeHandler", "AtkPropertyValues", "PangoFontsetSimple",
+	"GdkInputCondition", "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags")
 
 # Functions that we cannot handle
 # This list will certainly grow. Most of these are implemented manually.
@@ -51,7 +52,7 @@ badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_ow
 	"atk_add_global_event_listener", "gtk_widget_destroyed", "gtk_init", "gtk_init_check",
 	"pango_context_new", "pango_font_map_get_shape_engine_type", "pango_reorder_items",
 	"gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data", "glade_xml_new_from_buffer",
-	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new")
+	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", "gtk_widget_destroy")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
@@ -92,7 +93,7 @@ finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetL
 
 # type names are now pure C (glib) so we map them to generic types to simplify conversion
 
-CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "integer",
+CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                            "gchar*" = "string", "char*" = "string",
 						    "gssize" = "integer",
                            "size_t" = "integer", "gshort" = "integer", "gushort" = "integer",
@@ -104,20 +105,21 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "integer",
                            "GQuark" = "numeric", "guint32" = "numeric", "GdkWChar" = "numeric",
                            "guint64" = "numeric", "AtkState" = "numeric", "gfloat" = "numeric",
                            "gdouble" = "numeric", "double" = "numeric", "glong" = "numeric",
-                           "gulong" = "numeric", "GType" = "numeric", "gboolean" = "logical"
+                           "gulong" = "numeric", "GType" = "numeric", 
+						    "gboolean" = "logical", "cairo_bool_t" = "logical"
 )
 
 # build mappings to GType constants
 CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR", rep("G_TYPE_STRING",2), rep("G_TYPE_INT",12),
                         "G_TYPE_INT64", rep("G_TYPE_UINT", 7), rep("G_TYPE_UINT64",2),
                         "G_TYPE_FLOAT", rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
-                        rep("G_TYPE_ULONG", 2), "G_TYPE_BOOLEAN")
+                        rep("G_TYPE_ULONG", 2), rep("G_TYPE_BOOLEAN",2))
 names(CPrimitiveToGType) <- names(CPrimitiveToGeneric)
 CPrimitiveToGType[["gpointer"]] <- "G_TYPE_POINTER" # has no R primitive equivalent
 
 # types that are not included as incoming parameters
 hiddenTypes <- c("GDestroyNotify", "GtkDestroyNotify", "GtkClipboardClearFunc", 
-	"GdkGCValuesMask", "GdkWindowHints")
+	"GdkGCValuesMask", "GdkWindowHints", "cairo_destroy_func_t")
 
 # types that we just ignore (do not convert, do not fail as if it were 'bad')
 ignoredTypes <- c("GtkCallbackMarshal", "PangoAttrDataCopyFunc")
@@ -131,7 +133,8 @@ lowlevel_funcs <- c("pango_context_new", "pango_fontset_simple_new", "pango_font
 "gdk_event_send_client_message_for_display", "gdk_event_send_clientmessage_toall",
 "gdk_spawn_on_screen", "gdk_spawn_on_screen_with_pipes", "gdk_init", "gdk_init_check", 
 "gdk_parse_args", "gdk_set_locale", "gdk_exit", "gdk_get_use_xshm", "gdk_set_sm_client_id",
-"gdk_set_use_xshm", "gdk_error_trap_push", "gdk_error_trap_pop")
+"gdk_set_use_xshm", "gdk_error_trap_push", "gdk_error_trap_pop", "gdk_pixmap_foreign_new",
+"gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup", "gdk_pixmap_lookup_for_display")
 
 useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_copy", 
 "gdk_colors_alloc", "gdk_color_hash", "gdk_color_equal", "gdk_wcstombs", "gdk_mbstowcs",
@@ -192,10 +195,15 @@ c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interf
   "Pango" = "Pango is a library for internationalized text handling. It centers around the \code{\link{PangoLayout}} object, representing a paragraph of text. Pango provides the engine for \\code{\\link{GtkTextView}}, \\code{\\link{GtkLabel}}, \\code{\\link{GtkEntry}}, and other widgets that display text.",
   "GDK" = "GDK is the abstraction layer that allows GTK+ to support multiple windowing systems. GDK provides drawing and window system facilities on X11, Windows, and the Linux framebuffer device.",
   "GTK" = "The GTK+ library itself contains widgets, that is, GUI components such as \\code{\\link{GtkButton}} or \\code{\\link{GtkTextView}}.",
-  "GDKPixbuf" = "This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \\code{\\link{GdkPixbuf}} in combination with \\code{\\link{GtkImage}} to display images.",
-  "Cairo" = "Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, win32, and image buffers.",
+  "GDK-Pixbuf" = "This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \\code{\\link{GdkPixbuf}} in combination with \\code{\\link{GtkImage}} to display images.",
+  "CAIRO" = "Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, win32, and image buffers.",
   "Libglade" = "Libglade loads and parses XML descriptions of user interfaces at runtime. It also provides functions that can be used to connect signal handlers to parts of the interface."
 )
+
+gnome_prefix <- "http://developer.gnome.org/doc/API/2.0"
+urlPrefices <- paste(gnome_prefix, tolower(names(libraryDescriptions)), sep="/")
+names(urlPrefices) <- tolower(names(libraryDescriptions))
+urlPrefices[["cairo"]] <- "http://www.cairographics.org/manual"
 
 customNotes <- c(
 "gtk-Stock-Items" = "Please see the reference for a detailed list of the stock items",

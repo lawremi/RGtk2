@@ -4,30 +4,30 @@
 \name{GtkEntryCompletion}
 \title{GtkEntryCompletion}
 \description{Completion functionality for GtkEntry}
-\usage{gtkEntryCompletion()}
 \section{Methods and Functions}{
-\link{gtkEntryCompletionNew}()
-\link{gtkEntryCompletionGetEntry}(object)
-\link{gtkEntryCompletionSetModel}(object, model = NULL)
-\link{gtkEntryCompletionGetModel}(object)
-\link{gtkEntryCompletionSetMatchFunc}(object, func, func.data = NULL)
-\link{gtkEntryCompletionSetMinimumKeyLength}(object, length)
-\link{gtkEntryCompletionGetMinimumKeyLength}(object)
-\link{gtkEntryCompletionComplete}(object)
-\link{gtkEntryCompletionInsertPrefix}(object)
-\link{gtkEntryCompletionInsertActionText}(object, index, text)
-\link{gtkEntryCompletionInsertActionMarkup}(object, index, markup)
-\link{gtkEntryCompletionDeleteAction}(object, index)
-\link{gtkEntryCompletionSetTextColumn}(object, column)
-\link{gtkEntryCompletionGetTextColumn}(object)
-\link{gtkEntryCompletionSetInlineCompletion}(object, inline.completion)
-\link{gtkEntryCompletionGetInlineCompletion}(object)
-\link{gtkEntryCompletionSetPopupCompletion}(object, popup.completion)
-\link{gtkEntryCompletionGetPopupCompletion}(object)
-\link{gtkEntryCompletionSetPopupSetWidth}(object, popup.set.width)
-\link{gtkEntryCompletionGetPopupSetWidth}(object)
-\link{gtkEntryCompletionSetPopupSingleMatch}(object, popup.single.match)
-\link{gtkEntryCompletionGetPopupSingleMatch}(object)
+\code{\link{gtkEntryCompletionNew}()}\cr
+\code{\link{gtkEntryCompletionGetEntry}(object)}\cr
+\code{\link{gtkEntryCompletionSetModel}(object, model = NULL)}\cr
+\code{\link{gtkEntryCompletionGetModel}(object)}\cr
+\code{\link{gtkEntryCompletionSetMatchFunc}(object, func, func.data = NULL)}\cr
+\code{\link{gtkEntryCompletionSetMinimumKeyLength}(object, length)}\cr
+\code{\link{gtkEntryCompletionGetMinimumKeyLength}(object)}\cr
+\code{\link{gtkEntryCompletionComplete}(object)}\cr
+\code{\link{gtkEntryCompletionInsertPrefix}(object)}\cr
+\code{\link{gtkEntryCompletionInsertActionText}(object, index, text)}\cr
+\code{\link{gtkEntryCompletionInsertActionMarkup}(object, index, markup)}\cr
+\code{\link{gtkEntryCompletionDeleteAction}(object, index)}\cr
+\code{\link{gtkEntryCompletionSetTextColumn}(object, column)}\cr
+\code{\link{gtkEntryCompletionGetTextColumn}(object)}\cr
+\code{\link{gtkEntryCompletionSetInlineCompletion}(object, inline.completion)}\cr
+\code{\link{gtkEntryCompletionGetInlineCompletion}(object)}\cr
+\code{\link{gtkEntryCompletionSetPopupCompletion}(object, popup.completion)}\cr
+\code{\link{gtkEntryCompletionGetPopupCompletion}(object)}\cr
+\code{\link{gtkEntryCompletionSetPopupSetWidth}(object, popup.set.width)}\cr
+\code{\link{gtkEntryCompletionGetPopupSetWidth}(object)}\cr
+\code{\link{gtkEntryCompletionSetPopupSingleMatch}(object, popup.single.match)}\cr
+\code{\link{gtkEntryCompletionGetPopupSingleMatch}(object)}\cr
+\code{gtkEntryCompletion()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkEntryCompletion}}

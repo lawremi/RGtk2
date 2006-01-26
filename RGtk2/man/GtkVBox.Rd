@@ -3,8 +3,10 @@
 \name{GtkVBox}
 \title{GtkVBox}
 \description{A vertical container box}
-\usage{gtkVBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
-\section{Methods and Functions}{\link{gtkVBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkVBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}\cr
+\code{gtkVBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

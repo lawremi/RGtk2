@@ -3,8 +3,7 @@
 \title{gdkDrawString}
 \description{
 Draws a string of characters in the given font or fontset.
-\strong{WARNING: \code{gdk_draw_string} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.  
-Draws a string of characters in the given font or fontset.  }
+\strong{WARNING: \code{gdk_draw_string} is deprecated and should not be used in newly-written code. Use \code{\link{gdkDrawLayout}} instead.}
 }
 \usage{gdkDrawString(object, font, gc, x, y, string)}
 \arguments{

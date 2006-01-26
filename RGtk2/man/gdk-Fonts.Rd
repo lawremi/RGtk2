@@ -5,28 +5,28 @@
 \title{Fonts}
 \description{Loading and manipulating fonts}
 \section{Methods and Functions}{
-\link{gdkFontLoad}(font.name)
-\link{gdkFontLoadForDisplay}(display, font.name)
-\link{gdkFontsetLoad}(fontset.name)
-\link{gdkFontsetLoadForDisplay}(display, fontset.name)
-\link{gdkFontFromDescription}(font.desc)
-\link{gdkFontFromDescriptionForDisplay}(display, font.desc)
-\link{gdkFontGetDisplay}(object)
-\link{gdkFontId}(object)
-\link{gdkStringExtents}(object, string)
-\link{gdkTextExtents}(object, string)
-\link{gdkTextExtentsWc}(object, text)
-\link{gdkStringWidth}(object, string)
-\link{gdkTextWidth}(object, text, text.length = -1)
-\link{gdkTextWidthWc}(object, text)
-\link{gdkCharWidth}(object, character)
-\link{gdkCharWidthWc}(object, character)
-\link{gdkStringMeasure}(object, string)
-\link{gdkTextMeasure}(object, text, text.length = -1)
-\link{gdkCharMeasure}(object, character)
-\link{gdkStringHeight}(object, string)
-\link{gdkTextHeight}(object, text, text.length = -1)
-\link{gdkCharHeight}(object, character)
+\code{\link{gdkFontLoad}(font.name)}\cr
+\code{\link{gdkFontLoadForDisplay}(display, font.name)}\cr
+\code{\link{gdkFontsetLoad}(fontset.name)}\cr
+\code{\link{gdkFontsetLoadForDisplay}(display, fontset.name)}\cr
+\code{\link{gdkFontFromDescription}(font.desc)}\cr
+\code{\link{gdkFontFromDescriptionForDisplay}(display, font.desc)}\cr
+\code{\link{gdkFontGetDisplay}(object)}\cr
+\code{\link{gdkFontId}(object)}\cr
+\code{\link{gdkStringExtents}(object, string)}\cr
+\code{\link{gdkTextExtents}(object, string)}\cr
+\code{\link{gdkTextExtentsWc}(object, text)}\cr
+\code{\link{gdkStringWidth}(object, string)}\cr
+\code{\link{gdkTextWidth}(object, text, text.length = -1)}\cr
+\code{\link{gdkTextWidthWc}(object, text)}\cr
+\code{\link{gdkCharWidth}(object, character)}\cr
+\code{\link{gdkCharWidthWc}(object, character)}\cr
+\code{\link{gdkStringMeasure}(object, string)}\cr
+\code{\link{gdkTextMeasure}(object, text, text.length = -1)}\cr
+\code{\link{gdkCharMeasure}(object, character)}\cr
+\code{\link{gdkStringHeight}(object, string)}\cr
+\code{\link{gdkTextHeight}(object, text, text.length = -1)}\cr
+\code{\link{gdkCharHeight}(object, character)}\cr
 }
 \section{Detailed Description}{The \code{\link{GdkFont}} data type represents a font for drawing on
 the screen. These functions provide support for
@@ -164,11 +164,7 @@ here).
     }
 }}
 \section{Structures}{\describe{\item{\code{GdkFont}}{
-\strong{WARNING: \code{GdkFont} is deprecated and should not be used in newly-written code.  
-The \code{GdkFont} structure represents a font or fontset. It
-contains the following public fields. A new \code{GdkFont}
-structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
-and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}}
+\strong{WARNING: \code{GdkFont} is deprecated and should not be used in newly-written code.}
 The \code{GdkFont} structure represents a font or fontset. It
 contains the following public fields. A new \code{GdkFont}
 structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
@@ -184,10 +180,8 @@ descends below the baseline.}
 }
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum GdkFontType}}{
-\strong{WARNING: \code{GdkFontType} is deprecated and should not be used in newly-written code.  
-Indicates the type of a font. The possible values
-are currently:}
+\section{Enums and Flags}{\describe{\item{\code{GdkFontType}}{
+\strong{WARNING: \code{GdkFontType} is deprecated and should not be used in newly-written code.}
 Indicates the type of a font. The possible values
 are currently:
 

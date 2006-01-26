@@ -3,98 +3,98 @@
 \name{GtkWindow}
 \title{GtkWindow}
 \description{Toplevel which can contain other widgets}
-\usage{gtkWindow(type = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkWindowNew}(type = NULL, show = TRUE)
-\link{gtkWindowSetTitle}(object, title)
-\link{gtkWindowSetWmclass}(object, wmclass.name, wmclass.class)
-\link{gtkWindowSetPolicy}(object, allow.shrink, allow.grow, auto.shrink)
-\link{gtkWindowSetResizable}(object, resizable)
-\link{gtkWindowGetResizable}(object)
-\link{gtkWindowAddAccelGroup}(object, accel.group)
-\link{gtkWindowRemoveAccelGroup}(object, accel.group)
-\link{gtkWindowActivateFocus}(object)
-\link{gtkWindowActivateDefault}(object)
-\link{gtkWindowSetModal}(object, modal)
-\link{gtkWindowSetDefaultSize}(object, width, height)
-\link{gtkWindowSetGeometryHints}(object, geometry.widget, geometry)
-\link{gtkWindowSetGravity}(object, gravity)
-\link{gtkWindowGetGravity}(object)
-\link{gtkWindowSetPosition}(object, position)
-\link{gtkWindowSetTransientFor}(object, parent = NULL)
-\link{gtkWindowSetDestroyWithParent}(object, setting)
-\link{gtkWindowSetScreen}(object, screen)
-\link{gtkWindowGetScreen}(object)
-\link{gtkWindowIsActive}(object)
-\link{gtkWindowHasToplevelFocus}(object)
-\link{gtkWindowListToplevels}()
-\link{gtkWindowAddMnemonic}(object, keyval, target)
-\link{gtkWindowRemoveMnemonic}(object, keyval, target)
-\link{gtkWindowMnemonicActivate}(object, keyval, modifier)
-\link{gtkWindowActivateKey}(object, event)
-\link{gtkWindowPropagateKeyEvent}(object, event)
-\link{gtkWindowGetFocus}(object)
-\link{gtkWindowSetFocus}(object, focus = NULL)
-\link{gtkWindowSetDefault}(object, default.widget = NULL)
-\link{gtkWindowPresent}(object)
-\link{gtkWindowPresentWithTime}(object, timestamp)
-\link{gtkWindowIconify}(object)
-\link{gtkWindowDeiconify}(object)
-\link{gtkWindowStick}(object)
-\link{gtkWindowUnstick}(object)
-\link{gtkWindowMaximize}(object)
-\link{gtkWindowUnmaximize}(object)
-\link{gtkWindowFullscreen}(object)
-\link{gtkWindowUnfullscreen}(object)
-\link{gtkWindowSetKeepAbove}(object, setting)
-\link{gtkWindowSetKeepBelow}(object, setting)
-\link{gtkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)
-\link{gtkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)
-\link{gtkWindowSetDecorated}(object, setting)
-\link{gtkWindowSetFrameDimensions}(object, left, top, right, bottom)
-\link{gtkWindowSetHasFrame}(object, setting)
-\link{gtkWindowSetMnemonicModifier}(object, modifier)
-\link{gtkWindowSetRole}(object, role)
-\link{gtkWindowSetTypeHint}(object, hint)
-\link{gtkWindowSetSkipTaskbarHint}(object, setting)
-\link{gtkWindowSetSkipPagerHint}(object, setting)
-\link{gtkWindowSetUrgencyHint}(object, setting)
-\link{gtkWindowSetAcceptFocus}(object, setting)
-\link{gtkWindowSetFocusOnMap}(object, setting)
-\link{gtkWindowGetDecorated}(object)
-\link{gtkWindowGetDefaultIconList}()
-\link{gtkWindowGetDefaultSize}(object)
-\link{gtkWindowGetDestroyWithParent}(object)
-\link{gtkWindowGetFrameDimensions}(object)
-\link{gtkWindowGetHasFrame}(object)
-\link{gtkWindowGetIcon}(object)
-\link{gtkWindowGetIconList}(object)
-\link{gtkWindowGetIconName}(object)
-\link{gtkWindowGetMnemonicModifier}(object)
-\link{gtkWindowGetModal}(object)
-\link{gtkWindowGetPosition}(object)
-\link{gtkWindowGetRole}(object)
-\link{gtkWindowGetSize}(object)
-\link{gtkWindowGetTitle}(object)
-\link{gtkWindowGetTransientFor}(object)
-\link{gtkWindowGetTypeHint}(object)
-\link{gtkWindowGetSkipTaskbarHint}(object)
-\link{gtkWindowGetSkipPagerHint}(object)
-\link{gtkWindowGetUrgencyHint}(object)
-\link{gtkWindowGetAcceptFocus}(object)
-\link{gtkWindowGetFocusOnMap}(object)
-\link{gtkWindowMove}(object, x, y)
-\link{gtkWindowReshowWithInitialSize}(object)
-\link{gtkWindowResize}(object, width, height)
-\link{gtkWindowSetDefaultIconList}(list)
-\link{gtkWindowSetDefaultIcon}(icon)
-\link{gtkWindowSetDefaultIconFromFile}(filename)
-\link{gtkWindowSetDefaultIconName}(name)
-\link{gtkWindowSetIcon}(object, icon = NULL)
-\link{gtkWindowSetIconList}(object, list)
-\link{gtkWindowSetIconFromFile}(object, filename)
-\link{gtkWindowSetIconName}(object, name = NULL)
-\link{gtkWindowSetAutoStartupNotification}(setting)
+\code{\link{gtkWindowNew}(type = NULL, show = TRUE)}\cr
+\code{\link{gtkWindowSetTitle}(object, title)}\cr
+\code{\link{gtkWindowSetWmclass}(object, wmclass.name, wmclass.class)}\cr
+\code{\link{gtkWindowSetPolicy}(object, allow.shrink, allow.grow, auto.shrink)}\cr
+\code{\link{gtkWindowSetResizable}(object, resizable)}\cr
+\code{\link{gtkWindowGetResizable}(object)}\cr
+\code{\link{gtkWindowAddAccelGroup}(object, accel.group)}\cr
+\code{\link{gtkWindowRemoveAccelGroup}(object, accel.group)}\cr
+\code{\link{gtkWindowActivateFocus}(object)}\cr
+\code{\link{gtkWindowActivateDefault}(object)}\cr
+\code{\link{gtkWindowSetModal}(object, modal)}\cr
+\code{\link{gtkWindowSetDefaultSize}(object, width, height)}\cr
+\code{\link{gtkWindowSetGeometryHints}(object, geometry.widget, geometry)}\cr
+\code{\link{gtkWindowSetGravity}(object, gravity)}\cr
+\code{\link{gtkWindowGetGravity}(object)}\cr
+\code{\link{gtkWindowSetPosition}(object, position)}\cr
+\code{\link{gtkWindowSetTransientFor}(object, parent = NULL)}\cr
+\code{\link{gtkWindowSetDestroyWithParent}(object, setting)}\cr
+\code{\link{gtkWindowSetScreen}(object, screen)}\cr
+\code{\link{gtkWindowGetScreen}(object)}\cr
+\code{\link{gtkWindowIsActive}(object)}\cr
+\code{\link{gtkWindowHasToplevelFocus}(object)}\cr
+\code{\link{gtkWindowListToplevels}()}\cr
+\code{\link{gtkWindowAddMnemonic}(object, keyval, target)}\cr
+\code{\link{gtkWindowRemoveMnemonic}(object, keyval, target)}\cr
+\code{\link{gtkWindowMnemonicActivate}(object, keyval, modifier)}\cr
+\code{\link{gtkWindowActivateKey}(object, event)}\cr
+\code{\link{gtkWindowPropagateKeyEvent}(object, event)}\cr
+\code{\link{gtkWindowGetFocus}(object)}\cr
+\code{\link{gtkWindowSetFocus}(object, focus = NULL)}\cr
+\code{\link{gtkWindowSetDefault}(object, default.widget = NULL)}\cr
+\code{\link{gtkWindowPresent}(object)}\cr
+\code{\link{gtkWindowPresentWithTime}(object, timestamp)}\cr
+\code{\link{gtkWindowIconify}(object)}\cr
+\code{\link{gtkWindowDeiconify}(object)}\cr
+\code{\link{gtkWindowStick}(object)}\cr
+\code{\link{gtkWindowUnstick}(object)}\cr
+\code{\link{gtkWindowMaximize}(object)}\cr
+\code{\link{gtkWindowUnmaximize}(object)}\cr
+\code{\link{gtkWindowFullscreen}(object)}\cr
+\code{\link{gtkWindowUnfullscreen}(object)}\cr
+\code{\link{gtkWindowSetKeepAbove}(object, setting)}\cr
+\code{\link{gtkWindowSetKeepBelow}(object, setting)}\cr
+\code{\link{gtkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)}\cr
+\code{\link{gtkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)}\cr
+\code{\link{gtkWindowSetDecorated}(object, setting)}\cr
+\code{\link{gtkWindowSetFrameDimensions}(object, left, top, right, bottom)}\cr
+\code{\link{gtkWindowSetHasFrame}(object, setting)}\cr
+\code{\link{gtkWindowSetMnemonicModifier}(object, modifier)}\cr
+\code{\link{gtkWindowSetRole}(object, role)}\cr
+\code{\link{gtkWindowSetTypeHint}(object, hint)}\cr
+\code{\link{gtkWindowSetSkipTaskbarHint}(object, setting)}\cr
+\code{\link{gtkWindowSetSkipPagerHint}(object, setting)}\cr
+\code{\link{gtkWindowSetUrgencyHint}(object, setting)}\cr
+\code{\link{gtkWindowSetAcceptFocus}(object, setting)}\cr
+\code{\link{gtkWindowSetFocusOnMap}(object, setting)}\cr
+\code{\link{gtkWindowGetDecorated}(object)}\cr
+\code{\link{gtkWindowGetDefaultIconList}()}\cr
+\code{\link{gtkWindowGetDefaultSize}(object)}\cr
+\code{\link{gtkWindowGetDestroyWithParent}(object)}\cr
+\code{\link{gtkWindowGetFrameDimensions}(object)}\cr
+\code{\link{gtkWindowGetHasFrame}(object)}\cr
+\code{\link{gtkWindowGetIcon}(object)}\cr
+\code{\link{gtkWindowGetIconList}(object)}\cr
+\code{\link{gtkWindowGetIconName}(object)}\cr
+\code{\link{gtkWindowGetMnemonicModifier}(object)}\cr
+\code{\link{gtkWindowGetModal}(object)}\cr
+\code{\link{gtkWindowGetPosition}(object)}\cr
+\code{\link{gtkWindowGetRole}(object)}\cr
+\code{\link{gtkWindowGetSize}(object)}\cr
+\code{\link{gtkWindowGetTitle}(object)}\cr
+\code{\link{gtkWindowGetTransientFor}(object)}\cr
+\code{\link{gtkWindowGetTypeHint}(object)}\cr
+\code{\link{gtkWindowGetSkipTaskbarHint}(object)}\cr
+\code{\link{gtkWindowGetSkipPagerHint}(object)}\cr
+\code{\link{gtkWindowGetUrgencyHint}(object)}\cr
+\code{\link{gtkWindowGetAcceptFocus}(object)}\cr
+\code{\link{gtkWindowGetFocusOnMap}(object)}\cr
+\code{\link{gtkWindowMove}(object, x, y)}\cr
+\code{\link{gtkWindowReshowWithInitialSize}(object)}\cr
+\code{\link{gtkWindowResize}(object, width, height)}\cr
+\code{\link{gtkWindowSetDefaultIconList}(list)}\cr
+\code{\link{gtkWindowSetDefaultIcon}(icon)}\cr
+\code{\link{gtkWindowSetDefaultIconFromFile}(filename, .errwarn = TRUE)}\cr
+\code{\link{gtkWindowSetDefaultIconName}(name)}\cr
+\code{\link{gtkWindowSetIcon}(object, icon = NULL)}\cr
+\code{\link{gtkWindowSetIconList}(object, list)}\cr
+\code{\link{gtkWindowSetIconFromFile}(object, filename, .errwarn = TRUE)}\cr
+\code{\link{gtkWindowSetIconName}(object, name = NULL)}\cr
+\code{\link{gtkWindowSetAutoStartupNotification}(setting)}\cr
+\code{gtkWindow(type = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

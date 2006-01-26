@@ -3,8 +3,10 @@
 \name{GtkHPaned}
 \title{GtkHPaned}
 \description{A container with two panes arranged horizontally}
-\usage{gtkHPaned(show = TRUE)}
-\section{Methods and Functions}{\link{gtkHPanedNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkHPanedNew}(show = TRUE)}\cr
+\code{gtkHPaned(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

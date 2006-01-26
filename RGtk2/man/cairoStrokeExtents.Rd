@@ -4,7 +4,7 @@
 \description{\emph{undocumented
 }}
 \usage{cairoStrokeExtents(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}] }}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}] }}
 \value{
 A list containing the following elements:
 \item{\code{x1}}{[numeric] }

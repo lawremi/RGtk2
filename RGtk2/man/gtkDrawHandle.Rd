@@ -3,8 +3,7 @@
 \title{gtkDrawHandle}
 \description{
 Draws a handle as used in \code{\link{GtkHandleBox}} and \code{\link{GtkPaned}}.
-\strong{WARNING: \code{gtk_draw_handle} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintHandle}} instead.  
-Draws a handle as used in \code{\link{GtkHandleBox}} and \code{\link{GtkPaned}}.  }
+\strong{WARNING: \code{gtk_draw_handle} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintHandle}} instead.}
 }
 \usage{gtkDrawHandle(object, window, state.type, shadow.type, x, y, width, height, orientation)}
 \arguments{

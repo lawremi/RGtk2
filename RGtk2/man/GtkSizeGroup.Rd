@@ -4,15 +4,15 @@
 \name{GtkSizeGroup}
 \title{GtkSizeGroup}
 \description{Grouping widgets so they request the same size}
-\usage{gtkSizeGroup(mode = NULL)}
 \section{Methods and Functions}{
-\link{gtkSizeGroupNew}(mode = NULL)
-\link{gtkSizeGroupSetMode}(object, mode)
-\link{gtkSizeGroupGetMode}(object)
-\link{gtkSizeGroupSetIgnoreHidden}(object, ignore.hidden)
-\link{gtkSizeGroupGetIgnoreHidden}(object)
-\link{gtkSizeGroupAddWidget}(object, widget)
-\link{gtkSizeGroupRemoveWidget}(object, widget)
+\code{\link{gtkSizeGroupNew}(mode = NULL)}\cr
+\code{\link{gtkSizeGroupSetMode}(object, mode)}\cr
+\code{\link{gtkSizeGroupGetMode}(object)}\cr
+\code{\link{gtkSizeGroupSetIgnoreHidden}(object, ignore.hidden)}\cr
+\code{\link{gtkSizeGroupGetIgnoreHidden}(object)}\cr
+\code{\link{gtkSizeGroupAddWidget}(object, widget)}\cr
+\code{\link{gtkSizeGroupRemoveWidget}(object, widget)}\cr
+\code{gtkSizeGroup(mode = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkSizeGroup}}
@@ -52,7 +52,7 @@ reached from the widget by a chain of size groups of type
 \section{Structures}{\describe{\item{\code{GtkSizeGroup}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkSizeGroup} is the equivalent of \code{\link{gtkSizeGroupNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkSizeGroupMode}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkSizeGroupMode}}{
 The mode of the size group determines the directions in which the size
 group affects the requested sizes of its component widgets.  
 

@@ -5,42 +5,42 @@
 \name{GtkToolbar}
 \title{GtkToolbar}
 \description{Create bars of buttons and other widgets}
-\usage{gtkToolbar(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkToolbarNew}(show = TRUE)
-\link{gtkToolbarInsert}(object, item, pos)
-\link{gtkToolbarGetItemIndex}(object, item)
-\link{gtkToolbarGetNItems}(object)
-\link{gtkToolbarGetNthItem}(object, n)
-\link{gtkToolbarGetDropIndex}(object, x, y)
-\link{gtkToolbarSetDropHighlightItem}(object, tool.item = NULL, index)
-\link{gtkToolbarSetShowArrow}(object, show.arrow)
-\link{gtkToolbarSetOrientation}(object, orientation)
-\link{gtkToolbarSetTooltips}(object, enable)
-\link{gtkToolbarUnsetIconSize}(object)
-\link{gtkToolbarGetShowArrow}(object)
-\link{gtkToolbarGetOrientation}(object)
-\link{gtkToolbarGetStyle}(object)
-\link{gtkToolbarGetIconSize}(object)
-\link{gtkToolbarGetTooltips}(object)
-\link{gtkToolbarGetReliefStyle}(object)
-\link{gtkToolbarAppendItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
-\link{gtkToolbarPrependItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
-\link{gtkToolbarInsertItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)
-\link{gtkToolbarAppendSpace}(object)
-\link{gtkToolbarPrependSpace}(object)
-\link{gtkToolbarInsertSpace}(object, position)
-\link{gtkToolbarAppendElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
-\link{gtkToolbarPrependElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
-\link{gtkToolbarInsertElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position)
-\link{gtkToolbarAppendWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)
-\link{gtkToolbarPrependWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)
-\link{gtkToolbarInsertWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL, position)
-\link{gtkToolbarSetStyle}(object, style)
-\link{gtkToolbarInsertStock}(object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position)
-\link{gtkToolbarSetIconSize}(object, icon.size)
-\link{gtkToolbarRemoveSpace}(object, position)
-\link{gtkToolbarUnsetStyle}(object)
+\code{\link{gtkToolbarNew}(show = TRUE)}\cr
+\code{\link{gtkToolbarInsert}(object, item, pos)}\cr
+\code{\link{gtkToolbarGetItemIndex}(object, item)}\cr
+\code{\link{gtkToolbarGetNItems}(object)}\cr
+\code{\link{gtkToolbarGetNthItem}(object, n)}\cr
+\code{\link{gtkToolbarGetDropIndex}(object, x, y)}\cr
+\code{\link{gtkToolbarSetDropHighlightItem}(object, tool.item = NULL, index)}\cr
+\code{\link{gtkToolbarSetShowArrow}(object, show.arrow)}\cr
+\code{\link{gtkToolbarSetOrientation}(object, orientation)}\cr
+\code{\link{gtkToolbarSetTooltips}(object, enable)}\cr
+\code{\link{gtkToolbarUnsetIconSize}(object)}\cr
+\code{\link{gtkToolbarGetShowArrow}(object)}\cr
+\code{\link{gtkToolbarGetOrientation}(object)}\cr
+\code{\link{gtkToolbarGetStyle}(object)}\cr
+\code{\link{gtkToolbarGetIconSize}(object)}\cr
+\code{\link{gtkToolbarGetTooltips}(object)}\cr
+\code{\link{gtkToolbarGetReliefStyle}(object)}\cr
+\code{\link{gtkToolbarAppendItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}\cr
+\code{\link{gtkToolbarPrependItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)}\cr
+\code{\link{gtkToolbarInsertItem}(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)}\cr
+\code{\link{gtkToolbarAppendSpace}(object)}\cr
+\code{\link{gtkToolbarPrependSpace}(object)}\cr
+\code{\link{gtkToolbarInsertSpace}(object, position)}\cr
+\code{\link{gtkToolbarAppendElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}\cr
+\code{\link{gtkToolbarPrependElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}\cr
+\code{\link{gtkToolbarInsertElement}(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position)}\cr
+\code{\link{gtkToolbarAppendWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}\cr
+\code{\link{gtkToolbarPrependWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}\cr
+\code{\link{gtkToolbarInsertWidget}(object, widget, tooltip.text = NULL, tooltip.private.text = NULL, position)}\cr
+\code{\link{gtkToolbarSetStyle}(object, style)}\cr
+\code{\link{gtkToolbarInsertStock}(object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position)}\cr
+\code{\link{gtkToolbarSetIconSize}(object, icon.size)}\cr
+\code{\link{gtkToolbarRemoveSpace}(object, position)}\cr
+\code{\link{gtkToolbarUnsetStyle}(object)}\cr
+\code{gtkToolbar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -71,10 +71,8 @@ accessed through the function described below.
 }}}
 \section{Convenient Construction}{\code{gtkToolbar} is the equivalent of \code{\link{gtkToolbarNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkToolbarChildType}}{
-\strong{WARNING: \code{GtkToolbarChildType} is deprecated and should not be used in newly-written code.  
-\code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added 
-to a \code{\link{GtkToolbar}}.}
+\item{\code{GtkToolbarChildType}}{
+\strong{WARNING: \code{GtkToolbarChildType} is deprecated and should not be used in newly-written code.}
 \code{\link{GtkToolbarChildType}} is used to set the type of new elements that are added 
 to a \code{\link{GtkToolbar}}.
 
@@ -87,7 +85,7 @@ to a \code{\link{GtkToolbar}}.
 }
 
 }
-\item{\code{enum GtkToolbarSpaceStyle}}{
+\item{\code{GtkToolbarSpaceStyle}}{
 
 
 \describe{

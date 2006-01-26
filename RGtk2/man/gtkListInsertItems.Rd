@@ -3,9 +3,7 @@
 \title{gtkListInsertItems}
 \description{
 Inserts \code{items} into the \code{list} at the position \code{position}.
-\strong{WARNING: \code{gtk_list_insert_items} is deprecated and should not be used in newly-written code.  
-Inserts \code{items} into the \code{list} at the position \code{position}. The \code{list} items
-must not be freed after.}
+\strong{WARNING: \code{gtk_list_insert_items} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListInsertItems(object, items, position)}
 \arguments{

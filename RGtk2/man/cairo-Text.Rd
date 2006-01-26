@@ -1,27 +1,27 @@
 \alias{cairo-Text}
-\alias{cairo_glyph_t}
-\alias{cairo_font_slant_t}
-\alias{cairo_font_weight_t}
+\alias{CairoGlyph}
+\alias{CairoFontSlant}
+\alias{CairoFontWeight}
 \name{cairo-Text}
 \title{Text}
 \description{Rendering text and sets of glyphs}
 \section{Methods and Functions}{
-\link{cairoSelectFontFace}(cr, family, slant, weight)
-\link{cairoSetFontSize}(cr, size)
-\link{cairoSetFontMatrix}(cr, matrix)
-\link{cairoGetFontMatrix}(cr, matrix)
-\link{cairoSetFontOptions}(cr, options)
-\link{cairoGetFontOptions}(cr)
-\link{cairoShowText}(cr, utf8)
-\link{cairoShowGlyphs}(cr, glyphs, num.glyphs)
-\link{cairoGetFontFace}(cr)
-\link{cairoFontExtents}(cr)
-\link{cairoSetFontFace}(cr, font.face)
-\link{cairoTextExtents}(cr, utf8)
-\link{cairoGlyphExtents}(cr, glyphs)
+\code{\link{cairoSelectFontFace}(cr, family, slant, weight)}\cr
+\code{\link{cairoSetFontSize}(cr, size)}\cr
+\code{\link{cairoSetFontMatrix}(cr, matrix)}\cr
+\code{\link{cairoGetFontMatrix}(cr, matrix)}\cr
+\code{\link{cairoSetFontOptions}(cr, options)}\cr
+\code{\link{cairoGetFontOptions}(cr)}\cr
+\code{\link{cairoShowText}(cr, utf8)}\cr
+\code{\link{cairoShowGlyphs}(cr, glyphs, num.glyphs)}\cr
+\code{\link{cairoGetFontFace}(cr)}\cr
+\code{\link{cairoFontExtents}(cr)}\cr
+\code{\link{cairoSetFontFace}(cr, font.face)}\cr
+\code{\link{cairoTextExtents}(cr, utf8)}\cr
+\code{\link{cairoGlyphExtents}(cr, glyphs)}\cr
 }
-\section{Structures}{\describe{\item{\code{cairo_glyph_t}}{
-The \code{\link{cairo_glyph_t}} structure holds information about a single glyph
+\section{Structures}{\describe{\item{\code{CairoGlyph}}{
+The \code{\link{CairoGlyph}} structure holds information about a single glyph
 when drawing or measuring text. A font is (in simple terms) a
 collection of shapes used to draw text. A glyph is one of these
 shapes. There can be multiple glyphs for a single character
@@ -35,7 +35,7 @@ underlying font system.
 Note that the offsets given by \code{x} and \code{y} are not cumulative. When
 drawing or measuring text, each glyph is individually positioned
 with respect to the overall origin  
-\strong{\code{cairo_glyph_t} is a \link{transparent-type}.}
+\strong{\code{CairoGlyph} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{index}}{[numeric]  glyph index in the font. The exact interpretation of the
@@ -48,7 +48,7 @@ with respect to the overall origin
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{enum cairo_font_slant_t}}{
+\item{\code{CairoFontSlant}}{
 
 
 \describe{
@@ -61,7 +61,7 @@ with respect to the overall origin
 }
 
 }
-\item{\code{enum cairo_font_weight_t}}{
+\item{\code{CairoFontWeight}}{
 
 
 \describe{
@@ -73,6 +73,6 @@ with respect to the overall origin
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Text.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Text.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

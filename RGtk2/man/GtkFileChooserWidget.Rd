@@ -3,10 +3,10 @@
 \name{GtkFileChooserWidget}
 \title{GtkFileChooserWidget}
 \description{File chooser widget that can be embedded in other widgets}
-\usage{gtkFileChooserWidget(action, backend, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFileChooserWidgetNew}(action, show = TRUE)
-\link{gtkFileChooserWidgetNewWithBackend}(action, backend, show = TRUE)
+\code{\link{gtkFileChooserWidgetNew}(action, show = TRUE)}\cr
+\code{\link{gtkFileChooserWidgetNewWithBackend}(action, backend, show = TRUE)}\cr
+\code{gtkFileChooserWidget(action, backend, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

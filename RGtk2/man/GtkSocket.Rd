@@ -3,12 +3,12 @@
 \name{GtkSocket}
 \title{GtkSocket}
 \description{Container for widgets from other processes}
-\usage{gtkSocket(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkSocketNew}(show = TRUE)
-\link{gtkSocketSteal}(object, wid)
-\link{gtkSocketAddId}(object, window.id)
-\link{gtkSocketGetId}(object)
+\code{\link{gtkSocketNew}(show = TRUE)}\cr
+\code{\link{gtkSocketSteal}(object, wid)}\cr
+\code{\link{gtkSocketAddId}(object, window.id)}\cr
+\code{\link{gtkSocketGetId}(object)}\cr
+\code{gtkSocket(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -10,8 +10,11 @@ will be set to an error from the \code{GDK_PIXBUF_ERROR} or \code{G_FILE_ERROR}
 domains. If you're just cancelling a load rather than expecting it
 to be finished, passing \code{NULL} for \code{error} to ignore it is
 reasonable.}
-\usage{gdkPixbufLoaderClose(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkPixbufLoader}}]  A pixbuf loader.}}
+\usage{gdkPixbufLoaderClose(object, .errwarn = TRUE)}
+\arguments{
+\item{\code{object}}{[\code{\link{GdkPixbufLoader}}]  A pixbuf loader.}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
+}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if all image data written so far was successfully

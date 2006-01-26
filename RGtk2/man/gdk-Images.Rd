@@ -5,14 +5,14 @@
 \name{gdk-Images}
 \title{Images}
 \description{A client-side area for bit-mapped graphics}
-\usage{gdkImage(type, visual, width, height)}
 \section{Methods and Functions}{
-\link{gdkImageNew}(type, visual, width, height)
-\link{gdkImageGet}(object, x, y, width, height)
-\link{gdkImageGetColormap}(object)
-\link{gdkImageSetColormap}(object, colormap)
-\link{gdkImagePutPixel}(object, x, y, pixel)
-\link{gdkImageGetPixel}(object, x, y)
+\code{\link{gdkImageNew}(type, visual, width, height)}\cr
+\code{\link{gdkImageGet}(object, x, y, width, height)}\cr
+\code{\link{gdkImageGetColormap}(object)}\cr
+\code{\link{gdkImageSetColormap}(object, colormap)}\cr
+\code{\link{gdkImagePutPixel}(object, x, y, pixel)}\cr
+\code{\link{gdkImageGetPixel}(object, x, y)}\cr
+\code{gdkImage(type, visual, width, height)}
 }
 \section{Detailed Description}{The \code{\link{GdkImage}} type represents an area for drawing graphics.
 It has now been superceded to a large extent by the much more flexible
@@ -50,7 +50,7 @@ The \code{\link{GdkImage}} struct contains information on the image and the pixe
 
 }}}
 \section{Convenient Construction}{\code{gdkImage} is the equivalent of \code{\link{gdkImageNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GdkImageType}}{
+\section{Enums and Flags}{\describe{\item{\code{GdkImageType}}{
 Specifies the type of a \code{\link{GdkImage}}.
 
 \describe{

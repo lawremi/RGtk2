@@ -3,10 +3,10 @@
 \name{GtkAspectFrame}
 \title{GtkAspectFrame}
 \description{A frame that constrains its child to a particular aspect ratio}
-\usage{gtkAspectFrame(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkAspectFrameNew}(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)
-\link{gtkAspectFrameSet}(object, xalign = 0.0, yalign = 0.0, ratio = 1.0, obey.child = 1)
+\code{\link{gtkAspectFrameNew}(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}\cr
+\code{\link{gtkAspectFrameSet}(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)}\cr
+\code{gtkAspectFrame(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

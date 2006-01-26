@@ -3,8 +3,7 @@
 \title{gdkCharWidth}
 \description{
 Determines the width of a given character.
-\strong{WARNING: \code{gdk_char_width} is deprecated and should not be used in newly-written code. Use \code{\link{gdkTextExtents}} instead.  
-Determines the width of a given character.  }
+\strong{WARNING: \code{gdk_char_width} is deprecated and should not be used in newly-written code. Use \code{\link{gdkTextExtents}} instead.}
 }
 \usage{gdkCharWidth(object, character)}
 \arguments{

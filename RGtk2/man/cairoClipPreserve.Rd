@@ -5,7 +5,7 @@
 region with the current path as it would be filled by \code{\link{cairoFill}}
 and according to the current fill rule (see \code{\link{cairoSetFillRule}}).}
 \usage{cairoClipPreserve(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{Unlike \code{\link{cairoClip}}, cairo_clip_preserve preserves the path within
 the cairo context.
   

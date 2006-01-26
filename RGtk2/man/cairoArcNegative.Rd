@@ -8,7 +8,7 @@ greater than \code{angle1} it will be progressively decreased by 2*M_PI
 until it is greater than \code{angle1}.}
 \usage{cairoArcNegative(cr, xc, yc, radius, angle1, angle2)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{xc}}{[numeric]  X position of the center of the arc}
 \item{\code{yc}}{[numeric]  Y position of the center of the arc}
 \item{\code{radius}}{[numeric]  the radius of the arc}

@@ -3,18 +3,18 @@
 \name{GtkCellView}
 \title{GtkCellView}
 \description{A widget displaying a single row of a GtkTreeModel}
-\usage{gtkCellView(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCellViewNew}(show = TRUE)
-\link{gtkCellViewNewWithText}(text)
-\link{gtkCellViewNewWithMarkup}(markup)
-\link{gtkCellViewNewWithPixbuf}(pixbuf)
-\link{gtkCellViewSetModel}(object, model = NULL)
-\link{gtkCellViewSetDisplayedRow}(object, path = NULL)
-\link{gtkCellViewGetDisplayedRow}(object)
-\link{gtkCellViewGetSizeOfRow}(object, path)
-\link{gtkCellViewSetBackgroundColor}(object, color)
-\link{gtkCellViewGetCellRenderers}(object)
+\code{\link{gtkCellViewNew}(show = TRUE)}\cr
+\code{\link{gtkCellViewNewWithText}(text)}\cr
+\code{\link{gtkCellViewNewWithMarkup}(markup)}\cr
+\code{\link{gtkCellViewNewWithPixbuf}(pixbuf)}\cr
+\code{\link{gtkCellViewSetModel}(object, model = NULL)}\cr
+\code{\link{gtkCellViewSetDisplayedRow}(object, path = NULL)}\cr
+\code{\link{gtkCellViewGetDisplayedRow}(object)}\cr
+\code{\link{gtkCellViewGetSizeOfRow}(object, path)}\cr
+\code{\link{gtkCellViewSetBackgroundColor}(object, color)}\cr
+\code{\link{gtkCellViewGetCellRenderers}(object)}\cr
+\code{gtkCellView(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

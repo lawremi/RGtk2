@@ -1,4 +1,6 @@
-# source("/home/larman/research/RGtk/inst/demo/dnd.R")
+# NOTE: There is known trouble with this demo on Windows.
+# Please try the iconview-dnd demo.
+
 view.onDragDataReceived <- function(wgt, context, x, y, seldata, info, time, userdata)
 {
   checkPtrType(userdata, "GtkTreeModel")
@@ -9,11 +11,9 @@ view.onDragDataReceived <- function(wgt, context, x, y, seldata, info, time, use
   # the selection data is delivered to R as a list of integers
   # we need to turn this into a character vector, treating the integers
   # as raw bytes, so we coerce to raw and use the conversion function
-  # this string would like gibberish in UTF-8 domains, but GTK probably
-  # handles it correctly via Pango.
   
   strdata <- seldata[["data"]]
-  mode(strdata) <- "raw"
+  #strdata <- as.raw(strdata)
   
   model$set(iter, 0, rawToChar(strdata))
 }

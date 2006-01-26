@@ -3,8 +3,7 @@
 \title{gtkCListGetColumnWidget}
 \description{
 Gets the widget in the column header for the specified column.
-\strong{WARNING: \code{gtk_clist_get_column_widget} is deprecated and should not be used in newly-written code.  
-Gets the widget in the column header for the specified column.}
+\strong{WARNING: \code{gtk_clist_get_column_widget} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListGetColumnWidget(object, column)}
 \arguments{

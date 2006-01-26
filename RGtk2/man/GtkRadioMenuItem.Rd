@@ -3,16 +3,16 @@
 \name{GtkRadioMenuItem}
 \title{GtkRadioMenuItem}
 \description{A choice from multiple check menu items}
-\usage{gtkRadioMenuItem(group, label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkRadioMenuItemNew}(group, show = TRUE)
-\link{gtkRadioMenuItemNewWithLabel}(group, label, show = TRUE)
-\link{gtkRadioMenuItemNewWithMnemonic}(group, label, show = TRUE)
-\link{gtkRadioMenuItemNewFromWidget}(group, show = TRUE)
-\link{gtkRadioMenuItemNewWithLabelFromWidget}(group, label, show = TRUE)
-\link{gtkRadioMenuItemNewWithMnemonicFromWidget}(group, label, show = TRUE)
-\link{gtkRadioMenuItemSetGroup}(object, group)
-\link{gtkRadioMenuItemGetGroup}(object)
+\code{\link{gtkRadioMenuItemNew}(group, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemNewWithLabel}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemNewWithMnemonic}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemNewFromWidget}(group, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemNewWithLabelFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemNewWithMnemonicFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioMenuItemSetGroup}(object, group)}\cr
+\code{\link{gtkRadioMenuItemGetGroup}(object)}\cr
+\code{gtkRadioMenuItem(group, label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

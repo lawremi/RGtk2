@@ -3,37 +3,37 @@
 \name{GtkEntry}
 \title{GtkEntry}
 \description{A single line text entry field}
-\usage{gtkEntry(max = 0, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkEntryNew}(show = TRUE)
-\link{gtkEntryNewWithMaxLength}(max = 0, show = TRUE)
-\link{gtkEntrySetText}(object, text)
-\link{gtkEntryAppendText}(object, text)
-\link{gtkEntryPrependText}(object, text)
-\link{gtkEntrySetPosition}(object, position)
-\link{gtkEntryGetText}(object)
-\link{gtkEntrySelectRegion}(object, start, end)
-\link{gtkEntrySetVisibility}(object, visible)
-\link{gtkEntrySetInvisibleChar}(object, ch)
-\link{gtkEntrySetEditable}(object, editable)
-\link{gtkEntrySetMaxLength}(object, max)
-\link{gtkEntryGetActivatesDefault}(object)
-\link{gtkEntryGetHasFrame}(object)
-\link{gtkEntryGetWidthChars}(object)
-\link{gtkEntrySetActivatesDefault}(object, setting)
-\link{gtkEntrySetHasFrame}(object, setting)
-\link{gtkEntrySetWidthChars}(object, n.chars)
-\link{gtkEntryGetInvisibleChar}(object)
-\link{gtkEntrySetAlignment}(object, xalign)
-\link{gtkEntryGetAlignment}(object)
-\link{gtkEntryGetLayout}(object)
-\link{gtkEntryGetLayoutOffsets}(object)
-\link{gtkEntryLayoutIndexToTextIndex}(object, layout.index)
-\link{gtkEntryTextIndexToLayoutIndex}(object, text.index)
-\link{gtkEntryGetMaxLength}(object)
-\link{gtkEntryGetVisibility}(object)
-\link{gtkEntrySetCompletion}(object, completion)
-\link{gtkEntryGetCompletion}(object)
+\code{\link{gtkEntryNew}(show = TRUE)}\cr
+\code{\link{gtkEntryNewWithMaxLength}(max = 0, show = TRUE)}\cr
+\code{\link{gtkEntrySetText}(object, text)}\cr
+\code{\link{gtkEntryAppendText}(object, text)}\cr
+\code{\link{gtkEntryPrependText}(object, text)}\cr
+\code{\link{gtkEntrySetPosition}(object, position)}\cr
+\code{\link{gtkEntryGetText}(object)}\cr
+\code{\link{gtkEntrySelectRegion}(object, start, end)}\cr
+\code{\link{gtkEntrySetVisibility}(object, visible)}\cr
+\code{\link{gtkEntrySetInvisibleChar}(object, ch)}\cr
+\code{\link{gtkEntrySetEditable}(object, editable)}\cr
+\code{\link{gtkEntrySetMaxLength}(object, max)}\cr
+\code{\link{gtkEntryGetActivatesDefault}(object)}\cr
+\code{\link{gtkEntryGetHasFrame}(object)}\cr
+\code{\link{gtkEntryGetWidthChars}(object)}\cr
+\code{\link{gtkEntrySetActivatesDefault}(object, setting)}\cr
+\code{\link{gtkEntrySetHasFrame}(object, setting)}\cr
+\code{\link{gtkEntrySetWidthChars}(object, n.chars)}\cr
+\code{\link{gtkEntryGetInvisibleChar}(object)}\cr
+\code{\link{gtkEntrySetAlignment}(object, xalign)}\cr
+\code{\link{gtkEntryGetAlignment}(object)}\cr
+\code{\link{gtkEntryGetLayout}(object)}\cr
+\code{\link{gtkEntryGetLayoutOffsets}(object)}\cr
+\code{\link{gtkEntryLayoutIndexToTextIndex}(object, layout.index)}\cr
+\code{\link{gtkEntryTextIndexToLayoutIndex}(object, text.index)}\cr
+\code{\link{gtkEntryGetMaxLength}(object)}\cr
+\code{\link{gtkEntryGetVisibility}(object)}\cr
+\code{\link{gtkEntrySetCompletion}(object, completion)}\cr
+\code{\link{gtkEntryGetCompletion}(object)}\cr
+\code{gtkEntry(max = 0, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -67,14 +67,14 @@ SEXP
 R_gIOAddWatch(int fd,  void (*handler)(void *, int, int), void *userData)
 {
  SEXP ans;
-
+ GIOChannel *channel = g_io_channel_unix_new(fd);
+ 
  /* need to wrap the generic handler in the user data */
  R_GIOFunc_data *data = (R_GIOFunc_data *)R_alloc(1, sizeof(R_GIOFunc_data));
 
  data->fun = handler;
  data->data = userData;
 
- GIOChannel *channel = g_io_channel_unix_new(fd);
  g_io_channel_set_encoding(channel, NULL, NULL); /* raw binary (not really needed) */
 
  ans = allocVector(REALSXP, 1);

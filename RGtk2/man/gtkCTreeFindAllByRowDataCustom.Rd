@@ -4,9 +4,7 @@
 \description{
 Find all nodes under \code{node} whose row data pointer fulfills 
 a custom criterion.
-\strong{WARNING: \code{gtk_ctree_find_all_by_row_data_custom} is deprecated and should not be used in newly-written code.  
-Find all nodes under \code{node} whose row data pointer fulfills 
-a custom criterion.}
+\strong{WARNING: \code{gtk_ctree_find_all_by_row_data_custom} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeFindAllByRowDataCustom(object, node, data = NULL, func)}
 \arguments{

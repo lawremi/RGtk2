@@ -7,17 +7,17 @@
 \name{gdk-pixbuf-gdk-pixbuf}
 \title{The GdkPixbuf Structure}
 \description{Information that describes an image.}
-\usage{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride)}
 \section{Methods and Functions}{
-\link{gdkPixbufGetColorspace}(object)
-\link{gdkPixbufGetNChannels}(object)
-\link{gdkPixbufGetHasAlpha}(object)
-\link{gdkPixbufGetBitsPerSample}(object)
-\link{gdkPixbufGetPixels}(object)
-\link{gdkPixbufGetWidth}(object)
-\link{gdkPixbufGetHeight}(object)
-\link{gdkPixbufGetRowstride}(object)
-\link{gdkPixbufGetOption}(object, key)
+\code{\link{gdkPixbufGetColorspace}(object)}\cr
+\code{\link{gdkPixbufGetNChannels}(object)}\cr
+\code{\link{gdkPixbufGetHasAlpha}(object)}\cr
+\code{\link{gdkPixbufGetBitsPerSample}(object)}\cr
+\code{\link{gdkPixbufGetPixels}(object)}\cr
+\code{\link{gdkPixbufGetWidth}(object)}\cr
+\code{\link{gdkPixbufGetHeight}(object)}\cr
+\code{\link{gdkPixbufGetRowstride}(object)}\cr
+\code{\link{gdkPixbufGetOption}(object, key)}\cr
+\code{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkPixbuf}}
@@ -35,7 +35,7 @@
 }}}
 \section{Convenient Construction}{\code{gdkPixbuf} is the result of collapsing the constructors of \code{GdkPixbuf} (\code{\link{gdkPixbufNew}}, \code{\link{gdkPixbufNewFromFile}}, \code{\link{gdkPixbufNewFromFileAtSize}}, \code{\link{gdkPixbufNewFromFileAtScale}}, \code{\link{gdkPixbufNewFromData}}, \code{\link{gdkPixbufNewFromXpmData}}, NULL) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkPixbufError}}{
+\item{\code{GdkPixbufError}}{
 An error code in the \code{GDK_PIXBUF_ERROR} domain. Many \command{gdk-pixbuf}
 operations can cause errors in this domain, or in the \code{G_FILE_ERROR}
 domain.
@@ -51,7 +51,7 @@ given operation on the type of image at hand.}
 }
 
 }
-\item{\code{enum GdkColorspace}}{
+\item{\code{GdkColorspace}}{
     This enumeration defines the color spaces that are supported by
     the \command{gdk-pixbuf} library.  Currently only RGB is supported.
   
@@ -59,7 +59,7 @@ given operation on the type of image at hand.}
 \describe{\item{\code{GDK_COLORSPACE_RGB (b)}}{Indicates a red/green/blue additive color space.}}
 
 }
-\item{\code{enum GdkPixbufAlphaMode}}{
+\item{\code{GdkPixbufAlphaMode}}{
     These values can be passed to
     \code{\link{gdkPixbufRenderToDrawableAlpha}} to control how the alpha
     channel of an image should be handled.  This function can create a

@@ -4,12 +4,12 @@
 \title{File saving}
 \description{Saving a pixbuf to a file.}
 \section{Methods and Functions}{
-\link{gdkPixbufSavev}(object, filename, type, option.keys, option.values)
-\link{gdkPixbufSave}(object, filename, type, ...)
-\link{gdkPixbufSaveToCallback}(object, save.func, user.data, type)
-\link{gdkPixbufSaveToCallbackv}(object, save.func, user.data, type, option.keys, option.values)
-\link{gdkPixbufSaveToBuffer}(object, type, ...)
-\link{gdkPixbufSaveToBufferv}(object, type, option.keys, option.values)
+\code{\link{gdkPixbufSavev}(object, filename, type, option.keys, option.values, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufSave}(object, filename, type, ..., .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufSaveToCallback}(object, save.func, user.data, type, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufSaveToCallbackv}(object, save.func, user.data, type, option.keys, option.values, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufSaveToBuffer}(object, type, ..., .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufSaveToBufferv}(object, type, option.keys, option.values, .errwarn = TRUE)}\cr
 }
 \section{Detailed Description}{These functions allow to save a \code{\link{GdkPixbuf}} in a number of 
 file formats. The formatted data can be written to a file

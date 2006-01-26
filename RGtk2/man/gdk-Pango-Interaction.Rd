@@ -6,21 +6,21 @@
 \name{gdk-Pango-Interaction}
 \title{Pango Interaction}
 \description{Using Pango in GDK}
-\usage{gdkPangoRenderer(screen)}
 \section{Methods and Functions}{
-\link{gdkPangoRendererNew}(screen)
-\link{gdkPangoRendererGetDefault}(screen)
-\link{gdkPangoRendererSetDrawable}(object, drawable = NULL)
-\link{gdkPangoRendererSetGc}(object, gc = NULL)
-\link{gdkPangoRendererSetStipple}(object, part, stipple)
-\link{gdkPangoRendererSetOverrideColor}(object, part, color = NULL)
-\link{gdkPangoContextGet}()
-\link{gdkPangoContextGetForScreen}(screen)
-\link{gdkPangoContextSetColormap}(context, colormap)
-\link{gdkPangoAttrEmbossedNew}(embossed)
-\link{gdkPangoAttrStippleNew}(stipple)
-\link{gdkPangoLayoutGetClipRegion}(layout, x.origin, index.ranges)
-\link{gdkPangoLayoutLineGetClipRegion}(line, x.origin, index.ranges)
+\code{\link{gdkPangoRendererNew}(screen)}\cr
+\code{\link{gdkPangoRendererGetDefault}(screen)}\cr
+\code{\link{gdkPangoRendererSetDrawable}(object, drawable = NULL)}\cr
+\code{\link{gdkPangoRendererSetGc}(object, gc = NULL)}\cr
+\code{\link{gdkPangoRendererSetStipple}(object, part, stipple)}\cr
+\code{\link{gdkPangoRendererSetOverrideColor}(object, part, color = NULL)}\cr
+\code{\link{gdkPangoContextGet}()}\cr
+\code{\link{gdkPangoContextGetForScreen}(screen)}\cr
+\code{\link{gdkPangoContextSetColormap}(context, colormap)}\cr
+\code{\link{gdkPangoAttrEmbossedNew}(embossed)}\cr
+\code{\link{gdkPangoAttrStippleNew}(stipple)}\cr
+\code{\link{gdkPangoLayoutGetClipRegion}(layout, x.origin, index.ranges)}\cr
+\code{\link{gdkPangoLayoutLineGetClipRegion}(line, x.origin, index.ranges)}\cr
+\code{gdkPangoRenderer(screen)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{PangoRenderer}

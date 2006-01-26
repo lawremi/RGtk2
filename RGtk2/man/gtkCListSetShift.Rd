@@ -3,8 +3,7 @@
 \title{gtkCListSetShift}
 \description{
 Sets the vertical and horizontal shift of the specified cell.
-\strong{WARNING: \code{gtk_clist_set_shift} is deprecated and should not be used in newly-written code.  
-Sets the vertical and horizontal shift of the specified cell.}
+\strong{WARNING: \code{gtk_clist_set_shift} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetShift(object, row, column, vertical, horizontal)}
 \arguments{

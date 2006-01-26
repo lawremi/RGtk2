@@ -3,8 +3,7 @@
 \title{gtkItemFactoryCreateItemsAc}
 \description{
 Creates the menu items from the \code{entries}.
-\strong{WARNING: \code{gtk_item_factory_create_items_ac} is deprecated and should not be used in newly-written code.  
-Creates the menu items from the \code{entries}.  }
+\strong{WARNING: \code{gtk_item_factory_create_items_ac} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoryCreateItemsAc(object, entries, callback.data, callback.type)}
 \arguments{

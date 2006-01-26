@@ -6,11 +6,7 @@ Changes the default drag icon. GTK+ retains references for the
 arguments, and will release them when they are no longer needed.
 This function is obsolete. The default icon should now be changed
 via the stock system by changing the stock pixbuf for \code{GTK_STOCK_DND}.
-\strong{WARNING: \code{gtk_drag_set_default_icon} is deprecated and should not be used in newly-written code.  
-Changes the default drag icon. GTK+ retains references for the
-arguments, and will release them when they are no longer needed.
-This function is obsolete. The default icon should now be changed
-via the stock system by changing the stock pixbuf for \code{GTK_STOCK_DND}.  }
+\strong{WARNING: \code{gtk_drag_set_default_icon} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkDragSetDefaultIcon(colormap, pixmap, mask, hot.x, hot.y)}
 \arguments{

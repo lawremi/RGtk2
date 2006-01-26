@@ -5,10 +5,7 @@
 Returns the current text associated with the \code{\link{GtkProgress}}.  This
 text is the based on the underlying format string after any substitutions
 are made.
-\strong{WARNING: \code{gtk_progress_get_current_text} is deprecated and should not be used in newly-written code.  
-Returns the current text associated with the \code{\link{GtkProgress}}.  This
-text is the based on the underlying format string after any substitutions
-are made.}
+\strong{WARNING: \code{gtk_progress_get_current_text} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressGetCurrentText(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}}

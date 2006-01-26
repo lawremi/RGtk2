@@ -3,12 +3,12 @@
 \name{GtkListItem}
 \title{GtkListItem}
 \description{An item in a GtkList}
-\usage{gtkListItem(label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkListItemNew}(show = TRUE)
-\link{gtkListItemNewWithLabel}(label, show = TRUE)
-\link{gtkListItemSelect}(object)
-\link{gtkListItemDeselect}(object)
+\code{\link{gtkListItemNew}(show = TRUE)}\cr
+\code{\link{gtkListItemNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkListItemSelect}(object)}\cr
+\code{\link{gtkListItemDeselect}(object)}\cr
+\code{gtkListItem(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -24,9 +24,7 @@
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\code{GtkListItem}}{
-\strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.  
-The \code{\link{GtkListItem}} struct contains private data only, and should
-only be accessed using the functions below.}
+\strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkListItem}} struct contains private data only, and should
 only be accessed using the functions below.
 

@@ -3,17 +3,17 @@
 \name{GtkTreeModelSort}
 \title{GtkTreeModelSort}
 \description{A GtkTreeModel which makes an underlying tree model sortable}
-\usage{gtkTreeModelSort(child.model = NULL)}
 \section{Methods and Functions}{
-\link{gtkTreeModelSortNewWithModel}(child.model = NULL)
-\link{gtkTreeModelSortGetModel}(object)
-\link{gtkTreeModelSortConvertChildPathToPath}(object, child.path)
-\link{gtkTreeModelSortConvertChildIterToIter}(object, child.iter)
-\link{gtkTreeModelSortConvertPathToChildPath}(object, sorted.path)
-\link{gtkTreeModelSortConvertIterToChildIter}(object, sorted.iter)
-\link{gtkTreeModelSortResetDefaultSortFunc}(object)
-\link{gtkTreeModelSortClearCache}(object)
-\link{gtkTreeModelSortIterIsValid}(object, iter)
+\code{\link{gtkTreeModelSortNewWithModel}(child.model = NULL)}\cr
+\code{\link{gtkTreeModelSortGetModel}(object)}\cr
+\code{\link{gtkTreeModelSortConvertChildPathToPath}(object, child.path)}\cr
+\code{\link{gtkTreeModelSortConvertChildIterToIter}(object, child.iter)}\cr
+\code{\link{gtkTreeModelSortConvertPathToChildPath}(object, sorted.path)}\cr
+\code{\link{gtkTreeModelSortConvertIterToChildIter}(object, sorted.iter)}\cr
+\code{\link{gtkTreeModelSortResetDefaultSortFunc}(object)}\cr
+\code{\link{gtkTreeModelSortClearCache}(object)}\cr
+\code{\link{gtkTreeModelSortIterIsValid}(object, iter)}\cr
+\code{gtkTreeModelSort(child.model = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTreeModelSort}}

@@ -3,7 +3,7 @@
 \title{gtkCTreeNodeGetCellType}
 \description{
 
-\strong{WARNING: \code{gtk_ctree_node_get_cell_type} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{gtk_ctree_node_get_cell_type} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNodeGetCellType(object, node, column)}
 \arguments{

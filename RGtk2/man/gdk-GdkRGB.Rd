@@ -5,24 +5,24 @@
 \title{GdkRGB}
 \description{Renders RGB, grayscale, or indexed image data to a GdkDrawable}
 \section{Methods and Functions}{
-\link{gdkDrawRgbImage}(object, gc, x, y, width, height, dith, rgb.buf, rowstride)
-\link{gdkDrawRgbImageDithalign}(object, gc, x, y, width, height, dith, rgb.buf, xdith, ydith)
-\link{gdkDrawIndexedImage}(object, gc, x, y, width, height, dith, buf, cmap)
-\link{gdkDrawGrayImage}(object, gc, x, y, width, height, dith, buf)
-\link{gdkDrawRgb32Image}(object, gc, x, y, width, height, dith, buf)
-\link{gdkDrawRgb32ImageDithalign}(object, gc, x, y, width, height, dith, buf, xdith, ydith)
-\link{gdkRgbCmapNew}(colors)
-\link{gdkRgbGcSetForeground}(gc, rgb)
-\link{gdkRgbGcSetBackground}(gc, rgb)
-\link{gdkRgbXpixelFromRgb}(rgb)
-\link{gdkRgbFindColor}(colormap, color)
-\link{gdkRgbSetInstall}(install)
-\link{gdkRgbSetMinColors}(min.colors)
-\link{gdkRgbGetVisual}()
-\link{gdkRgbGetColormap}()
-\link{gdkRgbDitherable}()
-\link{gdkRgbColormapDitherable}(colormap)
-\link{gdkRgbSetVerbose}(verbose)
+\code{\link{gdkDrawRgbImage}(object, gc, x, y, width, height, dith, rgb.buf, rowstride)}\cr
+\code{\link{gdkDrawRgbImageDithalign}(object, gc, x, y, width, height, dith, rgb.buf, xdith, ydith)}\cr
+\code{\link{gdkDrawIndexedImage}(object, gc, x, y, width, height, dith, buf, cmap)}\cr
+\code{\link{gdkDrawGrayImage}(object, gc, x, y, width, height, dith, buf)}\cr
+\code{\link{gdkDrawRgb32Image}(object, gc, x, y, width, height, dith, buf)}\cr
+\code{\link{gdkDrawRgb32ImageDithalign}(object, gc, x, y, width, height, dith, buf, xdith, ydith)}\cr
+\code{\link{gdkRgbCmapNew}(colors)}\cr
+\code{\link{gdkRgbGcSetForeground}(gc, rgb)}\cr
+\code{\link{gdkRgbGcSetBackground}(gc, rgb)}\cr
+\code{\link{gdkRgbXpixelFromRgb}(rgb)}\cr
+\code{\link{gdkRgbFindColor}(colormap, color)}\cr
+\code{\link{gdkRgbSetInstall}(install)}\cr
+\code{\link{gdkRgbSetMinColors}(min.colors)}\cr
+\code{\link{gdkRgbGetVisual}()}\cr
+\code{\link{gdkRgbGetColormap}()}\cr
+\code{\link{gdkRgbDitherable}()}\cr
+\code{\link{gdkRgbColormapDitherable}(colormap)}\cr
+\code{\link{gdkRgbSetVerbose}(verbose)}\cr
 }
 \section{Detailed Description}{GdkRGB is a low-level module which renders RGB, grayscale, and indexed
 colormap images to a \code{\link{GdkDrawable}}. It does this as efficiently as
@@ -89,7 +89,7 @@ colors. This is used only for \code{\link{gdkDrawIndexedImage}}.
 \strong{\code{GdkRgbCmap} is a \link{transparent-type}.}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum GdkRgbDither}}{
+\section{Enums and Flags}{\describe{\item{\code{GdkRgbDither}}{
 Selects whether or not GdkRGB applies dithering
 to the image on display. There are three values:
   

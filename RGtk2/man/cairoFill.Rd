@@ -7,6 +7,6 @@ filled). After cairo_fill, the current path will be cleared from
 the cairo context. See \code{\link{cairoSetFillRule}} and
 \code{\link{cairoFillPreserve}}.}
 \usage{cairoFill(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

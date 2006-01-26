@@ -1429,7 +1429,7 @@
   (c-name "GtkBox")
   (gtype-id "GTK_TYPE_BOX")
   (fields
-	  '("GList[GtkBoxChild]" "children")
+; overlaps with container_get_children!	  '("GList[GtkBoxChild]" "children")
 	  '("gint16" "spacing")
 	  '("guint" "homogeneous")
   )

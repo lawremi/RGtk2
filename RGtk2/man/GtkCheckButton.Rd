@@ -3,11 +3,11 @@
 \name{GtkCheckButton}
 \title{GtkCheckButton}
 \description{Create widgets with a discrete toggle button}
-\usage{gtkCheckButton(label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCheckButtonNew}(show = TRUE)
-\link{gtkCheckButtonNewWithLabel}(label, show = TRUE)
-\link{gtkCheckButtonNewWithMnemonic}(label, show = TRUE)
+\code{\link{gtkCheckButtonNew}(show = TRUE)}\cr
+\code{\link{gtkCheckButtonNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkCheckButtonNewWithMnemonic}(label, show = TRUE)}\cr
+\code{gtkCheckButton(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

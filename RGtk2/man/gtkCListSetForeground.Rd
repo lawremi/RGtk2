@@ -3,8 +3,7 @@
 \title{gtkCListSetForeground}
 \description{
 Sets the foreground color for the specified row.
-\strong{WARNING: \code{gtk_clist_set_foreground} is deprecated and should not be used in newly-written code.  
-Sets the foreground color for the specified row.}
+\strong{WARNING: \code{gtk_clist_set_foreground} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetForeground(object, row, color)}
 \arguments{

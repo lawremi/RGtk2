@@ -4,17 +4,18 @@
 \title{GtkBox}
 \description{Base class for box containers}
 \section{Methods and Functions}{
-\link{gtkBoxPackStart}(object, child, expand = TRUE, fill = TRUE, padding = 0)
-\link{gtkBoxPackEnd}(object, child, expand = TRUE, fill = TRUE, padding = 0)
-\link{gtkBoxPackStartDefaults}(object, widget)
-\link{gtkBoxPackEndDefaults}(object, widget)
-\link{gtkBoxGetHomogeneous}(object)
-\link{gtkBoxSetHomogeneous}(object, homogeneous)
-\link{gtkBoxGetSpacing}(object)
-\link{gtkBoxSetSpacing}(object, spacing)
-\link{gtkBoxReorderChild}(object, child, position)
-\link{gtkBoxQueryChildPacking}(object, child)
-\link{gtkBoxSetChildPacking}(object, child, expand, fill, padding, pack.type)
+\code{\link{gtkBoxPackStart}(object, child, expand = TRUE, fill = TRUE, padding = 0)}\cr
+\code{\link{gtkBoxPackEnd}(object, child, expand = TRUE, fill = TRUE, padding = 0)}\cr
+\code{\link{gtkBoxPackStartDefaults}(object, widget)}\cr
+\code{\link{gtkBoxPackEndDefaults}(object, widget)}\cr
+\code{\link{gtkBoxGetHomogeneous}(object)}\cr
+\code{\link{gtkBoxSetHomogeneous}(object, homogeneous)}\cr
+\code{\link{gtkBoxGetSpacing}(object)}\cr
+\code{\link{gtkBoxSetSpacing}(object, spacing)}\cr
+\code{\link{gtkBoxReorderChild}(object, child, position)}\cr
+\code{\link{gtkBoxQueryChildPacking}(object, child)}\cr
+\code{\link{gtkBoxSetChildPacking}(object, child, expand, fill, padding, pack.type)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

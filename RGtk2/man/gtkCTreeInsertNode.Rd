@@ -4,9 +4,7 @@
 \description{
 Insert a new node to the tree. The position is specified through
 the parent-sibling notation, as explained in the introduction above.
-\strong{WARNING: \code{gtk_ctree_insert_node} is deprecated and should not be used in newly-written code.  
-Insert a new node to the tree. The position is specified through
-the parent-sibling notation, as explained in the introduction above.}
+\strong{WARNING: \code{gtk_ctree_insert_node} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeInsertNode(object, parent, sibling, text, spacing = 5, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf = 1, expanded = 0)}
 \arguments{

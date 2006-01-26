@@ -3,10 +3,10 @@
 \title{File Loading}
 \description{Loading a pixbuf from a file.}
 \section{Methods and Functions}{
-\link{gdkPixbufNewFromFile}(filename)
-\link{gdkPixbufNewFromFileAtSize}(filename, width, height)
-\link{gdkPixbufNewFromFileAtScale}(filename, width, height, preserve.aspect.ratio)
-\link{gdkPixbufGetFileInfo}(filename)
+\code{\link{gdkPixbufNewFromFile}(filename, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufNewFromFileAtSize}(filename, width, height, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufNewFromFileAtScale}(filename, width, height, preserve.aspect.ratio, .errwarn = TRUE)}\cr
+\code{\link{gdkPixbufGetFileInfo}(filename)}\cr
 }
 \section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism for loading
     an image from a file in synchronous fashion.  This means that the

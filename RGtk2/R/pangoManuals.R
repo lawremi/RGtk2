@@ -1,35 +1,35 @@
 # reason: we need to hide the text length parameter
 pangoGetLogAttrs <-
-function(text, level, language, .flush = TRUE, .depwarn = TRUE)
+function(text, level, language)
 {
         text <- as.character(text)
         level <- as.integer(level)
         checkPtrType(language, "PangoLanguage")
 
-        w <- .RGtkCall("S_pango_get_log_attrs", text, level, language, .flush = .flush)
+        w <- .RGtkCall("S_pango_get_log_attrs", text, level, language)
 
         return(invisible(w))
 }
 pangoGlyphStringGetLogicalWidths <-
-function(object, text, embedding.level, .flush = TRUE, .depwarn = TRUE)
+function(object, text, embedding.level)
 {
         checkPtrType(object, "PangoGlyphString")
         text <- as.character(text)
         embedding.level <- as.integer(embedding.level)
 
-        w <- .RGtkCall("S_pango_glyph_string_get_logical_widths", object, text, embedding.level, .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_get_logical_widths", object, text, embedding.level)
 
         return(w)
 }
 
 # reason: removed text length and attrs length parameters
 pangoBreak <-
-function(text, analysis, .flush = TRUE, .depwarn = TRUE)
+function(text, analysis)
 {
         text <- as.character(text)
         checkPtrType(analysis, "PangoAnalysis")
 
-        w <- .RGtkCall("S_pango_break", text, analysis,  .flush = .flush)
+        w <- .RGtkCall("S_pango_break", text, analysis)
 
         return(invisible(w))
 }
@@ -39,9 +39,9 @@ function(text, analysis, .flush = TRUE, .depwarn = TRUE)
 # This mimics the aliased static initializer in the API.
 
 pangoMatrixInit <-
-function(.flush = TRUE, .depwarn = TRUE)
+function()
 {
-	w <- .RGtkCall("S_pango_matrix_init",  .flush = .flush)
+	w <- .RGtkCall("S_pango_matrix_init")
 	
 	return(w)
 }
@@ -77,25 +77,25 @@ storage.mode( .PangoWeight ) <- 'integer'
 
 # reason: now let's handle the functions where the text length is omitted
 pangoLayoutSetMarkupWithAccel <-
-function(object, markup, accel.marker, .flush = TRUE, .depwarn = TRUE)
+function(object, markup, accel.marker)
 {
         checkPtrType(object, "PangoLayout")
         markup <- as.character(markup)
         length <- -1
         accel.marker <- as.character(accel.marker)
 
-        w <- .RGtkCall("S_pango_layout_set_markup_with_accel", object, markup, length, accel.marker,  .flush = .flush)
+        w <- .RGtkCall("S_pango_layout_set_markup_with_accel", object, markup, length, accel.marker)
 
         return(w)
 }
 pangoParseMarkup <-
-function(markup.text, accel.marker, .flush = TRUE, .depwarn = TRUE, .errwarn = TRUE)
+function(markup.text, accel.marker, .errwarn = TRUE)
 {
         markup.text <- as.character(markup.text)
         length <- -1
         accel.marker <- as.character(accel.marker)
 
-        w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker,  .flush = .flush)
+        w <- .RGtkCall("S_pango_parse_markup", markup.text, length, accel.marker)
 
         if(.errwarn && !is.null(w$error))
                 warning(w$error[["message"]])
@@ -103,7 +103,7 @@ function(markup.text, accel.marker, .flush = TRUE, .depwarn = TRUE, .errwarn = T
         return(w)
 }
 pangoGlyphStringIndexToX <-
-function(object, text, analysis, index, trailing, .flush = TRUE, .depwarn = TRUE)
+function(object, text, analysis, index, trailing)
 {
         checkPtrType(object, "PangoGlyphString")
         text <- as.character(text)
@@ -112,12 +112,12 @@ function(object, text, analysis, index, trailing, .flush = TRUE, .depwarn = TRUE
         index <- as.integer(index)
         trailing <- as.logical(trailing)
 
-        w <- .RGtkCall("S_pango_glyph_string_index_to_x", object, text, length, analysis, index, trailing,  .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_index_to_x", object, text, length, analysis, index, trailing)
 
         return(w)
 }
 pangoGlyphStringXToIndex <-
-function(object, text, analysis, x.pos, .flush = TRUE, .depwarn = TRUE)
+function(object, text, analysis, x.pos)
 {
         checkPtrType(object, "PangoGlyphString")
         text <- as.character(text)
@@ -125,25 +125,25 @@ function(object, text, analysis, x.pos, .flush = TRUE, .depwarn = TRUE)
         checkPtrType(analysis, "PangoAnalysis")
         x.pos <- as.integer(x.pos)
 
-        w <- .RGtkCall("S_pango_glyph_string_x_to_index", object, text, length, analysis, x.pos,  .flush = .flush)
+        w <- .RGtkCall("S_pango_glyph_string_x_to_index", object, text, length, analysis, x.pos)
 
         return(invisible(w))
 }
 pangoShape <-
-function(text, analysis, glyphs, .flush = TRUE, .depwarn = TRUE)
+function(text, analysis, glyphs)
 {
         text <- as.character(text)
         length <- nchar(text)
         checkPtrType(analysis, "PangoAnalysis")
         checkPtrType(glyphs, "PangoGlyphString")
 
-        w <- .RGtkCall("S_pango_shape", text, length, analysis, glyphs,  .flush = .flush)
+        w <- .RGtkCall("S_pango_shape", text, length, analysis, glyphs)
 
         return(w)
 }
 # reason: var-args, just set aligns/positions for each one
 pangoTabArrayNewWithPositions <-
-function(size, positions.in.pixels, ..., .flush = TRUE, .depwarn = TRUE)
+function(size, positions.in.pixels, ...)
 {
         size <- as.integer(size)
         positions.in.pixels <- as.logical(positions.in.pixels)
@@ -183,7 +183,7 @@ function(size, positions.in.pixels, ..., .flush = TRUE, .depwarn = TRUE)
 }
 
 pangoReorderItems <-
-function(logical.items, .flush = TRUE, .depwarn = TRUE)
+function(logical.items)
 {
 	notimplemented("wouldn't work automatically due to memory management details and the API says its useless")
 }

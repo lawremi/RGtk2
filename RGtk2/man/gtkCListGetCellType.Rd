@@ -3,8 +3,7 @@
 \title{gtkCListGetCellType}
 \description{
 Checks the type of cell at the location specified.
-\strong{WARNING: \code{gtk_clist_get_cell_type} is deprecated and should not be used in newly-written code.  
-Checks the type of cell at the location specified.}
+\strong{WARNING: \code{gtk_clist_get_cell_type} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListGetCellType(object, row, column)}
 \arguments{

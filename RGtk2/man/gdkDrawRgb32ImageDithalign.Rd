@@ -12,7 +12,7 @@ offsets. See \code{\link{gdkDrawRgbImageDithalign}} for more details.}
 \item{\code{width}}{[integer]  width of area of image to draw}
 \item{\code{height}}{[integer]  height of area of image to draw}
 \item{\code{dith}}{[\code{\link{GdkRgbDither}}]  dithering mode}
-\item{\code{buf}}{[integer]  RGB image data}
+\item{\code{buf}}{[raw]  RGB image data}
 \item{\code{xdith}}{[integer]  X dither offset}
 \item{\code{ydith}}{[integer]  Y dither offset}
 }

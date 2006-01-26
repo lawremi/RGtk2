@@ -4,19 +4,20 @@
 \title{Settings}
 \description{Sharing settings between applications}
 \section{Methods and Functions}{
-\link{gtkSettingsGetDefault}()
-\link{gtkSettingsGetForScreen}(screen)
-\link{gtkSettingsInstallProperty}(pspec)
-\link{gtkSettingsInstallPropertyParser}(pspec, parser)
-\link{gtkRcPropertyParseColor}(pspec, gstring)
-\link{gtkRcPropertyParseEnum}(pspec, gstring)
-\link{gtkRcPropertyParseFlags}(pspec, gstring)
-\link{gtkRcPropertyParseRequisition}(pspec, gstring)
-\link{gtkRcPropertyParseBorder}(pspec, gstring)
-\link{gtkSettingsSetPropertyValue}(object, name, svalue)
-\link{gtkSettingsSetStringProperty}(object, name, v.string, origin)
-\link{gtkSettingsSetLongProperty}(object, name, v.long, origin)
-\link{gtkSettingsSetDoubleProperty}(object, name, v.double, origin)
+\code{\link{gtkSettingsGetDefault}()}\cr
+\code{\link{gtkSettingsGetForScreen}(screen)}\cr
+\code{\link{gtkSettingsInstallProperty}(pspec)}\cr
+\code{\link{gtkSettingsInstallPropertyParser}(pspec, parser)}\cr
+\code{\link{gtkRcPropertyParseColor}(pspec, gstring)}\cr
+\code{\link{gtkRcPropertyParseEnum}(pspec, gstring)}\cr
+\code{\link{gtkRcPropertyParseFlags}(pspec, gstring)}\cr
+\code{\link{gtkRcPropertyParseRequisition}(pspec, gstring)}\cr
+\code{\link{gtkRcPropertyParseBorder}(pspec, gstring)}\cr
+\code{\link{gtkSettingsSetPropertyValue}(object, name, svalue)}\cr
+\code{\link{gtkSettingsSetStringProperty}(object, name, v.string, origin)}\cr
+\code{\link{gtkSettingsSetLongProperty}(object, name, v.long, origin)}\cr
+\code{\link{gtkSettingsSetDoubleProperty}(object, name, v.double, origin)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkSettings}}

@@ -3,14 +3,14 @@
 \name{GtkFontSelection}
 \title{GtkFontSelection}
 \description{A widget for selecting fonts}
-\usage{gtkFontSelection(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFontSelectionNew}(show = TRUE)
-\link{gtkFontSelectionGetFont}(object)
-\link{gtkFontSelectionGetFontName}(object)
-\link{gtkFontSelectionSetFontName}(object, fontname)
-\link{gtkFontSelectionGetPreviewText}(object)
-\link{gtkFontSelectionSetPreviewText}(object, text)
+\code{\link{gtkFontSelectionNew}(show = TRUE)}\cr
+\code{\link{gtkFontSelectionGetFont}(object)}\cr
+\code{\link{gtkFontSelectionGetFontName}(object)}\cr
+\code{\link{gtkFontSelectionSetFontName}(object, fontname)}\cr
+\code{\link{gtkFontSelectionGetPreviewText}(object)}\cr
+\code{\link{gtkFontSelectionSetPreviewText}(object, text)}\cr
+\code{gtkFontSelection(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

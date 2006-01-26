@@ -6,28 +6,28 @@
 \name{GtkActionGroup}
 \title{GtkActionGroup}
 \description{A group of actions}
-\usage{gtkActionGroup(name = NULL)}
 \section{Methods and Functions}{
-\link{gtkActionGroupNew}(name = NULL)
-\link{gtkActionGroupGetName}(object)
-\link{gtkActionGroupGetSensitive}(object)
-\link{gtkActionGroupSetSensitive}(object, sensitive)
-\link{gtkActionGroupGetVisible}(object)
-\link{gtkActionGroupSetVisible}(object, visible)
-\link{gtkActionGroupGetAction}(object, action.name)
-\link{gtkActionGroupListActions}(object)
-\link{gtkActionGroupAddAction}(object, action)
-\link{gtkActionGroupAddActionWithAccel}(object, action, accelerator = NULL)
-\link{gtkActionGroupRemoveAction}(object, action)
-\link{gtkActionGroupAddActions}(object, entries, user.data = NULL)
-\link{gtkActionGroupAddActionsFull}(object, entries, user.data = NULL)
-\link{gtkActionGroupAddToggleActions}(object, entries, user.data = NULL)
-\link{gtkActionGroupAddToggleActionsFull}(object, entries, user.data = NULL)
-\link{gtkActionGroupAddRadioActions}(object, entries, value, on.change = NULL, user.data = NULL)
-\link{gtkActionGroupAddRadioActionsFull}(object, entries, value, on.change = NULL, user.data = NULL)
-\link{gtkActionGroupSetTranslateFunc}(object, func, data = NULL)
-\link{gtkActionGroupSetTranslationDomain}(object, domain)
-\link{gtkActionGroupTranslateString}(object, string)
+\code{\link{gtkActionGroupNew}(name = NULL)}\cr
+\code{\link{gtkActionGroupGetName}(object)}\cr
+\code{\link{gtkActionGroupGetSensitive}(object)}\cr
+\code{\link{gtkActionGroupSetSensitive}(object, sensitive)}\cr
+\code{\link{gtkActionGroupGetVisible}(object)}\cr
+\code{\link{gtkActionGroupSetVisible}(object, visible)}\cr
+\code{\link{gtkActionGroupGetAction}(object, action.name)}\cr
+\code{\link{gtkActionGroupListActions}(object)}\cr
+\code{\link{gtkActionGroupAddAction}(object, action)}\cr
+\code{\link{gtkActionGroupAddActionWithAccel}(object, action, accelerator = NULL)}\cr
+\code{\link{gtkActionGroupRemoveAction}(object, action)}\cr
+\code{\link{gtkActionGroupAddActions}(object, entries, user.data = NULL)}\cr
+\code{\link{gtkActionGroupAddActionsFull}(object, entries, user.data = NULL)}\cr
+\code{\link{gtkActionGroupAddToggleActions}(object, entries, user.data = NULL)}\cr
+\code{\link{gtkActionGroupAddToggleActionsFull}(object, entries, user.data = NULL)}\cr
+\code{\link{gtkActionGroupAddRadioActions}(object, entries, value, on.change = NULL, user.data = NULL)}\cr
+\code{\link{gtkActionGroupAddRadioActionsFull}(object, entries, value, on.change = NULL, user.data = NULL)}\cr
+\code{\link{gtkActionGroupSetTranslateFunc}(object, func, data = NULL)}\cr
+\code{\link{gtkActionGroupSetTranslationDomain}(object, domain)}\cr
+\code{\link{gtkActionGroupTranslateString}(object, string)}\cr
+\code{gtkActionGroup(name = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkActionGroup}}

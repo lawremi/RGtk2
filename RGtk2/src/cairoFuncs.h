@@ -226,7 +226,7 @@ S_cairo_font_face_destroy(USER_OBJECT_ s_font_face);
 S_cairo_font_face_get_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key); 
 
 	USER_OBJECT_
-S_cairo_font_face_set_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data, USER_OBJECT_ s_destroy); 
+S_cairo_font_face_set_user_data(USER_OBJECT_ s_font_face, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
 
 	USER_OBJECT_
 S_cairo_font_face_status(USER_OBJECT_ s_font_face); 
@@ -322,7 +322,7 @@ S_cairo_surface_write_to_png_stream(USER_OBJECT_ s_surface, USER_OBJECT_ s_write
 S_cairo_surface_get_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key); 
 
 	USER_OBJECT_
-S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data, USER_OBJECT_ s_destroy); 
+S_cairo_surface_set_user_data(USER_OBJECT_ s_surface, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
 
 	USER_OBJECT_
 S_cairo_surface_flush(USER_OBJECT_ s_surface); 

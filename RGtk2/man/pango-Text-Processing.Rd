@@ -8,33 +8,34 @@
 \title{Rendering}
 \description{Functions to run the rendering pipeline}
 \section{Methods and Functions}{
-\link{pangoItemize}(context, text, start.index, length, attrs, cached.iter = NULL)
-\link{pangoItemizeWithBaseDir}(context, base.dir, text, start.index, length, attrs, cached.iter = NULL)
-\link{pangoItemCopy}(item)
-\link{pangoItemNew}()
-\link{pangoItemSplit}(orig, split.index, split.offset)
-\link{pangoReorderItems}(logical.items)
-\link{pangoContextSetFontMap}(object, font.map)
-\link{pangoContextGetFontMap}(object)
-\link{pangoContextGetFontDescription}(object)
-\link{pangoContextSetFontDescription}(object, desc)
-\link{pangoContextGetLanguage}(object)
-\link{pangoContextSetLanguage}(object, language)
-\link{pangoContextGetBaseDir}(object)
-\link{pangoContextSetBaseDir}(object, direction)
-\link{pangoContextGetMatrix}(object)
-\link{pangoContextSetMatrix}(object, matrix)
-\link{pangoContextLoadFont}(object, desc)
-\link{pangoContextLoadFontset}(object, desc, language)
-\link{pangoContextGetMetrics}(object, desc, language = NULL)
-\link{pangoContextListFamilies}(object)
-\link{pangoGetMirrorChar}(ch)
-\link{pangoUnicharDirection}(ch)
-\link{pangoFindBaseDir}(text, length = -1)
-\link{pangoBreak}(text, analysis)
-\link{pangoGetLogAttrs}(text, level, language)
-\link{pangoFindParagraphBoundary}(text, length = -1)
-\link{pangoShape}(text, analysis, glyphs)
+\code{\link{pangoItemize}(context, text, start.index, length, attrs, cached.iter = NULL)}\cr
+\code{\link{pangoItemizeWithBaseDir}(context, base.dir, text, start.index, length, attrs, cached.iter = NULL)}\cr
+\code{\link{pangoItemCopy}(item)}\cr
+\code{\link{pangoItemNew}()}\cr
+\code{\link{pangoItemSplit}(orig, split.index, split.offset)}\cr
+\code{\link{pangoReorderItems}(logical.items)}\cr
+\code{\link{pangoContextSetFontMap}(object, font.map)}\cr
+\code{\link{pangoContextGetFontMap}(object)}\cr
+\code{\link{pangoContextGetFontDescription}(object)}\cr
+\code{\link{pangoContextSetFontDescription}(object, desc)}\cr
+\code{\link{pangoContextGetLanguage}(object)}\cr
+\code{\link{pangoContextSetLanguage}(object, language)}\cr
+\code{\link{pangoContextGetBaseDir}(object)}\cr
+\code{\link{pangoContextSetBaseDir}(object, direction)}\cr
+\code{\link{pangoContextGetMatrix}(object)}\cr
+\code{\link{pangoContextSetMatrix}(object, matrix)}\cr
+\code{\link{pangoContextLoadFont}(object, desc)}\cr
+\code{\link{pangoContextLoadFontset}(object, desc, language)}\cr
+\code{\link{pangoContextGetMetrics}(object, desc, language = NULL)}\cr
+\code{\link{pangoContextListFamilies}(object)}\cr
+\code{\link{pangoGetMirrorChar}(ch)}\cr
+\code{\link{pangoUnicharDirection}(ch)}\cr
+\code{\link{pangoFindBaseDir}(text, length = -1)}\cr
+\code{\link{pangoBreak}(text, analysis)}\cr
+\code{\link{pangoGetLogAttrs}(text, level, language)}\cr
+\code{\link{pangoFindParagraphBoundary}(text, length = -1)}\cr
+\code{\link{pangoShape}(text, analysis, glyphs)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----PangoContext}}
@@ -105,7 +106,7 @@ about the attributes of a single character.
 
 }
 }}
-\section{Enums and Flags}{\describe{\item{\code{enum PangoDirection}}{
+\section{Enums and Flags}{\describe{\item{\code{PangoDirection}}{
 The \code{\link{PangoDirection}} type represents a direction in the
 Unicode bidirectional algorithm; not every value in this
 enumeration makes sense for every usage of \code{\link{PangoDirection}};

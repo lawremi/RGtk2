@@ -6,34 +6,34 @@
 \name{GtkIconTheme}
 \title{GtkIconTheme}
 \description{Looking up icons by name}
-\usage{gtkIconTheme()}
 \section{Methods and Functions}{
-\link{gtkIconThemeNew}()
-\link{gtkIconThemeGetDefault}()
-\link{gtkIconThemeGetForScreen}(screen)
-\link{gtkIconThemeSetScreen}(object, screen)
-\link{gtkIconThemeSetSearchPath}(object, path)
-\link{gtkIconThemeGetSearchPath}(object)
-\link{gtkIconThemeAppendSearchPath}(object, path)
-\link{gtkIconThemePrependSearchPath}(object, path)
-\link{gtkIconThemeSetCustomTheme}(object, theme.name)
-\link{gtkIconThemeHasIcon}(object, icon.name)
-\link{gtkIconThemeLookupIcon}(object, icon.name, size, flags)
-\link{gtkIconThemeLoadIcon}(object, icon.name, size, flags)
-\link{gtkIconThemeListIcons}(object, context = NULL)
-\link{gtkIconThemeGetIconSizes}(object, icon.name)
-\link{gtkIconThemeGetExampleIconName}(object)
-\link{gtkIconThemeRescanIfNeeded}(object)
-\link{gtkIconThemeAddBuiltinIcon}(icon.name, size, pixbuf)
-\link{gtkIconInfoCopy}(object)
-\link{gtkIconInfoGetBaseSize}(object)
-\link{gtkIconInfoGetFilename}(object)
-\link{gtkIconInfoGetBuiltinPixbuf}(object)
-\link{gtkIconInfoLoadIcon}(object)
-\link{gtkIconInfoSetRawCoordinates}(object, raw.coordinates)
-\link{gtkIconInfoGetEmbeddedRect}(object)
-\link{gtkIconInfoGetAttachPoints}(object)
-\link{gtkIconInfoGetDisplayName}(object)
+\code{\link{gtkIconThemeNew}()}\cr
+\code{\link{gtkIconThemeGetDefault}()}\cr
+\code{\link{gtkIconThemeGetForScreen}(screen)}\cr
+\code{\link{gtkIconThemeSetScreen}(object, screen)}\cr
+\code{\link{gtkIconThemeSetSearchPath}(object, path)}\cr
+\code{\link{gtkIconThemeGetSearchPath}(object)}\cr
+\code{\link{gtkIconThemeAppendSearchPath}(object, path)}\cr
+\code{\link{gtkIconThemePrependSearchPath}(object, path)}\cr
+\code{\link{gtkIconThemeSetCustomTheme}(object, theme.name)}\cr
+\code{\link{gtkIconThemeHasIcon}(object, icon.name)}\cr
+\code{\link{gtkIconThemeLookupIcon}(object, icon.name, size, flags)}\cr
+\code{\link{gtkIconThemeLoadIcon}(object, icon.name, size, flags, .errwarn = TRUE)}\cr
+\code{\link{gtkIconThemeListIcons}(object, context = NULL)}\cr
+\code{\link{gtkIconThemeGetIconSizes}(object, icon.name)}\cr
+\code{\link{gtkIconThemeGetExampleIconName}(object)}\cr
+\code{\link{gtkIconThemeRescanIfNeeded}(object)}\cr
+\code{\link{gtkIconThemeAddBuiltinIcon}(icon.name, size, pixbuf)}\cr
+\code{\link{gtkIconInfoCopy}(object)}\cr
+\code{\link{gtkIconInfoGetBaseSize}(object)}\cr
+\code{\link{gtkIconInfoGetFilename}(object)}\cr
+\code{\link{gtkIconInfoGetBuiltinPixbuf}(object)}\cr
+\code{\link{gtkIconInfoLoadIcon}(object, .errwarn = TRUE)}\cr
+\code{\link{gtkIconInfoSetRawCoordinates}(object, raw.coordinates)}\cr
+\code{\link{gtkIconInfoGetEmbeddedRect}(object)}\cr
+\code{\link{gtkIconInfoGetAttachPoints}(object)}\cr
+\code{\link{gtkIconInfoGetDisplayName}(object)}\cr
+\code{gtkIconTheme()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkIconTheme}}
@@ -115,7 +115,7 @@ object and set the icon theme name explicitely using
 }}
 \section{Convenient Construction}{\code{gtkIconTheme} is the equivalent of \code{\link{gtkIconThemeNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkIconLookupFlags}}{
+\item{\code{GtkIconLookupFlags}}{
 Used to specify options for \code{\link{gtkIconThemeLookupIcon}}  
 
 \describe{
@@ -131,7 +131,7 @@ Used to specify options for \code{\link{gtkIconThemeLookupIcon}}
 }
 
 }
-\item{\code{enum GtkIconThemeError}}{
+\item{\code{GtkIconThemeError}}{
 Error codes for GtkIconTheme operations.  
 
 \describe{

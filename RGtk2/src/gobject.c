@@ -168,7 +168,8 @@ R_internal_getInterfaces(GType type)
 {
     SEXP list;
     GType *interfaces;
-    int n, i;
+    int i;
+	guint n;
 
     interfaces = g_type_interfaces(type, &n);
     PROTECT(list = NEW_CHARACTER(n));
@@ -225,7 +226,8 @@ USER_OBJECT_
 R_internal_getClassParamSpecs(GObjectClass *class)
 {
     USER_OBJECT_ ans, names, argNames, tmp;
-    int num, i;
+    int i;
+	guint num;
     GParamSpec **specs;
 
     specs = g_object_class_list_properties(class, &num);
@@ -251,6 +253,7 @@ R_internal_getClassParamSpecs(GObjectClass *class)
     return(ans);
 }
 
+USER_OBJECT_
 R_setGValueForProperty(GValue *value, GObjectClass *class, const gchar *property_name, USER_OBJECT_ s_value)
 {
 	GParamSpec *spec = g_object_class_find_property(class, property_name);
@@ -261,6 +264,8 @@ R_setGValueForProperty(GValue *value, GObjectClass *class, const gchar *property
     }
     g_value_init(value, G_PARAM_SPEC_VALUE_TYPE(spec));
     R_setGValueFromSValue(value, s_value);
+	
+	return NULL_USER_OBJECT;
 }
 
 USER_OBJECT_
@@ -359,13 +364,14 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
     return(result);
 }
 
-// adapted from pygtk, needed to handle their "property-based constructors"...
+/* adapted from pygtk, needed to handle their "property-based constructors"... */
 gpointer
 propertyConstructor(GType obj_type, char **prop_names, USER_OBJECT_ *args, int nargs)
 {
     gpointer obj;
     if (nargs > 0) {
-        int nparams, i;
+        int i;
+		guint nparams;
         GParameter params[nargs];
         memset(params, 0, sizeof(GParameter)*nargs);
 
@@ -614,6 +620,7 @@ R_gSignalStopEmssion(USER_OBJECT_ s_obj, USER_OBJECT_ s_signal)
 	gpointer obj = getPtrValue(s_obj);
 	const gchar *signal = asCString(s_signal);
 	g_signal_stop_emission_by_name(obj, signal);
+	return NULL_USER_OBJECT;
 }
 
 USER_OBJECT_
@@ -688,11 +695,11 @@ R_internal_getGSignalInfo(guint id)
     SET_STRING_ELT(names, SIGNAL_SLOT, COPY_TO_USER_STRING("signal"));
     SET_STRING_ELT(names, PARAMS_SLOT, COPY_TO_USER_STRING("parameters"));
     SET_STRING_ELT(names, OBJECT_SLOT, COPY_TO_USER_STRING("objectType"));
-    //SET_STRING_ELT(names, IS_USER_SLOT, COPY_TO_USER_STRING("isUserSignal"));
+    /*SET_STRING_ELT(names, IS_USER_SLOT, COPY_TO_USER_STRING("isUserSignal"));*/
     SET_STRING_ELT(names, FLAGS_SLOT, COPY_TO_USER_STRING("runFlags"));
 
-    //SET_VECTOR_ELT(ans, IS_USER_SLOT, params = NEW_LOGICAL(1));
-    // LOGICAL_DATA(params)[0] = info->is_user_signal;
+    /*SET_VECTOR_ELT(ans, IS_USER_SLOT, params = NEW_LOGICAL(1));
+    LOGICAL_DATA(params)[0] = info->is_user_signal;*/
 
 /* Has to be handled as a flag. */
     SET_VECTOR_ELT(ans, FLAGS_SLOT, params = NEW_INTEGER(1));
@@ -766,7 +773,7 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
 
         /*tmp = CDR(tmp);*/
 
-		//Rprintf("%d\n", n_param_values);
+		/*Rprintf("%d\n", n_param_values);*/
 		
         for(i = 0; i < n_param_values; i++) {
             sarg = asRGValue((GValue *)&param_values[i]);
@@ -1057,7 +1064,7 @@ asRGValue(GValue *value)
       break;
 
       case G_TYPE_POINTER:
-	  	//Rprintf("%s\n", g_type_name(G_VALUE_TYPE(value)));
+	  	/*Rprintf("%s\n", g_type_name(G_VALUE_TYPE(value)));*/
 		if (G_VALUE_TYPE(value) == G_TYPE_VALUE)
 			ans = asRGValue(value); /* yes the GValues can be nested */
         ans = toRPointer(g_value_get_pointer(value), "gpointer");
@@ -1088,7 +1095,7 @@ asRGValue(GValue *value)
 /* Make a GValue from scratch */
 GValue *
 createGValueFromSValue(USER_OBJECT_ sval) {
-    //GValue *raw = (GValue *)S_alloc(1, sizeof(GValue));
+    /*GValue *raw = (GValue *)S_alloc(1, sizeof(GValue));*/
     GValue *raw = (GValue *)g_new0(GValue, 1);
 	if (!initGValueFromSValue(sval, raw)) {
 		g_free(raw);
@@ -1176,7 +1183,7 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
 	{
 		USER_OBJECT_ levels;
 		if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
-			//Rprintf("getting level: %s\n", CHAR_DEREF(STRING_ELT(levels, asCInteger(sval))));
+			/*Rprintf("getting level: %s\n", CHAR_DEREF(STRING_ELT(levels, asCInteger(sval))));*/
 			g_value_init(raw, G_TYPE_STRING);
 			g_value_set_string(raw, CHAR_DEREF(STRING_ELT(levels, INTEGER_DATA(sval)[n]-1)));
 		} else {
@@ -1195,7 +1202,7 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
         g_value_set_string(raw, CHAR_DEREF(STRING_ELT(sval, n)));
       break;
      default:
-     //fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);
+     /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
 	 return(FALSE);
     }
 	return(TRUE);

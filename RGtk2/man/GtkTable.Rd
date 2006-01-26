@@ -5,22 +5,22 @@
 \name{GtkTable}
 \title{GtkTable}
 \description{Pack widgets in regular patterns}
-\usage{gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkTableNew}(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
-\link{gtkTableResize}(object, rows, columns)
-\link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = GTK_EXPAND|GTK_FILL, yoptions = GTK_EXPAND|GTK_FILL, xpadding = 0, ypadding = 0)
-\link{gtkTableAttachDefaults}(object, widget, left.attach, right.attach, top.attach, bottom.attach)
-\link{gtkTableSetRowSpacing}(object, row, spacing)
-\link{gtkTableSetColSpacing}(object, column, spacing)
-\link{gtkTableSetRowSpacings}(object, spacing)
-\link{gtkTableSetColSpacings}(object, spacing)
-\link{gtkTableSetHomogeneous}(object, homogeneous)
-\link{gtkTableGetDefaultRowSpacing}(object)
-\link{gtkTableGetHomogeneous}(object)
-\link{gtkTableGetRowSpacing}(object, row)
-\link{gtkTableGetColSpacing}(object, column)
-\link{gtkTableGetDefaultColSpacing}(object)
+\code{\link{gtkTableNew}(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}\cr
+\code{\link{gtkTableResize}(object, rows, columns)}\cr
+\code{\link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = "GTK_EXPAND|GTK_FILL", yoptions = "GTK_EXPAND|GTK_FILL", xpadding = 0, ypadding = 0)}\cr
+\code{\link{gtkTableAttachDefaults}(object, widget, left.attach, right.attach, top.attach, bottom.attach)}\cr
+\code{\link{gtkTableSetRowSpacing}(object, row, spacing)}\cr
+\code{\link{gtkTableSetColSpacing}(object, column, spacing)}\cr
+\code{\link{gtkTableSetRowSpacings}(object, spacing)}\cr
+\code{\link{gtkTableSetColSpacings}(object, spacing)}\cr
+\code{\link{gtkTableSetHomogeneous}(object, homogeneous)}\cr
+\code{\link{gtkTableGetDefaultRowSpacing}(object)}\cr
+\code{\link{gtkTableGetHomogeneous}(object)}\cr
+\code{\link{gtkTableGetRowSpacing}(object, row)}\cr
+\code{\link{gtkTableGetColSpacing}(object, column)}\cr
+\code{\link{gtkTableGetDefaultColSpacing}(object)}\cr
+\code{gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

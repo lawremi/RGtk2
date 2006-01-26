@@ -10,22 +10,22 @@
 \title{Glyph Storage}
 \description{Structures for storing information about glyphs}
 \section{Methods and Functions}{
-\link{pangoMatrixCopy}(object)
-\link{pangoMatrixTranslate}(object, tx, ty)
-\link{pangoMatrixScale}(object, scale.x, scale.y)
-\link{pangoMatrixRotate}(object, degrees)
-\link{pangoMatrixConcat}(object, new.matrix)
-\link{pangoGlyphStringNew}()
-\link{pangoGlyphStringCopy}(object)
-\link{pangoGlyphStringSetSize}(object, new.len)
-\link{pangoGlyphStringExtents}(object, font)
-\link{pangoGlyphStringExtentsRange}(object, start, end, font)
-\link{pangoGlyphStringIndexToX}(object, text, analysis, index, trailing)
-\link{pangoGlyphStringXToIndex}(object, text, analysis, x.pos)
-\link{pangoGlyphStringGetLogicalWidths}(object, text, embedding.level)
-\link{pangoGlyphItemSplit}(orig, text, split.index)
-\link{pangoGlyphItemApplyAttrs}(glyph.item, text, list)
-\link{pangoGlyphItemLetterSpace}(glyph.item, text, log.attrs, letter.spacing)
+\code{\link{pangoMatrixCopy}(object)}\cr
+\code{\link{pangoMatrixTranslate}(object, tx, ty)}\cr
+\code{\link{pangoMatrixScale}(object, scale.x, scale.y)}\cr
+\code{\link{pangoMatrixRotate}(object, degrees)}\cr
+\code{\link{pangoMatrixConcat}(object, new.matrix)}\cr
+\code{\link{pangoGlyphStringNew}()}\cr
+\code{\link{pangoGlyphStringCopy}(object)}\cr
+\code{\link{pangoGlyphStringSetSize}(object, new.len)}\cr
+\code{\link{pangoGlyphStringExtents}(object, font)}\cr
+\code{\link{pangoGlyphStringExtentsRange}(object, start, end, font)}\cr
+\code{\link{pangoGlyphStringIndexToX}(object, text, analysis, index, trailing)}\cr
+\code{\link{pangoGlyphStringXToIndex}(object, text, analysis, x.pos)}\cr
+\code{\link{pangoGlyphStringGetLogicalWidths}(object, text, embedding.level)}\cr
+\code{\link{pangoGlyphItemSplit}(orig, text, split.index)}\cr
+\code{\link{pangoGlyphItemApplyAttrs}(glyph.item, text, list)}\cr
+\code{\link{pangoGlyphItemLetterSpace}(glyph.item, text, log.attrs, letter.spacing)}\cr
 }
 \section{Detailed Description}{\code{\link{pangoShape}} produces a string of glyphs which
 can be measured or drawn to the screen. The following

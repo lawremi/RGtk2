@@ -5,10 +5,7 @@
 Sets the step value used when the progress bar is in activity
 mode.  The step is the amount by which the progress is incremented
 each iteration.
-\strong{WARNING: \code{gtk_progress_bar_set_activity_step} is deprecated and should not be used in newly-written code.  
-Sets the step value used when the progress bar is in activity
-mode.  The step is the amount by which the progress is incremented
-each iteration.}
+\strong{WARNING: \code{gtk_progress_bar_set_activity_step} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressBarSetActivityStep(object, step)}
 \arguments{

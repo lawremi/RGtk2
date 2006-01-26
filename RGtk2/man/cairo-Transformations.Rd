@@ -3,18 +3,18 @@
 \title{Transformations}
 \description{Manipulating the current transformation matrix}
 \section{Methods and Functions}{
-\link{cairoTranslate}(cr, tx, ty)
-\link{cairoScale}(cr, sx, sy)
-\link{cairoRotate}(cr, angle)
-\link{cairoTransform}(cr, matrix)
-\link{cairoSetMatrix}(cr, matrix)
-\link{cairoGetMatrix}(cr, matrix)
-\link{cairoIdentityMatrix}(cr)
-\link{cairoUserToDevice}(cr, x, y)
-\link{cairoUserToDeviceDistance}(cr, dx, dy)
-\link{cairoDeviceToUser}(cr, x, y)
-\link{cairoDeviceToUserDistance}(cr, dx, dy)
+\code{\link{cairoTranslate}(cr, tx, ty)}\cr
+\code{\link{cairoScale}(cr, sx, sy)}\cr
+\code{\link{cairoRotate}(cr, angle)}\cr
+\code{\link{cairoTransform}(cr, matrix)}\cr
+\code{\link{cairoSetMatrix}(cr, matrix)}\cr
+\code{\link{cairoGetMatrix}(cr, matrix)}\cr
+\code{\link{cairoIdentityMatrix}(cr)}\cr
+\code{\link{cairoUserToDevice}(cr, x, y)}\cr
+\code{\link{cairoUserToDeviceDistance}(cr, dx, dy)}\cr
+\code{\link{cairoDeviceToUser}(cr, x, y)}\cr
+\code{\link{cairoDeviceToUserDistance}(cr, dx, dy)}\cr
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Transformations.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Transformations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

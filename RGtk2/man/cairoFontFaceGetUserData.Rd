@@ -6,8 +6,8 @@ key.  If no user data has been attached with the given key this
 function returns \code{NULL}.}
 \usage{cairoFontFaceGetUserData(font.face, key)}
 \arguments{
-\item{\code{font.face}}{[\code{\link{cairo_font_face_t}}]  a \code{\link{cairo_font_face_t}}}
-\item{\code{key}}{[\code{\link{cairo_user_data_key_t}}]  the the \code{\link{cairo_user_data_key_t}} the user data was
+\item{\code{font.face}}{[\code{\link{CairoFontFace}}]  a \code{\link{CairoFontFace}}}
+\item{\code{key}}{[\code{\link{CairoUserDataKey}}]  the the \code{\link{CairoUserDataKey}} the user data was
 attached to}
 }
 \value{[R object]  the user data previously attached or \code{NULL}.}

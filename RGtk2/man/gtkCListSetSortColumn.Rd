@@ -4,9 +4,7 @@
 \description{
 Sets the sort column of the clist. The sort column is used by the
 default compare function to determine which column to sort by. 
-\strong{WARNING: \code{gtk_clist_set_sort_column} is deprecated and should not be used in newly-written code.  
-Sets the sort column of the clist. The sort column is used by the
-default compare function to determine which column to sort by. }
+\strong{WARNING: \code{gtk_clist_set_sort_column} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetSortColumn(object, column)}
 \arguments{

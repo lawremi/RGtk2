@@ -12,35 +12,35 @@
 \name{gdk-Graphics-Contexts}
 \title{Graphics Contexts}
 \description{Objects to encapsulate drawing properties}
-\usage{gdkGC(drawable)}
 \section{Methods and Functions}{
-\link{gdkGCNew}(drawable)
-\link{gdkGCNewWithValues}(object, values)
-\link{gdkGCGetScreen}(object)
-\link{gdkGCSetValues}(object, values)
-\link{gdkGCGetValues}(object)
-\link{gdkGCSetForeground}(object, color)
-\link{gdkGCSetBackground}(object, color)
-\link{gdkGCSetRgbFgColor}(object, color)
-\link{gdkGCSetRgbBgColor}(object, color)
-\link{gdkGCSetFont}(object, font)
-\link{gdkGCSetFunction}(object, fun)
-\link{gdkGCSetFill}(object, fill)
-\link{gdkGCSetTile}(object, tile)
-\link{gdkGCSetStipple}(object, stipple)
-\link{gdkGCSetTsOrigin}(object, x, y)
-\link{gdkGCSetClipOrigin}(object, x, y)
-\link{gdkGCSetClipMask}(object, mask)
-\link{gdkGCSetClipRectangle}(object, rectangle)
-\link{gdkGCSetClipRegion}(object, region)
-\link{gdkGCSetSubwindow}(object, mode)
-\link{gdkGCSetExposures}(object, exposures)
-\link{gdkGCSetLineAttributes}(object, line.width, line.style, cap.style, join.style)
-\link{gdkGCSetDashes}(object, dash.list)
-\link{gdkGCCopy}(object, src.gc)
-\link{gdkGCSetColormap}(object, colormap)
-\link{gdkGCGetColormap}(object)
-\link{gdkGCOffset}(object, x.offset, y.offset)
+\code{\link{gdkGCNew}(drawable)}\cr
+\code{\link{gdkGCNewWithValues}(object, values)}\cr
+\code{\link{gdkGCGetScreen}(object)}\cr
+\code{\link{gdkGCSetValues}(object, values)}\cr
+\code{\link{gdkGCGetValues}(object)}\cr
+\code{\link{gdkGCSetForeground}(object, color)}\cr
+\code{\link{gdkGCSetBackground}(object, color)}\cr
+\code{\link{gdkGCSetRgbFgColor}(object, color)}\cr
+\code{\link{gdkGCSetRgbBgColor}(object, color)}\cr
+\code{\link{gdkGCSetFont}(object, font)}\cr
+\code{\link{gdkGCSetFunction}(object, fun)}\cr
+\code{\link{gdkGCSetFill}(object, fill)}\cr
+\code{\link{gdkGCSetTile}(object, tile)}\cr
+\code{\link{gdkGCSetStipple}(object, stipple)}\cr
+\code{\link{gdkGCSetTsOrigin}(object, x, y)}\cr
+\code{\link{gdkGCSetClipOrigin}(object, x, y)}\cr
+\code{\link{gdkGCSetClipMask}(object, mask)}\cr
+\code{\link{gdkGCSetClipRectangle}(object, rectangle)}\cr
+\code{\link{gdkGCSetClipRegion}(object, region)}\cr
+\code{\link{gdkGCSetSubwindow}(object, mode)}\cr
+\code{\link{gdkGCSetExposures}(object, exposures)}\cr
+\code{\link{gdkGCSetLineAttributes}(object, line.width, line.style, cap.style, join.style)}\cr
+\code{\link{gdkGCSetDashes}(object, dash.list)}\cr
+\code{\link{gdkGCCopy}(object, src.gc)}\cr
+\code{\link{gdkGCSetColormap}(object, colormap)}\cr
+\code{\link{gdkGCGetColormap}(object)}\cr
+\code{\link{gdkGCOffset}(object, x.offset, y.offset)}\cr
+\code{gdkGC(drawable)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkGC}}
@@ -99,7 +99,7 @@ to create or modify a graphics context.
 }}
 \section{Convenient Construction}{\code{gdkGC} is the equivalent of \code{\link{gdkGCNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkGCValuesMask}}{
+\item{\code{GdkGCValuesMask}}{
 A set of bit flags used to indicate which fields
 \code{\link{GdkGCValues}} structure are set.
 
@@ -125,7 +125,7 @@ A set of bit flags used to indicate which fields
 }
 
 }
-\item{\code{enum GdkFunction}}{
+\item{\code{GdkFunction}}{
 Determines how the bit values for the source pixels are combined with
 the bit values for destination pixels to produce the final result. The
 sixteen values here correspond to the 16 different possible 2x2 truth
@@ -169,7 +169,7 @@ useful. For bitmaps, \code{GDK_AND} and \code{GDK_OR} are also useful.
 }
 
 }
-\item{\code{enum GdkFill}}{
+\item{\code{GdkFill}}{
 Determines how primitives are drawn.
 
 \describe{
@@ -186,7 +186,7 @@ Determines how primitives are drawn.
 }
 
 }
-\item{\code{enum GdkSubwindowMode}}{
+\item{\code{GdkSubwindowMode}}{
 Determines how drawing onto a window will affect child
 windows of that window. 
 
@@ -196,7 +196,7 @@ windows of that window.
 }
 
 }
-\item{\code{enum GdkLineStyle}}{
+\item{\code{GdkLineStyle}}{
 Determines how lines are drawn.
 
 \describe{
@@ -208,7 +208,7 @@ Determines how lines are drawn.
 }
 
 }
-\item{\code{enum GdkCapStyle}}{
+\item{\code{GdkCapStyle}}{
 Determines how the end of lines are drawn.
 
 \describe{
@@ -223,7 +223,7 @@ Determines how the end of lines are drawn.
 }
 
 }
-\item{\code{enum GdkJoinStyle}}{
+\item{\code{GdkJoinStyle}}{
 Determines how the joins between segments of a polygon are drawn.
 
 \describe{

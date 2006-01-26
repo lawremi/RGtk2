@@ -1,39 +1,37 @@
 \alias{gtk-Selections}
 \alias{GtkTargetEntry}
 \alias{GtkTargetList}
-\alias{gtkTargetEntry}
 \name{gtk-Selections}
 \title{Selections}
 \description{Functions for handling inter-process communication via selections}
-\usage{gtkTargetEntry(target, flags, info)}
 \section{Methods and Functions}{
-\link{gtkTargetListNew}(targets)
-\link{gtkTargetListAdd}(object, target, flags, info)
-\link{gtkTargetListAddTable}(object, targets)
-\link{gtkTargetListAddTextTargets}(list, info)
-\link{gtkTargetListAddImageTargets}(list, info, writable)
-\link{gtkTargetListAddUriTargets}(list, info)
-\link{gtkTargetListRemove}(object, target)
-\link{gtkTargetListFind}(object, target)
-\link{gtkSelectionOwnerSet}(object, selection, time = GDK_CURRENT_TIME)
-\link{gtkSelectionOwnerSetForDisplay}(display, widget = NULL, selection, time = GDK_CURRENT_TIME)
-\link{gtkSelectionAddTarget}(object, selection, target, info)
-\link{gtkSelectionAddTargets}(object, selection, targets)
-\link{gtkSelectionClearTargets}(object, selection)
-\link{gtkSelectionConvert}(object, selection, target, time = GDK_CURRENT_TIME)
-\link{gtkSelectionDataSet}(object, type, format, data, length = length(data))
-\link{gtkSelectionDataSetText}(object, str, len = -1)
-\link{gtkSelectionDataGetText}(object)
-\link{gtkSelectionDataSetPixbuf}(object, pixbuf)
-\link{gtkSelectionDataGetPixbuf}(object)
-\link{gtkSelectionDataSetUris}(object, uris)
-\link{gtkSelectionDataGetUris}(object)
-\link{gtkSelectionDataGetTargets}(object)
-\link{gtkSelectionDataTargetsIncludeImage}(object, writable)
-\link{gtkSelectionDataTargetsIncludeText}(object)
-\link{gtkSelectionRemoveAll}(object)
-\link{gtkSelectionClear}(object, event)
-\link{gtkSelectionDataCopy}(object)
+\code{\link{gtkTargetListNew}(targets)}\cr
+\code{\link{gtkTargetListAdd}(object, target, flags, info)}\cr
+\code{\link{gtkTargetListAddTable}(object, targets)}\cr
+\code{\link{gtkTargetListAddTextTargets}(list, info)}\cr
+\code{\link{gtkTargetListAddImageTargets}(list, info, writable)}\cr
+\code{\link{gtkTargetListAddUriTargets}(list, info)}\cr
+\code{\link{gtkTargetListRemove}(object, target)}\cr
+\code{\link{gtkTargetListFind}(object, target)}\cr
+\code{\link{gtkSelectionOwnerSet}(object, selection, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkSelectionOwnerSetForDisplay}(display, widget = NULL, selection, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkSelectionAddTarget}(object, selection, target, info)}\cr
+\code{\link{gtkSelectionAddTargets}(object, selection, targets)}\cr
+\code{\link{gtkSelectionClearTargets}(object, selection)}\cr
+\code{\link{gtkSelectionConvert}(object, selection, target, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkSelectionDataSet}(object, type, format, data, length = length(data))}\cr
+\code{\link{gtkSelectionDataSetText}(object, str, len = -1)}\cr
+\code{\link{gtkSelectionDataGetText}(object)}\cr
+\code{\link{gtkSelectionDataSetPixbuf}(object, pixbuf)}\cr
+\code{\link{gtkSelectionDataGetPixbuf}(object)}\cr
+\code{\link{gtkSelectionDataSetUris}(object, uris)}\cr
+\code{\link{gtkSelectionDataGetUris}(object)}\cr
+\code{\link{gtkSelectionDataGetTargets}(object)}\cr
+\code{\link{gtkSelectionDataTargetsIncludeImage}(object, writable)}\cr
+\code{\link{gtkSelectionDataTargetsIncludeText}(object)}\cr
+\code{\link{gtkSelectionRemoveAll}(object)}\cr
+\code{\link{gtkSelectionClear}(object, event)}\cr
+\code{\link{gtkSelectionDataCopy}(object)}\cr
 }
 \section{Detailed Description}{The selection mechanism provides the basis for different types
 of communication between processes. In particular, drag and drop and
@@ -71,7 +69,6 @@ opaque.
 
 }
 }}
-\section{Convenient Construction}{\code{gtkTargetEntry} is the equivalent of .}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Selections.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

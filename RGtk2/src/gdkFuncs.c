@@ -1094,21 +1094,6 @@ S_gdk_display_warp_pointer(USER_OBJECT_ s_object, USER_OBJECT_ s_screen, USER_OB
  
 
 USER_OBJECT_
-S_gdk_display_open_default_libgtk_only()
-{
-
-	GdkDisplay* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_display_open_default_libgtk_only();
-
-	_result = toRPointerWithRef(ans, "GdkDisplay");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gdk_display_store_clipboard(USER_OBJECT_ s_object, USER_OBJECT_ s_clipboard_window, USER_OBJECT_ s_targets)
 {
 	GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
@@ -4362,7 +4347,7 @@ USER_OBJECT_
 S_gdk_bitmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_height)
 {
 	GdkDrawable* drawable = GET_LENGTH(s_drawable) == 0 ? NULL : GDK_DRAWABLE(getPtrValue(s_drawable));
-	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCRaw);
 	gint width = (gint)GET_LENGTH(s_data);
 	gint height = (gint)asCInteger(s_height);
 
@@ -4381,7 +4366,7 @@ USER_OBJECT_
 S_gdk_pixmap_create_from_data(USER_OBJECT_ s_drawable, USER_OBJECT_ s_data, USER_OBJECT_ s_height, USER_OBJECT_ s_depth, USER_OBJECT_ s_fg, USER_OBJECT_ s_bg)
 {
 	GdkDrawable* drawable = GET_LENGTH(s_drawable) == 0 ? NULL : GDK_DRAWABLE(getPtrValue(s_drawable));
-	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCRaw);
 	gint width = (gint)GET_LENGTH(s_data);
 	gint height = (gint)asCInteger(s_height);
 	gint depth = (gint)asCInteger(s_depth);
@@ -4606,7 +4591,7 @@ S_gdk_property_get(USER_OBJECT_ s_object, USER_OBJECT_ s_property, USER_OBJECT_ 
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "actual_property_type", asRGdkAtom(actual_property_type), "actual_format", asRInteger(actual_format), "actual_length", asRInteger(actual_length), "data", asRIntegerArrayWithSize(data, actual_format), NULL);
+	_result = retByVal(_result, "actual_property_type", asRGdkAtom(actual_property_type), "actual_format", asRInteger(actual_format), "actual_length", asRInteger(actual_length), "data", asRRawArrayWithSize(data, actual_format), NULL);
 	CLEANUP(g_free, data);
 
 	return(_result);
@@ -4621,7 +4606,7 @@ S_gdk_property_change(USER_OBJECT_ s_object, USER_OBJECT_ s_property, USER_OBJEC
 	GdkAtom type = asCGdkAtom(s_type);
 	gint format = (gint)asCInteger(s_format);
 	GdkPropMode mode = (GdkPropMode)asCEnum(s_mode, GDK_TYPE_PROP_MODE);
-	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCRaw);
 	gint nelements = (gint)GET_LENGTH(s_data);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4704,7 +4689,7 @@ S_gdk_draw_rgb_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OB
 	gint width = (gint)asCInteger(s_width);
 	gint height = (gint)asCInteger(s_height);
 	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* rgb_buf = (guchar*)asCArray(s_rgb_buf, guchar, asCInteger);
+	guchar* rgb_buf = (guchar*)asCArray(s_rgb_buf, guchar, asCRaw);
 	gint rowstride = (gint)GET_LENGTH(s_rgb_buf);
 	gint xdith = (gint)asCInteger(s_xdith);
 	gint ydith = (gint)asCInteger(s_ydith);
@@ -4728,7 +4713,7 @@ S_gdk_draw_rgb_32_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s
 	gint width = (gint)asCInteger(s_width);
 	gint height = (gint)asCInteger(s_height);
 	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCInteger);
+	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCRaw);
 	gint rowstride = (gint)GET_LENGTH(s_buf);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4750,7 +4735,7 @@ S_gdk_draw_rgb_32_image_dithalign(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER
 	gint width = (gint)asCInteger(s_width);
 	gint height = (gint)asCInteger(s_height);
 	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCInteger);
+	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCRaw);
 	gint rowstride = (gint)GET_LENGTH(s_buf);
 	gint xdith = (gint)asCInteger(s_xdith);
 	gint ydith = (gint)asCInteger(s_ydith);
@@ -4790,7 +4775,7 @@ S_gdk_draw_gray_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_x
 	gint width = (gint)asCInteger(s_width);
 	gint height = (gint)asCInteger(s_height);
 	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCInteger);
+	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCRaw);
 	gint rowstride = (gint)GET_LENGTH(s_buf);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -4830,7 +4815,7 @@ S_gdk_draw_indexed_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ 
 	gint width = (gint)asCInteger(s_width);
 	gint height = (gint)asCInteger(s_height);
 	GdkRgbDither dith = (GdkRgbDither)asCEnum(s_dith, GDK_TYPE_RGB_DITHER);
-	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCInteger);
+	guchar* buf = (guchar*)asCArray(s_buf, guchar, asCRaw);
 	gint rowstride = (gint)GET_LENGTH(s_buf);
 	GdkRgbCmap* cmap = asCGdkRgbCmap(s_cmap);
 
@@ -5513,7 +5498,7 @@ S_gdk_selection_property_get(USER_OBJECT_ s_object)
 
 	_result = asRLogical(ans);
 
-	_result = retByVal(_result, "data", asRIntegerArrayWithSize(data, prop_format), "prop_type", asRGdkAtom(prop_type), "prop_format", asRInteger(prop_format), NULL);
+	_result = retByVal(_result, "data", asRRawArrayWithSize(data, prop_format), "prop_type", asRGdkAtom(prop_type), "prop_format", asRInteger(prop_format), NULL);
 	CLEANUP(g_free, data);
 
 	return(_result);
@@ -7661,7 +7646,7 @@ USER_OBJECT_
 S_gdk_pixbuf_new_from_inline(USER_OBJECT_ s_data, USER_OBJECT_ s_copy_pixels)
 {
 	gint data_length = (gint)GET_LENGTH(s_data);
-	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCRaw);
 	gboolean copy_pixels = (gboolean)asCLogical(s_copy_pixels);
 
 	GdkPixbuf* ans;
@@ -7767,9 +7752,9 @@ S_gdk_pixbuf_add_alpha(USER_OBJECT_ s_object, USER_OBJECT_ s_substitute_color, U
 {
 	GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
 	gboolean substitute_color = (gboolean)asCLogical(s_substitute_color);
-	guchar r = (guchar)asCInteger(s_r);
-	guchar g = (guchar)asCInteger(s_g);
-	guchar b = (guchar)asCInteger(s_b);
+	guchar r = (guchar)asCRaw(s_r);
+	guchar g = (guchar)asCRaw(s_g);
+	guchar b = (guchar)asCRaw(s_b);
 
 	GdkPixbuf* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -8497,7 +8482,7 @@ USER_OBJECT_
 S_gdk_pixbuf_loader_write(USER_OBJECT_ s_object, USER_OBJECT_ s_buf)
 {
 	GdkPixbufLoader* object = GDK_PIXBUF_LOADER(getPtrValue(s_object));
-	const guchar* buf = (const guchar*)asCArray(s_buf, guchar, asCInteger);
+	const guchar* buf = (const guchar*)asCArray(s_buf, guchar, asCRaw);
 	gsize count = (gsize)GET_LENGTH(s_buf);
 
 	gboolean ans;

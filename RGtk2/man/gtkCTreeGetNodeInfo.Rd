@@ -4,9 +4,7 @@
 \description{
 Get information corresponding to a node.
 Any of the return parameters can be null. 
-\strong{WARNING: \code{gtk_ctree_get_node_info} is deprecated and should not be used in newly-written code.  
-Get information corresponding to a node.
-Any of the return parameters can be null. }
+\strong{WARNING: \code{gtk_ctree_get_node_info} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeGetNodeInfo(object, node)}
 \arguments{

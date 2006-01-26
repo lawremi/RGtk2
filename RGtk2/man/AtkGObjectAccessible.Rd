@@ -4,8 +4,9 @@
 \description{This object class is derived from AtkObject and can be used as a basis 
 implementing accessible objects.}
 \section{Methods and Functions}{
-\link{atkGObjectAccessibleForObject}(obj)
-\link{atkGObjectAccessibleGetObject}(object)
+\code{\link{atkGObjectAccessibleForObject}(obj)}\cr
+\code{\link{atkGObjectAccessibleGetObject}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{AtkObject}

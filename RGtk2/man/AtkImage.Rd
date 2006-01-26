@@ -4,10 +4,10 @@
 \description{The ATK Interface implemented by components which expose image or pixmap
 content on-screen.}
 \section{Methods and Functions}{
-\link{atkImageGetImagePosition}(object, coord.type)
-\link{atkImageGetImageDescription}(object)
-\link{atkImageSetImageDescription}(object, description)
-\link{atkImageGetImageSize}(object)
+\code{\link{atkImageGetImagePosition}(object, coord.type)}\cr
+\code{\link{atkImageGetImageDescription}(object)}\cr
+\code{\link{atkImageSetImageDescription}(object, description)}\cr
+\code{\link{atkImageGetImageSize}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkImage}}

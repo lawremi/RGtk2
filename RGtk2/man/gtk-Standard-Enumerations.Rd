@@ -42,7 +42,7 @@
 \title{Standard Enumerations}
 \description{Public enumerated types used throughout GTK+}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkAccelFlags}}{
+\item{\code{GtkAccelFlags}}{
 
 
 \describe{
@@ -55,7 +55,7 @@
 }
 
 }
-\item{\code{enum GtkAnchorType}}{
+\item{\code{GtkAnchorType}}{
 
 
 \describe{
@@ -96,7 +96,7 @@
 }
 
 }
-\item{\code{enum GtkArrowType}}{
+\item{\code{GtkArrowType}}{
 Used to indicate the direction in which a \code{\link{GtkArrow}} should point.
 
 \describe{
@@ -107,7 +107,7 @@ Used to indicate the direction in which a \code{\link{GtkArrow}} should point.
 }
 
 }
-\item{\code{enum GtkAttachOptions}}{
+\item{\code{GtkAttachOptions}}{
 Denotes the expansion properties that a widget will have when it (or its
 parent) is resized.
 
@@ -119,7 +119,7 @@ container that has been allocated.}
 }
 
 }
-\item{\code{enum GtkButtonBoxStyle}}{
+\item{\code{GtkButtonBoxStyle}}{
 Used to dictate the style that a \code{\link{GtkButtonBox}} uses to layout the buttons it
 contains. (See also: \code{\link{GtkVButtonBox}} and \code{\link{GtkHButtonBox}}).
 
@@ -134,7 +134,7 @@ right for a HBox, or the bottom for a VBox).}
 }
 
 }
-\item{\code{enum GtkCornerType}}{
+\item{\code{GtkCornerType}}{
 Specifies which corner a child widget should be placed in when packed into
 a \code{\link{GtkScrolledWindow}}. This is effectively the opposite of where the scroll
 bars are placed.
@@ -151,7 +151,7 @@ widget.}
 }
 
 }
-\item{\code{enum GtkCurveType}}{
+\item{\code{GtkCurveType}}{
 
 
 \describe{
@@ -164,7 +164,7 @@ widget.}
 }
 
 }
-\item{\code{enum GtkDeleteType}}{
+\item{\code{GtkDeleteType}}{
 
 
 \describe{
@@ -187,7 +187,7 @@ widget.}
 }
 
 }
-\item{\code{enum GtkDirectionType}}{
+\item{\code{GtkDirectionType}}{
 
 
 \describe{
@@ -206,7 +206,7 @@ widget.}
 }
 
 }
-\item{\code{enum GtkExpanderStyle}}{
+\item{\code{GtkExpanderStyle}}{
 Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 
 \describe{
@@ -217,7 +217,7 @@ Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 }
 
 }
-\item{\code{enum GtkIMPreeditStyle}}{
+\item{\code{GtkIMPreeditStyle}}{
 
 
 \describe{
@@ -230,7 +230,7 @@ Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 }
 
 }
-\item{\code{enum GtkIMStatusStyle}}{
+\item{\code{GtkIMStatusStyle}}{
 
 
 \describe{
@@ -241,7 +241,7 @@ Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 }
 
 }
-\item{\code{enum GtkJustification}}{
+\item{\code{GtkJustification}}{
 Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
 \code{\link{GtkAlignment}}).
 
@@ -253,8 +253,8 @@ Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
 }
 
 }
-\item{\code{enum GtkMatchType}}{
-\strong{WARNING: \code{GtkMatchType} is deprecated and should not be used in newly-written code.  }
+\item{\code{GtkMatchType}}{
+\strong{WARNING: \code{GtkMatchType} is deprecated and should not be used in newly-written code.}
 
 
 \describe{
@@ -273,7 +273,7 @@ Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
 }
 
 }
-\item{\code{enum GtkMetricType}}{
+\item{\code{GtkMetricType}}{
 Used to indicate which metric is used by a \code{\link{GtkRuler}}.
 
 \describe{
@@ -283,7 +283,7 @@ Used to indicate which metric is used by a \code{\link{GtkRuler}}.
 }
 
 }
-\item{\code{enum GtkMovementStep}}{
+\item{\code{GtkMovementStep}}{
 
 
 \describe{
@@ -310,7 +310,7 @@ Used to indicate which metric is used by a \code{\link{GtkRuler}}.
 }
 
 }
-\item{\code{enum GtkOrientation}}{
+\item{\code{GtkOrientation}}{
 Represents the orientation of widgets which can be switched between horizontal
 and vertical orientation on the fly, like \code{\link{GtkToolbar}}.
 
@@ -320,7 +320,7 @@ and vertical orientation on the fly, like \code{\link{GtkToolbar}}.
 }
 
 }
-\item{\code{enum GtkPackType}}{
+\item{\code{GtkPackType}}{
 Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link{GtkVBox}},
 \code{\link{GtkHBox}}, and \code{\link{GtkButtonBox}}).
 
@@ -330,7 +330,7 @@ Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link
 }
 
 }
-\item{\code{enum GtkPathPriorityType}}{
+\item{\code{GtkPathPriorityType}}{
 
 
 \describe{
@@ -349,7 +349,7 @@ Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link
 }
 
 }
-\item{\code{enum GtkPathType}}{
+\item{\code{GtkPathType}}{
 
 
 \describe{
@@ -362,7 +362,7 @@ Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link
 }
 
 }
-\item{\code{enum GtkPolicyType}}{
+\item{\code{GtkPolicyType}}{
 Determines when a scroll bar will be visible. 
 
 \describe{
@@ -373,7 +373,7 @@ when all of a \code{\link{GtkCList}} can not be seen.}
 }
 
 }
-\item{\code{enum GtkPositionType}}{
+\item{\code{GtkPositionType}}{
 Describes which edge of a widget a certain feature is positioned at, e.g. the
 tabs of a \code{\link{GtkNotebook}}, the handle of a \code{\link{GtkHandleBox}} or the label of a 
 \code{\link{GtkScale}}.
@@ -386,10 +386,8 @@ tabs of a \code{\link{GtkNotebook}}, the handle of a \code{\link{GtkHandleBox}} 
 }
 
 }
-\item{\code{enum GtkPreviewType}}{
-\strong{WARNING: \code{GtkPreviewType} is deprecated and should not be used in newly-written code.  
-An enumeration which describes whether a preview
-contains grayscale or red-green-blue data.}
+\item{\code{GtkPreviewType}}{
+\strong{WARNING: \code{GtkPreviewType} is deprecated and should not be used in newly-written code.}
 An enumeration which describes whether a preview
 contains grayscale or red-green-blue data.
 
@@ -399,7 +397,7 @@ contains grayscale or red-green-blue data.
 }
 
 }
-\item{\code{enum GtkReliefStyle}}{
+\item{\code{GtkReliefStyle}}{
 Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 
 \describe{
@@ -409,7 +407,7 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 }
 
 }
-\item{\code{enum GtkResizeMode}}{
+\item{\code{GtkResizeMode}}{
 
 
 \describe{
@@ -421,7 +419,7 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 }
 
 }
-\item{\code{enum GtkScrollStep}}{
+\item{\code{GtkScrollStep}}{
 
 
 \describe{
@@ -440,7 +438,7 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 }
 
 }
-\item{\code{enum GtkScrollType}}{
+\item{\code{GtkScrollType}}{
 
 
 \describe{
@@ -479,7 +477,7 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 }
 
 }
-\item{\code{enum GtkSelectionMode}}{
+\item{\code{GtkSelectionMode}}{
 Used to control what selections users are allowed to make.
 
 \describe{
@@ -499,7 +497,7 @@ Used to control what selections users are allowed to make.
 }
 
 }
-\item{\code{enum GtkShadowType}}{
+\item{\code{GtkShadowType}}{
 Used to change the appearance of an outline typically provided by a \code{\link{GtkFrame}}.
 
 \describe{
@@ -513,8 +511,8 @@ does}
 }
 
 }
-\item{\code{enum GtkSideType}}{
-\strong{WARNING: \code{GtkSideType} is deprecated and should not be used in newly-written code.  }
+\item{\code{GtkSideType}}{
+\strong{WARNING: \code{GtkSideType} is deprecated and should not be used in newly-written code.}
 
 
 \describe{
@@ -529,7 +527,7 @@ does}
 }
 
 }
-\item{\code{enum GtkStateType}}{
+\item{\code{GtkStateType}}{
 This type indicates the current state of a widget; the state determines how
 the widget is drawn. The \code{\link{GtkStateType}} enumeration is also used to
 identify different colors in a \code{\link{GtkStyle}} for drawing, so states can be
@@ -546,9 +544,8 @@ unresponsive to user actions.}
 }
 
 }
-\item{\code{enum GtkSubmenuDirection}}{
-\strong{WARNING: \code{GtkSubmenuDirection} is deprecated and should not be used in newly-written code.  
-Indicates the direction a sub-menu will appear.}
+\item{\code{GtkSubmenuDirection}}{
+\strong{WARNING: \code{GtkSubmenuDirection} is deprecated and should not be used in newly-written code.}
 Indicates the direction a sub-menu will appear.
 
 \describe{
@@ -558,8 +555,8 @@ Indicates the direction a sub-menu will appear.
 }
 
 }
-\item{\code{enum GtkSubmenuPlacement}}{
-\strong{WARNING: \code{GtkSubmenuPlacement} is deprecated and should not be used in newly-written code.  }
+\item{\code{GtkSubmenuPlacement}}{
+\strong{WARNING: \code{GtkSubmenuPlacement} is deprecated and should not be used in newly-written code.}
 
 
 \describe{
@@ -570,7 +567,7 @@ Indicates the direction a sub-menu will appear.
 }
 
 }
-\item{\code{enum GtkToolbarStyle}}{
+\item{\code{GtkToolbarStyle}}{
 Used to customize the appearance of a \code{\link{GtkToolbar}}. Note that 
 setting the toolbar style overrides the user's preferences
 for the default toolbar style.
@@ -584,7 +581,7 @@ other, rather than vertically stacked}
 }
 
 }
-\item{\code{enum GtkUpdateType}}{
+\item{\code{GtkUpdateType}}{
 
 
 \describe{
@@ -597,7 +594,7 @@ other, rather than vertically stacked}
 }
 
 }
-\item{\code{enum GtkVisibility}}{
+\item{\code{GtkVisibility}}{
 Used by \code{\link{GtkCList}} and \code{\link{GtkCTree}} to indicate whether a row is visible.
 
 \describe{
@@ -607,7 +604,7 @@ Used by \code{\link{GtkCList}} and \code{\link{GtkCTree}} to indicate whether a 
 }
 
 }
-\item{\code{enum GtkWindowPosition}}{
+\item{\code{GtkWindowPosition}}{
 Window placement can be influenced using this enumeration.
 
 \describe{
@@ -620,7 +617,7 @@ parent (see \code{\link{gtkWindowSetTransientFor}}).}
 }
 
 }
-\item{\code{enum GtkWindowType}}{
+\item{\code{GtkWindowType}}{
 A \code{\link{GtkWindow}} can be one of these types. Most things you'd consider a
 "window" should have type \code{GTK_WINDOW_TOPLEVEL}; windows with this type
 are managed by the window manager and have a frame by default (call
@@ -641,7 +638,7 @@ the window borders; use \code{\link{gtkWindowSetDecorated}} for that.
 }
 
 }
-\item{\code{enum GtkSortType}}{
+\item{\code{GtkSortType}}{
 Determines the direction of a sort.
 
 \describe{

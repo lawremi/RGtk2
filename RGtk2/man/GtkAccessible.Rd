@@ -2,7 +2,10 @@
 \name{GtkAccessible}
 \title{GtkAccessible}
 \description{Accessibility support for widgets}
-\section{Methods and Functions}{\link{gtkAccessibleConnectWidgetDestroyed}(object)}
+\section{Methods and Functions}{
+\code{\link{gtkAccessibleConnectWidgetDestroyed}(object)}\cr
+
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{AtkObject}
          +----GtkAccessible}}

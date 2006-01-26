@@ -1,13 +1,13 @@
 \alias{cairo-Error-handling}
-\alias{cairo_status_t}
+\alias{CairoStatus}
 \name{cairo-Error-handling}
 \title{Error handling}
 \description{Decoding cairo's status}
-\section{Methods and Functions}{\link{cairoStatusToString}(status)}
-\section{Enums and Flags}{\describe{\item{\code{enum cairo_status_t}}{
-\code{\link{cairo_status_t}} is used to indicate errors that can occur when
+\section{Methods and Functions}{\code{\link{cairoStatusToString}(status)}\cr}
+\section{Enums and Flags}{\describe{\item{\code{CairoStatus}}{
+\code{\link{CairoStatus}} is used to indicate errors that can occur when
 using Cairo. In some cases it is returned directly by functions.
-but when using \code{\link{cairo_t}}, the last error, if any, is stored in
+but when using \code{\link{Cairo}}, the last error, if any, is stored in
 the context and can be retrieved with \code{\link{cairoStatus}}.  
 
 \describe{
@@ -34,6 +34,6 @@ the context and can be retrieved with \code{\link{cairoStatus}}.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Error-handling.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Error-handling.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

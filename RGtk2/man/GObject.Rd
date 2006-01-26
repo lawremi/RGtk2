@@ -2,10 +2,12 @@
 \title{The GObject system in RGtk2}
 \alias{GObject}
 \alias{gObjectGetPropInfo}
+\alias{names.GObject}
 \alias{gObjectGet}
 \alias{gObjectSet}
 \alias{gObjectGetData}
 \alias{gObjectSetData}
+\alias{gObject}
 \alias{gObjectNew}
 \alias{gObjectGetSignals}
 \alias{[.GObject}
@@ -17,14 +19,16 @@ It provides facilities for object construction, properties, and signals.
 }
 \usage{
 gObjectGet(obj, ...)
-"[.GObject"(obj, name)
+"[.GObject"(obj, value, ...)
 gObjectSet(obj, ...)
-"[<-.GObject"(obj, name, value)
+"[<-.GObject"(obj, propNames, value)
+gObject(type, ...)
 gObjectNew(type, ...)
 gObjectSetData(obj, key, data = NULL) 
 gObjectGetData(obj, key)
 gObjectGetSignals(obj)
 gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
+names.GObject(obj)
 }
 \arguments{
 \item{obj}{an instance of a \code{GObject}}
@@ -32,7 +36,7 @@ gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
 \item{key}{the unique identifier under which the data is stored}
 \item{data}{the data to store with the \code{GObject}}
 \item{...}{named arguments of properties to set or names of properties to retrieve}
-\item{name}{the name of a property to set or get}
+\item{propNames}{the names properties to set or get}
 \item{value}{a value with which to set a proprety}
 \item{parents}{whether to include the parents when retrieving property info}
 \item{collapse}{whether to collapse the properties over the parents}
@@ -81,6 +85,7 @@ transcending the local R object.
 
 \code{GObject}s also offer some introspection capabilities. \code{gObjectGetPropInfo} 
 and \code{gObjectGetSignals} provide a list of supported properties and signals, respectively.
+\code{names.GObject} lists the available properties for an object.
 It is hoped that in the future methods and fields may also be introspected.
 }
 \seealso{

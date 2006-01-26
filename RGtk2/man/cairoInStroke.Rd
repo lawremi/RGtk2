@@ -5,7 +5,7 @@
 }}
 \usage{cairoInStroke(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}] }
+\item{\code{cr}}{[\code{\link{Cairo}}] }
 \item{\code{x}}{[numeric] }
 \item{\code{y}}{[numeric] }
 }

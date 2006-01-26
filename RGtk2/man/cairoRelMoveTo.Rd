@@ -5,7 +5,7 @@
 this call the current point will offset by (\code{x}, \code{y}).}
 \usage{cairoRelMoveTo(cr, dx, dy)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{dx}}{[numeric]  the X offset}
 \item{\code{dy}}{[numeric]  the Y offset}
 }

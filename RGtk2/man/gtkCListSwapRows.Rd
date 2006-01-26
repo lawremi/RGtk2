@@ -3,8 +3,7 @@
 \title{gtkCListSwapRows}
 \description{
 Swaps the two specified rows with each other.
-\strong{WARNING: \code{gtk_clist_swap_rows} is deprecated and should not be used in newly-written code.  
-Swaps the two specified rows with each other.}
+\strong{WARNING: \code{gtk_clist_swap_rows} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSwapRows(object, row1, row2)}
 \arguments{

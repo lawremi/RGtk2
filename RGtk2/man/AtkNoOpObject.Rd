@@ -3,8 +3,10 @@
 \name{AtkNoOpObject}
 \title{AtkNoOpObject}
 \description{An AtkObject which purports to implement all ATK interfaces.}
-\usage{atkNoOpObject(obj)}
-\section{Methods and Functions}{\link{atkNoOpObjectNew}(obj)}
+\section{Methods and Functions}{
+\code{\link{atkNoOpObjectNew}(obj)}\cr
+\code{atkNoOpObject(obj)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{AtkObject}
          +----AtkNoOpObject}}

@@ -3,8 +3,7 @@
 \title{gtkCListSetCellStyle}
 \description{
 Sets the style for the specified cell.
-\strong{WARNING: \code{gtk_clist_set_cell_style} is deprecated and should not be used in newly-written code.  
-Sets the style for the specified cell.}
+\strong{WARNING: \code{gtk_clist_set_cell_style} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetCellStyle(object, row, column, style)}
 \arguments{

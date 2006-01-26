@@ -54,10 +54,10 @@ be \code{NULL}.
 	\code{\link{GtkActionEntry}}
  \code{\link{GtkToggleActionEntry}}
  \code{\link{GtkRadioActionEntry}}
- \code{\link{cairo_path_t}}
- \code{\link{cairo_glyph_t}}
+ \code{\link{CairoPath}}
+ \code{\link{CairoGlyph}}
 
-	\code{\link{cairo_path_data_t}}
+	\code{\link{CairoPathData}}
  \code{\link{AtkTextRectangle}}
  \code{\link{AtkTextRange}}
  \code{\link{GdkSpan}}

@@ -3,7 +3,7 @@
 \title{gtkDragFinish}
 \description{Informs the drag source that the drop is finished, and
 that the data of the drag will no longer be required.}
-\usage{gtkDragFinish(object, success, del, time = GDK_CURRENT_TIME)}
+\usage{gtkDragFinish(object, success, del, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDragContext}}] the drag context.}
 \item{\code{success}}{[logical] a flag indicating whether the drop was successful}

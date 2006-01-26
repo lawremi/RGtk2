@@ -3,8 +3,10 @@
 \name{GtkTearoffMenuItem}
 \title{GtkTearoffMenuItem}
 \description{A menu item used to tear off and reattach its menu}
-\usage{gtkTearoffMenuItem(show = TRUE)}
-\section{Methods and Functions}{\link{gtkTearoffMenuItemNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkTearoffMenuItemNew}(show = TRUE)}\cr
+\code{gtkTearoffMenuItem(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

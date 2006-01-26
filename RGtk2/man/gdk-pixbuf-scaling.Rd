@@ -5,13 +5,13 @@
 \title{Scaling}
 \description{Scaling pixbufs and scaling and compositing pixbufs}
 \section{Methods and Functions}{
-\link{gdkPixbufScaleSimple}(object, dest.width, dest.height, interp.type)
-\link{gdkPixbufScale}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type)
-\link{gdkPixbufCompositeColorSimple}(object, dest.width, dest.height, interp.type, overall.alpha, check.size, color1, color2)
-\link{gdkPixbufComposite}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha)
-\link{gdkPixbufCompositeColor}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha, check.x, check.y, check.size, color1, color2)
-\link{gdkPixbufRotateSimple}(object, angle)
-\link{gdkPixbufFlip}(object, horizontal)
+\code{\link{gdkPixbufScaleSimple}(object, dest.width, dest.height, interp.type)}\cr
+\code{\link{gdkPixbufScale}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type)}\cr
+\code{\link{gdkPixbufCompositeColorSimple}(object, dest.width, dest.height, interp.type, overall.alpha, check.size, color1, color2)}\cr
+\code{\link{gdkPixbufComposite}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha)}\cr
+\code{\link{gdkPixbufCompositeColor}(object, dest, dest.x, dest.y, dest.width, dest.height, offset.x, offset.y, scale.x, scale.y, interp.type, overall.alpha, check.x, check.y, check.size, color1, color2)}\cr
+\code{\link{gdkPixbufRotateSimple}(object, angle)}\cr
+\code{\link{gdkPixbufFlip}(object, horizontal)}\cr
 }
 \section{Detailed Description}{    The \command{gdk-pixbuf} contains functions to scale pixbufs, to scale
     pixbufs and composite against an existing image, and to scale
@@ -58,7 +58,7 @@ expose_cb <- function(widget, event, data)
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkInterpType}}{
+\item{\code{GdkInterpType}}{
     This enumeration describes the different interpolation modes that
     can be used with the scaling functions. \code{GDK.INTERP.NEAREST} is 
     the fastest scaling method, but has horrible quality when 
@@ -94,7 +94,7 @@ image (the filter is designed to be idempotent for 1:1 pixel mapping).}
 }
 
 }
-\item{\code{enum GdkPixbufRotation}}{
+\item{\code{GdkPixbufRotation}}{
 The possible rotations which can be passed to \code{\link{gdkPixbufRotateSimple}}.
 To make them easier to use, their numerical values are the actual degrees.
 

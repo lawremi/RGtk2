@@ -12,7 +12,7 @@ actual colors to the color indices.}
 \item{\code{width}}{[integer] The width of the rectangle to be drawn.}
 \item{\code{height}}{[integer] The height of the rectangle to be drawn.}
 \item{\code{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
-\item{\code{buf}}{[integer] The pixel data, represented as 8-bit color indices.}
+\item{\code{buf}}{[raw] The pixel data, represented as 8-bit color indices.}
 \item{\code{cmap}}{[\code{\link{GdkRgbCmap}}] The \code{\link{GdkRgbCmap}} used to assign colors to the color indices.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -3,65 +3,65 @@
 \name{GtkTextBuffer}
 \title{GtkTextBuffer}
 \description{Stores attributed text for display in a }
-\usage{gtkTextBuffer(table = NULL)}
 \section{Methods and Functions}{
-\link{gtkTextBufferNew}(table = NULL)
-\link{gtkTextBufferGetLineCount}(object)
-\link{gtkTextBufferGetCharCount}(object)
-\link{gtkTextBufferGetTagTable}(object)
-\link{gtkTextBufferInsert}(object, iter, text, len = -1)
-\link{gtkTextBufferInsertAtCursor}(object, text, len = -1)
-\link{gtkTextBufferInsertInteractive}(object, iter, text, default.editable)
-\link{gtkTextBufferInsertInteractiveAtCursor}(object, text, default.editable)
-\link{gtkTextBufferInsertRange}(object, iter, start, end)
-\link{gtkTextBufferInsertRangeInteractive}(object, iter, start, end, default.editable)
-\link{gtkTextBufferInsertWithTags}(object, iter, text, ...)
-\link{gtkTextBufferInsertWithTagsByName}(object, iter, text, ...)
-\link{gtkTextBufferDelete}(object, start, end)
-\link{gtkTextBufferDeleteInteractive}(object, start.iter, end.iter, default.editable)
-\link{gtkTextBufferBackspace}(object, iter, interactive, default.editable)
-\link{gtkTextBufferSetText}(object, text, len = -1)
-\link{gtkTextBufferGetText}(object, start, end, include.hidden.chars = TRUE)
-\link{gtkTextBufferGetSlice}(object, start, end, include.hidden.chars = TRUE)
-\link{gtkTextBufferInsertPixbuf}(object, iter, pixbuf)
-\link{gtkTextBufferInsertChildAnchor}(object, iter, anchor)
-\link{gtkTextBufferCreateChildAnchor}(object, iter)
-\link{gtkTextBufferCreateMark}(object, mark.name = NULL, where, left.gravity = FALSE)
-\link{gtkTextBufferMoveMark}(object, mark, where)
-\link{gtkTextBufferMoveMarkByName}(object, name, where)
-\link{gtkTextBufferDeleteMark}(object, mark)
-\link{gtkTextBufferDeleteMarkByName}(object, name)
-\link{gtkTextBufferGetMark}(object, name)
-\link{gtkTextBufferGetInsert}(object)
-\link{gtkTextBufferGetSelectionBound}(object)
-\link{gtkTextBufferPlaceCursor}(object, where)
-\link{gtkTextBufferSelectRange}(object, ins, bound)
-\link{gtkTextBufferApplyTag}(object, tag, start, end)
-\link{gtkTextBufferRemoveTag}(object, tag, start, end)
-\link{gtkTextBufferApplyTagByName}(object, name, start, end)
-\link{gtkTextBufferRemoveTagByName}(object, name, start, end)
-\link{gtkTextBufferRemoveAllTags}(object, start, end)
-\link{gtkTextBufferCreateTag}(object, tag.name, ...)
-\link{gtkTextBufferGetIterAtLineOffset}(object, line.number, char.offset)
-\link{gtkTextBufferGetIterAtOffset}(object, char.offset)
-\link{gtkTextBufferGetIterAtLine}(object, line.number)
-\link{gtkTextBufferGetIterAtLineIndex}(object, line.number, byte.index)
-\link{gtkTextBufferGetIterAtMark}(object, mark)
-\link{gtkTextBufferGetIterAtChildAnchor}(object, anchor)
-\link{gtkTextBufferGetStartIter}(object)
-\link{gtkTextBufferGetEndIter}(object)
-\link{gtkTextBufferGetBounds}(object)
-\link{gtkTextBufferGetModified}(object)
-\link{gtkTextBufferSetModified}(object, setting)
-\link{gtkTextBufferDeleteSelection}(object, interactive, default.editable)
-\link{gtkTextBufferPasteClipboard}(object, clipboard, override.location = NULL, default.editable)
-\link{gtkTextBufferCopyClipboard}(object, clipboard)
-\link{gtkTextBufferCutClipboard}(object, clipboard, default.editable)
-\link{gtkTextBufferGetSelectionBounds}(object)
-\link{gtkTextBufferBeginUserAction}(object)
-\link{gtkTextBufferEndUserAction}(object)
-\link{gtkTextBufferAddSelectionClipboard}(object, clipboard)
-\link{gtkTextBufferRemoveSelectionClipboard}(object, clipboard)
+\code{\link{gtkTextBufferNew}(table = NULL)}\cr
+\code{\link{gtkTextBufferGetLineCount}(object)}\cr
+\code{\link{gtkTextBufferGetCharCount}(object)}\cr
+\code{\link{gtkTextBufferGetTagTable}(object)}\cr
+\code{\link{gtkTextBufferInsert}(object, iter, text, len = -1)}\cr
+\code{\link{gtkTextBufferInsertAtCursor}(object, text, len = -1)}\cr
+\code{\link{gtkTextBufferInsertInteractive}(object, iter, text, default.editable)}\cr
+\code{\link{gtkTextBufferInsertInteractiveAtCursor}(object, text, default.editable)}\cr
+\code{\link{gtkTextBufferInsertRange}(object, iter, start, end)}\cr
+\code{\link{gtkTextBufferInsertRangeInteractive}(object, iter, start, end, default.editable)}\cr
+\code{\link{gtkTextBufferInsertWithTags}(object, iter, text, ...)}\cr
+\code{\link{gtkTextBufferInsertWithTagsByName}(object, iter, text, ...)}\cr
+\code{\link{gtkTextBufferDelete}(object, start, end)}\cr
+\code{\link{gtkTextBufferDeleteInteractive}(object, start.iter, end.iter, default.editable)}\cr
+\code{\link{gtkTextBufferBackspace}(object, iter, interactive, default.editable)}\cr
+\code{\link{gtkTextBufferSetText}(object, text, len = -1)}\cr
+\code{\link{gtkTextBufferGetText}(object, start, end, include.hidden.chars = TRUE)}\cr
+\code{\link{gtkTextBufferGetSlice}(object, start, end, include.hidden.chars = TRUE)}\cr
+\code{\link{gtkTextBufferInsertPixbuf}(object, iter, pixbuf)}\cr
+\code{\link{gtkTextBufferInsertChildAnchor}(object, iter, anchor)}\cr
+\code{\link{gtkTextBufferCreateChildAnchor}(object, iter)}\cr
+\code{\link{gtkTextBufferCreateMark}(object, mark.name = NULL, where, left.gravity = FALSE)}\cr
+\code{\link{gtkTextBufferMoveMark}(object, mark, where)}\cr
+\code{\link{gtkTextBufferMoveMarkByName}(object, name, where)}\cr
+\code{\link{gtkTextBufferDeleteMark}(object, mark)}\cr
+\code{\link{gtkTextBufferDeleteMarkByName}(object, name)}\cr
+\code{\link{gtkTextBufferGetMark}(object, name)}\cr
+\code{\link{gtkTextBufferGetInsert}(object)}\cr
+\code{\link{gtkTextBufferGetSelectionBound}(object)}\cr
+\code{\link{gtkTextBufferPlaceCursor}(object, where)}\cr
+\code{\link{gtkTextBufferSelectRange}(object, ins, bound)}\cr
+\code{\link{gtkTextBufferApplyTag}(object, tag, start, end)}\cr
+\code{\link{gtkTextBufferRemoveTag}(object, tag, start, end)}\cr
+\code{\link{gtkTextBufferApplyTagByName}(object, name, start, end)}\cr
+\code{\link{gtkTextBufferRemoveTagByName}(object, name, start, end)}\cr
+\code{\link{gtkTextBufferRemoveAllTags}(object, start, end)}\cr
+\code{\link{gtkTextBufferCreateTag}(object, tag.name, ...)}\cr
+\code{\link{gtkTextBufferGetIterAtLineOffset}(object, line.number, char.offset)}\cr
+\code{\link{gtkTextBufferGetIterAtOffset}(object, char.offset)}\cr
+\code{\link{gtkTextBufferGetIterAtLine}(object, line.number)}\cr
+\code{\link{gtkTextBufferGetIterAtLineIndex}(object, line.number, byte.index)}\cr
+\code{\link{gtkTextBufferGetIterAtMark}(object, mark)}\cr
+\code{\link{gtkTextBufferGetIterAtChildAnchor}(object, anchor)}\cr
+\code{\link{gtkTextBufferGetStartIter}(object)}\cr
+\code{\link{gtkTextBufferGetEndIter}(object)}\cr
+\code{\link{gtkTextBufferGetBounds}(object)}\cr
+\code{\link{gtkTextBufferGetModified}(object)}\cr
+\code{\link{gtkTextBufferSetModified}(object, setting)}\cr
+\code{\link{gtkTextBufferDeleteSelection}(object, interactive, default.editable)}\cr
+\code{\link{gtkTextBufferPasteClipboard}(object, clipboard, override.location = NULL, default.editable)}\cr
+\code{\link{gtkTextBufferCopyClipboard}(object, clipboard)}\cr
+\code{\link{gtkTextBufferCutClipboard}(object, clipboard, default.editable)}\cr
+\code{\link{gtkTextBufferGetSelectionBounds}(object)}\cr
+\code{\link{gtkTextBufferBeginUserAction}(object)}\cr
+\code{\link{gtkTextBufferEndUserAction}(object)}\cr
+\code{\link{gtkTextBufferAddSelectionClipboard}(object, clipboard)}\cr
+\code{\link{gtkTextBufferRemoveSelectionClipboard}(object, clipboard)}\cr
+\code{gtkTextBuffer(table = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTextBuffer}}

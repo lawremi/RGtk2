@@ -3,9 +3,9 @@
 \title{AtkStreamableContent}
 \description{The ATK interface which provides access to streamable content.}
 \section{Methods and Functions}{
-\link{atkStreamableContentGetNMimeTypes}(object)
-\link{atkStreamableContentGetMimeType}(object, i)
-\link{atkStreamableContentGetStream}(object, mime.type)
+\code{\link{atkStreamableContentGetNMimeTypes}(object)}\cr
+\code{\link{atkStreamableContentGetMimeType}(object, i)}\cr
+\code{\link{atkStreamableContentGetStream}(object, mime.type)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkStreamableContent}}

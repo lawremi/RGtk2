@@ -3,10 +3,11 @@
 \title{gtkUIManagerAddUiFromFile}
 \description{Parses a file containing a UI definition and 
 merges it with the current contents of \code{self}.}
-\usage{gtkUIManagerAddUiFromFile(object, filename)}
+\usage{gtkUIManagerAddUiFromFile(object, filename, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}} object}
 \item{\code{filename}}{[character]  the name of the file to parse }
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.4}
 \value{

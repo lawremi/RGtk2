@@ -3,8 +3,7 @@
 \title{gdkColorAlloc}
 \description{
 Allocates a single color from a colormap.
-\strong{WARNING: \code{gdk_color_alloc} is deprecated and should not be used in newly-written code. Use \code{\link{gdkColormapAllocColor}} instead.  
-Allocates a single color from a colormap.  }
+\strong{WARNING: \code{gdk_color_alloc} is deprecated and should not be used in newly-written code. Use \code{\link{gdkColormapAllocColor}} instead.}
 }
 \usage{gdkColorAlloc(object, color)}
 \arguments{

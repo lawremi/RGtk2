@@ -3,10 +3,10 @@
 \name{GtkFileChooserDialog}
 \title{GtkFileChooserDialog}
 \description{A file chooser dialog, suitable for "File/Open" or "File/Save" commands}
-\usage{gtkFileChooserDialog(title = NULL, parent = NULL, action, ..., backend, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFileChooserDialogNew}(title = NULL, parent = NULL, action, ..., show = TRUE)
-\link{gtkFileChooserDialogNewWithBackend}(title = NULL, parent = NULL, action, backend, ..., show = TRUE)
+\code{\link{gtkFileChooserDialogNew}(title = NULL, parent = NULL, action, ..., show = TRUE)}\cr
+\code{\link{gtkFileChooserDialogNewWithBackend}(title = NULL, parent = NULL, action, backend, ..., show = TRUE)}\cr
+\code{gtkFileChooserDialog(title = NULL, parent = NULL, action, ..., backend, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

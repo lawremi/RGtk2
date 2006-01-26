@@ -2,7 +2,7 @@
 \name{gdkDisplayPointerUngrab}
 \title{gdkDisplayPointerUngrab}
 \description{Release any pointer grab.}
-\usage{gdkDisplayPointerUngrab(object, time. = GDK_CURRENT_TIME)}
+\usage{gdkDisplayPointerUngrab(object, time. = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}.}
 \item{\code{time.}}{[numeric]  a timestap (e.g. GDK_CURRENT_TIME).}

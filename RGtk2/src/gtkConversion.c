@@ -50,7 +50,8 @@ USER_OBJECT_
 asRGtkStockItem(GtkStockItem *item)
 {
     USER_OBJECT_ s_item;
-
+	char *names[] = { "stock.id", "label", "modifier", "keyval", "translation.domain", NULL };
+	
     PROTECT(s_item = NEW_LIST(5));
 
     SET_VECTOR_ELT(s_item, 0, asRString(item->stock_id));
@@ -59,7 +60,7 @@ asRGtkStockItem(GtkStockItem *item)
     SET_VECTOR_ELT(s_item, 3, asRInteger(item->keyval));
     SET_VECTOR_ELT(s_item, 4, asRString(item->translation_domain));
 
-	char *names[] = { "stock.id", "label", "modifier", "keyval", "translation.domain", NULL };
+	
 	SET_NAMES(s_item, asRStringArray(names));
 	
     UNPROTECT(1);
@@ -123,7 +124,7 @@ R_gtk_object_destroyed(GtkObject *val, USER_OBJECT_ s_val)
 
 void R_gtk_object_finalizer(USER_OBJECT_ extptr) {
 	void *ptr = getPtrValue(extptr);
-    //Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));
+    /*Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));*/
     if (ptr) {
 		g_signal_handlers_disconnect_by_func(ptr, R_gtk_object_destroyed, extptr);
 		g_object_unref(ptr);

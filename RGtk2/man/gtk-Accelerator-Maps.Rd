@@ -5,20 +5,21 @@
 \title{Accelerator Maps}
 \description{Loadable keyboard accelerator specifications}
 \section{Methods and Functions}{
-\link{gtkAccelMapAddEntry}(accel.path, accel.key, accel.mods)
-\link{gtkAccelMapLookupEntry}(accel.path)
-\link{gtkAccelMapChangeEntry}(accel.path, accel.key, accel.mods, replace)
-\link{gtkAccelMapLoad}(file.name)
-\link{gtkAccelMapSave}(file.name)
-\link{gtkAccelMapForeach}(data = NULL, foreach.func)
-\link{gtkAccelMapLoadFd}(fd)
-\link{gtkAccelMapSaveFd}(fd)
-\link{gtkAccelMapLoadScanner}(scanner)
-\link{gtkAccelMapAddFilter}(filter.pattern)
-\link{gtkAccelMapForeachUnfiltered}(data = NULL, foreach.func)
-\link{gtkAccelMapGet}()
-\link{gtkAccelMapLockPath}(accel.path)
-\link{gtkAccelMapUnlockPath}(accel.path)
+\code{\link{gtkAccelMapAddEntry}(accel.path, accel.key, accel.mods)}\cr
+\code{\link{gtkAccelMapLookupEntry}(accel.path)}\cr
+\code{\link{gtkAccelMapChangeEntry}(accel.path, accel.key, accel.mods, replace)}\cr
+\code{\link{gtkAccelMapLoad}(file.name)}\cr
+\code{\link{gtkAccelMapSave}(file.name)}\cr
+\code{\link{gtkAccelMapForeach}(data = NULL, foreach.func)}\cr
+\code{\link{gtkAccelMapLoadFd}(fd)}\cr
+\code{\link{gtkAccelMapSaveFd}(fd)}\cr
+\code{\link{gtkAccelMapLoadScanner}(scanner)}\cr
+\code{\link{gtkAccelMapAddFilter}(filter.pattern)}\cr
+\code{\link{gtkAccelMapForeachUnfiltered}(data = NULL, foreach.func)}\cr
+\code{\link{gtkAccelMapGet}()}\cr
+\code{\link{gtkAccelMapLockPath}(accel.path)}\cr
+\code{\link{gtkAccelMapUnlockPath}(accel.path)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkAccelMap}}

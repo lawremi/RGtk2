@@ -4,9 +4,7 @@
 \description{
 Obtains the menu item which was constructed from the first 
 \code{\link{GtkItemFactoryEntry}} with the given \code{action}.
-\strong{WARNING: \code{gtk_item_factory_get_item_by_action} is deprecated and should not be used in newly-written code.  
-Obtains the menu item which was constructed from the first 
-\code{\link{GtkItemFactoryEntry}} with the given \code{action}.  }
+\strong{WARNING: \code{gtk_item_factory_get_item_by_action} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoryGetItemByAction(object, action)}
 \arguments{

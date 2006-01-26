@@ -4,12 +4,12 @@
 \title{GtkTreeSortable}
 \description{The interface for sortable models used by GtkTreeView}
 \section{Methods and Functions}{
-\link{gtkTreeSortableSortColumnChanged}(object)
-\link{gtkTreeSortableGetSortColumnId}(object)
-\link{gtkTreeSortableSetSortColumnId}(object, sort.column.id, order)
-\link{gtkTreeSortableSetSortFunc}(object, sort.column.id, sort.func, user.data = NULL)
-\link{gtkTreeSortableSetDefaultSortFunc}(object, sort.func, user.data = NULL)
-\link{gtkTreeSortableHasDefaultSortFunc}(object)
+\code{\link{gtkTreeSortableSortColumnChanged}(object)}\cr
+\code{\link{gtkTreeSortableGetSortColumnId}(object)}\cr
+\code{\link{gtkTreeSortableSetSortColumnId}(object, sort.column.id, order)}\cr
+\code{\link{gtkTreeSortableSetSortFunc}(object, sort.column.id, sort.func, user.data = NULL)}\cr
+\code{\link{gtkTreeSortableSetDefaultSortFunc}(object, sort.func, user.data = NULL)}\cr
+\code{\link{gtkTreeSortableHasDefaultSortFunc}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkTreeSortable}}

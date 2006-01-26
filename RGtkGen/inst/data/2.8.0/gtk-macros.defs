@@ -1,18 +1,18 @@
-(define-function GTK_OBJECT_TYPE
-  (c-name "GTK_OBJECT_TYPE")
-  (return-type "guint")
-  (parameters
-    '("GtkObject*" "object")
-  )
-)
-(define-function GTK_CHECK_TYPE
-  (c-name "GTK_CHECK_TYPE")
-  (return-type "gboolean")
-  (parameters
-    '("GtkObject*" "object")
-    '("guint" "type")
-  )
-)
+;(define-function GTK_OBJECT_TYPE
+;  (c-name "GTK_OBJECT_TYPE")
+;  (return-type "guint")
+;  (parameters
+;    '("GtkObject*" "object")
+;  )
+;)
+;(define-function GTK_CHECK_TYPE
+;  (c-name "GTK_CHECK_TYPE")
+;  (return-type "gboolean")
+;  (parameters
+;    '("GtkObject*" "object")
+;    '("guint" "type")
+;  )
+;)
 (define-function GTK_OBJECT_FLAGS
   (c-name "GTK_OBJECT_FLAGS")
   (return-type "GtkWidgetFlags")
@@ -26,5 +26,34 @@
   (parameters
     '("GtkWidget*" "wid")
 	'("GtkWidgetFlags" "flags")
+  )
+)
+(define-function GTK_WIDGET_UNSET_FLAGS
+  (c-name "GTK_WIDGET_UNSET_FLAGS")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "wid")
+	'("GtkWidgetFlags" "flags")
+  )
+)
+(define-function GTK_WIDGET_IS_SENSITIVE
+  (c-name "GTK_WIDGET_IS_SENSITIVE")
+  (return-type "gboolean")
+  (parameters
+    '("GtkWidget*" "wid")
+  )
+)
+(define-function GTK_WIDGET_STATE
+  (c-name "GTK_WIDGET_STATE")
+  (return-type "GtkStateType")
+  (parameters
+    '("GtkWidget*" "wid")
+  )
+)
+(define-function GTK_WIDGET_SAVED_STATE
+  (c-name "GTK_WIDGET_SAVED_STATE")
+  (return-type "GtkStateType")
+  (parameters
+    '("GtkWidget*" "wid")
   )
 )

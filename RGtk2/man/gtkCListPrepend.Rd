@@ -3,8 +3,7 @@
 \title{gtkCListPrepend}
 \description{
 Adds a row to the CList at the top.
-\strong{WARNING: \code{gtk_clist_prepend} is deprecated and should not be used in newly-written code.  
-Adds a row to the CList at the top.}
+\strong{WARNING: \code{gtk_clist_prepend} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListPrepend(object, text)}
 \arguments{

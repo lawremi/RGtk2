@@ -4,13 +4,13 @@
 \name{GtkMenuBar}
 \title{GtkMenuBar}
 \description{A subclass widget for    which holds    widgets}
-\usage{gtkMenuBar(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkMenuBarNew}(show = TRUE)
-\link{gtkMenuBarSetPackDirection}(object, pack.dir)
-\link{gtkMenuBarGetPackDirection}(object)
-\link{gtkMenuBarSetChildPackDirection}(object, child.pack.dir)
-\link{gtkMenuBarGetChildPackDirection}(object)
+\code{\link{gtkMenuBarNew}(show = TRUE)}\cr
+\code{\link{gtkMenuBarSetPackDirection}(object, pack.dir)}\cr
+\code{\link{gtkMenuBarGetPackDirection}(object)}\cr
+\code{\link{gtkMenuBarSetChildPackDirection}(object, child.pack.dir)}\cr
+\code{\link{gtkMenuBarGetChildPackDirection}(object)}\cr
+\code{gtkMenuBar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -26,7 +26,7 @@ The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields
 
 }}}
 \section{Convenient Construction}{\code{gtkMenuBar} is the equivalent of \code{\link{gtkMenuBarNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkPackDirection}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkPackDirection}}{
 
 
 \describe{

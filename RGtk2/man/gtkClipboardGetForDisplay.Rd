@@ -11,7 +11,7 @@ identified by \code{GDK_SELECTION_PRIMARY}. Cut/copy/paste menu items
 conceptually copy the contents of the \code{GDK_SELECTION_PRIMARY} clipboard
 to the default clipboard, i.e. they copy the selection to what the
 user sees as the clipboard.}
-\usage{gtkClipboardGetForDisplay(display = gdk_display_get_default(), selection = GDK_SELECTION_CLIPBOARD)}
+\usage{gtkClipboardGetForDisplay(display, selection = "GDK_SELECTION_CLIPBOARD")}
 \arguments{
 \item{\code{display}}{[\code{\link{GdkDisplay}}]  the display for which the clipboard is to be retrieved or created}
 \item{\code{selection}}{[\code{\link{GdkAtom}}]  a \code{\link{GdkAtom}} which identifies the clipboard

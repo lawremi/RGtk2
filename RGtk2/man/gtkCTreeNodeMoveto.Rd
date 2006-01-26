@@ -4,9 +4,7 @@
 \description{
 This function makes the given column of the given node visible by
 scrolling.
-\strong{WARNING: \code{gtk_ctree_node_moveto} is deprecated and should not be used in newly-written code.  
-This function makes the given column of the given node visible by
-scrolling.}
+\strong{WARNING: \code{gtk_ctree_node_moveto} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCTreeNodeMoveto(object, node, column, row.align, col.align)}
 \arguments{

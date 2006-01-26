@@ -7,8 +7,11 @@ identifying the type automatically. Useful if you want an error if
 the image isn't the expected mime type, for loading image formats
 that can't be reliably identified by looking at the data, or if
 the user manually forces a specific mime type.}
-\usage{gdkPixbufLoaderNewWithMimeType(mime.type)}
-\arguments{\item{\code{mime.type}}{[char]  the mime type to be loaded }}
+\usage{gdkPixbufLoaderNewWithMimeType(mime.type, .errwarn = TRUE)}
+\arguments{
+\item{\code{mime.type}}{[char]  the mime type to be loaded }
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
+}
 \details{  Since  2.4}
 \value{
 A list containing the following elements:

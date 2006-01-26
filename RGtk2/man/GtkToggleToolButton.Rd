@@ -3,12 +3,12 @@
 \name{GtkToggleToolButton}
 \title{GtkToggleToolButton}
 \description{A GtkToolItem containing a toggle button}
-\usage{gtkToggleToolButton(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkToggleToolButtonNew}(show = TRUE)
-\link{gtkToggleToolButtonNewFromStock}(stock.id)
-\link{gtkToggleToolButtonSetActive}(object, is.active)
-\link{gtkToggleToolButtonGetActive}(object)
+\code{\link{gtkToggleToolButtonNew}(show = TRUE)}\cr
+\code{\link{gtkToggleToolButtonNewFromStock}(stock.id)}\cr
+\code{\link{gtkToggleToolButtonSetActive}(object, is.active)}\cr
+\code{\link{gtkToggleToolButtonGetActive}(object)}\cr
+\code{gtkToggleToolButton(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

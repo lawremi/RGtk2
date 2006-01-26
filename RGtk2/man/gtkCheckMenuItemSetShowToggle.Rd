@@ -5,10 +5,7 @@
 Controls whether the check box is shown at all times.
 Normally the check box is shown only when it is active or while the 
 menu item is selected.
-\strong{WARNING: \code{gtk_check_menu_item_set_show_toggle} is deprecated and should not be used in newly-written code.  
-Controls whether the check box is shown at all times.
-Normally the check box is shown only when it is active or while the 
-menu item is selected.}
+\strong{WARNING: \code{gtk_check_menu_item_set_show_toggle} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCheckMenuItemSetShowToggle(object, always)}
 \arguments{

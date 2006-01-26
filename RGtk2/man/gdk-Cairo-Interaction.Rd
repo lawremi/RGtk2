@@ -3,11 +3,11 @@
 \title{Cairo Interaction}
 \description{Functions to support using Cairo}
 \section{Methods and Functions}{
-\link{gdkCairoCreate}(drawable)
-\link{gdkCairoSetSourceColor}(cr, color)
-\link{gdkCairoSetSourcePixbuf}(cr, pixbuf, pixbuf.x, pixbuf.y)
-\link{gdkCairoRectangle}(cr, rectangle)
-\link{gdkCairoRegion}(cr, region)
+\code{\link{gdkCairoCreate}(drawable)}\cr
+\code{\link{gdkCairoSetSourceColor}(cr, color)}\cr
+\code{\link{gdkCairoSetSourcePixbuf}(cr, pixbuf, pixbuf.x, pixbuf.y)}\cr
+\code{\link{gdkCairoRectangle}(cr, rectangle)}\cr
+\code{\link{gdkCairoRegion}(cr, region)}\cr
 }
 \section{Detailed Description}{Cairo (\url{http://cairographics.org}) is a graphics 
 library that supports vector graphics and image compositing that

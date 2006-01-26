@@ -4,9 +4,7 @@
 \description{
 Causes all column title buttons to become passive.  This is the same
 as calling \code{\link{gtkCListColumnTitlePassive}} for each column.
-\strong{WARNING: \code{gtk_clist_column_titles_passive} is deprecated and should not be used in newly-written code.  
-Causes all column title buttons to become passive.  This is the same
-as calling \code{\link{gtkCListColumnTitlePassive}} for each column.}
+\strong{WARNING: \code{gtk_clist_column_titles_passive} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListColumnTitlesPassive(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}}

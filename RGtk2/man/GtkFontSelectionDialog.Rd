@@ -3,14 +3,14 @@
 \name{GtkFontSelectionDialog}
 \title{GtkFontSelectionDialog}
 \description{A dialog box for selecting fonts}
-\usage{gtkFontSelectionDialog(title = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkFontSelectionDialogNew}(title = NULL, show = TRUE)
-\link{gtkFontSelectionDialogGetFont}(object)
-\link{gtkFontSelectionDialogGetFontName}(object)
-\link{gtkFontSelectionDialogSetFontName}(object, fontname)
-\link{gtkFontSelectionDialogGetPreviewText}(object)
-\link{gtkFontSelectionDialogSetPreviewText}(object, text)
+\code{\link{gtkFontSelectionDialogNew}(title = NULL, show = TRUE)}\cr
+\code{\link{gtkFontSelectionDialogGetFont}(object)}\cr
+\code{\link{gtkFontSelectionDialogGetFontName}(object)}\cr
+\code{\link{gtkFontSelectionDialogSetFontName}(object, fontname)}\cr
+\code{\link{gtkFontSelectionDialogGetPreviewText}(object)}\cr
+\code{\link{gtkFontSelectionDialogSetPreviewText}(object, text)}\cr
+\code{gtkFontSelectionDialog(title = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

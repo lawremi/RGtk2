@@ -9,80 +9,80 @@
 \name{GtkTreeView}
 \title{GtkTreeView}
 \description{A widget for displaying both trees and lists}
-\usage{gtkTreeView(model = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkTreeViewNew}(show = TRUE)
-\link{gtkTreeViewNewWithModel}(model = NULL, show = TRUE)
-\link{gtkTreeViewGetModel}(object)
-\link{gtkTreeViewSetModel}(object, model = NULL)
-\link{gtkTreeViewGetSelection}(object)
-\link{gtkTreeViewGetHadjustment}(object)
-\link{gtkTreeViewSetHadjustment}(object, adjustment)
-\link{gtkTreeViewGetVadjustment}(object)
-\link{gtkTreeViewSetVadjustment}(object, adjustment)
-\link{gtkTreeViewGetHeadersVisible}(object)
-\link{gtkTreeViewSetHeadersVisible}(object, headers.visible)
-\link{gtkTreeViewColumnsAutosize}(object)
-\link{gtkTreeViewSetHeadersClickable}(object, active)
-\link{gtkTreeViewSetRulesHint}(object, setting)
-\link{gtkTreeViewGetRulesHint}(object)
-\link{gtkTreeViewAppendColumn}(object, column)
-\link{gtkTreeViewRemoveColumn}(object, column)
-\link{gtkTreeViewInsertColumn}(object, column, position)
-\link{gtkTreeViewInsertColumnWithAttributes}(object, position, title, cell, ...)
-\link{gtkTreeViewInsertColumnWithDataFunc}(object, position, title, cell, func, data = NULL)
-\link{gtkTreeViewGetColumn}(object, n)
-\link{gtkTreeViewGetColumns}(object)
-\link{gtkTreeViewMoveColumnAfter}(object, column, base.column = NULL)
-\link{gtkTreeViewSetExpanderColumn}(object, column)
-\link{gtkTreeViewGetExpanderColumn}(object)
-\link{gtkTreeViewSetColumnDragFunction}(object, func, user.data = NULL)
-\link{gtkTreeViewScrollToPoint}(object, tree.x, tree.y)
-\link{gtkTreeViewScrollToCell}(object, path, column = NULL, use.align = FALSE, row.align = 0.0, col.align = 0.0)
-\link{gtkTreeViewSetCursor}(object, path, focus.column = NULL, start.editing = FALSE)
-\link{gtkTreeViewSetCursorOnCell}(object, path, focus.column = NULL, focus.cell = NULL, start.editing = FALSE)
-\link{gtkTreeViewGetCursor}(object)
-\link{gtkTreeViewRowActivated}(object, path, column)
-\link{gtkTreeViewExpandAll}(object)
-\link{gtkTreeViewCollapseAll}(object)
-\link{gtkTreeViewExpandToPath}(object, path)
-\link{gtkTreeViewExpandRow}(object, path, open.all)
-\link{gtkTreeViewCollapseRow}(object, path)
-\link{gtkTreeViewMapExpandedRows}(object, func, data = NULL)
-\link{gtkTreeViewRowExpanded}(object, path)
-\link{gtkTreeViewSetReorderable}(object, reorderable)
-\link{gtkTreeViewGetReorderable}(object)
-\link{gtkTreeViewGetPathAtPos}(object, x, y)
-\link{gtkTreeViewGetCellArea}(object, path, column)
-\link{gtkTreeViewGetBackgroundArea}(object, path, column)
-\link{gtkTreeViewGetVisibleRect}(object)
-\link{gtkTreeViewGetVisibleRange}(object)
-\link{gtkTreeViewGetBinWindow}(object)
-\link{gtkTreeViewWidgetToTreeCoords}(object, wx, wy)
-\link{gtkTreeViewTreeToWidgetCoords}(object, tx, ty)
-\link{gtkTreeViewEnableModelDragDest}(object, targets, actions)
-\link{gtkTreeViewEnableModelDragSource}(object, start.button.mask, targets, actions)
-\link{gtkTreeViewUnsetRowsDragSource}(object)
-\link{gtkTreeViewUnsetRowsDragDest}(object)
-\link{gtkTreeViewSetDragDestRow}(object, path, pos)
-\link{gtkTreeViewGetDragDestRow}(object, path, pos)
-\link{gtkTreeViewGetDestRowAtPos}(object, drag.x, drag.y)
-\link{gtkTreeViewCreateRowDragIcon}(object, path)
-\link{gtkTreeViewSetEnableSearch}(object, enable.search)
-\link{gtkTreeViewGetEnableSearch}(object)
-\link{gtkTreeViewGetSearchColumn}(object)
-\link{gtkTreeViewSetSearchColumn}(object, column)
-\link{gtkTreeViewGetSearchEqualFunc}(object)
-\link{gtkTreeViewSetSearchEqualFunc}(object, search.equal.func, search.user.data = NULL)
-\link{gtkTreeViewGetFixedHeightMode}(object)
-\link{gtkTreeViewSetFixedHeightMode}(object, enable)
-\link{gtkTreeViewGetHoverSelection}(object)
-\link{gtkTreeViewSetHoverSelection}(object, hover)
-\link{gtkTreeViewGetHoverExpand}(object)
-\link{gtkTreeViewSetHoverExpand}(object, expand)
-\link{gtkTreeViewSetDestroyCountFunc}(object, func, data = NULL)
-\link{gtkTreeViewGetRowSeparatorFunc}(object)
-\link{gtkTreeViewSetRowSeparatorFunc}(object, func, data = NULL)
+\code{\link{gtkTreeViewNew}(show = TRUE)}\cr
+\code{\link{gtkTreeViewNewWithModel}(model = NULL, show = TRUE)}\cr
+\code{\link{gtkTreeViewGetModel}(object)}\cr
+\code{\link{gtkTreeViewSetModel}(object, model = NULL)}\cr
+\code{\link{gtkTreeViewGetSelection}(object)}\cr
+\code{\link{gtkTreeViewGetHadjustment}(object)}\cr
+\code{\link{gtkTreeViewSetHadjustment}(object, adjustment)}\cr
+\code{\link{gtkTreeViewGetVadjustment}(object)}\cr
+\code{\link{gtkTreeViewSetVadjustment}(object, adjustment)}\cr
+\code{\link{gtkTreeViewGetHeadersVisible}(object)}\cr
+\code{\link{gtkTreeViewSetHeadersVisible}(object, headers.visible)}\cr
+\code{\link{gtkTreeViewColumnsAutosize}(object)}\cr
+\code{\link{gtkTreeViewSetHeadersClickable}(object, active)}\cr
+\code{\link{gtkTreeViewSetRulesHint}(object, setting)}\cr
+\code{\link{gtkTreeViewGetRulesHint}(object)}\cr
+\code{\link{gtkTreeViewAppendColumn}(object, column)}\cr
+\code{\link{gtkTreeViewRemoveColumn}(object, column)}\cr
+\code{\link{gtkTreeViewInsertColumn}(object, column, position)}\cr
+\code{\link{gtkTreeViewInsertColumnWithAttributes}(object, position, title, cell, ...)}\cr
+\code{\link{gtkTreeViewInsertColumnWithDataFunc}(object, position, title, cell, func, data = NULL)}\cr
+\code{\link{gtkTreeViewGetColumn}(object, n)}\cr
+\code{\link{gtkTreeViewGetColumns}(object)}\cr
+\code{\link{gtkTreeViewMoveColumnAfter}(object, column, base.column = NULL)}\cr
+\code{\link{gtkTreeViewSetExpanderColumn}(object, column)}\cr
+\code{\link{gtkTreeViewGetExpanderColumn}(object)}\cr
+\code{\link{gtkTreeViewSetColumnDragFunction}(object, func, user.data = NULL)}\cr
+\code{\link{gtkTreeViewScrollToPoint}(object, tree.x, tree.y)}\cr
+\code{\link{gtkTreeViewScrollToCell}(object, path, column = NULL, use.align = FALSE, row.align = 0, col.align = 0)}\cr
+\code{\link{gtkTreeViewSetCursor}(object, path, focus.column = NULL, start.editing = FALSE)}\cr
+\code{\link{gtkTreeViewSetCursorOnCell}(object, path, focus.column = NULL, focus.cell = NULL, start.editing = FALSE)}\cr
+\code{\link{gtkTreeViewGetCursor}(object)}\cr
+\code{\link{gtkTreeViewRowActivated}(object, path, column)}\cr
+\code{\link{gtkTreeViewExpandAll}(object)}\cr
+\code{\link{gtkTreeViewCollapseAll}(object)}\cr
+\code{\link{gtkTreeViewExpandToPath}(object, path)}\cr
+\code{\link{gtkTreeViewExpandRow}(object, path, open.all)}\cr
+\code{\link{gtkTreeViewCollapseRow}(object, path)}\cr
+\code{\link{gtkTreeViewMapExpandedRows}(object, func, data = NULL)}\cr
+\code{\link{gtkTreeViewRowExpanded}(object, path)}\cr
+\code{\link{gtkTreeViewSetReorderable}(object, reorderable)}\cr
+\code{\link{gtkTreeViewGetReorderable}(object)}\cr
+\code{\link{gtkTreeViewGetPathAtPos}(object, x, y)}\cr
+\code{\link{gtkTreeViewGetCellArea}(object, path, column)}\cr
+\code{\link{gtkTreeViewGetBackgroundArea}(object, path, column)}\cr
+\code{\link{gtkTreeViewGetVisibleRect}(object)}\cr
+\code{\link{gtkTreeViewGetVisibleRange}(object)}\cr
+\code{\link{gtkTreeViewGetBinWindow}(object)}\cr
+\code{\link{gtkTreeViewWidgetToTreeCoords}(object, wx, wy)}\cr
+\code{\link{gtkTreeViewTreeToWidgetCoords}(object, tx, ty)}\cr
+\code{\link{gtkTreeViewEnableModelDragDest}(object, targets, actions)}\cr
+\code{\link{gtkTreeViewEnableModelDragSource}(object, start.button.mask, targets, actions)}\cr
+\code{\link{gtkTreeViewUnsetRowsDragSource}(object)}\cr
+\code{\link{gtkTreeViewUnsetRowsDragDest}(object)}\cr
+\code{\link{gtkTreeViewSetDragDestRow}(object, path, pos)}\cr
+\code{\link{gtkTreeViewGetDragDestRow}(object, path, pos)}\cr
+\code{\link{gtkTreeViewGetDestRowAtPos}(object, drag.x, drag.y)}\cr
+\code{\link{gtkTreeViewCreateRowDragIcon}(object, path)}\cr
+\code{\link{gtkTreeViewSetEnableSearch}(object, enable.search)}\cr
+\code{\link{gtkTreeViewGetEnableSearch}(object)}\cr
+\code{\link{gtkTreeViewGetSearchColumn}(object)}\cr
+\code{\link{gtkTreeViewSetSearchColumn}(object, column)}\cr
+\code{\link{gtkTreeViewGetSearchEqualFunc}(object)}\cr
+\code{\link{gtkTreeViewSetSearchEqualFunc}(object, search.equal.func, search.user.data = NULL)}\cr
+\code{\link{gtkTreeViewGetFixedHeightMode}(object)}\cr
+\code{\link{gtkTreeViewSetFixedHeightMode}(object, enable)}\cr
+\code{\link{gtkTreeViewGetHoverSelection}(object)}\cr
+\code{\link{gtkTreeViewSetHoverSelection}(object, hover)}\cr
+\code{\link{gtkTreeViewGetHoverExpand}(object)}\cr
+\code{\link{gtkTreeViewSetHoverExpand}(object, expand)}\cr
+\code{\link{gtkTreeViewSetDestroyCountFunc}(object, func, data = NULL)}\cr
+\code{\link{gtkTreeViewGetRowSeparatorFunc}(object)}\cr
+\code{\link{gtkTreeViewSetRowSeparatorFunc}(object, func, data = NULL)}\cr
+\code{gtkTreeView(model = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -99,7 +99,7 @@ they work together.}
 \section{Structures}{\describe{\item{\code{GtkTreeView}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkTreeView} is the result of collapsing the constructors of \code{GtkTreeView} (\code{\link{gtkTreeViewNew}}, \code{\link{gtkTreeViewNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkTreeViewDropPosition}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkTreeViewDropPosition}}{
 An enum for determining where a dropped row goes.
 
 \describe{

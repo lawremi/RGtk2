@@ -5,10 +5,7 @@
 Unselects the child number \code{item} of the \code{list}. Nothing happens if
 \code{item} is out of bounds. The signal GtkList::unselect-child will be
 emitted.
-\strong{WARNING: \code{gtk_list_unselect_item} is deprecated and should not be used in newly-written code.  
-Unselects the child number \code{item} of the \code{list}. Nothing happens if
-\code{item} is out of bounds. The signal GtkList::unselect-child will be
-emitted.}
+\strong{WARNING: \code{gtk_list_unselect_item} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListUnselectItem(object, item)}
 \arguments{

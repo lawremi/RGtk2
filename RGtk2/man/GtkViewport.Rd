@@ -3,15 +3,15 @@
 \name{GtkViewport}
 \title{GtkViewport}
 \description{An adapter which makes widgets scrollable}
-\usage{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkViewportNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
-\link{gtkViewportGetHadjustment}(object)
-\link{gtkViewportGetVadjustment}(object)
-\link{gtkViewportSetHadjustment}(object, adjustment = NULL)
-\link{gtkViewportSetVadjustment}(object, adjustment = NULL)
-\link{gtkViewportSetShadowType}(object, type)
-\link{gtkViewportGetShadowType}(object)
+\code{\link{gtkViewportNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)}\cr
+\code{\link{gtkViewportGetHadjustment}(object)}\cr
+\code{\link{gtkViewportGetVadjustment}(object)}\cr
+\code{\link{gtkViewportSetHadjustment}(object, adjustment = NULL)}\cr
+\code{\link{gtkViewportSetVadjustment}(object, adjustment = NULL)}\cr
+\code{\link{gtkViewportSetShadowType}(object, type)}\cr
+\code{\link{gtkViewportGetShadowType}(object)}\cr
+\code{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

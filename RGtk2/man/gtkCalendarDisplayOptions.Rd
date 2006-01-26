@@ -3,8 +3,7 @@
 \title{gtkCalendarDisplayOptions}
 \description{
 Sets display options (whether to display the heading and the month headings).
-\strong{WARNING: \code{gtk_calendar_display_options} is deprecated and should not be used in newly-written code.   
-Sets display options (whether to display the heading and the month headings).  }
+\strong{WARNING: \code{gtk_calendar_display_options} is deprecated and should not be used in newly-written code. }
 }
 \usage{gtkCalendarDisplayOptions(object, flags)}
 \arguments{

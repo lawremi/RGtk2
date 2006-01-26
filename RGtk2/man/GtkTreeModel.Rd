@@ -8,57 +8,57 @@
 \title{GtkTreeModel}
 \description{The tree interface used by }
 \section{Methods and Functions}{
-\link{gtkTreePathNew}()
-\link{gtkTreePathNewFromString}(path)
-\link{gtkTreePathNewFromIndices}(...)
-\link{gtkTreePathToString}(object)
-\link{gtkTreePathNewFirst}()
-\link{gtkTreePathAppendIndex}(object, index)
-\link{gtkTreePathPrependIndex}(object, index)
-\link{gtkTreePathGetDepth}(object)
-\link{gtkTreePathGetIndices}(object)
-\link{gtkTreePathCopy}(object)
-\link{gtkTreePathCompare}(object, b)
-\link{gtkTreePathNext}(object)
-\link{gtkTreePathPrev}(object)
-\link{gtkTreePathUp}(object)
-\link{gtkTreePathDown}(object)
-\link{gtkTreePathIsAncestor}(object, descendant)
-\link{gtkTreePathIsDescendant}(object, ancestor)
-\link{gtkTreeRowReferenceNew}(model, path)
-\link{gtkTreeRowReferenceNewProxy}(proxy, model, path)
-\link{gtkTreeRowReferenceGetModel}(object)
-\link{gtkTreeRowReferenceGetPath}(object)
-\link{gtkTreeRowReferenceValid}(object)
-\link{gtkTreeRowReferenceCopy}(object)
-\link{gtkTreeRowReferenceInserted}(proxy, path)
-\link{gtkTreeRowReferenceDeleted}(proxy, path)
-\link{gtkTreeRowReferenceReordered}(proxy, path, iter, new.order)
-\link{gtkTreeIterCopy}(object)
-\link{gtkTreeModelGetFlags}(object)
-\link{gtkTreeModelGetNColumns}(object)
-\link{gtkTreeModelGetColumnType}(object, index)
-\link{gtkTreeModelGetIter}(object, path)
-\link{gtkTreeModelGetIterFromString}(object, path.string)
-\link{gtkTreeModelGetIterFirst}(object)
-\link{gtkTreeModelGetPath}(object, iter)
-\link{gtkTreeModelGetValue}(object, iter, column)
-\link{gtkTreeModelIterNext}(object, iter)
-\link{gtkTreeModelIterChildren}(object, parent = NULL)
-\link{gtkTreeModelIterHasChild}(object, iter)
-\link{gtkTreeModelIterNChildren}(object, iter = NULL)
-\link{gtkTreeModelIterNthChild}(object, parent = NULL, n)
-\link{gtkTreeModelIterParent}(object, child)
-\link{gtkTreeModelGetStringFromIter}(object, iter)
-\link{gtkTreeModelRefNode}(object, iter)
-\link{gtkTreeModelUnrefNode}(object, iter)
-\link{gtkTreeModelGet}(object, iter, ...)
-\link{gtkTreeModelForeach}(object, func, user.data = NULL)
-\link{gtkTreeModelRowChanged}(object, path, iter)
-\link{gtkTreeModelRowInserted}(object, path, iter)
-\link{gtkTreeModelRowHasChildToggled}(object, path, iter)
-\link{gtkTreeModelRowDeleted}(object, path)
-\link{gtkTreeModelRowsReordered}(object, path, iter, new.order)
+\code{\link{gtkTreePathNew}()}\cr
+\code{\link{gtkTreePathNewFromString}(path)}\cr
+\code{\link{gtkTreePathNewFromIndices}(...)}\cr
+\code{\link{gtkTreePathToString}(object)}\cr
+\code{\link{gtkTreePathNewFirst}()}\cr
+\code{\link{gtkTreePathAppendIndex}(object, index)}\cr
+\code{\link{gtkTreePathPrependIndex}(object, index)}\cr
+\code{\link{gtkTreePathGetDepth}(object)}\cr
+\code{\link{gtkTreePathGetIndices}(object)}\cr
+\code{\link{gtkTreePathCopy}(object)}\cr
+\code{\link{gtkTreePathCompare}(object, b)}\cr
+\code{\link{gtkTreePathNext}(object)}\cr
+\code{\link{gtkTreePathPrev}(object)}\cr
+\code{\link{gtkTreePathUp}(object)}\cr
+\code{\link{gtkTreePathDown}(object)}\cr
+\code{\link{gtkTreePathIsAncestor}(object, descendant)}\cr
+\code{\link{gtkTreePathIsDescendant}(object, ancestor)}\cr
+\code{\link{gtkTreeRowReferenceNew}(model, path)}\cr
+\code{\link{gtkTreeRowReferenceNewProxy}(proxy, model, path)}\cr
+\code{\link{gtkTreeRowReferenceGetModel}(object)}\cr
+\code{\link{gtkTreeRowReferenceGetPath}(object)}\cr
+\code{\link{gtkTreeRowReferenceValid}(object)}\cr
+\code{\link{gtkTreeRowReferenceCopy}(object)}\cr
+\code{\link{gtkTreeRowReferenceInserted}(proxy, path)}\cr
+\code{\link{gtkTreeRowReferenceDeleted}(proxy, path)}\cr
+\code{\link{gtkTreeRowReferenceReordered}(proxy, path, iter, new.order)}\cr
+\code{\link{gtkTreeIterCopy}(object)}\cr
+\code{\link{gtkTreeModelGetFlags}(object)}\cr
+\code{\link{gtkTreeModelGetNColumns}(object)}\cr
+\code{\link{gtkTreeModelGetColumnType}(object, index)}\cr
+\code{\link{gtkTreeModelGetIter}(object, path)}\cr
+\code{\link{gtkTreeModelGetIterFromString}(object, path.string)}\cr
+\code{\link{gtkTreeModelGetIterFirst}(object)}\cr
+\code{\link{gtkTreeModelGetPath}(object, iter)}\cr
+\code{\link{gtkTreeModelGetValue}(object, iter, column)}\cr
+\code{\link{gtkTreeModelIterNext}(object, iter)}\cr
+\code{\link{gtkTreeModelIterChildren}(object, parent = NULL)}\cr
+\code{\link{gtkTreeModelIterHasChild}(object, iter)}\cr
+\code{\link{gtkTreeModelIterNChildren}(object, iter = NULL)}\cr
+\code{\link{gtkTreeModelIterNthChild}(object, parent = NULL, n)}\cr
+\code{\link{gtkTreeModelIterParent}(object, child)}\cr
+\code{\link{gtkTreeModelGetStringFromIter}(object, iter)}\cr
+\code{\link{gtkTreeModelRefNode}(object, iter)}\cr
+\code{\link{gtkTreeModelUnrefNode}(object, iter)}\cr
+\code{\link{gtkTreeModelGet}(object, iter, ...)}\cr
+\code{\link{gtkTreeModelForeach}(object, func, user.data = NULL)}\cr
+\code{\link{gtkTreeModelRowChanged}(object, path, iter)}\cr
+\code{\link{gtkTreeModelRowInserted}(object, path, iter)}\cr
+\code{\link{gtkTreeModelRowHasChildToggled}(object, path, iter)}\cr
+\code{\link{gtkTreeModelRowDeleted}(object, path)}\cr
+\code{\link{gtkTreeModelRowsReordered}(object, path, iter, new.order)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkTreeModel}}
@@ -213,7 +213,7 @@ data in the three \code{user_data} members.
 \item{\code{GtkTreeRowReference}}{\emph{undocumented
 }}
 }}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkTreeModelFlags}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkTreeModelFlags}}{
 These flags indicate various properties of a \code{\link{GtkTreeModel}}.  They are
 returned by \code{\link{gtkTreeModelGetFlags}}, and must be static for the
 lifetime of the object.  A more complete description of

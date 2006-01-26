@@ -7,8 +7,8 @@ areas of \code{surface} are painted with the source, transparent
 areas are not painted.)}
 \usage{cairoMaskSurface(cr, surface, surface.x, surface.y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
-\item{\code{surface}}{[\code{\link{cairo_surface_t}}]  a \code{\link{cairo_surface_t}}}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
 \item{\code{surface.x}}{[numeric]  X coordinate at which to place the origin of \code{surface}}
 \item{\code{surface.y}}{[numeric]  Y coordinate at which to place the origin of \code{surface}}
 }

@@ -11,16 +11,17 @@
 \title{Input Devices}
 \description{Functions for handling extended input devices}
 \section{Methods and Functions}{
-\link{gdkDevicesList}()
-\link{gdkDeviceSetSource}(object, source)
-\link{gdkDeviceSetMode}(object, mode)
-\link{gdkDeviceSetKey}(object, index, keyval, modifiers)
-\link{gdkDeviceSetAxisUse}(object, index, use)
-\link{gdkDeviceGetCorePointer}()
-\link{gdkDeviceGetState}(object, window)
-\link{gdkDeviceGetHistory}(object, window, start, stop)
-\link{gdkDeviceGetAxis}(object, axes, use)
-\link{gdkInputSetExtensionEvents}(object, mask, mode)
+\code{\link{gdkDevicesList}()}\cr
+\code{\link{gdkDeviceSetSource}(object, source)}\cr
+\code{\link{gdkDeviceSetMode}(object, mode)}\cr
+\code{\link{gdkDeviceSetKey}(object, index, keyval, modifiers)}\cr
+\code{\link{gdkDeviceSetAxisUse}(object, index, use)}\cr
+\code{\link{gdkDeviceGetCorePointer}()}\cr
+\code{\link{gdkDeviceGetState}(object, window)}\cr
+\code{\link{gdkDeviceGetHistory}(object, window, start, stop)}\cr
+\code{\link{gdkDeviceGetAxis}(object, axes, use)}\cr
+\code{\link{gdkInputSetExtensionEvents}(object, mask, mode)}\cr
+
 }
 \section{Detailed Description}{In addition to the normal keyboard and mouse input devices, GTK+ also
 contains support for \dfn{extended input devices}. In
@@ -148,7 +149,7 @@ motion history. It contains the following fields:
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkInputSource}}{
+\item{\code{GdkInputSource}}{
 An enumeration describing the type of an input device
 in general terms.
 
@@ -162,7 +163,7 @@ in general terms.
 }
 
 }
-\item{\code{enum GdkInputMode}}{
+\item{\code{GdkInputMode}}{
 An enumeration that describes the mode of an input device.
 
 \describe{
@@ -176,7 +177,7 @@ An enumeration that describes the mode of an input device.
 }
 
 }
-\item{\code{enum GdkAxisUse}}{
+\item{\code{GdkAxisUse}}{
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
 types that GTK+ understands.
@@ -193,7 +194,7 @@ types that GTK+ understands.
 }
 
 }
-\item{\code{enum GdkExtensionMode}}{
+\item{\code{GdkExtensionMode}}{
 An enumeration used to specify which extension events
 are desired for a particular widget.
 

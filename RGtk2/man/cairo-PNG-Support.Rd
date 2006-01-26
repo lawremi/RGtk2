@@ -3,11 +3,11 @@
 \title{PNG Support}
 \description{Reading and writing PNG images}
 \section{Methods and Functions}{
-\link{cairoImageSurfaceCreateFromPng}(filename)
-\link{cairoImageSurfaceCreateFromPngStream}(con)
-\link{cairoSurfaceWriteToPng}(surface, filename)
-\link{cairoSurfaceWriteToPngStream}(surface, con)
+\code{\link{cairoImageSurfaceCreateFromPng}(filename)}\cr
+\code{\link{cairoImageSurfaceCreateFromPngStream}(con)}\cr
+\code{\link{cairoSurfaceWriteToPng}(surface, filename)}\cr
+\code{\link{cairoSurfaceWriteToPngStream}(surface, con)}\cr
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-PNG-Support.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-PNG-Support.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

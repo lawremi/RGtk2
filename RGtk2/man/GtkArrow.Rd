@@ -3,10 +3,10 @@
 \name{GtkArrow}
 \title{GtkArrow}
 \description{Displays an arrow}
-\usage{gtkArrow(arrow.type = NULL, shadow.type = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkArrowNew}(arrow.type = NULL, shadow.type = NULL, show = TRUE)
-\link{gtkArrowSet}(object, arrow.type, shadow.type)
+\code{\link{gtkArrowNew}(arrow.type = NULL, shadow.type = NULL, show = TRUE)}\cr
+\code{\link{gtkArrowSet}(object, arrow.type, shadow.type)}\cr
+\code{gtkArrow(arrow.type = NULL, shadow.type = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

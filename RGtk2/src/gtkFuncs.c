@@ -9,39 +9,6 @@
 #include "RGtk2.h"
 
 USER_OBJECT_
-S_GTK_OBJECT_TYPE(USER_OBJECT_ s_object)
-{
-	GtkObject* object = GTK_OBJECT(getPtrValue(s_object));
-
-	guint ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = GTK_OBJECT_TYPE(object);
-
-	_result = asRNumeric(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_GTK_CHECK_TYPE(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
-{
-	GtkObject* object = GTK_OBJECT(getPtrValue(s_object));
-	guint type = (guint)asCNumeric(s_type);
-
-	gboolean ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = GTK_CHECK_TYPE(object, type);
-
-	_result = asRLogical(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_GTK_OBJECT_FLAGS(USER_OBJECT_ s_object)
 {
 	GtkObject* object = GTK_OBJECT(getPtrValue(s_object));
@@ -67,6 +34,69 @@ S_GTK_WIDGET_SET_FLAGS(USER_OBJECT_ s_wid, USER_OBJECT_ s_flags)
 
 	GTK_WIDGET_SET_FLAGS(wid, flags);
 
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_GTK_WIDGET_UNSET_FLAGS(USER_OBJECT_ s_wid, USER_OBJECT_ s_flags)
+{
+	GtkWidget* wid = GTK_WIDGET(getPtrValue(s_wid));
+	GtkWidgetFlags flags = (GtkWidgetFlags)asCFlag(s_flags, GTK_TYPE_WIDGET_FLAGS);
+
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	GTK_WIDGET_UNSET_FLAGS(wid, flags);
+
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_GTK_WIDGET_IS_SENSITIVE(USER_OBJECT_ s_wid)
+{
+	GtkWidget* wid = GTK_WIDGET(getPtrValue(s_wid));
+
+	gboolean ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = GTK_WIDGET_IS_SENSITIVE(wid);
+
+	_result = asRLogical(ans);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_GTK_WIDGET_STATE(USER_OBJECT_ s_wid)
+{
+	GtkWidget* wid = GTK_WIDGET(getPtrValue(s_wid));
+
+	GtkStateType ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = GTK_WIDGET_STATE(wid);
+
+	_result = asREnum(ans, GTK_TYPE_STATE_TYPE);
+
+	return(_result);
+}
+ 
+
+USER_OBJECT_
+S_GTK_WIDGET_SAVED_STATE(USER_OBJECT_ s_wid)
+{
+	GtkWidget* wid = GTK_WIDGET(getPtrValue(s_wid));
+
+	GtkStateType ans;
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+	ans = GTK_WIDGET_SAVED_STATE(wid);
+
+	_result = asREnum(ans, GTK_TYPE_STATE_TYPE);
 
 	return(_result);
 }
@@ -916,22 +946,6 @@ S_gtk_accel_label_new(USER_OBJECT_ s_string)
 	ans = propertyConstructor(GTK_TYPE_ACCEL_LABEL, prop_names, args, 1);
 
 	_result = toRPointerWithSink(ans, "GtkWidget");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_accel_label_accelerator_width(USER_OBJECT_ s_object)
-{
-	GtkAccelLabel* object = GTK_ACCEL_LABEL(getPtrValue(s_object));
-
-	guint ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gtk_accel_label_accelerator_width(object);
-
-	_result = asRNumeric(ans);
 
 	return(_result);
 }
@@ -18649,26 +18663,6 @@ S_gtk_idle_remove_by_data(USER_OBJECT_ s_data)
  
 
 USER_OBJECT_
-S_gtk_input_add_full(USER_OBJECT_ s_source, USER_OBJECT_ s_condition, USER_OBJECT_ s_function, USER_OBJECT_ s_data)
-{
-	GdkInputFunction function = (GdkInputFunction)S_GdkInputFunction;
-	GClosure* data = R_createGClosure(s_function, s_data);
-	gint source = (gint)asCInteger(s_source);
-	GdkInputCondition condition = (GdkInputCondition)asCFlag(s_condition, GDK_TYPE_INPUT_CONDITION);
-	GtkDestroyNotify destroy = (GtkDestroyNotify)g_closure_sink;
-
-	guint ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gtk_input_add_full(source, condition, function, NULL, data, destroy);
-
-	_result = asRNumeric(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_input_remove(USER_OBJECT_ s_input_handler_id)
 {
 	guint input_handler_id = (guint)asCNumeric(s_input_handler_id);
@@ -20857,23 +20851,6 @@ S_gtk_paned_get_child2(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gtk_paned_compute_position(USER_OBJECT_ s_object, USER_OBJECT_ s_allocation, USER_OBJECT_ s_child1_req, USER_OBJECT_ s_child2_req)
-{
-	GtkPaned* object = GTK_PANED(getPtrValue(s_object));
-	gint allocation = (gint)asCInteger(s_allocation);
-	gint child1_req = (gint)asCInteger(s_child1_req);
-	gint child2_req = (gint)asCInteger(s_child2_req);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_paned_compute_position(object, allocation, child1_req, child2_req);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_pixmap_get_type()
 {
 
@@ -21135,7 +21112,7 @@ USER_OBJECT_
 S_gtk_preview_draw_row(USER_OBJECT_ s_object, USER_OBJECT_ s_data, USER_OBJECT_ s_y, USER_OBJECT_ s_w)
 {
 	GtkPreview* object = GTK_PREVIEW(getPtrValue(s_object));
-	guchar* data = (guchar*)asCArray(s_data, guchar, asCInteger);
+	guchar* data = (guchar*)asCArray(s_data, guchar, asCRaw);
 	gint x = (gint)GET_LENGTH(s_data);
 	gint y = (gint)asCInteger(s_y);
 	gint w = (gint)asCInteger(s_w);
@@ -22997,34 +22974,6 @@ S_gtk_ruler_set_range(USER_OBJECT_ s_object, USER_OBJECT_ s_lower, USER_OBJECT_ 
  
 
 USER_OBJECT_
-S_gtk_ruler_draw_ticks(USER_OBJECT_ s_object)
-{
-	GtkRuler* object = GTK_RULER(getPtrValue(s_object));
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_ruler_draw_ticks(object);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_ruler_draw_pos(USER_OBJECT_ s_object)
-{
-	GtkRuler* object = GTK_RULER(getPtrValue(s_object));
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_ruler_draw_pos(object);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_ruler_get_metric(USER_OBJECT_ s_object)
 {
 	GtkRuler* object = GTK_RULER(getPtrValue(s_object));
@@ -23678,7 +23627,7 @@ S_gtk_selection_data_set(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT
 	GtkSelectionData* object = (GtkSelectionData*)getPtrValue(s_object);
 	GdkAtom type = asCGdkAtom(s_type);
 	gint format = (gint)GET_LENGTH(s_data);
-	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCInteger);
+	const guchar* data = (const guchar*)asCArray(s_data, guchar, asCRaw);
 	gint length = (gint)GET_LENGTH(s_data);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -23718,7 +23667,7 @@ S_gtk_selection_data_get_text(USER_OBJECT_ s_object)
 
 	ans = gtk_selection_data_get_text(object);
 
-	_result = asRIntegerArray(ans);
+	_result = asRRawArray(ans);
 	CLEANUP(g_free, ans);
 
 	return(_result);

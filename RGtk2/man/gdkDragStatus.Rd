@@ -2,7 +2,7 @@
 \name{gdkDragStatus}
 \title{gdkDragStatus}
 \description{Selects one of the actions offered by the drag source.}
-\usage{gdkDragStatus(object, action, time = GDK_CURRENT_TIME)}
+\usage{gdkDragStatus(object, action, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDragContext}}]  a \code{\link{GdkDragContext}}.}
 \item{\code{action}}{[\code{\link{GdkDragAction}}]  the selected action which will be taken when a drop happens, 

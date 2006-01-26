@@ -3,19 +3,19 @@
 \title{GtkEditable}
 \description{Interface for text-editing widgets}
 \section{Methods and Functions}{
-\link{gtkEditableSelectRegion}(object, start, end)
-\link{gtkEditableGetSelectionBounds}(object)
-\link{gtkEditableInsertText}(object, new.text, position = 0)
-\link{gtkEditableDeleteText}(object, start.pos, end.pos)
-\link{gtkEditableGetChars}(object, start.pos, end.pos)
-\link{gtkEditableCutClipboard}(object)
-\link{gtkEditableCopyClipboard}(object)
-\link{gtkEditablePasteClipboard}(object)
-\link{gtkEditableDeleteSelection}(object)
-\link{gtkEditableSetPosition}(object, position)
-\link{gtkEditableGetPosition}(object)
-\link{gtkEditableSetEditable}(object, is.editable)
-\link{gtkEditableGetEditable}(object)
+\code{\link{gtkEditableSelectRegion}(object, start, end)}\cr
+\code{\link{gtkEditableGetSelectionBounds}(object)}\cr
+\code{\link{gtkEditableInsertText}(object, new.text, position = 0)}\cr
+\code{\link{gtkEditableDeleteText}(object, start.pos, end.pos)}\cr
+\code{\link{gtkEditableGetChars}(object, start.pos, end.pos)}\cr
+\code{\link{gtkEditableCutClipboard}(object)}\cr
+\code{\link{gtkEditableCopyClipboard}(object)}\cr
+\code{\link{gtkEditablePasteClipboard}(object)}\cr
+\code{\link{gtkEditableDeleteSelection}(object)}\cr
+\code{\link{gtkEditableSetPosition}(object, position)}\cr
+\code{\link{gtkEditableGetPosition}(object)}\cr
+\code{\link{gtkEditableSetEditable}(object, is.editable)}\cr
+\code{\link{gtkEditableGetEditable}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkEditable}}

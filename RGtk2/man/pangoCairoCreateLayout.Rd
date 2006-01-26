@@ -8,7 +8,7 @@ used for text measurement with functions like
 \code{\link{pangoCairoShowLayout}}. If you change the transformation
 or target surface for \code{cr}, you need to call \code{\link{pangoCairoUpdateLayout}}}
 \usage{pangoCairoCreateLayout(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}]  a Cairo context}}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}}
 \details{This function is the most convenient way to use Cairo with Pango,
 however it is slightly inefficient since it creates a separate
 \code{\link{PangoContext}} object for each layout. This might matter in an

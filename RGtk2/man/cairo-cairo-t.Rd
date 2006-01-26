@@ -1,76 +1,79 @@
 \alias{cairo-cairo-t}
-\alias{cairo_t}
-\alias{cairo_antialias_t}
-\alias{cairo_fill_rule_t}
-\alias{cairo_line_cap_t}
-\alias{cairo_line_join_t}
-\alias{cairo_operator_t}
+\alias{Cairo}
+\alias{cairo}
+\alias{CairoAntialias}
+\alias{CairoFillRule}
+\alias{CairoLineCap}
+\alias{CairoLineJoin}
+\alias{CairoOperator}
 \name{cairo-cairo-t}
 \title{cairo_t}
 \description{The cairo drawing context}
 \section{Methods and Functions}{
-\link{cairoCreate}(target)
-\link{cairoSave}(cr)
-\link{cairoRestore}(cr)
-\link{cairoStatus}(cr)
-\link{cairoGetTarget}(cr)
-\link{cairoSetSourceRgb}(cr, red, green, blue)
-\link{cairoSetSourceRgba}(cr, red, green, blue, alpha)
-\link{cairoSetSource}(cr, source)
-\link{cairoSetSourceSurface}(cr, surface, x, y)
-\link{cairoGetSource}(cr)
-\link{cairoSetAntialias}(cr, antialias)
-\link{cairoGetAntialias}(cr)
-\link{cairoSetDash}(cr, dashes, offset)
-\link{cairoSetFillRule}(cr, fill.rule)
-\link{cairoGetFillRule}(cr)
-\link{cairoSetLineCap}(cr, line.cap)
-\link{cairoGetLineCap}(cr)
-\link{cairoSetLineJoin}(cr, line.join)
-\link{cairoGetLineJoin}(cr)
-\link{cairoSetLineWidth}(cr, width)
-\link{cairoGetLineWidth}(cr)
-\link{cairoSetMiterLimit}(cr, limit)
-\link{cairoGetMiterLimit}(cr)
-\link{cairoSetOperator}(cr, op)
-\link{cairoGetOperator}(cr)
-\link{cairoSetTolerance}(cr, tolerance)
-\link{cairoGetTolerance}(cr)
-\link{cairoClip}(cr)
-\link{cairoClipPreserve}(cr)
-\link{cairoResetClip}(cr)
-\link{cairoFill}(cr)
-\link{cairoFillPreserve}(cr)
-\link{cairoFillExtents}(cr)
-\link{cairoInFill}(cr, x, y)
-\link{cairoMask}(cr, pattern)
-\link{cairoMaskSurface}(cr, surface, surface.x, surface.y)
-\link{cairoPaint}(cr)
-\link{cairoPaintWithAlpha}(cr, alpha)
-\link{cairoStroke}(cr)
-\link{cairoStrokePreserve}(cr)
-\link{cairoStrokeExtents}(cr)
-\link{cairoInStroke}(cr, x, y)
-\link{cairoCopyPage}(cr)
-\link{cairoShowPage}(cr)
+\code{\link{cairoCreate}(target)}\cr
+\code{\link{cairoSave}(cr)}\cr
+\code{\link{cairoRestore}(cr)}\cr
+\code{\link{cairoStatus}(cr)}\cr
+\code{\link{cairoGetTarget}(cr)}\cr
+\code{\link{cairoSetSourceRgb}(cr, red, green, blue)}\cr
+\code{\link{cairoSetSourceRgba}(cr, red, green, blue, alpha)}\cr
+\code{\link{cairoSetSource}(cr, source)}\cr
+\code{\link{cairoSetSourceSurface}(cr, surface, x, y)}\cr
+\code{\link{cairoGetSource}(cr)}\cr
+\code{\link{cairoSetAntialias}(cr, antialias)}\cr
+\code{\link{cairoGetAntialias}(cr)}\cr
+\code{\link{cairoSetDash}(cr, dashes, offset)}\cr
+\code{\link{cairoSetFillRule}(cr, fill.rule)}\cr
+\code{\link{cairoGetFillRule}(cr)}\cr
+\code{\link{cairoSetLineCap}(cr, line.cap)}\cr
+\code{\link{cairoGetLineCap}(cr)}\cr
+\code{\link{cairoSetLineJoin}(cr, line.join)}\cr
+\code{\link{cairoGetLineJoin}(cr)}\cr
+\code{\link{cairoSetLineWidth}(cr, width)}\cr
+\code{\link{cairoGetLineWidth}(cr)}\cr
+\code{\link{cairoSetMiterLimit}(cr, limit)}\cr
+\code{\link{cairoGetMiterLimit}(cr)}\cr
+\code{\link{cairoSetOperator}(cr, op)}\cr
+\code{\link{cairoGetOperator}(cr)}\cr
+\code{\link{cairoSetTolerance}(cr, tolerance)}\cr
+\code{\link{cairoGetTolerance}(cr)}\cr
+\code{\link{cairoClip}(cr)}\cr
+\code{\link{cairoClipPreserve}(cr)}\cr
+\code{\link{cairoResetClip}(cr)}\cr
+\code{\link{cairoFill}(cr)}\cr
+\code{\link{cairoFillPreserve}(cr)}\cr
+\code{\link{cairoFillExtents}(cr)}\cr
+\code{\link{cairoInFill}(cr, x, y)}\cr
+\code{\link{cairoMask}(cr, pattern)}\cr
+\code{\link{cairoMaskSurface}(cr, surface, surface.x, surface.y)}\cr
+\code{\link{cairoPaint}(cr)}\cr
+\code{\link{cairoPaintWithAlpha}(cr, alpha)}\cr
+\code{\link{cairoStroke}(cr)}\cr
+\code{\link{cairoStrokePreserve}(cr)}\cr
+\code{\link{cairoStrokeExtents}(cr)}\cr
+\code{\link{cairoInStroke}(cr, x, y)}\cr
+\code{\link{cairoCopyPage}(cr)}\cr
+\code{\link{cairoShowPage}(cr)}\cr
+\code{cairo(target)}
 }
-\section{Detailed Description}{    \code{\link{cairo_t}} is the main object used when drawing with cairo. To
-    draw with cairo, you create a \code{\link{cairo_t}}, set the target surface,
-    and drawing options for the \code{\link{cairo_t}}, create shapes with
+\section{Detailed Description}{    \code{\link{Cairo}} is the main object used when drawing with cairo. To
+    draw with cairo, you create a \code{\link{Cairo}}, set the target surface,
+    and drawing options for the \code{\link{Cairo}}, create shapes with
     functions like \code{\link{cairoMoveTo}} and \code{\link{cairoLineTo}}, and then
     draw shapes with \code{\link{cairoStroke}} or \code{\link{cairoFill}}.
     
-    \code{\link{cairo_t}}'s can be pushed to a stack via \code{\link{cairoSave}}.
+    \code{\link{Cairo}}'s can be pushed to a stack via \code{\link{cairoSave}}.
     They may then safely be changed, without loosing the current state.
     Use \code{\link{cairoRestore}} to restore to the saved state.
   }
-\section{Structures}{\describe{\item{\code{cairo_t}}{
-A \code{\link{cairo_t}} contains the current state of the rendering device,
+\section{Structures}{\describe{\item{\code{Cairo}}{
+A \code{\link{Cairo}} contains the current state of the rendering device,
 including coordinates of yet to be drawn shapes.  
 
 }}}
+\section{Convenient Construction}{\code{cairo} is the equivalent of \code{\link{cairoCreate}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum cairo_antialias_t}}{
+\item{\code{CairoAntialias}}{
 Specifies the type of antialiasing to do when rendering text or shapes.  
 
 \describe{
@@ -85,8 +88,8 @@ Specifies the type of antialiasing to do when rendering text or shapes.
 }
 
 }
-\item{\code{enum cairo_fill_rule_t}}{
-\code{\link{cairo_fill_rule_t}} is used to select how paths are filled. For both
+\item{\code{CairoFillRule}}{
+\code{\link{CairoFillRule}} is used to select how paths are filled. For both
 fill rules, whether or not a point is included in the fill is
 determined by taking a ray from that point to infinity and looking
 at intersections with the path. The ray can be in any direction,
@@ -108,7 +111,7 @@ filled.}
 }
 
 }
-\item{\code{enum cairo_line_cap_t}}{
+\item{\code{CairoLineCap}}{
 enumeration for style of line-endings  
 
 \describe{
@@ -118,7 +121,7 @@ enumeration for style of line-endings
 }
 
 }
-\item{\code{enum cairo_line_join_t}}{
+\item{\code{CairoLineJoin}}{
 
 
 \describe{
@@ -131,7 +134,7 @@ enumeration for style of line-endings
 }
 
 }
-\item{\code{enum cairo_operator_t}}{
+\item{\code{CairoOperator}}{
 
 
 \describe{
@@ -167,6 +170,6 @@ enumeration for style of line-endings
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-cairo-t.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-cairo-t.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,25 +4,25 @@
 \name{GtkUIManager}
 \title{GtkUIManager}
 \description{Constructing menus and toolbars from an XML description}
-\usage{gtkUIManager()}
 \section{Methods and Functions}{
-\link{gtkUIManagerNew}()
-\link{gtkUIManagerSetAddTearoffs}(object, add.tearoffs)
-\link{gtkUIManagerGetAddTearoffs}(object)
-\link{gtkUIManagerInsertActionGroup}(object, action.group, pos)
-\link{gtkUIManagerRemoveActionGroup}(object, action.group)
-\link{gtkUIManagerGetActionGroups}(object)
-\link{gtkUIManagerGetAccelGroup}(object)
-\link{gtkUIManagerGetWidget}(object, path)
-\link{gtkUIManagerGetToplevels}(object, types)
-\link{gtkUIManagerGetAction}(object, path)
-\link{gtkUIManagerAddUiFromString}(object, buffer, length = -1)
-\link{gtkUIManagerAddUiFromFile}(object, filename)
-\link{gtkUIManagerNewMergeId}(object)
-\link{gtkUIManagerAddUi}(object, merge.id, path, name, action = NULL, type, top)
-\link{gtkUIManagerRemoveUi}(object, merge.id)
-\link{gtkUIManagerGetUi}(object)
-\link{gtkUIManagerEnsureUpdate}(object)
+\code{\link{gtkUIManagerNew}()}\cr
+\code{\link{gtkUIManagerSetAddTearoffs}(object, add.tearoffs)}\cr
+\code{\link{gtkUIManagerGetAddTearoffs}(object)}\cr
+\code{\link{gtkUIManagerInsertActionGroup}(object, action.group, pos)}\cr
+\code{\link{gtkUIManagerRemoveActionGroup}(object, action.group)}\cr
+\code{\link{gtkUIManagerGetActionGroups}(object)}\cr
+\code{\link{gtkUIManagerGetAccelGroup}(object)}\cr
+\code{\link{gtkUIManagerGetWidget}(object, path)}\cr
+\code{\link{gtkUIManagerGetToplevels}(object, types)}\cr
+\code{\link{gtkUIManagerGetAction}(object, path)}\cr
+\code{\link{gtkUIManagerAddUiFromString}(object, buffer, length = -1, .errwarn = TRUE)}\cr
+\code{\link{gtkUIManagerAddUiFromFile}(object, filename, .errwarn = TRUE)}\cr
+\code{\link{gtkUIManagerNewMergeId}(object)}\cr
+\code{\link{gtkUIManagerAddUi}(object, merge.id, path, name, action = NULL, type, top)}\cr
+\code{\link{gtkUIManagerRemoveUi}(object, merge.id)}\cr
+\code{\link{gtkUIManagerGetUi}(object)}\cr
+\code{\link{gtkUIManagerEnsureUpdate}(object)}\cr
+\code{gtkUIManager()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkUIManager}}
@@ -163,7 +163,7 @@ members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkUIManager} is the equivalent of \code{\link{gtkUIManagerNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkUIManagerItemType}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkUIManagerItemType}}{
 These enumeration values are used by \code{\link{gtkUIManagerAddUi}} to determine
 what UI element to create.
 

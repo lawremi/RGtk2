@@ -3,32 +3,33 @@
 \title{GdkScreen}
 \description{Object representing a physical screen}
 \section{Methods and Functions}{
-\link{gdkScreenGetDefault}()
-\link{gdkScreenGetDefaultColormap}(object)
-\link{gdkScreenSetDefaultColormap}(object, colormap)
-\link{gdkScreenGetSystemColormap}(object)
-\link{gdkScreenGetSystemVisual}(object)
-\link{gdkScreenGetRgbColormap}(object)
-\link{gdkScreenGetRgbVisual}(object)
-\link{gdkScreenGetRgbaColormap}(object)
-\link{gdkScreenGetRgbaVisual}(object)
-\link{gdkScreenGetRootWindow}(object)
-\link{gdkScreenGetDisplay}(object)
-\link{gdkScreenGetNumber}(object)
-\link{gdkScreenGetWidth}(object)
-\link{gdkScreenGetHeight}(object)
-\link{gdkScreenGetWidthMm}(object)
-\link{gdkScreenGetHeightMm}(object)
-\link{gdkScreenListVisuals}(object)
-\link{gdkScreenGetToplevelWindows}(object)
-\link{gdkScreenMakeDisplayName}(object)
-\link{gdkScreenGetNMonitors}(object)
-\link{gdkScreenGetMonitorGeometry}(object, monitor.num)
-\link{gdkScreenGetMonitorAtPoint}(object, x, y)
-\link{gdkScreenGetMonitorAtWindow}(object, window)
-\link{gdkScreenBroadcastClientMessage}(object, event)
-\link{gdkScreenGetSetting}(object, name)
-\link{gdkSpawnCommandLineOnScreen}(screen, command.line)
+\code{\link{gdkScreenGetDefault}()}\cr
+\code{\link{gdkScreenGetDefaultColormap}(object)}\cr
+\code{\link{gdkScreenSetDefaultColormap}(object, colormap)}\cr
+\code{\link{gdkScreenGetSystemColormap}(object)}\cr
+\code{\link{gdkScreenGetSystemVisual}(object)}\cr
+\code{\link{gdkScreenGetRgbColormap}(object)}\cr
+\code{\link{gdkScreenGetRgbVisual}(object)}\cr
+\code{\link{gdkScreenGetRgbaColormap}(object)}\cr
+\code{\link{gdkScreenGetRgbaVisual}(object)}\cr
+\code{\link{gdkScreenGetRootWindow}(object)}\cr
+\code{\link{gdkScreenGetDisplay}(object)}\cr
+\code{\link{gdkScreenGetNumber}(object)}\cr
+\code{\link{gdkScreenGetWidth}(object)}\cr
+\code{\link{gdkScreenGetHeight}(object)}\cr
+\code{\link{gdkScreenGetWidthMm}(object)}\cr
+\code{\link{gdkScreenGetHeightMm}(object)}\cr
+\code{\link{gdkScreenListVisuals}(object)}\cr
+\code{\link{gdkScreenGetToplevelWindows}(object)}\cr
+\code{\link{gdkScreenMakeDisplayName}(object)}\cr
+\code{\link{gdkScreenGetNMonitors}(object)}\cr
+\code{\link{gdkScreenGetMonitorGeometry}(object, monitor.num)}\cr
+\code{\link{gdkScreenGetMonitorAtPoint}(object, x, y)}\cr
+\code{\link{gdkScreenGetMonitorAtWindow}(object, window)}\cr
+\code{\link{gdkScreenBroadcastClientMessage}(object, event)}\cr
+\code{\link{gdkScreenGetSetting}(object, name)}\cr
+\code{\link{gdkSpawnCommandLineOnScreen}(screen, command.line, .errwarn = TRUE)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GdkScreen}}

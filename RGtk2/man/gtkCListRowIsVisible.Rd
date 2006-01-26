@@ -3,8 +3,7 @@
 \title{gtkCListRowIsVisible}
 \description{
 Checks how the specified row is visible.
-\strong{WARNING: \code{gtk_clist_row_is_visible} is deprecated and should not be used in newly-written code.  
-Checks how the specified row is visible.}
+\strong{WARNING: \code{gtk_clist_row_is_visible} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListRowIsVisible(object, row)}
 \arguments{

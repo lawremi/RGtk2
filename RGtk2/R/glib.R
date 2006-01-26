@@ -9,7 +9,7 @@ function(interval, f, data = NULL)
  if(!is.function(f))
    stop("Timeout handlers must be function objects")
 
- .RGtkCall("R_addGTimeoutHandler", as.integer(interval),  f, data, useData)
+ .RGtkCall("R_addGTimeoutHandler", as.integer(interval),  f, data, useData, PACKAGE = "RGtk2")
 }
 
 
@@ -17,7 +17,7 @@ gSourceRemove <-
 function(id)
 {
   checkPtrType(id, "GTimeoutId")
-  .Call("R_removeGSource", as.integer(id))
+  .Call("R_removeGSource", as.integer(id), PACKAGE = "RGtk2")
 }
 
 
@@ -30,7 +30,7 @@ function(f, data = NULL)
   stop("Idle functions must be functions!")
  }
 
-  .RGtkCall("R_addGIdleHandler", f, data, useData)
+  .RGtkCall("R_addGIdleHandler", f, data, useData, PACKAGE = "RGtk2")
 }
 
 # transparent coercion
@@ -39,7 +39,7 @@ as.GQuark <-
 function(x)
 {
 	if (is.character(x))
-		x <- .Call("R_gQuarkFromString", x)
+		x <- .Call("R_gQuarkFromString", x, PACKAGE = "RGtk2")
 	else {
 		x <- as.numeric(x)
 		class(x) <- "GQuark"
@@ -79,10 +79,10 @@ function(x)
 
 # Provide the G_FILE_ERROR domain
 G_FILE_ERROR <- gFileErrorQuark <-
-function(.flush = TRUE, .depwarn = TRUE)
+function()
 {
 	
-	w <- .RGtkCall("S_g_file_error_quark", PACKAGE = "RGtk2", .flush = .flush)
+	w <- .RGtkCall("S_g_file_error_quark", PACKAGE = "RGtk2")
 
 	return(w)
 }

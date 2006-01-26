@@ -3,9 +3,10 @@
 \title{GtkItem}
 \description{Abstract base class for GtkMenuItem, GtkListItem and GtkTreeItem}
 \section{Methods and Functions}{
-\link{gtkItemSelect}(object)
-\link{gtkItemDeselect}(object)
-\link{gtkItemToggle}(object)
+\code{\link{gtkItemSelect}(object)}\cr
+\code{\link{gtkItemDeselect}(object)}\cr
+\code{\link{gtkItemToggle}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

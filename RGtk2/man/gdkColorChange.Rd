@@ -7,12 +7,7 @@ been allocated. If \code{colormap} is not a private
 colormap, then the color must have been allocated
 using \code{\link{gdkColormapAllocColors}} with the 
 \code{writeable} set to \code{TRUE}.
-\strong{WARNING: \code{gdk_color_change} is deprecated and should not be used in newly-written code.  
-Changes the value of a color that has already
-been allocated. If \code{colormap} is not a private
-colormap, then the color must have been allocated
-using \code{\link{gdkColormapAllocColors}} with the 
-\code{writeable} set to \code{TRUE}.  }
+\strong{WARNING: \code{gdk_color_change} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkColorChange(object, color)}
 \arguments{

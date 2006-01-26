@@ -8,81 +8,81 @@
 \name{GtkCList}
 \title{GtkCList}
 \description{A multi-columned scrolling list widget}
-\usage{gtkCList(columns = 1, titles, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCListNew}(columns = 1, show = TRUE)
-\link{gtkCListNewWithTitles}(columns = 1, titles, show = TRUE)
-\link{gtkCListSetShadowType}(object, type)
-\link{gtkCListSetSelectionMode}(object, mode)
-\link{gtkCListFreeze}(object)
-\link{gtkCListThaw}(object)
-\link{gtkCListColumnTitlesShow}(object)
-\link{gtkCListColumnTitlesHide}(object)
-\link{gtkCListColumnTitleActive}(object, column)
-\link{gtkCListColumnTitlePassive}(object, column)
-\link{gtkCListColumnTitlesActive}(object)
-\link{gtkCListColumnTitlesPassive}(object)
-\link{gtkCListSetColumnTitle}(object, column, title)
-\link{gtkCListSetColumnWidget}(object, column, widget)
-\link{gtkCListSetColumnJustification}(object, column, justification)
-\link{gtkCListSetColumnVisibility}(object, column, visible)
-\link{gtkCListSetColumnResizeable}(object, column, resizeable)
-\link{gtkCListSetColumnAutoResize}(object, column, auto.resize)
-\link{gtkCListOptimalColumnWidth}(object, column)
-\link{gtkCListSetColumnWidth}(object, column, width)
-\link{gtkCListSetColumnMinWidth}(object, column, min.width)
-\link{gtkCListSetColumnMaxWidth}(object, column, max.width)
-\link{gtkCListSetRowHeight}(object, height)
-\link{gtkCListMoveto}(object, row, column, row.align, col.align)
-\link{gtkCListRowIsVisible}(object, row)
-\link{gtkCListGetCellType}(object, row, column)
-\link{gtkCListSetText}(w, row, cols, values, zeroBased = TRUE)
-\link{gtkCListGetText}(w, row, cols, zeroBased = TRUE)
-\link{gtkCListSetPixmap}(object, row, column, pixmap, mask = NULL)
-\link{gtkCListGetPixmap}(object, row, column)
-\link{gtkCListSetPixtext}(object, row, column, text, spacing, pixmap, mask)
-\link{gtkCListGetPixtext}(object, row, column)
-\link{gtkCListSetForeground}(object, row, color)
-\link{gtkCListSetBackground}(object, row, color)
-\link{gtkCListSetCellStyle}(object, row, column, style)
-\link{gtkCListGetCellStyle}(object, row, column)
-\link{gtkCListSetRowStyle}(object, row, style)
-\link{gtkCListGetRowStyle}(object, row)
-\link{gtkCListSetShift}(object, row, column, vertical, horizontal)
-\link{gtkCListSetSelectable}(object, row, selectable)
-\link{gtkCListGetSelectable}(object, row)
-\link{gtkCListPrepend}(object, text)
-\link{gtkCListAppend}(object, text)
-\link{gtkCListInsert}(object, row, text)
-\link{gtkCListRemove}(object, row)
-\link{gtkCListSetRowData}(object, row, data = NULL)
-\link{gtkCListSetRowDataFull}(object, row, data = NULL)
-\link{gtkCListGetRowData}(object, row)
-\link{gtkCListFindRowFromData}(object, data)
-\link{gtkCListSelectRow}(object, row, column)
-\link{gtkCListUnselectRow}(object, row, column)
-\link{gtkCListUndoSelection}(object)
-\link{gtkCListClear}(object)
-\link{gtkCListGetSelectionInfo}(object, x, y)
-\link{gtkCListSelectAll}(object)
-\link{gtkCListUnselectAll}(object)
-\link{gtkCListSwapRows}(object, row1, row2)
-\link{gtkCListSetCompareFunc}(object, cmp.func)
-\link{gtkCListSetSortColumn}(object, column)
-\link{gtkCListSetSortType}(object, sort.type)
-\link{gtkCListSort}(object)
-\link{gtkCListSetAutoSort}(object, auto.sort)
-\link{gtkCListColumnsAutosize}(object)
-\link{gtkCListGetColumnTitle}(object, column)
-\link{gtkCListGetColumnWidget}(object, column)
-\link{gtkCListGetHadjustment}(object)
-\link{gtkCListGetVadjustment}(object)
-\link{gtkCListRowMove}(object, source.row, dest.row)
-\link{gtkCListSetButtonActions}(object, button, button.actions)
-\link{gtkCListSetHadjustment}(object, adjustment)
-\link{gtkCListSetReorderable}(object, reorderable)
-\link{gtkCListSetUseDragIcons}(object, use.icons)
-\link{gtkCListSetVadjustment}(object, adjustment)
+\code{\link{gtkCListNew}(columns = 1, show = TRUE)}\cr
+\code{\link{gtkCListNewWithTitles}(columns = 1, titles, show = TRUE)}\cr
+\code{\link{gtkCListSetShadowType}(object, type)}\cr
+\code{\link{gtkCListSetSelectionMode}(object, mode)}\cr
+\code{\link{gtkCListFreeze}(object)}\cr
+\code{\link{gtkCListThaw}(object)}\cr
+\code{\link{gtkCListColumnTitlesShow}(object)}\cr
+\code{\link{gtkCListColumnTitlesHide}(object)}\cr
+\code{\link{gtkCListColumnTitleActive}(object, column)}\cr
+\code{\link{gtkCListColumnTitlePassive}(object, column)}\cr
+\code{\link{gtkCListColumnTitlesActive}(object)}\cr
+\code{\link{gtkCListColumnTitlesPassive}(object)}\cr
+\code{\link{gtkCListSetColumnTitle}(object, column, title)}\cr
+\code{\link{gtkCListSetColumnWidget}(object, column, widget)}\cr
+\code{\link{gtkCListSetColumnJustification}(object, column, justification)}\cr
+\code{\link{gtkCListSetColumnVisibility}(object, column, visible)}\cr
+\code{\link{gtkCListSetColumnResizeable}(object, column, resizeable)}\cr
+\code{\link{gtkCListSetColumnAutoResize}(object, column, auto.resize)}\cr
+\code{\link{gtkCListOptimalColumnWidth}(object, column)}\cr
+\code{\link{gtkCListSetColumnWidth}(object, column, width)}\cr
+\code{\link{gtkCListSetColumnMinWidth}(object, column, min.width)}\cr
+\code{\link{gtkCListSetColumnMaxWidth}(object, column, max.width)}\cr
+\code{\link{gtkCListSetRowHeight}(object, height)}\cr
+\code{\link{gtkCListMoveto}(object, row, column, row.align, col.align)}\cr
+\code{\link{gtkCListRowIsVisible}(object, row)}\cr
+\code{\link{gtkCListGetCellType}(object, row, column)}\cr
+\code{\link{gtkCListSetText}(w, row, cols, values, zeroBased = TRUE)}\cr
+\code{\link{gtkCListGetText}(w, row, cols, zeroBased = TRUE)}\cr
+\code{\link{gtkCListSetPixmap}(object, row, column, pixmap, mask = NULL)}\cr
+\code{\link{gtkCListGetPixmap}(object, row, column)}\cr
+\code{\link{gtkCListSetPixtext}(object, row, column, text, spacing, pixmap, mask)}\cr
+\code{\link{gtkCListGetPixtext}(object, row, column)}\cr
+\code{\link{gtkCListSetForeground}(object, row, color)}\cr
+\code{\link{gtkCListSetBackground}(object, row, color)}\cr
+\code{\link{gtkCListSetCellStyle}(object, row, column, style)}\cr
+\code{\link{gtkCListGetCellStyle}(object, row, column)}\cr
+\code{\link{gtkCListSetRowStyle}(object, row, style)}\cr
+\code{\link{gtkCListGetRowStyle}(object, row)}\cr
+\code{\link{gtkCListSetShift}(object, row, column, vertical, horizontal)}\cr
+\code{\link{gtkCListSetSelectable}(object, row, selectable)}\cr
+\code{\link{gtkCListGetSelectable}(object, row)}\cr
+\code{\link{gtkCListPrepend}(object, text)}\cr
+\code{\link{gtkCListAppend}(object, text)}\cr
+\code{\link{gtkCListInsert}(object, row, text)}\cr
+\code{\link{gtkCListRemove}(object, row)}\cr
+\code{\link{gtkCListSetRowData}(object, row, data = NULL)}\cr
+\code{\link{gtkCListSetRowDataFull}(object, row, data = NULL)}\cr
+\code{\link{gtkCListGetRowData}(object, row)}\cr
+\code{\link{gtkCListFindRowFromData}(object, data)}\cr
+\code{\link{gtkCListSelectRow}(object, row, column)}\cr
+\code{\link{gtkCListUnselectRow}(object, row, column)}\cr
+\code{\link{gtkCListUndoSelection}(object)}\cr
+\code{\link{gtkCListClear}(object)}\cr
+\code{\link{gtkCListGetSelectionInfo}(object, x, y)}\cr
+\code{\link{gtkCListSelectAll}(object)}\cr
+\code{\link{gtkCListUnselectAll}(object)}\cr
+\code{\link{gtkCListSwapRows}(object, row1, row2)}\cr
+\code{\link{gtkCListSetCompareFunc}(object, cmp.func)}\cr
+\code{\link{gtkCListSetSortColumn}(object, column)}\cr
+\code{\link{gtkCListSetSortType}(object, sort.type)}\cr
+\code{\link{gtkCListSort}(object)}\cr
+\code{\link{gtkCListSetAutoSort}(object, auto.sort)}\cr
+\code{\link{gtkCListColumnsAutosize}(object)}\cr
+\code{\link{gtkCListGetColumnTitle}(object, column)}\cr
+\code{\link{gtkCListGetColumnWidget}(object, column)}\cr
+\code{\link{gtkCListGetHadjustment}(object)}\cr
+\code{\link{gtkCListGetVadjustment}(object)}\cr
+\code{\link{gtkCListRowMove}(object, source.row, dest.row)}\cr
+\code{\link{gtkCListSetButtonActions}(object, button, button.actions)}\cr
+\code{\link{gtkCListSetHadjustment}(object, adjustment)}\cr
+\code{\link{gtkCListSetReorderable}(object, reorderable)}\cr
+\code{\link{gtkCListSetUseDragIcons}(object, use.icons)}\cr
+\code{\link{gtkCListSetVadjustment}(object, adjustment)}\cr
+\code{gtkCList(columns = 1, titles, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -100,17 +100,13 @@ GtkCList has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{
 \item{\code{GtkCList}}{
-\strong{WARNING: \code{GtkCList} is deprecated and should not be used in newly-written code.  
-This is the embodiment of the \code{\link{GtkCList}} widget.  This structure contains
-only private data, and should be accessed only via the CList API.}
+\strong{WARNING: \code{GtkCList} is deprecated and should not be used in newly-written code.}
 This is the embodiment of the \code{\link{GtkCList}} widget.  This structure contains
 only private data, and should be accessed only via the CList API.
 
 }
 \item{\code{GtkCListRow}}{
-\strong{WARNING: \code{GtkCListRow} is deprecated and should not be used in newly-written code.  
-A structure that the \code{\link{GtkCList}} widget uses to keep track of information
-about its rows.}
+\strong{WARNING: \code{GtkCListRow} is deprecated and should not be used in newly-written code.}
 A structure that the \code{\link{GtkCList}} widget uses to keep track of information
 about its rows.
 
@@ -131,11 +127,8 @@ about its rows.
 }}
 \section{Convenient Construction}{\code{gtkCList} is the result of collapsing the constructors of \code{GtkCList} (\code{\link{gtkCListNew}}, \code{\link{gtkCListNewWithTitles}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkCellType}}{
-\strong{WARNING: \code{GtkCellType} is deprecated and should not be used in newly-written code.  
-Identifies the type of element in the current cell of the CList.  Cells can
-contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
-was never completed.}
+\item{\code{GtkCellType}}{
+\strong{WARNING: \code{GtkCellType} is deprecated and should not be used in newly-written code.}
 Identifies the type of element in the current cell of the CList.  Cells can
 contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
 was never completed.
@@ -154,10 +147,8 @@ was never completed.
 }
 
 }
-\item{\code{enum GtkButtonAction}}{
-\strong{WARNING: \code{GtkButtonAction} is deprecated and should not be used in newly-written code.  
-Values for specifying what mouse button events a CList will
-react to.}
+\item{\code{GtkButtonAction}}{
+\strong{WARNING: \code{GtkButtonAction} is deprecated and should not be used in newly-written code.}
 Values for specifying what mouse button events a CList will
 react to.
 
@@ -173,9 +164,8 @@ react to.
 }
 
 }
-\item{\code{enum GtkCListDragPos}}{
-\strong{WARNING: \code{GtkCListDragPos} is deprecated and should not be used in newly-written code.  
-An enumeration for drag operations.}
+\item{\code{GtkCListDragPos}}{
+\strong{WARNING: \code{GtkCListDragPos} is deprecated and should not be used in newly-written code.}
 An enumeration for drag operations.
 
 \describe{

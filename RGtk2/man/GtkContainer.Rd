@@ -3,37 +3,38 @@
 \title{GtkContainer}
 \description{Base class for widgets which contain other widgets}
 \section{Methods and Functions}{
-\link{gtkContainerAdd}(object, widget)
-\link{gtkContainerRemove}(object, widget)
-\link{gtkContainerAddWithProperties}(object, widget, ...)
-\link{gtkContainerGetResizeMode}(object)
-\link{gtkContainerSetResizeMode}(object, resize.mode)
-\link{gtkContainerCheckResize}(object)
-\link{gtkContainerForeach}(object, callback, callback.data = NULL)
-\link{gtkContainerForeachFull}(object, callback, callback.data = NULL)
-\link{gtkContainerGetChildren}(object)
-\link{gtkContainerSetReallocateRedraws}(object, needs.redraws)
-\link{gtkContainerSetFocusChild}(object, child)
-\link{gtkContainerGetFocusVadjustment}(object)
-\link{gtkContainerSetFocusVadjustment}(object, adjustment)
-\link{gtkContainerGetFocusHadjustment}(object)
-\link{gtkContainerSetFocusHadjustment}(object, adjustment)
-\link{gtkContainerResizeChildren}(object)
-\link{gtkContainerChildType}(object)
-\link{gtkContainerChildGet}(object, child, ...)
-\link{gtkContainerChildSet}(object, child, ...)
-\link{gtkContainerChildGetProperty}(object, child, property.name)
-\link{gtkContainerChildSetProperty}(object, child, property.name, value)
-\link{gtkContainerForall}(object, callback, callback.data = NULL)
-\link{gtkContainerGetBorderWidth}(object)
-\link{gtkContainerSetBorderWidth}(object, border.width)
-\link{gtkContainerPropagateExpose}(object, child, event)
-\link{gtkContainerGetFocusChain}(object)
-\link{gtkContainerSetFocusChain}(object, focusable.widgets)
-\link{gtkContainerUnsetFocusChain}(object)
-\link{gtkContainerClassFindChildProperty}(cclass, property.name)
-\link{gtkContainerClassInstallChildProperty}(cclass, property.id, pspec)
-\link{gtkContainerClassListChildProperties}(cclass)
+\code{\link{gtkContainerAdd}(object, widget)}\cr
+\code{\link{gtkContainerRemove}(object, widget)}\cr
+\code{\link{gtkContainerAddWithProperties}(object, widget, ...)}\cr
+\code{\link{gtkContainerGetResizeMode}(object)}\cr
+\code{\link{gtkContainerSetResizeMode}(object, resize.mode)}\cr
+\code{\link{gtkContainerCheckResize}(object)}\cr
+\code{\link{gtkContainerForeach}(object, callback, callback.data = NULL)}\cr
+\code{\link{gtkContainerForeachFull}(object, callback, callback.data = NULL)}\cr
+\code{\link{gtkContainerGetChildren}(object)}\cr
+\code{\link{gtkContainerSetReallocateRedraws}(object, needs.redraws)}\cr
+\code{\link{gtkContainerSetFocusChild}(object, child)}\cr
+\code{\link{gtkContainerGetFocusVadjustment}(object)}\cr
+\code{\link{gtkContainerSetFocusVadjustment}(object, adjustment)}\cr
+\code{\link{gtkContainerGetFocusHadjustment}(object)}\cr
+\code{\link{gtkContainerSetFocusHadjustment}(object, adjustment)}\cr
+\code{\link{gtkContainerResizeChildren}(object)}\cr
+\code{\link{gtkContainerChildType}(object)}\cr
+\code{\link{gtkContainerChildGet}(object, child, ...)}\cr
+\code{\link{gtkContainerChildSet}(object, child, ...)}\cr
+\code{\link{gtkContainerChildGetProperty}(object, child, property.name)}\cr
+\code{\link{gtkContainerChildSetProperty}(object, child, property.name, value)}\cr
+\code{\link{gtkContainerForall}(object, callback, callback.data = NULL)}\cr
+\code{\link{gtkContainerGetBorderWidth}(object)}\cr
+\code{\link{gtkContainerSetBorderWidth}(object, border.width)}\cr
+\code{\link{gtkContainerPropagateExpose}(object, child, event)}\cr
+\code{\link{gtkContainerGetFocusChain}(object)}\cr
+\code{\link{gtkContainerSetFocusChain}(object, focusable.widgets)}\cr
+\code{\link{gtkContainerUnsetFocusChain}(object)}\cr
+\code{\link{gtkContainerClassFindChildProperty}(cclass, property.name)}\cr
+\code{\link{gtkContainerClassInstallChildProperty}(cclass, property.id, pspec)}\cr
+\code{\link{gtkContainerClassListChildProperties}(cclass)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,31 +3,31 @@
 \name{GtkButton}
 \title{GtkButton}
 \description{A widget that creates a signal when clicked on}
-\usage{gtkButton(label, stock.id, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkButtonNew}(show = TRUE)
-\link{gtkButtonNewWithLabel}(label, show = TRUE)
-\link{gtkButtonNewWithMnemonic}(label, show = TRUE)
-\link{gtkButtonNewFromStock}(stock.id, show = TRUE)
-\link{gtkButtonPressed}(object)
-\link{gtkButtonReleased}(object)
-\link{gtkButtonClicked}(object)
-\link{gtkButtonEnter}(object)
-\link{gtkButtonLeave}(object)
-\link{gtkButtonSetRelief}(object, newstyle)
-\link{gtkButtonGetRelief}(object)
-\link{gtkButtonGetLabel}(object)
-\link{gtkButtonSetLabel}(object, label)
-\link{gtkButtonGetUseStock}(object)
-\link{gtkButtonSetUseStock}(object, use.stock)
-\link{gtkButtonGetUseUnderline}(object)
-\link{gtkButtonSetUseUnderline}(object, use.underline)
-\link{gtkButtonSetFocusOnClick}(object, focus.on.click)
-\link{gtkButtonGetFocusOnClick}(object)
-\link{gtkButtonSetAlignment}(object, xalign, yalign)
-\link{gtkButtonGetAlignment}(object)
-\link{gtkButtonSetImage}(object, image)
-\link{gtkButtonGetImage}(object)
+\code{\link{gtkButtonNew}(show = TRUE)}\cr
+\code{\link{gtkButtonNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkButtonNewWithMnemonic}(label, show = TRUE)}\cr
+\code{\link{gtkButtonNewFromStock}(stock.id, show = TRUE)}\cr
+\code{\link{gtkButtonPressed}(object)}\cr
+\code{\link{gtkButtonReleased}(object)}\cr
+\code{\link{gtkButtonClicked}(object)}\cr
+\code{\link{gtkButtonEnter}(object)}\cr
+\code{\link{gtkButtonLeave}(object)}\cr
+\code{\link{gtkButtonSetRelief}(object, newstyle)}\cr
+\code{\link{gtkButtonGetRelief}(object)}\cr
+\code{\link{gtkButtonGetLabel}(object)}\cr
+\code{\link{gtkButtonSetLabel}(object, label)}\cr
+\code{\link{gtkButtonGetUseStock}(object)}\cr
+\code{\link{gtkButtonSetUseStock}(object, use.stock)}\cr
+\code{\link{gtkButtonGetUseUnderline}(object)}\cr
+\code{\link{gtkButtonSetUseUnderline}(object, use.underline)}\cr
+\code{\link{gtkButtonSetFocusOnClick}(object, focus.on.click)}\cr
+\code{\link{gtkButtonGetFocusOnClick}(object)}\cr
+\code{\link{gtkButtonSetAlignment}(object, xalign, yalign)}\cr
+\code{\link{gtkButtonGetAlignment}(object)}\cr
+\code{\link{gtkButtonSetImage}(object, image)}\cr
+\code{\link{gtkButtonGetImage}(object)}\cr
+\code{gtkButton(label, stock.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -4,12 +4,12 @@
 \title{Stock Items}
 \description{Prebuilt common menu/toolbar items and corresponding icons}
 \section{Methods and Functions}{
-\link{gtkStockAdd}(items)
-\link{gtkStockAddStatic}(items)
-\link{gtkStockItemCopy}(object)
-\link{gtkStockListIds}()
-\link{gtkStockLookup}(stock.id)
-\link{gtkStockSetTranslateFunc}(domain, func, data)
+\code{\link{gtkStockAdd}(items)}\cr
+\code{\link{gtkStockAddStatic}(items)}\cr
+\code{\link{gtkStockItemCopy}(object)}\cr
+\code{\link{gtkStockListIds}()}\cr
+\code{\link{gtkStockLookup}(stock.id)}\cr
+\code{\link{gtkStockSetTranslateFunc}(domain, func, data)}\cr
 }
 \section{Detailed Description}{Stock items represent commonly-used menu or toolbar items such as
 "Open" or "Exit". Each stock item is identified by a stock ID; 

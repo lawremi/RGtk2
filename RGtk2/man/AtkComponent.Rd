@@ -4,19 +4,19 @@
 \description{The ATK interface provided by UI components which occupy a physical area on
 the screen.}
 \section{Methods and Functions}{
-\link{atkComponentAddFocusHandler}(object, handler)
-\link{atkComponentContains}(object, x, y, coord.type)
-\link{atkComponentGetExtents}(object, coord.type)
-\link{atkComponentGetLayer}(object)
-\link{atkComponentGetMdiZorder}(object)
-\link{atkComponentGetPosition}(object, coord.type)
-\link{atkComponentGetSize}(object)
-\link{atkComponentGrabFocus}(object)
-\link{atkComponentRefAccessibleAtPoint}(object, x, y, coord.type)
-\link{atkComponentRemoveFocusHandler}(object, handler.id)
-\link{atkComponentSetExtents}(object, x, y, width, height, coord.type)
-\link{atkComponentSetPosition}(object, x, y, coord.type)
-\link{atkComponentSetSize}(object, width, height)
+\code{\link{atkComponentAddFocusHandler}(object, handler)}\cr
+\code{\link{atkComponentContains}(object, x, y, coord.type)}\cr
+\code{\link{atkComponentGetExtents}(object, coord.type)}\cr
+\code{\link{atkComponentGetLayer}(object)}\cr
+\code{\link{atkComponentGetMdiZorder}(object)}\cr
+\code{\link{atkComponentGetPosition}(object, coord.type)}\cr
+\code{\link{atkComponentGetSize}(object)}\cr
+\code{\link{atkComponentGrabFocus}(object)}\cr
+\code{\link{atkComponentRefAccessibleAtPoint}(object, x, y, coord.type)}\cr
+\code{\link{atkComponentRemoveFocusHandler}(object, handler.id)}\cr
+\code{\link{atkComponentSetExtents}(object, x, y, width, height, coord.type)}\cr
+\code{\link{atkComponentSetPosition}(object, x, y, coord.type)}\cr
+\code{\link{atkComponentSetSize}(object, width, height)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkComponent}}

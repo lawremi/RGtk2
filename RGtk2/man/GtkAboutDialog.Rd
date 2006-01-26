@@ -4,40 +4,40 @@
 \name{GtkAboutDialog}
 \title{GtkAboutDialog}
 \description{Display information about an application}
-\usage{gtkAboutDialog(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkAboutDialogNew}(show = TRUE)
-\link{gtkAboutDialogGetName}(object)
-\link{gtkAboutDialogSetName}(object, name = NULL)
-\link{gtkAboutDialogGetVersion}(object)
-\link{gtkAboutDialogSetVersion}(object, version = NULL)
-\link{gtkAboutDialogGetCopyright}(object)
-\link{gtkAboutDialogSetCopyright}(object, copyright = NULL)
-\link{gtkAboutDialogGetComments}(object)
-\link{gtkAboutDialogSetComments}(object, comments = NULL)
-\link{gtkAboutDialogGetLicense}(object)
-\link{gtkAboutDialogSetLicense}(object, license = NULL)
-\link{gtkAboutDialogGetWrapLicense}(object)
-\link{gtkAboutDialogSetWrapLicense}(object, wrap.license)
-\link{gtkAboutDialogGetWebsite}(object)
-\link{gtkAboutDialogSetWebsite}(object, website = NULL)
-\link{gtkAboutDialogGetWebsiteLabel}(object)
-\link{gtkAboutDialogSetWebsiteLabel}(object, website.label = NULL)
-\link{gtkAboutDialogGetAuthors}(object)
-\link{gtkAboutDialogSetAuthors}(object, authors)
-\link{gtkAboutDialogGetArtists}(object)
-\link{gtkAboutDialogSetArtists}(object, artists)
-\link{gtkAboutDialogGetDocumenters}(object)
-\link{gtkAboutDialogSetDocumenters}(object, documenters)
-\link{gtkAboutDialogGetTranslatorCredits}(object)
-\link{gtkAboutDialogSetTranslatorCredits}(object, translator.credits = NULL)
-\link{gtkAboutDialogGetLogo}(object)
-\link{gtkAboutDialogSetLogo}(object, logo = NULL)
-\link{gtkAboutDialogGetLogoIconName}(object)
-\link{gtkAboutDialogSetLogoIconName}(object, icon.name = NULL)
-\link{gtkAboutDialogSetEmailHook}(func, data = NULL)
-\link{gtkAboutDialogSetUrlHook}(func, data = NULL)
-\link{gtkShowAboutDialog}(parent, ...)
+\code{\link{gtkAboutDialogNew}(show = TRUE)}\cr
+\code{\link{gtkAboutDialogGetName}(object)}\cr
+\code{\link{gtkAboutDialogSetName}(object, name = NULL)}\cr
+\code{\link{gtkAboutDialogGetVersion}(object)}\cr
+\code{\link{gtkAboutDialogSetVersion}(object, version = NULL)}\cr
+\code{\link{gtkAboutDialogGetCopyright}(object)}\cr
+\code{\link{gtkAboutDialogSetCopyright}(object, copyright = NULL)}\cr
+\code{\link{gtkAboutDialogGetComments}(object)}\cr
+\code{\link{gtkAboutDialogSetComments}(object, comments = NULL)}\cr
+\code{\link{gtkAboutDialogGetLicense}(object)}\cr
+\code{\link{gtkAboutDialogSetLicense}(object, license = NULL)}\cr
+\code{\link{gtkAboutDialogGetWrapLicense}(object)}\cr
+\code{\link{gtkAboutDialogSetWrapLicense}(object, wrap.license)}\cr
+\code{\link{gtkAboutDialogGetWebsite}(object)}\cr
+\code{\link{gtkAboutDialogSetWebsite}(object, website = NULL)}\cr
+\code{\link{gtkAboutDialogGetWebsiteLabel}(object)}\cr
+\code{\link{gtkAboutDialogSetWebsiteLabel}(object, website.label = NULL)}\cr
+\code{\link{gtkAboutDialogGetAuthors}(object)}\cr
+\code{\link{gtkAboutDialogSetAuthors}(object, authors)}\cr
+\code{\link{gtkAboutDialogGetArtists}(object)}\cr
+\code{\link{gtkAboutDialogSetArtists}(object, artists)}\cr
+\code{\link{gtkAboutDialogGetDocumenters}(object)}\cr
+\code{\link{gtkAboutDialogSetDocumenters}(object, documenters)}\cr
+\code{\link{gtkAboutDialogGetTranslatorCredits}(object)}\cr
+\code{\link{gtkAboutDialogSetTranslatorCredits}(object, translator.credits = NULL)}\cr
+\code{\link{gtkAboutDialogGetLogo}(object)}\cr
+\code{\link{gtkAboutDialogSetLogo}(object, logo = NULL)}\cr
+\code{\link{gtkAboutDialogGetLogoIconName}(object)}\cr
+\code{\link{gtkAboutDialogSetLogoIconName}(object, icon.name = NULL)}\cr
+\code{\link{gtkAboutDialogSetEmailHook}(func, data = NULL)}\cr
+\code{\link{gtkAboutDialogSetUrlHook}(func, data = NULL)}\cr
+\code{\link{gtkShowAboutDialog}(parent, ...)}\cr
+\code{gtkAboutDialog(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

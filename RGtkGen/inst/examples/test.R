@@ -13,6 +13,9 @@ extralibs <- c("gtkmozembed.defs", "libglade.defs")
 extrapath <- file.path(path, "extra")
 files <- file.path(defspath, libs)
 files <- c(files, file.path(extrapath, extralibs))
+
+library(RGtk2)
+
 #defs<-getDefs(file.path(defspath, "atk.defs"))
 #allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"), allDefs=NULL)[[1]]
 
@@ -28,12 +31,10 @@ subs <- c("atk-1.10.1/docs", "pango-1.10.1/docs",
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 
-library(RGtk2)
-
 #defs <- getDefs(files[1])
 #doc_file <- doc_files[[1]][11]
 #genDoc(doc_file, defs, file.path(path, "docgen"))
-doc_files[[4]] <- doc_files[[4]][-(1:which(sapply(doc_files[[4]], basename) == "gtkcheckmenuitem.xml"))]
+#doc_files[[4]] <- doc_files[[4]][-(1:which(sapply(doc_files[[4]], basename) == "gtkcheckmenuitem.xml"))]
 #source("genDoc.S")
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
 

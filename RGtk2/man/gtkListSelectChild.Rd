@@ -4,9 +4,7 @@
 \description{
 Selects the given \code{child}. The signal GtkList::select-child will be
 emitted.
-\strong{WARNING: \code{gtk_list_select_child} is deprecated and should not be used in newly-written code.  
-Selects the given \code{child}. The signal GtkList::select-child will be
-emitted.}
+\strong{WARNING: \code{gtk_list_select_child} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListSelectChild(object, child)}
 \arguments{

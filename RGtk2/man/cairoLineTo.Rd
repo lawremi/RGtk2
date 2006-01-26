@@ -6,7 +6,7 @@ in user-space coordinates. After this call the current point
 will be (\code{x}, \code{y}).}
 \usage{cairoLineTo(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{x}}{[numeric]  the X coordinate of the end of the new line}
 \item{\code{y}}{[numeric]  the Y coordinate of the end of the new line}
 }

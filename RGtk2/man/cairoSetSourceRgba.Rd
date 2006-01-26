@@ -6,7 +6,7 @@ color will then be used for any subsequent drawing operation until
 a new source pattern is set.}
 \usage{cairoSetSourceRgba(cr, red, green, blue, alpha)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{red}}{[numeric]  red component of color}
 \item{\code{green}}{[numeric]  green component of color}
 \item{\code{blue}}{[numeric]  blue component of color}

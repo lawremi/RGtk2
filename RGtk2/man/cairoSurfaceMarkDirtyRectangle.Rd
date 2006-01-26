@@ -6,7 +6,7 @@ the specified rectangle, so that cairo can retain cached contents
 for other parts of the surface.}
 \usage{cairoSurfaceMarkDirtyRectangle(surface, x, y, width, height)}
 \arguments{
-\item{\code{surface}}{[\code{\link{cairo_surface_t}}]  a \code{\link{cairo_surface_t}}}
+\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
 \item{\code{x}}{[integer]  X coordinate of dirty rectangle}
 \item{\code{y}}{[integer]  Y coordinate of dirty rectangle}
 \item{\code{width}}{[integer]  width of dirty rectangle}

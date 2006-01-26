@@ -5,26 +5,26 @@
 \name{GtkProgressBar}
 \title{GtkProgressBar}
 \description{A widget which indicates progress visually}
-\usage{gtkProgressBar(adjustment = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkProgressBarNew}(show = TRUE)
-\link{gtkProgressBarPulse}(object)
-\link{gtkProgressBarSetText}(object, text)
-\link{gtkProgressBarSetFraction}(object, fraction)
-\link{gtkProgressBarSetPulseStep}(object, fraction)
-\link{gtkProgressBarSetOrientation}(object, orientation)
-\link{gtkProgressBarSetEllipsize}(object, mode)
-\link{gtkProgressBarGetText}(object)
-\link{gtkProgressBarGetFraction}(object)
-\link{gtkProgressBarGetPulseStep}(object)
-\link{gtkProgressBarGetOrientation}(object)
-\link{gtkProgressBarGetEllipsize}(object)
-\link{gtkProgressBarNewWithAdjustment}(adjustment = NULL, show = TRUE)
-\link{gtkProgressBarSetBarStyle}(object, style)
-\link{gtkProgressBarSetDiscreteBlocks}(object, blocks)
-\link{gtkProgressBarSetActivityStep}(object, step)
-\link{gtkProgressBarSetActivityBlocks}(object, blocks)
-\link{gtkProgressBarUpdate}(object, percentage)
+\code{\link{gtkProgressBarNew}(show = TRUE)}\cr
+\code{\link{gtkProgressBarPulse}(object)}\cr
+\code{\link{gtkProgressBarSetText}(object, text)}\cr
+\code{\link{gtkProgressBarSetFraction}(object, fraction)}\cr
+\code{\link{gtkProgressBarSetPulseStep}(object, fraction)}\cr
+\code{\link{gtkProgressBarSetOrientation}(object, orientation)}\cr
+\code{\link{gtkProgressBarSetEllipsize}(object, mode)}\cr
+\code{\link{gtkProgressBarGetText}(object)}\cr
+\code{\link{gtkProgressBarGetFraction}(object)}\cr
+\code{\link{gtkProgressBarGetPulseStep}(object)}\cr
+\code{\link{gtkProgressBarGetOrientation}(object)}\cr
+\code{\link{gtkProgressBarGetEllipsize}(object)}\cr
+\code{\link{gtkProgressBarNewWithAdjustment}(adjustment = NULL, show = TRUE)}\cr
+\code{\link{gtkProgressBarSetBarStyle}(object, style)}\cr
+\code{\link{gtkProgressBarSetDiscreteBlocks}(object, blocks)}\cr
+\code{\link{gtkProgressBarSetActivityStep}(object, step)}\cr
+\code{\link{gtkProgressBarSetActivityBlocks}(object, blocks)}\cr
+\code{\link{gtkProgressBarUpdate}(object, percentage)}\cr
+\code{gtkProgressBar(adjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -74,7 +74,7 @@ and should be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkProgressBar} is the result of collapsing the constructors of \code{GtkProgressBar} (\code{\link{gtkProgressBarNew}}, \code{\link{gtkProgressBarNewWithAdjustment}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkProgressBarOrientation}}{
+\item{\code{GtkProgressBarOrientation}}{
 An enumeration representing possible orientations and growth
 directions for the visible progress bar.
 
@@ -86,7 +86,7 @@ directions for the visible progress bar.
 }
 
 }
-\item{\code{enum GtkProgressBarStyle}}{
+\item{\code{GtkProgressBarStyle}}{
 An enumeration representing the styles for drawing the progress bar.
 
 \describe{

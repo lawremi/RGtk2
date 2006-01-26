@@ -10,7 +10,7 @@ axis orientation of cairo, positive angles rotate in a clockwise
 direction.}}
 \value{
 A list containing the following elements:
-\item{\code{matrix}}{[\code{\link{cairo_matrix_t}}]  a cairo_matrix_t}
+\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a cairo_matrix_t}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

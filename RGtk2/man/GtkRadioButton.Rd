@@ -3,16 +3,16 @@
 \name{GtkRadioButton}
 \title{GtkRadioButton}
 \description{A choice from multiple check buttons}
-\usage{gtkRadioButton(group, label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkRadioButtonNew}(group = NULL, show = TRUE)
-\link{gtkRadioButtonNewFromWidget}(group, show = TRUE)
-\link{gtkRadioButtonNewWithLabel}(group = NULL, label, show = TRUE)
-\link{gtkRadioButtonNewWithLabelFromWidget}(group, label, show = TRUE)
-\link{gtkRadioButtonNewWithMnemonic}(group, label, show = TRUE)
-\link{gtkRadioButtonNewWithMnemonicFromWidget}(group, label, show = TRUE)
-\link{gtkRadioButtonSetGroup}(object, group)
-\link{gtkRadioButtonGetGroup}(object)
+\code{\link{gtkRadioButtonNew}(group = NULL, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewFromWidget}(group, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithLabel}(group = NULL, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithLabelFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithMnemonic}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithMnemonicFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonSetGroup}(object, group)}\cr
+\code{\link{gtkRadioButtonGetGroup}(object)}\cr
+\code{gtkRadioButton(group, label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

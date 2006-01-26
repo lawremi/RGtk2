@@ -3,8 +3,7 @@
 \title{gtkCListGetSelectionInfo}
 \description{
 Gets the row and column at the specified pixel position in the CList.
-\strong{WARNING: \code{gtk_clist_get_selection_info} is deprecated and should not be used in newly-written code.  
-Gets the row and column at the specified pixel position in the CList.}
+\strong{WARNING: \code{gtk_clist_get_selection_info} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListGetSelectionInfo(object, x, y)}
 \arguments{

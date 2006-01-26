@@ -5,13 +5,13 @@
 \title{Coverage Maps}
 \description{Unicode character range coverage storage}
 \section{Methods and Functions}{
-\link{pangoCoverageNew}()
-\link{pangoCoverageCopy}(object)
-\link{pangoCoverageGet}(object, index)
-\link{pangoCoverageMax}(object, other)
-\link{pangoCoverageSet}(object, index, level)
-\link{pangoCoverageToBytes}(object)
-\link{pangoCoverageFromBytes}(bytes)
+\code{\link{pangoCoverageNew}()}\cr
+\code{\link{pangoCoverageCopy}(object)}\cr
+\code{\link{pangoCoverageGet}(object, index)}\cr
+\code{\link{pangoCoverageMax}(object, other)}\cr
+\code{\link{pangoCoverageSet}(object, index, level)}\cr
+\code{\link{pangoCoverageToBytes}(object)}\cr
+\code{\link{pangoCoverageFromBytes}(bytes)}\cr
 }
 \section{Detailed Description}{It is often necessary in Pango to determine if a particular font can
 represent a particular character, and also how well it can represent
@@ -22,7 +22,7 @@ The \code{\link{PangoCoverage}} structure represents a map from ISO-10646 charac
 point to \code{\link{PangoCoverageLevel}}. It is an opaque structure with no public fields.
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum PangoCoverageLevel}}{
+\section{Enums and Flags}{\describe{\item{\code{PangoCoverageLevel}}{
 Used to indicate how well a font can represent a particular ISO 10646
 character point for a particular script.
 

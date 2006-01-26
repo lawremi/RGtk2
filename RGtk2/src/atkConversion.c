@@ -70,6 +70,7 @@ USER_OBJECT_
 asRAtkTextRange(AtkTextRange *range)
 {
 	USER_OBJECT_ s_range;
+	static char *names[] = { "bounds", "start_offset", "end_offset", "content", NULL };
 	
 	PROTECT(s_range = NEW_LIST(4));
 	
@@ -78,7 +79,6 @@ asRAtkTextRange(AtkTextRange *range)
 	SET_VECTOR_ELT(s_range, 2, asRInteger(range->end_offset));
 	SET_VECTOR_ELT(s_range, 3, asRString(range->content));
 	
-	static char *names[] = { "bounds", "start_offset", "end_offset", "content", NULL };
 	SET_NAMES(s_range, asRStringArray(names));
 	
 	UNPROTECT(1);

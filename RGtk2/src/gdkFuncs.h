@@ -205,9 +205,6 @@ S_gdk_display_get_window_at_pointer(USER_OBJECT_ s_object);
 S_gdk_display_warp_pointer(USER_OBJECT_ s_object, USER_OBJECT_ s_screen, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
 	USER_OBJECT_
-S_gdk_display_open_default_libgtk_only(); 
-
-	USER_OBJECT_
 S_gdk_display_store_clipboard(USER_OBJECT_ s_object, USER_OBJECT_ s_clipboard_window, USER_OBJECT_ s_targets); 
 
 	USER_OBJECT_

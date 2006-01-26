@@ -6,11 +6,7 @@ Allows you to set whether a specified column in the \code{\link{GtkCList}} shoul
 be hidden or shown.  Note that at least one column must always be
 showing, so attempting to hide the last visible column will be
 ignored.
-\strong{WARNING: \code{gtk_clist_set_column_visibility} is deprecated and should not be used in newly-written code.  
-Allows you to set whether a specified column in the \code{\link{GtkCList}} should
-be hidden or shown.  Note that at least one column must always be
-showing, so attempting to hide the last visible column will be
-ignored.}
+\strong{WARNING: \code{gtk_clist_set_column_visibility} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetColumnVisibility(object, column, visible)}
 \arguments{

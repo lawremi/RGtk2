@@ -3,8 +3,7 @@
 \title{gtkToolbarInsertWidget}
 \description{
 Inserts a widget in the toolbar at the given position.
-\strong{WARNING: \code{gtk_toolbar_insert_widget} is deprecated and should not be used in newly-written code.  
-Inserts a widget in the toolbar at the given position.  }
+\strong{WARNING: \code{gtk_toolbar_insert_widget} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkToolbarInsertWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL, position)}
 \arguments{

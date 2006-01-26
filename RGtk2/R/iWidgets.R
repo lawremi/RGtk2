@@ -194,54 +194,54 @@ print.iComponent <- function(x,...) {
     cat(paste(class(x)[1],"[",class(x$ref)[1],"]\n",sep=''))
 }
 
-get.value <- function(...) UseMethod("get.value")
-set.value <- function(...) UseMethod("set.value")
+get.value <- function(s, ...) UseMethod("get.value")
+set.value <- function(s, value, ...) UseMethod("set.value")
 
-get.value.iSlider <- function(s)
+get.value.iSlider <- function(s, ...)
     s$ref$getValue()
-set.value.iSlider <- function(s, value)
+set.value.iSlider <- function(s, value, ...)
     s$ref$setValue(value)
 
-get.value.iLabel <- function(s)
+get.value.iLabel <- function(s, ...)
     s$ref$getText()
-set.value.iLabel <- function(s, value)
+set.value.iLabel <- function(s, value, ...)
     s$ref$setText(value)
 
-get.value.iEdit <- function(s)
+get.value.iEdit <- function(s, ...)
     s$ref$getText()
-set.value.iEdit <- function(s, value)
+set.value.iEdit <- function(s, value, ...)
     s$ref$insertText(value)
 
-get.value.iRadio <- function(s) 
+get.value.iRadio <- function(s, ...) 
 	which(sapply(s$ref$getChildren(), gtkToggleButtonGetActive))
 	
-set.value.iRadio <- function(s, value)
+set.value.iRadio <- function(s, value, ...)
     s$ref$getChildren()[[value]]$setActive(TRUE)
 
-get.value.iCheckbox <- function(s)
+get.value.iCheckbox <- function(s, ...)
     s$ref$getActive()
-set.value.iCheckbox <- function(s, value)
+set.value.iCheckbox <- function(s, value, ...)
     s$ref$setActive(TRUE)
 
-get.value.iDropList <- function(s, index=FALSE)
+get.value.iDropList <- function(s, index=FALSE, ...)
 {
 	if (!index) 
 		s$ref$getModel()$unload(paths=s$ref$getSelection()$getSelectedRows())[,1] 
 	else s$ref$getSelection()$getSelectedRows()[[1]]$getIndices()+1
 }
 		
-set.value.iDropList <- function(s, value, index=FALSE)
+set.value.iDropList <- function(s, value, index=FALSE, ...)
 {
     if (!index)
 		s$ref$getModel()[get.value(s,TRUE)-1, 1] <- value
 	else s$ref$getSelection()$selectPath(gtkTreePathNewFromIndices(value-1))
 }
 	
-add.spring <- function(cont) {
+add.spring <- function(cont, ...) {
 	cont$ref$packStart(gtkInvisibleNew(), TRUE, TRUE, 0)
 }
 
-add.space <- function(cont, amount, horizontal=TRUE) {
+add.space <- function(cont, amount, horizontal=TRUE, ...) {
     invis <- gtkInvisibleNew()
 	if (horizontal)
 		invis$setSizeRequest(amount, -1)
@@ -249,14 +249,14 @@ add.space <- function(cont, amount, horizontal=TRUE) {
 	cont$ref$packStart(invis, FALSE, FALSE, 0)
 }
 
-add <- function(...) UseMethod("add")
-delete <- function(...) UseMethod("delete")
-visible <- function(...) UseMethod("visible")
-"visible<-" <- function(...) UseMethod("visible")
-dispose <- function(...) UseMethod("dispose")
+add <- function(cont, ...) UseMethod("add")
+delete <- function(cont, ...) UseMethod("delete")
+visible <- function(obj, ...) UseMethod("visible")
+"visible<-" <- function(obj, value) UseMethod("visible")
+dispose <- function(obj, ...) UseMethod("dispose")
 
-update.iComponent <- function(c) {
-    c$ref$queueDraw()
+update.iComponent <- function(object, ...) {
+    object$ref$queueDraw()
 }
 
 #update.iWindow <- function(c) {
@@ -264,25 +264,25 @@ update.iComponent <- function(c) {
 #    .jcall(c$ref, "V", "validate")
 #}
 
-dispose.iWindow <- function(win) {
-    win$ref$destroy()
+dispose.iWindow <- function(obj, ...) {
+    obj$ref$destroy()
 }
 
-add.iWindow <- function(win, widget) {
-	win$ref$add(widget$ref)
+add.iWindow <- function(cont, widget, ...) {
+	cont$ref$add(widget$ref)
 }
-add.iContainer <- function(cont, widget) {
+add.iContainer <- function(cont, widget, ...) {
 	cont$ref$packStart(widget$ref, FALSE, FALSE, 0)
 }
 
-delete.iContainer <- function(cont, widget) {
+delete.iContainer <- function(cont, widget, ...) {
     cont$ref$remove(widget$ref)
 }
 
-visible.iComponent <- function(obj, set=NULL)
+visible.iComponent <- function(obj, value=NULL, ...)
 {
-    if (is.null(set)) 
+    if (is.null(value)) 
 		bitCheck(bitAnd(obj$ref$flags(), GtkWidgetFlags["visible"])) 
-	else if (set) obj$ref$show()
+	else if (value) obj$ref$show()
 	else obj$ref$hide()
 }

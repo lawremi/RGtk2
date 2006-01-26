@@ -3,14 +3,15 @@
 \title{AtkHyperlink}
 \description{An ATK object which encapsulates a link or set of links in a hypertext document.}
 \section{Methods and Functions}{
-\link{atkHyperlinkGetUri}(object, i)
-\link{atkHyperlinkGetObject}(object, i)
-\link{atkHyperlinkGetEndIndex}(object)
-\link{atkHyperlinkGetStartIndex}(object)
-\link{atkHyperlinkIsValid}(object)
-\link{atkHyperlinkIsInline}(object)
-\link{atkHyperlinkGetNAnchors}(object)
-\link{atkHyperlinkIsSelectedLink}(object)
+\code{\link{atkHyperlinkGetUri}(object, i)}\cr
+\code{\link{atkHyperlinkGetObject}(object, i)}\cr
+\code{\link{atkHyperlinkGetEndIndex}(object)}\cr
+\code{\link{atkHyperlinkGetStartIndex}(object)}\cr
+\code{\link{atkHyperlinkIsValid}(object)}\cr
+\code{\link{atkHyperlinkIsInline}(object)}\cr
+\code{\link{atkHyperlinkGetNAnchors}(object)}\cr
+\code{\link{atkHyperlinkIsSelectedLink}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkHyperlink}}

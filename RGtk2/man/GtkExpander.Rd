@@ -3,22 +3,22 @@
 \name{GtkExpander}
 \title{GtkExpander}
 \description{A container which can hide its child}
-\usage{gtkExpander(label = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkExpanderNew}(label = NULL, show = TRUE)
-\link{gtkExpanderNewWithMnemonic}(label = NULL)
-\link{gtkExpanderSetExpanded}(object, expanded)
-\link{gtkExpanderGetExpanded}(object)
-\link{gtkExpanderSetSpacing}(object, spacing)
-\link{gtkExpanderGetSpacing}(object)
-\link{gtkExpanderSetLabel}(object, label = NULL)
-\link{gtkExpanderGetLabel}(object)
-\link{gtkExpanderSetUseUnderline}(object, use.underline)
-\link{gtkExpanderGetUseUnderline}(object)
-\link{gtkExpanderSetUseMarkup}(object, use.markup)
-\link{gtkExpanderGetUseMarkup}(object)
-\link{gtkExpanderSetLabelWidget}(object, label.widget = NULL)
-\link{gtkExpanderGetLabelWidget}(object)
+\code{\link{gtkExpanderNew}(label = NULL, show = TRUE)}\cr
+\code{\link{gtkExpanderNewWithMnemonic}(label = NULL)}\cr
+\code{\link{gtkExpanderSetExpanded}(object, expanded)}\cr
+\code{\link{gtkExpanderGetExpanded}(object)}\cr
+\code{\link{gtkExpanderSetSpacing}(object, spacing)}\cr
+\code{\link{gtkExpanderGetSpacing}(object)}\cr
+\code{\link{gtkExpanderSetLabel}(object, label = NULL)}\cr
+\code{\link{gtkExpanderGetLabel}(object)}\cr
+\code{\link{gtkExpanderSetUseUnderline}(object, use.underline)}\cr
+\code{\link{gtkExpanderGetUseUnderline}(object)}\cr
+\code{\link{gtkExpanderSetUseMarkup}(object, use.markup)}\cr
+\code{\link{gtkExpanderGetUseMarkup}(object)}\cr
+\code{\link{gtkExpanderSetLabelWidget}(object, label.widget = NULL)}\cr
+\code{\link{gtkExpanderGetLabelWidget}(object)}\cr
+\code{gtkExpander(label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

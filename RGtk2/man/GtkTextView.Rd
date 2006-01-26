@@ -6,71 +6,68 @@
 \name{GtkTextView}
 \title{GtkTextView}
 \description{Widget that displays a }
-\usage{
-gtkTextView(buffer = NULL, show = TRUE)
-gtkTextChildAnchor()
-}
 \section{Methods and Functions}{
-\link{gtkTextViewNew}(show = TRUE)
-\link{gtkTextViewNewWithBuffer}(buffer = NULL, show = TRUE)
-\link{gtkTextViewSetBuffer}(object, buffer)
-\link{gtkTextViewGetBuffer}(object)
-\link{gtkTextViewScrollToMark}(object, mark, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)
-\link{gtkTextViewScrollToIter}(object, iter, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)
-\link{gtkTextViewScrollMarkOnscreen}(object, mark)
-\link{gtkTextViewMoveMarkOnscreen}(object, mark)
-\link{gtkTextViewPlaceCursorOnscreen}(object)
-\link{gtkTextViewGetVisibleRect}(object)
-\link{gtkTextViewGetIterLocation}(object, iter)
-\link{gtkTextViewGetLineAtY}(object, y)
-\link{gtkTextViewGetLineYrange}(object, iter)
-\link{gtkTextViewGetIterAtLocation}(object, x, y)
-\link{gtkTextViewGetIterAtPosition}(object, x, y)
-\link{gtkTextViewBufferToWindowCoords}(object, win, buffer.x, buffer.y)
-\link{gtkTextViewWindowToBufferCoords}(object, win, window.x, window.y)
-\link{gtkTextViewGetWindow}(object, win)
-\link{gtkTextViewGetWindowType}(object, window)
-\link{gtkTextViewSetBorderWindowSize}(object, type, size)
-\link{gtkTextViewGetBorderWindowSize}(object, type)
-\link{gtkTextViewForwardDisplayLine}(object, iter)
-\link{gtkTextViewBackwardDisplayLine}(object, iter)
-\link{gtkTextViewForwardDisplayLineEnd}(object, iter)
-\link{gtkTextViewBackwardDisplayLineStart}(object, iter)
-\link{gtkTextViewStartsDisplayLine}(object, iter)
-\link{gtkTextViewMoveVisually}(object, iter, count)
-\link{gtkTextViewAddChildAtAnchor}(object, child, anchor)
-\link{gtkTextChildAnchorNew}()
-\link{gtkTextChildAnchorGetWidgets}(object)
-\link{gtkTextChildAnchorGetDeleted}(object)
-\link{gtkTextViewAddChildInWindow}(object, child, which.window, xpos, ypos)
-\link{gtkTextViewMoveChild}(object, child, xpos, ypos)
-\link{gtkTextViewSetWrapMode}(object, wrap.mode)
-\link{gtkTextViewGetWrapMode}(object)
-\link{gtkTextViewSetEditable}(object, setting)
-\link{gtkTextViewGetEditable}(object)
-\link{gtkTextViewSetCursorVisible}(object, setting)
-\link{gtkTextViewGetCursorVisible}(object)
-\link{gtkTextViewSetOverwrite}(object, overwrite)
-\link{gtkTextViewGetOverwrite}(object)
-\link{gtkTextViewSetPixelsAboveLines}(object, pixels.above.lines)
-\link{gtkTextViewGetPixelsAboveLines}(object)
-\link{gtkTextViewSetPixelsBelowLines}(object, pixels.below.lines)
-\link{gtkTextViewGetPixelsBelowLines}(object)
-\link{gtkTextViewSetPixelsInsideWrap}(object, pixels.inside.wrap)
-\link{gtkTextViewGetPixelsInsideWrap}(object)
-\link{gtkTextViewSetJustification}(object, justification)
-\link{gtkTextViewGetJustification}(object)
-\link{gtkTextViewSetLeftMargin}(object, left.margin)
-\link{gtkTextViewGetLeftMargin}(object)
-\link{gtkTextViewSetRightMargin}(object, right.margin)
-\link{gtkTextViewGetRightMargin}(object)
-\link{gtkTextViewSetIndent}(object, indent)
-\link{gtkTextViewGetIndent}(object)
-\link{gtkTextViewSetTabs}(object, tabs)
-\link{gtkTextViewGetTabs}(object)
-\link{gtkTextViewSetAcceptsTab}(object, accepts.tab)
-\link{gtkTextViewGetAcceptsTab}(object)
-\link{gtkTextViewGetDefaultAttributes}(object)
+\code{\link{gtkTextViewNew}(show = TRUE)}\cr
+\code{\link{gtkTextViewNewWithBuffer}(buffer = NULL, show = TRUE)}\cr
+\code{\link{gtkTextViewSetBuffer}(object, buffer)}\cr
+\code{\link{gtkTextViewGetBuffer}(object)}\cr
+\code{\link{gtkTextViewScrollToMark}(object, mark, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)}\cr
+\code{\link{gtkTextViewScrollToIter}(object, iter, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)}\cr
+\code{\link{gtkTextViewScrollMarkOnscreen}(object, mark)}\cr
+\code{\link{gtkTextViewMoveMarkOnscreen}(object, mark)}\cr
+\code{\link{gtkTextViewPlaceCursorOnscreen}(object)}\cr
+\code{\link{gtkTextViewGetVisibleRect}(object)}\cr
+\code{\link{gtkTextViewGetIterLocation}(object, iter)}\cr
+\code{\link{gtkTextViewGetLineAtY}(object, y)}\cr
+\code{\link{gtkTextViewGetLineYrange}(object, iter)}\cr
+\code{\link{gtkTextViewGetIterAtLocation}(object, x, y)}\cr
+\code{\link{gtkTextViewGetIterAtPosition}(object, x, y)}\cr
+\code{\link{gtkTextViewBufferToWindowCoords}(object, win, buffer.x, buffer.y)}\cr
+\code{\link{gtkTextViewWindowToBufferCoords}(object, win, window.x, window.y)}\cr
+\code{\link{gtkTextViewGetWindow}(object, win)}\cr
+\code{\link{gtkTextViewGetWindowType}(object, window)}\cr
+\code{\link{gtkTextViewSetBorderWindowSize}(object, type, size)}\cr
+\code{\link{gtkTextViewGetBorderWindowSize}(object, type)}\cr
+\code{\link{gtkTextViewForwardDisplayLine}(object, iter)}\cr
+\code{\link{gtkTextViewBackwardDisplayLine}(object, iter)}\cr
+\code{\link{gtkTextViewForwardDisplayLineEnd}(object, iter)}\cr
+\code{\link{gtkTextViewBackwardDisplayLineStart}(object, iter)}\cr
+\code{\link{gtkTextViewStartsDisplayLine}(object, iter)}\cr
+\code{\link{gtkTextViewMoveVisually}(object, iter, count)}\cr
+\code{\link{gtkTextViewAddChildAtAnchor}(object, child, anchor)}\cr
+\code{\link{gtkTextChildAnchorNew}()}\cr
+\code{\link{gtkTextChildAnchorGetWidgets}(object)}\cr
+\code{\link{gtkTextChildAnchorGetDeleted}(object)}\cr
+\code{\link{gtkTextViewAddChildInWindow}(object, child, which.window, xpos, ypos)}\cr
+\code{\link{gtkTextViewMoveChild}(object, child, xpos, ypos)}\cr
+\code{\link{gtkTextViewSetWrapMode}(object, wrap.mode)}\cr
+\code{\link{gtkTextViewGetWrapMode}(object)}\cr
+\code{\link{gtkTextViewSetEditable}(object, setting)}\cr
+\code{\link{gtkTextViewGetEditable}(object)}\cr
+\code{\link{gtkTextViewSetCursorVisible}(object, setting)}\cr
+\code{\link{gtkTextViewGetCursorVisible}(object)}\cr
+\code{\link{gtkTextViewSetOverwrite}(object, overwrite)}\cr
+\code{\link{gtkTextViewGetOverwrite}(object)}\cr
+\code{\link{gtkTextViewSetPixelsAboveLines}(object, pixels.above.lines)}\cr
+\code{\link{gtkTextViewGetPixelsAboveLines}(object)}\cr
+\code{\link{gtkTextViewSetPixelsBelowLines}(object, pixels.below.lines)}\cr
+\code{\link{gtkTextViewGetPixelsBelowLines}(object)}\cr
+\code{\link{gtkTextViewSetPixelsInsideWrap}(object, pixels.inside.wrap)}\cr
+\code{\link{gtkTextViewGetPixelsInsideWrap}(object)}\cr
+\code{\link{gtkTextViewSetJustification}(object, justification)}\cr
+\code{\link{gtkTextViewGetJustification}(object)}\cr
+\code{\link{gtkTextViewSetLeftMargin}(object, left.margin)}\cr
+\code{\link{gtkTextViewGetLeftMargin}(object)}\cr
+\code{\link{gtkTextViewSetRightMargin}(object, right.margin)}\cr
+\code{\link{gtkTextViewGetRightMargin}(object)}\cr
+\code{\link{gtkTextViewSetIndent}(object, indent)}\cr
+\code{\link{gtkTextViewGetIndent}(object)}\cr
+\code{\link{gtkTextViewSetTabs}(object, tabs)}\cr
+\code{\link{gtkTextViewGetTabs}(object)}\cr
+\code{\link{gtkTextViewSetAcceptsTab}(object, accepts.tab)}\cr
+\code{\link{gtkTextViewGetAcceptsTab}(object)}\cr
+\code{\link{gtkTextViewGetDefaultAttributes}(object)}\cr
+\code{gtkTextView(buffer = NULL, show = TRUE)}\cr\code{gtkTextChildAnchor()}
 }
 \section{Hierarchy}{\preformatted{
   \link{GObject}
@@ -102,7 +99,7 @@ multiple views.
 \code{gtkTextView} is the result of collapsing the constructors of \code{GtkTextView} (\code{\link{gtkTextViewNew}}, \code{\link{gtkTextViewNewWithBuffer}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.
 \code{gtkTextChildAnchor} is the equivalent of \code{\link{gtkTextChildAnchorNew}}.
 }
-\section{Enums and Flags}{\describe{\item{\code{enum GtkTextWindowType}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkTextWindowType}}{
 
 
 \describe{

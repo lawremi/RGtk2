@@ -4,14 +4,14 @@
 \name{GtkTextTagTable}
 \title{GtkTextTagTable}
 \description{Collection of tags that can be used together}
-\usage{gtkTextTagTable()}
 \section{Methods and Functions}{
-\link{gtkTextTagTableNew}()
-\link{gtkTextTagTableAdd}(object, tag)
-\link{gtkTextTagTableRemove}(object, tag)
-\link{gtkTextTagTableLookup}(object, name)
-\link{gtkTextTagTableForeach}(object, func, data = NULL)
-\link{gtkTextTagTableGetSize}(object)
+\code{\link{gtkTextTagTableNew}()}\cr
+\code{\link{gtkTextTagTableAdd}(object, tag)}\cr
+\code{\link{gtkTextTagTableRemove}(object, tag)}\cr
+\code{\link{gtkTextTagTableLookup}(object, name)}\cr
+\code{\link{gtkTextTagTableForeach}(object, func, data = NULL)}\cr
+\code{\link{gtkTextTagTableGetSize}(object)}\cr
+\code{gtkTextTagTable()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTextTagTable}}

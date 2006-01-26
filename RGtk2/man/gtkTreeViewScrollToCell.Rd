@@ -8,7 +8,7 @@ or \code{path} need to be non-\code{NULL}.  \code{row.align} determines where th
 placed, and \code{col.align} determines where \code{column} is placed.  Both are expected
 to be between 0.0 and 1.0. 0.0 means left/top alignment, 1.0 means
 right/bottom alignment, 0.5 means center.}
-\usage{gtkTreeViewScrollToCell(object, path, column = NULL, use.align = FALSE, row.align = 0.0, col.align = 0.0)}
+\usage{gtkTreeViewScrollToCell(object, path, column = NULL, use.align = FALSE, row.align = 0, col.align = 0)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}.}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  The path of the row to move to, or \code{NULL}.}

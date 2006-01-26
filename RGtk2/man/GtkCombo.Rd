@@ -3,16 +3,16 @@
 \name{GtkCombo}
 \title{GtkCombo}
 \description{A text entry field with a dropdown list}
-\usage{gtkCombo(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkComboNew}(show = TRUE)
-\link{gtkComboSetPopdownStrings}(object, strings)
-\link{gtkComboSetValueInList}(object, val, ok.if.empty)
-\link{gtkComboSetUseArrows}(object, val)
-\link{gtkComboSetUseArrowsAlways}(object, val)
-\link{gtkComboSetCaseSensitive}(object, val)
-\link{gtkComboSetItemString}(object, item, item.value)
-\link{gtkComboDisableActivate}(object)
+\code{\link{gtkComboNew}(show = TRUE)}\cr
+\code{\link{gtkComboSetPopdownStrings}(object, strings)}\cr
+\code{\link{gtkComboSetValueInList}(object, val, ok.if.empty)}\cr
+\code{\link{gtkComboSetUseArrows}(object, val)}\cr
+\code{\link{gtkComboSetUseArrowsAlways}(object, val)}\cr
+\code{\link{gtkComboSetCaseSensitive}(object, val)}\cr
+\code{\link{gtkComboSetItemString}(object, item, item.value)}\cr
+\code{\link{gtkComboDisableActivate}(object)}\cr
+\code{gtkCombo(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -74,10 +74,7 @@ As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\li
   combo[["list"]]$add(item)
 }}
 \section{Structures}{\describe{\item{\code{GtkCombo}}{
-\strong{WARNING: \code{GtkCombo} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.  
-The \code{\link{GtkFixedChild}} struct contains the following fields.
-(These fields should be considered read-only. They should never be set by
-an application.)}
+\strong{WARNING: \code{GtkCombo} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 The \code{\link{GtkFixedChild}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)

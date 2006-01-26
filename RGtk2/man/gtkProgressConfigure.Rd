@@ -4,9 +4,7 @@
 \description{
 Allows the configuration of the minimum, maximum, and current values for
 the \code{\link{GtkProgress}}.
-\strong{WARNING: \code{gtk_progress_configure} is deprecated and should not be used in newly-written code.  
-Allows the configuration of the minimum, maximum, and current values for
-the \code{\link{GtkProgress}}.}
+\strong{WARNING: \code{gtk_progress_configure} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressConfigure(object, value, min, max)}
 \arguments{

@@ -4,16 +4,16 @@
 \name{GtkTooltips}
 \title{GtkTooltips}
 \description{Add tips to your widgets}
-\usage{gtkTooltips()}
 \section{Methods and Functions}{
-\link{gtkTooltipsNew}()
-\link{gtkTooltipsEnable}(object)
-\link{gtkTooltipsDisable}(object)
-\link{gtkTooltipsSetDelay}(object, delay)
-\link{gtkTooltipsSetTip}(object, widget, tip.text = NULL, tip.private = NULL)
-\link{gtkTooltipsDataGet}(widget)
-\link{gtkTooltipsForceWindow}(object)
-\link{gtkTooltipsGetInfoFromTipWindow}(object)
+\code{\link{gtkTooltipsNew}()}\cr
+\code{\link{gtkTooltipsEnable}(object)}\cr
+\code{\link{gtkTooltipsDisable}(object)}\cr
+\code{\link{gtkTooltipsSetDelay}(object, delay)}\cr
+\code{\link{gtkTooltipsSetTip}(object, widget, tip.text = NULL, tip.private = NULL)}\cr
+\code{\link{gtkTooltipsDataGet}(widget)}\cr
+\code{\link{gtkTooltipsForceWindow}(object)}\cr
+\code{\link{gtkTooltipsGetInfoFromTipWindow}(object)}\cr
+\code{gtkTooltips()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

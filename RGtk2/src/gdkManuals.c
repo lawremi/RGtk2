@@ -114,7 +114,7 @@ S_GdkPixbufDestroyNotify(guchar *pixels, gpointer data)
 USER_OBJECT_
  S_gdk_pixbuf_new_from_data ( USER_OBJECT_ s_data, USER_OBJECT_ s_colorspace, USER_OBJECT_ s_has_alpha, USER_OBJECT_ s_bits_per_sample, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_rowstride )
 {
-         const guchar* data = CHAR_DEREF(STRING_ELT(s_data, 0)) ;
+         const guchar* data = (guchar *)CHAR_DEREF(STRING_ELT(s_data, 0)) ;
          GdkColorspace colorspace = (GdkColorspace)INTEGER_DATA(s_colorspace)[0] ;
          gboolean has_alpha = LOGICAL_DATA(s_has_alpha)[0] ;
          int bits_per_sample = INTEGER_DATA(s_bits_per_sample)[0] ;

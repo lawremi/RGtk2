@@ -41,18 +41,18 @@ function(obj, fun)
 }
 
 .RGtkCall <-
-function(name, ..., PACKAGE = "RGtk2", .flush = TRUE)
+function(name, ..., PACKAGE = "RGtk2")
 {
    #print(paste("Calling", name, "with args:", paste(..., collapse=", ")))
     val <- .Call(name, ..., PACKAGE = PACKAGE)
-   if(.flush)
-     gdkFlush(.flush = FALSE)
-
-   val
+	if (getOption("gdkFlush")) {
+		.Call("S_gdk_flush", PACKAGE = PACKAGE)
+	}
+    val
 }
 
 # Coerce something to a "flag" that can be operated on bitwise
-flag <- function(x) {
+as.flag <- function(x) {
 	if (!is.numeric(x))
 		stop("Flags must be numeric")
 	class(x) <- "flag"
@@ -62,7 +62,7 @@ flag <- function(x) {
 # Coerces a member of a flags vector to a flag
 "[.flags" <-
 function(x, value) {
-	flag(x[[value]])
+	as.flag(x[[value]])
 }
 
 # the bitwise ops
@@ -70,17 +70,17 @@ function(x, value) {
 "|.flag" <-
 function(x, y)
 {
-	flag(bitOr(x, y))
+	as.flag(bitOr(x, y))
 }
 "&.flag" <-
 function(x, y)
 {
-	flag(bitAnd(x, y))
+	as.flag(bitAnd(x, y))
 }
 "!.flag" <-
 function(x)
 {
-	flag(bitNot(x))
+	as.flag(bitNot(x))
 }
 
 # coerces the argument to "bits" if it isn't raw already

@@ -3,8 +3,10 @@
 \name{GtkVScrollbar}
 \title{GtkVScrollbar}
 \description{A vertical scrollbar}
-\usage{gtkVScrollbar(adjustment = NULL, show = TRUE)}
-\section{Methods and Functions}{\link{gtkVScrollbarNew}(adjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkVScrollbarNew}(adjustment = NULL, show = TRUE)}\cr
+\code{gtkVScrollbar(adjustment = NULL, show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

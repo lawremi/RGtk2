@@ -3,10 +3,11 @@
 \title{GtkMisc}
 \description{Base class for widgets with alignments and padding}
 \section{Methods and Functions}{
-\link{gtkMiscSetAlignment}(object, xalign, yalign)
-\link{gtkMiscSetPadding}(object, xpad, ypad)
-\link{gtkMiscGetAlignment}(object)
-\link{gtkMiscGetPadding}(object)
+\code{\link{gtkMiscSetAlignment}(object, xalign, yalign)}\cr
+\code{\link{gtkMiscSetPadding}(object, xpad, ypad)}\cr
+\code{\link{gtkMiscGetAlignment}(object)}\cr
+\code{\link{gtkMiscGetPadding}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

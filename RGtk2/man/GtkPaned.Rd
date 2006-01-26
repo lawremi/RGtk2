@@ -3,14 +3,15 @@
 \title{GtkPaned}
 \description{Base class for widgets with two adjustable panes}
 \section{Methods and Functions}{
-\link{gtkPanedAdd1}(object, child)
-\link{gtkPanedAdd2}(object, child)
-\link{gtkPanedPack1}(object, child, resize = FALSE, shrink = TRUE)
-\link{gtkPanedPack2}(object, child, resize = TRUE, shrink = TRUE)
-\link{gtkPanedGetChild1}(object)
-\link{gtkPanedGetChild2}(object)
-\link{gtkPanedSetPosition}(object, position)
-\link{gtkPanedGetPosition}(object)
+\code{\link{gtkPanedAdd1}(object, child)}\cr
+\code{\link{gtkPanedAdd2}(object, child)}\cr
+\code{\link{gtkPanedPack1}(object, child, resize = FALSE, shrink = TRUE)}\cr
+\code{\link{gtkPanedPack2}(object, child, resize = TRUE, shrink = TRUE)}\cr
+\code{\link{gtkPanedGetChild1}(object)}\cr
+\code{\link{gtkPanedGetChild2}(object)}\cr
+\code{\link{gtkPanedSetPosition}(object, position)}\cr
+\code{\link{gtkPanedGetPosition}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

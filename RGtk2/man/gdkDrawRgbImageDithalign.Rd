@@ -11,7 +11,7 @@
 \item{\code{width}}{[integer] The width of the rectangle to be drawn.}
 \item{\code{height}}{[integer] The height of the rectangle to be drawn.}
 \item{\code{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
-\item{\code{rgb.buf}}{[integer] The pixel data, represented as packed 24-bit data.}
+\item{\code{rgb.buf}}{[raw] The pixel data, represented as packed 24-bit data.}
 \item{\code{xdith}}{[integer] An x offset for dither alignment.}
 \item{\code{ydith}}{[integer] A y offset for dither alignment.}
 }

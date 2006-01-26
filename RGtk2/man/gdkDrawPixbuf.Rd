@@ -6,7 +6,7 @@ drawable must have a colormap. All windows have a colormap, however, pixmaps
 only have colormap by default if they were created with a non-\code{NULL} window 
 argument. Otherwise a colormap must be set on them with 
 \code{\link{gdkDrawableSetColormap}}.}
-\usage{gdkDrawPixbuf(object, gc = NULL, pixbuf, src.x, src.y, dest.x, dest.y, width = -1, height = -1, dither = GDK_RGB_DITHER_NORMAL, x.dither = 0, y.dither = 0)}
+\usage{gdkDrawPixbuf(object, gc = NULL, pixbuf, src.x, src.y, dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDrawable}}]  Destination drawable.}
 \item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}, used for clipping, or \code{NULL}}

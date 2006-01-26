@@ -4,6 +4,6 @@
 \description{\emph{undocumented
 }}
 \usage{cairoShowPage(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}] }}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}] }}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

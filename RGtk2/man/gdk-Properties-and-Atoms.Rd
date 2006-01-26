@@ -5,11 +5,11 @@
 \title{Properties and Atoms}
 \description{Functions to manipulate properties on windows}
 \section{Methods and Functions}{
-\link{gdkAtomIntern}(atom.name, only.if.exists = FALSE)
-\link{gdkAtomName}(atom)
-\link{gdkPropertyGet}(object, property, type, offset, length, pdelete)
-\link{gdkPropertyChange}(object, property, type, format, mode, data)
-\link{gdkPropertyDelete}(object, property)
+\code{\link{gdkAtomIntern}(atom.name, only.if.exists = FALSE)}\cr
+\code{\link{gdkAtomName}(atom)}\cr
+\code{\link{gdkPropertyGet}(object, property, type, offset, length, pdelete)}\cr
+\code{\link{gdkPropertyChange}(object, property, type, format, mode, data)}\cr
+\code{\link{gdkPropertyDelete}(object, property)}\cr
 }
 \section{Detailed Description}{Each window under X can have any number of associated
 \dfn{properties} attached to it.
@@ -44,7 +44,7 @@ of strings on the X server.
 \strong{\code{GdkAtom} is a \link{transparent-type}.}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum GdkPropMode}}{
+\section{Enums and Flags}{\describe{\item{\code{GdkPropMode}}{
 Describes how existing data is combined with new data when
 using \code{\link{gdkPropertyChange}}.
 

@@ -3,8 +3,7 @@
 \title{gtkCListGetText}
 \description{
 Gets the text for the specified cell.
-\strong{WARNING: \code{gtk_clist_get_text} is deprecated and should not be used in newly-written code.  
-Gets the text for the specified cell.}
+\strong{WARNING: \code{gtk_clist_get_text} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListGetText(w, row, cols, zeroBased = TRUE)}
 \arguments{\item{\code{row}}{[integer] The row to query.}}

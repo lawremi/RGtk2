@@ -6,15 +6,15 @@
 \name{GtkTextTag}
 \title{GtkTextTag}
 \description{A tag that can be applied to text in a }
-\usage{gtkTextTag(name = NULL)}
 \section{Methods and Functions}{
-\link{gtkTextTagNew}(name = NULL)
-\link{gtkTextTagGetPriority}(object)
-\link{gtkTextTagSetPriority}(object, priority)
-\link{gtkTextTagEvent}(object, event.object, event, iter)
-\link{gtkTextAttributesNew}()
-\link{gtkTextAttributesCopy}(object)
-\link{gtkTextAttributesCopyValues}(object, dest)
+\code{\link{gtkTextTagNew}(name = NULL)}\cr
+\code{\link{gtkTextTagGetPriority}(object)}\cr
+\code{\link{gtkTextTagSetPriority}(object, priority)}\cr
+\code{\link{gtkTextTagEvent}(object, event.object, event, iter)}\cr
+\code{\link{gtkTextAttributesNew}()}\cr
+\code{\link{gtkTextAttributesCopy}(object)}\cr
+\code{\link{gtkTextAttributesCopyValues}(object, dest)}\cr
+\code{gtkTextTag(name = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTextTag}}
@@ -78,7 +78,7 @@ modified directly.
 }
 }}
 \section{Convenient Construction}{\code{gtkTextTag} is the equivalent of \code{\link{gtkTextTagNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkWrapMode}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkWrapMode}}{
 Describes a type of line wrapping.
 
 \describe{

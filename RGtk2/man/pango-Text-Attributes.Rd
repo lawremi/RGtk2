@@ -21,50 +21,50 @@
 \title{Text Attributes}
 \description{Font and other attributes for annotating text}
 \section{Methods and Functions}{
-\link{pangoParseMarkup}(markup.text, accel.marker)
-\link{pangoAttrTypeRegister}(name)
-\link{pangoAttributeCopy}(object)
-\link{pangoAttributeEqual}(object, attr2)
-\link{pangoAttrLanguageNew}(language)
-\link{pangoAttrFamilyNew}(family)
-\link{pangoAttrStyleNew}(style)
-\link{pangoAttrVariantNew}(variant)
-\link{pangoAttrStretchNew}(stretch)
-\link{pangoAttrWeightNew}(weight)
-\link{pangoAttrSizeNew}(size)
-\link{pangoAttrSizeNewAbsolute}(size)
-\link{pangoAttrFontDescNew}(desc)
-\link{pangoAttrForegroundNew}(red, green, blue)
-\link{pangoAttrBackgroundNew}(red, green, blue)
-\link{pangoAttrStrikethroughNew}(strikethrough)
-\link{pangoAttrStrikethroughColorNew}(red, green, blue)
-\link{pangoAttrUnderlineNew}(underline)
-\link{pangoAttrUnderlineColorNew}(red, green, blue)
-\link{pangoAttrShapeNew}(ink.rect, logical.rect)
-\link{pangoAttrShapeNewWithData}(ink.rect, logical.rect, data)
-\link{pangoAttrScaleNew}(scale.factor)
-\link{pangoAttrFallbackNew}(fallback)
-\link{pangoAttrRiseNew}(rise)
-\link{pangoAttrLetterSpacingNew}(letter.spacing)
-\link{pangoColorFree}(object)
-\link{pangoColorParse}(spec)
-\link{pangoColorCopy}(object)
-\link{pangoLanguageFromString}(language)
-\link{pangoLanguageMatches}(object, range.list)
-\link{pangoAttrListNew}()
-\link{pangoAttrListCopy}(object)
-\link{pangoAttrListInsert}(object, attr)
-\link{pangoAttrListInsertBefore}(object, attr)
-\link{pangoAttrListChange}(object, attr)
-\link{pangoAttrListSplice}(object, other, pos, len)
-\link{pangoAttrListFilter}(object, func, data)
-\link{pangoAttrListGetIterator}(object)
-\link{pangoAttrIteratorCopy}(object)
-\link{pangoAttrIteratorNext}(object)
-\link{pangoAttrIteratorRange}(object)
-\link{pangoAttrIteratorGet}(object, type)
-\link{pangoAttrIteratorGetFont}(object)
-\link{pangoAttrIteratorGetAttrs}(object)
+\code{\link{pangoParseMarkup}(markup.text, accel.marker, .errwarn = TRUE)}\cr
+\code{\link{pangoAttrTypeRegister}(name)}\cr
+\code{\link{pangoAttributeCopy}(object)}\cr
+\code{\link{pangoAttributeEqual}(object, attr2)}\cr
+\code{\link{pangoAttrLanguageNew}(language)}\cr
+\code{\link{pangoAttrFamilyNew}(family)}\cr
+\code{\link{pangoAttrStyleNew}(style)}\cr
+\code{\link{pangoAttrVariantNew}(variant)}\cr
+\code{\link{pangoAttrStretchNew}(stretch)}\cr
+\code{\link{pangoAttrWeightNew}(weight)}\cr
+\code{\link{pangoAttrSizeNew}(size)}\cr
+\code{\link{pangoAttrSizeNewAbsolute}(size)}\cr
+\code{\link{pangoAttrFontDescNew}(desc)}\cr
+\code{\link{pangoAttrForegroundNew}(red, green, blue)}\cr
+\code{\link{pangoAttrBackgroundNew}(red, green, blue)}\cr
+\code{\link{pangoAttrStrikethroughNew}(strikethrough)}\cr
+\code{\link{pangoAttrStrikethroughColorNew}(red, green, blue)}\cr
+\code{\link{pangoAttrUnderlineNew}(underline)}\cr
+\code{\link{pangoAttrUnderlineColorNew}(red, green, blue)}\cr
+\code{\link{pangoAttrShapeNew}(ink.rect, logical.rect)}\cr
+\code{\link{pangoAttrShapeNewWithData}(ink.rect, logical.rect, data)}\cr
+\code{\link{pangoAttrScaleNew}(scale.factor)}\cr
+\code{\link{pangoAttrFallbackNew}(fallback)}\cr
+\code{\link{pangoAttrRiseNew}(rise)}\cr
+\code{\link{pangoAttrLetterSpacingNew}(letter.spacing)}\cr
+\code{\link{pangoColorFree}(object)}\cr
+\code{\link{pangoColorParse}(spec)}\cr
+\code{\link{pangoColorCopy}(object)}\cr
+\code{\link{pangoLanguageFromString}(language)}\cr
+\code{\link{pangoLanguageMatches}(object, range.list)}\cr
+\code{\link{pangoAttrListNew}()}\cr
+\code{\link{pangoAttrListCopy}(object)}\cr
+\code{\link{pangoAttrListInsert}(object, attr)}\cr
+\code{\link{pangoAttrListInsertBefore}(object, attr)}\cr
+\code{\link{pangoAttrListChange}(object, attr)}\cr
+\code{\link{pangoAttrListSplice}(object, other, pos, len)}\cr
+\code{\link{pangoAttrListFilter}(object, func, data)}\cr
+\code{\link{pangoAttrListGetIterator}(object)}\cr
+\code{\link{pangoAttrIteratorCopy}(object)}\cr
+\code{\link{pangoAttrIteratorNext}(object)}\cr
+\code{\link{pangoAttrIteratorRange}(object)}\cr
+\code{\link{pangoAttrIteratorGet}(object, type)}\cr
+\code{\link{pangoAttrIteratorGetFont}(object)}\cr
+\code{\link{pangoAttrIteratorGetAttrs}(object)}\cr
 }
 \section{Detailed Description}{Attributed text is used in a number of places in Pango. It
 is used as the input to the itemization process and also when
@@ -206,7 +206,7 @@ attributes currently in effect can be queried.
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum PangoAttrType}}{
+\item{\code{PangoAttrType}}{
 distinguishes between different types of attributes. Along with the
 predefined values, it is possible to allocate additional values
 for custom attributes using \code{\link{pangoAttrTypeRegister}}. The predefined
@@ -234,7 +234,7 @@ attribute is listed in parentheses after the description.
 }
 
 }
-\item{\code{enum PangoUnderline}}{
+\item{\code{PangoUnderline}}{
 the \code{\link{PangoUnderline}} enumeration is used to specify
 whether text should be underlined, and if so, the type
 of underlining.

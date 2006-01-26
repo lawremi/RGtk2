@@ -3,22 +3,22 @@
 \name{GtkMenuItem}
 \title{GtkMenuItem}
 \description{The widget used for item in menus}
-\usage{gtkMenuItem(label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkMenuItemNew}(show = TRUE)
-\link{gtkMenuItemNewWithLabel}(label, show = TRUE)
-\link{gtkMenuItemNewWithMnemonic}(label, show = TRUE)
-\link{gtkMenuItemSetRightJustified}(object, right.justified)
-\link{gtkMenuItemSetSubmenu}(object, submenu)
-\link{gtkMenuItemSetAccelPath}(object, accel.path)
-\link{gtkMenuItemRemoveSubmenu}(object)
-\link{gtkMenuItemSelect}(object)
-\link{gtkMenuItemDeselect}(object)
-\link{gtkMenuItemActivate}(object)
-\link{gtkMenuItemToggleSizeRequest}(object, requisition)
-\link{gtkMenuItemToggleSizeAllocate}(object, allocation)
-\link{gtkMenuItemGetRightJustified}(object)
-\link{gtkMenuItemGetSubmenu}(object)
+\code{\link{gtkMenuItemNew}(show = TRUE)}\cr
+\code{\link{gtkMenuItemNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkMenuItemNewWithMnemonic}(label, show = TRUE)}\cr
+\code{\link{gtkMenuItemSetRightJustified}(object, right.justified)}\cr
+\code{\link{gtkMenuItemSetSubmenu}(object, submenu)}\cr
+\code{\link{gtkMenuItemSetAccelPath}(object, accel.path)}\cr
+\code{\link{gtkMenuItemRemoveSubmenu}(object)}\cr
+\code{\link{gtkMenuItemSelect}(object)}\cr
+\code{\link{gtkMenuItemDeselect}(object)}\cr
+\code{\link{gtkMenuItemActivate}(object)}\cr
+\code{\link{gtkMenuItemToggleSizeRequest}(object, requisition)}\cr
+\code{\link{gtkMenuItemToggleSizeAllocate}(object, allocation)}\cr
+\code{\link{gtkMenuItemGetRightJustified}(object)}\cr
+\code{\link{gtkMenuItemGetSubmenu}(object)}\cr
+\code{gtkMenuItem(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

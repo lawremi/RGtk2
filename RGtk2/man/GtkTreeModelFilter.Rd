@@ -5,17 +5,18 @@
 \title{GtkTreeModelFilter}
 \description{A GtkTreeModel which hides parts of an underlying tree model}
 \section{Methods and Functions}{
-\link{gtkTreeModelFilterNew}(child.model, root = NULL)
-\link{gtkTreeModelFilterSetVisibleFunc}(object, func, data = NULL)
-\link{gtkTreeModelFilterSetModifyFunc}(object, types, func, data = NULL)
-\link{gtkTreeModelFilterSetVisibleColumn}(object, column)
-\link{gtkTreeModelFilterGetModel}(object)
-\link{gtkTreeModelFilterConvertChildIterToIter}(object, child.iter)
-\link{gtkTreeModelFilterConvertIterToChildIter}(object, filter.iter)
-\link{gtkTreeModelFilterConvertChildPathToPath}(object, child.path)
-\link{gtkTreeModelFilterConvertPathToChildPath}(object, filter.path)
-\link{gtkTreeModelFilterRefilter}(object)
-\link{gtkTreeModelFilterClearCache}(object)
+\code{\link{gtkTreeModelFilterNew}(child.model, root = NULL)}\cr
+\code{\link{gtkTreeModelFilterSetVisibleFunc}(object, func, data = NULL)}\cr
+\code{\link{gtkTreeModelFilterSetModifyFunc}(object, types, func, data = NULL)}\cr
+\code{\link{gtkTreeModelFilterSetVisibleColumn}(object, column)}\cr
+\code{\link{gtkTreeModelFilterGetModel}(object)}\cr
+\code{\link{gtkTreeModelFilterConvertChildIterToIter}(object, child.iter)}\cr
+\code{\link{gtkTreeModelFilterConvertIterToChildIter}(object, filter.iter)}\cr
+\code{\link{gtkTreeModelFilterConvertChildPathToPath}(object, child.path)}\cr
+\code{\link{gtkTreeModelFilterConvertPathToChildPath}(object, filter.path)}\cr
+\code{\link{gtkTreeModelFilterRefilter}(object)}\cr
+\code{\link{gtkTreeModelFilterClearCache}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTreeModelFilter}}

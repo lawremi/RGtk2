@@ -3,8 +3,10 @@
 \name{GtkSeparatorMenuItem}
 \title{GtkSeparatorMenuItem}
 \description{A separator used in menus}
-\usage{gtkSeparatorMenuItem(show = TRUE)}
-\section{Methods and Functions}{\link{gtkSeparatorMenuItemNew}(show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkSeparatorMenuItemNew}(show = TRUE)}\cr
+\code{gtkSeparatorMenuItem(show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

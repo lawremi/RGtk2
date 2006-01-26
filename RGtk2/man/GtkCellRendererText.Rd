@@ -3,10 +3,10 @@
 \name{GtkCellRendererText}
 \title{GtkCellRendererText}
 \description{Renders text in a cell}
-\usage{gtkCellRendererText()}
 \section{Methods and Functions}{
-\link{gtkCellRendererTextNew}()
-\link{gtkCellRendererTextSetFixedHeightFromFont}(object, number.of.rows)
+\code{\link{gtkCellRendererTextNew}()}\cr
+\code{\link{gtkCellRendererTextSetFixedHeightFromFont}(object, number.of.rows)}\cr
+\code{gtkCellRendererText()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

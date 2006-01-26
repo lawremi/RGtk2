@@ -3,11 +3,11 @@
 \title{Image Data in Memory}
 \description{Creating a pixbuf from image data that is already in memory.}
 \section{Methods and Functions}{
-\link{gdkPixbufNew}(colorspace, has.alpha, bits.per.sample, width, height)
-\link{gdkPixbufNewFromData}(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
-\link{gdkPixbufNewFromXpmData}(data)
-\link{gdkPixbufNewSubpixbuf}(object, src.x, src.y, width, height)
-\link{gdkPixbufCopy}(object)
+\code{\link{gdkPixbufNew}(colorspace, has.alpha, bits.per.sample, width, height)}\cr
+\code{\link{gdkPixbufNewFromData}(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)}\cr
+\code{\link{gdkPixbufNewFromXpmData}(data)}\cr
+\code{\link{gdkPixbufNewSubpixbuf}(object, src.x, src.y, width, height)}\cr
+\code{\link{gdkPixbufCopy}(object)}\cr
 }
 \section{Detailed Description}{    The most basic way to create a pixbuf is to wrap an existing pixel
     buffer with a \code{\link{GdkPixbuf}} structure.  You can use the

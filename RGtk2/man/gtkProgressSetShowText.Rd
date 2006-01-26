@@ -3,8 +3,7 @@
 \title{gtkProgressSetShowText}
 \description{
 Controls whether progress text is shown.
-\strong{WARNING: \code{gtk_progress_set_show_text} is deprecated and should not be used in newly-written code.  
-Controls whether progress text is shown.}
+\strong{WARNING: \code{gtk_progress_set_show_text} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressSetShowText(object, show.text)}
 \arguments{

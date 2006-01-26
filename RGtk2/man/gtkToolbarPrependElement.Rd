@@ -3,16 +3,7 @@
 \title{gtkToolbarPrependElement}
 \description{
 Adds a new element to the beginning of a toolbar.
-\strong{WARNING: \code{gtk_toolbar_prepend_element} is deprecated and should not be used in newly-written code.  
-Adds a new element to the beginning of a toolbar.
-  
-If \code{type} == \code{GTK_TOOLBAR_CHILD_WIDGET}, \code{widget} is used as the new element.
-If \code{type} == \code{GTK_TOOLBAR_CHILD_RADIOBUTTON}, \code{widget} is used to determine
-the radio group for the new element. In all other cases, \code{widget} must
-be \code{NULL}.
-  
-\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
-arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
+\strong{WARNING: \code{gtk_toolbar_prepend_element} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkToolbarPrependElement(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)}
 \arguments{

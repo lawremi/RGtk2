@@ -3,48 +3,48 @@
 \name{GtkNotebook}
 \title{GtkNotebook}
 \description{A tabbed notebook container}
-\usage{gtkNotebook(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkNotebookNew}(show = TRUE)
-\link{gtkNotebookAppendPage}(object, child, tab.label = NULL)
-\link{gtkNotebookAppendPageMenu}(object, child, tab.label = NULL, menu.label = NULL)
-\link{gtkNotebookPrependPage}(object, child, tab.label = NULL)
-\link{gtkNotebookPrependPageMenu}(object, child, tab.label = NULL, menu.label = NULL)
-\link{gtkNotebookInsertPage}(object, child, tab.label = NULL, position = -1)
-\link{gtkNotebookInsertPageMenu}(object, child, tab.label = NULL, menu.label = NULL, position = -1)
-\link{gtkNotebookRemovePage}(object, page.num)
-\link{gtkNotebookPageNum}(object, child)
-\link{gtkNotebookNextPage}(object)
-\link{gtkNotebookPrevPage}(object)
-\link{gtkNotebookReorderChild}(object, child, position)
-\link{gtkNotebookSetTabPos}(object, pos)
-\link{gtkNotebookSetShowTabs}(object, show.tabs)
-\link{gtkNotebookSetShowBorder}(object, show.border)
-\link{gtkNotebookSetScrollable}(object, scrollable)
-\link{gtkNotebookSetTabBorder}(object, border.width)
-\link{gtkNotebookPopupEnable}(object)
-\link{gtkNotebookPopupDisable}(object)
-\link{gtkNotebookGetCurrentPage}(object)
-\link{gtkNotebookGetMenuLabel}(object, child)
-\link{gtkNotebookGetNthPage}(object, page.num)
-\link{gtkNotebookGetNPages}(object)
-\link{gtkNotebookGetTabLabel}(object, child)
-\link{gtkNotebookQueryTabLabelPacking}(object, child)
-\link{gtkNotebookSetHomogeneousTabs}(object, homogeneous)
-\link{gtkNotebookSetMenuLabel}(object, child, menu.label = NULL)
-\link{gtkNotebookSetMenuLabelText}(object, child, menu.text)
-\link{gtkNotebookSetTabHborder}(object, tab.hborder)
-\link{gtkNotebookSetTabLabel}(object, child, tab.label = NULL)
-\link{gtkNotebookSetTabLabelPacking}(object, child, expand, fill, pack.type)
-\link{gtkNotebookSetTabLabelText}(object, child, tab.text)
-\link{gtkNotebookSetTabVborder}(object, tab.vborder)
-\link{gtkNotebookGetMenuLabelText}(object, child)
-\link{gtkNotebookGetScrollable}(object)
-\link{gtkNotebookGetShowBorder}(object)
-\link{gtkNotebookGetShowTabs}(object)
-\link{gtkNotebookGetTabLabelText}(object, child)
-\link{gtkNotebookGetTabPos}(object)
-\link{gtkNotebookSetCurrentPage}(object, page.num)
+\code{\link{gtkNotebookNew}(show = TRUE)}\cr
+\code{\link{gtkNotebookAppendPage}(object, child, tab.label = NULL)}\cr
+\code{\link{gtkNotebookAppendPageMenu}(object, child, tab.label = NULL, menu.label = NULL)}\cr
+\code{\link{gtkNotebookPrependPage}(object, child, tab.label = NULL)}\cr
+\code{\link{gtkNotebookPrependPageMenu}(object, child, tab.label = NULL, menu.label = NULL)}\cr
+\code{\link{gtkNotebookInsertPage}(object, child, tab.label = NULL, position = -1)}\cr
+\code{\link{gtkNotebookInsertPageMenu}(object, child, tab.label = NULL, menu.label = NULL, position = -1)}\cr
+\code{\link{gtkNotebookRemovePage}(object, page.num)}\cr
+\code{\link{gtkNotebookPageNum}(object, child)}\cr
+\code{\link{gtkNotebookNextPage}(object)}\cr
+\code{\link{gtkNotebookPrevPage}(object)}\cr
+\code{\link{gtkNotebookReorderChild}(object, child, position)}\cr
+\code{\link{gtkNotebookSetTabPos}(object, pos)}\cr
+\code{\link{gtkNotebookSetShowTabs}(object, show.tabs)}\cr
+\code{\link{gtkNotebookSetShowBorder}(object, show.border)}\cr
+\code{\link{gtkNotebookSetScrollable}(object, scrollable)}\cr
+\code{\link{gtkNotebookSetTabBorder}(object, border.width)}\cr
+\code{\link{gtkNotebookPopupEnable}(object)}\cr
+\code{\link{gtkNotebookPopupDisable}(object)}\cr
+\code{\link{gtkNotebookGetCurrentPage}(object)}\cr
+\code{\link{gtkNotebookGetMenuLabel}(object, child)}\cr
+\code{\link{gtkNotebookGetNthPage}(object, page.num)}\cr
+\code{\link{gtkNotebookGetNPages}(object)}\cr
+\code{\link{gtkNotebookGetTabLabel}(object, child)}\cr
+\code{\link{gtkNotebookQueryTabLabelPacking}(object, child)}\cr
+\code{\link{gtkNotebookSetHomogeneousTabs}(object, homogeneous)}\cr
+\code{\link{gtkNotebookSetMenuLabel}(object, child, menu.label = NULL)}\cr
+\code{\link{gtkNotebookSetMenuLabelText}(object, child, menu.text)}\cr
+\code{\link{gtkNotebookSetTabHborder}(object, tab.hborder)}\cr
+\code{\link{gtkNotebookSetTabLabel}(object, child, tab.label = NULL)}\cr
+\code{\link{gtkNotebookSetTabLabelPacking}(object, child, expand, fill, pack.type)}\cr
+\code{\link{gtkNotebookSetTabLabelText}(object, child, tab.text)}\cr
+\code{\link{gtkNotebookSetTabVborder}(object, tab.vborder)}\cr
+\code{\link{gtkNotebookGetMenuLabelText}(object, child)}\cr
+\code{\link{gtkNotebookGetScrollable}(object)}\cr
+\code{\link{gtkNotebookGetShowBorder}(object)}\cr
+\code{\link{gtkNotebookGetShowTabs}(object)}\cr
+\code{\link{gtkNotebookGetTabLabelText}(object, child)}\cr
+\code{\link{gtkNotebookGetTabPos}(object)}\cr
+\code{\link{gtkNotebookSetCurrentPage}(object, page.num)}\cr
+\code{gtkNotebook(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

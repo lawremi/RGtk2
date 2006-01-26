@@ -13,7 +13,7 @@ blue byte, and a padding byte.}
 \item{\code{width}}{[integer] The width of the rectangle to be drawn.}
 \item{\code{height}}{[integer] The height of the rectangle to be drawn.}
 \item{\code{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
-\item{\code{buf}}{[integer] The pixel data, represented as padded 32-bit data.}
+\item{\code{buf}}{[raw] The pixel data, represented as padded 32-bit data.}
 }
 \details{It's unlikely that this function will give significant performance
 gains in practice. In my experience, the performance gain from having

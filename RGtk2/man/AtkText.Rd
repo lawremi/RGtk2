@@ -9,29 +9,29 @@
 \title{AtkText}
 \description{The ATK interface implemented by components with text content.}
 \section{Methods and Functions}{
-\link{atkTextGetText}(object, start.offset, end.offset)
-\link{atkTextGetCharacterAtOffset}(object, offset)
-\link{atkTextGetTextAfterOffset}(object, offset, boundary.type)
-\link{atkTextGetTextAtOffset}(object, offset, boundary.type)
-\link{atkTextGetTextBeforeOffset}(object, offset, boundary.type)
-\link{atkTextGetCaretOffset}(object)
-\link{atkTextGetCharacterExtents}(object, offset, coords)
-\link{atkTextGetRunAttributes}(object, offset)
-\link{atkTextGetDefaultAttributes}(object)
-\link{atkTextGetCharacterCount}(object)
-\link{atkTextGetOffsetAtPoint}(object, x, y, coords)
-\link{atkTextGetBoundedRanges}(object, rect, coord.type, x.clip.type, y.clip.type)
-\link{atkTextGetRangeExtents}(object, start.offset, end.offset, coord.type)
-\link{atkTextGetNSelections}(object)
-\link{atkTextGetSelection}(object, selection.num)
-\link{atkTextAddSelection}(object, start.offset, end.offset)
-\link{atkTextRemoveSelection}(object, selection.num)
-\link{atkTextSetSelection}(object, selection.num, start.offset, end.offset)
-\link{atkTextSetCaretOffset}(object, offset)
-\link{atkTextAttributeRegister}(name)
-\link{atkTextAttributeGetName}(attr)
-\link{atkTextAttributeForName}(name)
-\link{atkTextAttributeGetValue}(attr, index)
+\code{\link{atkTextGetText}(object, start.offset, end.offset)}\cr
+\code{\link{atkTextGetCharacterAtOffset}(object, offset)}\cr
+\code{\link{atkTextGetTextAfterOffset}(object, offset, boundary.type)}\cr
+\code{\link{atkTextGetTextAtOffset}(object, offset, boundary.type)}\cr
+\code{\link{atkTextGetTextBeforeOffset}(object, offset, boundary.type)}\cr
+\code{\link{atkTextGetCaretOffset}(object)}\cr
+\code{\link{atkTextGetCharacterExtents}(object, offset, coords)}\cr
+\code{\link{atkTextGetRunAttributes}(object, offset)}\cr
+\code{\link{atkTextGetDefaultAttributes}(object)}\cr
+\code{\link{atkTextGetCharacterCount}(object)}\cr
+\code{\link{atkTextGetOffsetAtPoint}(object, x, y, coords)}\cr
+\code{\link{atkTextGetBoundedRanges}(object, rect, coord.type, x.clip.type, y.clip.type)}\cr
+\code{\link{atkTextGetRangeExtents}(object, start.offset, end.offset, coord.type)}\cr
+\code{\link{atkTextGetNSelections}(object)}\cr
+\code{\link{atkTextGetSelection}(object, selection.num)}\cr
+\code{\link{atkTextAddSelection}(object, start.offset, end.offset)}\cr
+\code{\link{atkTextRemoveSelection}(object, selection.num)}\cr
+\code{\link{atkTextSetSelection}(object, selection.num, start.offset, end.offset)}\cr
+\code{\link{atkTextSetCaretOffset}(object, offset)}\cr
+\code{\link{atkTextAttributeRegister}(name)}\cr
+\code{\link{atkTextAttributeGetName}(attr)}\cr
+\code{\link{atkTextAttributeForName}(name)}\cr
+\code{\link{atkTextAttributeGetValue}(attr, index)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkText}}
@@ -98,7 +98,7 @@ is in value.}
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{enum AtkTextBoundary}}{
+\item{\code{AtkTextBoundary}}{
 Text boundary types used for specifying boundaries for regions of text  
 
 \describe{
@@ -119,7 +119,7 @@ Text boundary types used for specifying boundaries for regions of text
 }
 
 }
-\item{\code{enum AtkTextClipType}}{
+\item{\code{AtkTextClipType}}{
 Describes the type of clipping required.  
 
 \describe{
@@ -130,7 +130,7 @@ Describes the type of clipping required.
 }
 
 }
-\item{\code{enum AtkTextAttribute}}{
+\item{\code{AtkTextAttribute}}{
 Describes the text attributes supported  
 
 \describe{

@@ -4,13 +4,13 @@
 \description{The ATK interface implemented by container objects whose    children
 can be selected.}
 \section{Methods and Functions}{
-\link{atkSelectionAddSelection}(object, i)
-\link{atkSelectionClearSelection}(object)
-\link{atkSelectionRefSelection}(object, i)
-\link{atkSelectionGetSelectionCount}(object)
-\link{atkSelectionIsChildSelected}(object, i)
-\link{atkSelectionRemoveSelection}(object, i)
-\link{atkSelectionSelectAllSelection}(object)
+\code{\link{atkSelectionAddSelection}(object, i)}\cr
+\code{\link{atkSelectionClearSelection}(object)}\cr
+\code{\link{atkSelectionRefSelection}(object, i)}\cr
+\code{\link{atkSelectionGetSelectionCount}(object)}\cr
+\code{\link{atkSelectionIsChildSelected}(object, i)}\cr
+\code{\link{atkSelectionRemoveSelection}(object, i)}\cr
+\code{\link{atkSelectionSelectAllSelection}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkSelection}}

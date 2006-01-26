@@ -5,13 +5,13 @@
 \title{Cursors}
 \description{Standard and pixmap cursors}
 \section{Methods and Functions}{
-\link{gdkCursorNew}(cursor.type)
-\link{gdkCursorNewFromPixmap}(source, mask, fg, bg, x, y)
-\link{gdkCursorNewFromPixbuf}(display, source, x, y)
-\link{gdkCursorNewFromName}(display, name)
-\link{gdkCursorNewForDisplay}(display, cursor.type)
-\link{gdkCursorGetDisplay}(object)
-\link{gdkCursorGetImage}(object)
+\code{\link{gdkCursorNew}(cursor.type)}\cr
+\code{\link{gdkCursorNewFromPixmap}(source, mask, fg, bg, x, y)}\cr
+\code{\link{gdkCursorNewFromPixbuf}(display, source, x, y)}\cr
+\code{\link{gdkCursorNewFromName}(display, name)}\cr
+\code{\link{gdkCursorNewForDisplay}(display, cursor.type)}\cr
+\code{\link{gdkCursorGetDisplay}(object)}\cr
+\code{\link{gdkCursorGetImage}(object)}\cr
 }
 \section{Detailed Description}{These functions are used to create and destroy cursors.
 There is a number of standard cursors, but it is also
@@ -33,7 +33,7 @@ A \code{GdkCursor} structure represents a cursor.
 \describe{\item{\code{type}}{[\code{\link{GdkCursorType}}] the \code{\link{GdkCursorType}} of the cursor}}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{enum GdkCursorType}}{
+\section{Enums and Flags}{\describe{\item{\code{GdkCursorType}}{
 The standard cursors available.
 
 \describe{\item{\code{GDK_CURSOR_IS_PIXMAP (gdk-cursor-is-pixmap)}}{\emph{undocumented

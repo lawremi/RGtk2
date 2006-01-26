@@ -3,8 +3,8 @@
 \title{Graphics Contexts}
 \description{A shared pool of GdkGC objects}
 \section{Methods and Functions}{
-\link{gtkGcGet}(depth, colormap, values)
-\link{gtkGcRelease}(gc)
+\code{\link{gtkGcGet}(depth, colormap, values)}\cr
+\code{\link{gtkGcRelease}(gc)}\cr
 }
 \section{Detailed Description}{These functions provide access to a shared pool of \code{\link{GdkGC}} objects.
 When a new \code{\link{GdkGC}} is needed, \code{\link{gtkGcGet}} is called with the required depth,

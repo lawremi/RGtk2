@@ -3,19 +3,19 @@
 \name{GtkCheckMenuItem}
 \title{GtkCheckMenuItem}
 \description{A menu item with a check box}
-\usage{gtkCheckMenuItem(label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCheckMenuItemNew}(show = TRUE)
-\link{gtkCheckMenuItemNewWithLabel}(label, show = TRUE)
-\link{gtkCheckMenuItemNewWithMnemonic}(label, show = TRUE)
-\link{gtkCheckMenuItemGetActive}(object)
-\link{gtkCheckMenuItemSetActive}(object, is.active)
-\link{gtkCheckMenuItemSetShowToggle}(object, always)
-\link{gtkCheckMenuItemToggled}(object)
-\link{gtkCheckMenuItemGetInconsistent}(object)
-\link{gtkCheckMenuItemSetInconsistent}(object, setting)
-\link{gtkCheckMenuItemSetDrawAsRadio}(object, draw.as.radio)
-\link{gtkCheckMenuItemGetDrawAsRadio}(object)
+\code{\link{gtkCheckMenuItemNew}(show = TRUE)}\cr
+\code{\link{gtkCheckMenuItemNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkCheckMenuItemNewWithMnemonic}(label, show = TRUE)}\cr
+\code{\link{gtkCheckMenuItemGetActive}(object)}\cr
+\code{\link{gtkCheckMenuItemSetActive}(object, is.active)}\cr
+\code{\link{gtkCheckMenuItemSetShowToggle}(object, always)}\cr
+\code{\link{gtkCheckMenuItemToggled}(object)}\cr
+\code{\link{gtkCheckMenuItemGetInconsistent}(object)}\cr
+\code{\link{gtkCheckMenuItemSetInconsistent}(object, setting)}\cr
+\code{\link{gtkCheckMenuItemSetDrawAsRadio}(object, draw.as.radio)}\cr
+\code{\link{gtkCheckMenuItemGetDrawAsRadio}(object)}\cr
+\code{gtkCheckMenuItem(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

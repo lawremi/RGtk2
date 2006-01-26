@@ -6,7 +6,7 @@ effect of the new transformation is to first scale the coordinates
 by \code{sx} and \code{sy}, then apply the original transformation to the coordinates.}
 \usage{cairoMatrixScale(matrix, sx, sy)}
 \arguments{
-\item{\code{matrix}}{[\code{\link{cairo_matrix_t}}]  a \code{\link{cairo_matrix_t}}}
+\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
 \item{\code{sx}}{[numeric]  scale factor in the X direction}
 \item{\code{sy}}{[numeric]  scale factor in the Y direction}
 }

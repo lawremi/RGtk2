@@ -6,16 +6,9 @@ Renders a rectangular portion of a pixbuf to a drawable.  The destination
 drawable must have a colormap. All windows have a colormap, however, pixmaps
 only have colormap by default if they were created with a non-\code{NULL} window argument.
 Otherwise a colormap must be set on them with gdk_drawable_set_colormap.
-\strong{WARNING: \code{gdk_pixbuf_render_to_drawable_alpha} is deprecated and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.  
-Renders a rectangular portion of a pixbuf to a drawable.  The destination
-drawable must have a colormap. All windows have a colormap, however, pixmaps
-only have colormap by default if they were created with a non-\code{NULL} window argument.
-Otherwise a colormap must be set on them with gdk_drawable_set_colormap.
-  
-On older X servers, rendering pixbufs with an alpha channel involves round trips
-to the X server, and may be somewhat slow.  }
+\strong{WARNING: \code{gdk_pixbuf_render_to_drawable_alpha} is deprecated and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.}
 }
-\usage{gdkPixbufRenderToDrawableAlpha(object, drawable, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, alpha.mode = NULL, alpha.threshold = NULL, dither = GDK_RGB_DITHER_NORMAL, x.dither = 0, y.dither = 0)}
+\usage{gdkPixbufRenderToDrawableAlpha(object, drawable, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, alpha.mode = NULL, alpha.threshold = NULL, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkPixbuf}}]  A pixbuf.}
 \item{\code{drawable}}{[\code{\link{GdkDrawable}}]  Destination drawable.}

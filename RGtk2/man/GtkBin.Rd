@@ -2,7 +2,10 @@
 \name{GtkBin}
 \title{GtkBin}
 \description{A container with just one child}
-\section{Methods and Functions}{\link{gtkBinGetChild}(object)}
+\section{Methods and Functions}{
+\code{\link{gtkBinGetChild}(object)}\cr
+
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

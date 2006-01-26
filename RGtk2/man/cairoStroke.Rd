@@ -8,6 +8,6 @@ context. See \code{\link{cairoSetLineWidth}}, \code{\link{cairoSetLineJoin}},
 \code{\link{cairoSetLineCap}}, \code{\link{cairoSetDash}}, and
 \code{\link{cairoStrokePreserve}}.}
 \usage{cairoStroke(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}}
+\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

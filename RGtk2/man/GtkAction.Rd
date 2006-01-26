@@ -3,31 +3,31 @@
 \name{GtkAction}
 \title{GtkAction}
 \description{An action which can be triggered by a menu or toolbar item}
-\usage{gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 \section{Methods and Functions}{
-\link{gtkActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
-\link{gtkActionGetName}(object)
-\link{gtkActionIsSensitive}(object)
-\link{gtkActionGetSensitive}(object)
-\link{gtkActionSetSensitive}(object, sensitive)
-\link{gtkActionIsVisible}(object)
-\link{gtkActionGetVisible}(object)
-\link{gtkActionSetVisible}(object, visible)
-\link{gtkActionActivate}(object)
-\link{gtkActionCreateIcon}(object, icon.size)
-\link{gtkActionCreateMenuItem}(object)
-\link{gtkActionCreateToolItem}(object)
-\link{gtkActionConnectProxy}(object, proxy)
-\link{gtkActionDisconnectProxy}(object, proxy)
-\link{gtkActionGetProxies}(object)
-\link{gtkActionConnectAccelerator}(object)
-\link{gtkActionDisconnectAccelerator}(object)
-\link{gtkActionBlockActivateFrom}(object, proxy)
-\link{gtkActionUnblockActivateFrom}(object, proxy)
-\link{gtkActionGetAccelPath}(object)
-\link{gtkActionSetAccelPath}(object, accel.path)
-\link{gtkActionGetAccelClosure}(object)
-\link{gtkActionSetAccelGroup}(object, accel.group)
+\code{\link{gtkActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}\cr
+\code{\link{gtkActionGetName}(object)}\cr
+\code{\link{gtkActionIsSensitive}(object)}\cr
+\code{\link{gtkActionGetSensitive}(object)}\cr
+\code{\link{gtkActionSetSensitive}(object, sensitive)}\cr
+\code{\link{gtkActionIsVisible}(object)}\cr
+\code{\link{gtkActionGetVisible}(object)}\cr
+\code{\link{gtkActionSetVisible}(object, visible)}\cr
+\code{\link{gtkActionActivate}(object)}\cr
+\code{\link{gtkActionCreateIcon}(object, icon.size)}\cr
+\code{\link{gtkActionCreateMenuItem}(object)}\cr
+\code{\link{gtkActionCreateToolItem}(object)}\cr
+\code{\link{gtkActionConnectProxy}(object, proxy)}\cr
+\code{\link{gtkActionDisconnectProxy}(object, proxy)}\cr
+\code{\link{gtkActionGetProxies}(object)}\cr
+\code{\link{gtkActionConnectAccelerator}(object)}\cr
+\code{\link{gtkActionDisconnectAccelerator}(object)}\cr
+\code{\link{gtkActionBlockActivateFrom}(object, proxy)}\cr
+\code{\link{gtkActionUnblockActivateFrom}(object, proxy)}\cr
+\code{\link{gtkActionGetAccelPath}(object)}\cr
+\code{\link{gtkActionSetAccelPath}(object, accel.path)}\cr
+\code{\link{gtkActionGetAccelClosure}(object)}\cr
+\code{\link{gtkActionSetAccelGroup}(object, accel.group)}\cr
+\code{gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkAction

@@ -5,10 +5,11 @@
 Note that shortcut folders do not get saved, as they are provided by the
 application.  For example, you can use this to add a
 "/usr/share/mydrawprogram/Clipart" folder to the volume list.}
-\usage{gtkFileChooserAddShortcutFolder(object, folder)}
+\usage{gtkFileChooserAddShortcutFolder(object, folder, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
 \item{\code{folder}}{[char]  filename of the folder to add}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.4}
 \value{

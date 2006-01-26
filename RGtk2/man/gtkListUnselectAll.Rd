@@ -4,9 +4,7 @@
 \description{
 Unselects all children of \code{list}. A signal will be emitted for each
 newly unselected child.
-\strong{WARNING: \code{gtk_list_unselect_all} is deprecated and should not be used in newly-written code.  
-Unselects all children of \code{list}. A signal will be emitted for each
-newly unselected child.}
+\strong{WARNING: \code{gtk_list_unselect_all} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListUnselectAll(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkList}}] the list widget.}}

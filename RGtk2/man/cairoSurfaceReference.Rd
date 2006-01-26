@@ -5,7 +5,7 @@
 \code{surface} from being destroyed until a matching call to
 \code{\link{cairoSurfaceDestroy}} is made.}
 \usage{cairoSurfaceReference(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{cairo_surface_t}}]  a \code{\link{cairo_surface_t}}}}
-\value{[\code{\link{cairo_surface_t}}]  the referenced \code{\link{cairo_surface_t}}.}
+\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\value{[\code{\link{CairoSurface}}]  the referenced \code{\link{CairoSurface}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

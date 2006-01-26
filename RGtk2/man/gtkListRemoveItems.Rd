@@ -3,8 +3,7 @@
 \title{gtkListRemoveItems}
 \description{
 Removes the \code{items} from the \code{list}.
-\strong{WARNING: \code{gtk_list_remove_items} is deprecated and should not be used in newly-written code.  
-Removes the \code{items} from the \code{list}.}
+\strong{WARNING: \code{gtk_list_remove_items} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListRemoveItems(object, items)}
 \arguments{

@@ -3,10 +3,7 @@
 \title{gtkItemFactoryNew}
 \description{
 Creates a new \code{\link{GtkItemFactory}}.
-\strong{WARNING: \code{gtk_item_factory_new} is deprecated and should not be used in newly-written code.  
-Creates a new \code{\link{GtkItemFactory}}.
-  
-Beware that the returned object does not have a floating reference.  }
+\strong{WARNING: \code{gtk_item_factory_new} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkItemFactoryNew(container.type, path, accel.group = NULL)}
 \arguments{

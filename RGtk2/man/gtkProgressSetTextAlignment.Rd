@@ -3,8 +3,7 @@
 \title{gtkProgressSetTextAlignment}
 \description{
 Controls the alignment of the text within the progress bar area.
-\strong{WARNING: \code{gtk_progress_set_text_alignment} is deprecated and should not be used in newly-written code.  
-Controls the alignment of the text within the progress bar area.}
+\strong{WARNING: \code{gtk_progress_set_text_alignment} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkProgressSetTextAlignment(object, x.align, y.align)}
 \arguments{

@@ -3,15 +3,15 @@
 \name{GtkCurve}
 \title{GtkCurve}
 \description{Allows direct editing of a curve}
-\usage{gtkCurve(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkCurveNew}(show = TRUE)
-\link{gtkCurveReset}(object)
-\link{gtkCurveSetGamma}(object, gamma)
-\link{gtkCurveSetRange}(object, min.x, max.x, min.y, max.y)
-\link{gtkCurveGetVector}(object, veclen)
-\link{gtkCurveSetVector}(object, vector)
-\link{gtkCurveSetCurveType}(object, type)
+\code{\link{gtkCurveNew}(show = TRUE)}\cr
+\code{\link{gtkCurveReset}(object)}\cr
+\code{\link{gtkCurveSetGamma}(object, gamma)}\cr
+\code{\link{gtkCurveSetRange}(object, min.x, max.x, min.y, max.y)}\cr
+\code{\link{gtkCurveGetVector}(object, veclen)}\cr
+\code{\link{gtkCurveSetVector}(object, vector)}\cr
+\code{\link{gtkCurveSetCurveType}(object, type)}\cr
+\code{gtkCurve(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

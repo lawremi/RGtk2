@@ -13,31 +13,31 @@ gdkGC <- gdkGCNew
 gdkImage <- gdkImageNew
 
 gdkPixbuf <-
-function(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .flush = TRUE, .depwarn = TRUE, .errwarn = TRUE)
+function(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)
 {
 	if (!missing(colorspace)) {
 		if (!missing(data)) {
-			gdkPixbufNewFromData(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride, .flush, .depwarn)
+			gdkPixbufNewFromData(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
 		}
 		else {
-			gdkPixbufNew(colorspace, has.alpha, bits.per.sample, width, height, .flush, .depwarn)
+			gdkPixbufNew(colorspace, has.alpha, bits.per.sample, width, height)
 		}
 	}
 	else {
 		if (!missing(width)) {
 			if (!missing(preserve.aspect.ratio)) {
-				gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio, .flush, .depwarn, .errwarn)
+				gdkPixbufNewFromFileAtScale(filename, width, height, preserve.aspect.ratio, .errwarn)
 			}
 			else {
-				gdkPixbufNewFromFileAtSize(filename, width, height, .flush, .depwarn, .errwarn)
+				gdkPixbufNewFromFileAtSize(filename, width, height, .errwarn)
 			}
 		}
 		else {
 			if (!missing(filename)) {
-				gdkPixbufNewFromFile(filename, .flush, .depwarn, .errwarn)
+				gdkPixbufNewFromFile(filename, .errwarn)
 			}
 			else {
-				gdkPixbufNewFromXpmData(data, .flush, .depwarn)
+				gdkPixbufNewFromXpmData(data)
 			}
 		}
 	}
@@ -48,17 +48,17 @@ gdkPixbufAnimation <- gdkPixbufAnimationNewFromFile
 gdkPixbufSimpleAnim <- gdkPixbufSimpleAnimNew
 
 gdkPixbufLoader <-
-function(image.type, mime.type, .flush = TRUE, .depwarn = TRUE, .errwarn = TRUE)
+function(image.type, mime.type, .errwarn = TRUE)
 {
 	if (!missing(image.type)) {
-		gdkPixbufLoaderNewWithType(image.type, .flush, .depwarn, .errwarn)
+		gdkPixbufLoaderNewWithType(image.type, .errwarn)
 	}
 	else {
 		if (!missing(.errwarn)) {
-			gdkPixbufLoaderNewWithMimeType(mime.type, .flush, .depwarn, .errwarn)
+			gdkPixbufLoaderNewWithMimeType(mime.type, .errwarn)
 		}
 		else {
-			gdkPixbufLoaderNew(.flush, .depwarn)
+			gdkPixbufLoaderNew()
 		}
 	}
 }

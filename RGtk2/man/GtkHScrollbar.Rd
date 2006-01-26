@@ -3,8 +3,10 @@
 \name{GtkHScrollbar}
 \title{GtkHScrollbar}
 \description{A horizontal scrollbar}
-\usage{gtkHScrollbar(adjustment = NULL, show = TRUE)}
-\section{Methods and Functions}{\link{gtkHScrollbarNew}(adjustment = NULL, show = TRUE)}
+\section{Methods and Functions}{
+\code{\link{gtkHScrollbarNew}(adjustment = NULL, show = TRUE)}\cr
+\code{gtkHScrollbar(adjustment = NULL, show = TRUE)}
+}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
          +----\link{GtkWidget}

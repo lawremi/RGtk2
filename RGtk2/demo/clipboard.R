@@ -7,7 +7,7 @@ copy.button.clicked <- function(button, user.data)
 
  clipboard <- entry$getClipboard(69) # weird, but means get default clipboard
 
- clipboard$setText(entry$getText(-1)) # copy all the text to the clipboard
+ clipboard$setText(entry$getText()) # copy all the text to the clipboard
 }
 
 paste.received <- function(clipboard, text, user.data)

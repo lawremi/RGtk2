@@ -3,14 +3,14 @@
 \name{GtkToggleAction}
 \title{GtkToggleAction}
 \description{An action which can be toggled between two states}
-\usage{gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 \section{Methods and Functions}{
-\link{gtkToggleActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
-\link{gtkToggleActionToggled}(object)
-\link{gtkToggleActionSetActive}(object, is.active)
-\link{gtkToggleActionGetActive}(object)
-\link{gtkToggleActionSetDrawAsRadio}(object, draw.as.radio)
-\link{gtkToggleActionGetDrawAsRadio}(object)
+\code{\link{gtkToggleActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}\cr
+\code{\link{gtkToggleActionToggled}(object)}\cr
+\code{\link{gtkToggleActionSetActive}(object, is.active)}\cr
+\code{\link{gtkToggleActionGetActive}(object)}\cr
+\code{\link{gtkToggleActionSetDrawAsRadio}(object, draw.as.radio)}\cr
+\code{\link{gtkToggleActionGetDrawAsRadio}(object)}\cr
+\code{gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkAction}

@@ -5,13 +5,13 @@
 \title{GtkTreeView drag-and-drop}
 \description{Interfaces for drag-and-drop support in GtkTreeView}
 \section{Methods and Functions}{
-\link{gtkTreeDragSourceDragDataDelete}(object, path)
-\link{gtkTreeDragSourceDragDataGet}(object, path)
-\link{gtkTreeDragSourceRowDraggable}(object, path)
-\link{gtkTreeDragDestDragDataReceived}(object, dest, selection.data)
-\link{gtkTreeDragDestRowDropPossible}(object, dest.path, selection.data)
-\link{gtkTreeSetRowDragData}(object, tree.model, path)
-\link{gtkTreeGetRowDragData}(object)
+\code{\link{gtkTreeDragSourceDragDataDelete}(object, path)}\cr
+\code{\link{gtkTreeDragSourceDragDataGet}(object, path)}\cr
+\code{\link{gtkTreeDragSourceRowDraggable}(object, path)}\cr
+\code{\link{gtkTreeDragDestDragDataReceived}(object, dest, selection.data)}\cr
+\code{\link{gtkTreeDragDestRowDropPossible}(object, dest.path, selection.data)}\cr
+\code{\link{gtkTreeSetRowDragData}(object, tree.model, path)}\cr
+\code{\link{gtkTreeGetRowDragData}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{
   GInterface

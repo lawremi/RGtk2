@@ -573,10 +573,11 @@
 	)
 )
 
-(define-function display_open_default_libgtk_only
-  (c-name "gdk_display_open_default_libgtk_only")
-  (return-type "GdkDisplay*")
-)
+; undocumented
+;(define-function display_open_default_libgtk_only
+;  (c-name "gdk_display_open_default_libgtk_only")
+;  (return-type "GdkDisplay*")
+;)
 
 (define-method store_clipboard
   (of-object "GdkDisplay")
@@ -4798,7 +4799,6 @@
   (c-name "gdk_pixbuf_loader_new")
   (caller-owns-return #t)
   (return-type "GdkPixbufLoader*")
-  (deprecated "use gtk.gdk.PixbufLoader instead")
 )
 
 (define-function gdk_pixbuf_loader_new_with_type

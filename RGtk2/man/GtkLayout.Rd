@@ -3,19 +3,19 @@
 \name{GtkLayout}
 \title{GtkLayout}
 \description{Infinite scrollable area containing child widgets and/or custom drawing}
-\usage{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkLayoutNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)
-\link{gtkLayoutPut}(object, child.widget, x, y)
-\link{gtkLayoutMove}(object, child.widget, x, y)
-\link{gtkLayoutSetSize}(object, width, height)
-\link{gtkLayoutGetSize}(object)
-\link{gtkLayoutFreeze}(object)
-\link{gtkLayoutThaw}(object)
-\link{gtkLayoutGetHadjustment}(object)
-\link{gtkLayoutGetVadjustment}(object)
-\link{gtkLayoutSetHadjustment}(object, adjustment = NULL)
-\link{gtkLayoutSetVadjustment}(object, adjustment = NULL)
+\code{\link{gtkLayoutNew}(hadjustment = NULL, vadjustment = NULL, show = TRUE)}\cr
+\code{\link{gtkLayoutPut}(object, child.widget, x, y)}\cr
+\code{\link{gtkLayoutMove}(object, child.widget, x, y)}\cr
+\code{\link{gtkLayoutSetSize}(object, width, height)}\cr
+\code{\link{gtkLayoutGetSize}(object)}\cr
+\code{\link{gtkLayoutFreeze}(object)}\cr
+\code{\link{gtkLayoutThaw}(object)}\cr
+\code{\link{gtkLayoutGetHadjustment}(object)}\cr
+\code{\link{gtkLayoutGetVadjustment}(object)}\cr
+\code{\link{gtkLayoutSetHadjustment}(object, adjustment = NULL)}\cr
+\code{\link{gtkLayoutSetVadjustment}(object, adjustment = NULL)}\cr
+\code{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

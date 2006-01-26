@@ -5,29 +5,29 @@
 \name{GtkColorSelection}
 \title{GtkColorSelection}
 \description{A widget used to select a color}
-\usage{gtkColorSelection(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkColorSelectionNew}(show = TRUE)
-\link{gtkColorSelectionSetUpdatePolicy}(object, policy)
-\link{gtkColorSelectionSetHasOpacityControl}(object, has.opacity)
-\link{gtkColorSelectionGetHasOpacityControl}(object)
-\link{gtkColorSelectionSetHasPalette}(object, has.palette)
-\link{gtkColorSelectionGetHasPalette}(object)
-\link{gtkColorSelectionGetCurrentAlpha}(object)
-\link{gtkColorSelectionSetCurrentAlpha}(object, alpha)
-\link{gtkColorSelectionGetCurrentColor}(object)
-\link{gtkColorSelectionSetCurrentColor}(object, color)
-\link{gtkColorSelectionGetPreviousAlpha}(object)
-\link{gtkColorSelectionSetPreviousAlpha}(object, alpha)
-\link{gtkColorSelectionGetPreviousColor}(object, color)
-\link{gtkColorSelectionSetPreviousColor}(object, color)
-\link{gtkColorSelectionIsAdjusting}(object)
-\link{gtkColorSelectionPaletteFromString}(str)
-\link{gtkColorSelectionPaletteToString}(colors)
-\link{gtkColorSelectionSetChangePaletteHook}(func)
-\link{gtkColorSelectionSetChangePaletteWithScreenHook}(func)
-\link{gtkColorSelectionSetColor}(object, color)
-\link{gtkColorSelectionGetColor}(object)
+\code{\link{gtkColorSelectionNew}(show = TRUE)}\cr
+\code{\link{gtkColorSelectionSetUpdatePolicy}(object, policy)}\cr
+\code{\link{gtkColorSelectionSetHasOpacityControl}(object, has.opacity)}\cr
+\code{\link{gtkColorSelectionGetHasOpacityControl}(object)}\cr
+\code{\link{gtkColorSelectionSetHasPalette}(object, has.palette)}\cr
+\code{\link{gtkColorSelectionGetHasPalette}(object)}\cr
+\code{\link{gtkColorSelectionGetCurrentAlpha}(object)}\cr
+\code{\link{gtkColorSelectionSetCurrentAlpha}(object, alpha)}\cr
+\code{\link{gtkColorSelectionGetCurrentColor}(object)}\cr
+\code{\link{gtkColorSelectionSetCurrentColor}(object, color)}\cr
+\code{\link{gtkColorSelectionGetPreviousAlpha}(object)}\cr
+\code{\link{gtkColorSelectionSetPreviousAlpha}(object, alpha)}\cr
+\code{\link{gtkColorSelectionGetPreviousColor}(object, color)}\cr
+\code{\link{gtkColorSelectionSetPreviousColor}(object, color)}\cr
+\code{\link{gtkColorSelectionIsAdjusting}(object)}\cr
+\code{\link{gtkColorSelectionPaletteFromString}(str)}\cr
+\code{\link{gtkColorSelectionPaletteToString}(colors)}\cr
+\code{\link{gtkColorSelectionSetChangePaletteHook}(func)}\cr
+\code{\link{gtkColorSelectionSetChangePaletteWithScreenHook}(func)}\cr
+\code{\link{gtkColorSelectionSetColor}(object, color)}\cr
+\code{\link{gtkColorSelectionGetColor}(object)}\cr
+\code{gtkColorSelection(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

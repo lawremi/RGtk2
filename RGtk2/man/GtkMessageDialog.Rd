@@ -5,13 +5,13 @@
 \name{GtkMessageDialog}
 \title{GtkMessageDialog}
 \description{A convenient message window}
-\usage{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkMessageDialogNew}(parent = NULL, flags, type, buttons, ..., show = TRUE)
-\link{gtkMessageDialogNewWithMarkup}(parent, flags, type, buttons, ..., show = TRUE)
-\link{gtkMessageDialogSetMarkup}(object, str)
-\link{gtkMessageDialogFormatSecondaryText}(object, ...)
-\link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)
+\code{\link{gtkMessageDialogNew}(parent = NULL, flags, type, buttons, ..., show = TRUE)}\cr
+\code{\link{gtkMessageDialogNewWithMarkup}(parent, flags, type, buttons, ..., show = TRUE)}\cr
+\code{\link{gtkMessageDialogSetMarkup}(object, str)}\cr
+\code{\link{gtkMessageDialogFormatSecondaryText}(object, ...)}\cr
+\code{\link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)}\cr
+\code{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -62,7 +62,7 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 }}}
 \section{Convenient Construction}{\code{gtkMessageDialog} is the result of collapsing the constructors of \code{GtkMessageDialog} (\code{\link{gtkMessageDialogNew}}, \code{\link{gtkMessageDialogNewWithMarkup}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GtkMessageType}}{
+\item{\code{GtkMessageType}}{
 The type of message being displayed in the dialog.
 
 \describe{
@@ -73,7 +73,7 @@ The type of message being displayed in the dialog.
 }
 
 }
-\item{\code{enum GtkButtonsType}}{
+\item{\code{GtkButtonsType}}{
 Prebuilt sets of buttons for the dialog. If 
 none of these choices are appropriate, simply use \code{GTK_BUTTONS_NONE}
 then call \code{\link{gtkDialogAddButtons}}.

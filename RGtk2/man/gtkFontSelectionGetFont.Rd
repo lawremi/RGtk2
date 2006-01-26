@@ -3,8 +3,7 @@
 \title{gtkFontSelectionGetFont}
 \description{
 Gets the currently-selected font.
-\strong{WARNING: \code{gtk_font_selection_get_font} is deprecated and should not be used in newly-written code.  
-Gets the currently-selected font.}
+\strong{WARNING: \code{gtk_font_selection_get_font} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkFontSelectionGetFont(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkFontSelection}}] a \code{\link{GtkFontSelection}}.}}

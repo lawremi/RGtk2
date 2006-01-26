@@ -3,30 +3,30 @@
 \name{GtkToolItem}
 \title{GtkToolItem}
 \description{The base class of widgets that can be added to GtkToolbar}
-\usage{gtkToolItem(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkToolItemNew}(show = TRUE)
-\link{gtkToolItemSetHomogeneous}(object, homogeneous)
-\link{gtkToolItemGetHomogeneous}(object)
-\link{gtkToolItemSetExpand}(object, expand)
-\link{gtkToolItemGetExpand}(object)
-\link{gtkToolItemSetTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)
-\link{gtkToolItemSetUseDragWindow}(object, use.drag.window)
-\link{gtkToolItemGetUseDragWindow}(object)
-\link{gtkToolItemSetVisibleHorizontal}(object, visible.horizontal)
-\link{gtkToolItemGetVisibleHorizontal}(object)
-\link{gtkToolItemSetVisibleVertical}(object, visible.vertical)
-\link{gtkToolItemGetVisibleVertical}(object)
-\link{gtkToolItemSetIsImportant}(object, is.important)
-\link{gtkToolItemGetIsImportant}(object)
-\link{gtkToolItemGetIconSize}(object)
-\link{gtkToolItemGetOrientation}(object)
-\link{gtkToolItemGetToolbarStyle}(object)
-\link{gtkToolItemGetReliefStyle}(object)
-\link{gtkToolItemRetrieveProxyMenuItem}(object)
-\link{gtkToolItemGetProxyMenuItem}(object, menu.item.id)
-\link{gtkToolItemSetProxyMenuItem}(object, menu.item.id, menu.item = NULL)
-\link{gtkToolItemRebuildMenu}(object)
+\code{\link{gtkToolItemNew}(show = TRUE)}\cr
+\code{\link{gtkToolItemSetHomogeneous}(object, homogeneous)}\cr
+\code{\link{gtkToolItemGetHomogeneous}(object)}\cr
+\code{\link{gtkToolItemSetExpand}(object, expand)}\cr
+\code{\link{gtkToolItemGetExpand}(object)}\cr
+\code{\link{gtkToolItemSetTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)}\cr
+\code{\link{gtkToolItemSetUseDragWindow}(object, use.drag.window)}\cr
+\code{\link{gtkToolItemGetUseDragWindow}(object)}\cr
+\code{\link{gtkToolItemSetVisibleHorizontal}(object, visible.horizontal)}\cr
+\code{\link{gtkToolItemGetVisibleHorizontal}(object)}\cr
+\code{\link{gtkToolItemSetVisibleVertical}(object, visible.vertical)}\cr
+\code{\link{gtkToolItemGetVisibleVertical}(object)}\cr
+\code{\link{gtkToolItemSetIsImportant}(object, is.important)}\cr
+\code{\link{gtkToolItemGetIsImportant}(object)}\cr
+\code{\link{gtkToolItemGetIconSize}(object)}\cr
+\code{\link{gtkToolItemGetOrientation}(object)}\cr
+\code{\link{gtkToolItemGetToolbarStyle}(object)}\cr
+\code{\link{gtkToolItemGetReliefStyle}(object)}\cr
+\code{\link{gtkToolItemRetrieveProxyMenuItem}(object)}\cr
+\code{\link{gtkToolItemGetProxyMenuItem}(object, menu.item.id)}\cr
+\code{\link{gtkToolItemSetProxyMenuItem}(object, menu.item.id, menu.item = NULL)}\cr
+\code{\link{gtkToolItemRebuildMenu}(object)}\cr
+\code{gtkToolItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,8 +3,8 @@
 \title{AtkDocument}
 \description{The ATK interface which allows access to a DOM associated with on object.}
 \section{Methods and Functions}{
-\link{atkDocumentGetDocumentType}(object)
-\link{atkDocumentGetDocument}(object)
+\code{\link{atkDocumentGetDocumentType}(object)}\cr
+\code{\link{atkDocumentGetDocument}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkDocument}}

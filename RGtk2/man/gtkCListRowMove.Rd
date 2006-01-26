@@ -4,9 +4,7 @@
 \description{
 Allows you to move a row from one position to another in the
 list.
-\strong{WARNING: \code{gtk_clist_row_move} is deprecated and should not be used in newly-written code.  
-Allows you to move a row from one position to another in the
-list.}
+\strong{WARNING: \code{gtk_clist_row_move} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListRowMove(object, source.row, dest.row)}
 \arguments{

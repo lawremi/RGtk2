@@ -4,9 +4,7 @@
 \description{
 Gets the \code{\link{GtkAdjustment}} currently being used for the vertical
 aspect.
-\strong{WARNING: \code{gtk_clist_get_vadjustment} is deprecated and should not be used in newly-written code.  
-Gets the \code{\link{GtkAdjustment}} currently being used for the vertical
-aspect.}
+\strong{WARNING: \code{gtk_clist_get_vadjustment} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListGetVadjustment(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to check.}}

@@ -3,27 +3,27 @@
 \name{GtkTreeStore}
 \title{GtkTreeStore}
 \description{A tree-like data structure that can be used with the }
-\usage{gtkTreeStore(..., types)}
 \section{Methods and Functions}{
-\link{gtkTreeStoreNew}(...)
-\link{gtkTreeStoreNewv}(types)
-\link{gtkTreeStoreSetColumnTypes}(object, types)
-\link{gtkTreeStoreSetValue}(object, iter, column, value)
-\link{gtkTreeStoreSet}(object, iter, ...)
-\link{gtkTreeStoreRemove}(object, iter)
-\link{gtkTreeStoreInsert}(object, parent, position)
-\link{gtkTreeStoreInsertBefore}(object, parent, sibling)
-\link{gtkTreeStoreInsertAfter}(object, parent, sibling)
-\link{gtkTreeStorePrepend}(object, parent = NULL)
-\link{gtkTreeStoreAppend}(object, parent = NULL)
-\link{gtkTreeStoreIsAncestor}(object, iter, descendant)
-\link{gtkTreeStoreIterDepth}(object, iter)
-\link{gtkTreeStoreClear}(object)
-\link{gtkTreeStoreIterIsValid}(object, iter)
-\link{gtkTreeStoreReorder}(object, parent, new.order)
-\link{gtkTreeStoreSwap}(object, a, b)
-\link{gtkTreeStoreMoveBefore}(object, iter, position = NULL)
-\link{gtkTreeStoreMoveAfter}(object, iter, position = NULL)
+\code{\link{gtkTreeStoreNew}(...)}\cr
+\code{\link{gtkTreeStoreNewv}(types)}\cr
+\code{\link{gtkTreeStoreSetColumnTypes}(object, types)}\cr
+\code{\link{gtkTreeStoreSetValue}(object, iter, column, value)}\cr
+\code{\link{gtkTreeStoreSet}(object, iter, ...)}\cr
+\code{\link{gtkTreeStoreRemove}(object, iter)}\cr
+\code{\link{gtkTreeStoreInsert}(object, parent, position)}\cr
+\code{\link{gtkTreeStoreInsertBefore}(object, parent, sibling)}\cr
+\code{\link{gtkTreeStoreInsertAfter}(object, parent, sibling)}\cr
+\code{\link{gtkTreeStorePrepend}(object, parent = NULL)}\cr
+\code{\link{gtkTreeStoreAppend}(object, parent = NULL)}\cr
+\code{\link{gtkTreeStoreIsAncestor}(object, iter, descendant)}\cr
+\code{\link{gtkTreeStoreIterDepth}(object, iter)}\cr
+\code{\link{gtkTreeStoreClear}(object)}\cr
+\code{\link{gtkTreeStoreIterIsValid}(object, iter)}\cr
+\code{\link{gtkTreeStoreReorder}(object, parent, new.order)}\cr
+\code{\link{gtkTreeStoreSwap}(object, a, b)}\cr
+\code{\link{gtkTreeStoreMoveBefore}(object, iter, position = NULL)}\cr
+\code{\link{gtkTreeStoreMoveAfter}(object, iter, position = NULL)}\cr
+\code{gtkTreeStore(..., types)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTreeStore}}

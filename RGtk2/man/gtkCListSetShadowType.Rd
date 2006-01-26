@@ -4,9 +4,7 @@
 \description{
 Sets the shadow type for the specified CList.  Changing this value
 will cause the \code{\link{GtkCList}} to update its visuals.
-\strong{WARNING: \code{gtk_clist_set_shadow_type} is deprecated and should not be used in newly-written code.  
-Sets the shadow type for the specified CList.  Changing this value
-will cause the \code{\link{GtkCList}} to update its visuals.}
+\strong{WARNING: \code{gtk_clist_set_shadow_type} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetShadowType(object, type)}
 \arguments{

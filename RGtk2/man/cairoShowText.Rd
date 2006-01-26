@@ -6,7 +6,7 @@ characters, rendered according to the current font_face, font_size
 (font_matrix), and font_options.}
 \usage{cairoShowText(cr, utf8)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{utf8}}{[char]  a string of text encoded in UTF-8}
 }
 \details{This function first computes a set of glyphs for the string of

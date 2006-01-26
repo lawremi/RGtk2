@@ -4,8 +4,9 @@
 \title{GtkOldEditable}
 \description{Base class for text-editing widgets}
 \section{Methods and Functions}{
-\link{gtkOldEditableClaimSelection}(object, claim, time = GDK_CURRENT_TIME)
-\link{gtkOldEditableChanged}(object)
+\code{\link{gtkOldEditableClaimSelection}(object, claim, time = "GDK_CURRENT_TIME")}\cr
+\code{\link{gtkOldEditableChanged}(object)}\cr
+
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -17,7 +18,7 @@
 \section{Detailed Description}{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \section{Structures}{\describe{\item{\code{GtkOldEditable}}{
-\strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.}
 
 
 }}}

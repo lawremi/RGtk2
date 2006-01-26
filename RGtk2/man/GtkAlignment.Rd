@@ -3,12 +3,12 @@
 \name{GtkAlignment}
 \title{GtkAlignment}
 \description{A widget which controls the alignment and size of its child}
-\usage{gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkAlignmentNew}(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)
-\link{gtkAlignmentSet}(object, xalign, yalign, xscale, yscale)
-\link{gtkAlignmentGetPadding}(object)
-\link{gtkAlignmentSetPadding}(object, padding.top, padding.bottom, padding.left, padding.right)
+\code{\link{gtkAlignmentNew}(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}\cr
+\code{\link{gtkAlignmentSet}(object, xalign, yalign, xscale, yscale)}\cr
+\code{\link{gtkAlignmentGetPadding}(object)}\cr
+\code{\link{gtkAlignmentSetPadding}(object, padding.top, padding.bottom, padding.left, padding.right)}\cr
+\code{gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

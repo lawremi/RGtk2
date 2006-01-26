@@ -4,10 +4,11 @@
 \description{Parses marked-up text (see
 markup format) to create
 a plaintext string and an attribute list.}
-\usage{pangoParseMarkup(markup.text, accel.marker)}
+\usage{pangoParseMarkup(markup.text, accel.marker, .errwarn = TRUE)}
 \arguments{
 \item{\code{markup.text}}{[char]  markup to parse (see markup format)}
 \item{\code{accel.marker}}{[numeric]  character that precedes an accelerator, or 0 for none}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{If \code{accel.marker} is nonzero, the given character will mark the
 character following it as an accelerator. For example, the accel

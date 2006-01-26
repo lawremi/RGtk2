@@ -97,6 +97,19 @@ typedef void* (*ElementConverter)(void *element);
     _asRPrimArrayWithSize(array, size, INTEGER); \
 })
 
+#define RAW_POINTER(x)	RAW(x)
+
+#define asRRawArray(array) \
+({ \
+    _asRPrimArray(array, RAW); \
+})
+
+#define asRRawArrayWithSize(array, size) \
+({ \
+    _asRPrimArrayWithSize(array, size, RAW); \
+})
+
+
 #define asRNumericArray(array) \
 ({ \
     _asRPrimArray(array, NUMERIC); \
@@ -260,12 +273,14 @@ typedef void* (*ElementConverter)(void *element);
 
 gboolean asCLogical(USER_OBJECT_ s_log);
 int asCInteger(USER_OBJECT_ s_int);
+guchar asCRaw(USER_OBJECT_ s_raw);
 double asCNumeric(USER_OBJECT_ s_num);
 char * asCString(USER_OBJECT_ s_str);
 char asCCharacter(USER_OBJECT_ s_char);
 
 USER_OBJECT_ asRLogical(Rboolean);
 USER_OBJECT_ asRInteger(int);
+USER_OBJECT_ asRRaw(guchar);
 USER_OBJECT_ asRNumeric(double);
 USER_OBJECT_ asRCharacter(char c);
 USER_OBJECT_ asRString(const char *);

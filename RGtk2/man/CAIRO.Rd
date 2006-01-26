@@ -1,9 +1,9 @@
-\alias{Cairo}
-\name{Cairo}
-\title{Cairo}
+\alias{CAIRO}
+\name{CAIRO}
+\title{CAIRO}
 \description{Cairo is a 2D graphics library with support for multiple output devices. Currently supported output targets include the X Window System, win32, and image buffers.}
 \details{
-The RGtk binding to the Cairo library consists of the following components:
+The RGtk binding to the CAIRO library consists of the following components:
 \describe{
 \item{\link{cairo-Font-Options}}{How a font should be rendered}
 \item{\link{cairo-cairo-font-face-t}}{Base class for fonts}
@@ -22,6 +22,6 @@ The RGtk binding to the Cairo library consists of the following components:
 \item{\link{cairo-cairo-t}}{The cairo drawing context}
 }
 }
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo}}
+\references{\url{http://www.cairographics.org/manual}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{interface}

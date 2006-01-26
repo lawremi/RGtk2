@@ -5,8 +5,8 @@
 \code{\link{cairoSetFontMatrix}}.}
 \usage{cairoGetFontMatrix(cr, matrix)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a \code{\link{cairo_t}}}
-\item{\code{matrix}}{[\code{\link{cairo_matrix_t}}]  return value for the matrix}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
+\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  return value for the matrix}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

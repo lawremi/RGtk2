@@ -446,12 +446,13 @@
   )
 )
 
-(define-method accelerator_width
-  (of-object "GtkAccelLabel")
-  (c-name "gtk_accel_label_accelerator_width")
-  (return-type "guint")
-  (deprecated "use GtkAccelLabel.get_accel_width")
-)
+; no longer exists
+;(define-method accelerator_width
+;  (of-object "GtkAccelLabel")
+;  (c-name "gtk_accel_label_accelerator_width")
+;  (return-type "guint")
+;  (deprecated "use GtkAccelLabel.get_accel_width")
+;)
 
 (define-method get_accel_widget
   (of-object "GtkAccelLabel")
@@ -2215,7 +2216,7 @@
   (caller-owns-return #t)
   (return-type "GtkClipboard*")
   (parameters
-    '("GdkDisplay*" "display" (in) (default "gdk_display_get_default()"))
+    '("GdkDisplay*" "display" (in))
     '("GdkAtom" "selection" (in) (default "GDK_SELECTION_CLIPBOARD"))
   )
 )
@@ -11263,16 +11264,17 @@
   (return-type "GtkWidget*")
 )
 
-(define-method compute_position
-  (of-object "GtkPaned")
-  (c-name "gtk_paned_compute_position")
-  (return-type "none")
-  (parameters
-    '("gint" "allocation" (in))
-    '("gint" "child1_req" (in))
-    '("gint" "child2_req" (in))
-  )
-)
+; not public
+;(define-method compute_position
+;  (of-object "GtkPaned")
+;  (c-name "gtk_paned_compute_position")
+;  (return-type "none")
+;  (parameters
+;    '("gint" "allocation" (in))
+;    '("gint" "child1_req" (in))
+;    '("gint" "child2_req" (in))
+;  )
+;)
 
 (define-function gtk_pixmap_get_type
   (c-name "gtk_pixmap_get_type")
@@ -12404,17 +12406,17 @@
   )
 )
 
-(define-method draw_ticks
-  (of-object "GtkRuler")
-  (c-name "gtk_ruler_draw_ticks")
-  (return-type "none")
-)
+;(define-method draw_ticks
+;  (of-object "GtkRuler")
+;  (c-name "gtk_ruler_draw_ticks")
+;  (return-type "none")
+;)
 
-(define-method draw_pos
-  (of-object "GtkRuler")
-  (c-name "gtk_ruler_draw_pos")
-  (return-type "none")
-)
+;(define-method draw_pos
+;  (of-object "GtkRuler")
+;  (c-name "gtk_ruler_draw_pos")
+;  (return-type "none")
+;)
 
 (define-method get_metric
   (of-object "GtkRuler")

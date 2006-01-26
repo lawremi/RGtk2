@@ -770,9 +770,21 @@ declareFunction <- function(ret, name, ptypes, pnames) {
 
 s_signature <- function(formal_args)
 {
-	args <- as.character(formal_args)
+	cargs <- as.character(formal_args)
+	names(cargs) <- names(formal_args)
+	args <- sapply(names(formal_args), function(argname) {
+		arg <- formal_args[[argname]]
+		if (missing(arg))
+			""
+		else if (is.null(arg))
+			"NULL"
+		else if (is.character(arg) && nchar(arg) > 0 && arg != "NULL")
+			lit(arg)
+		else cargs[[argname]] # this is to get around "calls"
+	})
+	#args <- as.character(formal_args)
 	if (length(names(formal_args)) == 0)
-		argDecls <- nameToS(args)
+		argDecls <- nameToS(cargs)
 	else {
 		names(args) <- nameToS(names(formal_args))
 		argDecls <- sapply(names(args), function(name) {
@@ -876,12 +888,16 @@ getDefaultSArgs <-
   # -- Michael
 function(params)
 {
-    x <- sapply(params, function(x) {
-      if (!is.null(x$dflt))
-          def <- lit(x$dflt)
-      else if (x$nullok)
+    x <- lapply(params, function(x) {
+		if (!is.null(x$dflt)) {
+			if (x$dflt == "TRUE" || x$dflt == "FALSE")
+				def <- as.logical(x$dflt)
+			else if (length(grep("[A-Za-z]", x$dflt)) == 0)
+				def <- as.numeric(x$dflt)
+			else def <- x$dflt
+		} else if (x$nullok)
           def <- "NULL"
-      else return("")
+		else return("")
       return(def)
   })
 
@@ -981,7 +997,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
   if (isMethod(fun)) # method definitions leave off the object (first parameter)
       inParams <- c(object=makeObjectParam(fun$ofobject), inParams)
 
-  sargs <- character(0)
+  sargs <- list()
   coerce <- NULL
   if(length(inParams) > 0) {
       badNames <- which(names(inParams) == "function")
@@ -1002,16 +1018,16 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
    # Add the show argument if this is a constructor
    # And we check this is a widget class.
   if(isConstructor(fun) && inheritsClass(className, defs$objects, "GtkWidget")) {
-       sargs["show"] <- "TRUE"
+       sargs["show"] <- TRUE
   }
 
   # flush and warn of deprecation by default
-  sargs[".flush"] <- "TRUE"
-  sargs[".depwarn"] <- "TRUE"
+  # sargs[".flush"] <- "TRUE"
+  # sargs[".depwarn"] <- "TRUE"
 
   # add error warning option if the function returns a GError
   if (any(getParamTypes(params) == "GError**")) {
-      sargs[".errwarn"] <- "TRUE"
+      sargs[".errwarn"] <- TRUE
   }
 
   # code starts here
@@ -1022,7 +1038,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     # check for deprecation
     if(isDeprecated(fun)) {
         txt <- c(txt,
-        ind(c("if (.depwarn)",
+        ind(c(invoke("if", invoke("getOption", lit("depwarn"))),
             ind(invokev("warning", lit(paste("This function is deprecated:", fun$deprecated)))))),
         "")
     }
@@ -1031,7 +1047,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     ind(coerce),
     "",
     ind(rassign("w", invoke(".RGtkCall", c(lit(nameToC(name)), nameToS(names(inParams)),
-                          named("PACKAGE", lit(package)), named(".flush", ".flush"))))))
+                          named("PACKAGE", lit(package)))))))
 
     if (".errwarn" %in% names(sargs))
         txt <- c(txt, "",
@@ -1882,7 +1898,8 @@ function(sname, className, croutine, type, defs)
             "function(obj)",
             "{",
             paste("  checkPtrType(obj, '", className, "')", collapse="", sep=""),
-            paste("  v <- .Call('", croutine, "', obj)", collapse="", sep=""),
+            paste("  v <- .Call('", croutine, "', obj, ", named("PACKAGE", lit("RGtk2")), ")", 
+				collapse="", sep=""),
             setClassInfo,
             "  v",
             "}")

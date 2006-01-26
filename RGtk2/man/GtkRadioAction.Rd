@@ -3,12 +3,12 @@
 \name{GtkRadioAction}
 \title{GtkRadioAction}
 \description{An action of which only one in a group can be active}
-\usage{gtkRadioAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}
 \section{Methods and Functions}{
-\link{gtkRadioActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)
-\link{gtkRadioActionGetGroup}(object)
-\link{gtkRadioActionSetGroup}(object, group)
-\link{gtkRadioActionGetCurrentValue}(object)
+\code{\link{gtkRadioActionNew}(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}\cr
+\code{\link{gtkRadioActionGetGroup}(object)}\cr
+\code{\link{gtkRadioActionSetGroup}(object, group)}\cr
+\code{\link{gtkRadioActionGetCurrentValue}(object)}\cr
+\code{gtkRadioAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkAction}

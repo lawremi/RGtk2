@@ -1,30 +1,33 @@
 \alias{cairo-Font-Options}
-\alias{cairo_font_options_t}
-\alias{cairo_subpixel_order_t}
-\alias{cairo_hint_style_t}
-\alias{cairo_hint_metrics_t}
+\alias{CairoFontOptions}
+\alias{cairoFontOptions}
+\alias{CairoSubpixelOrder}
+\alias{CairoHintStyle}
+\alias{CairoHintMetrics}
 \name{cairo-Font-Options}
 \title{Font Options}
 \description{How a font should be rendered}
 \section{Methods and Functions}{
-\link{cairoFontOptionsCreate}()
-\link{cairoFontOptionsCopy}(original)
-\link{cairoFontOptionsStatus}(options)
-\link{cairoFontOptionsMerge}(options, other)
-\link{cairoFontOptionsEqual}(options, other)
-\link{cairoFontOptionsSetAntialias}(options, antialias)
-\link{cairoFontOptionsGetAntialias}(options)
-\link{cairoFontOptionsSetSubpixelOrder}(options, subpixel.order)
-\link{cairoFontOptionsGetSubpixelOrder}(options)
-\link{cairoFontOptionsSetHintStyle}(options, hint.style)
-\link{cairoFontOptionsGetHintStyle}(options)
-\link{cairoFontOptionsSetHintMetrics}(options, hint.metrics)
-\link{cairoFontOptionsGetHintMetrics}(options)
+\code{\link{cairoFontOptionsCreate}()}\cr
+\code{\link{cairoFontOptionsCopy}(original)}\cr
+\code{\link{cairoFontOptionsStatus}(options)}\cr
+\code{\link{cairoFontOptionsMerge}(options, other)}\cr
+\code{\link{cairoFontOptionsEqual}(options, other)}\cr
+\code{\link{cairoFontOptionsSetAntialias}(options, antialias)}\cr
+\code{\link{cairoFontOptionsGetAntialias}(options)}\cr
+\code{\link{cairoFontOptionsSetSubpixelOrder}(options, subpixel.order)}\cr
+\code{\link{cairoFontOptionsGetSubpixelOrder}(options)}\cr
+\code{\link{cairoFontOptionsSetHintStyle}(options, hint.style)}\cr
+\code{\link{cairoFontOptionsGetHintStyle}(options)}\cr
+\code{\link{cairoFontOptionsSetHintMetrics}(options, hint.metrics)}\cr
+\code{\link{cairoFontOptionsGetHintMetrics}(options)}\cr
+\code{cairoFontOptions()}
 }
-\section{Structures}{\describe{\item{\code{cairo_font_options_t}}{\emph{undocumented
+\section{Structures}{\describe{\item{\code{CairoFontOptions}}{\emph{undocumented
 }}}}
+\section{Convenient Construction}{\code{cairoFontOptions} is the equivalent of \code{\link{cairoFontOptionsCreate}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum cairo_subpixel_order_t}}{
+\item{\code{CairoSubpixelOrder}}{
 The subpixel order specifies the order of color elements within
 each pixel on the display device when rendering with an
 antialiasing mode of \code{CAIRO_ANTIALIAS_SUBPIXEL}.  
@@ -43,7 +46,7 @@ antialiasing mode of \code{CAIRO_ANTIALIAS_SUBPIXEL}.
 }
 
 }
-\item{\code{enum cairo_hint_style_t}}{
+\item{\code{CairoHintStyle}}{
 Specifies the type of hinting to do on font outlines. Hinting
 is the process of fitting outlines to the pixel grid in order
 to improve the appearance of the result. Since hinting outlines
@@ -65,7 +68,7 @@ styles are supported by all font backends.
 }
 
 }
-\item{\code{enum cairo_hint_metrics_t}}{
+\item{\code{CairoHintMetrics}}{
 Specifies whether to hint font metrics; hinting font metrics
 means quantizing them so that they are integer values in
 device space. Doing this improves the consistency of
@@ -81,6 +84,6 @@ will be laid out differently at different zoom factors.
 
 }
 }}
-\references{\url{http://developer.gnome.org/doc/API/2.0/cairo/cairo-Font-Options.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Font-Options.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

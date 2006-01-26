@@ -3,8 +3,7 @@
 \title{gtkDrawExpander}
 \description{
 Draws an expander as used in \code{\link{GtkTreeView}}.
-\strong{WARNING: \code{gtk_draw_expander} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintExpander}} instead.  
-Draws an expander as used in \code{\link{GtkTreeView}}.  }
+\strong{WARNING: \code{gtk_draw_expander} is deprecated and should not be used in newly-written code. Use \code{\link{gtkPaintExpander}} instead.}
 }
 \usage{gtkDrawExpander(object, window, state.type, x, y, is.open)}
 \arguments{

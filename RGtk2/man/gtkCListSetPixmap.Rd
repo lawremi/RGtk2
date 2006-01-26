@@ -3,8 +3,7 @@
 \title{gtkCListSetPixmap}
 \description{
 Sets a pixmap for the specified cell.
-\strong{WARNING: \code{gtk_clist_set_pixmap} is deprecated and should not be used in newly-written code.  
-Sets a pixmap for the specified cell.}
+\strong{WARNING: \code{gtk_clist_set_pixmap} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSetPixmap(object, row, column, pixmap, mask = NULL)}
 \arguments{

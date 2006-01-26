@@ -6,7 +6,7 @@ specified cairo context.  The origin of the glyphs (the left edge
 of the line) will be at the current point of the cairo context.}
 \usage{pangoCairoLayoutLinePath(cr, line)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a Cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}
 \item{\code{line}}{[\code{\link{PangoLayoutLine}}]  a \code{\link{PangoLayoutLine}}}
 }
 \details{  Since  1.10}

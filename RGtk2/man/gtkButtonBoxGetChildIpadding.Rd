@@ -4,8 +4,7 @@
 \description{
 Gets the default number of pixels that pad the buttons in a given button box.
 \strong{WARNING: \code{gtk_button_box_get_child_ipadding} is deprecated and should not be used in newly-written code. Use the style properties
-\code{"child-internal-pad-x/-y"} instead.  
-Gets the default number of pixels that pad the buttons in a given button box.}
+\code{"child-internal-pad-x/-y"} instead.}
 }
 \usage{gtkButtonBoxGetChildIpadding(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkButtonBox}}] a \code{\link{GtkButtonBox}}.}}

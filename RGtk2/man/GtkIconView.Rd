@@ -5,58 +5,58 @@
 \name{GtkIconView}
 \title{GtkIconView}
 \description{A widget which displays a list of icons in a grid}
-\usage{gtkIconView(model = NULL, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkIconViewNew}(show = TRUE)
-\link{gtkIconViewNewWithModel}(model = NULL, show = TRUE)
-\link{gtkIconViewSetModel}(object, model = NULL)
-\link{gtkIconViewGetModel}(object)
-\link{gtkIconViewSetTextColumn}(object, column)
-\link{gtkIconViewGetTextColumn}(object)
-\link{gtkIconViewSetMarkupColumn}(object, column)
-\link{gtkIconViewGetMarkupColumn}(object)
-\link{gtkIconViewSetPixbufColumn}(object, column)
-\link{gtkIconViewGetPixbufColumn}(object)
-\link{gtkIconViewGetPathAtPos}(object, x, y)
-\link{gtkIconViewGetItemAtPos}(object, x, y)
-\link{gtkIconViewSetCursor}(object, path, cell, start.editing)
-\link{gtkIconViewGetCursor}(object)
-\link{gtkIconViewSelectedForeach}(object, func, data = NULL)
-\link{gtkIconViewSetSelectionMode}(object, mode)
-\link{gtkIconViewGetSelectionMode}(object)
-\link{gtkIconViewSetOrientation}(object, orientation)
-\link{gtkIconViewGetOrientation}(object)
-\link{gtkIconViewSetColumns}(object, columns)
-\link{gtkIconViewGetColumns}(object)
-\link{gtkIconViewSetItemWidth}(object, item.width)
-\link{gtkIconViewGetItemWidth}(object)
-\link{gtkIconViewSetSpacing}(object, spacing)
-\link{gtkIconViewGetSpacing}(object)
-\link{gtkIconViewSetRowSpacing}(object, row.spacing)
-\link{gtkIconViewGetRowSpacing}(object)
-\link{gtkIconViewSetColumnSpacing}(object, column.spacing)
-\link{gtkIconViewGetColumnSpacing}(object)
-\link{gtkIconViewSetMargin}(object, margin)
-\link{gtkIconViewGetMargin}(object)
-\link{gtkIconViewSelectPath}(object, path)
-\link{gtkIconViewUnselectPath}(object, path)
-\link{gtkIconViewPathIsSelected}(object, path)
-\link{gtkIconViewGetSelectedItems}(object)
-\link{gtkIconViewSelectAll}(object)
-\link{gtkIconViewUnselectAll}(object)
-\link{gtkIconViewItemActivated}(object, path)
-\link{gtkIconViewScrollToPath}(object, path, use.align, row.align, col.align)
-\link{gtkIconViewGetVisibleRange}(object)
-\link{gtkIconViewEnableModelDragSource}(object, start.button.mask, targets, actions)
-\link{gtkIconViewEnableModelDragDest}(object, targets, actions)
-\link{gtkIconViewUnsetModelDragSource}(object)
-\link{gtkIconViewUnsetModelDragDest}(object)
-\link{gtkIconViewSetReorderable}(object, reorderable)
-\link{gtkIconViewGetReorderable}(object)
-\link{gtkIconViewSetDragDestItem}(object, path, pos)
-\link{gtkIconViewGetDragDestItem}(object)
-\link{gtkIconViewGetDestItemAtPos}(object, drag.x, drag.y)
-\link{gtkIconViewCreateDragIcon}(object, path)
+\code{\link{gtkIconViewNew}(show = TRUE)}\cr
+\code{\link{gtkIconViewNewWithModel}(model = NULL, show = TRUE)}\cr
+\code{\link{gtkIconViewSetModel}(object, model = NULL)}\cr
+\code{\link{gtkIconViewGetModel}(object)}\cr
+\code{\link{gtkIconViewSetTextColumn}(object, column)}\cr
+\code{\link{gtkIconViewGetTextColumn}(object)}\cr
+\code{\link{gtkIconViewSetMarkupColumn}(object, column)}\cr
+\code{\link{gtkIconViewGetMarkupColumn}(object)}\cr
+\code{\link{gtkIconViewSetPixbufColumn}(object, column)}\cr
+\code{\link{gtkIconViewGetPixbufColumn}(object)}\cr
+\code{\link{gtkIconViewGetPathAtPos}(object, x, y)}\cr
+\code{\link{gtkIconViewGetItemAtPos}(object, x, y)}\cr
+\code{\link{gtkIconViewSetCursor}(object, path, cell, start.editing)}\cr
+\code{\link{gtkIconViewGetCursor}(object)}\cr
+\code{\link{gtkIconViewSelectedForeach}(object, func, data = NULL)}\cr
+\code{\link{gtkIconViewSetSelectionMode}(object, mode)}\cr
+\code{\link{gtkIconViewGetSelectionMode}(object)}\cr
+\code{\link{gtkIconViewSetOrientation}(object, orientation)}\cr
+\code{\link{gtkIconViewGetOrientation}(object)}\cr
+\code{\link{gtkIconViewSetColumns}(object, columns)}\cr
+\code{\link{gtkIconViewGetColumns}(object)}\cr
+\code{\link{gtkIconViewSetItemWidth}(object, item.width)}\cr
+\code{\link{gtkIconViewGetItemWidth}(object)}\cr
+\code{\link{gtkIconViewSetSpacing}(object, spacing)}\cr
+\code{\link{gtkIconViewGetSpacing}(object)}\cr
+\code{\link{gtkIconViewSetRowSpacing}(object, row.spacing)}\cr
+\code{\link{gtkIconViewGetRowSpacing}(object)}\cr
+\code{\link{gtkIconViewSetColumnSpacing}(object, column.spacing)}\cr
+\code{\link{gtkIconViewGetColumnSpacing}(object)}\cr
+\code{\link{gtkIconViewSetMargin}(object, margin)}\cr
+\code{\link{gtkIconViewGetMargin}(object)}\cr
+\code{\link{gtkIconViewSelectPath}(object, path)}\cr
+\code{\link{gtkIconViewUnselectPath}(object, path)}\cr
+\code{\link{gtkIconViewPathIsSelected}(object, path)}\cr
+\code{\link{gtkIconViewGetSelectedItems}(object)}\cr
+\code{\link{gtkIconViewSelectAll}(object)}\cr
+\code{\link{gtkIconViewUnselectAll}(object)}\cr
+\code{\link{gtkIconViewItemActivated}(object, path)}\cr
+\code{\link{gtkIconViewScrollToPath}(object, path, use.align, row.align, col.align)}\cr
+\code{\link{gtkIconViewGetVisibleRange}(object)}\cr
+\code{\link{gtkIconViewEnableModelDragSource}(object, start.button.mask, targets, actions)}\cr
+\code{\link{gtkIconViewEnableModelDragDest}(object, targets, actions)}\cr
+\code{\link{gtkIconViewUnsetModelDragSource}(object)}\cr
+\code{\link{gtkIconViewUnsetModelDragDest}(object)}\cr
+\code{\link{gtkIconViewSetReorderable}(object, reorderable)}\cr
+\code{\link{gtkIconViewGetReorderable}(object)}\cr
+\code{\link{gtkIconViewSetDragDestItem}(object, path, pos)}\cr
+\code{\link{gtkIconViewGetDragDestItem}(object)}\cr
+\code{\link{gtkIconViewGetDestItemAtPos}(object, drag.x, drag.y)}\cr
+\code{\link{gtkIconViewCreateDragIcon}(object, path)}\cr
+\code{gtkIconView(model = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -77,7 +77,7 @@ private fields and should not be directly accessed.
 
 }}}
 \section{Convenient Construction}{\code{gtkIconView} is the result of collapsing the constructors of \code{GtkIconView} (\code{\link{gtkIconViewNew}}, \code{\link{gtkIconViewNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Enums and Flags}{\describe{\item{\code{enum GtkIconViewDropPosition}}{
+\section{Enums and Flags}{\describe{\item{\code{GtkIconViewDropPosition}}{
 
 
 \describe{
@@ -290,7 +290,7 @@ property are both set to -1, no texts are displayed.
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{selection-box-alpha} [integer : Read]}{
+\item{\code{selection-box-alpha} [raw : Read]}{
 
 Opacity of the selection box.  Default value: 64
 

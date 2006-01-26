@@ -5,12 +5,13 @@
 and "bmp" are possible file formats to save in, but more formats may be
 installed. The list of all writable formats can be determined in the 
 following way:}
-\usage{gdkPixbufSave(object, filename, type, ...)}
+\usage{gdkPixbufSave(object, filename, type, ..., .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}.}
 \item{\code{filename}}{[char]  name of file to save.}
 \item{\code{type}}{[char]  name of file format.}
 \item{\code{...}}{ list of key-value save options}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{\preformatted{
 formats <- gdkPixbufGetFormats()

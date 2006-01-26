@@ -4,9 +4,7 @@
 \description{
 Causes the \code{\link{GtkCList}} to hide its column titles, if they are currently
 showing.
-\strong{WARNING: \code{gtk_clist_column_titles_hide} is deprecated and should not be used in newly-written code.  
-Causes the \code{\link{GtkCList}} to hide its column titles, if they are currently
-showing.}
+\strong{WARNING: \code{gtk_clist_column_titles_hide} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListColumnTitlesHide(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}}

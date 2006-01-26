@@ -3,32 +3,32 @@
 \name{GtkList}
 \title{GtkList}
 \description{Widget for packing a list of selectable items}
-\usage{gtkList(show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkListNew}(show = TRUE)
-\link{gtkListInsertItems}(object, items, position)
-\link{gtkListAppendItems}(object, items)
-\link{gtkListPrependItems}(object, items)
-\link{gtkListRemoveItems}(object, items)
-\link{gtkListClearItems}(object, start, end)
-\link{gtkListSelectItem}(object, item)
-\link{gtkListUnselectItem}(object, item)
-\link{gtkListSelectChild}(object, child)
-\link{gtkListUnselectChild}(object, child)
-\link{gtkListChildPosition}(object, child)
-\link{gtkListSetSelectionMode}(object, mode)
-\link{gtkListExtendSelection}(object, scroll.type, position, auto.start.selection)
-\link{gtkListStartSelection}(object)
-\link{gtkListEndSelection}(object)
-\link{gtkListSelectAll}(object)
-\link{gtkListUnselectAll}(object)
-\link{gtkListScrollHorizontal}(object, scroll.type, position)
-\link{gtkListScrollVertical}(object, scroll.type, position)
-\link{gtkListToggleAddMode}(object)
-\link{gtkListToggleFocusRow}(object)
-\link{gtkListToggleRow}(object, item)
-\link{gtkListUndoSelection}(object)
-\link{gtkListEndDragSelection}(object)
+\code{\link{gtkListNew}(show = TRUE)}\cr
+\code{\link{gtkListInsertItems}(object, items, position)}\cr
+\code{\link{gtkListAppendItems}(object, items)}\cr
+\code{\link{gtkListPrependItems}(object, items)}\cr
+\code{\link{gtkListRemoveItems}(object, items)}\cr
+\code{\link{gtkListClearItems}(object, start, end)}\cr
+\code{\link{gtkListSelectItem}(object, item)}\cr
+\code{\link{gtkListUnselectItem}(object, item)}\cr
+\code{\link{gtkListSelectChild}(object, child)}\cr
+\code{\link{gtkListUnselectChild}(object, child)}\cr
+\code{\link{gtkListChildPosition}(object, child)}\cr
+\code{\link{gtkListSetSelectionMode}(object, mode)}\cr
+\code{\link{gtkListExtendSelection}(object, scroll.type, position, auto.start.selection)}\cr
+\code{\link{gtkListStartSelection}(object)}\cr
+\code{\link{gtkListEndSelection}(object)}\cr
+\code{\link{gtkListSelectAll}(object)}\cr
+\code{\link{gtkListUnselectAll}(object)}\cr
+\code{\link{gtkListScrollHorizontal}(object, scroll.type, position)}\cr
+\code{\link{gtkListScrollVertical}(object, scroll.type, position)}\cr
+\code{\link{gtkListToggleAddMode}(object)}\cr
+\code{\link{gtkListToggleFocusRow}(object)}\cr
+\code{\link{gtkListToggleRow}(object, item)}\cr
+\code{\link{gtkListUndoSelection}(object)}\cr
+\code{\link{gtkListEndDragSelection}(object)}\cr
+\code{gtkList(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}
@@ -46,7 +46,7 @@ depend on how many elements are able to be selected at the same time.
 GtkList has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\code{GtkList}}{
-\strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.  }
+\strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.}
 
 
 }}}

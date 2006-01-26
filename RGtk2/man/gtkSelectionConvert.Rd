@@ -3,7 +3,7 @@
 \title{gtkSelectionConvert}
 \description{Requests the contents of a selection. When received, 
 a "selection_received" signal will be generated.}
-\usage{gtkSelectionConvert(object, selection, target, time = GDK_CURRENT_TIME)}
+\usage{gtkSelectionConvert(object, selection, target, time = "GDK_CURRENT_TIME")}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  The widget which acts as requestor}
 \item{\code{selection}}{[\code{\link{GdkAtom}}]  Which selection to get}

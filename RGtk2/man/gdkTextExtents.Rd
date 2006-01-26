@@ -3,8 +3,7 @@
 \title{gdkTextExtents}
 \description{
 Gets the metrics of a string.
-\strong{WARNING: \code{gdk_text_extents} is deprecated and should not be used in newly-written code.  
-Gets the metrics of a string.  }
+\strong{WARNING: \code{gdk_text_extents} is deprecated and should not be used in newly-written code.}
 }
 \usage{gdkTextExtents(object, string)}
 \arguments{\item{\code{object}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}}}

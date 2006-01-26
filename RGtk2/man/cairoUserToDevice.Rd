@@ -6,7 +6,7 @@ multiplying the given point by the current transformation matrix
 (CTM).}
 \usage{cairoUserToDevice(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{cairo_t}}]  a cairo context}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
 \item{\code{x}}{[numeric]  X value of coordinate (in/out parameter)}
 \item{\code{y}}{[numeric]  Y value of coordinate (in/out parameter)}
 }

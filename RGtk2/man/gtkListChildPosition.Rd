@@ -3,8 +3,7 @@
 \title{gtkListChildPosition}
 \description{
 Searches the children of \code{list} for the index of \code{child}.
-\strong{WARNING: \code{gtk_list_child_position} is deprecated and should not be used in newly-written code.  
-Searches the children of \code{list} for the index of \code{child}.}
+\strong{WARNING: \code{gtk_list_child_position} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListChildPosition(object, child)}
 \arguments{

@@ -3,13 +3,13 @@
 \name{GtkMenuToolButton}
 \title{GtkMenuToolButton}
 \description{A GtkToolItem containing a button with an additional dropdown menu}
-\usage{gtkMenuToolButton(icon.widget, label, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkMenuToolButtonNew}(icon.widget, label, show = TRUE)
-\link{gtkMenuToolButtonNewFromStock}(stock.id)
-\link{gtkMenuToolButtonSetMenu}(object, menu)
-\link{gtkMenuToolButtonGetMenu}(object)
-\link{gtkMenuToolButtonSetArrowTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)
+\code{\link{gtkMenuToolButtonNew}(icon.widget, label, show = TRUE)}\cr
+\code{\link{gtkMenuToolButtonNewFromStock}(stock.id)}\cr
+\code{\link{gtkMenuToolButtonSetMenu}(object, menu)}\cr
+\code{\link{gtkMenuToolButtonGetMenu}(object)}\cr
+\code{\link{gtkMenuToolButtonSetArrowTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)}\cr
+\code{gtkMenuToolButton(icon.widget, label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

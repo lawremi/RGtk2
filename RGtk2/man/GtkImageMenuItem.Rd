@@ -3,14 +3,14 @@
 \name{GtkImageMenuItem}
 \title{GtkImageMenuItem}
 \description{A menu item with an icon}
-\usage{gtkImageMenuItem(label, stock.id, accel.group, show = TRUE)}
 \section{Methods and Functions}{
-\link{gtkImageMenuItemSetImage}(object, image = NULL)
-\link{gtkImageMenuItemGetImage}(object)
-\link{gtkImageMenuItemNew}(show = TRUE)
-\link{gtkImageMenuItemNewFromStock}(stock.id, accel.group, show = TRUE)
-\link{gtkImageMenuItemNewWithLabel}(label, show = TRUE)
-\link{gtkImageMenuItemNewWithMnemonic}(label, show = TRUE)
+\code{\link{gtkImageMenuItemSetImage}(object, image = NULL)}\cr
+\code{\link{gtkImageMenuItemGetImage}(object)}\cr
+\code{\link{gtkImageMenuItemNew}(show = TRUE)}\cr
+\code{\link{gtkImageMenuItemNewFromStock}(stock.id, accel.group, show = TRUE)}\cr
+\code{\link{gtkImageMenuItemNewWithLabel}(label, show = TRUE)}\cr
+\code{\link{gtkImageMenuItemNewWithMnemonic}(label, show = TRUE)}\cr
+\code{gtkImageMenuItem(label, stock.id, accel.group, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -18,109 +18,109 @@
 \name{gdk-Windows}
 \title{Windows}
 \description{Onscreen display areas in the target window system}
-\usage{gdkWindow(parent = NULL, attributes)}
 \section{Methods and Functions}{
-\link{gdkWindowNew}(parent = NULL, attributes)
-\link{gdkWindowDestroy}(object)
-\link{gdkWindowGetWindowType}(object)
-\link{gdkWindowAtPointer}()
-\link{gdkWindowShow}(object)
-\link{gdkWindowShowUnraised}(object)
-\link{gdkWindowHide}(object)
-\link{gdkWindowIsVisible}(object)
-\link{gdkWindowIsViewable}(object)
-\link{gdkWindowGetState}(object)
-\link{gdkWindowWithdraw}(object)
-\link{gdkWindowIconify}(object)
-\link{gdkWindowDeiconify}(object)
-\link{gdkWindowStick}(object)
-\link{gdkWindowUnstick}(object)
-\link{gdkWindowMaximize}(object)
-\link{gdkWindowUnmaximize}(object)
-\link{gdkWindowFullscreen}(object)
-\link{gdkWindowUnfullscreen}(object)
-\link{gdkWindowSetKeepAbove}(object, setting)
-\link{gdkWindowSetKeepBelow}(object, setting)
-\link{gdkWindowMove}(object, x, y)
-\link{gdkWindowResize}(object, width, height)
-\link{gdkWindowMoveResize}(object, x, y, width, height)
-\link{gdkWindowScroll}(object, dx, dy)
-\link{gdkWindowMoveRegion}(object, region, x, y)
-\link{gdkWindowReparent}(object, new.parent, x, y)
-\link{gdkWindowClear}(object)
-\link{gdkWindowClearArea}(object, x, y, width, height)
-\link{gdkWindowClearAreaE}(object, x, y, width, height)
-\link{gdkWindowRaise}(object)
-\link{gdkWindowLower}(object)
-\link{gdkWindowFocus}(object, timestamp = GDK_CURRENT_TIME)
-\link{gdkWindowRegisterDnd}(object)
-\link{gdkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)
-\link{gdkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)
-\link{gdkWindowConstrainSize}(geometry, width, height)
-\link{gdkWindowBeginPaintRect}(object, rectangle)
-\link{gdkWindowBeginPaintRegion}(object, region)
-\link{gdkWindowEndPaint}(object)
-\link{gdkWindowInvalidateRect}(object, rect = NULL, invalidate.children)
-\link{gdkWindowInvalidateRegion}(object, region, invalidate.children)
-\link{gdkWindowInvalidateMaybeRecurse}(object, region, child.func, user.data)
-\link{gdkWindowGetUpdateArea}(object)
-\link{gdkWindowFreezeUpdates}(object)
-\link{gdkWindowThawUpdates}(object)
-\link{gdkWindowProcessAllUpdates}()
-\link{gdkWindowProcessUpdates}(object, update.children)
-\link{gdkWindowSetDebugUpdates}(setting)
-\link{gdkWindowGetInternalPaintInfo}(object)
-\link{gdkWindowEnableSynchronizedConfigure}(object)
-\link{gdkWindowConfigureFinished}(object)
-\link{gdkWindowSetUserData}(object, user.data)
-\link{gdkWindowSetOverrideRedirect}(object, override.redirect)
-\link{gdkWindowSetAcceptFocus}(object, accept.focus)
-\link{gdkWindowSetFocusOnMap}(object, focus.on.map)
-\link{gdkWindowAddFilter}(object, fun, data)
-\link{gdkWindowRemoveFilter}(object, fun, data)
-\link{gdkWindowShapeCombineMask}(object, shape.mask = NULL, offset.x, offset.y)
-\link{gdkWindowShapeCombineRegion}(object, shape.region = NULL, offset.x, offset.y)
-\link{gdkWindowSetChildShapes}(object)
-\link{gdkWindowMergeChildShapes}(object)
-\link{gdkWindowSetStaticGravities}(object, use.static)
-\link{gdkWindowSetHints}(object, x, y, min.width, min.height, max.width, max.height, flags)
-\link{gdkWindowSetTitle}(object, title)
-\link{gdkWindowSetBackground}(object, color)
-\link{gdkWindowSetBackPixmap}(object, pixmap = NULL, parent.relative)
-\link{gdkWindowSetCursor}(object, cursor = NULL)
-\link{gdkWindowGetUserData}(object)
-\link{gdkWindowGetGeometry}(object)
-\link{gdkWindowSetGeometryHints}(object, geometry)
-\link{gdkWindowSetIconList}(object, pixbufs)
-\link{gdkWindowSetModalHint}(object, modal)
-\link{gdkWindowSetTypeHint}(object, hint)
-\link{gdkWindowSetSkipTaskbarHint}(object, modal)
-\link{gdkWindowSetSkipPagerHint}(object, modal)
-\link{gdkWindowSetUrgencyHint}(object, urgent)
-\link{gdkWindowGetPosition}(object)
-\link{gdkWindowGetRootOrigin}(object)
-\link{gdkWindowGetFrameExtents}(object)
-\link{gdkWindowGetOrigin}(object)
-\link{gdkWindowGetDeskrelativeOrigin}(object)
-\link{gdkWindowGetPointer}(object)
-\link{gdkWindowGetParent}(object)
-\link{gdkWindowGetToplevel}(object)
-\link{gdkWindowGetChildren}(object)
-\link{gdkWindowPeekChildren}(object)
-\link{gdkWindowGetEvents}(object)
-\link{gdkWindowSetEvents}(object, event.mask)
-\link{gdkWindowSetIcon}(object, icon.window, pixmap, mask)
-\link{gdkWindowSetIconName}(object, name)
-\link{gdkWindowSetTransientFor}(object, leader)
-\link{gdkWindowSetRole}(object, role)
-\link{gdkWindowSetGroup}(object, leader)
-\link{gdkWindowGetGroup}(object)
-\link{gdkWindowSetDecorations}(object, decorations)
-\link{gdkWindowGetDecorations}(object)
-\link{gdkWindowSetFunctions}(object, functions)
-\link{gdkWindowGetToplevels}()
-\link{gdkGetDefaultRootWindow}()
-\link{gdkSetPointerHooks}(object, new.hooks)
+\code{\link{gdkWindowNew}(parent = NULL, attributes)}\cr
+\code{\link{gdkWindowDestroy}(object)}\cr
+\code{\link{gdkWindowGetWindowType}(object)}\cr
+\code{\link{gdkWindowAtPointer}()}\cr
+\code{\link{gdkWindowShow}(object)}\cr
+\code{\link{gdkWindowShowUnraised}(object)}\cr
+\code{\link{gdkWindowHide}(object)}\cr
+\code{\link{gdkWindowIsVisible}(object)}\cr
+\code{\link{gdkWindowIsViewable}(object)}\cr
+\code{\link{gdkWindowGetState}(object)}\cr
+\code{\link{gdkWindowWithdraw}(object)}\cr
+\code{\link{gdkWindowIconify}(object)}\cr
+\code{\link{gdkWindowDeiconify}(object)}\cr
+\code{\link{gdkWindowStick}(object)}\cr
+\code{\link{gdkWindowUnstick}(object)}\cr
+\code{\link{gdkWindowMaximize}(object)}\cr
+\code{\link{gdkWindowUnmaximize}(object)}\cr
+\code{\link{gdkWindowFullscreen}(object)}\cr
+\code{\link{gdkWindowUnfullscreen}(object)}\cr
+\code{\link{gdkWindowSetKeepAbove}(object, setting)}\cr
+\code{\link{gdkWindowSetKeepBelow}(object, setting)}\cr
+\code{\link{gdkWindowMove}(object, x, y)}\cr
+\code{\link{gdkWindowResize}(object, width, height)}\cr
+\code{\link{gdkWindowMoveResize}(object, x, y, width, height)}\cr
+\code{\link{gdkWindowScroll}(object, dx, dy)}\cr
+\code{\link{gdkWindowMoveRegion}(object, region, x, y)}\cr
+\code{\link{gdkWindowReparent}(object, new.parent, x, y)}\cr
+\code{\link{gdkWindowClear}(object)}\cr
+\code{\link{gdkWindowClearArea}(object, x, y, width, height)}\cr
+\code{\link{gdkWindowClearAreaE}(object, x, y, width, height)}\cr
+\code{\link{gdkWindowRaise}(object)}\cr
+\code{\link{gdkWindowLower}(object)}\cr
+\code{\link{gdkWindowFocus}(object, timestamp = "GDK_CURRENT_TIME")}\cr
+\code{\link{gdkWindowRegisterDnd}(object)}\cr
+\code{\link{gdkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)}\cr
+\code{\link{gdkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)}\cr
+\code{\link{gdkWindowConstrainSize}(geometry, width, height)}\cr
+\code{\link{gdkWindowBeginPaintRect}(object, rectangle)}\cr
+\code{\link{gdkWindowBeginPaintRegion}(object, region)}\cr
+\code{\link{gdkWindowEndPaint}(object)}\cr
+\code{\link{gdkWindowInvalidateRect}(object, rect = NULL, invalidate.children)}\cr
+\code{\link{gdkWindowInvalidateRegion}(object, region, invalidate.children)}\cr
+\code{\link{gdkWindowInvalidateMaybeRecurse}(object, region, child.func, user.data)}\cr
+\code{\link{gdkWindowGetUpdateArea}(object)}\cr
+\code{\link{gdkWindowFreezeUpdates}(object)}\cr
+\code{\link{gdkWindowThawUpdates}(object)}\cr
+\code{\link{gdkWindowProcessAllUpdates}()}\cr
+\code{\link{gdkWindowProcessUpdates}(object, update.children)}\cr
+\code{\link{gdkWindowSetDebugUpdates}(setting)}\cr
+\code{\link{gdkWindowGetInternalPaintInfo}(object)}\cr
+\code{\link{gdkWindowEnableSynchronizedConfigure}(object)}\cr
+\code{\link{gdkWindowConfigureFinished}(object)}\cr
+\code{\link{gdkWindowSetUserData}(object, user.data)}\cr
+\code{\link{gdkWindowSetOverrideRedirect}(object, override.redirect)}\cr
+\code{\link{gdkWindowSetAcceptFocus}(object, accept.focus)}\cr
+\code{\link{gdkWindowSetFocusOnMap}(object, focus.on.map)}\cr
+\code{\link{gdkWindowAddFilter}(object, fun, data)}\cr
+\code{\link{gdkWindowRemoveFilter}(object, fun, data)}\cr
+\code{\link{gdkWindowShapeCombineMask}(object, shape.mask = NULL, offset.x, offset.y)}\cr
+\code{\link{gdkWindowShapeCombineRegion}(object, shape.region = NULL, offset.x, offset.y)}\cr
+\code{\link{gdkWindowSetChildShapes}(object)}\cr
+\code{\link{gdkWindowMergeChildShapes}(object)}\cr
+\code{\link{gdkWindowSetStaticGravities}(object, use.static)}\cr
+\code{\link{gdkWindowSetHints}(object, x, y, min.width, min.height, max.width, max.height, flags)}\cr
+\code{\link{gdkWindowSetTitle}(object, title)}\cr
+\code{\link{gdkWindowSetBackground}(object, color)}\cr
+\code{\link{gdkWindowSetBackPixmap}(object, pixmap = NULL, parent.relative)}\cr
+\code{\link{gdkWindowSetCursor}(object, cursor = NULL)}\cr
+\code{\link{gdkWindowGetUserData}(object)}\cr
+\code{\link{gdkWindowGetGeometry}(object)}\cr
+\code{\link{gdkWindowSetGeometryHints}(object, geometry)}\cr
+\code{\link{gdkWindowSetIconList}(object, pixbufs)}\cr
+\code{\link{gdkWindowSetModalHint}(object, modal)}\cr
+\code{\link{gdkWindowSetTypeHint}(object, hint)}\cr
+\code{\link{gdkWindowSetSkipTaskbarHint}(object, modal)}\cr
+\code{\link{gdkWindowSetSkipPagerHint}(object, modal)}\cr
+\code{\link{gdkWindowSetUrgencyHint}(object, urgent)}\cr
+\code{\link{gdkWindowGetPosition}(object)}\cr
+\code{\link{gdkWindowGetRootOrigin}(object)}\cr
+\code{\link{gdkWindowGetFrameExtents}(object)}\cr
+\code{\link{gdkWindowGetOrigin}(object)}\cr
+\code{\link{gdkWindowGetDeskrelativeOrigin}(object)}\cr
+\code{\link{gdkWindowGetPointer}(object)}\cr
+\code{\link{gdkWindowGetParent}(object)}\cr
+\code{\link{gdkWindowGetToplevel}(object)}\cr
+\code{\link{gdkWindowGetChildren}(object)}\cr
+\code{\link{gdkWindowPeekChildren}(object)}\cr
+\code{\link{gdkWindowGetEvents}(object)}\cr
+\code{\link{gdkWindowSetEvents}(object, event.mask)}\cr
+\code{\link{gdkWindowSetIcon}(object, icon.window, pixmap, mask)}\cr
+\code{\link{gdkWindowSetIconName}(object, name)}\cr
+\code{\link{gdkWindowSetTransientFor}(object, leader)}\cr
+\code{\link{gdkWindowSetRole}(object, role)}\cr
+\code{\link{gdkWindowSetGroup}(object, leader)}\cr
+\code{\link{gdkWindowGetGroup}(object)}\cr
+\code{\link{gdkWindowSetDecorations}(object, decorations)}\cr
+\code{\link{gdkWindowGetDecorations}(object)}\cr
+\code{\link{gdkWindowSetFunctions}(object, functions)}\cr
+\code{\link{gdkWindowGetToplevels}()}\cr
+\code{\link{gdkGetDefaultRootWindow}()}\cr
+\code{\link{gdkSetPointerHooks}(object, new.hooks)}\cr
+\code{gdkWindow(parent = NULL, attributes)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GdkDrawable}
@@ -131,7 +131,7 @@ GTK+ level. A \code{\link{GtkWindow}} is a toplevel window, the thing a user mig
 as a "window" with a titlebar and so on; a \code{\link{GtkWindow}} may contain many \code{\link{GdkWindow}}. 
 For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.}
 \section{Structures}{\describe{
-\item{\code{struct GdkWindow}}{
+\item{\code{GdkWindow}}{
 An opaque structure representing an onscreen drawable.
 Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}},
 and \code{\link{GdkWindow}}, can often be used interchangeably.
@@ -221,7 +221,7 @@ Attributes to use for a newly-created window.
 }
 
 }
-\item{\code{enum GdkFilterReturn}}{
+\item{\code{GdkFilterReturn}}{
 Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
 \describe{\emph{undocumented
@@ -231,7 +231,7 @@ Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event
 }}
 \section{Convenient Construction}{\code{gdkWindow} is the equivalent of \code{\link{gdkWindowNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{enum GdkWindowType}}{
+\item{\code{GdkWindowType}}{
 Describes the kind of window.
 
 \describe{
@@ -244,7 +244,7 @@ Describes the kind of window.
 }
 
 }
-\item{\code{enum GdkWindowClass}}{
+\item{\code{GdkWindowClass}}{
 \code{GDK.INPUT.OUTPUT} windows are the standard kind of window you might expect. 
 \code{GDK.INPUT.ONLY} windows are invisible; they are used to trap events, but 
 you can't draw on them.
@@ -255,7 +255,7 @@ you can't draw on them.
 }
 
 }
-\item{\code{enum GdkWindowHints}}{
+\item{\code{GdkWindowHints}}{
 Used to indicate which fields of a \code{\link{GdkGeometry}} struct should be paid attention
 to. Also, the presence/absence of \code{GDK.HINT.POS}, \code{GDK.HINT.USER.POS}, and
 \code{GDK.HINT.USER.SIZE} is significant, though they don't directly refer to
@@ -278,7 +278,7 @@ flags.
 }
 
 }
-\item{\code{enum GdkGravity}}{
+\item{\code{GdkGravity}}{
 Defines the reference point of a window and the meaning of coordinates
 passed to \code{\link{gtkWindowMove}}. See \code{\link{gtkWindowMove}} and the "implementation 
 notes" section of the 
@@ -300,7 +300,7 @@ Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specif
 }
 
 }
-\item{\code{enum GdkWindowEdge}}{
+\item{\code{GdkWindowEdge}}{
 Determines a window edge or corner. 
 
 \describe{
@@ -315,7 +315,7 @@ Determines a window edge or corner.
 }
 
 }
-\item{\code{enum GdkWindowTypeHint}}{
+\item{\code{GdkWindowTypeHint}}{
 These are hints for the window manager that indicate what type of function 
 the window has. The window manager can use this when determining decoration 
 and behaviour of the window. The hint must be set before mapping the window.
@@ -340,7 +340,7 @@ window.}
 }
 
 }
-\item{\code{enum GdkWindowAttributesType}}{
+\item{\code{GdkWindowAttributesType}}{
 Used to indicate which fields in the \code{\link{GdkWindowAttr}} struct should be
 honored. For example, if you filled in the "cursor" and "x" fields of
 \code{\link{GdkWindowAttr}}, pass "\code{GDK.WA.X} | \code{GDK.WA.CURSOR}" to \code{\link{gdkWindowNew}}.  Fields
@@ -360,7 +360,7 @@ corresponding flag in \code{\link{GdkWindowAttributesType}}.
 }
 
 }
-\item{\code{enum GdkFilterReturn}}{
+\item{\code{GdkFilterReturn}}{
 Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
 \describe{
@@ -371,7 +371,7 @@ Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event
 }
 
 }
-\item{\code{enum GdkModifierType}}{
+\item{\code{GdkModifierType}}{
 A set of bit-flags to indicate the state of modifier keys and mouse buttons 
 in various event types. Typical modifier keys are Shift, Control, Meta, Super,
 Hyper, Alt, Compose, Apple, CapsLock or ShiftLock. 
@@ -405,7 +405,7 @@ Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
 }
 
 }
-\item{\code{enum GdkWMDecoration}}{
+\item{\code{GdkWMDecoration}}{
 These are hints originally defined by the Motif toolkit.
 The window manager can use them when determining how to decorate
 the window. The hint must be set before mapping the window.
@@ -421,7 +421,7 @@ the window. The hint must be set before mapping the window.
 }
 
 }
-\item{\code{enum GdkWMFunction}}{
+\item{\code{GdkWMFunction}}{
 These are hints originally defined by the Motif toolkit.
 The window manager can use them when determining the functions 
 to offer for the window. 

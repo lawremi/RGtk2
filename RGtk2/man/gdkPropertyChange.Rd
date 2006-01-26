@@ -14,7 +14,7 @@
          must match the existing format or an error will occur.}
 \item{\code{mode}}{[\code{\link{GdkPropMode}}] a value describing how the new data is to be combined
        with the current data.}
-\item{\code{data}}{[integer] the data
+\item{\code{data}}{[raw] the data
        (a \code{guchar *}
         \code{gushort *}, or 
         \code{gulong *}, depending on \code{format}), cast to a 
