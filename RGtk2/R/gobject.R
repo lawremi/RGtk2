@@ -183,9 +183,9 @@ names.GObject <-
   # all the inherited classes and removing the class::
   # prefix.
   #
-function(obj)
+function(x)
 {
-  names(gObjectGetPropInfo(obj, parents = TRUE, collapse = TRUE, strip = TRUE))
+  names(gObjectGetPropInfo(x, parents = TRUE, collapse = TRUE, strip = TRUE))
 }
 
 gObjectGetPropInfo <-
