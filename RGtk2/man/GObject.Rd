@@ -28,7 +28,7 @@ gObjectSetData(obj, key, data = NULL)
 gObjectGetData(obj, key)
 gObjectGetSignals(obj)
 gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
-names.GObject(obj)
+names.GObject(x)
 }
 \arguments{
 \item{obj}{an instance of a \code{GObject}}
@@ -40,6 +40,7 @@ names.GObject(obj)
 \item{value}{a value with which to set a proprety}
 \item{parents}{whether to include the parents when retrieving property info}
 \item{collapse}{whether to collapse the properties over the parents}
+\item{x}{The \code{GObject} for which the property names are to be retrieved}
 }
 \value{
 Properties and data for \code{gObjectGet} and \code{gObjectGetData}, respectively. 
