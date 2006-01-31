@@ -8,7 +8,7 @@ row will be inserted to the end of the list.  \code{iter} will be changed to poi
 to this new row.  The row will be empty after this function is called.  To
 fill in values, you need to call \code{\link{gtkTreeStoreSet}} or
 \code{\link{gtkTreeStoreSetValue}}.}
-\usage{gtkTreeStoreInsert(object, parent, position)}
+\usage{gtkTreeStoreInsert(object, parent = NULL, position)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}}
 \item{\code{parent}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}, or \code{NULL}}

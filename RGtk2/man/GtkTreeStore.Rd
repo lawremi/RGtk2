@@ -10,7 +10,7 @@
 \code{\link{gtkTreeStoreSetValue}(object, iter, column, value)}\cr
 \code{\link{gtkTreeStoreSet}(object, iter, ...)}\cr
 \code{\link{gtkTreeStoreRemove}(object, iter)}\cr
-\code{\link{gtkTreeStoreInsert}(object, parent, position)}\cr
+\code{\link{gtkTreeStoreInsert}(object, parent = NULL, position)}\cr
 \code{\link{gtkTreeStoreInsertBefore}(object, parent, sibling)}\cr
 \code{\link{gtkTreeStoreInsertAfter}(object, parent, sibling)}\cr
 \code{\link{gtkTreeStorePrepend}(object, parent = NULL)}\cr

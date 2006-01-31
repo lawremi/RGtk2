@@ -940,6 +940,32 @@ c(65535, 0, 0)
 c(red=65535)
 \emph default 
 .
+\layout Subsection
+
+Special Constants
+\layout Standard
+
+Special constants like the GDK keycodes and GTK stock id's are available
+ in RGtk2.
+ For the GDK keycodes, the C 
+\emph on 
+GDK_ESCAPE
+\emph default 
+ becomes 
+\emph on 
+.gdkEscape
+\emph default 
+ in R.
+ For the stock id's, there is no difference between R and C, so 
+\emph on 
+GTK_CLOSE
+\emph default 
+ is 
+\emph on 
+GTK_CLOSE
+\emph default 
+.
+ The inconsistency is due to my uncertainty as to which form is better.
 \layout Section
 
 Advanced Concepts
@@ -951,10 +977,13 @@ To be documented.
 RGtkDataFrame
 \layout Subsection
 
+Accelerated GtkListStore and GtkTreeStore loading
+\layout Subsection
+
 RGClosure
 \layout Section
 
-The Libraries
+The Other Libraries
 \layout Standard
 
 Most of the libraries besides GTK and the low-level GLib and GObject are
