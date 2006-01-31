@@ -18420,7 +18420,7 @@
   (return-type "none")
   (parameters
     '("GtkTreeIter*" "iter" (out))
-    '("GtkTreeIter*" "parent" (in))
+    '("GtkTreeIter*" "parent" (in) (null-ok))
     '("gint" "position" (in))
   )
 )

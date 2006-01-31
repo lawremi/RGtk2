@@ -48,11 +48,12 @@ badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_ow
 	"gtk_selection_data_set", "gdk_text_extents", "pango_layout_set_markup_with_accel",
 	"pango_glyph_string_index_to_x", "pango_glyph_string_x_to_index", "gdk_draw_rgb_image",
 	"pango_shape", "gdk_window_constrain_size", "gdk_pixbuf_new_from_data", "gtk_tree_store_new",
-	"gdk_device_free_history", "gdk_window_new", "pango_font_descriptions_free",
+	"gdk_device_free_history", "gdk_window_new", "pango_font_descriptions_free", "gtk_widget_destroy",
 	"atk_add_global_event_listener", "gtk_widget_destroyed", "gtk_init", "gtk_init_check",
 	"pango_context_new", "pango_font_map_get_shape_engine_type", "pango_reorder_items",
 	"gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data", "glade_xml_new_from_buffer",
-	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", "gtk_widget_destroy")
+	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", 
+	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")

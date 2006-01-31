@@ -1198,19 +1198,6 @@ function(surface, filename)
 } 
 
 
-cairoSurfaceWriteToPngStream <-
-function(surface, write.func, closure)
-{
-	checkPtrType(surface, "CairoSurface")
-	write.func <- as.function(write.func)
-	
-
-	w <- .RGtkCall("S_cairo_surface_write_to_png_stream", surface, write.func, closure, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
 cairoSurfaceGetUserData <-
 function(surface, key)
 {
@@ -1364,18 +1351,6 @@ function(filename)
 	filename <- as.character(filename)
 
 	w <- .RGtkCall("S_cairo_image_surface_create_from_png", filename, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-cairoImageSurfaceCreateFromPngStream <-
-function(read.func, closure)
-{
-	read.func <- as.function(read.func)
-	
-
-	w <- .RGtkCall("S_cairo_image_surface_create_from_png_stream", read.func, closure, PACKAGE = "RGtk2")
 
 	return(w)
 } 

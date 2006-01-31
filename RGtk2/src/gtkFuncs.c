@@ -34174,7 +34174,7 @@ USER_OBJECT_
 S_gtk_tree_store_insert(USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USER_OBJECT_ s_position)
 {
 	GtkTreeStore* object = GTK_TREE_STORE(getPtrValue(s_object));
-	GtkTreeIter* parent = (GtkTreeIter*)getPtrValue(s_parent);
+	GtkTreeIter* parent = GET_LENGTH(s_parent) == 0 ? NULL : (GtkTreeIter*)getPtrValue(s_parent);
 	gint position = (gint)asCInteger(s_position);
 
 	USER_OBJECT_ _result = NULL_USER_OBJECT;

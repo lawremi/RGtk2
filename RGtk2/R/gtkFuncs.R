@@ -25834,10 +25834,10 @@ function(object, iter)
 
 
 gtkTreeStoreInsert <-
-function(object, parent, position)
+function(object, parent = NULL, position)
 {
 	checkPtrType(object, "GtkTreeStore")
-	checkPtrType(parent, "GtkTreeIter")
+	if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
 	position <- as.integer(position)
 
 	w <- .RGtkCall("S_gtk_tree_store_insert", object, parent, position, PACKAGE = "RGtk2")

@@ -349,7 +349,6 @@ function(object, position, columns, values)
         checkPtrType(object, "GtkListStore")
 		position <- as.integer(position)
         columns <- checkArrType(columns, function(x) { x <- as.integer(x); x })
-        values <- checkArrType(values)
 
         w <- .RGtkCall("S_gtk_list_store_insert_with_valuesv", object, position, columns, values)
 
@@ -543,7 +542,7 @@ function(object, cell.renderer, ...)
 
 # EXPERIMENTAL TREE MODEL ACCESS
 # Currently deprecated in favor of custom RGtkDataFrame model
-if (FALSE) {
+
 # Loads data into the specified rows (or paths) and columns of a list store
 gtkListStoreLoad <-
 function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F)
@@ -671,11 +670,9 @@ function(model, rows = NULL, cols = 0:(length(data)-1), value) {
 	model
 }
 "[.GtkListStore" <- "[.GtkTreeStore" <-
-function(model, rows = NULL, cols = 0:(object$getNColumns()-1)) {
+function(model, rows = NULL, cols = 0:(model$getNColumns()-1)) {
 	model$unload(rows, cols)
 }
-}
-
 
 # aliases for error domains
 GTK_ICON_THEME_ERROR <- gtkIconThemeErrorQuark

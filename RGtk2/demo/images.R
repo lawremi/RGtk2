@@ -288,7 +288,7 @@ connectSignal(button, "toggled", toggle.sensitivity.callback, vbox)
 
 button <- gtkButtonNewWithLabel("Quit")
 vbox$packStart(button, FALSE, FALSE, 0)
-connectSignal(button, "clicked", function(...) gtkMainQuit())
+connectSignal(button, "clicked", function(...) { gtkMainQuit(); window$destroy() })
 
 
 window$showAll()

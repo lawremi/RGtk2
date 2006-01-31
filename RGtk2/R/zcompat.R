@@ -37,7 +37,7 @@ gtkObjectSetArgs <- gObjectSetProps
 # dnd
 
 gtkTargetEntry <- gtkTargetEntryNew <- 
-function(target, flags, info) as.GtkTargetEntry(list(targets, flags, info))
+function(target, flags, info) as.GtkTargetEntry(list(target, flags, info))
 
 # gtk text stuff ---- not supported!
 gtkTextGetText <- function(w) gtkEditableGetChars(w, 0, -1)

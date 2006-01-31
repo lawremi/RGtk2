@@ -1,5 +1,4 @@
 # NOTE: There is known trouble with this demo on Windows.
-# Please try the iconview-dnd demo.
 
 view.onDragDataReceived <- function(wgt, context, x, y, seldata, info, time, userdata)
 {
