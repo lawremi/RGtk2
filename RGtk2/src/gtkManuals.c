@@ -1041,6 +1041,18 @@ S_GtkSignalFunc(GtkWidget* s_child, gpointer s_data)
 	S_GtkCallback(s_child, s_data);
 }
 
+/* This provides a quick way to convert GtkTreePaths to indices.
+   Such an operation is necessary when interpreting selections, for example.
+*/
+USER_OBJECT_
+R_gtk_tree_paths_to_indices(USER_OBJECT_ paths) {
+	gint i;
+	USER_OBJECT_ indices = NEW_INTEGER(GET_LENGTH(paths));
+	for (i = 0; i < GET_LENGTH(paths); i++)
+	  INTEGER_DATA(indices)[i] = gtk_tree_path_get_indices(getPtrValue(VECTOR_ELT(paths, i)))[0];
+	return(indices);
+}
+		
 /* some functions for fast GtkTreeModel access */
 USER_OBJECT_
 S_gtk_list_store_load_paths(USER_OBJECT_ s_model, USER_OBJECT_ s_data, USER_OBJECT_ s_paths, USER_OBJECT_ s_cols, USER_OBJECT_ s_append)

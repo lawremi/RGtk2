@@ -39,7 +39,7 @@ load.pixbufs <- function()
   if (!is.null(background))
     return() # already loaded earlier
 
-  filename <- paste("/usr/share/gtk-2.0/demo/", BACKGROUND.NAME, sep="")
+  filename <- demofile(BACKGROUND.NAME)
   if (!file.exists(filename))
     stop("Could not find background image file:", filename)
 
@@ -54,7 +54,7 @@ load.pixbufs <- function()
 
   for (i in 1:N.IMAGES)
     {
-      filename <- paste("/usr/share/gtk-2.0/demo/", image.names[i], sep="")
+      filename <- demofile(image.names[i])
       if (!file.exists(filename))
           stop("Could not find image file:", image.names[i])
 
@@ -172,5 +172,7 @@ if (inherits(error, "try-error"))
       timeout.id <- gTimeoutAdd(FRAME.DELAY, timeout)
 
       window$showAll()
+	  
+	  print("TIP: Hold down the spacebar for the objects to move")
 }
 

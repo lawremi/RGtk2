@@ -1,19 +1,9 @@
-# source("~/research/RGtk/inst/demo/iconView.R")
+# source("~/research/RGtk2/RGtk2/demo/iconView.R")
 
 window <- NULL
 
-Prefix <- ""
-prefixes = c("/usr/local", "/usr")
-for(i in prefixes) {
-   if(file.exists(i) && file.exists(paste(i, "share", "gtk-2.0", "demo", "gnome-fs-directory.png", sep = .Platform$file.sep))) {
-      Prefix <- i
-   }
-}
-
-
-FOLDER.NAME <- paste(Prefix, "share", "gtk-2.0", "demo", "gnome-fs-directory.png", sep = .Platform$file.sep)
-FILE.NAME <- paste(Prefix, "share", "gtk-2.0", "demo", "gnome-fs-regular.png", sep = .Platform$file.sep)
-
+FOLDER.NAME <- demofile("gnome-fs-directory.png")
+FILE.NAME <- demofile("gnome-fs-regular.png")
 
 file.pixbuf <- NULL
 folder.pixbuf <- NULL
