@@ -31,7 +31,9 @@ function(x, i, j, value)
 	else if (nrow(frame) > old_nrow) # otherwise, just add new rows
 		changed <- ((old_nrow+1):nrow(frame))
 	
-	.RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(changed-1))
+	resort <- x$getSortColumnId() %in% j
+	
+	.RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(as.integer(changed-1)), resort)
 	
 	x
 }
@@ -46,7 +48,12 @@ function(x, i, j, value)
 
 rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())
 {
-	w <- .RGtkCall("R_rgtk_data_frame_new", frame)
+	sort_closure <- function(frame, col, order) {
+		new_order <- order(frame[,col+1],decreasing=order)
+		list(frame[new_order,], as.integer((1:length(new_order))[new_order]-1))
+	}
+		
+	w <- .RGtkCall("R_rgtk_data_frame_new", frame, sort_closure)
 	w
 }
 
@@ -57,14 +64,14 @@ rGtkDataFrameAppendRows <- function(x, ...) {
 	new_frame <- rbind(frame, ...)
 	new_ind <- (nrow(frame)+1):nrow(new_frame)
 	if (nrow(new_frame) > nrow(frame))
-		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, as.list(new_ind-1))
+		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, as.list(as.integer(new_ind-1)), T)
 	x
 }
 rGtkDataFrameAppendColumns <- function(x, ...) {
 	frame <- as.data.frame(x)
 	new_frame <- cbind(frame, ...)
 	if (ncol(new_frame) > ncol(frame))
-		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, NULL)
+		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, NULL, F)
 	x
 }
 

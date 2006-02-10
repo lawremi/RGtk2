@@ -8,8 +8,8 @@ static void         rgtk_data_frame_init            (RGtkDataFrame      *data_fr
 static void         rgtk_data_frame_class_init      (RGtkDataFrameClass *class);
 static void         rgtk_data_frame_tree_model_init (GtkTreeModelIface *iface);
 /*static void         rgtk_data_frame_drag_source_init (GtkTreeDragSourceIface *iface);
-static void         rgtk_data_frame_drag_dest_init  (GtkTreeDragDestIface   *iface);
-static void         rgtk_data_frame_sortable_init   (GtkTreeSortableIface   *iface);*/
+static void         rgtk_data_frame_drag_dest_init  (GtkTreeDragDestIface   *iface);*/
+static void         rgtk_data_frame_sortable_init   (GtkTreeSortableIface   *iface);
 static void         rgtk_data_frame_finalize        (GObject           *object);
 static GtkTreeModelFlags rgtk_data_frame_get_flags  (GtkTreeModel      *tree_model);
 static gint         rgtk_data_frame_get_n_columns   (GtkTreeModel      *tree_model);
@@ -40,13 +40,32 @@ static gboolean     rgtk_data_frame_iter_nth_child  (GtkTreeModel      *tree_mod
 static gboolean     rgtk_data_frame_iter_parent     (GtkTreeModel      *tree_model,
 						    GtkTreeIter       *iter,
 						    GtkTreeIter       *child);
-							
-RGtkDataFrame * rgtk_data_frame_new(USER_OBJECT_ frame);
+
+static gboolean rgtk_data_frame_has_default_sort_func (GtkTreeSortable *sortable);
+static void rgtk_data_frame_set_default_sort_func (GtkTreeSortable        *sortable,
+                                              GtkTreeIterCompareFunc  sort_func,
+                                              gpointer                user_data,
+                                              GtkDestroyNotify        destroy_func);
+static void rgtk_data_frame_set_sort_func (GtkTreeSortable        *sortable,
+									   gint                    sort_col_id,
+                                      GtkTreeIterCompareFunc  sort_func,
+                                      gpointer                user_data,
+                                      GtkDestroyNotify        destroy_func);							
+static void rgtk_data_frame_set_sort_column_id (GtkTreeSortable *sortable,
+									   gint             sort_col_id,
+									   GtkSortType      order);
+static gboolean rgtk_data_frame_get_sort_column_id (GtkTreeSortable *sortable,
+									   gint            *sort_col_id,
+									   GtkSortType     *order);
+static void rgtk_data_frame_resort (RGtkDataFrame *frame);
+static void rgtk_data_frame_set_sort_closure (RGtkDataFrame *frame, USER_OBJECT_ closure);
+
+RGtkDataFrame * rgtk_data_frame_new (USER_OBJECT_ frame, USER_OBJECT_ sort_closure);
 static USER_OBJECT_ rgtk_data_frame_get (RGtkDataFrame *data_frame);
 static gint rgtk_data_frame_get_n_rows (RGtkDataFrame *data_frame);
 static void rgtk_data_frame_set (RGtkDataFrame *data_frame,
 			USER_OBJECT_ frame,
-			gint *changed_rows, gint nrows);
+			gint *changed_rows, gint nrows, gboolean resort);
 static void rgtk_data_frame_remove (RGtkDataFrame *data_frame,
 			USER_OBJECT_ frame,
 			gint *deleted_rows, gint nrows);
@@ -92,14 +111,14 @@ rgtk_data_frame_get_type (void)
 	NULL,
 	NULL
       };
-
+*/
       static const GInterfaceInfo sortable_info =
       {
 	(GInterfaceInitFunc) rgtk_data_frame_sortable_init,
 	NULL,
 	NULL
       };
-*/
+
       data_frame_type = g_type_register_static (G_TYPE_OBJECT, "RGtkDataFrame",
 						&data_frame_info, 0);
 
@@ -112,9 +131,9 @@ rgtk_data_frame_get_type (void)
       g_type_add_interface_static (data_frame_type,
 				   GTK_TYPE_TREE_DRAG_DEST,
 				   &drag_dest_info);*/
-      /*g_type_add_interface_static (data_frame_type,
+      g_type_add_interface_static (data_frame_type,
 				   GTK_TYPE_TREE_SORTABLE,
-				   &sortable_info);*/
+				   &sortable_info);
     }
 
   return data_frame_type;
@@ -163,7 +182,7 @@ rgtk_data_frame_drag_dest_init (GtkTreeDragDestIface *iface)
 {
   iface->drag_data_received = rgtk_data_frame_drag_data_received;
   iface->row_drop_possible = rgtk_data_frame_row_drop_possible;
-}
+}*/
 
 static void
 rgtk_data_frame_sortable_init (GtkTreeSortableIface *iface)
@@ -174,18 +193,21 @@ rgtk_data_frame_sortable_init (GtkTreeSortableIface *iface)
   iface->set_default_sort_func = rgtk_data_frame_set_default_sort_func;
   iface->has_default_sort_func = rgtk_data_frame_has_default_sort_func;
 }
-*/
+
 static void
 rgtk_data_frame_init (RGtkDataFrame *data_frame)
 {
   data_frame->stamp = g_random_int ();
   data_frame->frame = NULL;
+  data_frame->sort_closure = NULL;
+  data_frame->sort_id = -1;
+  data_frame->sort_order = GTK_SORT_DESCENDING;
 }
 
 USER_OBJECT_
-R_rgtk_data_frame_new(USER_OBJECT_ s_frame) {
+R_rgtk_data_frame_new(USER_OBJECT_ s_frame, USER_OBJECT_ s_sort_closure) {
 	RGtkDataFrame *ans;
-	ans = rgtk_data_frame_new(s_frame);
+	ans = rgtk_data_frame_new(s_frame, s_sort_closure);
 	return(toRPointer(ans, "RGtkDataFrame"));
 }
 
@@ -198,11 +220,12 @@ R_rgtk_data_frame_new(USER_OBJECT_ s_frame) {
  * Return value: a new #RGtkDataFrame
 **/
 RGtkDataFrame *
-rgtk_data_frame_new(USER_OBJECT_ frame)
+rgtk_data_frame_new(USER_OBJECT_ frame, USER_OBJECT_ sort_closure)
 {
 	RGtkDataFrame *retval;
     retval = g_object_new (RGTK_TYPE_DATA_FRAME, NULL);
-	rgtk_data_frame_set(retval, frame, NULL, 0);
+	rgtk_data_frame_set(retval, frame, NULL, 0, 0);
+	rgtk_data_frame_set_sort_closure(retval, sort_closure);
 	return retval;
 }
 
@@ -212,6 +235,7 @@ rgtk_data_frame_finalize (GObject *object)
 	RGtkDataFrame *data_frame = RGTK_DATA_FRAME (object);
 	
 	R_ReleaseObject(data_frame->frame);
+	R_ReleaseObject(data_frame->sort_closure);
 	
    /* must chain up */
    (* parent_class->finalize) (object);
@@ -302,6 +326,8 @@ rgtk_data_frame_get_value (GtkTreeModel *tree_model,
 {
   RGtkDataFrame *data_frame = (RGtkDataFrame*)tree_model;
   
+  if (!VALID_ITER (iter, RGTK_DATA_FRAME(tree_model)))
+	  g_debug("invalid row: %d", GPOINTER_TO_INT(iter->user_data));
   g_return_if_fail (RGTK_IS_DATA_FRAME (tree_model));
   g_return_if_fail (column < GET_LENGTH(RGTK_DATA_FRAME (tree_model)->frame));
   g_return_if_fail (VALID_ITER (iter, RGTK_DATA_FRAME(tree_model)));
@@ -414,13 +440,14 @@ rgtk_data_frame_get (RGtkDataFrame *data_frame)
 }
 
 USER_OBJECT_
-R_rgtk_data_frame_set (USER_OBJECT_ s_data_frame, USER_OBJECT_ s_frame, USER_OBJECT_ s_changed_rows)
+R_rgtk_data_frame_set (USER_OBJECT_ s_data_frame, USER_OBJECT_ s_frame, USER_OBJECT_ s_changed_rows, USER_OBJECT_ s_resort)
 {
 	RGtkDataFrame *data_frame = RGTK_DATA_FRAME(getPtrValue(s_data_frame));
 	gint *changed_rows = asCArray(s_changed_rows, gint, asCInteger);
 	gint nrows = GET_LENGTH(s_changed_rows);
+	gboolean resort = asCLogical(s_resort);
 	
-	rgtk_data_frame_set(data_frame, s_frame, changed_rows, nrows);
+	rgtk_data_frame_set(data_frame, s_frame, changed_rows, nrows, resort);
 	
 	return NULL_USER_OBJECT;
 }
@@ -428,7 +455,7 @@ R_rgtk_data_frame_set (USER_OBJECT_ s_data_frame, USER_OBJECT_ s_frame, USER_OBJ
 static void
 rgtk_data_frame_set (RGtkDataFrame *data_frame,
 			USER_OBJECT_ frame,
-			gint *changed_rows, gint nrows)
+			gint *changed_rows, gint nrows, gboolean resort)
 {
 	gint i, old_nrows;
 	GtkTreeIter iter;
@@ -453,6 +480,19 @@ rgtk_data_frame_set (RGtkDataFrame *data_frame,
 		else gtk_tree_model_row_inserted(GTK_TREE_MODEL(data_frame), path, &iter);
 		gtk_tree_path_free(path);
 	}
+	
+	if (data_frame->sort_id != -1 && resort)
+		rgtk_data_frame_resort(data_frame);
+}
+
+static void rgtk_data_frame_set_sort_closure(RGtkDataFrame *frame, USER_OBJECT_ closure)
+{
+	g_return_if_fail (RGTK_IS_DATA_FRAME (frame));
+	g_return_if_fail (TYPEOF(closure) == CLOSXP);
+	if (frame->sort_closure)
+		R_ReleaseObject(frame->sort_closure);
+	R_PreserveObject(closure);
+	frame->sort_closure = closure;
 }
 
 static void
@@ -484,3 +524,112 @@ rgtk_data_frame_get_n_rows (RGtkDataFrame *data_frame)
 	nrows = GET_LENGTH(getAttrib(data_frame->frame, install("row.names")));
 	return(nrows);
 }
+
+/* attempt at GtkTreeSortable implementation */
+
+static gboolean
+rgtk_data_frame_get_sort_column_id (GtkTreeSortable *sortable,
+									   gint            *sort_col_id,
+									   GtkSortType     *order)
+{
+    RGtkDataFrame *frame;
+
+    g_return_val_if_fail ( sortable != NULL        , FALSE );
+    g_return_val_if_fail ( RGTK_IS_DATA_FRAME(sortable), FALSE );
+
+    frame = RGTK_DATA_FRAME(sortable);
+
+    if (sort_col_id)
+      *sort_col_id = frame->sort_id;
+
+    if (order)
+      *order =  frame->sort_order;
+
+    return TRUE;
+}
+  
+static void
+rgtk_data_frame_set_sort_column_id (GtkTreeSortable *sortable,
+									   gint             sort_col_id,
+									   GtkSortType      order)
+{
+	RGtkDataFrame *frame;
+
+	g_return_if_fail ( sortable != NULL );
+    g_return_if_fail ( RGTK_IS_DATA_FRAME(sortable) );
+
+    frame = RGTK_DATA_FRAME(sortable);
+
+    if (frame->sort_id == sort_col_id && frame->sort_order == order)
+      return;
+
+    frame->sort_id = sort_col_id;
+    frame->sort_order  = order;
+
+	if (sort_col_id != -1)
+		rgtk_data_frame_resort(frame);
+
+    /* emit "sort-column-changed" signal to tell any tree views
+     *  that the sort column has changed (so the little arrow
+     *  in the column header of the sort column is drawn
+     *  in the right column)                                     */
+
+    gtk_tree_sortable_sort_column_changed(sortable);
+}
+  
+static void
+rgtk_data_frame_set_sort_func (GtkTreeSortable        *sortable,
+									   gint                    sort_col_id,
+                                      GtkTreeIterCompareFunc  sort_func,
+                                      gpointer                user_data,
+                                      GtkDestroyNotify        destroy_func)
+{
+    g_warning ("%s is not supported by the RGtkDataModel model.\n", __FUNCTION__);
+}
+
+
+static void
+rgtk_data_frame_set_default_sort_func (GtkTreeSortable        *sortable,
+                                              GtkTreeIterCompareFunc  sort_func,
+                                              gpointer                user_data,
+                                              GtkDestroyNotify        destroy_func)
+{
+    g_warning ("%s is not supported by the RGtkDataModel model.\n", __FUNCTION__);
+}
+
+
+static gboolean
+rgtk_data_frame_has_default_sort_func (GtkTreeSortable *sortable)
+{
+	return FALSE;
+}
+
+static void
+rgtk_data_frame_resort(RGtkDataFrame *frame) {
+	USER_OBJECT_ e, val, tmp, envir = R_GlobalEnv;
+	int errorOccurred = 0;
+	
+	g_return_if_fail (frame->sort_id != -1);
+	g_return_if_fail (RGTK_IS_DATA_FRAME (frame));
+	
+	PROTECT(e = allocVector(LANGSXP, 4));
+	SETCAR(e, frame->sort_closure);
+	tmp = CDR(e);
+	SETCAR(tmp, toRPointer(frame, "RGtkDataFrame"));
+	tmp = CDR(tmp);
+	SETCAR(tmp, asRInteger(frame->sort_id));
+	tmp = CDR(tmp);
+	SETCAR(tmp, asRLogical(frame->sort_order == GTK_SORT_DESCENDING));
+	
+	val = R_tryEval(e, envir, &errorOccurred);
+	
+	if (!errorOccurred) {
+		GtkTreePath *path = gtk_tree_path_new ();
+		rgtk_data_frame_set(frame, VECTOR_ELT(val,0), NULL, 0, 0);
+		gtk_tree_model_rows_reordered (GTK_TREE_MODEL (frame),
+				 path, NULL, INTEGER_DATA(VECTOR_ELT(val,1)));
+	}
+	
+	UNPROTECT(1);
+}
+

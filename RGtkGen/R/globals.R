@@ -53,7 +53,8 @@ badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_ow
 	"pango_context_new", "pango_font_map_get_shape_engine_type", "pango_reorder_items",
 	"gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data", "glade_xml_new_from_buffer",
 	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", 
-	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream")
+	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream",
+	"gtk_radio_button_new", "gtk_radio_button_new_with_label")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")

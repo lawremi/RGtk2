@@ -540,6 +540,35 @@ function(object, cell.renderer, ...)
         return(invisible(w))
 }
 
+# reason: unfortunately, the 'group' must be an exact pointer match so 
+# we delegate to 'gtkRadioButtonNewFromWidget' with the first element.
+gtkRadioButtonNew <-
+function(group = NULL, show = TRUE)
+{
+	if (!is.null( group )) 
+		w <- gtkRadioButtonNewFromWidget(group[[1]], show)
+	else {
+		w <- .RGtkCall("S_gtk_radio_button_new", group, PACKAGE = "RGtk2")
+		if(show)
+			gtkWidgetShowAll(w)
+	}
+	return(w)
+} 
+# reason: same as above
+gtkRadioButtonNewWithLabel <-
+function(group = NULL, label, show = TRUE)
+{
+	if (!is.null( group )) 
+		w <- gtkRadioButtonNewWithLabelFromWidget(group[[1]], label, show)
+	else {
+		label <- as.character(label)
+		w <- .RGtkCall("S_gtk_radio_button_new_with_label", group, label, PACKAGE = "RGtk2")
+		if(show)
+			gtkWidgetShowAll(w)
+	}
+	return(w)
+} 
+
 # EXPERIMENTAL TREE MODEL ACCESS
 # Currently deprecated in favor of custom RGtkDataFrame model
 
@@ -627,7 +656,7 @@ function(object, rows = NULL, cols = 0:(object$getNColumns()-1), paths, frame = 
 {
         checkPtrType(object, "GtkTreeModel")
 		
-		col.names <- object$getData("colnames")
+		col.names <- colnames(object)
 		if (is.character(cols)) {
 			if (is.null(col.names))
 				stop("Specifying column names is not allowed - this tree model does not have any")
@@ -672,6 +701,11 @@ function(model, rows = NULL, cols = 0:(length(data)-1), value) {
 "[.GtkListStore" <- "[.GtkTreeStore" <-
 function(model, rows = NULL, cols = 0:(model$getNColumns()-1)) {
 	model$unload(rows, cols)
+}
+
+dimnames.GtkTreeModel <- function(x, ...)
+{
+	list(x$getData("rownames"), x$getData("colnames"))
 }
 
 # aliases for error domains
