@@ -383,7 +383,7 @@ function(adjustment = NULL, show = TRUE)
 gtkRadioAction <- gtkRadioActionNew
 
 gtkRadioButton <-
-function(group, label, show = TRUE)
+function(group = NULL, label, show = TRUE)
 {
 	if (!missing(label)) {
 		gtkRadioButtonNewWithLabel(group, label, show)
@@ -394,7 +394,7 @@ function(group, label, show = TRUE)
 }
 
 gtkRadioMenuItem <-
-function(group, label, show = TRUE)
+function(group = NULL, label, show = TRUE)
 {
 	if (!missing(label)) {
 		gtkRadioMenuItemNewWithLabel(group, label, show)
@@ -405,7 +405,7 @@ function(group, label, show = TRUE)
 }
 
 gtkRadioToolButton <-
-function(group, stock.id, show = TRUE)
+function(group = NULL, stock.id, show = TRUE)
 {
 	if (!missing(stock.id)) {
 		gtkRadioToolButtonNewFromStock(group, stock.id, show)

@@ -16844,24 +16844,10 @@ function()
 } 
 
 
-gtkRadioButtonNew <-
+gtkRadioButtonNewFromWidget <-
 function(group = NULL, show = TRUE)
 {
-	if (!is.null( group )) group <- as.GSList(group)
-
-	w <- .RGtkCall("S_gtk_radio_button_new", group, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
-gtkRadioButtonNewFromWidget <-
-function(group, show = TRUE)
-{
-	checkPtrType(group, "GtkRadioButton")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
 
 	w <- .RGtkCall("S_gtk_radio_button_new_from_widget", group, PACKAGE = "RGtk2")
 
@@ -16872,25 +16858,10 @@ function(group, show = TRUE)
 } 
 
 
-gtkRadioButtonNewWithLabel <-
+gtkRadioButtonNewWithLabelFromWidget <-
 function(group = NULL, label, show = TRUE)
 {
-	if (!is.null( group )) group <- as.GSList(group)
-	label <- as.character(label)
-
-	w <- .RGtkCall("S_gtk_radio_button_new_with_label", group, label, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
-gtkRadioButtonNewWithLabelFromWidget <-
-function(group, label, show = TRUE)
-{
-	checkPtrType(group, "GtkRadioButton")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
 	label <- as.character(label)
 
 	w <- .RGtkCall("S_gtk_radio_button_new_with_label_from_widget", group, label, PACKAGE = "RGtk2")
@@ -16918,9 +16889,9 @@ function(group, label, show = TRUE)
 
 
 gtkRadioButtonNewWithMnemonicFromWidget <-
-function(group, label, show = TRUE)
+function(group = NULL, label, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioButton")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
 	label <- as.character(label)
 
 	w <- .RGtkCall("S_gtk_radio_button_new_with_mnemonic_from_widget", group, label, PACKAGE = "RGtk2")
@@ -16980,54 +16951,10 @@ function()
 } 
 
 
-gtkRadioMenuItemNew <-
-function(group, show = TRUE)
-{
-	group <- as.GSList(group)
-
-	w <- .RGtkCall("S_gtk_radio_menu_item_new", group, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
-gtkRadioMenuItemNewWithLabel <-
-function(group, label, show = TRUE)
-{
-	group <- as.GSList(group)
-	label <- as.character(label)
-
-	w <- .RGtkCall("S_gtk_radio_menu_item_new_with_label", group, label, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
-gtkRadioMenuItemNewWithMnemonic <-
-function(group, label, show = TRUE)
-{
-	group <- as.GSList(group)
-	label <- as.character(label)
-
-	w <- .RGtkCall("S_gtk_radio_menu_item_new_with_mnemonic", group, label, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
 gtkRadioMenuItemNewFromWidget <-
-function(group, show = TRUE)
+function(group = NULL, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioMenuItem")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
 
 	w <- .RGtkCall("S_gtk_radio_menu_item_new_from_widget", group, PACKAGE = "RGtk2")
 
@@ -17039,9 +16966,9 @@ function(group, show = TRUE)
 
 
 gtkRadioMenuItemNewWithMnemonicFromWidget <-
-function(group, label, show = TRUE)
+function(group = NULL, label, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioMenuItem")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
 	label <- as.character(label)
 
 	w <- .RGtkCall("S_gtk_radio_menu_item_new_with_mnemonic_from_widget", group, label, PACKAGE = "RGtk2")
@@ -17054,9 +16981,9 @@ function(group, label, show = TRUE)
 
 
 gtkRadioMenuItemNewWithLabelFromWidget <-
-function(group, label, show = TRUE)
+function(group = NULL, label, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioMenuItem")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
 	label <- as.character(label)
 
 	w <- .RGtkCall("S_gtk_radio_menu_item_new_with_label_from_widget", group, label, PACKAGE = "RGtk2")
@@ -17116,39 +17043,10 @@ function()
 } 
 
 
-gtkRadioToolButtonNew <-
-function(group, show = TRUE)
-{
-	group <- as.GSList(group)
-
-	w <- .RGtkCall("S_gtk_radio_tool_button_new", group, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
-gtkRadioToolButtonNewFromStock <-
-function(group, stock.id, show = TRUE)
-{
-	group <- as.GSList(group)
-	stock.id <- as.character(stock.id)
-
-	w <- .RGtkCall("S_gtk_radio_tool_button_new_from_stock", group, stock.id, PACKAGE = "RGtk2")
-
-	if(show)
-		gtkWidgetShowAll(w)
-
-	return(w)
-} 
-
-
 gtkRadioToolButtonNewFromWidget <-
-function(group, show = TRUE)
+function(group = NULL, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioToolButton")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioToolButton")
 
 	w <- .RGtkCall("S_gtk_radio_tool_button_new_from_widget", group, PACKAGE = "RGtk2")
 
@@ -17160,9 +17058,9 @@ function(group, show = TRUE)
 
 
 gtkRadioToolButtonNewWithStockFromWidget <-
-function(group, stock.id, show = TRUE)
+function(group = NULL, stock.id, show = TRUE)
 {
-	checkPtrType(group, "GtkRadioToolButton")
+	if (!is.null( group )) checkPtrType(group, "GtkRadioToolButton")
 	stock.id <- as.character(stock.id)
 
 	w <- .RGtkCall("S_gtk_radio_tool_button_new_with_stock_from_widget", group, stock.id, PACKAGE = "RGtk2")
@@ -20199,9 +20097,6 @@ function(object, child, left.attach, right.attach, top.attach, bottom.attach, xo
 gtkTableAttachDefaults <-
 function(object, widget, left.attach, right.attach, top.attach, bottom.attach)
 {
-	if(getOption("depwarn"))
-		warning("This function is deprecated: use attach instead")
-
 	checkPtrType(object, "GtkTable")
 	checkPtrType(widget, "GtkWidget")
 	left.attach <- as.numeric(left.attach)

@@ -2,7 +2,7 @@
 \name{gtkRadioToolButtonNewFromWidget}
 \title{gtkRadioToolButtonNewFromWidget}
 \description{Creates a new \code{\link{GtkRadioToolButton}} adding it to the same group as \code{gruup}}
-\usage{gtkRadioToolButtonNewFromWidget(group, show = TRUE)}
+\usage{gtkRadioToolButtonNewFromWidget(group = NULL, show = TRUE)}
 \arguments{\item{\code{group}}{[\code{\link{GtkRadioToolButton}}]  An existing \code{\link{GtkRadioToolButton}}}}
 \details{  Since  2.4}
 \value{[\code{\link{GtkToolItem}}]  The new \code{\link{GtkRadioToolButton}}}

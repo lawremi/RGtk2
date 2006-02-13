@@ -4,13 +4,13 @@
 \title{GtkRadioToolButton}
 \description{A toolbar item that contains a radio button}
 \section{Methods and Functions}{
-\code{\link{gtkRadioToolButtonNew}(group, show = TRUE)}\cr
-\code{\link{gtkRadioToolButtonNewFromStock}(group, stock.id, show = TRUE)}\cr
-\code{\link{gtkRadioToolButtonNewFromWidget}(group, show = TRUE)}\cr
-\code{\link{gtkRadioToolButtonNewWithStockFromWidget}(group, stock.id, show = TRUE)}\cr
+\code{\link{gtkRadioToolButtonNew}(group = NULL, show = TRUE)}\cr
+\code{\link{gtkRadioToolButtonNewFromStock}(group = NULL, stock.id, show = TRUE)}\cr
+\code{\link{gtkRadioToolButtonNewFromWidget}(group = NULL, show = TRUE)}\cr
+\code{\link{gtkRadioToolButtonNewWithStockFromWidget}(group = NULL, stock.id, show = TRUE)}\cr
 \code{\link{gtkRadioToolButtonGetGroup}(object)}\cr
 \code{\link{gtkRadioToolButtonSetGroup}(object, group)}\cr
-\code{gtkRadioToolButton(group, stock.id, show = TRUE)}
+\code{gtkRadioToolButton(group = NULL, stock.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

@@ -3,7 +3,7 @@
 \title{gtkRadioMenuItemNewWithLabelFromWidget}
 \description{Creates a new GtkRadioMenuItem whose child is a simple GtkLabel.
 The new \code{\link{GtkRadioMenuItem}} is added to the same group as \code{group}.}
-\usage{gtkRadioMenuItemNewWithLabelFromWidget(group, label, show = TRUE)}
+\usage{gtkRadioMenuItemNewWithLabelFromWidget(group = NULL, label, show = TRUE)}
 \arguments{
 \item{\code{group}}{[\code{\link{GtkRadioMenuItem}}]  an existing \code{\link{GtkRadioMenuItem}} }
 \item{\code{label}}{[character]  the text for the label}

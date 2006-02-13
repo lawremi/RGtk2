@@ -4111,9 +4111,6 @@ S_gtk_radio_action_get_type();
 S_gtk_radio_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_value); 
 
 	USER_OBJECT_
-S_gtk_radio_action_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group); 
-
-	USER_OBJECT_
 S_gtk_radio_action_get_group(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
@@ -4144,9 +4141,6 @@ S_gtk_radio_button_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_OBJE
 S_gtk_radio_button_get_group(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
-S_gtk_radio_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group); 
-
-	USER_OBJECT_
 S_gtk_radio_button_group(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
@@ -4174,9 +4168,6 @@ S_gtk_radio_menu_item_new_with_label_from_widget(USER_OBJECT_ s_group, USER_OBJE
 S_gtk_radio_menu_item_get_group(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
-S_gtk_radio_menu_item_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group); 
-
-	USER_OBJECT_
 S_gtk_radio_menu_item_group(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
@@ -4193,9 +4184,6 @@ S_gtk_radio_tool_button_new_from_widget(USER_OBJECT_ s_group);
 
 	USER_OBJECT_
 S_gtk_radio_tool_button_new_with_stock_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_stock_id); 
-
-	USER_OBJECT_
-S_gtk_radio_tool_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group); 
 
 	USER_OBJECT_
 S_gtk_radio_tool_button_get_group(USER_OBJECT_ s_object); 

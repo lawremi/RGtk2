@@ -37,7 +37,9 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner", "gtk_
 	"glade_xml_construct", "gdk_pixbuf_get_from_drawable", "gdk_colormap_alloc_color",
 	"gdk_pixbuf_get_from_image", "gdk_pixbuf_render_pixmap_and_mask",  "gdk_colors_store",
 	"gdk_pixbuf_render_pixmap_and_mask_for_colormap", "gdk_colormap_alloc_colors",
-	"gdk_query_depths", "gdk_query_visual_types", "glade_xml_signal_connect_data", "glade_xml_signal_connect")
+	"gdk_query_depths", "gdk_query_visual_types", "glade_xml_signal_connect_data", "glade_xml_signal_connect",
+  "gtk_radio_action_set_group", "gtk_radio_button_set_group", "gtk_radio_menu_item_set_group",
+  "gtk_radio_tool_button_set_group")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -54,7 +56,9 @@ badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_ow
 	"gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data", "glade_xml_new_from_buffer",
 	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", 
 	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream",
-	"gtk_radio_button_new", "gtk_radio_button_new_with_label")
+	"gtk_radio_button_new", "gtk_radio_button_new_with_label", "gtk_radio_menu_item_new", 
+  "gtk_radio_menu_item_new_with_label", "gtk_radio_menu_item_new_with_mnemonic", 
+  "gtk_radio_tool_button_new", "gtk_radio_tool_button_new_from_stock")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")

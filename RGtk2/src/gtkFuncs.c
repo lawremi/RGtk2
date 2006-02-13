@@ -21818,22 +21818,6 @@ S_gtk_radio_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s
  
 
 USER_OBJECT_
-S_gtk_radio_action_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
-{
-	GtkRadioAction* object = GTK_RADIO_ACTION(getPtrValue(s_object));
-	GSList* group = asCGSList(s_group);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_radio_action_set_group(object, group);
-
-	CLEANUP(g_slist_free, (GSList*)group);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_radio_action_get_group(USER_OBJECT_ s_object)
 {
 	GtkRadioAction* object = GTK_RADIO_ACTION(getPtrValue(s_object));
@@ -21901,7 +21885,7 @@ S_gtk_radio_button_new(USER_OBJECT_ s_group)
 USER_OBJECT_
 S_gtk_radio_button_new_from_widget(USER_OBJECT_ s_group)
 {
-	GtkRadioButton* group = GTK_RADIO_BUTTON(getPtrValue(s_group));
+	GtkRadioButton* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_BUTTON(getPtrValue(s_group));
 
 	GtkWidget* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -21935,7 +21919,7 @@ S_gtk_radio_button_new_with_label(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 USER_OBJECT_
 S_gtk_radio_button_new_with_label_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 {
-	GtkRadioButton* group = GTK_RADIO_BUTTON(getPtrValue(s_group));
+	GtkRadioButton* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_BUTTON(getPtrValue(s_group));
 	const gchar* label = (const gchar*)asCString(s_label);
 
 	GtkWidget* ans;
@@ -21970,7 +21954,7 @@ S_gtk_radio_button_new_with_mnemonic(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 USER_OBJECT_
 S_gtk_radio_button_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 {
-	GtkRadioButton* group = GTK_RADIO_BUTTON(getPtrValue(s_group));
+	GtkRadioButton* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_BUTTON(getPtrValue(s_group));
 	const gchar* label = (const gchar*)asCString(s_label);
 
 	GtkWidget* ans;
@@ -21995,22 +21979,6 @@ S_gtk_radio_button_get_group(USER_OBJECT_ s_object)
 	ans = gtk_radio_button_get_group(object);
 
 	_result = asRGSListWithSink(ans, "GtkRadioButton");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_radio_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
-{
-	GtkRadioButton* object = GTK_RADIO_BUTTON(getPtrValue(s_object));
-	GSList* group = asCGSList(s_group);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_radio_button_set_group(object, group);
-
-	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
 }
@@ -22104,7 +22072,7 @@ S_gtk_radio_menu_item_new_with_mnemonic(USER_OBJECT_ s_group, USER_OBJECT_ s_lab
 USER_OBJECT_
 S_gtk_radio_menu_item_new_from_widget(USER_OBJECT_ s_group)
 {
-	GtkRadioMenuItem* group = GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
+	GtkRadioMenuItem* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
 
 	GtkWidget* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -22120,7 +22088,7 @@ S_gtk_radio_menu_item_new_from_widget(USER_OBJECT_ s_group)
 USER_OBJECT_
 S_gtk_radio_menu_item_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 {
-	GtkRadioMenuItem* group = GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
+	GtkRadioMenuItem* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
 	const gchar* label = (const gchar*)asCString(s_label);
 
 	GtkWidget* ans;
@@ -22137,7 +22105,7 @@ S_gtk_radio_menu_item_new_with_mnemonic_from_widget(USER_OBJECT_ s_group, USER_O
 USER_OBJECT_
 S_gtk_radio_menu_item_new_with_label_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_label)
 {
-	GtkRadioMenuItem* group = GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
+	GtkRadioMenuItem* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_MENU_ITEM(getPtrValue(s_group));
 	const gchar* label = (const gchar*)asCString(s_label);
 
 	GtkWidget* ans;
@@ -22163,22 +22131,6 @@ S_gtk_radio_menu_item_get_group(USER_OBJECT_ s_object)
 
 	_result = asRGSListWithSink(ans, "GtkRadioMenuItem");
 	CLEANUP(g_slist_free, ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_radio_menu_item_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
-{
-	GtkRadioMenuItem* object = GTK_RADIO_MENU_ITEM(getPtrValue(s_object));
-	GSList* group = asCGSList(s_group);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_radio_menu_item_set_group(object, group);
-
-	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
 }
@@ -22254,7 +22206,7 @@ S_gtk_radio_tool_button_new_from_stock(USER_OBJECT_ s_group, USER_OBJECT_ s_stoc
 USER_OBJECT_
 S_gtk_radio_tool_button_new_from_widget(USER_OBJECT_ s_group)
 {
-	GtkRadioToolButton* group = GTK_RADIO_TOOL_BUTTON(getPtrValue(s_group));
+	GtkRadioToolButton* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_TOOL_BUTTON(getPtrValue(s_group));
 
 	GtkToolItem* ans;
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -22270,7 +22222,7 @@ S_gtk_radio_tool_button_new_from_widget(USER_OBJECT_ s_group)
 USER_OBJECT_
 S_gtk_radio_tool_button_new_with_stock_from_widget(USER_OBJECT_ s_group, USER_OBJECT_ s_stock_id)
 {
-	GtkRadioToolButton* group = GTK_RADIO_TOOL_BUTTON(getPtrValue(s_group));
+	GtkRadioToolButton* group = GET_LENGTH(s_group) == 0 ? NULL : GTK_RADIO_TOOL_BUTTON(getPtrValue(s_group));
 	const gchar* stock_id = (const gchar*)asCString(s_stock_id);
 
 	GtkToolItem* ans;
@@ -22279,22 +22231,6 @@ S_gtk_radio_tool_button_new_with_stock_from_widget(USER_OBJECT_ s_group, USER_OB
 	ans = gtk_radio_tool_button_new_with_stock_from_widget(group, stock_id);
 
 	_result = toRPointerWithSink(ans, "GtkToolItem");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_radio_tool_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
-{
-	GtkRadioToolButton* object = GTK_RADIO_TOOL_BUTTON(getPtrValue(s_object));
-	GSList* group = asCGSList(s_group);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_radio_tool_button_set_group(object, group);
-
-	CLEANUP(g_slist_free, (GSList*)group);
 
 	return(_result);
 }

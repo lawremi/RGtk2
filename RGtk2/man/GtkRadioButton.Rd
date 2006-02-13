@@ -5,14 +5,14 @@
 \description{A choice from multiple check buttons}
 \section{Methods and Functions}{
 \code{\link{gtkRadioButtonNew}(group = NULL, show = TRUE)}\cr
-\code{\link{gtkRadioButtonNewFromWidget}(group, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewFromWidget}(group = NULL, show = TRUE)}\cr
 \code{\link{gtkRadioButtonNewWithLabel}(group = NULL, label, show = TRUE)}\cr
-\code{\link{gtkRadioButtonNewWithLabelFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithLabelFromWidget}(group = NULL, label, show = TRUE)}\cr
 \code{\link{gtkRadioButtonNewWithMnemonic}(group, label, show = TRUE)}\cr
-\code{\link{gtkRadioButtonNewWithMnemonicFromWidget}(group, label, show = TRUE)}\cr
+\code{\link{gtkRadioButtonNewWithMnemonicFromWidget}(group = NULL, label, show = TRUE)}\cr
 \code{\link{gtkRadioButtonSetGroup}(object, group)}\cr
 \code{\link{gtkRadioButtonGetGroup}(object)}\cr
-\code{gtkRadioButton(group, label, show = TRUE)}
+\code{gtkRadioButton(group = NULL, label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GtkObject}

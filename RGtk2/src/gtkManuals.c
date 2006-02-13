@@ -1031,6 +1031,83 @@ S_gtk_menu_attach_to_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_attach_widget)
         return(_result);
 }
 
+/* reason: all of these need group passed by reference - not a newly converted list */
+USER_OBJECT_
+S_gtk_radio_action_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
+{
+	GtkRadioAction* object = GTK_RADIO_ACTION(getPtrValue(s_object));
+	GSList* group = GET_LENGTH(s_group) == 0 ? NULL : asCGSList(s_group);
+  GSList* real_group = NULL;
+  
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+  
+  if (group)
+    real_group = gtk_radio_action_get_group(GTK_RADIO_ACTION(group->data));
+
+	gtk_radio_action_set_group(object, real_group);
+
+	CLEANUP(g_slist_free, (GSList*)group);
+
+	return(_result);
+}
+
+USER_OBJECT_
+S_gtk_radio_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
+{
+	GtkRadioButton* object = GTK_RADIO_BUTTON(getPtrValue(s_object));
+	GSList* group = GET_LENGTH(s_group) == 0 ? NULL : asCGSList(s_group);
+  GSList* real_group = NULL;
+  
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+  
+  if (group)
+    real_group = gtk_radio_button_get_group(GTK_RADIO_BUTTON(group->data));
+
+	gtk_radio_button_set_group(object, real_group);
+
+	CLEANUP(g_slist_free, (GSList*)group);
+
+	return(_result);
+}
+
+USER_OBJECT_
+S_gtk_radio_menu_item_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
+{
+	GtkRadioMenuItem* object = GTK_RADIO_MENU_ITEM(getPtrValue(s_object));
+	GSList* group = GET_LENGTH(s_group) == 0 ? NULL : asCGSList(s_group);
+  GSList* real_group = NULL;
+  
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+  
+  if (group)
+    real_group = gtk_radio_menu_item_get_group(GTK_RADIO_MENU_ITEM(group->data));
+
+	gtk_radio_menu_item_set_group(object, real_group);
+
+	CLEANUP(g_slist_free, (GSList*)group);
+
+	return(_result);
+}
+
+USER_OBJECT_
+S_gtk_radio_tool_button_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group)
+{
+	GtkRadioToolButton* object = GTK_RADIO_TOOL_BUTTON(getPtrValue(s_object));
+	GSList* group = GET_LENGTH(s_group) == 0 ? NULL : asCGSList(s_group);
+  GSList* real_group = NULL;
+  
+	USER_OBJECT_ _result = NULL_USER_OBJECT;
+  
+  if (group)
+    real_group = gtk_radio_tool_button_get_group(GTK_RADIO_TOOL_BUTTON(group->data));
+
+	gtk_radio_tool_button_set_group(object, real_group);
+
+	CLEANUP(g_slist_free, (GSList*)group);
+
+	return(_result);
+}
+
 /* reason: while GtkSignalFunc is a void function, the only place the bindings
 	use it is with the gtk_toolbar_* functions. in that case, it takes a 
 	widget and a user data pointer, just like GtkCallback.

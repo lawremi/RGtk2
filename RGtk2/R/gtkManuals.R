@@ -544,30 +544,31 @@ function(object, cell.renderer, ...)
 # we delegate to 'gtkRadioButtonNewFromWidget' with the first element.
 gtkRadioButtonNew <-
 function(group = NULL, show = TRUE)
-{
-	if (!is.null( group )) 
-		w <- gtkRadioButtonNewFromWidget(group[[1]], show)
-	else {
-		w <- .RGtkCall("S_gtk_radio_button_new", group, PACKAGE = "RGtk2")
-		if(show)
-			gtkWidgetShowAll(w)
-	}
-	return(w)
-} 
-# reason: same as above
+gtkRadioButtonNewFromWidget(group[[1]], show)
+
 gtkRadioButtonNewWithLabel <-
 function(group = NULL, label, show = TRUE)
-{
-	if (!is.null( group )) 
-		w <- gtkRadioButtonNewWithLabelFromWidget(group[[1]], label, show)
-	else {
-		label <- as.character(label)
-		w <- .RGtkCall("S_gtk_radio_button_new_with_label", group, label, PACKAGE = "RGtk2")
-		if(show)
-			gtkWidgetShowAll(w)
-	}
-	return(w)
-} 
+gtkRadioButtonNewWithLabelFromWidget(group[[1]], label, show) 
+
+gtkRadioMenuItemNew <-
+function(group = NULL, show = TRUE) 
+gtkRadioMenuItemNewFromWidget(group[[1]], show)
+
+gtkRadioMenuItemNewWithLabel <-
+function(group = NULL, label, show = TRUE) 
+gtkRadioMenuItemNewWithLabelFromWidget(group[[1]], label, show)
+
+gtkRadioMenuItemNewWithMnemonic <-
+function(group = NULL, label, show = TRUE)
+gtkRadioMenuItemNewWithMnemonicFromWidget(group[[1]], label, show) 
+
+gtkRadioToolButtonNew <-
+function(group = NULL, show = TRUE) 
+gtkRadioToolButtonNewFromWidget(group[[1]], show)
+
+gtkRadioToolButtonNewFromStock <-
+function(group = NULL, stock.id, show = TRUE) 
+gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
 
 # EXPERIMENTAL TREE MODEL ACCESS
 # Currently deprecated in favor of custom RGtkDataFrame model

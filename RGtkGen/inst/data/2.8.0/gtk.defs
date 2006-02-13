@@ -11856,7 +11856,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioButton*" "group" (in))
+    '("GtkRadioButton*" "group" (in) (null-ok))
   )
 )
 
@@ -11877,7 +11877,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioButton*" "group" (in))
+    '("GtkRadioButton*" "group" (in) (null-ok))
     '("const-gchar*" "label" (in))
   )
 )
@@ -11899,7 +11899,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioButton*" "group" (in))
+    '("GtkRadioButton*" "group" (in) (null-ok))
     '("const-gchar*" "label" (in))
   )
 )
@@ -11970,7 +11970,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioMenuItem*" "group" (in))
+    '("GtkRadioMenuItem*" "group" (in) (null-ok))
   )
 )
 
@@ -11980,7 +11980,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioMenuItem*" "group" (in))
+    '("GtkRadioMenuItem*" "group" (in) (null-ok))
     '("const-gchar*" "label" (in))
   )
 )
@@ -11991,7 +11991,7 @@
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
-    '("GtkRadioMenuItem*" "group" (in))
+    '("GtkRadioMenuItem*" "group" (in) (null-ok))
     '("const-gchar*" "label" (in))
   )
 )
@@ -12052,7 +12052,7 @@
   (caller-owns-return #t)
   (return-type "GtkToolItem*")
   (parameters
-    '("GtkRadioToolButton*" "group" (in))
+    '("GtkRadioToolButton*" "group" (in) (null-ok))
   )
 )
 
@@ -12062,7 +12062,7 @@
   (caller-owns-return #t)
   (return-type "GtkToolItem*")
   (parameters
-    '("GtkRadioToolButton*" "group" (in))
+    '("GtkRadioToolButton*" "group" (in) (null-ok))
     '("const-gchar*" "stock_id" (in))
   )
 )

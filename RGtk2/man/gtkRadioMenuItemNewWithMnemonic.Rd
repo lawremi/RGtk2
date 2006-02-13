@@ -4,7 +4,7 @@
 \description{Creates a new \code{\link{GtkRadioMenuItem}} containing a label. The label
 will be created using \code{\link{gtkLabelNewWithMnemonic}}, so underscores
 in \code{label} indicate the mnemonic for the menu item.}
-\usage{gtkRadioMenuItemNewWithMnemonic(group, label, show = TRUE)}
+\usage{gtkRadioMenuItemNewWithMnemonic(group = NULL, label, show = TRUE)}
 \arguments{
 \item{\code{group}}{[list]  group the radio menu item is inside}
 \item{\code{label}}{[character]  the text of the button, with an underscore in front of the
