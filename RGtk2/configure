@@ -272,7 +272,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
 ac_unique_file="src/Rgtk.c"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE GTKMOZEMBED_CFLAGS GTKMOZEMBED_LIBS HAVE_GTKMOZEMBED R_PACKAGE_DIR INSTALL_DIR DEFINES PKG_CFLAGS PKG_LIBS LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE R_PACKAGE_DIR INSTALL_DIR DEFINES LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -733,14 +733,6 @@ ac_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
 ac_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
 ac_cv_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
 ac_cv_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
-ac_env_GTKMOZEMBED_CFLAGS_set=${GTKMOZEMBED_CFLAGS+set}
-ac_env_GTKMOZEMBED_CFLAGS_value=$GTKMOZEMBED_CFLAGS
-ac_cv_env_GTKMOZEMBED_CFLAGS_set=${GTKMOZEMBED_CFLAGS+set}
-ac_cv_env_GTKMOZEMBED_CFLAGS_value=$GTKMOZEMBED_CFLAGS
-ac_env_GTKMOZEMBED_LIBS_set=${GTKMOZEMBED_LIBS+set}
-ac_env_GTKMOZEMBED_LIBS_value=$GTKMOZEMBED_LIBS
-ac_cv_env_GTKMOZEMBED_LIBS_set=${GTKMOZEMBED_LIBS+set}
-ac_cv_env_GTKMOZEMBED_LIBS_value=$GTKMOZEMBED_LIBS
 
 #
 # Report the --help message.
@@ -812,7 +804,6 @@ Optional Features:
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-libglade          Enable libglade support
-  --disable-gtkmozembed         Enable gtkmozembed support
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
@@ -822,10 +813,6 @@ Some influential environment variables:
               C compiler flags for LIBGLADE, overriding pkg-config
   LIBGLADE_LIBS
               linker flags for LIBGLADE, overriding pkg-config
-  GTKMOZEMBED_CFLAGS
-              C compiler flags for GTKMOZEMBED, overriding pkg-config
-  GTKMOZEMBED_LIBS
-              linker flags for GTKMOZEMBED, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -1506,86 +1493,7 @@ fi
 
 
 
-# Check whether --enable-gtkmozembed or --disable-gtkmozembed was given.
-if test "${enable_gtkmozembed+set}" = set; then
-  enableval="$enable_gtkmozembed"
-  use_gtkmozembed=$enableval
-else
-  use_gtkmozembed=yes
-fi;
 
-if test "x$use_gtkmozembed" = "xyes"; then
-
-pkg_failed=no
-echo "$as_me:$LINENO: checking for GTKMOZEMBED" >&5
-echo $ECHO_N "checking for GTKMOZEMBED... $ECHO_C" >&6
-
-if test -n "$PKG_CONFIG"; then
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"firefox-gtkmozembed\"") >&5
-  ($PKG_CONFIG --exists --print-errors "firefox-gtkmozembed") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTKMOZEMBED_CFLAGS=`$PKG_CONFIG --cflags "firefox-gtkmozembed" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-        if test -n "$PKG_CONFIG" && \
-    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"firefox-gtkmozembed\"") >&5
-  ($PKG_CONFIG --exists --print-errors "firefox-gtkmozembed") 2>&5
-  ac_status=$?
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTKMOZEMBED_LIBS=`$PKG_CONFIG --libs "firefox-gtkmozembed" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-else
-	pkg_failed=untried
-fi
-
-if test $pkg_failed = yes; then
-	GTKMOZEMBED_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "firefox-gtkmozembed"`
-	# Put the nasty error message in config.log where it belongs
-	echo "$GTKMOZEMBED_PKG_ERRORS" 1>&5
-
-	{ echo "$as_me:$LINENO: WARNING: firefox-gtkmozembed not found" >&5
-echo "$as_me: WARNING: firefox-gtkmozembed not found" >&2;}
-elif test $pkg_failed = untried; then
-	{ echo "$as_me:$LINENO: WARNING: firefox-gtkmozembed not found" >&5
-echo "$as_me: WARNING: firefox-gtkmozembed not found" >&2;}
-else
-	GTKMOZEMBED_CFLAGS=$pkg_cv_GTKMOZEMBED_CFLAGS
-	GTKMOZEMBED_LIBS=$pkg_cv_GTKMOZEMBED_LIBS
-        echo "$as_me:$LINENO: result: yes" >&5
-echo "${ECHO_T}yes" >&6
-	have_gtkmozembed=yes
-fi
-fi
-
-if test "x$have_gtkmozembed" = "xyes"; then
-	DEFINES="$DEFINES -DHAVE_GTKMOZEMBED"
-else
-	rm R/gtkmozembed*
-	rm src/gtkmozembed*
-fi
-
-
-
-
-
-
-
-
-
-
-PKG_CFLAGS=${PKG_CFLAGS}
-PKG_LIBS=${PKG_LIBS}
 
 
 
@@ -2233,14 +2141,9 @@ s,@HAVE_GTK@,$HAVE_GTK,;t t
 s,@LIBGLADE_CFLAGS@,$LIBGLADE_CFLAGS,;t t
 s,@LIBGLADE_LIBS@,$LIBGLADE_LIBS,;t t
 s,@HAVE_LIBGLADE@,$HAVE_LIBGLADE,;t t
-s,@GTKMOZEMBED_CFLAGS@,$GTKMOZEMBED_CFLAGS,;t t
-s,@GTKMOZEMBED_LIBS@,$GTKMOZEMBED_LIBS,;t t
-s,@HAVE_GTKMOZEMBED@,$HAVE_GTKMOZEMBED,;t t
 s,@R_PACKAGE_DIR@,$R_PACKAGE_DIR,;t t
 s,@INSTALL_DIR@,$INSTALL_DIR,;t t
 s,@DEFINES@,$DEFINES,;t t
-s,@PKG_CFLAGS@,$PKG_CFLAGS,;t t
-s,@PKG_LIBS@,$PKG_LIBS,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
 s,@LTLIBOBJS@,$LTLIBOBJS,;t t
 CEOF

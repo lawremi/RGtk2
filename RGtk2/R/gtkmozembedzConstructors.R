@@ -1,2 +1,0 @@
-gtkMozEmbed <- gtkMozEmbedNew
-

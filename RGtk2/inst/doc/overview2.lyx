@@ -35,8 +35,7 @@ Introduction
 \layout Standard
 
 RGtk2 provides R with access to a large collection of related libraries:
- GLib, GObject, Pango, ATK, GDK, GTK, Cairo, Libglade, and (depending on
- the platform) GtkMozEmbed.
+ GLib, GObject, Pango, ATK, GDK, GTK, Cairo, and Libglade.
  GTK is of course the primary binding, which all the other bindings are
  meant to support.
  GTK is a toolkit for creating graphical user interfaces.
@@ -995,8 +994,6 @@ Most of the libraries besides GTK and the low-level GLib and GObject are
  Of the other three libraries, Libglade is probably the most interesting.
  It allows the automatic construction of GTK GUI's from XML descriptions
  produced by the Glade tool.
- GtkMozEmbed allows the embedding of the Mozilla web component in a GTK
- container.
  The least interesting and likely least useful library is ATK, which adds
  accessibility device support to GTK.
 \the_end

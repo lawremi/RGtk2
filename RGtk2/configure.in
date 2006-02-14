@@ -30,26 +30,6 @@ AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 AC_SUBST(HAVE_LIBGLADE)
 
-AC_ARG_ENABLE(gtkmozembed,
-  [  --disable-gtkmozembed         Enable gtkmozembed support],
-  [use_gtkmozembed=$enableval], [use_gtkmozembed=yes])
-  
-if test "x$use_gtkmozembed" = "xyes"; then
-	PKG_CHECK_MODULES(GTKMOZEMBED, firefox-gtkmozembed, have_gtkmozembed=yes, 
-		AC_MSG_WARN(firefox-gtkmozembed not found, disabling))
-fi
-
-if test "x$have_gtkmozembed" = "xyes"; then
-	DEFINES="$DEFINES -DHAVE_GTKMOZEMBED"
-else
-	rm R/gtkmozembed*
-	rm src/gtkmozembed*
-fi
-
-AC_SUBST(GTKMOZEMBED_CFLAGS)
-AC_SUBST(GTKMOZEMBED_LIBS)
-AC_SUBST(HAVE_GTKMOZEMBED)
-
 AC_SUBST(R_PACKAGE_DIR)
 AC_SUBST(INSTALL_DIR)
 

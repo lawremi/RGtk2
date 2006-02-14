@@ -9,7 +9,7 @@ version <- "2.8.0"
 defspath <- file.path(path, version)
 libs <- c("atk.defs", "pango.defs", "gdk.defs", "gtk.defs")
 libs <- c(libs, "cairo.defs") # for 2.8
-extralibs <- c("gtkmozembed.defs", "libglade.defs")
+extralibs <- c("libglade.defs")
 extrapath <- file.path(path, "extra")
 files <- file.path(defspath, libs)
 files <- c(files, file.path(extrapath, extralibs))
