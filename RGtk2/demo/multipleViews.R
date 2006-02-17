@@ -392,7 +392,7 @@ window$add(vpaned)
 
 # For convenience, we just use the autocreated buffer from
 # the first text view you could also create the buffer
-# by itself with gtk.text.buffer.new(), then later create
+# by itself with gtkTextBufferNew(), then later create
 # a view widget.
 
 view1 <- gtkTextViewNew()

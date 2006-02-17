@@ -11,7 +11,6 @@ clipboard	This demo shows how to copy and paste text to and from the clipboard.
 expander	GtkExpander allows to provide additional content that is initially hidden.
 sizeGroups	GtkSizeGroup provides a mechanism for grouping a number of widgets together so they all request the same amount of space.
 colorSelector	GtkColorSelection lets the user choose a color. GtkColorSelectionDialog is a prebuilt dialog containing a GtkColorSelection.
-iWidgets	Demonstrates the use of the iWidgets API with RGtk2's implementation.
 multipleViews	This demo has two views displaying a single buffer, and shows off GtkTextView's text formatting features.
 svgspacewar	A port of a classic arcade game to cairo.
 dnd	Simple drag and drop demo that accepts URLs from your web browser.

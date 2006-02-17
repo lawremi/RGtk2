@@ -38,19 +38,19 @@ function(x, i, j, value)
 	x
 }
 
-"[.RGtkDataFrame" <- function(x, i, j)
+"[.RGtkDataFrame" <- function(x, i, j, drop = T)
 {
 	frame <- as.data.frame(x)
 	if (!missing(i) && length(i) > 0 && inherits(i[[1]], "GtkTreePath"))
 		i <- .RGtkCall("R_gtk_tree_paths_to_indices", i)+1
-	frame[i, j]
+	frame[i, j, drop=drop]
 }
 
 rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())
 {
 	sort_closure <- function(frame, col, order) {
 		new_order <- order(frame[,col+1],decreasing=order)
-		list(frame[new_order,], as.integer((1:length(new_order))[new_order]-1))
+		list(frame[new_order,drop=F], as.integer((1:length(new_order))[new_order]-1))
 	}
 		
 	w <- .RGtkCall("R_rgtk_data_frame_new", frame, sort_closure)
