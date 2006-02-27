@@ -412,26 +412,26 @@ S_gtk_dialog_add_buttons(USER_OBJECT_ s_object, USER_OBJECT_ s_labels, USER_OBJE
 USER_OBJECT_
 S_gtk_file_chooser_dialog_new_with_backend(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_OBJECT_ s_action, USER_OBJECT_ s_backend, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)
 {
-        const gchar* title = (const gchar*)asCString(s_title);
-        GtkWindow* parent = GTK_WINDOW(getPtrValue(s_parent));
-        GtkFileChooserAction action = (GtkFileChooserAction)asCEnum(s_action, GTK_TYPE_FILE_CHOOSER_ACTION);
-        const gchar* backend = (const gchar*)asCString(s_backend);
+  const gchar* title = (const gchar*)asCString(s_title);
+  GtkWindow* parent = GTK_WINDOW(getPtrValue(s_parent));
+  GtkFileChooserAction action = (GtkFileChooserAction)asCEnum(s_action, GTK_TYPE_FILE_CHOOSER_ACTION);
+  const gchar* backend = (const gchar*)asCString(s_backend);
 
-        GtkWidget* ans;
-        USER_OBJECT_ _result = NULL_USER_OBJECT;
+  GtkWidget* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        ans = g_object_new(GTK_TYPE_FILE_CHOOSER_DIALOG, "title", title, "action", action, 
-			"file-system-backend", backend, NULL);
-		if (parent)
-			gtk_window_set_transient_for(GTK_WINDOW(ans), parent);
+  ans = g_object_new(GTK_TYPE_FILE_CHOOSER_DIALOG, "title", title, "action", action, 
+    "file-system-backend", backend, NULL);
+  if (parent)
+    gtk_window_set_transient_for(GTK_WINDOW(ans), parent);
 
-        _result = PROTECT(toRPointerWithSink(ans, "GtkWidget"));
-		
-		S_gtk_dialog_add_buttons(_result, s_labels, s_responses);
-		
-		UNPROTECT(1);
+  _result = PROTECT(toRPointerWithSink(ans, "GtkWidget"));
 
-        return(_result);
+  S_gtk_dialog_add_buttons(_result, s_labels, s_responses);
+  
+  UNPROTECT(1);
+
+  return(_result);
 }
 
 /* reason: var args, receive two vectors from R */
