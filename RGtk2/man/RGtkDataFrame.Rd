@@ -3,8 +3,8 @@
 \alias{[.RGtkDataFrame}
 \alias{[<-.RGtkDataFrame}
 \alias{as.data.frame.RGtkDataFrame}
-\alias{cbind.RGtkDataFrame}
-\alias{rbind.RGtkDataFrame}
+\alias{rGtkDataFrameAppendColumns}
+\alias{rGtkDataFrameAppendRows}
 \alias{rGtkDataFrame}
 \alias{rGtkDataFrameNew}
 \title{The RGtkDataFrame model}
@@ -12,8 +12,8 @@
 \usage{
 rGtkDataFrame(frame = data.frame())
 rGtkDataFrameNew(frame = data.frame())
-cbind.RGtkDataFrame(x, ...)
-rbind.RGtkDataFrame(x, ...)
+rGtkDataFrameAppendColumns(x, ...)
+rGtkDataFrameAppendRows(x, ...)
 as.data.frame.RGtkDataFrame(x, ...)
 "[.RGtkDataFrame"(x, i, j)
 "[<-.RGtkDataFrame"(x, i, j, value)
@@ -24,7 +24,7 @@ as.data.frame.RGtkDataFrame(x, ...)
 \item{i}{Row index}
 \item{j}{Column index}
 \item{value}{An R object similar to that accepted by \code{[<-.data.frame}}
-\item{...}{Items to append as columns (\code{cbind}) or rows (\code{rbind})}
+\item{...}{Items to append as columns or rows}
 }
 \value{
 The constructors return instances of \code{RGtkDataFrame}.
@@ -43,17 +43,19 @@ The \code{RGtkDataFrame} is constructed with a delegate data frame, which can be
 via either \code{rGtkDataFrameNew} or \code{rGtkDataFrame} for short. The subset and 
 replacement methods work much the same as for normal data frames, except one should note that 
 removing columns (ie by replacing columns with \code{NULL}s) is not supported.
+Note that even if the initial data frame is empty, one should ensure that the empty vectors 
+representing the column are of the desired types.
 
-The \code{cbind} and \code{rbind} methods allow appending columns and rows, respectively. 
-Note that in this case no copy is made of the data; the result is applied directly to the model.
+The \code{rGtkDataFrameAppendColumns} and \code{rGtkDataFrameAppendRows} 
+methods allow appending columns and rows, respectively. 
+Note that these are a lot shorter if using the \code{object$appendColumns(...)} syntax.
 
 The \code{as.data.frame} method retrieves the backing data frame from the model, so that one 
 can perform any data frame operation on the data. Of course, any changes are \emph{not} 
 propagated back to the model, so it may take some work to efficiently merge any changes, if necessary.
 }
 \note{It is not yet clear how to encode a tree structure with a data frame, so this is 
-only currently useful for flat tables. I am thinking that designating a sequence of 
-columns containing factors could communicate a tree structure.}
+only currently useful for flat tables.}
 \author{Michael Lawrence}
 \keyword{interface}
 
