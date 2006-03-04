@@ -480,7 +480,12 @@ rgtk_data_frame_set (RGtkDataFrame *data_frame,
 		else gtk_tree_model_row_inserted(GTK_TREE_MODEL(data_frame), path, &iter);
 		gtk_tree_path_free(path);
 	}
-	
+  if (old_nrows > nrows) {
+    GtkTreePath *path = gtk_tree_path_new_from_indices(nrows, -1);
+    for (i = nrows; i < old_nrows; i++)
+      gtk_tree_model_row_deleted(GTK_TREE_MODEL(data_frame), path);
+    gtk_tree_path_free(path);
+  }
 	if (data_frame->sort_id != -1 && resort)
 		rgtk_data_frame_resort(data_frame);
 }

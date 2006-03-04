@@ -75,6 +75,10 @@ rGtkDataFrameAppendColumns <- function(x, ...) {
 	x
 }
 
+rGtkDataFrameSetFrame <- function(x, frame = data.frame()) {
+  .RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(as.integer(1:nrow(frame)-1)), T)
+}
+
 dimnames.RGtkDataFrame <- function(x, ...) {
 	dimnames(as.data.frame(x))
 }
