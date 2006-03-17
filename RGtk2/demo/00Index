@@ -17,5 +17,6 @@ dnd	Simple drag and drop demo that accepts URLs from your web browser.
 iconView	A simple file browser using GtkIconView.
 pangoCairo	The rotated text demo using cairo.
 treeStore	This demo builds a simple GtkTreeStore and displays it.
-iconview-dnd	The GtkIconView widget supports Editing and Drag-and-Drop. This example also demonstrates using the generic GtkCellLayout interface to set up cell renderers in an icon view.
-
+iconviewdnd	The GtkIconView widget supports Editing and Drag-and-Drop. This example also demonstrates using the generic GtkCellLayout interface to set up cell renderers in an icon view.
+iWidgets	A simple demo of RGtk2's iWidget support.
+rgtkplot A port of the canonical tkrplot example using the cairoDevice package.

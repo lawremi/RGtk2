@@ -1,0 +1,7 @@
+require(cairoDevice)
+win <- iwindow("My iWidgets Plot")
+group <- igroup(FALSE, win)
+slider <- islider(handler=function(x, data) { plot(0:get.value(x$obj)) }, window=group)
+graphics <- igraphics(window=group)
+visible(win, TRUE)
+plot(0)

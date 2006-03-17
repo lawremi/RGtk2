@@ -26,9 +26,25 @@ else
 	rm src/libglade*
 fi
 
+AC_ARG_ENABLE(introspection,
+  [  --disable-introspection          Enable introspection support],
+  [use_introspection=$enableval], [use_introspection=yes])
+
+if test "x$use_introspection" = "xyes"; then
+        PKG_CHECK_MODULES(INTROSPECTION, gobject-introspection, have_introspection=yes,have_introspection=no)
+fi
+
+if test "x$have_introspection" = "xyes"; then
+        DEFINES="$DEFINES -DHAVE_INTROSPECTION"
+fi
+
 AC_SUBST(LIBGLADE_CFLAGS)
 AC_SUBST(LIBGLADE_LIBS)
 AC_SUBST(HAVE_LIBGLADE)
+
+AC_SUBST(INTROSPECTION_CFLAGS)
+AC_SUBST(INTROSPECTION_LIBS)
+AC_SUBST(HAVE_INTROSPECTION)
 
 AC_SUBST(R_PACKAGE_DIR)
 AC_SUBST(INSTALL_DIR)

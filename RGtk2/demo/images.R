@@ -105,7 +105,7 @@ progressive.timeout <- function(data)
     }
   } else
     {
-      filename <- "/usr/share/gtk-2.0/demo/alphatest.png"
+      filename <- demofile("alphatest.png")
       if (!file.exists(filename))
     {
         error.message <- "File 'alphatest.png' does not exist"

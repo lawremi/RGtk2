@@ -272,7 +272,7 @@ PACKAGE_STRING=
 PACKAGE_BUGREPORT=
 
 ac_unique_file="src/Rgtk.c"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS HAVE_LIBGLADE R_PACKAGE_DIR INSTALL_DIR DEFINES LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS PKG_CONFIG ac_pt_PKG_CONFIG GTK_CFLAGS GTK_LIBS HAVE_GTK LIBGLADE_CFLAGS LIBGLADE_LIBS INTROSPECTION_CFLAGS INTROSPECTION_LIBS HAVE_LIBGLADE HAVE_INTROSPECTION R_PACKAGE_DIR INSTALL_DIR DEFINES LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -733,6 +733,14 @@ ac_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
 ac_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
 ac_cv_env_LIBGLADE_LIBS_set=${LIBGLADE_LIBS+set}
 ac_cv_env_LIBGLADE_LIBS_value=$LIBGLADE_LIBS
+ac_env_INTROSPECTION_CFLAGS_set=${INTROSPECTION_CFLAGS+set}
+ac_env_INTROSPECTION_CFLAGS_value=$INTROSPECTION_CFLAGS
+ac_cv_env_INTROSPECTION_CFLAGS_set=${INTROSPECTION_CFLAGS+set}
+ac_cv_env_INTROSPECTION_CFLAGS_value=$INTROSPECTION_CFLAGS
+ac_env_INTROSPECTION_LIBS_set=${INTROSPECTION_LIBS+set}
+ac_env_INTROSPECTION_LIBS_value=$INTROSPECTION_LIBS
+ac_cv_env_INTROSPECTION_LIBS_set=${INTROSPECTION_LIBS+set}
+ac_cv_env_INTROSPECTION_LIBS_value=$INTROSPECTION_LIBS
 
 #
 # Report the --help message.
@@ -804,6 +812,7 @@ Optional Features:
   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-libglade          Enable libglade support
+  --disable-introspection          Enable introspection support
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
@@ -813,6 +822,10 @@ Some influential environment variables:
               C compiler flags for LIBGLADE, overriding pkg-config
   LIBGLADE_LIBS
               linker flags for LIBGLADE, overriding pkg-config
+  INTROSPECTION_CFLAGS
+              C compiler flags for INTROSPECTION, overriding pkg-config
+  INTROSPECTION_LIBS
+              linker flags for INTROSPECTION, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -1489,6 +1502,74 @@ else
 	rm src/libglade*
 fi
 
+# Check whether --enable-introspection or --disable-introspection was given.
+if test "${enable_introspection+set}" = set; then
+  enableval="$enable_introspection"
+  use_introspection=$enableval
+else
+  use_introspection=yes
+fi;
+
+if test "x$use_introspection" = "xyes"; then
+
+pkg_failed=no
+echo "$as_me:$LINENO: checking for INTROSPECTION" >&5
+echo $ECHO_N "checking for INTROSPECTION... $ECHO_C" >&6
+
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gobject-introspection\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gobject-introspection") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_INTROSPECTION_CFLAGS=`$PKG_CONFIG --cflags "gobject-introspection" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+        if test -n "$PKG_CONFIG" && \
+    { (echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gobject-introspection\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gobject-introspection") 2>&5
+  ac_status=$?
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_INTROSPECTION_LIBS=`$PKG_CONFIG --libs "gobject-introspection" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+else
+	pkg_failed=untried
+fi
+
+if test $pkg_failed = yes; then
+	INTROSPECTION_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "gobject-introspection"`
+	# Put the nasty error message in config.log where it belongs
+	echo "$INTROSPECTION_PKG_ERRORS" 1>&5
+
+	have_introspection=no
+elif test $pkg_failed = untried; then
+	have_introspection=no
+else
+	INTROSPECTION_CFLAGS=$pkg_cv_INTROSPECTION_CFLAGS
+	INTROSPECTION_LIBS=$pkg_cv_INTROSPECTION_LIBS
+        echo "$as_me:$LINENO: result: yes" >&5
+echo "${ECHO_T}yes" >&6
+	have_introspection=yes
+fi
+fi
+
+if test "x$have_introspection" = "xyes"; then
+        DEFINES="$DEFINES -DHAVE_INTROSPECTION"
+fi
+
+
+
+
+
 
 
 
@@ -2140,7 +2221,10 @@ s,@GTK_LIBS@,$GTK_LIBS,;t t
 s,@HAVE_GTK@,$HAVE_GTK,;t t
 s,@LIBGLADE_CFLAGS@,$LIBGLADE_CFLAGS,;t t
 s,@LIBGLADE_LIBS@,$LIBGLADE_LIBS,;t t
+s,@INTROSPECTION_CFLAGS@,$INTROSPECTION_CFLAGS,;t t
+s,@INTROSPECTION_LIBS@,$INTROSPECTION_LIBS,;t t
 s,@HAVE_LIBGLADE@,$HAVE_LIBGLADE,;t t
+s,@HAVE_INTROSPECTION@,$HAVE_INTROSPECTION,;t t
 s,@R_PACKAGE_DIR@,$R_PACKAGE_DIR,;t t
 s,@INSTALL_DIR@,$INSTALL_DIR,;t t
 s,@DEFINES@,$DEFINES,;t t
