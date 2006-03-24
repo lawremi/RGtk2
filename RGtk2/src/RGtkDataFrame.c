@@ -458,6 +458,7 @@ rgtk_data_frame_set (RGtkDataFrame *data_frame,
 			gint *changed_rows, gint nrows, gboolean resort)
 {
 	gint i, old_nrows;
+  gint frame_nrows = GET_LENGTH(getAttrib(frame, install("row.names")));
 	GtkTreeIter iter;
 	
 	g_return_if_fail (RGTK_IS_DATA_FRAME (data_frame));
@@ -480,9 +481,9 @@ rgtk_data_frame_set (RGtkDataFrame *data_frame,
 		else gtk_tree_model_row_inserted(GTK_TREE_MODEL(data_frame), path, &iter);
 		gtk_tree_path_free(path);
 	}
-  if (old_nrows > nrows) {
-    GtkTreePath *path = gtk_tree_path_new_from_indices(nrows, -1);
-    for (i = nrows; i < old_nrows; i++)
+  if (old_nrows > frame_nrows) {
+    GtkTreePath *path = gtk_tree_path_new_from_indices(frame_nrows, -1);
+    for (i = frame_nrows; i < old_nrows; i++)
       gtk_tree_model_row_deleted(GTK_TREE_MODEL(data_frame), path);
     gtk_tree_path_free(path);
   }
