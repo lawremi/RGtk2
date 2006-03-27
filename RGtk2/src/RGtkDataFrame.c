@@ -327,7 +327,7 @@ rgtk_data_frame_get_value (GtkTreeModel *tree_model,
   RGtkDataFrame *data_frame = (RGtkDataFrame*)tree_model;
   
   if (!VALID_ITER (iter, RGTK_DATA_FRAME(tree_model)))
-	  g_debug("invalid row: %d", GPOINTER_TO_INT(iter->user_data));
+	  g_debug("row: %d", GPOINTER_TO_INT(iter->user_data));
   g_return_if_fail (RGTK_IS_DATA_FRAME (tree_model));
   g_return_if_fail (column < GET_LENGTH(RGTK_DATA_FRAME (tree_model)->frame));
   g_return_if_fail (VALID_ITER (iter, RGTK_DATA_FRAME(tree_model)));
@@ -471,7 +471,7 @@ rgtk_data_frame_set (RGtkDataFrame *data_frame,
 	
 	data_frame->frame = frame;
 	data_frame->stamp = data_frame->stamp++;
-	
+
 	for (i = 0; i < nrows; i++) {
 		gint row = changed_rows[i];
 		GtkTreePath *path = gtk_tree_path_new_from_indices(row, -1);

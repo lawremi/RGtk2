@@ -79,6 +79,9 @@ rGtkDataFrameSetFrame <- function(x, frame = data.frame()) {
   .RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(as.integer(1:nrow(frame)-1)), T)
 }
 
+dim.RGtkDataFrame <- function(x, ...) {
+  dim(as.data.frame(x))
+}
 dimnames.RGtkDataFrame <- function(x, ...) {
 	dimnames(as.data.frame(x))
 }

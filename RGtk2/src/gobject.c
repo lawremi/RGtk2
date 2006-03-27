@@ -1140,20 +1140,22 @@ getSValueGType(USER_OBJECT_ sval)
 
 gboolean
 initGValueFromSValue(USER_OBJECT_ sval, GValue *raw) {
+  /* character is special case, because there is a GType for string arrays
+     but not for primitive arrays */
 	if (IS_VECTOR(sval) && !IS_CHARACTER(sval))
 		return(initGValueFromVector(sval, 0, raw));
 	else switch(TYPEOF(sval)) {
 		case EXTPTRSXP:
 	  {
-		GType type = g_type_from_name(asCString(GET_CLASS(sval)));
-		if (type == G_TYPE_INVALID)
-			g_value_init(raw, G_TYPE_POINTER);
-        else g_value_init(raw, type);
-        if (G_VALUE_HOLDS(raw, G_TYPE_OBJECT) || G_VALUE_HOLDS(raw, G_TYPE_INTERFACE))
-            g_value_set_object(raw, getPtrValue(sval));
-        else if (G_VALUE_HOLDS(raw, G_TYPE_BOXED))
-            g_value_set_boxed(raw, getPtrValue(sval));
-        else g_value_set_pointer(raw, getPtrValue(sval));
+      GType type = g_type_from_name(asCString(GET_CLASS(sval)));
+      if (type == G_TYPE_INVALID)
+        g_value_init(raw, G_TYPE_POINTER);
+      else g_value_init(raw, type);
+      if (G_VALUE_HOLDS(raw, G_TYPE_OBJECT) || G_VALUE_HOLDS(raw, G_TYPE_INTERFACE))
+        g_value_set_object(raw, getPtrValue(sval));
+      else if (G_VALUE_HOLDS(raw, G_TYPE_BOXED))
+        g_value_set_boxed(raw, getPtrValue(sval));
+      else g_value_set_pointer(raw, getPtrValue(sval));
 	  }
 	  break;
 	  case STRSXP:
@@ -1165,7 +1167,7 @@ initGValueFromSValue(USER_OBJECT_ sval, GValue *raw) {
             g_value_init(raw, G_TYPE_STRING);
             g_value_set_string(raw, asCString(sval));
         }
-      break;
+    break;
 	  default:
 	  	return(FALSE);
 	}
@@ -1175,36 +1177,40 @@ initGValueFromSValue(USER_OBJECT_ sval, GValue *raw) {
 gboolean
 initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
 	switch(TYPEOF(sval)) {
-      case LGLSXP:
-        g_value_init(raw, G_TYPE_BOOLEAN);
-        g_value_set_boolean(raw, LOGICAL_DATA(sval)[n]);
+    case LGLSXP:
+      g_value_init(raw, G_TYPE_BOOLEAN);
+      g_value_set_boolean(raw, LOGICAL_DATA(sval)[n]);
     break;
-	 case INTSXP:
-	{
-		USER_OBJECT_ levels;
-		if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
-			/*Rprintf("getting level: %s\n", CHAR_DEREF(STRING_ELT(levels, asCInteger(sval))));*/
-			g_value_init(raw, G_TYPE_STRING);
-			g_value_set_string(raw, CHAR_DEREF(STRING_ELT(levels, INTEGER_DATA(sval)[n]-1)));
-		} else {
-			g_value_init(raw, G_TYPE_INT);
-			g_value_set_int(raw, INTEGER_DATA(sval)[n]);
-		}
-	}
+    case INTSXP:
+    {
+      USER_OBJECT_ levels;
+      if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
+        gint level = INTEGER_DATA(sval)[n];
+        USER_OBJECT_ level_str = NA_STRING;
+        //Rprintf("getting level: %d\n", level);
+        if (level != NA_INTEGER)
+          level_str = STRING_ELT(levels, level-1);
+        g_value_init(raw, G_TYPE_STRING);
+        g_value_set_string(raw, CHAR_DEREF(level_str));
+      } else {
+        g_value_init(raw, G_TYPE_INT);
+        g_value_set_int(raw, INTEGER_DATA(sval)[n]);
+      }
+    }
     break;
-      case REALSXP:
-		g_value_init(raw, G_TYPE_DOUBLE);
-		g_value_set_double(raw, NUMERIC_DATA(sval)[n]);
-	break;
+    case REALSXP:
+      g_value_init(raw, G_TYPE_DOUBLE);
+      g_value_set_double(raw, NUMERIC_DATA(sval)[n]);
+    break;
 	  case STRSXP:
 	  case CHARSXP:
-       	g_value_init(raw, G_TYPE_STRING);
-        g_value_set_string(raw, CHAR_DEREF(STRING_ELT(sval, n)));
-      break;
-     default:
-     /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
-	 return(FALSE);
-    }
+      g_value_init(raw, G_TYPE_STRING);
+      g_value_set_string(raw, CHAR_DEREF(STRING_ELT(sval, n)));
+    break;
+    default:
+      /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
+      return(FALSE);
+  }
 	return(TRUE);
 }
 

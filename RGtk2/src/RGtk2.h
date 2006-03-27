@@ -20,9 +20,6 @@
 #ifdef HAVE_LIBGLADE
 #include <glade/glade.h>
 #endif
-#ifdef HAVE_GTKMOZEMBED
-#include <gtkmozembed.h>
-#endif
 
 #ifdef G_OS_WIN32
     /* My version of mingw-1.1 and cygwin don't provide a definition for ulong. - DTL */
