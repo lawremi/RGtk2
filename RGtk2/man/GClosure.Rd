@@ -4,7 +4,7 @@
 \title{The GClosure structure}
 \description{Basically, a \code{GClosure} is a \link{transparent-type} that represents an R function.}
 \usage{toRGClosure(c_closure)}
-\parameters{
+\arguments{
 \item{c_closure}{a \code{GClosure}}
 }
 \value{

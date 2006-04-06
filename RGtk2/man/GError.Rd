@@ -28,7 +28,7 @@ For example, for \code{\link{GdkPixbuf}}, the error domain is provided by \code{
 \code{\link{GdkPixbufError}}
 \code{\link{GtkFileChooserError}}
 }
-\reference{\url{http://developer.gnome.org/doc/API/2.0/glib/glib-Error-Reporting.html}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/glib/glib-Error-Reporting.html}}
 \keyword{interface}
 \keyword{internal}
 

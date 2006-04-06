@@ -1187,7 +1187,7 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
       if ((levels = getAttrib(sval, install("levels"))) != NULL_USER_OBJECT) {
         gint level = INTEGER_DATA(sval)[n];
         USER_OBJECT_ level_str = NA_STRING;
-        //Rprintf("getting level: %d\n", level);
+        /*Rprintf("getting level: %d\n", level);*/
         if (level != NA_INTEGER)
           level_str = STRING_ELT(levels, level-1);
         g_value_init(raw, G_TYPE_STRING);

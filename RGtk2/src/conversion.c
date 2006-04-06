@@ -342,7 +342,7 @@ asCFlag(USER_OBJECT_ s_flag, GType ftype)
                 PROBLEM "Could not find flag by name %s", fname
                 ERROR;
             }
-            //Rprintf("Found: %d\n", fvalue->value);
+            /*Rprintf("Found: %d\n", fvalue->value);*/
             flags |= fvalue->value;
         }
     }

@@ -28,7 +28,7 @@ S_GladeXMLConnectFuncAuto(const gchar *handler_name, GObject *object,
 	const gchar *signal_name, const gchar *signal_data, GObject *connect_object,
     gboolean after, gpointer user_data)
 {
-	// look up function given handler_name
+	/* look up function given handler_name */
 	USER_OBJECT_ s_func = Rf_findFun(install(handler_name), R_GlobalEnv);
 	S_GladeXMLConnectFuncDefault(handler_name, object, signal_name, signal_data, connect_object,
 		after, R_createGClosure(s_func, user_data));

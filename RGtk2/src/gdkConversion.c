@@ -464,7 +464,7 @@ USER_OBJECT_
 toRGdkEvent(GdkEvent *event, gboolean finalize)
 {
     char *type;
-    //USER_OBJECT_ classes;
+    /*USER_OBJECT_ classes;*/
     USER_OBJECT_ result;
 	RPointerFinalizer finalizer = NULL;
 
