@@ -4,12 +4,12 @@ function()
  c("R")
 }
 
-.First.lib <-
+.onLoad <-
 function(libname, pkgname)
 {
  options(depwarn = TRUE, gdkFlush = TRUE)
  
- library.dynam("RGtk2", pkgname, libname)
+ #library.dynam("RGtk2", pkgname, libname)
 
  if(is.function(.gtkArgs))
   args <- .gtkArgs()

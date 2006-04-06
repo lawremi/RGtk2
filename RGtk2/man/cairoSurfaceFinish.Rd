@@ -6,7 +6,7 @@ external resources.
 After calling \code{\link{cairoSurfaceFinish}} the only valid operations on a
 surface are getting and setting user data and referencing and
 destroying it.  Further drawing to the surface will not affect the
-surface but will instead trigger a CAIRO_STATUS_SURFACE_FINISHED
+surface but will instead trigger a CAIRO\_STATUS\_SURFACE\_FINISHED
 error.}
 \usage{cairoSurfaceFinish(surface)}
 \arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  the \code{\link{CairoSurface}} to finish}}

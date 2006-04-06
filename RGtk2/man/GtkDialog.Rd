@@ -62,7 +62,7 @@ as can be seen from the example, below.
   
 A 'modal' dialog (that is, one which freezes the rest of the application from
 user input), can be created by calling \code{\link{gtkWindowSetModal}} on the dialog. Use
-the \code{gtkWindow()} function to cast the widget returned from \code{\link{gtkDialogNew}} into a
+the \code{gtk\Window()} function to cast the widget returned from \code{\link{gtkDialogNew}} into a
 \code{\link{GtkWindow}}. When using \code{\link{gtkDialogNewWithButtons}} you can also pass the
 \code{GTK_DIALOG_MODAL} flag to make a dialog modal.
   
@@ -121,11 +121,11 @@ as any other \code{\link{GtkHButtonBox}}.
 Flags used to influence dialog construction.
 
 \describe{
-\item{\code{GTK_DIALOG_MODAL (modal)}}{Make the constructed dialog modal, 
-  see \code{gtkWidgetSetModal()}.}
-\item{\code{GTK_DIALOG_DESTROY_WITH_PARENT (destroy-with-parent)}}{Destroy the dialog when its
+\item{\code{modal}}{Make the constructed dialog modal, 
+  see \code{gtk\Widget\Set\Modal()}.}
+\item{\code{destroy-with-parent}}{Destroy the dialog when its
   parent is destroyed, see \code{\link{gtkWindowSetDestroyWithParent}}.}
-\item{\code{GTK_DIALOG_NO_SEPARATOR (no-separator)}}{Don't put a separator between the
+\item{\code{no-separator}}{Don't put a separator between the
   action area and the dialog content.}
 }
 
@@ -136,18 +136,18 @@ All predefined values are negative, GTK+ leaves positive values for
 application-defined response ids. 
 
 \describe{
-\item{\code{GTK_RESPONSE_NONE (none)}}{Returned if an action widget has no response id, or if 
+\item{\code{none}}{Returned if an action widget has no response id, or if 
    the dialog gets programmatically hidden or destroyed.}
-\item{\code{GTK_RESPONSE_REJECT (reject)}}{Generic response id, not used by GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_ACCEPT (accept)}}{Generic response id, not used by GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_DELETE_EVENT (delete-event)}}{Returned if the dialog is deleted.}
-\item{\code{GTK_RESPONSE_OK (ok)}}{Returned by OK buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_CANCEL (cancel)}}{Returned by Cancel buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_CLOSE (close)}}{Returned by Close buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_YES (yes)}}{Returned by Yes buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_NO (no)}}{Returned by No buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_APPLY (apply)}}{Returned by Apply buttons in GTK+ dialogs.}
-\item{\code{GTK_RESPONSE_HELP (help)}}{Returned by Help buttons in GTK+ dialogs.}
+\item{\code{reject}}{Generic response id, not used by GTK+ dialogs.}
+\item{\code{accept}}{Generic response id, not used by GTK+ dialogs.}
+\item{\code{delete-event}}{Returned if the dialog is deleted.}
+\item{\code{ok}}{Returned by OK buttons in GTK+ dialogs.}
+\item{\code{cancel}}{Returned by Cancel buttons in GTK+ dialogs.}
+\item{\code{close}}{Returned by Close buttons in GTK+ dialogs.}
+\item{\code{yes}}{Returned by Yes buttons in GTK+ dialogs.}
+\item{\code{no}}{Returned by No buttons in GTK+ dialogs.}
+\item{\code{apply}}{Returned by Apply buttons in GTK+ dialogs.}
+\item{\code{help}}{Returned by Help buttons in GTK+ dialogs.}
 }
 
 }

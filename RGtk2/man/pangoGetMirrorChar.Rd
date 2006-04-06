@@ -9,7 +9,7 @@ glyph, puts that character in the address pointed to by \code{mirrored.ch}.
 }
 \usage{pangoGetMirrorChar(ch)}
 \arguments{\item{\code{ch}}{[numeric]  a unicode character}}
-\details{Use \code{gUnicharGetMirrorChar()} instead; the docs for that function
+\details{Use \code{g\Unichar\Get\Mirror\Char()} instead; the docs for that function
 provide full details.  }
 \value{
 A list containing the following elements:

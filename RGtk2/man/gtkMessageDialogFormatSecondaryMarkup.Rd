@@ -14,7 +14,7 @@ bold, unless you have provided explicit markup.
   
 Due to an oversight, this function does not escape special XML characters
 like \code{\link{gtkMessageDialogNewWithMarkup}} does. Thus, if the arguments 
-may contain special XML characters, you should use \code{gMarkupPrintfEscaped()}
+may contain special XML characters, you should use \code{g\Markup\Printf\Escaped()}
 to escape it.
   
 \preformatted{# GMarkup is not yet supported in RGtk2}  

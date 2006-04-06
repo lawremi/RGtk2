@@ -51,8 +51,8 @@ A structure specifying a transformation between user-space
 coordinates and device coordinates. The transformation
 is given by
   
-\preformatted{x_device = x_user * matrix->xx + y_user * matrix->xy + matrix->x0;
-y_device = x_user * matrix->yx + y_user * matrix->yy + matrix->y0;}  
+\preformatted{x\_device = x\_user * matrix->xx + y\_user * matrix->xy + matrix->x0;
+y\_device = x\_user * matrix->yx + y\_user * matrix->yy + matrix->y0;}  
 
   Since  1.6
 
@@ -94,7 +94,7 @@ The PangoGlyphVisAttr is used to communicate information between
 the shaping phase and the rendering phase. It's contents
 are still evolving.
 
-\tabular{ll}{\code{numeric}   is_cluster_start : 1; \tab set for the first logical glyph in each cluster. (Clusters
+\tabular{ll}{\code{numeric}   is\_cluster\_start : 1; \tab set for the first logical glyph in each cluster. (Clusters
        are stored in visual order, within the cluster, glyphs
        are always ordered in logical order, since visual
        order is meaningless; that is, in Arabic text, accent glyphs

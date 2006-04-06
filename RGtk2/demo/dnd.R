@@ -46,7 +46,7 @@ create.view.and.model <- function()
 
     gtkDragDestSet(view, "all", targetentries, c("copy", "move", "link"))
 
-    connectSignal(view, "drag_data_received", view.onDragDataReceived, liststore)
+    gSignalConnect(view, "drag_data_received", view.onDragDataReceived, liststore)
 
   return(view)
 }

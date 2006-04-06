@@ -55,12 +55,12 @@ The vertical alignment of the label.  Allowed values: [0,1]  Default value: 0.5
 }
 \item{\code{shadow} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Deprecated property, use shadow_type instead.  Default value: GTK_SHADOW_ETCHED_IN
+Deprecated property, use shadow\_type instead.  Default value: GTK\_SHADOW\_ETCHED\_IN
 
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Appearance of the frame border.  Default value: GTK_SHADOW_ETCHED_IN
+Appearance of the frame border.  Default value: GTK\_SHADOW\_ETCHED\_IN
 
 }
 }}

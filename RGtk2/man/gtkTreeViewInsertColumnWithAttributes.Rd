@@ -4,8 +4,8 @@
 \description{Creates a new \code{\link{GtkTreeViewColumn}} and inserts it into the \code{tree.view} at
 \code{position}.  If \code{position} is -1, then the newly created column is inserted at
 the end.  The column is initialized with the attributes given. If \code{tree.view}
-has "fixed_height" mode enabled, then \code{column} must have its sizing
-property set to be GTK_TREE_VIEW_COLUMN_FIXED.}
+has "fixed\_height" mode enabled, then \code{column} must have its sizing
+property set to be GTK\_TREE\_VIEW\_COLUMN\_FIXED.}
 \usage{gtkTreeViewInsertColumnWithAttributes(object, position, title, cell, ...)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}

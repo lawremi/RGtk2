@@ -8,7 +8,7 @@ a tooltip on the whole \code{\link{GtkMenuToolButton}}.}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkMenuToolButton}}]  a \code{\link{GtkMenuToolButton}}}
 \item{\code{tooltips}}{[\code{\link{GtkTooltips}}]  the \code{\link{GtkTooltips}} object to be used}
-\item{\code{tip.text}}{[character]  text to be used as tooltip text for tool_item}
+\item{\code{tip.text}}{[character]  text to be used as tooltip text for tool\_item}
 \item{\code{tip.private}}{[character]  text to be used as private tooltip text}
 }
 \details{  Since  2.6}

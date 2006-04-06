@@ -4,8 +4,8 @@
 \description{Sets \code{label.widget} as the widget that will be used as the label
 for \code{button}. If \code{label.widget} is \code{NULL} the "label" property is used
 as label. If "label" is also \code{NULL}, the label in the stock item
-determined by the "stock_id" property is used as label. If
-"stock_id" is also \code{NULL}, \code{button} does not have a label.}
+determined by the "stock\_id" property is used as label. If
+"stock\_id" is also \code{NULL}, \code{button} does not have a label.}
 \usage{gtkToolButtonSetLabelWidget(object, label.widget = NULL)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkToolButton}}]  a \code{\link{GtkToolButton}}}

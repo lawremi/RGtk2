@@ -6,7 +6,7 @@ characters form a regular grid. For Western languages this would
 mean that the advance width of all characters are the same, but
 this categorization also includes Asian fonts which include
 double-width characters: characters that occupy two grid cells.
-\code{gUnicharIswide()} returns a result that indicates whether a
+\code{g\Unichar\Iswide()} returns a result that indicates whether a
 character is typically double-width in a monospace font.}
 \usage{pangoFontFamilyIsMonospace(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoFontFamily}}]  a \code{\link{PangoFontFamily}}}}

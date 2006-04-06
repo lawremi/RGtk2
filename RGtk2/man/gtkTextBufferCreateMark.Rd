@@ -21,7 +21,7 @@ side of the text you're typing).}
 to the returned \code{\link{GtkTextMark}}, so you can ignore the return value
 if you like.
   
-Emits the "mark_set" signal as notification of the mark's initial
+Emits the "mark\_set" signal as notification of the mark's initial
 placement.  .}
 \value{[\code{\link{GtkTextMark}}]  the new \code{\link{GtkTextMark}} object}
 \author{Derived by RGtkGen from GTK+ documentation}

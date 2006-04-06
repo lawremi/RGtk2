@@ -14,6 +14,7 @@ normally end up destroying it, because \code{\link{gtkWidgetModifyStyle}} copies
 the passed-in style and sets the copy as the new modifier style,
 thus dropping any reference to the old modifier style. Add a reference
 to the modifier style if you want to keep it alive.  }
-\value{[\code{\link{GtkRcStyle}}]  the modifier style for the widget.}
+\value{[\code{\link{GtkRcStyle}}]  the modifier style for the widget. If you want to keep a pointer to value this
+  around, you must add a refcount using \code{gtk\Rc\Style\Ref()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

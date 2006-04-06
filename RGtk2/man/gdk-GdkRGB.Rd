@@ -97,11 +97,11 @@ Since GdkRGB currently only handles images with 8 bits per component,
 dithering on 24 bit per pixel displays is a moot point.
 
 \describe{
-\item{\code{GDK_RGB_DITHER_NONE (none)}}{\emph{undocumented
+\item{\code{none}}{\emph{undocumented
 }}
-\item{\code{GDK_RGB_DITHER_NORMAL (normal)}}{\emph{undocumented
+\item{\code{normal}}{\emph{undocumented
 }}
-\item{\code{GDK_RGB_DITHER_MAX (max)}}{\emph{undocumented
+\item{\code{max}}{\emph{undocumented
 }}
 }
 

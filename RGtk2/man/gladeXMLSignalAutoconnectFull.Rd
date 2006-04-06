@@ -1,10 +1,10 @@
 \alias{gladeXMLSignalAutoconnectFull}
 \name{gladeXMLSignalAutoconnectFull}
 \title{gladeXMLSignalAutoconnectFull}
-\description{This function is similar to glade_xml_signal_connect_full, except that it
+\description{This function is similar to glade\_xml\_signal\_connect\_full, except that it
 will try to connect all signals in the interface, not just a single
 named handler.  It can be thought of the interpeted language binding
-version of glade_xml_signal_autoconnect, except that it does not
+version of glade\_xml\_signal\_autoconnect, except that it does not
 require gmodule to function correctly.}
 \usage{gladeXMLSignalAutoconnectFull(object, func, user.data)}
 \arguments{

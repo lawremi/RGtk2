@@ -2,7 +2,7 @@
 \name{cairoScaledFontStatus}
 \title{cairoScaledFontStatus}
 \description{Checks whether an error has previously occurred for this
-scaled_font.}
+scaled\_font.}
 \usage{cairoScaledFontStatus(scaled.font)}
 \arguments{\item{\code{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}}
 \value{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS} or another error such as

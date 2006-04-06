@@ -37,7 +37,7 @@ other than the ones in the popup list.
 \item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write]}{
 
 Holds a tree model containing the possible values for the combo box. 
-Use the text_column property to specify the column holding the values.  
+Use the text\_column property to specify the column holding the values.  
 
   Since  2.6
 

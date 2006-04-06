@@ -9,6 +9,6 @@ A toplevel window is a child of the root window (see
 \details{  
 
   Since  2.2.}
-\value{[list] .}
+\value{[list]  list of toplevel windows, free with \code{g\List\Free()}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

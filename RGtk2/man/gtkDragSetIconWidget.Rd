@@ -3,7 +3,7 @@
 \title{gtkDragSetIconWidget}
 \description{Changes the icon for a widget to a given widget. GTK+
 will not destroy the icon, so if you don't want
-it to persist, you should connect to the "drag_end" 
+it to persist, you should connect to the "drag\_end" 
 signal and destroy it yourself.}
 \usage{gtkDragSetIconWidget(object, widget, hot.x, hot.y)}
 \arguments{

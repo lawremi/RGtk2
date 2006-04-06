@@ -41,7 +41,7 @@ according to the \code{\link{GtkCellRendererState}}.
 \item{\code{icon-name} [character : Read / Write]}{
 
 The name of the themed icon to display.
-This property only has an effect if not overridden by "stock_id" 
+This property only has an effect if not overridden by "stock\_id" 
 or "pixbuf" properties.  
 
   Default value: NULL  Since  2.8 

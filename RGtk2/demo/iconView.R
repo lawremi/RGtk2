@@ -2,8 +2,8 @@
 
 window <- NULL
 
-FOLDER.NAME <- demofile("gnome-fs-directory.png")
-FILE.NAME <- demofile("gnome-fs-regular.png")
+FOLDER.NAME <- imagefile("gnome-fs-directory.png")
+FILE.NAME <- imagefile("gnome-fs-regular.png")
 
 file.pixbuf <- NULL
 folder.pixbuf <- NULL
@@ -148,7 +148,7 @@ error <- try(load.pixbufs())
 if (inherits(error, "try-error"))
 {
     dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close", "Failed to load an image:", error)
-    connectSignal(dialog, "response", gtkWidgetDestroy)
+    gSignalConnect(dialog, "response", gtkWidgetDestroy)
     dialog$show()
 } else {
       vbox <- gtkVBoxNew(FALSE, 0)
@@ -181,10 +181,10 @@ if (inherits(error, "try-error"))
       icon.view$setSelectionMode("multiple")
 
       # Connect to the "clicked" signal of the "Up" tool button
-      connectSignal(up.button, "clicked", up.clicked, store)
+      gSignalConnect(up.button, "clicked", up.clicked, store)
 
       # Connect to the "clicked" signal of the "Home" tool button
-      connectSignal(home.button, "clicked", home.clicked, store)
+      gSignalConnect(home.button, "clicked", home.clicked, store)
 
       # We now set which model columns that correspont to the text
       # and pixbuf of each item
@@ -193,7 +193,7 @@ if (inherits(error, "try-error"))
       icon.view$setPixbufColumn(iv["pixbuf"])
 
       # Connect to the "item.activated" signal
-      connectSignal(icon.view, "item_activated", item.activated, store)
+      gSignalConnect(icon.view, "item_activated", item.activated, store)
       sw$add(icon.view)
 
       icon.view$grabFocus()

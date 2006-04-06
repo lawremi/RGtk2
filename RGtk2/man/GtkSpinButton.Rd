@@ -103,20 +103,20 @@ and should only be modified using the functions below.
 \section{Enums and Flags}{\describe{
 \item{\code{GtkSpinButtonUpdatePolicy}}{
 \tabular{ll}{
-GTK_UPDATE_ALWAYS \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is always displayed. \cr
-GTK_UPDATE_IF_VALID \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \code{\link{GtkAdjustment}}  . \cr
+GTK\_UPDATE\_ALWAYS \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is always displayed. \cr
+GTK\_UPDATE\_IF\_VALID \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \code{\link{GtkAdjustment}}  . \cr
 }
 
 }
 \item{\code{GtkSpinType}}{
 \tabular{ll}{
-GTK_SPIN_STEP_FORWARD, 
-GTK_SPIN_STEP_BACKWARD, 
-GTK_SPIN_PAGE_FORWARD, 
-GTK_SPIN_PAGE_BACKWARD \tab These values spin a   \code{\link{GtkSpinButton}}   by the relevant values of the spin button's   \code{\link{GtkAdjustment}}  . \cr
-GTK_SPIN_HOME, 
-GTK_SPIN_END \tab These set the spin button's value to the minimum or maxmimum possible values, (set by its   \code{\link{GtkAdjustment}}  ), respectively. \cr
-GTK_SPIN_USER_DEFINED \tab The programmer must specify the exact amount to spin the   \code{\link{GtkSpinButton}}  . \cr
+GTK\_SPIN\_STEP\_FORWARD, 
+GTK\_SPIN\_STEP\_BACKWARD, 
+GTK\_SPIN\_PAGE\_FORWARD, 
+GTK\_SPIN\_PAGE\_BACKWARD \tab These values spin a   \code{\link{GtkSpinButton}}   by the relevant values of the spin button's   \code{\link{GtkAdjustment}}  . \cr
+GTK\_SPIN\_HOME, 
+GTK\_SPIN\_END \tab These set the spin button's value to the minimum or maxmimum possible values, (set by its   \code{\link{GtkAdjustment}}  ), respectively. \cr
+GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to spin the   \code{\link{GtkSpinButton}}  . \cr
 }
 
 }
@@ -189,7 +189,7 @@ Whether erroneous values are automatically changed to a spin button's nearest st
 }
 \item{\code{update-policy} [\code{\link{GtkSpinButtonUpdatePolicy}} : Read / Write]}{
 
-Whether the spin button should update always, or only when the value is legal.  Default value: GTK_UPDATE_ALWAYS
+Whether the spin button should update always, or only when the value is legal.  Default value: GTK\_UPDATE\_ALWAYS
 
 }
 \item{\code{value} [numeric : Read / Write]}{
@@ -206,7 +206,7 @@ Whether a spin button should wrap upon reaching its limits.  Default value: FALS
 \section{Style Properties}{\describe{\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
 the type of border that surrounds the arrows of a spin button.
-  Default value: GTK_SHADOW_IN
+  Default value: GTK\_SHADOW\_IN
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSpinButton.html}}

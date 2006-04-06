@@ -27,7 +27,8 @@ icon theme loaded, which would be a waste of memory.
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbuf}}]  the rendered icon; this may be a newly created icon
  or a new reference to an internal icon, so you must not modify
- the icon. \code{NULL} if the icon isn't found.}
+ the icon. Use \code{g\Object\Unref()} to release your reference to the
+ icon. \code{NULL} if the icon isn't found.}
 \item{\code{error}}{[\code{\link{GError}}]  Location to store error information on failure, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

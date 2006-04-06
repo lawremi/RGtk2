@@ -45,7 +45,7 @@ directly.
 In previous revisions of this interface, a number
 of functions that take a \code{\link{GdkColormap}} parameter
 were replaced with functions whose names began
-with "gdk_colormap_". This process will probably
+with "gdk\_colormap\_". This process will probably
 be extended somewhat in the future - 
 \code{\link{gdkColorWhite}}, \code{\link{gdkColorBlack}}, and 
 \code{\link{gdkColorChange}} will probably become aliases.}

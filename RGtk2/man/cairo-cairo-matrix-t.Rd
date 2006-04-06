@@ -1,7 +1,7 @@
 \alias{cairo-cairo-matrix-t}
 \alias{CairoMatrix}
 \name{cairo-cairo-matrix-t}
-\title{cairo_matrix_t}
+\title{cairo\_matrix\_t}
 \description{Generic matrix operations}
 \section{Methods and Functions}{
 \code{\link{cairoMatrixInit}(xx, yx, xy, yy, x0, y0)}\cr
@@ -22,8 +22,8 @@
     such as a scale, rotation, shear, or a combination of these.
     The transformation of a point (\code{x},\code{y})
     is given by:
-    \preformatted{    x_new = xx * x + xy * y + x0;
-    y_new = yx * x + yy * y + y0;
+    \preformatted{    x\_new = xx * x + xy * y + x0;
+    y\_new = yx * x + yy * y + y0;
   }  
     The current transformation matrix of a \code{\link{Cairo}}, represented as a
     \code{\link{CairoMatrix}}, defines the transformation from user-space
@@ -34,8 +34,8 @@
 A \code{\link{CairoMatrix}} holds an affine transformation, such as a scale,
 rotation, shear, or a combination of those. The transformation of
 a point (x, y) is given by:
-\preformatted{    x_new = xx * x + xy * y + x0;
-    y_new = yx * x + yy * y + y0;}  
+\preformatted{    x\_new = xx * x + xy * y + x0;
+    y\_new = yx * x + yy * y + y0;}  
 
 \describe{
 \item{\code{xx}}{[numeric]  xx component of the affine transformation}

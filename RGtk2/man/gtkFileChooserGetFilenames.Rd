@@ -9,6 +9,7 @@ folder cannot be represented as local filenames they will be ignored. (See
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
 \value{[list]  a \code{list} containing the filenames of all selected
-  files and subfolders in the current folder.}
+  files and subfolders in the current folder. Free the returned list
+  with \code{g\Slist\Free()}, and the filenames with \code{g\Free()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

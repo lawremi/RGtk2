@@ -33,7 +33,7 @@ to form a single grapheme.  }
 A list containing the following elements:
 \item{\code{new.index}}{[integer]     location to store the new cursor byte index. A value of -1 
                indicates that the cursor has been moved off the beginning
-               of the layout. A value of G_MAXINT indicates that
+               of the layout. A value of G\_MAXINT indicates that
                the cursor has been moved off the end of the layout.}
 \item{\code{new.trailing}}{[integer]  number of characters to move forward from the location returned
                for \code{new.index} to get the position where the cursor should

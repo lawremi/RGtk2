@@ -52,7 +52,7 @@ end.options <- c("Square", "Round", "Arrow")
   
 window <- gtkDialogNewWithButtons("GtkSizeGroup", NULL, 0, "gtk-close", GtkResponseType["none"], show=F)
 window$setResizable(FALSE)
-connectSignal(window, "response", gtkWidgetDestroy)
+gSignalConnect(window, "response", gtkWidgetDestroy)
 
 vbox <- gtkVBoxNew(FALSE, 5)
 window[["vbox"]]$packStart(vbox, TRUE, TRUE, 0)
@@ -94,5 +94,5 @@ check.button <- gtkCheckButtonNewWithMnemonic("_Enable grouping")
 vbox$packStart(check.button, FALSE, FALSE, 0)
       
 check.button$setActive(TRUE)
-connectSignal(check.button, "toggled", toggle.grouping, size.group)
+gSignalConnect(check.button, "toggled", toggle.grouping, size.group)
 window$showAll()

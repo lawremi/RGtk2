@@ -27,16 +27,16 @@ Used to indicate how well a font can represent a particular ISO 10646
 character point for a particular script.
 
 \describe{
-\item{\code{PANGO_COVERAGE_NONE (none)}}{The character is not representable with the font.}
-\item{\code{PANGO_COVERAGE_FALLBACK (fallback)}}{The character is represented in a way that may be
+\item{\code{none}}{The character is not representable with the font.}
+\item{\code{fallback}}{The character is represented in a way that may be
                           comprehensible but is not the correct graphical form.
                           For instance, a Hangul character represented as a
                           a sequence of Jamos, or a Latin transliteration of
                           a Cyrillic word.}
-\item{\code{PANGO_COVERAGE_APPROXIMATE (approximate)}}{The character is represented as basically the correct
+\item{\code{approximate}}{The character is represented as basically the correct
                              graphical form, but with a stylistic variant inappropriate for
                              the current script.}
-\item{\code{PANGO_COVERAGE_EXACT (exact)}}{The character is represented as the correct graphical form.}
+\item{\code{exact}}{The character is represented as the correct graphical form.}
 }
 
 }}}

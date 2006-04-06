@@ -104,14 +104,14 @@ add.columns <- function(treeview)
 
   # number column
   renderer <- gtkCellRendererTextNew()
-  connectSignal(renderer, "edited", cell.edited, model)
+  gSignalConnect(renderer, "edited", cell.edited, model)
   renderer$setData("column", COLUMN["number"])
   treeview$insertColumnWithAttributes(-1, "Number", renderer, text = COLUMN[["number"]],
 					       editable = COLUMN[["editable"]])
 
   # product column
   renderer <- gtkCellRendererTextNew()
-  connectSignal(renderer, "edited", cell.edited, model)
+  gSignalConnect(renderer, "edited", cell.edited, model)
   renderer$setData("column", COLUMN["product"])
   treeview$insertColumnWithAttributes(-1, "Product", renderer,
 					       text = COLUMN[["product"]], editable = COLUMN[["editable"]])
@@ -151,11 +151,11 @@ hbox <- gtkHBoxNew(TRUE, 4)
 vbox$packStart(hbox, FALSE, FALSE, 0)
 
 button <- gtkButtonNewWithLabel("Add item")
-connectSignal(button, "clicked", add.item, model)
+gSignalConnect(button, "clicked", add.item, model)
 hbox$packStart(button, TRUE, TRUE, 0)
 
 button <- gtkButtonNewWithLabel("Remove item")
-connectSignal(button, "clicked", remove.item, treeview)
+gSignalConnect(button, "clicked", remove.item, treeview)
 hbox$packStart(button, TRUE, TRUE, 0)
 
 window$setDefaultSize(320, 200)

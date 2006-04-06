@@ -26,7 +26,7 @@ A list containing the following elements:
               The list will be of length \code{2*n_ranges}, 
               with each range starting at \code{(*ranges)[2*n]}
               and of width \code{(*ranges)[2*n + 1] - (*ranges)[2*n]}. 
-              This list must be freed with \code{gFree()}. The coordinates are relative 
+              This list must be freed with \code{g\Free()}. The coordinates are relative 
               to the layout and are in \code{integer}.}
 \item{\code{n.ranges}}{[integer]  The number of ranges stored in \code{ranges}.}
 }

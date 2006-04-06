@@ -4,7 +4,7 @@
 \description{Gets the extents for a string of text. The extents describe a
 user-space rectangle that encloses the "inked" portion of the text,
 (as it would be drawn by \code{\link{cairoShowText}}). Additionally, the
-x_advance and y_advance values indicate the amount by which the
+x\_advance and y\_advance values indicate the amount by which the
 current point would be advanced by \code{\link{cairoShowText}}.}
 \usage{cairoTextExtents(cr, utf8)}
 \arguments{
@@ -16,7 +16,7 @@ size of the rectangle (extents.width and extents.height). They do
 contribute indirectly by changing the position of non-whitespace
 characters. In particular, trailing whitespace characters are
 likely to not affect the size of the rectangle, though they will
-affect the x_advance and y_advance values.  }
+affect the x\_advance and y\_advance values.  }
 \value{
 A list containing the following elements:
 \item{\code{extents}}{[\code{\link{CairoTextExtents}}]  a \code{\link{CairoTextExtents}} object into which the results

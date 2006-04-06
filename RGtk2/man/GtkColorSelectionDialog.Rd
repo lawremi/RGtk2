@@ -29,13 +29,13 @@ an application.)
 \code{\link{GtkWidget}}   *colorsel; \tab The   \code{\link{GtkColorSelection}}   widget contained within the
 dialog.  Use this widget and its   \code{\link{gtkColorSelectionGetCurrentColor}}  
 function to gain access to the selected color.  Connect a handler 
-for this widget's color_changed signal to be notified when the
+for this widget's color\_changed signal to be notified when the
 color changes. \cr
-\code{\link{GtkWidget}}   *ok_button; \tab The OK button widget contained within the dialog.  
+\code{\link{GtkWidget}}   *ok\_button; \tab The OK button widget contained within the dialog.  
 Connect a handler for the clicked event. \cr
-\code{\link{GtkWidget}}   *cancel_button; \tab The cancel button widget contained within the dialog.  
+\code{\link{GtkWidget}}   *cancel\_button; \tab The cancel button widget contained within the dialog.  
 Connect a handler for the clicked event. \cr
-\code{\link{GtkWidget}}   *help_button; \tab The help button widget contained within the dialog.  
+\code{\link{GtkWidget}}   *help\_button; \tab The help button widget contained within the dialog.  
 Connect a handler for the clicked event. \cr
 }
 

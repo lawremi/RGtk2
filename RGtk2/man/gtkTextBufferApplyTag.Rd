@@ -1,7 +1,7 @@
 \alias{gtkTextBufferApplyTag}
 \name{gtkTextBufferApplyTag}
 \title{gtkTextBufferApplyTag}
-\description{Emits the "apply_tag" signal on \code{buffer}. The default
+\description{Emits the "apply\_tag" signal on \code{buffer}. The default
 handler for the signal applies \code{tag} to the given range.
 \code{start} and \code{end} do not have to be in order.}
 \usage{gtkTextBufferApplyTag(object, tag, start, end)}

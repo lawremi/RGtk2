@@ -12,7 +12,7 @@ A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if \code{selection.data} contains a valid
    list of targets, otherwise \code{FALSE}.}
 \item{\code{targets}}{[\code{\link{GdkAtom}}]  location to store a list of targets. The result
-          stored here must be freed with \code{gFree()}.}
+          stored here must be freed with \code{g\Free()}.}
 \item{\code{n.atoms}}{[integer]  location to store number of items in \code{targets}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

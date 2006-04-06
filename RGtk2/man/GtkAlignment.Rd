@@ -41,28 +41,28 @@ be accessed using the functions below.
 
 The padding to insert at the bottom of the widget.  
 
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+  Allowed values: <= G\_MAXINT  Default value: 0  Since  2.4
 
 }
 \item{\code{left-padding} [numeric : Read / Write]}{
 
 The padding to insert at the left of the widget.  
 
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+  Allowed values: <= G\_MAXINT  Default value: 0  Since  2.4
 
 }
 \item{\code{right-padding} [numeric : Read / Write]}{
 
 The padding to insert at the right of the widget.  
 
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+  Allowed values: <= G\_MAXINT  Default value: 0  Since  2.4
 
 }
 \item{\code{top-padding} [numeric : Read / Write]}{
 
 The padding to insert at the top of the widget.  
 
-  Allowed values: <= G_MAXINT  Default value: 0  Since  2.4
+  Allowed values: <= G\_MAXINT  Default value: 0  Since  2.4
 
 }
 \item{\code{xalign} [numeric : Read / Write]}{

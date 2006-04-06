@@ -12,6 +12,6 @@ folder.
   Since  2.4}
 \value{[character]  The currently selected filename, or \code{NULL}
  if no file is selected, or the selected file can't
- be represented with a local filename.}
+ be represented with a local filename. Free with \code{g\Free()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -41,28 +41,28 @@ roughly described by the following DTD.
 <!ELEMENT toolitem     (menu?) >
 <!ELEMENT separator    EMPTY >
 <!ELEMENT accelerator  EMPTY >
-<!ATTLIST menubar      name                  #IMPLIED 
-                       action                #IMPLIED >
-<!ATTLIST toolbar      name                  #IMPLIED 
-                       action                #IMPLIED >
-<!ATTLIST popup        name                  #IMPLIED 
-                       action                #IMPLIED >
-<!ATTLIST placeholder  name                  #IMPLIED
-                       action                #IMPLIED >
-<!ATTLIST separator    name                  #IMPLIED
-                       action                #IMPLIED
-                       expand   (true|false) #IMPLIED >
-<!ATTLIST menu         name                  #IMPLIED
-                       action                #REQUIRED
-                       position (top|bot)    #IMPLIED >
-<!ATTLIST menuitem     name                  #IMPLIED
-                       action                #REQUIRED
-                       position (top|bot)    #IMPLIED >
-<!ATTLIST toolitem     name                  #IMPLIED
-                       action                #REQUIRED
-                       position (top|bot)    #IMPLIED >
-<!ATTLIST accelerator  name                  #IMPLIED
-                       action                #REQUIRED >}
+<!ATTLIST menubar      name                  \#IMPLIED 
+                       action                \#IMPLIED >
+<!ATTLIST toolbar      name                  \#IMPLIED 
+                       action                \#IMPLIED >
+<!ATTLIST popup        name                  \#IMPLIED 
+                       action                \#IMPLIED >
+<!ATTLIST placeholder  name                  \#IMPLIED
+                       action                \#IMPLIED >
+<!ATTLIST separator    name                  \#IMPLIED
+                       action                \#IMPLIED
+                       expand   (true|false) \#IMPLIED >
+<!ATTLIST menu         name                  \#IMPLIED
+                       action                \#REQUIRED
+                       position (top|bot)    \#IMPLIED >
+<!ATTLIST menuitem     name                  \#IMPLIED
+                       action                \#REQUIRED
+                       position (top|bot)    \#IMPLIED >
+<!ATTLIST toolitem     name                  \#IMPLIED
+                       action                \#REQUIRED
+                       position (top|bot)    \#IMPLIED >
+<!ATTLIST accelerator  name                  \#IMPLIED
+                       action                \#REQUIRED >}
 There are some additional restrictions beyond those specified in the
 DTD, e.g. every toolitem must have a toolbar in its anchestry and
 every menuitem must have a menubar or popup in its anchestry. Since
@@ -155,7 +155,7 @@ impossible to know in advance whether they will end up empty after merging.
 \item make them disappear by hiding the menu item they're attached to
 \item add an insensitive "Empty" item
 }
-The behaviour is chosen based on the "hide_if_empty" property of the action 
+The behaviour is chosen based on the "hide\_if\_empty" property of the action 
 to which the submenu is associated.}
 \section{Structures}{\describe{\item{\code{GtkUIManager}}{
 The \code{GtkUIManager} struct contains only private
@@ -168,16 +168,16 @@ These enumeration values are used by \code{\link{gtkUIManagerAddUi}} to determin
 what UI element to create.
 
 \describe{
-\item{\code{GTK_UI_MANAGER_AUTO (auto)}}{Pick the type of the UI element according to context.}
-\item{\code{GTK_UI_MANAGER_MENUBAR (menubar)}}{Create a menubar.}
-\item{\code{GTK_UI_MANAGER_MENU (menu)}}{Create a menu.}
-\item{\code{GTK_UI_MANAGER_TOOLBAR (toolbar)}}{Create a toolbar.}
-\item{\code{GTK_UI_MANAGER_PLACEHOLDER (placeholder)}}{Insert a placeholder.}
-\item{\code{GTK_UI_MANAGER_POPUP (popup)}}{Create a popup menu.}
-\item{\code{GTK_UI_MANAGER_MENUITEM (menuitem)}}{Create a menuitem.}
-\item{\code{GTK_UI_MANAGER_TOOLITEM (toolitem)}}{Create a toolitem.}
-\item{\code{GTK_UI_MANAGER_SEPARATOR (separator)}}{Create a separator.}
-\item{\code{GTK_UI_MANAGER_ACCELERATOR (accelerator)}}{Install an accelerator.}
+\item{\code{auto}}{Pick the type of the UI element according to context.}
+\item{\code{menubar}}{Create a menubar.}
+\item{\code{menu}}{Create a menu.}
+\item{\code{toolbar}}{Create a toolbar.}
+\item{\code{placeholder}}{Insert a placeholder.}
+\item{\code{popup}}{Create a popup menu.}
+\item{\code{menuitem}}{Create a menuitem.}
+\item{\code{toolitem}}{Create a toolitem.}
+\item{\code{separator}}{Create a separator.}
+\item{\code{accelerator}}{Install an accelerator.}
 }
 
 }}}
@@ -195,7 +195,7 @@ changes.
 
 }
 \item{\code{add-widget(merge, widget, user.data)}}{
-The add_widget signal is emitted for each generated menubar and toolbar.
+The add\_widget signal is emitted for each generated menubar and toolbar.
 It is not emitted for generated popup menus, which can be obtained by 
 \code{\link{gtkUIManagerGetWidget}}.  
 
@@ -209,7 +209,7 @@ It is not emitted for generated popup menus, which can be obtained by
 
 }
 \item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
-The connect_proxy signal is emitted after connecting a proxy to 
+The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. 
   
 This is intended for simple customizations for which a custom action
@@ -227,7 +227,7 @@ statusbar.
 
 }
 \item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
-The disconnect_proxy signal is emitted after disconnecting a proxy 
+The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group.  
 
   Since  2.4
@@ -241,7 +241,7 @@ from an action in the group.
 
 }
 \item{\code{post-activate(uimanager, action, user.data)}}{
-The post_activate signal is emitted just after the \code{action}
+The post\_activate signal is emitted just after the \code{action}
 is activated.
   
 This is intended for applications to get notification
@@ -257,7 +257,7 @@ just after any action is activated.
 
 }
 \item{\code{pre-activate(uimanager, action, user.data)}}{
-The pre_activate signal is emitted just before the \code{action}
+The pre\_activate signal is emitted just before the \code{action}
 is activated.
   
 This is intended for applications to get notification
@@ -287,7 +287,7 @@ menus never have tearoff menu items.
 }
 \item{\code{ui} [character : Read]}{
 
-An XML string describing the merged UI.  Default value: "<ui>\n</ui>"
+An XML string describing the merged UI.  Default value: "<ui>\\n</ui>"
 
 }
 }}

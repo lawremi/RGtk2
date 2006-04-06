@@ -3,7 +3,7 @@
 \title{gdkWindowSetFocusOnMap}
 \description{Setting \code{focus.on.map} to \code{FALSE} hints the desktop environment that the
 window doesn't want to receive input focus when it is mapped.  
-focus_on_map should be turned off for windows that aren't triggered
+focus\_on\_map should be turned off for windows that aren't triggered
 interactively (such as popups from network activity).}
 \usage{gdkWindowSetFocusOnMap(object, focus.on.map)}
 \arguments{

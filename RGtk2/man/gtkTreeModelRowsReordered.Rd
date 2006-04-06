@@ -1,7 +1,7 @@
 \alias{gtkTreeModelRowsReordered}
 \name{gtkTreeModelRowsReordered}
 \title{gtkTreeModelRowsReordered}
-\description{Emits the "rows_reordered" signal on \code{tree.model}.  This should be called by
+\description{Emits the "rows\_reordered" signal on \code{tree.model}.  This should be called by
 models when their rows have been reordered.}
 \usage{gtkTreeModelRowsReordered(object, path, iter, new.order)}
 \arguments{

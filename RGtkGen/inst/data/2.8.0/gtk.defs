@@ -9804,7 +9804,6 @@
 
 (define-function check_version
   (c-name "gtk_check_version")
-  (caller-owns-return #t)
   (return-type "gchar*")
   (parameters
     '("guint" "required_major" (in))
@@ -9842,12 +9841,6 @@
 (define-function disable_setlocale
   (c-name "gtk_disable_setlocale")
   (return-type "none")
-)
-
-(define-function set_locale
-  (c-name "gtk_set_locale")
-  (caller-owns-return #t)
-  (return-type "gchar*")
 )
 
 (define-function get_default_language
@@ -11098,22 +11091,6 @@
 (define-function gtk_object_get_type
   (c-name "gtk_object_get_type")
   (return-type "GType")
-)
-
-(define-function object_new
-  (c-name "gtk_object_new")
-  (return-type "GtkObject*")
-  (parameters
-    '("GType" "type" (in))
-    '("const-gchar*" "first_property_name" (in))
-  )
-  (varargs #t)
-)
-
-(define-method sink
-  (of-object "GtkObject")
-  (c-name "gtk_object_sink")
-  (return-type "none")
 )
 
 (define-method destroy
@@ -21722,24 +21699,6 @@
   (return-type "none")
   (parameters
     '("GtkWindow*" "window" (in))
-  )
-)
-
-(define-method remove_embedded_xid
-  (of-object "GtkWindow")
-  (c-name "gtk_window_remove_embedded_xid")
-  (return-type "none")
-  (parameters
-    '("guint" "xid" (in))
-  )
-)
-
-(define-method add_embedded_xid
-  (of-object "GtkWindow")
-  (c-name "gtk_window_add_embedded_xid")
-  (return-type "none")
-  (parameters
-    '("guint" "xid" (in))
   )
 )
 

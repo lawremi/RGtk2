@@ -6,7 +6,7 @@ assistive technology. }
 \usage{gtkWidgetGetAccessible(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{If no accessibility library is loaded (i.e. no ATK implementation library is 
-loaded via \env{GTK_MODULES} or via another application library, 
+loaded via \env{GTK\_MODULES} or via another application library, 
 such as libgnome), then this \code{\link{AtkObject}} instance may be a no-op. Likewise, 
 if no class-specific \code{\link{AtkObject}} implementation is available for the widget 
 instance in question, it will inherit an \code{\link{AtkObject}} implementation from the 

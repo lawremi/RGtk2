@@ -42,12 +42,12 @@ an application.)
 \section{Properties}{\describe{
 \item{\code{arrow-type} [\code{\link{GtkArrowType}} : Read / Write]}{
 
-The direction the arrow should point.  Default value: GTK_ARROW_RIGHT
+The direction the arrow should point.  Default value: GTK\_ARROW\_RIGHT
 
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Appearance of the shadow surrounding the arrow.  Default value: GTK_SHADOW_OUT
+Appearance of the shadow surrounding the arrow.  Default value: GTK\_SHADOW\_OUT
 
 }
 }}

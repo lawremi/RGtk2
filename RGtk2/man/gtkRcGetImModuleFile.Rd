@@ -2,7 +2,7 @@
 \name{gtkRcGetImModuleFile}
 \title{gtkRcGetImModuleFile}
 \description{Obtains the path to the IM modules file. See the documentation
-of the \env{GTK_IM_MODULE_FILE}
+of the \env{GTK\_IM\_MODULE\_FILE}
 environment variable for more details.}
 \usage{gtkRcGetImModuleFile()}
 \value{[character]  a newly-allocated string containing the name of the file

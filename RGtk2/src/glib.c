@@ -31,7 +31,7 @@ asCGList(USER_OBJECT_ s_list)
         if (IS_CHARACTER(s_element))
             element = CHAR_DEREF(STRING_ELT(s_element, 0));
         else element = (gpointer)getPtrValue(s_element);
-        g_list_append(list, element);
+        list = g_list_append(list, element);
     }
     return(list);
 }
@@ -105,7 +105,7 @@ asCGSList(USER_OBJECT_ s_list)
         if (IS_CHARACTER(s_element))
             element = CHAR_DEREF(STRING_ELT(s_element, 0));
         else element = (gpointer)getPtrValue(s_element);
-        g_slist_append(list, element);
+        list = g_slist_append(list, element);
     }
 
     return(list);

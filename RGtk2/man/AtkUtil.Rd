@@ -54,8 +54,8 @@ Specifies how xy coordinates are to be interpreted. Used by functions such
 as \code{\link{atkComponentGetPosition}} and \code{\link{atkTextGetCharacterExtents}}  
 
 \describe{
-\item{\code{ATK_XY_SCREEN (screen)}}{ specifies xy coordinates relative to the screen}
-\item{\code{ATK_XY_WINDOW (window)}}{ specifies xy coordinates relative to the widget's 
+\item{\code{screen}}{ specifies xy coordinates relative to the screen}
+\item{\code{window}}{ specifies xy coordinates relative to the widget's 
 top-level window}
 }
 
@@ -64,9 +64,9 @@ top-level window}
 Specifies the type of a keyboard evemt.  
 
 \describe{
-\item{\code{ATK_KEY_EVENT_PRESS (press)}}{ specifies a key press event}
-\item{\code{ATK_KEY_EVENT_RELEASE (release)}}{ specifies a key release event}
-\item{\code{ATK_KEY_EVENT_LAST_DEFINED (last-defined)}}{ Not a valid value; specifies end of enumeration}
+\item{\code{press}}{ specifies a key press event}
+\item{\code{release}}{ specifies a key release event}
+\item{\code{last-defined}}{ Not a valid value; specifies end of enumeration}
 }
 
 }
@@ -85,8 +85,7 @@ An AtkEventListenerInit is an initialization function in an implementation
 of the ATK interface used to perform implementation-specific initialization
 when enabling focus tracking.
 
-\describe{\emph{undocumented
-}}
+
 
 }
 \item{\code{AtkKeySnoopFunc(event, func.data)}}{

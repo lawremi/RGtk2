@@ -1,9 +1,9 @@
 \alias{gtkTreeViewAppendColumn}
 \name{gtkTreeViewAppendColumn}
 \title{gtkTreeViewAppendColumn}
-\description{Appends \code{column} to the list of columns. If \code{tree.view} has "fixed_height"
+\description{Appends \code{column} to the list of columns. If \code{tree.view} has "fixed\_height"
 mode enabled, then \code{column} must have its "sizing" property set to be
-GTK_TREE_VIEW_COLUMN_FIXED.}
+GTK\_TREE\_VIEW\_COLUMN\_FIXED.}
 \usage{gtkTreeViewAppendColumn(object, column)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}.}

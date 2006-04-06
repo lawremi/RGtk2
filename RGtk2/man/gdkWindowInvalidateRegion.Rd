@@ -21,7 +21,7 @@ invalidate regions that you know should be redrawn.
 The \code{invalidate.children} parameter controls whether the region of
 each child window that intersects \code{region} will also be invalidated.
 If \code{FALSE}, then the update area for child windows will remain
-unaffected. See gdk_window_invalidate_maybe_recurse if you need
+unaffected. See gdk\_window\_invalidate\_maybe\_recurse if you need
 fine grained control over which children are invalidated.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

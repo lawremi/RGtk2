@@ -39,7 +39,7 @@ load.pixbufs <- function()
   if (!is.null(background))
     return() # already loaded earlier
 
-  filename <- demofile(BACKGROUND.NAME)
+  filename <- imagefile(BACKGROUND.NAME)
   if (!file.exists(filename))
     stop("Could not find background image file:", filename)
 
@@ -54,7 +54,7 @@ load.pixbufs <- function()
 
   for (i in 1:N.IMAGES)
     {
-      filename <- demofile(image.names[i])
+      filename <- imagefile(image.names[i])
       if (!file.exists(filename))
           stop("Could not find image file:", image.names[i])
 
@@ -150,14 +150,14 @@ window <- gtkWindowNew("toplevel", show = F)
 window$setTitle("Pixbufs")
 window$setResizable(FALSE)
 
-connectSignal(window, "destroy", cleanup.callback)
+gSignalConnect(window, "destroy", cleanup.callback)
 
 error <- try(load.pixbufs())
 if (inherits(error, "try-error"))
 {
       dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                        "Problem loading images:", error)
-      connectSignal(dialog, "response", gtkWidgetDestroy)
+      gSignalConnect(dialog, "response", gtkWidgetDestroy)
 } else {
       window$setSizeRequest(back.width, back.height)
 
@@ -165,7 +165,7 @@ if (inherits(error, "try-error"))
 
       da <- gtkDrawingAreaNew()
 
-      connectSignal(da, "expose_event", expose.cb)
+      gSignalConnect(da, "expose_event", expose.cb)
 
       window$add(da)
 

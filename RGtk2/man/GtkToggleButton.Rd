@@ -39,7 +39,7 @@ The state of a \code{\link{GtkToggleButton}} can be set specifically using
 \code{\link{gtkToggleButtonSetActive}}, and retrieved using
 \code{\link{gtkToggleButtonGetActive}}.
   
-To simply switch the state of a toggle button, use gtk_toggle_button_toggled.
+To simply switch the state of a toggle button, use gtk\_toggle\_button\_toggled.
   \preformatted{
 # Let's make two toggle buttons
 make_toggles <- function() {

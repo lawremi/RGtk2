@@ -2,7 +2,7 @@
 \name{cairoMatrixTransformDistance}
 \title{cairoMatrixTransformDistance}
 \description{Transforms the distance vector (\code{dx},\code{dy}) by \code{matrix}. This is
-similar to \code{cairoMatrixTransform()} except that the translation
+similar to \code{cairo\Matrix\Transform()} except that the translation
 components of the transformation are ignored. The calculation of
 the returned vector is as follows:}
 \usage{cairoMatrixTransformDistance(matrix, dx, dy)}

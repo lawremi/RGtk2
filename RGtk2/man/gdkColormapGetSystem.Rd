@@ -2,7 +2,7 @@
 \name{gdkColormapGetSystem}
 \title{gdkColormapGetSystem}
 \description{Gets the system's default colormap for the default screen. (See
-\code{gdkColormapGetSystemForScreen()})}
+\code{gdk\Colormap\Get\System\For\Screen()})}
 \usage{gdkColormapGetSystem()}
 \value{[\code{\link{GdkColormap}}]  the default colormap.}
 \author{Derived by RGtkGen from GTK+ documentation}

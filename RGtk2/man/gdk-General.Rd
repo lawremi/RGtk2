@@ -28,13 +28,13 @@ Returned by \code{\link{gdkPointerGrab}} and \code{\link{gdkKeyboardGrab}} to in
 success or the reason for the failure of the grab attempt.
 
 \describe{
-\item{\code{GDK_GRAB_SUCCESS (success)}}{the resource was successfully grabbed.}
-\item{\code{GDK_GRAB_ALREADY_GRABBED (already-grabbed)}}{the resource is actively grabbed by another client.}
-\item{\code{GDK_GRAB_INVALID_TIME (invalid-time)}}{the resource was grabbed more recently than the 
+\item{\code{success}}{the resource was successfully grabbed.}
+\item{\code{already-grabbed}}{the resource is actively grabbed by another client.}
+\item{\code{invalid-time}}{the resource was grabbed more recently than the 
   specified time.}
-\item{\code{GDK_GRAB_NOT_VIEWABLE (not-viewable)}}{the grab window or the \code{confine.to} window are not
+\item{\code{not-viewable}}{the grab window or the \code{confine.to} window are not
   viewable.}
-\item{\code{GDK_GRAB_FROZEN (frozen)}}{the resource is frozen by an active grab of another client.}
+\item{\code{frozen}}{the resource is frozen by an active grab of another client.}
 }
 
 }}}

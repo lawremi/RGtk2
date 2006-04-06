@@ -14,6 +14,6 @@ working directory and an empty filename, \code{filename} must have a trailing
 directory separator.
   
 The encoding of \code{filename} is preferred GLib file name encoding, which
-may not be UTF-8. See \code{gFilenameFromUtf8()}.  }
+may not be UTF-8. See \code{g\Filename\From\Utf8()}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

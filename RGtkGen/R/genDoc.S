@@ -394,8 +394,8 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_key <- function(key) rd("kbd", child_val(key))
 	markup_combo <- function(combo) paste(sapply(getNodeSet(combo, "/keycap"), markup_key), collapse="-")
 	# LaTeX doesn't like multiparagraph emph's
-	#markup_important <- markup_note <- function(imp) paste(rd("strong", "PLEASE NOTE:"), markup(xmlChildren(imp)))
-	markup_important <- markup_note <- function(imp) rd("emph", markup(xmlChildren(imp)))
+	markup_important <- markup_note <- function(imp) paste(rd("strong", "PLEASE NOTE:"), markup(xmlChildren(imp)))
+	#markup_important <- markup_note <- function(imp) rd("emph", markup(xmlChildren(imp)))
 	markup_first <- function(first) rd("dfn", child_val(first))
 	markup_param <- function(param) rd("code", nameToS(child_val(param)))
 	markup_func <- function(func) rd("code", toCapPhraseName(markup(xmlChildren(func)), T))
@@ -447,8 +447,8 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 }
 
 escape <- function(text) {
-	#gsub("([_#$\\])", "\\\\\\1", text)
-	text
+	gsub("([_#$\\])", "\\\\\\1", text)
+	#text
 }
 strip <- function(text) {
 	sub("\n*$", "", sub("^\n*", "", text))
@@ -522,7 +522,7 @@ toRStructs <- function(structs, defs) {
 toREnums <- function(enums, defs) {
 	#toDescs(enums, sub_name_path = value_name_path)
 	types <- c(defs$enums, defs$flags)
-	get_values <- function(enum_name) alias_names(types[[enum_name]]$names)
+	get_values <- function(enum_name) names(types[[enum_name]]$names)
 	toDescs(enums, get_values)
 }
 
@@ -664,10 +664,10 @@ mapType <- function(type) {
 
 rd <- function(tag, ...) {
 	# LaTeX doesn't like empty describes
-	#if (length(c(...)) == 0 && tag == "describe") {
-	#	warning("Empty describe")
-	#	return("")
-	#}
+	if (length(c(...)) == 0 && tag == "describe") {
+		warning("Empty describe")
+		return("")
+	}
 	params <- sapply(list(...), function(param) {
 		if (length(param) > 1) 
 			param <- c("", param, "")

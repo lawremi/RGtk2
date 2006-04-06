@@ -2,7 +2,7 @@
 \name{gtkTreeRowReferenceReordered}
 \title{gtkTreeRowReferenceReordered}
 \description{Lets a set of row reference created by \code{\link{gtkTreeRowReferenceNewProxy}}
-know that the model emitted the "rows_reordered" signal.}
+know that the model emitted the "rows\_reordered" signal.}
 \usage{gtkTreeRowReferenceReordered(proxy, path, iter, new.order)}
 \arguments{
 \item{\code{proxy}}{[\code{\link{GObject}}]  A \code{\link{GObject}}}

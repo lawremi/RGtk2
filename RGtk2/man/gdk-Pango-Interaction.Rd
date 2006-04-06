@@ -38,7 +38,7 @@ you'll usually want to use \code{\link{gtkWidgetGetPangoContext}}, or
 can set the text and attributes of it with Pango functions like
 \code{\link{pangoLayoutSetText}} and get its size with \code{\link{pangoLayoutGetSize}}.
 (Note that Pango uses a fixed point system internally, so converting
-between Pango units and pixels using PANGO_SCALE or the \code{pangoPixels()} function.)
+between Pango units and pixels using PANGO\_SCALE or the \code{pango\Pixels()} function.)
   
 Rendering a Pango layout is done most simply with \code{\link{gdkDrawLayout}};
 you can also draw pieces of the layout with \code{\link{gdkDrawLayout}} or
@@ -126,7 +126,7 @@ window$add(drawing.area)
 # This overrides the background color from the theme
 drawing.area$modifyBg("normal", white)
 
-connectSignal(drawing.area, "expose-event", rotated.text.expose.event)
+gSignalConnect(drawing.area, "expose-event", rotated.text.expose.event)
 
 window$setDefaultSize(2 * RADIUS, 2 * RADIUS)
 
@@ -152,8 +152,8 @@ instead of device coordinates.
   
 In certain cases it can be useful to subclass \code{\link{GdkPangoRenderer}}. Examples
 of reasons to do this are to add handling of custom attributes by
-overriding 'prepare_run' or to do custom drawing of embedded objects
-by overriding 'draw_shape'.  
+overriding 'prepare\_run' or to do custom drawing of embedded objects
+by overriding 'draw\_shape'.  
 
   Since  2.6
 

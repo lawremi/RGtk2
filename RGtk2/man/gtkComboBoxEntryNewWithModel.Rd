@@ -3,7 +3,7 @@
 \title{gtkComboBoxEntryNewWithModel}
 \description{Creates a new \code{\link{GtkComboBoxEntry}} which has a \code{\link{GtkEntry}} as child and a list
 of strings as popup. You can get the \code{\link{GtkEntry}} from a \code{\link{GtkComboBoxEntry}}
-using GTK_ENTRY (GTK_BIN (combo_box_entry)->child). To add and remove
+using GTK\_ENTRY (GTK\_BIN (combo\_box\_entry)->child). To add and remove
 strings from the list, just modify \code{model} using its data manipulation
 API.}
 \usage{gtkComboBoxEntryNewWithModel(model, text.column)}

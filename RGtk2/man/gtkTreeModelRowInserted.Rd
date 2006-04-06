@@ -1,7 +1,7 @@
 \alias{gtkTreeModelRowInserted}
 \name{gtkTreeModelRowInserted}
 \title{gtkTreeModelRowInserted}
-\description{Emits the "row_inserted" signal on \code{tree.model}}
+\description{Emits the "row\_inserted" signal on \code{tree.model}}
 \usage{gtkTreeModelRowInserted(object, path, iter)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}}

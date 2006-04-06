@@ -60,9 +60,9 @@ There are many configuration options for \code{\link{GtkNotebook}}. Among other
 things, you can choose on which edge the tabs appear
 (see \code{\link{gtkNotebookSetTabPos}}), whether, if there are too many
 tabs to fit the noteobook should be made bigger or scrolling
-arrows added (see gtk_notebook_set_scrollable), and whether there
+arrows added (see gtk\_notebook\_set\_scrollable), and whether there
 will be a popup menu allowing the users to switch pages.
-(see \code{gtkNotebookEnablePopup()}, \code{gtkNoteobookDisablePopup()})}
+(see \code{gtk\Notebook\Enable\Popup()}, \code{gtk\Noteobook\Disable\Popup()})}
 \section{Structures}{\describe{\item{\code{GtkNotebook}}{
 
 
@@ -166,7 +166,7 @@ Width of the horizontal border of tab labels.  Default value: 2
 }
 \item{\code{tab-pos} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-Which side of the notebook holds the tabs.  Default value: GTK_POS_TOP
+Which side of the notebook holds the tabs.  Default value: GTK\_POS\_TOP
 
 }
 \item{\code{tab-vborder} [numeric : Read / Write]}{

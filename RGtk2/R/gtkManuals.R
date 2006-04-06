@@ -324,9 +324,6 @@ function(object, iter, text, ...)
         return(invisible(w))
 }
 
-# reason: alias for capitalization
-gtkUIManagerAddUIFromString <- gtkUIManagerAddUiFromString
-
 # reason: redirect to set_with_data, GObject confuses code generator
 gtkClipboardSetWithOwner <-
 function(object, targets, get.func, owner = NULL)
@@ -572,7 +569,7 @@ gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
 
 # EXPERIMENTAL TREE MODEL ACCESS
 # Currently deprecated in favor of custom RGtkDataFrame model
-
+if (FALSE) {
 # Loads data into the specified rows (or paths) and columns of a list store
 gtkListStoreLoad <-
 function(object, data, rows, cols = 0:(length(data)-1), paths = NULL, append=F)
@@ -708,7 +705,7 @@ dimnames.GtkTreeModel <- function(x, ...)
 {
 	list(x$getData("rownames"), x$getData("colnames"))
 }
-
+}
 # aliases for error domains
 GTK_ICON_THEME_ERROR <- gtkIconThemeErrorQuark
 GTK_FILE_CHOOSER_ERROR <- gtkFileChooserErrorQuark
@@ -718,34 +715,34 @@ GTK_FILE_CHOOSER_ERROR <- gtkFileChooserErrorQuark
 gtkAccelGroupQuery <- 
 function(object, accel.key, accel.mods) 
 {
-	notimplemented("returns an array of an undocumented structure, so you probably shouldn't use it") 
+	.notimplemented("returns an array of an undocumented structure, so you probably shouldn't use it") 
 }
 
 gtkCListSetCompareFunc <- 
 function(object, cmp.func) {
-	notimplemented("does not provide user-data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
+	.notimplemented("does not provide user-data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
 }
 
 gtkCTreeSetDragCompareFunc <-
 function(object, cmp.func)
 {
-	notimplemented("does not provide user data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
+	.notimplemented("does not provide user data for the comparison func, so we can't wrap an R function. Besides, it's deprecated")
 }
 
 gtkItemFactoryCreateMenuEntries <-
 function(entries)
 {
-	notimplemented("accepts as input an array of an undocumented structure, so you probably shouldn't use it. Besides, it's deprecated")
+	.notimplemented("accepts as input an array of an undocumented structure, so you probably shouldn't use it. Besides, it's deprecated")
 }
 
 gtkSettingsInstallPropertyParser <-
 function(pspec, parser)
 {
-	notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
+	.notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
 }
 
 gtkWidgetClassInstallStylePropertyParser <-
 function(klass, pspec, parser)
 {
-	notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
+	.notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
 }

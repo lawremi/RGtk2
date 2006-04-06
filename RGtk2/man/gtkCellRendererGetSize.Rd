@@ -2,7 +2,7 @@
 \name{gtkCellRendererGetSize}
 \title{gtkCellRendererGetSize}
 \description{Obtains the width and height needed to render the cell. Used by view widgets
-to determine the appropriate size for the cell_area passed to
+to determine the appropriate size for the cell\_area passed to
 \code{\link{gtkCellRendererRender}}.  If \code{cell.area} is not \code{NULL}, fills in the x and y
 offsets (if set) of the cell relative to this location.  Please note that the
 values set in \code{width} and \code{height}, as well as those in \code{x.offset} and \code{y.offset}

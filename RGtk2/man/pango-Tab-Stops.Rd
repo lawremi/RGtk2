@@ -23,7 +23,7 @@ of tab stops. Each tab stop has an alignment and a position.
 \section{Enums and Flags}{\describe{\item{\code{PangoTabAlign}}{
 A \code{\link{PangoTabAlign}} specifies where a tab stop appears relative to the text.
 
-\describe{\item{\code{PANGO_TAB_LEFT (left)}}{the tab stop appears to the left of the text.}}
+\describe{\item{\code{left}}{the tab stop appears to the left of the text.}}
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-Tab-Stops.html}}

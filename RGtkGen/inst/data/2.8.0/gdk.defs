@@ -111,21 +111,6 @@
   )
 )
 
-(define-function threads_enter
-  (c-name "gdk_threads_enter")
-  (return-type "none")
-)
-
-(define-function threads_leave
-  (c-name "gdk_threads_leave")
-  (return-type "none")
-)
-
-(define-function threads_init
-  (c-name "gdk_threads_init")
-  (return-type "none")
-)
-
 ;; cairo stuff
 
 (define-function gdk_cairo_create
@@ -3053,34 +3038,11 @@
   (return-type "gboolean")
 )
 
-(define-function selection_owner_set
-  (c-name "gdk_selection_owner_set")
-  (return-type "gboolean")
-  (parameters
-    '("GdkWindow*" "owner" (in))
-    '("GdkAtom" "selection" (in))
-    '("guint32" "time" (in))
-    '("gboolean" "send_event" (in))
-  )
-)
-
 (define-function selection_owner_get
   (c-name "gdk_selection_owner_get")
   (return-type "GdkWindow*")
   (parameters
     '("GdkAtom" "selection" (in))
-  )
-)
-
-(define-function selection_owner_set_for_display
-  (c-name "gdk_selection_owner_set_for_display")
-  (return-type "gboolean")
-  (parameters
-    '("GdkDisplay*" "display" (in))
-    '("GdkWindow*" "owner" (in))
-    '("GdkAtom" "selection" (in))
-    '("guint32" "time" (in))
-    '("gboolean" "send_event" (in))
   )
 )
 
@@ -3093,17 +3055,6 @@
   )
 )
 
-(define-method selection_convert
-  (of-object "GdkWindow")
-  (c-name "gdk_selection_convert")
-  (return-type "none")
-  (parameters
-    '("GdkAtom" "selection" (in))
-    '("GdkAtom" "target" (in))
-    '("guint32" "time" (in))
-  )
-)
-
 (define-method selection_property_get
   (of-object "GdkWindow")
   (c-name "gdk_selection_property_get")
@@ -3112,31 +3063,6 @@
     '("guchar**" "data" (out))
     '("GdkAtom*" "prop_type" (out))
     '("gint*" "prop_format" (out))
-  )
-)
-
-(define-function selection_send_notify
-  (c-name "gdk_selection_send_notify")
-  (return-type "none")
-  (parameters
-    '("guint32" "requestor" (in))
-    '("GdkAtom" "selection" (in))
-    '("GdkAtom" "target" (in))
-    '("GdkAtom" "property" (in))
-    '("guint32" "time" (in))
-  )
-)
-
-(define-function selection_send_notify_for_display
-  (c-name "gdk_selection_send_notify_for_display")
-  (return-type "none")
-  (parameters
-    '("GdkDisplay*" "display" (in))
-    '("guint32" "requestor" (in))
-    '("GdkAtom" "selection" (in))
-    '("GdkAtom" "target" (in))
-    '("GdkAtom" "property" (in))
-    '("guint32" "time" (in))
   )
 )
 
@@ -3516,42 +3442,6 @@
   (return-type "gboolean")
   (parameters
     '("gboolean" "use_static" (in))
-  )
-)
-
-(define-function window_foreign_new
-  (c-name "gdk_window_foreign_new")
-  (caller-owns-return #t)
-  (return-type "GdkWindow*")
-  (parameters
-    '("GdkNativeWindow" "anid" (in))
-  )
-)
-
-(define-function window_lookup
-  (c-name "gdk_window_lookup")
-  (return-type "GdkWindow*")
-  (parameters
-    '("GdkNativeWindow" "anid" (in))
-  )
-)
-
-(define-function window_foreign_new_for_display
-  (c-name "gdk_window_foreign_new_for_display")
-  (caller-owns-return #t)
-  (return-type "GdkWindow*")
-  (parameters
-    '("GdkDisplay*" "display" (in))
-    '("GdkNativeWindow" "anid" (in))
-  )
-)
-
-(define-function window_lookup_for_display
-  (c-name "gdk_window_lookup_for_display")
-  (return-type "GdkWindow*")
-  (parameters
-    '("GdkDisplay*" "display" (in))
-    '("GdkNativeWindow" "anid" (in))
   )
 )
 

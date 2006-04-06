@@ -92,7 +92,7 @@ When TRUE, empty menu proxies for this action are hidden.  Default value: TRUE
 }
 \item{\code{is-important} [logical : Read / Write]}{
 
-Whether the action is considered important. When TRUE, toolitem proxies for this action show text in GTK_TOOLBAR_BOTH_HORIZ mode.  Default value: FALSE
+Whether the action is considered important. When TRUE, toolitem proxies for this action show text in GTK\_TOOLBAR\_BOTH\_HORIZ mode.  Default value: FALSE
 
 }
 \item{\code{label} [character : Read / Write]}{

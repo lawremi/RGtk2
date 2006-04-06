@@ -154,8 +154,8 @@ set font size.
 
 \describe{
 \item{\code{size}}{[integer] the common portion of the attribute}
-\item{\code{absolute}}{[numeric] size of font, in units of 1/PANGO_SCALE of a point (for
-  PANGO_ATTR_SIZE) or of a device uni (for PANGO_ATTR_ABSOLUTE_SIZE)}
+\item{\code{absolute}}{[numeric] size of font, in units of 1/PANGO\_SCALE of a point (for
+  PANGO\_ATTR\_SIZE) or of a device uni (for PANGO\_ATTR\_ABSOLUTE\_SIZE)}
 }
 
 }
@@ -214,23 +214,23 @@ values are given below. The type of structure used to store the
 attribute is listed in parentheses after the description.
 
 \describe{
-\item{\code{PANGO_ATTR_INVALID (invalid)}}{\emph{undocumented
+\item{\code{invalid}}{\emph{undocumented
 }}
-\item{\code{PANGO_ATTR_LANGUAGE (language)}}{language (\code{\link{PangoAttrLanguage}})}
-\item{\code{PANGO_ATTR_FAMILY (family)}}{font family name list (\code{\link{PangoAttrString}})}
-\item{\code{PANGO_ATTR_STYLE (style)}}{font slant style (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_WEIGHT (weight)}}{font weight (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_VARIANT (variant)}}{font variant (normal or small caps) (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_STRETCH (stretch)}}{font stretch (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_SIZE (size)}}{font size in points divided by PANGO_SCALE (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_FONT_DESC (font-desc)}}{font description (\code{\link{PangoAttrFontDesc}})}
-\item{\code{PANGO_ATTR_FOREGROUND (foreground)}}{foreground color (\code{\link{PangoAttrColor}})}
-\item{\code{PANGO_ATTR_BACKGROUND (background)}}{background color (\code{\link{PangoAttrColor}})}
-\item{\code{PANGO_ATTR_UNDERLINE (underline)}}{whether the text has an underline (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_STRIKETHROUGH (strikethrough)}}{whether the text is struck-through (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_RISE (rise)}}{baseline displacement (\code{\link{PangoAttrInt}})}
-\item{\code{PANGO_ATTR_SHAPE (shape)}}{shape (\code{\link{PangoAttrShape}})}
-\item{\code{PANGO_ATTR_SCALE (scale)}}{font size scale factor (\code{PangoAttrScale})}
+\item{\code{language}}{language (\code{\link{PangoAttrLanguage}})}
+\item{\code{family}}{font family name list (\code{\link{PangoAttrString}})}
+\item{\code{style}}{font slant style (\code{\link{PangoAttrInt}})}
+\item{\code{weight}}{font weight (\code{\link{PangoAttrInt}})}
+\item{\code{variant}}{font variant (normal or small caps) (\code{\link{PangoAttrInt}})}
+\item{\code{stretch}}{font stretch (\code{\link{PangoAttrInt}})}
+\item{\code{size}}{font size in points divided by PANGO\_SCALE (\code{\link{PangoAttrInt}})}
+\item{\code{font-desc}}{font description (\code{\link{PangoAttrFontDesc}})}
+\item{\code{foreground}}{foreground color (\code{\link{PangoAttrColor}})}
+\item{\code{background}}{background color (\code{\link{PangoAttrColor}})}
+\item{\code{underline}}{whether the text has an underline (\code{\link{PangoAttrInt}})}
+\item{\code{strikethrough}}{whether the text is struck-through (\code{\link{PangoAttrInt}})}
+\item{\code{rise}}{baseline displacement (\code{\link{PangoAttrInt}})}
+\item{\code{shape}}{shape (\code{\link{PangoAttrShape}})}
+\item{\code{scale}}{font size scale factor (\code{PangoAttrScale})}
 }
 
 }
@@ -240,10 +240,10 @@ whether text should be underlined, and if so, the type
 of underlining.
 
 \describe{
-\item{\code{PANGO_UNDERLINE_NONE (none)}}{no underline should be drawn.}
-\item{\code{PANGO_UNDERLINE_SINGLE (single)}}{a single underline should be drawn.}
-\item{\code{PANGO_UNDERLINE_DOUBLE (double)}}{a double underline should be drawn.}
-\item{\code{PANGO_UNDERLINE_LOW (low)}}{a single underline should be drawn at a position
+\item{\code{none}}{no underline should be drawn.}
+\item{\code{single}}{a single underline should be drawn.}
+\item{\code{double}}{a double underline should be drawn.}
+\item{\code{low}}{a single underline should be drawn at a position
                       beneath the ink extents of the text being
                       underlined. This should be used only for underlining
                       single characters, such as for keyboard

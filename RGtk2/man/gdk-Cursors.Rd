@@ -36,7 +36,7 @@ A \code{GdkCursor} structure represents a cursor.
 \section{Enums and Flags}{\describe{\item{\code{GdkCursorType}}{
 The standard cursors available.
 
-\describe{\item{\code{GDK_CURSOR_IS_PIXMAP (gdk-cursor-is-pixmap)}}{\emph{undocumented
+\describe{\item{\code{gdk-cursor-is-pixmap}}{\emph{undocumented
 }}}
 
 }}}

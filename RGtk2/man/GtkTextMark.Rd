@@ -27,11 +27,11 @@ mark, a mark with \dfn{left gravity} will be moved to the
 beginning of the newly-inserted text, and a mark with \dfn{right
 gravity} will be moved to the end. 
 
-\emph{  
+\strong{PLEASE NOTE:}   
 "left" and "right" here refer to logical direction (left is the toward the start
 of the buffer); in some languages such as Hebrew the logically-leftmost text is
 not actually on the left when displayed.
-  }
+  
   
 Marks are reference counted, but the reference count only controls the validity
 of the memory; marks can be deleted from the buffer at any time with

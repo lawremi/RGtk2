@@ -9,9 +9,12 @@
 \alias{gObjectSetData}
 \alias{gObject}
 \alias{gObjectNew}
+\alias{gtkObject}
+\alias{gtkObjectNew}
 \alias{gObjectGetSignals}
 \alias{[.GObject}
 \alias{[<-.GObject}
+\alias{interface.GObject}
 \description{
 GObject is the fundamental type providing the common attributes and 
 methods for all object types in GTK+, Pango and other libraries based on GObject.
@@ -29,6 +32,7 @@ gObjectGetData(obj, key)
 gObjectGetSignals(obj)
 gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
 names.GObject(x)
+interface.GObject(obj)
 }
 \arguments{
 \item{obj}{an instance of a \code{GObject}}
@@ -56,7 +60,8 @@ Thus, every \code{GObject} has a type that descends from the common
 \code{GObject} type. \code{GObject}s may also implement interfaces. The 
 interfaces implemented by a particular object may be found in the 
 \code{interfaces} attribute of an R object representing a \code{GObject}, 
-for which, as you might expect, \code{inherits("GObject")} returns \code{TRUE}.
+for which, as you might expect, \code{inherits("GObject")} returns \code{TRUE}. 
+To conveniently access this attribute, use \code{interface.GObject}.
 
 A \code{GObject} is usually constructed with the constructor belonging 
 to a particular subtype (for example, \code{\link{gtkWindowNew}} constructs a 

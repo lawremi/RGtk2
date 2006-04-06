@@ -17,7 +17,7 @@
                      +----\link{GtkVRuler}}}
 \section{Interfaces}{GtkRuler implements
  AtkImplementorIface.}
-\section{Detailed Description}{\emph{  
+\section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -25,7 +25,7 @@
  of general interest. However, we are not accepting new features for
  the widget, and it will eventually move out of the GTK+
  distribution.
-  }  
+    
 The GTKRuler widget is a base class for horizontal and vertical rulers. Rulers
 are used to show the mouse pointer's location in a window. The ruler can either
 be horizontal or vertical on the window. Within the ruler a small triangle
@@ -52,7 +52,7 @@ Maximum size of the ruler.  Default value: 0
 
 The metric used for the ruler.  
 
-  Default value: GTK_PIXELS  Since  2.8
+  Default value: GTK\_PIXELS  Since  2.8
 
 }
 \item{\code{position} [numeric : Read / Write]}{

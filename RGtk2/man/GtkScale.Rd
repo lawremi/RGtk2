@@ -26,7 +26,7 @@
 To use it, you'll probably want to investigate the methods on 
 its base class, \code{\link{GtkRange}}, in addition to the methods for \code{\link{GtkScale}} itself.
 To set the value of a scale, you would normally use \code{\link{gtkRangeSetValue}}. 
-To detect changes to the value, you would normally use the "value_changed" 
+To detect changes to the value, you would normally use the "value\_changed" 
 signal.
   
 The \code{\link{GtkScale}} widget is an abstract class, used only for deriving the
@@ -78,7 +78,7 @@ Whether the current value is displayed as a string next to the slider.  Default 
 }
 \item{\code{value-pos} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-The position in which the current value is displayed.  Default value: GTK_POS_TOP
+The position in which the current value is displayed.  Default value: GTK\_POS\_TOP
 
 }
 }}

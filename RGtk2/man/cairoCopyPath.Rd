@@ -6,7 +6,9 @@
 over the returned data structure.}
 \usage{cairoCopyPath(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
-\details{Return value: the copy of the current path.
+\details{Return value: the copy of the current path. The caller owns the
+returned object and should call \code{cairo\Path\Destroy()} when finished
+with it.
   
 This function will always return a valid pointer, but the result
 will have no data (\code{data==NULL} and
@@ -20,7 +22,9 @@ conditions hold:
   
 In either case, \code{path->status} will be set to
 \code{CAIRO_STATUS_NO_MEMORY} (regardless of what the error status in
-\code{cr} might have been).  .}
-\value{[\code{\link{CairoPath}}]  the copy of the current path.}
+\code{cr} might have been).  }
+\value{[\code{\link{CairoPath}}]  the copy of the current path. The caller owns the
+returned object and should call \code{cairo\Path\Destroy()} when finished
+with it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

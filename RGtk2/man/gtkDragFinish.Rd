@@ -9,7 +9,7 @@ that the data of the drag will no longer be required.}
 \item{\code{success}}{[logical] a flag indicating whether the drop was successful}
 \item{\code{del}}{[logical] a flag indicating whether the source should delete the
       original data. (This should be \code{TRUE} for a move)}
-\item{\code{time}}{[numeric] the timestamp from the "drag_data_drop" signal.}
+\item{\code{time}}{[numeric] the timestamp from the "drag\_data\_drop" signal.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

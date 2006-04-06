@@ -3,7 +3,7 @@
 \title{gdkKeyvalName}
 \description{Converts a key value into a symbolic name.
 The names are the same as those in the \file{<gdk/gdkkeysyms.h>} header file
-but without the leading "GDK_".}
+but without the leading "GDK\_".}
 \usage{gdkKeyvalName(keyval)}
 \arguments{\item{\code{keyval}}{[numeric] a key value.}}
 \value{[character] a string containing the name of the key, or \code{NULL} if \code{keyval} is not

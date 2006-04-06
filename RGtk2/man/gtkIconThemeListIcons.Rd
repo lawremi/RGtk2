@@ -14,6 +14,8 @@ but will typically include such values as 'apps' and
 }
 \details{  Since  2.4}
 \value{[list]  a \code{list} list holding the names of all the
- icons in the theme.}
+ icons in the theme. You must first free each element
+ in the list with \code{g\Free()}, then free the list itself
+ with \code{g\List\Free()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

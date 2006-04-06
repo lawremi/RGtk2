@@ -77,10 +77,10 @@ create_file_selection <- function() {
 The \code{\link{GtkFileSelection}} struct contains the following \code{\link{GtkWidget}} fields:
 
 \tabular{ll}{
-*fileop_dialog; \tab the dialog box used to display the   \code{\link{GtkFileSelection}}  . It can be customized by adding/removing widgets from it using the standard   \code{\link{GtkDialog}}   functions. \cr
-*ok_button, *cancel_button; \tab the two main buttons that signals should be connected to in order to perform an action when the user hits either OK or Cancel. \cr
-*history_pulldown; \tab the   \code{\link{GtkOptionMenu}}   used to create the drop-down directory history. \cr
-*fileop_c_dir, *fileop_del_file, *fileop_ren_file; \tab the buttons that appear at the top of the file selection dialog. These "operation buttons" can be hidden and redisplayed with   \code{\link{gtkFileSelectionHideFileopButtons}}   and    \code{\link{gtkFileSelectionShowFileopButtons}}   respectively. \cr
+*fileop\_dialog; \tab the dialog box used to display the   \code{\link{GtkFileSelection}}  . It can be customized by adding/removing widgets from it using the standard   \code{\link{GtkDialog}}   functions. \cr
+*ok\_button, *cancel\_button; \tab the two main buttons that signals should be connected to in order to perform an action when the user hits either OK or Cancel. \cr
+*history\_pulldown; \tab the   \code{\link{GtkOptionMenu}}   used to create the drop-down directory history. \cr
+*fileop\_c\_dir, *fileop\_del\_file, *fileop\_ren\_file; \tab the buttons that appear at the top of the file selection dialog. These "operation buttons" can be hidden and redisplayed with   \code{\link{gtkFileSelectionHideFileopButtons}}   and    \code{\link{gtkFileSelectionShowFileopButtons}}   respectively. \cr
 }
 
 }}}

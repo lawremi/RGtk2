@@ -29,27 +29,27 @@ The AtkRelation structure should not be accessed directly.
 Describes the type of the relation  
 
 \describe{
-\item{\code{ATK_RELATION_NULL (null)}}{\emph{undocumented
+\item{\code{null}}{\emph{undocumented
 }}
-\item{\code{ATK_RELATION_CONTROLLED_BY (controlled-by)}}{ Indicates an object controlled by one or more target objects.}
-\item{\code{ATK_RELATION_CONTROLLER_FOR (controller-for)}}{ Indicates an object is an controller for one or more target objects.}
-\item{\code{ATK_RELATION_LABEL_FOR (label-for)}}{ Indicates an object is a label for one or more target objects.}
-\item{\code{ATK_RELATION_LABELLED_BY (labelled-by)}}{ Indicates an object is labelled by one or more target objects.}
-\item{\code{ATK_RELATION_MEMBER_OF (member-of)}}{ Indicates an object is a member of a group of one or more target objects.}
-\item{\code{ATK_RELATION_NODE_CHILD_OF (node-child-of)}}{ Indicates an object is a cell in a treetable which is displayed because a cell in the same column is expanded and identifies that cell.}
-\item{\code{ATK_RELATION_FLOWS_TO (flows-to)}}{ Indicates that the object has content that flows logically to another
+\item{\code{controlled-by}}{ Indicates an object controlled by one or more target objects.}
+\item{\code{controller-for}}{ Indicates an object is an controller for one or more target objects.}
+\item{\code{label-for}}{ Indicates an object is a label for one or more target objects.}
+\item{\code{labelled-by}}{ Indicates an object is labelled by one or more target objects.}
+\item{\code{member-of}}{ Indicates an object is a member of a group of one or more target objects.}
+\item{\code{node-child-of}}{ Indicates an object is a cell in a treetable which is displayed because a cell in the same column is expanded and identifies that cell.}
+\item{\code{flows-to}}{ Indicates that the object has content that flows logically to another
  AtkObject in a sequential way, (for instance text-flow).}
-\item{\code{ATK_RELATION_FLOWS_FROM (flows-from)}}{ Indicates that the object has content that flows logically from
+\item{\code{flows-from}}{ Indicates that the object has content that flows logically from
  another AtkObject in a sequential way, (for instance text-flow).}
-\item{\code{ATK_RELATION_SUBWINDOW_OF (subwindow-of)}}{ Indicates a subwindow attached to a component but otherwise has no connection in  the UI heirarchy to that component.}
-\item{\code{ATK_RELATION_EMBEDS (embeds)}}{ Indicates that the object visually embeds 
+\item{\code{subwindow-of}}{ Indicates a subwindow attached to a component but otherwise has no connection in  the UI heirarchy to that component.}
+\item{\code{embeds}}{ Indicates that the object visually embeds 
  another object's content, i.e. this object's content flows around 
  another's content.}
-\item{\code{ATK_RELATION_EMBEDDED_BY (embedded-by)}}{ Inverse of \code{ATK_RELATION_EMBEDS}, indicates that
+\item{\code{embedded-by}}{ Inverse of \code{ATK_RELATION_EMBEDS}, indicates that
  this object's content is visualy embedded in another object.}
-\item{\code{ATK_RELATION_POPUP_FOR (popup-for)}}{ Indicates that an object is a popup for another object.}
-\item{\code{ATK_RELATION_PARENT_WINDOW_OF (parent-window-of)}}{ Indicates that an object is a parent window of another object.}
-\item{\code{ATK_RELATION_LAST_DEFINED (last-defined)}}{\emph{undocumented
+\item{\code{popup-for}}{ Indicates that an object is a popup for another object.}
+\item{\code{parent-window-of}}{ Indicates that an object is a parent window of another object.}
+\item{\code{last-defined}}{\emph{undocumented
 }}
 }
 
@@ -57,7 +57,7 @@ Describes the type of the relation
 \section{Properties}{\describe{
 \item{\code{relation-type} [\code{\link{AtkRelationType}} : Read / Write]}{
 
-The type of the relation.  Default value: ATK_RELATION_NULL
+The type of the relation.  Default value: ATK\_RELATION\_NULL
 
 }
 \item{\code{target} [GValueArray : Read / Write]}{

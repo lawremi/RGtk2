@@ -1,7 +1,7 @@
 \alias{gtkTreeModelRowDeleted}
 \name{gtkTreeModelRowDeleted}
 \title{gtkTreeModelRowDeleted}
-\description{Emits the "row_deleted" signal on \code{tree.model}.  This should be called by
+\description{Emits the "row\_deleted" signal on \code{tree.model}.  This should be called by
 models after a row has been removed.  The location pointed to by \code{path} should
 be the location that the row previously was at.  It may not be a valid
 location anymore.}

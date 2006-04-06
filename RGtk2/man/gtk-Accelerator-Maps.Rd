@@ -41,7 +41,7 @@
 Notifies of a change in the global accelerator map.
 The path is also used as the detail for the signal,
 so it is possible to connect to
-changed::\var{accel_path}.  
+changed::\\var{accel\_path}.  
 
   Since  2.4
 

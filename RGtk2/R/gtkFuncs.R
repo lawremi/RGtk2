@@ -13966,17 +13966,6 @@ function()
 } 
 
 
-gtkSetLocale <-
-function()
-{
-	
-
-	w <- .RGtkCall("S_gtk_set_locale", PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
 gtkGetDefaultLanguage <-
 function()
 {
@@ -15733,17 +15722,6 @@ function()
 	w <- .RGtkCall("S_gtk_object_get_type", PACKAGE = "RGtk2")
 
 	return(w)
-} 
-
-
-gtkObjectSink <-
-function(object)
-{
-	checkPtrType(object, "GtkObject")
-
-	w <- .RGtkCall("S_gtk_object_sink", object, PACKAGE = "RGtk2")
-
-	return(invisible(w))
 } 
 
 
@@ -30397,30 +30375,6 @@ function(object, window)
 	checkPtrType(window, "GtkWindow")
 
 	w <- .RGtkCall("S_gtk_window_group_remove_window", object, window, PACKAGE = "RGtk2")
-
-	return(invisible(w))
-} 
-
-
-gtkWindowRemoveEmbeddedXid <-
-function(object, xid)
-{
-	checkPtrType(object, "GtkWindow")
-	xid <- as.numeric(xid)
-
-	w <- .RGtkCall("S_gtk_window_remove_embedded_xid", object, xid, PACKAGE = "RGtk2")
-
-	return(invisible(w))
-} 
-
-
-gtkWindowAddEmbeddedXid <-
-function(object, xid)
-{
-	checkPtrType(object, "GtkWindow")
-	xid <- as.numeric(xid)
-
-	w <- .RGtkCall("S_gtk_window_add_embedded_xid", object, xid, PACKAGE = "RGtk2")
 
 	return(invisible(w))
 } 

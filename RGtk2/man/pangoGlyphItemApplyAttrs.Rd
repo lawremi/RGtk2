@@ -17,7 +17,7 @@ this function.}
 to that cluster; for instance, if half of a cluster is underlined
 and the other-half strikethough, then the cluster will end
 up with both underline and strikethrough attributes. In these
-cases, it may happen that item->extra_attrs for some of the
+cases, it may happen that item->extra\_attrs for some of the
 result items can have multiple attributes of the same type.
   
 This function takes ownership of \code{glyph.item}; it will be reused
@@ -25,6 +25,7 @@ as one of the elements in the list.
 
   Since  1.2}
 \value{[list]  a list of glyph items resulting from splitting
-  \code{glyph.item}.}
+  \code{glyph.item}. Free the elements using \code{pango\Glyph\Item\Free()},
+  the list using \code{g\Slist\Free()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

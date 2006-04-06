@@ -12,7 +12,7 @@
 }
 \value{
 A list containing the following elements:
-\item{\code{x.pos}}{[integer]  location to store the x_offset (in \code{integer})}
+\item{\code{x.pos}}{[integer]  location to store the x\_offset (in \code{integer})}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

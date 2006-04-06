@@ -13,7 +13,7 @@ activate.radio.action <- function(action, current)
         dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "info", "close",
                        "You activated radio action:", name, "of type ", typename,
                        "\nCurrent value: ", value)
-        connectSignal(dialog, "response", gtkWidgetDestroy)
+        gSignalConnect(dialog, "response", gtkWidgetDestroy)
     }
 
 }
@@ -24,7 +24,7 @@ activate.action <- function(action, w)
     typename <- action$typeName() # parent, dialog mode, message type, buttons, message
     dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "info", "close",
         "You activated action:", name, "of type", typename)
-    connectSignal(dialog, "response", gtkWidgetDestroy)
+    gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }
 activate.email <- function(about, link, data)
 {
@@ -36,7 +36,7 @@ activate.url <- function(about, link, data)
 }
 about.cb <- function(action, window)
 {
-    filename <- demofile("rgtk-logo.gif")
+    filename <- imagefile("rgtk-logo.gif")
     if (file.exists(filename)) {
         pixbuf <- gdkPixbufNewFromFile(filename)[[1]]
         # make white space transparent
@@ -70,8 +70,7 @@ mark.set.callback <- function(buffer, new.location, mark, data)
 
 update.resize.grip <- function(widget, event, statusbar)
 {
-    if (any(as.logical(bitAnd(event[["changedMask"]],
-        bitOr(GdkWindowState["maximized"], GdkWindowState["fullscreen"])))))
+    if ((event[["changedMask"]] & (GdkWindowState["maximized"] | GdkWindowState["fullscreen"])) == T)
     {
         statusbar$setHasResizeGrip(FALSE)
     }
@@ -92,7 +91,7 @@ register.stock.icons <- function()
     factory <- gtkIconFactoryNew() # make our own factory
     gtkIconFactoryAddDefault(factory) # make it a default factory
 
-    filename <- demofile("rgtk-logo.gif")
+    filename <- imagefile("rgtk-logo.gif")
     if (file.exists(filename)) {
         pixbuf <- gdkPixbufNewFromFile(filename)[[1]]
         # make white space transparent
@@ -231,9 +230,9 @@ statusbar <- gtkStatusbarNew() # squeeze it in at the bottom
 table$attach(statusbar, 0, 1, 3, 4, c("expand", "fill"), 0, 0, 0)
 
 buffer <- contents$getBuffer() # statusbar listens to buffer
-connectSignal(buffer, "changed", update.statusbar, statusbar)
-connectSignal(buffer, "mark_set", mark.set.callback, statusbar)
+gSignalConnect(buffer, "changed", update.statusbar, statusbar)
+gSignalConnect(buffer, "mark_set", mark.set.callback, statusbar)
 # link resize grip to window state
-connectSignal(window, "window_state_event", update.resize.grip, statusbar)
+gSignalConnect(window, "window_state_event", update.resize.grip, statusbar)
 
 update.statusbar(buffer, statusbar)

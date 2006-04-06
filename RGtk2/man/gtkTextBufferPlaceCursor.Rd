@@ -1,7 +1,7 @@
 \alias{gtkTextBufferPlaceCursor}
 \name{gtkTextBufferPlaceCursor}
 \title{gtkTextBufferPlaceCursor}
-\description{This function moves the "insert" and "selection_bound" marks
+\description{This function moves the "insert" and "selection\_bound" marks
 simultaneously.  If you move them to the same place in two steps
 with \code{\link{gtkTextBufferMoveMark}}, you will temporarily select a
 region in between their old and new locations, which can be pretty

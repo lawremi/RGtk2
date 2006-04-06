@@ -17,7 +17,7 @@ icon theme or the default icon theme, and an image file with
 the right name is found directly in one of the elements of
 \code{path}, then that image will be used for the icon name.
 (This is legacy feature, and new icons should be put
-into the default icon theme, which is called DEFAULT_THEME_NAME,
+into the default icon theme, which is called DEFAULT\_THEME\_NAME,
 rather than directly on the icon path.)  
 
   Since  2.4}

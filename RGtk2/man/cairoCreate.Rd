@@ -12,7 +12,8 @@ as \code{\link{cairoImageSurfaceCreate}} (or any other
 call \code{\link{cairoSurfaceDestroy}} on it if you don't need to
 maintain a separate reference to it.  }
 \value{[\code{\link{Cairo}}]  a newly allocated \code{\link{Cairo}} with a reference
- count of 1.
+ count of 1. The initial reference count should be released
+ with \code{cairo\Destroy()} when you are done using the \code{\link{Cairo}}.
  This function never returns \code{NULL}. If memory cannot be
  allocated, a special \code{\link{Cairo}} object will be returned on
  which \code{\link{cairoStatus}} returns \code{CAIRO_STATUS_NO_MEMORY}.

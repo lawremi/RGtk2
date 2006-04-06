@@ -40,8 +40,8 @@ Mechanism is to support the session management protocol (see the
 the window manager to save your window sizes and positions.  }
 \value{
 A list containing the following elements:
-\item{\code{root.x}}{[integer]  return location for X coordinate of gravity-determined reference p\oint}
-\item{\code{root.y}}{[integer]  return location for Y coordinate of gravity-determined reference p\oint}
+\item{\code{root.x}}{[integer]  return location for X coordinate of gravity-determined reference p\\oint}
+\item{\code{root.y}}{[integer]  return location for Y coordinate of gravity-determined reference p\\oint}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -14,7 +14,7 @@ A list containing the following elements:
 has been set explicitly.}
 \item{\code{focusable.widgets}}{[list]  location to store the focus chain of the
                     container, or \code{NULL}. You should free this list
-                    using \code{gListFree()} when you are done with it, however
+                    using \code{g\List\Free()} when you are done with it, however
                     no additional reference count is added to the
                     individual widgets in the focus chain.}
 }

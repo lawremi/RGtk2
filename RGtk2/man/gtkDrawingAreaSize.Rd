@@ -4,7 +4,7 @@
 \description{
 (Use \code{\link{gtkWidgetSetSizeRequest}} instead.)
 Sets the size that the drawing area will request
-in response to a "size_request" signal. The 
+in response to a "size\_request" signal. The 
 drawing area may actually be allocated a size
 larger than this depending on how it is packed
 within the enclosing containers.

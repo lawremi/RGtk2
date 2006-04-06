@@ -31,11 +31,11 @@
 
 
 \describe{
-\item{\code{CAIRO_EXTEND_NONE (none)}}{\emph{undocumented
+\item{\code{none}}{\emph{undocumented
 }}
-\item{\code{CAIRO_EXTEND_REPEAT (repeat)}}{\emph{undocumented
+\item{\code{repeat}}{\emph{undocumented
 }}
-\item{\code{CAIRO_EXTEND_REFLECT (reflect)}}{\emph{undocumented
+\item{\code{reflect}}{\emph{undocumented
 }}
 }
 
@@ -44,17 +44,17 @@
 
 
 \describe{
-\item{\code{CAIRO_FILTER_FAST (fast)}}{\emph{undocumented
+\item{\code{fast}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FILTER_GOOD (good)}}{\emph{undocumented
+\item{\code{good}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FILTER_BEST (best)}}{\emph{undocumented
+\item{\code{best}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FILTER_NEAREST (nearest)}}{\emph{undocumented
+\item{\code{nearest}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FILTER_BILINEAR (bilinear)}}{\emph{undocumented
+\item{\code{bilinear}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FILTER_GAUSSIAN (gaussian)}}{\emph{undocumented
+\item{\code{gaussian}}{\emph{undocumented
 }}
 }
 

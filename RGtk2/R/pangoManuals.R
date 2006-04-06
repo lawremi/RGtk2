@@ -47,33 +47,14 @@ function()
 }
 
 # Here are some Pango constants
-.PangoScale <- 1024
-.PangoScaleXXSmall <-  (1 / (1.2 * 1.2 * 1.2))
-.PangoScaleXSmall <- (1 / (1.2 * 1.2))
-.PangoScaleSmall <- (1 / 1.2)
-.PangoScaleMedium <- 1
-.PangoScaleLarge <- 1 * 1.2
-.PangoScaleXLarge <- 1 * 1.2 * 1.2
-.PangoScaleXXLarge <- 1 * 1.2 * 1.2 * 1.2
-
-# pygtk's defs parser should be extended to support arbitrary integer values for enums
-
-PangoWeight <- c( "ultralight" = 200,
-	"light" = 300,
-	"normal" = 400,
-	"semibold" = 600,
-	"bold" = 700,
-	"ultrabold" = 800,
-	"heavy" = 900 )
-storage.mode( PangoWeight ) <- 'integer'
-.PangoWeight <- c( "PANGO_WEIGHT_ULTRALIGHT" = 200,
-	"PANGO_WEIGHT_LIGHT" = 300,
-	"PANGO_WEIGHT_NORMAL" = 400,
-	"PANGO_WEIGHT_SEMIBOLD" = 600,
-	"PANGO_WEIGHT_BOLD" = 700,
-	"PANGO_WEIGHT_ULTRABOLD" = 800,
-	"PANGO_WEIGHT_HEAVY" = 900 )
-storage.mode( .PangoWeight ) <- 'integer'
+pangoScale <- 1024
+pangoScaleXXSmall <-  (1 / (1.2 * 1.2 * 1.2))
+pangoScaleXSmall <- (1 / (1.2 * 1.2))
+pangoScaleSmall <- (1 / 1.2)
+pangoScaleMedium <- 1
+pangoScaleLarge <- 1 * 1.2
+pangoScaleXLarge <- 1 * 1.2 * 1.2
+pangoScaleXXLarge <- 1 * 1.2 * 1.2 * 1.2
 
 # reason: now let's handle the functions where the text length is omitted
 pangoLayoutSetMarkupWithAccel <-
@@ -161,22 +142,22 @@ function(size, positions.in.pixels, ...)
 # these are macros that seem simple enough to reimplement in R
 # of course, if they change this will also need to be updated
 
-.PangoAscent <- function(x)
+pangoAscent <- function(x)
 {
 	rect <- as.PangoRectangle(x)
 	-rect$y
 }
-.PangoDescent <- function(x)
+pangoDescent <- function(x)
 {
 	rect <- as.PangoRectangle(x)
 	rect$y + rect$height
 }
-.PangoLBearing <- function(x)
+pangoLbearing <- function(x)
 {
 	rect <- as.PangoRectangle(x)
 	rect$x
 }
-.PangoRBearing <- function(x)
+pangoRbearing <- function(x)
 {
 	rect <- as.PangoRectangle(x)
 	rect$x + rect$width
@@ -185,5 +166,5 @@ function(size, positions.in.pixels, ...)
 pangoReorderItems <-
 function(logical.items)
 {
-	notimplemented("wouldn't work automatically due to memory management details and the API says its useless")
+	.notimplemented("wouldn't work automatically due to memory management details and the API says its useless")
 }

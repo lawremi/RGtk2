@@ -3421,9 +3421,6 @@ S_gtk_exit(USER_OBJECT_ s_error_code);
 S_gtk_disable_setlocale(); 
 
 	USER_OBJECT_
-S_gtk_set_locale(); 
-
-	USER_OBJECT_
 S_gtk_get_default_language(); 
 
 	USER_OBJECT_
@@ -3860,9 +3857,6 @@ S_gtk_notebook_set_page(USER_OBJECT_ s_object, USER_OBJECT_ s_page_num);
 
 	USER_OBJECT_
 S_gtk_object_get_type(); 
-
-	USER_OBJECT_
-S_gtk_object_sink(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
 S_gtk_object_destroy(USER_OBJECT_ s_object); 
@@ -7499,12 +7493,6 @@ S_gtk_window_group_add_window(USER_OBJECT_ s_object, USER_OBJECT_ s_window);
 
 	USER_OBJECT_
 S_gtk_window_group_remove_window(USER_OBJECT_ s_object, USER_OBJECT_ s_window); 
-
-	USER_OBJECT_
-S_gtk_window_remove_embedded_xid(USER_OBJECT_ s_object, USER_OBJECT_ s_xid); 
-
-	USER_OBJECT_
-S_gtk_window_add_embedded_xid(USER_OBJECT_ s_object, USER_OBJECT_ s_xid); 
 
 	USER_OBJECT_
 S_gtk_window_set_focus_on_map(USER_OBJECT_ s_object, USER_OBJECT_ s_setting); 

@@ -13,7 +13,7 @@ images and tags. If \code{start} and \code{end} are in a different buffer from
 \item{\code{start}}{[\code{\link{GtkTextIter}}]  a position in a \code{\link{GtkTextBuffer}}}
 \item{\code{end}}{[\code{\link{GtkTextIter}}]  another position in the same buffer as \code{start}}
 }
-\details{Implemented via emissions of the insert_text and apply_tag signals,
+\details{Implemented via emissions of the insert\_text and apply\_tag signals,
 so expect those.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

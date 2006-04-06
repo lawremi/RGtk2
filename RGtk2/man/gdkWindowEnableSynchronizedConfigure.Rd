@@ -11,7 +11,7 @@ protocol.}
 \usage{gdkWindowEnableSynchronizedConfigure(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}}
 \details{On X, calling this function makes \code{window} participate in the
-_NET_WM_SYNC_REQUEST window manager protocol.  
+\_NET\_WM\_SYNC\_REQUEST window manager protocol.  
 
   Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

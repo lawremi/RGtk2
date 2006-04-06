@@ -30,21 +30,6 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
 } 
 
 
-void
-S_GdkInputFunction(gpointer s_data, gint s_source, GdkInputCondition s_condition)
-{
-	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
-
-	g_value_init(&params[0], G_TYPE_INT);
-	g_value_init(&params[1], GDK_TYPE_INPUT_CONDITION);
-
-	g_value_set_int(&params[0], s_source);
-	g_value_set_flags(&params[1], s_condition);
-
-	g_closure_invoke(s_data, NULL, 2, params, NULL);
-} 
-
-
 gboolean
 S_GdkPixbufSaveFunc(gchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
 {

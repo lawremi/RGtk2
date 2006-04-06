@@ -1,6 +1,7 @@
 \name{GSignal}
 \alias{GSignal}
 \alias{gSignalConnect}
+\alias{connectSignal}
 \alias{gSignalHandlerDisconnect}
 \alias{gSignalHandlerBlock}
 \alias{gSignalHandlerUnblock}

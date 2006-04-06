@@ -224,8 +224,7 @@ Attributes to use for a newly-created window.
 \item{\code{GdkFilterReturn}}{
 Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
-\describe{\emph{undocumented
-}}
+
 
 }
 }}
@@ -235,12 +234,12 @@ Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event
 Describes the kind of window.
 
 \describe{
-\item{\code{GDK_WINDOW_ROOT (root)}}{root window; this window has no parent, covers the entire screen, and is created by the window system}
-\item{\code{GDK_WINDOW_TOPLEVEL (toplevel)}}{toplevel window (used to implement \code{\link{GtkWindow}})}
-\item{\code{GDK_WINDOW_CHILD (child)}}{child window (used to implement e.g. \code{\link{GtkButton}})}
-\item{\code{GDK_WINDOW_DIALOG (dialog)}}{useless/deprecated compatibility type}
-\item{\code{GDK_WINDOW_TEMP (temp)}}{override redirect temporary window (used to implement \code{\link{GtkMenu}})}
-\item{\code{GDK_WINDOW_FOREIGN (foreign)}}{foreign window (see \code{\link{gdkWindowForeignNew}})}
+\item{\code{root}}{root window; this window has no parent, covers the entire screen, and is created by the window system}
+\item{\code{toplevel}}{toplevel window (used to implement \code{\link{GtkWindow}})}
+\item{\code{child}}{child window (used to implement e.g. \code{\link{GtkButton}})}
+\item{\code{dialog}}{useless/deprecated compatibility type}
+\item{\code{temp}}{override redirect temporary window (used to implement \code{\link{GtkMenu}})}
+\item{\code{foreign}}{foreign window (see \code{gdk\Window\Foreign\New()})}
 }
 
 }
@@ -250,8 +249,8 @@ Describes the kind of window.
 you can't draw on them.
 
 \describe{
-\item{\code{GDK_INPUT_OUTPUT (output)}}{window for graphics and events}
-\item{\code{GDK_INPUT_ONLY (only)}}{window for events only}
+\item{\code{output}}{window for graphics and events}
+\item{\code{only}}{window for events only}
 }
 
 }
@@ -262,19 +261,19 @@ to. Also, the presence/absence of \code{GDK.HINT.POS}, \code{GDK.HINT.USER.POS},
 \code{\link{GdkGeometry}} fields.  \code{GDK.HINT.USER.POS} will be set automatically by \code{\link{GtkWindow}}
 if you call \code{\link{gtkWindowMove}}. \code{GDK.HINT.USER.POS} and \code{GDK.HINT.USER.SIZE} 
 should be set if the user specified a size/position using a --geometry 
-command-line argument; \code{gtkWindowParseGeometry()} automatically sets these
+command-line argument; \code{gtk\Window\Parse\Geometry()} automatically sets these
 flags.
 
 \describe{
-\item{\code{GDK_HINT_POS (pos)}}{indicates that the program has positioned the window}
-\item{\code{GDK_HINT_MIN_SIZE (min-size)}}{min size fields are set}
-\item{\code{GDK_HINT_MAX_SIZE (max-size)}}{max size fields are set}
-\item{\code{GDK_HINT_BASE_SIZE (base-size)}}{base size fields are set}
-\item{\code{GDK_HINT_ASPECT (aspect)}}{aspect ratio fields are set}
-\item{\code{GDK_HINT_RESIZE_INC (resize-inc)}}{resize increment fields are set}
-\item{\code{GDK_HINT_WIN_GRAVITY (win-gravity)}}{window gravity field is set}
-\item{\code{GDK_HINT_USER_POS (user-pos)}}{indicates that the window's position was explicitly set by the user}
-\item{\code{GDK_HINT_USER_SIZE (user-size)}}{indicates that the window's size was explicitly set by the user}
+\item{\code{pos}}{indicates that the program has positioned the window}
+\item{\code{min-size}}{min size fields are set}
+\item{\code{max-size}}{max size fields are set}
+\item{\code{base-size}}{base size fields are set}
+\item{\code{aspect}}{aspect ratio fields are set}
+\item{\code{resize-inc}}{resize increment fields are set}
+\item{\code{win-gravity}}{window gravity field is set}
+\item{\code{user-pos}}{indicates that the window's position was explicitly set by the user}
+\item{\code{user-size}}{indicates that the window's size was explicitly set by the user}
 }
 
 }
@@ -286,16 +285,16 @@ Extended
 Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specification for more details.
 
 \describe{
-\item{\code{GDK_GRAVITY_NORTH_WEST (north-west)}}{the reference point is at the top left corner.}
-\item{\code{GDK_GRAVITY_NORTH (north)}}{the reference point is in the middle of the top edge.}
-\item{\code{GDK_GRAVITY_NORTH_EAST (north-east)}}{the reference point is at the top right corner.}
-\item{\code{GDK_GRAVITY_WEST (west)}}{the reference point is at the middle of the left edge.}
-\item{\code{GDK_GRAVITY_CENTER (center)}}{the reference point is at the center of the window.}
-\item{\code{GDK_GRAVITY_EAST (east)}}{the reference point is at the middle of the right edge.}
-\item{\code{GDK_GRAVITY_SOUTH_WEST (south-west)}}{the reference point is at the lower left corner.}
-\item{\code{GDK_GRAVITY_SOUTH (south)}}{the reference point is at the middle of the lower edge.}
-\item{\code{GDK_GRAVITY_SOUTH_EAST (south-east)}}{the reference point is at the lower right corner.}
-\item{\code{GDK_GRAVITY_STATIC (static)}}{the reference point is at the top left corner of the 
+\item{\code{north-west}}{the reference point is at the top left corner.}
+\item{\code{north}}{the reference point is in the middle of the top edge.}
+\item{\code{north-east}}{the reference point is at the top right corner.}
+\item{\code{west}}{the reference point is at the middle of the left edge.}
+\item{\code{center}}{the reference point is at the center of the window.}
+\item{\code{east}}{the reference point is at the middle of the right edge.}
+\item{\code{south-west}}{the reference point is at the lower left corner.}
+\item{\code{south}}{the reference point is at the middle of the lower edge.}
+\item{\code{south-east}}{the reference point is at the lower right corner.}
+\item{\code{static}}{the reference point is at the top left corner of the 
    window itself, ignoring window manager decorations.}
 }
 
@@ -304,14 +303,14 @@ Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specif
 Determines a window edge or corner. 
 
 \describe{
-\item{\code{GDK_WINDOW_EDGE_NORTH_WEST (north-west)}}{the top left corner.}
-\item{\code{GDK_WINDOW_EDGE_NORTH (north)}}{the top edge.}
-\item{\code{GDK_WINDOW_EDGE_NORTH_EAST (north-east)}}{the top right corner.}
-\item{\code{GDK_WINDOW_EDGE_WEST (west)}}{the left edge.}
-\item{\code{GDK_WINDOW_EDGE_EAST (east)}}{the right edge.}
-\item{\code{GDK_WINDOW_EDGE_SOUTH_WEST (south-west)}}{the lower left corner.}
-\item{\code{GDK_WINDOW_EDGE_SOUTH (south)}}{the lower edge.}
-\item{\code{GDK_WINDOW_EDGE_SOUTH_EAST (south-east)}}{the lower right corner.}
+\item{\code{north-west}}{the top left corner.}
+\item{\code{north}}{the top edge.}
+\item{\code{north-east}}{the top right corner.}
+\item{\code{west}}{the left edge.}
+\item{\code{east}}{the right edge.}
+\item{\code{south-west}}{the lower left corner.}
+\item{\code{south}}{the lower edge.}
+\item{\code{south-east}}{the lower right corner.}
 }
 
 }
@@ -326,16 +325,16 @@ Window Manager Hints (\url{http://www.freedesktop.org/Standards/wm-spec}) specif
 window types.
 
 \describe{
-\item{\code{GDK_WINDOW_TYPE_HINT_NORMAL (normal)}}{Normal toplevel window.}
-\item{\code{GDK_WINDOW_TYPE_HINT_DIALOG (dialog)}}{Dialog window.}
-\item{\code{GDK_WINDOW_TYPE_HINT_MENU (menu)}}{Window used to implement a menu.}
-\item{\code{GDK_WINDOW_TYPE_HINT_TOOLBAR (toolbar)}}{Window used to implement toolbars.}
-\item{\code{GDK_WINDOW_TYPE_HINT_SPLASHSCREEN (splashscreen)}}{Window used to display a splash 
+\item{\code{normal}}{Normal toplevel window.}
+\item{\code{dialog}}{Dialog window.}
+\item{\code{menu}}{Window used to implement a menu.}
+\item{\code{toolbar}}{Window used to implement toolbars.}
+\item{\code{splashscreen}}{Window used to display a splash 
   screen during application startup.}
-\item{\code{GDK_WINDOW_TYPE_HINT_UTILITY (utility)}}{Utility windows which are not detached 
+\item{\code{utility}}{Utility windows which are not detached 
   toolbars or dialogs.}
-\item{\code{GDK_WINDOW_TYPE_HINT_DOCK (dock)}}{Used for creating dock or panel windows.}
-\item{\code{GDK_WINDOW_TYPE_HINT_DESKTOP (desktop)}}{Used for creating the desktop background 
+\item{\code{dock}}{Used for creating dock or panel windows.}
+\item{\code{desktop}}{Used for creating the desktop background 
 window.}
 }
 
@@ -349,14 +348,14 @@ the \code{width}/\code{height}, \code{wclass}, and \code{window.type} fields are
 corresponding flag in \code{\link{GdkWindowAttributesType}}.
 
 \describe{
-\item{\code{GDK_WA_TITLE (title)}}{Honor the title field}
-\item{\code{GDK_WA_X (x)}}{Honor the X coordinate field}
-\item{\code{GDK_WA_Y (y)}}{Honor the Y coordinate field}
-\item{\code{GDK_WA_CURSOR (cursor)}}{Honor the cursor field}
-\item{\code{GDK_WA_COLORMAP (colormap)}}{Honor the colormap field}
-\item{\code{GDK_WA_VISUAL (visual)}}{Honor the visual field}
-\item{\code{GDK_WA_WMCLASS (wmclass)}}{Honor the wmclass_class and wmclass_name fields}
-\item{\code{GDK_WA_NOREDIR (noredir)}}{Honor the override_redirect field}
+\item{\code{title}}{Honor the title field}
+\item{\code{x}}{Honor the X coordinate field}
+\item{\code{y}}{Honor the Y coordinate field}
+\item{\code{cursor}}{Honor the cursor field}
+\item{\code{colormap}}{Honor the colormap field}
+\item{\code{visual}}{Honor the visual field}
+\item{\code{wmclass}}{Honor the wmclass\_class and wmclass\_name fields}
+\item{\code{noredir}}{Honor the override\_redirect field}
 }
 
 }
@@ -364,10 +363,10 @@ corresponding flag in \code{\link{GdkWindowAttributesType}}.
 Specifies the result of applying a \code{\link{GdkFilterFunc}} to a native event.
 
 \describe{
-\item{\code{GDK_FILTER_CONTINUE (continue)}}{event not handled, continue processing.}
-\item{\code{GDK_FILTER_TRANSLATE (translate)}}{native event translated into a GDK event and stored
+\item{\code{continue}}{event not handled, continue processing.}
+\item{\code{translate}}{native event translated into a GDK event and stored
                        in the \code{event} structure that was passed in.}
-\item{\code{GDK_FILTER_REMOVE (remove)}}{event handled, terminate processing.}
+\item{\code{remove}}{event handled, terminate processing.}
 }
 
 }
@@ -379,29 +378,29 @@ Hyper, Alt, Compose, Apple, CapsLock or ShiftLock.
 Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
 
 \describe{
-\item{\code{GDK_SHIFT_MASK (shift-mask)}}{the Shift key.}
-\item{\code{GDK_LOCK_MASK (lock-mask)}}{a Lock key (depending on the modifier mapping of the 
+\item{\code{shift-mask}}{the Shift key.}
+\item{\code{lock-mask}}{a Lock key (depending on the modifier mapping of the 
   X server this may either be CapsLock or ShiftLock).}
-\item{\code{GDK_CONTROL_MASK (control-mask)}}{the Control key.}
-\item{\code{GDK_MOD1_MASK (mod1-mask)}}{the fourth modifier key (it depends on the modifier 
+\item{\code{control-mask}}{the Control key.}
+\item{\code{mod1-mask}}{the fourth modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier, but 
   normally it is the Alt key).}
-\item{\code{GDK_MOD2_MASK (mod2-mask)}}{the fifth modifier key (it depends on the modifier 
+\item{\code{mod2-mask}}{the fifth modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier).}
-\item{\code{GDK_MOD3_MASK (mod3-mask)}}{the sixth modifier key (it depends on the modifier 
+\item{\code{mod3-mask}}{the sixth modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier).}
-\item{\code{GDK_MOD4_MASK (mod4-mask)}}{the seventh modifier key (it depends on the modifier 
+\item{\code{mod4-mask}}{the seventh modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier).}
-\item{\code{GDK_MOD5_MASK (mod5-mask)}}{the eighth modifier key (it depends on the modifier 
+\item{\code{mod5-mask}}{the eighth modifier key (it depends on the modifier 
   mapping of the X server which key is interpreted as this modifier).}
-\item{\code{GDK_BUTTON1_MASK (button1-mask)}}{the first mouse button.}
-\item{\code{GDK_BUTTON2_MASK (button2-mask)}}{the second mouse button.}
-\item{\code{GDK_BUTTON3_MASK (button3-mask)}}{the third mouse button.}
-\item{\code{GDK_BUTTON4_MASK (button4-mask)}}{the fourth mouse button.}
-\item{\code{GDK_BUTTON5_MASK (button5-mask)}}{the fifth mouse button.}
-\item{\code{GDK_RELEASE_MASK (release-mask)}}{not used in GDK itself. GTK+ uses it to differentiate 
+\item{\code{button1-mask}}{the first mouse button.}
+\item{\code{button2-mask}}{the second mouse button.}
+\item{\code{button3-mask}}{the third mouse button.}
+\item{\code{button4-mask}}{the fourth mouse button.}
+\item{\code{button5-mask}}{the fifth mouse button.}
+\item{\code{release-mask}}{not used in GDK itself. GTK+ uses it to differentiate 
   between (keyval, modifiers) pairs from key press and release events.}
-\item{\code{GDK_MODIFIER_MASK (modifier-mask)}}{a mask covering all modifier types.}
+\item{\code{modifier-mask}}{a mask covering all modifier types.}
 }
 
 }
@@ -411,13 +410,13 @@ The window manager can use them when determining how to decorate
 the window. The hint must be set before mapping the window.
 
 \describe{
-\item{\code{GDK_DECOR_ALL (all)}}{all decorations should be applied.}
-\item{\code{GDK_DECOR_BORDER (border)}}{a frame should be drawn around the window.}
-\item{\code{GDK_DECOR_RESIZEH (resizeh)}}{the frame should have resize handles.}
-\item{\code{GDK_DECOR_TITLE (title)}}{a titlebar should be placed above the window.}
-\item{\code{GDK_DECOR_MENU (menu)}}{a button for opening a menu should be included.}
-\item{\code{GDK_DECOR_MINIMIZE (minimize)}}{a minimize button should be included.}
-\item{\code{GDK_DECOR_MAXIMIZE (maximize)}}{a maximize button should be included.}
+\item{\code{all}}{all decorations should be applied.}
+\item{\code{border}}{a frame should be drawn around the window.}
+\item{\code{resizeh}}{the frame should have resize handles.}
+\item{\code{title}}{a titlebar should be placed above the window.}
+\item{\code{menu}}{a button for opening a menu should be included.}
+\item{\code{minimize}}{a minimize button should be included.}
+\item{\code{maximize}}{a maximize button should be included.}
 }
 
 }
@@ -428,12 +427,12 @@ to offer for the window.
 The hint must be set before mapping the window.
 
 \describe{
-\item{\code{GDK_FUNC_ALL (all)}}{all functions should be offered.}
-\item{\code{GDK_FUNC_RESIZE (resize)}}{the window should be resizable.}
-\item{\code{GDK_FUNC_MOVE (move)}}{the window should be movable.}
-\item{\code{GDK_FUNC_MINIMIZE (minimize)}}{the window should be minimizable.}
-\item{\code{GDK_FUNC_MAXIMIZE (maximize)}}{the window should be maximizable.}
-\item{\code{GDK_FUNC_CLOSE (close)}}{the window should be closable.}
+\item{\code{all}}{all functions should be offered.}
+\item{\code{resize}}{the window should be resizable.}
+\item{\code{move}}{the window should be movable.}
+\item{\code{minimize}}{the window should be minimizable.}
+\item{\code{maximize}}{the window should be maximizable.}
+\item{\code{close}}{the window should be closable.}
 }
 
 }

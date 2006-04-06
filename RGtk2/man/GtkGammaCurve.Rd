@@ -16,7 +16,7 @@
                                  +----GtkGammaCurve}}
 \section{Interfaces}{GtkGammaCurve implements
  AtkImplementorIface.}
-\section{Detailed Description}{\emph{  
+\section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -24,7 +24,7 @@
  of general interest. However, we are not accepting new features for
  the widget, and it will eventually move out of the GTK+
  distribution.
-  }  
+    
 The \code{\link{GtkGammaCurve}} widget is a variant of \code{\link{GtkCurve}} specifically for
 editing gamma curves, which are used in graphics applications such as the
 Gimp.

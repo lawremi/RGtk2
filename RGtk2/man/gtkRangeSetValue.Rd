@@ -3,7 +3,7 @@
 \title{gtkRangeSetValue}
 \description{Sets the current value of the range; if the value is outside the
 minimum or maximum range values, it will be clamped to fit inside
-them. The range emits the "value_changed" signal if the value
+them. The range emits the "value\_changed" signal if the value
 changes.}
 \usage{gtkRangeSetValue(object, value)}
 \arguments{

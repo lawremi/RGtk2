@@ -68,10 +68,10 @@ when embedding a \command{Qt} widget in GTK or vice versa.
 A socket can also be used to swallow arbitrary 
 pre-existing top-level windows using \code{\link{gtkSocketSteal}},
 though the integration when this is done will not be as close
-as between a \code{\link{GtkPlug}} and a \code{\link{GtkSocket}}.  \emph{  
+as between a \code{\link{GtkPlug}} and a \code{\link{GtkSocket}}.  \strong{PLEASE NOTE:}   
 The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.
-  }}
+  }
 \section{Structures}{\describe{\item{\code{GtkSocket}}{
 The \code{\link{GtkSocket}} structure contains the \code{plug_window}
 field.  (This field should be considered read-only. It should

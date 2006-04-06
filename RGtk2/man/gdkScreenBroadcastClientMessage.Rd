@@ -8,13 +8,13 @@
 \item{\code{object}}{[\code{\link{GdkScreen}}]  the \code{\link{GdkScreen}} where the event will be broadcasted.}
 \item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEvent}}.}
 }
-\details{Toplevel windows are determined by checking for the WM_STATE property, 
+\details{Toplevel windows are determined by checking for the WM\_STATE property, 
 as described in the Inter-Client Communication Conventions Manual (ICCCM).
-If no windows are found with the WM_STATE property set, the message is 
+If no windows are found with the WM\_STATE property set, the message is 
 sent to all children of the root window.
   
 On Windows, broadcasts a message registered with the name
-GDK_WIN32_CLIENT_MESSAGE to all top-level windows. The amount of
+GDK\_WIN32\_CLIENT\_MESSAGE to all top-level windows. The amount of
 data is limited to one long, i.e. four bytes.  
 
   Since  2.2}

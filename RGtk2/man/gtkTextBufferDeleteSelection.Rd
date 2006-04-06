@@ -1,7 +1,7 @@
 \alias{gtkTextBufferDeleteSelection}
 \name{gtkTextBufferDeleteSelection}
 \title{gtkTextBufferDeleteSelection}
-\description{Deletes the range between the "insert" and "selection_bound" marks,
+\description{Deletes the range between the "insert" and "selection\_bound" marks,
 that is, the currently-selected text. If \code{interactive} is \code{TRUE},
 the editability of the selection will be considered (users can't delete
 uneditable text).}

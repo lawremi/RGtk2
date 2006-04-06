@@ -10,8 +10,8 @@ Sets the data for a portion of a row.
 \item{\code{object}}{[\code{\link{GtkPreview}}] a \code{\link{GtkPreview}}.}
 \item{\code{data}}{[raw] the new data for the portion. It should contain
        \code{w} bytes of data if the preview is of type
-       GTK_TYPE_GRAYSCALE, and 3*\code{w} bytes of data
-       if the preview is of type GTK_TYPE_COLOR.}
+       GTK\_TYPE\_GRAYSCALE, and 3*\code{w} bytes of data
+       if the preview is of type GTK\_TYPE\_COLOR.}
 \item{\code{y}}{[integer] the row to change.}
 \item{\code{w}}{[integer] the number of pixels in the row to change.}
 }

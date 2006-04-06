@@ -49,7 +49,7 @@ when GDK gets multihead support.
 
 }}}
 \section{Signals}{\describe{\item{\code{size-changed(screen, user.data)}}{
-The ::size_changed signal is emitted when the pixel width or 
+The ::size\_changed signal is emitted when the pixel width or 
 height of a screen changes.  
 
   Since  2.2

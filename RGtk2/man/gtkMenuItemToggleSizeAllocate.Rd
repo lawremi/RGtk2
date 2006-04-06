@@ -1,7 +1,7 @@
 \alias{gtkMenuItemToggleSizeAllocate}
 \name{gtkMenuItemToggleSizeAllocate}
 \title{gtkMenuItemToggleSizeAllocate}
-\description{Emits the "toggle_size_allocate" signal on the given item.}
+\description{Emits the "toggle\_size\_allocate" signal on the given item.}
 \usage{gtkMenuItemToggleSizeAllocate(object, allocation)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkMenuItem}}] the menu item.}

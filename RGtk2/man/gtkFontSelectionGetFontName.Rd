@@ -5,7 +5,8 @@
 \usage{gtkFontSelectionGetFontName(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkFontSelection}}] a \code{\link{GtkFontSelection}}.}}
 \value{[character] the name of the currently selected font, or \code{NULL} if
-    no font is selected.
-A newly allocated string with the currently-se.}
+    no font is selected.  You should \code{g\Free()} the returned font name
+    after you are done with it.
+A newly allocated string with the currently-se}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,7 +9,7 @@ windows. But normally the window will end up fullscreen. Just
 don't write code that crashes if not.}
 \usage{gtkWindowFullscreen(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\details{You can track the fullscreen state via the "window_state_event" signal
+\details{You can track the fullscreen state via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.  
 
   Since  2.2}

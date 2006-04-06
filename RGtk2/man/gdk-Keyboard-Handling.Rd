@@ -115,7 +115,7 @@ be mapped to a keyval.
 }}
 \section{Signals}{\describe{
 \item{\code{direction-changed(keymap, user.data)}}{
-The ::direction_changed signal gets emitted when the direction of
+The ::direction\_changed signal gets emitted when the direction of
 the keymap changes.  
 
   Since  2.0
@@ -127,7 +127,7 @@ the keymap changes.
 
 }
 \item{\code{keys-changed(keymap, user.data)}}{
-The ::keys_changed signal is emitted when the mapping represented by
+The ::keys\_changed signal is emitted when the mapping represented by
 \code{keymap} changes.  
 
   Since  2.2

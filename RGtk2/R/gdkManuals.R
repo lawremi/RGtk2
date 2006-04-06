@@ -149,15 +149,15 @@ function()
 gdkDisplaySetPointerHooks <-
 function(object, new.hooks)
 {
-        notimplemented("does not have user data for the hooks. What are you trying to do... implement an event system in R? Come on")
+        .notimplemented("does not have user data for the hooks. What are you trying to do... implement an event system in R? Come on")
 }
 gdkSetPointerHooks <-
 function(object, new.hooks)
 {
-        notimplemented("does not have user data for the hooks. What are you trying to do... implement an event system in R? Come on")
+        .notimplemented("does not have user data for the hooks. What are you trying to do... implement an event system in R? Come on")
 }
 gdkColorsStore <-
 function(object, colors)
 {
-	notimplemented("is obsolete and would probably break things if you used it. Just use a new colormap or something")
+	.notimplemented("is obsolete and would probably break things if you used it. Just use a new colormap or something")
 }

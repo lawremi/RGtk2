@@ -23,7 +23,7 @@ window <- gtkDialogNewWithButtons("GtkEntryCompletion",
                       "gtk-close",
                       GtkResponseType["none"], show = F)
 window$setResizable(FALSE)
-connectSignal(window, "response", gtkWidgetDestroy)
+gSignalConnect(window, "response", gtkWidgetDestroy)
 vbox <- gtkVBoxNew(FALSE, 5)
 window[["vbox"]]$packStart(vbox, TRUE, TRUE, 0)
 vbox$setBorderWidth(5)

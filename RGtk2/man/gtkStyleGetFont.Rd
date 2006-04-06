@@ -10,6 +10,8 @@ use \code{style->font.desc} instead.
 }
 \usage{gtkStyleGetFont(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}}
-\value{[\code{\link{GdkFont}}]  the \code{\link{GdkFont}} for the style.}
+\value{[\code{\link{GdkFont}}]  the \code{\link{GdkFont}} for the style. This font is owned
+  by the style; if you want to keep around a copy, you must
+  call \code{gdk\Font\Ref()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -20,7 +20,7 @@
          +----GdkPixmap}}
 \section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the
 standard drawing primitives, then copied to another drawable (such as
-a \code{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
+a \code{\link{GdkWindow}}) with \code{gdk\Pixmap\Draw()}. The depth of a pixmap
 is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}

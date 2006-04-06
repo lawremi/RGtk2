@@ -44,22 +44,22 @@ the triangles used in a \code{\link{GtkTreeView}}.
       expander widget has an \code{expanded} property
       which can be used to monitor its expansion state.  You should
       watch this property with a signal connection as follows:
-      \preformatted{expander = gtk_expander_new_with_mnemonic ("_More Options");
-g_signal_connect (expander, "notify::expanded",
-                  G_CALLBACK (expander_callback), NULL);
+      \preformatted{expander = gtk\_expander\_new\_with\_mnemonic ("\_More Options");
+g\_signal\_connect (expander, "notify::expanded",
+                  G\_CALLBACK (expander\_callback), NULL);
 
 ...
 
 static void
-expander_callback (GObject    *object,
-                   GParamSpec *param_spec,
-                   gpointer    user_data)
+expander\_callback (GObject    *object,
+                   GParamSpec *param\_spec,
+                   gpointer    user\_data)
 {
   GtkExpander *expander;
 
-  expander = GTK_EXPANDER (object);
+  expander = GTK\_EXPANDER (object);
 
-  if (gtk_expander_get_expanded (expander))
+  if (gtk\_expander\_get\_expanded (expander))
     {
       /* Show or create widgets */
     }
@@ -105,7 +105,7 @@ Space to put between the label and the child.  Allowed values: >= 0  Default val
 }
 \item{\code{use-markup} [logical : Read / Write / Construct]}{
 
-The text of the label includes XML markup. See pango_parse_markup().  Default value: FALSE
+The text of the label includes XML markup. See pango\_parse\_markup().  Default value: FALSE
 
 }
 \item{\code{use-underline} [logical : Read / Write / Construct]}{

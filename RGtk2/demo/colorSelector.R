@@ -66,7 +66,7 @@ vbox$packStart(frame, TRUE, TRUE, 0)
 
 da <- gtkDrawingAreaNew()
 
-connectSignal(da, "expose_event", expose.event.callback)
+gSignalConnect(da, "expose_event", expose.event.callback)
 
 # set a minimum size
 da$setSizeRequest(200, 200)
@@ -83,6 +83,6 @@ alignment$add(button)
 
 vbox$packStart(alignment, FALSE, FALSE, 0)
 
-connectSignal(button, "clicked", change.color.callback)
+gSignalConnect(button, "clicked", change.color.callback)
 
 gtkWidgetShowAll(window)

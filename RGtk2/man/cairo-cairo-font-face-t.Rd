@@ -1,7 +1,7 @@
 \alias{cairo-cairo-font-face-t}
 \alias{CairoFontFace}
 \name{cairo-cairo-font-face-t}
-\title{cairo_font_face_t}
+\title{cairo\_font\_face\_t}
 \description{Base class for fonts}
 \section{Methods and Functions}{
 \code{\link{cairoFontFaceStatus}(font.face)}\cr

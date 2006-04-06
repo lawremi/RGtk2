@@ -2,9 +2,9 @@
 \name{gtkToolButtonSetLabel}
 \title{gtkToolButtonSetLabel}
 \description{Sets \code{label} as the label used for the tool button. The "label" property
-only has an effect if not overridden by a non-\code{NULL} "label_widget" property.
-If both the "label_widget" and "label" properties are \code{NULL}, the label
-is determined by the "stock_id" property. If the "stock_id" property is also
+only has an effect if not overridden by a non-\code{NULL} "label\_widget" property.
+If both the "label\_widget" and "label" properties are \code{NULL}, the label
+is determined by the "stock\_id" property. If the "stock\_id" property is also
 \code{NULL}, \code{button} will not have a label.}
 \usage{gtkToolButtonSetLabel(object, label = NULL)}
 \arguments{

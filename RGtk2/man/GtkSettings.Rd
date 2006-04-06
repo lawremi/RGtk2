@@ -153,12 +153,12 @@ Name of theme RC file to load.  Default value: "Raleigh"
 }
 \item{\code{gtk-toolbar-icon-size} [\code{\link{GtkIconSize}} : Read / Write]}{
 
-Size of icons in default toolbars.  Default value: GTK_ICON_SIZE_LARGE_TOOLBAR
+Size of icons in default toolbars.  Default value: GTK\_ICON\_SIZE\_LARGE\_TOOLBAR
 
 }
 \item{\code{gtk-toolbar-style} [\code{\link{GtkToolbarStyle}} : Read / Write]}{
 
-Whether default toolbars have text only, text and icons, icons only, etc.  Default value: GTK_TOOLBAR_BOTH
+Whether default toolbars have text only, text and icons, icons only, etc.  Default value: GTK\_TOOLBAR\_BOTH
 
 }
 \item{\code{gtk-xft-antialias} [integer : Read / Write]}{

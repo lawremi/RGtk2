@@ -7,41 +7,26 @@ as.GType <- function(x)
 {
 	mapping <- c("integer" = "gint", "character" = "gchararray", "logical" = "gboolean",
 		"numeric" = "gdouble", "raw" = "guchar", "externalptr" = "gpointer") 
-    type <- x
-    if (is.character(type)) {
-		if (type %in% names(mapping))
-			type <- mapping[[type]]
-        type <- try(gTypeFromName(type), TRUE)
-        if (inherits(type, "try-error")) {
-            func <- paste(tolower(substring(x, 1, 1)), substring(x, 2), "GetType", sep="")
-            if (exists(func))
-                type <- do.call(func, list())
-        }
-    } 
+  type <- x
+  if (is.character(type)) {
+    if (type %in% names(mapping))
+      type <- mapping[[type]]
+    type <- try(gTypeFromName(type), TRUE)
+    if (inherits(type, "try-error")) {
+      func <- paste(tolower(substring(x, 1, 1)), substring(x, 2), "GetType", sep="")
+      if (exists(func))
+        type <- do.call(func, list())
+      }
+  }
 	if (!inherits(type, "GType"))
 		stop("Cannot convert ", x, " to GType")
 	type
 }
 
-gObjectTypeName <-
-function(w)
+interface.GObject <-
+function(obj)
 {
- checkPtrType(w, "GObject")
- .Call("R_gObjectTypeName", w, PACKAGE = "RGtk2")
-}
-
-gObjectGetClasses <-
-function(w, check = TRUE)
-{
- if(check)
-     checkPtrType(w, "GObject")
- .Call("R_getGObjectTypeHierarchy", w, PACKAGE = "RGtk2")
-}
-gObjectGetInterfaces <-
-function(w)
-{
- checkPtrType(w, "GObject")
- .Call("R_getInterfaces", w, PACKAGE = "RGtk2")
+ attr(obj, "interfaces")
 }
 
 gTypeGetAncestors <-
@@ -58,24 +43,10 @@ function(type)
 	.Call("R_getGTypeClass", type, PACKAGE = "RGtk2")
 }
 
-gObjectType <-
-function(w, check = TRUE)
-{
- if(check)
-    checkPtrType(w, "GObject")
- .Call("R_gObjectType", w, PACKAGE = "RGtk2")
-}
-
 gTypeFromName <-
 function(name)
 {
  .Call("R_gTypeFromName", as.character(name), PACKAGE = "RGtk2")
-}
-
-print.GType <-
-function(x,...)
-{
-  print(names(x), ...)
 }
 
 # GSignal support
@@ -100,21 +71,21 @@ function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
   	as.logical(after), as.logical(user.data.first), PACKAGE = "RGtk2")
 }
 
-disconnectSignal <- gSignalHandlerDisconnect <-
+gSignalHandlerDisconnect <-
 function(obj, id)
 {
  checkPtrType(obj, "GObject")
  .Call("R_disconnectGSignalHandler", obj, as.integer(id), PACKAGE = "RGtk2")
 }
 
-blockSignal <- gSignalHandlerBlock <-
+gSignalHandlerBlock <-
 function(obj, id)
 {
   checkPtrType(obj, "GObject")
  .Call("R_blockGSignalHandler", obj, as.integer(id), TRUE, PACKAGE = "RGtk2")
 }
 
-unblockSignal <- gSignalHandlerUnblock <-
+gSignalHandlerUnblock <-
 function(obj, id)
 {
   checkPtrType(obj, "GObject")
@@ -129,22 +100,22 @@ function(obj, signal, detail = NULL)
 	.Call("R_gSignalStopEmission", obj, signal, PACKAGE = "RGtk2")
 }
 
-getSignals <- gObjectGetSignals <-
+gObjectGetSignals <-
 function(obj)
 {
   checkPtrType(obj, "GObject")
-  type <- gObjectType(type)
-  els <- getSignalsForType(type)
+  type <- obj$getType()
+  els <- .gTypeGetSignals(type)
   els
 }
 
-getSignalsForType <- gTypeGetSignals <-
+.gTypeGetSignals <-
 function(type)
 {
   if(is.character(type))
-    type <- gTypeFromName(type)
+    type <- as.GType(type)
   else if(inherits(type, "GObject")) {
-    type <- gObjectType(type)
+    type <- type$getType()
   }
 
   checkPtrType(type, "GType")
@@ -160,10 +131,10 @@ gSignalGetInfo <-
 function(sig)
 {
  checkPtrType(sig, "GSignalId")
- .Call("R_getSignalInfo", sig, PACKAGE = "RGtk2")
+ .Call("R_getGSignalInfo", sig, PACKAGE = "RGtk2")
 }
 
-emitSignal <- gSignalEmit <-
+gSignalEmit <-
 function(obj, signal, ..., detail = NULL)
 {
   checkPtrType(obj, "GObject")
@@ -192,13 +163,13 @@ gObjectGetPropInfo <-
 function(obj, parents = TRUE, collapse = FALSE)
 {
   if(is.character(obj))
-    obj <- gTypeFromName(obj)
+    obj <- as.GType(obj)
 
   if(inherits(obj, "GType"))
     type <- obj
   else {
     checkPtrType(obj, "GObject")
-    type <- gObjectType(obj)
+    type <- obj$getType()
   }
   v <- .Call("R_getGTypeParamSpecs", as.numeric(type), as.logical(parents), PACKAGE = "RGtk2")
 
@@ -222,7 +193,7 @@ function(obj, parents = TRUE, collapse = FALSE)
 }
 
 
-gObjectGet <- gObjectGetProps <-
+gObjectGet <-
 function(obj, ...)
 {
    checkPtrType(obj, "GObject")
@@ -235,8 +206,8 @@ function(obj, value, ...)
  gObjectGet(obj, c(value, ...))
 }
 
-gObjectSet <- gObjectSetProps <-
-function(obj, ... = TRUE)
+gObjectSet <-
+function(obj, ...)
 {
   args <- list(...)
   checkPtrType(obj, "GObject")
@@ -340,7 +311,7 @@ function(obj, name)
 
 "==.RGtkObject" <-
 function(x, y) {
-	ptrToNumeric(x) == ptrToNumeric(y)
+	.ptrToNumeric(x) == .ptrToNumeric(y)
 }
 
 # Fields
@@ -358,7 +329,7 @@ function(x, field)
   if (!inherits(sym, "try-error"))
 	  val <- eval(substitute(sym(x), list(sym=sym)))
   else if (inherits(x, "GObject")) {
-   val <- gObjectGetProps(x, field)
+   val <- x$get(field)
   } else val <- sym
   return(val)
 }
@@ -373,7 +344,7 @@ function(x, name, value)
   if (!inherits(sym, "try-error"))
 	  val <- eval(substitute(sym(x, value), list(sym=sym)))
   else if(inherits(x, "GObject"))
-   val <- gObjectSetProps(x, name)
+   val <- x$set(name)
   else val <- sym
   return(val)
 }

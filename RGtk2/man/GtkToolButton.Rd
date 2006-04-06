@@ -34,19 +34,19 @@
 \section{Detailed Description}{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
   
 Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
-\code{gtkToolButtonNewWithStock()} to create a \code{\link{GtkToolButton}}
+\code{gtk\Tool\Button\New\With\Stock()} to create a \code{\link{GtkToolButton}}
 containing a stock item.
   
 The label of a \code{\link{GtkToolButton}} is determined by the properties
-"label_widget", "label", and "stock_id". If "label_widget" is
+"label\_widget", "label", and "stock\_id". If "label\_widget" is
 non-\code{NULL}, then that widget is used as the label. Otherwise, if
 "label" is non-\code{NULL}, that string is used as the label. Otherwise, if
-"stock_id" is non-\code{NULL}, the label is determined by the stock
+"stock\_id" is non-\code{NULL}, the label is determined by the stock
 item. Otherwise, the button does not have a label.
   
 The icon of a \code{\link{GtkToolButton}} is determined by the properties
-"icon_widget" and "stock_id". If "icon_widget" is non-\code{NULL}, then
-that widget is used as the icon. Otherwise, if "stock_id" is
+"icon\_widget" and "stock\_id". If "icon\_widget" is non-\code{NULL}, then
+that widget is used as the icon. Otherwise, if "stock\_id" is
 non-\code{NULL}, the icon is determined by the stock item. Otherwise,
 the button does not have a label.}
 \section{Structures}{\describe{\item{\code{GtkToolButton}}{
@@ -70,7 +70,7 @@ or activated with the keyboard.
 
 The name of the themed icon displayed on the item.
 This property only has an effect if not overridden by "label", 
-"icon_widget" or "stock_id" properties.  
+"icon\_widget" or "stock\_id" properties.  
 
   Default value: NULL  Since  2.8 
 

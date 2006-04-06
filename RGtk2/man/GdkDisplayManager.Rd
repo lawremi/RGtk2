@@ -22,7 +22,7 @@ fields.
 
 }}}
 \section{Signals}{\describe{\item{\code{display-opened(display.manager, display, user.data)}}{
-The ::display_opened signal is emitted when a display is opened.  
+The ::display\_opened signal is emitted when a display is opened.  
 
   Since  2.2
 

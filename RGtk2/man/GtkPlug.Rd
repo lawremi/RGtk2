@@ -28,10 +28,10 @@ ID of that widgets window to the other process,
 which then creates a \code{\link{GtkPlug}} with that window ID.
 Any widgets contained in the \code{\link{GtkPlug}} then will appear
 inside the first applications window.
-  \emph{  
+  \strong{PLEASE NOTE:}   
 The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.
-  }}
+  }
 \section{Structures}{\describe{\item{\code{GtkPlug}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkPlug} is the equivalent of \code{\link{gtkPlugNew}}.}

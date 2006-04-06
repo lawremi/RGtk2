@@ -1,0 +1,39 @@
+\alias{as.AtkAttribute}
+\alias{as.AtkAttributeSet}
+\alias{as.AtkTextRectangle}
+\alias{as.GClosure}
+\alias{as.GList}
+\alias{as.GParamSpec}
+\alias{as.GQuark}
+\alias{as.GSList}
+\alias{as.GString}
+\alias{as.GTimeVal}
+\alias{as.GType}
+\alias{as.GdkAtom}
+\alias{as.GdkColor}
+\alias{as.GdkGCValues}
+\alias{as.GdkGeometry}
+\alias{as.GdkKeymapKey}
+\alias{as.GdkNativeWindow}
+\alias{as.GdkPoint}
+\alias{as.GdkRectangle}
+\alias{as.GdkRgbCmap}
+\alias{as.GdkSegment}
+\alias{as.GdkSpan}
+\alias{as.GdkWindowAttr}
+\alias{as.GtkActionEntry}
+\alias{as.GtkAllocation}
+\alias{as.GtkFileFilterInfo}
+\alias{as.GtkItemFactoryEntry}
+\alias{as.GtkRadioActionEntry}
+\alias{as.GtkSettingsValue}
+\alias{as.GtkStockItem}
+\alias{as.GtkTargetEntry}
+\alias{as.GtkToggleActionEntry}
+\alias{as.PangoRectangle}
+\alias{as.struct}
+\name{coercion}
+\title{Coercion of R lists to C structures}
+\description{This function coerces an R list to the named C type. This helps form the basis
+of the transparent type system.}
+\keyword{internal}

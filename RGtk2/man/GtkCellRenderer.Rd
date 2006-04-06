@@ -58,12 +58,12 @@ respectively.}
 Tells how a cell is to be rendererd.
 
 \describe{
-\item{\code{GTK_CELL_RENDERER_SELECTED (selected)}}{The cell is currently selected, and
+\item{\code{selected}}{The cell is currently selected, and
 probably has a selection colored background to render to.}
-\item{\code{GTK_CELL_RENDERER_PRELIT (prelit)}}{The mouse is hovering over the cell.}
-\item{\code{GTK_CELL_RENDERER_INSENSITIVE (insensitive)}}{The cell is drawn in an insensitive manner}
-\item{\code{GTK_CELL_RENDERER_SORTED (sorted)}}{The cell is in a sorted row}
-\item{\code{GTK_CELL_RENDERER_FOCUSED (focused)}}{\emph{undocumented
+\item{\code{prelit}}{The mouse is hovering over the cell.}
+\item{\code{insensitive}}{The cell is drawn in an insensitive manner}
+\item{\code{sorted}}{The cell is in a sorted row}
+\item{\code{focused}}{\emph{undocumented
 }}
 }
 
@@ -72,12 +72,12 @@ probably has a selection colored background to render to.}
 Identifies how the user can interact with a particular cell.
 
 \describe{
-\item{\code{GTK_CELL_RENDERER_MODE_INERT (inert)}}{The cell is just for display
+\item{\code{inert}}{The cell is just for display
 and cannot be interacted with.  Note that this doesn't mean that eg. the
 row being drawn can't be selected -- just that a particular element of
 it cannot be individually modified.}
-\item{\code{GTK_CELL_RENDERER_MODE_ACTIVATABLE (activatable)}}{The cell can be clicked.}
-\item{\code{GTK_CELL_RENDERER_MODE_EDITABLE (editable)}}{The cell can be edited or otherwise modified.}
+\item{\code{activatable}}{The cell can be clicked.}
+\item{\code{editable}}{The cell can be edited or otherwise modified.}
 }
 
 }
@@ -163,7 +163,7 @@ Row has children.  Default value: FALSE
 }
 \item{\code{mode} [\code{\link{GtkCellRendererMode}} : Read / Write]}{
 
-Editable mode of the CellRenderer.  Default value: GTK_CELL_RENDERER_MODE_INERT
+Editable mode of the CellRenderer.  Default value: GTK\_CELL\_RENDERER\_MODE\_INERT
 
 }
 \item{\code{sensitive} [logical : Read / Write]}{

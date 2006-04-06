@@ -48,13 +48,13 @@ The \code{\link{GtkHandleBox}} struct contains the following fields.
 an application.)
 
 \tabular{ll}{
-GtkShadowType shadow_type; \tab The shadow type for the entry. (See   \code{\link{gtkHandleBoxSetShadowType}}  ). \cr
-GtkPositionType handle_position; \tab The position of the handlebox's handle with respect
+GtkShadowType shadow\_type; \tab The shadow type for the entry. (See   \code{\link{gtkHandleBoxSetShadowType}}  ). \cr
+GtkPositionType handle\_position; \tab The position of the handlebox's handle with respect
 to the child. (See   \code{\link{gtkHandleBoxSetHandlePosition}}  ) \cr
-gint snap_edge; \tab A value of type   \code{GtkPosition}   type indicating snap edge for the widget.
-(See gtk_handle_box_set_snap_edge). The value of -1 indicates
+gint snap\_edge; \tab A value of type   \code{GtkPosition}   type indicating snap edge for the widget.
+(See gtk\_handle\_box\_set\_snap\_edge). The value of -1 indicates
 that this value has not been set. \cr
-\code{logical}   child_detached; \tab A boolean value indicating whether the handlebox's
+\code{logical}   child\_detached; \tab A boolean value indicating whether the handlebox's
 child is attached or detached. \cr
 }
 
@@ -91,27 +91,27 @@ handlebox are detached from the main window.
 \section{Properties}{\describe{
 \item{\code{handle-position} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-Position of the handle relative to the child widget.  Default value: GTK_POS_LEFT
+Position of the handle relative to the child widget.  Default value: GTK\_POS\_LEFT
 
 }
 \item{\code{shadow} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Deprecated property, use shadow_type instead.  Default value: GTK_SHADOW_ETCHED_OUT
+Deprecated property, use shadow\_type instead.  Default value: GTK\_SHADOW\_ETCHED\_OUT
 
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Appearance of the shadow that surrounds the container.  Default value: GTK_SHADOW_ETCHED_OUT
+Appearance of the shadow that surrounds the container.  Default value: GTK\_SHADOW\_ETCHED\_OUT
 
 }
 \item{\code{snap-edge} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-Side of the handlebox that's lined up with the docking point to dock the handlebox.  Default value: GTK_POS_TOP
+Side of the handlebox that's lined up with the docking point to dock the handlebox.  Default value: GTK\_POS\_TOP
 
 }
 \item{\code{snap-edge-set} [logical : Read / Write]}{
 
-Whether to use the value from the snap_edge property or a value derived from handle_position.  Default value: FALSE
+Whether to use the value from the snap\_edge property or a value derived from handle\_position.  Default value: FALSE
 
 }
 }}

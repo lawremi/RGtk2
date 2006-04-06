@@ -1,7 +1,7 @@
 \alias{gtkSpinButtonSetIncrements}
 \name{gtkSpinButtonSetIncrements}
 \title{gtkSpinButtonSetIncrements}
-\description{Sets the step and page increments for spin_button.  This affects how 
+\description{Sets the step and page increments for spin\_button.  This affects how 
 quickly the value changes when the spin button's arrows are activated.}
 \usage{gtkSpinButtonSetIncrements(object, step, page)}
 \arguments{

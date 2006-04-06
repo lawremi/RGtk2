@@ -39,5 +39,5 @@ function(object, handlername, func, user.data)
 gladeXMLConstruct <-
 function(object, fname, root = "NULL", domain = "NULL")
 {
-	notimplemented("makes no sense for R, just use gladeXMLNew()")
+	.notimplemented("makes no sense for R, just use gladeXMLNew()")
 }

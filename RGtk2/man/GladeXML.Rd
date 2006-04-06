@@ -39,7 +39,7 @@ automatically connect as many handlers up as it can that way.}
 \section{User Functions}{\describe{
 \item{\code{GladeXMLConnectFunc(handler.name, object, signal.name, signal.data, connect.object, after, user.data)}}{
 This is the signature of a function used to connect signals.  It is used
-by the glade_xml_signal_connect_full and glade_xml_signal_autoconnect_full
+by the glade\_xml\_signal\_connect\_full and glade\_xml\_signal\_autoconnect\_full
 functions.  It is mainly intented for interpreted language bindings, but
 could be useful where the programmer wants more control over the signal
 connection process.  
@@ -49,8 +49,8 @@ connection process.
 \item{\code{object}}{[\code{\link{GObject}}]  the object to connect the signal to.}
 \item{\code{signal.name}}{[character]  the name of the signal.}
 \item{\code{signal.data}}{[character]  the string value of the signal data given in the XML file.}
-\item{\code{connect.object}}{[\code{\link{GObject}}]  non NULL if g_signal_connect_object should be used.}
-\item{\code{after}}{[logical]  TRUE if the connection should be made with g_signal_connect_after.}
+\item{\code{connect.object}}{[\code{\link{GObject}}]  non NULL if g\_signal\_connect\_object should be used.}
+\item{\code{after}}{[logical]  TRUE if the connection should be made with g\_signal\_connect\_after.}
 \item{\code{user.data}}{[R object]  the user data argument.}
 }
 

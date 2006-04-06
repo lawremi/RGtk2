@@ -49,7 +49,7 @@ One of the important things to remember when monitoring the selection of
 a view is that the "changed" signal is mostly a hint.  That is, it may
 only emit one signal when a range of rows is selected.  Additionally, it
 may on occasion emit a "changed" signal when nothing has happened
-(mostly as a result of programmers calling select_row on an already
+(mostly as a result of programmers calling select\_row on an already
 selected row).}
 \section{Structures}{\describe{\item{\code{GtkTreeSelection}}{\emph{undocumented
 }}}}

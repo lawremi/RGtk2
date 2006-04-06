@@ -25,14 +25,14 @@
 }
 \section{Structures}{\describe{\item{\code{CairoPath}}{
 A data structure for holding a path. This data structure serves as
-the return value for \code{cairoCopyPathData()} and
-\code{cairoCopyPathDataFlat()} as well the input value for
+the return value for \code{cairo\Copy\Path\Data()} and
+\code{cairo\Copy\Path\Data\Flat()} as well the input value for
 \code{\link{cairoAppendPath}}.
   
 See \code{\link{CairoPathData}} for hints on how to iterate over the
 actual data within the path.
   
-The num_data member gives the number of elements in the data
+The num\_data member gives the number of elements in the data
 array. This number is larger than the number of independent path
 portions (defined in \code{\link{CairoPathDataType}}), since the data
 includes both headers and coordinates for each portion.  
@@ -49,13 +49,13 @@ includes both headers and coordinates for each portion.
 
 
 \describe{
-\item{\code{CAIRO_PATH_MOVE_TO (move-to)}}{\emph{undocumented
+\item{\code{move-to}}{\emph{undocumented
 }}
-\item{\code{CAIRO_PATH_LINE_TO (line-to)}}{\emph{undocumented
+\item{\code{line-to}}{\emph{undocumented
 }}
-\item{\code{CAIRO_PATH_CURVE_TO (curve-to)}}{\emph{undocumented
+\item{\code{curve-to}}{\emph{undocumented
 }}
-\item{\code{CAIRO_PATH_CLOSE_PATH (close-path)}}{\emph{undocumented
+\item{\code{close-path}}{\emph{undocumented
 }}
 }
 

@@ -17,6 +17,7 @@ be used.}
 \item{\code{option}}{[\code{\link{CairoFontOptions}}]  options to use when getting metrics for the font and
           rendering with it.}
 }
-\value{[\code{\link{CairoScaledFont}}]  a newly created \code{\link{CairoScaledFont}}.}
+\value{[\code{\link{CairoScaledFont}}]  a newly created \code{\link{CairoScaledFont}}. Destroy with
+ \code{cairo\Scaled\Font\Destroy()}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

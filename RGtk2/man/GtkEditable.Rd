@@ -28,7 +28,7 @@ signals used for key bindings, and several signals that an application can
 connect to to modify the behavior of a widget. 
   
 As an example of the latter usage, by connecting
-the following handler to "insert_text", an application
+the following handler to "insert\_text", an application
 can convert all entry into a widget into uppercase.
 
 \preformatted{
@@ -46,9 +46,9 @@ The \code{\link{GtkEditable}} structure contains the following fields.
 never be set by an application.)
 
 \tabular{ll}{
-\code{numeric}   selection_start; \tab the starting position of the selected characters 
+\code{numeric}   selection\_start; \tab the starting position of the selected characters 
  in the widget. \cr
-\code{numeric}   selection_end; \tab the end position of the selected characters 
+\code{numeric}   selection\_end; \tab the end position of the selected characters 
  in the widget. \cr
 \code{numeric}   editable; \tab a flag indicating whether or not the widget is
 editable by the user. \cr
@@ -71,7 +71,7 @@ This signal is emitted when text is deleted from
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
 the text, so by connecting to this signal and then
-stopping the signal with \code{gtkSignalEmitStop()}, it
+stopping the signal with \code{gtk\Signal\Emit\Stop()}, it
 is possible to modify the inserted text, or prevent
 it from being inserted entirely. The \code{start.pos}
 and \code{end.pos} parameters are interpreted as for
@@ -90,7 +90,7 @@ This signal is emitted when text is inserted into
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
 the text, so by connecting to this signal and then
-stopping the signal with \code{gtkSignalEmitStop()}, it
+stopping the signal with \code{gtk\Signal\Emit\Stop()}, it
 is possible to modify the inserted text, or prevent
 it from being inserted entirely.
 
@@ -98,7 +98,7 @@ it from being inserted entirely.
 \item{\code{editable}}{[\code{\link{GtkEditable}}] the object which received the signal.}
 \item{\code{new.text}}{[character] the new text to insert.}
 \item{\code{new.text.length}}{[integer] the length of the new text, in bytes, 
-  or -1 if new_text is nul-terminated}
+  or -1 if new\_text is nul-terminated}
 \item{\code{position}}{[integer] the position, in characters, at which to insert 
            the new text. this is an in-out parameter. 
            After the signal emission is finished, it should 

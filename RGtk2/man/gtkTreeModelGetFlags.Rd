@@ -3,7 +3,7 @@
 \title{gtkTreeModelGetFlags}
 \description{Returns a set of flags supported by this interface.  The flags are a bitwise
 combination of \code{\link{GtkTreeModelFlags}}.  The flags supported should not change
-during the lifecycle of the tree_model.}
+during the lifecycle of the tree\_model.}
 \usage{gtkTreeModelGetFlags(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}}
 \value{[\code{\link{GtkTreeModelFlags}}]  The flags supported by this interface.}

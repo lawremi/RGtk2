@@ -24,16 +24,16 @@ on it.  If you don't have a file name already -- for example, if the user just c
 a new file and is saving it for the first time, do not call this function.  Instead, use
 something similar to this:
   
-\preformatted{if (document_is_new)
+\preformatted{if (document\_is\_new)
   {
     /    * the user just created a new document *    /
-    gtk_file_chooser_set_current_folder_uri (chooser, default_folder_for_saving);
-    gtk_file_chooser_set_current_name (chooser, "Untitled document");
+    gtk\_file\_chooser\_set\_current\_folder\_uri (chooser, default\_folder\_for\_saving);
+    gtk\_file\_chooser\_set\_current\_name (chooser, "Untitled document");
   }
 else
   {
     /    * the user edited an existing document *    / 
-    gtk_file_chooser_set_uri (chooser, existing_uri);
+    gtk\_file\_chooser\_set\_uri (chooser, existing\_uri);
   }}  
 
   Since  2.4}

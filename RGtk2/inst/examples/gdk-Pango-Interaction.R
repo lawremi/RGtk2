@@ -77,7 +77,7 @@ window$add(drawing.area)
 # This overrides the background color from the theme
 drawing.area$modifyBg("normal", white)
 
-connectSignal(drawing.area, "expose-event", rotated.text.expose.event)
+gSignalConnect(drawing.area, "expose-event", rotated.text.expose.event)
 
 window$setDefaultSize(2 * RADIUS, 2 * RADIUS)
 

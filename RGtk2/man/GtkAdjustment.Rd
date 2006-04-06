@@ -27,7 +27,7 @@ it is left up to the owner of the \code{\link{GtkAdjustment}} to control the val
 The owner of the \code{\link{GtkAdjustment}} typically calls the
 \code{\link{gtkAdjustmentValueChanged}} and \code{\link{gtkAdjustmentChanged}} functions
 after changing the value and its bounds. This results in the emission of the
-"value_changed" or "changed" signal respectively.}
+"value\_changed" or "changed" signal respectively.}
 \section{Structures}{\describe{\item{\code{GtkAdjustment}}{
 The \code{\link{GtkAdjustment}} struct contains the following fields.
 
@@ -35,13 +35,13 @@ The \code{\link{GtkAdjustment}} struct contains the following fields.
 \code{numeric}   lower; \tab the minimum value. \cr
 \code{numeric}   upper; \tab the maximum value. \cr
 \code{numeric}   value; \tab the current value. \cr
-\code{numeric}   step_increment; \tab the increment to use to make minor changes to the value.
+\code{numeric}   step\_increment; \tab the increment to use to make minor changes to the value.
 In a   \code{\link{GtkScrollbar}}   this increment is used when the mouse is clicked on the
 arrows at the top and bottom of the scrollbar, to scroll by a small amount. \cr
-\code{numeric}   page_increment; \tab the increment to use to make major changes to the value.
+\code{numeric}   page\_increment; \tab the increment to use to make major changes to the value.
 In a   \code{\link{GtkScrollbar}}   this increment is used when the mouse is clicked in the
 trough, to scroll by a large amount. \cr
-\code{numeric}   page_size; \tab the page size.
+\code{numeric}   page\_size; \tab the page size.
 In a   \code{\link{GtkScrollbar}}   this is the size of the area which is currently visible. \cr
 }
 

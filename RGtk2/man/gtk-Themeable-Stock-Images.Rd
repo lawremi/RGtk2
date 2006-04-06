@@ -82,19 +82,19 @@ looking up the icon to use for a given stock ID.}
 
 
 \describe{
-\item{\code{GTK_ICON_SIZE_INVALID (invalid)}}{\emph{undocumented
+\item{\code{invalid}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_MENU (menu)}}{\emph{undocumented
+\item{\code{menu}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_SMALL_TOOLBAR (small-toolbar)}}{\emph{undocumented
+\item{\code{small-toolbar}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_LARGE_TOOLBAR (large-toolbar)}}{\emph{undocumented
+\item{\code{large-toolbar}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_BUTTON (button)}}{\emph{undocumented
+\item{\code{button}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_DND (dnd)}}{\emph{undocumented
+\item{\code{dnd}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_SIZE_DIALOG (dialog)}}{\emph{undocumented
+\item{\code{dialog}}{\emph{undocumented
 }}
 }
 

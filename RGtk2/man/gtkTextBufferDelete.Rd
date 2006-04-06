@@ -3,7 +3,7 @@
 \title{gtkTextBufferDelete}
 \description{Deletes text between \code{start} and \code{end}. The order of \code{start} and \code{end}
 is not actually relevant; \code{\link{gtkTextBufferDelete}} will reorder
-them. This function actually emits the "delete_range" signal, and
+them. This function actually emits the "delete\_range" signal, and
 the default handler of that signal deletes the text. Because the
 buffer is modified, all outstanding iterators become invalid after
 calling this function; however, the \code{start} and \code{end} will be

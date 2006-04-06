@@ -65,28 +65,28 @@ expose_cb <- function(widget, event, data)
     scaling down. \code{GDK.INTERP.BILINEAR} is the best choice if you 
     aren't sure what to choose, it has a good speed/quality balance.
 
-    \emph{        
+    \strong{PLEASE NOTE:}         
 	Cubic filtering is missing from the list; hyperbolic
 	interpolation is just as fast and results in higher quality.
         
-    }
+    
   
 
 \describe{
-\item{\code{GDK_INTERP_NEAREST (nearest)}}{Nearest neighbor sampling; this is the fastest
+\item{\code{nearest}}{Nearest neighbor sampling; this is the fastest
 and lowest quality mode. Quality is normally unacceptable when scaling 
 down, but may be OK when scaling up.}
-\item{\code{GDK_INTERP_TILES (tiles)}}{This is an accurate simulation of the PostScript
+\item{\code{tiles}}{This is an accurate simulation of the PostScript
 image operator without any interpolation enabled.  Each pixel is
 rendered as a tiny parallelogram of solid color, the edges of which
 are implemented with antialiasing.  It resembles nearest neighbor for
 enlargement, and bilinear for reduction.}
-\item{\code{GDK_INTERP_BILINEAR (bilinear)}}{Best quality/speed balance; use this mode by
+\item{\code{bilinear}}{Best quality/speed balance; use this mode by
 default. Bilinear interpolation.  For enlargement, it is
 equivalent to point-sampling the ideal bilinear-interpolated image.
 For reduction, it is equivalent to laying down small tiles and
 integrating over the coverage area.}
-\item{\code{GDK_INTERP_HYPER (hyper)}}{This is the slowest and highest quality
+\item{\code{hyper}}{This is the slowest and highest quality
 reconstruction function. It is derived from the hyperbolic filters in
 Wolberg's "Digital Image Warping", and is formally defined as the
 hyperbolic-filter sampling the ideal hyperbolic-filter interpolated
@@ -99,10 +99,10 @@ The possible rotations which can be passed to \code{\link{gdkPixbufRotateSimple}
 To make them easier to use, their numerical values are the actual degrees.
 
 \describe{
-\item{\code{GDK_PIXBUF_ROTATE_NONE (none)}}{No rotation.}
-\item{\code{GDK_PIXBUF_ROTATE_COUNTERCLOCKWISE (counterclockwise)}}{Rotate by 90 degrees.}
-\item{\code{GDK_PIXBUF_ROTATE_UPSIDEDOWN (upsidedown)}}{Rotate by 180 degrees.}
-\item{\code{GDK_PIXBUF_ROTATE_CLOCKWISE (clockwise)}}{Rotate by 270 degrees.}
+\item{\code{none}}{No rotation.}
+\item{\code{counterclockwise}}{Rotate by 90 degrees.}
+\item{\code{upsidedown}}{Rotate by 180 degrees.}
+\item{\code{clockwise}}{Rotate by 270 degrees.}
 }
 
 }

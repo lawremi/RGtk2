@@ -1,7 +1,7 @@
 \alias{gtkMenuItemToggleSizeRequest}
 \name{gtkMenuItemToggleSizeRequest}
 \title{gtkMenuItemToggleSizeRequest}
-\description{Emits the "toggle_size_request" signal on the given item.}
+\description{Emits the "toggle\_size\_request" signal on the given item.}
 \usage{gtkMenuItemToggleSizeRequest(object, requisition)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkMenuItem}}] the menu item}

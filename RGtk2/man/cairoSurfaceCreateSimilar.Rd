@@ -12,7 +12,7 @@ existing surface. The new surface will use the same backend as
 \item{\code{height}}{[integer]  height of the new surface (in device-space units)}
 }
 \value{[\code{\link{CairoSurface}}]  a pointer to the newly allocated surface. The caller
-owns the surface and should call cairo_surface_destroy when done
+owns the surface and should call cairo\_surface\_destroy when done
 with it.
 
 This function always returns a valid pointer, but it will return a

@@ -7,7 +7,7 @@ give the effect of typographic letter spacing.b}
 \arguments{
 \item{\code{glyph.item}}{[\code{\link{PangoGlyphItem}}]  a \code{\link{PangoGlyphItem}}}
 \item{\code{text}}{[char]  text that \code{glyph.item} corresponds to
-  (glyph_item->item->offset is an offset from the
+  (glyph\_item->item->offset is an offset from the
    start of \code{text})}
 \item{\code{log.attrs}}{[\code{\link{PangoLogAttr}}]  logical attributes for the item (the
   first logical attribute refers to the position

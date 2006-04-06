@@ -137,8 +137,8 @@ code specific to each rendering system.
 A PangoWrapMode describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
 
 \describe{
-\item{\code{PANGO_WRAP_WORD (word)}}{wrap lines at word boundaries.}
-\item{\code{PANGO_WRAP_CHAR (char)}}{wrap lines at character boundaries.}
+\item{\code{word}}{wrap lines at word boundaries.}
+\item{\code{char}}{wrap lines at character boundaries.}
 }
 
 }
@@ -150,10 +150,10 @@ text in order to make it fit to a given width and replaced
 with an ellipsis.  
 
 \describe{
-\item{\code{PANGO_ELLIPSIZE_NONE (none)}}{ No ellipsization}
-\item{\code{PANGO_ELLIPSIZE_START (start)}}{ Omit characters at the start of the text}
-\item{\code{PANGO_ELLIPSIZE_MIDDLE (middle)}}{ Omit characters in the middle of the text}
-\item{\code{PANGO_ELLIPSIZE_END (end)}}{ Omit characters at the end of the text}
+\item{\code{none}}{ No ellipsization}
+\item{\code{start}}{ Omit characters at the start of the text}
+\item{\code{middle}}{ Omit characters in the middle of the text}
+\item{\code{end}}{ Omit characters at the end of the text}
 }
 
 }
@@ -164,9 +164,9 @@ using \code{\link{pangoLayoutSetJustify}}, then this only has an effect
 for partial lines.
 
 \describe{
-\item{\code{PANGO_ALIGN_LEFT (left)}}{Put all available space on the right}
-\item{\code{PANGO_ALIGN_CENTER (center)}}{Center the line within the available space}
-\item{\code{PANGO_ALIGN_RIGHT (right)}}{Put all available space on the left}
+\item{\code{left}}{Put all available space on the right}
+\item{\code{center}}{Center the line within the available space}
+\item{\code{right}}{Put all available space on the left}
 }
 
 }

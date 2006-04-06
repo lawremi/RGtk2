@@ -1,7 +1,7 @@
 \alias{gtkRulerSetRange}
 \name{gtkRulerSetRange}
 \title{gtkRulerSetRange}
-\description{This sets the range of the ruler using gfloat lower, gfloat upper, gfloat position, and gfloat max_size. }
+\description{This sets the range of the ruler using gfloat lower, gfloat upper, gfloat position, and gfloat max\_size. }
 \usage{gtkRulerSetRange(object, lower, upper, position, max.size)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkRuler}}] the gtkruler}

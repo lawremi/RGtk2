@@ -81,17 +81,17 @@ private fields and should not be directly accessed.
 
 
 \describe{
-\item{\code{GTK_ICON_VIEW_NO_DROP (no-drop)}}{\emph{undocumented
+\item{\code{no-drop}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_VIEW_DROP_INTO (drop-into)}}{\emph{undocumented
+\item{\code{drop-into}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_VIEW_DROP_LEFT (drop-left)}}{\emph{undocumented
+\item{\code{drop-left}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_VIEW_DROP_RIGHT (drop-right)}}{\emph{undocumented
+\item{\code{drop-right}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_VIEW_DROP_ABOVE (drop-above)}}{\emph{undocumented
+\item{\code{drop-above}}{\emph{undocumented
 }}
-\item{\code{GTK_ICON_VIEW_DROP_BELOW (drop-below)}}{\emph{undocumented
+\item{\code{drop-below}}{\emph{undocumented
 }}
 }
 
@@ -238,7 +238,7 @@ The model for the icon view.
 }
 \item{\code{orientation} [\code{\link{GtkOrientation}} : Read / Write]}{
 
-How the text and icon of each item are positioned relative to each other.  Default value: GTK_ORIENTATION_VERTICAL
+How the text and icon of each item are positioned relative to each other.  Default value: GTK\_ORIENTATION\_VERTICAL
 
 }
 \item{\code{pixbuf-column} [integer : Read / Write]}{
@@ -270,7 +270,7 @@ The ::selection-mode property specifies the selection mode of
 icon view. If the mode is \code{GTK_SELECTION_MULTIPLE}, rubberband selection
 is enabled, for the other modes, only keyboard selection is possible.  
 
-  Default value: GTK_SELECTION_SINGLE  Since  2.6
+  Default value: GTK\_SELECTION\_SINGLE  Since  2.6
 
 }
 \item{\code{spacing} [integer : Read / Write]}{

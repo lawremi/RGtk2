@@ -103,19 +103,19 @@ multiple views.
 
 
 \describe{
-\item{\code{GTK_TEXT_WINDOW_PRIVATE (private)}}{\emph{undocumented
+\item{\code{private}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_WIDGET (widget)}}{\emph{undocumented
+\item{\code{widget}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_TEXT (text)}}{\emph{undocumented
+\item{\code{text}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_LEFT (left)}}{\emph{undocumented
+\item{\code{left}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_RIGHT (right)}}{\emph{undocumented
+\item{\code{right}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_TOP (top)}}{\emph{undocumented
+\item{\code{top}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_WINDOW_BOTTOM (bottom)}}{\emph{undocumented
+\item{\code{bottom}}{\emph{undocumented
 }}
 }
 
@@ -174,7 +174,7 @@ The ::move-cursor signal is a keybinding signal which gets emitted
 when the user initiates a cursor movement. 
   
 Applications should not connect to it, but may emit it with 
-\code{gSignalEmitByName()} if they need to control scrolling 
+\code{g\Signal\Emit\By\Name()} if they need to control scrolling 
 programmatically.  
 
 \describe{
@@ -305,7 +305,7 @@ Amount to indent the paragraph, in pixels.  Allowed values: >= 0  Default value:
 }
 \item{\code{justification} [\code{\link{GtkJustification}} : Read / Write]}{
 
-Left, right, or center justification.  Default value: GTK_JUSTIFY_LEFT
+Left, right, or center justification.  Default value: GTK\_JUSTIFY\_LEFT
 
 }
 \item{\code{left-margin} [integer : Read / Write]}{
@@ -345,7 +345,7 @@ Custom tabs for this text.
 }
 \item{\code{wrap-mode} [\code{\link{GtkWrapMode}} : Read / Write]}{
 
-Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK_WRAP_NONE
+Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK\_WRAP\_NONE
 
 }
 }}

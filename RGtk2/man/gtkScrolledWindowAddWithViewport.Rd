@@ -19,7 +19,7 @@ whole widget will scroll, including the column headings. Thus, widgets
 with native scrolling support should not be used with the \code{\link{GtkViewport}} proxy.
   
 A widget supports scrolling natively if the
-set_scroll_adjustments_signal field in \code{\link{GtkWidgetClass}} is non-zero,
+set\_scroll\_adjustments\_signal field in \code{\link{GtkWidgetClass}} is non-zero,
 i.e. has been filled in with a valid signal identifier.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

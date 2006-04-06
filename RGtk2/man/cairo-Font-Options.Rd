@@ -33,15 +33,15 @@ each pixel on the display device when rendering with an
 antialiasing mode of \code{CAIRO_ANTIALIAS_SUBPIXEL}.  
 
 \describe{
-\item{\code{CAIRO_SUBPIXEL_ORDER_DEFAULT (default)}}{ Use the default subpixel order for
+\item{\code{default}}{ Use the default subpixel order for
   for the target device}
-\item{\code{CAIRO_SUBPIXEL_ORDER_RGB (rgb)}}{ Subpixel elements are arranged horizontally
+\item{\code{rgb}}{ Subpixel elements are arranged horizontally
   with red at the left}
-\item{\code{CAIRO_SUBPIXEL_ORDER_BGR (bgr)}}{  Subpixel elements are arranged horizontally
+\item{\code{bgr}}{  Subpixel elements are arranged horizontally
   with blue at the left}
-\item{\code{CAIRO_SUBPIXEL_ORDER_VRGB (vrgb)}}{ Subpixel elements are arranged vertically
+\item{\code{vrgb}}{ Subpixel elements are arranged vertically
   with red at the top}
-\item{\code{CAIRO_SUBPIXEL_ORDER_VBGR (vbgr)}}{ Subpixel elements are arranged vertically
+\item{\code{vbgr}}{ Subpixel elements are arranged vertically
   with blue at the top}
 }
 
@@ -55,16 +55,16 @@ to the original outline shapes. Not all of the outline hinting
 styles are supported by all font backends.  
 
 \describe{
-\item{\code{CAIRO_HINT_STYLE_DEFAULT (default)}}{ Use the default hint style for
+\item{\code{default}}{ Use the default hint style for
   for font backend and target device}
-\item{\code{CAIRO_HINT_STYLE_NONE (none)}}{ Do not hint outlines}
-\item{\code{CAIRO_HINT_STYLE_SLIGHT (slight)}}{ Hint outlines slightly to improve
+\item{\code{none}}{ Do not hint outlines}
+\item{\code{slight}}{ Hint outlines slightly to improve
   contrast while retaining good fidelity to the original
   shapes.}
-\item{\code{CAIRO_HINT_STYLE_MEDIUM (medium)}}{ Hint outlines with medium strength
+\item{\code{medium}}{ Hint outlines with medium strength
   giving a compromise between fidelity to the original shapes
   and contrast}
-\item{\code{CAIRO_HINT_STYLE_FULL (full)}}{ Hint outlines to maximize contrast}
+\item{\code{full}}{ Hint outlines to maximize contrast}
 }
 
 }
@@ -76,10 +76,10 @@ letter and line spacing, however it also means that text
 will be laid out differently at different zoom factors.  
 
 \describe{
-\item{\code{CAIRO_HINT_METRICS_DEFAULT (default)}}{ Hint metrics in the default
+\item{\code{default}}{ Hint metrics in the default
  manner for the font backend and target device}
-\item{\code{CAIRO_HINT_METRICS_OFF (off)}}{ Do not hint font metrics}
-\item{\code{CAIRO_HINT_METRICS_ON (on)}}{ Hint font metrics}
+\item{\code{off}}{ Do not hint font metrics}
+\item{\code{on}}{ Hint font metrics}
 }
 
 }

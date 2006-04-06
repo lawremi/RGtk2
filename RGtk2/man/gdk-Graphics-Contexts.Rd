@@ -104,24 +104,24 @@ A set of bit flags used to indicate which fields
 \code{\link{GdkGCValues}} structure are set.
 
 \describe{
-\item{\code{GDK_GC_FOREGROUND (foreground)}}{the \code{foreground} is set.}
-\item{\code{GDK_GC_BACKGROUND (background)}}{the \code{background} is set.}
-\item{\code{GDK_GC_FONT (font)}}{the \code{font} is set.}
-\item{\code{GDK_GC_FUNCTION (function)}}{the \code{function} is set.}
-\item{\code{GDK_GC_FILL (fill)}}{the \code{fill} is set.}
-\item{\code{GDK_GC_TILE (tile)}}{the \code{tile} is set.}
-\item{\code{GDK_GC_STIPPLE (stipple)}}{the \code{stipple} is set.}
-\item{\code{GDK_GC_CLIP_MASK (clip-mask)}}{the \code{clip.mask} is set.}
-\item{\code{GDK_GC_SUBWINDOW (subwindow)}}{the \code{subwindow.mode} is set.}
-\item{\code{GDK_GC_TS_X_ORIGIN (ts-x-origin)}}{the \code{ts.x.origin} is set.}
-\item{\code{GDK_GC_TS_Y_ORIGIN (ts-y-origin)}}{the \code{ts.y.origin} is set.}
-\item{\code{GDK_GC_CLIP_X_ORIGIN (clip-x-origin)}}{the \code{clip.x.origin} is set.}
-\item{\code{GDK_GC_CLIP_Y_ORIGIN (clip-y-origin)}}{the \code{clip.y.origin} is set.}
-\item{\code{GDK_GC_EXPOSURES (exposures)}}{the \code{graphics.exposures} is set.}
-\item{\code{GDK_GC_LINE_WIDTH (line-width)}}{the \code{line.width} is set.}
-\item{\code{GDK_GC_LINE_STYLE (line-style)}}{the \code{line.style} is set.}
-\item{\code{GDK_GC_CAP_STYLE (cap-style)}}{the \code{cap.style} is set.}
-\item{\code{GDK_GC_JOIN_STYLE (join-style)}}{the \code{join.style} is set.}
+\item{\code{foreground}}{the \code{foreground} is set.}
+\item{\code{background}}{the \code{background} is set.}
+\item{\code{font}}{the \code{font} is set.}
+\item{\code{function}}{the \code{function} is set.}
+\item{\code{fill}}{the \code{fill} is set.}
+\item{\code{tile}}{the \code{tile} is set.}
+\item{\code{stipple}}{the \code{stipple} is set.}
+\item{\code{clip-mask}}{the \code{clip.mask} is set.}
+\item{\code{subwindow}}{the \code{subwindow.mode} is set.}
+\item{\code{ts-x-origin}}{the \code{ts.x.origin} is set.}
+\item{\code{ts-y-origin}}{the \code{ts.y.origin} is set.}
+\item{\code{clip-x-origin}}{the \code{clip.x.origin} is set.}
+\item{\code{clip-y-origin}}{the \code{clip.y.origin} is set.}
+\item{\code{exposures}}{the \code{graphics.exposures} is set.}
+\item{\code{line-width}}{the \code{line.width} is set.}
+\item{\code{line-style}}{the \code{line.style} is set.}
+\item{\code{cap-style}}{the \code{cap.style} is set.}
+\item{\code{join-style}}{the \code{join.style} is set.}
 }
 
 }
@@ -134,37 +134,37 @@ images, only \code{GDK_COPY}, \code{GDK_XOR} and \code{GDK_INVERT} are generally
 useful. For bitmaps, \code{GDK_AND} and \code{GDK_OR} are also useful.
 
 \describe{
-\item{\code{GDK_COPY (copy)}}{\emph{undocumented
+\item{\code{copy}}{\emph{undocumented
 }}
-\item{\code{GDK_INVERT (invert)}}{\emph{undocumented
+\item{\code{invert}}{\emph{undocumented
 }}
-\item{\code{GDK_XOR (xor)}}{\emph{undocumented
+\item{\code{xor}}{\emph{undocumented
 }}
-\item{\code{GDK_CLEAR (clear)}}{\emph{undocumented
+\item{\code{clear}}{\emph{undocumented
 }}
-\item{\code{GDK_AND (and)}}{\emph{undocumented
+\item{\code{and}}{\emph{undocumented
 }}
-\item{\code{GDK_AND_REVERSE (and-reverse)}}{\emph{undocumented
+\item{\code{and-reverse}}{\emph{undocumented
 }}
-\item{\code{GDK_AND_INVERT (and-invert)}}{\emph{undocumented
+\item{\code{and-invert}}{\emph{undocumented
 }}
-\item{\code{GDK_NOOP (noop)}}{\emph{undocumented
+\item{\code{noop}}{\emph{undocumented
 }}
-\item{\code{GDK_OR (or)}}{\emph{undocumented
+\item{\code{or}}{\emph{undocumented
 }}
-\item{\code{GDK_EQUIV (equiv)}}{\emph{undocumented
+\item{\code{equiv}}{\emph{undocumented
 }}
-\item{\code{GDK_OR_REVERSE (or-reverse)}}{\emph{undocumented
+\item{\code{or-reverse}}{\emph{undocumented
 }}
-\item{\code{GDK_COPY_INVERT (copy-invert)}}{\emph{undocumented
+\item{\code{copy-invert}}{\emph{undocumented
 }}
-\item{\code{GDK_OR_INVERT (or-invert)}}{\emph{undocumented
+\item{\code{or-invert}}{\emph{undocumented
 }}
-\item{\code{GDK_NAND (nand)}}{\emph{undocumented
+\item{\code{nand}}{\emph{undocumented
 }}
-\item{\code{GDK_NOR (nor)}}{\emph{undocumented
+\item{\code{nor}}{\emph{undocumented
 }}
-\item{\code{GDK_SET (set)}}{\emph{undocumented
+\item{\code{set}}{\emph{undocumented
 }}
 }
 
@@ -173,13 +173,13 @@ useful. For bitmaps, \code{GDK_AND} and \code{GDK_OR} are also useful.
 Determines how primitives are drawn.
 
 \describe{
-\item{\code{GDK_SOLID (solid)}}{draw with the foreground color.}
-\item{\code{GDK_TILED (tiled)}}{draw with a tiled pixmap.}
-\item{\code{GDK_STIPPLED (stippled)}}{draw using the stipple bitmap. Pixels corresponding
+\item{\code{solid}}{draw with the foreground color.}
+\item{\code{tiled}}{draw with a tiled pixmap.}
+\item{\code{stippled}}{draw using the stipple bitmap. Pixels corresponding
   to bits in the stipple bitmap that are set will be drawn in the
   foreground color; pixels corresponding to bits that are
   not set will be left untouched.}
-\item{\code{GDK_OPAQUE_STIPPLED (opaque-stippled)}}{draw using the stipple bitmap. Pixels corresponding
+\item{\code{opaque-stippled}}{draw using the stipple bitmap. Pixels corresponding
   to bits in the stipple bitmap that are set will be drawn in the
   foreground color; pixels corresponding to bits that are
   not set will be drawn with the background color.}
@@ -191,8 +191,8 @@ Determines how drawing onto a window will affect child
 windows of that window. 
 
 \describe{
-\item{\code{GDK_CLIP_BY_CHILDREN (clip-by-children)}}{only draw onto the window itself.}
-\item{\code{GDK_INCLUDE_INFERIORS (include-inferiors)}}{draw onto the window and child windows.}
+\item{\code{clip-by-children}}{only draw onto the window itself.}
+\item{\code{include-inferiors}}{draw onto the window and child windows.}
 }
 
 }
@@ -200,9 +200,9 @@ windows of that window.
 Determines how lines are drawn.
 
 \describe{
-\item{\code{GDK_LINE_SOLID (solid)}}{lines are drawn solid.}
-\item{\code{GDK_LINE_ON_OFF_DASH (on-off-dash)}}{even segments are drawn; odd segments are not drawn.}
-\item{\code{GDK_LINE_DOUBLE_DASH (double-dash)}}{even segments are normally. Odd segments are drawn
+\item{\code{solid}}{lines are drawn solid.}
+\item{\code{on-off-dash}}{even segments are drawn; odd segments are not drawn.}
+\item{\code{double-dash}}{even segments are normally. Odd segments are drawn
   in the background color if the fill style is \code{GDK_SOLID}, or in the background
   color masked by the stipple if the fill style is \code{GDK_STIPPLED}.}
 }
@@ -212,13 +212,13 @@ Determines how lines are drawn.
 Determines how the end of lines are drawn.
 
 \describe{
-\item{\code{GDK_CAP_NOT_LAST (not-last)}}{the same as \code{GDK_CAP_BUTT} for lines of non-zero width.
+\item{\code{not-last}}{the same as \code{GDK_CAP_BUTT} for lines of non-zero width.
        for zero width lines, the final point on the line will not be drawn.}
-\item{\code{GDK_CAP_BUTT (butt)}}{the ends of the lines are drawn squared off and extending
+\item{\code{butt}}{the ends of the lines are drawn squared off and extending
        to the coordinates of the end point.}
-\item{\code{GDK_CAP_ROUND (round)}}{the ends of the lines are drawn as semicircles with the
+\item{\code{round}}{the ends of the lines are drawn as semicircles with the
        diameter equal to the line width and centered at the end point.}
-\item{\code{GDK_CAP_PROJECTING (projecting)}}{the ends of the lines are drawn squared off and extending
+\item{\code{projecting}}{the ends of the lines are drawn squared off and extending
        half the width of the line beyond the end point.}
 }
 
@@ -227,9 +227,9 @@ Determines how the end of lines are drawn.
 Determines how the joins between segments of a polygon are drawn.
 
 \describe{
-\item{\code{GDK_JOIN_MITER (miter)}}{the sides of each line are extended to meet at an angle.}
-\item{\code{GDK_JOIN_ROUND (round)}}{the sides of the two lines are joined by a circular arc.}
-\item{\code{GDK_JOIN_BEVEL (bevel)}}{the sides of the two lines are joined by a straight line which
+\item{\code{miter}}{the sides of each line are extended to meet at an angle.}
+\item{\code{round}}{the sides of the two lines are joined by a circular arc.}
+\item{\code{bevel}}{the sides of the two lines are joined by a straight line which
        makes an equal angle with each line.}
 }
 

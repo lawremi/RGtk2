@@ -172,7 +172,7 @@ insert.text <- function(buffer)
 {
   
   pixbuf <- NULL
-  filename <- demofile("rgtk-logo.gif")
+  filename <- imagefile("rgtk-logo.gif")
   if (file.exists(filename))
     {
       pixbuf <- gdkPixbufNewFromFile(filename)[[1]]
@@ -344,7 +344,7 @@ attach.widgets <- function(text.view)
         {
           widget <- gtkButtonNewWithLabel("Click Me")
 
-          connectSignal(widget, "clicked", easter.egg.callback)
+          gSignalConnect(widget, "clicked", easter.egg.callback)
         }
       else if (i == 1)
         {

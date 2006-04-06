@@ -103,13 +103,13 @@ they work together.}
 An enum for determining where a dropped row goes.
 
 \describe{
-\item{\code{GTK_TREE_VIEW_DROP_BEFORE (before)}}{\emph{undocumented
+\item{\code{before}}{\emph{undocumented
 }}
-\item{\code{GTK_TREE_VIEW_DROP_AFTER (after)}}{\emph{undocumented
+\item{\code{after}}{\emph{undocumented
 }}
-\item{\code{GTK_TREE_VIEW_DROP_INTO_OR_BEFORE (into-or-before)}}{\emph{undocumented
+\item{\code{into-or-before}}{\emph{undocumented
 }}
-\item{\code{GTK_TREE_VIEW_DROP_INTO_OR_AFTER (into-or-after)}}{\emph{undocumented
+\item{\code{into-or-after}}{\emph{undocumented
 }}
 }
 

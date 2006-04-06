@@ -34,7 +34,7 @@ The internal padding of buttons can be retrieved and changed per button box usin
 \code{\link{gtkButtonBoxGetChildIpadding}} and \code{\link{gtkButtonBoxSetChildIpadding}}
 respectively.
   
-\code{gtkButtonBoxGetSpacing()} and \code{gtkButtonBoxSetSpacing()} retrieve and
+\code{gtk\Button\Box\Get\Spacing()} and \code{gtk\Button\Box\Set\Spacing()} retrieve and
 change default number of pixels between buttons, respectively.
   
 \code{\link{gtkButtonBoxGetLayout}} and \code{\link{gtkButtonBoxSetLayout}} retrieve and alter the method
@@ -49,7 +49,7 @@ This is a read-only struct; no members should be modified directly.
 }}}
 \section{Properties}{\describe{\item{\code{layout-style} [\code{\link{GtkButtonBoxStyle}} : Read / Write]}{
 
-How to layout the buttons in the box. Possible values are default, spread, edge, start and end.  Default value: GTK_BUTTONBOX_DEFAULT_STYLE
+How to layout the buttons in the box. Possible values are default, spread, edge, start and end.  Default value: GTK\_BUTTONBOX\_DEFAULT\_STYLE
 
 }}}
 \section{Style Properties}{\describe{

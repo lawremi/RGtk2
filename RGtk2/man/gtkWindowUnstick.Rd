@@ -9,7 +9,7 @@ manager) could stick it again. But normally the window will
 end up stuck. Just don't write code that crashes if not.}
 \usage{gtkWindowUnstick(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\details{You can track stickiness via the "window_state_event" signal
+\details{You can track stickiness via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -160,9 +160,9 @@ as the functions below to access it.
 A value specifying the position of a new node relative to an old one.
 
 \tabular{ll}{
-GTK_CTREE_POS_BEFORE \tab As a sibling, before the specified node. \cr
-GTK_CTREE_POS_AS_CHILD \tab As a child of the specified node. \cr
-GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
+GTK\_CTREE\_POS\_BEFORE \tab As a sibling, before the specified node. \cr
+GTK\_CTREE\_POS\_AS\_CHILD \tab As a child of the specified node. \cr
+GTK\_CTREE\_POS\_AFTER \tab As a sibling, after the specified node. \cr
 }
 
 }
@@ -171,10 +171,10 @@ GTK_CTREE_POS_AFTER \tab As a sibling, after the specified node. \cr
 The appearance of the lines in the tree graphics.
 
 \tabular{ll}{
-GTK_CTREE_LINES_NONE \tab No lines. \cr
-GTK_CTREE_LINES_SOLID \tab Solid lines. \cr
-GTK_CTREE_LINES_DOTTED \tab Dotted lines. \cr
-GTK_CTREE_LINES_TABBED \tab FIXME. \cr
+GTK\_CTREE\_LINES\_NONE \tab No lines. \cr
+GTK\_CTREE\_LINES\_SOLID \tab Solid lines. \cr
+GTK\_CTREE\_LINES\_DOTTED \tab Dotted lines. \cr
+GTK\_CTREE\_LINES\_TABBED \tab FIXME. \cr
 }
 
 }
@@ -185,10 +185,10 @@ which expand or contract parts of the tree when pressed.
 
 
 \tabular{ll}{
-GTK_CTREE_EXPANDER_NONE \tab No expanders. \cr
-GTK_CTREE_EXPANDER_SQUARE \tab Square expanders. \cr
-GTK_CTREE_EXPANDER_TRIANGLE \tab Triangular expanders. \cr
-GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
+GTK\_CTREE\_EXPANDER\_NONE \tab No expanders. \cr
+GTK\_CTREE\_EXPANDER\_SQUARE \tab Square expanders. \cr
+GTK\_CTREE\_EXPANDER\_TRIANGLE \tab Triangular expanders. \cr
+GTK\_CTREE\_EXPANDER\_CIRCULAR \tab Round expanders. \cr
 }
 
 }
@@ -197,12 +197,12 @@ GTK_CTREE_EXPANDER_CIRCULAR \tab Round expanders. \cr
 How to expand or collapse a part of a tree.
 
 \tabular{ll}{
-GTK_CTREE_EXPANSION_EXPAND \tab Expand this node. \cr
-GTK_CTREE_EXPANSION_EXPAND_RECURSIVE \tab Expand this node and everything below it in the hierarchy. \cr
-GTK_CTREE_EXPANSION_COLLAPSE \tab Collapse this node. \cr
-GTK_CTREE_EXPANSION_COLLAPSE_RECURSIVE \tab Collapse this node and everything below it in the hierarchy. \cr
-GTK_CTREE_EXPANSION_TOGGLE \tab Toggle this node (i.e. expand if collapsed and vice versa). \cr
-GTK_CTREE_EXPANSION_TOGGLE_RECURSIVE \tab Toggle this node and everything below it in the hierarchy. \cr
+GTK\_CTREE\_EXPANSION\_EXPAND \tab Expand this node. \cr
+GTK\_CTREE\_EXPANSION\_EXPAND\_RECURSIVE \tab Expand this node and everything below it in the hierarchy. \cr
+GTK\_CTREE\_EXPANSION\_COLLAPSE \tab Collapse this node. \cr
+GTK\_CTREE\_EXPANSION\_COLLAPSE\_RECURSIVE \tab Collapse this node and everything below it in the hierarchy. \cr
+GTK\_CTREE\_EXPANSION\_TOGGLE \tab Toggle this node (i.e. expand if collapsed and vice versa). \cr
+GTK\_CTREE\_EXPANSION\_TOGGLE\_RECURSIVE \tab Toggle this node and everything below it in the hierarchy. \cr
 }
 
 }
@@ -313,7 +313,7 @@ Emitted when a node is unselected.
 \item{\code{expander-style} [\code{\link{GtkCTreeExpanderStyle}} : Read / Write]}{
 
 The style of the expander buttons.
-  Default value: GTK_CTREE_EXPANDER_NONE
+  Default value: GTK\_CTREE\_EXPANDER\_NONE
 
 }
 \item{\code{indent} [numeric : Read / Write]}{
@@ -325,7 +325,7 @@ The number of pixels to indent the tree levels.
 \item{\code{line-style} [\code{\link{GtkCTreeLineStyle}} : Read / Write]}{
 
 The style of the lines in the tree graphic.
-  Default value: GTK_CTREE_LINES_NONE
+  Default value: GTK\_CTREE\_LINES\_NONE
 
 }
 \item{\code{n-columns} [numeric : Read / Write / Construct Only]}{

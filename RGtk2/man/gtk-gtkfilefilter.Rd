@@ -67,11 +67,11 @@ These flags indicate what parts of a \code{\link{GtkFileFilterInfo}} struct
 are filled or need to be filled. 
 
 \describe{
-\item{\code{GTK_FILE_FILTER_FILENAME (filename)}}{the filename of the file being tested}
-\item{\code{GTK_FILE_FILTER_URI (uri)}}{the URI for the file being tested}
-\item{\code{GTK_FILE_FILTER_DISPLAY_NAME (display-name)}}{the string that will be used to 
+\item{\code{filename}}{the filename of the file being tested}
+\item{\code{uri}}{the URI for the file being tested}
+\item{\code{display-name}}{the string that will be used to 
   display the file in the file chooser}
-\item{\code{GTK_FILE_FILTER_MIME_TYPE (mime-type)}}{the mime type of the file}
+\item{\code{mime-type}}{the mime type of the file}
 }
 
 }}}

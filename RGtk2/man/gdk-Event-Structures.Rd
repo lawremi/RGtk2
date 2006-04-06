@@ -31,10 +31,10 @@
 \title{Event Structures}
 \description{Data structures specific to each type of event}
 \section{Detailed Description}{The event structs contain data specific to each type of event in GDK.
-  \emph{  
+  \strong{PLEASE NOTE:}   
 A common mistake is to forget to set the event mask of a widget so that the
 required events are received. See \code{\link{gtkWidgetSetEvents}}.
-  }}
+  }
 \section{Structures}{\describe{
 \item{\code{GdkEventAny}}{
 Contains the fields which are common to all event structs.
@@ -335,7 +335,7 @@ application.}
 }
 \item{\code{GdkEventNoExpose}}{
 Generated when the area of a \code{\link{GdkDrawable}} being copied, with \code{\link{gdkDrawDrawable}}
-or \code{gdkWindowCopyArea()}, was completely available.
+or \code{gdk\Window\Copy\Area()}, was completely available.
   
 FIXME: add more here.
 
@@ -416,10 +416,10 @@ can also cause \code{\link{GdkEventGrabBroken}} events.
 Specifies the direction for \code{\link{GdkEventScroll}}. 
 
 \describe{
-\item{\code{GDK_SCROLL_UP (up)}}{the window is scrolled up.}
-\item{\code{GDK_SCROLL_DOWN (down)}}{the window is scrolled down.}
-\item{\code{GDK_SCROLL_LEFT (left)}}{the window is scrolled to the left.}
-\item{\code{GDK_SCROLL_RIGHT (right)}}{the window is scrolled to the right.}
+\item{\code{up}}{the window is scrolled up.}
+\item{\code{down}}{the window is scrolled down.}
+\item{\code{left}}{the window is scrolled to the left.}
+\item{\code{right}}{the window is scrolled to the right.}
 }
 
 }
@@ -427,9 +427,9 @@ Specifies the direction for \code{\link{GdkEventScroll}}.
 Specifies the visiblity status of a window for a \code{\link{GdkEventVisibility}}.
 
 \describe{
-\item{\code{GDK_VISIBILITY_UNOBSCURED (unobscured)}}{the window is completely visible.}
-\item{\code{GDK_VISIBILITY_PARTIAL (partial)}}{the window is partially visible.}
-\item{\code{GDK_VISIBILITY_FULLY_OBSCURED (fully-obscured)}}{the window is not visible at all.}
+\item{\code{unobscured}}{the window is completely visible.}
+\item{\code{partial}}{the window is partially visible.}
+\item{\code{fully-obscured}}{the window is not visible at all.}
 }
 
 }
@@ -437,9 +437,9 @@ Specifies the visiblity status of a window for a \code{\link{GdkEventVisibility}
 Specifies the crossing mode for \code{\link{GdkEventCrossing}}.
 
 \describe{
-\item{\code{GDK_CROSSING_NORMAL (normal)}}{crossing because of pointer motion.}
-\item{\code{GDK_CROSSING_GRAB (grab)}}{crossing because a grab is activated.}
-\item{\code{GDK_CROSSING_UNGRAB (ungrab)}}{crossing because a grab is deactivated.}
+\item{\code{normal}}{crossing because of pointer motion.}
+\item{\code{grab}}{crossing because a grab is activated.}
+\item{\code{ungrab}}{crossing because a grab is deactivated.}
 }
 
 }
@@ -450,19 +450,19 @@ See the X11 protocol specification of \code{LeaveNotify} for
 full details of crossing event generation.
 
 \describe{
-\item{\code{GDK_NOTIFY_ANCESTOR (ancestor)}}{the window is entered from an ancestor or 
+\item{\code{ancestor}}{the window is entered from an ancestor or 
    left towards an ancestor.}
-\item{\code{GDK_NOTIFY_VIRTUAL (virtual)}}{the pointer moves between an ancestor and an 
+\item{\code{virtual}}{the pointer moves between an ancestor and an 
     inferior of the window.}
-\item{\code{GDK_NOTIFY_INFERIOR (inferior)}}{the window is entered from an inferior or 
+\item{\code{inferior}}{the window is entered from an inferior or 
    left towards an inferior.}
-\item{\code{GDK_NOTIFY_NONLINEAR (nonlinear)}}{ the window is entered from or left towards 
+\item{\code{nonlinear}}{ the window is entered from or left towards 
    a window which is neither an ancestor nor an inferior.}
-\item{\code{GDK_NOTIFY_NONLINEAR_VIRTUAL (nonlinear-virtual)}}{the pointer moves between two windows 
+\item{\code{nonlinear-virtual}}{the pointer moves between two windows 
    which are not ancestors of each other and the window is part of
    the ancestor chain between one of these windows and their least
    common ancestor.}
-\item{\code{GDK_NOTIFY_UNKNOWN (unknown)}}{an unknown type of enter/leave event occurred.}
+\item{\code{unknown}}{an unknown type of enter/leave event occurred.}
 }
 
 }
@@ -470,8 +470,8 @@ full details of crossing event generation.
 Specifies the type of a property change for a \code{\link{GdkEventProperty}}.
 
 \describe{
-\item{\code{GDK_PROPERTY_NEW_VALUE (new-value)}}{the property value was changed.}
-\item{\code{GDK_PROPERTY_DELETE (delete)}}{the property was deleted.}
+\item{\code{new-value}}{the property value was changed.}
+\item{\code{delete}}{the property was deleted.}
 }
 
 }
@@ -479,13 +479,13 @@ Specifies the type of a property change for a \code{\link{GdkEventProperty}}.
 Specifies the state of a toplevel window.
 
 \describe{
-\item{\code{GDK_WINDOW_STATE_WITHDRAWN (withdrawn)}}{the window is not shown.}
-\item{\code{GDK_WINDOW_STATE_ICONIFIED (iconified)}}{the window is minimized.}
-\item{\code{GDK_WINDOW_STATE_MAXIMIZED (maximized)}}{the window is maximized.}
-\item{\code{GDK_WINDOW_STATE_STICKY (sticky)}}{the window is sticky.}
-\item{\code{GDK_WINDOW_STATE_FULLSCREEN (fullscreen)}}{the window is maximized without decorations.}
-\item{\code{GDK_WINDOW_STATE_ABOVE (above)}}{the window is kept above other windows.}
-\item{\code{GDK_WINDOW_STATE_BELOW (below)}}{the window is kept below other windows.}
+\item{\code{withdrawn}}{the window is not shown.}
+\item{\code{iconified}}{the window is minimized.}
+\item{\code{maximized}}{the window is maximized.}
+\item{\code{sticky}}{the window is sticky.}
+\item{\code{fullscreen}}{the window is maximized without decorations.}
+\item{\code{above}}{the window is kept above other windows.}
+\item{\code{below}}{the window is kept below other windows.}
 }
 
 }
@@ -493,9 +493,9 @@ Specifies the state of a toplevel window.
 Specifies the kind of modification applied to a setting in a \code{\link{GdkEventSetting}}.
 
 \describe{
-\item{\code{GDK_SETTING_ACTION_NEW (new)}}{a setting was added.}
-\item{\code{GDK_SETTING_ACTION_CHANGED (changed)}}{a setting was changed.}
-\item{\code{GDK_SETTING_ACTION_DELETED (deleted)}}{a setting was deleted.}
+\item{\code{new}}{a setting was added.}
+\item{\code{changed}}{a setting was changed.}
+\item{\code{deleted}}{a setting was deleted.}
 }
 
 }
@@ -503,9 +503,9 @@ Specifies the kind of modification applied to a setting in a \code{\link{GdkEven
 Specifies why a selection ownership was changed.
 
 \describe{
-\item{\code{GDK_OWNER_CHANGE_NEW_OWNER (new-owner)}}{some other app claimed the ownership}
-\item{\code{GDK_OWNER_CHANGE_DESTROY (destroy)}}{the window was destroyed}
-\item{\code{GDK_OWNER_CHANGE_CLOSE (close)}}{the client was closed}
+\item{\code{new-owner}}{some other app claimed the ownership}
+\item{\code{destroy}}{the window was destroyed}
+\item{\code{close}}{the client was closed}
 }
 
 }

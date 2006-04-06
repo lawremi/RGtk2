@@ -36,14 +36,14 @@ child widget.
 The scrolled window can work in two ways. Some widgets have native
 scrolling support; these widgets have "slots" for \code{\link{GtkAdjustment}}
 objects. 
-\emph{The scrolled window installs \code{\link{GtkAdjustment}} objects in
-the child window's slots using the set_scroll_adjustments_signal,
+\strong{PLEASE NOTE:} The scrolled window installs \code{\link{GtkAdjustment}} objects in
+the child window's slots using the set\_scroll\_adjustments\_signal,
 found in \code{\link{GtkWidgetClass}}. (Conceptually, these widgets implement a
 "Scrollable" interface; because GTK+ 1.2 lacked interface support in
 the object system, this interface is hackily implemented as a signal
 in \code{\link{GtkWidgetClass}}. The GTK+ 2.0 object system would allow a clean
 implementation, but it wasn't worth breaking the
-API.)}
+API.)
 Widgets with native scroll support include \code{\link{GtkTreeView}}, \code{\link{GtkTextView}}, 
 and \code{\link{GtkLayout}}.
   
@@ -63,9 +63,9 @@ The position of the scrollbars is controlled by the scroll
 adjustments. See \code{\link{GtkAdjustment}} for the fields in an adjustment - for
 \code{\link{GtkScrollbar}}, used by \code{\link{GtkScrolledWindow}}, the "value" field
 represents the position of the scrollbar, which must be between the
-"lower" field and "upper - page_size." The "page_size" field
+"lower" field and "upper - page\_size." The "page\_size" field
 represents the size of the visible scrollable area. The
-"step_increment" and "page_increment" fields are used when the user
+"step\_increment" and "page\_increment" fields are used when the user
 asks to step down (using the small stepper arrows) or page down (using
 for example the PageDown key).
   
@@ -109,12 +109,12 @@ The GtkAdjustment for the horizontal position.
 }
 \item{\code{hscrollbar-policy} [\code{\link{GtkPolicyType}} : Read / Write]}{
 
-When the horizontal scrollbar is displayed.  Default value: GTK_POLICY_ALWAYS
+When the horizontal scrollbar is displayed.  Default value: GTK\_POLICY\_ALWAYS
 
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Style of bevel around the contents.  Default value: GTK_SHADOW_NONE
+Style of bevel around the contents.  Default value: GTK\_SHADOW\_NONE
 
 }
 \item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write / Construct]}{
@@ -124,12 +124,12 @@ The GtkAdjustment for the vertical position.
 }
 \item{\code{vscrollbar-policy} [\code{\link{GtkPolicyType}} : Read / Write]}{
 
-When the vertical scrollbar is displayed.  Default value: GTK_POLICY_ALWAYS
+When the vertical scrollbar is displayed.  Default value: GTK\_POLICY\_ALWAYS
 
 }
 \item{\code{window-placement} [\code{\link{GtkCornerType}} : Read / Write]}{
 
-Where the contents are located with respect to the scrollbars.  Default value: GTK_CORNER_TOP_LEFT
+Where the contents are located with respect to the scrollbars.  Default value: GTK\_CORNER\_TOP\_LEFT
 
 }
 }}

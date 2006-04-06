@@ -8,7 +8,7 @@ unicode character wc.}
 \item{\code{object}}{[\code{\link{PangoFontset}}]  a \code{\link{PangoFontset}}}
 \item{\code{wc}}{[numeric]  a unicode character}
 }
-\value{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}. The caller must call g_object_unref when finished
+\value{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}. The caller must call g\_object\_unref when finished
          with the font.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

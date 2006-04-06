@@ -3,7 +3,7 @@
 \title{gtkLabelSetPattern}
 \description{The pattern of underlines you want under the existing text within the
 \code{\link{GtkLabel}} widget.  For example if the current text of the label says
-"FooBarBaz" passing a pattern of "___   ___" will underline
+"FooBarBaz" passing a pattern of "\_\_\_   \_\_\_" will underline
 "Foo" and "Baz" but not "Bar".}
 \usage{gtkLabelSetPattern(object, pattern)}
 \arguments{

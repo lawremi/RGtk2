@@ -2,7 +2,7 @@
 \name{gtkColorSelectionSetUpdatePolicy}
 \title{gtkColorSelectionSetUpdatePolicy}
 \description{
-Sets the policy controlling when the color_changed signals are emitted.
+Sets the policy controlling when the color\_changed signals are emitted.
 The available policies are:
 \itemize{
 \item \code{GTK_UPDATE_CONTINUOUS} - signals are sent continuously as the color

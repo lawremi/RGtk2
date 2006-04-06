@@ -58,6 +58,6 @@ window$add(drawing.area)
 # This overrides the background color from the theme
 drawing.area$modifyBg("normal", white)
 
-connectSignal(drawing.area, "expose-event", draw.text)
+gSignalConnect(drawing.area, "expose-event", draw.text)
 
 window$showAll()

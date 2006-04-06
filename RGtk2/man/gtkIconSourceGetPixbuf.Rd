@@ -5,7 +5,7 @@
 In addition, if a filename source is in use, this
 function in some cases will return the pixbuf from
 loaded from the filename. This is, for example, true
-for the GtkIconSource passed to the GtkStyle::\code{renderIcon()}
+for the GtkIconSource passed to the GtkStyle::\code{render\Icon()}
 virtual function. The reference count on the pixbuf is
 not incremented.}
 \usage{gtkIconSourceGetPixbuf(object)}

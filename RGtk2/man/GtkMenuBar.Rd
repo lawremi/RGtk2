@@ -30,13 +30,13 @@ The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields
 
 
 \describe{
-\item{\code{GTK_PACK_DIRECTION_LTR (ltr)}}{\emph{undocumented
+\item{\code{ltr}}{\emph{undocumented
 }}
-\item{\code{GTK_PACK_DIRECTION_RTL (rtl)}}{\emph{undocumented
+\item{\code{rtl}}{\emph{undocumented
 }}
-\item{\code{GTK_PACK_DIRECTION_TTB (ttb)}}{\emph{undocumented
+\item{\code{ttb}}{\emph{undocumented
 }}
-\item{\code{GTK_PACK_DIRECTION_BTT (btt)}}{\emph{undocumented
+\item{\code{btt}}{\emph{undocumented
 }}
 }
 
@@ -47,7 +47,7 @@ The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields
 The pack direction of the menubar. It determines how
 the widgets contained in child menuitems are arranged.  
 
-  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
+  Default value: GTK\_PACK\_DIRECTION\_LTR  Since  2.8
 
 }
 \item{\code{pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
@@ -55,7 +55,7 @@ the widgets contained in child menuitems are arranged.
 The pack direction of the menubar. It determines how
 menuitems are arranged in the menubar.  
 
-  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
+  Default value: GTK\_PACK\_DIRECTION\_LTR  Since  2.8
 
 }
 }}
@@ -67,7 +67,7 @@ Amount of border space between the menubar shadow and the menu items.  Allowed v
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Style of bevel around the menubar.  Default value: GTK_SHADOW_OUT
+Style of bevel around the menubar.  Default value: GTK\_SHADOW\_OUT
 
 }
 }}

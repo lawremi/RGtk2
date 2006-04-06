@@ -34,13 +34,13 @@ button <- gtkFileChooserButton("Select a file", "open")
 button$setCurrentFolder("/etc")
 }  
 The \code{\link{GtkFileChooserButton}} supports the \code{\link{GtkFileChooserAction}}s \code{GTK_FILE_CHOOSER_ACTION_OPEN} and \code{GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER}.
-  \emph{  
+  \strong{PLEASE NOTE:}   
 The \code{\link{GtkFileChooserButton}} will ellipsize the label,
 and thus will thus request little horizontal space.  To give the button
 more space, you should call \code{\link{gtkWidgetSizeRequest}},
 \code{\link{gtkFileChooserButtonSetWidthChars}}, or pack the button in
 such a way that other interface elements give space to the widget.
-  }}
+  }
 \section{Structures}{\describe{\item{\code{GtkFileChooserButton}}{
 This should not be accessed directly.  Use the accessor functions below. 
 

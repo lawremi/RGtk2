@@ -1732,17 +1732,17 @@ function(enum, name, defs = NULL, local = T, isEnum = T)
  }
  
  localVals <- paste(paste("\"", names(enum$values), "\"", sep=""), enum$values, sep=" = ")
-
+ robjectNames <- rName
  rvector <- paste(rName, "<-", "c(", paste(localVals, collapse=",\n\t") ,")\nstorage.mode(", rName,") <- '", 
  	storageMode, "'\nclass(", rName, ") <- '", className, "'", sep="")
 
- tmp <- paste(".", rName, sep="")
- robjectNames = c(rName, tmp)
- tmpVals <- paste(paste("\"", enum$names, "\"", sep=""), enum$values, sep=" = ", collapse=",\n\t")
- tmp <- paste(tmp, "<-", "c(", tmpVals ,")\nstorage.mode(", tmp,") <- '", 
-    storageMode, "'\nclass(", tmp, ") <- '", className, "'", sep="")
+ #tmp <- paste(rName, "_", sep="")
+ #robjectNames <- c(robjectNames, tmp)
+ #tmpVals <- paste(paste("\"", enum$names, "\"", sep=""), enum$values, sep=" = ", collapse=",\n\t")
+ #tmp <- paste(tmp, "<-", "c(", tmpVals ,")\nstorage.mode(", tmp,") <- '", 
+ #   storageMode, "'\nclass(", tmp, ") <- '", className, "'", sep="")
 
- rvector <- paste(rvector, tmp, sep="\n")
+ #rvector <- paste(rvector, tmp, sep="\n")
 
  if (FALSE) {
      # this stuff is probably not necessary anymore - enums available at runtime

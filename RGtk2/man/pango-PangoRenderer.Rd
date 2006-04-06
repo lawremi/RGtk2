@@ -44,10 +44,10 @@ purposes as setting colors.
   Since  1.8
 
 \describe{
-\item{\code{PANGO_RENDER_PART_FOREGROUND (foreground)}}{ the text itself}
-\item{\code{PANGO_RENDER_PART_BACKGROUND (background)}}{ the area behind the text}
-\item{\code{PANGO_RENDER_PART_UNDERLINE (underline)}}{ underlines}
-\item{\code{PANGO_RENDER_PART_STRIKETHROUGH (strikethrough)}}{ strikethrough lines}
+\item{\code{foreground}}{ the text itself}
+\item{\code{background}}{ the area behind the text}
+\item{\code{underline}}{ underlines}
+\item{\code{strikethrough}}{ strikethrough lines}
 }
 
 }}}

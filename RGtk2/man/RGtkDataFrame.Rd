@@ -7,6 +7,9 @@
 \alias{rGtkDataFrameAppendRows}
 \alias{rGtkDataFrame}
 \alias{rGtkDataFrameNew}
+\alias{dim.RGtkDataFrame}
+\alias{dimnames.RGtkDataFrame}
+\alias{rGtkDataFrameSetFrame}
 \title{The RGtkDataFrame model}
 \description{A \code{\link{GtkTreeModel}} implementation backed by an R data frame}
 \usage{
@@ -15,8 +18,11 @@ rGtkDataFrameNew(frame = data.frame())
 rGtkDataFrameAppendColumns(x, ...)
 rGtkDataFrameAppendRows(x, ...)
 as.data.frame.RGtkDataFrame(x, ...)
-"[.RGtkDataFrame"(x, i, j)
+rGtkDataFrameSetFrame(x, frame = data.frame())
+"[.RGtkDataFrame"(x, i, j, drop = T)
 "[<-.RGtkDataFrame"(x, i, j, value)
+dim.RGtkDataFrame(x, ...)
+dimnames.RGtkDataFrame(x, ...)
 }
 \arguments{
 \item{frame}{The frame to use as the backing store of the model}
@@ -24,7 +30,8 @@ as.data.frame.RGtkDataFrame(x, ...)
 \item{i}{Row index}
 \item{j}{Column index}
 \item{value}{An R object similar to that accepted by \code{[<-.data.frame}}
-\item{...}{Items to append as columns or rows}
+\item{drop}{Whether to 'drop' the result to the simplest structure}
+\item{...}{Items to append as columns or rows or just additional arguments}
 }
 \value{
 The constructors return instances of \code{RGtkDataFrame}.
@@ -44,7 +51,9 @@ via either \code{rGtkDataFrameNew} or \code{rGtkDataFrame} for short. The subset
 replacement methods work much the same as for normal data frames, except one should note that 
 removing columns (ie by replacing columns with \code{NULL}s) is not supported.
 Note that even if the initial data frame is empty, one should ensure that the empty vectors 
-representing the column are of the desired types.
+representing the column are of the desired types. If one wants to simply replace the backing frame
+with a new one, then there are two options: create a new RGtkDataFrame and connect it to the views
+of the old model, or use \code{rGtkDataFrameSetFrame}.
 
 The \code{rGtkDataFrameAppendColumns} and \code{rGtkDataFrameAppendRows} 
 methods allow appending columns and rows, respectively. 
@@ -53,6 +62,9 @@ Note that these are a lot shorter if using the \code{object$appendColumns(...)} 
 The \code{as.data.frame} method retrieves the backing data frame from the model, so that one 
 can perform any data frame operation on the data. Of course, any changes are \emph{not} 
 propagated back to the model, so it may take some work to efficiently merge any changes, if necessary.
+
+For convenience, one can access the dimensions and dimension names using \code{dim.RGtkDataframe} and
+\code{dimnames.RGtkDataFrame}, respectively.
 }
 \note{It is not yet clear how to encode a tree structure with a data frame, so this is 
 only currently useful for flat tables.}

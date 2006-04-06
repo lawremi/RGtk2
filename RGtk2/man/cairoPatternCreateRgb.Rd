@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateRgb}
 \name{cairoPatternCreateRgb}
 \title{cairoPatternCreateRgb}
-\description{Creates a new cairo_pattern_t corresponding to an opaque color.  The
+\description{Creates a new cairo\_pattern\_t corresponding to an opaque color.  The
 color components are floating point numbers in the range 0 to 1.
 If the values passed in are outside that range, they will be
 clamped.}
@@ -12,7 +12,9 @@ clamped.}
 \item{\code{blue}}{[numeric]  blue component of the color}
 }
 \value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if succesful, or
-an error pattern in case of no memory.
+an error pattern in case of no memory.  The caller owns the
+returned object and should call \code{cairo\Pattern\Destroy()} when
+finished with it.
 
 This function will always return a valid pointer, but if an error
 occurred the pattern status will be set to an error.  To inspect

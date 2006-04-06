@@ -11,7 +11,7 @@ are in pango units and are sorted in ascending order.}
 \value{
 A list containing the following elements:
 \item{\code{sizes}}{[integer]  location to store a pointer to a list of int. This list
-        should be freed with \code{gFree()}.}
+        should be freed with \code{g\Free()}.}
 \item{\code{n.sizes}}{[integer]  location to store the number of elements in \code{sizes}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

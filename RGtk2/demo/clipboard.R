@@ -54,7 +54,7 @@ hbox$packStart(entry, TRUE, TRUE, 0)
 button <- gtkButtonNewFromStock("gtk-copy")
 hbox$packStart(button, FALSE, FALSE, 0)
 
-connectSignal(button, "clicked", copy.button.clicked, entry)
+gSignalConnect(button, "clicked", copy.button.clicked, entry)
 label <- gtkLabelNew("\"Paste\" will paste the text from the clipboard to the entry")
 vbox$packStart(label, FALSE, FALSE, 0)
 
@@ -68,6 +68,6 @@ hbox$packStart(entry, TRUE, TRUE, 0)
 # Create the button
 button <- gtkButtonNewFromStock("gtk-paste")
 hbox$packStart(button, FALSE, FALSE, 0)
-connectSignal(button, "clicked", paste.button.clicked, entry)
+gSignalConnect(button, "clicked", paste.button.clicked, entry)
 
 window$showAll()

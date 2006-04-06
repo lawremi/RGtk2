@@ -183,7 +183,7 @@ add.columns <- function(treeview)
   renderer$set(xalign = 0.0)
   renderer$setData("column", COLUMN["alex"])
 
-  connectSignal(renderer, "toggled", item.toggled, model)
+  gSignalConnect(renderer, "toggled", item.toggled, model)
 
   col.offset <- treeview$insertColumnWithAttributes(-1, "Alex", renderer,
 							    active = COLUMN[["alex"]],
@@ -200,7 +200,7 @@ add.columns <- function(treeview)
   renderer$set(xalign = 0.0)
   renderer$setData("column", COLUMN["havoc"])
 
-  connectSignal(renderer, "toggled", item.toggled, model)
+  gSignalConnect(renderer, "toggled", item.toggled, model)
 
   col.offset <- treeview$insertColumnWithAttributes(-1, "Havoc", renderer,
 							    active = COLUMN[["havoc"]],
@@ -217,7 +217,7 @@ add.columns <- function(treeview)
   renderer$set(xalign = 0.0)
   renderer$setData("column", COLUMN["tim"])
 
-  connectSignal(renderer, "toggled", item.toggled, model)
+  gSignalConnect(renderer, "toggled", item.toggled, model)
 
   col.offset <- treeview$insertColumnWithAttributes(-1, "Tim", renderer,
 							    active = COLUMN[["tim"]],
@@ -234,7 +234,7 @@ add.columns <- function(treeview)
   renderer$set(xalign = 0.0)
   renderer$setData("column", COLUMN["owen"])
 
-  connectSignal(renderer, "toggled", item.toggled, model)
+  gSignalConnect(renderer, "toggled", item.toggled, model)
 
   col.offset <- treeview$insertColumnWithAttributes(-1, "Owen", renderer,
 							    active = COLUMN[["owen"]],
@@ -251,7 +251,7 @@ add.columns <- function(treeview)
   renderer$set(xalign = 0.0)
   renderer$setData("column", COLUMN["dave"])
 
-  connectSignal(renderer, "toggled", item.toggled, model)
+  gSignalConnect(renderer, "toggled", item.toggled, model)
 
   col.offset <- treeview$insertColumnWithAttributes(-1, "Dave", renderer,
 							    active = COLUMN[["dave"]],
@@ -293,7 +293,7 @@ add.columns(treeview)
 sw$add(treeview)
 
 # expand all rows after the treeview widget has been realized
-connectSignal(treeview, "realize", gtkTreeViewExpandAll)
+gSignalConnect(treeview, "realize", gtkTreeViewExpandAll)
 window$setDefaultSize(650, 400)
 
 window$showAll()

@@ -8,7 +8,7 @@ the menu will be rebuilt.}
 \usage{gtkToolItemRebuildMenu(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}}}
 \details{The function must be called when the tool item
-changes what it will do in response to the "create_menu_proxy"
+changes what it will do in response to the "create\_menu\_proxy"
 signal.  
 
   Since  2.6}

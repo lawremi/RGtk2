@@ -17,9 +17,9 @@ point will be offset by (\code{dx3}, \code{dy3}).}
 \item{\code{dx3}}{[numeric]  the X offset to the end of the curve}
 \item{\code{dy3}}{[numeric]  the Y offset to the end of the curve}
 }
-\details{Given a current point of (x, y), cairo_rel_curve_to (\code{cr}, \code{dx1},
+\details{Given a current point of (x, y), cairo\_rel\_curve\_to (\code{cr}, \code{dx1},
 \code{dy1}, \code{dx2}, \code{dy2}, \code{dx3}, \code{dy3}) is logically equivalent to
-cairo_curve_to (\code{cr}, x + \code{dx1}, y + \code{dy1}, x + \code{dx2}, y + \code{dy2}, x +
+cairo\_curve\_to (\code{cr}, x + \code{dx1}, y + \code{dy1}, x + \code{dx2}, y + \code{dy2}, x +
 \code{dx3}, y + \code{dy3}).  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

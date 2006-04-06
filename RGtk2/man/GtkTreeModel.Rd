@@ -94,9 +94,9 @@ Models are accessed on a node/column level of granularity.  One can
 query for the value of a model at a certain node and a certain column
 on that node.  There are two structures used to reference a particular
 node in a model.  They are the \code{\link{GtkTreePath}} and the \code{\link{GtkTreeIter}}
-\emph{  
+\strong{PLEASE NOTE:}   
 Here, \emph{iter} is short for \dQuote{iterator}
-  }
+  
 Most of the interface consists of operations on a \code{\link{GtkTreeIter}}.
   
 A path is essentially a potential node.  It is a location on a model
@@ -162,7 +162,7 @@ the second is much more common, as you often get paths from callbacks.
   
 This second example shows a quick way of iterating through a list and
 getting a string and an integer from each row.  The
-\code{populateModel} function used below is not shown, as
+\code{populate\Model} function used below is not shown, as
 it is specific to the \code{\link{GtkListStore}}.  For information on how to write
 such a function, see the \code{\link{GtkListStore}} documentation.
 \preformatted{
@@ -221,8 +221,8 @@ lifetime of the object.  A more complete description of
 section.
 
 \describe{
-\item{\code{GTK_TREE_MODEL_ITERS_PERSIST (iters-persist)}}{Iterators survive all signals emitted by the tree.}
-\item{\code{GTK_TREE_MODEL_LIST_ONLY (list-only)}}{The model is a list only, and never has children}
+\item{\code{iters-persist}}{Iterators survive all signals emitted by the tree.}
+\item{\code{list-only}}{The model is a list only, and never has children}
 }
 
 }}}

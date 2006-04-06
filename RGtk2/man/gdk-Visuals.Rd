@@ -104,19 +104,19 @@ pixel values for a visual are converted into RGB
 values for display.
 
 \describe{
-\item{\code{GDK_VISUAL_STATIC_GRAY (static-gray)}}{Each pixel value indexes a grayscale value directly.}
-\item{\code{GDK_VISUAL_GRAYSCALE (grayscale)}}{Each pixel is an index into a color map that maps pixel 
+\item{\code{static-gray}}{Each pixel value indexes a grayscale value directly.}
+\item{\code{grayscale}}{Each pixel is an index into a color map that maps pixel 
    values into grayscale values. The color map can be changed by an application.}
-\item{\code{GDK_VISUAL_STATIC_COLOR (static-color)}}{Each pixel value is an index into a predefined,
+\item{\code{static-color}}{Each pixel value is an index into a predefined,
    unmodifiable color map that maps pixel values into RGB values.}
-\item{\code{GDK_VISUAL_PSEUDO_COLOR (pseudo-color)}}{Each pixel is an index into a color map that maps
+\item{\code{pseudo-color}}{Each pixel is an index into a color map that maps
    pixel values into rgb values. The color map can be changed by an application.}
-\item{\code{GDK_VISUAL_TRUE_COLOR (true-color)}}{Each pixel value directly contains red, green,
+\item{\code{true-color}}{Each pixel value directly contains red, green,
    and blue components. The \code{red_mask},
    \code{green_mask}, and 
    \code{blue_mask} fields of the \code{\link{GdkVisual}}
    structure describe how the components are assembled into a pixel value.}
-\item{\code{GDK_VISUAL_DIRECT_COLOR (direct-color)}}{Each pixel value contains red, green, and blue
+\item{\code{direct-color}}{Each pixel value contains red, green, and blue
    components as for \code{GDK_VISUAL_TRUE_COLOR}, but the components are mapped via a 
    color table into the final output table instead of being converted directly.}
 }
@@ -127,10 +127,10 @@ A set of values describing the possible byte-orders
 for storing pixel values in memory.
 
 \describe{
-\item{\code{GDK_LSB_FIRST (lsb-first)}}{The values are stored with the least-significant byte
+\item{\code{lsb-first}}{The values are stored with the least-significant byte
   first. For instance, the 32-bit value 0xffeecc would be stored
   in memory as 0xcc, 0xee, 0xff, 0x00.}
-\item{\code{GDK_MSB_FIRST (msb-first)}}{The values are stored with the most-significant byte
+\item{\code{msb-first}}{The values are stored with the most-significant byte
 first. For instance, the 32-bit value 0xffeecc would be stored
 in memory as 0x00, 0xcc, 0xee, 0xff.}
 }

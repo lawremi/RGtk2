@@ -134,15 +134,15 @@ contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
 was never completed.
 
 \describe{
-\item{\code{GTK_CELL_EMPTY (empty)}}{\emph{undocumented
+\item{\code{empty}}{\emph{undocumented
 }}
-\item{\code{GTK_CELL_TEXT (text)}}{\emph{undocumented
+\item{\code{text}}{\emph{undocumented
 }}
-\item{\code{GTK_CELL_PIXMAP (pixmap)}}{\emph{undocumented
+\item{\code{pixmap}}{\emph{undocumented
 }}
-\item{\code{GTK_CELL_PIXTEXT (pixtext)}}{\emph{undocumented
+\item{\code{pixtext}}{\emph{undocumented
 }}
-\item{\code{GTK_CELL_WIDGET (widget)}}{\emph{undocumented
+\item{\code{widget}}{\emph{undocumented
 }}
 }
 
@@ -153,13 +153,13 @@ Values for specifying what mouse button events a CList will
 react to.
 
 \describe{
-\item{\code{GTK_BUTTON_IGNORED (ignored)}}{\emph{undocumented
+\item{\code{ignored}}{\emph{undocumented
 }}
-\item{\code{GTK_BUTTON_SELECTS (selects)}}{\emph{undocumented
+\item{\code{selects}}{\emph{undocumented
 }}
-\item{\code{GTK_BUTTON_DRAGS (drags)}}{\emph{undocumented
+\item{\code{drags}}{\emph{undocumented
 }}
-\item{\code{GTK_BUTTON_EXPANDS (expands)}}{\emph{undocumented
+\item{\code{expands}}{\emph{undocumented
 }}
 }
 
@@ -169,13 +169,13 @@ react to.
 An enumeration for drag operations.
 
 \describe{
-\item{\code{GTK_CLIST_DRAG_NONE (none)}}{\emph{undocumented
+\item{\code{none}}{\emph{undocumented
 }}
-\item{\code{GTK_CLIST_DRAG_BEFORE (before)}}{\emph{undocumented
+\item{\code{before}}{\emph{undocumented
 }}
-\item{\code{GTK_CLIST_DRAG_INTO (into)}}{\emph{undocumented
+\item{\code{into}}{\emph{undocumented
 }}
-\item{\code{GTK_CLIST_DRAG_AFTER (after)}}{\emph{undocumented
+\item{\code{after}}{\emph{undocumented
 }}
 }
 
@@ -398,18 +398,18 @@ An integer value representing the height of a row in pixels.
 \item{\code{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
 
 Sets the type of selection mode for the CList.
-  Default value: GTK_SELECTION_NONE
+  Default value: GTK\_SELECTION\_NONE
 
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
 Sets the shadowing for the CList.
-  Default value: GTK_SHADOW_NONE
+  Default value: GTK\_SHADOW\_NONE
 
 }
 \item{\code{sort-type} [\code{\link{GtkSortType}} : Read / Write]}{
 
-  Default value: GTK_SORT_ASCENDING
+  Default value: GTK\_SORT\_ASCENDING
 
 }
 \item{\code{titles-active} [logical : Read / Write]}{

@@ -26,7 +26,7 @@ The main reason to create a non input-only event box is if
 you want to set the background to a different color or
 draw on it.
   
-\emph{There is one unexpected issue for an invisible event box that has its
+\strong{PLEASE NOTE:} There is one unexpected issue for an invisible event box that has its
 window below the child. (See \code{\link{gtkEventBoxSetAboveChild}}.)
 Since the input-only window is not an ancestor window of any windows
 that descendent widgets of the event box create, events on these 
@@ -37,7 +37,7 @@ it won't be received by the event box.
   
 This problem doesn't occur for visible event boxes, because in
 that case, the event box window is actually the ancestor of the
-descendant windows, not just at the same place on the screen.}  
+descendant windows, not just at the same place on the screen.  
 
   Since  2.4}
 \note{There is one unexpected issue for an invisible event box that has its

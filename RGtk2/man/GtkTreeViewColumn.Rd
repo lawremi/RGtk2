@@ -79,9 +79,9 @@ that \code{GTK.TREE.VIEW.COLUMN.AUTOSIZE} are inefficient for large views, and
 can make columns appear choppy.
 
 \describe{
-\item{\code{GTK_TREE_VIEW_COLUMN_GROW_ONLY (grow-only)}}{Columns only get bigger in reaction to changes in the model}
-\item{\code{GTK_TREE_VIEW_COLUMN_AUTOSIZE (autosize)}}{Columns resize to be the optimal size everytime the model changes.}
-\item{\code{GTK_TREE_VIEW_COLUMN_FIXED (fixed)}}{Columns are a fixed numbers of pixels wide.}
+\item{\code{grow-only}}{Columns only get bigger in reaction to changes in the model}
+\item{\code{autosize}}{Columns resize to be the optimal size everytime the model changes.}
+\item{\code{fixed}}{Columns are a fixed numbers of pixels wide.}
 }
 
 }}}
@@ -154,7 +154,7 @@ Column is user-resizable.  Default value: FALSE
 }
 \item{\code{sizing} [\code{\link{GtkTreeViewColumnSizing}} : Read / Write]}{
 
-Resize mode of the column.  Default value: GTK_TREE_VIEW_COLUMN_GROW_ONLY
+Resize mode of the column.  Default value: GTK\_TREE\_VIEW\_COLUMN\_GROW\_ONLY
 
 }
 \item{\code{sort-indicator} [logical : Read / Write]}{
@@ -164,7 +164,7 @@ Whether to show a sort indicator.  Default value: FALSE
 }
 \item{\code{sort-order} [\code{\link{GtkSortType}} : Read / Write]}{
 
-Sort direction the sort indicator should indicate.  Default value: GTK_SORT_ASCENDING
+Sort direction the sort indicator should indicate.  Default value: GTK\_SORT\_ASCENDING
 
 }
 \item{\code{spacing} [integer : Read / Write]}{

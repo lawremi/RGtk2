@@ -4,7 +4,7 @@
 \description{Translates the contents of a \code{\link{GdkEventKey}} into a keyval, effective
 group, and level. Modifiers that affected the translation and
 are thus unavailable for application use are returned in
-\code{consumed.modifiers}.  See \code{gdkKeyvalGetKeys()} for an explanation of
+\code{consumed.modifiers}.  See \code{gdk\Keyval\Get\Keys()} for an explanation of
 groups and levels.  The \code{effective.group} is the group that was
 actually used for the translation; some keys such as Enter are not
 affected by the active keyboard group. The \code{level} is derived from
@@ -17,7 +17,7 @@ keyval, so this function isn't as useful as you might think.}
 \item{\code{state}}{[\code{\link{GdkModifierType}}]  a modifier state }
 \item{\code{group}}{[integer]  active keyboard group}
 }
-\details{\emph{\code{consumed.modifiers} gives modifiers that should be masked out
+\details{\strong{PLEASE NOTE:} \code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For
 instance, on a US keyboard, the \code{plus}
 symbol is shifted, so when comparing a key press to a
@@ -58,7 +58,7 @@ be returned in \code{consumed.modifiers}; multi-modifier combinations
 are returned only when actually found in \code{state}. When you store
 accelerators, you should always store them with consumed modifiers
 removed. Store \code{<Control>plus},
-not \code{<Control><Shift>plus},}  }
+not \code{<Control><Shift>plus},  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if there was a keyval bound to the keycode/state/group}

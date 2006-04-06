@@ -1,7 +1,7 @@
 \alias{gtkTextBufferRemoveTag}
 \name{gtkTextBufferRemoveTag}
 \title{gtkTextBufferRemoveTag}
-\description{Emits the "remove_tag" signal. The default handler for the signal
+\description{Emits the "remove\_tag" signal. The default handler for the signal
 removes all occurrences of \code{tag} from the given range. \code{start} and
 \code{end} don't have to be in order.}
 \usage{gtkTextBufferRemoveTag(object, tag, start, end)}

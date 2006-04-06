@@ -3,7 +3,7 @@
 \alias{cairoSurface}
 \alias{CairoContent}
 \name{cairo-cairo-surface-t}
-\title{cairo_surface_t}
+\title{cairo\_surface\_t}
 \description{Base class for surfaces}
 \section{Methods and Functions}{
 \code{\link{cairoSurfaceCreateSimilar}(other, content, width, height)}\cr
@@ -23,7 +23,7 @@
 \section{Structures}{\describe{\item{\code{CairoSurface}}{
 A \code{\link{CairoSurface}} represents an image, either as the destination
 of a drawing operation or as source when drawing onto another
-surface. There are different subtypes of cairo_surface_t for
+surface. There are different subtypes of cairo\_surface\_t for
 different drawing backends; for example, \code{\link{cairoImageSurfaceCreate}}
 creates a bitmap image in memory.
   
@@ -37,14 +37,14 @@ Memory management of \code{\link{CairoSurface}} is done with
 contain, whether color information, alpha information (translucence
 vs. opacity), or both.
   
-Note: The large values here are designed to keep cairo_content_t
-values distinct from cairo_format_t values so that the
+Note: The large values here are designed to keep cairo\_content\_t
+values distinct from cairo\_format\_t values so that the
 implementation can detect the error if users confuse the two types.  
 
 \describe{
-\item{\code{CAIRO_CONTENT_COLOR (color)}}{ The surface will hold color content only.}
-\item{\code{CAIRO_CONTENT_ALPHA (alpha)}}{ The surface will hold alpha content only.}
-\item{\code{CAIRO_CONTENT_COLOR_ALPHA (color-alpha)}}{ The surface will hold color and alpha content.}
+\item{\code{color}}{ The surface will hold color content only.}
+\item{\code{alpha}}{ The surface will hold alpha content only.}
+\item{\code{color-alpha}}{ The surface will hold color and alpha content.}
 }
 
 }}}

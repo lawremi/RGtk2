@@ -88,9 +88,9 @@ A string name/value pair representing a text attribute.
 \strong{\code{AtkAttribute} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{name}}{[character]  The attribute name. Call \code{atkTextAttrGetName()}}
+\item{\code{name}}{[character]  The attribute name. Call \code{atk\Text\Attr\Get\Name()}}
 \item{\code{value}}{[character]  the value of the attribute, represented as a string. 
-Call \code{atkTextAttrGetValue()} for those which are strings.
+Call \code{atk\Text\Attr\Get\Value()} for those which are strings.
 For values which are numbers, the string representation of the number 
 is in value.}
 }
@@ -102,19 +102,19 @@ is in value.}
 Text boundary types used for specifying boundaries for regions of text  
 
 \describe{
-\item{\code{ATK_TEXT_BOUNDARY_CHAR (char)}}{\emph{undocumented
+\item{\code{char}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_WORD_START (word-start)}}{\emph{undocumented
+\item{\code{word-start}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_WORD_END (word-end)}}{\emph{undocumented
+\item{\code{word-end}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_SENTENCE_START (sentence-start)}}{\emph{undocumented
+\item{\code{sentence-start}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_SENTENCE_END (sentence-end)}}{\emph{undocumented
+\item{\code{sentence-end}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_LINE_START (line-start)}}{\emph{undocumented
+\item{\code{line-start}}{\emph{undocumented
 }}
-\item{\code{ATK_TEXT_BOUNDARY_LINE_END (line-end)}}{\emph{undocumented
+\item{\code{line-end}}{\emph{undocumented
 }}
 }
 
@@ -123,10 +123,10 @@ Text boundary types used for specifying boundaries for regions of text
 Describes the type of clipping required.  
 
 \describe{
-\item{\code{ATK_TEXT_CLIP_NONE (none)}}{ No clipping to be done}
-\item{\code{ATK_TEXT_CLIP_MIN (min)}}{ Text clipped by min coordinate is omitted}
-\item{\code{ATK_TEXT_CLIP_MAX (max)}}{ Text clipped by max coordinate is omitted}
-\item{\code{ATK_TEXT_CLIP_BOTH (both)}}{ Only text fully within mix/max bound is retained}
+\item{\code{none}}{ No clipping to be done}
+\item{\code{min}}{ Text clipped by min coordinate is omitted}
+\item{\code{max}}{ Text clipped by max coordinate is omitted}
+\item{\code{both}}{ Only text fully within mix/max bound is retained}
 }
 
 }
@@ -134,35 +134,35 @@ Describes the type of clipping required.
 Describes the text attributes supported  
 
 \describe{
-\item{\code{ATK_TEXT_ATTR_INVALID (invalid)}}{ Invalid attribute}
-\item{\code{ATK_TEXT_ATTR_LEFT_MARGIN (left-margin)}}{ The pixel width of the left margin}
-\item{\code{ATK_TEXT_ATTR_RIGHT_MARGIN (right-margin)}}{ The pixel width of the right margin}
-\item{\code{ATK_TEXT_ATTR_INDENT (indent)}}{ The number of pixels that the text is indented}
-\item{\code{ATK_TEXT_ATTR_INVISIBLE (invisible)}}{ Either "true" or "false" indicating whether text is visible or not}
-\item{\code{ATK_TEXT_ATTR_EDITABLE (editable)}}{ Either "true" or "false" indicating whether text is editable or not}
-\item{\code{ATK_TEXT_ATTR_PIXELS_ABOVE_LINES (pixels-above-lines)}}{ Pixels of blank space to leave above each line. }
-\item{\code{ATK_TEXT_ATTR_PIXELS_BELOW_LINES (pixels-below-lines)}}{ Pixels of blank space to leave below each line.}
-\item{\code{ATK_TEXT_ATTR_PIXELS_INSIDE_WRAP (pixels-inside-wrap)}}{ Pixels of blank space to leave between wrapped lines inside the same line (paragraph).}
-\item{\code{ATK_TEXT_ATTR_BG_FULL_HEIGHT (bg-full-height)}}{ "true" or "false" whether to make the background color for each character the height of the highest font used on the current line, or the height of the font used for the current character.}
-\item{\code{ATK_TEXT_ATTR_RISE (rise)}}{ Number of pixels that the characters are risen above the baseline}
-\item{\code{ATK_TEXT_ATTR_UNDERLINE (underline)}}{ "none", "single", "double" or "low"}
-\item{\code{ATK_TEXT_ATTR_STRIKETHROUGH (strikethrough)}}{ "true" or "false" whether the text is strikethrough }
-\item{\code{ATK_TEXT_ATTR_SIZE (size)}}{ The size of the characters. }
-\item{\code{ATK_TEXT_ATTR_SCALE (scale)}}{ The scale of the characters. The value is a string representation of a double }
-\item{\code{ATK_TEXT_ATTR_WEIGHT (weight)}}{ The weight of the characters.}
-\item{\code{ATK_TEXT_ATTR_LANGUAGE (language)}}{ The language used}
-\item{\code{ATK_TEXT_ATTR_FAMILY_NAME (family-name)}}{ The font family name}
-\item{\code{ATK_TEXT_ATTR_BG_COLOR (bg-color)}}{ The background color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
-\item{\code{ATK_TEXT_ATTR_FG_COLOR (fg-color)}}{The foreground color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
-\item{\code{ATK_TEXT_ATTR_BG_STIPPLE (bg-stipple)}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the background color.}
-\item{\code{ATK_TEXT_ATTR_FG_STIPPLE (fg-stipple)}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the foreground color.}
-\item{\code{ATK_TEXT_ATTR_WRAP_MODE (wrap-mode)}}{ The wrap mode of the text, if any. Values are "none", "char" or "word" }
-\item{\code{ATK_TEXT_ATTR_DIRECTION (direction)}}{ The direction of the text, if set. Values are "none", "ltr" or "rtl" }
-\item{\code{ATK_TEXT_ATTR_JUSTIFICATION (justification)}}{ The justification of the text, if set. Values are "left", "right", "center" or "fill" }
-\item{\code{ATK_TEXT_ATTR_STRETCH (stretch)}}{ The stretch of the text, if set. Values are "ultra_condensed", "extra_condensed", "condensed", "semi_condensed", "normal", "semi_expanded", "expanded", "extra_expanded" or "ultra_expanded"}
-\item{\code{ATK_TEXT_ATTR_VARIANT (variant)}}{ The capitalization variant of the text, if set. Values are "normal" or "small_caps"}
-\item{\code{ATK_TEXT_ATTR_STYLE (style)}}{ The slant style of the text, if set. Values are "normal", "oblique" or "italic"}
-\item{\code{ATK_TEXT_ATTR_LAST_DEFINED (last-defined)}}{ not a valid text attribute, used for finding end of enumeration}
+\item{\code{invalid}}{ Invalid attribute}
+\item{\code{left-margin}}{ The pixel width of the left margin}
+\item{\code{right-margin}}{ The pixel width of the right margin}
+\item{\code{indent}}{ The number of pixels that the text is indented}
+\item{\code{invisible}}{ Either "true" or "false" indicating whether text is visible or not}
+\item{\code{editable}}{ Either "true" or "false" indicating whether text is editable or not}
+\item{\code{pixels-above-lines}}{ Pixels of blank space to leave above each line. }
+\item{\code{pixels-below-lines}}{ Pixels of blank space to leave below each line.}
+\item{\code{pixels-inside-wrap}}{ Pixels of blank space to leave between wrapped lines inside the same line (paragraph).}
+\item{\code{bg-full-height}}{ "true" or "false" whether to make the background color for each character the height of the highest font used on the current line, or the height of the font used for the current character.}
+\item{\code{rise}}{ Number of pixels that the characters are risen above the baseline}
+\item{\code{underline}}{ "none", "single", "double" or "low"}
+\item{\code{strikethrough}}{ "true" or "false" whether the text is strikethrough }
+\item{\code{size}}{ The size of the characters. }
+\item{\code{scale}}{ The scale of the characters. The value is a string representation of a double }
+\item{\code{weight}}{ The weight of the characters.}
+\item{\code{language}}{ The language used}
+\item{\code{family-name}}{ The font family name}
+\item{\code{bg-color}}{ The background color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
+\item{\code{fg-color}}{The foreground color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
+\item{\code{bg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the background color.}
+\item{\code{fg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the foreground color.}
+\item{\code{wrap-mode}}{ The wrap mode of the text, if any. Values are "none", "char" or "word" }
+\item{\code{direction}}{ The direction of the text, if set. Values are "none", "ltr" or "rtl" }
+\item{\code{justification}}{ The justification of the text, if set. Values are "left", "right", "center" or "fill" }
+\item{\code{stretch}}{ The stretch of the text, if set. Values are "ultra\_condensed", "extra\_condensed", "condensed", "semi\_condensed", "normal", "semi\_expanded", "expanded", "extra\_expanded" or "ultra\_expanded"}
+\item{\code{variant}}{ The capitalization variant of the text, if set. Values are "normal" or "small\_caps"}
+\item{\code{style}}{ The slant style of the text, if set. Values are "normal", "oblique" or "italic"}
+\item{\code{last-defined}}{ not a valid text attribute, used for finding end of enumeration}
 }
 
 }

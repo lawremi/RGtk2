@@ -123,7 +123,7 @@ a larger structure that contains a nested
 \code{\link{PangoFont}}, fill in the klass member of
 the nested \code{\link{PangoFont}} with a pointer to
 a appropriate \code{PangoFontClass}, then call
-\code{pangoFontInit()} on the structure.
+\code{pango\Font\Init()} on the structure.
   
 The \code{\link{PangoFont}} structure contains one member
 which the implementation fills in:
@@ -148,7 +148,7 @@ create an implementation of a \code{\link{PangoFontMap}}, the rendering-system
 specific code should malloc a larger structure that contains a nested
 \code{\link{PangoFontMap}}, fill in the klass member of the nested \code{\link{PangoFontMap}} with a
 pointer to a appropriate \code{PangoFontMapClass}, then call
-\code{pangoFontMapInit()} on the structure.
+\code{pango\Font\Map\Init()} on the structure.
   
 The \code{\link{PangoFont}} structure contains one member which the implementation fills in:
 
@@ -175,9 +175,9 @@ which the creator provides when constructing the
 An enumeration specifying the various slant styles possible for a font.  
 
 \describe{
-\item{\code{PANGO_STYLE_NORMAL (normal)}}{ the font is upright.}
-\item{\code{PANGO_STYLE_OBLIQUE (oblique)}}{ the font is slanted, but in a roman style.}
-\item{\code{PANGO_STYLE_ITALIC (italic)}}{ the font is slanted in an italic style.}
+\item{\code{normal}}{ the font is upright.}
+\item{\code{oblique}}{ the font is slanted, but in a roman style.}
+\item{\code{italic}}{ the font is slanted in an italic style.}
 }
 
 }
@@ -186,13 +186,13 @@ An enumeration specifying the weight (boldness) of a font. This is a numerical
 value ranging from 100 to 900, but there are some predefined values:
 
 \describe{
-\item{\code{PANGO_WEIGHT_ULTRALIGHT (ultralight)}}{the ultralight weight (= 200)}
-\item{\code{PANGO_WEIGHT_LIGHT (light)}}{ the light weight (=300)}
-\item{\code{PANGO_WEIGHT_NORMAL (normal)}}{the default weight (= 400)}
-\item{\code{PANGO_WEIGHT_SEMIBOLD (semibold)}}{a weight intermediate between normal and bold (=600)}
-\item{\code{PANGO_WEIGHT_BOLD (bold)}}{the bold weight (= 700)}
-\item{\code{PANGO_WEIGHT_ULTRABOLD (ultrabold)}}{the ultrabold weight (= 800)}
-\item{\code{PANGO_WEIGHT_HEAVY (heavy)}}{the heavy weight (= 900)}
+\item{\code{ultralight}}{the ultralight weight (= 200)}
+\item{\code{light}}{ the light weight (=300)}
+\item{\code{normal}}{the default weight (= 400)}
+\item{\code{semibold}}{a weight intermediate between normal and bold (=600)}
+\item{\code{bold}}{the bold weight (= 700)}
+\item{\code{ultrabold}}{the ultrabold weight (= 800)}
+\item{\code{heavy}}{the heavy weight (= 900)}
 }
 
 }
@@ -200,8 +200,8 @@ value ranging from 100 to 900, but there are some predefined values:
 An enumeration specifying capitalization variant of the font.
 
 \describe{
-\item{\code{PANGO_VARIANT_NORMAL (normal)}}{A normal font.}
-\item{\code{PANGO_VARIANT_SMALL_CAPS (small-caps)}}{A font with the lower case characters
+\item{\code{normal}}{A normal font.}
+\item{\code{small-caps}}{A font with the lower case characters
   replaced by smaller variants of the capital characters.}
 }
 
@@ -211,22 +211,22 @@ An enumeration specifying the width of the font relative to other designs
 within a family.
 
 \describe{
-\item{\code{PANGO_STRETCH_ULTRA_CONDENSED (ultra-condensed)}}{\emph{undocumented
+\item{\code{ultra-condensed}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_EXTRA_CONDENSED (extra-condensed)}}{\emph{undocumented
+\item{\code{extra-condensed}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_CONDENSED (condensed)}}{\emph{undocumented
+\item{\code{condensed}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_SEMI_CONDENSED (semi-condensed)}}{\emph{undocumented
+\item{\code{semi-condensed}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_NORMAL (normal)}}{the normal width}
-\item{\code{PANGO_STRETCH_SEMI_EXPANDED (semi-expanded)}}{\emph{undocumented
+\item{\code{normal}}{the normal width}
+\item{\code{semi-expanded}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_EXPANDED (expanded)}}{\emph{undocumented
+\item{\code{expanded}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_EXTRA_EXPANDED (extra-expanded)}}{\emph{undocumented
+\item{\code{extra-expanded}}{\emph{undocumented
 }}
-\item{\code{PANGO_STRETCH_ULTRA_EXPANDED (ultra-expanded)}}{\emph{undocumented
+\item{\code{ultra-expanded}}{\emph{undocumented
 }}
 }
 
@@ -236,12 +236,12 @@ The bits in a \code{\link{PangoFontMask}} correspond to fields in a
 \code{\link{PangoFontDescription}} that have been set.
 
 \describe{
-\item{\code{PANGO_FONT_MASK_FAMILY (family)}}{the font family is specified.}
-\item{\code{PANGO_FONT_MASK_STYLE (style)}}{the font style is specified.}
-\item{\code{PANGO_FONT_MASK_VARIANT (variant)}}{the font variant is specified.}
-\item{\code{PANGO_FONT_MASK_WEIGHT (weight)}}{the font weight is specified.}
-\item{\code{PANGO_FONT_MASK_STRETCH (stretch)}}{the font stretch is specified.}
-\item{\code{PANGO_FONT_MASK_SIZE (size)}}{the font size is specified.}
+\item{\code{family}}{the font family is specified.}
+\item{\code{style}}{the font style is specified.}
+\item{\code{variant}}{the font variant is specified.}
+\item{\code{weight}}{the font weight is specified.}
+\item{\code{stretch}}{the font stretch is specified.}
+\item{\code{size}}{the font size is specified.}
 }
 
 }

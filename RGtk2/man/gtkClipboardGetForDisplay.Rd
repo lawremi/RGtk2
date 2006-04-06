@@ -4,7 +4,7 @@
 \description{Returns the clipboard object for the given selection.
 Cut/copy/paste menu items and keyboard shortcuts should use
 the default clipboard, returned by passing \code{GDK_SELECTION_CLIPBOARD} for \code{selection}.
-(\code{GDK_NONE} is supported as a synonym for GDK_SELECTION_CLIPBOARD
+(\code{GDK_NONE} is supported as a synonym for GDK\_SELECTION\_CLIPBOARD
 for backwards compatibility reasons.)
 The currently-selected object or text should be provided on the clipboard
 identified by \code{GDK_SELECTION_PRIMARY}. Cut/copy/paste menu items
@@ -29,7 +29,7 @@ new clipboards, you should prefix the selection name with an
 underscore (because the ICCCM requires that nonstandard atoms are
 underscore-prefixed), and namespace it as well. For example,
 if your application called "Foo" has a special-purpose
-clipboard, you might call it "_FOO_SPECIAL_CLIPBOARD".  
+clipboard, you might call it "\_FOO\_SPECIAL\_CLIPBOARD".  
 
   Since  2.2.}
 \value{[\code{\link{GtkClipboard}}]  the appropriate clipboard object. If no

@@ -9,7 +9,7 @@ already added it is not added again}
 \item{\code{object}}{[\code{\link{AtkComponent}}]  The \code{\link{AtkComponent}} to attach the \code{handler} to}
 \item{\code{handler}}{[AtkFocusHandler]  The \code{AtkFocusHandler} to be attached to \code{component}}
 }
-\value{[numeric]  a handler id which can be used in atk_component_remove_focus_handler
+\value{[numeric]  a handler id which can be used in atk\_component\_remove\_focus\_handler
 or zero if the handler was already added.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

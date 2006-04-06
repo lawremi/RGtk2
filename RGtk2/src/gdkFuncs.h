@@ -52,15 +52,6 @@ S_gdk_beep();
 S_gdk_set_double_click_time(USER_OBJECT_ s_msec); 
 
 	USER_OBJECT_
-S_gdk_threads_enter(); 
-
-	USER_OBJECT_
-S_gdk_threads_leave(); 
-
-	USER_OBJECT_
-S_gdk_threads_init(); 
-
-	USER_OBJECT_
 S_gdk_cairo_create(USER_OBJECT_ s_drawable); 
 
 	USER_OBJECT_
@@ -958,28 +949,13 @@ S_gdk_spawn_command_line_on_screen(USER_OBJECT_ s_screen, USER_OBJECT_ s_command
 S_gtk_alternative_dialog_button_order(USER_OBJECT_ s_object); 
 
 	USER_OBJECT_
-S_gdk_selection_owner_set(USER_OBJECT_ s_owner, USER_OBJECT_ s_selection, USER_OBJECT_ s_time, USER_OBJECT_ s_send_event); 
-
-	USER_OBJECT_
 S_gdk_selection_owner_get(USER_OBJECT_ s_selection); 
-
-	USER_OBJECT_
-S_gdk_selection_owner_set_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_owner, USER_OBJECT_ s_selection, USER_OBJECT_ s_time, USER_OBJECT_ s_send_event); 
 
 	USER_OBJECT_
 S_gdk_selection_owner_get_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_selection); 
 
 	USER_OBJECT_
-S_gdk_selection_convert(USER_OBJECT_ s_object, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_time); 
-
-	USER_OBJECT_
 S_gdk_selection_property_get(USER_OBJECT_ s_object); 
-
-	USER_OBJECT_
-S_gdk_selection_send_notify(USER_OBJECT_ s_requestor, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_property, USER_OBJECT_ s_time); 
-
-	USER_OBJECT_
-S_gdk_selection_send_notify_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_requestor, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_property, USER_OBJECT_ s_time); 
 
 	USER_OBJECT_
 S_gdk_visual_get_best_depth(); 
@@ -1112,18 +1088,6 @@ S_gdk_window_get_state(USER_OBJECT_ s_object);
 
 	USER_OBJECT_
 S_gdk_window_set_static_gravities(USER_OBJECT_ s_object, USER_OBJECT_ s_use_static); 
-
-	USER_OBJECT_
-S_gdk_window_foreign_new(USER_OBJECT_ s_anid); 
-
-	USER_OBJECT_
-S_gdk_window_lookup(USER_OBJECT_ s_anid); 
-
-	USER_OBJECT_
-S_gdk_window_foreign_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid); 
-
-	USER_OBJECT_
-S_gdk_window_lookup_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid); 
 
 	USER_OBJECT_
 S_gdk_window_set_hints(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_min_width, USER_OBJECT_ s_min_height, USER_OBJECT_ s_max_width, USER_OBJECT_ s_max_height, USER_OBJECT_ s_flags); 

@@ -13,7 +13,7 @@ that crashes if not.}
 in which case the window will be maximized when it appears onscreen
 initially.
   
-You can track maximization via the "window_state_event" signal
+You can track maximization via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

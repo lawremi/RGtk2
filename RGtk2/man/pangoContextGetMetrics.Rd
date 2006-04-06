@@ -23,6 +23,7 @@ list of figures. If characters from multiple of these families
 would be used to render the string, then the returned fonts would
 be a composite of the metrics for the fonts loaded for the
 individual families.  }
-\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object.}
+\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object. The caller must call \code{pango\Font\Metrics\Unref()}
+  when finished using the object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

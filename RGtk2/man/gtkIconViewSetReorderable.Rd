@@ -6,7 +6,7 @@ support the \code{GtkTreeDragSourceIface} and the \code{GtkTreeDragDestIface}.  
 \code{\link{GtkTreeStore}} and \code{\link{GtkListStore}} support these.  If \code{reorderable} is \code{TRUE}, then
 the user can reorder the model by dragging and dropping rows.  The
 developer can listen to these changes by connecting to the model's
-row_inserted and row_deleted signals.}
+row\_inserted and row\_deleted signals.}
 \usage{gtkIconViewSetReorderable(object, reorderable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}

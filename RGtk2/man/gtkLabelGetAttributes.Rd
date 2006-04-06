@@ -6,7 +6,7 @@
 not reflect attributes that come from the labels markup
 (see \code{\link{gtkLabelSetMarkup}}). If you want to get the
 effective attributes for the label, use
-pango_layout_get_attribute (gtk_label_get_layout (label)).}
+pango\_layout\_get\_attribute (gtk\_label\_get\_layout (label)).}
 \usage{gtkLabelGetAttributes(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
 \value{[\code{\link{PangoAttrList}}]  the attribute list, or \code{NULL} if none was set.}

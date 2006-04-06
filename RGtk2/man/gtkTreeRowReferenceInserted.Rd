@@ -2,7 +2,7 @@
 \name{gtkTreeRowReferenceInserted}
 \title{gtkTreeRowReferenceInserted}
 \description{Lets a set of row reference created by \code{\link{gtkTreeRowReferenceNewProxy}}
-know that the model emitted the "row_inserted" signal.}
+know that the model emitted the "row\_inserted" signal.}
 \usage{gtkTreeRowReferenceInserted(proxy, path)}
 \arguments{
 \item{\code{proxy}}{[\code{\link{GObject}}]  A \code{\link{GObject}}}

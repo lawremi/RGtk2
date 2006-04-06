@@ -114,10 +114,10 @@ for a container class and \code{\link{gtkContainerClassFindChildProperty}} or
 child properties.
   
 To set the value of a child property, use \code{\link{gtkContainerChildSetProperty}}, 
-\code{\link{gtkContainerChildSet}} or \code{gtkContainerChildSetValist()}. 
+\code{\link{gtkContainerChildSet}} or \code{gtk\Container\Child\Set\Valist()}. 
 To obtain the value of a child property, use 
 \code{\link{gtkContainerChildGetProperty}}, \code{\link{gtkContainerChildGet}} or
-\code{gtkContainerChildGetValist()}. To emit notification about child property 
+\code{gtk\Container\Child\Get\Valist()}. To emit notification about child property 
 changes, use \code{\link{gtkWidgetChildNotify}}.}
 \section{Structures}{\describe{\item{\code{GtkContainer}}{
 
@@ -176,7 +176,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 \section{Properties}{\describe{
 \item{\code{border-width} [numeric : Read / Write]}{
 
-The width of the empty border outside the containers children.  Allowed values: <= G_MAXINT  Default value: 0
+The width of the empty border outside the containers children.  Allowed values: <= G\_MAXINT  Default value: 0
 
 }
 \item{\code{child} [\code{\link{GtkWidget}} : Write]}{
@@ -186,7 +186,7 @@ Can be used to add a new child to the container.
 }
 \item{\code{resize-mode} [\code{\link{GtkResizeMode}} : Read / Write]}{
 
-Specify how resize events are handled.  Default value: GTK_RESIZE_PARENT
+Specify how resize events are handled.  Default value: GTK\_RESIZE\_PARENT
 
 }
 }}

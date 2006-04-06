@@ -110,15 +110,15 @@ The markup passed to \code{\link{gtkLabelSetMarkup}} must be valid; for example,
 literal </>/& characters must be escaped as &lt;,
 &gt;, and &amp;. If you pass text obtained from the user, file,
 or a network to \code{\link{gtkLabelSetMarkup}}, you'll want to escape it with
-\code{gMarkupEscapeText()} or \code{gMarkupPrintfEscaped()}.
+\code{g\Markup\Escape\Text()} or \code{g\Markup\Printf\Escaped()}.
   
 Markup strings are just a convenient way to set the \code{\link{PangoAttrList}} on
 a label; \code{\link{gtkLabelSetAttributes}} may be a simpler way to set
 attributes in some cases. Be careful though; \code{\link{PangoAttrList}} tends to
 cause internationalization problems, unless you're applying attributes
 to the entire string (i.e. unless you set the range of each attribute
-to [0, G_MAXINT)). The reason is that specifying the start_index and
-end_index for a \code{\link{PangoAttribute}} requires knowledge of the exact string
+to [0, G\_MAXINT)). The reason is that specifying the start\_index and
+end\_index for a \code{\link{PangoAttribute}} requires knowledge of the exact string
 being displayed, so translations will cause problems.}
 \section{Selectable labels}{Labels can be made selectable with \code{\link{gtkLabelSetSelectable}}. 
 Selectable labels allow the user to copy the label contents to 
@@ -207,12 +207,12 @@ work well in notebook tabs, unless the tab's ::tab-expand property is set
 to \code{TRUE}. Other means to set a label's width are
 \code{\link{gtkWidgetSetSizeRequest}} and \code{\link{gtkLabelSetWidthChars}}.  
 
-  Default value: PANGO_ELLIPSIZE_NONE  Since  2.6
+  Default value: PANGO\_ELLIPSIZE\_NONE  Since  2.6
 
 }
 \item{\code{justify} [\code{\link{GtkJustification}} : Read / Write]}{
 
-The alignment of the lines in the text of the label relative to each other. This does NOT affect the alignment of the label within its allocation. See GtkMisc::xalign for that.  Default value: GTK_JUSTIFY_LEFT
+The alignment of the lines in the text of the label relative to each other. This does NOT affect the alignment of the label within its allocation. See GtkMisc::xalign for that.  Default value: GTK\_JUSTIFY\_LEFT
 
 }
 \item{\code{label} [character : Read / Write]}{
@@ -243,7 +243,7 @@ The widget to be activated when the label's mnemonic key is pressed.
 }
 \item{\code{pattern} [character : Write]}{
 
-A string with _ characters in positions correspond to characters in the text to underline.  Default value: NULL
+A string with \_ characters in positions correspond to characters in the text to underline.  Default value: NULL
 
 }
 \item{\code{selectable} [logical : Read / Write]}{
@@ -269,7 +269,7 @@ changes would be distracting, e.g. in a statusbar.
 }
 \item{\code{use-markup} [logical : Read / Write]}{
 
-The text of the label includes XML markup. See pango_parse_markup().  Default value: FALSE
+The text of the label includes XML markup. See pango\_parse\_markup().  Default value: FALSE
 
 }
 \item{\code{use-underline} [logical : Read / Write]}{

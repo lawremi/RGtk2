@@ -1,7 +1,7 @@
 \alias{gtkTreeModelRowChanged}
 \name{gtkTreeModelRowChanged}
 \title{gtkTreeModelRowChanged}
-\description{Emits the "row_changed" signal on \code{tree.model}.}
+\description{Emits the "row\_changed" signal on \code{tree.model}.}
 \usage{gtkTreeModelRowChanged(object, path, iter)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}}

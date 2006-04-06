@@ -1053,19 +1053,6 @@
   )
 )
 
-(define-flags ArgFlags
-  (in-module "Gtk")
-  (c-name "GtkArgFlags")
-  (gtype-id "GTK_TYPE_ARG_FLAGS")
-  (values
-    '("readable" "GTK_ARG_READABLE")
-    '("writable" "GTK_ARG_WRITABLE")
-    '("construct" "GTK_ARG_CONSTRUCT")
-    '("construct-only" "GTK_ARG_CONSTRUCT_ONLY")
-    '("child-arg" "GTK_ARG_CHILD_ARG")
-  )
-)
-
 (define-flags AttachOptions
   (in-module "Gtk")
   (c-name "GtkAttachOptions")
@@ -1115,21 +1102,6 @@
   )
 )
 
-(define-flags DebugFlag
-  (in-module "Gtk")
-  (c-name "GtkDebugFlag")
-  (gtype-id "GTK_TYPE_DEBUG_FLAG")
-  (values
-    '("misc" "GTK_DEBUG_MISC")
-    '("plugsocket" "GTK_DEBUG_PLUGSOCKET")
-    '("text" "GTK_DEBUG_TEXT")
-    '("tree" "GTK_DEBUG_TREE")
-    '("updates" "GTK_DEBUG_UPDATES")
-    '("keybindings" "GTK_DEBUG_KEYBINDINGS")
-    '("multihead" "GTK_DEBUG_MULTIHEAD")
-  )
-)
-
 (define-flags DestDefaults
   (in-module "Gtk")
   (c-name "GtkDestDefaults")
@@ -1173,18 +1145,6 @@
     '("no-svg" "GTK_ICON_LOOKUP_NO_SVG")
     '("force-svg" "GTK_ICON_LOOKUP_FORCE_SVG")
     '("use-builtin" "GTK_ICON_LOOKUP_USE_BUILTIN")
-  )
-)
-
-(define-flags ObjectFlags
-  (in-module "Gtk")
-  (c-name "GtkObjectFlags")
-  (gtype-id "GTK_TYPE_OBJECT_FLAGS")
-  (values
-    '("in-destruction" "GTK_IN_DESTRUCTION")
-    '("floating" "GTK_FLOATING")
-    '("reserved-1" "GTK_RESERVED_1")
-    '("reserved-2" "GTK_RESERVED_2")
   )
 )
 

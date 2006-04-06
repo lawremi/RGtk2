@@ -77,11 +77,11 @@ accessed through the function described below.
 to a \code{\link{GtkToolbar}}.
 
 \describe{
-\item{\code{GTK_TOOLBAR_CHILD_SPACE (space)}}{a space in the style of the toolbar's \code{\link{GtkToolbarSpaceStyle}}.}
-\item{\code{GTK_TOOLBAR_CHILD_BUTTON (button)}}{a \code{\link{GtkButton}}.}
-\item{\code{GTK_TOOLBAR_CHILD_TOGGLEBUTTON (togglebutton)}}{a \code{\link{GtkToggleButton}}.}
-\item{\code{GTK_TOOLBAR_CHILD_RADIOBUTTON (radiobutton)}}{a \code{\link{GtkRadioButton}}.}
-\item{\code{GTK_TOOLBAR_CHILD_WIDGET (widget)}}{a standard \code{\link{GtkWidget}}.}
+\item{\code{space}}{a space in the style of the toolbar's \code{\link{GtkToolbarSpaceStyle}}.}
+\item{\code{button}}{a \code{\link{GtkButton}}.}
+\item{\code{togglebutton}}{a \code{\link{GtkToggleButton}}.}
+\item{\code{radiobutton}}{a \code{\link{GtkRadioButton}}.}
+\item{\code{widget}}{a standard \code{\link{GtkWidget}}.}
 }
 
 }
@@ -89,9 +89,9 @@ to a \code{\link{GtkToolbar}}.
 
 
 \describe{
-\item{\code{GTK_TOOLBAR_SPACE_EMPTY (empty)}}{\emph{undocumented
+\item{\code{empty}}{\emph{undocumented
 }}
-\item{\code{GTK_TOOLBAR_SPACE_LINE (line)}}{\emph{undocumented
+\item{\code{line}}{\emph{undocumented
 }}
 }
 
@@ -163,7 +163,7 @@ Emitted when the style of the toolbar changes.
 \section{Properties}{\describe{
 \item{\code{orientation} [\code{\link{GtkOrientation}} : Read / Write]}{
 
-The orientation of the toolbar.  Default value: GTK_ORIENTATION_HORIZONTAL
+The orientation of the toolbar.  Default value: GTK\_ORIENTATION\_HORIZONTAL
 
 }
 \item{\code{show-arrow} [logical : Read / Write]}{
@@ -173,7 +173,7 @@ If an arrow should be shown if the toolbar doesn't fit.  Default value: TRUE
 }
 \item{\code{toolbar-style} [\code{\link{GtkToolbarStyle}} : Read / Write]}{
 
-How to draw the toolbar.  Default value: GTK_TOOLBAR_ICONS
+How to draw the toolbar.  Default value: GTK\_TOOLBAR\_ICONS
 
 }
 \item{\code{tooltips} [logical : Read / Write]}{
@@ -187,7 +187,7 @@ If the tooltips of the toolbar should be active or not.
 \section{Style Properties}{\describe{
 \item{\code{button-relief} [\code{\link{GtkReliefStyle}} : Read]}{
 
-Type of bevel around toolbar buttons.  Default value: GTK_RELIEF_NONE
+Type of bevel around toolbar buttons.  Default value: GTK\_RELIEF\_NONE
 
 }
 \item{\code{internal-padding} [integer : Read]}{
@@ -197,7 +197,7 @@ Amount of border space between the toolbar shadow and the buttons.  Allowed valu
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Style of bevel around the toolbar.  Default value: GTK_SHADOW_OUT
+Style of bevel around the toolbar.  Default value: GTK\_SHADOW\_OUT
 
 }
 \item{\code{space-size} [integer : Read]}{
@@ -207,7 +207,7 @@ Size of spacers.  Allowed values: >= 0  Default value: 12
 }
 \item{\code{space-style} [\code{\link{GtkToolbarSpaceStyle}} : Read]}{
 
-Whether spacers are vertical lines or just blank.  Default value: GTK_TOOLBAR_SPACE_LINE
+Whether spacers are vertical lines or just blank.  Default value: GTK\_TOOLBAR\_SPACE\_LINE
 
 }
 }}

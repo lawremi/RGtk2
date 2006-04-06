@@ -8,40 +8,40 @@
 \item{\code{offset}}{[integer]  position}
 \item{\code{boundary.type}}{[\code{\link{AtkTextBoundary}}]  An \code{\link{AtkTextBoundary}}}
 }
-\details{If the boundary_type if ATK_TEXT_BOUNDARY_CHAR the character after the 
+\details{If the boundary\_type if ATK\_TEXT\_BOUNDARY\_CHAR the character after the 
 offset is returned.
   
-If the boundary_type is ATK_TEXT_BOUNDARY_WORD_START the returned string
+If the boundary\_type is ATK\_TEXT\_BOUNDARY\_WORD\_START the returned string
 is from the word start after the offset to the next word start.
   
 The returned string will contain the word after the offset if the offset 
 is inside a word or if the offset is not inside a word.
   
-If the boundary_type is ATK_TEXT_BOUNDARY_WORD_END the returned string
+If the boundary\_type is ATK\_TEXT\_BOUNDARY\_WORD\_END the returned string
 is from the word end at or after the offset to the next work end.
   
 The returned string will contain the word after the offset if the offset
 is inside a word and will contain the word after the word after the offset
 if the offset is not inside a word.
   
-If the boundary type is ATK_TEXT_BOUNDARY_SENTENCE_START the returned
+If the boundary type is ATK\_TEXT\_BOUNDARY\_SENTENCE\_START the returned
 string is from the sentence start after the offset to the next sentence
 start.
   
 The returned string will contain the sentence after the offset if the offset
 is inside a sentence or if the offset is not inside a sentence.
   
-If the boundary_type is ATK_TEXT_BOUNDARY_SENTENCE_END the returned string
+If the boundary\_type is ATK\_TEXT\_BOUNDARY\_SENTENCE\_END the returned string
 is from the sentence end at or after the offset to the next sentence end.
   
 The returned string will contain the sentence after the offset if the offset
 is inside a sentence and will contain the sentence after the sentence
 after the offset if the offset is not inside a sentence.
   
-If the boundary type is ATK_TEXT_BOUNDARY_LINE_START the returned
+If the boundary type is ATK\_TEXT\_BOUNDARY\_LINE\_START the returned
 string is from the line start after the offset to the next line start.
   
-If the boundary_type is ATK_TEXT_BOUNDARY_LINE_END the returned string
+If the boundary\_type is ATK\_TEXT\_BOUNDARY\_LINE\_END the returned string
 is from the line end at or after the offset to the next line start.  }
 \value{
 A list containing the following elements:

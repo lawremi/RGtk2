@@ -14,25 +14,31 @@ gdkGetWindowSize <- function(w) {
 
 # signals
 
-gtkObjectSignalEmit <- gSignalEmit
+gtkObjectSignalEmit <- function(obj, signal, ...) gSignalEmit(obj, signal, ...)
 gtkObjectGetSignals <- gObjectGetSignals
-gtkTypeGetSignals <- gTypeGetSignals
+gtkTypeGetSignals <- .gTypeGetSignals
+.GtkClasses <- "GtkWidget"
+getSignalInfo <- function(classes = .GtkClasses, load = TRUE) {
+  sapply(classes, function(type) sapply(gtkTypeGetSignals(type), gtkSignalGetInfo))
+}
+
 gtkSignalGetInfo <- gSignalGetInfo
 
 
 # args
 
 gtkObjectGetArgInfo <- gObjectGetPropInfo
-gtkObjectGetArgs <- gObjectGetProps
+gtkObjectGetArgs <- function(obj, argNames) obj$get(argNames)
 gtkObjectGetArg <- 
 function(obj, argName) 
 {
-	props <- gObjectGetProps(obj, argName)
+	props <- obj$get(argName)
 	if (!is.null(props))
 		props <- props[[1]]
 	props
 }
-gtkObjectSetArgs <- gObjectSetProps
+gtkObjectSetArgs <- function(obj, ..., .vals) obj$set(..., .vals)
+names.GtkObject <- names.GObject
 
 # dnd
 
@@ -41,8 +47,8 @@ function(target, flags, info) as.GtkTargetEntry(list(target, flags, info))
 
 # gtk text stuff ---- not supported!
 gtkTextGetText <- function(w) gtkEditableGetChars(w, 0, -1)
-gtkTextClearText <- function(w) gtkEditableDeleteText(w, 0, -1)
-gtkTextSetText <- function(w, contents="", append=F) {
+gtkTextClearText <- function(w, start = 0, end = -1) gtkEditableDeleteText(w, start, end)
+gtkTextSetText <- function(w, contents="", append=FALSE) {
 	if (append)
 		pos <- nchar(gtkTextGetText(w))
 	else {
@@ -67,6 +73,10 @@ function(obj)
   gtkCheckInherits(obj, "GtkObject")  
  .GtkCall("S_g_object_unref", obj) 
 }
+
+# flags
+
+gtkWidgetGetFlags <- function(w) gtkObjectFlags(w)
 
 # this function should not be necessary in well-structured code
 
@@ -141,16 +151,30 @@ function(w, row, cols, values, zeroBased = TRUE)
 
 # types
 
-gtkObjectGetTypeName <- gObjectTypeName
-gtkObjectGetClasses <- gObjectGetClasses
+gtkObjectGetTypeName <- function(w)
+{
+ checkPtrType(w, "GtkObject")
+ class(w)[1]
+}
+gtkObjectGetClasses <- function(w, check = TRUE)
+{
+ if(check)
+     checkPtrType(w, "GtkObject")
+ class(w)
+}
 gtkTypeGetClasses <- gTypeGetAncestors
-gtkObjectGetType <- gObjectType
-gtkGetType <- gTypeFromName
+gtkObjectGetType <- function(w, check = TRUE)
+{
+ if(check)
+    checkPtrType(w, "GtkObject")
+ w$getType()
+}
+gtkGetType <- function(name) as.GType(name)
 
 # widgets
 
 gtkTopWindow <- 
-function(title="My RGtk2 Window", show = TRUE)
+function(title="My Window", show = TRUE)
 {
 	window <- gtkWindowNew("toplevel", show = show)
 	window$setTitle(title)
@@ -169,7 +193,7 @@ function(parent, ...)
 
   sapply(widgets, function(widget) parent$add(widget))
 }
-gtkShow <- function(..., all=TRUE)
+gtkShow <- function(..., all=T)
 {
 	widgets <- list(...)
 	func <- gtkWidgetShow
@@ -177,7 +201,11 @@ gtkShow <- function(..., all=TRUE)
 		func <- gtkWidgetShowAll
 	sapply(widgets, func)
 }
-gtkAddCallback <- gtkObjectAddCallback <- gSignalConnect
+
+gtkAddCallback <- gtkObjectAddCallback <- 
+function(w, signal, f, data = NULL, object = TRUE, after = TRUE)
+  gSignalConnect(w, signal, f, data, after, object)
+
 gtkObjectRemoveCallback <- gtkObjectDisconnectCallback <- gSignalHandlerDisconnect
 gtkObjectBlockCallback <- gSignalHandlerBlock
 gtkObjectUnblockCallback <- gSignalHandlerUnblock

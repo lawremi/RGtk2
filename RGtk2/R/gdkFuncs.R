@@ -182,39 +182,6 @@ function(msec)
 } 
 
 
-gdkThreadsEnter <-
-function()
-{
-	
-
-	w <- .RGtkCall("S_gdk_threads_enter", PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkThreadsLeave <-
-function()
-{
-	
-
-	w <- .RGtkCall("S_gdk_threads_leave", PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkThreadsInit <-
-function()
-{
-	
-
-	w <- .RGtkCall("S_gdk_threads_init", PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
 gdkCairoCreate <-
 function(drawable)
 {
@@ -3949,41 +3916,12 @@ function(object)
 } 
 
 
-gdkSelectionOwnerSet <-
-function(owner, selection, time, send.event)
-{
-	checkPtrType(owner, "GdkWindow")
-	selection <- as.GdkAtom(selection)
-	time <- as.numeric(time)
-	send.event <- as.logical(send.event)
-
-	w <- .RGtkCall("S_gdk_selection_owner_set", owner, selection, time, send.event, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
 gdkSelectionOwnerGet <-
 function(selection)
 {
 	selection <- as.GdkAtom(selection)
 
 	w <- .RGtkCall("S_gdk_selection_owner_get", selection, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkSelectionOwnerSetForDisplay <-
-function(display, owner, selection, time, send.event)
-{
-	checkPtrType(display, "GdkDisplay")
-	checkPtrType(owner, "GdkWindow")
-	selection <- as.GdkAtom(selection)
-	time <- as.numeric(time)
-	send.event <- as.logical(send.event)
-
-	w <- .RGtkCall("S_gdk_selection_owner_set_for_display", display, owner, selection, time, send.event, PACKAGE = "RGtk2")
 
 	return(w)
 } 
@@ -4001,57 +3939,12 @@ function(display, selection)
 } 
 
 
-gdkSelectionConvert <-
-function(object, selection, target, time)
-{
-	checkPtrType(object, "GdkWindow")
-	selection <- as.GdkAtom(selection)
-	target <- as.GdkAtom(target)
-	time <- as.numeric(time)
-
-	w <- .RGtkCall("S_gdk_selection_convert", object, selection, target, time, PACKAGE = "RGtk2")
-
-	return(invisible(w))
-} 
-
-
 gdkSelectionPropertyGet <-
 function(object)
 {
 	checkPtrType(object, "GdkWindow")
 
 	w <- .RGtkCall("S_gdk_selection_property_get", object, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkSelectionSendNotify <-
-function(requestor, selection, target, property, time)
-{
-	requestor <- as.numeric(requestor)
-	selection <- as.GdkAtom(selection)
-	target <- as.GdkAtom(target)
-	property <- as.GdkAtom(property)
-	time <- as.numeric(time)
-
-	w <- .RGtkCall("S_gdk_selection_send_notify", requestor, selection, target, property, time, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkSelectionSendNotifyForDisplay <-
-function(display, requestor, selection, target, property, time)
-{
-	checkPtrType(display, "GdkDisplay")
-	requestor <- as.numeric(requestor)
-	selection <- as.GdkAtom(selection)
-	target <- as.GdkAtom(target)
-	property <- as.GdkAtom(property)
-	time <- as.numeric(time)
-
-	w <- .RGtkCall("S_gdk_selection_send_notify_for_display", display, requestor, selection, target, property, time, PACKAGE = "RGtk2")
 
 	return(w)
 } 
@@ -4599,52 +4492,6 @@ function(object, use.static)
 	use.static <- as.logical(use.static)
 
 	w <- .RGtkCall("S_gdk_window_set_static_gravities", object, use.static, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkWindowForeignNew <-
-function(anid)
-{
-	anid <- as.GdkNativeWindow(anid)
-
-	w <- .RGtkCall("S_gdk_window_foreign_new", anid, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkWindowLookup <-
-function(anid)
-{
-	anid <- as.GdkNativeWindow(anid)
-
-	w <- .RGtkCall("S_gdk_window_lookup", anid, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkWindowForeignNewForDisplay <-
-function(display, anid)
-{
-	checkPtrType(display, "GdkDisplay")
-	anid <- as.GdkNativeWindow(anid)
-
-	w <- .RGtkCall("S_gdk_window_foreign_new_for_display", display, anid, PACKAGE = "RGtk2")
-
-	return(w)
-} 
-
-
-gdkWindowLookupForDisplay <-
-function(display, anid)
-{
-	checkPtrType(display, "GdkDisplay")
-	anid <- as.GdkNativeWindow(anid)
-
-	w <- .RGtkCall("S_gdk_window_lookup_for_display", display, anid, PACKAGE = "RGtk2")
 
 	return(w)
 } 

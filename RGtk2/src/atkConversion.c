@@ -7,7 +7,7 @@ asCAtkAttributeSet(USER_OBJECT_ s_set)
     int i;
 
     for (i = 0; i < GET_LENGTH(s_set); i++)
-        g_slist_append(list, asCAtkAttribute(VECTOR_ELT(s_set, i)));
+        list = g_slist_append(list, asCAtkAttribute(VECTOR_ELT(s_set, i)));
 
     return(list);
 }

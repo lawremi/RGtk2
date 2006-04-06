@@ -77,87 +77,7 @@ AtkRole<-c("invalid" = 0,
 	"embedded" = 76,
 	"last-defined" = 77)
 storage.mode(AtkRole) <- 'integer'
-class(AtkRole) <- 'enums'
-.AtkRole<-c("ATK_ROLE_INVALID" = 0,
-	"ATK_ROLE_ACCEL_LABEL" = 1,
-	"ATK_ROLE_ALERT" = 2,
-	"ATK_ROLE_ANIMATION" = 3,
-	"ATK_ROLE_ARROW" = 4,
-	"ATK_ROLE_CALENDAR" = 5,
-	"ATK_ROLE_CANVAS" = 6,
-	"ATK_ROLE_CHECK_BOX" = 7,
-	"ATK_ROLE_CHECK_MENU_ITEM" = 8,
-	"ATK_ROLE_COLOR_CHOOSER" = 9,
-	"ATK_ROLE_COLUMN_HEADER" = 10,
-	"ATK_ROLE_COMBO_BOX" = 11,
-	"ATK_ROLE_DATE_EDITOR" = 12,
-	"ATK_ROLE_DESKTOP_ICON" = 13,
-	"ATK_ROLE_DESKTOP_FRAME" = 14,
-	"ATK_ROLE_DIAL" = 15,
-	"ATK_ROLE_DIALOG" = 16,
-	"ATK_ROLE_DIRECTORY_PANE" = 17,
-	"ATK_ROLE_DRAWING_AREA" = 18,
-	"ATK_ROLE_FILE_CHOOSER" = 19,
-	"ATK_ROLE_FILLER" = 20,
-	"ATK_ROLE_FONT_CHOOSER" = 21,
-	"ATK_ROLE_FRAME" = 22,
-	"ATK_ROLE_GLASS_PANE" = 23,
-	"ATK_ROLE_HTML_CONTAINER" = 24,
-	"ATK_ROLE_ICON" = 25,
-	"ATK_ROLE_IMAGE" = 26,
-	"ATK_ROLE_INTERNAL_FRAME" = 27,
-	"ATK_ROLE_LABEL" = 28,
-	"ATK_ROLE_LAYERED_PANE" = 29,
-	"ATK_ROLE_LIST" = 30,
-	"ATK_ROLE_LIST_ITEM" = 31,
-	"ATK_ROLE_MENU" = 32,
-	"ATK_ROLE_MENU_BAR" = 33,
-	"ATK_ROLE_MENU_ITEM" = 34,
-	"ATK_ROLE_OPTION_PANE" = 35,
-	"ATK_ROLE_PAGE_TAB" = 36,
-	"ATK_ROLE_PAGE_TAB_LIST" = 37,
-	"ATK_ROLE_PANEL" = 38,
-	"ATK_ROLE_PASSWORD_TEXT" = 39,
-	"ATK_ROLE_POPUP_MENU" = 40,
-	"ATK_ROLE_PROGRESS_BAR" = 41,
-	"ATK_ROLE_PUSH_BUTTON" = 42,
-	"ATK_ROLE_RADIO_BUTTON" = 43,
-	"ATK_ROLE_RADIO_MENU_ITEM" = 44,
-	"ATK_ROLE_ROOT_PANE" = 45,
-	"ATK_ROLE_ROW_HEADER" = 46,
-	"ATK_ROLE_SCROLL_BAR" = 47,
-	"ATK_ROLE_SCROLL_PANE" = 48,
-	"ATK_ROLE_SEPARATOR" = 49,
-	"ATK_ROLE_SLIDER" = 50,
-	"ATK_ROLE_SPLIT_PANE" = 51,
-	"ATK_ROLE_SPIN_BUTTON" = 52,
-	"ATK_ROLE_STATUSBAR" = 53,
-	"ATK_ROLE_TABLE" = 54,
-	"ATK_ROLE_TABLE_CELL" = 55,
-	"ATK_ROLE_TABLE_COLUMN_HEADER" = 56,
-	"ATK_ROLE_TABLE_ROW_HEADER" = 57,
-	"ATK_ROLE_TEAR_OFF_MENU_ITEM" = 58,
-	"ATK_ROLE_TERMINAL" = 59,
-	"ATK_ROLE_TEXT" = 60,
-	"ATK_ROLE_TOGGLE_BUTTON" = 61,
-	"ATK_ROLE_TOOL_BAR" = 62,
-	"ATK_ROLE_TOOL_TIP" = 63,
-	"ATK_ROLE_TREE" = 64,
-	"ATK_ROLE_TREE_TABLE" = 65,
-	"ATK_ROLE_UNKNOWN" = 66,
-	"ATK_ROLE_VIEWPORT" = 67,
-	"ATK_ROLE_WINDOW" = 68,
-	"ATK_ROLE_HEADER" = 69,
-	"ATK_ROLE_FOOTER" = 70,
-	"ATK_ROLE_PARAGRAPH" = 71,
-	"ATK_ROLE_RULER" = 72,
-	"ATK_ROLE_APPLICATION" = 73,
-	"ATK_ROLE_AUTOCOMPLETE" = 74,
-	"ATK_ROLE_EDITBAR" = 75,
-	"ATK_ROLE_EMBEDDED" = 76,
-	"ATK_ROLE_LAST_DEFINED" = 77)
-storage.mode(.AtkRole) <- 'integer'
-class(.AtkRole) <- 'enums' 
+class(AtkRole) <- 'enums' 
 
 AtkLayer<-c("invalid" = 0,
 	"background" = 1,
@@ -168,17 +88,7 @@ AtkLayer<-c("invalid" = 0,
 	"overlay" = 6,
 	"window" = 7)
 storage.mode(AtkLayer) <- 'integer'
-class(AtkLayer) <- 'enums'
-.AtkLayer<-c("ATK_LAYER_INVALID" = 0,
-	"ATK_LAYER_BACKGROUND" = 1,
-	"ATK_LAYER_CANVAS" = 2,
-	"ATK_LAYER_WIDGET" = 3,
-	"ATK_LAYER_MDI" = 4,
-	"ATK_LAYER_POPUP" = 5,
-	"ATK_LAYER_OVERLAY" = 6,
-	"ATK_LAYER_WINDOW" = 7)
-storage.mode(.AtkLayer) <- 'integer'
-class(.AtkLayer) <- 'enums' 
+class(AtkLayer) <- 'enums' 
 
 AtkRelationType<-c("null" = 0,
 	"controlled-by" = 1,
@@ -196,24 +106,7 @@ AtkRelationType<-c("null" = 0,
 	"parent-window-of" = 13,
 	"last-defined" = 14)
 storage.mode(AtkRelationType) <- 'integer'
-class(AtkRelationType) <- 'enums'
-.AtkRelationType<-c("ATK_RELATION_NULL" = 0,
-	"ATK_RELATION_CONTROLLED_BY" = 1,
-	"ATK_RELATION_CONTROLLER_FOR" = 2,
-	"ATK_RELATION_LABEL_FOR" = 3,
-	"ATK_RELATION_LABELLED_BY" = 4,
-	"ATK_RELATION_MEMBER_OF" = 5,
-	"ATK_RELATION_NODE_CHILD_OF" = 6,
-	"ATK_RELATION_FLOWS_TO" = 7,
-	"ATK_RELATION_FLOWS_FROM" = 8,
-	"ATK_RELATION_SUBWINDOW_OF" = 9,
-	"ATK_RELATION_EMBEDS" = 10,
-	"ATK_RELATION_EMBEDDED_BY" = 11,
-	"ATK_RELATION_POPUP_FOR" = 12,
-	"ATK_RELATION_PARENT_WINDOW_OF" = 13,
-	"ATK_RELATION_LAST_DEFINED" = 14)
-storage.mode(.AtkRelationType) <- 'integer'
-class(.AtkRelationType) <- 'enums' 
+class(AtkRelationType) <- 'enums' 
 
 AtkStateType<-c("invalid" = 0,
 	"active" = 1,
@@ -250,43 +143,7 @@ AtkStateType<-c("invalid" = 0,
 	"required" = 32,
 	"last-defined" = 33)
 storage.mode(AtkStateType) <- 'integer'
-class(AtkStateType) <- 'enums'
-.AtkStateType<-c("ATK_STATE_INVALID" = 0,
-	"ATK_STATE_ACTIVE" = 1,
-	"ATK_STATE_ARMED" = 2,
-	"ATK_STATE_BUSY" = 3,
-	"ATK_STATE_CHECKED" = 4,
-	"ATK_STATE_DEFUNCT" = 5,
-	"ATK_STATE_EDITABLE" = 6,
-	"ATK_STATE_ENABLED" = 7,
-	"ATK_STATE_EXPANDABLE" = 8,
-	"ATK_STATE_EXPANDED" = 9,
-	"ATK_STATE_FOCUSABLE" = 10,
-	"ATK_STATE_FOCUSED" = 11,
-	"ATK_STATE_HORIZONTAL" = 12,
-	"ATK_STATE_ICONIFIED" = 13,
-	"ATK_STATE_MODAL" = 14,
-	"ATK_STATE_MULTI_LINE" = 15,
-	"ATK_STATE_MULTISELECTABLE" = 16,
-	"ATK_STATE_OPAQUE" = 17,
-	"ATK_STATE_PRESSED" = 18,
-	"ATK_STATE_RESIZABLE" = 19,
-	"ATK_STATE_SELECTABLE" = 20,
-	"ATK_STATE_SELECTED" = 21,
-	"ATK_STATE_SENSITIVE" = 22,
-	"ATK_STATE_SHOWING" = 23,
-	"ATK_STATE_SINGLE_LINE" = 24,
-	"ATK_STATE_STALE" = 25,
-	"ATK_STATE_TRANSIENT" = 26,
-	"ATK_STATE_VERTICAL" = 27,
-	"ATK_STATE_VISIBLE" = 28,
-	"ATK_STATE_MANAGES_DESCENDANTS" = 29,
-	"ATK_STATE_INDETERMINATE" = 30,
-	"ATK_STATE_TRUNCATED" = 31,
-	"ATK_STATE_REQUIRED" = 32,
-	"ATK_STATE_LAST_DEFINED" = 33)
-storage.mode(.AtkStateType) <- 'integer'
-class(.AtkStateType) <- 'enums' 
+class(AtkStateType) <- 'enums' 
 
 AtkTextAttribute<-c("invalid" = 0,
 	"left-margin" = 1,
@@ -318,51 +175,14 @@ AtkTextAttribute<-c("invalid" = 0,
 	"style" = 27,
 	"last-defined" = 28)
 storage.mode(AtkTextAttribute) <- 'integer'
-class(AtkTextAttribute) <- 'enums'
-.AtkTextAttribute<-c("ATK_TEXT_ATTR_INVALID" = 0,
-	"ATK_TEXT_ATTR_LEFT_MARGIN" = 1,
-	"ATK_TEXT_ATTR_RIGHT_MARGIN" = 2,
-	"ATK_TEXT_ATTR_INDENT" = 3,
-	"ATK_TEXT_ATTR_INVISIBLE" = 4,
-	"ATK_TEXT_ATTR_EDITABLE" = 5,
-	"ATK_TEXT_ATTR_PIXELS_ABOVE_LINES" = 6,
-	"ATK_TEXT_ATTR_PIXELS_BELOW_LINES" = 7,
-	"ATK_TEXT_ATTR_PIXELS_INSIDE_WRAP" = 8,
-	"ATK_TEXT_ATTR_BG_FULL_HEIGHT" = 9,
-	"ATK_TEXT_ATTR_RISE" = 10,
-	"ATK_TEXT_ATTR_UNDERLINE" = 11,
-	"ATK_TEXT_ATTR_STRIKETHROUGH" = 12,
-	"ATK_TEXT_ATTR_SIZE" = 13,
-	"ATK_TEXT_ATTR_SCALE" = 14,
-	"ATK_TEXT_ATTR_WEIGHT" = 15,
-	"ATK_TEXT_ATTR_LANGUAGE" = 16,
-	"ATK_TEXT_ATTR_FAMILY_NAME" = 17,
-	"ATK_TEXT_ATTR_BG_COLOR" = 18,
-	"ATK_TEXT_ATTR_FG_COLOR" = 19,
-	"ATK_TEXT_ATTR_BG_STIPPLE" = 20,
-	"ATK_TEXT_ATTR_FG_STIPPLE" = 21,
-	"ATK_TEXT_ATTR_WRAP_MODE" = 22,
-	"ATK_TEXT_ATTR_DIRECTION" = 23,
-	"ATK_TEXT_ATTR_JUSTIFICATION" = 24,
-	"ATK_TEXT_ATTR_STRETCH" = 25,
-	"ATK_TEXT_ATTR_VARIANT" = 26,
-	"ATK_TEXT_ATTR_STYLE" = 27,
-	"ATK_TEXT_ATTR_LAST_DEFINED" = 28)
-storage.mode(.AtkTextAttribute) <- 'integer'
-class(.AtkTextAttribute) <- 'enums' 
+class(AtkTextAttribute) <- 'enums' 
 
 AtkTextClipType<-c("none" = 0,
 	"min" = 1,
 	"max" = 2,
 	"both" = 3)
 storage.mode(AtkTextClipType) <- 'integer'
-class(AtkTextClipType) <- 'enums'
-.AtkTextClipType<-c("ATK_TEXT_CLIP_NONE" = 0,
-	"ATK_TEXT_CLIP_MIN" = 1,
-	"ATK_TEXT_CLIP_MAX" = 2,
-	"ATK_TEXT_CLIP_BOTH" = 3)
-storage.mode(.AtkTextClipType) <- 'integer'
-class(.AtkTextClipType) <- 'enums' 
+class(AtkTextClipType) <- 'enums' 
 
 AtkTextBoundary<-c("char" = 0,
 	"word-start" = 1,
@@ -372,34 +192,16 @@ AtkTextBoundary<-c("char" = 0,
 	"line-start" = 5,
 	"line-end" = 6)
 storage.mode(AtkTextBoundary) <- 'integer'
-class(AtkTextBoundary) <- 'enums'
-.AtkTextBoundary<-c("ATK_TEXT_BOUNDARY_CHAR" = 0,
-	"ATK_TEXT_BOUNDARY_WORD_START" = 1,
-	"ATK_TEXT_BOUNDARY_WORD_END" = 2,
-	"ATK_TEXT_BOUNDARY_SENTENCE_START" = 3,
-	"ATK_TEXT_BOUNDARY_SENTENCE_END" = 4,
-	"ATK_TEXT_BOUNDARY_LINE_START" = 5,
-	"ATK_TEXT_BOUNDARY_LINE_END" = 6)
-storage.mode(.AtkTextBoundary) <- 'integer'
-class(.AtkTextBoundary) <- 'enums' 
+class(AtkTextBoundary) <- 'enums' 
 
 AtkKeyEventType<-c("press" = 0,
 	"release" = 1,
 	"last-defined" = 2)
 storage.mode(AtkKeyEventType) <- 'integer'
-class(AtkKeyEventType) <- 'enums'
-.AtkKeyEventType<-c("ATK_KEY_EVENT_PRESS" = 0,
-	"ATK_KEY_EVENT_RELEASE" = 1,
-	"ATK_KEY_EVENT_LAST_DEFINED" = 2)
-storage.mode(.AtkKeyEventType) <- 'integer'
-class(.AtkKeyEventType) <- 'enums' 
+class(AtkKeyEventType) <- 'enums' 
 
 AtkCoordType<-c("screen" = 0,
 	"window" = 1)
 storage.mode(AtkCoordType) <- 'integer'
-class(AtkCoordType) <- 'enums'
-.AtkCoordType<-c("ATK_XY_SCREEN" = 0,
-	"ATK_XY_WINDOW" = 1)
-storage.mode(.AtkCoordType) <- 'integer'
-class(.AtkCoordType) <- 'enums' 
+class(AtkCoordType) <- 'enums' 
 

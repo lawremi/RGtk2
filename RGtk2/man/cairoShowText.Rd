@@ -2,8 +2,8 @@
 \name{cairoShowText}
 \title{cairoShowText}
 \description{A drawing operator that generates the shape from a string of UTF-8
-characters, rendered according to the current font_face, font_size
-(font_matrix), and font_options.}
+characters, rendered according to the current font\_face, font\_size
+(font\_matrix), and font\_options.}
 \usage{cairoShowText(cr, utf8)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}

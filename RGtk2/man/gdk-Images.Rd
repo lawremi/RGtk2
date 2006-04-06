@@ -19,7 +19,7 @@ It has now been superceded to a large extent by the much more flexible
 GdkRGB functions.
   
 To create an empty \code{\link{GdkImage}} use \code{\link{gdkImageNew}}.
-To create a \code{\link{GdkImage}} from bitmap data use \code{gdkImageNewBitmap()}.
+To create a \code{\link{GdkImage}} from bitmap data use \code{gdk\Image\New\Bitmap()}.
 To create an image from part of a \code{\link{GdkWindow}} use \code{\link{gdkDrawableGetImage}}.
   
 The image can be manipulated with \code{\link{gdkImageGetPixel}} and
@@ -29,7 +29,7 @@ the different formats that may be used.
   
 To draw a \code{\link{GdkImage}} in a \code{\link{GdkWindow}} or \code{\link{GdkPixmap}} use \code{\link{gdkDrawImage}}.
   
-To destroy a \code{\link{GdkImage}} use \code{gdkImageDestroy()}.}
+To destroy a \code{\link{GdkImage}} use \code{gdk\Image\Destroy()}.}
 \section{Structures}{\describe{\item{\code{GdkImage}}{
 The \code{\link{GdkImage}} struct contains information on the image and the pixel data.
 
@@ -54,13 +54,13 @@ The \code{\link{GdkImage}} struct contains information on the image and the pixe
 Specifies the type of a \code{\link{GdkImage}}.
 
 \describe{
-\item{\code{GDK_IMAGE_NORMAL (normal)}}{The original X image type, which is quite slow since the
+\item{\code{normal}}{The original X image type, which is quite slow since the
 image has to be transferred from the client to the server to display it.}
-\item{\code{GDK_IMAGE_SHARED (shared)}}{A faster image type, which uses shared memory to transfer
+\item{\code{shared}}{A faster image type, which uses shared memory to transfer
 the image data between client and server. However this will only be available
 if client and server are on the same machine and the shared memory extension
 is supported by the server.}
-\item{\code{GDK_IMAGE_FASTEST (fastest)}}{Specifies that \code{GDK_IMAGE_SHARED} should be tried first,
+\item{\code{fastest}}{Specifies that \code{GDK_IMAGE_SHARED} should be tried first,
 and if that fails then \code{GDK_IMAGE_NORMAL} will be used.}
 }
 

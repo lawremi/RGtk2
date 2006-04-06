@@ -2,7 +2,7 @@
 \name{gtkRcGetImModulePath}
 \title{gtkRcGetImModulePath}
 \description{Obtains the path in which to look for IM modules. See the documentation
-of the \env{GTK_PATH}
+of the \env{GTK\_PATH}
 environment variable for more details about looking up modules. This
 function is useful solely for utilities supplied with GTK+ and should
 not be used by applications under normal circumstances.}

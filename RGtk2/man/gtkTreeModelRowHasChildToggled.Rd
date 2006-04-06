@@ -1,7 +1,7 @@
 \alias{gtkTreeModelRowHasChildToggled}
 \name{gtkTreeModelRowHasChildToggled}
 \title{gtkTreeModelRowHasChildToggled}
-\description{Emits the "row_has_child_toggled" signal on \code{tree.model}.  This should be
+\description{Emits the "row\_has\_child\_toggled" signal on \code{tree.model}.  This should be
 called by models after the child state of a node changes.}
 \usage{gtkTreeModelRowHasChildToggled(object, path, iter)}
 \arguments{

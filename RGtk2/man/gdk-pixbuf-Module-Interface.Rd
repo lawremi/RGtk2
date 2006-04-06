@@ -24,13 +24,13 @@
 \section{Detailed Description}{If \command{gdk-pixbuf} has been compiled with GModule support, it can be extended by
 modules which can load (and perhaps also save) new image and animation
 formats. Each loadable module must export a
-\code{GdkPixbufModuleFillInfoFunc} function named \code{fillInfo} and
+\code{GdkPixbufModuleFillInfoFunc} function named \code{fill\Info} and
 a \code{GdkPixbufModuleFillVtableFunc} function named
-\code{fillVtable}.
+\code{fill\Vtable}.
   
 In order to make format-checking work before actually loading the modules
 (which may require dlopening image libraries), modules export their 
-signatures (and other information) via the \code{fillInfo}
+signatures (and other information) via the \code{fill\Info}
 function. An external utility, \command{gdk-pixbuf-query-loaders}, 
 uses this to create a text file containing a list of all available loaders and 
 their signatures. This file is then read at runtime by \command{gdk-pixbuf} to obtain
@@ -38,7 +38,7 @@ the list of available loaders and their signatures.
   
 Modules may only implement a subset of the functionality available via
 \code{GdkPixbufModule}. If a particular functionality is not implemented, the
-\code{fillVtable} function will simply not set the corresponding
+\code{fill\Vtable} function will simply not set the corresponding
 function pointers of the \code{GdkPixbufModule} structure. If a module supports
 incremental loading (i.e. provides \code{begin_load}, \code{stop_load} and
 \code{load_increment}), it doesn't have to implement \code{load}, since \command{gdk-pixbuf} can 
@@ -50,13 +50,13 @@ Installing a module is a two-step process:
 \file{\emph{undocumented
 }},
 unless overridden by the environment variable
-\env{GDK_PIXBUF_MODULEDIR}) 
+\env{GDK\_PIXBUF\_MODULEDIR}) 
 \item call \command{gdk-pixbuf-query-loaders} to update the
 module file (normally
 \file{\emph{undocumented
 }},
 unless overridden by the environment variable
-\env{GDK_PIXBUF_MODULE_FILE})
+\env{GDK\_PIXBUF\_MODULE\_FILE})
 }
   
 The \command{gdk-pixbuf} interfaces needed for implementing modules are contained in 
@@ -69,7 +69,7 @@ They are not covered by the same stability guarantees as the regular
 \section{Structures}{\describe{\item{\code{GdkPixbufFormat}}{
 A \code{\link{GdkPixbufFormat}} contains information about the image format accepted by a
 module. Only modules should access the fields directly, applications should
-use the \code{gdkPixbufFormat*} functions.
+use the \code{gdk\Pixbuf\Format\*} functions.
   Since 2.2
 
 \describe{
@@ -132,7 +132,7 @@ Defines the type of the function that gets called once the initial
 setup of \code{pixbuf} is done.
   
 \code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
-"area_prepared"
+"area\_prepared"
 signal.
   Since 2.2
 
@@ -148,7 +148,7 @@ Defines the type of the function that gets called every time a region
 of \code{pixbuf} is updated.
   
 \code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
-"area_updated"
+"area\_updated"
 signal.
   Since 2.2
 

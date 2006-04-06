@@ -13,7 +13,7 @@ cluster is divided equally among the characters.}
 }
 \value{
 A list containing the following elements:
-\item{\code{logical.widths}}{[integer]  a list whose length is g_utf8_strlen (text, length)
+\item{\code{logical.widths}}{[integer]  a list whose length is g\_utf8\_strlen (text, length)
                  to be filled in with the resulting character widths.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

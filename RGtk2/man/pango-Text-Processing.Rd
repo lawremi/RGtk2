@@ -115,7 +115,7 @@ and \code{\link{pangoFindBaseDir}} cannot be \code{PANGO_DIRECTION_WEAK_LTR}
 or \code{PANGO_DIRECTION_WEAK_RTL}, since every character is either
 neutral or has a strong direction; on the other hand
 \code{PANGO_DIRECTION_NEUTRAL} doesn't make sense to pass
-to \code{pangoLog2visGetEmbeddingLevels()}.
+to \code{pango\Log2vis\Get\Embedding\Levels()}.
   
 The \code{PANGO_DIRECTION_TTB_LTR}, \code{PANGO_DIRECTION_TTB_RTL}
 values come from an earlier interpretation of this
@@ -127,12 +127,12 @@ in a future version of Pango. The explanation of why
 can be found there as well.  
 
 \describe{
-\item{\code{PANGO_DIRECTION_LTR (ltr)}}{ A strong left-to-right direction}
-\item{\code{PANGO_DIRECTION_RTL (rtl)}}{ A strong right-to-left direction}
-\item{\code{PANGO_DIRECTION_TTB_LTR (ttb-ltr)}}{ Deprecated value; treated the
+\item{\code{ltr}}{ A strong left-to-right direction}
+\item{\code{rtl}}{ A strong right-to-left direction}
+\item{\code{ttb-ltr}}{ Deprecated value; treated the
   same as \code{PANGO_DIRECTION_RTL}.}
-\item{\code{PANGO_DIRECTION_TTB_RTL (ttb-rtl)}}{ Deprecated value; treated the
-  same as PANGO_DIRECTION_LTR}
+\item{\code{ttb-rtl}}{ Deprecated value; treated the
+  same as PANGO\_DIRECTION\_LTR}
 }
 
 }}}

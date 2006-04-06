@@ -41,13 +41,13 @@ operations can cause errors in this domain, or in the \code{G_FILE_ERROR}
 domain.
 
 \describe{
-\item{\code{GDK_PIXBUF_ERROR_CORRUPT_IMAGE (corrupt-image)}}{An image file was broken somehow.}
-\item{\code{GDK_PIXBUF_ERROR_INSUFFICIENT_MEMORY (insufficient-memory)}}{Not enough memory.}
-\item{\code{GDK_PIXBUF_ERROR_BAD_OPTION (bad-option-value)}}{A bad option was passed to a pixbuf save module.}
-\item{\code{GDK_PIXBUF_ERROR_UNKNOWN_TYPE (unknown-type)}}{Unknown image type.}
-\item{\code{GDK_PIXBUF_ERROR_UNSUPPORTED_OPERATION (unsupported-operation)}}{Don't know how to perform the
+\item{\code{corrupt-image}}{An image file was broken somehow.}
+\item{\code{insufficient-memory}}{Not enough memory.}
+\item{\code{bad-option-value}}{A bad option was passed to a pixbuf save module.}
+\item{\code{unknown-type}}{Unknown image type.}
+\item{\code{unsupported-operation}}{Don't know how to perform the
 given operation on the type of image at hand.}
-\item{\code{GDK_PIXBUF_ERROR_FAILED (failed)}}{Generic failure code, something went wrong.}
+\item{\code{failed}}{Generic failure code, something went wrong.}
 }
 
 }
@@ -56,7 +56,7 @@ given operation on the type of image at hand.}
     the \command{gdk-pixbuf} library.  Currently only RGB is supported.
   
 
-\describe{\item{\code{GDK_COLORSPACE_RGB (b)}}{Indicates a red/green/blue additive color space.}}
+\describe{\item{\code{b}}{Indicates a red/green/blue additive color space.}}
 
 }
 \item{\code{GdkPixbufAlphaMode}}{
@@ -71,11 +71,11 @@ given operation on the type of image at hand.}
   
 
 \describe{
-\item{\code{GDK_PIXBUF_ALPHA_BILEVEL (bilevel)}}{A bilevel clipping mask (black and white)
+\item{\code{bilevel}}{A bilevel clipping mask (black and white)
 will be created and used to draw the image.  Pixels below 0.5 opacity
 will be considered fully transparent, and all others will be
 considered fully opaque.}
-\item{\code{GDK_PIXBUF_ALPHA_FULL (full)}}{For now falls back to \code{GDK_PIXBUF_ALPHA_BILEVEL}.
+\item{\code{full}}{For now falls back to \code{GDK_PIXBUF_ALPHA_BILEVEL}.
 In the future it will do full alpha compositing.}
 }
 
@@ -92,7 +92,7 @@ Currently only 8 bit per sample are supported.
 }
 \item{\code{colorspace} [\code{\link{GdkColorspace}} : Read / Write / Construct Only]}{
 
-The colorspace in which the samples are interpreted.  Default value: GDK_COLORSPACE_RGB
+The colorspace in which the samples are interpreted.  Default value: GDK\_COLORSPACE\_RGB
 
 }
 \item{\code{has-alpha} [logical : Read / Write / Construct Only]}{

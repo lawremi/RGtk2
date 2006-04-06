@@ -13,7 +13,7 @@ the list. Button text can be either a stock ID such as
 any positive number, or one of the values in the \code{\link{GtkResponseType}}
 enumeration. If the user clicks one of these dialog buttons,
 \code{\link{GtkDialog}} will emit the "response" signal with the corresponding
-response ID. If a \code{\link{GtkDialog}} receives the "delete_event" signal, it
+response ID. If a \code{\link{GtkDialog}} receives the "delete\_event" signal, it
 will emit "response" with a response ID of \code{GTK_RESPONSE_DELETE_EVENT}.
 However, destroying a dialog does not emit the "response" signal;
 so be careful relying on "response" when using

@@ -9,7 +9,7 @@ managers honor requests to unmaximize. But normally the window will
 end up unmaximized. Just don't write code that crashes if not.}
 \usage{gtkWindowUnmaximize(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\details{You can track maximization via the "window_state_event" signal
+\details{You can track maximization via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

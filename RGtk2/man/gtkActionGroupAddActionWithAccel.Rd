@@ -11,7 +11,7 @@
   \code{NULL} to use the stock accelerator }
 }
 \details{If \code{accelerator} is \code{NULL}, attempts to use the accelerator associated 
-with the stock_id of the action. 
+with the stock\_id of the action. 
   
 Accel paths are set to
 \code{<Actions>/}.  

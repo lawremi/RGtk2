@@ -66,10 +66,10 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 The type of message being displayed in the dialog.
 
 \describe{
-\item{\code{GTK_MESSAGE_INFO (info)}}{Informational message}
-\item{\code{GTK_MESSAGE_WARNING (warning)}}{Nonfatal warning message}
-\item{\code{GTK_MESSAGE_QUESTION (question)}}{Question requiring a choice}
-\item{\code{GTK_MESSAGE_ERROR (error)}}{Fatal error message}
+\item{\code{info}}{Informational message}
+\item{\code{warning}}{Nonfatal warning message}
+\item{\code{question}}{Question requiring a choice}
+\item{\code{error}}{Fatal error message}
 }
 
 }
@@ -79,12 +79,12 @@ none of these choices are appropriate, simply use \code{GTK_BUTTONS_NONE}
 then call \code{\link{gtkDialogAddButtons}}.
 
 \describe{
-\item{\code{GTK_BUTTONS_NONE (none)}}{no buttons at all}
-\item{\code{GTK_BUTTONS_OK (ok)}}{an OK button}
-\item{\code{GTK_BUTTONS_CLOSE (close)}}{a Close button}
-\item{\code{GTK_BUTTONS_CANCEL (cancel)}}{a Cancel button}
-\item{\code{GTK_BUTTONS_YES_NO (yes-no)}}{Yes and No buttons}
-\item{\code{GTK_BUTTONS_OK_CANCEL (ok-cancel)}}{OK and Cancel buttons}
+\item{\code{none}}{no buttons at all}
+\item{\code{ok}}{an OK button}
+\item{\code{close}}{a Close button}
+\item{\code{cancel}}{a Cancel button}
+\item{\code{yes-no}}{Yes and No buttons}
+\item{\code{ok-cancel}}{OK and Cancel buttons}
 }
 
 }
@@ -92,12 +92,12 @@ then call \code{\link{gtkDialogAddButtons}}.
 \section{Properties}{\describe{
 \item{\code{buttons} [\code{\link{GtkButtonsType}} : Write / Construct Only]}{
 
-The buttons shown in the message dialog.  Default value: GTK_BUTTONS_NONE
+The buttons shown in the message dialog.  Default value: GTK\_BUTTONS\_NONE
 
 }
 \item{\code{message-type} [\code{\link{GtkMessageType}} : Read / Write / Construct]}{
 
-The type of message.  Default value: GTK_MESSAGE_INFO
+The type of message.  Default value: GTK\_MESSAGE\_INFO
 
 }
 }}

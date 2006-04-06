@@ -13,7 +13,7 @@ A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if any targets are present on the clipboard,
               otherwise \code{FALSE}.}
 \item{\code{targets}}{[\code{\link{GdkAtom}}]  location to store a list of targets. The result
-          stored here must be freed with \code{gFree()}.}
+          stored here must be freed with \code{g\Free()}.}
 \item{\code{n.targets}}{[integer]  location to store number of items in \code{targets}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

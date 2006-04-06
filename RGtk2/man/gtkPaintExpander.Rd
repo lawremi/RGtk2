@@ -7,8 +7,8 @@ center the expander. The size of the expander is determined by the
 specified or doesn't have an "expander-size" property, an
 unspecified default size will be used, since the caller doesn't
 have sufficient information to position the expander, this is
-likely not useful.) The expander is expander_size pixels tall
-in the collapsed position and expander_size pixels wide in the
+likely not useful.) The expander is expander\_size pixels tall
+in the collapsed position and expander\_size pixels wide in the
 expanded position.}
 \usage{gtkPaintExpander(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, expander.style)}
 \arguments{

@@ -96,7 +96,7 @@ Padding to left and right of the menu item.  Allowed values: >= 0  Default value
 }
 \item{\code{selected-shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Shadow type when item is selected.  Default value: GTK_SHADOW_NONE
+Shadow type when item is selected.  Default value: GTK\_SHADOW\_NONE
 
 }
 \item{\code{toggle-spacing} [integer : Read]}{

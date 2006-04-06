@@ -4,10 +4,10 @@
 \description{Fill in the fields of a color from a string specification. The
 string can either one of a large set of standard names. (Taken
 from the X11 \file{rgb.txt} file), or it can be a hex value in the
-form '#rgb' '#rrggbb' '#rrrgggbbb' or '#rrrrggggbbbb' where
+form '\#rgb' '\#rrggbb' '\#rrrgggbbb' or '\#rrrrggggbbbb' where
 'r', 'g' and 'b' are hex digits of the red, green, and blue
 components of the color, respectively. (White in the four
-forms is '#fff' '#ffffff' '#fffffffff' and '#ffffffffffff')}
+forms is '\#fff' '\#ffffff' '\#fffffffff' and '\#ffffffffffff')}
 \usage{pangoColorParse(spec)}
 \arguments{\item{\code{spec}}{[char]  a string specifying the new color}}
 \value{

@@ -1,7 +1,7 @@
 \alias{pangoCoverageFromBytes}
 \name{pangoCoverageFromBytes}
 \title{pangoCoverageFromBytes}
-\description{Convert data generated from \code{pangoConverageToBytes()} back
+\description{Convert data generated from \code{pango\Converage\To\Bytes()} back
 to a \code{\link{PangoCoverage}}}
 \usage{pangoCoverageFromBytes(bytes)}
 \arguments{\item{\code{bytes}}{[raw]  binary data representing a \code{\link{PangoCoverage}}}}

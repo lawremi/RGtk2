@@ -20,7 +20,7 @@
                      +----GtkCurve}}
 \section{Interfaces}{GtkCurve implements
  AtkImplementorIface.}
-\section{Detailed Description}{\emph{  
+\section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -28,7 +28,7 @@
  of general interest. However, we are not accepting new features for
  the widget, and it will eventually move out of the GTK+
  distribution.
-  }  
+    
 The \code{\link{GtkCurve}} widget allows the user to edit a curve covering a range of
 values. It is typically used to fine-tune color balances in graphics
 applications like the Gimp.
@@ -59,7 +59,7 @@ calling \code{\link{gtkCurveReset}} or \code{\link{gtkCurveSetGamma}}.
 \section{Properties}{\describe{
 \item{\code{curve-type} [\code{\link{GtkCurveType}} : Read / Write]}{
 
-Is this curve linear, spline interpolated, or free-form.  Default value: GTK_CURVE_TYPE_LINEAR
+Is this curve linear, spline interpolated, or free-form.  Default value: GTK\_CURVE\_TYPE\_LINEAR
 
 }
 \item{\code{max-x} [numeric : Read / Write]}{

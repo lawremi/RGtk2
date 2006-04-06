@@ -25,7 +25,7 @@
 }
 \section{Detailed Description}{These functions provide a low level interface for drag and drop.
 The X backend of GDK supports both the Xdnd and Motif drag and drop protocols 
-transparently, the Win32 backend supports the WM_DROPFILES protocol.
+transparently, the Win32 backend supports the WM\_DROPFILES protocol.
   
 GTK+ provides a higher level abstraction based on top of these functions,
 and so they are not normally needed in GTK+ applications.
@@ -56,14 +56,14 @@ Used in \code{\link{GdkDragContext}} to indicate the protocol according to
 which DND is done.
 
 \describe{
-\item{\code{GDK_DRAG_PROTO_MOTIF (motif)}}{The Motif DND protocol.}
-\item{\code{GDK_DRAG_PROTO_XDND (xdnd)}}{The Xdnd protocol.}
-\item{\code{GDK_DRAG_PROTO_ROOTWIN (rootwin)}}{An extension to the Xdnd protocol for
+\item{\code{motif}}{The Motif DND protocol.}
+\item{\code{xdnd}}{The Xdnd protocol.}
+\item{\code{rootwin}}{An extension to the Xdnd protocol for
   unclaimed root window drops.}
-\item{\code{GDK_DRAG_PROTO_NONE (none)}}{no protocol.}
-\item{\code{GDK_DRAG_PROTO_WIN32_DROPFILES (win32-dropfiles)}}{The simple WM_DROPFILES protocol.}
-\item{\code{GDK_DRAG_PROTO_OLE2 (ole2)}}{The complex OLE2 DND protocol (not implemented).}
-\item{\code{GDK_DRAG_PROTO_LOCAL (local)}}{Intra-application DND.}
+\item{\code{none}}{no protocol.}
+\item{\code{win32-dropfiles}}{The simple WM\_DROPFILES protocol.}
+\item{\code{ole2}}{The complex OLE2 DND protocol (not implemented).}
+\item{\code{local}}{Intra-application DND.}
 }
 
 }
@@ -72,15 +72,15 @@ Used in \code{\link{GdkDragContext}} to indicate what the destination
 should do with the dropped data.
 
 \describe{
-\item{\code{GDK_ACTION_DEFAULT (default)}}{Means nothing, and should not be used.}
-\item{\code{GDK_ACTION_COPY (copy)}}{Copy the data.}
-\item{\code{GDK_ACTION_MOVE (move)}}{Move the data, i.e. first copy it, then delete
+\item{\code{default}}{Means nothing, and should not be used.}
+\item{\code{copy}}{Copy the data.}
+\item{\code{move}}{Move the data, i.e. first copy it, then delete
   it from the source using the DELETE target of the X selection protocol.}
-\item{\code{GDK_ACTION_LINK (link)}}{Add a link to the data. Note that this is only
+\item{\code{link}}{Add a link to the data. Note that this is only
   useful if source and destination agree on what it means.}
-\item{\code{GDK_ACTION_PRIVATE (private)}}{Special action which tells the source that the
+\item{\code{private}}{Special action which tells the source that the
   destination will do something that the source doesn't understand.}
-\item{\code{GDK_ACTION_ASK (ask)}}{Ask the user what to do with the data.}
+\item{\code{ask}}{Ask the user what to do with the data.}
 }
 
 }

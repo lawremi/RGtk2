@@ -8,7 +8,7 @@
 A list containing the following elements:
 \item{\code{desc}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}} to fill in with the current values.
        The family name in this structure will be set using
-       pango_font_description_set_family_static using values from
+       pango\_font\_description\_set\_family\_static using values from
        an attribute in the \code{\link{PangoAttrList}} associated with the iterator,
        so if you plan to keep it around, you must call:
        \code{pango_font_description_set_family (desc, pango_font_description_get_family (desc))}.}
@@ -17,7 +17,7 @@ A list containing the following elements:
 \item{\code{extra.attrs}}{[list]  if non-\code{NULL}, location in which to store a list of non-font
           attributes at the the current position; only the highest priority
           value of each attribute will be added to this list. In order
-          to free this value, you must call \code{pangoAttributeDestroy()} on
+          to free this value, you must call \code{pango\Attribute\Destroy()} on
           each member.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

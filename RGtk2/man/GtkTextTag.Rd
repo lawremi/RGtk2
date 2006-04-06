@@ -82,13 +82,13 @@ modified directly.
 Describes a type of line wrapping.
 
 \describe{
-\item{\code{GTK_WRAP_NONE (none)}}{do not wrap lines; just make the text area wider}
-\item{\code{GTK_WRAP_CHAR (char)}}{wrap text, breaking lines anywhere the cursor can
+\item{\code{none}}{do not wrap lines; just make the text area wider}
+\item{\code{char}}{wrap text, breaking lines anywhere the cursor can
                 appear (between characters, usually - if you want to
                 be technical, between graphemes, see
                 \code{\link{pangoGetLogAttrs}})}
-\item{\code{GTK_WRAP_WORD (word)}}{wrap text, breaking lines in between words}
-\item{\code{GTK_WRAP_WORD_CHAR (word_char)}}{wrap text, breaking lines in between words, or if 
+\item{\code{word}}{wrap text, breaking lines in between words}
+\item{\code{word_char}}{wrap text, breaking lines in between words, or if 
                 that is not enough, also between graphemes.}
 }
 
@@ -143,7 +143,7 @@ Whether this tag affects the background stipple.  Default value: FALSE
 }
 \item{\code{direction} [\code{\link{GtkTextDirection}} : Read / Write]}{
 
-Text direction, e.g. right-to-left or left-to-right.  Default value: GTK_TEXT_DIR_LTR
+Text direction, e.g. right-to-left or left-to-right.  Default value: GTK\_TEXT\_DIR\_LTR
 
 }
 \item{\code{editable} [logical : Read / Write]}{
@@ -229,7 +229,7 @@ Whether this tag affects text visibility.  Default value: FALSE
 }
 \item{\code{justification} [\code{\link{GtkJustification}} : Read / Write]}{
 
-Left, right, or center justification.  Default value: GTK_JUSTIFY_LEFT
+Left, right, or center justification.  Default value: GTK\_JUSTIFY\_LEFT
 
 }
 \item{\code{justification-set} [logical : Read / Write]}{
@@ -334,7 +334,7 @@ Whether this tag affects the rise.  Default value: FALSE
 }
 \item{\code{scale} [numeric : Read / Write]}{
 
-Font size as a scale factor relative to the default font size. This properly adapts to theme changes etc. so is recommended. Pango predefines some scales such as PANGO_SCALE_X_LARGE.  Allowed values: >= 0  Default value: 1
+Font size as a scale factor relative to the default font size. This properly adapts to theme changes etc. so is recommended. Pango predefines some scales such as PANGO\_SCALE\_X\_LARGE.  Allowed values: >= 0  Default value: 1
 
 }
 \item{\code{scale-set} [logical : Read / Write]}{
@@ -359,7 +359,7 @@ Whether this tag affects the font size.  Default value: FALSE
 }
 \item{\code{stretch} [\code{\link{PangoStretch}} : Read / Write]}{
 
-Font stretch as a PangoStretch, e.g. PANGO_STRETCH_CONDENSED.  Default value: PANGO_STRETCH_NORMAL
+Font stretch as a PangoStretch, e.g. PANGO\_STRETCH\_CONDENSED.  Default value: PANGO\_STRETCH\_NORMAL
 
 }
 \item{\code{stretch-set} [logical : Read / Write]}{
@@ -379,7 +379,7 @@ Whether this tag affects strikethrough.  Default value: FALSE
 }
 \item{\code{style} [\code{\link{PangoStyle}} : Read / Write]}{
 
-Font style as a PangoStyle, e.g. PANGO_STYLE_ITALIC.  Default value: PANGO_STYLE_NORMAL
+Font style as a PangoStyle, e.g. PANGO\_STYLE\_ITALIC.  Default value: PANGO\_STYLE\_NORMAL
 
 }
 \item{\code{style-set} [logical : Read / Write]}{
@@ -399,7 +399,7 @@ Whether this tag affects tabs.  Default value: FALSE
 }
 \item{\code{underline} [\code{\link{PangoUnderline}} : Read / Write]}{
 
-Style of underline for this text.  Default value: PANGO_UNDERLINE_NONE
+Style of underline for this text.  Default value: PANGO\_UNDERLINE\_NONE
 
 }
 \item{\code{underline-set} [logical : Read / Write]}{
@@ -409,7 +409,7 @@ Whether this tag affects underlining.  Default value: FALSE
 }
 \item{\code{variant} [\code{\link{PangoVariant}} : Read / Write]}{
 
-Font variant as a PangoVariant, e.g. PANGO_VARIANT_SMALL_CAPS.  Default value: PANGO_VARIANT_NORMAL
+Font variant as a PangoVariant, e.g. PANGO\_VARIANT\_SMALL\_CAPS.  Default value: PANGO\_VARIANT\_NORMAL
 
 }
 \item{\code{variant-set} [logical : Read / Write]}{
@@ -419,7 +419,7 @@ Whether this tag affects the font variant.  Default value: FALSE
 }
 \item{\code{weight} [integer : Read / Write]}{
 
-Font weight as an integer, see predefined values in PangoWeight; for example, PANGO_WEIGHT_BOLD.  Allowed values: >= 0  Default value: 400
+Font weight as an integer, see predefined values in PangoWeight; for example, PANGO\_WEIGHT\_BOLD.  Allowed values: >= 0  Default value: 400
 
 }
 \item{\code{weight-set} [logical : Read / Write]}{
@@ -429,7 +429,7 @@ Whether this tag affects the font weight.  Default value: FALSE
 }
 \item{\code{wrap-mode} [\code{\link{GtkWrapMode}} : Read / Write]}{
 
-Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK_WRAP_NONE
+Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK\_WRAP\_NONE
 
 }
 \item{\code{wrap-mode-set} [logical : Read / Write]}{

@@ -1,7 +1,7 @@
 \alias{gtkFileChooserSetDoOverwriteConfirmation}
 \name{gtkFileChooserSetDoOverwriteConfirmation}
 \title{gtkFileChooserSetDoOverwriteConfirmation}
-\description{Sets whether a file chooser in GTK_FILE_CHOOSER_ACTION_SAVE mode will present
+\description{Sets whether a file chooser in GTK\_FILE\_CHOOSER\_ACTION\_SAVE mode will present
 a confirmation dialog if the user types a file name that already exists.  This
 is \code{FALSE} by default.}
 \usage{gtkFileChooserSetDoOverwriteConfirmation(object, do.overwrite.confirmation)}

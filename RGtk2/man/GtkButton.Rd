@@ -146,7 +146,7 @@ Text of the label widget inside the button, if the button contains a label widge
 }
 \item{\code{relief} [\code{\link{GtkReliefStyle}} : Read / Write]}{
 
-The border relief style.  Default value: GTK_RELIEF_NORMAL
+The border relief style.  Default value: GTK\_RELIEF\_NORMAL
 
 }
 \item{\code{use-stock} [logical : Read / Write / Construct]}{
@@ -191,17 +191,17 @@ How far in the y direction to move the child when the button is depressed.  Defa
 }
 \item{\code{default-border} [\code{\link{GtkBorder}} : Read]}{
 
-Extra space to add for CAN_DEFAULT buttons.
+Extra space to add for CAN\_DEFAULT buttons.
 
 }
 \item{\code{default-outside-border} [\code{\link{GtkBorder}} : Read]}{
 
-Extra space to add for CAN_DEFAULT buttons that is always drawn outside the border.
+Extra space to add for CAN\_DEFAULT buttons that is always drawn outside the border.
 
 }
 \item{\code{displace-focus} [logical : Read]}{
 
-Whether the child_displacement_x/child_displacement_y properties should also 
+Whether the child\_displacement\_x/child\_displacement\_y properties should also 
 affect the focus rectangle.  
 
   Default value: FALSE  Since  2.6

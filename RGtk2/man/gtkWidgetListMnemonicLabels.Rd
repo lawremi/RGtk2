@@ -14,6 +14,7 @@ callbacks that might destroy the widgets, you
 widgets afterwards.  
 
   Since  2.4}
-\value{[list] .}
+\value{[list]  the list of mnemonic labels; free this list
+ with \code{g\List\Free()} when you are done with it.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

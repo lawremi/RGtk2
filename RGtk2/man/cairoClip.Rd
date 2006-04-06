@@ -6,7 +6,7 @@ region with the current path as it would be filled by \code{\link{cairoFill}}
 and according to the current fill rule (see \code{\link{cairoSetFillRule}}).}
 \usage{cairoClip(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
-\details{After cairo_clip, the current path will be cleared from the cairo
+\details{After cairo\_clip, the current path will be cleared from the cairo
 context.
   
 The current clip region affects all drawing operations by

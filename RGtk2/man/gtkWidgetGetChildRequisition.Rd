@@ -9,11 +9,11 @@ case it returns that geometry instead of the widget's requisition.}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{This function differs from \code{\link{gtkWidgetSizeRequest}} in that
 it retrieves the last size request value from \code{widget->requisition},
-while \code{\link{gtkWidgetSizeRequest}} actually calls the "size_request" method
+while \code{\link{gtkWidgetSizeRequest}} actually calls the "size\_request" method
 on \code{widget} to compute the size request and fill in \code{widget->requisition},
 and only then returns \code{widget->requisition}.
   
-Because this function does not call the "size_request" method, it
+Because this function does not call the "size\_request" method, it
 can only be used when you know that \code{widget->requisition} is
 up-to-date, that is, \code{\link{gtkWidgetSizeRequest}} has been called
 since the last time a resize was queued. In general, only container

@@ -2,8 +2,8 @@
 \name{gtkFileChooserSetSelectMultiple}
 \title{gtkFileChooserSetSelectMultiple}
 \description{Sets whether multiple files can be selected in the file selector.  This is
-only relevant if the action is set to be GTK_FILE_CHOOSER_ACTION_OPEN or
-GTK_FILE_CHOOSER_ACTION_SAVE.  It cannot be set with either of the folder
+only relevant if the action is set to be GTK\_FILE\_CHOOSER\_ACTION\_OPEN or
+GTK\_FILE\_CHOOSER\_ACTION\_SAVE.  It cannot be set with either of the folder
 actions.}
 \usage{gtkFileChooserSetSelectMultiple(object, select.multiple)}
 \arguments{

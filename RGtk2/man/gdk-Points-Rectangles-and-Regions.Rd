@@ -72,7 +72,7 @@ Defines the position and size of a rectangle.
 }
 \item{\code{GdkRegion}}{
 A GdkRegion represents a set of pixels on the screen.
-The only user-visible field of the structure is the user_data member, which
+The only user-visible field of the structure is the user\_data member, which
 can be used to attach arbitrary data to the \code{\link{GdkRegion}}.
 
 }
@@ -96,9 +96,9 @@ creating a \code{\link{GdkRegion}} from a polygon.
 The fill rule is only relevant for polygons which overlap themselves.
 
 \describe{
-\item{\code{GDK_EVEN_ODD_RULE (even-odd-rule)}}{areas which are overlapped an odd number of times are
+\item{\code{even-odd-rule}}{areas which are overlapped an odd number of times are
 included in the region, while areas overlapped an even number of times are not.}
-\item{\code{GDK_WINDING_RULE (winding-rule)}}{overlapping areas are always included.}
+\item{\code{winding-rule}}{overlapping areas are always included.}
 }
 
 }
@@ -106,9 +106,9 @@ included in the region, while areas overlapped an even number of times are not.}
 Specifies the possible values returned by \code{\link{gdkRegionRectIn}}.
 
 \describe{
-\item{\code{GDK_OVERLAP_RECTANGLE_IN (in)}}{if the rectangle is inside the \code{\link{GdkRegion}}.}
-\item{\code{GDK_OVERLAP_RECTANGLE_OUT (out)}}{if the rectangle is outside the \code{\link{GdkRegion}}.}
-\item{\code{GDK_OVERLAP_RECTANGLE_PART (part)}}{if the rectangle is partly inside the \code{\link{GdkRegion}}.}
+\item{\code{in}}{if the rectangle is inside the \code{\link{GdkRegion}}.}
+\item{\code{out}}{if the rectangle is outside the \code{\link{GdkRegion}}.}
+\item{\code{part}}{if the rectangle is partly inside the \code{\link{GdkRegion}}.}
 }
 
 }

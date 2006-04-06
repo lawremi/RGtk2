@@ -10,7 +10,7 @@
 }
 \value{
 A list containing the following elements:
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a cairo_matrix_t}
+\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a cairo\_matrix\_t}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

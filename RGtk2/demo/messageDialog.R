@@ -73,7 +73,7 @@ frame$add(vbox)
 hbox <- gtkHBoxNew(FALSE, 8)
 vbox$packStart(hbox, FALSE, FALSE, 0)
 button <- gtkButtonNewWithMnemonic("_Message Dialog")
-connectSignal(button, "clicked", message.dialog.clicked)
+gSignalConnect(button, "clicked", message.dialog.clicked)
 hbox$packStart(button, FALSE, FALSE, 0)
 
 vbox$packStart(gtkHSeparatorNew(), FALSE, FALSE, 0)
@@ -84,7 +84,7 @@ vbox$packStart(hbox, FALSE, FALSE, 0)
 vbox2 <- gtkVBoxNew(FALSE, 0)
 
 button <- gtkButtonNewWithMnemonic("_Interactive Dialog")
-connectSignal(button, "clicked", interactive.dialog.clicked)
+gSignalConnect(button, "clicked", interactive.dialog.clicked)
 hbox$packStart(vbox2, FALSE, FALSE, 0)
 vbox2$packStart(button, FALSE, FALSE, 0)
 

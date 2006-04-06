@@ -3,7 +3,7 @@
 \title{gtkIMContextDeleteSurrounding}
 \description{Asks the widget that the input context is attached to to delete
 characters around the cursor position by emitting the
-GtkIMContext::delete_surrounding signal. Note that \code{offset} and \code{n.chars}
+GtkIMContext::delete\_surrounding signal. Note that \code{offset} and \code{n.chars}
 are in characters not in bytes which differs from the usage other
 places in \code{\link{GtkIMContext}}.}
 \usage{gtkIMContextDeleteSurrounding(object, offset, n.chars)}

@@ -2,8 +2,8 @@
 \name{gtkRulerSetMetric}
 \title{gtkRulerSetMetric}
 \description{This calls the \code{GTKMetricType} to set the ruler to units defined. Available units
-are GTK_PIXELS, GTK_INCHES, or GTK_CENTIMETERS. The default unit of measurement
-is GTK_PIXELS.}
+are GTK\_PIXELS, GTK\_INCHES, or GTK\_CENTIMETERS. The default unit of measurement
+is GTK\_PIXELS.}
 \usage{gtkRulerSetMetric(object, metric)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkRuler}}] the gtkruler}

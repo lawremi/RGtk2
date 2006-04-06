@@ -8,7 +8,7 @@
 \value{
 A list containing the following elements:
 \item{\code{path}}{[character]  location to store a list of icon theme path directories or \code{NULL}
-       The stored value should be freed with \code{gStrfreev()}.}
+       The stored value should be freed with \code{g\Strfreev()}.}
 \item{\code{n.elements}}{[integer]  location to store number of elements
              in \code{path}, or \code{NULL}}
 }

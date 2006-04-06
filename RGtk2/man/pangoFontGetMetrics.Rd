@@ -12,6 +12,7 @@ correspond to the script(s) used by that language.}
            for, or \code{NULL} to indicate to get the metrics for the entire
            font.}
 }
-\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object.}
+\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object. The caller must call \code{pango\Font\Metrics\Unref()}
+  when finished using the object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

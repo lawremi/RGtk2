@@ -8,7 +8,7 @@ pointer.)}
 \usage{pangoLanguageFromString(language)}
 \arguments{\item{\code{language}}{[char]  a string representing a language tag}}
 \details{This function first canonicalizes the string by converting it to
-lowercase, mapping '_' to '-', and stripping all characters other
+lowercase, mapping '\_' to '-', and stripping all characters other
 than letters and '-'.  }
 \value{[\code{\link{PangoLanguage}}]  an opaque pointer to a \code{\link{PangoLanguage}} structure.
               this will be valid forever after.}

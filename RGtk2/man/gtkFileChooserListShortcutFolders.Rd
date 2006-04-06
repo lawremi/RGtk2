@@ -7,6 +7,7 @@
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
 \value{[list]  A list of folder filenames, or \code{NULL} if there are no shortcut
-folders.}
+folders.  Free the returned list with \code{g\Slist\Free()}, and the filenames with
+\code{g\Free()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

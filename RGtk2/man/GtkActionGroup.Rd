@@ -114,7 +114,7 @@ members and should not be accessed directly.
 \section{Convenient Construction}{\code{gtkActionGroup} is the equivalent of \code{\link{gtkActionGroupNew}}.}
 \section{Signals}{\describe{
 \item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
-The connect_proxy signal is emitted after connecting a proxy to 
+The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. Note that the proxy may have been connected 
 to a different action before.
   
@@ -137,7 +137,7 @@ convenient to use.
 
 }
 \item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
-The disconnect_proxy signal is emitted after disconnecting a proxy 
+The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group. 
   
 \code{\link{GtkUIManager}} proxies the signal and provides global notification 
@@ -155,7 +155,7 @@ convenient to use.
 
 }
 \item{\code{post-activate(action.group, action, user.data)}}{
-The post_activate signal is emitted just after the \code{action} in the
+The post\_activate signal is emitted just after the \code{action} in the
 \code{action.group} is activated
   
 This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global
@@ -171,7 +171,7 @@ notification just after any action is activated.
 
 }
 \item{\code{pre-activate(action.group, action, user.data)}}{
-The pre_activate signal is emitted just before the \code{action} in the
+The pre\_activate signal is emitted just before the \code{action} in the
 \code{action.group} is activated
   
 This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global

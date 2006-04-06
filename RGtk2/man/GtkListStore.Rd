@@ -43,7 +43,7 @@ accept \code{\link{GObject}}s are handled a little differently.  The
 \code{\link{GtkListStore}} will keep a reference to the object instead of copying the
 value.  As a result, if the object is modified, it is up to the
 application writer to call \code{gtk.tree.model.row.changed} to emit the
-"row_changed" signal.  This most commonly affects lists with
+"row\_changed" signal.  This most commonly affects lists with
 \code{\link{GdkPixbuf}}s stored.
   \preformatted{
   list_store <- gtk_list_store_new ("character", "integer", "logical")

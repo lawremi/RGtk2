@@ -3,7 +3,7 @@
 \title{gtkLabelSetAttributes}
 \description{Sets a \code{\link{PangoAttrList}}; the attributes in the list are applied to the
 label text. The attributes set with this function will be ignored
-if the "use_underline" property or the "use_markup" property
+if the "use\_underline" property or the "use\_markup" property
 is \code{TRUE}.}
 \usage{gtkLabelSetAttributes(object, attrs)}
 \arguments{

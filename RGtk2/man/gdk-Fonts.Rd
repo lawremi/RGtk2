@@ -123,7 +123,7 @@ of forms of string input:
     of one or more bytes, with different lengths for different
     characters in the string). They can be converted to and
     from wide character strings (see below) using
-    \code{gdkWcstombs()} and \code{gdkMbstowcs()}.) The string will
+    \code{gdk\Wcstombs()} and \code{gdk\Mbstowcs()}.) The string will
     be rendered using one or more different fonts from
     the fontset.
     }
@@ -168,7 +168,7 @@ here).
 The \code{GdkFont} structure represents a font or fontset. It
 contains the following public fields. A new \code{GdkFont}
 structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
-and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}
+and is reference counted with \code{gdk\Font\Ref()} and \code{gdk\Font\Unref()}
 
 \describe{
 \item{\code{type}}{[\code{\link{GdkFontType}}] a value of type \code{\link{GdkFontType}} which indicates
@@ -186,8 +186,8 @@ Indicates the type of a font. The possible values
 are currently:
 
 \describe{
-\item{\code{GDK_FONT_FONT (font)}}{the font is a single font.}
-\item{\code{GDK_FONT_FONTSET (fontset)}}{the font is a fontset.}
+\item{\code{font}}{the font is a single font.}
+\item{\code{fontset}}{the font is a fontset.}
 }
 
 }}}

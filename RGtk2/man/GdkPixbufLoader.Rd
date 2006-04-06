@@ -31,12 +31,12 @@
     and call \code{\link{gdkPixbufLoaderWrite}} to send the data to it.  When
     done, \code{\link{gdkPixbufLoaderClose}} should be called to end the stream
     and finalize everything.  The loader will emit three important
-    signals throughout the process.  The first, "size_prepared",
+    signals throughout the process.  The first, "size\_prepared",
     will be called as soon as the image has enough information to
     determine the size of the image to be used. If you want to scale
     the image while loading it, you can call \code{\link{gdkPixbufLoaderSetSize}}
     in response to this signal.
-      The second signal, "area_prepared",
+      The second signal, "area\_prepared",
     will be called as soon as the pixbuf of the desired has been 
     allocated.  You can obtain it by calling \code{\link{gdkPixbufLoaderGetPixbuf}}. 
     If you want to use it, simply ref it.  
@@ -45,7 +45,7 @@
     initial color) as needed.  You can also call
     \code{\link{gdkPixbufLoaderGetPixbuf}} later and get the same pixbuf.
     
-    The last signal, "area_updated" gets
+    The last signal, "area\_updated" gets
     called every time a region is updated.  This way you can update a
     partially completed image.  Note that you do not know anything
     about the completeness of an image from the area updated.  For
@@ -53,7 +53,7 @@
     before the image is done loading.
   }
 \section{Loading an animation}{      Loading an animation is almost as easy as loading an
-      image.  Once the first "area_prepared" signal
+      image.  Once the first "area\_prepared" signal
       has been emitted, you can call \code{\link{gdkPixbufLoaderGetAnimation}}
       to get the \code{\link{GdkPixbufAnimation}} struct and \code{\link{gdkPixbufAnimationGetIter}}
       to get an \code{\link{GdkPixbufAnimationIter}} for displaying it. 

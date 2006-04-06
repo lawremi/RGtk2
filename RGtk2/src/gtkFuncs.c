@@ -18225,22 +18225,6 @@ S_gtk_disable_setlocale()
  
 
 USER_OBJECT_
-S_gtk_set_locale()
-{
-
-	gchar* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gtk_set_locale();
-
-	_result = asRString(ans);
-	CLEANUP(g_free, ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gtk_get_default_language()
 {
 
@@ -20524,20 +20508,6 @@ S_gtk_object_get_type()
 	ans = gtk_object_get_type();
 
 	_result = asRGType(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_object_sink(USER_OBJECT_ s_object)
-{
-	GtkObject* object = GTK_OBJECT(getPtrValue(s_object));
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_object_sink(object);
-
 
 	return(_result);
 }
@@ -40405,36 +40375,6 @@ S_gtk_window_group_remove_window(USER_OBJECT_ s_object, USER_OBJECT_ s_window)
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 	gtk_window_group_remove_window(object, window);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_window_remove_embedded_xid(USER_OBJECT_ s_object, USER_OBJECT_ s_xid)
-{
-	GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
-	guint xid = (guint)asCNumeric(s_xid);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_window_remove_embedded_xid(object, xid);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_window_add_embedded_xid(USER_OBJECT_ s_object, USER_OBJECT_ s_xid)
-{
-	GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
-	guint xid = (guint)asCNumeric(s_xid);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gtk_window_add_embedded_xid(object, xid);
 
 
 	return(_result);

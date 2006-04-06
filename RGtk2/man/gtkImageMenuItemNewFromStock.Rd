@@ -11,7 +11,7 @@ and \code{GTK_STOCK_APPLY}.}
   or \code{NULL}.}
 }
 \details{If you want this menu item to have changeable accelerators, then pass in
-\code{NULL} for accel_group. Next call \code{\link{gtkMenuItemSetAccelPath}} with an
+\code{NULL} for accel\_group. Next call \code{\link{gtkMenuItemSetAccelPath}} with an
 appropriate path for the menu item, use \code{\link{gtkStockLookup}} to look up the
 standard accelerator for the stock item, and if one is found, call
 \code{\link{gtkAccelMapAddEntry}} to register it.  }

@@ -98,11 +98,11 @@ asCCairoPath(USER_OBJECT_ s_path)
 		/* define header element */
 		element[0].header.type = type;
 		element[0].header.length = len;
-		g_slist_append(data, &element[0]); /* add header to list */
+		data = g_slist_append(data, &element[0]); /* add header to list */
 		for (j = 1; j < len; j++) { /* define points */
 			element[j].point.x = INTEGER_DATA(s_element)[2*j];
 			element[j].point.y = INTEGER_DATA(s_element)[2*j+1];
-			g_slist_append(data, &element[j]); /* add point to list */
+			data = g_slist_append(data, &element[j]); /* add point to list */
 		}
 	}
 	

@@ -3,15 +3,15 @@
 \title{gtkDialogRun}
 \description{Blocks in a recursive main loop until the \code{dialog} either emits the
 response signal, or is destroyed. If the dialog is destroyed during the call
-to \code{\link{gtkDialogRun}}, gtk_dialog_returns \code{GTK_RESPONSE_NONE}.
+to \code{\link{gtkDialogRun}}, gtk\_dialog\_returns \code{GTK_RESPONSE_NONE}.
 Otherwise, it returns the response ID from the "response" signal emission.
 Before entering the recursive main loop, \code{\link{gtkDialogRun}} calls
 \code{\link{gtkWidgetShow}} on the dialog for you. Note that you still
 need to show any children of the dialog yourself.}
 \usage{gtkDialogRun(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}}
-\details{During \code{\link{gtkDialogRun}}, the default behavior of "delete_event" is
-disabled; if the dialog receives "delete_event", it will not be
+\details{During \code{\link{gtkDialogRun}}, the default behavior of "delete\_event" is
+disabled; if the dialog receives "delete\_event", it will not be
 destroyed as windows usually are, and \code{\link{gtkDialogRun}} will return
 \code{GTK_RESPONSE_DELETE_EVENT}. Also, during \code{\link{gtkDialogRun}} the dialog will be
 modal. You can force \code{\link{gtkDialogRun}} to return at any time by

@@ -106,9 +106,9 @@ types related to the text widget and how they work together.
 
 
 \describe{
-\item{\code{GTK_TEXT_SEARCH_VISIBLE_ONLY (visible-only)}}{\emph{undocumented
+\item{\code{visible-only}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_SEARCH_TEXT_ONLY (text-only)}}{\emph{undocumented
+\item{\code{text-only}}{\emph{undocumented
 }}
 }
 

@@ -1,7 +1,7 @@
 \alias{gtkActionGroupTranslateString}
 \name{gtkActionGroupTranslateString}
 \title{gtkActionGroupTranslateString}
-\description{Translates a string using the specified \code{translateFunc()}. This
+\description{Translates a string using the specified \code{translate\Func()}. This
 is mainly intended for language bindings.}
 \usage{gtkActionGroupTranslateString(object, string)}
 \arguments{

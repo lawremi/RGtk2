@@ -18,8 +18,8 @@ The position of the thumb in a scrollbar is controlled by the scroll
 adjustments. See \code{\link{GtkAdjustment}} for the fields in an adjustment - for
 \code{\link{GtkScrollbar}}, the "value" field represents the position of the
 scrollbar, which must be between the "lower" field and "upper -
-page_size." The "page_size" field represents the size of the visible
-scrollable area. The "step_increment" and "page_increment" fields are
+page\_size." The "page\_size" field represents the size of the visible
+scrollable area. The "step\_increment" and "page\_increment" fields are
 used when the user asks to step down (using the small stepper arrows)
 or page down (using for example the PageDown key).}
 \section{Structures}{\describe{\item{\code{GtkScrollbar}}{

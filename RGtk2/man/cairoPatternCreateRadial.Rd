@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateRadial}
 \name{cairoPatternCreateRadial}
 \title{cairoPatternCreateRadial}
-\description{Creates a new radial gradient cairo_pattern_t between the two
+\description{Creates a new radial gradient cairo\_pattern\_t between the two
 circles defined by (x0, y0, c0) and (x1, y1, c0).  Before using the
 gradient pattern, a number of color stops should be defined using
 \code{\link{cairoPatternAddColorStopRgb}} or
@@ -19,7 +19,9 @@ gradient pattern, a number of color stops should be defined using
 pattern space is identical to user space, but the relationship
 between the spaces can be changed with \code{\link{cairoPatternSetMatrix}}.  }
 \value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if succesful, or
-an error pattern in case of no memory.
+an error pattern in case of no memory.  The caller owns the
+returned object and should call \code{cairo\Pattern\Destroy()} when
+finished with it.
 
 This function will always return a valid pointer, but if an error
 occurred the pattern status will be set to an error.  To inspect

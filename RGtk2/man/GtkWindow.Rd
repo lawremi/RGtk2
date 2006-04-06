@@ -255,7 +255,7 @@ TRUE if the window should receive the input focus when mapped.  Default value: T
 The window gravity of the window. See \code{\link{gtkWindowMove}} and \code{\link{GdkGravity}} for
 more details about window gravity.  
 
-  Default value: GDK_GRAVITY_NORTH_WEST  Since  2.4
+  Default value: GDK\_GRAVITY\_NORTH\_WEST  Since  2.4
 
 }
 \item{\code{has-toplevel-focus} [logical : Read]}{
@@ -318,12 +318,12 @@ The title of the window.  Default value: NULL
 }
 \item{\code{type} [\code{\link{GtkWindowType}} : Read / Write / Construct Only]}{
 
-The type of the window.  Default value: GTK_WINDOW_TOPLEVEL
+The type of the window.  Default value: GTK\_WINDOW\_TOPLEVEL
 
 }
 \item{\code{type-hint} [\code{\link{GdkWindowTypeHint}} : Read / Write]}{
 
-Hint to help the desktop environment understand what kind of window this is and how to treat it.  Default value: GDK_WINDOW_TYPE_HINT_NORMAL
+Hint to help the desktop environment understand what kind of window this is and how to treat it.  Default value: GDK\_WINDOW\_TYPE\_HINT\_NORMAL
 
 }
 \item{\code{urgency-hint} [logical : Read / Write]}{
@@ -333,7 +333,7 @@ TRUE if the window should be brought to the user's attention.  Default value: FA
 }
 \item{\code{window-position} [\code{\link{GtkWindowPosition}} : Read / Write]}{
 
-The initial position of the window.  Default value: GTK_WIN_POS_NONE
+The initial position of the window.  Default value: GTK\_WIN\_POS\_NONE
 
 }
 }}

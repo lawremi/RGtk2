@@ -56,7 +56,7 @@ sort the second.
   
 To demonstrate how to access the underlying child model from the sort
 model, the next example will be a callback for the \code{\link{GtkTreeSelection}}
-"changed" signal.  In this callback, we get a string from COLUMN_1 of
+"changed" signal.  In this callback, we get a string from COLUMN\_1 of
 the model.  We then modify the string, find the same selected row on the
 child model, and change the row there.
   

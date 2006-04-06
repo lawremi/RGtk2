@@ -1,9 +1,9 @@
 \alias{gtkToolItemGetReliefStyle}
 \name{gtkToolItemGetReliefStyle}
 \title{gtkToolItemGetReliefStyle}
-\description{Returns the relief style of \code{tool.item}. See \code{gtkButtonSetReliefStyle()}.
+\description{Returns the relief style of \code{tool.item}. See \code{gtk\Button\Set\Relief\Style()}.
 Custom subclasses of \code{\link{GtkToolItem}} should call this function in the handler
-of the \code{\link{GtkToolItem}}::toolbar_reconfigured signal to find out the
+of the \code{\link{GtkToolItem}}::toolbar\_reconfigured signal to find out the
 relief style of buttons.}
 \usage{gtkToolItemGetReliefStyle(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}: }}

@@ -5,7 +5,7 @@
 buffer. There is no way to undelete a
 mark. \code{\link{gtkTextMarkGetDeleted}} will return TRUE after this
 function has been called on a mark; \code{\link{gtkTextMarkGetDeleted}}
-indicates that a mark no longer belongs to a buffer. The "mark_deleted"
+indicates that a mark no longer belongs to a buffer. The "mark\_deleted"
 signal will be emitted as notification after the mark is deleted.}
 \usage{gtkTextBufferDeleteMark(object, mark)}
 \arguments{

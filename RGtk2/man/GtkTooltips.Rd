@@ -25,13 +25,13 @@ An individual tooltip belongs to a group of tooltips. A group is created with a 
 The length of time the user must keep the mouse over a widget before the tip is shown, can be altered with \code{\link{gtkTooltipsSetDelay}}. This is set on a 'per group of tooltips' basis.
   
 To assign a tip to a particular \code{\link{GtkWidget}}, \code{\link{gtkTooltipsSetTip}} is used.
-  \emph{  
+  \strong{PLEASE NOTE:}   
 Tooltips can only be set on widgets which have their own X window and
 receive enter and leave events.
-To check if a widget has its own window use \code{gtkWidgetNoWindow()}.
+To check if a widget has its own window use \code{gtk\Widget\No\Window()}.
 To add a tooltip to a widget that doesn't have its own window, place the
 widget inside a \code{\link{GtkEventBox}} and add a tooltip to that instead.
-  }  
+    
 The default appearance of all tooltips in a program is determined by the current GTK+ theme that the user has selected.
   
 Information about the tooltip (if any) associated with an arbitrary widget can be retrieved using \code{\link{gtkTooltipsDataGet}}.

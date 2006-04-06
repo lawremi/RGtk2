@@ -3,8 +3,8 @@
 \title{gtkToolButtonSetIconName}
 \description{Sets the icon for the tool button from a named themed icon.
 See the docs for \code{\link{GtkIconTheme}} for more details.
-The "icon_name" property only has an effect if not
-overridden by non-\code{NULL} "label", "icon_widget" and "stock_id"
+The "icon\_name" property only has an effect if not
+overridden by non-\code{NULL} "label", "icon\_widget" and "stock\_id"
 properties.}
 \usage{gtkToolButtonSetIconName(object, icon.name)}
 \arguments{

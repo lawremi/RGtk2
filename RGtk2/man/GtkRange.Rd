@@ -98,7 +98,7 @@ Invert direction slider moves to increase range value.  Default value: FALSE
 }
 \item{\code{update-policy} [\code{\link{GtkUpdateType}} : Read / Write]}{
 
-How the range should be updated on the screen.  Default value: GTK_UPDATE_CONTINUOUS
+How the range should be updated on the screen.  Default value: GTK\_UPDATE\_CONTINUOUS
 
 }
 }}

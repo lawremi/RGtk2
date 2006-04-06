@@ -7,7 +7,7 @@
 \alias{CairoLineJoin}
 \alias{CairoOperator}
 \name{cairo-cairo-t}
-\title{cairo_t}
+\title{cairo\_t}
 \description{The cairo drawing context}
 \section{Methods and Functions}{
 \code{\link{cairoCreate}(target)}\cr
@@ -77,12 +77,12 @@ including coordinates of yet to be drawn shapes.
 Specifies the type of antialiasing to do when rendering text or shapes.  
 
 \describe{
-\item{\code{CAIRO_ANTIALIAS_DEFAULT (default)}}{ Use the default antialiasing for
+\item{\code{default}}{ Use the default antialiasing for
   the subsystem and target device}
-\item{\code{CAIRO_ANTIALIAS_NONE (none)}}{ Use a bilevel alpha mask}
-\item{\code{CAIRO_ANTIALIAS_GRAY (gray)}}{ Perform single-color antialiasing (using
+\item{\code{none}}{ Use a bilevel alpha mask}
+\item{\code{gray}}{ Perform single-color antialiasing (using
  shades of gray for black text on a white background, for example).}
-\item{\code{CAIRO_ANTIALIAS_SUBPIXEL (subpixel)}}{ Perform antialiasing by taking
+\item{\code{subpixel}}{ Perform antialiasing by taking
  advantage of the order of subpixel elements on devices
  such as LCD panels}
 }
@@ -99,12 +99,12 @@ or have a tricky intersection such as intersecting tangent to the path.
 is just a description of the rule that is applied.)  
 
 \describe{
-\item{\code{CAIRO_FILL_RULE_WINDING (winding)}}{ If the path crosses the ray from
+\item{\code{winding}}{ If the path crosses the ray from
 left-to-right, counts +1. If the path crosses the ray
 from right to left, counts -1. (Left and right are determined
 from the perspective of looking along the ray from the starting
 point.) If the total count is non-zero, the point will be filled.}
-\item{\code{CAIRO_FILL_RULE_EVEN_ODD (even-odd)}}{ Counts the total number of
+\item{\code{even-odd}}{ Counts the total number of
 intersections, without regard to the orientation of the contour. If
 the total number of intersections is odd, the point will be
 filled.}
@@ -115,9 +115,9 @@ filled.}
 enumeration for style of line-endings  
 
 \describe{
-\item{\code{CAIRO_LINE_CAP_BUTT (butt)}}{ start(stop) the line exactly at the start(end) point}
-\item{\code{CAIRO_LINE_CAP_ROUND (round)}}{ use a round ending, the center of the circle is the end point}
-\item{\code{CAIRO_LINE_CAP_SQUARE (square)}}{ use squared ending, the center of the square is the end point}
+\item{\code{butt}}{ start(stop) the line exactly at the start(end) point}
+\item{\code{round}}{ use a round ending, the center of the circle is the end point}
+\item{\code{square}}{ use squared ending, the center of the square is the end point}
 }
 
 }
@@ -125,11 +125,11 @@ enumeration for style of line-endings
 
 
 \describe{
-\item{\code{CAIRO_LINE_JOIN_MITER (miter)}}{\emph{undocumented
+\item{\code{miter}}{\emph{undocumented
 }}
-\item{\code{CAIRO_LINE_JOIN_ROUND (round)}}{\emph{undocumented
+\item{\code{round}}{\emph{undocumented
 }}
-\item{\code{CAIRO_LINE_JOIN_BEVEL (bevel)}}{\emph{undocumented
+\item{\code{bevel}}{\emph{undocumented
 }}
 }
 
@@ -138,33 +138,33 @@ enumeration for style of line-endings
 
 
 \describe{
-\item{\code{CAIRO_OPERATOR_CLEAR (clear)}}{\emph{undocumented
+\item{\code{clear}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_SOURCE (source)}}{\emph{undocumented
+\item{\code{source}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_OVER (over)}}{\emph{undocumented
+\item{\code{over}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_IN (in)}}{\emph{undocumented
+\item{\code{in}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_OUT (out)}}{\emph{undocumented
+\item{\code{out}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_ATOP (atop)}}{\emph{undocumented
+\item{\code{atop}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_DEST (dest)}}{\emph{undocumented
+\item{\code{dest}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_DEST_OVER (dest-over)}}{\emph{undocumented
+\item{\code{dest-over}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_DEST_IN (dest-in)}}{\emph{undocumented
+\item{\code{dest-in}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_DEST_OUT (dest-out)}}{\emph{undocumented
+\item{\code{dest-out}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_DEST_ATOP (dest-atop)}}{\emph{undocumented
+\item{\code{dest-atop}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_XOR (xor)}}{\emph{undocumented
+\item{\code{xor}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_ADD (add)}}{\emph{undocumented
+\item{\code{add}}{\emph{undocumented
 }}
-\item{\code{CAIRO_OPERATOR_SATURATE (saturate)}}{\emph{undocumented
+\item{\code{saturate}}{\emph{undocumented
 }}
 }
 

@@ -18,17 +18,17 @@
 image data.  
 
 \describe{
-\item{\code{CAIRO_FORMAT_ARGB32 (argb32)}}{ each pixel is a 32-bit quantity, with
+\item{\code{argb32}}{ each pixel is a 32-bit quantity, with
   alpha in the upper 8 bits, then red, then green, then blue.
   The 32-bit quantities are stored native-endian. Pre-multiplied
   alpha is used. (That is, 50% transparent red is 0x80800000,
   not 0x80ff0000.)}
-\item{\code{CAIRO_FORMAT_RGB24 (rgb24)}}{ each pixel is a 32-bit quantity, with
+\item{\code{rgb24}}{ each pixel is a 32-bit quantity, with
   the upper 8 bits unused. Red, Green, and Blue are stored
   in the remaining 24 bits in that order.}
-\item{\code{CAIRO_FORMAT_A8 (a8)}}{ each pixel is a 8-bit quantity holding
+\item{\code{a8}}{ each pixel is a 8-bit quantity holding
   an alpha value.}
-\item{\code{CAIRO_FORMAT_A1 (a1)}}{ each pixel is a 1-bit quantity holding
+\item{\code{a1}}{ each pixel is a 1-bit quantity holding
   an alpha value. Pixels are packed together into 32-bit
   quantities. The ordering of the bits matches the
   endianess of the platform. On a big-endian machine, the

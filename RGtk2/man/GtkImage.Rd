@@ -112,7 +112,7 @@ files, such as image files. GTK+ comes with a program to avoid this,
 called \command{gdk-pixbuf-csource}. This program
 allows you to convert an image into a C variable declaration, which
 can then be loaded into a \code{\link{GdkPixbuf}} using
-\code{gdkPixbufNewFromInline()}.}
+\code{gdk\Pixbuf\New\From\Inline()}.}
 \section{Structures}{\describe{\item{\code{GtkImage}}{
 This struct contain private data only and should be accessed by the functions
 below.
@@ -129,13 +129,13 @@ images, you can request any storage type (call any of the "get"
 functions), but they will all return \code{NULL} values.
 
 \describe{
-\item{\code{GTK_IMAGE_EMPTY (empty)}}{there is no image displayed by the widget}
-\item{\code{GTK_IMAGE_PIXMAP (pixmap)}}{the widget contains a \code{\link{GdkPixmap}}}
-\item{\code{GTK_IMAGE_IMAGE (image)}}{the widget contains a \code{\link{GdkImage}}}
-\item{\code{GTK_IMAGE_PIXBUF (pixbuf)}}{the widget contains a \code{\link{GdkPixbuf}}}
-\item{\code{GTK_IMAGE_STOCK (stock)}}{the widget contains a stock icon name (see )}
-\item{\code{GTK_IMAGE_ICON_SET (icon-set)}}{the widget contains a \code{\link{GtkIconSet}}}
-\item{\code{GTK_IMAGE_ANIMATION (animation)}}{the widget contains a \code{\link{GdkPixbufAnimation}}}
+\item{\code{empty}}{there is no image displayed by the widget}
+\item{\code{pixmap}}{the widget contains a \code{\link{GdkPixmap}}}
+\item{\code{image}}{the widget contains a \code{\link{GdkImage}}}
+\item{\code{pixbuf}}{the widget contains a \code{\link{GdkPixbuf}}}
+\item{\code{stock}}{the widget contains a stock icon name (see )}
+\item{\code{icon-set}}{the widget contains a \code{\link{GtkIconSet}}}
+\item{\code{animation}}{the widget contains a \code{\link{GdkPixbufAnimation}}}
 }
 
 }}}
@@ -204,7 +204,7 @@ Stock ID for a stock image to display.  Default value: NULL
 }
 \item{\code{storage-type} [\code{\link{GtkImageType}} : Read]}{
 
-The representation being used for image data.  Default value: GTK_IMAGE_EMPTY
+The representation being used for image data.  Default value: GTK\_IMAGE\_EMPTY
 
 }
 }}

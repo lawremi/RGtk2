@@ -13,7 +13,7 @@
 \section{Methods and Functions}{
 \code{\link{gtkWidgetNew}(type, ..., show = TRUE)}\cr
 \code{\link{gtkWidgetDestroy}(object, ...)}\cr
-\code{\link{gtkWidgetSet}(obj, ... = TRUE)}\cr
+\code{\link{gtkWidgetSet}(obj, ...)}\cr
 \code{\link{gtkWidgetUnparent}(object)}\cr
 \code{\link{gtkWidgetShow}(object)}\cr
 \code{\link{gtkWidgetShowNow}(object)}\cr
@@ -171,7 +171,7 @@ Use \code{\link{gtkWidgetClassInstallStyleProperty}} to install style properties
 a widget class, \code{\link{gtkWidgetClassFindStyleProperty}} or
 \code{\link{gtkWidgetClassListStyleProperties}} to get information about existing
 style properties and \code{\link{gtkWidgetStyleGetProperty}}, \code{\link{gtkWidgetStyleGet}} or
-\code{gtkWidgetStyleGetValist()} to obtain the value of a style property.}
+\code{gtk\Widget\Style\Get\Valist()} to obtain the value of a style property.}
 \section{Structures}{\describe{
 \item{\code{GtkWidget}}{
 
@@ -220,52 +220,52 @@ A \code{GtkRequisition} represents the desired size of a widget. See
 Tells about certain properties of the widget.
 
 \describe{
-\item{\code{GTK_TOPLEVEL (toplevel)}}{        widgets without a real parent, as there are \code{\link{GtkWindow}}s and
+\item{\code{toplevel}}{        widgets without a real parent, as there are \code{\link{GtkWindow}}s and
         \code{\link{GtkMenu}}s have this flag set throughout their lifetime.
         Toplevel widgets always contain their own \code{\link{GdkWindow}}.}
-\item{\code{GTK_NO_WINDOW (no-window)}}{        Indicative for a widget that does not provide its own \code{\link{GdkWindow}}. 
+\item{\code{no-window}}{        Indicative for a widget that does not provide its own \code{\link{GdkWindow}}. 
         Visible action (e.g. drawing) is performed on the parent's \code{\link{GdkWindow}}.}
-\item{\code{GTK_REALIZED (realized)}}{        Set by \code{\link{gtkWidgetRealize}}, unset by \code{\link{gtkWidgetUnrealize}}.
+\item{\code{realized}}{        Set by \code{\link{gtkWidgetRealize}}, unset by \code{\link{gtkWidgetUnrealize}}.
         A realized widget has an associated \code{\link{GdkWindow}}.}
-\item{\code{GTK_MAPPED (mapped)}}{        Set by \code{\link{gtkWidgetMap}}, unset by \code{\link{gtkWidgetUnmap}}.
+\item{\code{mapped}}{        Set by \code{\link{gtkWidgetMap}}, unset by \code{\link{gtkWidgetUnmap}}.
         Only realized widgets can be mapped. It means that \code{\link{gdkWindowShow}} 
         has been called on the widgets window(s).}
-\item{\code{GTK_VISIBLE (visible)}}{        Set by \code{\link{gtkWidgetShow}}, unset by \code{\link{gtkWidgetHide}}. Implies that a 
+\item{\code{visible}}{        Set by \code{\link{gtkWidgetShow}}, unset by \code{\link{gtkWidgetHide}}. Implies that a 
         widget will be mapped as soon as its parent is mapped.}
-\item{\code{GTK_SENSITIVE (sensitive)}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}}.
+\item{\code{sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}}.
         The sensitivity of a widget determines whether it will receive
         certain events (e.g. button or key presses). One premise for
         the widget's sensitivity is to have this flag set.}
-\item{\code{GTK_PARENT_SENSITIVE (parent-sensitive)}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}} operations on the
+\item{\code{parent-sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}} operations on the
         parents of the widget.
         This is the second premise for the widget's sensitivity. Once
         it has \code{GTK_SENSITIVE} and \code{GTK_PARENT_SENSITIVE} set, its state is
         effectively sensitive. This is expressed (and can be examined) by
         the \code{GTK_WIDGET_IS_SENSITIVE} function.}
-\item{\code{GTK_CAN_FOCUS (can-focus)}}{        Determines whether a widget is able to handle focus grabs.}
-\item{\code{GTK_HAS_FOCUS (has-focus)}}{        Set by \code{\link{gtkWidgetGrabFocus}} for widgets that also
+\item{\code{can-focus}}{        Determines whether a widget is able to handle focus grabs.}
+\item{\code{has-focus}}{        Set by \code{\link{gtkWidgetGrabFocus}} for widgets that also
         have \code{GTK_CAN_FOCUS} set. The flag will be unset once another widget
         grabs the focus.}
-\item{\code{GTK_CAN_DEFAULT (can-default)}}{        The widget is allowed to receive the default action via 
+\item{\code{can-default}}{        The widget is allowed to receive the default action via 
         \code{\link{gtkWidgetGrabDefault}}.}
-\item{\code{GTK_HAS_DEFAULT (has-default)}}{        The widget currently is receiving the default action.}
-\item{\code{GTK_HAS_GRAB (has-grab)}}{        Set by \code{\link{gtkGrabAdd}}, unset by \code{\link{gtkGrabRemove}}. It means that the 
-        widget is in the grab_widgets stack, and will be the preferred one for 
+\item{\code{has-default}}{        The widget currently is receiving the default action.}
+\item{\code{has-grab}}{        Set by \code{\link{gtkGrabAdd}}, unset by \code{\link{gtkGrabRemove}}. It means that the 
+        widget is in the grab\_widgets stack, and will be the preferred one for 
         receiving events other than ones of cosmetic value.}
-\item{\code{GTK_RC_STYLE (rc-style)}}{        Indicates that the widget's style has been looked up through the rc 
+\item{\code{rc-style}}{        Indicates that the widget's style has been looked up through the rc 
         mechanism. It does not imply that the widget actually had a style 
         defined through the rc mechanism.}
-\item{\code{GTK_COMPOSITE_CHILD (composite-child)}}{        Indicates that the widget is a composite child of its parent; see 
+\item{\code{composite-child}}{        Indicates that the widget is a composite child of its parent; see 
         \code{\link{gtkWidgetPushCompositeChild}}, \code{\link{gtkWidgetPopCompositeChild}}.}
-\item{\code{GTK_NO_REPARENT (no-reparent)}}{	Unused since before GTK+ 1.2, will be removed in a future version.}
-\item{\code{GTK_APP_PAINTABLE (app-paintable)}}{        Set and unset by \code{\link{gtkWidgetSetAppPaintable}}.
+\item{\code{no-reparent}}{	Unused since before GTK+ 1.2, will be removed in a future version.}
+\item{\code{app-paintable}}{        Set and unset by \code{\link{gtkWidgetSetAppPaintable}}.
         Must be set on widgets whose window the application directly draws on, 
 	in order to keep GTK+ from overwriting the drawn stuff.}
-\item{\code{GTK_RECEIVES_DEFAULT (receives-default)}}{        The widget when focused will receive the default action and have 
+\item{\code{receives-default}}{        The widget when focused will receive the default action and have 
         \code{GTK_HAS_DEFAULT} set even if there is a different widget set as default.}
-\item{\code{GTK_DOUBLE_BUFFERED (double-buffered)}}{        Set and unset by \code{\link{gtkWidgetSetDoubleBuffered}}.
+\item{\code{double-buffered}}{        Set and unset by \code{\link{gtkWidgetSetDoubleBuffered}}.
         Indicates that exposes done on the widget should be double-buffered.}
-\item{\code{GTK_NO_SHOW_ALL (no-show-all)}}{\emph{undocumented
+\item{\code{no-show-all}}{\emph{undocumented
 }}
 }
 
@@ -274,9 +274,9 @@ Tells about certain properties of the widget.
 
 
 \describe{
-\item{\code{GTK_WIDGET_HELP_TOOLTIP (tooltip)}}{\emph{undocumented
+\item{\code{tooltip}}{\emph{undocumented
 }}
-\item{\code{GTK_WIDGET_HELP_WHATS_THIS (whats-this)}}{\emph{undocumented
+\item{\code{whats-this}}{\emph{undocumented
 }}
 }
 
@@ -285,11 +285,11 @@ Tells about certain properties of the widget.
 
 
 \describe{
-\item{\code{GTK_TEXT_DIR_NONE (none)}}{\emph{undocumented
+\item{\code{none}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_DIR_LTR (ltr)}}{\emph{undocumented
+\item{\code{ltr}}{\emph{undocumented
 }}
-\item{\code{GTK_TEXT_DIR_RTL (rtl)}}{\emph{undocumented
+\item{\code{rtl}}{\emph{undocumented
 }}
 }
 
@@ -508,7 +508,7 @@ a drop zone or not. If it is not in a drop zone, it returns \code{FALSE} and no 
 processing is necessary. Otherwise, the handler returns \code{TRUE}. In this case, the handler 
 must ensure that \code{\link{gtkDragFinish}} is called to let the source know that the drop is done.
 The call to \code{\link{gtkDragFinish}} can be done either directly or in a ::drag-data-received handler
-which gets triggered by calling \code{gtkDropGetData()} to receive the data for one or more of the 
+which gets triggered by calling \code{gtk\Drop\Get\Data()} to receive the data for one or more of the 
 supported targets.  
 
 \describe{
@@ -1104,12 +1104,12 @@ Whether the widget is part of a composite widget.  Default value: FALSE
 }
 \item{\code{events} [\code{\link{GdkEventMask}} : Read / Write]}{
 
-The event mask that decides what kind of GdkEvents this widget gets.  Default value: GDK_STRUCTURE_MASK
+The event mask that decides what kind of GdkEvents this widget gets.  Default value: GDK\_STRUCTURE\_MASK
 
 }
 \item{\code{extension-events} [\code{\link{GdkExtensionMode}} : Read / Write]}{
 
-The mask that decides what kind of extension events this widget gets.  Default value: GDK_EXTENSION_EVENTS_NONE
+The mask that decides what kind of extension events this widget gets.  Default value: GDK\_EXTENSION\_EVENTS\_NONE
 
 }
 \item{\code{has-default} [logical : Read / Write]}{
@@ -1139,7 +1139,7 @@ The name of the widget.  Default value: NULL
 }
 \item{\code{no-show-all} [logical : Read / Write]}{
 
-Whether gtk_widget_show_all() should not affect this widget.  Default value: FALSE
+Whether gtk\_widget\_show\_all() should not affect this widget.  Default value: FALSE
 
 }
 \item{\code{parent} [\code{\link{GtkContainer}} : Read / Write]}{
@@ -1191,7 +1191,7 @@ Size of areas outside the widget's allocation to draw.
 }
 \item{\code{focus-line-pattern} [character : Read]}{
 
-Dash pattern used to draw the focus indicator.  Default value: "\001\001"
+Dash pattern used to draw the focus indicator.  Default value: "\\001\\001"
 
 }
 \item{\code{focus-line-width} [integer : Read]}{

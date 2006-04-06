@@ -32,8 +32,8 @@ different in that it supports scrolling natively (you can add it to a
 is a better choice since it has lower overhead.
   
 When handling expose events on a \code{\link{GtkLayout}}, you must draw to 
-GTK_LAYOUT (layout)->bin_window, rather than to 
-GTK_WIDGET (layout)->window, as you would for a drawing
+GTK\_LAYOUT (layout)->bin\_window, rather than to 
+GTK\_WIDGET (layout)->window, as you would for a drawing
 area.}
 \section{Structures}{\describe{\item{\code{GtkLayout}}{
 
@@ -61,7 +61,7 @@ The GtkAdjustment for the horizontal position.
 }
 \item{\code{height} [numeric : Read / Write]}{
 
-The height of the layout.  Allowed values: <= G_MAXINT  Default value: 100
+The height of the layout.  Allowed values: <= G\_MAXINT  Default value: 100
 
 }
 \item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{
@@ -71,7 +71,7 @@ The GtkAdjustment for the vertical position.
 }
 \item{\code{width} [numeric : Read / Write]}{
 
-The width of the layout.  Allowed values: <= G_MAXINT  Default value: 100
+The width of the layout.  Allowed values: <= G\_MAXINT  Default value: 100
 
 }
 }}

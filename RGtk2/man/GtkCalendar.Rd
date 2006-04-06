@@ -61,12 +61,12 @@ struct should only be modified using the functions provided below.
 These options can be used to influence the display and behaviour of a \code{\link{GtkCalendar}}.
 
 \describe{
-\item{\code{GTK_CALENDAR_SHOW_HEADING (show-heading)}}{Specifies that the month and year should be displayed.}
-\item{\code{GTK_CALENDAR_SHOW_DAY_NAMES (show-day-names)}}{Specifies that three letter day descriptions should be present.}
-\item{\code{GTK_CALENDAR_NO_MONTH_CHANGE (no-month-change)}}{Prevents the user from switching months with the calendar.}
-\item{\code{GTK_CALENDAR_SHOW_WEEK_NUMBERS (show-week-numbers)}}{Displays each week numbers of the current year, down the left side 
+\item{\code{show-heading}}{Specifies that the month and year should be displayed.}
+\item{\code{show-day-names}}{Specifies that three letter day descriptions should be present.}
+\item{\code{no-month-change}}{Prevents the user from switching months with the calendar.}
+\item{\code{show-week-numbers}}{Displays each week numbers of the current year, down the left side 
  of the calendar.}
-\item{\code{GTK_CALENDAR_WEEK_START_MONDAY (week-start-monday)}}{Since GTK+ 2.4, this option is deprecated and ignored by GTK+. 
+\item{\code{week-start-monday}}{Since GTK+ 2.4, this option is deprecated and ignored by GTK+. 
  The information on which day the calendar week starts is derived from the locale.}
 }
 

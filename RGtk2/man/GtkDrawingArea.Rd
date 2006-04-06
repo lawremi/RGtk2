@@ -29,10 +29,10 @@ the application may want to connect to:
     when the widget is instantiated on a particular display.
     (Create GDK resources in response to this signal.)
     
-\item     The "configure_event" signal to take any necessary actions
+\item     The "configure\_event" signal to take any necessary actions
     when the widget changes size.
     
-\item     The "expose_event" signal to handle redrawing the
+\item     The "expose\_event" signal to handle redrawing the
     contents of the widget.
     
 }
@@ -70,7 +70,7 @@ To receive mouse events on a drawing area, you will need to enable
 them with \code{\link{gtkWidgetAddEvents}}. To receive keyboard events, you
 will need to set the \code{GTK_CAN_FOCUS} flag on the drawing area, and
 should probably draw some user-visible indication that the drawing
-area is focused. Use the \code{gtkHasFocus()} function in your expose event
+area is focused. Use the \code{gtk\Has\Focus()} function in your expose event
 handler to decide whether to draw the focus indicator. See
 \code{\link{gtkPaintFocus}} for one way to draw focus.}
 \section{Structures}{\describe{\item{\code{GtkDrawingArea}}{

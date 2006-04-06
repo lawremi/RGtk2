@@ -7,7 +7,7 @@
       mnemonic character}}
 \details{If characters in \code{str} are preceded by an underscore, they are
 underlined. If you need a literal underscore character in a label, use
-'__' (two underscores). The first underlined character represents a 
+'\_\_' (two underscores). The first underlined character represents a 
 keyboard accelerator called a mnemonic. The mnemonic key can be used 
 to activate another widget, chosen automatically, or explicitly using
 \code{\link{gtkLabelSetMnemonicWidget}}.

@@ -72,7 +72,7 @@ does not have enough room to display the entire string. Setting it to
 \code{PANGO_ELLIPSIZE_NONE} turns off ellipsizing. See the wrap-width property
 for another way of making the text fit into a given width.  
 
-  Default value: PANGO_ELLIPSIZE_NONE  Since  2.6
+  Default value: PANGO\_ELLIPSIZE\_NONE  Since  2.6
 
 }
 \item{\code{ellipsize-set} [logical : Read / Write]}{
@@ -172,7 +172,7 @@ Whether this tag affects the font size.  Default value: FALSE
 }
 \item{\code{stretch} [\code{\link{PangoStretch}} : Read / Write]}{
 
-Font stretch.  Default value: PANGO_STRETCH_NORMAL
+Font stretch.  Default value: PANGO\_STRETCH\_NORMAL
 
 }
 \item{\code{stretch-set} [logical : Read / Write]}{
@@ -192,7 +192,7 @@ Whether this tag affects strikethrough.  Default value: FALSE
 }
 \item{\code{style} [\code{\link{PangoStyle}} : Read / Write]}{
 
-Font style.  Default value: PANGO_STYLE_NORMAL
+Font style.  Default value: PANGO\_STYLE\_NORMAL
 
 }
 \item{\code{style-set} [logical : Read / Write]}{
@@ -207,7 +207,7 @@ Text to render.  Default value: NULL
 }
 \item{\code{underline} [\code{\link{PangoUnderline}} : Read / Write]}{
 
-Style of underline for this text.  Default value: PANGO_UNDERLINE_NONE
+Style of underline for this text.  Default value: PANGO\_UNDERLINE\_NONE
 
 }
 \item{\code{underline-set} [logical : Read / Write]}{
@@ -217,7 +217,7 @@ Whether this tag affects underlining.  Default value: FALSE
 }
 \item{\code{variant} [\code{\link{PangoVariant}} : Read / Write]}{
 
-Font variant.  Default value: PANGO_VARIANT_NORMAL
+Font variant.  Default value: PANGO\_VARIANT\_NORMAL
 
 }
 \item{\code{variant-set} [logical : Read / Write]}{
@@ -250,7 +250,7 @@ Specifies how to break the string into multiple lines, if the cell
 renderer does not have enough room to display the entire string. 
 This property has no effect unless the wrap-width property is set.  
 
-  Default value: PANGO_WRAP_CHAR  Since  2.8
+  Default value: PANGO\_WRAP\_CHAR  Since  2.8
 
 }
 \item{\code{wrap-width} [integer : Read / Write]}{

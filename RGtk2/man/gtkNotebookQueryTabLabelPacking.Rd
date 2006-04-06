@@ -12,7 +12,7 @@ containing \code{child}.}
 A list containing the following elements:
 \item{\code{expand}}{[logical]  location to store the expand value (or NULL)}
 \item{\code{fill}}{[logical]  location to store the fill value (or NULL)}
-\item{\code{pack.type}}{[\code{\link{GtkPackType}}]  location to store the pack_type (or NULL)}
+\item{\code{pack.type}}{[\code{\link{GtkPackType}}]  location to store the pack\_type (or NULL)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

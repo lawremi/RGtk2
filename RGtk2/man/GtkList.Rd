@@ -84,7 +84,7 @@ The child \code{widget} has just been unselected.
 }}
 \section{Properties}{\describe{\item{\code{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
 
-  Default value: GTK_SELECTION_NONE
+  Default value: GTK\_SELECTION\_NONE
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkList.html}}

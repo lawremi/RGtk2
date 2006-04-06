@@ -1,7 +1,7 @@
 \alias{gladeXMLSignalAutoconnect}
 \name{gladeXMLSignalAutoconnect}
 \title{gladeXMLSignalAutoconnect}
-\description{This function is a variation of glade_xml_signal_connect.  It uses
+\description{This function is a variation of glade\_xml\_signal\_connect.  It uses
 gmodule's introspective features (by openning the module \code{NULL}) to
 look at the application's symbol table.  From here it tries to match
 the signal handler names given in the interface description with

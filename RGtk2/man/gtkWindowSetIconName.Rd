@@ -8,7 +8,7 @@ the docs for \code{\link{GtkIconTheme}} for more details. }
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
 \item{\code{name}}{[character]  the name of the themed icon}
 }
-\details{Note that this has nothing to do with the WM_ICON_NAME 
+\details{Note that this has nothing to do with the WM\_ICON\_NAME 
 property which is mentioned in the ICCCM.  
 
   Since  2.6}

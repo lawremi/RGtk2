@@ -1,7 +1,7 @@
 \alias{gtkTextBufferMoveMark}
 \name{gtkTextBufferMoveMark}
 \title{gtkTextBufferMoveMark}
-\description{Moves \code{mark} to the new location \code{where}. Emits the "mark_set" signal
+\description{Moves \code{mark} to the new location \code{where}. Emits the "mark\_set" signal
 as notification of the move.}
 \usage{gtkTextBufferMoveMark(object, mark, where)}
 \arguments{

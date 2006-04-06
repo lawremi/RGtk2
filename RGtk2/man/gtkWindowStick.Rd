@@ -11,7 +11,7 @@ write code that crashes if not.}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
 \details{It's permitted to call this function before showing a window.
   
-You can track stickiness via the "window_state_event" signal
+You can track stickiness via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -39,7 +39,7 @@ be specified using the "compression" parameter; it's value is in an
 integer in the range of [0,9].
   
 ICO images can be saved in depth 16, 24, or 32, by using the "depth"
-parameter. When the ICO saver is given "x_hot" and "y_hot" parameters,
+parameter. When the ICO saver is given "x\_hot" and "y\_hot" parameters,
 it produces a CUR instead of an ICO.  }
 \value{
 A list containing the following elements:

@@ -30,7 +30,7 @@ button to the right of the entry field.
 The drop-down list is a \code{\link{GtkList}} widget and can be accessed using the
 \code{list} member of the \code{\link{GtkCombo}}.
 List elements can contain arbitrary widgets, but if an element is not a
-plain label, then you must use the \code{gtkListSetItemString()} function.
+plain label, then you must use the \code{gtk\List\Set\Item\String()} function.
 This sets the string which will be placed in the text entry field when the
 item is selected.
   

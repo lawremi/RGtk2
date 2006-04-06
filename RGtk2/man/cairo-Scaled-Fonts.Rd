@@ -16,7 +16,7 @@
 \section{Structures}{\describe{
 \item{\code{CairoScaledFont}}{
 A \code{\link{CairoScaledFont}} is a font scaled to a particular size and device
-resolution. A cairo_scaled_font_t is most useful for low-level font
+resolution. A cairo\_scaled\_font\_t is most useful for low-level font
 usage where a library or application wants to cache a reference
 to a scaled font to speed up the computation of metrics.  
 

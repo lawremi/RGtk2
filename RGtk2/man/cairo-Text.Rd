@@ -52,11 +52,11 @@ with respect to the overall origin
 
 
 \describe{
-\item{\code{CAIRO_FONT_SLANT_NORMAL (normal)}}{\emph{undocumented
+\item{\code{normal}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FONT_SLANT_ITALIC (italic)}}{\emph{undocumented
+\item{\code{italic}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FONT_SLANT_OBLIQUE (oblique)}}{\emph{undocumented
+\item{\code{oblique}}{\emph{undocumented
 }}
 }
 
@@ -65,9 +65,9 @@ with respect to the overall origin
 
 
 \describe{
-\item{\code{CAIRO_FONT_WEIGHT_NORMAL (normal)}}{\emph{undocumented
+\item{\code{normal}}{\emph{undocumented
 }}
-\item{\code{CAIRO_FONT_WEIGHT_BOLD (bold)}}{\emph{undocumented
+\item{\code{bold}}{\emph{undocumented
 }}
 }
 

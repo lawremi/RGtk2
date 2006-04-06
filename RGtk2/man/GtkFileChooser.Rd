@@ -93,20 +93,20 @@
 	rules are applied if the URI contains non-ASCII characters.
 	However, filenames are \emph{always} returned in
 	the character set specified by the
-	\env{G_FILENAME_ENCODING} environment variable.
+	\env{G\_FILENAME\_ENCODING} environment variable.
 	Please see the Glib documentation for more details about this
 	variable.
-        \emph{	  
+        \strong{PLEASE NOTE:} 	  
 	  This means that while you can pass the result of
 	  \code{\link{gtkFileChooserGetFilename}} to
 	  \code{open(2)} or
 	  \code{fopen(3)}, you may not be able to
 	  directly set it as the text of a \code{\link{GtkLabel}} widget unless you
 	  convert it first to UTF-8, which all GTK+ widgets expect.
-	  You should use \code{gFilenameToUtf8()} to convert filenames
+	  You should use \code{g\Filename\To\Utf8()} to convert filenames
 	  into strings that can be passed to GTK+ widgets.
 	  
-      }}
+      }
 \section{Adding a Preview Widget}{	You can add a custom preview widget to a file chooser and then
 	get notification about when the preview needs to be updated.
 	To install a preview widget, use
@@ -147,13 +147,13 @@ gSignalConnect(my_file_chooser, "update-preview", update_preview_cb, preview)
         \preformatted{
 toggle <- gtkCheckButton("Open file read-only")
 my_file_chooser$setExtraWidget(toggle)
-}  \emph{	  
+}  \strong{PLEASE NOTE:} 	  
 	  If you want to set more than one extra widget in the file
 	  chooser, you can a container such as a GtkVBox or a GtkTable
 	  and include your widgets in it.  Then, set the container as
 	  the whole extra widget.
 	  
-      }}
+      }
 \section{Key Bindings}{	Internally, GTK+ implements a file chooser's graphical user
 	interface with the private
 	\code{GtkFileChooserDefaultClass}.  This
@@ -174,11 +174,11 @@ Signal name \tab Default key combinations \cr
 location-popup \tab 		    \kbd{Control}-\kbd{L}-\kbd{/}  ;
 		    \kbd{/}  
 		 \cr
-up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \emph{		      
+up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \strong{PLEASE NOTE:} 		      
 		      Both the individual Up key and the numeric
 		      keypad's Up key are supported.
 		      
-		  }  
+		    
 		  ;
 		    \kbd{Backspace}  
 		 \cr
@@ -210,9 +210,9 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
         
 	\emph{The "GtkFileChooserDefault::location-popup" signal}
 
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
                               const char            *path,
-                                gpointer   user_data);
+                                gpointer   user\_data);
 	}
 
 	
@@ -238,7 +238,7 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	      }
 }
 
-	\emph{	    
+	\strong{PLEASE NOTE:} 	    
 	    You can create your own bindings for the
 	    \code{location-popup} signal with custom
 	    \code{path} strings, and have a crude form
@@ -257,12 +257,12 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 
 class "GtkFileChooserDefault" binding "misc-shortcut"
 	  }  
-	}
+	
         
 	\emph{The "GtkFileChooserDefault::up-folder" signal}
 
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
-                                gpointer   user_data);
+	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
+                                gpointer   user\_data);
 	}
 
 	
@@ -282,8 +282,8 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
         
 	\emph{The "GtkFileChooserDefault::down-folder" signal}
 
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
-                                gpointer   user_data);
+	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
+                                gpointer   user\_data);
 	}
 
 	
@@ -307,8 +307,8 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
         
 	\emph{The "GtkFileChooserDefault::home-folder" signal}
 
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
-                                gpointer   user_data);
+	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
+                                gpointer   user\_data);
 	}
 
 	
@@ -334,15 +334,15 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 \describe{
-\item{\code{GTK_FILE_CHOOSER_ACTION_OPEN (open)}}{Indicates open mode.  The file chooser
+\item{\code{open}}{Indicates open mode.  The file chooser
     will only let the user pick an existing file.}
-\item{\code{GTK_FILE_CHOOSER_ACTION_SAVE (save)}}{Indicates save mode.  The file chooser
+\item{\code{save}}{Indicates save mode.  The file chooser
     will let the user pick an existing file, or type in a new
     filename.}
-\item{\code{GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER (select-folder)}}{Indicates an Open mode for
+\item{\code{select-folder}}{Indicates an Open mode for
     selecting folders.  The file chooser will let the user pick an
     existing folder.}
-\item{\code{GTK_FILE_CHOOSER_ACTION_CREATE_FOLDER (create-folder)}}{Indicates a mode for creating a
+\item{\code{create-folder}}{Indicates a mode for creating a
     new folder.  The file chooser will let the user name an existing or
     new folder.}
 }
@@ -357,11 +357,11 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 \describe{
-\item{\code{GTK_TYPE_FILE_CHOOSER_CONFIRMATION_CONFIRM (confirm)}}{The file chooser will present
+\item{\code{confirm}}{The file chooser will present
     its stock dialog to confirm about overwriting an existing file.}
-\item{\code{GTK_TYPE_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME (accept-filename)}}{The file chooser will
+\item{\code{accept-filename}}{The file chooser will
     terminate and accept the user's choice of a file name.}
-\item{\code{GTK_TYPE_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN (select-again)}}{The file chooser will
+\item{\code{select-again}}{The file chooser will
     continue running, so as to let the user select another file name.
 
     
@@ -376,8 +376,8 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 \describe{
-\item{\code{GTK_FILE_CHOOSER_ERROR_NONEXISTENT (nonexistent)}}{Indicates that a file does not exist.}
-\item{\code{GTK_FILE_CHOOSER_ERROR_BAD_FILENAME (bad-filename)}}{Indicates a malformed filename.}
+\item{\code{nonexistent}}{Indicates that a file does not exist.}
+\item{\code{bad-filename}}{Indicates a malformed filename.}
 }
 
 }
@@ -490,7 +490,7 @@ signal is emitted.  You can use the functions
 \code{\link{gtkFileChooserGetPreviewFilename}} or
 \code{\link{gtkFileChooserGetPreviewUri}} to get the name of the file to preview.
 Your widget may not be able to preview all kinds of files; your callback
-must call \code{gtkFileChooserSetPreviewWigetActive()} to inform the file
+must call \code{gtk\File\Chooser\Set\Preview\Wiget\Active()} to inform the file
 chooser about whether the preview was generated successfully or not.
   
 Please see the example code in .
@@ -511,12 +511,12 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 \section{Properties}{\describe{
 \item{\code{action} [\code{\link{GtkFileChooserAction}} : Read / Write]}{
 
-The type of operation that the file selector is performing.  Default value: GTK_FILE_CHOOSER_ACTION_OPEN
+The type of operation that the file selector is performing.  Default value: GTK\_FILE\_CHOOSER\_ACTION\_OPEN
 
 }
 \item{\code{do-overwrite-confirmation} [logical : Read / Write]}{
 
-Whether a file chooser in GTK_FILE_CHOOSER_ACTION_SAVE
+Whether a file chooser in GTK\_FILE\_CHOOSER\_ACTION\_SAVE
 will present an overwrite confirmation dialog if the user
 selects a file name that already exists.  
 

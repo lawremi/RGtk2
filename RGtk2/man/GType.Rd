@@ -3,6 +3,7 @@
 \alias{gTypeGetAncestors}
 \alias{gTypeFromName}
 \alias{gTypeGetClass}
+\alias{gTypeGetSignals}
 \title{The GType system}
 \description{
 "The GType API is the foundation of the GObject system. It provides the 

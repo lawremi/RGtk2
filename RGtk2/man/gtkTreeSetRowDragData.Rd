@@ -2,7 +2,7 @@
 \name{gtkTreeSetRowDragData}
 \title{gtkTreeSetRowDragData}
 \description{Sets selection data of target type \code{GTK_TREE_MODEL_ROW}. Normally used
-in a drag_data_get handler.}
+in a drag\_data\_get handler.}
 \usage{gtkTreeSetRowDragData(object, tree.model, path)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkSelectionData}}]  some \code{\link{GtkSelectionData}}}

@@ -24,7 +24,7 @@ Further more, passing the same object as \code{model} and \code{proxy}
 doesn't work for reasons of internal implementation.
   
 This type of row reference is primarily meant by structures that need to
-carefully monitor exactly when a row_reference updates itself, and is not
+carefully monitor exactly when a row\_reference updates itself, and is not
 generally needed by most applications.  }
 \value{[\code{\link{GtkTreeRowReference}}]  A newly allocated \code{\link{GtkTreeRowReference}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}

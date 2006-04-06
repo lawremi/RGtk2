@@ -1,7 +1,7 @@
 \alias{gladeXMLSignalConnectFull}
 \name{gladeXMLSignalConnectFull}
 \title{gladeXMLSignalConnectFull}
-\description{This function is similar to glade_xml_signal_connect, except that it
+\description{This function is similar to glade\_xml\_signal\_connect, except that it
 allows you to give an arbitrary function that will be used for actually
 connecting the signals.  This is mainly useful for writers of interpreted
 language bindings, or applications where you need more control over the

@@ -6,7 +6,7 @@ index to the character at that logical position. If the
 Y position is not inside the layout, the closest position is chosen
 (the position will be clamped inside the layout). If the
 X position is not within the layout, then the start or the
-end of the line is chosen as  described for \code{pangoLayoutXToIndex()}.
+end of the line is chosen as  described for \code{pango\Layout\X\To\Index()}.
 If either the X or Y positions were not inside the layout, then the
 function returns \code{FALSE}; on an exact hit, it returns \code{TRUE}.}
 \usage{pangoLayoutXyToIndex(object, x, y)}

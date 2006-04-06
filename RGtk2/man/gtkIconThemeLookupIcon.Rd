@@ -15,6 +15,7 @@ combines these two steps if all you need is the pixbuf.)}
 }
 \details{  Since  2.4}
 \value{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure containing information
-about the icon, or \code{NULL} if the icon wasn't found.}
+about the icon, or \code{NULL} if the icon wasn't found. Free with
+\code{gtk\Icon\Info\Free()}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

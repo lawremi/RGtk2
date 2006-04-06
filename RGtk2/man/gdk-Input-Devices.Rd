@@ -154,12 +154,12 @@ An enumeration describing the type of an input device
 in general terms.
 
 \describe{
-\item{\code{GDK_SOURCE_MOUSE (mouse)}}{the device is a mouse. (This will be reported for the core
+\item{\code{mouse}}{the device is a mouse. (This will be reported for the core
                     pointer, even if it is something else, such as a trackball.)}
-\item{\code{GDK_SOURCE_PEN (pen)}}{the device is a stylus of a graphics tablet or similar device.}
-\item{\code{GDK_SOURCE_ERASER (eraser)}}{the device is an eraser. Typically, this would be the other end
+\item{\code{pen}}{the device is a stylus of a graphics tablet or similar device.}
+\item{\code{eraser}}{the device is an eraser. Typically, this would be the other end
                     of a stylus on a graphics tablet.}
-\item{\code{GDK_SOURCE_CURSOR (cursor)}}{the device is a graphics tablet "puck" or similar device.}
+\item{\code{cursor}}{the device is a graphics tablet "puck" or similar device.}
 }
 
 }
@@ -167,10 +167,10 @@ in general terms.
 An enumeration that describes the mode of an input device.
 
 \describe{
-\item{\code{GDK_MODE_DISABLED (disabled)}}{the device is disabled and will not report any events.}
-\item{\code{GDK_MODE_SCREEN (screen)}}{the device is enabled. The device's coordinate space
+\item{\code{disabled}}{the device is disabled and will not report any events.}
+\item{\code{screen}}{the device is enabled. The device's coordinate space
                     maps to the entire screen.}
-\item{\code{GDK_MODE_WINDOW (window)}}{the device is enabled. The device's coordinate space
+\item{\code{window}}{the device is enabled. The device's coordinate space
                     is mapped to a single window. The manner in which this window
                     is chosen is undefined, but it will typically be the same
                     way in which the focus window for key events is determined.}
@@ -183,14 +183,14 @@ axis (valuator) maps onto the predefined valuator
 types that GTK+ understands.
 
 \describe{
-\item{\code{GDK_AXIS_IGNORE (ignore)}}{the axis is ignored.}
-\item{\code{GDK_AXIS_X (x)}}{the axis is used as the x axis.}
-\item{\code{GDK_AXIS_Y (y)}}{the axis is used as the y axis.}
-\item{\code{GDK_AXIS_PRESSURE (pressure)}}{the axis is used for pressure information.}
-\item{\code{GDK_AXIS_XTILT (xtilt)}}{the axis is used for x tilt information.}
-\item{\code{GDK_AXIS_YTILT (ytilt)}}{the axis is used for x tilt information.}
-\item{\code{GDK_AXIS_WHEEL (wheel)}}{the axis is used for wheel information.}
-\item{\code{GDK_AXIS_LAST (last)}}{a constant equal to the numerically highest axis value.}
+\item{\code{ignore}}{the axis is ignored.}
+\item{\code{x}}{the axis is used as the x axis.}
+\item{\code{y}}{the axis is used as the y axis.}
+\item{\code{pressure}}{the axis is used for pressure information.}
+\item{\code{xtilt}}{the axis is used for x tilt information.}
+\item{\code{ytilt}}{the axis is used for x tilt information.}
+\item{\code{wheel}}{the axis is used for wheel information.}
+\item{\code{last}}{a constant equal to the numerically highest axis value.}
 }
 
 }
@@ -199,9 +199,9 @@ An enumeration used to specify which extension events
 are desired for a particular widget.
 
 \describe{
-\item{\code{GDK_EXTENSION_EVENTS_NONE (none)}}{no extension events are desired.}
-\item{\code{GDK_EXTENSION_EVENTS_ALL (all)}}{all extension events are desired.}
-\item{\code{GDK_EXTENSION_EVENTS_CURSOR (cursor)}}{extension events are desired only if a cursor
+\item{\code{none}}{no extension events are desired.}
+\item{\code{all}}{all extension events are desired.}
+\item{\code{cursor}}{extension events are desired only if a cursor
                               will be displayed for the device.}
 }
 

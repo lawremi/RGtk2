@@ -14,6 +14,6 @@ this function.}
 \details{If \code{sort.func} is \code{NULL}, then there will be no default comparison function.
 This means that once the model  has been sorted, it can't go back to the
 default state. In this case, when the current sort column id of \code{sortable} is
-GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID, the model will be unsorted.  }
+GTK\_TREE\_SORTABLE\_DEFAULT\_SORT\_COLUMN\_ID, the model will be unsorted.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

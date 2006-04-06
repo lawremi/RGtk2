@@ -1,7 +1,7 @@
 \alias{gtkTreeModelFilterNew}
 \name{gtkTreeModelFilterNew}
 \title{gtkTreeModelFilterNew}
-\description{Creates a new \code{\link{GtkTreeModel}}, with \code{child.model} as the child_model
+\description{Creates a new \code{\link{GtkTreeModel}}, with \code{child.model} as the child\_model
 and \code{root} as the virtual root.}
 \usage{gtkTreeModelFilterNew(child.model, root = NULL)}
 \arguments{

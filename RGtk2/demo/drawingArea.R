@@ -80,7 +80,7 @@ scribble.motion.notify.event <- function(widget, event, data)
   pointer <- gdkWindowGetPointer(event[["window"]])
 
   # if button1 held down, draw
-  if (any(as.logical(bitAnd(pointer$mask, GdkModifierType["button1-mask"]))))
+  if ((as.flag(pointer$mask) & GdkModifierType["button1-mask"]) == T)
     draw.brush(widget, pointer$x, pointer$y)
 
   # We've handled it, stop processing
@@ -180,7 +180,7 @@ da$setSizeRequest(100, 100)
 
 frame$add(da)
 
-connectSignal(da, "expose_event", checkerboard.expose)
+gSignalConnect(da, "expose_event", checkerboard.expose)
 
 #
 # Create the scribble area
@@ -202,13 +202,13 @@ frame$add(da)
 
 # Signals used to handle backing pixmap
 
-connectSignal(da, "expose_event", scribble.expose.event)
-connectSignal(da, "configure_event", scribble.configure.event)
+gSignalConnect(da, "expose_event", scribble.expose.event)
+gSignalConnect(da, "configure_event", scribble.configure.event)
 
 # Event signals
 
-connectSignal(da, "motion_notify_event", scribble.motion.notify.event)
-connectSignal(da, "button_press_event", scribble.button.press.event)
+gSignalConnect(da, "motion_notify_event", scribble.motion.notify.event)
+gSignalConnect(da, "button_press_event", scribble.button.press.event)
 
 # Ask to receive events the drawing area doesn't normally
 # subscribe to

@@ -15,84 +15,39 @@ PangoAttrType<-c("invalid" = 0,
 	"shape" = 14,
 	"scale" = 15)
 storage.mode(PangoAttrType) <- 'integer'
-class(PangoAttrType) <- 'enums'
-.PangoAttrType<-c("PANGO_ATTR_INVALID" = 0,
-	"PANGO_ATTR_LANGUAGE" = 1,
-	"PANGO_ATTR_FAMILY" = 2,
-	"PANGO_ATTR_STYLE" = 3,
-	"PANGO_ATTR_WEIGHT" = 4,
-	"PANGO_ATTR_VARIANT" = 5,
-	"PANGO_ATTR_STRETCH" = 6,
-	"PANGO_ATTR_SIZE" = 7,
-	"PANGO_ATTR_FONT_DESC" = 8,
-	"PANGO_ATTR_FOREGROUND" = 9,
-	"PANGO_ATTR_BACKGROUND" = 10,
-	"PANGO_ATTR_UNDERLINE" = 11,
-	"PANGO_ATTR_STRIKETHROUGH" = 12,
-	"PANGO_ATTR_RISE" = 13,
-	"PANGO_ATTR_SHAPE" = 14,
-	"PANGO_ATTR_SCALE" = 15)
-storage.mode(.PangoAttrType) <- 'integer'
-class(.PangoAttrType) <- 'enums' 
+class(PangoAttrType) <- 'enums' 
 
 PangoUnderline<-c("none" = 0,
 	"single" = 1,
 	"double" = 2,
 	"low" = 3)
 storage.mode(PangoUnderline) <- 'integer'
-class(PangoUnderline) <- 'enums'
-.PangoUnderline<-c("PANGO_UNDERLINE_NONE" = 0,
-	"PANGO_UNDERLINE_SINGLE" = 1,
-	"PANGO_UNDERLINE_DOUBLE" = 2,
-	"PANGO_UNDERLINE_LOW" = 3)
-storage.mode(.PangoUnderline) <- 'integer'
-class(.PangoUnderline) <- 'enums' 
+class(PangoUnderline) <- 'enums' 
 
 PangoCoverageLevel<-c("none" = 0,
 	"fallback" = 1,
 	"approximate" = 2,
 	"exact" = 3)
 storage.mode(PangoCoverageLevel) <- 'integer'
-class(PangoCoverageLevel) <- 'enums'
-.PangoCoverageLevel<-c("PANGO_COVERAGE_NONE" = 0,
-	"PANGO_COVERAGE_FALLBACK" = 1,
-	"PANGO_COVERAGE_APPROXIMATE" = 2,
-	"PANGO_COVERAGE_EXACT" = 3)
-storage.mode(.PangoCoverageLevel) <- 'integer'
-class(.PangoCoverageLevel) <- 'enums' 
+class(PangoCoverageLevel) <- 'enums' 
 
 PangoRenderPart<-c("foreground" = 0,
 	"background" = 1,
 	"underline" = 2,
 	"strikethrough" = 3)
 storage.mode(PangoRenderPart) <- 'integer'
-class(PangoRenderPart) <- 'enums'
-.PangoRenderPart<-c("PANGO_RENDER_PART_FOREGROUND" = 0,
-	"PANGO_RENDER_PART_BACKGROUND" = 1,
-	"PANGO_RENDER_PART_UNDERLINE" = 2,
-	"PANGO_RENDER_PART_STRIKETHROUGH" = 3)
-storage.mode(.PangoRenderPart) <- 'integer'
-class(.PangoRenderPart) <- 'enums' 
+class(PangoRenderPart) <- 'enums' 
 
 PangoStyle<-c("normal" = 0,
 	"oblique" = 1,
 	"italic" = 2)
 storage.mode(PangoStyle) <- 'integer'
-class(PangoStyle) <- 'enums'
-.PangoStyle<-c("PANGO_STYLE_NORMAL" = 0,
-	"PANGO_STYLE_OBLIQUE" = 1,
-	"PANGO_STYLE_ITALIC" = 2)
-storage.mode(.PangoStyle) <- 'integer'
-class(.PangoStyle) <- 'enums' 
+class(PangoStyle) <- 'enums' 
 
 PangoVariant<-c("normal" = 0,
 	"small-caps" = 1)
 storage.mode(PangoVariant) <- 'integer'
-class(PangoVariant) <- 'enums'
-.PangoVariant<-c("PANGO_VARIANT_NORMAL" = 0,
-	"PANGO_VARIANT_SMALL_CAPS" = 1)
-storage.mode(.PangoVariant) <- 'integer'
-class(.PangoVariant) <- 'enums' 
+class(PangoVariant) <- 'enums' 
 
 PangoWeight<-c("ultralight" = 200,
 	"light" = 300,
@@ -102,16 +57,7 @@ PangoWeight<-c("ultralight" = 200,
 	"ultrabold" = 800,
 	"heavy" = 900)
 storage.mode(PangoWeight) <- 'integer'
-class(PangoWeight) <- 'enums'
-.PangoWeight<-c("PANGO_WEIGHT_ULTRALIGHT" = 200,
-	"PANGO_WEIGHT_LIGHT" = 300,
-	"PANGO_WEIGHT_NORMAL" = 400,
-	"PANGO_WEIGHT_SEMIBOLD" = 600,
-	"PANGO_WEIGHT_BOLD" = 700,
-	"PANGO_WEIGHT_ULTRABOLD" = 800,
-	"PANGO_WEIGHT_HEAVY" = 900)
-storage.mode(.PangoWeight) <- 'integer'
-class(.PangoWeight) <- 'enums' 
+class(PangoWeight) <- 'enums' 
 
 PangoStretch<-c("ultra-condensed" = 0,
 	"extra-condensed" = 1,
@@ -123,71 +69,36 @@ PangoStretch<-c("ultra-condensed" = 0,
 	"extra-expanded" = 7,
 	"ultra-expanded" = 8)
 storage.mode(PangoStretch) <- 'integer'
-class(PangoStretch) <- 'enums'
-.PangoStretch<-c("PANGO_STRETCH_ULTRA_CONDENSED" = 0,
-	"PANGO_STRETCH_EXTRA_CONDENSED" = 1,
-	"PANGO_STRETCH_CONDENSED" = 2,
-	"PANGO_STRETCH_SEMI_CONDENSED" = 3,
-	"PANGO_STRETCH_NORMAL" = 4,
-	"PANGO_STRETCH_SEMI_EXPANDED" = 5,
-	"PANGO_STRETCH_EXPANDED" = 6,
-	"PANGO_STRETCH_EXTRA_EXPANDED" = 7,
-	"PANGO_STRETCH_ULTRA_EXPANDED" = 8)
-storage.mode(.PangoStretch) <- 'integer'
-class(.PangoStretch) <- 'enums' 
+class(PangoStretch) <- 'enums' 
 
 PangoAlignment<-c("left" = 0,
 	"center" = 1,
 	"right" = 2)
 storage.mode(PangoAlignment) <- 'integer'
-class(PangoAlignment) <- 'enums'
-.PangoAlignment<-c("PANGO_ALIGN_LEFT" = 0,
-	"PANGO_ALIGN_CENTER" = 1,
-	"PANGO_ALIGN_RIGHT" = 2)
-storage.mode(.PangoAlignment) <- 'integer'
-class(.PangoAlignment) <- 'enums' 
+class(PangoAlignment) <- 'enums' 
 
 PangoWrapMode<-c("word" = 0,
 	"char" = 1)
 storage.mode(PangoWrapMode) <- 'integer'
-class(PangoWrapMode) <- 'enums'
-.PangoWrapMode<-c("PANGO_WRAP_WORD" = 0,
-	"PANGO_WRAP_CHAR" = 1)
-storage.mode(.PangoWrapMode) <- 'integer'
-class(.PangoWrapMode) <- 'enums' 
+class(PangoWrapMode) <- 'enums' 
 
 PangoTabAlign<-c("left" = 0)
 storage.mode(PangoTabAlign) <- 'integer'
-class(PangoTabAlign) <- 'enums'
-.PangoTabAlign<-c("PANGO_TAB_LEFT" = 0)
-storage.mode(.PangoTabAlign) <- 'integer'
-class(.PangoTabAlign) <- 'enums' 
+class(PangoTabAlign) <- 'enums' 
 
 PangoDirection<-c("ltr" = 0,
 	"rtl" = 1,
 	"ttb-ltr" = 2,
 	"ttb-rtl" = 3)
 storage.mode(PangoDirection) <- 'integer'
-class(PangoDirection) <- 'enums'
-.PangoDirection<-c("PANGO_DIRECTION_LTR" = 0,
-	"PANGO_DIRECTION_RTL" = 1,
-	"PANGO_DIRECTION_TTB_LTR" = 2,
-	"PANGO_DIRECTION_TTB_RTL" = 3)
-storage.mode(.PangoDirection) <- 'integer'
-class(.PangoDirection) <- 'enums' 
+class(PangoDirection) <- 'enums' 
 
 PangoEllipsizeMode<-c("none" = 0,
 	"start" = 1,
 	"middle" = 2,
 	"end" = 3)
 storage.mode(PangoEllipsizeMode) <- 'integer'
-class(PangoEllipsizeMode) <- 'enums'
-.PangoEllipsizeMode<-c("PANGO_ELLIPSIZE_NONE" = 0,
-	"PANGO_ELLIPSIZE_START" = 1,
-	"PANGO_ELLIPSIZE_MIDDLE" = 2,
-	"PANGO_ELLIPSIZE_END" = 3)
-storage.mode(.PangoEllipsizeMode) <- 'integer'
-class(.PangoEllipsizeMode) <- 'enums' 
+class(PangoEllipsizeMode) <- 'enums' 
 
 PangoFontMask<-c("family" = 1,
 	"style" = 2,
@@ -196,13 +107,5 @@ PangoFontMask<-c("family" = 1,
 	"stretch" = 16,
 	"size" = 32)
 storage.mode(PangoFontMask) <- 'numeric'
-class(PangoFontMask) <- 'enums'
-.PangoFontMask<-c("PANGO_FONT_MASK_FAMILY" = 1,
-	"PANGO_FONT_MASK_STYLE" = 2,
-	"PANGO_FONT_MASK_VARIANT" = 4,
-	"PANGO_FONT_MASK_WEIGHT" = 8,
-	"PANGO_FONT_MASK_STRETCH" = 16,
-	"PANGO_FONT_MASK_SIZE" = 32)
-storage.mode(.PangoFontMask) <- 'numeric'
-class(.PangoFontMask) <- 'enums' 
+class(PangoFontMask) <- 'enums' 
 

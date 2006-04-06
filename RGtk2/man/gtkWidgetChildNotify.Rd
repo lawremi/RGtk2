@@ -10,6 +10,6 @@ on \code{widget}.}
 \item{\code{child.property}}{[character]  the name of a child property installed on the 
                  class of \code{widget}'s parent.}
 }
-\details{This is the analogue of \code{gObjectNotify()} for child properties.  }
+\details{This is the analogue of \code{g\Object\Notify()} for child properties.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

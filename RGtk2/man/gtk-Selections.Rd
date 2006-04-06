@@ -55,7 +55,7 @@ contains a string representing the drag type, a flags
 field (used only for drag and drop - see \code{\link{GtkTargetFlags}}),
 and an application assigned integer ID. The integer
 ID will later be passed as a signal parameter for signals
-like "selection_get". It allows the application to identify
+like "selection\_get". It allows the application to identify
 the target type without extensive string compares.
 \strong{\code{GtkTargetEntry} is a \link{transparent-type}.}
 

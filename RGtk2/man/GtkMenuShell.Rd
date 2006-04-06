@@ -45,10 +45,10 @@ an application.)
 An enumeration representing directional movements within a menu.
 
 \tabular{ll}{
-GTK_MENU_DIR_PARENT \tab To the parent menu shell. \cr
-GTK_MENU_DIR_CHILD \tab To the submenu, if any, associated with the item. \cr
-GTK_MENU_DIR_NEXT \tab To the next menu item. \cr
-GTK_MENU_DIR_PREV \tab To the previous menu item. \cr
+GTK\_MENU\_DIR\_PARENT \tab To the parent menu shell. \cr
+GTK\_MENU\_DIR\_CHILD \tab To the submenu, if any, associated with the item. \cr
+GTK\_MENU\_DIR\_NEXT \tab To the next menu item. \cr
+GTK\_MENU\_DIR\_PREV \tab To the previous menu item. \cr
 }
 
 }}}

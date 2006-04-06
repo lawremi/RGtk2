@@ -11,7 +11,7 @@ user-space.}
 }
 \details{As with the other stroke parameters, the current line cap style is
 examined by \code{\link{cairoStroke}}, \code{\link{cairoStrokeExtents}}, and
-\code{cairoStrokeToPath()}, but does not have any effect during path
+\code{cairo\Stroke\To\Path()}, but does not have any effect during path
 construction.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

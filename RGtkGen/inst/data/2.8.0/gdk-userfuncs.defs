@@ -15,15 +15,6 @@
       '("gpointer" "data")
   )
 )
-(define-user-function InputFunction
-  (c-name "GdkInputFunction")
-  (return-type "none")
-  (parameters
-      '("gpointer" "data")
-      '("gint" "source")
-      '("GdkInputCondition" "condition")
-  )
-)
 (define-user-function PixbufSaveFunc
   (c-name "GdkPixbufSaveFunc")
   (return-type "gboolean")

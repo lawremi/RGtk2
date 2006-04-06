@@ -161,7 +161,7 @@ overrides the logo property.
 \item{\code{name} [character : Read / Write]}{
 
 The name of the program. 
-If this is not set, it defaults to \code{gGetApplicationName()}.  
+If this is not set, it defaults to \code{g\Get\Application\Name()}.  
 
   Default value: NULL  Since  2.6
 

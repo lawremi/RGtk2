@@ -51,7 +51,7 @@ which a given UI component plays in a user interface.
   All UI components in an application which provide useful
 information or services to the user must provide corresponding
 \code{\link{AtkObject}} instances on request (in GTK+, for instance, usually
-on a call to #\code{\link{gtkWidgetGetAccessible}}), either via ATK support
+on a call to \#\code{\link{gtkWidgetGetAccessible}}), either via ATK support
 built into the toolkit for the widget class or ancestor class, or in
 the case of custom widgets, if the inherited \code{\link{AtkObject}} implementation
 is insufficient, via instances of a new \code{\link{AtkObject}} subclass. }
@@ -71,87 +71,87 @@ Describes the role of an object
   
 These are the built-in enumerated roles that UI components can have in
 ATK.  Other roles may be added at runtime, so an AtkRole >=
-ATK_ROLE_LAST_DEFINED is not necessarily an error.  
+ATK\_ROLE\_LAST\_DEFINED is not necessarily an error.  
 
 \describe{
-\item{\code{ATK_ROLE_INVALID (invalid)}}{ Invalid role}
-\item{\code{ATK_ROLE_ACCEL_LABEL (accel-label)}}{ A label which represents an accelerator}
-\item{\code{ATK_ROLE_ALERT (alert)}}{ An object which is an alert to the user}
-\item{\code{ATK_ROLE_ANIMATION (animation)}}{ An object which is an animated image}
-\item{\code{ATK_ROLE_ARROW (arrow)}}{ An arrow in one of the four cardinal directions}
-\item{\code{ATK_ROLE_CALENDAR (calendar)}}{  An object that displays a calendar and allows the user to select a date}
-\item{\code{ATK_ROLE_CANVAS (canvas)}}{ An object that can be drawn into and is used to trap events}
-\item{\code{ATK_ROLE_CHECK_BOX (check-box)}}{ A choice that can be checked or unchecked and provides a separate indicator for the current state}
-\item{\code{ATK_ROLE_CHECK_MENU_ITEM (check-menu-item)}}{ A menu item with a check box}
-\item{\code{ATK_ROLE_COLOR_CHOOSER (color-chooser)}}{ A specialized dialog that lets the user choose a color}
-\item{\code{ATK_ROLE_COLUMN_HEADER (column-header)}}{ The header for a column of data}
-\item{\code{ATK_ROLE_COMBO_BOX (combo-box)}}{ A list of choices the user can select from}
-\item{\code{ATK_ROLE_DATE_EDITOR (date-editor)}}{ An object whose purpose is to allow a user to edit a date}
-\item{\code{ATK_ROLE_DESKTOP_ICON (desktop-icon)}}{ An inconifed internal frame within a DESKTOP_PANE}
-\item{\code{ATK_ROLE_DESKTOP_FRAME (desktop-frame)}}{ A pane that supports internal frames and iconified versions of those internal frames}
-\item{\code{ATK_ROLE_DIAL (dial)}}{ An object whose purpose is to allow a user to set a value}
-\item{\code{ATK_ROLE_DIALOG (dialog)}}{ A top level window with title bar and a border}
-\item{\code{ATK_ROLE_DIRECTORY_PANE (directory-pane)}}{ A pane that allows the user to navigate through and select the contents of a directory}
-\item{\code{ATK_ROLE_DRAWING_AREA (drawing-area)}}{ An object used for drawing custom user interface elements}
-\item{\code{ATK_ROLE_FILE_CHOOSER (file-chooser)}}{ A specialized dialog that lets the user choose a file}
-\item{\code{ATK_ROLE_FILLER (filler)}}{ A object that fills up space in a user interface}
-\item{\code{ATK_ROLE_FONT_CHOOSER (font-chooser)}}{ A specialized dialog that lets the user choose a font}
-\item{\code{ATK_ROLE_FRAME (frame)}}{ A top level window with a title bar, border, menubar, etc.}
-\item{\code{ATK_ROLE_GLASS_PANE (glass-pane)}}{ A pane that is guaranteed to be painted on top of all panes beneath it}
-\item{\code{ATK_ROLE_HTML_CONTAINER (html-container)}}{ A document container for HTML, whose children represent the document content}
-\item{\code{ATK_ROLE_ICON (icon)}}{ A small fixed size picture, typically used to decorate components}
-\item{\code{ATK_ROLE_IMAGE (image)}}{ An object whose primary purpose is to display an image}
-\item{\code{ATK_ROLE_INTERNAL_FRAME (internal-frame)}}{ A frame-like object that is clipped by a desktop pane}
-\item{\code{ATK_ROLE_LABEL (label)}}{ An object used to present an icon or short string in an interface}
-\item{\code{ATK_ROLE_LAYERED_PANE (layered-pane)}}{ A specialized pane that allows its children to be drawn in layers, providing a form of stacking order}
-\item{\code{ATK_ROLE_LIST (list)}}{ An object that presents a list of objects to the user and allows the user to select one or more of them }
-\item{\code{ATK_ROLE_LIST_ITEM (list-item)}}{ An object that represents an element of a list }
-\item{\code{ATK_ROLE_MENU (menu)}}{ An object usually found inside a menu bar that contains a list of actions the user can choose from}
-\item{\code{ATK_ROLE_MENU_BAR (menu-bar)}}{ An object usually drawn at the top of the primary dialog box of an application that contains a list of menus the user can choose from }
-\item{\code{ATK_ROLE_MENU_ITEM (menu-item)}}{ An object usually contained in a menu that presents an action the user can choose}
-\item{\code{ATK_ROLE_OPTION_PANE (option-pane)}}{ A specialized pane whose primary use is inside a DIALOG}
-\item{\code{ATK_ROLE_PAGE_TAB (page-tab)}}{ An object that is a child of a page tab list}
-\item{\code{ATK_ROLE_PAGE_TAB_LIST (page-tab-list)}}{ An object that presents a series of panels (or page tabs), one at a time, through some mechanism provided by the object }
-\item{\code{ATK_ROLE_PANEL (panel)}}{ A generic container that is often used to group objects}
-\item{\code{ATK_ROLE_PASSWORD_TEXT (password-text)}}{ A text object uses for passwords, or other places where the text content is not shown visibly to the user}
-\item{\code{ATK_ROLE_POPUP_MENU (popup-menu)}}{ A temporary window that is usually used to offer the user a list of choices, and then hides when the user selects one of those choices}
-\item{\code{ATK_ROLE_PROGRESS_BAR (progress-bar)}}{ An object used to indicate how much of a task has been completed}
-\item{\code{ATK_ROLE_PUSH_BUTTON (push-button)}}{ An object the user can manipulate to tell the application to do something}
-\item{\code{ATK_ROLE_RADIO_BUTTON (radio-button)}}{ A specialized check box that will cause other radio buttons in the same group to become unchecked when this one is checked}
-\item{\code{ATK_ROLE_RADIO_MENU_ITEM (radio-menu-item)}}{ A check menu item which belongs to a group. At each instant exactly one of the radio menu items from a group is selected}
-\item{\code{ATK_ROLE_ROOT_PANE (root-pane)}}{ A specialized pane that has a glass pane and a layered pane as its children}
-\item{\code{ATK_ROLE_ROW_HEADER (row-header)}}{ The header for a row of data}
-\item{\code{ATK_ROLE_SCROLL_BAR (scroll-bar)}}{ An object usually used to allow a user to incrementally view a large amount of data.}
-\item{\code{ATK_ROLE_SCROLL_PANE (scroll-pane)}}{ An object that allows a user to incrementally view a large amount of information}
-\item{\code{ATK_ROLE_SEPARATOR (separator)}}{ An object usually contained in a menu to provide a visible and logical separation of the contents in a menu}
-\item{\code{ATK_ROLE_SLIDER (slider)}}{ An object that allows the user to select from a bounded range}
-\item{\code{ATK_ROLE_SPLIT_PANE (split-pane)}}{ A specialized panel that presents two other panels at the same time}
-\item{\code{ATK_ROLE_SPIN_BUTTON (spin-button)}}{ An object used to get an integer or floating point number from the user}
-\item{\code{ATK_ROLE_STATUSBAR (statusbar)}}{ An object which reports messages of minor importance to the user}
-\item{\code{ATK_ROLE_TABLE (table)}}{ An object used to represent information in terms of rows and columns}
-\item{\code{ATK_ROLE_TABLE_CELL (table-cell)}}{ A cell in a table}
-\item{\code{ATK_ROLE_TABLE_COLUMN_HEADER (table-column-header)}}{ The header for a column of a table}
-\item{\code{ATK_ROLE_TABLE_ROW_HEADER (table-row-header)}}{ The header for a row of a table}
-\item{\code{ATK_ROLE_TEAR_OFF_MENU_ITEM (tear-off-menu-item)}}{ A menu item used to tear off and reattach its menu}
-\item{\code{ATK_ROLE_TERMINAL (terminal)}}{ An object that represents an accessible terminal}
-\item{\code{ATK_ROLE_TEXT (text)}}{ An object that presents text to the user}
-\item{\code{ATK_ROLE_TOGGLE_BUTTON (toggle-button)}}{ A specialized push button that can be checked or unchecked, but does not provide a separate indicator for the current state}
-\item{\code{ATK_ROLE_TOOL_BAR (tool-bar)}}{ A bar or palette usually composed of push buttons or toggle buttons}
-\item{\code{ATK_ROLE_TOOL_TIP (tool-tip)}}{ An object that provides information about another object}
-\item{\code{ATK_ROLE_TREE (tree)}}{ An object used to represent hierarchical information to the user}
-\item{\code{ATK_ROLE_TREE_TABLE (tree-table)}}{ An object capable of expanding and collapsing rows as well as showing multiple columns of data}
-\item{\code{ATK_ROLE_UNKNOWN (unknown)}}{ The object contains some Accessible information, but its role is not known}
-\item{\code{ATK_ROLE_VIEWPORT (viewport)}}{ An object usually used in a scroll pane}
-\item{\code{ATK_ROLE_WINDOW (window)}}{ A top level window with no title or border.}
-\item{\code{ATK_ROLE_HEADER (header)}}{ An object that serves as a document header.}
-\item{\code{ATK_ROLE_FOOTER (footer)}}{ An object that serves as a document footer.}
-\item{\code{ATK_ROLE_PARAGRAPH (paragraph)}}{ An object which is contains a paragraph of text content.}
-\item{\code{ATK_ROLE_RULER (ruler)}}{ An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER_FOR relation to such).}
-\item{\code{ATK_ROLE_APPLICATION (application)}}{ The object is an application object, which may contain \code{ATK.ROLE.FRAME} objects or other types of accessibles.}
-\item{\code{ATK_ROLE_AUTOCOMPLETE (autocomplete)}}{ The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.}
-\item{\code{ATK_ROLE_EDITBAR (editbar)}}{ The object is an editable text object in a toolbar}
-\item{\code{ATK_ROLE_EMBEDDED (embedded)}}{ The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.}
-\item{\code{ATK_ROLE_LAST_DEFINED (last-defined)}}{ not a valid role, used for finding end of enumeration}
+\item{\code{invalid}}{ Invalid role}
+\item{\code{accel-label}}{ A label which represents an accelerator}
+\item{\code{alert}}{ An object which is an alert to the user}
+\item{\code{animation}}{ An object which is an animated image}
+\item{\code{arrow}}{ An arrow in one of the four cardinal directions}
+\item{\code{calendar}}{  An object that displays a calendar and allows the user to select a date}
+\item{\code{canvas}}{ An object that can be drawn into and is used to trap events}
+\item{\code{check-box}}{ A choice that can be checked or unchecked and provides a separate indicator for the current state}
+\item{\code{check-menu-item}}{ A menu item with a check box}
+\item{\code{color-chooser}}{ A specialized dialog that lets the user choose a color}
+\item{\code{column-header}}{ The header for a column of data}
+\item{\code{combo-box}}{ A list of choices the user can select from}
+\item{\code{date-editor}}{ An object whose purpose is to allow a user to edit a date}
+\item{\code{desktop-icon}}{ An inconifed internal frame within a DESKTOP\_PANE}
+\item{\code{desktop-frame}}{ A pane that supports internal frames and iconified versions of those internal frames}
+\item{\code{dial}}{ An object whose purpose is to allow a user to set a value}
+\item{\code{dialog}}{ A top level window with title bar and a border}
+\item{\code{directory-pane}}{ A pane that allows the user to navigate through and select the contents of a directory}
+\item{\code{drawing-area}}{ An object used for drawing custom user interface elements}
+\item{\code{file-chooser}}{ A specialized dialog that lets the user choose a file}
+\item{\code{filler}}{ A object that fills up space in a user interface}
+\item{\code{font-chooser}}{ A specialized dialog that lets the user choose a font}
+\item{\code{frame}}{ A top level window with a title bar, border, menubar, etc.}
+\item{\code{glass-pane}}{ A pane that is guaranteed to be painted on top of all panes beneath it}
+\item{\code{html-container}}{ A document container for HTML, whose children represent the document content}
+\item{\code{icon}}{ A small fixed size picture, typically used to decorate components}
+\item{\code{image}}{ An object whose primary purpose is to display an image}
+\item{\code{internal-frame}}{ A frame-like object that is clipped by a desktop pane}
+\item{\code{label}}{ An object used to present an icon or short string in an interface}
+\item{\code{layered-pane}}{ A specialized pane that allows its children to be drawn in layers, providing a form of stacking order}
+\item{\code{list}}{ An object that presents a list of objects to the user and allows the user to select one or more of them }
+\item{\code{list-item}}{ An object that represents an element of a list }
+\item{\code{menu}}{ An object usually found inside a menu bar that contains a list of actions the user can choose from}
+\item{\code{menu-bar}}{ An object usually drawn at the top of the primary dialog box of an application that contains a list of menus the user can choose from }
+\item{\code{menu-item}}{ An object usually contained in a menu that presents an action the user can choose}
+\item{\code{option-pane}}{ A specialized pane whose primary use is inside a DIALOG}
+\item{\code{page-tab}}{ An object that is a child of a page tab list}
+\item{\code{page-tab-list}}{ An object that presents a series of panels (or page tabs), one at a time, through some mechanism provided by the object }
+\item{\code{panel}}{ A generic container that is often used to group objects}
+\item{\code{password-text}}{ A text object uses for passwords, or other places where the text content is not shown visibly to the user}
+\item{\code{popup-menu}}{ A temporary window that is usually used to offer the user a list of choices, and then hides when the user selects one of those choices}
+\item{\code{progress-bar}}{ An object used to indicate how much of a task has been completed}
+\item{\code{push-button}}{ An object the user can manipulate to tell the application to do something}
+\item{\code{radio-button}}{ A specialized check box that will cause other radio buttons in the same group to become unchecked when this one is checked}
+\item{\code{radio-menu-item}}{ A check menu item which belongs to a group. At each instant exactly one of the radio menu items from a group is selected}
+\item{\code{root-pane}}{ A specialized pane that has a glass pane and a layered pane as its children}
+\item{\code{row-header}}{ The header for a row of data}
+\item{\code{scroll-bar}}{ An object usually used to allow a user to incrementally view a large amount of data.}
+\item{\code{scroll-pane}}{ An object that allows a user to incrementally view a large amount of information}
+\item{\code{separator}}{ An object usually contained in a menu to provide a visible and logical separation of the contents in a menu}
+\item{\code{slider}}{ An object that allows the user to select from a bounded range}
+\item{\code{split-pane}}{ A specialized panel that presents two other panels at the same time}
+\item{\code{spin-button}}{ An object used to get an integer or floating point number from the user}
+\item{\code{statusbar}}{ An object which reports messages of minor importance to the user}
+\item{\code{table}}{ An object used to represent information in terms of rows and columns}
+\item{\code{table-cell}}{ A cell in a table}
+\item{\code{table-column-header}}{ The header for a column of a table}
+\item{\code{table-row-header}}{ The header for a row of a table}
+\item{\code{tear-off-menu-item}}{ A menu item used to tear off and reattach its menu}
+\item{\code{terminal}}{ An object that represents an accessible terminal}
+\item{\code{text}}{ An object that presents text to the user}
+\item{\code{toggle-button}}{ A specialized push button that can be checked or unchecked, but does not provide a separate indicator for the current state}
+\item{\code{tool-bar}}{ A bar or palette usually composed of push buttons or toggle buttons}
+\item{\code{tool-tip}}{ An object that provides information about another object}
+\item{\code{tree}}{ An object used to represent hierarchical information to the user}
+\item{\code{tree-table}}{ An object capable of expanding and collapsing rows as well as showing multiple columns of data}
+\item{\code{unknown}}{ The object contains some Accessible information, but its role is not known}
+\item{\code{viewport}}{ An object usually used in a scroll pane}
+\item{\code{window}}{ A top level window with no title or border.}
+\item{\code{header}}{ An object that serves as a document header.}
+\item{\code{footer}}{ An object that serves as a document footer.}
+\item{\code{paragraph}}{ An object which is contains a paragraph of text content.}
+\item{\code{ruler}}{ An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER\_FOR relation to such).}
+\item{\code{application}}{ The object is an application object, which may contain \code{ATK.ROLE.FRAME} objects or other types of accessibles.}
+\item{\code{autocomplete}}{ The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.}
+\item{\code{editbar}}{ The object is an editable text object in a toolbar}
+\item{\code{embedded}}{ The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.}
+\item{\code{last-defined}}{ not a valid role, used for finding end of enumeration}
 }
 
 }
@@ -163,14 +163,14 @@ rendering layer a component is drawn into, which can help in making
 determinations of when components occlude one another.  
 
 \describe{
-\item{\code{ATK_LAYER_INVALID (invalid)}}{ The object does not have a layer}
-\item{\code{ATK_LAYER_BACKGROUND (background)}}{ This layer is reserved for the desktop background}
-\item{\code{ATK_LAYER_CANVAS (canvas)}}{ This layer is used for Canvas components}
-\item{\code{ATK_LAYER_WIDGET (widget)}}{ This layer is normally used for components}
-\item{\code{ATK_LAYER_MDI (mdi)}}{ This layer is used for layered components}
-\item{\code{ATK_LAYER_POPUP (popup)}}{ This layer is used for popup components, such as menus}
-\item{\code{ATK_LAYER_OVERLAY (overlay)}}{ This layer is reserved for future use.}
-\item{\code{ATK_LAYER_WINDOW (window)}}{ This layer is used for toplevel windows.}
+\item{\code{invalid}}{ The object does not have a layer}
+\item{\code{background}}{ This layer is reserved for the desktop background}
+\item{\code{canvas}}{ This layer is used for Canvas components}
+\item{\code{widget}}{ This layer is normally used for components}
+\item{\code{mdi}}{ This layer is used for layered components}
+\item{\code{popup}}{ This layer is used for popup components, such as menus}
+\item{\code{overlay}}{ This layer is reserved for future use.}
+\item{\code{window}}{ This layer is used for toplevel windows.}
 }
 
 }
@@ -197,7 +197,7 @@ An AtkPropertyChangeHandler is a function which is executed when an AtkObject's 
 \section{Signals}{\describe{
 \item{\code{active-descendant-changed(atkobject, arg1, user.data)}}{
 The "active-descendant-changed" signal is emitted by an object which has
-the state ATK_STATE_MANAGES_DESCENDANTS when the focus object in the
+the state ATK\_STATE\_MANAGES\_DESCENDANTS when the focus object in the
 object changes. For instance, a table will emit the signal when the cell
 in the table which has focus changes.
 

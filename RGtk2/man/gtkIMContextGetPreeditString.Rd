@@ -10,10 +10,10 @@ point.}
 \value{
 A list containing the following elements:
 \item{\code{str}}{[character]         location to store the retrieved string. The
-             string retrieved must be freed with \code{gFree()}.}
+             string retrieved must be freed with \code{g\Free()}.}
 \item{\code{attrs}}{[\code{\link{PangoAttrList}}]       location to store the retrieved attribute list.
              When you are done with this list, you must
-             unreference it with \code{pangoAttrListUnref()}.}
+             unreference it with \code{pango\Attr\List\Unref()}.}
 \item{\code{cursor.pos}}{[integer]  location to store position of cursor (in characters)
              within the preedit string.  }
 }

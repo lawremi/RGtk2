@@ -75,13 +75,8 @@ and \code{\link{GtkActionGroup}}.
 }
 
 }
-\item{\code{GtkItemFactoryCallback()}}{
-
-
-\describe{\emph{undocumented
+\item{\code{GtkItemFactoryCallback()}}{\emph{undocumented
 }}
-
-}
 \item{\code{GtkItemFactoryCallback1(callback.data, callback.action, widget)}}{
 
 

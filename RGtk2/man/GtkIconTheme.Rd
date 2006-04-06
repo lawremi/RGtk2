@@ -71,7 +71,7 @@ you want to use, use it, otherwise use a named icon. It turns
 out that internally stock images are generally defined in
 terms of one or more named icons. (An example of the
 more than one case is icons that depend on writing direction;
-GTK_STOCK_GO_FORWARD uses the two themed icons
+GTK\_STOCK\_GO\_FORWARD uses the two themed icons
 "gtk-stock-go-forward-ltr" and "gtk-stock-go-forward-rtl".)
   
 In many cases, named themes are used indirectly, via \code{\link{GtkImage}}
@@ -119,12 +119,12 @@ object and set the icon theme name explicitely using
 Used to specify options for \code{\link{gtkIconThemeLookupIcon}}  
 
 \describe{
-\item{\code{GTK_ICON_LOOKUP_NO_SVG (no-svg)}}{ Never return SVG icons, even if gdk-pixbuf
+\item{\code{no-svg}}{ Never return SVG icons, even if gdk-pixbuf
   supports them. Cannot be used together with \code{GTK_ICON_LOOKUP_FORCE_SVG}.}
-\item{\code{GTK_ICON_LOOKUP_FORCE_SVG (force-svg)}}{ Return SVG icons, even if gdk-pixbuf
+\item{\code{force-svg}}{ Return SVG icons, even if gdk-pixbuf
   doesn't support them.
   Cannot be used together with \code{GTK_ICON_LOOKUP_NO_SVG}.}
-\item{\code{GTK_ICON_LOOKUP_USE_BUILTIN (use-builtin)}}{ When passed to
+\item{\code{use-builtin}}{ When passed to
   \code{\link{gtkIconThemeLookupIcon}} includes builtin icons
   as well as files. For a builtin icon, \code{\link{gtkIconInfoGetFilename}}
   returns \code{NULL} and you need to call \code{\link{gtkIconInfoGetBuiltinPixbuf}}.}
@@ -135,8 +135,8 @@ Used to specify options for \code{\link{gtkIconThemeLookupIcon}}
 Error codes for GtkIconTheme operations.  
 
 \describe{
-\item{\code{GTK_ICON_THEME_NOT_FOUND (not-found)}}{ The icon specified does not exist in the theme}
-\item{\code{GTK_ICON_THEME_FAILED (failed)}}{ An unspecified error occurred.}
+\item{\code{not-found}}{ The icon specified does not exist in the theme}
+\item{\code{failed}}{ An unspecified error occurred.}
 }
 
 }

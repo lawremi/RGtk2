@@ -19,7 +19,7 @@ the size of the window gets updated.}
 because the size of the window may change between the time that you
 get the size and the time that you perform some action assuming
 that size is the current size. To avoid race conditions, connect to
-"configure_event" on the window and adjust your size-dependent
+"configure\_event" on the window and adjust your size-dependent
 state to match the size delivered in the \code{\link{GdkEventConfigure}}.
   
 Note 2: The returned size does \emph{not} include the

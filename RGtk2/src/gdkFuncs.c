@@ -263,45 +263,6 @@ S_gdk_set_double_click_time(USER_OBJECT_ s_msec)
  
 
 USER_OBJECT_
-S_gdk_threads_enter()
-{
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_threads_enter();
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_threads_leave()
-{
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_threads_leave();
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_threads_init()
-{
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_threads_init();
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gdk_cairo_create(USER_OBJECT_ s_drawable)
 {
 	GdkDrawable* drawable = GDK_DRAWABLE(getPtrValue(s_drawable));
@@ -5395,25 +5356,6 @@ S_gtk_alternative_dialog_button_order(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_selection_owner_set(USER_OBJECT_ s_owner, USER_OBJECT_ s_selection, USER_OBJECT_ s_time, USER_OBJECT_ s_send_event)
-{
-	GdkWindow* owner = GDK_WINDOW(getPtrValue(s_owner));
-	GdkAtom selection = asCGdkAtom(s_selection);
-	guint32 time = (guint32)asCNumeric(s_time);
-	gboolean send_event = (gboolean)asCLogical(s_send_event);
-
-	gboolean ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_selection_owner_set(owner, selection, time, send_event);
-
-	_result = asRLogical(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gdk_selection_owner_get(USER_OBJECT_ s_selection)
 {
 	GdkAtom selection = asCGdkAtom(s_selection);
@@ -5424,26 +5366,6 @@ S_gdk_selection_owner_get(USER_OBJECT_ s_selection)
 	ans = gdk_selection_owner_get(selection);
 
 	_result = toRPointerWithRef(ans, "GdkWindow");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_selection_owner_set_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_owner, USER_OBJECT_ s_selection, USER_OBJECT_ s_time, USER_OBJECT_ s_send_event)
-{
-	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
-	GdkWindow* owner = GDK_WINDOW(getPtrValue(s_owner));
-	GdkAtom selection = asCGdkAtom(s_selection);
-	guint32 time = (guint32)asCNumeric(s_time);
-	gboolean send_event = (gboolean)asCLogical(s_send_event);
-
-	gboolean ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_selection_owner_set_for_display(display, owner, selection, time, send_event);
-
-	_result = asRLogical(ans);
 
 	return(_result);
 }
@@ -5467,23 +5389,6 @@ S_gdk_selection_owner_get_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_sel
  
 
 USER_OBJECT_
-S_gdk_selection_convert(USER_OBJECT_ s_object, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_time)
-{
-	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
-	GdkAtom selection = asCGdkAtom(s_selection);
-	GdkAtom target = asCGdkAtom(s_target);
-	guint32 time = (guint32)asCNumeric(s_time);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_selection_convert(object, selection, target, time);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
 S_gdk_selection_property_get(USER_OBJECT_ s_object)
 {
 	GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
@@ -5500,43 +5405,6 @@ S_gdk_selection_property_get(USER_OBJECT_ s_object)
 
 	_result = retByVal(_result, "data", asRRawArrayWithSize(data, prop_format), "prop_type", asRGdkAtom(prop_type), "prop_format", asRInteger(prop_format), NULL);
 	CLEANUP(g_free, data);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_selection_send_notify(USER_OBJECT_ s_requestor, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_property, USER_OBJECT_ s_time)
-{
-	guint32 requestor = (guint32)asCNumeric(s_requestor);
-	GdkAtom selection = asCGdkAtom(s_selection);
-	GdkAtom target = asCGdkAtom(s_target);
-	GdkAtom property = asCGdkAtom(s_property);
-	guint32 time = (guint32)asCNumeric(s_time);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_selection_send_notify(requestor, selection, target, property, time);
-
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_selection_send_notify_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_requestor, USER_OBJECT_ s_selection, USER_OBJECT_ s_target, USER_OBJECT_ s_property, USER_OBJECT_ s_time)
-{
-	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
-	guint32 requestor = (guint32)asCNumeric(s_requestor);
-	GdkAtom selection = asCGdkAtom(s_selection);
-	GdkAtom target = asCGdkAtom(s_target);
-	GdkAtom property = asCGdkAtom(s_property);
-	guint32 time = (guint32)asCNumeric(s_time);
-
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	gdk_selection_send_notify_for_display(display, requestor, selection, target, property, time);
-
 
 	return(_result);
 }
@@ -6229,72 +6097,6 @@ S_gdk_window_set_static_gravities(USER_OBJECT_ s_object, USER_OBJECT_ s_use_stat
 	ans = gdk_window_set_static_gravities(object, use_static);
 
 	_result = asRLogical(ans);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_window_foreign_new(USER_OBJECT_ s_anid)
-{
-	GdkNativeWindow anid = asCGdkNativeWindow(s_anid);
-
-	GdkWindow* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_window_foreign_new(anid);
-
-	_result = toRPointerWithFinalizer(ans, "GdkWindow", (RPointerFinalizer) g_object_unref);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_window_lookup(USER_OBJECT_ s_anid)
-{
-	GdkNativeWindow anid = asCGdkNativeWindow(s_anid);
-
-	GdkWindow* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_window_lookup(anid);
-
-	_result = toRPointerWithRef(ans, "GdkWindow");
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_window_foreign_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid)
-{
-	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
-	GdkNativeWindow anid = asCGdkNativeWindow(s_anid);
-
-	GdkWindow* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_window_foreign_new_for_display(display, anid);
-
-	_result = toRPointerWithFinalizer(ans, "GdkWindow", (RPointerFinalizer) g_object_unref);
-
-	return(_result);
-}
- 
-
-USER_OBJECT_
-S_gdk_window_lookup_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_anid)
-{
-	GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
-	GdkNativeWindow anid = asCGdkNativeWindow(s_anid);
-
-	GdkWindow* ans;
-	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-	ans = gdk_window_lookup_for_display(display, anid);
-
-	_result = toRPointerWithRef(ans, "GdkWindow");
 
 	return(_result);
 }

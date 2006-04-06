@@ -52,7 +52,7 @@ progressive.timeout <- function(data)
       dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                        "Failure reading image file 'alphatest.png':", bytes.read)
 
-      connectSignal(dialog, "response", gtkWidgetDestroy)
+      gSignalConnect(dialog, "response", gtkWidgetDestroy)
 
       close(image.stream)
       image.stream <<- NULL
@@ -76,7 +76,7 @@ progressive.timeout <- function(data)
           dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                        "Failed to load image:", close.result$error$message)
 
-          connectSignal(dialog, "response", gtkWidgetDestroy)
+          gSignalConnect(dialog, "response", gtkWidgetDestroy)
 
           pixbuf.loader <<- NULL
 
@@ -93,7 +93,7 @@ progressive.timeout <- function(data)
             dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                        "Failed to load image:", write.result$error$message)
 
-            connectSignal(dialog, "response", gtkWidgetDestroy)
+            gSignalConnect(dialog, "response", gtkWidgetDestroy)
 
             close(image.stream)
             image.stream <<- NULL
@@ -105,7 +105,7 @@ progressive.timeout <- function(data)
     }
   } else
     {
-      filename <- demofile("alphatest.png")
+      filename <- imagefile("alphatest.png")
       if (!file.exists(filename))
     {
         error.message <- "File 'alphatest.png' does not exist"
@@ -125,7 +125,7 @@ progressive.timeout <- function(data)
         dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                        "Failed to load image:", error.message)
 
-        connectSignal(dialog, "response", gtkWidgetDestroy)
+        gSignalConnect(dialog, "response", gtkWidgetDestroy)
 
         load.timeout <<- NULL
 
@@ -140,9 +140,9 @@ progressive.timeout <- function(data)
 
       pixbuf.loader <<- gdkPixbufLoaderNew()
 
-      connectSignal(pixbuf.loader, "area_prepared", progressive.prepared.callback, data)
+      gSignalConnect(pixbuf.loader, "area_prepared", progressive.prepared.callback, data)
 
-      connectSignal(pixbuf.loader, "area_updated", progressive.updated.callback, data)
+      gSignalConnect(pixbuf.loader, "area_updated", progressive.updated.callback, data)
     }
 
   # leave timeout installed
@@ -196,7 +196,7 @@ toggle.sensitivity.callback <- function(togglebutton, user.data)
 window <- gtkWindowNew("toplevel", show=F)
 window$setTitle("Images")
 
-connectSignal(window, "destroy", cleanup.callback)
+gSignalConnect(window, "destroy", cleanup.callback)
 
 window$setBorderWidth(8)
 
@@ -219,7 +219,7 @@ vbox$packStart(align, FALSE, FALSE, 0)
 
 pixbuf.result <- NULL
 pixbuf <- NULL
-filename <- demofile("rgtk-logo.gif")
+filename <- imagefile("rgtk-logo.gif")
 if (file.exists(filename))
 {
     pixbuf.result <- gdkPixbufNewFromFile(filename)
@@ -236,7 +236,7 @@ if (is.null(pixbuf.result) || !is.null(pixbuf.result$error))
     dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "error", "close",
                    "Failed to load 'rgtk-logo.gif':", pixbuf.result$error$message)
 
-    connectSignal(dialog, "response", gtkWidgetDestroy)
+    gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }
 
 image <- gtkImageNewFromPixbuf(pixbuf)
@@ -284,11 +284,11 @@ start.progressive.loading(image)
 button <- gtkToggleButtonNewWithMnemonic("_Insensitive")
 vbox$packStart(button, FALSE, FALSE, 0)
 
-connectSignal(button, "toggled", toggle.sensitivity.callback, vbox)
+gSignalConnect(button, "toggled", toggle.sensitivity.callback, vbox)
 
 button <- gtkButtonNewWithLabel("Quit")
 vbox$packStart(button, FALSE, FALSE, 0)
-connectSignal(button, "clicked", function(...) { gtkMainQuit(); window$destroy() })
+gSignalConnect(button, "clicked", function(...) { gtkMainQuit(); window$destroy() })
 
 
 window$showAll()

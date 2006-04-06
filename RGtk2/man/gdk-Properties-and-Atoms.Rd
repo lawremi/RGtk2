@@ -49,9 +49,9 @@ Describes how existing data is combined with new data when
 using \code{\link{gdkPropertyChange}}.
 
 \describe{
-\item{\code{GDK_PROP_MODE_REPLACE (replace)}}{the new data replaces the existing data.}
-\item{\code{GDK_PROP_MODE_PREPEND (prepend)}}{the new data is prepended to the existing data.}
-\item{\code{GDK_PROP_MODE_APPEND (append)}}{the new data is appended to the existing data.}
+\item{\code{replace}}{the new data replaces the existing data.}
+\item{\code{prepend}}{the new data is prepended to the existing data.}
+\item{\code{append}}{the new data is appended to the existing data.}
 }
 
 }}}

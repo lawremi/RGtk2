@@ -58,14 +58,14 @@ types of action that will be taken on behalf
 of the user for a drag destination site.
 
 \describe{
-\item{\code{GTK_DEST_DEFAULT_MOTION (motion)}}{   If set for a widget, GTK+, during a drag over this
+\item{\code{motion}}{   If set for a widget, GTK+, during a drag over this
    widget will check if the drag matches this widget's
    list of possible targets and actions.
    GTK+ will then call \code{\link{gdkDragStatus}} as appropriate.}
-\item{\code{GTK_DEST_DEFAULT_HIGHLIGHT (highlight)}}{   If set for a widget, GTK+ will draw a highlight on
+\item{\code{highlight}}{   If set for a widget, GTK+ will draw a highlight on
    this widget as long as a drag is over this widget
    and the widget drag format and action are acceptable.}
-\item{\code{GTK_DEST_DEFAULT_DROP (drop)}}{   If set for a widget, when a drop occurs, GTK+ will
+\item{\code{drop}}{   If set for a widget, when a drop occurs, GTK+ will
    will check if the drag matches this widget's
    list of possible targets and actions. If so, 
    GTK+ will call \code{\link{gtkDragGetData}} on behalf 
@@ -74,7 +74,7 @@ of the user for a drag destination site.
    was a move, then if the drag was successful, then
    \code{TRUE} will be passed for the \code{delete} parameter
    to \code{\link{gtkDragFinish}}.}
-\item{\code{GTK_DEST_DEFAULT_ALL (all)}}{   If set, specifies that all default actions should
+\item{\code{all}}{   If set, specifies that all default actions should
    be taken.}
 }
 
@@ -84,9 +84,9 @@ The \code{\link{GtkTargetFlags}} enumeration is used to specify
 constraints on an entry in a \code{GtkTargetTable}. 
 
 \describe{
-\item{\code{GTK_TARGET_SAME_APP (app)}}{   If this is set, the target will only be selected
+\item{\code{app}}{   If this is set, the target will only be selected
    for drags within a single application.}
-\item{\code{GTK_TARGET_SAME_WIDGET (widget)}}{   If this is set, the target will only be selected
+\item{\code{widget}}{   If this is set, the target will only be selected
    for drags within a single widget.}
 }
 

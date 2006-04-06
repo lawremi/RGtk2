@@ -26,7 +26,7 @@ function(val, type)
     return(val)
   .Call("R_asEnum", val, type, PACKAGE="RGtk2")
 }
-as.flag <-
+flag <-
 function(val, type)
 {
   if(inherits(val, type))

@@ -43,7 +43,7 @@ The GtkAdjustment that determines the values of the horizontal position for this
 }
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Determines how the shadowed box around the viewport is drawn.  Default value: GTK_SHADOW_IN
+Determines how the shadowed box around the viewport is drawn.  Default value: GTK\_SHADOW\_IN
 
 }
 \item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write / Construct]}{

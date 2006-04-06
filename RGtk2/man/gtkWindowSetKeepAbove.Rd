@@ -16,7 +16,7 @@ that crashes if not.}
 in which case the window will be kept above when it appears onscreen
 initially.
   
-You can track the above state via the "window_state_event" signal
+You can track the above state via the "window\_state\_event" signal
 on \code{\link{GtkWidget}}.
   
 Note that, according to the Extended Window 

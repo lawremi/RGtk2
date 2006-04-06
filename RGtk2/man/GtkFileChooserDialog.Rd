@@ -52,11 +52,11 @@ dialog$destroy()
       could call \code{\link{gtkFileChooserDialogNew}} as follows:
       \preformatted{GtkWidget *dialog;
 
-dialog = gtk_file_chooser_dialog_new ("Open File",
-				      parent_window,
-				      GTK_FILE_CHOOSER_ACTION_OPEN,
-				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+dialog = gtk\_file\_chooser\_dialog\_new ("Open File",
+				      parent\_window,
+				      GTK\_FILE\_CHOOSER\_ACTION\_OPEN,
+				      GTK\_STOCK\_CANCEL, GTK\_RESPONSE\_CANCEL,
+				      GTK\_STOCK\_OPEN, GTK\_RESPONSE\_ACCEPT,
 				      NULL);
     }  
       This will create buttons for "Cancel" and "Open" that use stock
@@ -78,12 +78,12 @@ dialog = gtk_file_chooser_dialog_new ("Open File",
       dialog terminate -- the implementation uses these known
       response codes to know which responses can be blocked if
       appropriate.
-      \emph{        
+      \strong{PLEASE NOTE:}         
 	To summarize, make sure you use a stock response
 	code when you use \code{\link{GtkFileChooserDialog}} to ensure
 	proper operation.
         
-    }}
+    }
 \section{Structures}{\describe{\item{\code{GtkFileChooserDialog}}{\emph{undocumented
 }}}}
 \section{Convenient Construction}{\code{gtkFileChooserDialog} is the result of collapsing the constructors of \code{GtkFileChooserDialog} (\code{\link{gtkFileChooserDialogNew}}, \code{\link{gtkFileChooserDialogNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}

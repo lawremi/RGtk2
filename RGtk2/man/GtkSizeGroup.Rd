@@ -36,7 +36,7 @@ include the \code{GTK_FILL} flag.
   
 \code{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
 so once you have added all widgets to a \code{\link{GtkSizeGroup}}, you can drop
-the initial reference to the size group with \code{gObjectUnref()}. If the
+the initial reference to the size group with \code{g\Object\Unref()}. If the
 widgets in the size group are subsequently destroyed, then they will
 be removed from the size group and drop their references on the size
 group; when all widgets have been removed, the size group will be
@@ -57,10 +57,10 @@ The mode of the size group determines the directions in which the size
 group affects the requested sizes of its component widgets.  
 
 \describe{
-\item{\code{GTK_SIZE_GROUP_NONE (none)}}{ group has no effect  }
-\item{\code{GTK_SIZE_GROUP_HORIZONTAL (horizontal)}}{ group affects horizontal requisition}
-\item{\code{GTK_SIZE_GROUP_VERTICAL (vertical)}}{ group affects vertical requisition}
-\item{\code{GTK_SIZE_GROUP_BOTH (both)}}{ group affects both horizontal and vertical requisition}
+\item{\code{none}}{ group has no effect  }
+\item{\code{horizontal}}{ group affects horizontal requisition}
+\item{\code{vertical}}{ group affects vertical requisition}
+\item{\code{both}}{ group affects both horizontal and vertical requisition}
 }
 
 }}}
@@ -75,7 +75,7 @@ the size of the group.
 }
 \item{\code{mode} [\code{\link{GtkSizeGroupMode}} : Read / Write]}{
 
-The directions in which the size group affects the requested sizes of its component widgets.  Default value: GTK_SIZE_GROUP_HORIZONTAL
+The directions in which the size group affects the requested sizes of its component widgets.  Default value: GTK\_SIZE\_GROUP\_HORIZONTAL
 
 }
 }}

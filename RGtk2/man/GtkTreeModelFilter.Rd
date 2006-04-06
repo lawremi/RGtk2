@@ -28,7 +28,7 @@ and can do the following things:
 \item Filter specific rows, based on data from a "visible column", a column
 storing booleans indicating whether the row should be filtered or not,
 or based on the return value of a "visible function", which gets a
-model, iter and user_data and returns a boolean indicating whether the
+model, iter and user\_data and returns a boolean indicating whether the
 row should be filtered or not.
 \item Modify the "appearance" of the model, using a modify function. 
 This is extremely powerful and allows for just changing

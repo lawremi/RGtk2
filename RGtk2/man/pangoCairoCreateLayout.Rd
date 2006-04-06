@@ -15,6 +15,7 @@ however it is slightly inefficient since it creates a separate
 application that was laying out large amounts of text.  
 
   Since  1.10}
-\value{[\code{\link{PangoLayout}}]  the newly created \code{\link{PangoLayout}}.}
+\value{[\code{\link{PangoLayout}}]  the newly created \code{\link{PangoLayout}}. Free with
+  \code{g\Object\Unref()}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

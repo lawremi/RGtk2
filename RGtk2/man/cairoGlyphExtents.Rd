@@ -4,9 +4,9 @@
 \description{Gets the extents for a list of glyphs. The extents describe a
 user-space rectangle that encloses the "inked" portion of the
 glyphs, (as they would be drawn by \code{\link{cairoShowGlyphs}}).
-Additionally, the x_advance and y_advance values indicate the
+Additionally, the x\_advance and y\_advance values indicate the
 amount by which the current point would be advanced by
-cairo_show_glyphs.}
+cairo\_show\_glyphs.}
 \usage{cairoGlyphExtents(cr, glyphs)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}

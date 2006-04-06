@@ -111,7 +111,7 @@ themselves accordingly.
 \section{Properties}{\describe{
 \item{\code{is-important} [logical : Read / Write]}{
 
-Whether the toolbar item is considered important. When TRUE, toolbar buttons show text in GTK_TOOLBAR_BOTH_HORIZ mode.  Default value: FALSE
+Whether the toolbar item is considered important. When TRUE, toolbar buttons show text in GTK\_TOOLBAR\_BOTH\_HORIZ mode.  Default value: FALSE
 
 }
 \item{\code{visible-horizontal} [logical : Read / Write]}{

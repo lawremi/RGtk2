@@ -12,7 +12,7 @@ and to get those strings from \code{column} in the model of \code{completion}.}
 }
 \details{This functions creates and adds a \code{\link{GtkCellRendererText}} for the selected 
 column. If you need to set the text column, but don't want the cell 
-renderer, use \code{\link{gObjectSet}} to set the ::text_column property directly.  
+renderer, use \code{\link{gObjectSet}} to set the ::text\_column property directly.  
 
   Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

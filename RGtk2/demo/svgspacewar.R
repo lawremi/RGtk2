@@ -909,13 +909,13 @@ quit.game <- function(widget, event)
   reset()
 
   window <- gtkWindowNew("toplevel", show = F)
-  connectSignal(window, "delete-event", quit.game)
+  gSignalConnect(window, "delete-event", quit.game)
 
   window$setDefaultSize(WIDTH, HEIGHT)
 
-  connectSignal(window, "expose_event", on.expose.event)
-  connectSignal(window, "key_press_event", on.key.press)
-  connectSignal(window, "key_release_event", on.key.release)
+  gSignalConnect(window, "expose_event", on.expose.event)
+  gSignalConnect(window, "key_press_event", on.key.press)
+  gSignalConnect(window, "key_release_event", on.key.release)
   
   timeout <- gTimeoutAdd(MILLIS.PER.FRAME, on.timeout, window)
 

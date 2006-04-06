@@ -1,18 +1,7 @@
-TODO for RELEASE
+TODO for CRAN
 ----------------
-
-NAMESPACE should include:
-Any case of gtk, pango, atk, glade, gdk, g as prefices followed by a capital letter
-Operators: [, $, |, &, !
-iWidget stuff
-Old RGtk functions
-names.GObject
-
-NAMESPACE should NOT include:
-The coercion (as.) methods (invoked implicitly)
-*GetType() methods (express type as string)
-gObjectGetClasses gObjectGetInterfaces gObjectGetProps
-gObjectSetProps gObjectType gObjectTypeName gTypeGetSignal
+Either document stuff or mask it
+Make manual build
 
 Some current issues (bugs?) with RGtk2
 ----------
@@ -151,35 +140,7 @@ Problems with defs files (as provided by pygtk)
 - gdk_pixbuf_save_to_buffer is missing
 - THERES A LOT MORE MISSING
 
+---------------------------------
 Functions currently UNDOCUMENTED:
+---------------------------------
 
-  Will Document: $.<invalid>, [iWidgets], [GetField], [old stuff]
-  	cairo cairoFontOptions cairoPattern cairoScaledFont cairoSurface 
-	macros : gtkWidgetSetFlags pangoLanguageToString pangoAscent  
-		pangoDescent pangoLbearing pangoPixels pangoRbearing pangoMatrixInit
-  
-  Should not exist (in defs?): 
-  GdkInputCondition GdkStatus GtkArgFlags GtkDebugFlag
-  	GtkObjectFlags gdkSelectionConvert 
-   gdkSelectionOwnerSet
-  gdkSelectionOwnerSetForDisplay 
-  gdkSelectionSendNotify gdkSelectionSendNotifyForDisplay
-  gdkThreadsEnter gdkThreadsInit gdkThreadsLeave
-  gdkWindowForeignNew gdkWindowForeignNewForDisplay
-  gdkWindowLookup gdkWindowLookupForDisplay 
-  gladeProvide gladeRequire 
-  gtkCheckType gtkCheckVersion
-   gtkObjectNew gtkObjectRef
-  gtkObjectRemoveCallback gtkObjectSetArgs gtkObjectSignalEmit
-  gtkObjectSink gtkObjectType gtkObjectUnblockCallback gtkObjectUnref
-  gtkRemoveIdle gtkRemoveTimeout gtkSetLocale
-  gtkWindowAddEmbeddedXid  
-  gtkWindowRemoveEmbeddedXid
-  
-  Exclude from NAMESPACE: as.*, GetType
-  
-  Reference doc bugs: atkStateSet 
-  
-  compatibility macros: gtkCheckMenuItemSetState, gtkContainerChildren,
-  	gtkMenuItemRightJustify, gtkNotebookSetPage, gtkRadioButtonGroup
-    gtkRadioMenuItemGroup, gtkStyleApplyDefaultPixmap gtkToggleButtonSetState  
