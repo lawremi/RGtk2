@@ -722,6 +722,11 @@ filter <- function(text) {
 	text
 }
 
+examplefile <- function(name)
+{
+	file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "examples", name)
+}
+
 xmlValue.XMLInternalNode =
 function(node, ignoreComments = FALSE)
 {

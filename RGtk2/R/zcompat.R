@@ -59,21 +59,6 @@ gtkTextSetText <- function(w, contents="", append=FALSE) {
 	gtkEditableInsertText(w, contents, pos)
 }
 
-# reference counting - really shouldn't be used
-gtkObjectRef <-
-function(obj)
-{
-  gtkCheckInherits(obj, "GtkObject")  
- .GtkCall("S_g_object_ref", obj) 
-}
-
-gtkObjectUnref <-
-function(obj)
-{
-  gtkCheckInherits(obj, "GtkObject")  
- .GtkCall("S_g_object_unref", obj) 
-}
-
 # flags
 
 gtkWidgetGetFlags <- function(w) gtkObjectFlags(w)

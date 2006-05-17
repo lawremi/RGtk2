@@ -19,3 +19,4 @@ pangoCairo	The rotated text demo using cairo.
 treeStore	This demo builds a simple GtkTreeStore and displays it.
 iconviewdnd	The GtkIconView widget supports Editing and Drag-and-Drop. This example also demonstrates using the generic GtkCellLayout interface to set up cell renderers in an icon view.
 rgtkplot A port of the canonical tkrplot example using the cairoDevice package.
+compositeplot A demo of combining GDK-Pixbubf with the ability of cairoDevice to render to GdkDrawables. 

@@ -2413,7 +2413,7 @@
   (parameters
 	'("GdkPixbuf*" "dest" (out) (null-ok))
 	'("GdkDrawable*" "src" (in))
-    '("GdkColormap*" "cmap" (in))
+  '("GdkColormap*" "cmap" (in) (null-ok))
     '("int" "src_x" (in))
     '("int" "src_y" (in))
     '("int" "dest_x" (in))
@@ -2460,6 +2460,7 @@
 
 (define-function bitmap_create_from_data
   (c-name "gdk_bitmap_create_from_data")
+  (is-constructor-of "GdkPixmap")
   (caller-owns-return #t)
   (return-type "GdkBitmap*")
   (parameters
@@ -2471,6 +2472,7 @@
 )
 
 (define-function pixmap_create_from_data
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_data")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2486,6 +2488,7 @@
 )
 
 (define-function pixmap_create_from_xpm
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_xpm")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2498,6 +2501,7 @@
 )
 
 (define-function pixmap_colormap_create_from_xpm
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_colormap_create_from_xpm")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2511,6 +2515,7 @@
 )
 
 (define-function pixmap_create_from_xpm_d
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_xpm_d")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2523,6 +2528,7 @@
 )
 
 (define-function pixmap_colormap_create_from_xpm_d
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_colormap_create_from_xpm_d")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2536,6 +2542,7 @@
 )
 
 (define-function pixmap_foreign_new
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_foreign_new")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")
@@ -2553,6 +2560,7 @@
 )
 
 (define-function pixmap_foreign_new_for_display
+  (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_foreign_new_for_display")
   (caller-owns-return #t)
   (return-type "GdkPixmap*")

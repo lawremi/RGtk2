@@ -9,6 +9,7 @@
 \alias{rGtkDataFrameNew}
 \alias{dim.RGtkDataFrame}
 \alias{dimnames.RGtkDataFrame}
+\alias{dimnames<-.RGtkDataFrame}
 \alias{rGtkDataFrameSetFrame}
 \title{The RGtkDataFrame model}
 \description{A \code{\link{GtkTreeModel}} implementation backed by an R data frame}
@@ -23,13 +24,14 @@ rGtkDataFrameSetFrame(x, frame = data.frame())
 "[<-.RGtkDataFrame"(x, i, j, value)
 dim.RGtkDataFrame(x, ...)
 dimnames.RGtkDataFrame(x, ...)
+"dimnames<-.RGtkDataFrame"(x, value)
 }
 \arguments{
 \item{frame}{The frame to use as the backing store of the model}
 \item{x}{An \code{RGtkDataFrame} object}
 \item{i}{Row index}
 \item{j}{Column index}
-\item{value}{An R object similar to that accepted by \code{[<-.data.frame}}
+\item{value}{An R object similar to that accepted by \code{[<-.data.frame} or the dimnames for the data frame}
 \item{drop}{Whether to 'drop' the result to the simplest structure}
 \item{...}{Items to append as columns or rows or just additional arguments}
 }
@@ -64,7 +66,8 @@ can perform any data frame operation on the data. Of course, any changes are \em
 propagated back to the model, so it may take some work to efficiently merge any changes, if necessary.
 
 For convenience, one can access the dimensions and dimension names using \code{dim.RGtkDataframe} and
-\code{dimnames.RGtkDataFrame}, respectively.
+\code{dimnames.RGtkDataFrame}, respectively. It is possible to set the dimension names using the
+conventional replacement function. Note that rownames mean nothing to GTK.
 }
 \note{It is not yet clear how to encode a tree structure with a data frame, so this is 
 only currently useful for flat tables.}

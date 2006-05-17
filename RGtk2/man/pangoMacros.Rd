@@ -29,7 +29,7 @@ pangoScaleXSmall
 pangoScaleXXLarge
 pangoScaleXXSmall
 }
-\parameters{
+\arguments{
 \item{x}{A rectangle describing the glyph extents}
 \item{size}{A size on the Pango scale}.
 }

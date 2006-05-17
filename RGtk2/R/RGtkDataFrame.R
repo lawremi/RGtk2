@@ -41,9 +41,9 @@ function(x, i, j, value)
 "[.RGtkDataFrame" <- function(x, i, j, drop = T)
 {
 	frame <- as.data.frame(x)
-	if (!missing(i) && length(i) > 0 && inherits(i[[1]], "GtkTreePath"))
-		i <- .RGtkCall("R_gtk_tree_paths_to_indices", i)+1
-	frame[i, j, drop=drop]
+	#if (!missing(i) && length(i) > 0 && inherits(i[[1]], "GtkTreePath"))
+	#	i <- .RGtkCall("R_gtk_tree_paths_to_indices", i)+1
+	frame[, j, drop=drop]
 }
 
 rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())
@@ -84,4 +84,10 @@ dim.RGtkDataFrame <- function(x, ...) {
 }
 dimnames.RGtkDataFrame <- function(x, ...) {
 	dimnames(as.data.frame(x))
+}
+"dimnames<-.RGtkDataFrame" <- function(x, value) {
+  frame <- as.data.frame(x)
+  dimnames(frame) <- value
+  .RGtkCall("R_rgtk_data_frame_set", x, frame, NULL, F)
+  x
 }

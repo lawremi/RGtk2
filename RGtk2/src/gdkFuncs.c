@@ -4360,7 +4360,7 @@ S_gdk_pixmap_create_from_xpm(USER_OBJECT_ s_drawable, USER_OBJECT_ s_transparent
 
 	_result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
-	_result = retByVal(_result, "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
+	_result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
 
 	return(_result);
 }
@@ -4382,7 +4382,7 @@ S_gdk_pixmap_colormap_create_from_xpm(USER_OBJECT_ s_drawable, USER_OBJECT_ s_co
 
 	_result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
-	_result = retByVal(_result, "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
+	_result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
 
 	return(_result);
 }
@@ -4403,7 +4403,7 @@ S_gdk_pixmap_create_from_xpm_d(USER_OBJECT_ s_drawable, USER_OBJECT_ s_transpare
 
 	_result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
-	_result = retByVal(_result, "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
+	_result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
 
 	return(_result);
 }
@@ -4425,7 +4425,7 @@ S_gdk_pixmap_colormap_create_from_xpm_d(USER_OBJECT_ s_drawable, USER_OBJECT_ s_
 
 	_result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
-	_result = retByVal(_result, "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
+	_result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
 
 	return(_result);
 }

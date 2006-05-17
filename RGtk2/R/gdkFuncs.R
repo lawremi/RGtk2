@@ -3156,10 +3156,10 @@ function(object, colormap, alpha.threshold = 127)
 
 
 gdkPixbufGetFromDrawable <-
-function(src, cmap, src.x, src.y, dest.x, dest.y, width, height)
+function(src, cmap = NULL, src.x, src.y, dest.x, dest.y, width, height)
 {
 	checkPtrType(src, "GdkDrawable")
-	checkPtrType(cmap, "GdkColormap")
+	if (!is.null( cmap )) checkPtrType(cmap, "GdkColormap")
 	src.x <- as.integer(src.x)
 	src.y <- as.integer(src.y)
 	dest.x <- as.integer(dest.x)

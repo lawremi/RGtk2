@@ -44,10 +44,9 @@ gtkObjectGetArgInfo(obj, parents=TRUE, collapse=FALSE)
   is described by a list containing
   \item{type}{an object of class \code{GtkType} which identifies the
    type (!) of the value of the property.}
-  \item{flag}{an object of class \code{GtkArgFlags} which
+  \item{flag}{an object which
     specifies whether the property is read-only or read-write
-    and when it can be specified, etc. This is a 
-    logical OR of the relevant values. See \code{\link{.GtkArgFlags}}.}
+    and when it can be specified, etc.}
   Each property is indexed by its name in the list.
   
   The precise form of the returned value depends on the different
