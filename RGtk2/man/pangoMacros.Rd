@@ -2,15 +2,15 @@
 \alias{pangoDescent}
 \alias{pangoLbearing}
 \alias{pangoRbearing}
-\alias{pangoScale}
+\alias{PANGO_SCALE}
 \alias{pangoPixels}
-\alias{pangoScaleLarge}
-\alias{pangoScaleMedium}
-\alias{pangoScaleSmall}
-\alias{pangoScaleXLarge}
-\alias{pangoScaleXSmall}
-\alias{pangoScaleXXLarge}
-\alias{pangoScaleXXSmall}
+\alias{PANGO_SCALE_LARGE}
+\alias{PANGO_SCALE_MEDIUM}
+\alias{PANGO_SCALE_SMALL}
+\alias{PANGO_SCALE_X_LARGE}
+\alias{PANGO_SCALE_X_SMALL}
+\alias{PANGO_SCALE_XX_LARGE}
+\alias{PANGO_SCALE_XX_SMALL}
 \name{pangoMacros}
 \title{Pango Convenience Macros}
 \description{These macros and constants help you layout text with Pango.}
@@ -19,15 +19,15 @@ pangoAscent(x)
 pangoDescent(x)
 pangoLbearing(x)
 pangoRbearing(x)
-pangoScale
+PANGO_SCALE
 pangoPixels(size)
-pangoScaleLarge
-pangoScaleMedium
-pangoScaleSmall
-pangoScaleXLarge
-pangoScaleXSmall
-pangoScaleXXLarge
-pangoScaleXXSmall
+PANGO_SCALE_LARGE
+PANGO_SCALE_MEDIUM
+PANGO_SCALE_SMALL
+PANGO_SCALE_X_LARGE
+PANGO_SCALE_X_SMALL
+PANGO_SCALE_XX_LARGE
+PANGO_SCALE_XX_SMALL
 }
 \arguments{
 \item{x}{A rectangle describing the glyph extents}
@@ -44,7 +44,7 @@ properties. The "ascent" and "descent" are how high the glyph extends above and
 below the baseline, respectively. The "lbearing" and "rbearing" describe the 
 left-most and right-most extents of the glyph.
 
-The rest are merely constants for scaling. \code{pangoScale} is the factor by 
+The rest are merely constants for scaling. \code{PANGO_SCALE} is the factor by 
 which device units are scaled to Pango units. To return to device units, use 
 the \code{pangoPixels}. The rest are pre-fab factors 
 for scaling by different degrees.

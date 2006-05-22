@@ -203,7 +203,7 @@ uistr <- paste(
 "  </toolbar>",
 "</ui>", sep="\n")
 
-manager$addUIFromString(uistr)
+manager$addUiFromString(uistr)
 menubar <- manager$getWidget("/MenuBar")
 menubar$show() # location, layout behavior, padding
 table$attach(menubar, 0, 1, 0, 1, c("expand", "fill"), 0, 0, 0)

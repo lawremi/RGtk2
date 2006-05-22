@@ -47,14 +47,14 @@ function()
 }
 
 # Here are some Pango constants
-pangoScale <- 1024
-pangoScaleXXSmall <-  (1 / (1.2 * 1.2 * 1.2))
-pangoScaleXSmall <- (1 / (1.2 * 1.2))
-pangoScaleSmall <- (1 / 1.2)
-pangoScaleMedium <- 1
-pangoScaleLarge <- 1 * 1.2
-pangoScaleXLarge <- 1 * 1.2 * 1.2
-pangoScaleXXLarge <- 1 * 1.2 * 1.2 * 1.2
+PANGO_SCALE <- 1024
+PANGO_SCALE_XX_SMALL <-  (1 / (1.2 * 1.2 * 1.2))
+PANGO_SCALE_X_SMALL <- (1 / (1.2 * 1.2))
+PANGO_SCALE_SMALL <- (1 / 1.2)
+PANGO_SCALE_MEDIUM <- 1
+PANGO_SCALE_LARGE <- 1 * 1.2
+PANGO_SCALE_X_LARGE <- 1 * 1.2 * 1.2
+PANGO_SCALE_XX_LARGE <- 1 * 1.2 * 1.2 * 1.2
 
 # reason: now let's handle the functions where the text length is omitted
 pangoLayoutSetMarkupWithAccel <-

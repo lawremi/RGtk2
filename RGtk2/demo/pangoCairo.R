@@ -40,7 +40,7 @@ draw.text <- function(widget, event, data)
       pangoCairoUpdateLayout(cr, layout)
     
       size <- layout$getSize()
-      cr$moveTo(- (size$width / .PangoScale) / 2, - RADIUS)
+      cr$moveTo(- (size$width / PANGO_SCALE) / 2, - RADIUS)
       pangoCairoShowLayout(cr, layout)
 
       cr$restore()

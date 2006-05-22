@@ -85,7 +85,7 @@ create.tags <- function(buffer)
 
   buffer$createTag("heading",
 			      weight = PangoWeight["bold"],
-			      size = 15 * .PangoScale)
+			      size = 15 * PANGO_SCALE)
   
   buffer$createTag("italic",
 			      style = "italic")
@@ -94,13 +94,13 @@ create.tags <- function(buffer)
 			      weight = PangoWeight["bold"])  
   
   buffer$createTag("big",
-			      size = 20 * .PangoScale)
+			      size = 20 * PANGO_SCALE)
 
   buffer$createTag("xx-small",
-			      scale = .PangoScaleXXSmall)
+			      scale = PANGO_SCALE_XX_SMALL)
 
   buffer$createTag("x-large",
-			      scale = .PangoScaleXLarge)
+			      scale = PANGO_SCALE_X_LARGE)
   
   buffer$createTag("monospace",
 			      family = "monospace")
@@ -160,9 +160,9 @@ create.tags <- function(buffer)
   buffer$createTag( "double.underline",
 			      underline = "double")
 
-  buffer$createTag("superscript", rise = 10 * .PangoScale, size = 8 * .PangoScale)
+  buffer$createTag("superscript", rise = 10 * PANGO_SCALE, size = 8 * PANGO_SCALE)
   
-  buffer$createTag("subscript", rise = -10 * .PangoScale, size = 8 * .PangoScale)
+  buffer$createTag("subscript", rise = -10 * PANGO_SCALE, size = 8 * PANGO_SCALE)
 
   buffer$createTag("rtl.quote", wrap_mode = "word", direction = "rtl",
 			      indent = 30, left_margin = 20, right_margin = 20)
