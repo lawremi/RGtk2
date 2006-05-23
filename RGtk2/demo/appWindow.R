@@ -7,7 +7,7 @@ window <- NULL
 activate.radio.action <- function(action, current)
 {
     name <- action$getName()
-    typename <- action$typeName()
+    typename <- class(action)[1]
     value <- current$getCurrentValue()
     if (current$getActive()) {
         dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "info", "close",
@@ -21,7 +21,7 @@ activate.radio.action <- function(action, current)
 activate.action <- function(action, w)
 {
     name <- action$getName()
-    typename <- action$typeName() # parent, dialog mode, message type, buttons, message
+    typename <- class(action)[1] # parent, dialog mode, message type, buttons, message
     dialog <- gtkMessageDialogNew(window, "destroy-with-parent", "info", "close",
         "You activated action:", name, "of type", typename)
     gSignalConnect(dialog, "response", gtkWidgetDestroy)

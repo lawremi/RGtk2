@@ -864,29 +864,29 @@ on.key.event <- function(widget, event, key.is.on)
   player2 <- players[[2]]
   
   kv <- event[["keyval"]]
-  if (kv == .gdkEscape)
+  if (kv == GDK_Escape)
       quit.game()
-  else if (kv == .gdkBracketleft && key.is.on)
+  else if (kv == GDK_bracketleft && key.is.on)
 	  debug.scale.factor <<- debug.scale.factor / 1.25
-  else if (kv == .gdkBracketright && key.is.on)
+  else if (kv == GDK_bracketright && key.is.on)
 	  debug.scale.factor <<- debug.scale.factor / 1.25
-  else if (kv == .gdkSpace && !is.null(game.over.message))
+  else if (kv == GDK_space && !is.null(game.over.message))
 	  reset()
-  else if (kv == .gdkA)
+  else if (kv == GDK_a)
       player1$is.turning.left <- key.is.on
-  else if (kv == .gdkD)
+  else if (kv == GDK_d)
       player1$is.turning.right <- key.is.on
-  else if (kv == .gdkW)
+  else if (kv == GDK_w)
       player1$is.thrusting <- key.is.on
-  else if (kv == .gdkControlL)
+  else if (kv == GDK_Control_L)
       player1$is.firing <- key.is.on
-  else if (kv == .gdkKPLeft)
+  else if (kv == GDK_KP_Left)
       player2$is.turning.left <- key.is.on
-  else if (kv == .gdkKPRight)
+  else if (kv == GDK_KP_Right)
       player2$is.turning.right <- key.is.on
-  else if (kv == .gdkKPUp)
+  else if (kv == GDK_KP_Up)
       player2$is.thrusting <- key.is.on
-  else if (kv == .gdkKPInsert)
+  else if (kv == GDK_KP_Insert)
       player2$is.firing <- key.is.on
   
   players[[1]] <<- player1

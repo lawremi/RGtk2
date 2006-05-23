@@ -5,7 +5,7 @@ asCairoDevice(pixmap)
 
 x <- rnorm(50)
 
-opar <- c(opar, par(bg = "white"))
+opar <- c(par(bg = "white"))
 
 plot(x, ann = FALSE, type = "n")
 
