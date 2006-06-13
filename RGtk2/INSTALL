@@ -1,27 +1,25 @@
 This package can be installed as a regular R package.
 In other words, the command 
-   R CMD INSTALL RGtk
-on Unix from any directory, or on Windows
-   make pkg-RGtk
-from within the src/gnuwin32/ directory within the
-R distribution.
+   R CMD INSTALL RGtk2
 
-The binary version of this package for Windows can simply be unzipped
-in a place that R can find it.
+On Windows, the user should set the environment variable GTK_PATH to the 
+location of the root directory of the GTK distribution (ie c:\GTK).
+
+The binary version of this package for Windows can simply be installed
+using the Windows R GUI.
 
 In all cases (i.e. Unix or Windows, source or binary), you will need
 to have the appropriate Gtk libraries.
 
-For Windows, you can download the Gtk and supporting libraries
+For Windows, you can download the GTK Developer's Pack
 from 
-   http://www.gimp.org/~tml/gimp/win32/
+   http://gladewin32.sourceforge.net/
 
 For Unix, you can fetch the source files for the different
 libraries from
-   ftp://ftp.gnome.org/pub/GNOME/stable/sources
-   ftp://ftp.gnome.org/pub/GNOME/unstable/sources
+   ftp://ftp.gtk.org/pub/gtk/v2.8/
 
-The different Gnome libraries make extensive use of other libraries
+GTK makes extensive use of other libraries
 and particular versions of these dependant libraries.  As a result,
-installing Gnome can be a time consuming and apparently indirect
+installing GTK (under Unix) can be a time consuming and apparently indirect
 process that involves installing numerous sub-libraries.
