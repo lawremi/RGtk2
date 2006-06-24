@@ -1,17 +1,17 @@
+version <- "2.10"
+
 Sys.putenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"),"/home/larman/research/RGtk2/RGtkGen/inst/pygtk",sep=":"))
 library(RSPython)
 library(rpart)
 source("pyGen.R")
 source("genCode.S")
 source("genCons.S")
-path <- "/home/larman/research/RGtk2/RGtkGen/inst/data/defs"
+path <- "/home/larman/research/RGtk2/RGtkGen/inst/data"
+defspath <- file.path(path, "defs")
 libs <- c("atk.defs", "pango.defs", "gdk.defs", "gtk.defs", "cairo.defs")
- # for 2.10
-libs <- c(libs, "atk-1.12.defs", "pango-1.14.defs", "gdk-2.10.defs", 
-  "gtk-2.10.defs", "cairo-1.2.defs")
 extralibs <- c("libglade.defs")
-extrapath <- file.path(path, "extra")
-files <- file.path(defspath, libs)
+extrapath <- file.path(defspath, "extra")
+files <- file.path(defspath, version, libs)
 files <- c(files, file.path(extrapath, extralibs))
 
 library(RGtk2)

@@ -79,7 +79,8 @@ transparentTypes <- c("GParamSpec", "GtkFileFilterInfo", "GtkTargetEntry", "AtkA
     "PangoRectangle", "GdkRectangle", "AtkAttributeSet", "GdkRgbCmap", "GdkKeymapKey", "GdkGCValues", "GdkGeometry",
     "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError", "GdkWindowAttr", "GdkTrapezoid",
 	"GtkActionEntry", "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t", "cairo_glyph_t",
-	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord")
+	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord",
+  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData")
 
 # functions for releasing memory
 # objects are automatically assigned g_object_unref and boxed types have release funcs in the defs
@@ -101,22 +102,22 @@ finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetL
 
 CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                            "gchar*" = "string", "char*" = "string",
-						    "gssize" = "integer",
+                           "gssize" = "integer", "time_t" = "integer",
                            "size_t" = "integer", "gshort" = "integer", "gushort" = "integer",
                            "gint" = "integer", "int" = "integer", "gint8" = "raw",
                            "gint16" = "integer", "gint32" = "integer", "guint8" = "raw", 
                            "guint16" = "integer", "PangoGlyphUnit" = "integer", 
-						    "gint64" = "numeric", "gsize" = "numeric", "gunichar" = "numeric", 
-						    "guint" = "numeric", "PangoGlyph" = "numeric", 
+                           "gint64" = "numeric", "gsize" = "numeric", "gunichar" = "numeric", 
+                           "guint" = "numeric", "PangoGlyph" = "numeric", 
                            "GQuark" = "numeric", "guint32" = "numeric", "GdkWChar" = "numeric",
                            "guint64" = "numeric", "AtkState" = "numeric", "gfloat" = "numeric",
                            "gdouble" = "numeric", "double" = "numeric", "glong" = "numeric",
                            "gulong" = "numeric", "GType" = "numeric", 
-						    "gboolean" = "logical", "cairo_bool_t" = "logical", "time_t" = "integer"
+                           "gboolean" = "logical", "cairo_bool_t" = "logical"
 )
 
 # build mappings to GType constants
-CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR", rep("G_TYPE_STRING",2), rep("G_TYPE_INT",12),
+CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR", rep("G_TYPE_STRING",2), rep("G_TYPE_INT",13),
                         "G_TYPE_INT64", rep("G_TYPE_UINT", 7), rep("G_TYPE_UINT64",2),
                         "G_TYPE_FLOAT", rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
                         rep("G_TYPE_ULONG", 2), rep("G_TYPE_BOOLEAN",2))
