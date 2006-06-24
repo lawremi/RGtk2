@@ -1,0 +1,17 @@
+(define-user-function FontsetForeachFunc
+  (c-name "PangoFontsetForeachFunc")
+  (return-type "gboolean")
+  (parameters
+      '("PangoFontset*" "fontset")
+      '("PangoFont*" "font")
+      '("gpointer" "data")
+  )
+)
+(define-user-function AttrFilterFunc
+  (c-name "PangoAttrFilterFunc")
+  (return-type "gboolean")
+  (parameters
+      '("PangoAttribute*" "attribute")
+      '("gpointer" "data")
+  )
+)

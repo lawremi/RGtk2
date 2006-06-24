@@ -22,8 +22,12 @@ function(x, i, j, value)
 	
 	if (is.character(i))
 		i <- match(i, rownames(frame))
+  else if (is.logical(i))
+    i <- which(i)
 	if (is.character(j))
 		j <- match(j, colnames(frame))
+  else if (is.logical(j))
+    j <- which(j)
 	
 	changed <- integer(0)
 	if (length(unique(j)) > ncol(frame) - old_ncol)
@@ -41,9 +45,9 @@ function(x, i, j, value)
 "[.RGtkDataFrame" <- function(x, i, j, drop = T)
 {
 	frame <- as.data.frame(x)
-	#if (!missing(i) && length(i) > 0 && inherits(i[[1]], "GtkTreePath"))
-	#	i <- .RGtkCall("R_gtk_tree_paths_to_indices", i)+1
-	frame[, j, drop=drop]
+	if (!missing(i) && length(i) > 0 && inherits(i[[1]], "GtkTreePath"))
+		i <- .RGtkCall("R_gtk_tree_paths_to_indices", i)+1
+	frame[i, j, drop=drop]
 }
 
 rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())

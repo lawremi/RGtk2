@@ -1,0 +1,35 @@
+(define-user-function FilterFunc
+  (c-name "GdkFilterFunc")
+  (return-type "none")
+  (parameters
+      '("GdkXEvent*" "xevent")
+      '("GdkEvent*" "event")
+      '("gpointer" "data")
+  )
+)
+(define-user-function EventFunc
+  (c-name "GdkEventFunc")
+  (return-type "none")
+  (parameters
+      '("GdkEvent*" "event")
+      '("gpointer" "data")
+  )
+)
+(define-user-function PixbufSaveFunc
+  (c-name "GdkPixbufSaveFunc")
+  (return-type "gboolean")
+  (parameters
+      '("const-gchar*" "buf")
+      '("gsize" "count")
+      '("GError**" "error" (out))
+      '("gpointer" "data")
+  )
+)
+(define-user-function SpanFunc
+  (c-name "GdkSpanFunc")
+  (return-type "none")
+  (parameters
+      '("GdkSpan*" "span")
+      '("gpointer" "data")
+  )
+)

@@ -458,7 +458,7 @@ function(type, defs)
 isObject <-
 function(type, defs)
 {
-  type %in% names(defs$objects)
+  type %in% names(defs$objects) | type == "GObject"
 }
 
 isInterface <-

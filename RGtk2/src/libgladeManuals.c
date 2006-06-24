@@ -4,8 +4,8 @@
 /* reason: we need special handling for connecting R functions to signals from the xml */
 
 /* this function connects a signal specified by 'signal_name' with the R 
-   callback embedded in a GClosure asC 'user_data'. If the user data in
-   the closure is NULL, then 'connect_object' is used asC the user data for the callback.
+   callback embedded in a GClosure as 'user_data'. If the user data in
+   the closure is NULL, then 'connect_object' is used as the user data for the callback.
 */
 void
 S_GladeXMLConnectFuncDefault(const gchar *handler_name, GObject *object,

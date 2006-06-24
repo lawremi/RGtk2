@@ -103,8 +103,8 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                            "gchar*" = "string", "char*" = "string",
 						    "gssize" = "integer",
                            "size_t" = "integer", "gshort" = "integer", "gushort" = "integer",
-                           "gint" = "integer", "int" = "integer", "gint8" = "integer",
-                           "gint16" = "integer", "gint32" = "integer", "guint8" = "integer", 
+                           "gint" = "integer", "int" = "integer", "gint8" = "raw",
+                           "gint16" = "integer", "gint32" = "integer", "guint8" = "raw", 
                            "guint16" = "integer", "PangoGlyphUnit" = "integer", 
 						    "gint64" = "numeric", "gsize" = "numeric", "gunichar" = "numeric", 
 						    "guint" = "numeric", "PangoGlyph" = "numeric", 
@@ -112,7 +112,7 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                            "guint64" = "numeric", "AtkState" = "numeric", "gfloat" = "numeric",
                            "gdouble" = "numeric", "double" = "numeric", "glong" = "numeric",
                            "gulong" = "numeric", "GType" = "numeric", 
-						    "gboolean" = "logical", "cairo_bool_t" = "logical"
+						    "gboolean" = "logical", "cairo_bool_t" = "logical", "time_t" = "integer"
 )
 
 # build mappings to GType constants
@@ -150,7 +150,7 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_cop
  "gdk_utf8_to_string_target", "gdk_utf8_to_compound_text", "gdk_utf8_to_compound_text_for_display",
  "gdk_rgb_init", "gtk_parse_args", "gtk_init_with_args", "gtk_get_option_group", "gtk_widget_destroyed",
  "cairo_font_options_hash", "gtk_decorated_window_set_title", "gtk_decorated_window_move_resize_window",
- "cairo_debug_reset_static_data", "cairo_version", "cairo_destroy_func_t", "gtk_window_parse_geometry",
+ "cairo_debug_reset_static_data", "cairo_destroy_func_t", "gtk_window_parse_geometry",
  "gtk_decorated_window_init", "gtk_decorated_window_calculate_frame_size", "gtk_widget_style_get_valist",
  "gtk_tree_store_set_valist", "gtk_tree_model_get_valist", "gtk_list_store_set_valist", 
  "gtk_container_child_get_valist", "gtk_container_child_set_valist", "cairo_read_func_t", "cairo_write_func_t")

@@ -46,10 +46,10 @@ S_GladeXMLConnectFunc(gchar* s_handler_name, GObject* s_object, gchar* s_signal_
 	g_value_init(&params[5], G_TYPE_BOOLEAN);
 
 	g_value_set_string(&params[0], s_handler_name);
-	g_value_set_pointer(&params[1], s_object);
+	g_value_set_object(&params[1], s_object);
 	g_value_set_string(&params[2], s_signal_name);
 	g_value_set_string(&params[3], s_signal_data);
-	g_value_set_pointer(&params[4], s_connect_object);
+	g_value_set_object(&params[4], s_connect_object);
 	g_value_set_boolean(&params[5], s_after);
 
 	g_closure_invoke(s_user_data, NULL, 6, params, NULL);

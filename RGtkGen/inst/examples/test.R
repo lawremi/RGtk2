@@ -4,11 +4,11 @@ library(rpart)
 source("pyGen.R")
 source("genCode.S")
 source("genCons.S")
-path <- "/home/larman/research/RGtk2/RGtkGen/inst/data"
-version <- "2.8.0"
-defspath <- file.path(path, version)
-libs <- c("atk.defs", "pango.defs", "gdk.defs", "gtk.defs")
-libs <- c(libs, "cairo.defs") # for 2.8
+path <- "/home/larman/research/RGtk2/RGtkGen/inst/data/defs"
+libs <- c("atk.defs", "pango.defs", "gdk.defs", "gtk.defs", "cairo.defs")
+ # for 2.10
+libs <- c(libs, "atk-1.12.defs", "pango-1.14.defs", "gdk-2.10.defs", 
+  "gtk-2.10.defs", "cairo-1.2.defs")
 extralibs <- c("libglade.defs")
 extrapath <- file.path(path, "extra")
 files <- file.path(defspath, libs)
