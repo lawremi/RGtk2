@@ -555,6 +555,131 @@ GtkWrapMode<-c("none" = 0,
 storage.mode(GtkWrapMode) <- 'integer'
 class(GtkWrapMode) <- 'enums' 
 
+GtkAssistantPageType<-c("content" = 0,
+	"intro" = 1,
+	"confirm" = 2,
+	"summary" = 3,
+	"progress" = 4)
+storage.mode(GtkAssistantPageType) <- 'integer'
+class(GtkAssistantPageType) <- 'enums' 
+
+GtkCellRendererAccelMode<-c("gtk" = 0,
+	"other" = 1)
+storage.mode(GtkCellRendererAccelMode) <- 'integer'
+class(GtkCellRendererAccelMode) <- 'enums' 
+
+GtkSensitivityType<-c("auto" = 0,
+	"on" = 1,
+	"off" = 2)
+storage.mode(GtkSensitivityType) <- 'integer'
+class(GtkSensitivityType) <- 'enums' 
+
+GtkPrintPages<-c("all" = 0,
+	"current" = 1,
+	"ranges" = 2)
+storage.mode(GtkPrintPages) <- 'integer'
+class(GtkPrintPages) <- 'enums' 
+
+GtkPageSet<-c("all" = 0,
+	"even" = 1,
+	"odd" = 2)
+storage.mode(GtkPageSet) <- 'integer'
+class(GtkPageSet) <- 'enums' 
+
+GtkPageOrientation<-c("portrait" = 0,
+	"landscape" = 1,
+	"reverse-portrait" = 2,
+	"reverse-landscape" = 3)
+storage.mode(GtkPageOrientation) <- 'integer'
+class(GtkPageOrientation) <- 'enums' 
+
+GtkPrintQuality<-c("low" = 0,
+	"normal" = 1,
+	"high" = 2,
+	"draft" = 3)
+storage.mode(GtkPrintQuality) <- 'integer'
+class(GtkPrintQuality) <- 'enums' 
+
+GtkPrintDuplex<-c("simplex" = 0,
+	"horizontal" = 1,
+	"vertical" = 2)
+storage.mode(GtkPrintDuplex) <- 'integer'
+class(GtkPrintDuplex) <- 'enums' 
+
+GtkUnit<-c("pixel" = 0,
+	"points" = 1,
+	"inch" = 2,
+	"mm" = 3)
+storage.mode(GtkUnit) <- 'integer'
+class(GtkUnit) <- 'enums' 
+
+GtkTreeViewGridLines<-c("none" = 0,
+	"horizontal" = 1,
+	"vertical" = 2,
+	"both" = 3)
+storage.mode(GtkTreeViewGridLines) <- 'integer'
+class(GtkTreeViewGridLines) <- 'enums' 
+
+GtkPrintStatus<-c("initial" = 0,
+	"preparing" = 1,
+	"generating-data" = 2,
+	"sending-data" = 3,
+	"pending" = 4,
+	"pending-issue" = 5,
+	"printing" = 6,
+	"finished" = 7,
+	"finished-aborted" = 8)
+storage.mode(GtkPrintStatus) <- 'integer'
+class(GtkPrintStatus) <- 'enums' 
+
+GtkPrintOperationResult<-c("error" = 0,
+	"apply" = 1,
+	"cancel" = 2,
+	"in-progress" = 3)
+storage.mode(GtkPrintOperationResult) <- 'integer'
+class(GtkPrintOperationResult) <- 'enums' 
+
+GtkPrintOperationAction<-c("print-dialog" = 0,
+	"print" = 1,
+	"preview" = 2,
+	"export" = 3)
+storage.mode(GtkPrintOperationAction) <- 'integer'
+class(GtkPrintOperationAction) <- 'enums' 
+
+GtkPrintError<-c("general" = 0,
+	"internal-error" = 1,
+	"nomem" = 2)
+storage.mode(GtkPrintError) <- 'integer'
+class(GtkPrintError) <- 'enums' 
+
+GtkRecentSortType<-c("none" = 0,
+	"mru" = 1,
+	"lru" = 2,
+	"custom" = 3)
+storage.mode(GtkRecentSortType) <- 'integer'
+class(GtkRecentSortType) <- 'enums' 
+
+GtkRecentChooserError<-c("not-found" = 0,
+	"invalid-uri" = 1)
+storage.mode(GtkRecentChooserError) <- 'integer'
+class(GtkRecentChooserError) <- 'enums' 
+
+GtkRecentManagerError<-c("not-found" = 0,
+	"invalid-uri" = 1,
+	"invalid-encoding" = 2,
+	"not-registered" = 3,
+	"read" = 4,
+	"write" = 5,
+	"unknown" = 6)
+storage.mode(GtkRecentManagerError) <- 'integer'
+class(GtkRecentManagerError) <- 'enums' 
+
+GtkTextBufferTargetInfo<-c("buffer-contents" = 0,
+	"rich-text" = 1,
+	"text" = 2)
+storage.mode(GtkTextBufferTargetInfo) <- 'integer'
+class(GtkTextBufferTargetInfo) <- 'enums' 
+
 GtkAccelFlags<-c("visible" = 1,
 	"locked" = 2,
 	"mask" = 4)
@@ -672,4 +797,13 @@ GtkWidgetFlags<-c("toplevel" = 16,
 	"no-show-all" = 4194304)
 storage.mode(GtkWidgetFlags) <- 'numeric'
 class(GtkWidgetFlags) <- 'enums' 
+
+GtkRecentFilterFlags<-c("uri" = 1,
+	"display-name" = 2,
+	"mime-type" = 4,
+	"application" = 8,
+	"group" = 16,
+	"age" = 32)
+storage.mode(GtkRecentFilterFlags) <- 'numeric'
+class(GtkRecentFilterFlags) <- 'enums' 
 

@@ -2,6 +2,7 @@
 /* Generated data (by glib-mkenums) */
 
 #include <cairo.h>
+#include <cairo-svg.h>
 #include <glib-object.h>
 
 /* enumerations from "cairo.h" */
@@ -31,9 +32,25 @@ cairo_status_get_type (void)
       { CAIRO_STATUS_INVALID_VISUAL, "CAIRO_STATUS_INVALID_VISUAL", "invalid-visual" },
       { CAIRO_STATUS_FILE_NOT_FOUND, "CAIRO_STATUS_FILE_NOT_FOUND", "file-not-found" },
       { CAIRO_STATUS_INVALID_DASH, "CAIRO_STATUS_INVALID_DASH", "invalid-dash" },
+      { CAIRO_STATUS_INVALID_DSC_COMMENT, "CAIRO_STATUS_INVALID_DSC_COMMENT", "invalid-dsc-comment" },
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("CairoStatus", values);
+  }
+  return etype;
+}
+GType
+cairo_content_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_CONTENT_COLOR, "CAIRO_CONTENT_COLOR", "color" },
+      { CAIRO_CONTENT_ALPHA, "CAIRO_CONTENT_ALPHA", "alpha" },
+      { CAIRO_CONTENT_COLOR_ALPHA, "CAIRO_CONTENT_COLOR_ALPHA", "color-alpha" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoContent", values);
   }
   return etype;
 }
@@ -60,6 +77,22 @@ cairo_operator_get_type (void)
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("CairoOperator", values);
+  }
+  return etype;
+}
+GType
+cairo_antialias_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_ANTIALIAS_DEFAULT, "CAIRO_ANTIALIAS_DEFAULT", "default" },
+      { CAIRO_ANTIALIAS_NONE, "CAIRO_ANTIALIAS_NONE", "none" },
+      { CAIRO_ANTIALIAS_GRAY, "CAIRO_ANTIALIAS_GRAY", "gray" },
+      { CAIRO_ANTIALIAS_SUBPIXEL, "CAIRO_ANTIALIAS_SUBPIXEL", "subpixel" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoAntialias", values);
   }
   return etype;
 }
@@ -137,102 +170,6 @@ cairo_font_weight_get_type (void)
   return etype;
 }
 GType
-cairo_path_data_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_PATH_MOVE_TO, "CAIRO_PATH_MOVE_TO", "move-to" },
-      { CAIRO_PATH_LINE_TO, "CAIRO_PATH_LINE_TO", "line-to" },
-      { CAIRO_PATH_CURVE_TO, "CAIRO_PATH_CURVE_TO", "curve-to" },
-      { CAIRO_PATH_CLOSE_PATH, "CAIRO_PATH_CLOSE_PATH", "close-path" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoPathData", values);
-  }
-  return etype;
-}
-GType
-cairo_content_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_CONTENT_COLOR, "CAIRO_CONTENT_COLOR", "color" },
-      { CAIRO_CONTENT_ALPHA, "CAIRO_CONTENT_ALPHA", "alpha" },
-      { CAIRO_CONTENT_COLOR_ALPHA, "CAIRO_CONTENT_COLOR_ALPHA", "color-alpha" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoContent", values);
-  }
-  return etype;
-}
-GType
-cairo_format_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_FORMAT_ARGB32, "CAIRO_FORMAT_ARGB32", "argb32" },
-      { CAIRO_FORMAT_RGB24, "CAIRO_FORMAT_RGB24", "rgb24" },
-      { CAIRO_FORMAT_A8, "CAIRO_FORMAT_A8", "a8" },
-      { CAIRO_FORMAT_A1, "CAIRO_FORMAT_A1", "a1" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoFormat", values);
-  }
-  return etype;
-}
-GType
-cairo_extend_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_EXTEND_NONE, "CAIRO_EXTEND_NONE", "none" },
-      { CAIRO_EXTEND_REPEAT, "CAIRO_EXTEND_REPEAT", "repeat" },
-      { CAIRO_EXTEND_REFLECT, "CAIRO_EXTEND_REFLECT", "reflect" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoExtend", values);
-  }
-  return etype;
-}
-GType
-cairo_filter_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_FILTER_FAST, "CAIRO_FILTER_FAST", "fast" },
-      { CAIRO_FILTER_GOOD, "CAIRO_FILTER_GOOD", "good" },
-      { CAIRO_FILTER_BEST, "CAIRO_FILTER_BEST", "best" },
-      { CAIRO_FILTER_NEAREST, "CAIRO_FILTER_NEAREST", "nearest" },
-      { CAIRO_FILTER_BILINEAR, "CAIRO_FILTER_BILINEAR", "bilinear" },
-      { CAIRO_FILTER_GAUSSIAN, "CAIRO_FILTER_GAUSSIAN", "gaussian" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoFilter", values);
-  }
-  return etype;
-}
-GType
-cairo_antialias_get_type (void)
-{
-  static GType etype = 0;
-  if (etype == 0) {
-    static const GEnumValue values[] = {
-      { CAIRO_ANTIALIAS_DEFAULT, "CAIRO_ANTIALIAS_DEFAULT", "default" },
-      { CAIRO_ANTIALIAS_NONE, "CAIRO_ANTIALIAS_NONE", "none" },
-      { CAIRO_ANTIALIAS_GRAY, "CAIRO_ANTIALIAS_GRAY", "gray" },
-      { CAIRO_ANTIALIAS_SUBPIXEL, "CAIRO_ANTIALIAS_SUBPIXEL", "subpixel" },
-      { 0, NULL, NULL }
-    };
-    etype = g_enum_register_static ("CairoAntialias", values);
-  }
-  return etype;
-}
-GType
 cairo_subpixel_order_get_type (void)
 {
   static GType etype = 0;
@@ -278,6 +215,143 @@ cairo_hint_metrics_get_type (void)
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("CairoHintMetrics", values);
+  }
+  return etype;
+}
+GType
+cairo_font_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_FONT_TYPE_TOY, "CAIRO_FONT_TYPE_TOY", "toy" },
+      { CAIRO_FONT_TYPE_FT, "CAIRO_FONT_TYPE_FT", "ft" },
+      { CAIRO_FONT_TYPE_WIN32, "CAIRO_FONT_TYPE_WIN32", "win32" },
+      { CAIRO_FONT_TYPE_ATSUI, "CAIRO_FONT_TYPE_ATSUI", "atsui" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoFontType", values);
+  }
+  return etype;
+}
+GType
+cairo_path_data_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_PATH_MOVE_TO, "CAIRO_PATH_MOVE_TO", "move-to" },
+      { CAIRO_PATH_LINE_TO, "CAIRO_PATH_LINE_TO", "line-to" },
+      { CAIRO_PATH_CURVE_TO, "CAIRO_PATH_CURVE_TO", "curve-to" },
+      { CAIRO_PATH_CLOSE_PATH, "CAIRO_PATH_CLOSE_PATH", "close-path" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoPathDataType", values);
+  }
+  return etype;
+}
+GType
+cairo_surface_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_SURFACE_TYPE_IMAGE, "CAIRO_SURFACE_TYPE_IMAGE", "image" },
+      { CAIRO_SURFACE_TYPE_PDF, "CAIRO_SURFACE_TYPE_PDF", "pdf" },
+      { CAIRO_SURFACE_TYPE_PS, "CAIRO_SURFACE_TYPE_PS", "ps" },
+      { CAIRO_SURFACE_TYPE_XLIB, "CAIRO_SURFACE_TYPE_XLIB", "xlib" },
+      { CAIRO_SURFACE_TYPE_XCB, "CAIRO_SURFACE_TYPE_XCB", "xcb" },
+      { CAIRO_SURFACE_TYPE_GLITZ, "CAIRO_SURFACE_TYPE_GLITZ", "glitz" },
+      { CAIRO_SURFACE_TYPE_QUARTZ, "CAIRO_SURFACE_TYPE_QUARTZ", "quartz" },
+      { CAIRO_SURFACE_TYPE_WIN32, "CAIRO_SURFACE_TYPE_WIN32", "win32" },
+      { CAIRO_SURFACE_TYPE_BEOS, "CAIRO_SURFACE_TYPE_BEOS", "beos" },
+      { CAIRO_SURFACE_TYPE_DIRECTFB, "CAIRO_SURFACE_TYPE_DIRECTFB", "directfb" },
+      { CAIRO_SURFACE_TYPE_SVG, "CAIRO_SURFACE_TYPE_SVG", "svg" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoSurfaceType", values);
+  }
+  return etype;
+}
+GType
+cairo_format_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_FORMAT_ARGB32, "CAIRO_FORMAT_ARGB32", "argb32" },
+      { CAIRO_FORMAT_RGB24, "CAIRO_FORMAT_RGB24", "rgb24" },
+      { CAIRO_FORMAT_A8, "CAIRO_FORMAT_A8", "a8" },
+      { CAIRO_FORMAT_A1, "CAIRO_FORMAT_A1", "a1" },
+      { CAIRO_FORMAT_RGB16_565, "CAIRO_FORMAT_RGB16_565", "rgb16-565" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoFormat", values);
+  }
+  return etype;
+}
+GType
+cairo_pattern_type_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_PATTERN_TYPE_SOLID, "CAIRO_PATTERN_TYPE_SOLID", "solid" },
+      { CAIRO_PATTERN_TYPE_SURFACE, "CAIRO_PATTERN_TYPE_SURFACE", "surface" },
+      { CAIRO_PATTERN_TYPE_LINEAR, "CAIRO_PATTERN_TYPE_LINEAR", "linear" },
+      { CAIRO_PATTERN_TYPE_RADIAL, "CAIRO_PATTERN_TYPE_RADIAL", "radial" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoPatternType", values);
+  }
+  return etype;
+}
+GType
+cairo_extend_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_EXTEND_NONE, "CAIRO_EXTEND_NONE", "none" },
+      { CAIRO_EXTEND_REPEAT, "CAIRO_EXTEND_REPEAT", "repeat" },
+      { CAIRO_EXTEND_REFLECT, "CAIRO_EXTEND_REFLECT", "reflect" },
+      { CAIRO_EXTEND_PAD, "CAIRO_EXTEND_PAD", "pad" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoExtend", values);
+  }
+  return etype;
+}
+GType
+cairo_filter_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_FILTER_FAST, "CAIRO_FILTER_FAST", "fast" },
+      { CAIRO_FILTER_GOOD, "CAIRO_FILTER_GOOD", "good" },
+      { CAIRO_FILTER_BEST, "CAIRO_FILTER_BEST", "best" },
+      { CAIRO_FILTER_NEAREST, "CAIRO_FILTER_NEAREST", "nearest" },
+      { CAIRO_FILTER_BILINEAR, "CAIRO_FILTER_BILINEAR", "bilinear" },
+      { CAIRO_FILTER_GAUSSIAN, "CAIRO_FILTER_GAUSSIAN", "gaussian" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoFilter", values);
+  }
+  return etype;
+}
+GType
+cairo_svg_version_get_type (void)
+{
+  static GType etype = 0;
+  if (etype == 0) {
+    static const GEnumValue values[] = {
+      { CAIRO_SVG_VERSION_1_1, "CAIRO_SVG_VERSION_1_1", "1-1" },
+      { CAIRO_SVG_VERSION_1_2, "CAIRO_SVG_VERSION_1_2", "1-2" },
+      { CAIRO_SVG_VERSION_LAST, "CAIRO_SVG_VERSION_LAST", "last" },
+      { 0, NULL, NULL }
+    };
+    etype = g_enum_register_static ("CairoSvgVersion", values);
   }
   return etype;
 }

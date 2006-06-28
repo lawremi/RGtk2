@@ -40,7 +40,7 @@ about.cb <- function(action, window)
     if (file.exists(filename)) {
         pixbuf <- gdkPixbufNewFromFile(filename)[[1]]
         # make white space transparent
-        transparent <- pixbuf$addAlpha(TRUE, 255, 255, 255)
+        transparent <- pixbuf$addAlpha(TRUE, 253, 253, 253)
     }
 
     gtkAboutDialogSetEmailHook(activate.email)
@@ -56,7 +56,8 @@ update.statusbar <- function(buffer, statusbar)
     statusbar$pop(0)
     count <- buffer$getCharCount()
     # get an "iter" describing the position of the cursor
-    iter <- buffer$getIterAtMark(buffer$getInsert())$iter
+    mark <- buffer$getInsert()
+    iter <- buffer$getIterAtMark(mark)$iter
     row <- iter$getLine()
     col <- iter$getLineOffset()
     msg <- paste("Cursor at row", row, "column", col, "-", count, "chars in document")

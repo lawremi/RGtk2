@@ -136,8 +136,26 @@ function(x, y) {
 "==.enum" <-
 function(x, y)
 {
-	class(x) <- class(y) <- ""
-	x == y | names(x) == y | names(y) == x | names(x) == names(y)
+  ans <- F
+  
+  if (inherits(x, "enum"))
+    ans <- names(get(class(x)[1]))[x+1] == y
+  else if (inherits(y, "enum"))
+    ans <- names(get(class(y)[1]))[y+1] == x
+  
+  class(x) <- class(y) <- ""
+  
+  if (!ans)
+    ans <- x == y
+  
+  if (!ans && length(names(x)) > 0)
+    ans <- names(x) == y 
+  if (!ans && length(names(y)) > 0)
+    ans <- names(y) == x
+  if (!ans && length(names(y)) > 0 && length(names(x)) > 0)
+    ans <- names(x) == names(y)
+	
+  ans
 }
 
 # file shortcuts

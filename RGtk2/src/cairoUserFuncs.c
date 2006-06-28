@@ -1,45 +1,32 @@
 #include "cairoUserFuncs.h"
+#include "conversion.h"
+#include "utils.h"
 #include "RGtk2.h"
 
 
 cairo_status_t
 S_cairo_write_func_t(gpointer s_closure, guchar* s_data, guint s_length)
 {
-	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
 
-	g_value_init(ans, CAIRO_TYPE_STATUS);
+  SETCAR(tmp, ((R_CallbackData *)s_closure)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], G_TYPE_POINTER);
-	g_value_init(&params[1], G_TYPE_UINT);
+  SETCAR(tmp, asRRawArrayWithSize(s_data, s_length));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_length));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_closure)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_pointer(&params[0], s_data);
-	g_value_set_uint(&params[1], s_length);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_closure, ans, 2, params, NULL);
-
-	return(g_value_get_enum(ans));
-} 
-
-
-cairo_status_t
-S_cairo_read_func_t(gpointer s_closure, guchar* s_data, guint s_length)
-{
-	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
-
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
-
-	g_value_init(ans, CAIRO_TYPE_STATUS);
-
-	g_value_init(&params[0], G_TYPE_POINTER);
-	g_value_init(&params[1], G_TYPE_UINT);
-
-	g_value_set_pointer(&params[0], s_data);
-	g_value_set_uint(&params[1], s_length);
-
-	g_closure_invoke(s_closure, ans, 2, params, NULL);
-
-	return(g_value_get_enum(ans));
+  UNPROTECT(1);
+  return(((cairo_status_t)asCEnum(s_ans, CAIRO_TYPE_STATUS)));
 } 
 

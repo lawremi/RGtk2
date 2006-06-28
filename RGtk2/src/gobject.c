@@ -805,18 +805,10 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
     UNPROTECT(numProtects);
 }
 
-/* Creates a GClosure for a specified R function and asCsociated user-data */
-GClosure*
-R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+R_CallbackData *
+R_createCBData(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 {
-    GClosure* closure;
-    R_CallbackData *cbdata;
-
-    if (TYPEOF(s_func) == EXTPTRSXP) { /* allows replacement with previous C (but not R) func */
-        return(g_cclosure_new(G_CALLBACK(getPtrValue(s_func)), NULL, NULL));
-    }
-
-    cbdata = (R_CallbackData*) g_malloc(sizeof(R_CallbackData));
+  R_CallbackData *cbdata = (R_CallbackData*) g_malloc(sizeof(R_CallbackData));
     if(!cbdata) {
         PROBLEM "Cannot allocate space for a measly R_CallbackData!"
         ERROR;
@@ -833,6 +825,21 @@ R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
         cbdata->useData = FALSE;
         cbdata->data = NULL;
     }
+    return(cbdata);
+}
+
+/* Creates a GClosure for a specified R function and asCsociated user-data */
+GClosure*
+R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+{
+    GClosure* closure;
+    R_CallbackData *cbdata;
+
+    if (TYPEOF(s_func) == EXTPTRSXP) { /* allows replacement with previous C (but not R) func */
+        return(g_cclosure_new(G_CALLBACK(getPtrValue(s_func)), NULL, NULL));
+    }
+
+    cbdata = R_createCBData(s_func, s_data);
 
     closure = g_closure_new_simple(sizeof(GClosure), (gpointer)cbdata);
     g_closure_add_finalize_notifier(closure, cbdata, (GClosureNotify)R_freeCBData_closure);
@@ -1060,14 +1067,16 @@ asRGValue(GValue *value)
       case G_TYPE_BOXED:
         if (G_VALUE_TYPE(value) == GDK_TYPE_EVENT)
           ans = toRGdkEvent(g_value_get_boxed(value), FALSE);
-        else ans = toRPointer(g_value_get_boxed(value), g_type_name(G_VALUE_TYPE(value)));
+        else ans = toRPointer(g_value_get_boxed(value), G_VALUE_TYPE_NAME(value));
       break;
 
       case G_TYPE_POINTER:
 	  	/*Rprintf("%s\n", g_type_name(G_VALUE_TYPE(value)));*/
-		if (G_VALUE_TYPE(value) == G_TYPE_VALUE)
-			ans = asRGValue(value); /* yes the GValues can be nested */
-        ans = toRPointer(g_value_get_pointer(value), "gpointer");
+      if (G_VALUE_TYPE(value) == G_TYPE_VALUE)
+        ans = asRGValue(value); /* yes the GValues can be nested */
+      else if (G_VALUE_TYPE(value) == R_GTK_TYPE_SEXP)
+        ans = g_value_get_pointer(value);
+      else ans = toRPointer(g_value_get_pointer(value), G_VALUE_TYPE_NAME(value));
       break;
 
       case G_TYPE_INVALID:
@@ -1080,11 +1089,15 @@ asRGValue(GValue *value)
 
       case G_TYPE_OBJECT:
       case G_TYPE_INTERFACE:
-          ans = toRPointer(g_value_get_object(value), g_type_name(G_VALUE_TYPE(value)));
+        if (G_VALUE_HOLDS(value, GTK_TYPE_OBJECT))
+          ans = toRPointerWithSink(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
+        else ans = toRPointerWithRef(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
       break;
-
+      case G_TYPE_PARAM:
+        ans = asRGParamSpec(g_value_get_param(value));
+      break;
       default:
-        PROBLEM "got an unknown/unhandled type named: %s\n", g_type_name(G_VALUE_TYPE(value))
+        PROBLEM "got an unknown/unhandled type named: %s\n", G_VALUE_TYPE_NAME(value)
         ERROR;
       break;
     }

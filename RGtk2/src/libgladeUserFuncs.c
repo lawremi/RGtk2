@@ -1,57 +1,76 @@
 #include "libgladeUserFuncs.h"
+#include "conversion.h"
+#include "utils.h"
 #include "RGtk2.h"
 
 
 GtkWidget*
 S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name, gchar* s_string1, gchar* s_string2, gint s_int1, gint s_int2, gpointer s_user_data)
 {
-	GValue * params = (GValue *)S_alloc(7, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 9));
+  tmp = e;
 
-	g_value_init(ans, GTK_TYPE_WIDGET);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], GLADE_TYPE_XML);
-	g_value_init(&params[1], G_TYPE_STRING);
-	g_value_init(&params[2], G_TYPE_STRING);
-	g_value_init(&params[3], G_TYPE_STRING);
-	g_value_init(&params[4], G_TYPE_STRING);
-	g_value_init(&params[5], G_TYPE_INT);
-	g_value_init(&params[6], G_TYPE_INT);
+  SETCAR(tmp, toRPointerWithRef(s_xml, "GladeXML"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_func_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_string1));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_string2));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRInteger(s_int1));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRInteger(s_int2));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_object(&params[0], s_xml);
-	g_value_set_string(&params[1], s_func_name);
-	g_value_set_string(&params[2], s_name);
-	g_value_set_string(&params[3], s_string1);
-	g_value_set_string(&params[4], s_string2);
-	g_value_set_int(&params[5], s_int1);
-	g_value_set_int(&params[6], s_int2);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_user_data, ans, 7, params, NULL);
-
-	return(g_value_get_object(ans));
+  UNPROTECT(1);
+  return(GTK_WIDGET(getPtrValue(s_ans)));
 } 
 
 
 void
 S_GladeXMLConnectFunc(gchar* s_handler_name, GObject* s_object, gchar* s_signal_name, gchar* s_signal_data, GObject* s_connect_object, gboolean s_after, gpointer s_user_data)
 {
-	GValue * params = (GValue *)S_alloc(6, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	g_value_init(&params[0], G_TYPE_STRING);
-	g_value_init(&params[1], G_TYPE_OBJECT);
-	g_value_init(&params[2], G_TYPE_STRING);
-	g_value_init(&params[3], G_TYPE_STRING);
-	g_value_init(&params[4], G_TYPE_OBJECT);
-	g_value_init(&params[5], G_TYPE_BOOLEAN);
+  PROTECT(e = allocVector(LANGSXP, 8));
+  tmp = e;
 
-	g_value_set_string(&params[0], s_handler_name);
-	g_value_set_object(&params[1], s_object);
-	g_value_set_string(&params[2], s_signal_name);
-	g_value_set_string(&params[3], s_signal_data);
-	g_value_set_object(&params[4], s_connect_object);
-	g_value_set_boolean(&params[5], s_after);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
 
-	g_closure_invoke(s_user_data, NULL, 6, params, NULL);
+  SETCAR(tmp, asRString(s_handler_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_object, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_signal_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_signal_data));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_connect_object, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRLogical(s_after));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = eval(e, R_GlobalEnv);
+
+  UNPROTECT(1);
 } 
 

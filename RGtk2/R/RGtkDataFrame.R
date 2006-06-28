@@ -37,7 +37,7 @@ function(x, i, j, value)
 	
 	resort <- x$getSortColumnId() %in% j
 	
-	.RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(as.integer(changed-1)), resort)
+	.RGtkCall("R_r_gtk_data_frame_set", x, frame, as.list(as.integer(changed-1)), resort)
 	
 	x
 }
@@ -57,30 +57,30 @@ rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())
 		list(frame[new_order,drop=F], as.integer((1:length(new_order))[new_order]-1))
 	}
 		
-	w <- .RGtkCall("R_rgtk_data_frame_new", frame, sort_closure)
+	w <- .RGtkCall("R_r_gtk_data_frame_new", frame, sort_closure)
 	w
 }
 
-as.data.frame.RGtkDataFrame <- function(x, ...) .RGtkCall("R_rgtk_data_frame_get", x)
+as.data.frame.RGtkDataFrame <- function(x, ...) .RGtkCall("R_r_gtk_data_frame_get", x)
 
 rGtkDataFrameAppendRows <- function(x, ...) {
 	frame <- as.data.frame(x)
 	new_frame <- rbind(frame, ...)
 	new_ind <- (nrow(frame)+1):nrow(new_frame)
 	if (nrow(new_frame) > nrow(frame))
-		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, as.list(as.integer(new_ind-1)), T)
+		.RGtkCall("R_r_gtk_data_frame_set", x, new_frame, as.list(as.integer(new_ind-1)), T)
 	x
 }
 rGtkDataFrameAppendColumns <- function(x, ...) {
 	frame <- as.data.frame(x)
 	new_frame <- cbind(frame, ...)
 	if (ncol(new_frame) > ncol(frame))
-		.RGtkCall("R_rgtk_data_frame_set", x, new_frame, NULL, F)
+		.RGtkCall("R_r_gtk_data_frame_set", x, new_frame, NULL, F)
 	x
 }
 
 rGtkDataFrameSetFrame <- function(x, frame = data.frame()) {
-  .RGtkCall("R_rgtk_data_frame_set", x, frame, as.list(as.integer(1:nrow(frame)-1)), T)
+  .RGtkCall("R_r_gtk_data_frame_set", x, frame, as.list(as.integer(1:nrow(frame)-1)), T)
 }
 
 dim.RGtkDataFrame <- function(x, ...) {
@@ -92,6 +92,6 @@ dimnames.RGtkDataFrame <- function(x, ...) {
 "dimnames<-.RGtkDataFrame" <- function(x, value) {
   frame <- as.data.frame(x)
   dimnames(frame) <- value
-  .RGtkCall("R_rgtk_data_frame_set", x, frame, NULL, F)
+  .RGtkCall("R_r_gtk_data_frame_set", x, frame, NULL, F)
   x
 }

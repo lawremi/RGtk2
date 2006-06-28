@@ -101,3 +101,40 @@ function(x)
 	x[[3]] <- as.integer(x[[3]])
 	return(x)
 }
+as.GtkRecentFilterInfo <-
+function(x)
+{
+  x <- as.struct("GtkRecentFilterInfo", c("contains", "uri", "display_name", "mime_type", "applications", "groups", "age"))
+  
+  x[[2]] <- as.character(x[[2]])
+  x[[3]] <- as.character(x[[3]])
+  x[[4]] <- as.character(x[[4]])
+  x[[5]] <- as.list(as.character(x[[5]]))
+  x[[6]] <- as.list(as.character(x[[6]]))
+  x[[7]] <- as.integer(x[[7]])
+  
+  return(x)
+}
+as.GtkRecentData <-
+function(x)
+{
+  x <- as.struct("GtkRecentData", c("display_name", "description", "mime_type", "app_name", "app_exec", "groups", "is_private"))
+  x[[1]] <- as.character(x[[1]])
+  x[[2]] <- as.character(x[[2]])
+  x[[3]] <- as.character(x[[3]])
+  x[[4]] <- as.character(x[[4]])
+  x[[5]] <- as.character(x[[5]])
+  x[[6]] <- as.list(as.character(x[[6]]))
+  x[[7]] <- as.logical(x[[7]])
+  
+  return(x)
+}
+as.GtkPageRange <-
+function(x)
+{
+  x <- as.struct("GtkPageRange", c("start", "end"))
+  x[[1]] <- as.integer(x[[1]])
+  x[[2]] <- as.integer(x[[2]])
+  
+  return(x)
+}

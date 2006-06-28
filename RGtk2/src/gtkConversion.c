@@ -12,6 +12,25 @@ asCGtkTargetEntry(USER_OBJECT_ s_entry) {
     entry->info = asCInteger(VECTOR_ELT(s_entry, 2));
     return(entry);
 }
+USER_OBJECT_
+asRGtkTargetEntry(GtkTargetEntry * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "target", "flags", "info", NULL };
+
+  PROTECT(s_obj = NEW_LIST(3));
+
+  SET_VECTOR_ELT(s_obj, 0, asRString(obj->target));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->flags));
+  SET_VECTOR_ELT(s_obj, 2, asRInteger(obj->info));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkTargetEntry"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
 GtkFileFilterInfo*
 asCGtkFileFilterInfo(USER_OBJECT_ s_info)
 {
@@ -23,6 +42,27 @@ asCGtkFileFilterInfo(USER_OBJECT_ s_info)
     info->display_name = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 2));
     info->mime_type = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 3));
     return(info);
+}
+USER_OBJECT_
+asRGtkFileFilterInfo(GtkFileFilterInfo * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "contains", "filename", "uri", "display_name", "mime_type", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 5));
+
+  SET_VECTOR_ELT(s_obj, 0, asRFlag(obj->contains, GTK_TYPE_FILE_FILTER_FLAGS));
+  SET_VECTOR_ELT(s_obj, 1, asRString(obj->filename));
+  SET_VECTOR_ELT(s_obj, 2, asRString(obj->uri));
+  SET_VECTOR_ELT(s_obj, 3, asRString(obj->display_name));
+  SET_VECTOR_ELT(s_obj, 4, asRString(obj->mime_type));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkFileFilterInfo"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
 }
 GtkSettingsValue*
 asCGtkSettingsValue(USER_OBJECT_ s_value)
@@ -112,6 +152,113 @@ asRGtkAllocation(GtkAllocation* alloc)
     SET_CLASS(s_alloc, asRString("GtkAllocation"));
     UNPROTECT(1);
     return(s_alloc);
+}
+
+GtkRecentFilterInfo *
+asCGtkRecentFilterInfo(USER_OBJECT_ s_obj)
+{
+  GtkRecentFilterInfo * obj;
+
+  obj = (GtkRecentFilterInfo *)R_alloc(1, sizeof(GtkRecentFilterInfo));
+
+  obj->contains = (GtkRecentFilterFlags)asCFlag(VECTOR_ELT(s_obj, 0), GTK_TYPE_RECENT_FILTER_FLAGS);
+  obj->uri = (const gchar*)asCString(VECTOR_ELT(s_obj, 1));
+  obj->display_name = (const gchar*)asCString(VECTOR_ELT(s_obj, 2));
+  obj->mime_type = (const gchar*)asCString(VECTOR_ELT(s_obj, 3));
+  obj->applications = (const gchar**)asCStringArray(VECTOR_ELT(s_obj, 4));
+  obj->groups = (const gchar**)asCStringArray(VECTOR_ELT(s_obj, 5));
+  obj->age = (gint)asCInteger(VECTOR_ELT(s_obj, 6));
+
+  return(obj);
+}
+USER_OBJECT_
+asRGtkRecentFilterInfo(GtkRecentFilterInfo * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "contains", "uri", "display_name", "mime_type", "applications", "groups", "age", NULL };
+
+  PROTECT(s_obj = NEW_LIST(7));
+
+  SET_VECTOR_ELT(s_obj, 0, asRFlag(obj->contains, GTK_TYPE_RECENT_FILTER_FLAGS));
+  SET_VECTOR_ELT(s_obj, 1, asRString(obj->uri));
+  SET_VECTOR_ELT(s_obj, 2, asRString(obj->display_name));
+  SET_VECTOR_ELT(s_obj, 3, asRString(obj->mime_type));
+  SET_VECTOR_ELT(s_obj, 4, asRStringArray(obj->applications));
+  SET_VECTOR_ELT(s_obj, 5, asRStringArray(obj->groups));
+  SET_VECTOR_ELT(s_obj, 6, asRInteger(obj->age));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkRecentFilterInfo"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+GtkRecentData *
+asCGtkRecentData(USER_OBJECT_ s_obj)
+{
+  GtkRecentData * obj;
+
+  obj = (GtkRecentData *)R_alloc(1, sizeof(GtkRecentData));
+
+  obj->display_name = (gchar*)asCString(VECTOR_ELT(s_obj, 0));
+  obj->description = (gchar*)asCString(VECTOR_ELT(s_obj, 1));
+  obj->mime_type = (gchar*)asCString(VECTOR_ELT(s_obj, 2));
+  obj->app_name = (gchar*)asCString(VECTOR_ELT(s_obj, 3));
+  obj->app_exec = (gchar*)asCString(VECTOR_ELT(s_obj, 4));
+  obj->groups = (gchar**)asCStringArray(VECTOR_ELT(s_obj, 5));
+  obj->is_private = (gboolean)asCLogical(VECTOR_ELT(s_obj, 6));
+
+  return(obj);
+}
+GtkPageRange *
+asCGtkPageRange(USER_OBJECT_ s_obj)
+{
+  GtkPageRange * obj;
+
+  obj = (GtkPageRange *)R_alloc(1, sizeof(GtkPageRange));
+
+  obj->start = (gint)asCInteger(VECTOR_ELT(s_obj, 0));
+  obj->end = (gint)asCInteger(VECTOR_ELT(s_obj, 1));
+
+  return(obj);
+}
+USER_OBJECT_
+asRGtkPageRange(GtkPageRange * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "start", "end", NULL };
+
+  PROTECT(s_obj = NEW_LIST(2));
+
+  SET_VECTOR_ELT(s_obj, 0, asRInteger(obj->start));
+  SET_VECTOR_ELT(s_obj, 1, asRInteger(obj->end));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkPageRange"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+USER_OBJECT_
+asRGtkAccelKey(GtkAccelKey * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "accel_key", "accel_mods", "accel_flags", NULL };
+
+  PROTECT(s_obj = NEW_LIST(3));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->accel_key));
+  SET_VECTOR_ELT(s_obj, 1, asRFlag(obj->accel_mods, GDK_TYPE_MODIFIER_TYPE));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->accel_flags));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkAccelKey"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
 }
 
 void 

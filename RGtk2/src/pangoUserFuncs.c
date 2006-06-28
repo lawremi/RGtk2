@@ -1,43 +1,57 @@
 #include "pangoUserFuncs.h"
+#include "conversion.h"
+#include "utils.h"
 #include "RGtk2.h"
 
 
 gboolean
 S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
 
-	g_value_init(ans, G_TYPE_BOOLEAN);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], PANGO_TYPE_FONTSET);
-	g_value_init(&params[1], PANGO_TYPE_FONT);
+  SETCAR(tmp, toRPointerWithRef(s_fontset, "PangoFontset"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_font, "PangoFont"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_object(&params[0], s_fontset);
-	g_value_set_object(&params[1], s_font);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_data, ans, 2, params, NULL);
-
-	return(g_value_get_boolean(ans));
+  UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 } 
 
 
 gboolean
 S_PangoAttrFilterFunc(PangoAttribute* s_attribute, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
 
-	g_value_init(ans, G_TYPE_BOOLEAN);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], G_TYPE_POINTER);
+  SETCAR(tmp, asRPangoAttribute(s_attribute));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_pointer(&params[0], s_attribute);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_data, ans, 1, params, NULL);
-
-	return(g_value_get_boolean(ans));
+  UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 } 
 

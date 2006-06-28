@@ -15,6 +15,11 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 #include <cairo.h>
+/* for cairo 1.2, pdf backend is required for GTK, svg comes 'free' */
+#include <cairo-ps.h>
+#include <cairo-pdf.h>
+#include <cairo-svg.h>
+
 #include "cairo-enums.h"
 
 #ifdef HAVE_LIBGLADE
@@ -33,6 +38,9 @@
 /* For some systems, e.g. Irix, gdkAccessors has a time_t that is not defined
    unless we include this. Seems harmless on other systems! */
 #include <time.h>
+
+/* so we can pass R objects through GValue */
+#define R_GTK_TYPE_SEXP (r_gtk_sexp_get_type ())
 
 #endif
 

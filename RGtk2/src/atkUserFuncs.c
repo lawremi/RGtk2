@@ -1,22 +1,30 @@
 #include "atkUserFuncs.h"
+#include "conversion.h"
+#include "utils.h"
 #include "RGtk2.h"
 
 
 gint
 S_AtkKeySnoopFunc(AtkKeyEventStruct* s_event, gpointer s_func_data)
 {
-	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
 
-	g_value_init(ans, G_TYPE_INT);
+  SETCAR(tmp, ((R_CallbackData *)s_func_data)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], G_TYPE_POINTER);
+  SETCAR(tmp, asRAtkKeyEventStruct(s_event));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_pointer(&params[0], s_event);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_func_data, ans, 1, params, NULL);
-
-	return(g_value_get_int(ans));
+  UNPROTECT(1);
+  return(((gint)asCInteger(s_ans)));
 } 
 

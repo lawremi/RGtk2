@@ -1,67 +1,106 @@
 #include "gdkUserFuncs.h"
+#include "conversion.h"
+#include "utils.h"
 #include "RGtk2.h"
 
 
 void
 S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(2, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	g_value_init(&params[0], G_TYPE_POINTER);
-	g_value_init(&params[1], GDK_TYPE_EVENT);
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
 
-	g_value_set_pointer(&params[0], s_xevent);
-	g_value_set_boxed(&params[1], s_event);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_closure_invoke(s_data, NULL, 2, params, NULL);
+  SETCAR(tmp, toRPointer(s_xevent, "GdkXEvent"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGdkEvent(s_event));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = eval(e, R_GlobalEnv);
+
+  UNPROTECT(1);
 } 
 
 
 void
 S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	g_value_init(&params[0], GDK_TYPE_EVENT);
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
 
-	g_value_set_boxed(&params[0], s_event);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_closure_invoke(s_data, NULL, 1, params, NULL);
+  SETCAR(tmp, asRGdkEvent(s_event));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = eval(e, R_GlobalEnv);
+
+  UNPROTECT(1);
 } 
 
 
 gboolean
-S_GdkPixbufSaveFunc(gchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
+S_GdkPixbufSaveFunc(guchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(3, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	GValue * ans = (GValue *)S_alloc(1, sizeof(GValue));
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
 
-	g_value_init(ans, G_TYPE_BOOLEAN);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_value_init(&params[0], G_TYPE_STRING);
-	g_value_init(&params[1], G_TYPE_UINT);
-	g_value_init(&params[2], G_TYPE_POINTER);
+  SETCAR(tmp, asRRawArrayWithSize(s_buf, s_count));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_count));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
 
-	g_value_set_string(&params[0], s_buf);
-	g_value_set_uint(&params[1], s_count);
-	g_value_set_pointer(&params[2], s_error);
+  s_ans = eval(e, R_GlobalEnv);
 
-	g_closure_invoke(s_data, ans, 3, params, NULL);
-
-	return(g_value_get_boolean(ans));
+  UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 } 
 
 
 void
 S_GdkSpanFunc(GdkSpan* s_span, gpointer s_data)
 {
-	GValue * params = (GValue *)S_alloc(1, sizeof(GValue));
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
 
-	g_value_init(&params[0], G_TYPE_POINTER);
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
 
-	g_value_set_pointer(&params[0], s_span);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-	g_closure_invoke(s_data, NULL, 1, params, NULL);
+  SETCAR(tmp, asRGdkSpan(s_span));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = eval(e, R_GlobalEnv);
+
+  UNPROTECT(1);
 } 
 

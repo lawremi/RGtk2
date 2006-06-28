@@ -23,6 +23,17 @@ R_gtk_handle_events()
   R_gtk_eventHandler(NULL);
 }
 
+GType
+r_gtk_sexp_get_type (void)
+{
+  static GType our_type = 0;
+
+  if (our_type == 0)
+    our_type = g_pointer_type_register_static ("RGtkSexp");
+
+  return our_type;
+}
+
 void
 R_gtkInit(long *rargc, char **rargv)
 {

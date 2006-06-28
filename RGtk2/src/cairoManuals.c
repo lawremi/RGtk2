@@ -1,4 +1,5 @@
 #include "conversion.h"
+#include "utils.h"
 
 /* reason: these two functions are just to efficiently copy paths between cairo contexts */
 USER_OBJECT_
@@ -45,4 +46,32 @@ S_cairo_append_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_path)
 	cairo_append_path(cr, path);
 
 	return(_result);
+}
+
+cairo_status_t
+S_cairo_read_func_t(gpointer s_closure, guchar* s_data, guint s_length)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  guint i;
+  
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+  
+  SETCAR(tmp, ((R_CallbackData *)s_closure)->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, asRNumeric(s_length));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_closure)->data);
+  tmp = CDR(tmp);
+
+  s_ans = eval(e, R_GlobalEnv);
+
+  for (i = 0; i < s_length && i < GET_LENGTH(VECTOR_ELT(s_ans, 1)); i++)
+    s_data[i] = RAW(VECTOR_ELT(s_ans, 1))[i];
+  
+  UNPROTECT(1);
+  return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
 }

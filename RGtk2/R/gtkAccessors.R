@@ -1048,27 +1048,6 @@ function(obj)
   v <- .Call('S_GtkTextAttributesGetRealized', obj, PACKAGE = "RGtk2")
   v
 } 
-gtkAccelKeyGetAccelKey <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkAccelKey')
-  v <- .Call('S_GtkAccelKeyGetAccelKey', obj, PACKAGE = "RGtk2")
-  v
-} 
-gtkAccelKeyGetAccelMods <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkAccelKey')
-  v <- .Call('S_GtkAccelKeyGetAccelMods', obj, PACKAGE = "RGtk2")
-  v
-} 
-gtkAccelKeyGetAccelFlags <-
-function(obj)
-{
-  checkPtrType(obj, 'GtkAccelKey')
-  v <- .Call('S_GtkAccelKeyGetAccelFlags', obj, PACKAGE = "RGtk2")
-  v
-} 
 gtkCTreeRowGetRow <-
 function(obj)
 {

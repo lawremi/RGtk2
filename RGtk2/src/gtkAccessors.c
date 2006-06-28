@@ -1761,7 +1761,7 @@ S_GtkRequisitionGetWidth (USER_OBJECT_ s_obj)
    GtkRequisition *obj;
    gint val;
 
-   obj = (GtkRequisition*)getPtrValue(s_obj) ;
+   obj = ((GtkRequisition*)getPtrValue(s_obj)) ;
    val = obj->width;
    _result = asRInteger(val);
 
@@ -1775,7 +1775,7 @@ S_GtkRequisitionGetHeight (USER_OBJECT_ s_obj)
    GtkRequisition *obj;
    gint val;
 
-   obj = (GtkRequisition*)getPtrValue(s_obj) ;
+   obj = ((GtkRequisition*)getPtrValue(s_obj)) ;
    val = obj->height;
    _result = asRInteger(val);
 
@@ -1789,7 +1789,7 @@ S_GtkSelectionDataGetSelection (USER_OBJECT_ s_obj)
    GtkSelectionData *obj;
    GdkAtom val;
 
-   obj = (GtkSelectionData*)getPtrValue(s_obj) ;
+   obj = ((GtkSelectionData*)getPtrValue(s_obj)) ;
    val = obj->selection;
    _result = asRGdkAtom(val);
 
@@ -1803,7 +1803,7 @@ S_GtkSelectionDataGetTarget (USER_OBJECT_ s_obj)
    GtkSelectionData *obj;
    GdkAtom val;
 
-   obj = (GtkSelectionData*)getPtrValue(s_obj) ;
+   obj = ((GtkSelectionData*)getPtrValue(s_obj)) ;
    val = obj->target;
    _result = asRGdkAtom(val);
 
@@ -1817,7 +1817,7 @@ S_GtkSelectionDataGetType (USER_OBJECT_ s_obj)
    GtkSelectionData *obj;
    GdkAtom val;
 
-   obj = (GtkSelectionData*)getPtrValue(s_obj) ;
+   obj = ((GtkSelectionData*)getPtrValue(s_obj)) ;
    val = obj->type;
    _result = asRGdkAtom(val);
 
@@ -1831,7 +1831,7 @@ S_GtkSelectionDataGetFormat (USER_OBJECT_ s_obj)
    GtkSelectionData *obj;
    gint val;
 
-   obj = (GtkSelectionData*)getPtrValue(s_obj) ;
+   obj = ((GtkSelectionData*)getPtrValue(s_obj)) ;
    val = obj->format;
    _result = asRInteger(val);
 
@@ -1845,7 +1845,7 @@ S_GtkSelectionDataGetData (USER_OBJECT_ s_obj)
    GtkSelectionData *obj;
    guchar* val;
 
-   obj = (GtkSelectionData*)getPtrValue(s_obj) ;
+   obj = ((GtkSelectionData*)getPtrValue(s_obj)) ;
    val = obj->data;
    _result = asRRawArray(val);
 
@@ -1859,7 +1859,7 @@ S_GtkTextAttributesGetAppearance (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    GtkTextAppearance val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->appearance;
    _result = toRPointer(&val, "GtkTextAppearance");
 
@@ -1873,7 +1873,7 @@ S_GtkTextAttributesGetJustification (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    GtkJustification val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->justification;
    _result = asREnum(val, GTK_TYPE_JUSTIFICATION);
 
@@ -1887,7 +1887,7 @@ S_GtkTextAttributesGetDirection (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    GtkTextDirection val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->direction;
    _result = asREnum(val, GTK_TYPE_TEXT_DIRECTION);
 
@@ -1901,7 +1901,7 @@ S_GtkTextAttributesGetFont (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    PangoFontDescription* val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->font;
    _result = toRPointer(val, "PangoFontDescription");
 
@@ -1915,7 +1915,7 @@ S_GtkTextAttributesGetFontScale (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gdouble val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->font_scale;
    _result = asRNumeric(val);
 
@@ -1929,7 +1929,7 @@ S_GtkTextAttributesGetLeftMargin (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->left_margin;
    _result = asRInteger(val);
 
@@ -1943,7 +1943,7 @@ S_GtkTextAttributesGetIndent (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->indent;
    _result = asRInteger(val);
 
@@ -1957,7 +1957,7 @@ S_GtkTextAttributesGetRightMargin (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->right_margin;
    _result = asRInteger(val);
 
@@ -1971,7 +1971,7 @@ S_GtkTextAttributesGetPixelsAboveLines (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->pixels_above_lines;
    _result = asRInteger(val);
 
@@ -1985,7 +1985,7 @@ S_GtkTextAttributesGetPixelsBelowLines (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->pixels_below_lines;
    _result = asRInteger(val);
 
@@ -1999,7 +1999,7 @@ S_GtkTextAttributesGetPixelsInsideWrap (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    gint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->pixels_inside_wrap;
    _result = asRInteger(val);
 
@@ -2013,7 +2013,7 @@ S_GtkTextAttributesGetTabs (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    PangoTabArray* val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->tabs;
    _result = toRPointer(val, "PangoTabArray");
 
@@ -2027,7 +2027,7 @@ S_GtkTextAttributesGetWrapMode (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    GtkWrapMode val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->wrap_mode;
    _result = asREnum(val, GTK_TYPE_WRAP_MODE);
 
@@ -2041,7 +2041,7 @@ S_GtkTextAttributesGetLanguage (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    PangoLanguage* val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->language;
    _result = toRPointer(val, "PangoLanguage");
 
@@ -2055,7 +2055,7 @@ S_GtkTextAttributesGetInvisible (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    guint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->invisible;
    _result = asRNumeric(val);
 
@@ -2069,7 +2069,7 @@ S_GtkTextAttributesGetBgFullHeight (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    guint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->bg_full_height;
    _result = asRNumeric(val);
 
@@ -2083,7 +2083,7 @@ S_GtkTextAttributesGetEditable (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    guint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->editable;
    _result = asRNumeric(val);
 
@@ -2097,50 +2097,8 @@ S_GtkTextAttributesGetRealized (USER_OBJECT_ s_obj)
    GtkTextAttributes *obj;
    guint val;
 
-   obj = (GtkTextAttributes*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->realized;
-   _result = asRNumeric(val);
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkAccelKeyGetAccelKey (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkAccelKey *obj;
-   guint val;
-
-   obj = (GtkAccelKey*)getPtrValue(s_obj) ;
-   val = obj->accel_key;
-   _result = asRNumeric(val);
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkAccelKeyGetAccelMods (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkAccelKey *obj;
-   GdkModifierType val;
-
-   obj = (GtkAccelKey*)getPtrValue(s_obj) ;
-   val = obj->accel_mods;
-   _result = asRFlag(val, GDK_TYPE_MODIFIER_TYPE);
-
-   return(_result);
-} 
-USER_OBJECT_
-S_GtkAccelKeyGetAccelFlags (USER_OBJECT_ s_obj)
-{
-   USER_OBJECT_ _result;
-
-   GtkAccelKey *obj;
-   guint val;
-
-   obj = (GtkAccelKey*)getPtrValue(s_obj) ;
-   val = obj->accel_flags;
    _result = asRNumeric(val);
 
    return(_result);
@@ -2153,7 +2111,7 @@ S_GtkCTreeRowGetRow (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GtkCListRow val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->row;
    _result = toRPointer(&val, "GtkCListRow");
 
@@ -2167,7 +2125,7 @@ S_GtkCTreeRowGetParent (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->parent;
    _result = toRPointer(val, "GtkCTreeNode");
 
@@ -2181,7 +2139,7 @@ S_GtkCTreeRowGetSibling (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->sibling;
    _result = toRPointer(val, "GtkCTreeNode");
 
@@ -2195,7 +2153,7 @@ S_GtkCTreeRowGetChildren (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->children;
    _result = toRPointer(val, "GtkCTreeNode");
 
@@ -2209,7 +2167,7 @@ S_GtkCTreeRowGetPixmapClosed (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GdkPixmap* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->pixmap_closed;
    _result = toRPointerWithRef(val, "GdkPixmap");
 
@@ -2223,7 +2181,7 @@ S_GtkCTreeRowGetMaskClosed (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GdkBitmap* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->mask_closed;
    _result = toRPointerWithRef(val, "GdkBitmap");
 
@@ -2237,7 +2195,7 @@ S_GtkCTreeRowGetPixmapOpened (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GdkPixmap* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->pixmap_opened;
    _result = toRPointerWithRef(val, "GdkPixmap");
 
@@ -2251,7 +2209,7 @@ S_GtkCTreeRowGetMaskOpened (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    GdkBitmap* val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->mask_opened;
    _result = toRPointerWithRef(val, "GdkBitmap");
 
@@ -2265,7 +2223,7 @@ S_GtkCTreeRowGetLevel (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    guint16 val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->level;
    _result = asRInteger(val);
 
@@ -2279,7 +2237,7 @@ S_GtkCTreeRowGetIsLeaf (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    guint val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->is_leaf;
    _result = asRNumeric(val);
 
@@ -2293,7 +2251,7 @@ S_GtkCTreeRowGetExpanded (USER_OBJECT_ s_obj)
    GtkCTreeRow *obj;
    guint val;
 
-   obj = (GtkCTreeRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCTreeRow*)getPtrValue(s_obj)) ;
    val = obj->expanded;
    _result = asRNumeric(val);
 
@@ -2307,7 +2265,7 @@ S_GtkCListRowGetCell (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GtkCell* val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->cell;
    _result = toRPointer(val, "GtkCell");
 
@@ -2321,7 +2279,7 @@ S_GtkCListRowGetState (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GtkStateType val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->state;
    _result = asREnum(val, GTK_TYPE_STATE_TYPE);
 
@@ -2335,7 +2293,7 @@ S_GtkCListRowGetForeground (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GdkColor val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->foreground;
    _result = asRGdkColor(&val);
 
@@ -2349,7 +2307,7 @@ S_GtkCListRowGetBackground (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GdkColor val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->background;
    _result = asRGdkColor(&val);
 
@@ -2363,7 +2321,7 @@ S_GtkCListRowGetStyle (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GtkStyle* val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->style;
    _result = toRPointerWithRef(val, "GtkStyle");
 
@@ -2377,7 +2335,7 @@ S_GtkCListRowGetData (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    gpointer val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->data;
    _result = val;
 
@@ -2391,7 +2349,7 @@ S_GtkCListRowGetDestroy (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    GtkDestroyNotify val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->destroy;
    _result = toRPointer(&val, "GtkDestroyNotify");
 
@@ -2405,7 +2363,7 @@ S_GtkCListRowGetFgSet (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    guint val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->fg_set;
    _result = asRNumeric(val);
 
@@ -2419,7 +2377,7 @@ S_GtkCListRowGetBgSet (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    guint val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->bg_set;
    _result = asRNumeric(val);
 
@@ -2433,7 +2391,7 @@ S_GtkCListRowGetSelectable (USER_OBJECT_ s_obj)
    GtkCListRow *obj;
    guint val;
 
-   obj = (GtkCListRow*)getPtrValue(s_obj) ;
+   obj = ((GtkCListRow*)getPtrValue(s_obj)) ;
    val = obj->selectable;
    _result = asRNumeric(val);
 
@@ -2447,7 +2405,7 @@ S_GtkTextAppearanceGetBgColor (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    GdkColor val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->bg_color;
    _result = asRGdkColor(&val);
 
@@ -2461,7 +2419,7 @@ S_GtkTextAppearanceGetFgColor (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    GdkColor val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->fg_color;
    _result = asRGdkColor(&val);
 
@@ -2475,7 +2433,7 @@ S_GtkTextAppearanceGetBgStipple (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    GdkBitmap* val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->bg_stipple;
    _result = toRPointerWithRef(val, "GdkBitmap");
 
@@ -2489,7 +2447,7 @@ S_GtkTextAppearanceGetFgStipple (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    GdkBitmap* val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->fg_stipple;
    _result = toRPointerWithRef(val, "GdkBitmap");
 
@@ -2503,7 +2461,7 @@ S_GtkTextAppearanceGetRise (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    gint val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->rise;
    _result = asRInteger(val);
 
@@ -2517,7 +2475,7 @@ S_GtkTextAppearanceGetUnderline (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    guint val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->underline;
    _result = asRNumeric(val);
 
@@ -2531,7 +2489,7 @@ S_GtkTextAppearanceGetStrikethrough (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    guint val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->strikethrough;
    _result = asRNumeric(val);
 
@@ -2545,7 +2503,7 @@ S_GtkTextAppearanceGetDrawBg (USER_OBJECT_ s_obj)
    GtkTextAppearance *obj;
    guint val;
 
-   obj = (GtkTextAppearance*)getPtrValue(s_obj) ;
+   obj = ((GtkTextAppearance*)getPtrValue(s_obj)) ;
    val = obj->draw_bg;
    _result = asRNumeric(val);
 
@@ -2559,7 +2517,7 @@ S_GtkBoxChildGetWidget (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    GtkWidget* val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->widget;
    _result = toRPointerWithSink(val, "GtkWidget");
 
@@ -2573,7 +2531,7 @@ S_GtkBoxChildGetPadding (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    guint16 val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->padding;
    _result = asRInteger(val);
 
@@ -2587,7 +2545,7 @@ S_GtkBoxChildGetExpand (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    guint val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->expand;
    _result = asRNumeric(val);
 
@@ -2601,7 +2559,7 @@ S_GtkBoxChildGetFill (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    guint val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->fill;
    _result = asRNumeric(val);
 
@@ -2615,7 +2573,7 @@ S_GtkBoxChildGetPack (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    guint val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->pack;
    _result = asRNumeric(val);
 
@@ -2629,7 +2587,7 @@ S_GtkBoxChildGetIsSecondary (USER_OBJECT_ s_obj)
    GtkBoxChild *obj;
    guint val;
 
-   obj = (GtkBoxChild*)getPtrValue(s_obj) ;
+   obj = ((GtkBoxChild*)getPtrValue(s_obj)) ;
    val = obj->is_secondary;
    _result = asRNumeric(val);
 
@@ -2643,7 +2601,7 @@ S_GtkFixedChildGetWidget (USER_OBJECT_ s_obj)
    GtkFixedChild *obj;
    GtkWidget* val;
 
-   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   obj = ((GtkFixedChild*)getPtrValue(s_obj)) ;
    val = obj->widget;
    _result = toRPointerWithSink(val, "GtkWidget");
 
@@ -2657,7 +2615,7 @@ S_GtkFixedChildGetX (USER_OBJECT_ s_obj)
    GtkFixedChild *obj;
    gint val;
 
-   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   obj = ((GtkFixedChild*)getPtrValue(s_obj)) ;
    val = obj->x;
    _result = asRInteger(val);
 
@@ -2671,7 +2629,7 @@ S_GtkFixedChildGetY (USER_OBJECT_ s_obj)
    GtkFixedChild *obj;
    gint val;
 
-   obj = (GtkFixedChild*)getPtrValue(s_obj) ;
+   obj = ((GtkFixedChild*)getPtrValue(s_obj)) ;
    val = obj->y;
    _result = asRInteger(val);
 
@@ -2685,7 +2643,7 @@ S_GtkPreviewInfoGetLookup (USER_OBJECT_ s_obj)
    GtkPreviewInfo *obj;
    guchar* val;
 
-   obj = (GtkPreviewInfo*)getPtrValue(s_obj) ;
+   obj = ((GtkPreviewInfo*)getPtrValue(s_obj)) ;
    val = obj->lookup;
    _result = asRRawArray(val);
 
@@ -2699,7 +2657,7 @@ S_GtkPreviewInfoGetGamma (USER_OBJECT_ s_obj)
    GtkPreviewInfo *obj;
    gdouble val;
 
-   obj = (GtkPreviewInfo*)getPtrValue(s_obj) ;
+   obj = ((GtkPreviewInfo*)getPtrValue(s_obj)) ;
    val = obj->gamma;
    _result = asRNumeric(val);
 
@@ -2713,7 +2671,7 @@ S_GtkTableRowColGetRequisition (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint16 val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->requisition;
    _result = asRInteger(val);
 
@@ -2727,7 +2685,7 @@ S_GtkTableRowColGetAllocation (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint16 val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->allocation;
    _result = asRInteger(val);
 
@@ -2741,7 +2699,7 @@ S_GtkTableRowColGetSpacing (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint16 val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->spacing;
    _result = asRInteger(val);
 
@@ -2755,7 +2713,7 @@ S_GtkTableRowColGetNeedExpand (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->need_expand;
    _result = asRNumeric(val);
 
@@ -2769,7 +2727,7 @@ S_GtkTableRowColGetNeedShrink (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->need_shrink;
    _result = asRNumeric(val);
 
@@ -2783,7 +2741,7 @@ S_GtkTableRowColGetExpand (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->expand;
    _result = asRNumeric(val);
 
@@ -2797,7 +2755,7 @@ S_GtkTableRowColGetShrink (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->shrink;
    _result = asRNumeric(val);
 
@@ -2811,7 +2769,7 @@ S_GtkTableRowColGetEmpty (USER_OBJECT_ s_obj)
    GtkTableRowCol *obj;
    guint val;
 
-   obj = (GtkTableRowCol*)getPtrValue(s_obj) ;
+   obj = ((GtkTableRowCol*)getPtrValue(s_obj)) ;
    val = obj->empty;
    _result = asRNumeric(val);
 
@@ -2825,7 +2783,7 @@ S_GtkTableChildGetWidget (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    GtkWidget* val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->widget;
    _result = toRPointerWithSink(val, "GtkWidget");
 
@@ -2839,7 +2797,7 @@ S_GtkTableChildGetLeftAttach (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->left_attach;
    _result = asRInteger(val);
 
@@ -2853,7 +2811,7 @@ S_GtkTableChildGetRightAttach (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->right_attach;
    _result = asRInteger(val);
 
@@ -2867,7 +2825,7 @@ S_GtkTableChildGetTopAttach (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->top_attach;
    _result = asRInteger(val);
 
@@ -2881,7 +2839,7 @@ S_GtkTableChildGetBottomAttach (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->bottom_attach;
    _result = asRInteger(val);
 
@@ -2895,7 +2853,7 @@ S_GtkTableChildGetXpadding (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->xpadding;
    _result = asRInteger(val);
 
@@ -2909,7 +2867,7 @@ S_GtkTableChildGetYpadding (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint16 val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->ypadding;
    _result = asRInteger(val);
 
@@ -2923,7 +2881,7 @@ S_GtkTableChildGetXexpand (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->xexpand;
    _result = asRNumeric(val);
 
@@ -2937,7 +2895,7 @@ S_GtkTableChildGetYexpand (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->yexpand;
    _result = asRNumeric(val);
 
@@ -2951,7 +2909,7 @@ S_GtkTableChildGetXshrink (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->xshrink;
    _result = asRNumeric(val);
 
@@ -2965,7 +2923,7 @@ S_GtkTableChildGetYshrink (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->yshrink;
    _result = asRNumeric(val);
 
@@ -2979,7 +2937,7 @@ S_GtkTableChildGetXfill (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->xfill;
    _result = asRNumeric(val);
 
@@ -2993,7 +2951,7 @@ S_GtkTableChildGetYfill (USER_OBJECT_ s_obj)
    GtkTableChild *obj;
    guint val;
 
-   obj = (GtkTableChild*)getPtrValue(s_obj) ;
+   obj = ((GtkTableChild*)getPtrValue(s_obj)) ;
    val = obj->yfill;
    _result = asRNumeric(val);
 

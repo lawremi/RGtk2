@@ -11,7 +11,7 @@ S_CairoMatrixGetXx (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->xx;
    _result = asRNumeric(val);
 
@@ -25,7 +25,7 @@ S_CairoMatrixGetYx (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->yx;
    _result = asRNumeric(val);
 
@@ -39,7 +39,7 @@ S_CairoMatrixGetXy (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->xy;
    _result = asRNumeric(val);
 
@@ -53,7 +53,7 @@ S_CairoMatrixGetYy (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->yy;
    _result = asRNumeric(val);
 
@@ -67,7 +67,7 @@ S_CairoMatrixGetX0 (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->x0;
    _result = asRNumeric(val);
 
@@ -81,7 +81,7 @@ S_CairoMatrixGetY0 (USER_OBJECT_ s_obj)
    cairo_matrix_t *obj;
    double val;
 
-   obj = (cairo_matrix_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_matrix_t*)getPtrValue(s_obj)) ;
    val = obj->y0;
    _result = asRNumeric(val);
 
@@ -95,7 +95,7 @@ S_CairoTextExtentsGetXBearing (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->x_bearing;
    _result = asRNumeric(val);
 
@@ -109,7 +109,7 @@ S_CairoTextExtentsGetYBearing (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->y_bearing;
    _result = asRNumeric(val);
 
@@ -123,7 +123,7 @@ S_CairoTextExtentsGetWidth (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->width;
    _result = asRNumeric(val);
 
@@ -137,7 +137,7 @@ S_CairoTextExtentsGetHeight (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->height;
    _result = asRNumeric(val);
 
@@ -151,7 +151,7 @@ S_CairoTextExtentsGetXAdvance (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->x_advance;
    _result = asRNumeric(val);
 
@@ -165,7 +165,7 @@ S_CairoTextExtentsGetYAdvance (USER_OBJECT_ s_obj)
    cairo_text_extents_t *obj;
    double val;
 
-   obj = (cairo_text_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_text_extents_t*)getPtrValue(s_obj)) ;
    val = obj->y_advance;
    _result = asRNumeric(val);
 
@@ -179,7 +179,7 @@ S_CairoFontExtentsGetAscent (USER_OBJECT_ s_obj)
    cairo_font_extents_t *obj;
    double val;
 
-   obj = (cairo_font_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_font_extents_t*)getPtrValue(s_obj)) ;
    val = obj->ascent;
    _result = asRNumeric(val);
 
@@ -193,7 +193,7 @@ S_CairoFontExtentsGetDescent (USER_OBJECT_ s_obj)
    cairo_font_extents_t *obj;
    double val;
 
-   obj = (cairo_font_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_font_extents_t*)getPtrValue(s_obj)) ;
    val = obj->descent;
    _result = asRNumeric(val);
 
@@ -207,7 +207,7 @@ S_CairoFontExtentsGetHeight (USER_OBJECT_ s_obj)
    cairo_font_extents_t *obj;
    double val;
 
-   obj = (cairo_font_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_font_extents_t*)getPtrValue(s_obj)) ;
    val = obj->height;
    _result = asRNumeric(val);
 
@@ -221,7 +221,7 @@ S_CairoFontExtentsGetMaxXAdvance (USER_OBJECT_ s_obj)
    cairo_font_extents_t *obj;
    double val;
 
-   obj = (cairo_font_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_font_extents_t*)getPtrValue(s_obj)) ;
    val = obj->max_x_advance;
    _result = asRNumeric(val);
 
@@ -235,7 +235,7 @@ S_CairoFontExtentsGetMaxYAdvance (USER_OBJECT_ s_obj)
    cairo_font_extents_t *obj;
    double val;
 
-   obj = (cairo_font_extents_t*)getPtrValue(s_obj) ;
+   obj = ((cairo_font_extents_t*)getPtrValue(s_obj)) ;
    val = obj->max_y_advance;
    _result = asRNumeric(val);
 

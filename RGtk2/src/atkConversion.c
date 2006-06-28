@@ -85,3 +85,27 @@ asRAtkTextRange(AtkTextRange *range)
 	
 	return(s_range);
 }
+
+USER_OBJECT_
+asRAtkKeyEventStruct(AtkKeyEventStruct * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "type", "state", "keyval", "length", "string", "keycode", "timestamp", NULL };
+
+  PROTECT(s_obj = NEW_LIST(7));
+
+  SET_VECTOR_ELT(s_obj, 0, asRInteger(obj->type));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->state));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->keyval));
+  SET_VECTOR_ELT(s_obj, 3, asRInteger(obj->length));
+  SET_VECTOR_ELT(s_obj, 4, asRString(obj->string));
+  SET_VECTOR_ELT(s_obj, 5, asRInteger(obj->keycode));
+  SET_VECTOR_ELT(s_obj, 6, asRNumeric(obj->timestamp));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("AtkKeyEventStruct"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}

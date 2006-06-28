@@ -300,6 +300,26 @@ asCGdkSpan(USER_OBJECT_ s_span)
     return(span);
 }
 
+USER_OBJECT_
+asRGdkSpan(GdkSpan * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "x", "y", "width", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 3));
+
+  SET_VECTOR_ELT(s_obj, 0, asRInteger(obj->x));
+  SET_VECTOR_ELT(s_obj, 1, asRInteger(obj->y));
+  SET_VECTOR_ELT(s_obj, 2, asRInteger(obj->width));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GdkSpan"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+
 GdkRgbCmap*
 asCGdkRgbCmap(USER_OBJECT_ s_cmap)
 {

@@ -370,11 +370,14 @@ GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
 USER_OBJECT_ asRGdkGCValues(GdkGCValues *values);
 USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 GdkSpan* asCGdkSpan(USER_OBJECT_ s_span);
+USER_OBJECT_ asRGdkSpan(GdkSpan * obj);
 
 /* GTK */
 
 GtkTargetEntry* asCGtkTargetEntry(USER_OBJECT_ s_entry);
+USER_OBJECT_ asRGtkTargetEntry(GtkTargetEntry * obj);
 GtkFileFilterInfo* asCGtkFileFilterInfo(USER_OBJECT_ s_info);
+USER_OBJECT_ asRGtkFileFilterInfo(GtkFileFilterInfo * obj);
 GtkSettingsValue* asCGtkSettingsValue(USER_OBJECT_ s_value);
 GtkStockItem* asCGtkStockItem(USER_OBJECT_ s_item);
 USER_OBJECT_ asRGtkStockItem(GtkStockItem *item);
@@ -383,6 +386,12 @@ GtkItemFactoryEntry* asCGtkItemFactoryEntry2(USER_OBJECT_ s_entry);
 GtkItemFactoryEntry* R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype);
 GtkAllocation* asCGtkAllocation(USER_OBJECT_ s_alloc);
 USER_OBJECT_ asRGtkAllocation(GtkAllocation* alloc);
+GtkRecentFilterInfo * asCGtkRecentFilterInfo(USER_OBJECT_ s_obj);
+USER_OBJECT_ asRGtkRecentFilterInfo(GtkRecentFilterInfo * obj);
+GtkRecentData * asCGtkRecentData(USER_OBJECT_ s_obj);
+USER_OBJECT_ asRGtkPageRange(GtkPageRange * obj);
+GtkPageRange * asCGtkPageRange(USER_OBJECT_ s_obj);
+USER_OBJECT_ asRGtkAccelKey(GtkAccelKey * obj);
 USER_OBJECT_ toRPointerWithSink(void *val, const char *type);
 
 /* ATK */
@@ -394,6 +403,7 @@ USER_OBJECT_ asRAtkAttribute(AtkAttribute* attr);
 AtkTextRectangle* asCAtkTextRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRAtkTextRectangle(AtkTextRectangle *rect);
 USER_OBJECT_ asRAtkTextRange(AtkTextRange *range);
+USER_OBJECT_ asRAtkKeyEventStruct(AtkKeyEventStruct * obj);
 
 /* Pango */
 

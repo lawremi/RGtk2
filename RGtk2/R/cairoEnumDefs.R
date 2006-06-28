@@ -17,7 +17,8 @@ CairoStatus<-c("success" = 0,
 	"invalid-format" = 16,
 	"invalid-visual" = 17,
 	"file-not-found" = 18,
-	"invalid-dash" = 19)
+	"invalid-dash" = 19,
+	"invalid-dsc-comment" = 20)
 storage.mode(CairoStatus) <- 'integer'
 class(CairoStatus) <- 'enums' 
 
@@ -105,7 +106,8 @@ class(CairoPathDataType) <- 'enums'
 CairoFormat<-c("argb32" = 0,
 	"rgb24" = 1,
 	"a8" = 2,
-	"a1" = 3)
+	"a1" = 3,
+	"rgb16-565" = 4)
 storage.mode(CairoFormat) <- 'integer'
 class(CairoFormat) <- 'enums' 
 
@@ -129,4 +131,31 @@ CairoFilter<-c("fast" = 0,
 	"gaussian" = 5)
 storage.mode(CairoFilter) <- 'integer'
 class(CairoFilter) <- 'enums' 
+
+CairoSurfaceType<-c("image" = 0,
+	"pdf" = 1,
+	"ps" = 2,
+	"xlib" = 3,
+	"xcb" = 4,
+	"glitz" = 5,
+	"quartz" = 6,
+	"win32" = 7,
+	"beos" = 8,
+	"directfb" = 9,
+	"svg" = 10)
+storage.mode(CairoSurfaceType) <- 'integer'
+class(CairoSurfaceType) <- 'enums' 
+
+CairoPatternType<-c("solid" = 0,
+	"surface" = 1,
+	"linear" = 2,
+	"radial" = 3)
+storage.mode(CairoPatternType) <- 'integer'
+class(CairoPatternType) <- 'enums' 
+
+CairoSvgVersion<-c("1-1" = 0,
+	"1-2" = 1,
+	"last" = 2)
+storage.mode(CairoSvgVersion) <- 'integer'
+class(CairoSvgVersion) <- 'enums' 
 
