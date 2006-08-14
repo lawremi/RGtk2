@@ -511,7 +511,7 @@
 (define-method get_inner_border
   (of-object "GtkEntry")
   (c-name "gtk_entry_get_inner_border")
-  (return-type "const-GtkBorder*")
+  (return-type "GtkBorder*")
 )
 
 
@@ -811,6 +811,7 @@
   (parameters
     '("GtkNotebookWindowCreationFunc" "func")
     '("gpointer" "data")
+    '("GDestroyNotify" "destroy")
   )
 )
 
@@ -2256,21 +2257,6 @@
   (return-type "gboolean")
 )
 
-(define-method set_show_numbers
-  (of-object "GtkRecentChooser")
-  (c-name "gtk_recent_chooser_set_show_numbers")
-  (return-type "none")
-  (parameters
-    '("gboolean" "show_numbers")
-  )
-)
-
-(define-method get_show_numbers
-  (of-object "GtkRecentChooser")
-  (c-name "gtk_recent_chooser_get_show_numbers")
-  (return-type "gboolean")
-)
-
 (define-method set_show_icons
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_set_show_icons")
@@ -2918,6 +2904,7 @@
   (c-name "gtk_target_list_add_rich_text_targets")
   (return-type "none")
   (parameters
+    '("GtkTargetList*" "list")
     '("guint" "info")
     '("gboolean" "deserializable")
     '("GtkTextBuffer*" "buffer")
@@ -3499,7 +3486,7 @@
   (c-name "gtk_tree_store_insert_with_values")
   (return-type "none")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreeIter*" "parent")
     '("gint" "position")
   )

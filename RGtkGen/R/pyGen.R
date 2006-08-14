@@ -191,6 +191,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   typecodes[["GObject"]] <- "G_TYPE_OBJECT" # not included in defs
   typecodes[["GObjectClass"]] <- "G_TYPE_OBJECT"
   typecodes[["GValue"]] <- "G_TYPE_VALUE"
+  typecodes[transparentTypes] <- "R_GTK_TYPE_SEXP"
   defs$typecodes <- typecodes
 
   defs
@@ -733,6 +734,12 @@ function(type, var, size)
      decl <- paste(decl,"[",size,"]",sep="")
  decl
 }
+# denote something as static
+static <-
+function(var)
+{
+  paste("static", var)
+}
 # makes a C statement (terminated by ';')
 statement <- function(x, depth = 1) {
     paste(ind(x, depth), ";", sep="", collapse="\n")
@@ -743,28 +750,35 @@ lit <- function(x) {
 }
 # indents the argument to the given depth
 ind <- function(x, depth = 1) {
-    paste(rep("\t",depth), x, sep="")
+    paste(rep("  ",depth), x, sep="")
 }
 # casts the value to the given type
 cast <- function(type, val) {
-    paste("(", type, ")", val, sep="")
+    paste("((", type, ")", val, ")", sep="")
 }
 # initializes an array with the given elements
-arrinit <- function(elements) {
-    paste("{", paste(elements, collapse=", "), "}")
+arrinit <- function(elements, null_terminate = F) {
+  if (null_terminate)
+    elements <- c(elements, "NULL")
+  paste("{", paste(elements, collapse=", "), "}")
 }
 # declares a function in C
-declareFunction <- function(ret, name, ptypes, pnames) {
+declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
     if (ret == "none")
         ret <- "void"
 
     args <- character(0)
-    if (length(pnames) > 0)
-        args <- paste(ptypes, nameToSArg(pnames), collapse=", ")
-
+    if (length(pnames) > 0) {
+      if (prefix)
+        pnames <- nameToSArg(pnames)
+      args <- paste(toValidType(ptypes), pnames, collapse=", ")
+    }
+    if (prefix)
+      name <- nameToC(name)
+    
     paste(
         ret, "\n",
-        nameToC(name), "(", args, ")",
+        name, "(", args, ")",
     sep="")
 }
 
@@ -826,9 +840,35 @@ named <- function(name, val)
 {
     paste(name, "=", val)
 }
+# access a field
+field <- function(struct, name)
+{
+  paste(struct, "->", name, sep="")
+}
+# accesses an index in a vector
+vecind <- function(vec, ind) {
+  invokev("VECTOR_ELT", vec, ind - 1)
+}
 # accesses a particular array index
 arrind <- function(arr, ind) {
     paste(arr, "[", ind, "]", sep="")
+}
+listind <- function(arr, ind) {
+  paste(arr, "[[", ind, "]]", sep="")
+}
+# convenience functions for common macros
+setvec <- function(vec, ind, val) {
+  invokev("SET_VECTOR_ELT", vec, ind - 1, val)
+}
+pushvec <- function(vec, val) {
+  c(invokev("SETCAR", vec, val), cassign(vec, invoke("CDR", vec)))
+}
+  
+setnames <- function(vec, val) {
+  invokev("SET_NAMES", vec, val)
+}
+setclass <- function(obj, val) {
+  invokev("SET_CLASS", obj, val)
 }
 # references a variable
 refName <- function(name) {
@@ -847,6 +887,20 @@ malloc <- function(type) {
 # allocate zeroed memory on the R stack
 salloc <- function(num, type) {
     cast(refType(type), invokev("S_alloc", num, invoke("sizeof", type)))
+}
+# allocate non-zeroed memory on R stack
+ralloc <- function(num, type) {
+    cast(refType(type), invokev("R_alloc", num, invoke("sizeof", type)))
+}
+# allocate R vector object
+alloc <- function(obj, type, length)
+{
+  invoke("PROTECT", cassign(obj, invokev("allocVector", paste(toupper(type), "SXP", sep=""), length)))
+}
+# pop one object from the stack
+unprotect <- function(count)
+{
+  invoke("UNPROTECT", count)
 }
 # returns a value from a function
 returnValue <- function(name = "_result") {
@@ -1039,7 +1093,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     if(isDeprecated(fun)) {
         txt <- c(txt,
         ind(c(invoke("if", invoke("getOption", lit("depwarn"))),
-            ind(invokev("warning", lit(paste("This function is deprecated:", fun$deprecated)))))),
+            ind(invokev(".Deprecated", fun$deprecated, package)))),
         "")
     }
 
@@ -1074,7 +1128,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
 ### C - the R stuff was just a warmup
 
 convertToCType <-
-function(paramname, paramtype, defs, params = NULL, nullOk = FALSE)
+function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
 {
 
  if(is.list(paramtype))
@@ -1082,7 +1136,9 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE)
 
  type <- baseType(paramtype)
 
- name <- nameToSArg(paramname)
+ if (prefix)
+   name <- nameToSArg(paramname)
+ else name <- paramname
 
  # the components
  fun <- NULL
@@ -1112,7 +1168,7 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE)
  # some object and we pass the SEXP directly, so we use R_ReleaseObject
  } else if (type == "GDestroyNotify" || type == "GtkDestroyNotify" || type == "cairo_destroy_func_t") {
      if (!is.null(params) && any(isUserFunction(getParamTypes(params), defs)))
-         args <- "g_closure_sink" # user function data
+         args <- "R_freeCBData" # user function data
      else args <- "R_ReleaseObject" # generic data
  } else if (type == "GtkClipboardClearFunc") { # special destroy func for clipboard stuff
      args <- "S_GtkClipboardClearFunc"
@@ -1176,15 +1232,17 @@ function(var, ptype, fun = NULL, defs)
 {
 	type <- baseType(ptype)
 	out <- !is.null(fun$parameters[[var]]) && fun$parameters[[var]]$access == "out"
-    fn <- NULL
-    args <- var
-    if (length(grep("G[S]?List", ptype)) > 0) { # G(S)Lists have their subtype specified in [ ]
-		split <- strsplit(ptype, "\\[")[[1]]
+  fn <- NULL
+  args <- var
+  if (length(grep("G[S]?List", ptype)) > 0) { # G(S)Lists have their subtype specified in [ ]
+    split <- strsplit(ptype, "\\[")[[1]]
 		fn <- asR(split[[1]])
 		type <- substr(split[[2]], 1, nchar(split[[2]]) - 1)
-		fun$owns <- 0 # assume the elements are not owned by caller
+		if (!is.null(fun))
+      fun$owns <- 0 # assume the elements are not owned by caller
 		conv <- convertToR(var, type, fun, defs)
 		args <- conv$args
+    args[1] <- var
 		if (length(grep("^toRPointer", conv$fun)) > 0)
 			fn <- paste(fn, sub("toRPointer", "", conv$fun), sep="")
 		else {
@@ -1193,105 +1251,106 @@ function(var, ptype, fun = NULL, defs)
 		}
 	} else if (type %in% transparentTypes) {
 		# these come first to override primitive type
-        fn <- asR(type)
-    } else if (isPrimitiveType(type)) {
-        fn <- getGenericTypeAsR(type)
-    } else if (isArray(type)) {
-        etype <- deref(toValidType(type))
-        if (isPrimitiveType(etype))
-            fn <- paste(getGenericTypeAsR(etype), "Array", sep="")
-        else {
-            conv <- convertToR(var, etype, fun, defs)
-            if (length(grep("^asREnum", conv$fun)) > 0) {
-                fn <- "asREnumArray"
-                args <- c(args, conv$args[[2]])
-            } else if (length(grep("^toRPointer", conv$fun)) > 0) { # rare
-                args <- c(args, conv$args[[2]])
-                if (isArray(deref(ptype))) {
-                    fn <- paste(conv$fun, "Array", sep="")
-                    if (length(conv$args) == 3)
-                        args <- c(args, conv$args[[3]])
-                } else fn <- "asRStructArray" # need to separate in memory
-            } else {
-                if (deref(ptype) %in% transparentTypes && type != "GdkAtom[]")
-                    fn <- "asRArrayRef" # converter returns a reference
-                else fn <- "asRArray" # returns a value
-                args <- c(args, conv$fun)
-            }
+    fn <- asR(type)
+  } else if (isPrimitiveType(type)) {
+    fn <- getGenericTypeAsR(type)
+  } else if (isArray(type)) {
+    etype <- deref(toValidType(type))
+    if (isPrimitiveType(etype))
+      fn <- paste(getGenericTypeAsR(etype), "Array", sep="")
+    else {
+      conv <- convertToR(var, etype, fun, defs)
+      if (length(grep("^asREnum", conv$fun)) > 0) {
+        fn <- "asREnumArray"
+        args <- c(args, conv$args[[2]])
+      } else if (length(grep("^toRPointer", conv$fun)) > 0) { # rare
+        args <- c(args, conv$args[[2]])
+        if (isArray(deref(ptype))) {
+          fn <- paste(conv$fun, "Array", sep="")
+          if (length(conv$args) == 3)
+            args <- c(args, conv$args[[3]])
+          } else fn <- "asRStructArray" # need to separate in memory
+        } else {
+          if (dequalify(deref(ptype)) %in% transparentTypes && type != "GdkAtom[]") {
+            fn <- "asRArrayRef" # converter returns a reference
+          } else fn <- "asRArray" # returns a value
+            args <- c(args, conv$fun)
         }
-        if (nchar(arraySize(type)) > 0) { # sometimes the size is explicitly specified
-            fn <- paste(fn, "WithSize", sep="")
-            args <- c(args, arraySize(type))
+      }
+      if (nchar(arraySize(type)) > 0) { # sometimes the size is explicitly specified
+        fn <- paste(fn, "WithSize", sep="")
+        args <- c(args, arraySize(type))
+      } else if (length(fun$parameters) > 0) {
+        nind <- which(sapply(fun$parameters, function(param) {
+          type <- deref(param$type)
+          param$name != var && param$access == "out" && isPrimitiveType(type) &&
+            (getGenericType(type) == "integer" || getGenericType(type) == "numeric")
+        }))
+        if (length(nind) > 0 || (isPrimitiveType(fun$return) && getGenericType(fun$return) == "integer")) {
+          fn <- paste(fn, "WithSize", sep="")# attempt to guess the size variable for an array
+          if (length(nind) > 0)
+            args <- c(args, fun$parameters[[nind[[1]]]]$name)
+          else args <- c(args, "ans")
         }
-        else if (length(fun$parameters) > 0) {
-            nind <- which(sapply(fun$parameters, function(param) {
-                type <- deref(param$type)
-                param$name != var && param$access == "out" && isPrimitiveType(type) &&
-                (getGenericType(type) == "integer" || getGenericType(type) == "numeric")
-            }))
-            if (length(nind) > 0 || (isPrimitiveType(fun$return) && getGenericType(fun$return) == "integer")) {
-                fn <- paste(fn, "WithSize", sep="")# attempt to guess the size variable for an array
-                if (length(nind) > 0)
-					args <- c(args, fun$parameters[[nind[[1]]]]$name)
-				else args <- c(args, "ans")
-            }
-        }
+      }
     } else if(isEnum(type, defs)) {
-        #if (isCairoType(type))
-		#	args <- invoke("asRInteger", var)
-		#	fn <- paste("S_check", type, "value", sep="_")
-		fn <- "asREnum"
-        args <- c(args, defs$typecodes[[type]])
+      #if (isCairoType(type))
+        #	args <- invoke("asRInteger", var)
+      #	fn <- paste("S_check", type, "value", sep="_")
+      fn <- "asREnum"
+      args <- c(args, defs$typecodes[[type]])
     } else if(isFlag(type, defs)) {
-        fn <- "asRFlag"
-        args <- c(args, defs$typecodes[[type]])
+      fn <- "asRFlag"
+      args <- c(args, defs$typecodes[[type]])
     } else if(type == "GdkEvent") {
-        fn <- "asRGdkEvent" # special handling of gdk events
+      fn <- "asRGdkEvent" # special handling of gdk events
     } else if(type == "PangoAttribute") {
-        fn <- "asRPangoAttribute" # special handling of pango attributes
+      fn <- "asRPangoAttribute" # special handling of pango attributes
     } else if (type == "GdkFont") { # also GdkFont (need to ref it)
-		fn <- "toRGdkFont"
-	} else if (type != "gpointer") {
-        args <- c(args, lit(asRTypeName(type)))
-        postfix <- NULL
-        finalizer <- NULL
-        if (!is.null(fun) && !inheritsClass(type, defs$objects, "GtkObject")) {
-            # we're in a function (not accessor) should probably set finalizer
-            if (type %in% names(cleanupFuncs))
-                finalizer <- cleanupFuncs[[type]]
-            else if (type %in% names(finalizerFuncs))
-                finalizer <- finalizerFuncs[[type]]
-			else if (isBoxed(type, defs)) { # boxed type -> release func as finalizer
-                finalizer <- defs$boxes[[match(type, names(defs$boxes))]]$release
-            } else if (isPointer(type, defs) && (fun$owns == 1 || out)) {
-                finalizer <- "g_free"
-            } else if (isObject(type, defs) || isInterface(type, defs)) {
-				needRef <- isConstructor(fun) || (fun$owns == 1 && !out)
-				if (isCairoType(type)) {
-					stype <- stripCairoType(type)
-					if (needRef) # cairo 'objects' are managed by [type]_destroy and [type]_reference
-						finalizer <- paste(stype, "destroy", sep="_")
-					else { 
-						postfix <- "WithCairoRef"
-						args <- c(args, stype)
-					}
-				} else if (needRef)
-					finalizer <- "g_object_unref"
-				else postfix <- "WithRef" 
+      fn <- "toRGdkFont"
+    } else if (type != "gpointer") {
+      args <- c(args, lit(asRTypeName(type)))
+      postfix <- NULL
+      finalizer <- NULL
+      if (!is.null(fun) && !inheritsClass(type, defs$objects, "GtkObject")) {
+        # we're in a function (not accessor) should probably set finalizer
+        if (type %in% names(cleanupFuncs))
+          finalizer <- cleanupFuncs[[type]]
+        else if (type %in% names(finalizerFuncs))
+          finalizer <- finalizerFuncs[[type]]
+        else if (isBoxed(type, defs)) { # boxed type -> release func as finalizer
+          # but we must own memory before freeing it
+          args[1] <- invoke(defs$boxes[[type]]$copy, args[1])
+          finalizer <- defs$boxes[[type]]$release
+        } else if (isPointer(type, defs) && (fun$owns == 1 || out)) {
+          finalizer <- "g_free"
+        } else if (isObject(type, defs) || isInterface(type, defs)) {
+          needRef <- isConstructor(fun) || (fun$owns == 1 && !out)
+          if (isCairoType(type)) {
+            stype <- stripCairoType(type)
+            if (needRef) # cairo 'objects' are managed by [type]_destroy and [type]_reference
+              finalizer <- paste(stype, "destroy", sep="_")
+            else { 
+              postfix <- "WithCairoRef"
+              args <- c(args, stype)
             }
-            if (!is.null(finalizer) && nchar(finalizer) > 0 && !isConst(ptype)) {
-                postfix <- "WithFinalizer"
-                args <- c(args, paste("(RPointerFinalizer)", finalizer))
-            }
-        } else if (inheritsClass(type, defs$objects, "GtkObject"))
-			postfix <- "WithSink" # we claim ownership of GtkObjects
-		else if (isObject(type, defs) || isInterface(type,defs))
-            postfix <- "WithRef" # GObject, non-constructor and caller doesn't own return -> WithRef
-        fn <- paste("toRPointer", postfix, sep="")
-    }
+          } else if (needRef)
+					  finalizer <- "g_object_unref"
+          else postfix <- "WithRef" 
+        }
+        if (!is.null(finalizer) && nchar(finalizer) > 0 && !isConst(ptype)) {
+          postfix <- "WithFinalizer"
+          args <- c(args, paste("(RPointerFinalizer)", finalizer))
+        }
+      } else if (inheritsClass(type, defs$objects, "GtkObject"))
+        postfix <- "WithSink" # we claim ownership of GtkObjects
+      else if (isObject(type, defs) || isInterface(type,defs))
+        postfix <- "WithRef" # GObject, non-constructor and caller doesn't own return -> WithRef
+      fn <- paste("toRPointer", postfix, sep="")
+  }
  code <- args # if no conversion, just assume it is a SEXP (user data)
  if (!is.null(fn))
-     code <- invoke(fn, args)
+   code <- invoke(fn, args)
  list(code=code, fun=fn, args=args)
 }
 
@@ -1308,21 +1367,21 @@ function(name, params, defs)
     sorted <- c(params[(func+1):length(params)], rev(params[1:(func-1)]))
     found <- which("gpointer" == lapply(sorted, function(x) x$type))
     if (length(found) == 0) { # handles "global" hooks (no user-data)
-		data <- paste(type, "_closure", sep="") # cannot init extern declaration
-        data <- paste(statement(data), data, sep="\n")
-        sdata <- "NULL"
+      data <- paste(type, "_cbdata", sep="") # cannot init extern declaration
+      data <- paste(statement(data), data, sep="\n")
+      sdata <- "NULL"
     } else {
         if (length(grep("DestroyNotify", getParamTypes(params))) == 0)
             freeData <- TRUE # like for a 'foreach' func
         data <- sorted[[found[[1]]]]$name
         sdata <- nameToSArg(data)
     }
-	declaration <- decl("GClosure*", data)
+	declaration <- decl("R_CallbackData*", data)
 	if (length(found) == 0) # import global symbol with 'extern'
 		declaration <- extern(declaration)
-    coercion <- statement(c(cassign(decl(type, name), cast(type, nameToC(type))),
-        cassign(declaration, invoke("R_createGClosure", c(nameToSArg(name), sdata)))))
-    list(coercion = coercion, data = data, freeData = freeData)
+  coercion <- statement(c(cassign(decl(type, name), cast(type, nameToC(type))),
+    cassign(declaration, invoke("R_createCBData", c(nameToSArg(name), sdata)))))
+  list(coercion = coercion, data = data, freeData = freeData)
 }
 
 genCCode <-
@@ -1389,7 +1448,7 @@ function(fun, defs, name)
                 ret <- convertUserFunction(name, tmpParams, defs)
                 remove <<- c(remove, name, ret$data)
                 if (ret$freeData) # need to free the data right after call
-                    cleanup <<- c(cleanup, statement(invoke("g_closure_sink", ret$data)))
+                    cleanup <<- c(cleanup, statement(invoke("R_freeCBData", ret$data)))
                 ret$coercion
             })) # don't consider these parameters again for coercion
             tmpParams <- tmpParams[-which(names(tmpParams) %in% remove)]
@@ -1422,33 +1481,37 @@ function(fun, defs, name)
   outRet <- character(0)
  if (length(outParams) > 0) {
      outDecl <- sapply(names(outParams), function(name) {
-         type <- outParams[[name]]$type
-         alloc <- character(0)
-         dtype <- deref(type) # single pointers need allocation
-         if (isBoxed(dtype, defs) || isPointer(dtype, defs) || (dtype %in% transparentTypes && dtype != "GdkAtom")) {
-             alloc <- malloc(dtype)
-         } else if (isObject(dtype, defs)) {
-			 alloc <- invokev(getConstructor(dtype, defs))
-		 } else {
-             if (refCount(type) > 1)
-                 alloc <- "NULL" # init pointers to null
-             type <- dtype
-         }
-         if (!(isPrimitiveType(dtype) && getGenericType(dtype) == "string")) {
-			 clean <- getCleanup(dtype, name) # basically for transparent types
-			 if (!is.null(clean)) # we don't free strings returned by ref
-				 cleanup <<- c(cleanup, clean)
-		 }
-         out <- decl(type, name)
-         if (length(alloc) > 0)
-             out <- cassign(out, alloc)
-         statement(out)
+       type <- outParams[[name]]$type
+       alloc <- character(0)
+       dtype <- deref(type) # single pointers need allocation
+       if (isPointer(dtype, defs) || (dtype %in% transparentTypes && dtype != "GdkAtom")) {
+         alloc <- malloc(dtype)
+       } else if (isObject(dtype, defs)) {
+         alloc <- invokev(getConstructor(dtype, defs))
+       } else {
+         if (refCount(type) > 1)
+           alloc <- "NULL" # init pointers to null
+         type <- dtype
+       }
+       if (!(isPrimitiveType(dtype) && getGenericType(dtype) == "string")) {
+         clean <- getCleanup(dtype, name) # basically for transparent types
+         if (!is.null(clean)) # we don't free strings returned by ref
+           cleanup <<- c(cleanup, clean)
+       }
+       out <- decl(type, name)
+       if (length(alloc) > 0)
+         out <- cassign(out, alloc)
+       statement(out)
      })
 
      outRetParams <- NULL
      sapply(names(outParams), function(name) {
-         outRetParams <<- c(outRetParams,
-            lit(name), convertToR(name, deref(outParams[[name]]$type), fun, defs)$code)
+       dtype <- deref(outParams[[name]]$type)
+       if (isBoxed(dtype, defs) && !(dtype %in% transparentTypes))
+         conv_name <- refName(name)
+       else conv_name <- name
+       outRetParams <<- c(outRetParams,
+          lit(name), convertToR(conv_name, deref(outParams[[name]]$type), fun, defs)$code)
      })
 
      if (!is.null(outRetParams)) {
@@ -1536,7 +1599,7 @@ function(params, defs)
   types <- getParamTypes(params)
   refs <- which(sapply(params, function(param) {
       type <- deref(param$type)
-      !isInParam(param) && !isBoxed(type, defs) && !isPointer(type, defs) && !isObject(type, defs) &&
+      !isInParam(param) && !isPointer(type, defs) && !isObject(type, defs) &&
         (!(type %in% transparentTypes) || type == "GdkAtom")
   }))
   if (length(refs) > 0)
@@ -1561,14 +1624,22 @@ declareReturnValue <- function(type, name="_result") {
 }
 
 initParamGValues <- function(params, defs, name="params") {
-    codes <- defs$typecodes[baseType(getParamTypes(params))]
-    missing <- sapply(codes, function(code) { is.null(code) || is.na(code) })
+  codes <- defs$typecodes[baseType(getParamTypes(params))]
+  missing <- sapply(codes, is.null)
 	codes[missing] <- "G_TYPE_POINTER"
-    invokev("g_value_init", arrind(refName(name),c(1:length(params))-1), codes)
+  invokev("g_value_init", arrind(refName(name),c(1:length(params))-1), codes)
 }
 storeParamGValues <- function(params, defs, name="params") {
-    invokev(paste("g_value_set_", getGValueToken(getParamTypes(params), defs),sep=""),
-        arrind(refName("params"),c(1:length(params))-1), nameToSArg(names(params)))
+  types <- getParamTypes(params)  
+  args <- sapply(names(types), function(param_name) {
+    arg <- nameToSArg(param_name)
+    type <- baseType(types[param_name])
+    if (type %in% transparentTypes)
+      arg <- invoke(asR(type), arg)
+    arg
+  })
+  invokev(paste("g_value_set_", getGValueToken(types, defs),sep=""),
+    arrind(refName("params"),c(1:length(params))-1), args)
 }
 
 getGValueToken <- function(type, defs = NULL) {
@@ -1611,7 +1682,7 @@ returnFromGValue <- function(type, defs, name = "ans") {
     returnValue(invoke(paste("g_value_get_", getGValueToken(type, defs), sep=""), name))
 }
 
-genUserFunctionCode <-
+genUserFunctionCode_old <-
 function(fun, defs) {
 	code <- ""
     header <- declareFunction(fun$return, fun$name, dequalify(getParamTypes(fun$parameters)), names(fun$parameters))
@@ -1669,6 +1740,150 @@ function(fun, defs) {
     }
     code <- c(code,"}")
     list(code=paste(code,collapse="\n"), decl=statement(declaration))
+}
+
+########
+# Second attempt at user function stuff
+########
+
+genUserFunctionCode <- function(fun, defs)
+{
+  code <- ""
+  header <- declareFunction(fun$return, fun$name, 
+    dequalify(getParamTypes(fun$parameters)), names(fun$parameters))
+  declaration <- header
+
+  params <- fun$parameters
+
+  dataInd <- which(getParamTypes(params) == "gpointer")
+  hasData <- length(dataInd) > 0
+
+  if (hasData) {
+    dataInd <- dataInd[[1]]
+    data <- params[[dataInd]]
+    params <- fun$parameters[-dataInd]
+    dataName <- cast(refType("R_CallbackData"), nameToSArg(data$name))
+  } else {
+    dataName <- paste(fun$name, "_cbdata", sep="")
+    code <- c(code, statement(decl(refType("R_CallbackData"), dataName)))
+  }
+  
+  hasReturn <- fun$return != "none"
+  retName <- nameToSArg("ans")
+  
+  if (length(params) > 0) {
+    inParams <- sapply(params, isInParam)
+    params <- params[inParams]
+  }
+    
+  dummyParams <- lapply(params, function(param) {
+    param$access <- "out"
+    param$name <- nameToSArg(param$name)
+    param
+  })
+  dummyFun <- fun
+  dummyFun$parameters <- dummyParams
+  
+  code <- c(code,
+  header,
+  "{",
+    statement(decl("USER_OBJECT_", "e")),
+    statement(decl("USER_OBJECT_", "tmp")),
+    statement(decl("USER_OBJECT_", retName)),
+    "",
+    statement(alloc("e", "lang", length(params)+2)),
+    statement(cassign("tmp", "e")),
+    "",
+    statement(pushvec("tmp", field(dataName, "function"))),
+    "",
+    statement(sapply(dummyParams, function(param) {
+      pushvec("tmp", convertToR(param$name, param$type, dummyFun, defs)$code)
+    })),
+    statement(pushvec("tmp", field(dataName, "data"))),
+    "",
+    statement(cassign("s_ans", invokev("eval", "e", "R_GlobalEnv"))),
+    "",
+    statement(unprotect(1)))
+    if (hasReturn)
+      code <- c(code,statement(returnValue(convertToCType("ans", fun$return, defs)$code)))
+  code <- c(code,
+  "}")
+  list(code=paste(code,collapse="\n"), decl=statement(declaration))
+}
+
+########
+# Transparent type conversion
+########
+
+genTransparentAsC <- 
+function(struct, defs)
+{
+  type <- struct$name
+  ptype <- refType(type)
+  code <- c(declareFunction(ptype, asC(type), "USER_OBJECT_", "s_obj", F),
+    "{",
+      statement(decl(ptype, "obj")),
+      "",
+      statement(cassign("obj", ralloc(1, type))),
+      "",
+      sapply(1:length(struct$fields), function(field) {
+        statement(cassign(field("obj", names(struct$fields)[field]), 
+          convertToCType(vecind("s_obj", field), struct$fields[[field]], 
+            defs, prefix=F)$code))
+      }),
+      "",
+      statement(returnValue("obj")),
+    "}"
+  )
+  paste(code, collapse="\n")
+}
+
+genTransparentAsR <- 
+function(struct,defs)
+{
+  type <- struct$name
+  ptype <- refType(type)
+  code <- c(declareFunction("USER_OBJECT_", asR(type), ptype, "obj", F),
+  "{",
+    statement(decl("USER_OBJECT_", "s_obj")),
+    statement(cassign(decl(static("gchar *"), arrind("names", "")), 
+      arrinit(lit(names(struct$fields)), T))),
+    "",
+    statement(alloc("s_obj", "vec", length(struct$fields))),
+    "",
+    sapply(1:length(struct$fields), function(field) {
+      statement(setvec("s_obj", field, convertToR(field("obj", names(struct$fields)[field]), 
+        struct$fields[[field]], defs=defs)$code))
+    }),
+    "",
+    statement(setnames("s_obj", invoke(asR("StringArray"), "names"))),
+    statement(setclass("s_obj", invoke(asR("String"), lit(type)))),
+    "",
+    statement(unprotect(1)),
+    "",
+    statement(returnValue("s_obj")),
+  "}"
+  )
+  paste(code, collapse="\n")
+}
+
+genTransparentCoerce <-
+function(struct, defs)
+{
+  type <- struct$name
+  code <- c(declareRFunction(asCoerce(type), "x"),
+  "{",
+  ind(c(rassign("x", invokev("as.struct", lit(type), invoke("c", lit(names(struct$fields))))),
+    sapply(1:length(struct$fields), function(field) {
+      param <- list(name = listind("x", field), type = struct$fields[[field]], 
+        nullok = 0, access="in")
+      coerceRValueCode(param, listind("x", field), defs)
+    }),
+    "",
+    returnValue("x")
+   )),
+  "}")
+  paste(code, collapse="\n")
 }
 
 #############################

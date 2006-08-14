@@ -52,4 +52,6 @@ R_gtkInit(long *rargc, char **rargv)
 #else
     R_tcldo = R_gtk_handle_events;
 #endif
+
+  r_gtk_sexp_get_type();
 }

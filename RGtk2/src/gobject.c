@@ -285,21 +285,21 @@ S_g_object_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name, USE
 USER_OBJECT_
 S_g_object_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name)
 {
-        GObject * object = (GObject *)getPtrValue(s_object);
-        gchar * property_name = asCString(s_property_name);
+    GObject * object = (GObject *)getPtrValue(s_object);
+    gchar * property_name = asCString(s_property_name);
 		GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(object), property_name);
 		
 		USER_OBJECT_ _result = NULL_USER_OBJECT;
-        GValue value = { 0, };
+    GValue value = { 0, };
 
 		if (!spec) {
-            PROBLEM "Invalid property %s!\n", property_name
-            ERROR;
-        }
+      PROBLEM "Invalid property %s!\n", property_name
+      ERROR;
+    }
 		g_value_init(&value, G_PARAM_SPEC_VALUE_TYPE(spec));
-        g_object_get_property(object, property_name, &value);
-        _result = retByVal(_result, "value", asRGValue(&value), NULL);
-        return(_result);
+    g_object_get_property(object, property_name, &value);
+    _result = asRGValue(&value);
+    return(_result);
 }
 
 USER_OBJECT_

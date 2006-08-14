@@ -58,12 +58,13 @@ asCNumeric(USER_OBJECT_ s_num)
 char *
 asCString(USER_OBJECT_ s_str)
 {
-    if (GET_LENGTH(s_str) == 0)
-        return(NULL);
-    if (IS_VECTOR(s_str))
-        s_str = STRING_ELT(s_str, 0);
-    /*return(CHAR_DEREF(STRING_ELT(s_str, 0)));*/
-    return(CHAR_DEREF(s_str));
+ if (IS_VECTOR(s_str)) {
+   if (GET_LENGTH(s_str) == 0)
+     return(NULL);
+     s_str = STRING_ELT(s_str, 0);
+   } 
+   return(CHAR_DEREF(s_str));
+   /*return(CHAR_DEREF(STRING_ELT(s_str, 0)));*/
 }
 char
 asCCharacter(USER_OBJECT_ s_char)

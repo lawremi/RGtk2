@@ -8,7 +8,7 @@ source("genCode.S")
 source("genCons.S")
 path <- "/home/larman/research/RGtk2/RGtkGen/inst/data"
 defspath <- file.path(path, "defs")
-libs <- c("atk.defs", "pango.defs", "gdk.defs", "gtk.defs", "cairo.defs")
+libs <- c("atk.defs", "cairo.defs", "pango.defs", "gdk.defs", "gtk.defs")
 extralibs <- c("libglade.defs")
 extrapath <- file.path(defspath, "extra")
 files <- file.path(defspath, version, libs)
@@ -16,7 +16,7 @@ files <- c(files, file.path(extrapath, extralibs))
 
 library(RGtk2)
 
-#defs<-getDefs(file.path(defspath, "atk.defs"))
+#defs<-getDefs(file.path(defspath, version, "gtk.defs"))
 #allDefs <- generateCodeFiles(files,dir=file.path(path, "gen"), allDefs=NULL)[[1]]
 
 allDefs <- NULL

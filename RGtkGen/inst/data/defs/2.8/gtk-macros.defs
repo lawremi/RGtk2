@@ -57,3 +57,10 @@
     '("GtkWidget*" "wid")
   )
 )
+(define-function GTK_CTREE_ROW
+  (c-name "GTK_CTREE_ROW")
+  (return-type "GtkCTreeRow*")
+  (parameters
+    '("GtkCTreeNode*" "node")
+  )
+)

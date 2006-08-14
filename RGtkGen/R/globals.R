@@ -39,7 +39,7 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner", "gtk_
 	"gdk_pixbuf_render_pixmap_and_mask_for_colormap", "gdk_colormap_alloc_colors",
 	"gdk_query_depths", "gdk_query_visual_types", "glade_xml_signal_connect_data", "glade_xml_signal_connect",
   "gtk_radio_action_set_group", "gtk_radio_button_set_group", "gtk_radio_menu_item_set_group",
-  "gtk_radio_tool_button_set_group")
+  "gtk_radio_tool_button_set_group", "gtk_tree_store_insert_with_valuesv")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -58,13 +58,15 @@ badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_ow
 	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream",
 	"gtk_radio_button_new", "gtk_radio_button_new_with_label", "gtk_radio_menu_item_new", 
   "gtk_radio_menu_item_new_with_label", "gtk_radio_menu_item_new_with_mnemonic", 
-  "gtk_radio_tool_button_new", "gtk_radio_tool_button_new_from_stock")
+  "gtk_radio_tool_button_new", "gtk_radio_tool_button_new_from_stock", 
+  "gtk_tree_store_insert_with_valuesv")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
 
 # User functions that we wrap manually
-manUserFuncs <- c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate")
+manUserFuncs <- c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
+  "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc")
 
 # this is a list of types that are not defined and probably don't need to be
 # we just let them pass through as opaque external pointers
@@ -80,7 +82,7 @@ transparentTypes <- c("GParamSpec", "GtkFileFilterInfo", "GtkTargetEntry", "AtkA
     "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError", "GdkWindowAttr", "GdkTrapezoid",
 	"GtkActionEntry", "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t", "cairo_glyph_t",
 	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord",
-  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData")
+  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", "GtkAccelKey")
 
 # functions for releasing memory
 # objects are automatically assigned g_object_unref and boxed types have release funcs in the defs
@@ -111,15 +113,15 @@ CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
                            "guint" = "numeric", "PangoGlyph" = "numeric", 
                            "GQuark" = "numeric", "guint32" = "numeric", "GdkWChar" = "numeric",
                            "guint64" = "numeric", "AtkState" = "numeric", "gfloat" = "numeric",
-                           "gdouble" = "numeric", "double" = "numeric", "glong" = "numeric",
-                           "gulong" = "numeric", "GType" = "numeric", 
+                           "float" = "numeric", "gdouble" = "numeric", "double" = "numeric", 
+                           "glong" = "numeric", "gulong" = "numeric", "GType" = "numeric", 
                            "gboolean" = "logical", "cairo_bool_t" = "logical"
 )
 
 # build mappings to GType constants
 CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR", rep("G_TYPE_STRING",2), rep("G_TYPE_INT",13),
                         "G_TYPE_INT64", rep("G_TYPE_UINT", 7), rep("G_TYPE_UINT64",2),
-                        "G_TYPE_FLOAT", rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
+                        rep("G_TYPE_FLOAT",2), rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
                         rep("G_TYPE_ULONG", 2), rep("G_TYPE_BOOLEAN",2))
 names(CPrimitiveToGType) <- names(CPrimitiveToGeneric)
 CPrimitiveToGType[["gpointer"]] <- "G_TYPE_POINTER" # has no R primitive equivalent

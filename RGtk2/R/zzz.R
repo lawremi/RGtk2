@@ -21,5 +21,6 @@ function(libname, pkgname)
  #    eventLoop(REventLoop("R_Gtk2EventLoop"))
  #    runEventLoop()
  #} else 
- gtkInit(args)
+ if (interactive())
+   gtkInit(args)
 }

@@ -186,7 +186,8 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  open(UserCFuncs,"w")
  open(UserCHeader,"w")
 
- cat("#include \"", filePrefix, "UserFuncs.h\"\n", file=UserCFuncs, sep="")
+ cat("#include \"", filePrefix, "UserFuncs.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n", 
+  file=UserCFuncs, sep="")
  cat("#include \"", package, ".h\"\n\n", file = UserCFuncs, sep = "")
 
  cat("#include \"", package, ".h\"\n\n", file = UserCHeader, sep = "")

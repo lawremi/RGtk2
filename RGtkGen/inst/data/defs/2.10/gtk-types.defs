@@ -368,14 +368,13 @@
   )
 )
 
-; watch this one
 (define-user-function ClipboardRichTextReceivedFunc
   (c-name "GtkClipboardRichTextReceivedFunc")
   (return-type "none")
   (parameters
     '("GtkClipboard*" "clipboard")
     '("GdkAtom" "format")
-    '("const-gchar*" "text")
+    '("const-guint8*" "text")
     '("gsize" "length")
     '("gpointer" "data")
   )
@@ -442,18 +441,18 @@
 )
 
 ; must be done manually (to return the size)
-(define-user-function TextBufferSerializeFunc
-  (c-name "GtkTextBufferSerializeFunc")
-  (return-type "gchar*")
-  (parameters
-    '("GtkTextBuffer*" "register_buffer")
-    '("GtkTextBuffer*" "content_buffer")
-    '("const-GtkTextIter*" "start")
-    '("const-GtkTextIter*" "end")
-    '("gsize*" "length")
-    '("gpointer" "user_data")
-  )
-)
+;(define-user-function TextBufferSerializeFunc
+;  (c-name "GtkTextBufferSerializeFunc")
+;  (return-type "guint8*")
+;  (parameters
+;    '("GtkTextBuffer*" "register_buffer")
+;    '("GtkTextBuffer*" "content_buffer")
+;    '("GtkTextIter*" "start")
+;    '("GtkTextIter*" "end")
+;    '("gsize*" "length" (out))
+;    '("gpointer" "user_data")
+;  )
+;)
 
 ; no way to return error, probably ok
 (define-user-function TextBufferDeserializeFunc
@@ -463,11 +462,11 @@
     '("GtkTextBuffer*" "register_buffer")
     '("GtkTextBuffer*" "content_buffer")
     '("GtkTextIter*" "iter")
-    '("const-gchar*" "data")
+    '("const-guint8*" "data")
     '("gsize" "length")
     '("gboolean" "create_tags")
     '("gpointer" "user_data")
-    '("GError**" "error")
+    '("GError**" "error" (out))
   )
 )
 
@@ -482,6 +481,20 @@
 )
 
 ;; plain structures
+(define-pointer RecentData
+	(in-module "Gtk")
+  (c-name "GtkRecentData")
+  (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("gchar*" "display_name")
+    '("gchar*" "description")
+    '("gchar*" "mime_type")
+    '("gchar*" "app_name")
+    '("gchar*" "app_exec")
+    '("gchar**" "groups")
+    '("gboolean" "is_private")
+	)
+)
 (define-pointer RecentFilterInfo
 	(in-module "Gtk")
   (c-name "GtkRecentFilterInfo")
@@ -494,5 +507,36 @@
     '("const-gchar**" "applications")
     '("const-gchar**" "groups")
     '("gint" "age")
+	)
+)
+(define-pointer PageRange
+	(in-module "Gtk")
+  (c-name "GtkPageRange")
+  (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("gint" "start")
+    '("gint" "end")
+	)
+)
+(define-pointer TargetEntry
+	(in-module "Gtk")
+  (c-name "GtkTargetEntry")
+  (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("gchar*" "target")
+    '("guint" "flags")
+    '("gint" "info")
+	)
+)
+(define-pointer FileFilterInfo
+	(in-module "Gtk")
+  (c-name "GtkFileFilterInfo")
+  (gtype-id "G_TYPE_POINTER")
+	(fields
+		'("GtkFileFilterFlags" "contains")
+    '("const-gchar*" "filename")
+    '("const-gchar*" "uri")
+    '("const-gchar*" "display_name")
+    '("const-gchar*" "mime_type")
 	)
 )

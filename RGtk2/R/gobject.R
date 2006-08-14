@@ -104,7 +104,7 @@ gObjectGetSignals <-
 function(obj)
 {
   checkPtrType(obj, "GObject")
-  type <- obj$getType()
+  type <- class(obj)[1]
   els <- .gTypeGetSignals(type)
   els
 }
@@ -114,9 +114,6 @@ function(type)
 {
   if(is.character(type))
     type <- as.GType(type)
-  else if(inherits(type, "GObject")) {
-    type <- type$getType()
-  }
 
   checkPtrType(type, "GType")
   els <- .Call("R_getGSignalIdsByType", type, PACKAGE = "RGtk2")
@@ -162,15 +159,10 @@ function(x)
 gObjectGetPropInfo <-
 function(obj, parents = TRUE, collapse = FALSE)
 {
-  if(is.character(obj))
-    obj <- as.GType(obj)
-
-  if(inherits(obj, "GType"))
-    type <- obj
-  else {
-    checkPtrType(obj, "GObject")
-    type <- obj$getType()
-  }
+  checkPtrType(obj, "GObject")
+  
+  type <- as.GType(class(obj)[1])
+  
   v <- .Call("R_getGTypeParamSpecs", as.numeric(type), as.logical(parents), PACKAGE = "RGtk2")
 
   if(collapse) {

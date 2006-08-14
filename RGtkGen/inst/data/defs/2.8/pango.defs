@@ -649,7 +649,7 @@
 		'("gunichar" "ch")
 		'("gunichar*" "mirrored_ch" (out))
 	)
-	(deprecated "Use should g_unichar_get_mirror_char() instead (but RGtk2 doesn't support this)")
+	(deprecated "nothing")
 )
 
 (define-function unichar_direction

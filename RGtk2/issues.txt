@@ -1,5 +1,5 @@
 
-Some current issues (bugs?) with RGtk2
+Some current issues/bugs with RGtk2
 ----------
 
 Stuff that can wait for introspection
@@ -16,26 +16,29 @@ Low Priority Issues
 ---------
 
 - atkStreamableContentGetStream: need to map GIOChannel to R connection - not doable right now
-- Problem with "destroy with parent" dialog that is explicitly destroyed
 - support translation of messages
 - should not send code to type cast macros (results in slight slowdown)
 - GError's in user functions - how to handle?
 
 ==== TO DO =====
+- Check out the signal documentation problem
+- Mismatch between return list names and docs ('.' vs '_')
+- Weird \ problem instead of _ in \code{}
+- gtk_main_* documentation has strange deprecation warnings
 - Support introspection
 - Implement GObjects from R
 
 Introspection?
 ----------------
 `-> Creating explicit bindings at runtime would be impractical
-`-> Cairo and probably GtkMozEmbed would not support introspection 
+`-> Cairo would not support introspection 
 	`-> Should cairo be made a separate package? - It has little utility outside of GTK
-	`-> GtkMozEmbed could be a separate package, but it's not convenient
 `-> Syntax tricks like the '$' and '[' operators could allow us to bind to 
 	methods and fields at runtime
 	`-> What about constructors? Need a "gNew" function?
 	`-> What about ordinary functions - relatively few in number, 
 		could be explicitly bound at runtime
+  `-> Could use RObjectTables-like functionality here
 `-> I think that, in general, we could generate some R bindings at build time,
 	then have those tied into the type libraries on the C side, thus there are
 	no compilation requirements on a certain GTK version.

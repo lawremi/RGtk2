@@ -320,16 +320,16 @@
         '("guint" "length")
 	)
 )
-(define-user-function read_func
-	(in-module "cairo")
-	(c-name "cairo_read_func_t")
-	(return-type "cairo_status_t")
-	(parameters
-		'("gpointer" "closure")
-		'("guchar*" "data" (out))
-        '("guint" "length")
-	)
-)
+;(define-user-function read_func
+;	(in-module "cairo")
+;	(c-name "cairo_read_func_t")
+;	(return-type "cairo_status_t")
+;	(parameters
+;		'("gpointer" "closure")
+;		'("guchar*" "data" (out))
+;        '("guint" "length")
+;	)
+;)
 
 ;; From /usr/include/cairo/cairo.h
 

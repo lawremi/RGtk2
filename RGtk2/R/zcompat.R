@@ -152,7 +152,7 @@ gtkObjectGetType <- function(w, check = TRUE)
 {
  if(check)
     checkPtrType(w, "GtkObject")
- w$getType()
+ as.GType(class(w)[1])
 }
 gtkGetType <- function(name) as.GType(name)
 

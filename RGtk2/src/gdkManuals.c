@@ -254,10 +254,11 @@ S_gdk_window_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_attributes)
         return(_result);
 }
 
-/* reason: just send NULL asC the dest and use returned value */
+/* reason: if dest is provided, we need to ref it on the way back, since we don't own it */
 USER_OBJECT_
-S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_dest, USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+        GdkDrawable* dest = s_dest == NULL_USER_OBJECT ? NULL : GDK_DRAWABLE(getPtrValue(s_dest));
         GdkDrawable* src = GDK_DRAWABLE(getPtrValue(s_src));
         GdkColormap* cmap = GDK_COLORMAP(getPtrValue(s_cmap));
         int src_x = (int)asCInteger(s_src_x);
@@ -269,11 +270,12 @@ S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJ
 
         GdkPixbuf* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
-        GdkPixbuf* dest = NULL;
 
         ans = gdk_pixbuf_get_from_drawable(dest, src, cmap, src_x, src_y, dest_x, dest_y, width, height);
-
-        _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer)g_object_unref);
+        
+        if (!dest)
+          _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer)g_object_unref);
+        else _result = toRPointerWithRef(ans, "GdkPixbuf");
 
         return(_result);
 }

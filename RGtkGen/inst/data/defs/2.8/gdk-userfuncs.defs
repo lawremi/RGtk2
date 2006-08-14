@@ -19,7 +19,7 @@
   (c-name "GdkPixbufSaveFunc")
   (return-type "gboolean")
   (parameters
-      '("const-gchar*" "buf")
+      '("const-guchar*" "buf")
       '("gsize" "count")
       '("GError**" "error" (out))
       '("gpointer" "data")

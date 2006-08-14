@@ -208,7 +208,7 @@ USER_OBJECT_
 R_r_gtk_data_frame_new(USER_OBJECT_ s_frame, USER_OBJECT_ s_sort_closure) {
 	RGtkDataFrame *ans;
 	ans = r_gtk_data_frame_new(s_frame, s_sort_closure);
-	return(toRPointer(ans, "RGtkDataFrame"));
+	return(toRPointerWithFinalizer(ans, "RGtkDataFrame", (RPointerFinalizer)g_object_unref));
 }
 
 /**
