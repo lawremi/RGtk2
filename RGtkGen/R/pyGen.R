@@ -1772,7 +1772,7 @@ function(fun, defs) {
 # Second attempt at user function stuff
 ########
 
-genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_class, virtual_name, virtual = 0)
+genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_name, virtual = 0)
 {
   code <- ""
   params <- fun$parameters
@@ -1815,7 +1815,7 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_class, virtu
   dummyFun$parameters <- dummyParams
   
   fun_code <- ifelse(virtual, 
-    vecind(paste("*( o +", invoke("sizeof", virtual_class), ")"), virtual),
+    vecind(paste("*((SEXP *)(s_object + ", paste("query", "instance_size", sep="."), "))", sep=""), virtual),
     field(dataName, "function"))
   
   code <- c(code,
@@ -1826,15 +1826,19 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_class, virtu
     statement(decl("USER_OBJECT_", retName)),
     "",
     if (virtual) {
+      get_type <- cassign(decl("GType", "type"), invoke("G_OBJECT_GET_TYPE", "s_object"))
       parent_class <- cassign(decl(refType(paste(fun$ofobject, "Class", sep="")), "parent_class"), 
-        invoke("g_type_class_peek", defs$typecodes[[virtual_class]]))
+        invoke("g_type_class_peek", invoke("g_type_parent", "type")))
+      get_size <- c(decl("GTypeQuery", "query"), invokev("g_type_query", "type", refName("query")))
       parent_handler <- field("parent_class", virtual_name)
       invocation <- invoke(parent_handler, nameToSArg(names(params)))
-      c(statement(parent_class), ind(
+      c(statement(get_type),
+        statement(parent_class), 
+        statement(get_size), ind(
         invoke("if", paste(fun_code, "== NULL_USER_OBJECT")), ind(
           invoke("if", parent_handler),
             statement(ifelse(hasReturn, returnValue(invocation), invocation))),
-          statement(paste("else", returnValue(ifelse(hasReturn, "0", ""))))))
+          statement(paste("else", returnValue(ifelse(hasReturn, "0", ""))))), "")
     },
     statement(alloc("e", "lang", length(params)+1+!virtual)),
     statement(cassign("tmp", "e")),
