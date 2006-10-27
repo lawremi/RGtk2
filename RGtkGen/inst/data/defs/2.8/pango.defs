@@ -2446,3 +2446,290 @@
   )
 )
 
+;; virtuals 
+
+(define-virtual copy
+  (of-object "PangoAttr")
+  (return-type "PangoAttribute*")
+)
+
+(define-virtual destroy
+  (of-object "PangoAttr")
+  (return-type "none")
+)
+
+(define-virtual equal
+  (of-object "PangoAttr")
+  (return-type "gboolean")
+  (parameters
+    '("const-PangoAttribute*" "attr2")
+  )
+)
+
+(define-virtual script_break
+  (of-object "PangoEngineLang")
+  (return-type "none")
+  (parameters
+    '("const-char*" "text")
+    '("int" "len")
+    '("PangoAnalysis*" "analysis")
+    '("PangoLogAttr*" "attrs")
+    '("int" "attrs_len")
+  )
+)
+
+(define-virtual script_shape
+  (of-object "PangoEngineShape")
+  (return-type "none")
+  (parameters
+    '("PangoFont*" "font")
+    '("const-char*" "text")
+    '("int" "length")
+    '("PangoAnalysis*" "analysis")
+    '("PangoGlyphString*" "glyphs")
+  )
+)
+
+(define-virtual covers
+  (of-object "PangoEngineShape")
+  (return-type "PangoCoverageLevel")
+  (parameters
+    '("PangoFont*" "font")
+    '("PangoLanguage*" "language")
+    '("gunichar" "wc")
+  )
+)
+
+(define-virtual list_faces
+  (of-object "PangoFontFamily")
+  (return-type "none")
+  (parameters
+    '("PangoFontFace***" "faces")
+    '("int*" "n_faces")
+  )
+)
+
+(define-virtual get_name
+  (of-object "PangoFontFamily")
+  (return-type "const-char*")
+)
+
+(define-virtual is_monospace
+  (of-object "PangoFontFamily")
+  (return-type "gboolean")
+)
+
+(define-virtual get_face_name
+  (of-object "PangoFontFace")
+  (return-type "const-char*")
+)
+
+(define-virtual describe
+  (of-object "PangoFontFace")
+  (return-type "PangoFontDescription*")
+)
+
+(define-virtual list_sizes
+  (of-object "PangoFontFace")
+  (return-type "none")
+  (parameters
+    '("int**" "sizes")
+    '("int*" "n_sizes")
+  )
+)
+
+(define-virtual describe
+  (of-object "PangoFont")
+  (return-type "PangoFontDescription*")
+)
+
+(define-virtual get_coverage
+  (of-object "PangoFont")
+  (return-type "PangoCoverage*")
+  (parameters
+    '("PangoLanguage*" "lang")
+  )
+)
+
+(define-virtual find_shaper
+  (of-object "PangoFont")
+  (return-type "PangoEngineShape*")
+  (parameters
+    '("PangoLanguage*" "lang")
+    '("guint32" "ch")
+  )
+)
+
+(define-virtual get_glyph_extents
+  (of-object "PangoFont")
+  (return-type "none")
+  (parameters
+    '("PangoGlyph" "glyph")
+    '("PangoRectangle*" "ink_rect")
+    '("PangoRectangle*" "logical_rect")
+  )
+)
+
+(define-virtual get_metrics
+  (of-object "PangoFont")
+  (return-type "PangoFontMetrics*")
+  (parameters
+    '("PangoLanguage*" "language")
+  )
+)
+
+(define-virtual get_font_map
+  (of-object "PangoFont")
+  (return-type "PangoFontMap*")
+)
+
+(define-virtual load_font
+  (of-object "PangoFontMap")
+  (return-type "PangoFont*")
+  (parameters
+    '("PangoContext*" "context")
+    '("const-PangoFontDescription*" "desc")
+  )
+)
+
+(define-virtual list_families
+  (of-object "PangoFontMap")
+  (return-type "none")
+  (parameters
+    '("PangoFontFamily***" "families")
+    '("int*" "n_families")
+  )
+)
+
+(define-virtual load_fontset
+  (of-object "PangoFontMap")
+  (return-type "PangoFontset*")
+  (parameters
+    '("PangoContext*" "context")
+    '("const-PangoFontDescription*" "desc")
+    '("PangoLanguage*" "language")
+  )
+)
+
+(define-virtual get_font
+  (of-object "PangoFontset")
+  (return-type "PangoFont*")
+  (parameters
+    '("guint" "wc")
+  )
+)
+
+(define-virtual get_metrics
+  (of-object "PangoFontset")
+  (return-type "PangoFontMetrics*")
+)
+
+(define-virtual get_language
+  (of-object "PangoFontset")
+  (return-type "PangoLanguage*")
+)
+
+(define-virtual foreach
+  (of-object "PangoFontset")
+  (return-type "none")
+  (parameters
+    '("PangoFontsetForeachFunc" "func")
+    '("gpointer" "data")
+  )
+)
+
+(define-virtual draw_glyphs
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoFont*" "font")
+    '("PangoGlyphString*" "glyphs")
+    '("int" "x")
+    '("int" "y")
+  )
+)
+
+(define-virtual draw_rectangle
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoRenderPart" "part")
+    '("int" "x")
+    '("int" "y")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-virtual draw_error_underline
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("int" "x")
+    '("int" "y")
+    '("int" "width")
+    '("int" "height")
+  )
+)
+
+(define-virtual draw_shape
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoAttrShape*" "attr")
+    '("int" "x")
+    '("int" "y")
+  )
+)
+
+(define-virtual draw_trapezoid
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoRenderPart" "part")
+    '("double" "y1_")
+    '("double" "x11")
+    '("double" "x21")
+    '("double" "y2")
+    '("double" "x12")
+    '("double" "x22")
+  )
+)
+
+(define-virtual draw_glyph
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoFont*" "font")
+    '("PangoGlyph" "glyph")
+    '("double" "x")
+    '("double" "y")
+  )
+)
+
+(define-virtual part_changed
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoRenderPart" "part")
+  )
+)
+
+(define-virtual begin
+  (of-object "PangoRenderer")
+  (return-type "none")
+)
+
+(define-virtual end
+  (of-object "PangoRenderer")
+  (return-type "none")
+)
+
+(define-virtual prepare_run
+  (of-object "PangoRenderer")
+  (return-type "none")
+  (parameters
+    '("PangoLayoutRun*" "run")
+  )
+)
+

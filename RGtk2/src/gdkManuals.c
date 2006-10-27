@@ -260,7 +260,7 @@ S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_dest, USER_OBJECT_ s_src, USER_OBJ
 {
         GdkDrawable* dest = s_dest == NULL_USER_OBJECT ? NULL : GDK_DRAWABLE(getPtrValue(s_dest));
         GdkDrawable* src = GDK_DRAWABLE(getPtrValue(s_src));
-        GdkColormap* cmap = GDK_COLORMAP(getPtrValue(s_cmap));
+        GdkColormap* cmap = s_cmap == NULL_USER_OBJECT ? NULL : GDK_COLORMAP(getPtrValue(s_cmap));
         int src_x = (int)asCInteger(s_src_x);
         int src_y = (int)asCInteger(s_src_y);
         int dest_x = (int)asCInteger(s_dest_x);

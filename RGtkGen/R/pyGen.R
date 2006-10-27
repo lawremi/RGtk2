@@ -45,7 +45,10 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
       gsub("-"," ",type)
   }
   convertDef <- function(def) {
-      list(name=def[["c_name"]])
+      name <- def[["c_name"]]
+      if (!length(name))
+        name <- def[["name"]]
+      list(name=name)
   }
   convertType <- function(type) {
       c(convertDef(type), typecode=type[["typecode"]], module=type[["module"]])
@@ -129,6 +132,12 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
       }
       f
   }
+  convertVirtual <- function(virtual) {
+    f <- c(convertCall(virtual), ofobject = virtual[["of_object"]])
+    f$name <-  paste(collapseClassName(f$ofobject), "_", f$name, sep="")
+    class(f) <- "VirtualDef"
+    f
+  }
   convertPointer  <- function(pointer) {
       p <- c(convertType(pointer), fields = convertFields(pointer[["fields"]]))
       class(p) <- "PointerDef"
@@ -178,6 +187,11 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   defs$functions <- lapply(raw[["functions"]], convertFunction)
   names(defs$functions) <- getNames(defs$functions)
 
+  # Virtuals
+  
+  defs$virtuals <- lapply(raw[["virtuals"]], convertVirtual)
+  names(defs$virtuals) <- getNames(defs$virtuals)
+  
   # User defined functions
 
   defs$userfunctions <- lapply(raw[["user_functions"]], convertFunction)
@@ -740,17 +754,23 @@ function(var)
 {
   paste("static", var)
 }
+# denote something as const
+const <-
+function(var)
+{
+  paste("const", var)
+}
 # makes a C statement (terminated by ';')
 statement <- function(x, depth = 1) {
-    paste(ind(x, depth), ";", sep="", collapse="\n")
+    paste(ind(x, depth = depth), ";", sep="", collapse="\n")
 }
 # envelopes the argument in quotes (makes it a string literal)
 lit <- function(x) {
     paste("\"", x, "\"", sep="")
 }
 # indents the argument to the given depth
-ind <- function(x, depth = 1) {
-    paste(rep("  ",depth), x, sep="")
+ind <- function(..., depth = 1) {
+    paste(paste(rep("  ",depth), collapse=""), c(...), sep="")
 }
 # casts the value to the given type
 cast <- function(type, val) {
@@ -762,6 +782,12 @@ arrinit <- function(elements, null_terminate = F) {
     elements <- c(elements, "NULL")
   paste("{", paste(elements, collapse=", "), "}")
 }
+# initializes a struct with the given elements
+structinit <- function(...) {
+  elements <- c(...)
+  elements[length(elements)] <- paste(elements[length(elements)], "\n", sep="")
+  arrinit(paste("\n", ind(elements), sep=""))
+}
 # declares a function in C
 declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
     if (ret == "none")
@@ -772,7 +798,7 @@ declareFunction <- function(ret, name, ptypes, pnames, prefix = T) {
       if (prefix)
         pnames <- nameToSArg(pnames)
       args <- paste(toValidType(ptypes), pnames, collapse=", ")
-    }
+    } else args <- "void"
     if (prefix)
       name <- nameToC(name)
     
@@ -1746,28 +1772,32 @@ function(fun, defs) {
 # Second attempt at user function stuff
 ########
 
-genUserFunctionCode <- function(fun, defs)
+genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_class, virtual_name, virtual = 0)
 {
   code <- ""
-  header <- declareFunction(fun$return, fun$name, 
-    dequalify(getParamTypes(fun$parameters)), names(fun$parameters))
-  declaration <- header
-
   params <- fun$parameters
 
-  dataInd <- which(getParamTypes(params) == "gpointer")
-  hasData <- length(dataInd) > 0
-
-  if (hasData) {
-    dataInd <- dataInd[[1]]
-    data <- params[[dataInd]]
-    params <- fun$parameters[-dataInd]
-    dataName <- cast(refType("R_CallbackData"), nameToSArg(data$name))
-  } else {
-    dataName <- paste(fun$name, "_cbdata", sep="")
-    code <- c(code, statement(decl(refType("R_CallbackData"), dataName)))
-  }
+  if (virtual)
+    params <- c(object=makeObjectParam(fun$ofobject), params)
   
+  header <- declareFunction(fun$return, name, 
+    dequalify(getParamTypes(params)), names(params))
+  declaration <- header
+  
+  if (!virtual) { # user function needs user-data
+    dataInd <- which(getParamTypes(params) == "gpointer")
+    hasData <- length(dataInd) > 0
+    if (hasData) {
+      dataInd <- dataInd[[1]]
+      data <- params[[dataInd]]
+      params <- fun$parameters[-dataInd]
+      dataName <- cast(refType("R_CallbackData"), nameToSArg(data$name))
+    } else {
+      dataName <- paste(fun$name, "_cbdata", sep="")
+      code <- c(code, statement(decl(refType("R_CallbackData"), dataName)))
+    }
+  } 
+
   hasReturn <- fun$return != "none"
   retName <- nameToSArg("ans")
   
@@ -1784,6 +1814,10 @@ genUserFunctionCode <- function(fun, defs)
   dummyFun <- fun
   dummyFun$parameters <- dummyParams
   
+  fun_code <- ifelse(virtual, 
+    vecind(paste("*( o +", invoke("sizeof", virtual_class), ")"), virtual),
+    field(dataName, "function"))
+  
   code <- c(code,
   header,
   "{",
@@ -1791,15 +1825,27 @@ genUserFunctionCode <- function(fun, defs)
     statement(decl("USER_OBJECT_", "tmp")),
     statement(decl("USER_OBJECT_", retName)),
     "",
-    statement(alloc("e", "lang", length(params)+2)),
+    if (virtual) {
+      parent_class <- cassign(decl(refType(paste(fun$ofobject, "Class", sep="")), "parent_class"), 
+        invoke("g_type_class_peek", defs$typecodes[[virtual_class]]))
+      parent_handler <- field("parent_class", virtual_name)
+      invocation <- invoke(parent_handler, nameToSArg(names(params)))
+      c(statement(parent_class), ind(
+        invoke("if", paste(fun_code, "== NULL_USER_OBJECT")), ind(
+          invoke("if", parent_handler),
+            statement(ifelse(hasReturn, returnValue(invocation), invocation))),
+          statement(paste("else", returnValue(ifelse(hasReturn, "0", ""))))))
+    },
+    statement(alloc("e", "lang", length(params)+1+!virtual)),
     statement(cassign("tmp", "e")),
     "",
-    statement(pushvec("tmp", field(dataName, "function"))),
+    statement(pushvec("tmp", fun_code)),
     "",
     statement(sapply(dummyParams, function(param) {
       pushvec("tmp", convertToR(param$name, param$type, dummyFun, defs)$code)
     })),
-    statement(pushvec("tmp", field(dataName, "data"))),
+    if (!virtual)
+      statement(pushvec("tmp", field(dataName, "data"))),
     "",
     statement(cassign("s_ans", invokev("eval", "e", "R_GlobalEnv"))),
     "",
@@ -1808,6 +1854,7 @@ genUserFunctionCode <- function(fun, defs)
       code <- c(code,statement(returnValue(convertToCType("ans", fun$return, defs)$code)))
   code <- c(code,
   "}")
+  
   list(code=paste(code,collapse="\n"), decl=statement(declaration))
 }
 

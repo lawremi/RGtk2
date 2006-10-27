@@ -4,6 +4,7 @@ Sys.putenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"),"/home/larman/research/RGtk
 library(RSPython)
 library(rpart)
 source("pyGen.R")
+source("classes.R")
 source("genCode.S")
 source("genCons.S")
 path <- "/home/larman/research/RGtk2/RGtkGen/inst/data"

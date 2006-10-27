@@ -1,4 +1,12 @@
 
+Adding support for extending GObjects
+----------
+
+Type conversion issues:
+- GClosure (accel_changed)
+- User functions (set_cell_data_func)
+- G(S)List, GdkEvent, GValue
+
 Some current issues/bugs with RGtk2
 ----------
 
@@ -25,6 +33,7 @@ Low Priority Issues
 - Mismatch between return list names and docs ('.' vs '_')
 - Weird \ problem instead of _ in \code{}
 - gtk_main_* documentation has strange deprecation warnings
+- allow specification of numeric precision on GtkCellRendererText
 - Support introspection
 - Implement GObjects from R
 
