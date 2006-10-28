@@ -1906,10 +1906,10 @@
   (of-object "AtkComponent")
   (return-type "none")
   (parameters
-    '("gint*" "x")
-    '("gint*" "y")
-    '("gint*" "width")
-    '("gint*" "height")
+    '("gint*" "x" (out))
+    '("gint*" "y" (out))
+    '("gint*" "width" (out))
+    '("gint*" "height" (out))
     '("AtkCoordType" "coord_type")
   )
 )
@@ -1918,8 +1918,8 @@
   (of-object "AtkComponent")
   (return-type "none")
   (parameters
-    '("gint*" "x")
-    '("gint*" "y")
+    '("gint*" "x" (out))
+    '("gint*" "y" (out))
     '("AtkCoordType" "coord_type")
   )
 )
@@ -1928,8 +1928,8 @@
   (of-object "AtkComponent")
   (return-type "none")
   (parameters
-    '("gint*" "width")
-    '("gint*" "height")
+    '("gint*" "width" (out))
+    '("gint*" "height" (out))
   )
 )
 
@@ -2152,8 +2152,8 @@
   (of-object "AtkImage")
   (return-type "none")
   (parameters
-    '("gint*" "x")
-    '("gint*" "y")
+    '("gint*" "x" (out))
+    '("gint*" "y" (out))
     '("AtkCoordType" "coord_type")
   )
 )
@@ -2167,8 +2167,8 @@
   (of-object "AtkImage")
   (return-type "none")
   (parameters
-    '("gint*" "width")
-    '("gint*" "height")
+    '("gint*" "width" (out))
+    '("gint*" "height" (out))
   )
 )
 
@@ -2421,13 +2421,13 @@
   )
 )
 
-(define-virtual get_stream
-  (of-object "AtkStreamableContent")
-  (return-type "GIOChannel*")
-  (parameters
-    '("const-gchar*" "mime_type")
-  )
-)
+;(define-virtual get_stream
+;  (of-object "AtkStreamableContent")
+;  (return-type "GIOChannel*")
+;  (parameters
+;    '("const-gchar*" "mime_type")
+;  )
+;)
 
 (define-virtual ref_at
   (of-object "AtkTable")
@@ -2589,7 +2589,7 @@
   (of-object "AtkTable")
   (return-type "gint")
   (parameters
-    '("gint**" "selected")
+    '("gint*[]" "selected" (out))
   )
 )
 
@@ -2597,7 +2597,7 @@
   (of-object "AtkTable")
   (return-type "gint")
   (parameters
-    '("gint**" "selected")
+    '("gint*[]" "selected" (out))
   )
 )
 
@@ -2724,8 +2724,8 @@
   (parameters
     '("gint" "offset")
     '("AtkTextBoundary" "boundary_type")
-    '("gint*" "start_offset")
-    '("gint*" "end_offset")
+    '("gint*" "start_offset" (out))
+    '("gint*" "end_offset" (out))
   )
 )
 
@@ -2735,8 +2735,8 @@
   (parameters
     '("gint" "offset")
     '("AtkTextBoundary" "boundary_type")
-    '("gint*" "start_offset")
-    '("gint*" "end_offset")
+    '("gint*" "start_offset" (out))
+    '("gint*" "end_offset" (out))
   )
 )
 
@@ -2754,8 +2754,8 @@
   (parameters
     '("gint" "offset")
     '("AtkTextBoundary" "boundary_type")
-    '("gint*" "start_offset")
-    '("gint*" "end_offset")
+    '("gint*" "start_offset" (out))
+    '("gint*" "end_offset" (out))
   )
 )
 
@@ -2769,8 +2769,8 @@
   (return-type "AtkAttributeSet*")
   (parameters
     '("gint" "offset")
-    '("gint*" "start_offset")
-    '("gint*" "end_offset")
+    '("gint*" "start_offset" (out))
+    '("gint*" "end_offset" (out))
   )
 )
 
@@ -2784,10 +2784,10 @@
   (return-type "none")
   (parameters
     '("gint" "offset")
-    '("gint*" "x")
-    '("gint*" "y")
-    '("gint*" "width")
-    '("gint*" "height")
+    '("gint*" "x" (out))
+    '("gint*" "y" (out))
+    '("gint*" "width" (out))
+    '("gint*" "height" (out))
     '("AtkCoordType" "coords")
   )
 )
@@ -2817,8 +2817,8 @@
   (return-type "gchar*")
   (parameters
     '("gint" "selection_num")
-    '("gint*" "start_offset")
-    '("gint*" "end_offset")
+    '("gint*" "start_offset" (out))
+    '("gint*" "end_offset" (out))
   )
 )
 
@@ -2891,13 +2891,13 @@
     '("gint" "start_offset")
     '("gint" "end_offset")
     '("AtkCoordType" "coord_type")
-    '("AtkTextRectangle*" "rect")
+    '("AtkTextRectangle*" "rect" (out))
   )
 )
 
 (define-virtual get_bounded_ranges
   (of-object "AtkText")
-  (return-type "AtkTextRange**")
+  (return-type "AtkTextRange*[]")
   (parameters
     '("AtkTextRectangle*" "rect")
     '("AtkCoordType" "coord_type")
@@ -2936,7 +2936,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value")
+    '("GValue*" "value" (out))
   )
 )
 
@@ -2944,7 +2944,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value")
+    '("GValue*" "value" (out))
   )
 )
 
@@ -2952,7 +2952,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value")
+    '("GValue*" "value" (out))
   )
 )
 

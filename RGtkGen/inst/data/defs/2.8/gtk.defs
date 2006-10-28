@@ -22141,7 +22141,7 @@
   (return-type "GList*")
   (parameters
     '("gint" "row_number")
-    '("GList*" "row_list_element")
+    '("GList[GtkCListRow]" "row_list_element")
   )
 )
 
@@ -22386,7 +22386,7 @@
   (parameters
     '("const-gchar*" "text")
     '("gint" "length")
-    '("gint*" "position" (direction "inout"))
+    '("gint*" "position")
   )
 )
 (define-virtual delete_text
@@ -22407,7 +22407,7 @@
   (parameters
     '("const-gchar*" "text")
     '("gint" "length")
-    '("gint*" "position" (direction "inout"))
+    '("gint*" "position")
   )
 )
 (define-virtual do_delete_text
@@ -22967,26 +22967,26 @@
   )
 )
 
-(define-virtual set_arg
-  (of-object "GtkObject")
-  (return-type "none")
-  (parameters
-    '("GtkArg*" "arg")
-    '("guint" "arg_id")
-  )
-)
-(define-virtual get_arg
-  (of-object "GtkObject")
-  (return-type "none")
-  (parameters
-    '("GtkArg*" "arg")
-    '("guint" "arg_id")
-  )
-)
-(define-virtual destroy
-  (of-object "GtkObject")
-  (return-type "none")
-)
+;(define-virtual set_arg
+;  (of-object "GtkObject")
+;  (return-type "none")
+;  (parameters
+;    '("GtkArg*" "arg")
+;    '("guint" "arg_id")
+;  )
+;)
+;(define-virtual get_arg
+;  (of-object "GtkObject")
+;  (return-type "none")
+;  (parameters
+;    '("GtkArg*" "arg")
+;    '("guint" "arg_id")
+;  )
+;)
+;(define-virtual destroy
+;  (of-object "GtkObject")
+;  (return-type "none")
+;)
 
 (define-virtual activate
   (of-object "GtkOldEditable")
@@ -23311,7 +23311,7 @@
   (of-object "GtkSpinButton")
   (return-type "gint")
   (parameters
-    '("gdouble*" "new_value" (direction "out"))
+    '("gdouble*" "new_value" (out))
   )
 )
 (define-virtual output
@@ -24134,7 +24134,7 @@
   (parameters
     '("GtkTreePath*" "path")
     '("GtkTreeIter*" "iter")
-    '("gint*" "new_order")
+    '("gint[]" "new_order")
   )
 )
 (define-virtual get_flags
@@ -24219,7 +24219,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreeIter*" "child")
   )
 )

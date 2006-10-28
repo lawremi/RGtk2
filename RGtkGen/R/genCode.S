@@ -202,7 +202,43 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  close(UserCFuncs)
  close(UserCHeader)
 
-  # Now do the accessors to the
+ # GObject class wrappers
+ 
+ if (length(defs$virtuals)) {
+   ClassCFuncs <- file(getFileName("Classes.c"))
+   open(ClassCFuncs,"w")
+   ClassCHeader <- file(getFileName("Classes.h"))
+   open(ClassCHeader,"w")
+ 
+   cat("#include \"conversion.h\"\n#include \"utils.h\"\n", 
+    file=ClassCFuncs, sep="")
+   cat("#include \"", package, ".h\"\n\n", file = ClassCFuncs, sep = "")
+   cat("#include \"", package, ".h\"\n\n", file = ClassCHeader, sep = "")
+   
+   for(i in getNonDiscardedNames("objects")) {
+     if(verbose)
+         cat("processing CLASS ", i, "\n")
+     gen <- genCClass(i, allDefs)
+     cat(gen$decl, "\n", file=ClassCHeader)
+     cat(gen$code, "\n\n", file=ClassCFuncs)
+   }
+   for(i in getNonDiscardedNames("interfaces")) {
+     if(verbose)
+         cat("processing INTERFACE ", i, "\n")
+     gen <- genCClass(i, allDefs, interface=T)
+     cat(gen$decl, "\n", file=ClassCHeader)
+     cat(gen$code, "\n\n", file=ClassCFuncs)
+   }
+   close(ClassCFuncs)
+   close(ClassCHeader)
+ }
+ 
+ RVirtuals <- file(getFileName("Virtuals.R"))
+ open(RVirtuals,"w")
+ cat(genRVirtuals(getNonDiscardedNames("virtuals"), allDefs), file=RVirtuals)
+ close(RVirtuals)
+ 
+  # Now do field accessors
 
  CAccessors <- file(getFileName("Accessors.c"))
  RAccessors <- file(getFileName("Accessors.R"))

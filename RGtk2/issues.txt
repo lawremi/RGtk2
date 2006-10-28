@@ -3,9 +3,17 @@ Adding support for extending GObjects
 ----------
 
 Type conversion issues:
-- GClosure (accel_changed)
-- User functions (set_cell_data_func)
-- G(S)List, GdkEvent, GValue
+- GdkEvent
+
+Parameter directions:
+- Out parameters need to returned through list
+- In/Out: GtkEditable (insert_text/do_insert_text)
+
+
+TODO: 
+
+1) R side, including constructor and calling parent handlers
+2) Interfaces
 
 Some current issues/bugs with RGtk2
 ----------
@@ -27,6 +35,7 @@ Low Priority Issues
 - support translation of messages
 - should not send code to type cast macros (results in slight slowdown)
 - GError's in user functions - how to handle?
+- Returning *Funcs to R
 
 ==== TO DO =====
 - Check out the signal documentation problem

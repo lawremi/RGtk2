@@ -1328,8 +1328,9 @@ function(var, ptype, fun = NULL, defs)
     } else if(isFlag(type, defs)) {
       fn <- "asRFlag"
       args <- c(args, defs$typecodes[[type]])
-    } else if(type == "GdkEvent") {
-      fn <- "asRGdkEvent" # special handling of gdk events
+    } else if(length(grep("^GdkEvent", type)) > 0) {
+      fn <- "toRGdkEvent" # special handling of gdk events
+      args <- c(cast(refType("GdkEvent"), args), ifelse(fun$owns, "TRUE", "FALSE"))
     } else if(type == "PangoAttribute") {
       fn <- "asRPangoAttribute" # special handling of pango attributes
     } else if (type == "GdkFont") { # also GdkFont (need to ref it)
@@ -1772,7 +1773,9 @@ function(fun, defs) {
 # Second attempt at user function stuff
 ########
 
-genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_name, virtual = 0)
+classQuark <- function(name) nameToC(paste(name, "quark", sep="_"))
+
+genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
 {
   code <- ""
   params <- fun$parameters
@@ -1815,7 +1818,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_name, virtua
   dummyFun$parameters <- dummyParams
   
   fun_code <- ifelse(virtual, 
-    vecind(paste("*((SEXP *)(s_object + ", paste("query", "instance_size", sep="."), "))", sep=""), virtual),
+    #vecind(paste("*", cast(refType("SEXP"), "s_object + query.instance_size"), sep=""), virtual),
+    vecind(invokev("g_object_get_qdata", invoke("G_OBJECT", "s_object"), classQuark(fun$ofobject)), virtual),
     field(dataName, "function"))
   
   code <- c(code,
@@ -1825,21 +1829,11 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual_name, virtua
     statement(decl("USER_OBJECT_", "tmp")),
     statement(decl("USER_OBJECT_", retName)),
     "",
-    if (virtual) {
-      get_type <- cassign(decl("GType", "type"), invoke("G_OBJECT_GET_TYPE", "s_object"))
-      parent_class <- cassign(decl(refType(paste(fun$ofobject, "Class", sep="")), "parent_class"), 
-        invoke("g_type_class_peek", invoke("g_type_parent", "type")))
-      get_size <- c(decl("GTypeQuery", "query"), invokev("g_type_query", "type", refName("query")))
-      parent_handler <- field("parent_class", virtual_name)
-      invocation <- invoke(parent_handler, nameToSArg(names(params)))
-      c(statement(get_type),
-        statement(parent_class), 
-        statement(get_size), ind(
-        invoke("if", paste(fun_code, "== NULL_USER_OBJECT")), ind(
-          invoke("if", parent_handler),
-            statement(ifelse(hasReturn, returnValue(invocation), invocation))),
-          statement(paste("else", returnValue(ifelse(hasReturn, "0", ""))))), "")
-    },
+    #if (virtual) {
+    #  c(statement(decl("GTypeQuery", "query")), 
+    #    statement(invokev("g_type_query", invoke("G_OBJECT_GET_TYPE", "s_object"), refName("query"))),
+    #    "")
+    #},
     statement(alloc("e", "lang", length(params)+1+!virtual)),
     statement(cassign("tmp", "e")),
     "",

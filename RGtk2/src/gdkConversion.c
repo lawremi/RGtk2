@@ -479,14 +479,13 @@ asCGdkNativeWindow(USER_OBJECT_ s_window)
     #endif
 }
 
-/* determines the 'class' from the event type, optionally registering a finalizer */
+/* determines the 'class' from the event type, copying if we don't own it */
 USER_OBJECT_
-toRGdkEvent(GdkEvent *event, gboolean finalize)
+toRGdkEvent(GdkEvent *event, gboolean own)
 {
     char *type;
     /*USER_OBJECT_ classes;*/
     USER_OBJECT_ result;
-	RPointerFinalizer finalizer = NULL;
 
     switch(event->type) {
          case GDK_EXPOSE:
@@ -563,10 +562,10 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
             type = "GdkEventAny";
     }
 
-    if (finalize)
-        finalizer = (RPointerFinalizer)gdk_event_free;
-
-    PROTECT(result = toRPointerWithFinalizer(event, NULL, finalizer));
+    if (!own)
+      event = gdk_event_copy(event);
+    
+    PROTECT(result = toRPointerWithFinalizer(event, NULL, (RPointerFinalizer)gdk_event_free));
 
     char *classes[] = { type, "GdkEventAny", "GdkEvent", "RGtkObject" };
     SET_CLASS(result, asRStringArrayWithSize(classes, 4));
@@ -575,7 +574,7 @@ toRGdkEvent(GdkEvent *event, gboolean finalize)
 
     return(result);
 }
-/* makes a wrapped gdkEvent with finalizer (gdk_event_free) */
+/* makes a wrapped GdkEvent, assuming we own it */
 USER_OBJECT_
 asRGdkEvent(GdkEvent *event)
 {

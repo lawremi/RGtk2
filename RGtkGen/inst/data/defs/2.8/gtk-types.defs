@@ -2576,7 +2576,7 @@
 (define-pointer CListRow
     (in-module "Gtk")
     (c-name "GtkCListRow")
-    (gtype-id "GTK_TYPE_CLIST_ROW")
+    (gtype-id "G_TYPE_POINTER")
     (fields
         '("GtkCell*" "cell")
         '("GtkStateType" "state")

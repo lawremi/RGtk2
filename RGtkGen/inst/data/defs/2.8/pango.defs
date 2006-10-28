@@ -1236,15 +1236,15 @@
   )
 )
 
-(define-method find_shaper
-  (of-object "PangoFont")
-  (c-name "pango_font_find_shaper")
-  (return-type "PangoEngineShape*")
-  (parameters
-    '("PangoLanguage*" "language" (in))
-    '("guint32" "ch" (in))
-  )
-)
+;(define-method find_shaper
+;  (of-object "PangoFont")
+;  (c-name "pango_font_find_shaper")
+;  (return-type "PangoEngineShape*")
+;  (parameters
+;    '("PangoLanguage*" "language" (in))
+;    '("guint32" "ch" (in))
+;  )
+;)
 
 (define-method get_metrics
   (of-object "PangoFont")
@@ -2466,46 +2466,46 @@
   )
 )
 
-(define-virtual script_break
-  (of-object "PangoEngineLang")
-  (return-type "none")
-  (parameters
-    '("const-char*" "text")
-    '("int" "len")
-    '("PangoAnalysis*" "analysis")
-    '("PangoLogAttr*" "attrs")
-    '("int" "attrs_len")
-  )
-)
+;(define-virtual script_break
+;  (of-object "PangoEngineLang")
+;  (return-type "none")
+;  (parameters
+;    '("const-char*" "text")
+;    '("int" "len")
+;    '("PangoAnalysis*" "analysis")
+;    '("PangoLogAttr*" "attrs")
+;    '("int" "attrs_len")
+;  )
+;)
 
-(define-virtual script_shape
-  (of-object "PangoEngineShape")
-  (return-type "none")
-  (parameters
-    '("PangoFont*" "font")
-    '("const-char*" "text")
-    '("int" "length")
-    '("PangoAnalysis*" "analysis")
-    '("PangoGlyphString*" "glyphs")
-  )
-)
+;(define-virtual script_shape
+;  (of-object "PangoEngineShape")
+;  (return-type "none")
+;  (parameters
+;    '("PangoFont*" "font")
+;    '("const-char*" "text")
+;    '("int" "length")
+;    '("PangoAnalysis*" "analysis")
+;    '("PangoGlyphString*" "glyphs")
+;  )
+;)
 
-(define-virtual covers
-  (of-object "PangoEngineShape")
-  (return-type "PangoCoverageLevel")
-  (parameters
-    '("PangoFont*" "font")
-    '("PangoLanguage*" "language")
-    '("gunichar" "wc")
-  )
-)
+;(define-virtual covers
+;  (of-object "PangoEngineShape")
+;  (return-type "PangoCoverageLevel")
+;  (parameters
+;    '("PangoFont*" "font")
+;    '("PangoLanguage*" "language")
+;    '("gunichar" "wc")
+;  )
+;)
 
 (define-virtual list_faces
   (of-object "PangoFontFamily")
   (return-type "none")
   (parameters
-    '("PangoFontFace***" "faces")
-    '("int*" "n_faces")
+    '("PangoFontFace**[]" "faces" (out))
+    '("int*" "n_faces" (out))
   )
 )
 
@@ -2533,8 +2533,8 @@
   (of-object "PangoFontFace")
   (return-type "none")
   (parameters
-    '("int**" "sizes")
-    '("int*" "n_sizes")
+    '("int*[]" "sizes" (out))
+    '("int*" "n_sizes" (out))
   )
 )
 
@@ -2551,22 +2551,22 @@
   )
 )
 
-(define-virtual find_shaper
-  (of-object "PangoFont")
-  (return-type "PangoEngineShape*")
-  (parameters
-    '("PangoLanguage*" "lang")
-    '("guint32" "ch")
-  )
-)
+;(define-virtual find_shaper
+;  (of-object "PangoFont")
+;  (return-type "PangoEngineShape*")
+;  (parameters
+;    '("PangoLanguage*" "lang")
+;    '("guint32" "ch")
+;  )
+;)
 
 (define-virtual get_glyph_extents
   (of-object "PangoFont")
   (return-type "none")
   (parameters
     '("PangoGlyph" "glyph")
-    '("PangoRectangle*" "ink_rect")
-    '("PangoRectangle*" "logical_rect")
+    '("PangoRectangle*" "ink_rect" (out))
+    '("PangoRectangle*" "logical_rect" (out))
   )
 )
 
@@ -2596,8 +2596,8 @@
   (of-object "PangoFontMap")
   (return-type "none")
   (parameters
-    '("PangoFontFamily***" "families")
-    '("int*" "n_families")
+    '("PangoFontFamily**[]" "families" (out))
+    '("int*" "n_families" (out))
   )
 )
 
