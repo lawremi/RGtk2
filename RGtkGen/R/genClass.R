@@ -3,13 +3,13 @@
 stripVirtual <- function(name, class_name)
   sub(paste("^", class_name, "_", sep=""), "", name)
   
-genCClass <- function(name = "GObject", defs, interface = F)
+genCClass <- function(name = "GtkWidget", defs, interface = F)
 {
   fun_name <- collapseClassName(name)
   class_type <- paste(name, ifelse(interface, "Iface", "Class"), sep="")
   
-  quark <- statement(static(cassign(decl("GQuark", classQuark(name)), 
-    invoke("g_quark_from_static_string", lit(nameToC(name))))), depth=0)
+  symbol <- statement(static(cassign(decl("SEXP", classSymbol(name)), 
+    invoke("install", lit(nameToC(name))))), depth=0)
     
   hierarchy <- getClassHierarchy(name, defs$objects)
   virtual_classes <- sapply(defs$virtuals, function(virtual) virtual$ofobject)
@@ -27,29 +27,32 @@ genCClass <- function(name = "GObject", defs, interface = F)
     sep = "\n")
   }
   
-  parents <- hierarchy[-1]
-  parent_class_inits <- NULL
-  if (length(parents)) {
-    parent_class_inits <- sapply(parents, function(parent)
-      invokev(paste(nameToC(collapseClassName(parent)), "class_init", sep="_"),
-        cast(refType(paste(parent, "Class", sep="")), "c"), "s"))
+  parent_class_init <- NULL
+  if (length(hierarchy) > 1) {
+    parent <- hierarchy[2]
+    parent_class_init <- invokev(paste(nameToC(collapseClassName(parent)), "class_init", sep="_"),
+        cast(refType(paste(parent, "Class", sep="")), "c"), "s")
   }
     
   class_init_name <- paste(nameToC(fun_name), "_class_init", sep="")
   declaration <- declareFunction("void", 
-    class_init_name, c(refType(class_type), "SEXP"), c("c", "s"), prefix=F)
+    class_init_name, c(refType(class_type), "SEXP"), c("c", "e"), prefix=F)
   class_init <- c(
     declaration,
     "{",
-      if (length(parent_class_inits))
-        c(statement(parent_class_inits),
+      statement(cassign(decl("SEXP", "s"), invokev("findVar", classSymbol(name), "e"))),
+      "",
+      statement(cassign(invokev("G_STRUCT_MEMBER", "SEXP", "c", invoke("sizeof", class_type)), "e")),
+      "",
+      if (length(parent_class_init))
+        c(statement(parent_class_init),
         ""),
       if (length(virtual_assigns))
         statement(virtual_assigns),
     "}")
   
   list(decl = statement(declaration, depth=0), 
-    code = paste(c(quark, virtual_wrappers, class_init), collapse = "\n"))
+    code = paste(c(symbol, virtual_wrappers, class_init), collapse = "\n"))
 }
 
 genRVirtuals <- function(virtual_names, defs)

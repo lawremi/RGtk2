@@ -1773,7 +1773,7 @@ function(fun, defs) {
 # Second attempt at user function stuff
 ########
 
-classQuark <- function(name) nameToC(paste(name, "quark", sep="_"))
+classSymbol <- function(name) nameToC(paste(name, "symbol", sep="_"))
 
 genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
 {
@@ -1819,7 +1819,9 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   
   fun_code <- ifelse(virtual, 
     #vecind(paste("*", cast(refType("SEXP"), "s_object + query.instance_size"), sep=""), virtual),
-    vecind(invokev("g_object_get_qdata", invoke("G_OBJECT", "s_object"), classQuark(fun$ofobject)), virtual),
+    #vecind(invokev("g_object_get_qdata", invoke("G_OBJECT", "s_object"), classQuark(fun$ofobject)), virtual),
+    vecind(invokev("findVar", classSymbol(fun$ofobject), invokev("G_STRUCT_MEMBER", "SEXP", 
+      invoke("G_OBJECT_GET_CLASS", "s_object"), "query.class_size")), virtual),
     field(dataName, "function"))
   
   code <- c(code,
@@ -1829,11 +1831,11 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
     statement(decl("USER_OBJECT_", "tmp")),
     statement(decl("USER_OBJECT_", retName)),
     "",
-    #if (virtual) {
-    #  c(statement(decl("GTypeQuery", "query")), 
-    #    statement(invokev("g_type_query", invoke("G_OBJECT_GET_TYPE", "s_object"), refName("query"))),
-    #    "")
-    #},
+    if (virtual) {
+      c(statement(decl("GTypeQuery", "query")), 
+        statement(invokev("g_type_query", invoke("G_OBJECT_TYPE", "s_object"), refName("query"))),
+        "")
+    },
     statement(alloc("e", "lang", length(params)+1+!virtual)),
     statement(cassign("tmp", "e")),
     "",
