@@ -437,6 +437,7 @@ USER_OBJECT_ asRAtkAttribute(AtkAttribute* attr);
 AtkTextRectangle* asCAtkTextRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRAtkTextRectangle(AtkTextRectangle *rect);
 USER_OBJECT_ asRAtkTextRange(AtkTextRange *range);
+AtkTextRange *asCAtkTextRange(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRAtkKeyEventStruct(AtkKeyEventStruct * obj);
 
 /* Pango */

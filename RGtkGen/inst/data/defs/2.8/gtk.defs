@@ -7255,7 +7255,7 @@
   (return-type "GdkPixbuf*")
   (parameters
     '("GtkStyle*" "style" (in))
-    '("GtkTextDirection" (in))
+    '("GtkTextDirection" "direction" (in))
     '("GtkStateType" "state" (in))
     '("GtkIconSize" "size" (in))
     '("GtkWidget*" "widget" (in) (default "NULL") (null-ok))

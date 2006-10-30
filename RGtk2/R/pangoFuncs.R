@@ -781,7 +781,7 @@ pangoGetMirrorChar <-
 function(ch)
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   ch <- as.numeric(ch)
 

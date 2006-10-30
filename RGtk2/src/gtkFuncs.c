@@ -13546,11 +13546,11 @@ S_gtk_icon_set_copy(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_in, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail)
+S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_direction, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail)
 {
   GtkIconSet* object = ((GtkIconSet*)getPtrValue(s_object));
   GtkStyle* style = GTK_STYLE(getPtrValue(s_style));
-  GtkTextDirection in = ((GtkTextDirection)asCEnum(s_in, GTK_TYPE_TEXT_DIRECTION));
+  GtkTextDirection direction = ((GtkTextDirection)asCEnum(s_direction, GTK_TYPE_TEXT_DIRECTION));
   GtkStateType state = ((GtkStateType)asCEnum(s_state, GTK_TYPE_STATE_TYPE));
   GtkIconSize size = ((GtkIconSize)asCEnum(s_size, GTK_TYPE_ICON_SIZE));
   GtkWidget* widget = GET_LENGTH(s_widget) == 0 ? NULL : GTK_WIDGET(getPtrValue(s_widget));
@@ -13559,7 +13559,7 @@ S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJ
   GdkPixbuf* ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-  ans = gtk_icon_set_render_icon(object, style, in, state, size, widget, detail);
+  ans = gtk_icon_set_render_icon(object, style, direction, state, size, widget, detail);
 
   _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 

@@ -2542,7 +2542,7 @@ S_gtk_icon_set_unref(USER_OBJECT_ s_object);
 S_gtk_icon_set_copy(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_in, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail); 
+S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_direction, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail); 
 
   USER_OBJECT_
 S_gtk_icon_set_add_source(USER_OBJECT_ s_object, USER_OBJECT_ s_source); 

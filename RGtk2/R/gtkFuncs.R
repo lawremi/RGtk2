@@ -1772,7 +1772,7 @@ gtkButtonBoxSetChildSize <-
 function(object, min.width, min.height)
 {
   if(getOption("depwarn"))
-    .Deprecated(style properties child-min-width/-height, RGtk2)
+    .Deprecated("style properties child-min-width/-height", RGtk2)
 
   checkPtrType(object, "GtkButtonBox")
   min.width <- as.integer(min.width)
@@ -1788,7 +1788,7 @@ gtkButtonBoxSetChildIpadding <-
 function(object, ipad.x, ipad.y)
 {
   if(getOption("depwarn"))
-    .Deprecated(style properties child-internal-pad-x/-y, RGtk2)
+    .Deprecated("style properties child-internal-pad-x/-y", RGtk2)
 
   checkPtrType(object, "GtkButtonBox")
   ipad.x <- as.integer(ipad.x)
@@ -1804,7 +1804,7 @@ gtkButtonBoxGetChildSize <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(style properties child-min-width/-height, RGtk2)
+    .Deprecated("style properties child-min-width/-height", RGtk2)
 
   checkPtrType(object, "GtkButtonBox")
 
@@ -1818,7 +1818,7 @@ gtkButtonBoxGetChildIpadding <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(style properties child-internal-pad-x/-y, RGtk2)
+    .Deprecated("style properties child-internal-pad-x/-y", RGtk2)
 
   checkPtrType(object, "GtkButtonBox")
 
@@ -1895,7 +1895,7 @@ gtkBoxPackStartDefaults <-
 function(object, widget)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkBoxPackStart, RGtk2)
+    .Deprecated("gtkBoxPackStart", RGtk2)
 
   checkPtrType(object, "GtkBox")
   checkPtrType(widget, "GtkWidget")
@@ -1910,7 +1910,7 @@ gtkBoxPackEndDefaults <-
 function(object, widget)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkBoxPackEnd, RGtk2)
+    .Deprecated("gtkBoxPackEnd", RGtk2)
 
   checkPtrType(object, "GtkBox")
   checkPtrType(widget, "GtkWidget")
@@ -3222,7 +3222,7 @@ gtkCheckMenuItemSetShowToggle <-
 function(object, always)
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   checkPtrType(object, "GtkCheckMenuItem")
   always <- as.logical(always)
@@ -3237,7 +3237,7 @@ gtkCheckMenuItemSetState <-
 function(object, is.active)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkCheckMenuItemSetActive, RGtk2)
+    .Deprecated("gtkCheckMenuItemSetActive", RGtk2)
 
   checkPtrType(object, "GtkCheckMenuItem")
   is.active <- as.logical(is.active)
@@ -3501,7 +3501,7 @@ gtkCListNew <-
 function(columns = 1, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkListStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkListStore/GtkTreeView", RGtk2)
 
   columns <- as.integer(columns)
 
@@ -3518,7 +3518,7 @@ gtkCListNewWithTitles <-
 function(columns = 1, titles, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkListStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkListStore/GtkTreeView", RGtk2)
 
   columns <- as.integer(columns)
   titles <- as.list(as.character(titles))
@@ -4758,7 +4758,7 @@ gtkColorSelectionSetColor <-
 function(object, color)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkColorSelectionSetCurrentColor, RGtk2)
+    .Deprecated("gtkColorSelectionSetCurrentColor", RGtk2)
 
   checkPtrType(object, "GtkColorSelection")
   color <- as.list(as.numeric(color))
@@ -4773,7 +4773,7 @@ gtkColorSelectionGetColor <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkColorSelectionGetCurrentColor, RGtk2)
+    .Deprecated("gtkColorSelectionGetCurrentColor", RGtk2)
 
   checkPtrType(object, "GtkColorSelection")
 
@@ -4835,7 +4835,7 @@ gtkComboNew <-
 function(show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkComboBoxEntry, RGtk2)
+    .Deprecated("GtkComboBoxEntry", RGtk2)
 
   
 
@@ -5488,7 +5488,7 @@ gtkContainerChildren <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkContainerGetChildren, RGtk2)
+    .Deprecated("gtkContainerGetChildren", RGtk2)
 
   checkPtrType(object, "GtkContainer")
 
@@ -5728,7 +5728,7 @@ gtkCTreeNewWithTitles <-
 function(columns = 1, tree.column = 0, titles, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkTreeStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkTreeStore/GtkTreeView", RGtk2)
 
   columns <- as.integer(columns)
   tree.column <- as.integer(tree.column)
@@ -5747,7 +5747,7 @@ gtkCTreeNew <-
 function(columns = 1, tree.column = 0, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkTreeStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkTreeStore/GtkTreeView", RGtk2)
 
   columns <- as.integer(columns)
   tree.column <- as.integer(tree.column)
@@ -7082,7 +7082,7 @@ gtkDragSetDefaultIcon <-
 function(colormap, pixmap, mask, hot.x, hot.y)
 {
   if(getOption("depwarn"))
-    .Deprecated(a different stock pixbuf for GTK_STOCK_DND, RGtk2)
+    .Deprecated("a different stock pixbuf for GTK_STOCK_DND", RGtk2)
 
   checkPtrType(colormap, "GdkColormap")
   checkPtrType(pixmap, "GdkPixmap")
@@ -7251,7 +7251,7 @@ gtkDrawingAreaSize <-
 function(object, width, height)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWidgetSetSizeRequest, RGtk2)
+    .Deprecated("gtkWidgetSetSizeRequest", RGtk2)
 
   checkPtrType(object, "GtkDrawingArea")
   width <- as.integer(width)
@@ -7456,7 +7456,7 @@ gtkEntryNewWithMaxLength <-
 function(max = 0, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkEntryNew, RGtk2)
+    .Deprecated("gtkEntryNew", RGtk2)
 
   max <- as.integer(max)
 
@@ -7726,7 +7726,7 @@ gtkEntryAppendText <-
 function(object, text)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkEditableInsertText, RGtk2)
+    .Deprecated("gtkEditableInsertText", RGtk2)
 
   checkPtrType(object, "GtkEntry")
   text <- as.character(text)
@@ -7741,7 +7741,7 @@ gtkEntryPrependText <-
 function(object, text)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkEditableInsertText, RGtk2)
+    .Deprecated("gtkEditableInsertText", RGtk2)
 
   checkPtrType(object, "GtkEntry")
   text <- as.character(text)
@@ -9561,7 +9561,7 @@ gtkFontSelectionGetFont <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkFontSelectionGetFontName, RGtk2)
+    .Deprecated("gtkFontSelectionGetFontName", RGtk2)
 
   checkPtrType(object, "GtkFontSelection")
 
@@ -9646,7 +9646,7 @@ gtkFontSelectionDialogGetFont <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkFontSelectionGetFontName, RGtk2)
+    .Deprecated("gtkFontSelectionGetFontName", RGtk2)
 
   checkPtrType(object, "GtkFontSelectionDialog")
 
@@ -10382,7 +10382,7 @@ function(object)
 
 
 gtkIconSetRenderIcon <-
-function(object, style, in, state, size, widget = NULL, detail = NULL)
+function(object, style, direction, state, size, widget = NULL, detail = NULL)
 {
   checkPtrType(object, "GtkIconSet")
   checkPtrType(style, "GtkStyle")
@@ -10392,7 +10392,7 @@ function(object, style, in, state, size, widget = NULL, detail = NULL)
   if (!is.null( widget )) checkPtrType(widget, "GtkWidget")
   if (!is.null( detail )) detail <- as.character(detail)
 
-  w <- .RGtkCall("S_gtk_icon_set_render_icon", object, style, in, state, size, widget, detail, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_render_icon", object, style, direction, state, size, widget, detail, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -12409,7 +12409,7 @@ gtkItemFactoryNew <-
 function(container.type, path, accel.group = NULL)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkUIManager, RGtk2)
+    .Deprecated("GtkUIManager", RGtk2)
 
   container.type <- as.GType(container.type)
   path <- as.character(path)
@@ -13041,7 +13041,7 @@ gtkLabelSet <-
 function(object, str)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkLabelSetText, RGtk2)
+    .Deprecated("gtkLabelSetText", RGtk2)
 
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
@@ -13056,7 +13056,7 @@ gtkLabelGet <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkLabelGetText, RGtk2)
+    .Deprecated("gtkLabelGetText", RGtk2)
 
   checkPtrType(object, "GtkLabel")
 
@@ -13342,7 +13342,7 @@ gtkListGetType <-
 function()
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkListStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkListStore/GtkTreeView", RGtk2)
 
   
 
@@ -13356,7 +13356,7 @@ gtkListNew <-
 function(show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkListStore/GtkTreeView, RGtk2)
+    .Deprecated("GtkListStore/GtkTreeView", RGtk2)
 
   
 
@@ -13658,7 +13658,7 @@ gtkListItemNew <-
 function(show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkTreeView, RGtk2)
+    .Deprecated("GtkTreeView", RGtk2)
 
   
 
@@ -13675,7 +13675,7 @@ gtkListItemNewWithLabel <-
 function(label, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkTreeView, RGtk2)
+    .Deprecated("GtkTreeView", RGtk2)
 
   label <- as.character(label)
 
@@ -14848,7 +14848,7 @@ gtkMenuItemRightJustify <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkMenuItemSetRightJustified, RGtk2)
+    .Deprecated("gtkMenuItemSetRightJustified", RGtk2)
 
   checkPtrType(object, "GtkMenuItem")
 
@@ -15661,7 +15661,7 @@ gtkNotebookCurrentPage <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkNotebookGetCurrentPage, RGtk2)
+    .Deprecated("gtkNotebookGetCurrentPage", RGtk2)
 
   checkPtrType(object, "GtkNotebook")
 
@@ -15675,7 +15675,7 @@ gtkNotebookSetPage <-
 function(object, page.num)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkNotebookSetCurrentPage, RGtk2)
+    .Deprecated("gtkNotebookSetCurrentPage", RGtk2)
 
   checkPtrType(object, "GtkNotebook")
   page.num <- as.integer(page.num)
@@ -15747,7 +15747,7 @@ gtkOptionMenuNew <-
 function(show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkComboBox, RGtk2)
+    .Deprecated("GtkComboBox", RGtk2)
 
   
 
@@ -15940,7 +15940,7 @@ gtkPixmapNew <-
 function(pixmap, mask = NULL, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkImage, RGtk2)
+    .Deprecated("GtkImage", RGtk2)
 
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
@@ -16089,7 +16089,7 @@ gtkPreviewNew <-
 function(type, show = TRUE)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkDrawingArea, RGtk2)
+    .Deprecated("GtkDrawingArea", RGtk2)
 
   
 
@@ -16278,7 +16278,7 @@ gtkProgressSetShowText <-
 function(object, show.text)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   show.text <- as.logical(show.text)
@@ -16293,7 +16293,7 @@ gtkProgressSetTextAlignment <-
 function(object, x.align, y.align)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   x.align <- as.numeric(x.align)
@@ -16309,7 +16309,7 @@ gtkProgressSetFormatString <-
 function(object, format)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   format <- as.character(format)
@@ -16324,7 +16324,7 @@ gtkProgressSetAdjustment <-
 function(object, adjustment)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   checkPtrType(adjustment, "GtkAdjustment")
@@ -16339,7 +16339,7 @@ gtkProgressConfigure <-
 function(object, value, min, max)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
@@ -16356,7 +16356,7 @@ gtkProgressSetPercentage <-
 function(object, percentage)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   percentage <- as.numeric(percentage)
@@ -16371,7 +16371,7 @@ gtkProgressSetValue <-
 function(object, value)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
@@ -16386,7 +16386,7 @@ gtkProgressGetValue <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
 
@@ -16400,7 +16400,7 @@ gtkProgressSetActivityMode <-
 function(object, activity.mode)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   activity.mode <- as.logical(activity.mode)
@@ -16415,7 +16415,7 @@ gtkProgressGetCurrentText <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
 
@@ -16429,7 +16429,7 @@ gtkProgressGetTextFromValue <-
 function(object, value)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
@@ -16444,7 +16444,7 @@ gtkProgressGetCurrentPercentage <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
 
@@ -16458,7 +16458,7 @@ gtkProgressGetPercentageFromValue <-
 function(object, value)
 {
   if(getOption("depwarn"))
-    .Deprecated(GtkProgressBar methods, RGtk2)
+    .Deprecated("GtkProgressBar methods", RGtk2)
 
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
@@ -16847,7 +16847,7 @@ gtkRadioButtonGroup <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkRadioButtonGetGroup, RGtk2)
+    .Deprecated("gtkRadioButtonGetGroup", RGtk2)
 
   checkPtrType(object, "GtkRadioButton")
 
@@ -16939,7 +16939,7 @@ gtkRadioMenuItemGroup <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkRadioMenuItemGetGroup, RGtk2)
+    .Deprecated("gtkRadioMenuItemGetGroup", RGtk2)
 
   checkPtrType(object, "GtkRadioMenuItem")
 
@@ -19884,7 +19884,7 @@ gtkStyleApplyDefaultPixmap <-
 function(object, window, set.bg, area, x, y, width, height)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkStyleApplyDefaultBackground, RGtk2)
+    .Deprecated("gtkStyleApplyDefaultBackground", RGtk2)
 
   checkPtrType(object, "GtkStyle")
   checkPtrType(window, "GdkWindow")
@@ -23176,7 +23176,7 @@ gtkToggleButtonSetState <-
 function(object, is.active)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToggleButtonSetActive, RGtk2)
+    .Deprecated("gtkToggleButtonSetActive", RGtk2)
 
   checkPtrType(object, "GtkToggleButton")
   is.active <- as.logical(is.active)
@@ -23383,7 +23383,7 @@ gtkToolbarAppendItem <-
 function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   text <- as.character(text)
@@ -23403,7 +23403,7 @@ gtkToolbarPrependItem <-
 function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   text <- as.character(text)
@@ -23423,7 +23423,7 @@ gtkToolbarInsertItem <-
 function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   text <- as.character(text)
@@ -23444,7 +23444,7 @@ gtkToolbarInsertStock <-
 function(object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   stock.id <- as.character(stock.id)
@@ -23510,7 +23510,7 @@ gtkToolbarAppendElement <-
 function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   
@@ -23532,7 +23532,7 @@ gtkToolbarPrependElement <-
 function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   
@@ -23554,7 +23554,7 @@ gtkToolbarInsertElement <-
 function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data = NULL, position)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkToolbarInsert, RGtk2)
+    .Deprecated("gtkToolbarInsert", RGtk2)
 
   checkPtrType(object, "GtkToolbar")
   
@@ -27980,7 +27980,7 @@ gtkWidgetQueueClear <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWidgetQueueDraw, RGtk2)
+    .Deprecated("gtkWidgetQueueDraw", RGtk2)
 
   checkPtrType(object, "GtkWidget")
 
@@ -27994,7 +27994,7 @@ gtkWidgetQueueClearArea <-
 function(object, x, y, width, height)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWidgetQueueDrawArea, RGtk2)
+    .Deprecated("gtkWidgetQueueDrawArea", RGtk2)
 
   checkPtrType(object, "GtkWidget")
   x <- as.integer(x)
@@ -28034,7 +28034,7 @@ gtkWidgetDraw <-
 function(object, area)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWidgetQueueDrawArea, RGtk2)
+    .Deprecated("gtkWidgetQueueDrawArea", RGtk2)
 
   checkPtrType(object, "GtkWidget")
   area <- as.GdkRectangle(area)
@@ -28514,7 +28514,7 @@ gtkWidgetSetUsize <-
 function(object, width, height)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWidgetSetSizeRequest, RGtk2)
+    .Deprecated("gtkWidgetSetSizeRequest", RGtk2)
 
   checkPtrType(object, "GtkWidget")
   width <- as.integer(width)
@@ -30177,7 +30177,7 @@ gtkWindowSetPolicy <-
 function(object, allow.shrink, allow.grow, auto.shrink)
 {
   if(getOption("depwarn"))
-    .Deprecated(gtkWindowSetResizable, RGtk2)
+    .Deprecated("gtkWindowSetResizable", RGtk2)
 
   checkPtrType(object, "GtkWindow")
   allow.shrink <- as.integer(allow.shrink)

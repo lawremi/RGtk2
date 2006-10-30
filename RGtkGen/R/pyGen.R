@@ -1119,15 +1119,16 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     if(isDeprecated(fun)) {
         txt <- c(txt,
         ind(c(invoke("if", invoke("getOption", lit("depwarn"))),
-            ind(invokev(".Deprecated", fun$deprecated, package)))),
+            ind(invokev(".Deprecated", lit(fun$deprecated), package)))),
         "")
     }
 
     txt <- c(txt,
     ind(coerce),
     "",
-    ind(rassign("w", invoke(".RGtkCall", c(lit(nameToC(name)), nameToS(names(inParams)),
-                          named("PACKAGE", lit(package)))))))
+    ind(rassign("w", invoke(".RGtkCall", c(lit(nameToC(name)), nameToS(names(inParams)))))))
+    
+    # named("PACKAGE", lit(package))
 
     if (".errwarn" %in% names(sargs))
         txt <- c(txt, "",
@@ -2160,12 +2161,13 @@ function(sname, className, croutine, type, defs)
             "function(obj)",
             "{",
             paste("  checkPtrType(obj, '", className, "')", collapse="", sep=""),
-            paste("  v <- .Call('", croutine, "', obj, ", named("PACKAGE", lit("RGtk2")), ")", 
+            paste("  v <- .Call('", croutine, "', obj, ", ")", 
 				collapse="", sep=""),
             setClassInfo,
             "  v",
             "}")
 
+            #named("PACKAGE", lit("RGtk2"))
  rcode
 }
 

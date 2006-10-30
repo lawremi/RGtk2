@@ -281,7 +281,7 @@ gdkColormapGetSystemSize <-
 function()
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   
 
@@ -366,7 +366,7 @@ gdkColorWhite <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   checkPtrType(object, "GdkColormap")
 
@@ -380,7 +380,7 @@ gdkColorBlack <-
 function(object)
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   checkPtrType(object, "GdkColormap")
 
@@ -394,7 +394,7 @@ gdkColorAlloc <-
 function(object, color)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkColormapAllocColor, RGtk2)
+    .Deprecated("gdkColormapAllocColor", RGtk2)
 
   checkPtrType(object, "GdkColormap")
   color <- as.GdkColor(color)
@@ -409,7 +409,7 @@ gdkColorChange <-
 function(object, color)
 {
   if(getOption("depwarn"))
-    .Deprecated(nothing, RGtk2)
+    .Deprecated("nothing", RGtk2)
 
   checkPtrType(object, "GdkColormap")
   color <- as.GdkColor(color)
@@ -1340,7 +1340,7 @@ gdkDrawString <-
 function(object, font, gc, x, y, string)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawLayout, RGtk2)
+    .Deprecated("gdkDrawableDrawLayout", RGtk2)
 
   checkPtrType(object, "GdkDrawable")
   checkPtrType(font, "GdkFont")
@@ -1359,7 +1359,7 @@ gdkDrawText <-
 function(object, font, gc, x, y, text, text.length)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawLayout, RGtk2)
+    .Deprecated("gdkDrawableDrawLayout", RGtk2)
 
   checkPtrType(object, "GdkDrawable")
   checkPtrType(font, "GdkFont")
@@ -1379,7 +1379,7 @@ gdkDrawTextWc <-
 function(object, font, gc, x, text)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawLayout, RGtk2)
+    .Deprecated("gdkDrawableDrawLayout", RGtk2)
 
   checkPtrType(object, "GdkDrawable")
   checkPtrType(font, "GdkFont")
@@ -1559,7 +1559,7 @@ gdkDrawLayoutWithColors <-
 function(drawable, gc, x, y, layout, foreground, background)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawLayout, RGtk2)
+    .Deprecated("gdkDrawableDrawLayout", RGtk2)
 
   checkPtrType(drawable, "GdkDrawable")
   checkPtrType(gc, "GdkGC")
@@ -2502,7 +2502,7 @@ gdkImageGet <-
 function(object, x, y, width, height)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableGetImage, RGtk2)
+    .Deprecated("gdkDrawableGetImage", RGtk2)
 
   checkPtrType(object, "GdkDrawable")
   x <- as.integer(x)
@@ -3083,7 +3083,7 @@ gdkPixbufRenderToDrawable <-
 function(object, drawable, gc, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawPixbuf, RGtk2)
+    .Deprecated("gdkDrawableDrawPixbuf", RGtk2)
 
   checkPtrType(object, "GdkPixbuf")
   checkPtrType(drawable, "GdkDrawable")
@@ -3108,7 +3108,7 @@ gdkPixbufRenderToDrawableAlpha <-
 function(object, drawable, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, alpha.mode = NULL, alpha.threshold = NULL, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkDrawableDrawPixbuf, RGtk2)
+    .Deprecated("gdkDrawableDrawPixbuf", RGtk2)
 
   checkPtrType(object, "GdkPixbuf")
   checkPtrType(drawable, "GdkDrawable")
@@ -3577,7 +3577,7 @@ gdkRgbGetCmap <-
 function()
 {
   if(getOption("depwarn"))
-    .Deprecated(gdkRgbGetColormap, RGtk2)
+    .Deprecated("gdkRgbGetColormap", RGtk2)
 
   
 
