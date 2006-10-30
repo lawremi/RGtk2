@@ -2180,10 +2180,14 @@
   )
 )
 
-(define-virtual create_accessible
-  (of-object "AtkObjectFactory")
-  (return-type "AtkObject*")
-)
+; not really a method...
+;(define-virtual create_accessible
+;  (of-object "AtkObjectFactory")
+;  (parameters
+;    '("GObject*" "obj")
+;  )
+;  (return-type "AtkObject*")
+;)
 
 (define-virtual invalidate
   (of-object "AtkObjectFactory")
@@ -2314,7 +2318,7 @@
   (return-type "none")
   (parameters
     '("guint" "change_index")
-    '("gpointer" "changed_child")
+    '("AtkObject*" "changed_child")
   )
 )
 
@@ -2352,7 +2356,7 @@
   (of-object "AtkObject")
   (return-type "none")
   (parameters
-    '("gpointer*" "child")
+    '("AtkObject*" "child")
   )
 )
 
@@ -2906,31 +2910,33 @@
   )
 )
 
-(define-virtual add_global_event_listener
-  (of-object "AtkUtil")
-  (return-type "guint")
-  (parameters
-    '("const-gchar*" "event_type")
-  )
-)
+; These AtkUtil methods are not actually methods
 
-(define-virtual remove_global_event_listener
-  (of-object "AtkUtil")
-  (return-type "none")
-)
+;(define-virtual add_global_event_listener
+;  (of-object "AtkUtil")
+;  (return-type "guint")
+;  (parameters
+;    '("const-gchar*" "event_type")
+;  )
+;)
 
-(define-virtual add_key_event_listener
-  (of-object "AtkUtil")
-  (return-type "guint")
-  (parameters
-    '("gpointer" "data")
-  )
-)
+;(define-virtual remove_global_event_listener
+;  (of-object "AtkUtil")
+;  (return-type "none")
+;)
 
-(define-virtual remove_key_event_listener
-  (of-object "AtkUtil")
-  (return-type "none")
-)
+;(define-virtual add_key_event_listener
+;  (of-object "AtkUtil")
+;  (return-type "guint")
+;  (parameters
+;    '("gpointer" "data")
+;  )
+;)
+
+;(define-virtual remove_key_event_listener
+;  (of-object "AtkUtil")
+;  (return-type "none")
+;)
 
 (define-virtual get_current_value
   (of-object "AtkValue")

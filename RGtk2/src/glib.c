@@ -14,6 +14,21 @@ asCGTimeVal(USER_OBJECT_ s_timeval)
     return(timeval);
 }
 
+USER_OBJECT_
+asRGTimeVal(const GTimeVal *timeval)
+{
+  USER_OBJECT_ s_timeval;
+  
+  PROTECT(s_timeval = NEW_LIST(2));
+  
+  SET_VECTOR_ELT(s_timeval, 0, asRNumeric(timeval->tv_sec));
+  SET_VECTOR_ELT(s_timeval, 1, asRNumeric(timeval->tv_usec));
+  
+  UNPROTECT(1);
+  
+  return s_timeval;
+}
+
 GString*
 asCGString(USER_OBJECT_ s_string) {
     return(g_string_new(CHAR_DEREF(STRING_ELT(s_string, 0))));

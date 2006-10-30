@@ -5,6 +5,7 @@
 
 /* This is only defined to avoid warnings (these functions are sort of private) */
 #define PANGO_ENABLE_BACKEND
+#define GDK_PIXBUF_ENABLE_BACKEND
 	
 #include <glib.h>
 #include <glib-object.h>

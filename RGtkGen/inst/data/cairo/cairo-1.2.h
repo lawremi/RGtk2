@@ -1664,7 +1664,6 @@ cairo_debug_reset_static_data (void);
 typedef enum {
     CAIRO_SVG_VERSION_1_1 = 0,
     CAIRO_SVG_VERSION_1_2,
-    CAIRO_SVG_VERSION_LAST
 } CairoSvgVersion;
 
 CAIRO_END_DECLS

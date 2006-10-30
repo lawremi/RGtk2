@@ -9,7 +9,7 @@
 #include "RGtk2.h"
 
 USER_OBJECT_
-S_cairo_version()
+S_cairo_version(void)
 {
 
   int ans;
@@ -24,7 +24,7 @@ S_cairo_version()
  
 
 USER_OBJECT_
-S_cairo_version_string()
+S_cairo_version_string(void)
 {
 
   const char* ans;
@@ -2243,7 +2243,7 @@ S_cairo_matrix_init(USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USE
  
 
 USER_OBJECT_
-S_cairo_matrix_init_identity()
+S_cairo_matrix_init_identity(void)
 {
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -2423,7 +2423,7 @@ S_cairo_matrix_transform_point(USER_OBJECT_ s_matrix, USER_OBJECT_ s_x, USER_OBJ
  
 
 USER_OBJECT_
-S_cairo_font_options_create()
+S_cairo_font_options_create(void)
 {
 
   cairo_font_options_t* ans;

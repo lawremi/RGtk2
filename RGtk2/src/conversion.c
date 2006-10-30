@@ -186,7 +186,7 @@ R_createFlag(int value, const char *flagName)
 
 
 USER_OBJECT_
-toRPointerWithFinalizer(void *val, const gchar *typeName, RPointerFinalizer finalizer)
+toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinalizer finalizer)
 {
     USER_OBJECT_ ans;
     USER_OBJECT_ r_finalizer = NULL_USER_OBJECT;
@@ -200,7 +200,7 @@ toRPointerWithFinalizer(void *val, const gchar *typeName, RPointerFinalizer fina
     if (finalizer) {
         PROTECT(r_finalizer = R_MakeExternalPtr(finalizer, NULL_USER_OBJECT, NULL_USER_OBJECT));
     }
-    PROTECT(ans = R_MakeExternalPtr(val, r_finalizer, NULL_USER_OBJECT));
+    PROTECT(ans = R_MakeExternalPtr((gpointer)val, r_finalizer, NULL_USER_OBJECT));
     if (finalizer) {
         R_RegisterCFinalizer(ans, RGtk_finalizer);
     }
@@ -239,12 +239,12 @@ toRPointerWithFinalizer(void *val, const gchar *typeName, RPointerFinalizer fina
 }
 
 USER_OBJECT_
-toRPointer(void *val, const char *type)
+toRPointer(gconstpointer val, const char *type)
 {
     return(toRPointerWithFinalizer(val, type, NULL));
 }
 USER_OBJECT_
-toRPointerWithRef(void *val, const char *type) {
+toRPointerWithRef(gconstpointer val, const char *type) {
     if (val)
         g_object_ref(G_OBJECT(val));
     return(toRPointerWithFinalizer(val, type, g_object_unref));

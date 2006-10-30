@@ -1,7 +1,7 @@
 #ifndef S_ATK_FUNCS_H
 #define S_ATK_FUNCS_H
   USER_OBJECT_
-S_atk_action_get_type(); 
+S_atk_action_get_type(void); 
 
   USER_OBJECT_
 S_atk_action_get_localized_name(USER_OBJECT_ s_object, USER_OBJECT_ s_i); 
@@ -25,7 +25,7 @@ S_atk_action_get_keybinding(USER_OBJECT_ s_object, USER_OBJECT_ s_i);
 S_atk_action_set_description(USER_OBJECT_ s_object, USER_OBJECT_ s_i, USER_OBJECT_ s_desc); 
 
   USER_OBJECT_
-S_atk_component_get_type(); 
+S_atk_component_get_type(void); 
 
   USER_OBJECT_
 S_atk_component_contains(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type); 
@@ -64,7 +64,7 @@ S_atk_component_get_layer(USER_OBJECT_ s_object);
 S_atk_component_get_mdi_zorder(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_atk_document_get_type(); 
+S_atk_document_get_type(void); 
 
   USER_OBJECT_
 S_atk_document_get_document_type(USER_OBJECT_ s_object); 
@@ -73,7 +73,7 @@ S_atk_document_get_document_type(USER_OBJECT_ s_object);
 S_atk_document_get_document(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_atk_editable_text_get_type(); 
+S_atk_editable_text_get_type(void); 
 
   USER_OBJECT_
 S_atk_editable_text_set_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_attrib_set, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset); 
@@ -94,7 +94,7 @@ S_atk_editable_text_delete_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos,
 S_atk_editable_text_paste_text(USER_OBJECT_ s_object, USER_OBJECT_ s_position); 
 
   USER_OBJECT_
-S_atk_gobject_accessible_get_type(); 
+S_atk_gobject_accessible_get_type(void); 
 
   USER_OBJECT_
 S_atk_gobject_accessible_for_object(USER_OBJECT_ s_obj); 
@@ -103,7 +103,7 @@ S_atk_gobject_accessible_for_object(USER_OBJECT_ s_obj);
 S_atk_gobject_accessible_get_object(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_atk_hyperlink_get_type(); 
+S_atk_hyperlink_get_type(void); 
 
   USER_OBJECT_
 S_atk_hyperlink_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_i); 
@@ -130,7 +130,7 @@ S_atk_hyperlink_is_inline(USER_OBJECT_ s_object);
 S_atk_hyperlink_is_selected_link(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_atk_hypertext_get_type(); 
+S_atk_hypertext_get_type(void); 
 
   USER_OBJECT_
 S_atk_hypertext_get_link(USER_OBJECT_ s_object, USER_OBJECT_ s_link_index); 
@@ -142,7 +142,7 @@ S_atk_hypertext_get_n_links(USER_OBJECT_ s_object);
 S_atk_hypertext_get_link_index(USER_OBJECT_ s_object, USER_OBJECT_ s_char_index); 
 
   USER_OBJECT_
-S_atk_image_get_type(); 
+S_atk_image_get_type(void); 
 
   USER_OBJECT_
 S_atk_image_get_image_description(USER_OBJECT_ s_object); 
@@ -157,19 +157,19 @@ S_atk_image_set_image_description(USER_OBJECT_ s_object, USER_OBJECT_ s_descript
 S_atk_image_get_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type); 
 
   USER_OBJECT_
-S_atk_no_op_object_factory_get_type(); 
+S_atk_no_op_object_factory_get_type(void); 
 
   USER_OBJECT_
-S_atk_no_op_object_factory_new(); 
+S_atk_no_op_object_factory_new(void); 
 
   USER_OBJECT_
-S_atk_no_op_object_get_type(); 
+S_atk_no_op_object_get_type(void); 
 
   USER_OBJECT_
 S_atk_no_op_object_new(USER_OBJECT_ s_obj); 
 
   USER_OBJECT_
-S_atk_object_factory_get_type(); 
+S_atk_object_factory_get_type(void); 
 
   USER_OBJECT_
 S_atk_object_factory_create_accessible(USER_OBJECT_ s_object, USER_OBJECT_ s_obj); 
@@ -181,10 +181,10 @@ S_atk_object_factory_invalidate(USER_OBJECT_ s_object);
 S_atk_object_factory_get_accessible_type(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_atk_object_get_type(); 
+S_atk_object_get_type(void); 
 
   USER_OBJECT_
-S_atk_implementor_get_type(); 
+S_atk_implementor_get_type(void); 
 
   USER_OBJECT_
 S_atk_implementor_ref_accessible(USER_OBJECT_ s_object); 
@@ -241,7 +241,7 @@ S_atk_object_remove_property_change_handler(USER_OBJECT_ s_object, USER_OBJECT_ 
 S_atk_object_notify_state_change(USER_OBJECT_ s_object, USER_OBJECT_ s_state, USER_OBJECT_ s_value); 
 
   USER_OBJECT_
-S_atk_registry_get_type(); 
+S_atk_registry_get_type(void); 
 
   USER_OBJECT_
 S_atk_registry_set_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_factory_type); 
@@ -253,10 +253,10 @@ S_atk_registry_get_factory_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type);
 S_atk_registry_get_factory(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
 
   USER_OBJECT_
-S_atk_get_default_registry(); 
+S_atk_get_default_registry(void); 
 
   USER_OBJECT_
-S_atk_relation_get_type(); 
+S_atk_relation_get_type(void); 
 
   USER_OBJECT_
 S_atk_relation_type_register(USER_OBJECT_ s_name); 
@@ -280,10 +280,10 @@ S_atk_relation_get_target(USER_OBJECT_ s_object);
 S_atk_relation_add_target(USER_OBJECT_ s_object, USER_OBJECT_ s_target); 
 
   USER_OBJECT_
-S_atk_relation_set_get_type(); 
+S_atk_relation_set_get_type(void); 
 
   USER_OBJECT_
-S_atk_relation_set_new(); 
+S_atk_relation_set_new(void); 
 
   USER_OBJECT_
 S_atk_relation_set_contains(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship); 
@@ -307,7 +307,7 @@ S_atk_relation_set_get_relation_by_type(USER_OBJECT_ s_object, USER_OBJECT_ s_re
 S_atk_relation_set_add_relation_by_type(USER_OBJECT_ s_object, USER_OBJECT_ s_relationship, USER_OBJECT_ s_target); 
 
   USER_OBJECT_
-S_atk_selection_get_type(); 
+S_atk_selection_get_type(void); 
 
   USER_OBJECT_
 S_atk_selection_add_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_i); 
@@ -340,10 +340,10 @@ S_atk_state_type_get_name(USER_OBJECT_ s_type);
 S_atk_state_type_for_name(USER_OBJECT_ s_name); 
 
   USER_OBJECT_
-S_atk_state_set_get_type(); 
+S_atk_state_set_get_type(void); 
 
   USER_OBJECT_
-S_atk_state_set_new(); 
+S_atk_state_set_new(void); 
 
   USER_OBJECT_
 S_atk_state_set_is_empty(USER_OBJECT_ s_object); 
@@ -376,7 +376,7 @@ S_atk_state_set_or_sets(USER_OBJECT_ s_object, USER_OBJECT_ s_compare_set);
 S_atk_state_set_xor_sets(USER_OBJECT_ s_object, USER_OBJECT_ s_compare_set); 
 
   USER_OBJECT_
-S_atk_streamable_content_get_type(); 
+S_atk_streamable_content_get_type(void); 
 
   USER_OBJECT_
 S_atk_streamable_content_get_n_mime_types(USER_OBJECT_ s_object); 
@@ -388,7 +388,7 @@ S_atk_streamable_content_get_mime_type(USER_OBJECT_ s_object, USER_OBJECT_ s_i);
 S_atk_streamable_content_get_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_type); 
 
   USER_OBJECT_
-S_atk_table_get_type(); 
+S_atk_table_get_type(void); 
 
   USER_OBJECT_
 S_atk_table_ref_at(USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column); 
@@ -478,7 +478,7 @@ S_atk_table_add_column_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_column);
 S_atk_table_remove_column_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_column); 
 
   USER_OBJECT_
-S_atk_text_get_type(); 
+S_atk_text_get_type(void); 
 
   USER_OBJECT_
 S_atk_text_get_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset); 
@@ -553,7 +553,7 @@ S_atk_text_attribute_for_name(USER_OBJECT_ s_name);
 S_atk_text_attribute_get_value(USER_OBJECT_ s_attr, USER_OBJECT_ s_index); 
 
   USER_OBJECT_
-S_atk_util_get_type(); 
+S_atk_util_get_type(void); 
 
   USER_OBJECT_
 S_atk_remove_focus_tracker(USER_OBJECT_ s_tracker_id); 
@@ -571,19 +571,19 @@ S_atk_add_key_event_listener(USER_OBJECT_ s_listener, USER_OBJECT_ s_data);
 S_atk_remove_key_event_listener(USER_OBJECT_ s_listener_id); 
 
   USER_OBJECT_
-S_atk_get_root(); 
+S_atk_get_root(void); 
 
   USER_OBJECT_
-S_atk_get_focus_object(); 
+S_atk_get_focus_object(void); 
 
   USER_OBJECT_
-S_atk_get_toolkit_name(); 
+S_atk_get_toolkit_name(void); 
 
   USER_OBJECT_
-S_atk_get_toolkit_version(); 
+S_atk_get_toolkit_version(void); 
 
   USER_OBJECT_
-S_atk_value_get_type(); 
+S_atk_value_get_type(void); 
 
   USER_OBJECT_
 S_atk_value_get_current_value(USER_OBJECT_ s_object); 

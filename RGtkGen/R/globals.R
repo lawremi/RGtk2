@@ -133,6 +133,16 @@ hiddenTypes <- c("GDestroyNotify", "GtkDestroyNotify", "GtkClipboardClearFunc",
 # types that we just ignore (do not convert, do not fail as if it were 'bad')
 ignoredTypes <- c("GtkCallbackMarshal", "PangoAttrDataCopyFunc")
 
+### Extending GObject classes ###
+
+finalClasses <- c("GdkDevice", "GdkVisual", "GdkPixbuf", "GdkPixbufSimpleAnim",
+  "GtkClipboard", "GtkFileFilter", "GtkPageSetup", "GtkPrintContext", 
+  "GtkPrintOperationPreview", "GtkPrintSettings", "GtkRecentChooser",
+  "GtkRecentFilter", "GtkFileChooser", "GtkAccelMap", "PangoCairoFontMap",
+  "PangoContext", "PangoFontsetSimple", "PangoLayout")
+classTypeMap <- c("GdkBitmapClass" = "GdkDrawableClass", 
+  "GdkPixmapClass" = "GdkPixmapObjectClass", "GtkEditableIface" = "GtkEditableClass")
+
 ################## DOCUMENTATION ####################
 
 # functions that we aren't documenting (ie, memory management, low-level)

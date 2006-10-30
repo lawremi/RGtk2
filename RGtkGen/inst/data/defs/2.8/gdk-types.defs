@@ -2,7 +2,7 @@
 ; object definitions ...
 (define-object Bitmap
   (in-module "Gdk")
-  (parent "GdkPixmap")
+  (parent "GdkDrawable")
   (c-name "GdkBitmap")
   (gtype-id "GDK_TYPE_DRAWABLE")
 )
@@ -1040,6 +1040,17 @@
 		'("double" "x12") 
 		'("double" "x22")
 	)
+)
+(define-pointer Segment
+  (in-module "Gdk")
+  (c-name "GdkSegment")
+  (gtype-id "G_TYPE_POINTER")
+  (fields
+    '("gint" "x1")
+    '("gint" "y1")
+    '("gint" "x2")
+    '("gint" "y2")
+  )
 )
 (define-pointer NativeWindow
   (in-module "Gdk")

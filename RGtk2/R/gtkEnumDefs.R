@@ -244,6 +244,11 @@ GtkMovementStep<-c("logical-positions" = 0,
 storage.mode(GtkMovementStep) <- 'integer'
 class(GtkMovementStep) <- 'enums' 
 
+GtkNotebookTab<-c("first" = 0,
+	"last" = 1)
+storage.mode(GtkNotebookTab) <- 'integer'
+class(GtkNotebookTab) <- 'enums' 
+
 GtkOrientation<-c("horizontal" = 0,
 	"vertical" = 1)
 storage.mode(GtkOrientation) <- 'integer'

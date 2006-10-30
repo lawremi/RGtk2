@@ -163,7 +163,7 @@
 (define-method get_font_options
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_font_options")
-  (return-type "cairo_font_options_t*")
+  (return-type "const-cairo_font_options_t*")
 )
 
 (define-method set_resolution

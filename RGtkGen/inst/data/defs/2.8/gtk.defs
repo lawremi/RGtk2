@@ -7255,7 +7255,7 @@
   (return-type "GdkPixbuf*")
   (parameters
     '("GtkStyle*" "style" (in))
-    '("GtkTextDirection" "direction" (in))
+    '("GtkTextDirection" (in))
     '("GtkStateType" "state" (in))
     '("GtkIconSize" "size" (in))
     '("GtkWidget*" "widget" (in) (default "NULL") (null-ok))
@@ -22438,8 +22438,8 @@
   (of-object "GtkEditable")
   (return-type "gboolean")
   (parameters
-    '("gint*" "start_pos" (direction "out"))
-    '("gint*" "end_pos" (direction "out"))
+    '("gint*" "start_pos" (out))
+    '("gint*" "end_pos" (out))
   )
 )
 (define-virtual set_position

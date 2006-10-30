@@ -418,6 +418,27 @@ asCGdkSegment(USER_OBJECT_ s_segment)
     return(segment);
 }
 
+USER_OBJECT_
+asRGdkSegment(GdkSegment * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "x1", "y1", "x2", "y2", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 4));
+
+  SET_VECTOR_ELT(s_obj, 0, asRInteger(obj->x1));
+  SET_VECTOR_ELT(s_obj, 1, asRInteger(obj->y1));
+  SET_VECTOR_ELT(s_obj, 2, asRInteger(obj->x2));
+  SET_VECTOR_ELT(s_obj, 3, asRInteger(obj->y2));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GdkSegment"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+
 GdkColor*
 asCGdkColor(USER_OBJECT_ s_color)
 {
@@ -440,7 +461,7 @@ asCGdkColor(USER_OBJECT_ s_color)
     return(color);
 }
 USER_OBJECT_
-asRGdkColor(GdkColor* color)
+asRGdkColor(const GdkColor* color)
 {
     USER_OBJECT_ s_color;
 	static char *names[] = { "pixel", "red", "green", "blue", NULL };
@@ -602,4 +623,27 @@ asCGdkTrapezoid(USER_OBJECT_ s_trapezoid)
 	trapezoid->x22 = asCNumeric(VECTOR_ELT(s_trapezoid, 5));
 	
 	return(trapezoid);
+}
+
+USER_OBJECT_
+asRGdkTrapezoid(GdkTrapezoid * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "y1", "x11", "x21", "y2", "x12", "x22", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 6));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->y1));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->x11));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->x21));
+  SET_VECTOR_ELT(s_obj, 3, asRNumeric(obj->y2));
+  SET_VECTOR_ELT(s_obj, 4, asRNumeric(obj->x12));
+  SET_VECTOR_ELT(s_obj, 5, asRNumeric(obj->x22));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GdkTrapezoid"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
 }

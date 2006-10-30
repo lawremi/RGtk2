@@ -1,4 +1,4 @@
-#include "RSGGobi.h"
+#include "RGtk2.h"
 
 typedef void (*RPointerFinalizer)(void *ptr);
 typedef void* (*ElementConverter)(void *element);
@@ -8,27 +8,32 @@ typedef void* (*ElementConverter)(void *element);
 /* converts an array, taking the reference of each element, so that conversion
 	functions taking a pointer parameter will work (array elements are values) */
 #define asRArrayRef(array, converter) \
+__extension__ \
 ({ \
     asRArray(&array, converter); \
 })
 
 #define asRArrayRefWithSize(array, converter, n) \
+__extension__ \
 ({ \
     asRArrayWithSize(&array, converter, n); \
 })
 /* converts an array directly using the conversion function to an R list */
 #define asRArray(array, converter) \
+__extension__ \
 ({ \
     _asRArray(array, converter, LIST, VECTOR); \
 })
 
 #define asRArrayWithSize(array, converter, n) \
+__extension__ \
 ({ \
     _asRArrayWithSize(array, converter, n, LIST, VECTOR); \
 })
 
 /* converts primitive (numeric, integer, logical) arrays to R vectors */
 #define _asRPrimArray(array, TYPE) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -38,6 +43,7 @@ typedef void* (*ElementConverter)(void *element);
 })
 
 #define _asRPrimArrayWithSize(array, n, TYPE) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_obj; \
@@ -53,6 +59,7 @@ typedef void* (*ElementConverter)(void *element);
 
 /* core converter, for converting string arrays and other arrays of pointer types */
 #define _asRArray(array, converter, TYPE, SETTER_TYPE) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -62,6 +69,7 @@ typedef void* (*ElementConverter)(void *element);
 })
 
 #define _asRArrayWithSize(array, converter, n, TYPE, SETTER_TYPE) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_obj; \
@@ -78,21 +86,25 @@ typedef void* (*ElementConverter)(void *element);
 /* Below are primitive array -> R vector converters */
 
 #define asRStringArray(array) \
+__extension__ \
 ({ \
     _asRArray(array, COPY_TO_USER_STRING, CHARACTER, STRING); \
 })
 
 #define asRStringArrayWithSize(array, n) \
+__extension__ \
 ({ \
     _asRArrayWithSize(array, COPY_TO_USER_STRING, n, CHARACTER, STRING); \
 })
 
 #define asRIntegerArray(array) \
+__extension__ \
 ({ \
     _asRPrimArray(array, INTEGER); \
 })
 
 #define asRIntegerArrayWithSize(array, size) \
+__extension__ \
 ({ \
     _asRPrimArrayWithSize(array, size, INTEGER); \
 })
@@ -100,32 +112,38 @@ typedef void* (*ElementConverter)(void *element);
 #define RAW_POINTER(x)	RAW(x)
 
 #define asRRawArray(array) \
+__extension__ \
 ({ \
     _asRPrimArray(array, RAW); \
 })
 
 #define asRRawArrayWithSize(array, size) \
+__extension__ \
 ({ \
     _asRPrimArrayWithSize(array, size, RAW); \
 })
 
 
 #define asRNumericArray(array) \
+__extension__ \
 ({ \
     _asRPrimArray(array, NUMERIC); \
 })
 
 #define asRNumericArrayWithSize(array, size) \
+__extension__ \
 ({ \
     _asRPrimArrayWithSize(array, size, NUMERIC); \
 })
 
 #define asRLogicalArray(array) \
+__extension__ \
 ({ \
     _asRPrimArray(array, LOGICAL); \
 })
 
 #define asRLogicalArrayWithSize(array, size) \
+__extension__ \
 ({ \
     _asRPrimArrayWithSize(array, size, LOGICAL); \
 })
@@ -133,10 +151,12 @@ typedef void* (*ElementConverter)(void *element);
 /* for converting each element to an R pointer of a specified class 
 	-- I don't think this is ever used */ 
 #define toRPointerArray(array, type) \
+__extension__ \
 ({ \
     toRPointerWithFinalizerArray(array, type); \
 })
 #define toRPointerArrayWithSize(array, type, n) \
+__extension__ \
 ({ \
     toRPointerWithFinalizerArrayWithSize(array, type, NULL, n); \
 })
@@ -144,6 +164,7 @@ typedef void* (*ElementConverter)(void *element);
 /* for converting elements to R pointers of a specified class with a special finalizer 
 	- only used like once */
 #define toRPointerWithFinalizerArray(array, type, finalizer) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -152,6 +173,7 @@ typedef void* (*ElementConverter)(void *element);
     asRPointerWithFinalizerArrayWithSize(array, type, finalizer, n-1); \
 })
 #define toRPointerWithFinalizerArrayWithSize(array, type, finalizer, n) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_array; \
@@ -168,6 +190,7 @@ typedef void* (*ElementConverter)(void *element);
 /* converts each element to a ref'd R pointer (ie, they're GObjects) 
 	- used only a couple of times */
 #define toRPointerWithRefArray(array, type) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -176,6 +199,7 @@ typedef void* (*ElementConverter)(void *element);
     asRPointerWithRefArrayWithSize(array, type, n-1); \
 })
 #define toRPointerWithRefArrayWithSize(array, type, n) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_array; \
@@ -193,6 +217,7 @@ typedef void* (*ElementConverter)(void *element);
 	into separate areas in memory so that they can be individually finalized 
 	- used maybe once */
 #define asRStructArray(array, type) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -201,6 +226,7 @@ typedef void* (*ElementConverter)(void *element);
     asRStructArrayWithSize(array, type, n-1); \
 })
 #define asRStructArrayWithSize(array, type, n) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_array; \
@@ -218,6 +244,7 @@ typedef void* (*ElementConverter)(void *element);
 
 /* for converting enum elements of a given type */
 #define asREnumArray(array, type) \
+__extension__ \
 ({ \
     int n = 0; \
 	if (!array) \
@@ -226,6 +253,7 @@ typedef void* (*ElementConverter)(void *element);
     asREnumArrayWithSize(array, type, n-1); \
 })
 #define asREnumArrayWithSize(array, type, n) \
+__extension__ \
 ({ \
     int i; \
     USER_OBJECT_ s_array; \
@@ -242,10 +270,12 @@ typedef void* (*ElementConverter)(void *element);
 /* now from R to C */
 
 #define asCArrayRef(s, type, converter) \
+__extension__ \
 ({ \
     asCArray(s, type, * converter); \
 })
 #define asCArray(s_array, type, converter) \
+__extension__ \
 ({ \
     int i; \
 \
@@ -259,6 +289,7 @@ typedef void* (*ElementConverter)(void *element);
 })
 
 #define asCEnumArray(s_array, type, code) \
+__extension__ \
 ({ \
     int i; \
 \
@@ -297,8 +328,8 @@ USER_OBJECT_ R_createFlag(int, const char *);
 guint asCFlag(USER_OBJECT_ s_flag, GType ftype);
 gint asCEnum(USER_OBJECT_ s_enum, GType etype);
 
-USER_OBJECT_ toRPointerWithFinalizer(void *val, const gchar *typeName, RPointerFinalizer finalizer);
-USER_OBJECT_ toRPointerWithRef(void *val, const char *type);
+USER_OBJECT_ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinalizer finalizer);
+USER_OBJECT_ toRPointerWithRef(gconstpointer val, const char *type);
 
 #define toRPointerWithCairoRef(ptr, name, type) \
 ({ \
@@ -306,7 +337,7 @@ USER_OBJECT_ toRPointerWithRef(void *val, const char *type);
 	toRPointerWithFinalizer(ptr, name, (RPointerFinalizer) type ## _destroy); \
 })
 
-USER_OBJECT_ toRPointer(void*, const char *name);
+USER_OBJECT_ toRPointer(gconstpointer, const char *name);
 void RGtk_finalizer(USER_OBJECT_ extptr);
 
 void *getPtrValue(USER_OBJECT_);
@@ -316,7 +347,7 @@ int R_setGValueFromSValue(GValue *, USER_OBJECT_);
 GValue* createGValueFromSValue(USER_OBJECT_ sval);
 gboolean initGValueFromSValue(USER_OBJECT_ sval, GValue *raw);
 gboolean initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw);
-USER_OBJECT_ asRGValue(GValue *);
+USER_OBJECT_ asRGValue(const GValue *);
 GValue* asCGValue(USER_OBJECT_);
 USER_OBJECT_ asRGType(GType);
 GParamSpec* asCGParamSpec(USER_OBJECT_ s_spec);
@@ -327,6 +358,7 @@ USER_OBJECT_ asRGClosure(GClosure *closure);
 /* GLib */
 USER_OBJECT_ asRGQuark(GQuark val);
 GTimeVal* asCGTimeVal(USER_OBJECT_ s_timeval);
+USER_OBJECT_ asRGTimeVal(const GTimeVal *timeval);
 GString* asCGString(USER_OBJECT_ s_string);
 GList* asCGList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGList(GList *glist, const gchar* type);
@@ -359,14 +391,16 @@ USER_OBJECT_ asRGdkKeymapKey(GdkKeymapKey* key);
 GdkPoint* asCGdkPoint(USER_OBJECT_ s_point);
 USER_OBJECT_ asRGdkPoint(GdkPoint *point);
 GdkSegment* asCGdkSegment(USER_OBJECT_ s_segment);
+USER_OBJECT_ asRGdkSegment(GdkSegment * obj);
 GdkColor* asCGdkColor(USER_OBJECT_ s_color);
-USER_OBJECT_ asRGdkColor(GdkColor* color);
+USER_OBJECT_ asRGdkColor(const GdkColor* color);
 USER_OBJECT_ asRGdkNativeWindow(GdkNativeWindow window);
 GdkNativeWindow asCGdkNativeWindow(USER_OBJECT_ s_window);
 USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 USER_OBJECT_ toRGdkEvent(GdkEvent *event, gboolean finalize);
 USER_OBJECT_ toRGdkFont(GdkFont *font);
 GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
+USER_OBJECT_ asRGdkTrapezoid(GdkTrapezoid * obj);
 USER_OBJECT_ asRGdkGCValues(GdkGCValues *values);
 USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 GdkSpan* asCGdkSpan(USER_OBJECT_ s_span);
@@ -377,7 +411,7 @@ USER_OBJECT_ asRGdkSpan(GdkSpan * obj);
 GtkTargetEntry* asCGtkTargetEntry(USER_OBJECT_ s_entry);
 USER_OBJECT_ asRGtkTargetEntry(GtkTargetEntry * obj);
 GtkFileFilterInfo* asCGtkFileFilterInfo(USER_OBJECT_ s_info);
-USER_OBJECT_ asRGtkFileFilterInfo(GtkFileFilterInfo * obj);
+USER_OBJECT_ asRGtkFileFilterInfo(const GtkFileFilterInfo * obj);
 GtkSettingsValue* asCGtkSettingsValue(USER_OBJECT_ s_value);
 GtkStockItem* asCGtkStockItem(USER_OBJECT_ s_item);
 USER_OBJECT_ asRGtkStockItem(GtkStockItem *item);
@@ -387,7 +421,7 @@ GtkItemFactoryEntry* R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbt
 GtkAllocation* asCGtkAllocation(USER_OBJECT_ s_alloc);
 USER_OBJECT_ asRGtkAllocation(GtkAllocation* alloc);
 GtkRecentFilterInfo * asCGtkRecentFilterInfo(USER_OBJECT_ s_obj);
-USER_OBJECT_ asRGtkRecentFilterInfo(GtkRecentFilterInfo * obj);
+USER_OBJECT_ asRGtkRecentFilterInfo(const GtkRecentFilterInfo * obj);
 GtkRecentData * asCGtkRecentData(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRGtkPageRange(GtkPageRange * obj);
 GtkPageRange * asCGtkPageRange(USER_OBJECT_ s_obj);

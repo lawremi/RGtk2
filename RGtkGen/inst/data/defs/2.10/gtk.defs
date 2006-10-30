@@ -3954,7 +3954,7 @@
   (return-type "gboolean")
   (parameters
     '("const-gchar*" "uri")
-    '("GError**" "error")
+    '("GError**" "error" (out))
   )
 )
 (define-virtual get_current_uri
@@ -3966,7 +3966,7 @@
   (return-type "gboolean")
   (parameters
     '("const-gchar*" "uri")
-    '("GError**" "error")
+    '("GError**" "error" (out))
   )
 )
 (define-virtual unselect_uri

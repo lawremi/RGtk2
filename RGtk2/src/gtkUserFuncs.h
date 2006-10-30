@@ -1,7 +1,7 @@
 #include "RGtk2.h"
 
   void
-S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, gchar* s_link, gpointer s_data); 
+S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, gpointer s_data); 
 
   void
 S_GtkCellLayoutDataFunc(GtkCellLayout* s_cell_layout, GtkCellRenderer* s_cell, GtkTreeModel* s_tree_model, GtkTreeIter* s_iter, gpointer s_data); 
@@ -16,16 +16,16 @@ S_GtkClipboardReceivedFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_select
 S_GtkClipboardImageReceivedFunc(GtkClipboard* s_clipboard, GdkPixbuf* s_image, gpointer s_data); 
 
   void
-S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, gchar* s_text, gpointer s_data); 
+S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, gpointer s_data); 
 
   void
 S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, gint s_n_atoms, gpointer s_data); 
 
   void
-S_GtkColorSelectionChangePaletteFunc(GdkColor* s_colors, gint s_n_colors); 
+S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors); 
 
   void
-S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, GdkColor* s_colors, gint s_n_colors); 
+S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors); 
 
   gboolean
 S_GtkCTreeGNodeFunc(GtkCTree* s_ctree, guint s_depth, GNode* s_gnode, GtkCTreeNode* s_cnode, gpointer s_data); 
@@ -34,16 +34,16 @@ S_GtkCTreeGNodeFunc(GtkCTree* s_ctree, guint s_depth, GNode* s_gnode, GtkCTreeNo
 S_GtkCTreeFunc(GtkCTree* s_ctree, GtkCTreeNode* s_node, gpointer s_data); 
 
   gboolean
-S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data); 
+S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data); 
 
   gboolean
-S_GtkFileFilterFunc(GtkFileFilterInfo* s_filter_info, gpointer s_data); 
+S_GtkFileFilterFunc(const GtkFileFilterInfo* s_filter_info, gpointer s_data); 
 
   void
 S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer s_data); 
 
   void
-S_GtkTranslateFunc(gchar* s_path, gpointer s_func_data); 
+S_GtkTranslateFunc(const gchar* s_path, gpointer s_func_data); 
 
   gboolean
 S_GtkFunction(gpointer s_data); 
@@ -79,7 +79,7 @@ S_GtkTreeViewColumnDropFunc(GtkTreeView* s_tree_view, GtkTreeViewColumn* s_colum
 S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer s_user_data); 
 
   gboolean
-S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data); 
+S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data); 
 
   void
 S_GtkTreeDestroyCountFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gint s_children, gpointer s_user_data); 
@@ -91,7 +91,7 @@ S_GtkTreeViewRowSeparatorFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoint
 S_GtkCallback(GtkWidget* s_child, gpointer s_data); 
 
   void
-S_GtkAccelMapForeach(gpointer s_data, gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed); 
+S_GtkAccelMapForeach(gpointer s_data, const gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed); 
 
   gboolean
 S_GtkAccelGroupFindFunc(GtkAccelKey* s_key, GClosure* s_closure, gpointer s_data); 
@@ -115,10 +115,10 @@ S_GtkItemFactoryCallback2(GtkWidget* s_widget, gpointer s_callback_data, guint s
 S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data); 
 
   void
-S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, guint8* s_text, gsize s_length, gpointer s_data); 
+S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, const guint8* s_text, gsize s_length, gpointer s_data); 
 
   void
-S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, gchar* s_link, gpointer s_user_data); 
+S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_user_data); 
 
   GtkNotebook*
 S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s_x, gint s_y, gpointer s_data); 
@@ -127,16 +127,16 @@ S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s
 S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data); 
 
   void
-S_GtkPrintSettingsFunc(gchar* s_key, gchar* s_value, gpointer s_user_data); 
+S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user_data); 
 
   gint
 S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data); 
 
   gboolean
-S_GtkRecentFilterFunc(GtkRecentFilterInfo* s_filter_info, gpointer s_user_data); 
+S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_data); 
 
   gboolean
-S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_content_buffer, GtkTextIter* s_iter, guint8* s_data, gsize s_length, gboolean s_create_tags, gpointer s_user_data, GError** s_error); 
+S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_content_buffer, GtkTextIter* s_iter, const guint8* s_data, gsize s_length, gboolean s_create_tags, gpointer s_user_data, GError** s_error); 
 
   void
 S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_dialog, gpointer s_user_data); 

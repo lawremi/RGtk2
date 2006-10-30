@@ -3,7 +3,12 @@ Adding support for extending GObjects
 ----------
 
 Type conversion issues:
-- GdkEvent
+
+Mismatches between class name and class structure name:
+GdkBitmap => GdkDrawableClass, GdkPixmap => GdkPixmapObjectClass
+
+Final classes:
+ GdkDevice, GdkPixbuf, GdkVisual
 
 Parameter directions:
 - Out parameters need to returned through list
@@ -13,7 +18,7 @@ Parameter directions:
 TODO: 
 
 1) R side, including constructor and calling parent handlers
-2) Interfaces
+2) GObject virtuals
 
 Some current issues/bugs with RGtk2
 ----------

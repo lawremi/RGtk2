@@ -1783,8 +1783,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   if (virtual)
     params <- c(object=makeObjectParam(fun$ofobject), params)
   
-  header <- declareFunction(fun$return, name, 
-    dequalify(getParamTypes(params)), names(params))
+  header <- declareFunction(toValidType(fun$return), name, 
+    getParamTypes(params), names(params))
   declaration <- header
   
   if (!virtual) { # user function needs user-data

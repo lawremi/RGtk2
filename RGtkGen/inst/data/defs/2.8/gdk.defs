@@ -5314,8 +5314,8 @@
   (of-object "GdkPixbufAnimation")
   (return-type "none")
   (parameters
-    '("int*" "width")
-    '("int*" "height")
+    '("int*" "width" (out))
+    '("int*" "height" (out))
   )
 )
 

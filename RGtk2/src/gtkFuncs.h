@@ -22,10 +22,10 @@ S_GTK_WIDGET_SAVED_STATE(USER_OBJECT_ s_wid);
 S_GTK_CTREE_ROW(USER_OBJECT_ s_node); 
 
   USER_OBJECT_
-S_gtk_about_dialog_get_type(); 
+S_gtk_about_dialog_get_type(void); 
 
   USER_OBJECT_
-S_gtk_about_dialog_new(); 
+S_gtk_about_dialog_new(void); 
 
   USER_OBJECT_
 S_gtk_about_dialog_get_name(USER_OBJECT_ s_object); 
@@ -118,10 +118,10 @@ S_gtk_about_dialog_set_email_hook(USER_OBJECT_ s_func, USER_OBJECT_ s_data);
 S_gtk_about_dialog_set_url_hook(USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
-S_gtk_accel_group_get_type(); 
+S_gtk_accel_group_get_type(void); 
 
   USER_OBJECT_
-S_gtk_accel_group_new(); 
+S_gtk_accel_group_new(void); 
 
   USER_OBJECT_
 S_gtk_accel_group_lock(USER_OBJECT_ s_object); 
@@ -169,13 +169,13 @@ S_gtk_accelerator_name(USER_OBJECT_ s_accelerator_key, USER_OBJECT_ s_accelerato
 S_gtk_accelerator_set_default_mod_mask(USER_OBJECT_ s_default_mod_mask); 
 
   USER_OBJECT_
-S_gtk_accelerator_get_default_mod_mask(); 
+S_gtk_accelerator_get_default_mod_mask(void); 
 
   USER_OBJECT_
 S_gtk_accelerator_get_label(USER_OBJECT_ s_accelerator_key, USER_OBJECT_ s_accelerator_mods); 
 
   USER_OBJECT_
-S_gtk_accel_label_get_type(); 
+S_gtk_accel_label_get_type(void); 
 
   USER_OBJECT_
 S_gtk_accel_label_new(USER_OBJECT_ s_string); 
@@ -235,19 +235,19 @@ S_gtk_accel_map_add_filter(USER_OBJECT_ s_filter_pattern);
 S_gtk_accel_map_foreach_unfiltered(USER_OBJECT_ s_data, USER_OBJECT_ s_foreach_func); 
 
   USER_OBJECT_
-S_gtk_accel_map_get_type(); 
+S_gtk_accel_map_get_type(void); 
 
   USER_OBJECT_
-S_gtk_accel_map_get(); 
+S_gtk_accel_map_get(void); 
 
   USER_OBJECT_
-S_gtk_accessible_get_type(); 
+S_gtk_accessible_get_type(void); 
 
   USER_OBJECT_
 S_gtk_accessible_connect_widget_destroyed(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_action_get_type(); 
+S_gtk_action_get_type(void); 
 
   USER_OBJECT_
 S_gtk_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id); 
@@ -319,7 +319,7 @@ S_gtk_action_set_sensitive(USER_OBJECT_ s_object, USER_OBJECT_ s_sensitive);
 S_gtk_action_set_visible(USER_OBJECT_ s_object, USER_OBJECT_ s_visible); 
 
   USER_OBJECT_
-S_gtk_action_group_get_type(); 
+S_gtk_action_group_get_type(void); 
 
   USER_OBJECT_
 S_gtk_action_group_new(USER_OBJECT_ s_name); 
@@ -364,7 +364,7 @@ S_gtk_action_group_set_translation_domain(USER_OBJECT_ s_object, USER_OBJECT_ s_
 S_gtk_action_group_translate_string(USER_OBJECT_ s_object, USER_OBJECT_ s_string); 
 
   USER_OBJECT_
-S_gtk_adjustment_get_type(); 
+S_gtk_adjustment_get_type(void); 
 
   USER_OBJECT_
 S_gtk_adjustment_new(USER_OBJECT_ s_value, USER_OBJECT_ s_lower, USER_OBJECT_ s_upper, USER_OBJECT_ s_step_incr, USER_OBJECT_ s_page_incr, USER_OBJECT_ s_page_size); 
@@ -385,7 +385,7 @@ S_gtk_adjustment_get_value(USER_OBJECT_ s_object);
 S_gtk_adjustment_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value); 
 
   USER_OBJECT_
-S_gtk_alignment_get_type(); 
+S_gtk_alignment_get_type(void); 
 
   USER_OBJECT_
 S_gtk_alignment_new(USER_OBJECT_ s_xalign, USER_OBJECT_ s_yalign, USER_OBJECT_ s_xscale, USER_OBJECT_ s_yscale); 
@@ -400,7 +400,7 @@ S_gtk_alignment_set_padding(USER_OBJECT_ s_object, USER_OBJECT_ s_padding_top, U
 S_gtk_alignment_get_padding(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_arrow_get_type(); 
+S_gtk_arrow_get_type(void); 
 
   USER_OBJECT_
 S_gtk_arrow_new(USER_OBJECT_ s_arrow_type, USER_OBJECT_ s_shadow_type); 
@@ -409,7 +409,7 @@ S_gtk_arrow_new(USER_OBJECT_ s_arrow_type, USER_OBJECT_ s_shadow_type);
 S_gtk_arrow_set(USER_OBJECT_ s_object, USER_OBJECT_ s_arrow_type, USER_OBJECT_ s_shadow_type); 
 
   USER_OBJECT_
-S_gtk_aspect_frame_get_type(); 
+S_gtk_aspect_frame_get_type(void); 
 
   USER_OBJECT_
 S_gtk_aspect_frame_new(USER_OBJECT_ s_label, USER_OBJECT_ s_xalign, USER_OBJECT_ s_yalign, USER_OBJECT_ s_ratio, USER_OBJECT_ s_obey_child); 
@@ -418,7 +418,7 @@ S_gtk_aspect_frame_new(USER_OBJECT_ s_label, USER_OBJECT_ s_xalign, USER_OBJECT_
 S_gtk_aspect_frame_set(USER_OBJECT_ s_object, USER_OBJECT_ s_xalign, USER_OBJECT_ s_yalign, USER_OBJECT_ s_ratio, USER_OBJECT_ s_obey_child); 
 
   USER_OBJECT_
-S_gtk_button_box_get_type(); 
+S_gtk_button_box_get_type(void); 
 
   USER_OBJECT_
 S_gtk_button_box_get_layout(USER_OBJECT_ s_object); 
@@ -445,13 +445,13 @@ S_gtk_button_box_get_child_size(USER_OBJECT_ s_object);
 S_gtk_button_box_get_child_ipadding(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_bin_get_type(); 
+S_gtk_bin_get_type(void); 
 
   USER_OBJECT_
 S_gtk_bin_get_child(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_box_get_type(); 
+S_gtk_box_get_type(void); 
 
   USER_OBJECT_
 S_gtk_box_pack_start(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_expand, USER_OBJECT_ s_fill, USER_OBJECT_ s_padding); 
@@ -487,10 +487,10 @@ S_gtk_box_query_child_packing(USER_OBJECT_ s_object, USER_OBJECT_ s_child);
 S_gtk_box_set_child_packing(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_expand, USER_OBJECT_ s_fill, USER_OBJECT_ s_padding, USER_OBJECT_ s_pack_type); 
 
   USER_OBJECT_
-S_gtk_button_get_type(); 
+S_gtk_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_button_new(); 
+S_gtk_button_new(void); 
 
   USER_OBJECT_
 S_gtk_button_new_with_label(USER_OBJECT_ s_label); 
@@ -559,10 +559,10 @@ S_gtk_button_set_image(USER_OBJECT_ s_object, USER_OBJECT_ s_image);
 S_gtk_button_get_image(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_calendar_get_type(); 
+S_gtk_calendar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_calendar_new(); 
+S_gtk_calendar_new(void); 
 
   USER_OBJECT_
 S_gtk_calendar_select_month(USER_OBJECT_ s_object, USER_OBJECT_ s_month, USER_OBJECT_ s_year); 
@@ -598,7 +598,7 @@ S_gtk_calendar_freeze(USER_OBJECT_ s_object);
 S_gtk_calendar_thaw(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_cell_editable_get_type(); 
+S_gtk_cell_editable_get_type(void); 
 
   USER_OBJECT_
 S_gtk_cell_editable_start_editing(USER_OBJECT_ s_object, USER_OBJECT_ s_event); 
@@ -610,7 +610,7 @@ S_gtk_cell_editable_editing_done(USER_OBJECT_ s_object);
 S_gtk_cell_editable_remove_widget(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_cell_layout_get_type(); 
+S_gtk_cell_layout_get_type(void); 
 
   USER_OBJECT_
 S_gtk_cell_layout_pack_start(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_expand); 
@@ -634,7 +634,7 @@ S_gtk_cell_layout_clear_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cell);
 S_gtk_cell_layout_reorder(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_position); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_get_type(); 
+S_gtk_cell_renderer_get_type(void); 
 
   USER_OBJECT_
 S_gtk_cell_renderer_get_size(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_cell_area); 
@@ -661,37 +661,37 @@ S_gtk_cell_renderer_editing_canceled(USER_OBJECT_ s_object);
 S_gtk_cell_renderer_stop_editing(USER_OBJECT_ s_object, USER_OBJECT_ s_canceled); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_combo_get_type(); 
+S_gtk_cell_renderer_combo_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_combo_new(); 
+S_gtk_cell_renderer_combo_new(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_pixbuf_get_type(); 
+S_gtk_cell_renderer_pixbuf_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_pixbuf_new(); 
+S_gtk_cell_renderer_pixbuf_new(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_progress_get_type(); 
+S_gtk_cell_renderer_progress_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_progress_new(); 
+S_gtk_cell_renderer_progress_new(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_text_get_type(); 
+S_gtk_cell_renderer_text_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_text_new(); 
+S_gtk_cell_renderer_text_new(void); 
 
   USER_OBJECT_
 S_gtk_cell_renderer_text_set_fixed_height_from_font(USER_OBJECT_ s_object, USER_OBJECT_ s_number_of_rows); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_toggle_get_type(); 
+S_gtk_cell_renderer_toggle_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_toggle_new(); 
+S_gtk_cell_renderer_toggle_new(void); 
 
   USER_OBJECT_
 S_gtk_cell_renderer_toggle_get_radio(USER_OBJECT_ s_object); 
@@ -706,10 +706,10 @@ S_gtk_cell_renderer_toggle_get_active(USER_OBJECT_ s_object);
 S_gtk_cell_renderer_toggle_set_active(USER_OBJECT_ s_object, USER_OBJECT_ s_setting); 
 
   USER_OBJECT_
-S_gtk_cell_view_get_type(); 
+S_gtk_cell_view_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_view_new(); 
+S_gtk_cell_view_new(void); 
 
   USER_OBJECT_
 S_gtk_cell_view_new_with_text(USER_OBJECT_ s_text); 
@@ -745,10 +745,10 @@ S_gtk_clipboard_set_can_store(USER_OBJECT_ s_object, USER_OBJECT_ s_targets);
 S_gtk_clipboard_store(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_check_button_get_type(); 
+S_gtk_check_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_check_button_new(); 
+S_gtk_check_button_new(void); 
 
   USER_OBJECT_
 S_gtk_check_button_new_with_label(USER_OBJECT_ s_label); 
@@ -757,10 +757,10 @@ S_gtk_check_button_new_with_label(USER_OBJECT_ s_label);
 S_gtk_check_button_new_with_mnemonic(USER_OBJECT_ s_label); 
 
   USER_OBJECT_
-S_gtk_check_menu_item_get_type(); 
+S_gtk_check_menu_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_check_menu_item_new(); 
+S_gtk_check_menu_item_new(void); 
 
   USER_OBJECT_
 S_gtk_check_menu_item_new_with_label(USER_OBJECT_ s_label); 
@@ -796,7 +796,7 @@ S_gtk_check_menu_item_set_show_toggle(USER_OBJECT_ s_object, USER_OBJECT_ s_alwa
 S_gtk_check_menu_item_set_state(USER_OBJECT_ s_object, USER_OBJECT_ s_is_active); 
 
   USER_OBJECT_
-S_gtk_clipboard_get_type(); 
+S_gtk_clipboard_get_type(void); 
 
   USER_OBJECT_
 S_gtk_clipboard_get_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_selection); 
@@ -856,7 +856,7 @@ S_gtk_clipboard_wait_is_target_available(USER_OBJECT_ s_object, USER_OBJECT_ s_t
 S_gtk_clipboard_wait_for_targets(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_clist_get_type(); 
+S_gtk_clist_get_type(void); 
 
   USER_OBJECT_
 S_gtk_clist_new(USER_OBJECT_ s_columns); 
@@ -1072,10 +1072,10 @@ S_gtk_clist_sort(USER_OBJECT_ s_object);
 S_gtk_clist_set_auto_sort(USER_OBJECT_ s_object, USER_OBJECT_ s_auto_sort); 
 
   USER_OBJECT_
-S_gtk_color_button_get_type(); 
+S_gtk_color_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_color_button_new(); 
+S_gtk_color_button_new(void); 
 
   USER_OBJECT_
 S_gtk_color_button_new_with_color(USER_OBJECT_ s_color); 
@@ -1105,10 +1105,10 @@ S_gtk_color_button_set_title(USER_OBJECT_ s_object, USER_OBJECT_ s_title);
 S_gtk_color_button_get_title(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_color_selection_get_type(); 
+S_gtk_color_selection_get_type(void); 
 
   USER_OBJECT_
-S_gtk_color_selection_new(); 
+S_gtk_color_selection_new(void); 
 
   USER_OBJECT_
 S_gtk_color_selection_get_has_opacity_control(USER_OBJECT_ s_object); 
@@ -1171,16 +1171,16 @@ S_gtk_color_selection_get_color(USER_OBJECT_ s_object);
 S_gtk_color_selection_set_update_policy(USER_OBJECT_ s_object, USER_OBJECT_ s_policy); 
 
   USER_OBJECT_
-S_gtk_color_selection_dialog_get_type(); 
+S_gtk_color_selection_dialog_get_type(void); 
 
   USER_OBJECT_
 S_gtk_color_selection_dialog_new(USER_OBJECT_ s_title); 
 
   USER_OBJECT_
-S_gtk_combo_get_type(); 
+S_gtk_combo_get_type(void); 
 
   USER_OBJECT_
-S_gtk_combo_new(); 
+S_gtk_combo_new(void); 
 
   USER_OBJECT_
 S_gtk_combo_set_value_in_list(USER_OBJECT_ s_object, USER_OBJECT_ s_val, USER_OBJECT_ s_ok_if_empty); 
@@ -1204,10 +1204,10 @@ S_gtk_combo_set_popdown_strings(USER_OBJECT_ s_object, USER_OBJECT_ s_strings);
 S_gtk_combo_disable_activate(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_combo_box_get_type(); 
+S_gtk_combo_box_get_type(void); 
 
   USER_OBJECT_
-S_gtk_combo_box_new(); 
+S_gtk_combo_box_new(void); 
 
   USER_OBJECT_
 S_gtk_combo_box_new_with_model(USER_OBJECT_ s_model); 
@@ -1240,7 +1240,7 @@ S_gtk_combo_box_set_model(USER_OBJECT_ s_object, USER_OBJECT_ s_model);
 S_gtk_combo_box_get_model(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_combo_box_new_text(); 
+S_gtk_combo_box_new_text(void); 
 
   USER_OBJECT_
 S_gtk_combo_box_append_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
@@ -1294,10 +1294,10 @@ S_gtk_combo_box_get_active_text(USER_OBJECT_ s_object);
 S_gtk_combo_box_get_popup_accessible(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_combo_box_entry_get_type(); 
+S_gtk_combo_box_entry_get_type(void); 
 
   USER_OBJECT_
-S_gtk_combo_box_entry_new(); 
+S_gtk_combo_box_entry_new(void); 
 
   USER_OBJECT_
 S_gtk_combo_box_entry_new_with_model(USER_OBJECT_ s_model, USER_OBJECT_ s_text_column); 
@@ -1309,10 +1309,10 @@ S_gtk_combo_box_entry_set_text_column(USER_OBJECT_ s_object, USER_OBJECT_ s_text
 S_gtk_combo_box_entry_get_text_column(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_combo_box_entry_new_text(); 
+S_gtk_combo_box_entry_new_text(void); 
 
   USER_OBJECT_
-S_gtk_container_get_type(); 
+S_gtk_container_get_type(void); 
 
   USER_OBJECT_
 S_gtk_container_set_border_width(USER_OBJECT_ s_object, USER_OBJECT_ s_border_width); 
@@ -1399,7 +1399,7 @@ S_gtk_container_child_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_child, 
 S_gtk_container_forall(USER_OBJECT_ s_object, USER_OBJECT_ s_callback, USER_OBJECT_ s_callback_data); 
 
   USER_OBJECT_
-S_gtk_ctree_get_type(); 
+S_gtk_ctree_get_type(void); 
 
   USER_OBJECT_
 S_gtk_ctree_new_with_titles(USER_OBJECT_ s_columns, USER_OBJECT_ s_tree_column, USER_OBJECT_ s_titles); 
@@ -1594,13 +1594,13 @@ S_gtk_ctree_sort_node(USER_OBJECT_ s_object, USER_OBJECT_ s_node);
 S_gtk_ctree_sort_recursive(USER_OBJECT_ s_object, USER_OBJECT_ s_node); 
 
   USER_OBJECT_
-S_gtk_ctree_node_get_type(); 
+S_gtk_ctree_node_get_type(void); 
 
   USER_OBJECT_
-S_gtk_curve_get_type(); 
+S_gtk_curve_get_type(void); 
 
   USER_OBJECT_
-S_gtk_curve_new(); 
+S_gtk_curve_new(void); 
 
   USER_OBJECT_
 S_gtk_curve_reset(USER_OBJECT_ s_object); 
@@ -1618,10 +1618,10 @@ S_gtk_curve_set_vector(USER_OBJECT_ s_object, USER_OBJECT_ s_vector);
 S_gtk_curve_set_curve_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
 
   USER_OBJECT_
-S_gtk_dialog_get_type(); 
+S_gtk_dialog_get_type(void); 
 
   USER_OBJECT_
-S_gtk_dialog_new(); 
+S_gtk_dialog_new(void); 
 
   USER_OBJECT_
 S_gtk_dialog_add_action_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_response_id); 
@@ -1744,16 +1744,16 @@ S_gtk_drag_get_source_widget(USER_OBJECT_ s_context);
 S_gtk_drag_source_set_icon_name(USER_OBJECT_ s_widget, USER_OBJECT_ s_icon_name); 
 
   USER_OBJECT_
-S_gtk_drawing_area_get_type(); 
+S_gtk_drawing_area_get_type(void); 
 
   USER_OBJECT_
-S_gtk_drawing_area_new(); 
+S_gtk_drawing_area_new(void); 
 
   USER_OBJECT_
 S_gtk_drawing_area_size(USER_OBJECT_ s_object, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
   USER_OBJECT_
-S_gtk_editable_get_type(); 
+S_gtk_editable_get_type(void); 
 
   USER_OBJECT_
 S_gtk_editable_select_region(USER_OBJECT_ s_object, USER_OBJECT_ s_start, USER_OBJECT_ s_end); 
@@ -1792,10 +1792,10 @@ S_gtk_editable_set_editable(USER_OBJECT_ s_object, USER_OBJECT_ s_is_editable);
 S_gtk_editable_get_editable(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_entry_get_type(); 
+S_gtk_entry_get_type(void); 
 
   USER_OBJECT_
-S_gtk_entry_new(); 
+S_gtk_entry_new(void); 
 
   USER_OBJECT_
 S_gtk_entry_new_with_max_length(USER_OBJECT_ s_max); 
@@ -1882,10 +1882,10 @@ S_gtk_entry_select_region(USER_OBJECT_ s_object, USER_OBJECT_ s_start, USER_OBJE
 S_gtk_entry_set_editable(USER_OBJECT_ s_object, USER_OBJECT_ s_editable); 
 
   USER_OBJECT_
-S_gtk_entry_completion_get_type(); 
+S_gtk_entry_completion_get_type(void); 
 
   USER_OBJECT_
-S_gtk_entry_completion_new(); 
+S_gtk_entry_completion_new(void); 
 
   USER_OBJECT_
 S_gtk_entry_completion_get_entry(USER_OBJECT_ s_object); 
@@ -1951,10 +1951,10 @@ S_gtk_entry_completion_set_popup_single_match(USER_OBJECT_ s_object, USER_OBJECT
 S_gtk_entry_completion_get_popup_single_match(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_event_box_get_type(); 
+S_gtk_event_box_get_type(void); 
 
   USER_OBJECT_
-S_gtk_event_box_new(); 
+S_gtk_event_box_new(void); 
 
   USER_OBJECT_
 S_gtk_event_box_get_visible_window(USER_OBJECT_ s_object); 
@@ -1969,7 +1969,7 @@ S_gtk_event_box_get_above_child(USER_OBJECT_ s_object);
 S_gtk_event_box_set_above_child(USER_OBJECT_ s_object, USER_OBJECT_ s_above_child); 
 
   USER_OBJECT_
-S_gtk_expander_get_type(); 
+S_gtk_expander_get_type(void); 
 
   USER_OBJECT_
 S_gtk_expander_new(USER_OBJECT_ s_label); 
@@ -2014,10 +2014,10 @@ S_gtk_expander_set_label_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_label_widg
 S_gtk_expander_get_label_widget(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_file_chooser_get_type(); 
+S_gtk_file_chooser_get_type(void); 
 
   USER_OBJECT_
-S_gtk_file_chooser_error_quark(); 
+S_gtk_file_chooser_error_quark(void); 
 
   USER_OBJECT_
 S_gtk_file_chooser_set_action(USER_OBJECT_ s_object, USER_OBJECT_ s_action); 
@@ -2164,7 +2164,7 @@ S_gtk_file_chooser_remove_shortcut_folder_uri(USER_OBJECT_ s_object, USER_OBJECT
 S_gtk_file_chooser_list_shortcut_folder_uris(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_file_chooser_button_get_type(); 
+S_gtk_file_chooser_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_file_chooser_button_new(USER_OBJECT_ s_title, USER_OBJECT_ s_action); 
@@ -2188,10 +2188,10 @@ S_gtk_file_chooser_button_get_width_chars(USER_OBJECT_ s_object);
 S_gtk_file_chooser_button_set_width_chars(USER_OBJECT_ s_object, USER_OBJECT_ s_n_chars); 
 
   USER_OBJECT_
-S_gtk_file_chooser_dialog_get_type(); 
+S_gtk_file_chooser_dialog_get_type(void); 
 
   USER_OBJECT_
-S_gtk_file_chooser_widget_get_type(); 
+S_gtk_file_chooser_widget_get_type(void); 
 
   USER_OBJECT_
 S_gtk_file_chooser_widget_new(USER_OBJECT_ s_action); 
@@ -2200,10 +2200,10 @@ S_gtk_file_chooser_widget_new(USER_OBJECT_ s_action);
 S_gtk_file_chooser_widget_new_with_backend(USER_OBJECT_ s_action, USER_OBJECT_ s_backend); 
 
   USER_OBJECT_
-S_gtk_file_filter_get_type(); 
+S_gtk_file_filter_get_type(void); 
 
   USER_OBJECT_
-S_gtk_file_filter_new(); 
+S_gtk_file_filter_new(void); 
 
   USER_OBJECT_
 S_gtk_file_filter_set_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
@@ -2230,7 +2230,7 @@ S_gtk_file_filter_get_needed(USER_OBJECT_ s_object);
 S_gtk_file_filter_filter(USER_OBJECT_ s_object, USER_OBJECT_ s_filter_info); 
 
   USER_OBJECT_
-S_gtk_file_selection_get_type(); 
+S_gtk_file_selection_get_type(void); 
 
   USER_OBJECT_
 S_gtk_file_selection_new(USER_OBJECT_ s_title); 
@@ -2260,10 +2260,10 @@ S_gtk_file_selection_set_select_multiple(USER_OBJECT_ s_object, USER_OBJECT_ s_s
 S_gtk_file_selection_get_select_multiple(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_fixed_get_type(); 
+S_gtk_fixed_get_type(void); 
 
   USER_OBJECT_
-S_gtk_fixed_new(); 
+S_gtk_fixed_new(void); 
 
   USER_OBJECT_
 S_gtk_fixed_put(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
@@ -2278,10 +2278,10 @@ S_gtk_fixed_set_has_window(USER_OBJECT_ s_object, USER_OBJECT_ s_has_window);
 S_gtk_fixed_get_has_window(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_font_button_get_type(); 
+S_gtk_font_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_font_button_new(); 
+S_gtk_font_button_new(void); 
 
   USER_OBJECT_
 S_gtk_font_button_new_with_font(USER_OBJECT_ s_fontname); 
@@ -2323,10 +2323,10 @@ S_gtk_font_button_get_show_size(USER_OBJECT_ s_object);
 S_gtk_font_button_set_show_size(USER_OBJECT_ s_object, USER_OBJECT_ s_show_size); 
 
   USER_OBJECT_
-S_gtk_font_selection_get_type(); 
+S_gtk_font_selection_get_type(void); 
 
   USER_OBJECT_
-S_gtk_font_selection_new(); 
+S_gtk_font_selection_new(void); 
 
   USER_OBJECT_
 S_gtk_font_selection_get_font_name(USER_OBJECT_ s_object); 
@@ -2344,7 +2344,7 @@ S_gtk_font_selection_get_preview_text(USER_OBJECT_ s_object);
 S_gtk_font_selection_set_preview_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
 
   USER_OBJECT_
-S_gtk_font_selection_dialog_get_type(); 
+S_gtk_font_selection_dialog_get_type(void); 
 
   USER_OBJECT_
 S_gtk_font_selection_dialog_new(USER_OBJECT_ s_title); 
@@ -2365,7 +2365,7 @@ S_gtk_font_selection_dialog_get_preview_text(USER_OBJECT_ s_object);
 S_gtk_font_selection_dialog_set_preview_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
 
   USER_OBJECT_
-S_gtk_frame_get_type(); 
+S_gtk_frame_get_type(void); 
 
   USER_OBJECT_
 S_gtk_frame_new(USER_OBJECT_ s_label); 
@@ -2395,19 +2395,19 @@ S_gtk_frame_set_shadow_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type);
 S_gtk_frame_get_shadow_type(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_gamma_curve_get_type(); 
+S_gtk_gamma_curve_get_type(void); 
 
   USER_OBJECT_
-S_gtk_gamma_curve_new(); 
+S_gtk_gamma_curve_new(void); 
 
   USER_OBJECT_
 S_gtk_gc_release(USER_OBJECT_ s_gc); 
 
   USER_OBJECT_
-S_gtk_handle_box_get_type(); 
+S_gtk_handle_box_get_type(void); 
 
   USER_OBJECT_
-S_gtk_handle_box_new(); 
+S_gtk_handle_box_new(void); 
 
   USER_OBJECT_
 S_gtk_handle_box_set_shadow_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
@@ -2428,16 +2428,16 @@ S_gtk_handle_box_set_snap_edge(USER_OBJECT_ s_object, USER_OBJECT_ s_edge);
 S_gtk_handle_box_get_snap_edge(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_hbutton_box_get_type(); 
+S_gtk_hbutton_box_get_type(void); 
 
   USER_OBJECT_
-S_gtk_hbutton_box_new(); 
+S_gtk_hbutton_box_new(void); 
 
   USER_OBJECT_
-S_gtk_hbutton_box_get_spacing_default(); 
+S_gtk_hbutton_box_get_spacing_default(void); 
 
   USER_OBJECT_
-S_gtk_hbutton_box_get_layout_default(); 
+S_gtk_hbutton_box_get_layout_default(void); 
 
   USER_OBJECT_
 S_gtk_hbutton_box_set_spacing_default(USER_OBJECT_ s_spacing); 
@@ -2446,25 +2446,25 @@ S_gtk_hbutton_box_set_spacing_default(USER_OBJECT_ s_spacing);
 S_gtk_hbutton_box_set_layout_default(USER_OBJECT_ s_layout); 
 
   USER_OBJECT_
-S_gtk_hbox_get_type(); 
+S_gtk_hbox_get_type(void); 
 
   USER_OBJECT_
 S_gtk_hbox_new(USER_OBJECT_ s_homogeneous, USER_OBJECT_ s_spacing); 
 
   USER_OBJECT_
-S_gtk_hpaned_get_type(); 
+S_gtk_hpaned_get_type(void); 
 
   USER_OBJECT_
-S_gtk_hpaned_new(); 
+S_gtk_hpaned_new(void); 
 
   USER_OBJECT_
-S_gtk_hruler_get_type(); 
+S_gtk_hruler_get_type(void); 
 
   USER_OBJECT_
-S_gtk_hruler_new(); 
+S_gtk_hruler_new(void); 
 
   USER_OBJECT_
-S_gtk_hscale_get_type(); 
+S_gtk_hscale_get_type(void); 
 
   USER_OBJECT_
 S_gtk_hscale_new(USER_OBJECT_ s_adjustment); 
@@ -2473,22 +2473,22 @@ S_gtk_hscale_new(USER_OBJECT_ s_adjustment);
 S_gtk_hscale_new_with_range(USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OBJECT_ s_step); 
 
   USER_OBJECT_
-S_gtk_hscrollbar_get_type(); 
+S_gtk_hscrollbar_get_type(void); 
 
   USER_OBJECT_
 S_gtk_hscrollbar_new(USER_OBJECT_ s_adjustment); 
 
   USER_OBJECT_
-S_gtk_hseparator_get_type(); 
+S_gtk_hseparator_get_type(void); 
 
   USER_OBJECT_
-S_gtk_hseparator_new(); 
+S_gtk_hseparator_new(void); 
 
   USER_OBJECT_
-S_gtk_icon_factory_get_type(); 
+S_gtk_icon_factory_get_type(void); 
 
   USER_OBJECT_
-S_gtk_icon_factory_new(); 
+S_gtk_icon_factory_new(void); 
 
   USER_OBJECT_
 S_gtk_icon_factory_add(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_icon_set); 
@@ -2524,10 +2524,10 @@ S_gtk_icon_size_from_name(USER_OBJECT_ s_name);
 S_gtk_icon_size_get_name(USER_OBJECT_ s_size); 
 
   USER_OBJECT_
-S_gtk_icon_set_get_type(); 
+S_gtk_icon_set_get_type(void); 
 
   USER_OBJECT_
-S_gtk_icon_set_new(); 
+S_gtk_icon_set_new(void); 
 
   USER_OBJECT_
 S_gtk_icon_set_new_from_pixbuf(USER_OBJECT_ s_pixbuf); 
@@ -2542,7 +2542,7 @@ S_gtk_icon_set_unref(USER_OBJECT_ s_object);
 S_gtk_icon_set_copy(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_direction, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail); 
+S_gtk_icon_set_render_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_style, USER_OBJECT_ s_in, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail); 
 
   USER_OBJECT_
 S_gtk_icon_set_add_source(USER_OBJECT_ s_object, USER_OBJECT_ s_source); 
@@ -2551,10 +2551,10 @@ S_gtk_icon_set_add_source(USER_OBJECT_ s_object, USER_OBJECT_ s_source);
 S_gtk_icon_set_get_sizes(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_icon_source_get_type(); 
+S_gtk_icon_source_get_type(void); 
 
   USER_OBJECT_
-S_gtk_icon_source_new(); 
+S_gtk_icon_source_new(void); 
 
   USER_OBJECT_
 S_gtk_icon_source_copy(USER_OBJECT_ s_object); 
@@ -2617,16 +2617,16 @@ S_gtk_icon_source_get_state(USER_OBJECT_ s_object);
 S_gtk_icon_source_get_size(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_icon_theme_error_quark(); 
+S_gtk_icon_theme_error_quark(void); 
 
   USER_OBJECT_
-S_gtk_icon_theme_get_type(); 
+S_gtk_icon_theme_get_type(void); 
 
   USER_OBJECT_
-S_gtk_icon_theme_new(); 
+S_gtk_icon_theme_new(void); 
 
   USER_OBJECT_
-S_gtk_icon_theme_get_default(); 
+S_gtk_icon_theme_get_default(void); 
 
   USER_OBJECT_
 S_gtk_icon_theme_get_for_screen(USER_OBJECT_ s_screen); 
@@ -2668,7 +2668,7 @@ S_gtk_icon_theme_rescan_if_needed(USER_OBJECT_ s_object);
 S_gtk_icon_theme_add_builtin_icon(USER_OBJECT_ s_icon_name, USER_OBJECT_ s_size, USER_OBJECT_ s_pixbuf); 
 
   USER_OBJECT_
-S_gtk_icon_info_get_type(); 
+S_gtk_icon_info_get_type(void); 
 
   USER_OBJECT_
 S_gtk_icon_info_copy(USER_OBJECT_ s_object); 
@@ -2704,10 +2704,10 @@ S_gtk_icon_info_get_display_name(USER_OBJECT_ s_object);
 S_gtk_icon_theme_get_icon_sizes(USER_OBJECT_ s_object, USER_OBJECT_ s_icon_name); 
 
   USER_OBJECT_
-S_gtk_icon_view_get_type(); 
+S_gtk_icon_view_get_type(void); 
 
   USER_OBJECT_
-S_gtk_icon_view_new(); 
+S_gtk_icon_view_new(void); 
 
   USER_OBJECT_
 S_gtk_icon_view_new_with_model(USER_OBJECT_ s_model); 
@@ -2857,10 +2857,10 @@ S_gtk_icon_view_get_dest_item_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_
 S_gtk_icon_view_create_drag_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_path); 
 
   USER_OBJECT_
-S_gtk_image_get_type(); 
+S_gtk_image_get_type(void); 
 
   USER_OBJECT_
-S_gtk_image_new(); 
+S_gtk_image_new(void); 
 
   USER_OBJECT_
 S_gtk_image_new_from_pixmap(USER_OBJECT_ s_pixmap, USER_OBJECT_ s_mask); 
@@ -2950,10 +2950,10 @@ S_gtk_image_get_icon_name(USER_OBJECT_ s_object);
 S_gtk_image_get_pixel_size(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_image_menu_item_get_type(); 
+S_gtk_image_menu_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_image_menu_item_new(); 
+S_gtk_image_menu_item_new(void); 
 
   USER_OBJECT_
 S_gtk_image_menu_item_new_with_label(USER_OBJECT_ s_label); 
@@ -2971,7 +2971,7 @@ S_gtk_image_menu_item_set_image(USER_OBJECT_ s_object, USER_OBJECT_ s_image);
 S_gtk_image_menu_item_get_image(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_im_context_get_type(); 
+S_gtk_im_context_get_type(void); 
 
   USER_OBJECT_
 S_gtk_im_context_set_client_window(USER_OBJECT_ s_object, USER_OBJECT_ s_window); 
@@ -3007,31 +3007,31 @@ S_gtk_im_context_get_surrounding(USER_OBJECT_ s_object);
 S_gtk_im_context_delete_surrounding(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_n_chars); 
 
   USER_OBJECT_
-S_gtk_im_context_simple_get_type(); 
+S_gtk_im_context_simple_get_type(void); 
 
   USER_OBJECT_
-S_gtk_im_context_simple_new(); 
+S_gtk_im_context_simple_new(void); 
 
   USER_OBJECT_
-S_gtk_im_multicontext_get_type(); 
+S_gtk_im_multicontext_get_type(void); 
 
   USER_OBJECT_
-S_gtk_im_multicontext_new(); 
+S_gtk_im_multicontext_new(void); 
 
   USER_OBJECT_
 S_gtk_im_multicontext_append_menuitems(USER_OBJECT_ s_object, USER_OBJECT_ s_menushell); 
 
   USER_OBJECT_
-S_gtk_input_dialog_get_type(); 
+S_gtk_input_dialog_get_type(void); 
 
   USER_OBJECT_
-S_gtk_input_dialog_new(); 
+S_gtk_input_dialog_new(void); 
 
   USER_OBJECT_
-S_gtk_invisible_get_type(); 
+S_gtk_invisible_get_type(void); 
 
   USER_OBJECT_
-S_gtk_invisible_new(); 
+S_gtk_invisible_new(void); 
 
   USER_OBJECT_
 S_gtk_invisible_new_for_screen(USER_OBJECT_ s_screen); 
@@ -3043,7 +3043,7 @@ S_gtk_invisible_set_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_screen);
 S_gtk_invisible_get_screen(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_item_get_type(); 
+S_gtk_item_get_type(void); 
 
   USER_OBJECT_
 S_gtk_item_select(USER_OBJECT_ s_object); 
@@ -3055,7 +3055,7 @@ S_gtk_item_deselect(USER_OBJECT_ s_object);
 S_gtk_item_toggle(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_item_factory_get_type(); 
+S_gtk_item_factory_get_type(void); 
 
   USER_OBJECT_
 S_gtk_item_factory_new(USER_OBJECT_ s_container_type, USER_OBJECT_ s_path, USER_OBJECT_ s_accel_group); 
@@ -3115,7 +3115,7 @@ S_gtk_item_factory_from_path(USER_OBJECT_ s_path);
 S_gtk_item_factories_path_delete(USER_OBJECT_ s_ifactory_path, USER_OBJECT_ s_path); 
 
   USER_OBJECT_
-S_gtk_label_get_type(); 
+S_gtk_label_get_type(void); 
 
   USER_OBJECT_
 S_gtk_label_new(USER_OBJECT_ s_str); 
@@ -3241,7 +3241,7 @@ S_gtk_label_set_single_line_mode(USER_OBJECT_ s_object, USER_OBJECT_ s_single_li
 S_gtk_label_get_single_line_mode(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_layout_get_type(); 
+S_gtk_layout_get_type(void); 
 
   USER_OBJECT_
 S_gtk_layout_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment); 
@@ -3277,10 +3277,10 @@ S_gtk_layout_freeze(USER_OBJECT_ s_object);
 S_gtk_layout_thaw(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_list_get_type(); 
+S_gtk_list_get_type(void); 
 
   USER_OBJECT_
-S_gtk_list_new(); 
+S_gtk_list_new(void); 
 
   USER_OBJECT_
 S_gtk_list_insert_items(USER_OBJECT_ s_object, USER_OBJECT_ s_items, USER_OBJECT_ s_position); 
@@ -3355,10 +3355,10 @@ S_gtk_list_undo_selection(USER_OBJECT_ s_object);
 S_gtk_list_end_drag_selection(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_list_item_get_type(); 
+S_gtk_list_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_list_item_new(); 
+S_gtk_list_item_new(void); 
 
   USER_OBJECT_
 S_gtk_list_item_new_with_label(USER_OBJECT_ s_label); 
@@ -3370,7 +3370,7 @@ S_gtk_list_item_select(USER_OBJECT_ s_object);
 S_gtk_list_item_deselect(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_list_store_get_type(); 
+S_gtk_list_store_get_type(void); 
 
   USER_OBJECT_
 S_gtk_list_store_newv(USER_OBJECT_ s_value); 
@@ -3421,43 +3421,43 @@ S_gtk_check_version(USER_OBJECT_ s_required_major, USER_OBJECT_ s_required_minor
 S_gtk_exit(USER_OBJECT_ s_error_code); 
 
   USER_OBJECT_
-S_gtk_disable_setlocale(); 
+S_gtk_disable_setlocale(void); 
 
   USER_OBJECT_
-S_gtk_get_default_language(); 
+S_gtk_get_default_language(void); 
 
   USER_OBJECT_
-S_gtk_events_pending(); 
+S_gtk_events_pending(void); 
 
   USER_OBJECT_
 S_gtk_main_do_event(USER_OBJECT_ s_event); 
 
   USER_OBJECT_
-S_gtk_main(); 
+S_gtk_main(void); 
 
   USER_OBJECT_
-S_gtk_main_level(); 
+S_gtk_main_level(void); 
 
   USER_OBJECT_
-S_gtk_main_quit(); 
+S_gtk_main_quit(void); 
 
   USER_OBJECT_
-S_gtk_main_iteration(); 
+S_gtk_main_iteration(void); 
 
   USER_OBJECT_
 S_gtk_main_iteration_do(USER_OBJECT_ s_blocking); 
 
   USER_OBJECT_
-S_gtk_true(); 
+S_gtk_true(void); 
 
   USER_OBJECT_
-S_gtk_false(); 
+S_gtk_false(void); 
 
   USER_OBJECT_
 S_gtk_grab_add(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_grab_get_current(); 
+S_gtk_grab_get_current(void); 
 
   USER_OBJECT_
 S_gtk_grab_remove(USER_OBJECT_ s_object); 
@@ -3514,10 +3514,10 @@ S_gtk_key_snooper_install(USER_OBJECT_ s_snooper, USER_OBJECT_ s_func_data);
 S_gtk_key_snooper_remove(USER_OBJECT_ s_snooper_handler_id); 
 
   USER_OBJECT_
-S_gtk_get_current_event(); 
+S_gtk_get_current_event(void); 
 
   USER_OBJECT_
-S_gtk_get_current_event_time(); 
+S_gtk_get_current_event_time(void); 
 
   USER_OBJECT_
 S_gtk_get_current_event_state(USER_OBJECT_ s_state); 
@@ -3529,10 +3529,10 @@ S_gtk_get_event_widget(USER_OBJECT_ s_event);
 S_gtk_propagate_event(USER_OBJECT_ s_object, USER_OBJECT_ s_event); 
 
   USER_OBJECT_
-S_gtk_menu_get_type(); 
+S_gtk_menu_get_type(void); 
 
   USER_OBJECT_
-S_gtk_menu_new(); 
+S_gtk_menu_new(void); 
 
   USER_OBJECT_
 S_gtk_menu_popup(USER_OBJECT_ s_object, USER_OBJECT_ s_parent_menu_shell, USER_OBJECT_ s_parent_menu_item, USER_OBJECT_ s_func, USER_OBJECT_ s_data, USER_OBJECT_ s_button, USER_OBJECT_ s_activate_time); 
@@ -3589,10 +3589,10 @@ S_gtk_menu_attach(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_le
 S_gtk_menu_set_monitor(USER_OBJECT_ s_object, USER_OBJECT_ s_monitor_num); 
 
   USER_OBJECT_
-S_gtk_menu_bar_get_type(); 
+S_gtk_menu_bar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_menu_bar_new(); 
+S_gtk_menu_bar_new(void); 
 
   USER_OBJECT_
 S_gtk_menu_bar_get_pack_direction(USER_OBJECT_ s_object); 
@@ -3607,10 +3607,10 @@ S_gtk_menu_bar_get_child_pack_direction(USER_OBJECT_ s_object);
 S_gtk_menu_bar_set_child_pack_direction(USER_OBJECT_ s_object, USER_OBJECT_ s_child_pack_dir); 
 
   USER_OBJECT_
-S_gtk_menu_item_get_type(); 
+S_gtk_menu_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_menu_item_new(); 
+S_gtk_menu_item_new(void); 
 
   USER_OBJECT_
 S_gtk_menu_item_new_with_label(USER_OBJECT_ s_label); 
@@ -3655,7 +3655,7 @@ S_gtk_menu_item_set_accel_path(USER_OBJECT_ s_object, USER_OBJECT_ s_accel_path)
 S_gtk_menu_item_right_justify(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_menu_shell_get_type(); 
+S_gtk_menu_shell_get_type(void); 
 
   USER_OBJECT_
 S_gtk_menu_shell_append(USER_OBJECT_ s_object, USER_OBJECT_ s_child); 
@@ -3691,7 +3691,7 @@ S_gtk_menu_shell_get_take_focus(USER_OBJECT_ s_object);
 S_gtk_menu_shell_set_take_focus(USER_OBJECT_ s_object, USER_OBJECT_ s_take_focus); 
 
   USER_OBJECT_
-S_gtk_menu_tool_button_get_type(); 
+S_gtk_menu_tool_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_menu_tool_button_new(USER_OBJECT_ s_icon_widget, USER_OBJECT_ s_label); 
@@ -3709,13 +3709,13 @@ S_gtk_menu_tool_button_get_menu(USER_OBJECT_ s_object);
 S_gtk_menu_tool_button_set_arrow_tooltip(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltips, USER_OBJECT_ s_tip_text, USER_OBJECT_ s_tip_private); 
 
   USER_OBJECT_
-S_gtk_message_dialog_get_type(); 
+S_gtk_message_dialog_get_type(void); 
 
   USER_OBJECT_
 S_gtk_message_dialog_set_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_str); 
 
   USER_OBJECT_
-S_gtk_misc_get_type(); 
+S_gtk_misc_get_type(void); 
 
   USER_OBJECT_
 S_gtk_misc_set_alignment(USER_OBJECT_ s_object, USER_OBJECT_ s_xalign, USER_OBJECT_ s_yalign); 
@@ -3730,10 +3730,10 @@ S_gtk_misc_set_padding(USER_OBJECT_ s_object, USER_OBJECT_ s_xpad, USER_OBJECT_ 
 S_gtk_misc_get_padding(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_notebook_get_type(); 
+S_gtk_notebook_get_type(void); 
 
   USER_OBJECT_
-S_gtk_notebook_new(); 
+S_gtk_notebook_new(void); 
 
   USER_OBJECT_
 S_gtk_notebook_append_page(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_tab_label); 
@@ -3859,13 +3859,13 @@ S_gtk_notebook_current_page(USER_OBJECT_ s_object);
 S_gtk_notebook_set_page(USER_OBJECT_ s_object, USER_OBJECT_ s_page_num); 
 
   USER_OBJECT_
-S_gtk_object_get_type(); 
+S_gtk_object_get_type(void); 
 
   USER_OBJECT_
 S_gtk_object_destroy(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_old_editable_get_type(); 
+S_gtk_old_editable_get_type(void); 
 
   USER_OBJECT_
 S_gtk_old_editable_claim_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_claim, USER_OBJECT_ s_time); 
@@ -3874,10 +3874,10 @@ S_gtk_old_editable_claim_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_claim, 
 S_gtk_old_editable_changed(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_option_menu_get_type(); 
+S_gtk_option_menu_get_type(void); 
 
   USER_OBJECT_
-S_gtk_option_menu_new(); 
+S_gtk_option_menu_new(void); 
 
   USER_OBJECT_
 S_gtk_option_menu_get_menu(USER_OBJECT_ s_object); 
@@ -3895,7 +3895,7 @@ S_gtk_option_menu_get_history(USER_OBJECT_ s_object);
 S_gtk_option_menu_set_history(USER_OBJECT_ s_object, USER_OBJECT_ s_index); 
 
   USER_OBJECT_
-S_gtk_paned_get_type(); 
+S_gtk_paned_get_type(void); 
 
   USER_OBJECT_
 S_gtk_paned_add1(USER_OBJECT_ s_object, USER_OBJECT_ s_child); 
@@ -3922,7 +3922,7 @@ S_gtk_paned_get_child1(USER_OBJECT_ s_object);
 S_gtk_paned_get_child2(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_pixmap_get_type(); 
+S_gtk_pixmap_get_type(void); 
 
   USER_OBJECT_
 S_gtk_pixmap_new(USER_OBJECT_ s_pixmap, USER_OBJECT_ s_mask); 
@@ -3937,7 +3937,7 @@ S_gtk_pixmap_get(USER_OBJECT_ s_object);
 S_gtk_pixmap_set_build_insensitive(USER_OBJECT_ s_object, USER_OBJECT_ s_build); 
 
   USER_OBJECT_
-S_gtk_plug_get_type(); 
+S_gtk_plug_get_type(void); 
 
   USER_OBJECT_
 S_gtk_plug_construct(USER_OBJECT_ s_object, USER_OBJECT_ s_socket_id); 
@@ -3955,10 +3955,10 @@ S_gtk_plug_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_socket_id);
 S_gtk_plug_get_id(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_preview_get_type(); 
+S_gtk_preview_get_type(void); 
 
   USER_OBJECT_
-S_gtk_preview_uninit(); 
+S_gtk_preview_uninit(void); 
 
   USER_OBJECT_
 S_gtk_preview_new(USER_OBJECT_ s_type); 
@@ -3991,19 +3991,19 @@ S_gtk_preview_set_reserved(USER_OBJECT_ s_nreserved);
 S_gtk_preview_set_dither(USER_OBJECT_ s_object, USER_OBJECT_ s_dither); 
 
   USER_OBJECT_
-S_gtk_preview_get_visual(); 
+S_gtk_preview_get_visual(void); 
 
   USER_OBJECT_
-S_gtk_preview_get_cmap(); 
+S_gtk_preview_get_cmap(void); 
 
   USER_OBJECT_
-S_gtk_preview_get_info(); 
+S_gtk_preview_get_info(void); 
 
   USER_OBJECT_
-S_gtk_preview_reset(); 
+S_gtk_preview_reset(void); 
 
   USER_OBJECT_
-S_gtk_progress_get_type(); 
+S_gtk_progress_get_type(void); 
 
   USER_OBJECT_
 S_gtk_progress_set_show_text(USER_OBJECT_ s_object, USER_OBJECT_ s_show_text); 
@@ -4045,10 +4045,10 @@ S_gtk_progress_get_current_percentage(USER_OBJECT_ s_object);
 S_gtk_progress_get_percentage_from_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value); 
 
   USER_OBJECT_
-S_gtk_progress_bar_get_type(); 
+S_gtk_progress_bar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_progress_bar_new(); 
+S_gtk_progress_bar_new(void); 
 
   USER_OBJECT_
 S_gtk_progress_bar_pulse(USER_OBJECT_ s_object); 
@@ -4102,7 +4102,7 @@ S_gtk_progress_bar_set_ellipsize(USER_OBJECT_ s_object, USER_OBJECT_ s_mode);
 S_gtk_progress_bar_get_ellipsize(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_radio_action_get_type(); 
+S_gtk_radio_action_get_type(void); 
 
   USER_OBJECT_
 S_gtk_radio_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_value); 
@@ -4114,7 +4114,7 @@ S_gtk_radio_action_get_group(USER_OBJECT_ s_object);
 S_gtk_radio_action_get_current_value(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_radio_button_get_type(); 
+S_gtk_radio_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_radio_button_new(USER_OBJECT_ s_group); 
@@ -4141,7 +4141,7 @@ S_gtk_radio_button_get_group(USER_OBJECT_ s_object);
 S_gtk_radio_button_group(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_radio_menu_item_get_type(); 
+S_gtk_radio_menu_item_get_type(void); 
 
   USER_OBJECT_
 S_gtk_radio_menu_item_new(USER_OBJECT_ s_group); 
@@ -4168,7 +4168,7 @@ S_gtk_radio_menu_item_get_group(USER_OBJECT_ s_object);
 S_gtk_radio_menu_item_group(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_radio_tool_button_get_type(); 
+S_gtk_radio_tool_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_radio_tool_button_new(USER_OBJECT_ s_group); 
@@ -4186,7 +4186,7 @@ S_gtk_radio_tool_button_new_with_stock_from_widget(USER_OBJECT_ s_group, USER_OB
 S_gtk_radio_tool_button_get_group(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_range_get_type(); 
+S_gtk_range_get_type(void); 
 
   USER_OBJECT_
 S_gtk_range_set_update_policy(USER_OBJECT_ s_object, USER_OBJECT_ s_policy); 
@@ -4225,7 +4225,7 @@ S_gtk_rc_add_default_file(USER_OBJECT_ s_filename);
 S_gtk_rc_set_default_files(USER_OBJECT_ s_filenames); 
 
   USER_OBJECT_
-S_gtk_rc_get_default_files(); 
+S_gtk_rc_get_default_files(void); 
 
   USER_OBJECT_
 S_gtk_rc_get_style(USER_OBJECT_ s_object); 
@@ -4249,7 +4249,7 @@ S_gtk_rc_parse(USER_OBJECT_ s_filename);
 S_gtk_rc_parse_string(USER_OBJECT_ s_rc_string); 
 
   USER_OBJECT_
-S_gtk_rc_reparse_all(); 
+S_gtk_rc_reparse_all(void); 
 
   USER_OBJECT_
 S_gtk_rc_add_widget_name_style(USER_OBJECT_ s_object, USER_OBJECT_ s_pattern); 
@@ -4261,10 +4261,10 @@ S_gtk_rc_add_widget_class_style(USER_OBJECT_ s_object, USER_OBJECT_ s_pattern);
 S_gtk_rc_add_class_style(USER_OBJECT_ s_object, USER_OBJECT_ s_pattern); 
 
   USER_OBJECT_
-S_gtk_rc_style_get_type(); 
+S_gtk_rc_style_get_type(void); 
 
   USER_OBJECT_
-S_gtk_rc_style_new(); 
+S_gtk_rc_style_new(void); 
 
   USER_OBJECT_
 S_gtk_rc_style_copy(USER_OBJECT_ s_object); 
@@ -4279,19 +4279,19 @@ S_gtk_rc_style_unref(USER_OBJECT_ s_object);
 S_gtk_rc_find_module_in_path(USER_OBJECT_ s_module_file); 
 
   USER_OBJECT_
-S_gtk_rc_get_theme_dir(); 
+S_gtk_rc_get_theme_dir(void); 
 
   USER_OBJECT_
-S_gtk_rc_get_module_dir(); 
+S_gtk_rc_get_module_dir(void); 
 
   USER_OBJECT_
-S_gtk_rc_get_im_module_path(); 
+S_gtk_rc_get_im_module_path(void); 
 
   USER_OBJECT_
-S_gtk_rc_get_im_module_file(); 
+S_gtk_rc_get_im_module_file(void); 
 
   USER_OBJECT_
-S_gtk_rc_scanner_new(); 
+S_gtk_rc_scanner_new(void); 
 
   USER_OBJECT_
 S_gtk_rc_parse_color(USER_OBJECT_ s_scanner, USER_OBJECT_ s_color); 
@@ -4303,7 +4303,7 @@ S_gtk_rc_parse_state(USER_OBJECT_ s_scanner, USER_OBJECT_ s_state);
 S_gtk_rc_parse_priority(USER_OBJECT_ s_scanner, USER_OBJECT_ s_priority); 
 
   USER_OBJECT_
-S_gtk_ruler_get_type(); 
+S_gtk_ruler_get_type(void); 
 
   USER_OBJECT_
 S_gtk_ruler_set_metric(USER_OBJECT_ s_object, USER_OBJECT_ s_metric); 
@@ -4318,7 +4318,7 @@ S_gtk_ruler_get_metric(USER_OBJECT_ s_object);
 S_gtk_ruler_get_range(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_scale_get_type(); 
+S_gtk_scale_get_type(void); 
 
   USER_OBJECT_
 S_gtk_scale_set_digits(USER_OBJECT_ s_object, USER_OBJECT_ s_digits); 
@@ -4345,10 +4345,10 @@ S_gtk_scale_get_layout(USER_OBJECT_ s_object);
 S_gtk_scale_get_layout_offsets(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_scrollbar_get_type(); 
+S_gtk_scrollbar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_scrolled_window_get_type(); 
+S_gtk_scrolled_window_get_type(void); 
 
   USER_OBJECT_
 S_gtk_scrolled_window_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment); 
@@ -4453,7 +4453,7 @@ S_gtk_selection_remove_all(USER_OBJECT_ s_object);
 S_gtk_selection_clear(USER_OBJECT_ s_object, USER_OBJECT_ s_event); 
 
   USER_OBJECT_
-S_gtk_selection_data_get_type(); 
+S_gtk_selection_data_get_type(void); 
 
   USER_OBJECT_
 S_gtk_selection_data_copy(USER_OBJECT_ s_object); 
@@ -4477,19 +4477,19 @@ S_gtk_selection_data_get_uris(USER_OBJECT_ s_object);
 S_gtk_selection_data_targets_include_image(USER_OBJECT_ s_object, USER_OBJECT_ s_writable); 
 
   USER_OBJECT_
-S_gtk_separator_get_type(); 
+S_gtk_separator_get_type(void); 
 
   USER_OBJECT_
-S_gtk_separator_menu_item_get_type(); 
+S_gtk_separator_menu_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_separator_menu_item_new(); 
+S_gtk_separator_menu_item_new(void); 
 
   USER_OBJECT_
-S_gtk_separator_tool_item_get_type(); 
+S_gtk_separator_tool_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_separator_tool_item_new(); 
+S_gtk_separator_tool_item_new(void); 
 
   USER_OBJECT_
 S_gtk_separator_tool_item_get_draw(USER_OBJECT_ s_object); 
@@ -4498,10 +4498,10 @@ S_gtk_separator_tool_item_get_draw(USER_OBJECT_ s_object);
 S_gtk_separator_tool_item_set_draw(USER_OBJECT_ s_object, USER_OBJECT_ s_draw); 
 
   USER_OBJECT_
-S_gtk_settings_get_type(); 
+S_gtk_settings_get_type(void); 
 
   USER_OBJECT_
-S_gtk_settings_get_default(); 
+S_gtk_settings_get_default(void); 
 
   USER_OBJECT_
 S_gtk_settings_get_for_screen(USER_OBJECT_ s_screen); 
@@ -4537,7 +4537,7 @@ S_gtk_settings_set_long_property(USER_OBJECT_ s_object, USER_OBJECT_ s_name, USE
 S_gtk_settings_set_double_property(USER_OBJECT_ s_object, USER_OBJECT_ s_name, USER_OBJECT_ s_v_double, USER_OBJECT_ s_origin); 
 
   USER_OBJECT_
-S_gtk_size_group_get_type(); 
+S_gtk_size_group_get_type(void); 
 
   USER_OBJECT_
 S_gtk_size_group_new(USER_OBJECT_ s_mode); 
@@ -4561,10 +4561,10 @@ S_gtk_size_group_add_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_widget);
 S_gtk_size_group_remove_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_widget); 
 
   USER_OBJECT_
-S_gtk_socket_get_type(); 
+S_gtk_socket_get_type(void); 
 
   USER_OBJECT_
-S_gtk_socket_new(); 
+S_gtk_socket_new(void); 
 
   USER_OBJECT_
 S_gtk_socket_add_id(USER_OBJECT_ s_object, USER_OBJECT_ s_window_id); 
@@ -4576,7 +4576,7 @@ S_gtk_socket_get_id(USER_OBJECT_ s_object);
 S_gtk_socket_steal(USER_OBJECT_ s_object, USER_OBJECT_ s_wid); 
 
   USER_OBJECT_
-S_gtk_spin_button_get_type(); 
+S_gtk_spin_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_spin_button_configure(USER_OBJECT_ s_object, USER_OBJECT_ s_adjustment, USER_OBJECT_ s_climb_rate, USER_OBJECT_ s_digits); 
@@ -4651,10 +4651,10 @@ S_gtk_spin_button_get_snap_to_ticks(USER_OBJECT_ s_object);
 S_gtk_spin_button_update(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_statusbar_get_type(); 
+S_gtk_statusbar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_statusbar_new(); 
+S_gtk_statusbar_new(void); 
 
   USER_OBJECT_
 S_gtk_statusbar_get_context_id(USER_OBJECT_ s_object, USER_OBJECT_ s_context_description); 
@@ -4684,7 +4684,7 @@ S_gtk_stock_add_static(USER_OBJECT_ s_items);
 S_gtk_stock_lookup(USER_OBJECT_ s_stock_id); 
 
   USER_OBJECT_
-S_gtk_stock_list_ids(); 
+S_gtk_stock_list_ids(void); 
 
   USER_OBJECT_
 S_gtk_stock_item_copy(USER_OBJECT_ s_object); 
@@ -4696,10 +4696,10 @@ S_gtk_stock_item_free(USER_OBJECT_ s_object);
 S_gtk_stock_set_translate_func(USER_OBJECT_ s_domain, USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
-S_gtk_style_get_type(); 
+S_gtk_style_get_type(void); 
 
   USER_OBJECT_
-S_gtk_style_new(); 
+S_gtk_style_new(void); 
 
   USER_OBJECT_
 S_gtk_style_copy(USER_OBJECT_ s_object); 
@@ -4855,7 +4855,7 @@ S_gtk_paint_layout(USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_
 S_gtk_paint_resize_grip(USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_edge, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
   USER_OBJECT_
-S_gtk_border_get_type(); 
+S_gtk_border_get_type(void); 
 
   USER_OBJECT_
 S_gtk_border_copy(USER_OBJECT_ s_object); 
@@ -4876,7 +4876,7 @@ S_gtk_paint_string(USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_
 S_gtk_draw_insertion_cursor(USER_OBJECT_ s_widget, USER_OBJECT_ s_drawable, USER_OBJECT_ s_area, USER_OBJECT_ s_location, USER_OBJECT_ s_is_primary, USER_OBJECT_ s_direction, USER_OBJECT_ s_draw_arrow); 
 
   USER_OBJECT_
-S_gtk_table_get_type(); 
+S_gtk_table_get_type(void); 
 
   USER_OBJECT_
 S_gtk_table_new(USER_OBJECT_ s_rows, USER_OBJECT_ s_columns, USER_OBJECT_ s_homogeneous); 
@@ -4921,13 +4921,13 @@ S_gtk_table_set_homogeneous(USER_OBJECT_ s_object, USER_OBJECT_ s_homogeneous);
 S_gtk_table_get_homogeneous(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tearoff_menu_item_get_type(); 
+S_gtk_tearoff_menu_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tearoff_menu_item_new(); 
+S_gtk_tearoff_menu_item_new(void); 
 
   USER_OBJECT_
-S_gtk_text_buffer_get_type(); 
+S_gtk_text_buffer_get_type(void); 
 
   USER_OBJECT_
 S_gtk_text_buffer_new(USER_OBJECT_ s_table); 
@@ -5089,10 +5089,10 @@ S_gtk_text_buffer_begin_user_action(USER_OBJECT_ s_object);
 S_gtk_text_buffer_end_user_action(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_text_child_anchor_get_type(); 
+S_gtk_text_child_anchor_get_type(void); 
 
   USER_OBJECT_
-S_gtk_text_child_anchor_new(); 
+S_gtk_text_child_anchor_new(void); 
 
   USER_OBJECT_
 S_gtk_text_child_anchor_get_widgets(USER_OBJECT_ s_object); 
@@ -5113,7 +5113,7 @@ S_gtk_text_iter_copy(USER_OBJECT_ s_object);
 S_gtk_text_iter_free(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_text_iter_get_type(); 
+S_gtk_text_iter_get_type(void); 
 
   USER_OBJECT_
 S_gtk_text_iter_get_offset(USER_OBJECT_ s_object); 
@@ -5377,7 +5377,7 @@ S_gtk_text_iter_in_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start, USER_OBJEC
 S_gtk_text_iter_order(USER_OBJECT_ s_object, USER_OBJECT_ s_second); 
 
   USER_OBJECT_
-S_gtk_text_mark_get_type(); 
+S_gtk_text_mark_get_type(void); 
 
   USER_OBJECT_
 S_gtk_text_mark_set_visible(USER_OBJECT_ s_object, USER_OBJECT_ s_setting); 
@@ -5398,7 +5398,7 @@ S_gtk_text_mark_get_buffer(USER_OBJECT_ s_object);
 S_gtk_text_mark_get_left_gravity(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_text_tag_get_type(); 
+S_gtk_text_tag_get_type(void); 
 
   USER_OBJECT_
 S_gtk_text_tag_new(USER_OBJECT_ s_name); 
@@ -5413,7 +5413,7 @@ S_gtk_text_tag_set_priority(USER_OBJECT_ s_object, USER_OBJECT_ s_priority);
 S_gtk_text_tag_event(USER_OBJECT_ s_object, USER_OBJECT_ s_event_object, USER_OBJECT_ s_event, USER_OBJECT_ s_iter); 
 
   USER_OBJECT_
-S_gtk_text_attributes_new(); 
+S_gtk_text_attributes_new(void); 
 
   USER_OBJECT_
 S_gtk_text_attributes_copy(USER_OBJECT_ s_object); 
@@ -5428,13 +5428,13 @@ S_gtk_text_attributes_unref(USER_OBJECT_ s_object);
 S_gtk_text_attributes_ref(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_text_attributes_get_type(); 
+S_gtk_text_attributes_get_type(void); 
 
   USER_OBJECT_
-S_gtk_text_tag_table_get_type(); 
+S_gtk_text_tag_table_get_type(void); 
 
   USER_OBJECT_
-S_gtk_text_tag_table_new(); 
+S_gtk_text_tag_table_new(void); 
 
   USER_OBJECT_
 S_gtk_text_tag_table_add(USER_OBJECT_ s_object, USER_OBJECT_ s_tag); 
@@ -5452,10 +5452,10 @@ S_gtk_text_tag_table_foreach(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OB
 S_gtk_text_tag_table_get_size(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_text_view_get_type(); 
+S_gtk_text_view_get_type(void); 
 
   USER_OBJECT_
-S_gtk_text_view_new(); 
+S_gtk_text_view_new(void); 
 
   USER_OBJECT_
 S_gtk_text_view_new_with_buffer(USER_OBJECT_ s_buffer); 
@@ -5626,10 +5626,10 @@ S_gtk_text_view_get_tabs(USER_OBJECT_ s_object);
 S_gtk_text_view_get_default_attributes(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tips_query_get_type(); 
+S_gtk_tips_query_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tips_query_new(); 
+S_gtk_tips_query_new(void); 
 
   USER_OBJECT_
 S_gtk_tips_query_start_query(USER_OBJECT_ s_object); 
@@ -5644,7 +5644,7 @@ S_gtk_tips_query_set_caller(USER_OBJECT_ s_object, USER_OBJECT_ s_caller);
 S_gtk_tips_query_set_labels(USER_OBJECT_ s_object, USER_OBJECT_ s_label_inactive, USER_OBJECT_ s_label_no_tip); 
 
   USER_OBJECT_
-S_gtk_toggle_action_get_type(); 
+S_gtk_toggle_action_get_type(void); 
 
   USER_OBJECT_
 S_gtk_toggle_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id); 
@@ -5665,10 +5665,10 @@ S_gtk_toggle_action_set_draw_as_radio(USER_OBJECT_ s_object, USER_OBJECT_ s_draw
 S_gtk_toggle_action_get_draw_as_radio(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_toggle_button_get_type(); 
+S_gtk_toggle_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_toggle_button_new(); 
+S_gtk_toggle_button_new(void); 
 
   USER_OBJECT_
 S_gtk_toggle_button_new_with_label(USER_OBJECT_ s_label); 
@@ -5701,10 +5701,10 @@ S_gtk_toggle_button_get_inconsistent(USER_OBJECT_ s_object);
 S_gtk_toggle_button_set_state(USER_OBJECT_ s_object, USER_OBJECT_ s_is_active); 
 
   USER_OBJECT_
-S_gtk_toggle_tool_button_get_type(); 
+S_gtk_toggle_tool_button_get_type(void); 
 
   USER_OBJECT_
-S_gtk_toggle_tool_button_new(); 
+S_gtk_toggle_tool_button_new(void); 
 
   USER_OBJECT_
 S_gtk_toggle_tool_button_new_from_stock(USER_OBJECT_ s_stock_id); 
@@ -5716,10 +5716,10 @@ S_gtk_toggle_tool_button_set_active(USER_OBJECT_ s_object, USER_OBJECT_ s_is_act
 S_gtk_toggle_tool_button_get_active(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_toolbar_get_type(); 
+S_gtk_toolbar_get_type(void); 
 
   USER_OBJECT_
-S_gtk_toolbar_new(); 
+S_gtk_toolbar_new(void); 
 
   USER_OBJECT_
 S_gtk_toolbar_insert(USER_OBJECT_ s_object, USER_OBJECT_ s_item, USER_OBJECT_ s_pos); 
@@ -5821,7 +5821,7 @@ S_gtk_toolbar_get_icon_size(USER_OBJECT_ s_object);
 S_gtk_toolbar_get_tooltips(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tool_button_get_type(); 
+S_gtk_tool_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tool_button_new(USER_OBJECT_ s_icon_widget, USER_OBJECT_ s_label); 
@@ -5866,10 +5866,10 @@ S_gtk_tool_button_set_label_widget(USER_OBJECT_ s_object, USER_OBJECT_ s_label_w
 S_gtk_tool_button_get_label_widget(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tool_item_get_type(); 
+S_gtk_tool_item_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tool_item_new(); 
+S_gtk_tool_item_new(void); 
 
   USER_OBJECT_
 S_gtk_tool_item_set_homogeneous(USER_OBJECT_ s_object, USER_OBJECT_ s_homogeneous); 
@@ -5935,10 +5935,10 @@ S_gtk_tool_item_get_proxy_menu_item(USER_OBJECT_ s_object, USER_OBJECT_ s_menu_i
 S_gtk_tool_item_rebuild_menu(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tooltips_get_type(); 
+S_gtk_tooltips_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tooltips_new(); 
+S_gtk_tooltips_new(void); 
 
   USER_OBJECT_
 S_gtk_tooltips_enable(USER_OBJECT_ s_object); 
@@ -5962,7 +5962,7 @@ S_gtk_tooltips_force_window(USER_OBJECT_ s_object);
 S_gtk_tooltips_get_info_from_tip_window(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_drag_source_get_type(); 
+S_gtk_tree_drag_source_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_drag_source_row_draggable(USER_OBJECT_ s_object, USER_OBJECT_ s_path); 
@@ -5974,7 +5974,7 @@ S_gtk_tree_drag_source_drag_data_delete(USER_OBJECT_ s_object, USER_OBJECT_ s_pa
 S_gtk_tree_drag_source_drag_data_get(USER_OBJECT_ s_object, USER_OBJECT_ s_path); 
 
   USER_OBJECT_
-S_gtk_tree_drag_dest_get_type(); 
+S_gtk_tree_drag_dest_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_drag_dest_drag_data_received(USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OBJECT_ s_selection_data); 
@@ -5989,7 +5989,7 @@ S_gtk_tree_set_row_drag_data(USER_OBJECT_ s_object, USER_OBJECT_ s_tree_model, U
 S_gtk_tree_get_row_drag_data(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_path_new(); 
+S_gtk_tree_path_new(void); 
 
   USER_OBJECT_
 S_gtk_tree_path_new_from_string(USER_OBJECT_ s_path); 
@@ -5998,7 +5998,7 @@ S_gtk_tree_path_new_from_string(USER_OBJECT_ s_path);
 S_gtk_tree_path_to_string(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_path_new_first(); 
+S_gtk_tree_path_new_first(void); 
 
   USER_OBJECT_
 S_gtk_tree_path_append_index(USER_OBJECT_ s_object, USER_OBJECT_ s_index); 
@@ -6037,7 +6037,7 @@ S_gtk_tree_path_is_ancestor(USER_OBJECT_ s_object, USER_OBJECT_ s_descendant);
 S_gtk_tree_path_is_descendant(USER_OBJECT_ s_object, USER_OBJECT_ s_ancestor); 
 
   USER_OBJECT_
-S_gtk_tree_row_reference_get_type(); 
+S_gtk_tree_row_reference_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_row_reference_new(USER_OBJECT_ s_model, USER_OBJECT_ s_path); 
@@ -6076,10 +6076,10 @@ S_gtk_tree_iter_copy(USER_OBJECT_ s_object);
 S_gtk_tree_iter_free(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_iter_get_type(); 
+S_gtk_tree_iter_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tree_model_get_type(); 
+S_gtk_tree_model_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_model_get_flags(USER_OBJECT_ s_object); 
@@ -6154,7 +6154,7 @@ S_gtk_tree_model_row_deleted(USER_OBJECT_ s_object, USER_OBJECT_ s_path);
 S_gtk_tree_model_rows_reordered(USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_iter, USER_OBJECT_ s_new_order); 
 
   USER_OBJECT_
-S_gtk_tree_model_filter_get_type(); 
+S_gtk_tree_model_filter_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_model_filter_new(USER_OBJECT_ s_child_model, USER_OBJECT_ s_root); 
@@ -6190,7 +6190,7 @@ S_gtk_tree_model_filter_refilter(USER_OBJECT_ s_object);
 S_gtk_tree_model_filter_clear_cache(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_model_sort_get_type(); 
+S_gtk_tree_model_sort_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_model_sort_new_with_model(USER_OBJECT_ s_child_model); 
@@ -6220,7 +6220,7 @@ S_gtk_tree_model_sort_clear_cache(USER_OBJECT_ s_object);
 S_gtk_tree_model_sort_iter_is_valid(USER_OBJECT_ s_object, USER_OBJECT_ s_iter); 
 
   USER_OBJECT_
-S_gtk_tree_selection_get_type(); 
+S_gtk_tree_selection_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_selection_set_mode(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
@@ -6280,7 +6280,7 @@ S_gtk_tree_selection_select_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start_pa
 S_gtk_tree_selection_unselect_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start_path, USER_OBJECT_ s_end_path); 
 
   USER_OBJECT_
-S_gtk_tree_sortable_get_type(); 
+S_gtk_tree_sortable_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_sortable_sort_column_changed(USER_OBJECT_ s_object); 
@@ -6301,7 +6301,7 @@ S_gtk_tree_sortable_set_default_sort_func(USER_OBJECT_ s_object, USER_OBJECT_ s_
 S_gtk_tree_sortable_has_default_sort_func(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_store_get_type(); 
+S_gtk_tree_store_get_type(void); 
 
   USER_OBJECT_
 S_gtk_tree_store_newv(USER_OBJECT_ s_types); 
@@ -6355,10 +6355,10 @@ S_gtk_tree_store_move_before(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OB
 S_gtk_tree_view_column_queue_resize(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_tree_view_get_type(); 
+S_gtk_tree_view_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tree_view_new(); 
+S_gtk_tree_view_new(void); 
 
   USER_OBJECT_
 S_gtk_tree_view_new_with_model(USER_OBJECT_ s_model); 
@@ -6571,10 +6571,10 @@ S_gtk_tree_view_get_row_separator_func(USER_OBJECT_ s_object);
 S_gtk_tree_view_set_row_separator_func(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
-S_gtk_tree_view_column_get_type(); 
+S_gtk_tree_view_column_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tree_view_column_new(); 
+S_gtk_tree_view_column_new(void); 
 
   USER_OBJECT_
 S_gtk_tree_view_column_pack_start(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_expand); 
@@ -6715,10 +6715,10 @@ S_gtk_tree_view_column_focus_cell(USER_OBJECT_ s_object, USER_OBJECT_ s_cell);
 S_gtk_tree_view_column_cell_get_position(USER_OBJECT_ s_object, USER_OBJECT_ s_cell_renderer); 
 
   USER_OBJECT_
-S_gtk_ui_manager_get_type(); 
+S_gtk_ui_manager_get_type(void); 
 
   USER_OBJECT_
-S_gtk_ui_manager_new(); 
+S_gtk_ui_manager_new(void); 
 
   USER_OBJECT_
 S_gtk_ui_manager_set_add_tearoffs(USER_OBJECT_ s_object, USER_OBJECT_ s_add_tearoffs); 
@@ -6766,31 +6766,31 @@ S_gtk_ui_manager_ensure_update(USER_OBJECT_ s_object);
 S_gtk_ui_manager_new_merge_id(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_vbutton_box_get_type(); 
+S_gtk_vbutton_box_get_type(void); 
 
   USER_OBJECT_
-S_gtk_vbutton_box_new(); 
+S_gtk_vbutton_box_new(void); 
 
   USER_OBJECT_
-S_gtk_vbutton_box_get_spacing_default(); 
+S_gtk_vbutton_box_get_spacing_default(void); 
 
   USER_OBJECT_
 S_gtk_vbutton_box_set_spacing_default(USER_OBJECT_ s_spacing); 
 
   USER_OBJECT_
-S_gtk_vbutton_box_get_layout_default(); 
+S_gtk_vbutton_box_get_layout_default(void); 
 
   USER_OBJECT_
 S_gtk_vbutton_box_set_layout_default(USER_OBJECT_ s_layout); 
 
   USER_OBJECT_
-S_gtk_vbox_get_type(); 
+S_gtk_vbox_get_type(void); 
 
   USER_OBJECT_
 S_gtk_vbox_new(USER_OBJECT_ s_homogeneous, USER_OBJECT_ s_spacing); 
 
   USER_OBJECT_
-S_gtk_viewport_get_type(); 
+S_gtk_viewport_get_type(void); 
 
   USER_OBJECT_
 S_gtk_viewport_new(USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment); 
@@ -6814,19 +6814,19 @@ S_gtk_viewport_set_shadow_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type);
 S_gtk_viewport_get_shadow_type(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_vpaned_get_type(); 
+S_gtk_vpaned_get_type(void); 
 
   USER_OBJECT_
-S_gtk_vpaned_new(); 
+S_gtk_vpaned_new(void); 
 
   USER_OBJECT_
-S_gtk_vruler_get_type(); 
+S_gtk_vruler_get_type(void); 
 
   USER_OBJECT_
-S_gtk_vruler_new(); 
+S_gtk_vruler_new(void); 
 
   USER_OBJECT_
-S_gtk_vscale_get_type(); 
+S_gtk_vscale_get_type(void); 
 
   USER_OBJECT_
 S_gtk_vscale_new(USER_OBJECT_ s_adjustment); 
@@ -6835,19 +6835,19 @@ S_gtk_vscale_new(USER_OBJECT_ s_adjustment);
 S_gtk_vscale_new_with_range(USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OBJECT_ s_step); 
 
   USER_OBJECT_
-S_gtk_vscrollbar_get_type(); 
+S_gtk_vscrollbar_get_type(void); 
 
   USER_OBJECT_
 S_gtk_vscrollbar_new(USER_OBJECT_ s_adjustment); 
 
   USER_OBJECT_
-S_gtk_vseparator_get_type(); 
+S_gtk_vseparator_get_type(void); 
 
   USER_OBJECT_
-S_gtk_vseparator_new(); 
+S_gtk_vseparator_new(void); 
 
   USER_OBJECT_
-S_gtk_widget_get_type(); 
+S_gtk_widget_get_type(void); 
 
   USER_OBJECT_
 S_gtk_widget_ref(USER_OBJECT_ s_object); 
@@ -7153,13 +7153,13 @@ S_gtk_widget_reset_rc_styles(USER_OBJECT_ s_object);
 S_gtk_widget_push_colormap(USER_OBJECT_ s_cmap); 
 
   USER_OBJECT_
-S_gtk_widget_push_composite_child(); 
+S_gtk_widget_push_composite_child(void); 
 
   USER_OBJECT_
-S_gtk_widget_pop_composite_child(); 
+S_gtk_widget_pop_composite_child(void); 
 
   USER_OBJECT_
-S_gtk_widget_pop_colormap(); 
+S_gtk_widget_pop_colormap(void); 
 
   USER_OBJECT_
 S_gtk_widget_class_install_style_property(USER_OBJECT_ s_klass, USER_OBJECT_ s_pspec); 
@@ -7174,16 +7174,16 @@ S_gtk_widget_class_list_style_properties(USER_OBJECT_ s_klass);
 S_gtk_widget_style_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name); 
 
   USER_OBJECT_
-S_gtk_widget_get_default_style(); 
+S_gtk_widget_get_default_style(void); 
 
   USER_OBJECT_
 S_gtk_widget_set_default_colormap(USER_OBJECT_ s_colormap); 
 
   USER_OBJECT_
-S_gtk_widget_get_default_colormap(); 
+S_gtk_widget_get_default_colormap(void); 
 
   USER_OBJECT_
-S_gtk_widget_get_default_visual(); 
+S_gtk_widget_get_default_visual(void); 
 
   USER_OBJECT_
 S_gtk_widget_set_direction(USER_OBJECT_ s_object, USER_OBJECT_ s_dir); 
@@ -7195,7 +7195,7 @@ S_gtk_widget_get_direction(USER_OBJECT_ s_object);
 S_gtk_widget_set_default_direction(USER_OBJECT_ s_dir); 
 
   USER_OBJECT_
-S_gtk_widget_get_default_direction(); 
+S_gtk_widget_get_default_direction(void); 
 
   USER_OBJECT_
 S_gtk_widget_shape_combine_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_shape_mask, USER_OBJECT_ s_offset_x, USER_OBJECT_ s_offset_y); 
@@ -7219,7 +7219,7 @@ S_gtk_widget_add_mnemonic_label(USER_OBJECT_ s_object, USER_OBJECT_ s_label);
 S_gtk_widget_remove_mnemonic_label(USER_OBJECT_ s_object, USER_OBJECT_ s_label); 
 
   USER_OBJECT_
-S_gtk_requisition_get_type(); 
+S_gtk_requisition_get_type(void); 
 
   USER_OBJECT_
 S_gtk_requisition_copy(USER_OBJECT_ s_object); 
@@ -7228,7 +7228,7 @@ S_gtk_requisition_copy(USER_OBJECT_ s_object);
 S_gtk_requisition_free(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_window_get_type(); 
+S_gtk_window_get_type(void); 
 
   USER_OBJECT_
 S_gtk_window_new(USER_OBJECT_ s_type); 
@@ -7375,7 +7375,7 @@ S_gtk_window_get_icon(USER_OBJECT_ s_object);
 S_gtk_window_set_default_icon_list(USER_OBJECT_ s_list); 
 
   USER_OBJECT_
-S_gtk_window_get_default_icon_list(); 
+S_gtk_window_get_default_icon_list(void); 
 
   USER_OBJECT_
 S_gtk_window_set_default_icon(USER_OBJECT_ s_icon); 
@@ -7393,7 +7393,7 @@ S_gtk_window_set_modal(USER_OBJECT_ s_object, USER_OBJECT_ s_modal);
 S_gtk_window_get_modal(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_window_list_toplevels(); 
+S_gtk_window_list_toplevels(void); 
 
   USER_OBJECT_
 S_gtk_window_add_mnemonic(USER_OBJECT_ s_object, USER_OBJECT_ s_keyval, USER_OBJECT_ s_target); 
@@ -7486,10 +7486,10 @@ S_gtk_window_parse_geometry(USER_OBJECT_ s_object, USER_OBJECT_ s_geometry);
 S_gtk_window_reshow_with_initial_size(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_window_group_get_type(); 
+S_gtk_window_group_get_type(void); 
 
   USER_OBJECT_
-S_gtk_window_group_new(); 
+S_gtk_window_group_new(void); 
 
   USER_OBJECT_
 S_gtk_window_group_add_window(USER_OBJECT_ s_object, USER_OBJECT_ s_window); 
@@ -7516,10 +7516,10 @@ S_gtk_window_set_default_icon_name(USER_OBJECT_ s_name);
 S_gtk_widget_get_action(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_assistant_get_type(); 
+S_gtk_assistant_get_type(void); 
 
   USER_OBJECT_
-S_gtk_assistant_new(); 
+S_gtk_assistant_new(void); 
 
   USER_OBJECT_
 S_gtk_assistant_get_current_page(USER_OBJECT_ s_object); 
@@ -7591,16 +7591,16 @@ S_gtk_button_set_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_position);
 S_gtk_button_get_image_position(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_accel_get_type(); 
+S_gtk_cell_renderer_accel_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_accel_new(); 
+S_gtk_cell_renderer_accel_new(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_spin_get_type(); 
+S_gtk_cell_renderer_spin_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_spin_new(); 
+S_gtk_cell_renderer_spin_new(void); 
 
   USER_OBJECT_
 S_gtk_clipboard_request_rich_text(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data); 
@@ -7636,7 +7636,7 @@ S_gtk_file_chooser_button_get_focus_on_click(USER_OBJECT_ s_object);
 S_gtk_file_chooser_button_set_focus_on_click(USER_OBJECT_ s_object, USER_OBJECT_ s_focus_on_click); 
 
   USER_OBJECT_
-S_gtk_link_button_get_type(); 
+S_gtk_link_button_get_type(void); 
 
   USER_OBJECT_
 S_gtk_link_button_new(USER_OBJECT_ s_uri); 
@@ -7678,10 +7678,10 @@ S_gtk_notebook_get_tab_detachable(USER_OBJECT_ s_object, USER_OBJECT_ s_child);
 S_gtk_notebook_set_tab_detachable(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_detachable); 
 
   USER_OBJECT_
-S_gtk_page_setup_get_type(); 
+S_gtk_page_setup_get_type(void); 
 
   USER_OBJECT_
-S_gtk_page_setup_new(); 
+S_gtk_page_setup_new(void); 
 
   USER_OBJECT_
 S_gtk_page_setup_copy(USER_OBJECT_ s_object); 
@@ -7738,7 +7738,7 @@ S_gtk_page_setup_get_page_width(USER_OBJECT_ s_object, USER_OBJECT_ s_unit);
 S_gtk_page_setup_get_page_height(USER_OBJECT_ s_object, USER_OBJECT_ s_unit); 
 
   USER_OBJECT_
-S_gtk_paper_size_get_type(); 
+S_gtk_paper_size_get_type(void); 
 
   USER_OBJECT_
 S_gtk_paper_size_new(USER_OBJECT_ s_name); 
@@ -7792,10 +7792,10 @@ S_gtk_paper_size_get_default_left_margin(USER_OBJECT_ s_object, USER_OBJECT_ s_u
 S_gtk_paper_size_get_default_right_margin(USER_OBJECT_ s_object, USER_OBJECT_ s_unit); 
 
   USER_OBJECT_
-S_gtk_paper_size_get_default(); 
+S_gtk_paper_size_get_default(void); 
 
   USER_OBJECT_
-S_gtk_print_context_get_type(); 
+S_gtk_print_context_get_type(void); 
 
   USER_OBJECT_
 S_gtk_print_context_get_cairo_context(USER_OBJECT_ s_object); 
@@ -7828,13 +7828,13 @@ S_gtk_print_context_create_pango_layout(USER_OBJECT_ s_object);
 S_gtk_print_context_set_cairo_context(USER_OBJECT_ s_object, USER_OBJECT_ s_cr, USER_OBJECT_ s_dpi_x, USER_OBJECT_ s_dpi_y); 
 
   USER_OBJECT_
-S_gtk_print_error_quark(); 
+S_gtk_print_error_quark(void); 
 
   USER_OBJECT_
-S_gtk_print_operation_get_type(); 
+S_gtk_print_operation_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_operation_new(); 
+S_gtk_print_operation_new(void); 
 
   USER_OBJECT_
 S_gtk_print_operation_set_default_page_setup(USER_OBJECT_ s_object, USER_OBJECT_ s_default_page_setup); 
@@ -7903,7 +7903,7 @@ S_gtk_print_run_page_setup_dialog(USER_OBJECT_ s_parent, USER_OBJECT_ s_page_set
 S_gtk_print_run_page_setup_dialog_async(USER_OBJECT_ s_parent, USER_OBJECT_ s_page_setup, USER_OBJECT_ s_settings, USER_OBJECT_ s_done_cb, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
-S_gtk_print_operation_preview_get_type(); 
+S_gtk_print_operation_preview_get_type(void); 
 
   USER_OBJECT_
 S_gtk_print_operation_preview_render_page(USER_OBJECT_ s_object, USER_OBJECT_ s_page_nr); 
@@ -7915,10 +7915,10 @@ S_gtk_print_operation_preview_end_preview(USER_OBJECT_ s_object);
 S_gtk_print_operation_preview_is_selected(USER_OBJECT_ s_object, USER_OBJECT_ s_page_nr); 
 
   USER_OBJECT_
-S_gtk_print_settings_get_type(); 
+S_gtk_print_settings_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_settings_new(); 
+S_gtk_print_settings_new(void); 
 
   USER_OBJECT_
 S_gtk_print_settings_copy(USER_OBJECT_ s_object); 
@@ -8116,13 +8116,13 @@ S_gtk_range_set_upper_stepper_sensitivity(USER_OBJECT_ s_object, USER_OBJECT_ s_
 S_gtk_range_get_upper_stepper_sensitivity(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_dialog_get_type(); 
+S_gtk_recent_chooser_dialog_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_error_quark(); 
+S_gtk_recent_chooser_error_quark(void); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_get_type(); 
+S_gtk_recent_chooser_get_type(void); 
 
   USER_OBJECT_
 S_gtk_recent_chooser_set_show_private(USER_OBJECT_ s_object, USER_OBJECT_ s_show_private); 
@@ -8159,12 +8159,6 @@ S_gtk_recent_chooser_set_show_tips(USER_OBJECT_ s_object, USER_OBJECT_ s_show_ti
 
   USER_OBJECT_
 S_gtk_recent_chooser_get_show_tips(USER_OBJECT_ s_object); 
-
-  USER_OBJECT_
-S_gtk_recent_chooser_set_show_numbers(USER_OBJECT_ s_object, USER_OBJECT_ s_show_numbers); 
-
-  USER_OBJECT_
-S_gtk_recent_chooser_get_show_numbers(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_gtk_recent_chooser_set_show_icons(USER_OBJECT_ s_object, USER_OBJECT_ s_show_icons); 
@@ -8224,10 +8218,10 @@ S_gtk_recent_chooser_set_filter(USER_OBJECT_ s_object, USER_OBJECT_ s_filter);
 S_gtk_recent_chooser_get_filter(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_menu_get_type(); 
+S_gtk_recent_chooser_menu_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_menu_new(); 
+S_gtk_recent_chooser_menu_new(void); 
 
   USER_OBJECT_
 S_gtk_recent_chooser_menu_new_for_manager(USER_OBJECT_ s_manager); 
@@ -8239,19 +8233,19 @@ S_gtk_recent_chooser_menu_get_show_numbers(USER_OBJECT_ s_object);
 S_gtk_recent_chooser_menu_set_show_numbers(USER_OBJECT_ s_object, USER_OBJECT_ s_show_numbers); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_widget_get_type(); 
+S_gtk_recent_chooser_widget_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_widget_new(); 
+S_gtk_recent_chooser_widget_new(void); 
 
   USER_OBJECT_
 S_gtk_recent_chooser_widget_new_for_manager(USER_OBJECT_ s_manager); 
 
   USER_OBJECT_
-S_gtk_recent_filter_get_type(); 
+S_gtk_recent_filter_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_filter_new(); 
+S_gtk_recent_filter_new(void); 
 
   USER_OBJECT_
 S_gtk_recent_filter_set_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
@@ -8287,16 +8281,16 @@ S_gtk_recent_filter_get_needed(USER_OBJECT_ s_object);
 S_gtk_recent_filter_filter(USER_OBJECT_ s_object, USER_OBJECT_ s_filter_info); 
 
   USER_OBJECT_
-S_gtk_recent_manager_error_quark(); 
+S_gtk_recent_manager_error_quark(void); 
 
   USER_OBJECT_
-S_gtk_recent_manager_get_type(); 
+S_gtk_recent_manager_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_manager_new(); 
+S_gtk_recent_manager_new(void); 
 
   USER_OBJECT_
-S_gtk_recent_manager_get_default(); 
+S_gtk_recent_manager_get_default(void); 
 
   USER_OBJECT_
 S_gtk_recent_manager_get_for_screen(USER_OBJECT_ s_screen); 
@@ -8335,7 +8329,7 @@ S_gtk_recent_manager_get_items(USER_OBJECT_ s_object);
 S_gtk_recent_manager_purge_items(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_recent_info_get_type(); 
+S_gtk_recent_info_get_type(void); 
 
   USER_OBJECT_
 S_gtk_recent_info_ref(USER_OBJECT_ s_object); 
@@ -8434,16 +8428,16 @@ S_gtk_targets_include_image(USER_OBJECT_ s_targets, USER_OBJECT_ s_writable);
 S_gtk_targets_include_uri(USER_OBJECT_ s_targets); 
 
   USER_OBJECT_
-S_gtk_target_list_get_type(); 
+S_gtk_target_list_get_type(void); 
 
   USER_OBJECT_
 S_gtk_size_group_get_widgets(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gtk_status_icon_get_type(); 
+S_gtk_status_icon_get_type(void); 
 
   USER_OBJECT_
-S_gtk_status_icon_new(); 
+S_gtk_status_icon_new(void); 
 
   USER_OBJECT_
 S_gtk_status_icon_new_from_pixbuf(USER_OBJECT_ s_pixbuf); 
@@ -8590,52 +8584,52 @@ S_gtk_tree_view_get_enable_tree_lines(USER_OBJECT_ s_object);
 S_gtk_tree_view_set_enable_tree_lines(USER_OBJECT_ s_object, USER_OBJECT_ s_enabled); 
 
   USER_OBJECT_
-S_gtk_assistant_page_type_get_type(); 
+S_gtk_assistant_page_type_get_type(void); 
 
   USER_OBJECT_
-S_gtk_cell_renderer_accel_mode_get_type(); 
+S_gtk_cell_renderer_accel_mode_get_type(void); 
 
   USER_OBJECT_
-S_gtk_sensitivity_type_get_type(); 
+S_gtk_sensitivity_type_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_pages_get_type(); 
+S_gtk_print_pages_get_type(void); 
 
   USER_OBJECT_
-S_gtk_page_set_get_type(); 
+S_gtk_page_set_get_type(void); 
 
   USER_OBJECT_
-S_gtk_page_orientation_get_type(); 
+S_gtk_page_orientation_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_quality_get_type(); 
+S_gtk_print_quality_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_duplex_get_type(); 
+S_gtk_print_duplex_get_type(void); 
 
   USER_OBJECT_
-S_gtk_unit_get_type(); 
+S_gtk_unit_get_type(void); 
 
   USER_OBJECT_
-S_gtk_tree_view_grid_lines_get_type(); 
+S_gtk_tree_view_grid_lines_get_type(void); 
 
   USER_OBJECT_
-S_gtk_print_operation_action_get_type(); 
+S_gtk_print_operation_action_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_sort_type_get_type(); 
+S_gtk_recent_sort_type_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_chooser_error_get_type(); 
+S_gtk_recent_chooser_error_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_filter_flags_get_type(); 
+S_gtk_recent_filter_flags_get_type(void); 
 
   USER_OBJECT_
-S_gtk_recent_manager_error_get_type(); 
+S_gtk_recent_manager_error_get_type(void); 
 
   USER_OBJECT_
-S_gtk_text_buffer_target_info_get_type(); 
+S_gtk_text_buffer_target_info_get_type(void); 
 
   USER_OBJECT_
 S_gtk_widget_is_composited(USER_OBJECT_ s_object); 

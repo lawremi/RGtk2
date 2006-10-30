@@ -5,7 +5,7 @@
 
 
 void
-S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, gchar* s_link, gpointer s_data)
+S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, gpointer s_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -141,7 +141,7 @@ S_GtkClipboardImageReceivedFunc(GtkClipboard* s_clipboard, GdkPixbuf* s_image, g
 
 
 void
-S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, gchar* s_text, gpointer s_data)
+S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, gpointer s_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -196,7 +196,7 @@ S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, g
 
   R_CallbackData * GtkColorSelectionChangePaletteFunc_cbdata;
 void
-S_GtkColorSelectionChangePaletteFunc(GdkColor* s_colors, gint s_n_colors)
+S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -223,7 +223,7 @@ S_GtkColorSelectionChangePaletteFunc(GdkColor* s_colors, gint s_n_colors)
 
   R_CallbackData * GtkColorSelectionChangePaletteWithScreenFunc_cbdata;
 void
-S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, GdkColor* s_colors, gint s_n_colors)
+S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkColor* s_colors, gint s_n_colors)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -308,7 +308,7 @@ S_GtkCTreeFunc(GtkCTree* s_ctree, GtkCTreeNode* s_node, gpointer s_data)
 
 
 gboolean
-S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data)
+S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_user_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -337,7 +337,7 @@ S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, gchar* s_key, Gt
 
 
 gboolean
-S_GtkFileFilterFunc(GtkFileFilterInfo* s_filter_info, gpointer s_data)
+S_GtkFileFilterFunc(const GtkFileFilterInfo* s_filter_info, gpointer s_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -388,7 +388,7 @@ S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer
 
 
 void
-S_GtkTranslateFunc(gchar* s_path, gpointer s_func_data)
+S_GtkTranslateFunc(const gchar* s_path, gpointer s_func_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -450,7 +450,7 @@ S_GtkKeySnoopFunc(GtkWidget* s_grab_widget, GdkEventKey* s_event, gpointer s_fun
 
   SETCAR(tmp, toRPointerWithSink(s_grab_widget, "GtkWidget"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_event, "GdkEventKey"));
+  SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
   tmp = CDR(tmp);
@@ -725,7 +725,7 @@ S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer
 
 
 gboolean
-S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data)
+S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* s_key, GtkTreeIter* s_iter, gpointer s_search_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -835,7 +835,7 @@ S_GtkCallback(GtkWidget* s_child, gpointer s_data)
 
 
 void
-S_GtkAccelMapForeach(gpointer s_data, gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed)
+S_GtkAccelMapForeach(gpointer s_data, const gchar* s_accel_path, guint s_accel_key, GdkModifierType s_accel_mods, gboolean s_changed)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -1050,7 +1050,7 @@ S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data)
 
 
 void
-S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, guint8* s_text, gsize s_length, gpointer s_data)
+S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, const guint8* s_text, gsize s_length, gpointer s_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -1080,7 +1080,7 @@ S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, 
 
 
 void
-S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, gchar* s_link, gpointer s_user_data)
+S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_user_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -1161,7 +1161,7 @@ S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data)
 
 
 void
-S_GtkPrintSettingsFunc(gchar* s_key, gchar* s_value, gpointer s_user_data)
+S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -1214,7 +1214,7 @@ S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data
 
 
 gboolean
-S_GtkRecentFilterFunc(GtkRecentFilterInfo* s_filter_info, gpointer s_user_data)
+S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -1239,7 +1239,7 @@ S_GtkRecentFilterFunc(GtkRecentFilterInfo* s_filter_info, gpointer s_user_data)
 
 
 gboolean
-S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_content_buffer, GtkTextIter* s_iter, guint8* s_data, gsize s_length, gboolean s_create_tags, gpointer s_user_data, GError** s_error)
+S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_content_buffer, GtkTextIter* s_iter, const guint8* s_data, gsize s_length, gboolean s_create_tags, gpointer s_user_data, GError** s_error)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;

@@ -258,7 +258,7 @@ S_gdk_window_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_attributes)
 USER_OBJECT_
 S_gdk_pixbuf_get_from_drawable(USER_OBJECT_ s_dest, USER_OBJECT_ s_src, USER_OBJECT_ s_cmap, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
-        GdkDrawable* dest = s_dest == NULL_USER_OBJECT ? NULL : GDK_DRAWABLE(getPtrValue(s_dest));
+        GdkPixbuf* dest = s_dest == NULL_USER_OBJECT ? NULL : GDK_PIXBUF(getPtrValue(s_dest));
         GdkDrawable* src = GDK_DRAWABLE(getPtrValue(s_src));
         GdkColormap* cmap = s_cmap == NULL_USER_OBJECT ? NULL : GDK_COLORMAP(getPtrValue(s_cmap));
         int src_x = (int)asCInteger(s_src_x);

@@ -9,7 +9,7 @@
 #include "RGtk2.h"
 
 USER_OBJECT_
-S_pango_color_get_type()
+S_pango_color_get_type(void)
 {
 
   GType ans;
@@ -484,7 +484,7 @@ S_pango_attr_fallback_new(USER_OBJECT_ s_fallback)
  
 
 USER_OBJECT_
-S_pango_attr_list_get_type()
+S_pango_attr_list_get_type(void)
 {
 
   GType ans;
@@ -499,7 +499,7 @@ S_pango_attr_list_get_type()
  
 
 USER_OBJECT_
-S_pango_attr_list_new()
+S_pango_attr_list_new(void)
 {
 
   PangoAttrList* ans;
@@ -797,7 +797,7 @@ S_pango_find_paragraph_boundary(USER_OBJECT_ s_text, USER_OBJECT_ s_length)
  
 
 USER_OBJECT_
-S_pango_cairo_font_map_get_type()
+S_pango_cairo_font_map_get_type(void)
 {
 
   GType ans;
@@ -812,7 +812,7 @@ S_pango_cairo_font_map_get_type()
  
 
 USER_OBJECT_
-S_pango_cairo_font_map_new()
+S_pango_cairo_font_map_new(void)
 {
 
   PangoFontMap* ans;
@@ -827,7 +827,7 @@ S_pango_cairo_font_map_new()
  
 
 USER_OBJECT_
-S_pango_cairo_font_map_get_default()
+S_pango_cairo_font_map_get_default(void)
 {
 
   PangoFontMap* ans;
@@ -1413,7 +1413,7 @@ S_pango_itemize_with_base_dir(USER_OBJECT_ s_context, USER_OBJECT_ s_base_dir, U
  
 
 USER_OBJECT_
-S_pango_coverage_new()
+S_pango_coverage_new(void)
 {
 
   PangoCoverage* ans;
@@ -1558,7 +1558,7 @@ S_pango_coverage_from_bytes(USER_OBJECT_ s_bytes)
  
 
 USER_OBJECT_
-S_pango_font_description_new()
+S_pango_font_description_new(void)
 {
 
   PangoFontDescription* ans;
@@ -2015,7 +2015,7 @@ S_pango_font_description_to_filename(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_font_metrics_get_type()
+S_pango_font_metrics_get_type(void)
 {
 
   GType ans;
@@ -2188,7 +2188,7 @@ S_pango_font_metrics_get_underline_thickness(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_font_family_get_type()
+S_pango_font_family_get_type(void)
 {
 
   GType ans;
@@ -2254,7 +2254,7 @@ S_pango_font_family_is_monospace(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_font_face_get_type()
+S_pango_font_face_get_type(void)
 {
 
   GType ans;
@@ -2320,7 +2320,7 @@ S_pango_font_face_list_sizes(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_font_get_type()
+S_pango_font_get_type(void)
 {
 
   GType ans;
@@ -2362,24 +2362,6 @@ S_pango_font_get_coverage(USER_OBJECT_ s_object, USER_OBJECT_ s_language)
   ans = pango_font_get_coverage(object, language);
 
   _result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
-
-  return(_result);
-}
- 
-
-USER_OBJECT_
-S_pango_font_find_shaper(USER_OBJECT_ s_object, USER_OBJECT_ s_language, USER_OBJECT_ s_ch)
-{
-  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
-  PangoLanguage* language = ((PangoLanguage*)getPtrValue(s_language));
-  guint32 ch = ((guint32)asCNumeric(s_ch));
-
-  PangoEngineShape* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-  ans = pango_font_find_shaper(object, language, ch);
-
-  _result = toRPointer(ans, "PangoEngineShape");
 
   return(_result);
 }
@@ -2546,7 +2528,7 @@ S_pango_fontset_foreach(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_
  
 
 USER_OBJECT_
-S_pango_glyph_string_new()
+S_pango_glyph_string_new(void)
 {
 
   PangoGlyphString* ans;
@@ -2576,7 +2558,7 @@ S_pango_glyph_string_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_new_len)
  
 
 USER_OBJECT_
-S_pango_glyph_string_get_type()
+S_pango_glyph_string_get_type(void)
 {
 
   GType ans;
@@ -2874,7 +2856,7 @@ S_pango_item_copy(USER_OBJECT_ s_item)
  
 
 USER_OBJECT_
-S_pango_item_new()
+S_pango_item_new(void)
 {
 
   PangoItem* ans;
@@ -2925,7 +2907,7 @@ S_pango_reorder_items(USER_OBJECT_ s_logical_items)
  
 
 USER_OBJECT_
-S_pango_layout_get_type()
+S_pango_layout_get_type(void)
 {
 
   GType ans;
@@ -3752,7 +3734,7 @@ S_pango_layout_line_get_pixel_extents(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_layout_iter_get_type()
+S_pango_layout_iter_get_type(void)
 {
 
   GType ans;
@@ -4057,7 +4039,7 @@ S_pango_layout_iter_get_baseline(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_pango_renderer_get_type()
+S_pango_renderer_get_type(void)
 {
 
   GType ans;
@@ -4324,7 +4306,7 @@ S_pango_tab_array_new(USER_OBJECT_ s_initial_size, USER_OBJECT_ s_positions_in_p
  
 
 USER_OBJECT_
-S_pango_tab_array_get_type()
+S_pango_tab_array_get_type(void)
 {
 
   GType ans;

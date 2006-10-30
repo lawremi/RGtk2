@@ -37,7 +37,7 @@ S_glade_provide(USER_OBJECT_ s_library)
  
 
 USER_OBJECT_
-S_glade_xml_get_type()
+S_glade_xml_get_type(void)
 {
 
   GType ans;

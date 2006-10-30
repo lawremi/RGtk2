@@ -5,7 +5,7 @@
 #include <cairo-svg.h>
 #include <glib-object.h>
 
-/* enumerations from "cairo.h" */
+/* enumerations from "cairo-1.2.h" */
 GType
 cairo_status_get_type (void)
 {
@@ -346,9 +346,8 @@ cairo_svg_version_get_type (void)
   static GType etype = 0;
   if (etype == 0) {
     static const GEnumValue values[] = {
-      { CAIRO_SVG_VERSION_1_1, "CAIRO_SVG_VERSION_1_1", "1-1" },
-      { CAIRO_SVG_VERSION_1_2, "CAIRO_SVG_VERSION_1_2", "1-2" },
-      { CAIRO_SVG_VERSION_LAST, "CAIRO_SVG_VERSION_LAST", "last" },
+      { CAIRO_SVG_VERSION_1_1, "CAIRO_SVG_VERSION_1_1", "1" },
+      { CAIRO_SVG_VERSION_1_2, "CAIRO_SVG_VERSION_1_2", "2" },
       { 0, NULL, NULL }
     };
     etype = g_enum_register_static ("CairoSvgVersion", values);

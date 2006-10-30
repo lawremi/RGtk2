@@ -7,7 +7,7 @@ S_glade_require(USER_OBJECT_ s_library);
 S_glade_provide(USER_OBJECT_ s_library); 
 
   USER_OBJECT_
-S_glade_xml_get_type(); 
+S_glade_xml_get_type(void); 
 
   USER_OBJECT_
 S_glade_xml_new(USER_OBJECT_ s_fname, USER_OBJECT_ s_root, USER_OBJECT_ s_domain); 

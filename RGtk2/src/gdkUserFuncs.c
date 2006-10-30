@@ -19,7 +19,7 @@ S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)
 
   SETCAR(tmp, toRPointer(s_xevent, "GdkXEvent"));
   tmp = CDR(tmp);
-  SETCAR(tmp, asRGdkEvent(s_event));
+  SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -43,7 +43,7 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
   tmp = CDR(tmp);
 
-  SETCAR(tmp, asRGdkEvent(s_event));
+  SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -55,7 +55,7 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
 
 
 gboolean
-S_GdkPixbufSaveFunc(guchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
+S_GdkPixbufSaveFunc(const guchar* s_buf, gsize s_count, GError** s_error, gpointer s_data)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;

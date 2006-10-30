@@ -23,7 +23,7 @@ S_gobject_class_init(GObjectClass *c)
 }
 
 USER_OBJECT_
-S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT s_interfaces, 
+S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_interfaces, 
   USER_OBJECT_ s_class_init_sym, USER_OBJECT_ s_interface_init_syms, USER_OBJECT_ s_def)
 {
   GTypeQuery query;
@@ -37,7 +37,7 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT s_in
   g_type_query(parent_type, &query);
   
   type_info.class_size = query.class_size + sizeof(SEXP);
-  type_info.class_init = getPointer(s_class_init_sym);
+  type_info.class_init = getPtrValue(s_class_init_sym);
   type_info.class_data = s_def;
   type_info.instance_size = query.instance_size;
   /* to call some "initialize" function */
@@ -47,7 +47,7 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT s_in
   
   interface_info.interface_data = s_def;
   for (i = 0; i < GET_LENGTH(s_interfaces); i++) {
-    interface_info.instance_init = getPointer(VECTOR_ELT(s_interface_init_syms, i));
+    interface_info.interface_init = getPtrValue(VECTOR_ELT(s_interface_init_syms, i));
     g_type_add_interface_static(new_type, 
       g_type_from_name(asCString(STRING_ELT(s_interfaces, i))), &interface_info);
   }

@@ -1,7 +1,7 @@
 #ifndef S_PANGO_FUNCS_H
 #define S_PANGO_FUNCS_H
   USER_OBJECT_
-S_pango_color_get_type(); 
+S_pango_color_get_type(void); 
 
   USER_OBJECT_
 S_pango_color_copy(USER_OBJECT_ s_object); 
@@ -88,10 +88,10 @@ S_pango_attr_scale_new(USER_OBJECT_ s_scale_factor);
 S_pango_attr_fallback_new(USER_OBJECT_ s_fallback); 
 
   USER_OBJECT_
-S_pango_attr_list_get_type(); 
+S_pango_attr_list_get_type(void); 
 
   USER_OBJECT_
-S_pango_attr_list_new(); 
+S_pango_attr_list_new(void); 
 
   USER_OBJECT_
 S_pango_attr_list_ref(USER_OBJECT_ s_object); 
@@ -145,13 +145,13 @@ S_pango_parse_markup(USER_OBJECT_ s_markup_text, USER_OBJECT_ s_length, USER_OBJ
 S_pango_find_paragraph_boundary(USER_OBJECT_ s_text, USER_OBJECT_ s_length); 
 
   USER_OBJECT_
-S_pango_cairo_font_map_get_type(); 
+S_pango_cairo_font_map_get_type(void); 
 
   USER_OBJECT_
-S_pango_cairo_font_map_new(); 
+S_pango_cairo_font_map_new(void); 
 
   USER_OBJECT_
-S_pango_cairo_font_map_get_default(); 
+S_pango_cairo_font_map_get_default(void); 
 
   USER_OBJECT_
 S_pango_cairo_font_map_set_resolution(USER_OBJECT_ s_object, USER_OBJECT_ s_dpi); 
@@ -259,7 +259,7 @@ S_pango_itemize(USER_OBJECT_ s_context, USER_OBJECT_ s_text, USER_OBJECT_ s_star
 S_pango_itemize_with_base_dir(USER_OBJECT_ s_context, USER_OBJECT_ s_base_dir, USER_OBJECT_ s_text, USER_OBJECT_ s_start_index, USER_OBJECT_ s_length, USER_OBJECT_ s_attrs, USER_OBJECT_ s_cached_iter); 
 
   USER_OBJECT_
-S_pango_coverage_new(); 
+S_pango_coverage_new(void); 
 
   USER_OBJECT_
 S_pango_coverage_ref(USER_OBJECT_ s_object); 
@@ -286,7 +286,7 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object);
 S_pango_coverage_from_bytes(USER_OBJECT_ s_bytes); 
 
   USER_OBJECT_
-S_pango_font_description_new(); 
+S_pango_font_description_new(void); 
 
   USER_OBJECT_
 S_pango_font_description_copy(USER_OBJECT_ s_object); 
@@ -373,7 +373,7 @@ S_pango_font_description_to_string(USER_OBJECT_ s_object);
 S_pango_font_description_to_filename(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_font_metrics_get_type(); 
+S_pango_font_metrics_get_type(void); 
 
   USER_OBJECT_
 S_pango_font_metrics_ref(USER_OBJECT_ s_object); 
@@ -406,7 +406,7 @@ S_pango_font_metrics_get_underline_position(USER_OBJECT_ s_object);
 S_pango_font_metrics_get_underline_thickness(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_font_family_get_type(); 
+S_pango_font_family_get_type(void); 
 
   USER_OBJECT_
 S_pango_font_family_list_faces(USER_OBJECT_ s_object); 
@@ -418,7 +418,7 @@ S_pango_font_family_get_name(USER_OBJECT_ s_object);
 S_pango_font_family_is_monospace(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_font_face_get_type(); 
+S_pango_font_face_get_type(void); 
 
   USER_OBJECT_
 S_pango_font_face_describe(USER_OBJECT_ s_object); 
@@ -430,16 +430,13 @@ S_pango_font_face_get_face_name(USER_OBJECT_ s_object);
 S_pango_font_face_list_sizes(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_font_get_type(); 
+S_pango_font_get_type(void); 
 
   USER_OBJECT_
 S_pango_font_describe(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_pango_font_get_coverage(USER_OBJECT_ s_object, USER_OBJECT_ s_language); 
-
-  USER_OBJECT_
-S_pango_font_find_shaper(USER_OBJECT_ s_object, USER_OBJECT_ s_language, USER_OBJECT_ s_ch); 
 
   USER_OBJECT_
 S_pango_font_get_metrics(USER_OBJECT_ s_object, USER_OBJECT_ s_language); 
@@ -469,13 +466,13 @@ S_pango_fontset_get_metrics(USER_OBJECT_ s_object);
 S_pango_fontset_foreach(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
 
   USER_OBJECT_
-S_pango_glyph_string_new(); 
+S_pango_glyph_string_new(void); 
 
   USER_OBJECT_
 S_pango_glyph_string_set_size(USER_OBJECT_ s_object, USER_OBJECT_ s_new_len); 
 
   USER_OBJECT_
-S_pango_glyph_string_get_type(); 
+S_pango_glyph_string_get_type(void); 
 
   USER_OBJECT_
 S_pango_glyph_string_copy(USER_OBJECT_ s_object); 
@@ -526,7 +523,7 @@ S_pango_shape(USER_OBJECT_ s_text, USER_OBJECT_ s_length, USER_OBJECT_ s_analysi
 S_pango_item_copy(USER_OBJECT_ s_item); 
 
   USER_OBJECT_
-S_pango_item_new(); 
+S_pango_item_new(void); 
 
   USER_OBJECT_
 S_pango_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_split_index, USER_OBJECT_ s_split_offset); 
@@ -535,7 +532,7 @@ S_pango_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_split_index, USER_OBJECT_
 S_pango_reorder_items(USER_OBJECT_ s_logical_items); 
 
   USER_OBJECT_
-S_pango_layout_get_type(); 
+S_pango_layout_get_type(void); 
 
   USER_OBJECT_
 S_pango_layout_new(USER_OBJECT_ s_context); 
@@ -682,7 +679,7 @@ S_pango_layout_line_get_extents(USER_OBJECT_ s_object);
 S_pango_layout_line_get_pixel_extents(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_layout_iter_get_type(); 
+S_pango_layout_iter_get_type(void); 
 
   USER_OBJECT_
 S_pango_layout_get_iter(USER_OBJECT_ s_object); 
@@ -736,7 +733,7 @@ S_pango_layout_iter_get_layout_extents(USER_OBJECT_ s_object);
 S_pango_layout_iter_get_baseline(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_pango_renderer_get_type(); 
+S_pango_renderer_get_type(void); 
 
   USER_OBJECT_
 S_pango_renderer_draw_layout(USER_OBJECT_ s_object, USER_OBJECT_ s_layout, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
@@ -784,7 +781,7 @@ S_pango_renderer_get_matrix(USER_OBJECT_ s_object);
 S_pango_tab_array_new(USER_OBJECT_ s_initial_size, USER_OBJECT_ s_positions_in_pixels); 
 
   USER_OBJECT_
-S_pango_tab_array_get_type(); 
+S_pango_tab_array_get_type(void); 
 
   USER_OBJECT_
 S_pango_tab_array_copy(USER_OBJECT_ s_object); 

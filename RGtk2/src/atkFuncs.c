@@ -9,7 +9,7 @@
 #include "RGtk2.h"
 
 USER_OBJECT_
-S_atk_action_get_type()
+S_atk_action_get_type(void)
 {
 
   GType ans;
@@ -143,7 +143,7 @@ S_atk_action_set_description(USER_OBJECT_ s_object, USER_OBJECT_ s_i, USER_OBJEC
  
 
 USER_OBJECT_
-S_atk_component_get_type()
+S_atk_component_get_type(void)
 {
 
   GType ans;
@@ -375,7 +375,7 @@ S_atk_component_get_mdi_zorder(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_atk_document_get_type()
+S_atk_document_get_type(void)
 {
 
   GType ans;
@@ -422,7 +422,7 @@ S_atk_document_get_document(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_atk_editable_text_get_type()
+S_atk_editable_text_get_type(void)
 {
 
   GType ans;
@@ -535,7 +535,7 @@ S_atk_editable_text_paste_text(USER_OBJECT_ s_object, USER_OBJECT_ s_position)
  
 
 USER_OBJECT_
-S_atk_gobject_accessible_get_type()
+S_atk_gobject_accessible_get_type(void)
 {
 
   GType ans;
@@ -582,7 +582,7 @@ S_atk_gobject_accessible_get_object(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_atk_hyperlink_get_type()
+S_atk_hyperlink_get_type(void)
 {
 
   GType ans;
@@ -728,7 +728,7 @@ S_atk_hyperlink_is_selected_link(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_atk_hypertext_get_type()
+S_atk_hypertext_get_type(void)
 {
 
   GType ans;
@@ -793,7 +793,7 @@ S_atk_hypertext_get_link_index(USER_OBJECT_ s_object, USER_OBJECT_ s_char_index)
  
 
 USER_OBJECT_
-S_atk_image_get_type()
+S_atk_image_get_type(void)
 {
 
   GType ans;
@@ -878,7 +878,7 @@ S_atk_image_get_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
  
 
 USER_OBJECT_
-S_atk_no_op_object_factory_get_type()
+S_atk_no_op_object_factory_get_type(void)
 {
 
   GType ans;
@@ -893,7 +893,7 @@ S_atk_no_op_object_factory_get_type()
  
 
 USER_OBJECT_
-S_atk_no_op_object_factory_new()
+S_atk_no_op_object_factory_new(void)
 {
 
   AtkObjectFactory* ans;
@@ -908,7 +908,7 @@ S_atk_no_op_object_factory_new()
  
 
 USER_OBJECT_
-S_atk_no_op_object_get_type()
+S_atk_no_op_object_get_type(void)
 {
 
   GType ans;
@@ -939,7 +939,7 @@ S_atk_no_op_object_new(USER_OBJECT_ s_obj)
  
 
 USER_OBJECT_
-S_atk_object_factory_get_type()
+S_atk_object_factory_get_type(void)
 {
 
   GType ans;
@@ -1001,7 +1001,7 @@ S_atk_object_factory_get_accessible_type(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_atk_object_get_type()
+S_atk_object_get_type(void)
 {
 
   GType ans;
@@ -1016,7 +1016,7 @@ S_atk_object_get_type()
  
 
 USER_OBJECT_
-S_atk_implementor_get_type()
+S_atk_implementor_get_type(void)
 {
 
   GType ans;
@@ -1315,7 +1315,7 @@ S_atk_object_notify_state_change(USER_OBJECT_ s_object, USER_OBJECT_ s_state, US
  
 
 USER_OBJECT_
-S_atk_registry_get_type()
+S_atk_registry_get_type(void)
 {
 
   GType ans;
@@ -1380,7 +1380,7 @@ S_atk_registry_get_factory(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
  
 
 USER_OBJECT_
-S_atk_get_default_registry()
+S_atk_get_default_registry(void)
 {
 
   AtkRegistry* ans;
@@ -1395,7 +1395,7 @@ S_atk_get_default_registry()
  
 
 USER_OBJECT_
-S_atk_relation_get_type()
+S_atk_relation_get_type(void)
 {
 
   GType ans;
@@ -1523,7 +1523,7 @@ S_atk_relation_add_target(USER_OBJECT_ s_object, USER_OBJECT_ s_target)
  
 
 USER_OBJECT_
-S_atk_relation_set_get_type()
+S_atk_relation_set_get_type(void)
 {
 
   GType ans;
@@ -1538,7 +1538,7 @@ S_atk_relation_set_get_type()
  
 
 USER_OBJECT_
-S_atk_relation_set_new()
+S_atk_relation_set_new(void)
 {
 
   AtkRelationSet* ans;
@@ -1666,7 +1666,7 @@ S_atk_relation_set_add_relation_by_type(USER_OBJECT_ s_object, USER_OBJECT_ s_re
  
 
 USER_OBJECT_
-S_atk_selection_get_type()
+S_atk_selection_get_type(void)
 {
 
   GType ans;
@@ -1845,7 +1845,7 @@ S_atk_state_type_for_name(USER_OBJECT_ s_name)
  
 
 USER_OBJECT_
-S_atk_state_set_get_type()
+S_atk_state_set_get_type(void)
 {
 
   GType ans;
@@ -1860,7 +1860,7 @@ S_atk_state_set_get_type()
  
 
 USER_OBJECT_
-S_atk_state_set_new()
+S_atk_state_set_new(void)
 {
 
   AtkStateSet* ans;
@@ -2041,7 +2041,7 @@ S_atk_state_set_xor_sets(USER_OBJECT_ s_object, USER_OBJECT_ s_compare_set)
  
 
 USER_OBJECT_
-S_atk_streamable_content_get_type()
+S_atk_streamable_content_get_type(void)
 {
 
   GType ans;
@@ -2106,7 +2106,7 @@ S_atk_streamable_content_get_stream(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_t
  
 
 USER_OBJECT_
-S_atk_table_get_type()
+S_atk_table_get_type(void)
 {
 
   GType ans;
@@ -2613,7 +2613,7 @@ S_atk_table_remove_column_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_column
  
 
 USER_OBJECT_
-S_atk_text_get_type()
+S_atk_text_get_type(void)
 {
 
   GType ans;
@@ -3076,7 +3076,7 @@ S_atk_text_attribute_get_value(USER_OBJECT_ s_attr, USER_OBJECT_ s_index)
  
 
 USER_OBJECT_
-S_atk_util_get_type()
+S_atk_util_get_type(void)
 {
 
   GType ans;
@@ -3165,7 +3165,7 @@ S_atk_remove_key_event_listener(USER_OBJECT_ s_listener_id)
  
 
 USER_OBJECT_
-S_atk_get_root()
+S_atk_get_root(void)
 {
 
   AtkObject* ans;
@@ -3180,7 +3180,7 @@ S_atk_get_root()
  
 
 USER_OBJECT_
-S_atk_get_focus_object()
+S_atk_get_focus_object(void)
 {
 
   AtkObject* ans;
@@ -3195,7 +3195,7 @@ S_atk_get_focus_object()
  
 
 USER_OBJECT_
-S_atk_get_toolkit_name()
+S_atk_get_toolkit_name(void)
 {
 
   const gchar* ans;
@@ -3210,7 +3210,7 @@ S_atk_get_toolkit_name()
  
 
 USER_OBJECT_
-S_atk_get_toolkit_version()
+S_atk_get_toolkit_version(void)
 {
 
   const gchar* ans;
@@ -3225,7 +3225,7 @@ S_atk_get_toolkit_version()
  
 
 USER_OBJECT_
-S_atk_value_get_type()
+S_atk_value_get_type(void)
 {
 
   GType ans;

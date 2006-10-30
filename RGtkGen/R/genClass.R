@@ -2,14 +2,21 @@
 
 stripVirtual <- function(name, class_name)
   sub(paste("^", class_name, "_", sep=""), "", name)
+
+mapClassType <- function(type_name) 
+{
+  if (type_name %in% names(classTypeMap))
+    classTypeMap[type_name]
+  else type_name
+}
   
 genCClass <- function(name = "GtkWidget", defs, interface = F)
 {
   fun_name <- collapseClassName(name)
-  class_type <- paste(name, ifelse(interface, "Iface", "Class"), sep="")
   
-  symbol <- statement(static(cassign(decl("SEXP", classSymbol(name)), 
-    invoke("install", lit(nameToC(name))))), depth=0)
+  class_type <- mapClassType(paste(name, ifelse(interface, "Iface", "Class"), sep=""))
+  
+  symbol <- statement(static(decl("SEXP", classSymbol(name))), depth=0)
     
   hierarchy <- getClassHierarchy(name, defs$objects)
   virtual_classes <- sapply(defs$virtuals, function(virtual) virtual$ofobject)
@@ -31,7 +38,7 @@ genCClass <- function(name = "GtkWidget", defs, interface = F)
   if (length(hierarchy) > 1) {
     parent <- hierarchy[2]
     parent_class_init <- invokev(paste(nameToC(collapseClassName(parent)), "class_init", sep="_"),
-        cast(refType(paste(parent, "Class", sep="")), "c"), "s")
+        cast(refType(mapClassType(paste(parent, "Class", sep=""))), "c"), "s")
   }
     
   class_init_name <- paste(nameToC(fun_name), "_class_init", sep="")
@@ -40,8 +47,10 @@ genCClass <- function(name = "GtkWidget", defs, interface = F)
   class_init <- c(
     declaration,
     "{",
-      statement(cassign(decl("SEXP", "s"), invokev("findVar", classSymbol(name), "e"))),
+      statement(decl("SEXP", "s")),
       "",
+      statement(cassign(classSymbol(name), invoke("install", lit(nameToC(name))))),
+      statement(cassign("s", invokev("findVar", classSymbol(name), "e"))),
       statement(cassign(invokev("G_STRUCT_MEMBER", "SEXP", "c", invoke("sizeof", class_type)), "e")),
       "",
       if (length(parent_class_init))

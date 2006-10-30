@@ -7,7 +7,7 @@
 #include <glib-object.h>
 
 G_BEGIN_DECLS
-/* enumerations from "cairo.h" */
+/* enumerations from "cairo-1.2.h" */
 GType cairo_status_get_type (void);
 #define CAIRO_TYPE_STATUS (cairo_status_get_type())
 GType cairo_content_get_type (void);

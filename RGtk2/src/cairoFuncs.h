@@ -1,10 +1,10 @@
 #ifndef S_CAIRO_FUNCS_H
 #define S_CAIRO_FUNCS_H
   USER_OBJECT_
-S_cairo_version(); 
+S_cairo_version(void); 
 
   USER_OBJECT_
-S_cairo_version_string(); 
+S_cairo_version_string(void); 
 
   USER_OBJECT_
 S_cairo_create(USER_OBJECT_ s_target); 
@@ -415,7 +415,7 @@ S_cairo_pattern_get_filter(USER_OBJECT_ s_pattern);
 S_cairo_matrix_init(USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USER_OBJECT_ s_yy, USER_OBJECT_ s_x0, USER_OBJECT_ s_y0); 
 
   USER_OBJECT_
-S_cairo_matrix_init_identity(); 
+S_cairo_matrix_init_identity(void); 
 
   USER_OBJECT_
 S_cairo_matrix_init_translate(USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
@@ -448,7 +448,7 @@ S_cairo_matrix_transform_distance(USER_OBJECT_ s_matrix, USER_OBJECT_ s_dx, USER
 S_cairo_matrix_transform_point(USER_OBJECT_ s_matrix, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
 
   USER_OBJECT_
-S_cairo_font_options_create(); 
+S_cairo_font_options_create(void); 
 
   USER_OBJECT_
 S_cairo_font_options_copy(USER_OBJECT_ s_original); 

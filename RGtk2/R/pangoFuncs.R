@@ -781,7 +781,7 @@ pangoGetMirrorChar <-
 function(ch)
 {
   if(getOption("depwarn"))
-    warning("This function is deprecated: Use should g_unichar_get_mirror_char() instead (but RGtk2 doesn't support this)")
+    .Deprecated(nothing, RGtk2)
 
   ch <- as.numeric(ch)
 
@@ -1585,19 +1585,6 @@ function(object, language)
   checkPtrType(language, "PangoLanguage")
 
   w <- .RGtkCall("S_pango_font_get_coverage", object, language, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-pangoFontFindShaper <-
-function(object, language, ch)
-{
-  checkPtrType(object, "PangoFont")
-  checkPtrType(language, "PangoLanguage")
-  ch <- as.numeric(ch)
-
-  w <- .RGtkCall("S_pango_font_find_shaper", object, language, ch, PACKAGE = "RGtk2")
 
   return(w)
 } 

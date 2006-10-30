@@ -210,25 +210,27 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    ClassCHeader <- file(getFileName("Classes.h"))
    open(ClassCHeader,"w")
  
-   cat("#include \"conversion.h\"\n#include \"utils.h\"\n", 
+   cat("#include \"", filePrefix, "Classes.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n", 
     file=ClassCFuncs, sep="")
    cat("#include \"", package, ".h\"\n\n", file = ClassCFuncs, sep = "")
    cat("#include \"", package, ".h\"\n\n", file = ClassCHeader, sep = "")
    
-   for(i in getNonDiscardedNames("objects")) {
-     if(verbose)
-         cat("processing CLASS ", i, "\n")
-     gen <- genCClass(i, allDefs)
-     cat(gen$decl, "\n", file=ClassCHeader)
-     cat(gen$code, "\n\n", file=ClassCFuncs)
+   write_classes <- function(type)
+   {
+     class_names <- getNonDiscardedNames(paste(type, "s", sep=""))
+     class_names <- class_names[!(class_names %in% finalClasses)]
+     for(i in class_names) {
+       if(verbose)
+           cat("processing ", toupper(type), ": ", i, "\n")
+       gen <- genCClass(i, allDefs, type == "interface")
+       cat(gen$decl, "\n", file=ClassCHeader)
+       cat(gen$code, "\n\n", file=ClassCFuncs)
+     }
    }
-   for(i in getNonDiscardedNames("interfaces")) {
-     if(verbose)
-         cat("processing INTERFACE ", i, "\n")
-     gen <- genCClass(i, allDefs, interface=T)
-     cat(gen$decl, "\n", file=ClassCHeader)
-     cat(gen$code, "\n\n", file=ClassCFuncs)
-   }
+   
+   write_classes("object")
+   write_classes("interface")
+   
    close(ClassCFuncs)
    close(ClassCHeader)
  }

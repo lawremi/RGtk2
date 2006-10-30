@@ -5,7 +5,7 @@
 
 
 cairo_status_t
-S_cairo_write_func_t(gpointer s_closure, guchar* s_data, guint s_length)
+S_cairo_write_func_t(gpointer s_closure, const guchar* s_data, guint s_length)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;

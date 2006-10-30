@@ -49,3 +49,7 @@ USER_OBJECT_ R_getTypeFromName(USER_OBJECT_ name);
 USER_OBJECT_ R_getInterfaces(USER_OBJECT_ type);
 USER_OBJECT_ R_internal_getInterfaces(GType type);
 GType getSValueGType(USER_OBJECT_ sval);
+
+/* Class creation */
+
+void S_gobject_class_init(GObjectClass *c);

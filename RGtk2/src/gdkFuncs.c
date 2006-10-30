@@ -9,7 +9,7 @@
 #include "RGtk2.h"
 
 USER_OBJECT_
-S_gdk_notify_startup_complete()
+S_gdk_notify_startup_complete(void)
 {
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -22,7 +22,7 @@ S_gdk_notify_startup_complete()
  
 
 USER_OBJECT_
-S_gdk_get_display_arg_name()
+S_gdk_get_display_arg_name(void)
 {
 
   const gchar* ans;
@@ -37,7 +37,7 @@ S_gdk_get_display_arg_name()
  
 
 USER_OBJECT_
-S_gdk_get_program_class()
+S_gdk_get_program_class(void)
 {
 
   const gchar* ans;
@@ -66,7 +66,7 @@ S_gdk_set_program_class(USER_OBJECT_ s_program_class)
  
 
 USER_OBJECT_
-S_gdk_get_display()
+S_gdk_get_display(void)
 {
 
   const gchar* ans;
@@ -148,7 +148,7 @@ S_gdk_keyboard_ungrab(USER_OBJECT_ s_time)
  
 
 USER_OBJECT_
-S_gdk_pointer_is_grabbed()
+S_gdk_pointer_is_grabbed(void)
 {
 
   gboolean ans;
@@ -163,7 +163,7 @@ S_gdk_pointer_is_grabbed()
  
 
 USER_OBJECT_
-S_gdk_screen_width()
+S_gdk_screen_width(void)
 {
 
   gint ans;
@@ -178,7 +178,7 @@ S_gdk_screen_width()
  
 
 USER_OBJECT_
-S_gdk_screen_height()
+S_gdk_screen_height(void)
 {
 
   gint ans;
@@ -193,7 +193,7 @@ S_gdk_screen_height()
  
 
 USER_OBJECT_
-S_gdk_screen_width_mm()
+S_gdk_screen_width_mm(void)
 {
 
   gint ans;
@@ -208,7 +208,7 @@ S_gdk_screen_width_mm()
  
 
 USER_OBJECT_
-S_gdk_screen_height_mm()
+S_gdk_screen_height_mm(void)
 {
 
   gint ans;
@@ -223,7 +223,7 @@ S_gdk_screen_height_mm()
  
 
 USER_OBJECT_
-S_gdk_flush()
+S_gdk_flush(void)
 {
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -236,7 +236,7 @@ S_gdk_flush()
  
 
 USER_OBJECT_
-S_gdk_beep()
+S_gdk_beep(void)
 {
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -341,7 +341,7 @@ S_gdk_cairo_region(USER_OBJECT_ s_cr, USER_OBJECT_ s_region)
  
 
 USER_OBJECT_
-S_gdk_colormap_get_type()
+S_gdk_colormap_get_type(void)
 {
 
   GType ans;
@@ -373,7 +373,7 @@ S_gdk_colormap_new(USER_OBJECT_ s_visual, USER_OBJECT_ s_allocate)
  
 
 USER_OBJECT_
-S_gdk_colormap_get_system()
+S_gdk_colormap_get_system(void)
 {
 
   GdkColormap* ans;
@@ -388,7 +388,7 @@ S_gdk_colormap_get_system()
  
 
 USER_OBJECT_
-S_gdk_colormap_get_system_size()
+S_gdk_colormap_get_system_size(void)
 {
 
   gint ans;
@@ -686,7 +686,7 @@ S_gdk_cursor_get_image(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_display_get_type()
+S_gdk_display_get_type(void)
 {
 
   GType ans;
@@ -896,7 +896,7 @@ S_gdk_display_get_event(USER_OBJECT_ s_object)
 
   ans = gdk_display_get_event(object);
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -912,7 +912,7 @@ S_gdk_display_peek_event(USER_OBJECT_ s_object)
 
   ans = gdk_display_peek_event(object);
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -967,7 +967,7 @@ S_gdk_display_set_double_click_time(USER_OBJECT_ s_object, USER_OBJECT_ s_msec)
  
 
 USER_OBJECT_
-S_gdk_display_get_default()
+S_gdk_display_get_default(void)
 {
 
   GdkDisplay* ans;
@@ -1122,7 +1122,7 @@ S_gdk_display_supports_clipboard_persistence(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_display_manager_get_type()
+S_gdk_display_manager_get_type(void)
 {
 
   GType ans;
@@ -1137,7 +1137,7 @@ S_gdk_display_manager_get_type()
  
 
 USER_OBJECT_
-S_gdk_display_manager_get()
+S_gdk_display_manager_get(void)
 {
 
   GdkDisplayManager* ans;
@@ -1311,7 +1311,7 @@ S_gdk_display_get_default_group(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_drag_context_get_type()
+S_gdk_drag_context_get_type(void)
 {
 
   GType ans;
@@ -1326,7 +1326,7 @@ S_gdk_drag_context_get_type()
  
 
 USER_OBJECT_
-S_gdk_drag_context_new()
+S_gdk_drag_context_new(void)
 {
 
   GdkDragContext* ans;
@@ -1600,7 +1600,7 @@ S_gdk_drag_drop_succeeded(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_drawable_get_type()
+S_gdk_drawable_get_type(void)
 {
 
   GType ans;
@@ -2251,7 +2251,7 @@ S_gdk_drawable_get_visible_region(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_event_get_type()
+S_gdk_event_get_type(void)
 {
 
   GType ans;
@@ -2266,7 +2266,7 @@ S_gdk_event_get_type()
  
 
 USER_OBJECT_
-S_gdk_events_pending()
+S_gdk_events_pending(void)
 {
 
   gboolean ans;
@@ -2281,7 +2281,7 @@ S_gdk_events_pending()
  
 
 USER_OBJECT_
-S_gdk_event_get()
+S_gdk_event_get(void)
 {
 
   GdkEvent* ans;
@@ -2289,14 +2289,14 @@ S_gdk_event_get()
 
   ans = gdk_event_get();
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
  
 
 USER_OBJECT_
-S_gdk_event_peek()
+S_gdk_event_peek(void)
 {
 
   GdkEvent* ans;
@@ -2304,7 +2304,7 @@ S_gdk_event_peek()
 
   ans = gdk_event_peek();
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -2320,7 +2320,7 @@ S_gdk_event_get_graphics_expose(USER_OBJECT_ s_window)
 
   ans = gdk_event_get_graphics_expose(window);
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -2350,7 +2350,7 @@ S_gdk_event_new(USER_OBJECT_ s_type)
 
   ans = gdk_event_new(type);
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -2366,7 +2366,7 @@ S_gdk_event_copy(USER_OBJECT_ s_object)
 
   ans = gdk_event_copy(object);
 
-  _result = asRGdkEvent(ans);
+  _result = toRGdkEvent(((GdkEvent *)ans), TRUE);
 
   return(_result);
 }
@@ -2541,7 +2541,7 @@ S_gdk_set_show_events(USER_OBJECT_ s_show_events)
  
 
 USER_OBJECT_
-S_gdk_get_show_events()
+S_gdk_get_show_events(void)
 {
 
   gboolean ans;
@@ -2984,7 +2984,7 @@ S_gdk_font_get_display(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_gc_get_type()
+S_gdk_gc_get_type(void)
 {
 
   GType ans;
@@ -3388,7 +3388,7 @@ S_gdk_gc_get_screen(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_image_get_type()
+S_gdk_image_get_type(void)
 {
 
   GType ans;
@@ -3508,7 +3508,7 @@ S_gdk_image_get_colormap(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_device_get_type()
+S_gdk_device_get_type(void)
 {
 
   GType ans;
@@ -3523,7 +3523,7 @@ S_gdk_device_get_type()
  
 
 USER_OBJECT_
-S_gdk_devices_list()
+S_gdk_devices_list(void)
 {
 
   GList* ans;
@@ -3659,7 +3659,7 @@ S_gdk_input_set_extension_events(USER_OBJECT_ s_object, USER_OBJECT_ s_mask, USE
  
 
 USER_OBJECT_
-S_gdk_device_get_core_pointer()
+S_gdk_device_get_core_pointer(void)
 {
 
   GdkDevice* ans;
@@ -3674,7 +3674,7 @@ S_gdk_device_get_core_pointer()
  
 
 USER_OBJECT_
-S_gdk_keymap_get_type()
+S_gdk_keymap_get_type(void)
 {
 
   GType ans;
@@ -3689,7 +3689,7 @@ S_gdk_keymap_get_type()
  
 
 USER_OBJECT_
-S_gdk_keymap_get_default()
+S_gdk_keymap_get_default(void)
 {
 
   GdkKeymap* ans;
@@ -3971,7 +3971,7 @@ S_gdk_unicode_to_keyval(USER_OBJECT_ s_wc)
  
 
 USER_OBJECT_
-S_gdk_pango_renderer_get_type()
+S_gdk_pango_renderer_get_type(void)
 {
 
   GType ans;
@@ -4096,7 +4096,7 @@ S_gdk_pango_context_get_for_screen(USER_OBJECT_ s_screen)
  
 
 USER_OBJECT_
-S_gdk_pango_context_get()
+S_gdk_pango_context_get(void)
 {
 
   PangoContext* ans;
@@ -4271,7 +4271,7 @@ S_gdk_pixbuf_render_to_drawable_alpha(USER_OBJECT_ s_object, USER_OBJECT_ s_draw
  
 
 USER_OBJECT_
-S_gdk_pixmap_get_type()
+S_gdk_pixmap_get_type(void)
 {
 
   GType ans;
@@ -4790,7 +4790,7 @@ S_gdk_draw_indexed_image(USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ 
  
 
 USER_OBJECT_
-S_gdk_rgb_ditherable()
+S_gdk_rgb_ditherable(void)
 {
 
   gboolean ans;
@@ -4847,7 +4847,7 @@ S_gdk_rgb_set_min_colors(USER_OBJECT_ s_min_colors)
  
 
 USER_OBJECT_
-S_gdk_rgb_get_colormap()
+S_gdk_rgb_get_colormap(void)
 {
 
   GdkColormap* ans;
@@ -4862,7 +4862,7 @@ S_gdk_rgb_get_colormap()
  
 
 USER_OBJECT_
-S_gdk_rgb_get_cmap()
+S_gdk_rgb_get_cmap(void)
 {
 
   GdkColormap* ans;
@@ -4877,7 +4877,7 @@ S_gdk_rgb_get_cmap()
  
 
 USER_OBJECT_
-S_gdk_rgb_get_visual()
+S_gdk_rgb_get_visual(void)
 {
 
   GdkVisual* ans;
@@ -4892,7 +4892,7 @@ S_gdk_rgb_get_visual()
  
 
 USER_OBJECT_
-S_gdk_screen_get_type()
+S_gdk_screen_get_type(void)
 {
 
   GType ans;
@@ -5282,7 +5282,7 @@ S_gdk_screen_broadcast_client_message(USER_OBJECT_ s_object, USER_OBJECT_ s_even
  
 
 USER_OBJECT_
-S_gdk_screen_get_default()
+S_gdk_screen_get_default(void)
 {
 
   GdkScreen* ans;
@@ -5411,7 +5411,7 @@ S_gdk_selection_property_get(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_visual_get_best_depth()
+S_gdk_visual_get_best_depth(void)
 {
 
   gint ans;
@@ -5426,7 +5426,7 @@ S_gdk_visual_get_best_depth()
  
 
 USER_OBJECT_
-S_gdk_visual_get_best_type()
+S_gdk_visual_get_best_type(void)
 {
 
   GdkVisualType ans;
@@ -5441,7 +5441,7 @@ S_gdk_visual_get_best_type()
  
 
 USER_OBJECT_
-S_gdk_visual_get_system()
+S_gdk_visual_get_system(void)
 {
 
   GdkVisual* ans;
@@ -5456,7 +5456,7 @@ S_gdk_visual_get_system()
  
 
 USER_OBJECT_
-S_gdk_visual_get_best()
+S_gdk_visual_get_best(void)
 {
 
   GdkVisual* ans;
@@ -5520,7 +5520,7 @@ S_gdk_visual_get_best_with_both(USER_OBJECT_ s_depth, USER_OBJECT_ s_visual_type
  
 
 USER_OBJECT_
-S_gdk_list_visuals()
+S_gdk_list_visuals(void)
 {
 
   GList* ans;
@@ -5552,7 +5552,7 @@ S_gdk_visual_get_screen(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_window_object_get_type()
+S_gdk_window_object_get_type(void)
 {
 
   GType ans;
@@ -5627,7 +5627,7 @@ S_gdk_window_get_window_type(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_window_at_pointer()
+S_gdk_window_at_pointer(void)
 {
 
   GdkWindow* ans;
@@ -6709,7 +6709,7 @@ S_gdk_window_set_functions(USER_OBJECT_ s_object, USER_OBJECT_ s_functions)
  
 
 USER_OBJECT_
-S_gdk_window_get_toplevels()
+S_gdk_window_get_toplevels(void)
 {
 
   GList* ans;
@@ -6964,7 +6964,7 @@ S_gdk_window_thaw_updates(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_window_process_all_updates()
+S_gdk_window_process_all_updates(void)
 {
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -7025,7 +7025,7 @@ S_gdk_window_get_internal_paint_info(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_get_default_root_window()
+S_gdk_get_default_root_window(void)
 {
 
   GdkWindow* ans;
@@ -7763,7 +7763,7 @@ S_gdk_pixbuf_composite_color_simple(USER_OBJECT_ s_object, USER_OBJECT_ s_dest_w
  
 
 USER_OBJECT_
-S_gdk_pixbuf_animation_get_type()
+S_gdk_pixbuf_animation_get_type(void)
 {
 
   GType ans;
@@ -7879,7 +7879,7 @@ S_gdk_pixbuf_animation_get_iter(USER_OBJECT_ s_object, USER_OBJECT_ s_start_time
  
 
 USER_OBJECT_
-S_gdk_pixbuf_animation_iter_get_type()
+S_gdk_pixbuf_animation_iter_get_type(void)
 {
 
   GType ans;
@@ -8027,7 +8027,7 @@ S_gdk_pixbuf_set_option(USER_OBJECT_ s_object, USER_OBJECT_ s_key, USER_OBJECT_ 
  
 
 USER_OBJECT_
-S_gdk_pixbuf_get_formats()
+S_gdk_pixbuf_get_formats(void)
 {
 
   GSList* ans;
@@ -8211,7 +8211,7 @@ S_gdk_pixbuf_format_is_writable(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_pixbuf_loader_get_type()
+S_gdk_pixbuf_loader_get_type(void)
 {
 
   GType ans;
@@ -8226,7 +8226,7 @@ S_gdk_pixbuf_loader_get_type()
  
 
 USER_OBJECT_
-S_gdk_pixbuf_loader_new()
+S_gdk_pixbuf_loader_new(void)
 {
 
   GdkPixbufLoader* ans;
@@ -8427,7 +8427,7 @@ S_gdk_rectangle_union(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2)
  
 
 USER_OBJECT_
-S_gdk_region_new()
+S_gdk_region_new(void)
 {
 
   GdkRegion* ans;
@@ -8844,12 +8844,12 @@ S_gdk_screen_get_font_options(USER_OBJECT_ s_object)
 {
   GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
 
-  cairo_font_options_t* ans;
+  const cairo_font_options_t* ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = gdk_screen_get_font_options(object);
 
-  _result = toRPointerWithFinalizer(ans, "CairoFontOptions", (RPointerFinalizer) cairo_font_options_destroy);
+  _result = toRPointer(ans, "CairoFontOptions");
 
   return(_result);
 }

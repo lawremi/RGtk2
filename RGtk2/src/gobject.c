@@ -1008,7 +1008,7 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval)
 
 /* Convert a GValue to an R object */
 USER_OBJECT_
-asRGValue(GValue *value)
+asRGValue(const GValue *value)
 {
     USER_OBJECT_ ans = NULL_USER_OBJECT;
 

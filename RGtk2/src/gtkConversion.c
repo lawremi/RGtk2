@@ -44,7 +44,7 @@ asCGtkFileFilterInfo(USER_OBJECT_ s_info)
     return(info);
 }
 USER_OBJECT_
-asRGtkFileFilterInfo(GtkFileFilterInfo * obj)
+asRGtkFileFilterInfo(const GtkFileFilterInfo * obj)
 {
   USER_OBJECT_ s_obj;
   static gchar * names[] = { "contains", "filename", "uri", "display_name", "mime_type", NULL };
@@ -172,7 +172,7 @@ asCGtkRecentFilterInfo(USER_OBJECT_ s_obj)
   return(obj);
 }
 USER_OBJECT_
-asRGtkRecentFilterInfo(GtkRecentFilterInfo * obj)
+asRGtkRecentFilterInfo(const GtkRecentFilterInfo * obj)
 {
   USER_OBJECT_ s_obj;
   static gchar * names[] = { "contains", "uri", "display_name", "mime_type", "applications", "groups", "age", NULL };
