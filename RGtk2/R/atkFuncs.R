@@ -4,7 +4,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_action_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_type")
 
   return(w)
 } 
@@ -16,7 +16,7 @@ function(object, i)
   checkPtrType(object, "AtkAction")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_action_get_localized_name", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_localized_name", object, i)
 
   return(w)
 } 
@@ -28,7 +28,7 @@ function(object, i)
   checkPtrType(object, "AtkAction")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_action_do_action", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_do_action", object, i)
 
   return(w)
 } 
@@ -39,7 +39,7 @@ function(object)
 {
   checkPtrType(object, "AtkAction")
 
-  w <- .RGtkCall("S_atk_action_get_n_actions", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_n_actions", object)
 
   return(w)
 } 
@@ -51,7 +51,7 @@ function(object, i)
   checkPtrType(object, "AtkAction")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_action_get_description", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_description", object, i)
 
   return(w)
 } 
@@ -63,7 +63,7 @@ function(object, i)
   checkPtrType(object, "AtkAction")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_action_get_name", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_name", object, i)
 
   return(w)
 } 
@@ -75,7 +75,7 @@ function(object, i)
   checkPtrType(object, "AtkAction")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_action_get_keybinding", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_get_keybinding", object, i)
 
   return(w)
 } 
@@ -88,7 +88,7 @@ function(object, i, desc)
   i <- as.integer(i)
   desc <- as.character(desc)
 
-  w <- .RGtkCall("S_atk_action_set_description", object, i, desc, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_action_set_description", object, i, desc)
 
   return(w)
 } 
@@ -99,7 +99,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_component_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_type")
 
   return(w)
 } 
@@ -113,7 +113,7 @@ function(object, x, y, coord.type)
   y <- as.integer(y)
   
 
-  w <- .RGtkCall("S_atk_component_contains", object, x, y, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_contains", object, x, y, coord.type)
 
   return(w)
 } 
@@ -127,7 +127,7 @@ function(object, x, y, coord.type)
   y <- as.integer(y)
   
 
-  w <- .RGtkCall("S_atk_component_ref_accessible_at_point", object, x, y, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_ref_accessible_at_point", object, x, y, coord.type)
 
   return(w)
 } 
@@ -139,7 +139,7 @@ function(object, coord.type)
   checkPtrType(object, "AtkComponent")
   
 
-  w <- .RGtkCall("S_atk_component_get_extents", object, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_extents", object, coord.type)
 
   return(invisible(w))
 } 
@@ -151,7 +151,7 @@ function(object, coord.type)
   checkPtrType(object, "AtkComponent")
   
 
-  w <- .RGtkCall("S_atk_component_get_position", object, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_position", object, coord.type)
 
   return(invisible(w))
 } 
@@ -162,7 +162,7 @@ function(object)
 {
   checkPtrType(object, "AtkComponent")
 
-  w <- .RGtkCall("S_atk_component_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_size", object)
 
   return(invisible(w))
 } 
@@ -173,7 +173,7 @@ function(object)
 {
   checkPtrType(object, "AtkComponent")
 
-  w <- .RGtkCall("S_atk_component_grab_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_grab_focus", object)
 
   return(w)
 } 
@@ -185,7 +185,7 @@ function(object, handler.id)
   checkPtrType(object, "AtkComponent")
   handler.id <- as.numeric(handler.id)
 
-  w <- .RGtkCall("S_atk_component_remove_focus_handler", object, handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_remove_focus_handler", object, handler.id)
 
   return(invisible(w))
 } 
@@ -201,7 +201,7 @@ function(object, x, y, width, height, coord.type)
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_atk_component_set_extents", object, x, y, width, height, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_set_extents", object, x, y, width, height, coord.type)
 
   return(w)
 } 
@@ -215,7 +215,7 @@ function(object, x, y, coord.type)
   y <- as.integer(y)
   
 
-  w <- .RGtkCall("S_atk_component_set_position", object, x, y, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_set_position", object, x, y, coord.type)
 
   return(w)
 } 
@@ -228,7 +228,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_atk_component_set_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_set_size", object, width, height)
 
   return(w)
 } 
@@ -239,7 +239,7 @@ function(object)
 {
   checkPtrType(object, "AtkComponent")
 
-  w <- .RGtkCall("S_atk_component_get_layer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_layer", object)
 
   return(w)
 } 
@@ -250,7 +250,7 @@ function(object)
 {
   checkPtrType(object, "AtkComponent")
 
-  w <- .RGtkCall("S_atk_component_get_mdi_zorder", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_mdi_zorder", object)
 
   return(w)
 } 
@@ -261,7 +261,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_document_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_type")
 
   return(w)
 } 
@@ -272,7 +272,7 @@ function(object)
 {
   checkPtrType(object, "AtkDocument")
 
-  w <- .RGtkCall("S_atk_document_get_document_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_document_type", object)
 
   return(w)
 } 
@@ -283,7 +283,7 @@ function(object)
 {
   checkPtrType(object, "AtkDocument")
 
-  w <- .RGtkCall("S_atk_document_get_document", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_document", object)
 
   return(w)
 } 
@@ -294,7 +294,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_editable_text_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_get_type")
 
   return(w)
 } 
@@ -308,7 +308,7 @@ function(object, attrib.set, start.offset, end.offset)
   start.offset <- as.integer(start.offset)
   end.offset <- as.integer(end.offset)
 
-  w <- .RGtkCall("S_atk_editable_text_set_run_attributes", object, attrib.set, start.offset, end.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_set_run_attributes", object, attrib.set, start.offset, end.offset)
 
   return(w)
 } 
@@ -320,7 +320,7 @@ function(object, string)
   checkPtrType(object, "AtkEditableText")
   string <- as.character(string)
 
-  w <- .RGtkCall("S_atk_editable_text_set_text_contents", object, string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_set_text_contents", object, string)
 
   return(invisible(w))
 } 
@@ -333,7 +333,7 @@ function(object, string, position)
   string <- as.character(string)
   position <- as.list(as.integer(position))
 
-  w <- .RGtkCall("S_atk_editable_text_insert_text", object, string, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_insert_text", object, string, position)
 
   return(w)
 } 
@@ -346,7 +346,7 @@ function(object, start.pos, end.pos)
   start.pos <- as.integer(start.pos)
   end.pos <- as.integer(end.pos)
 
-  w <- .RGtkCall("S_atk_editable_text_copy_text", object, start.pos, end.pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_copy_text", object, start.pos, end.pos)
 
   return(invisible(w))
 } 
@@ -359,7 +359,7 @@ function(object, start.pos, end.pos)
   start.pos <- as.integer(start.pos)
   end.pos <- as.integer(end.pos)
 
-  w <- .RGtkCall("S_atk_editable_text_cut_text", object, start.pos, end.pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_cut_text", object, start.pos, end.pos)
 
   return(invisible(w))
 } 
@@ -372,7 +372,7 @@ function(object, start.pos, end.pos)
   start.pos <- as.integer(start.pos)
   end.pos <- as.integer(end.pos)
 
-  w <- .RGtkCall("S_atk_editable_text_delete_text", object, start.pos, end.pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_delete_text", object, start.pos, end.pos)
 
   return(invisible(w))
 } 
@@ -384,7 +384,7 @@ function(object, position)
   checkPtrType(object, "AtkEditableText")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_atk_editable_text_paste_text", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_editable_text_paste_text", object, position)
 
   return(invisible(w))
 } 
@@ -395,7 +395,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_gobject_accessible_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_gobject_accessible_get_type")
 
   return(w)
 } 
@@ -406,7 +406,7 @@ function(obj)
 {
   checkPtrType(obj, "GObject")
 
-  w <- .RGtkCall("S_atk_gobject_accessible_for_object", obj, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_gobject_accessible_for_object", obj)
 
   return(w)
 } 
@@ -417,7 +417,7 @@ function(object)
 {
   checkPtrType(object, "AtkGObjectAccessible")
 
-  w <- .RGtkCall("S_atk_gobject_accessible_get_object", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_gobject_accessible_get_object", object)
 
   return(w)
 } 
@@ -428,7 +428,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_hyperlink_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_type")
 
   return(w)
 } 
@@ -440,7 +440,7 @@ function(object, i)
   checkPtrType(object, "AtkHyperlink")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_hyperlink_get_uri", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_uri", object, i)
 
   return(w)
 } 
@@ -452,7 +452,7 @@ function(object, i)
   checkPtrType(object, "AtkHyperlink")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_hyperlink_get_object", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_object", object, i)
 
   return(w)
 } 
@@ -463,7 +463,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_get_end_index", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_end_index", object)
 
   return(w)
 } 
@@ -474,7 +474,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_get_start_index", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_start_index", object)
 
   return(w)
 } 
@@ -485,7 +485,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_is_valid", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_is_valid", object)
 
   return(w)
 } 
@@ -496,7 +496,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_get_n_anchors", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_get_n_anchors", object)
 
   return(w)
 } 
@@ -507,7 +507,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_is_inline", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_is_inline", object)
 
   return(w)
 } 
@@ -518,7 +518,7 @@ function(object)
 {
   checkPtrType(object, "AtkHyperlink")
 
-  w <- .RGtkCall("S_atk_hyperlink_is_selected_link", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hyperlink_is_selected_link", object)
 
   return(w)
 } 
@@ -529,7 +529,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_hypertext_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hypertext_get_type")
 
   return(w)
 } 
@@ -541,7 +541,7 @@ function(object, link.index)
   checkPtrType(object, "AtkHypertext")
   link.index <- as.integer(link.index)
 
-  w <- .RGtkCall("S_atk_hypertext_get_link", object, link.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hypertext_get_link", object, link.index)
 
   return(w)
 } 
@@ -552,7 +552,7 @@ function(object)
 {
   checkPtrType(object, "AtkHypertext")
 
-  w <- .RGtkCall("S_atk_hypertext_get_n_links", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hypertext_get_n_links", object)
 
   return(w)
 } 
@@ -564,7 +564,7 @@ function(object, char.index)
   checkPtrType(object, "AtkHypertext")
   char.index <- as.integer(char.index)
 
-  w <- .RGtkCall("S_atk_hypertext_get_link_index", object, char.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_hypertext_get_link_index", object, char.index)
 
   return(w)
 } 
@@ -575,7 +575,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_image_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_get_type")
 
   return(w)
 } 
@@ -586,7 +586,7 @@ function(object)
 {
   checkPtrType(object, "AtkImage")
 
-  w <- .RGtkCall("S_atk_image_get_image_description", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_get_image_description", object)
 
   return(w)
 } 
@@ -597,7 +597,7 @@ function(object)
 {
   checkPtrType(object, "AtkImage")
 
-  w <- .RGtkCall("S_atk_image_get_image_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_get_image_size", object)
 
   return(invisible(w))
 } 
@@ -609,7 +609,7 @@ function(object, description)
   checkPtrType(object, "AtkImage")
   description <- as.character(description)
 
-  w <- .RGtkCall("S_atk_image_set_image_description", object, description, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_set_image_description", object, description)
 
   return(w)
 } 
@@ -621,7 +621,7 @@ function(object, coord.type)
   checkPtrType(object, "AtkImage")
   
 
-  w <- .RGtkCall("S_atk_image_get_image_position", object, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_get_image_position", object, coord.type)
 
   return(invisible(w))
 } 
@@ -632,7 +632,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_no_op_object_factory_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_no_op_object_factory_get_type")
 
   return(w)
 } 
@@ -643,7 +643,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_no_op_object_factory_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_no_op_object_factory_new")
 
   return(w)
 } 
@@ -654,7 +654,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_no_op_object_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_no_op_object_get_type")
 
   return(w)
 } 
@@ -665,7 +665,7 @@ function(obj)
 {
   checkPtrType(obj, "GObject")
 
-  w <- .RGtkCall("S_atk_no_op_object_new", obj, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_no_op_object_new", obj)
 
   return(w)
 } 
@@ -676,7 +676,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_object_factory_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_factory_get_type")
 
   return(w)
 } 
@@ -688,7 +688,7 @@ function(object, obj)
   checkPtrType(object, "AtkObjectFactory")
   checkPtrType(obj, "GObject")
 
-  w <- .RGtkCall("S_atk_object_factory_create_accessible", object, obj, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_factory_create_accessible", object, obj)
 
   return(w)
 } 
@@ -699,7 +699,7 @@ function(object)
 {
   checkPtrType(object, "AtkObjectFactory")
 
-  w <- .RGtkCall("S_atk_object_factory_invalidate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_factory_invalidate", object)
 
   return(invisible(w))
 } 
@@ -710,7 +710,7 @@ function(object)
 {
   checkPtrType(object, "AtkObjectFactory")
 
-  w <- .RGtkCall("S_atk_object_factory_get_accessible_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_factory_get_accessible_type", object)
 
   return(w)
 } 
@@ -721,7 +721,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_object_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_type")
 
   return(w)
 } 
@@ -732,7 +732,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_implementor_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_implementor_get_type")
 
   return(w)
 } 
@@ -743,7 +743,7 @@ function(object)
 {
   checkPtrType(object, "AtkImplementor")
 
-  w <- .RGtkCall("S_atk_implementor_ref_accessible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_implementor_ref_accessible", object)
 
   return(w)
 } 
@@ -754,7 +754,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_name", object)
 
   return(w)
 } 
@@ -765,7 +765,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_description", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_description", object)
 
   return(w)
 } 
@@ -776,7 +776,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_parent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_parent", object)
 
   return(w)
 } 
@@ -787,7 +787,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_n_accessible_children", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_n_accessible_children", object)
 
   return(w)
 } 
@@ -799,7 +799,7 @@ function(object, i)
   checkPtrType(object, "AtkObject")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_object_ref_accessible_child", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_ref_accessible_child", object, i)
 
   return(w)
 } 
@@ -810,7 +810,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_ref_relation_set", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_ref_relation_set", object)
 
   return(w)
 } 
@@ -821,7 +821,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_role", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_role", object)
 
   return(w)
 } 
@@ -832,7 +832,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_layer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_layer", object)
 
   return(w)
 } 
@@ -843,7 +843,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_mdi_zorder", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_mdi_zorder", object)
 
   return(w)
 } 
@@ -854,7 +854,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_ref_state_set", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_ref_state_set", object)
 
   return(w)
 } 
@@ -865,7 +865,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_index_in_parent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_index_in_parent", object)
 
   return(w)
 } 
@@ -877,7 +877,7 @@ function(object, name)
   checkPtrType(object, "AtkObject")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_object_set_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_set_name", object, name)
 
   return(invisible(w))
 } 
@@ -889,7 +889,7 @@ function(object, description)
   checkPtrType(object, "AtkObject")
   description <- as.character(description)
 
-  w <- .RGtkCall("S_atk_object_set_description", object, description, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_set_description", object, description)
 
   return(invisible(w))
 } 
@@ -901,7 +901,7 @@ function(object, parent)
   checkPtrType(object, "AtkObject")
   checkPtrType(parent, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_set_parent", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_set_parent", object, parent)
 
   return(invisible(w))
 } 
@@ -913,7 +913,7 @@ function(object, role)
   checkPtrType(object, "AtkObject")
   
 
-  w <- .RGtkCall("S_atk_object_set_role", object, role, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_set_role", object, role)
 
   return(invisible(w))
 } 
@@ -925,7 +925,7 @@ function(object, handler.id)
   checkPtrType(object, "AtkObject")
   handler.id <- as.numeric(handler.id)
 
-  w <- .RGtkCall("S_atk_object_remove_property_change_handler", object, handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_remove_property_change_handler", object, handler.id)
 
   return(invisible(w))
 } 
@@ -938,7 +938,7 @@ function(object, state, value)
   state <- as.numeric(state)
   value <- as.logical(value)
 
-  w <- .RGtkCall("S_atk_object_notify_state_change", object, state, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_notify_state_change", object, state, value)
 
   return(invisible(w))
 } 
@@ -949,7 +949,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_registry_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_registry_get_type")
 
   return(w)
 } 
@@ -962,7 +962,7 @@ function(object, type, factory.type)
   type <- as.GType(type)
   factory.type <- as.GType(factory.type)
 
-  w <- .RGtkCall("S_atk_registry_set_factory_type", object, type, factory.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_registry_set_factory_type", object, type, factory.type)
 
   return(invisible(w))
 } 
@@ -974,7 +974,7 @@ function(object, type)
   checkPtrType(object, "AtkRegistry")
   type <- as.GType(type)
 
-  w <- .RGtkCall("S_atk_registry_get_factory_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_registry_get_factory_type", object, type)
 
   return(w)
 } 
@@ -986,7 +986,7 @@ function(object, type)
   checkPtrType(object, "AtkRegistry")
   type <- as.GType(type)
 
-  w <- .RGtkCall("S_atk_registry_get_factory", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_registry_get_factory", object, type)
 
   return(w)
 } 
@@ -997,7 +997,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_get_default_registry", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_get_default_registry")
 
   return(w)
 } 
@@ -1008,7 +1008,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_relation_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_get_type")
 
   return(w)
 } 
@@ -1019,7 +1019,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_relation_type_register", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_type_register", name)
 
   return(w)
 } 
@@ -1030,7 +1030,7 @@ function(type)
 {
   
 
-  w <- .RGtkCall("S_atk_relation_type_get_name", type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_type_get_name", type)
 
   return(w)
 } 
@@ -1041,7 +1041,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_relation_type_for_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_type_for_name", name)
 
   return(w)
 } 
@@ -1053,7 +1053,7 @@ function(targets, relationship)
   targets <- lapply(targets, function(x) { checkPtrType(x, "AtkObject"); x })
   
 
-  w <- .RGtkCall("S_atk_relation_new", targets, relationship, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_new", targets, relationship)
 
   return(w)
 } 
@@ -1064,7 +1064,7 @@ function(object)
 {
   checkPtrType(object, "AtkRelation")
 
-  w <- .RGtkCall("S_atk_relation_get_relation_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_get_relation_type", object)
 
   return(w)
 } 
@@ -1075,7 +1075,7 @@ function(object)
 {
   checkPtrType(object, "AtkRelation")
 
-  w <- .RGtkCall("S_atk_relation_get_target", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_get_target", object)
 
   return(w)
 } 
@@ -1087,7 +1087,7 @@ function(object, target)
   checkPtrType(object, "AtkRelation")
   checkPtrType(target, "AtkObject")
 
-  w <- .RGtkCall("S_atk_relation_add_target", object, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_add_target", object, target)
 
   return(invisible(w))
 } 
@@ -1098,7 +1098,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_relation_set_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_get_type")
 
   return(w)
 } 
@@ -1109,7 +1109,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_relation_set_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_new")
 
   return(w)
 } 
@@ -1121,7 +1121,7 @@ function(object, relationship)
   checkPtrType(object, "AtkRelationSet")
   
 
-  w <- .RGtkCall("S_atk_relation_set_contains", object, relationship, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_contains", object, relationship)
 
   return(w)
 } 
@@ -1133,7 +1133,7 @@ function(object, relation)
   checkPtrType(object, "AtkRelationSet")
   checkPtrType(relation, "AtkRelation")
 
-  w <- .RGtkCall("S_atk_relation_set_remove", object, relation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_remove", object, relation)
 
   return(invisible(w))
 } 
@@ -1145,7 +1145,7 @@ function(object, relation)
   checkPtrType(object, "AtkRelationSet")
   checkPtrType(relation, "AtkRelation")
 
-  w <- .RGtkCall("S_atk_relation_set_add", object, relation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_add", object, relation)
 
   return(invisible(w))
 } 
@@ -1156,7 +1156,7 @@ function(object)
 {
   checkPtrType(object, "AtkRelationSet")
 
-  w <- .RGtkCall("S_atk_relation_set_get_n_relations", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_get_n_relations", object)
 
   return(w)
 } 
@@ -1168,7 +1168,7 @@ function(object, i)
   checkPtrType(object, "AtkRelationSet")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_relation_set_get_relation", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_get_relation", object, i)
 
   return(w)
 } 
@@ -1180,7 +1180,7 @@ function(object, relationship)
   checkPtrType(object, "AtkRelationSet")
   
 
-  w <- .RGtkCall("S_atk_relation_set_get_relation_by_type", object, relationship, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_get_relation_by_type", object, relationship)
 
   return(w)
 } 
@@ -1193,7 +1193,7 @@ function(object, relationship, target)
   
   checkPtrType(target, "AtkObject")
 
-  w <- .RGtkCall("S_atk_relation_set_add_relation_by_type", object, relationship, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_relation_set_add_relation_by_type", object, relationship, target)
 
   return(invisible(w))
 } 
@@ -1204,7 +1204,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_selection_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_get_type")
 
   return(w)
 } 
@@ -1216,7 +1216,7 @@ function(object, i)
   checkPtrType(object, "AtkSelection")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_selection_add_selection", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_add_selection", object, i)
 
   return(w)
 } 
@@ -1227,7 +1227,7 @@ function(object)
 {
   checkPtrType(object, "AtkSelection")
 
-  w <- .RGtkCall("S_atk_selection_clear_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_clear_selection", object)
 
   return(w)
 } 
@@ -1239,7 +1239,7 @@ function(object, i)
   checkPtrType(object, "AtkSelection")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_selection_ref_selection", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_ref_selection", object, i)
 
   return(w)
 } 
@@ -1250,7 +1250,7 @@ function(object)
 {
   checkPtrType(object, "AtkSelection")
 
-  w <- .RGtkCall("S_atk_selection_get_selection_count", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_get_selection_count", object)
 
   return(w)
 } 
@@ -1262,7 +1262,7 @@ function(object, i)
   checkPtrType(object, "AtkSelection")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_selection_is_child_selected", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_is_child_selected", object, i)
 
   return(w)
 } 
@@ -1274,7 +1274,7 @@ function(object, i)
   checkPtrType(object, "AtkSelection")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_selection_remove_selection", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_remove_selection", object, i)
 
   return(w)
 } 
@@ -1285,7 +1285,7 @@ function(object)
 {
   checkPtrType(object, "AtkSelection")
 
-  w <- .RGtkCall("S_atk_selection_select_all_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_selection_select_all_selection", object)
 
   return(w)
 } 
@@ -1296,7 +1296,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_state_type_register", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_type_register", name)
 
   return(w)
 } 
@@ -1307,7 +1307,7 @@ function(type)
 {
   
 
-  w <- .RGtkCall("S_atk_state_type_get_name", type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_type_get_name", type)
 
   return(w)
 } 
@@ -1318,7 +1318,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_state_type_for_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_type_for_name", name)
 
   return(w)
 } 
@@ -1329,7 +1329,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_state_set_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_get_type")
 
   return(w)
 } 
@@ -1340,7 +1340,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_state_set_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_new")
 
   return(w)
 } 
@@ -1351,7 +1351,7 @@ function(object)
 {
   checkPtrType(object, "AtkStateSet")
 
-  w <- .RGtkCall("S_atk_state_set_is_empty", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_is_empty", object)
 
   return(w)
 } 
@@ -1363,7 +1363,7 @@ function(object, type)
   checkPtrType(object, "AtkStateSet")
   
 
-  w <- .RGtkCall("S_atk_state_set_add_state", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_add_state", object, type)
 
   return(w)
 } 
@@ -1375,7 +1375,7 @@ function(object, types)
   checkPtrType(object, "AtkStateSet")
   types <- as.list(types)
 
-  w <- .RGtkCall("S_atk_state_set_add_states", object, types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_add_states", object, types)
 
   return(w)
 } 
@@ -1386,7 +1386,7 @@ function(object)
 {
   checkPtrType(object, "AtkStateSet")
 
-  w <- .RGtkCall("S_atk_state_set_clear_states", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_clear_states", object)
 
   return(invisible(w))
 } 
@@ -1398,7 +1398,7 @@ function(object, type)
   checkPtrType(object, "AtkStateSet")
   
 
-  w <- .RGtkCall("S_atk_state_set_contains_state", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_contains_state", object, type)
 
   return(w)
 } 
@@ -1411,7 +1411,7 @@ function(object, types, n.types)
   
   n.types <- as.integer(n.types)
 
-  w <- .RGtkCall("S_atk_state_set_contains_states", object, types, n.types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_contains_states", object, types, n.types)
 
   return(w)
 } 
@@ -1423,7 +1423,7 @@ function(object, type)
   checkPtrType(object, "AtkStateSet")
   
 
-  w <- .RGtkCall("S_atk_state_set_remove_state", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_remove_state", object, type)
 
   return(w)
 } 
@@ -1435,7 +1435,7 @@ function(object, compare.set)
   checkPtrType(object, "AtkStateSet")
   checkPtrType(compare.set, "AtkStateSet")
 
-  w <- .RGtkCall("S_atk_state_set_and_sets", object, compare.set, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_and_sets", object, compare.set)
 
   return(w)
 } 
@@ -1447,7 +1447,7 @@ function(object, compare.set)
   checkPtrType(object, "AtkStateSet")
   checkPtrType(compare.set, "AtkStateSet")
 
-  w <- .RGtkCall("S_atk_state_set_or_sets", object, compare.set, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_or_sets", object, compare.set)
 
   return(w)
 } 
@@ -1459,7 +1459,7 @@ function(object, compare.set)
   checkPtrType(object, "AtkStateSet")
   checkPtrType(compare.set, "AtkStateSet")
 
-  w <- .RGtkCall("S_atk_state_set_xor_sets", object, compare.set, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_xor_sets", object, compare.set)
 
   return(w)
 } 
@@ -1470,7 +1470,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_streamable_content_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_streamable_content_get_type")
 
   return(w)
 } 
@@ -1481,7 +1481,7 @@ function(object)
 {
   checkPtrType(object, "AtkStreamableContent")
 
-  w <- .RGtkCall("S_atk_streamable_content_get_n_mime_types", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_streamable_content_get_n_mime_types", object)
 
   return(w)
 } 
@@ -1493,7 +1493,7 @@ function(object, i)
   checkPtrType(object, "AtkStreamableContent")
   i <- as.integer(i)
 
-  w <- .RGtkCall("S_atk_streamable_content_get_mime_type", object, i, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_streamable_content_get_mime_type", object, i)
 
   return(w)
 } 
@@ -1505,7 +1505,7 @@ function(object, mime.type)
   checkPtrType(object, "AtkStreamableContent")
   mime.type <- as.character(mime.type)
 
-  w <- .RGtkCall("S_atk_streamable_content_get_stream", object, mime.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_streamable_content_get_stream", object, mime.type)
 
   return(w)
 } 
@@ -1516,7 +1516,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_table_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_type")
 
   return(w)
 } 
@@ -1529,7 +1529,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_ref_at", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_ref_at", object, row, column)
 
   return(w)
 } 
@@ -1542,7 +1542,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_get_index_at", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_index_at", object, row, column)
 
   return(w)
 } 
@@ -1554,7 +1554,7 @@ function(object, index)
   checkPtrType(object, "AtkTable")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_atk_table_get_column_at_index", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_column_at_index", object, index)
 
   return(w)
 } 
@@ -1566,7 +1566,7 @@ function(object, index)
   checkPtrType(object, "AtkTable")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_atk_table_get_row_at_index", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_row_at_index", object, index)
 
   return(w)
 } 
@@ -1577,7 +1577,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_n_columns", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_n_columns", object)
 
   return(w)
 } 
@@ -1588,7 +1588,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_n_rows", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_n_rows", object)
 
   return(w)
 } 
@@ -1601,7 +1601,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_get_column_extent_at", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_column_extent_at", object, row, column)
 
   return(w)
 } 
@@ -1614,7 +1614,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_get_row_extent_at", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_row_extent_at", object, row, column)
 
   return(w)
 } 
@@ -1625,7 +1625,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_caption", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_caption", object)
 
   return(w)
 } 
@@ -1637,7 +1637,7 @@ function(object, column)
   checkPtrType(object, "AtkTable")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_get_column_description", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_column_description", object, column)
 
   return(w)
 } 
@@ -1649,7 +1649,7 @@ function(object, column)
   checkPtrType(object, "AtkTable")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_get_column_header", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_column_header", object, column)
 
   return(w)
 } 
@@ -1661,7 +1661,7 @@ function(object, row)
   checkPtrType(object, "AtkTable")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_atk_table_get_row_description", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_row_description", object, row)
 
   return(w)
 } 
@@ -1673,7 +1673,7 @@ function(object, row)
   checkPtrType(object, "AtkTable")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_atk_table_get_row_header", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_row_header", object, row)
 
   return(w)
 } 
@@ -1684,7 +1684,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_summary", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_summary", object)
 
   return(w)
 } 
@@ -1696,7 +1696,7 @@ function(object, caption)
   checkPtrType(object, "AtkTable")
   checkPtrType(caption, "AtkObject")
 
-  w <- .RGtkCall("S_atk_table_set_caption", object, caption, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_caption", object, caption)
 
   return(invisible(w))
 } 
@@ -1709,7 +1709,7 @@ function(object, column, description)
   column <- as.integer(column)
   description <- as.character(description)
 
-  w <- .RGtkCall("S_atk_table_set_column_description", object, column, description, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_column_description", object, column, description)
 
   return(invisible(w))
 } 
@@ -1722,7 +1722,7 @@ function(object, column, header)
   column <- as.integer(column)
   checkPtrType(header, "AtkObject")
 
-  w <- .RGtkCall("S_atk_table_set_column_header", object, column, header, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_column_header", object, column, header)
 
   return(invisible(w))
 } 
@@ -1735,7 +1735,7 @@ function(object, row, description)
   row <- as.integer(row)
   description <- as.character(description)
 
-  w <- .RGtkCall("S_atk_table_set_row_description", object, row, description, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_row_description", object, row, description)
 
   return(invisible(w))
 } 
@@ -1748,7 +1748,7 @@ function(object, row, header)
   row <- as.integer(row)
   checkPtrType(header, "AtkObject")
 
-  w <- .RGtkCall("S_atk_table_set_row_header", object, row, header, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_row_header", object, row, header)
 
   return(invisible(w))
 } 
@@ -1760,7 +1760,7 @@ function(object, accessible)
   checkPtrType(object, "AtkTable")
   checkPtrType(accessible, "AtkObject")
 
-  w <- .RGtkCall("S_atk_table_set_summary", object, accessible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_set_summary", object, accessible)
 
   return(invisible(w))
 } 
@@ -1771,7 +1771,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_selected_columns", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_selected_columns", object)
 
   return(w)
 } 
@@ -1782,7 +1782,7 @@ function(object)
 {
   checkPtrType(object, "AtkTable")
 
-  w <- .RGtkCall("S_atk_table_get_selected_rows", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_get_selected_rows", object)
 
   return(w)
 } 
@@ -1794,7 +1794,7 @@ function(object, column)
   checkPtrType(object, "AtkTable")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_is_column_selected", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_is_column_selected", object, column)
 
   return(w)
 } 
@@ -1806,7 +1806,7 @@ function(object, row)
   checkPtrType(object, "AtkTable")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_atk_table_is_row_selected", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_is_row_selected", object, row)
 
   return(w)
 } 
@@ -1819,7 +1819,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_is_selected", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_is_selected", object, row, column)
 
   return(w)
 } 
@@ -1831,7 +1831,7 @@ function(object, row)
   checkPtrType(object, "AtkTable")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_atk_table_add_row_selection", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_add_row_selection", object, row)
 
   return(w)
 } 
@@ -1843,7 +1843,7 @@ function(object, row)
   checkPtrType(object, "AtkTable")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_atk_table_remove_row_selection", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_remove_row_selection", object, row)
 
   return(w)
 } 
@@ -1855,7 +1855,7 @@ function(object, column)
   checkPtrType(object, "AtkTable")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_add_column_selection", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_add_column_selection", object, column)
 
   return(w)
 } 
@@ -1867,7 +1867,7 @@ function(object, column)
   checkPtrType(object, "AtkTable")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_atk_table_remove_column_selection", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_table_remove_column_selection", object, column)
 
   return(w)
 } 
@@ -1878,7 +1878,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_text_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_type")
 
   return(w)
 } 
@@ -1891,7 +1891,7 @@ function(object, start.offset, end.offset)
   start.offset <- as.integer(start.offset)
   end.offset <- as.integer(end.offset)
 
-  w <- .RGtkCall("S_atk_text_get_text", object, start.offset, end.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_text", object, start.offset, end.offset)
 
   return(w)
 } 
@@ -1903,7 +1903,7 @@ function(object, offset)
   checkPtrType(object, "AtkText")
   offset <- as.integer(offset)
 
-  w <- .RGtkCall("S_atk_text_get_character_at_offset", object, offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_character_at_offset", object, offset)
 
   return(w)
 } 
@@ -1916,7 +1916,7 @@ function(object, offset, boundary.type)
   offset <- as.integer(offset)
   
 
-  w <- .RGtkCall("S_atk_text_get_text_after_offset", object, offset, boundary.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_text_after_offset", object, offset, boundary.type)
 
   return(w)
 } 
@@ -1929,7 +1929,7 @@ function(object, offset, boundary.type)
   offset <- as.integer(offset)
   
 
-  w <- .RGtkCall("S_atk_text_get_text_at_offset", object, offset, boundary.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_text_at_offset", object, offset, boundary.type)
 
   return(w)
 } 
@@ -1942,7 +1942,7 @@ function(object, offset, boundary.type)
   offset <- as.integer(offset)
   
 
-  w <- .RGtkCall("S_atk_text_get_text_before_offset", object, offset, boundary.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_text_before_offset", object, offset, boundary.type)
 
   return(w)
 } 
@@ -1953,7 +1953,7 @@ function(object)
 {
   checkPtrType(object, "AtkText")
 
-  w <- .RGtkCall("S_atk_text_get_caret_offset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_caret_offset", object)
 
   return(w)
 } 
@@ -1967,7 +1967,7 @@ function(object, start.offset, end.offset, coord.type)
   end.offset <- as.integer(end.offset)
   
 
-  w <- .RGtkCall("S_atk_text_get_range_extents", object, start.offset, end.offset, coord.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_range_extents", object, start.offset, end.offset, coord.type)
 
   return(w)
 } 
@@ -1982,7 +1982,7 @@ function(object, rect, coord.type, x.clip.type, y.clip.type)
   
   
 
-  w <- .RGtkCall("S_atk_text_get_bounded_ranges", object, rect, coord.type, x.clip.type, y.clip.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_bounded_ranges", object, rect, coord.type, x.clip.type, y.clip.type)
 
   return(w)
 } 
@@ -1995,7 +1995,7 @@ function(object, offset, coords)
   offset <- as.integer(offset)
   
 
-  w <- .RGtkCall("S_atk_text_get_character_extents", object, offset, coords, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_character_extents", object, offset, coords)
 
   return(invisible(w))
 } 
@@ -2007,7 +2007,7 @@ function(object, offset)
   checkPtrType(object, "AtkText")
   offset <- as.integer(offset)
 
-  w <- .RGtkCall("S_atk_text_get_run_attributes", object, offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_run_attributes", object, offset)
 
   return(w)
 } 
@@ -2018,7 +2018,7 @@ function(object)
 {
   checkPtrType(object, "AtkText")
 
-  w <- .RGtkCall("S_atk_text_get_default_attributes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_default_attributes", object)
 
   return(w)
 } 
@@ -2029,7 +2029,7 @@ function(object)
 {
   checkPtrType(object, "AtkText")
 
-  w <- .RGtkCall("S_atk_text_get_character_count", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_character_count", object)
 
   return(w)
 } 
@@ -2043,7 +2043,7 @@ function(object, x, y, coords)
   y <- as.integer(y)
   
 
-  w <- .RGtkCall("S_atk_text_get_offset_at_point", object, x, y, coords, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_offset_at_point", object, x, y, coords)
 
   return(w)
 } 
@@ -2054,7 +2054,7 @@ function(object)
 {
   checkPtrType(object, "AtkText")
 
-  w <- .RGtkCall("S_atk_text_get_n_selections", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_n_selections", object)
 
   return(w)
 } 
@@ -2066,7 +2066,7 @@ function(object, selection.num)
   checkPtrType(object, "AtkText")
   selection.num <- as.integer(selection.num)
 
-  w <- .RGtkCall("S_atk_text_get_selection", object, selection.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_get_selection", object, selection.num)
 
   return(w)
 } 
@@ -2079,7 +2079,7 @@ function(object, start.offset, end.offset)
   start.offset <- as.integer(start.offset)
   end.offset <- as.integer(end.offset)
 
-  w <- .RGtkCall("S_atk_text_add_selection", object, start.offset, end.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_add_selection", object, start.offset, end.offset)
 
   return(w)
 } 
@@ -2091,7 +2091,7 @@ function(object, selection.num)
   checkPtrType(object, "AtkText")
   selection.num <- as.integer(selection.num)
 
-  w <- .RGtkCall("S_atk_text_remove_selection", object, selection.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_remove_selection", object, selection.num)
 
   return(w)
 } 
@@ -2105,7 +2105,7 @@ function(object, selection.num, start.offset, end.offset)
   start.offset <- as.integer(start.offset)
   end.offset <- as.integer(end.offset)
 
-  w <- .RGtkCall("S_atk_text_set_selection", object, selection.num, start.offset, end.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_set_selection", object, selection.num, start.offset, end.offset)
 
   return(w)
 } 
@@ -2117,7 +2117,7 @@ function(object, offset)
   checkPtrType(object, "AtkText")
   offset <- as.integer(offset)
 
-  w <- .RGtkCall("S_atk_text_set_caret_offset", object, offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_set_caret_offset", object, offset)
 
   return(w)
 } 
@@ -2128,7 +2128,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_text_attribute_register", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_attribute_register", name)
 
   return(w)
 } 
@@ -2139,7 +2139,7 @@ function(attr)
 {
   
 
-  w <- .RGtkCall("S_atk_text_attribute_get_name", attr, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_attribute_get_name", attr)
 
   return(w)
 } 
@@ -2150,7 +2150,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_text_attribute_for_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_attribute_for_name", name)
 
   return(w)
 } 
@@ -2162,7 +2162,7 @@ function(attr, index)
   
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_atk_text_attribute_get_value", attr, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_text_attribute_get_value", attr, index)
 
   return(w)
 } 
@@ -2173,7 +2173,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_util_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_util_get_type")
 
   return(w)
 } 
@@ -2184,7 +2184,7 @@ function(tracker.id)
 {
   tracker.id <- as.numeric(tracker.id)
 
-  w <- .RGtkCall("S_atk_remove_focus_tracker", tracker.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_remove_focus_tracker", tracker.id)
 
   return(w)
 } 
@@ -2195,7 +2195,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_focus_tracker_notify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_focus_tracker_notify", object)
 
   return(w)
 } 
@@ -2206,7 +2206,7 @@ function(listener.id)
 {
   listener.id <- as.numeric(listener.id)
 
-  w <- .RGtkCall("S_atk_remove_global_event_listener", listener.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_remove_global_event_listener", listener.id)
 
   return(w)
 } 
@@ -2218,7 +2218,7 @@ function(listener, data)
   listener <- as.function(listener)
   
 
-  w <- .RGtkCall("S_atk_add_key_event_listener", listener, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_add_key_event_listener", listener, data)
 
   return(w)
 } 
@@ -2229,7 +2229,7 @@ function(listener.id)
 {
   listener.id <- as.numeric(listener.id)
 
-  w <- .RGtkCall("S_atk_remove_key_event_listener", listener.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_remove_key_event_listener", listener.id)
 
   return(w)
 } 
@@ -2240,7 +2240,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_get_root", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_get_root")
 
   return(w)
 } 
@@ -2251,7 +2251,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_get_focus_object", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_get_focus_object")
 
   return(w)
 } 
@@ -2262,7 +2262,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_get_toolkit_name", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_get_toolkit_name")
 
   return(w)
 } 
@@ -2273,7 +2273,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_get_toolkit_version", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_get_toolkit_version")
 
   return(w)
 } 
@@ -2284,7 +2284,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_atk_value_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_value_get_type")
 
   return(w)
 } 
@@ -2295,7 +2295,7 @@ function(object)
 {
   checkPtrType(object, "AtkValue")
 
-  w <- .RGtkCall("S_atk_value_get_current_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_value_get_current_value", object)
 
   return(w)
 } 
@@ -2306,7 +2306,7 @@ function(object)
 {
   checkPtrType(object, "AtkValue")
 
-  w <- .RGtkCall("S_atk_value_get_maximum_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_value_get_maximum_value", object)
 
   return(w)
 } 
@@ -2317,7 +2317,7 @@ function(object)
 {
   checkPtrType(object, "AtkValue")
 
-  w <- .RGtkCall("S_atk_value_get_minimum_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_value_get_minimum_value", object)
 
   return(w)
 } 
@@ -2329,7 +2329,7 @@ function(object, value)
   checkPtrType(object, "AtkValue")
   
 
-  w <- .RGtkCall("S_atk_value_set_current_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_value_set_current_value", object, value)
 
   return(w)
 } 
@@ -2340,7 +2340,7 @@ function(role)
 {
   
 
-  w <- .RGtkCall("S_atk_role_get_name", role, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_role_get_name", role)
 
   return(w)
 } 
@@ -2351,7 +2351,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_role_for_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_role_for_name", name)
 
   return(w)
 } 
@@ -2362,7 +2362,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_atk_role_register", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_role_register", name)
 
   return(w)
 } 
@@ -2374,7 +2374,7 @@ function(object, data)
   checkPtrType(object, "AtkObject")
   
 
-  w <- .RGtkCall("S_atk_object_initialize", object, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_initialize", object, data)
 
   return(invisible(w))
 } 
@@ -2387,7 +2387,7 @@ function(object, relationship, target)
   
   checkPtrType(target, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_add_relationship", object, relationship, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_add_relationship", object, relationship, target)
 
   return(w)
 } 
@@ -2400,7 +2400,7 @@ function(object, relationship, target)
   
   checkPtrType(target, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_remove_relationship", object, relationship, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_remove_relationship", object, relationship, target)
 
   return(w)
 } 
@@ -2411,7 +2411,7 @@ function(role)
 {
   
 
-  w <- .RGtkCall("S_atk_role_get_localized_name", role, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_role_get_localized_name", role)
 
   return(w)
 } 
@@ -2422,7 +2422,7 @@ function(object)
 {
   checkPtrType(object, "AtkDocument")
 
-  w <- .RGtkCall("S_atk_document_get_locale", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_locale", object)
 
   return(w)
 } 
@@ -2433,7 +2433,7 @@ function(object)
 {
   checkPtrType(object, "AtkDocument")
 
-  w <- .RGtkCall("S_atk_document_get_attributes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_attributes", object)
 
   return(w)
 } 
@@ -2445,7 +2445,7 @@ function(object, attribute.name)
   checkPtrType(object, "AtkDocument")
   attribute.name <- as.character(attribute.name)
 
-  w <- .RGtkCall("S_atk_document_get_attribute_value", object, attribute.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_get_attribute_value", object, attribute.name)
 
   return(w)
 } 
@@ -2458,7 +2458,7 @@ function(object, attribute.name, attribute.value)
   attribute.name <- as.character(attribute.name)
   attribute.value <- as.character(attribute.value)
 
-  w <- .RGtkCall("S_atk_document_set_attribute_value", object, attribute.name, attribute.value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_document_set_attribute_value", object, attribute.name, attribute.value)
 
   return(w)
 } 
@@ -2469,7 +2469,7 @@ function(object)
 {
   checkPtrType(object, "AtkComponent")
 
-  w <- .RGtkCall("S_atk_component_get_alpha", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_component_get_alpha", object)
 
   return(w)
 } 
@@ -2480,7 +2480,7 @@ function(object)
 {
   checkPtrType(object, "AtkImage")
 
-  w <- .RGtkCall("S_atk_image_get_image_locale", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_image_get_image_locale", object)
 
   return(w)
 } 
@@ -2491,7 +2491,7 @@ function(object)
 {
   checkPtrType(object, "AtkObject")
 
-  w <- .RGtkCall("S_atk_object_get_attributes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_object_get_attributes", object)
 
   return(w)
 } 

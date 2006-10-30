@@ -77,7 +77,8 @@ S_GdkPixbufSaveFunc(const guchar* s_buf, gsize s_count, GError** s_error, gpoint
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+  *s_error = asCGError(VECTOR_ELT(s_ans, 1));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 } 
 
 

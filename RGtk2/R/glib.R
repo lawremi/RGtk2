@@ -77,6 +77,16 @@ function(x)
 	return(x)
 }
 
+as.GError <-
+function(x)
+{
+  x <- as.struct(x, "GError", c("domain", "code", "message"))
+  x[[1]] <- as.GQuark(x[[1]])
+  x[[2]] <- as.integer(x[[2]])
+  x[[3]] <- as.character(x[[3]])
+  x
+}
+
 # Provide the G_FILE_ERROR domain
 G_FILE_ERROR <- gFileErrorQuark <-
 function()

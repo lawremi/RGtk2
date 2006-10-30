@@ -231,6 +231,23 @@ asRGQuark(GQuark val)
   return(ans);
 }
 
+GError *
+asCGError(USER_OBJECT_ s_error)
+{
+  GError *error;
+  
+  if (s_error == NULL_USER_OBJECT)
+    return NULL;
+  
+  error = (GError*)R_alloc(1, sizeof(GError));
+  
+  error->domain = asCNumeric(VECTOR_ELT(s_error, 0));
+  error->code = asCInteger(VECTOR_ELT(s_error, 1));
+  error->message = asCString(VECTOR_ELT(s_error, 2));
+  
+  return error;
+}
+
 USER_OBJECT_
 asRGError(GError *error)
 {

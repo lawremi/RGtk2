@@ -2942,7 +2942,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value" (out))
+    '("GValue*" "value")
   )
 )
 
@@ -2950,7 +2950,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value" (out))
+    '("GValue*" "value")
   )
 )
 
@@ -2958,7 +2958,7 @@
   (of-object "AtkValue")
   (return-type "none")
   (parameters
-    '("GValue*" "value" (out))
+    '("GValue*" "value")
   )
 )
 

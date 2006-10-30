@@ -1661,7 +1661,8 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gint)asCInteger(s_ans)));
+  *s_selected = ((gint*)asCArray(VECTOR_ELT(s_ans, 1), gint, asCInteger));
+  return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gint
@@ -1686,7 +1687,8 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gint)asCInteger(s_ans)));
+  *s_selected = ((gint*)asCArray(VECTOR_ELT(s_ans, 1), gint, asCInteger));
+  return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gboolean
@@ -2514,6 +2516,8 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 const gchar*
@@ -2563,6 +2567,8 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 gboolean
@@ -3073,6 +3079,10 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 3)));
 }
 static 
 void
@@ -3099,6 +3109,8 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 void
@@ -3123,6 +3135,8 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 gboolean
@@ -3612,13 +3626,15 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 2));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3636,13 +3652,15 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 2));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3660,13 +3678,15 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 2));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3776,7 +3796,9 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gchar*
@@ -3805,7 +3827,9 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gunichar
@@ -3861,7 +3885,9 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gint
@@ -3913,7 +3939,9 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(asCAtkAttributeSet(s_ans));
+  *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(asCAtkAttributeSet(VECTOR_ELT(s_ans, 0)));
 }
 static 
 AtkAttributeSet*
@@ -3967,6 +3995,10 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 3)));
 }
 static 
 gint
@@ -4074,7 +4106,9 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gboolean
@@ -4321,6 +4355,7 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_rect = *asCAtkTextRectangle(VECTOR_ELT(s_ans, 0));
 }
 static 
 AtkTextRange**

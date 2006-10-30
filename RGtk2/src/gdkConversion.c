@@ -121,7 +121,13 @@ asCGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints)
 }
 
 GdkGCValues*
-asCGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
+asCGdkGCValues(USER_OBJECT_ s_values)
+{
+  GdkGCValuesMask mask;
+  return asCGdkGCValuesWithMask(s_values, &mask);
+}
+GdkGCValues*
+asCGdkGCValuesWithMask(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
 {
     GdkGCValues* values = (GdkGCValues*)R_alloc(1, sizeof(GdkGCValues));
     *mask = 0;

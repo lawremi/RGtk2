@@ -373,13 +373,15 @@ USER_OBJECT_ asRGSListWithSink(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGSListConv(GSList *gslist, ElementConverter converter);
 USER_OBJECT_ asRGError(GError *error);
+GError *asCGError(USER_OBJECT_ s_error);
 
 /* GDK */
 USER_OBJECT_ asRGdkAtom(GdkAtom val);
 GdkAtom asCGdkAtom(USER_OBJECT_ s_atom);
 GdkAtom* asCGdkAtomArray(USER_OBJECT_ s_atoms);
 GdkGeometry* asCGdkGeometry(USER_OBJECT_ s_geom, GdkWindowHints *hints);
-GdkGCValues* asCGdkGCValues(USER_OBJECT_ s_values, GdkGCValuesMask *mask);
+GdkGCValues* asCGdkGCValues(USER_OBJECT_ s_values);
+GdkGCValues* asCGdkGCValuesWithMask(USER_OBJECT_ s_values, GdkGCValuesMask *mask);
 GdkWindowAttr* asCGdkWindowAttr(USER_OBJECT_ s_attr, GdkWindowAttributesType *mask);
 USER_OBJECT_ asRGdkTimeCoord(GdkTimeCoord *coord, int num_axes);
 GdkRectangle* asCGdkRectangle(USER_OBJECT_ s_rect);

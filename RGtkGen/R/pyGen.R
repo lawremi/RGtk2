@@ -360,6 +360,10 @@ function(type)
         dearray(type)
     } else sub("\\*","",type)
 }
+# derefs a variable name (gets the value to which the variable points)
+derefName <-
+function(name) paste("*", name, sep="")
+  
 
 # prepend the extern keyword to a type declaration
 extern <-
@@ -1185,9 +1189,13 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
  } else if(isFlag(type, defs)) {
      fun <- "asCFlag"
     args <- c(args, defs$typecodes[[type]]) 
- } else if (type %in% transparentTypes) { # transparent types ~ 'asType'
+ } else if (type %in% transparentTypes) { # transparent types ~ 'asCType'
     fun <- asC(type)
     cast <- NULL
+    if (!is.null(params) && params[[paramname]]$access == "out" && !isRef(paramtype)) {
+      print(paste("dereffing", fun))
+      fun <- derefName(fun)
+    }
  # if we have a destroy function as a parameter, we need to provide the correct one
  # for user data passed when registering a callback, we just sink the gclosure
  # that encapsulates the R callback
@@ -1805,12 +1813,11 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   hasReturn <- fun$return != "none"
   retName <- nameToSArg("ans")
   
-  if (length(params) > 0) {
-    inParams <- sapply(params, isInParam)
-    params <- params[inParams]
-  }
+  in_params <- list()
+  if (length(params) > 0)
+    in_params <- params[sapply(params, isInParam)]
     
-  dummyParams <- lapply(params, function(param) {
+  dummyParams <- lapply(in_params, function(param) {
     param$access <- "out"
     param$name <- nameToSArg(param$name)
     param
@@ -1837,7 +1844,7 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
         statement(invokev("g_type_query", invoke("G_OBJECT_TYPE", "s_object"), refName("query"))),
         "")
     },
-    statement(alloc("e", "lang", length(params)+1+!virtual)),
+    statement(alloc("e", "lang", length(in_params)+1+!virtual)),
     statement(cassign("tmp", "e")),
     "",
     statement(pushvec("tmp", fun_code)),
@@ -1851,8 +1858,22 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
     statement(cassign("s_ans", invokev("eval", "e", "R_GlobalEnv"))),
     "",
     statement(unprotect(1)))
+    
+    # out parameters
+    s_result <- "s_ans"
+    if (length(params) > length(in_params)) {
+      dummy_out_params <- out_params <- params[!sapply(params, isInParam)]
+      names(dummy_out_params) <- vecind("s_ans", (1:length(out_params))+hasReturn)
+      code <- c(code, statement(cassign(derefName(nameToSArg(names(out_params))), 
+        sapply(names(dummy_out_params), function(param_name)
+          convertToCType(param_name, deref(dummy_out_params[[param_name]]$type), 
+            defs, dummy_out_params, prefix=F)$code))))
+      s_result <- vecind("s_ans", 1)
+    }
+    
     if (hasReturn)
-      code <- c(code,statement(returnValue(convertToCType("ans", fun$return, defs)$code)))
+      code <- c(code,
+        statement(returnValue(convertToCType(s_result, fun$return, defs, prefix=F)$code)))
   code <- c(code,
   "}")
   

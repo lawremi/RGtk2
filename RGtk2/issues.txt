@@ -1,24 +1,24 @@
 
 Adding support for extending GObjects
 ----------
-
+  
 Type conversion issues:
 
-Mismatches between class name and class structure name:
-GdkBitmap => GdkDrawableClass, GdkPixmap => GdkPixmapObjectClass
-
-Final classes:
- GdkDevice, GdkPixbuf, GdkVisual
-
-Parameter directions:
-- Out parameters need to returned through list
-- In/Out: GtkEditable (insert_text/do_insert_text)
-
+In/Out issues:
+- GtkEditable (insert_text/do_insert_text)
+- Field setting: GtkTreeIter (many in GtkTreeModel), 
+    GValue (gtk_tree_model_get_value, many in AtkValue),
+    
 
 TODO: 
 
-1) R side, including constructor and calling parent handlers
+1) calling parent handlers
 2) GObject virtuals
+3) signal/property definition support
+
+Stuff to think about:
+
+- Integration with other object models in R
 
 Some current issues/bugs with RGtk2
 ----------

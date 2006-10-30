@@ -24156,7 +24156,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter" (out))
+    '("GtkTreeIter*" "iter")
     '("GtkTreePath*" "path")
   )
 )
@@ -24174,7 +24174,7 @@
   (parameters
     '("GtkTreeIter*" "iter")
     '("gint" "column")
-    '("GValue*" "value" (out))
+    '("GValue*" "value")
   )
 )
 (define-virtual iter_next
@@ -24188,7 +24188,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter" (out))
+    '("GtkTreeIter*" "iter")
     '("GtkTreeIter*" "parent")
   )
 )
@@ -24210,7 +24210,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter" (out))
+    '("GtkTreeIter*" "iter")
     '("GtkTreeIter*" "parent")
     '("gint" "n")
   )
@@ -24219,7 +24219,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter" (out))
+    '("GtkTreeIter*" "iter")
     '("GtkTreeIter*" "child")
   )
 )

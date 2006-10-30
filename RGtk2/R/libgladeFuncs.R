@@ -4,7 +4,7 @@ function(library)
 {
   library <- as.character(library)
 
-  w <- .RGtkCall("S_glade_require", library, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_require", library)
 
   return(w)
 } 
@@ -15,7 +15,7 @@ function(library)
 {
   library <- as.character(library)
 
-  w <- .RGtkCall("S_glade_provide", library, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_provide", library)
 
   return(w)
 } 
@@ -26,7 +26,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_glade_xml_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_get_type")
 
   return(w)
 } 
@@ -39,7 +39,7 @@ function(fname, root = NULL, domain = NULL)
   if (!is.null( root )) root <- as.character(root)
   if (!is.null( domain )) domain <- as.character(domain)
 
-  w <- .RGtkCall("S_glade_xml_new", fname, root, domain, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_new", fname, root, domain)
 
   return(w)
 } 
@@ -52,7 +52,7 @@ function(object, handlername, func)
   handlername <- as.character(handlername)
   func <- as.function(func)
 
-  w <- .RGtkCall("S_glade_xml_signal_connect", object, handlername, func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_signal_connect", object, handlername, func)
 
   return(invisible(w))
 } 
@@ -66,7 +66,7 @@ function(object, handlername, func, user.data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_glade_xml_signal_connect_data", object, handlername, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_signal_connect_data", object, handlername, func, user.data)
 
   return(invisible(w))
 } 
@@ -77,7 +77,7 @@ function(object)
 {
   checkPtrType(object, "GladeXML")
 
-  w <- .RGtkCall("S_glade_xml_signal_autoconnect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_signal_autoconnect", object)
 
   return(invisible(w))
 } 
@@ -91,7 +91,7 @@ function(object, handler.name, func, user.data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_glade_xml_signal_connect_full", object, handler.name, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_signal_connect_full", object, handler.name, func, user.data)
 
   return(invisible(w))
 } 
@@ -104,7 +104,7 @@ function(object, func, user.data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_glade_xml_signal_autoconnect_full", object, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_signal_autoconnect_full", object, func, user.data)
 
   return(invisible(w))
 } 
@@ -116,7 +116,7 @@ function(object, name)
   checkPtrType(object, "GladeXML")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_glade_xml_get_widget", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_get_widget", object, name)
 
   return(w)
 } 
@@ -128,7 +128,7 @@ function(object, name)
   checkPtrType(object, "GladeXML")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_glade_xml_get_widget_prefix", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_xml_get_widget_prefix", object, name)
 
   return(w)
 } 
@@ -139,7 +139,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_glade_get_widget_name", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_get_widget_name", widget)
 
   return(w)
 } 
@@ -150,7 +150,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_glade_get_widget_tree", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_get_widget_tree", widget)
 
   return(w)
 } 
@@ -162,7 +162,7 @@ function(handler, user.data)
   handler <- as.function(handler)
   
 
-  w <- .RGtkCall("S_glade_set_custom_handler", handler, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_glade_set_custom_handler", handler, user.data)
 
   return(w)
 } 

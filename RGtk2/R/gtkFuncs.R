@@ -4,7 +4,7 @@ function(object)
 {
   checkPtrType(object, "GtkObject")
 
-  w <- .RGtkCall("S_GTK_OBJECT_FLAGS", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_OBJECT_FLAGS", object)
 
   return(w)
 } 
@@ -16,7 +16,7 @@ function(wid, flags)
   checkPtrType(wid, "GtkWidget")
   
 
-  w <- .RGtkCall("S_GTK_WIDGET_SET_FLAGS", wid, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_WIDGET_SET_FLAGS", wid, flags)
 
   return(w)
 } 
@@ -28,7 +28,7 @@ function(wid, flags)
   checkPtrType(wid, "GtkWidget")
   
 
-  w <- .RGtkCall("S_GTK_WIDGET_UNSET_FLAGS", wid, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_WIDGET_UNSET_FLAGS", wid, flags)
 
   return(w)
 } 
@@ -39,7 +39,7 @@ function(wid)
 {
   checkPtrType(wid, "GtkWidget")
 
-  w <- .RGtkCall("S_GTK_WIDGET_IS_SENSITIVE", wid, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_WIDGET_IS_SENSITIVE", wid)
 
   return(w)
 } 
@@ -50,7 +50,7 @@ function(wid)
 {
   checkPtrType(wid, "GtkWidget")
 
-  w <- .RGtkCall("S_GTK_WIDGET_STATE", wid, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_WIDGET_STATE", wid)
 
   return(w)
 } 
@@ -61,7 +61,7 @@ function(wid)
 {
   checkPtrType(wid, "GtkWidget")
 
-  w <- .RGtkCall("S_GTK_WIDGET_SAVED_STATE", wid, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_WIDGET_SAVED_STATE", wid)
 
   return(w)
 } 
@@ -72,7 +72,7 @@ function(node)
 {
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_GTK_CTREE_ROW", node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_GTK_CTREE_ROW", node)
 
   return(w)
 } 
@@ -83,7 +83,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_type")
 
   return(w)
 } 
@@ -94,7 +94,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_about_dialog_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -108,7 +108,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_name", object)
 
   return(w)
 } 
@@ -120,7 +120,7 @@ function(object, name = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( name )) name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_name", object, name)
 
   return(invisible(w))
 } 
@@ -131,7 +131,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_version", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_version", object)
 
   return(w)
 } 
@@ -143,7 +143,7 @@ function(object, version = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( version )) version <- as.character(version)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_version", object, version, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_version", object, version)
 
   return(invisible(w))
 } 
@@ -154,7 +154,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_copyright", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_copyright", object)
 
   return(w)
 } 
@@ -166,7 +166,7 @@ function(object, copyright = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( copyright )) copyright <- as.character(copyright)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_copyright", object, copyright, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_copyright", object, copyright)
 
   return(invisible(w))
 } 
@@ -177,7 +177,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_comments", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_comments", object)
 
   return(w)
 } 
@@ -189,7 +189,7 @@ function(object, comments = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( comments )) comments <- as.character(comments)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_comments", object, comments, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_comments", object, comments)
 
   return(invisible(w))
 } 
@@ -200,7 +200,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_license", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_license", object)
 
   return(w)
 } 
@@ -212,7 +212,7 @@ function(object, license = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( license )) license <- as.character(license)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_license", object, license, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_license", object, license)
 
   return(invisible(w))
 } 
@@ -223,7 +223,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_wrap_license", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_wrap_license", object)
 
   return(w)
 } 
@@ -235,7 +235,7 @@ function(object, wrap.license)
   checkPtrType(object, "GtkAboutDialog")
   wrap.license <- as.logical(wrap.license)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_wrap_license", object, wrap.license, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_wrap_license", object, wrap.license)
 
   return(invisible(w))
 } 
@@ -246,7 +246,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_website", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_website", object)
 
   return(w)
 } 
@@ -258,7 +258,7 @@ function(object, website = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( website )) website <- as.character(website)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_website", object, website, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_website", object, website)
 
   return(invisible(w))
 } 
@@ -269,7 +269,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_website_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_website_label", object)
 
   return(w)
 } 
@@ -281,7 +281,7 @@ function(object, website.label = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( website.label )) website.label <- as.character(website.label)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_website_label", object, website.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_website_label", object, website.label)
 
   return(invisible(w))
 } 
@@ -292,7 +292,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_authors", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_authors", object)
 
   return(w)
 } 
@@ -304,7 +304,7 @@ function(object, authors)
   checkPtrType(object, "GtkAboutDialog")
   authors <- as.list(as.character(authors))
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_authors", object, authors, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_authors", object, authors)
 
   return(invisible(w))
 } 
@@ -315,7 +315,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_documenters", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_documenters", object)
 
   return(w)
 } 
@@ -327,7 +327,7 @@ function(object, documenters)
   checkPtrType(object, "GtkAboutDialog")
   documenters <- as.list(as.character(documenters))
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_documenters", object, documenters, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_documenters", object, documenters)
 
   return(invisible(w))
 } 
@@ -338,7 +338,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_artists", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_artists", object)
 
   return(w)
 } 
@@ -350,7 +350,7 @@ function(object, artists)
   checkPtrType(object, "GtkAboutDialog")
   artists <- as.list(as.character(artists))
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_artists", object, artists, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_artists", object, artists)
 
   return(invisible(w))
 } 
@@ -361,7 +361,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_translator_credits", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_translator_credits", object)
 
   return(w)
 } 
@@ -373,7 +373,7 @@ function(object, translator.credits = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( translator.credits )) translator.credits <- as.character(translator.credits)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_translator_credits", object, translator.credits, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_translator_credits", object, translator.credits)
 
   return(invisible(w))
 } 
@@ -384,7 +384,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_logo", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_logo", object)
 
   return(w)
 } 
@@ -396,7 +396,7 @@ function(object, logo = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( logo )) checkPtrType(logo, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_logo", object, logo, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_logo", object, logo)
 
   return(invisible(w))
 } 
@@ -407,7 +407,7 @@ function(object)
 {
   checkPtrType(object, "GtkAboutDialog")
 
-  w <- .RGtkCall("S_gtk_about_dialog_get_logo_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_get_logo_icon_name", object)
 
   return(w)
 } 
@@ -419,7 +419,7 @@ function(object, icon.name = NULL)
   checkPtrType(object, "GtkAboutDialog")
   if (!is.null( icon.name )) icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_logo_icon_name", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_logo_icon_name", object, icon.name)
 
   return(invisible(w))
 } 
@@ -431,7 +431,7 @@ function(func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_email_hook", func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_email_hook", func, data)
 
   return(w)
 } 
@@ -443,7 +443,7 @@ function(func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_about_dialog_set_url_hook", func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_about_dialog_set_url_hook", func, data)
 
   return(w)
 } 
@@ -454,7 +454,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_group_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_get_type")
 
   return(w)
 } 
@@ -465,7 +465,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_group_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_new")
 
   return(w)
 } 
@@ -476,7 +476,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_accel_group_lock", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_lock", object)
 
   return(invisible(w))
 } 
@@ -487,7 +487,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_accel_group_unlock", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_unlock", object)
 
   return(invisible(w))
 } 
@@ -502,7 +502,7 @@ function(object, accel.key, accel.mods, accel.flags, closure)
   
   closure <- as.GClosure(closure)
 
-  w <- .RGtkCall("S_gtk_accel_group_connect", object, accel.key, accel.mods, accel.flags, closure, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_connect", object, accel.key, accel.mods, accel.flags, closure)
 
   return(invisible(w))
 } 
@@ -515,7 +515,7 @@ function(object, accel.path, closure)
   accel.path <- as.character(accel.path)
   closure <- as.GClosure(closure)
 
-  w <- .RGtkCall("S_gtk_accel_group_connect_by_path", object, accel.path, closure, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_connect_by_path", object, accel.path, closure)
 
   return(invisible(w))
 } 
@@ -527,7 +527,7 @@ function(object, closure)
   checkPtrType(object, "GtkAccelGroup")
   closure <- as.GClosure(closure)
 
-  w <- .RGtkCall("S_gtk_accel_group_disconnect", object, closure, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_disconnect", object, closure)
 
   return(w)
 } 
@@ -540,7 +540,7 @@ function(object, accel.key, accel.mods)
   accel.key <- as.numeric(accel.key)
   
 
-  w <- .RGtkCall("S_gtk_accel_group_disconnect_key", object, accel.key, accel.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_disconnect_key", object, accel.key, accel.mods)
 
   return(w)
 } 
@@ -555,7 +555,7 @@ function(object, accel.quark, acceleratable, accel.key, accel.mods)
   accel.key <- as.numeric(accel.key)
   
 
-  w <- .RGtkCall("S_gtk_accel_group_activate", object, accel.quark, acceleratable, accel.key, accel.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_activate", object, accel.quark, acceleratable, accel.key, accel.mods)
 
   return(w)
 } 
@@ -568,7 +568,7 @@ function(object, accel.key, accel.mods)
   accel.key <- as.numeric(accel.key)
   
 
-  w <- .RGtkCall("S_gtk_accel_groups_activate", object, accel.key, accel.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_groups_activate", object, accel.key, accel.mods)
 
   return(w)
 } 
@@ -579,7 +579,7 @@ function(object)
 {
   checkPtrType(object, "GObject")
 
-  w <- .RGtkCall("S_gtk_accel_groups_from_object", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_groups_from_object", object)
 
   return(w)
 } 
@@ -592,7 +592,7 @@ function(object, find.func, data = NULL)
   find.func <- as.function(find.func)
   
 
-  w <- .RGtkCall("S_gtk_accel_group_find", object, find.func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_find", object, find.func, data)
 
   return(w)
 } 
@@ -603,7 +603,7 @@ function(closure)
 {
   closure <- as.GClosure(closure)
 
-  w <- .RGtkCall("S_gtk_accel_group_from_accel_closure", closure, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_group_from_accel_closure", closure)
 
   return(w)
 } 
@@ -615,7 +615,7 @@ function(keyval, modifiers)
   keyval <- as.numeric(keyval)
   
 
-  w <- .RGtkCall("S_gtk_accelerator_valid", keyval, modifiers, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_valid", keyval, modifiers)
 
   return(w)
 } 
@@ -626,7 +626,7 @@ function(accelerator)
 {
   accelerator <- as.character(accelerator)
 
-  w <- .RGtkCall("S_gtk_accelerator_parse", accelerator, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_parse", accelerator)
 
   return(invisible(w))
 } 
@@ -638,7 +638,7 @@ function(accelerator.key, accelerator.mods)
   accelerator.key <- as.numeric(accelerator.key)
   
 
-  w <- .RGtkCall("S_gtk_accelerator_name", accelerator.key, accelerator.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_name", accelerator.key, accelerator.mods)
 
   return(w)
 } 
@@ -649,7 +649,7 @@ function(default.mod.mask)
 {
   
 
-  w <- .RGtkCall("S_gtk_accelerator_set_default_mod_mask", default.mod.mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_set_default_mod_mask", default.mod.mask)
 
   return(w)
 } 
@@ -660,7 +660,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accelerator_get_default_mod_mask", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_get_default_mod_mask")
 
   return(w)
 } 
@@ -672,7 +672,7 @@ function(accelerator.key, accelerator.mods)
   accelerator.key <- as.numeric(accelerator.key)
   
 
-  w <- .RGtkCall("S_gtk_accelerator_get_label", accelerator.key, accelerator.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accelerator_get_label", accelerator.key, accelerator.mods)
 
   return(w)
 } 
@@ -683,7 +683,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_label_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_get_type")
 
   return(w)
 } 
@@ -694,7 +694,7 @@ function(string = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_label_new", string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_new", string)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -708,7 +708,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccelLabel")
 
-  w <- .RGtkCall("S_gtk_accel_label_get_accel_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_get_accel_widget", object)
 
   return(w)
 } 
@@ -719,7 +719,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccelLabel")
 
-  w <- .RGtkCall("S_gtk_accel_label_get_accel_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_get_accel_width", object)
 
   return(w)
 } 
@@ -731,7 +731,7 @@ function(object, accel.widget)
   checkPtrType(object, "GtkAccelLabel")
   checkPtrType(accel.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_accel_label_set_accel_widget", object, accel.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_set_accel_widget", object, accel.widget)
 
   return(invisible(w))
 } 
@@ -743,7 +743,7 @@ function(object, accel.closure)
   checkPtrType(object, "GtkAccelLabel")
   accel.closure <- as.GClosure(accel.closure)
 
-  w <- .RGtkCall("S_gtk_accel_label_set_accel_closure", object, accel.closure, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_set_accel_closure", object, accel.closure)
 
   return(invisible(w))
 } 
@@ -754,7 +754,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccelLabel")
 
-  w <- .RGtkCall("S_gtk_accel_label_refetch", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_label_refetch", object)
 
   return(w)
 } 
@@ -767,7 +767,7 @@ function(accel.path, accel.key, accel.mods)
   accel.key <- as.numeric(accel.key)
   
 
-  w <- .RGtkCall("S_gtk_accel_map_add_entry", accel.path, accel.key, accel.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_add_entry", accel.path, accel.key, accel.mods)
 
   return(w)
 } 
@@ -778,7 +778,7 @@ function(accel.path)
 {
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_accel_map_lookup_entry", accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_lookup_entry", accel.path)
 
   return(w)
 } 
@@ -792,7 +792,7 @@ function(accel.path, accel.key, accel.mods, replace)
   
   replace <- as.logical(replace)
 
-  w <- .RGtkCall("S_gtk_accel_map_change_entry", accel.path, accel.key, accel.mods, replace, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_change_entry", accel.path, accel.key, accel.mods, replace)
 
   return(w)
 } 
@@ -803,7 +803,7 @@ function(file.name)
 {
   file.name <- as.character(file.name)
 
-  w <- .RGtkCall("S_gtk_accel_map_load", file.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_load", file.name)
 
   return(w)
 } 
@@ -814,7 +814,7 @@ function(file.name)
 {
   file.name <- as.character(file.name)
 
-  w <- .RGtkCall("S_gtk_accel_map_save", file.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_save", file.name)
 
   return(w)
 } 
@@ -826,7 +826,7 @@ function(data = NULL, foreach.func)
   
   foreach.func <- as.function(foreach.func)
 
-  w <- .RGtkCall("S_gtk_accel_map_foreach", data, foreach.func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_foreach", data, foreach.func)
 
   return(w)
 } 
@@ -837,7 +837,7 @@ function(fd)
 {
   fd <- as.integer(fd)
 
-  w <- .RGtkCall("S_gtk_accel_map_load_fd", fd, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_load_fd", fd)
 
   return(w)
 } 
@@ -848,7 +848,7 @@ function(scanner)
 {
   checkPtrType(scanner, "GScanner")
 
-  w <- .RGtkCall("S_gtk_accel_map_load_scanner", scanner, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_load_scanner", scanner)
 
   return(w)
 } 
@@ -859,7 +859,7 @@ function(fd)
 {
   fd <- as.integer(fd)
 
-  w <- .RGtkCall("S_gtk_accel_map_save_fd", fd, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_save_fd", fd)
 
   return(w)
 } 
@@ -870,7 +870,7 @@ function(accel.path)
 {
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_accel_map_lock_path", accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_lock_path", accel.path)
 
   return(w)
 } 
@@ -881,7 +881,7 @@ function(accel.path)
 {
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_accel_map_unlock_path", accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_unlock_path", accel.path)
 
   return(w)
 } 
@@ -892,7 +892,7 @@ function(filter.pattern)
 {
   filter.pattern <- as.character(filter.pattern)
 
-  w <- .RGtkCall("S_gtk_accel_map_add_filter", filter.pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_add_filter", filter.pattern)
 
   return(w)
 } 
@@ -904,7 +904,7 @@ function(data = NULL, foreach.func)
   
   foreach.func <- as.function(foreach.func)
 
-  w <- .RGtkCall("S_gtk_accel_map_foreach_unfiltered", data, foreach.func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_foreach_unfiltered", data, foreach.func)
 
   return(w)
 } 
@@ -915,7 +915,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_map_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_get_type")
 
   return(w)
 } 
@@ -926,7 +926,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accel_map_get", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accel_map_get")
 
   return(w)
 } 
@@ -937,7 +937,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_accessible_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accessible_get_type")
 
   return(w)
 } 
@@ -948,7 +948,7 @@ function(object)
 {
   checkPtrType(object, "GtkAccessible")
 
-  w <- .RGtkCall("S_gtk_accessible_connect_widget_destroyed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_accessible_connect_widget_destroyed", object)
 
   return(invisible(w))
 } 
@@ -959,7 +959,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_action_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_type")
 
   return(w)
 } 
@@ -970,7 +970,7 @@ function(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_action_new", name, label, tooltip, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_new", name, label, tooltip, stock.id)
 
   return(w)
 } 
@@ -981,7 +981,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_name", object)
 
   return(w)
 } 
@@ -992,7 +992,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_is_sensitive", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_is_sensitive", object)
 
   return(w)
 } 
@@ -1003,7 +1003,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_sensitive", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_sensitive", object)
 
   return(w)
 } 
@@ -1014,7 +1014,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_is_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_is_visible", object)
 
   return(w)
 } 
@@ -1025,7 +1025,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_visible", object)
 
   return(w)
 } 
@@ -1036,7 +1036,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_activate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_activate", object)
 
   return(invisible(w))
 } 
@@ -1048,7 +1048,7 @@ function(object, icon.size)
   checkPtrType(object, "GtkAction")
   
 
-  w <- .RGtkCall("S_gtk_action_create_icon", object, icon.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_create_icon", object, icon.size)
 
   return(w)
 } 
@@ -1059,7 +1059,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_create_menu_item", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_create_menu_item", object)
 
   return(w)
 } 
@@ -1070,7 +1070,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_create_tool_item", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_create_tool_item", object)
 
   return(w)
 } 
@@ -1082,7 +1082,7 @@ function(object, proxy)
   checkPtrType(object, "GtkAction")
   checkPtrType(proxy, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_action_connect_proxy", object, proxy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_connect_proxy", object, proxy)
 
   return(invisible(w))
 } 
@@ -1094,7 +1094,7 @@ function(object, proxy)
   checkPtrType(object, "GtkAction")
   checkPtrType(proxy, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_action_disconnect_proxy", object, proxy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_disconnect_proxy", object, proxy)
 
   return(invisible(w))
 } 
@@ -1105,7 +1105,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_proxies", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_proxies", object)
 
   return(w)
 } 
@@ -1116,7 +1116,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_connect_accelerator", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_connect_accelerator", object)
 
   return(invisible(w))
 } 
@@ -1127,7 +1127,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_disconnect_accelerator", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_disconnect_accelerator", object)
 
   return(invisible(w))
 } 
@@ -1138,7 +1138,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_accel_path", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_accel_path", object)
 
   return(w)
 } 
@@ -1149,7 +1149,7 @@ function(object)
 {
   checkPtrType(object, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_get_accel_closure", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_get_accel_closure", object)
 
   return(w)
 } 
@@ -1161,7 +1161,7 @@ function(object, proxy)
   checkPtrType(object, "GtkAction")
   checkPtrType(proxy, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_action_block_activate_from", object, proxy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_block_activate_from", object, proxy)
 
   return(invisible(w))
 } 
@@ -1173,7 +1173,7 @@ function(object, proxy)
   checkPtrType(object, "GtkAction")
   checkPtrType(proxy, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_action_unblock_activate_from", object, proxy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_unblock_activate_from", object, proxy)
 
   return(invisible(w))
 } 
@@ -1185,7 +1185,7 @@ function(object, accel.path)
   checkPtrType(object, "GtkAction")
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_action_set_accel_path", object, accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_set_accel_path", object, accel.path)
 
   return(invisible(w))
 } 
@@ -1197,7 +1197,7 @@ function(object, accel.group)
   checkPtrType(object, "GtkAction")
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_action_set_accel_group", object, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_set_accel_group", object, accel.group)
 
   return(invisible(w))
 } 
@@ -1209,7 +1209,7 @@ function(object, sensitive)
   checkPtrType(object, "GtkAction")
   sensitive <- as.logical(sensitive)
 
-  w <- .RGtkCall("S_gtk_action_set_sensitive", object, sensitive, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_set_sensitive", object, sensitive)
 
   return(invisible(w))
 } 
@@ -1221,7 +1221,7 @@ function(object, visible)
   checkPtrType(object, "GtkAction")
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_action_set_visible", object, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_set_visible", object, visible)
 
   return(invisible(w))
 } 
@@ -1232,7 +1232,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_action_group_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_get_type")
 
   return(w)
 } 
@@ -1243,7 +1243,7 @@ function(name = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_action_group_new", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_new", name)
 
   return(w)
 } 
@@ -1254,7 +1254,7 @@ function(object)
 {
   checkPtrType(object, "GtkActionGroup")
 
-  w <- .RGtkCall("S_gtk_action_group_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_get_name", object)
 
   return(w)
 } 
@@ -1265,7 +1265,7 @@ function(object)
 {
   checkPtrType(object, "GtkActionGroup")
 
-  w <- .RGtkCall("S_gtk_action_group_get_sensitive", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_get_sensitive", object)
 
   return(w)
 } 
@@ -1277,7 +1277,7 @@ function(object, sensitive)
   checkPtrType(object, "GtkActionGroup")
   sensitive <- as.logical(sensitive)
 
-  w <- .RGtkCall("S_gtk_action_group_set_sensitive", object, sensitive, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_set_sensitive", object, sensitive)
 
   return(invisible(w))
 } 
@@ -1288,7 +1288,7 @@ function(object)
 {
   checkPtrType(object, "GtkActionGroup")
 
-  w <- .RGtkCall("S_gtk_action_group_get_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_get_visible", object)
 
   return(w)
 } 
@@ -1300,7 +1300,7 @@ function(object, visible)
   checkPtrType(object, "GtkActionGroup")
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_action_group_set_visible", object, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_set_visible", object, visible)
 
   return(invisible(w))
 } 
@@ -1312,7 +1312,7 @@ function(object, action.name)
   checkPtrType(object, "GtkActionGroup")
   action.name <- as.character(action.name)
 
-  w <- .RGtkCall("S_gtk_action_group_get_action", object, action.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_get_action", object, action.name)
 
   return(w)
 } 
@@ -1323,7 +1323,7 @@ function(object)
 {
   checkPtrType(object, "GtkActionGroup")
 
-  w <- .RGtkCall("S_gtk_action_group_list_actions", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_list_actions", object)
 
   return(w)
 } 
@@ -1335,7 +1335,7 @@ function(object, action)
   checkPtrType(object, "GtkActionGroup")
   checkPtrType(action, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_group_add_action", object, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_action", object, action)
 
   return(invisible(w))
 } 
@@ -1348,7 +1348,7 @@ function(object, action, accelerator = NULL)
   checkPtrType(action, "GtkAction")
   if (!is.null( accelerator )) accelerator <- as.character(accelerator)
 
-  w <- .RGtkCall("S_gtk_action_group_add_action_with_accel", object, action, accelerator, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_action_with_accel", object, action, accelerator)
 
   return(invisible(w))
 } 
@@ -1360,7 +1360,7 @@ function(object, action)
   checkPtrType(object, "GtkActionGroup")
   checkPtrType(action, "GtkAction")
 
-  w <- .RGtkCall("S_gtk_action_group_remove_action", object, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_remove_action", object, action)
 
   return(invisible(w))
 } 
@@ -1373,7 +1373,7 @@ function(object, entries, user.data = NULL)
   entries <- lapply(entries, function(x) { x <- as.GtkActionEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_actions", object, entries, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_actions", object, entries, user.data)
 
   return(w)
 } 
@@ -1386,7 +1386,7 @@ function(object, entries, user.data = NULL)
   entries <- lapply(entries, function(x) { x <- as.GtkToggleActionEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_toggle_actions", object, entries, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_toggle_actions", object, entries, user.data)
 
   return(w)
 } 
@@ -1401,7 +1401,7 @@ function(object, entries, value, on.change = NULL, user.data = NULL)
   on.change <- as.function(on.change)
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_radio_actions", object, entries, value, on.change, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_radio_actions", object, entries, value, on.change, user.data)
 
   return(w)
 } 
@@ -1414,7 +1414,7 @@ function(object, entries, user.data = NULL)
   entries <- lapply(entries, function(x) { x <- as.GtkActionEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_actions_full", object, entries, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_actions_full", object, entries, user.data)
 
   return(invisible(w))
 } 
@@ -1427,7 +1427,7 @@ function(object, entries, user.data = NULL)
   entries <- lapply(entries, function(x) { x <- as.GtkToggleActionEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_toggle_actions_full", object, entries, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_toggle_actions_full", object, entries, user.data)
 
   return(invisible(w))
 } 
@@ -1442,7 +1442,7 @@ function(object, entries, value, on.change = NULL, user.data = NULL)
   on.change <- as.function(on.change)
   
 
-  w <- .RGtkCall("S_gtk_action_group_add_radio_actions_full", object, entries, value, on.change, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_add_radio_actions_full", object, entries, value, on.change, user.data)
 
   return(invisible(w))
 } 
@@ -1455,7 +1455,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_action_group_set_translate_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_set_translate_func", object, func, data)
 
   return(w)
 } 
@@ -1467,7 +1467,7 @@ function(object, domain)
   checkPtrType(object, "GtkActionGroup")
   domain <- as.character(domain)
 
-  w <- .RGtkCall("S_gtk_action_group_set_translation_domain", object, domain, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_set_translation_domain", object, domain)
 
   return(invisible(w))
 } 
@@ -1479,7 +1479,7 @@ function(object, string)
   checkPtrType(object, "GtkActionGroup")
   string <- as.character(string)
 
-  w <- .RGtkCall("S_gtk_action_group_translate_string", object, string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_action_group_translate_string", object, string)
 
   return(w)
 } 
@@ -1490,7 +1490,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_adjustment_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_get_type")
 
   return(w)
 } 
@@ -1501,7 +1501,7 @@ function(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr =
 {
   
 
-  w <- .RGtkCall("S_gtk_adjustment_new", value, lower, upper, step.incr, page.incr, page.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_new", value, lower, upper, step.incr, page.incr, page.size)
 
   return(w)
 } 
@@ -1512,7 +1512,7 @@ function(object)
 {
   checkPtrType(object, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_adjustment_changed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_changed", object)
 
   return(invisible(w))
 } 
@@ -1523,7 +1523,7 @@ function(object)
 {
   checkPtrType(object, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_adjustment_value_changed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_value_changed", object)
 
   return(invisible(w))
 } 
@@ -1536,7 +1536,7 @@ function(object, lower, upper)
   lower <- as.numeric(lower)
   upper <- as.numeric(upper)
 
-  w <- .RGtkCall("S_gtk_adjustment_clamp_page", object, lower, upper, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_clamp_page", object, lower, upper)
 
   return(invisible(w))
 } 
@@ -1547,7 +1547,7 @@ function(object)
 {
   checkPtrType(object, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_adjustment_get_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_get_value", object)
 
   return(w)
 } 
@@ -1559,7 +1559,7 @@ function(object, value)
   checkPtrType(object, "GtkAdjustment")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_adjustment_set_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_adjustment_set_value", object, value)
 
   return(invisible(w))
 } 
@@ -1570,7 +1570,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_alignment_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_alignment_get_type")
 
   return(w)
 } 
@@ -1581,7 +1581,7 @@ function(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE
 {
   
 
-  w <- .RGtkCall("S_gtk_alignment_new", xalign, yalign, xscale, yscale, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_alignment_new", xalign, yalign, xscale, yscale)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -1599,7 +1599,7 @@ function(object, xalign, yalign, xscale, yscale)
   xscale <- as.numeric(xscale)
   yscale <- as.numeric(yscale)
 
-  w <- .RGtkCall("S_gtk_alignment_set", object, xalign, yalign, xscale, yscale, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_alignment_set", object, xalign, yalign, xscale, yscale)
 
   return(invisible(w))
 } 
@@ -1614,7 +1614,7 @@ function(object, padding.top, padding.bottom, padding.left, padding.right)
   padding.left <- as.numeric(padding.left)
   padding.right <- as.numeric(padding.right)
 
-  w <- .RGtkCall("S_gtk_alignment_set_padding", object, padding.top, padding.bottom, padding.left, padding.right, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_alignment_set_padding", object, padding.top, padding.bottom, padding.left, padding.right)
 
   return(invisible(w))
 } 
@@ -1625,7 +1625,7 @@ function(object)
 {
   checkPtrType(object, "GtkAlignment")
 
-  w <- .RGtkCall("S_gtk_alignment_get_padding", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_alignment_get_padding", object)
 
   return(invisible(w))
 } 
@@ -1636,7 +1636,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_arrow_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_arrow_get_type")
 
   return(w)
 } 
@@ -1647,7 +1647,7 @@ function(arrow.type = NULL, shadow.type = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_arrow_new", arrow.type, shadow.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_arrow_new", arrow.type, shadow.type)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -1663,7 +1663,7 @@ function(object, arrow.type, shadow.type)
   
   
 
-  w <- .RGtkCall("S_gtk_arrow_set", object, arrow.type, shadow.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_arrow_set", object, arrow.type, shadow.type)
 
   return(invisible(w))
 } 
@@ -1674,7 +1674,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_aspect_frame_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_aspect_frame_get_type")
 
   return(w)
 } 
@@ -1685,7 +1685,7 @@ function(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = 
 {
   
 
-  w <- .RGtkCall("S_gtk_aspect_frame_new", label, xalign, yalign, ratio, obey.child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_aspect_frame_new", label, xalign, yalign, ratio, obey.child)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -1703,7 +1703,7 @@ function(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)
   ratio <- as.numeric(ratio)
   obey.child <- as.logical(obey.child)
 
-  w <- .RGtkCall("S_gtk_aspect_frame_set", object, xalign, yalign, ratio, obey.child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_aspect_frame_set", object, xalign, yalign, ratio, obey.child)
 
   return(invisible(w))
 } 
@@ -1714,7 +1714,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_button_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_get_type")
 
   return(w)
 } 
@@ -1725,7 +1725,7 @@ function(object)
 {
   checkPtrType(object, "GtkButtonBox")
 
-  w <- .RGtkCall("S_gtk_button_box_get_layout", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_get_layout", object)
 
   return(w)
 } 
@@ -1737,7 +1737,7 @@ function(object, layout.style)
   checkPtrType(object, "GtkButtonBox")
   
 
-  w <- .RGtkCall("S_gtk_button_box_set_layout", object, layout.style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_set_layout", object, layout.style)
 
   return(invisible(w))
 } 
@@ -1749,7 +1749,7 @@ function(object, child)
   checkPtrType(object, "GtkButtonBox")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_button_box_get_child_secondary", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_get_child_secondary", object, child)
 
   return(w)
 } 
@@ -1762,7 +1762,7 @@ function(object, child, is.secondary)
   checkPtrType(child, "GtkWidget")
   is.secondary <- as.logical(is.secondary)
 
-  w <- .RGtkCall("S_gtk_button_box_set_child_secondary", object, child, is.secondary, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_set_child_secondary", object, child, is.secondary)
 
   return(invisible(w))
 } 
@@ -1778,7 +1778,7 @@ function(object, min.width, min.height)
   min.width <- as.integer(min.width)
   min.height <- as.integer(min.height)
 
-  w <- .RGtkCall("S_gtk_button_box_set_child_size", object, min.width, min.height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_set_child_size", object, min.width, min.height)
 
   return(invisible(w))
 } 
@@ -1794,7 +1794,7 @@ function(object, ipad.x, ipad.y)
   ipad.x <- as.integer(ipad.x)
   ipad.y <- as.integer(ipad.y)
 
-  w <- .RGtkCall("S_gtk_button_box_set_child_ipadding", object, ipad.x, ipad.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_set_child_ipadding", object, ipad.x, ipad.y)
 
   return(invisible(w))
 } 
@@ -1808,7 +1808,7 @@ function(object)
 
   checkPtrType(object, "GtkButtonBox")
 
-  w <- .RGtkCall("S_gtk_button_box_get_child_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_get_child_size", object)
 
   return(invisible(w))
 } 
@@ -1822,7 +1822,7 @@ function(object)
 
   checkPtrType(object, "GtkButtonBox")
 
-  w <- .RGtkCall("S_gtk_button_box_get_child_ipadding", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_box_get_child_ipadding", object)
 
   return(invisible(w))
 } 
@@ -1833,7 +1833,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_bin_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_bin_get_type")
 
   return(w)
 } 
@@ -1844,7 +1844,7 @@ function(object)
 {
   checkPtrType(object, "GtkBin")
 
-  w <- .RGtkCall("S_gtk_bin_get_child", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_bin_get_child", object)
 
   return(w)
 } 
@@ -1855,7 +1855,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_get_type")
 
   return(w)
 } 
@@ -1870,7 +1870,7 @@ function(object, child, expand = TRUE, fill = TRUE, padding = 0)
   fill <- as.logical(fill)
   padding <- as.numeric(padding)
 
-  w <- .RGtkCall("S_gtk_box_pack_start", object, child, expand, fill, padding, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_pack_start", object, child, expand, fill, padding)
 
   return(invisible(w))
 } 
@@ -1885,7 +1885,7 @@ function(object, child, expand = TRUE, fill = TRUE, padding = 0)
   fill <- as.logical(fill)
   padding <- as.numeric(padding)
 
-  w <- .RGtkCall("S_gtk_box_pack_end", object, child, expand, fill, padding, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_pack_end", object, child, expand, fill, padding)
 
   return(invisible(w))
 } 
@@ -1900,7 +1900,7 @@ function(object, widget)
   checkPtrType(object, "GtkBox")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_box_pack_start_defaults", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_pack_start_defaults", object, widget)
 
   return(invisible(w))
 } 
@@ -1915,7 +1915,7 @@ function(object, widget)
   checkPtrType(object, "GtkBox")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_box_pack_end_defaults", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_pack_end_defaults", object, widget)
 
   return(invisible(w))
 } 
@@ -1927,7 +1927,7 @@ function(object, homogeneous)
   checkPtrType(object, "GtkBox")
   homogeneous <- as.logical(homogeneous)
 
-  w <- .RGtkCall("S_gtk_box_set_homogeneous", object, homogeneous, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_set_homogeneous", object, homogeneous)
 
   return(invisible(w))
 } 
@@ -1938,7 +1938,7 @@ function(object)
 {
   checkPtrType(object, "GtkBox")
 
-  w <- .RGtkCall("S_gtk_box_get_homogeneous", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_get_homogeneous", object)
 
   return(w)
 } 
@@ -1950,7 +1950,7 @@ function(object, spacing)
   checkPtrType(object, "GtkBox")
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_box_set_spacing", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_set_spacing", object, spacing)
 
   return(invisible(w))
 } 
@@ -1961,7 +1961,7 @@ function(object)
 {
   checkPtrType(object, "GtkBox")
 
-  w <- .RGtkCall("S_gtk_box_get_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_get_spacing", object)
 
   return(w)
 } 
@@ -1974,7 +1974,7 @@ function(object, child, position)
   checkPtrType(child, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_box_reorder_child", object, child, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_reorder_child", object, child, position)
 
   return(invisible(w))
 } 
@@ -1986,7 +1986,7 @@ function(object, child)
   checkPtrType(object, "GtkBox")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_box_query_child_packing", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_query_child_packing", object, child)
 
   return(invisible(w))
 } 
@@ -2002,7 +2002,7 @@ function(object, child, expand, fill, padding, pack.type)
   padding <- as.numeric(padding)
   
 
-  w <- .RGtkCall("S_gtk_box_set_child_packing", object, child, expand, fill, padding, pack.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_box_set_child_packing", object, child, expand, fill, padding, pack.type)
 
   return(invisible(w))
 } 
@@ -2013,7 +2013,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_type")
 
   return(w)
 } 
@@ -2024,7 +2024,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2038,7 +2038,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_button_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2052,7 +2052,7 @@ function(stock.id, show = TRUE)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_button_new_from_stock", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_new_from_stock", stock.id)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2066,7 +2066,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_button_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2080,7 +2080,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_pressed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_pressed", object)
 
   return(invisible(w))
 } 
@@ -2091,7 +2091,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_released", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_released", object)
 
   return(invisible(w))
 } 
@@ -2102,7 +2102,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_clicked", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_clicked", object)
 
   return(invisible(w))
 } 
@@ -2113,7 +2113,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_enter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_enter", object)
 
   return(invisible(w))
 } 
@@ -2124,7 +2124,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_leave", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_leave", object)
 
   return(invisible(w))
 } 
@@ -2136,7 +2136,7 @@ function(object, newstyle)
   checkPtrType(object, "GtkButton")
   
 
-  w <- .RGtkCall("S_gtk_button_set_relief", object, newstyle, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_relief", object, newstyle)
 
   return(invisible(w))
 } 
@@ -2147,7 +2147,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_relief", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_relief", object)
 
   return(w)
 } 
@@ -2159,7 +2159,7 @@ function(object, label)
   checkPtrType(object, "GtkButton")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_button_set_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_label", object, label)
 
   return(invisible(w))
 } 
@@ -2170,7 +2170,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_label", object)
 
   return(w)
 } 
@@ -2182,7 +2182,7 @@ function(object, use.underline)
   checkPtrType(object, "GtkButton")
   use.underline <- as.logical(use.underline)
 
-  w <- .RGtkCall("S_gtk_button_set_use_underline", object, use.underline, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_use_underline", object, use.underline)
 
   return(invisible(w))
 } 
@@ -2193,7 +2193,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_use_underline", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_use_underline", object)
 
   return(w)
 } 
@@ -2205,7 +2205,7 @@ function(object, use.stock)
   checkPtrType(object, "GtkButton")
   use.stock <- as.logical(use.stock)
 
-  w <- .RGtkCall("S_gtk_button_set_use_stock", object, use.stock, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_use_stock", object, use.stock)
 
   return(invisible(w))
 } 
@@ -2216,7 +2216,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_use_stock", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_use_stock", object)
 
   return(w)
 } 
@@ -2228,7 +2228,7 @@ function(object, focus.on.click)
   checkPtrType(object, "GtkButton")
   focus.on.click <- as.logical(focus.on.click)
 
-  w <- .RGtkCall("S_gtk_button_set_focus_on_click", object, focus.on.click, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_focus_on_click", object, focus.on.click)
 
   return(invisible(w))
 } 
@@ -2239,7 +2239,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_focus_on_click", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_focus_on_click", object)
 
   return(w)
 } 
@@ -2252,7 +2252,7 @@ function(object, xalign, yalign)
   xalign <- as.numeric(xalign)
   yalign <- as.numeric(yalign)
 
-  w <- .RGtkCall("S_gtk_button_set_alignment", object, xalign, yalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_alignment", object, xalign, yalign)
 
   return(invisible(w))
 } 
@@ -2263,7 +2263,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_alignment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_alignment", object)
 
   return(invisible(w))
 } 
@@ -2275,7 +2275,7 @@ function(object, image)
   checkPtrType(object, "GtkButton")
   checkPtrType(image, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_button_set_image", object, image, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_image", object, image)
 
   return(invisible(w))
 } 
@@ -2286,7 +2286,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_image", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_image", object)
 
   return(w)
 } 
@@ -2297,7 +2297,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_calendar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_get_type")
 
   return(w)
 } 
@@ -2308,7 +2308,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_calendar_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2324,7 +2324,7 @@ function(object, month, year)
   month <- as.numeric(month)
   year <- as.numeric(year)
 
-  w <- .RGtkCall("S_gtk_calendar_select_month", object, month, year, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_select_month", object, month, year)
 
   return(w)
 } 
@@ -2336,7 +2336,7 @@ function(object, day)
   checkPtrType(object, "GtkCalendar")
   day <- as.numeric(day)
 
-  w <- .RGtkCall("S_gtk_calendar_select_day", object, day, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_select_day", object, day)
 
   return(invisible(w))
 } 
@@ -2348,7 +2348,7 @@ function(object, day)
   checkPtrType(object, "GtkCalendar")
   day <- as.numeric(day)
 
-  w <- .RGtkCall("S_gtk_calendar_mark_day", object, day, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_mark_day", object, day)
 
   return(w)
 } 
@@ -2360,7 +2360,7 @@ function(object, day)
   checkPtrType(object, "GtkCalendar")
   day <- as.numeric(day)
 
-  w <- .RGtkCall("S_gtk_calendar_unmark_day", object, day, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_unmark_day", object, day)
 
   return(w)
 } 
@@ -2371,7 +2371,7 @@ function(object)
 {
   checkPtrType(object, "GtkCalendar")
 
-  w <- .RGtkCall("S_gtk_calendar_clear_marks", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_clear_marks", object)
 
   return(invisible(w))
 } 
@@ -2383,7 +2383,7 @@ function(object, flags)
   checkPtrType(object, "GtkCalendar")
   
 
-  w <- .RGtkCall("S_gtk_calendar_set_display_options", object, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_set_display_options", object, flags)
 
   return(invisible(w))
 } 
@@ -2394,7 +2394,7 @@ function(object)
 {
   checkPtrType(object, "GtkCalendar")
 
-  w <- .RGtkCall("S_gtk_calendar_get_display_options", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_get_display_options", object)
 
   return(w)
 } 
@@ -2406,7 +2406,7 @@ function(object, flags)
   checkPtrType(object, "GtkCalendar")
   
 
-  w <- .RGtkCall("S_gtk_calendar_display_options", object, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_display_options", object, flags)
 
   return(invisible(w))
 } 
@@ -2417,7 +2417,7 @@ function(object)
 {
   checkPtrType(object, "GtkCalendar")
 
-  w <- .RGtkCall("S_gtk_calendar_get_date", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_get_date", object)
 
   return(invisible(w))
 } 
@@ -2428,7 +2428,7 @@ function(object)
 {
   checkPtrType(object, "GtkCalendar")
 
-  w <- .RGtkCall("S_gtk_calendar_freeze", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_freeze", object)
 
   return(invisible(w))
 } 
@@ -2439,7 +2439,7 @@ function(object)
 {
   checkPtrType(object, "GtkCalendar")
 
-  w <- .RGtkCall("S_gtk_calendar_thaw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_calendar_thaw", object)
 
   return(invisible(w))
 } 
@@ -2450,7 +2450,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_editable_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_editable_get_type")
 
   return(w)
 } 
@@ -2462,7 +2462,7 @@ function(object, event = NULL)
   checkPtrType(object, "GtkCellEditable")
   if (!is.null( event )) checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_cell_editable_start_editing", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_editable_start_editing", object, event)
 
   return(invisible(w))
 } 
@@ -2473,7 +2473,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellEditable")
 
-  w <- .RGtkCall("S_gtk_cell_editable_editing_done", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_editable_editing_done", object)
 
   return(invisible(w))
 } 
@@ -2484,7 +2484,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellEditable")
 
-  w <- .RGtkCall("S_gtk_cell_editable_remove_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_editable_remove_widget", object)
 
   return(invisible(w))
 } 
@@ -2495,7 +2495,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_layout_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_get_type")
 
   return(w)
 } 
@@ -2508,7 +2508,7 @@ function(object, cell, expand = TRUE)
   checkPtrType(cell, "GtkCellRenderer")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_cell_layout_pack_start", object, cell, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_pack_start", object, cell, expand)
 
   return(invisible(w))
 } 
@@ -2521,7 +2521,7 @@ function(object, cell, expand = TRUE)
   checkPtrType(cell, "GtkCellRenderer")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_cell_layout_pack_end", object, cell, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_pack_end", object, cell, expand)
 
   return(invisible(w))
 } 
@@ -2532,7 +2532,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellLayout")
 
-  w <- .RGtkCall("S_gtk_cell_layout_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_clear", object)
 
   return(invisible(w))
 } 
@@ -2546,7 +2546,7 @@ function(object, cell, attribute, column)
   attribute <- as.character(attribute)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_cell_layout_add_attribute", object, cell, attribute, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_add_attribute", object, cell, attribute, column)
 
   return(invisible(w))
 } 
@@ -2560,7 +2560,7 @@ function(object, cell, func, func.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_cell_layout_set_cell_data_func", object, cell, func, func.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_set_cell_data_func", object, cell, func, func.data)
 
   return(w)
 } 
@@ -2572,7 +2572,7 @@ function(object, cell)
   checkPtrType(object, "GtkCellLayout")
   checkPtrType(cell, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_cell_layout_clear_attributes", object, cell, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_clear_attributes", object, cell)
 
   return(invisible(w))
 } 
@@ -2585,7 +2585,7 @@ function(object, cell, position)
   checkPtrType(cell, "GtkCellRenderer")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_cell_layout_reorder", object, cell, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_layout_reorder", object, cell, position)
 
   return(invisible(w))
 } 
@@ -2596,7 +2596,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_get_type")
 
   return(w)
 } 
@@ -2609,7 +2609,7 @@ function(object, widget, cell.area = NULL)
   checkPtrType(widget, "GtkWidget")
   if (!is.null( cell.area )) cell.area <- as.GdkRectangle(cell.area)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_get_size", object, widget, cell.area, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_get_size", object, widget, cell.area)
 
   return(invisible(w))
 } 
@@ -2626,7 +2626,7 @@ function(object, window, widget, background.area, cell.area, expose.area, flags)
   expose.area <- as.GdkRectangle(expose.area)
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_render", object, window, widget, background.area, cell.area, expose.area, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_render", object, window, widget, background.area, cell.area, expose.area, flags)
 
   return(invisible(w))
 } 
@@ -2643,7 +2643,7 @@ function(object, event, widget, path, background.area, cell.area, flags)
   cell.area <- as.GdkRectangle(cell.area)
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_activate", object, event, widget, path, background.area, cell.area, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_activate", object, event, widget, path, background.area, cell.area, flags)
 
   return(w)
 } 
@@ -2660,7 +2660,7 @@ function(object, event, widget, path, background.area, cell.area, flags)
   cell.area <- as.GdkRectangle(cell.area)
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_start_editing", object, event, widget, path, background.area, cell.area, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_start_editing", object, event, widget, path, background.area, cell.area, flags)
 
   return(w)
 } 
@@ -2673,7 +2673,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_set_fixed_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_set_fixed_size", object, width, height)
 
   return(invisible(w))
 } 
@@ -2684,7 +2684,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_cell_renderer_get_fixed_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_get_fixed_size", object)
 
   return(invisible(w))
 } 
@@ -2695,7 +2695,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_cell_renderer_editing_canceled", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_editing_canceled", object)
 
   return(invisible(w))
 } 
@@ -2707,7 +2707,7 @@ function(object, canceled)
   checkPtrType(object, "GtkCellRenderer")
   canceled <- as.logical(canceled)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_stop_editing", object, canceled, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_stop_editing", object, canceled)
 
   return(invisible(w))
 } 
@@ -2718,7 +2718,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_combo_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_combo_get_type")
 
   return(w)
 } 
@@ -2729,7 +2729,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_combo_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_combo_new")
 
   return(w)
 } 
@@ -2740,7 +2740,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_pixbuf_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_pixbuf_get_type")
 
   return(w)
 } 
@@ -2751,7 +2751,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_pixbuf_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_pixbuf_new")
 
   return(w)
 } 
@@ -2762,7 +2762,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_progress_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_progress_get_type")
 
   return(w)
 } 
@@ -2773,7 +2773,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_progress_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_progress_new")
 
   return(w)
 } 
@@ -2784,7 +2784,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_text_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_text_get_type")
 
   return(w)
 } 
@@ -2795,7 +2795,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_text_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_text_new")
 
   return(w)
 } 
@@ -2807,7 +2807,7 @@ function(object, number.of.rows)
   checkPtrType(object, "GtkCellRendererText")
   number.of.rows <- as.integer(number.of.rows)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_text_set_fixed_height_from_font", object, number.of.rows, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_text_set_fixed_height_from_font", object, number.of.rows)
 
   return(invisible(w))
 } 
@@ -2818,7 +2818,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_type")
 
   return(w)
 } 
@@ -2829,7 +2829,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_new")
 
   return(w)
 } 
@@ -2840,7 +2840,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellRendererToggle")
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_radio", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_radio", object)
 
   return(w)
 } 
@@ -2852,7 +2852,7 @@ function(object, radio)
   checkPtrType(object, "GtkCellRendererToggle")
   radio <- as.logical(radio)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_set_radio", object, radio, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_set_radio", object, radio)
 
   return(invisible(w))
 } 
@@ -2863,7 +2863,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellRendererToggle")
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_get_active", object)
 
   return(w)
 } 
@@ -2875,7 +2875,7 @@ function(object, setting)
   checkPtrType(object, "GtkCellRendererToggle")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_cell_renderer_toggle_set_active", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_toggle_set_active", object, setting)
 
   return(invisible(w))
 } 
@@ -2886,7 +2886,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_view_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_get_type")
 
   return(w)
 } 
@@ -2897,7 +2897,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_view_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -2911,7 +2911,7 @@ function(text)
 {
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_cell_view_new_with_text", text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_new_with_text", text)
 
   return(w)
 } 
@@ -2922,7 +2922,7 @@ function(markup)
 {
   markup <- as.character(markup)
 
-  w <- .RGtkCall("S_gtk_cell_view_new_with_markup", markup, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_new_with_markup", markup)
 
   return(w)
 } 
@@ -2933,7 +2933,7 @@ function(pixbuf)
 {
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_cell_view_new_with_pixbuf", pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_new_with_pixbuf", pixbuf)
 
   return(w)
 } 
@@ -2945,7 +2945,7 @@ function(object, model = NULL)
   checkPtrType(object, "GtkCellView")
   if (!is.null( model )) checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_cell_view_set_model", object, model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_set_model", object, model)
 
   return(invisible(w))
 } 
@@ -2957,7 +2957,7 @@ function(object, path = NULL)
   checkPtrType(object, "GtkCellView")
   if (!is.null( path )) checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_cell_view_set_displayed_row", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_set_displayed_row", object, path)
 
   return(invisible(w))
 } 
@@ -2968,7 +2968,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellView")
 
-  w <- .RGtkCall("S_gtk_cell_view_get_displayed_row", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_get_displayed_row", object)
 
   return(w)
 } 
@@ -2980,7 +2980,7 @@ function(object, path)
   checkPtrType(object, "GtkCellView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_cell_view_get_size_of_row", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_get_size_of_row", object, path)
 
   return(w)
 } 
@@ -2992,7 +2992,7 @@ function(object, color)
   checkPtrType(object, "GtkCellView")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_cell_view_set_background_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_set_background_color", object, color)
 
   return(invisible(w))
 } 
@@ -3003,7 +3003,7 @@ function(object)
 {
   checkPtrType(object, "GtkCellView")
 
-  w <- .RGtkCall("S_gtk_cell_view_get_cell_renderers", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_view_get_cell_renderers", object)
 
   return(w)
 } 
@@ -3015,7 +3015,7 @@ function(object, targets)
   checkPtrType(object, "GtkClipboard")
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
 
-  w <- .RGtkCall("S_gtk_clipboard_set_can_store", object, targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_set_can_store", object, targets)
 
   return(w)
 } 
@@ -3026,7 +3026,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_store", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_store", object)
 
   return(invisible(w))
 } 
@@ -3037,7 +3037,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_check_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_button_get_type")
 
   return(w)
 } 
@@ -3048,7 +3048,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_check_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3062,7 +3062,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_check_button_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_button_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3076,7 +3076,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_check_button_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_button_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3090,7 +3090,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_check_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_get_type")
 
   return(w)
 } 
@@ -3101,7 +3101,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_check_menu_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3115,7 +3115,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3129,7 +3129,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3144,7 +3144,7 @@ function(object, is.active)
   checkPtrType(object, "GtkCheckMenuItem")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_set_active", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_set_active", object, is.active)
 
   return(invisible(w))
 } 
@@ -3155,7 +3155,7 @@ function(object)
 {
   checkPtrType(object, "GtkCheckMenuItem")
 
-  w <- .RGtkCall("S_gtk_check_menu_item_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_get_active", object)
 
   return(w)
 } 
@@ -3166,7 +3166,7 @@ function(object)
 {
   checkPtrType(object, "GtkCheckMenuItem")
 
-  w <- .RGtkCall("S_gtk_check_menu_item_toggled", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_toggled", object)
 
   return(invisible(w))
 } 
@@ -3178,7 +3178,7 @@ function(object, setting)
   checkPtrType(object, "GtkCheckMenuItem")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_set_inconsistent", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_set_inconsistent", object, setting)
 
   return(invisible(w))
 } 
@@ -3189,7 +3189,7 @@ function(object)
 {
   checkPtrType(object, "GtkCheckMenuItem")
 
-  w <- .RGtkCall("S_gtk_check_menu_item_get_inconsistent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_get_inconsistent", object)
 
   return(w)
 } 
@@ -3201,7 +3201,7 @@ function(object, draw.as.radio)
   checkPtrType(object, "GtkCheckMenuItem")
   draw.as.radio <- as.logical(draw.as.radio)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_set_draw_as_radio", object, draw.as.radio, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_set_draw_as_radio", object, draw.as.radio)
 
   return(invisible(w))
 } 
@@ -3212,7 +3212,7 @@ function(object)
 {
   checkPtrType(object, "GtkCheckMenuItem")
 
-  w <- .RGtkCall("S_gtk_check_menu_item_get_draw_as_radio", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_get_draw_as_radio", object)
 
   return(w)
 } 
@@ -3227,7 +3227,7 @@ function(object, always)
   checkPtrType(object, "GtkCheckMenuItem")
   always <- as.logical(always)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_set_show_toggle", object, always, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_set_show_toggle", object, always)
 
   return(invisible(w))
 } 
@@ -3242,7 +3242,7 @@ function(object, is.active)
   checkPtrType(object, "GtkCheckMenuItem")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_check_menu_item_set_state", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_menu_item_set_state", object, is.active)
 
   return(invisible(w))
 } 
@@ -3253,7 +3253,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_clipboard_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_get_type")
 
   return(w)
 } 
@@ -3265,7 +3265,7 @@ function(display, selection = "GDK_SELECTION_CLIPBOARD")
   checkPtrType(display, "GdkDisplay")
   selection <- as.GdkAtom(selection)
 
-  w <- .RGtkCall("S_gtk_clipboard_get_for_display", display, selection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_get_for_display", display, selection)
 
   return(w)
 } 
@@ -3276,7 +3276,7 @@ function(selection = "GDK_SELECTION_CLIPBOARD")
 {
   selection <- as.GdkAtom(selection)
 
-  w <- .RGtkCall("S_gtk_clipboard_get", selection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_get", selection)
 
   return(w)
 } 
@@ -3287,7 +3287,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_get_display", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_get_display", object)
 
   return(w)
 } 
@@ -3301,7 +3301,7 @@ function(object, targets, get.func, user.data = NULL)
   get.func <- as.function(get.func)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_set_with_data", object, targets, get.func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_set_with_data", object, targets, get.func, user.data)
 
   return(w)
 } 
@@ -3312,7 +3312,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_get_owner", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_get_owner", object)
 
   return(w)
 } 
@@ -3323,7 +3323,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_clear", object)
 
   return(invisible(w))
 } 
@@ -3336,7 +3336,7 @@ function(object, text, len = -1)
   text <- as.character(text)
   len <- as.integer(len)
 
-  w <- .RGtkCall("S_gtk_clipboard_set_text", object, text, len, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_set_text", object, text, len)
 
   return(invisible(w))
 } 
@@ -3348,7 +3348,7 @@ function(object, pixbuf)
   checkPtrType(object, "GtkClipboard")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_clipboard_set_image", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_set_image", object, pixbuf)
 
   return(invisible(w))
 } 
@@ -3362,7 +3362,7 @@ function(object, target, callback, user.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_request_contents", object, target, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_request_contents", object, target, callback, user.data)
 
   return(invisible(w))
 } 
@@ -3375,7 +3375,7 @@ function(object, callback, user.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_request_image", object, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_request_image", object, callback, user.data)
 
   return(invisible(w))
 } 
@@ -3388,7 +3388,7 @@ function(object, callback, user.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_request_text", object, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_request_text", object, callback, user.data)
 
   return(invisible(w))
 } 
@@ -3401,7 +3401,7 @@ function(object, callback, user.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_request_targets", object, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_request_targets", object, callback, user.data)
 
   return(invisible(w))
 } 
@@ -3413,7 +3413,7 @@ function(object, target)
   checkPtrType(object, "GtkClipboard")
   target <- as.GdkAtom(target)
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_for_contents", object, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_for_contents", object, target)
 
   return(w)
 } 
@@ -3424,7 +3424,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_for_image", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_for_image", object)
 
   return(w)
 } 
@@ -3435,7 +3435,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_for_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_for_text", object)
 
   return(w)
 } 
@@ -3446,7 +3446,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_is_image_available", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_is_image_available", object)
 
   return(w)
 } 
@@ -3457,7 +3457,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_is_text_available", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_is_text_available", object)
 
   return(w)
 } 
@@ -3469,7 +3469,7 @@ function(object, target)
   checkPtrType(object, "GtkClipboard")
   target <- as.GdkAtom(target)
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_is_target_available", object, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_is_target_available", object, target)
 
   return(w)
 } 
@@ -3480,7 +3480,7 @@ function(object)
 {
   checkPtrType(object, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_for_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_for_targets", object)
 
   return(w)
 } 
@@ -3491,7 +3491,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_clist_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_type")
 
   return(w)
 } 
@@ -3505,7 +3505,7 @@ function(columns = 1, show = TRUE)
 
   columns <- as.integer(columns)
 
-  w <- .RGtkCall("S_gtk_clist_new", columns, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_new", columns)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3523,7 +3523,7 @@ function(columns = 1, titles, show = TRUE)
   columns <- as.integer(columns)
   titles <- as.list(as.character(titles))
 
-  w <- .RGtkCall("S_gtk_clist_new_with_titles", columns, titles, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_new_with_titles", columns, titles)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -3538,7 +3538,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkCList")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_clist_set_hadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_hadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -3550,7 +3550,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkCList")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_clist_set_vadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_vadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -3561,7 +3561,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_get_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_hadjustment", object)
 
   return(w)
 } 
@@ -3572,7 +3572,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_get_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_vadjustment", object)
 
   return(w)
 } 
@@ -3584,7 +3584,7 @@ function(object, type)
   checkPtrType(object, "GtkCList")
   
 
-  w <- .RGtkCall("S_gtk_clist_set_shadow_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_shadow_type", object, type)
 
   return(invisible(w))
 } 
@@ -3596,7 +3596,7 @@ function(object, mode)
   checkPtrType(object, "GtkCList")
   
 
-  w <- .RGtkCall("S_gtk_clist_set_selection_mode", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_selection_mode", object, mode)
 
   return(invisible(w))
 } 
@@ -3608,7 +3608,7 @@ function(object, reorderable)
   checkPtrType(object, "GtkCList")
   reorderable <- as.logical(reorderable)
 
-  w <- .RGtkCall("S_gtk_clist_set_reorderable", object, reorderable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_reorderable", object, reorderable)
 
   return(invisible(w))
 } 
@@ -3620,7 +3620,7 @@ function(object, use.icons)
   checkPtrType(object, "GtkCList")
   use.icons <- as.logical(use.icons)
 
-  w <- .RGtkCall("S_gtk_clist_set_use_drag_icons", object, use.icons, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_use_drag_icons", object, use.icons)
 
   return(invisible(w))
 } 
@@ -3633,7 +3633,7 @@ function(object, button, button.actions)
   button <- as.numeric(button)
   button.actions <- as.raw(button.actions)
 
-  w <- .RGtkCall("S_gtk_clist_set_button_actions", object, button, button.actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_button_actions", object, button, button.actions)
 
   return(invisible(w))
 } 
@@ -3644,7 +3644,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_freeze", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_freeze", object)
 
   return(invisible(w))
 } 
@@ -3655,7 +3655,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_thaw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_thaw", object)
 
   return(invisible(w))
 } 
@@ -3666,7 +3666,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_column_titles_show", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_titles_show", object)
 
   return(invisible(w))
 } 
@@ -3677,7 +3677,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_column_titles_hide", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_titles_hide", object)
 
   return(invisible(w))
 } 
@@ -3689,7 +3689,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_column_title_active", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_title_active", object, column)
 
   return(invisible(w))
 } 
@@ -3701,7 +3701,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_column_title_passive", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_title_passive", object, column)
 
   return(invisible(w))
 } 
@@ -3712,7 +3712,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_column_titles_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_titles_active", object)
 
   return(invisible(w))
 } 
@@ -3723,7 +3723,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_column_titles_passive", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_column_titles_passive", object)
 
   return(invisible(w))
 } 
@@ -3736,7 +3736,7 @@ function(object, column, title)
   column <- as.integer(column)
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_title", object, column, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_title", object, column, title)
 
   return(invisible(w))
 } 
@@ -3748,7 +3748,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_column_title", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_column_title", object, column)
 
   return(w)
 } 
@@ -3761,7 +3761,7 @@ function(object, column, widget)
   column <- as.integer(column)
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_clist_set_column_widget", object, column, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_widget", object, column, widget)
 
   return(invisible(w))
 } 
@@ -3773,7 +3773,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_column_widget", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_column_widget", object, column)
 
   return(w)
 } 
@@ -3786,7 +3786,7 @@ function(object, column, justification)
   column <- as.integer(column)
   
 
-  w <- .RGtkCall("S_gtk_clist_set_column_justification", object, column, justification, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_justification", object, column, justification)
 
   return(invisible(w))
 } 
@@ -3799,7 +3799,7 @@ function(object, column, visible)
   column <- as.integer(column)
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_visibility", object, column, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_visibility", object, column, visible)
 
   return(invisible(w))
 } 
@@ -3812,7 +3812,7 @@ function(object, column, resizeable)
   column <- as.integer(column)
   resizeable <- as.logical(resizeable)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_resizeable", object, column, resizeable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_resizeable", object, column, resizeable)
 
   return(invisible(w))
 } 
@@ -3825,7 +3825,7 @@ function(object, column, auto.resize)
   column <- as.integer(column)
   auto.resize <- as.logical(auto.resize)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_auto_resize", object, column, auto.resize, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_auto_resize", object, column, auto.resize)
 
   return(invisible(w))
 } 
@@ -3836,7 +3836,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_columns_autosize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_columns_autosize", object)
 
   return(w)
 } 
@@ -3848,7 +3848,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_optimal_column_width", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_optimal_column_width", object, column)
 
   return(w)
 } 
@@ -3861,7 +3861,7 @@ function(object, column, width)
   column <- as.integer(column)
   width <- as.integer(width)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_width", object, column, width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_width", object, column, width)
 
   return(invisible(w))
 } 
@@ -3874,7 +3874,7 @@ function(object, column, min.width)
   column <- as.integer(column)
   min.width <- as.integer(min.width)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_min_width", object, column, min.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_min_width", object, column, min.width)
 
   return(invisible(w))
 } 
@@ -3887,7 +3887,7 @@ function(object, column, max.width)
   column <- as.integer(column)
   max.width <- as.integer(max.width)
 
-  w <- .RGtkCall("S_gtk_clist_set_column_max_width", object, column, max.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_column_max_width", object, column, max.width)
 
   return(invisible(w))
 } 
@@ -3899,7 +3899,7 @@ function(object, height)
   checkPtrType(object, "GtkCList")
   height <- as.numeric(height)
 
-  w <- .RGtkCall("S_gtk_clist_set_row_height", object, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_row_height", object, height)
 
   return(invisible(w))
 } 
@@ -3914,7 +3914,7 @@ function(object, row, column, row.align, col.align)
   row.align <- as.numeric(row.align)
   col.align <- as.numeric(col.align)
 
-  w <- .RGtkCall("S_gtk_clist_moveto", object, row, column, row.align, col.align, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_moveto", object, row, column, row.align, col.align)
 
   return(invisible(w))
 } 
@@ -3926,7 +3926,7 @@ function(object, row)
   checkPtrType(object, "GtkCList")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_gtk_clist_row_is_visible", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_row_is_visible", object, row)
 
   return(w)
 } 
@@ -3939,7 +3939,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_cell_type", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_cell_type", object, row, column)
 
   return(w)
 } 
@@ -3953,7 +3953,7 @@ function(object, row, column, text)
   column <- as.integer(column)
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_clist_set_text", object, row, column, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_text", object, row, column, text)
 
   return(invisible(w))
 } 
@@ -3966,7 +3966,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_text", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_text", object, row, column)
 
   return(w)
 } 
@@ -3981,7 +3981,7 @@ function(object, row, column, pixmap, mask = NULL)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_clist_set_pixmap", object, row, column, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_pixmap", object, row, column, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -3994,7 +3994,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_pixmap", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_pixmap", object, row, column)
 
   return(w)
 } 
@@ -4011,7 +4011,7 @@ function(object, row, column, text, spacing, pixmap, mask)
   checkPtrType(pixmap, "GdkPixmap")
   checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_clist_set_pixtext", object, row, column, text, spacing, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_pixtext", object, row, column, text, spacing, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -4024,7 +4024,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_pixtext", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_pixtext", object, row, column)
 
   return(w)
 } 
@@ -4037,7 +4037,7 @@ function(object, row, color)
   row <- as.integer(row)
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_clist_set_foreground", object, row, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_foreground", object, row, color)
 
   return(invisible(w))
 } 
@@ -4050,7 +4050,7 @@ function(object, row, color)
   row <- as.integer(row)
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_clist_set_background", object, row, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_background", object, row, color)
 
   return(invisible(w))
 } 
@@ -4064,7 +4064,7 @@ function(object, row, column, style)
   column <- as.integer(column)
   checkPtrType(style, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_clist_set_cell_style", object, row, column, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_cell_style", object, row, column, style)
 
   return(invisible(w))
 } 
@@ -4077,7 +4077,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_get_cell_style", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_cell_style", object, row, column)
 
   return(w)
 } 
@@ -4090,7 +4090,7 @@ function(object, row, style)
   row <- as.integer(row)
   checkPtrType(style, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_clist_set_row_style", object, row, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_row_style", object, row, style)
 
   return(invisible(w))
 } 
@@ -4102,7 +4102,7 @@ function(object, row)
   checkPtrType(object, "GtkCList")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_gtk_clist_get_row_style", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_row_style", object, row)
 
   return(w)
 } 
@@ -4117,7 +4117,7 @@ function(object, row, column, vertical, horizontal)
   vertical <- as.integer(vertical)
   horizontal <- as.integer(horizontal)
 
-  w <- .RGtkCall("S_gtk_clist_set_shift", object, row, column, vertical, horizontal, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_shift", object, row, column, vertical, horizontal)
 
   return(invisible(w))
 } 
@@ -4130,7 +4130,7 @@ function(object, row, selectable)
   row <- as.integer(row)
   selectable <- as.logical(selectable)
 
-  w <- .RGtkCall("S_gtk_clist_set_selectable", object, row, selectable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_selectable", object, row, selectable)
 
   return(invisible(w))
 } 
@@ -4142,7 +4142,7 @@ function(object, row)
   checkPtrType(object, "GtkCList")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_gtk_clist_get_selectable", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_selectable", object, row)
 
   return(w)
 } 
@@ -4154,7 +4154,7 @@ function(object, text)
   checkPtrType(object, "GtkCList")
   text <- as.list(as.character(text))
 
-  w <- .RGtkCall("S_gtk_clist_prepend", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_prepend", object, text)
 
   return(w)
 } 
@@ -4166,7 +4166,7 @@ function(object, text)
   checkPtrType(object, "GtkCList")
   text <- as.list(as.character(text))
 
-  w <- .RGtkCall("S_gtk_clist_append", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_append", object, text)
 
   return(w)
 } 
@@ -4179,7 +4179,7 @@ function(object, row, text)
   row <- as.integer(row)
   text <- as.list(as.character(text))
 
-  w <- .RGtkCall("S_gtk_clist_insert", object, row, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_insert", object, row, text)
 
   return(w)
 } 
@@ -4191,7 +4191,7 @@ function(object, row)
   checkPtrType(object, "GtkCList")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_gtk_clist_remove", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_remove", object, row)
 
   return(invisible(w))
 } 
@@ -4204,7 +4204,7 @@ function(object, row, data = NULL)
   row <- as.integer(row)
   
 
-  w <- .RGtkCall("S_gtk_clist_set_row_data", object, row, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_row_data", object, row, data)
 
   return(invisible(w))
 } 
@@ -4217,7 +4217,7 @@ function(object, row, data = NULL)
   row <- as.integer(row)
   
 
-  w <- .RGtkCall("S_gtk_clist_set_row_data_full", object, row, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_row_data_full", object, row, data)
 
   return(w)
 } 
@@ -4229,7 +4229,7 @@ function(object, row)
   checkPtrType(object, "GtkCList")
   row <- as.integer(row)
 
-  w <- .RGtkCall("S_gtk_clist_get_row_data", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_row_data", object, row)
 
   return(w)
 } 
@@ -4241,7 +4241,7 @@ function(object, data)
   checkPtrType(object, "GtkCList")
   
 
-  w <- .RGtkCall("S_gtk_clist_find_row_from_data", object, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_find_row_from_data", object, data)
 
   return(w)
 } 
@@ -4254,7 +4254,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_select_row", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_select_row", object, row, column)
 
   return(invisible(w))
 } 
@@ -4267,7 +4267,7 @@ function(object, row, column)
   row <- as.integer(row)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_unselect_row", object, row, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_unselect_row", object, row, column)
 
   return(invisible(w))
 } 
@@ -4278,7 +4278,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_undo_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_undo_selection", object)
 
   return(invisible(w))
 } 
@@ -4289,7 +4289,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_clear", object)
 
   return(invisible(w))
 } 
@@ -4302,7 +4302,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_clist_get_selection_info", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_get_selection_info", object, x, y)
 
   return(w)
 } 
@@ -4313,7 +4313,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_select_all", object)
 
   return(invisible(w))
 } 
@@ -4324,7 +4324,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -4337,7 +4337,7 @@ function(object, row1, row2)
   row1 <- as.integer(row1)
   row2 <- as.integer(row2)
 
-  w <- .RGtkCall("S_gtk_clist_swap_rows", object, row1, row2, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_swap_rows", object, row1, row2)
 
   return(invisible(w))
 } 
@@ -4350,7 +4350,7 @@ function(object, source.row, dest.row)
   source.row <- as.integer(source.row)
   dest.row <- as.integer(dest.row)
 
-  w <- .RGtkCall("S_gtk_clist_row_move", object, source.row, dest.row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_row_move", object, source.row, dest.row)
 
   return(invisible(w))
 } 
@@ -4362,7 +4362,7 @@ function(object, column)
   checkPtrType(object, "GtkCList")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_clist_set_sort_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_sort_column", object, column)
 
   return(invisible(w))
 } 
@@ -4374,7 +4374,7 @@ function(object, sort.type)
   checkPtrType(object, "GtkCList")
   
 
-  w <- .RGtkCall("S_gtk_clist_set_sort_type", object, sort.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_sort_type", object, sort.type)
 
   return(invisible(w))
 } 
@@ -4385,7 +4385,7 @@ function(object)
 {
   checkPtrType(object, "GtkCList")
 
-  w <- .RGtkCall("S_gtk_clist_sort", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_sort", object)
 
   return(invisible(w))
 } 
@@ -4397,7 +4397,7 @@ function(object, auto.sort)
   checkPtrType(object, "GtkCList")
   auto.sort <- as.logical(auto.sort)
 
-  w <- .RGtkCall("S_gtk_clist_set_auto_sort", object, auto.sort, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_set_auto_sort", object, auto.sort)
 
   return(invisible(w))
 } 
@@ -4408,7 +4408,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_color_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_get_type")
 
   return(w)
 } 
@@ -4419,7 +4419,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_color_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4433,7 +4433,7 @@ function(color, show = TRUE)
 {
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_button_new_with_color", color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_new_with_color", color)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4448,7 +4448,7 @@ function(object, color)
   checkPtrType(object, "GtkColorButton")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_button_set_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_set_color", object, color)
 
   return(invisible(w))
 } 
@@ -4460,7 +4460,7 @@ function(object, alpha)
   checkPtrType(object, "GtkColorButton")
   alpha <- as.integer(alpha)
 
-  w <- .RGtkCall("S_gtk_color_button_set_alpha", object, alpha, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_set_alpha", object, alpha)
 
   return(invisible(w))
 } 
@@ -4472,7 +4472,7 @@ function(object, color)
   checkPtrType(object, "GtkColorButton")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_button_get_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_get_color", object, color)
 
   return(invisible(w))
 } 
@@ -4483,7 +4483,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorButton")
 
-  w <- .RGtkCall("S_gtk_color_button_get_alpha", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_get_alpha", object)
 
   return(w)
 } 
@@ -4495,7 +4495,7 @@ function(object, use.alpha)
   checkPtrType(object, "GtkColorButton")
   use.alpha <- as.logical(use.alpha)
 
-  w <- .RGtkCall("S_gtk_color_button_set_use_alpha", object, use.alpha, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_set_use_alpha", object, use.alpha)
 
   return(invisible(w))
 } 
@@ -4506,7 +4506,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorButton")
 
-  w <- .RGtkCall("S_gtk_color_button_get_use_alpha", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_get_use_alpha", object)
 
   return(w)
 } 
@@ -4518,7 +4518,7 @@ function(object, title)
   checkPtrType(object, "GtkColorButton")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_color_button_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -4529,7 +4529,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorButton")
 
-  w <- .RGtkCall("S_gtk_color_button_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_button_get_title", object)
 
   return(w)
 } 
@@ -4540,7 +4540,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_color_selection_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_type")
 
   return(w)
 } 
@@ -4551,7 +4551,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_color_selection_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4565,7 +4565,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_has_opacity_control", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_has_opacity_control", object)
 
   return(w)
 } 
@@ -4577,7 +4577,7 @@ function(object, has.opacity)
   checkPtrType(object, "GtkColorSelection")
   has.opacity <- as.logical(has.opacity)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_has_opacity_control", object, has.opacity, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_has_opacity_control", object, has.opacity)
 
   return(invisible(w))
 } 
@@ -4588,7 +4588,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_has_palette", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_has_palette", object)
 
   return(w)
 } 
@@ -4600,7 +4600,7 @@ function(object, has.palette)
   checkPtrType(object, "GtkColorSelection")
   has.palette <- as.logical(has.palette)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_has_palette", object, has.palette, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_has_palette", object, has.palette)
 
   return(invisible(w))
 } 
@@ -4612,7 +4612,7 @@ function(object, color)
   checkPtrType(object, "GtkColorSelection")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_current_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_current_color", object, color)
 
   return(invisible(w))
 } 
@@ -4624,7 +4624,7 @@ function(object, alpha)
   checkPtrType(object, "GtkColorSelection")
   alpha <- as.integer(alpha)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_current_alpha", object, alpha, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_current_alpha", object, alpha)
 
   return(invisible(w))
 } 
@@ -4635,7 +4635,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_current_color", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_current_color", object)
 
   return(w)
 } 
@@ -4646,7 +4646,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_current_alpha", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_current_alpha", object)
 
   return(w)
 } 
@@ -4658,7 +4658,7 @@ function(object, color)
   checkPtrType(object, "GtkColorSelection")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_previous_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_previous_color", object, color)
 
   return(invisible(w))
 } 
@@ -4670,7 +4670,7 @@ function(object, alpha)
   checkPtrType(object, "GtkColorSelection")
   alpha <- as.integer(alpha)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_previous_alpha", object, alpha, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_previous_alpha", object, alpha)
 
   return(invisible(w))
 } 
@@ -4682,7 +4682,7 @@ function(object, color)
   checkPtrType(object, "GtkColorSelection")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_color_selection_get_previous_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_previous_color", object, color)
 
   return(invisible(w))
 } 
@@ -4693,7 +4693,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_previous_alpha", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_previous_alpha", object)
 
   return(w)
 } 
@@ -4704,7 +4704,7 @@ function(object)
 {
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_is_adjusting", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_is_adjusting", object)
 
   return(w)
 } 
@@ -4715,7 +4715,7 @@ function(str)
 {
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_color_selection_palette_from_string", str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_palette_from_string", str)
 
   return(w)
 } 
@@ -4726,7 +4726,7 @@ function(colors)
 {
   colors <- lapply(colors, function(x) { x <- as.GdkColor(x); x })
 
-  w <- .RGtkCall("S_gtk_color_selection_palette_to_string", colors, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_palette_to_string", colors)
 
   return(w)
 } 
@@ -4737,7 +4737,7 @@ function(func)
 {
   func <- as.function(func)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_change_palette_hook", func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_change_palette_hook", func)
 
   return(w)
 } 
@@ -4748,7 +4748,7 @@ function(func)
 {
   func <- as.function(func)
 
-  w <- .RGtkCall("S_gtk_color_selection_set_change_palette_with_screen_hook", func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_change_palette_with_screen_hook", func)
 
   return(w)
 } 
@@ -4763,7 +4763,7 @@ function(object, color)
   checkPtrType(object, "GtkColorSelection")
   color <- as.list(as.numeric(color))
 
-  w <- .RGtkCall("S_gtk_color_selection_set_color", object, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_color", object, color)
 
   return(invisible(w))
 } 
@@ -4777,7 +4777,7 @@ function(object)
 
   checkPtrType(object, "GtkColorSelection")
 
-  w <- .RGtkCall("S_gtk_color_selection_get_color", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_get_color", object)
 
   return(w)
 } 
@@ -4789,7 +4789,7 @@ function(object, policy)
   checkPtrType(object, "GtkColorSelection")
   
 
-  w <- .RGtkCall("S_gtk_color_selection_set_update_policy", object, policy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_set_update_policy", object, policy)
 
   return(invisible(w))
 } 
@@ -4800,7 +4800,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_color_selection_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_dialog_get_type")
 
   return(w)
 } 
@@ -4811,7 +4811,7 @@ function(title = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_color_selection_dialog_new", title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_color_selection_dialog_new", title)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4825,7 +4825,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_get_type")
 
   return(w)
 } 
@@ -4839,7 +4839,7 @@ function(show = TRUE)
 
   
 
-  w <- .RGtkCall("S_gtk_combo_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4855,7 +4855,7 @@ function(object, val, ok.if.empty)
   val <- as.logical(val)
   ok.if.empty <- as.logical(ok.if.empty)
 
-  w <- .RGtkCall("S_gtk_combo_set_value_in_list", object, val, ok.if.empty, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_value_in_list", object, val, ok.if.empty)
 
   return(invisible(w))
 } 
@@ -4867,7 +4867,7 @@ function(object, val)
   checkPtrType(object, "GtkCombo")
   val <- as.logical(val)
 
-  w <- .RGtkCall("S_gtk_combo_set_use_arrows", object, val, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_use_arrows", object, val)
 
   return(invisible(w))
 } 
@@ -4879,7 +4879,7 @@ function(object, val)
   checkPtrType(object, "GtkCombo")
   val <- as.logical(val)
 
-  w <- .RGtkCall("S_gtk_combo_set_use_arrows_always", object, val, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_use_arrows_always", object, val)
 
   return(invisible(w))
 } 
@@ -4891,7 +4891,7 @@ function(object, val)
   checkPtrType(object, "GtkCombo")
   val <- as.logical(val)
 
-  w <- .RGtkCall("S_gtk_combo_set_case_sensitive", object, val, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_case_sensitive", object, val)
 
   return(invisible(w))
 } 
@@ -4904,7 +4904,7 @@ function(object, item, item.value)
   checkPtrType(item, "GtkItem")
   item.value <- as.character(item.value)
 
-  w <- .RGtkCall("S_gtk_combo_set_item_string", object, item, item.value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_item_string", object, item, item.value)
 
   return(invisible(w))
 } 
@@ -4916,7 +4916,7 @@ function(object, strings)
   checkPtrType(object, "GtkCombo")
   strings <- as.GList(strings)
 
-  w <- .RGtkCall("S_gtk_combo_set_popdown_strings", object, strings, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_set_popdown_strings", object, strings)
 
   return(invisible(w))
 } 
@@ -4927,7 +4927,7 @@ function(object)
 {
   checkPtrType(object, "GtkCombo")
 
-  w <- .RGtkCall("S_gtk_combo_disable_activate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_disable_activate", object)
 
   return(invisible(w))
 } 
@@ -4938,7 +4938,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_type")
 
   return(w)
 } 
@@ -4949,7 +4949,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4963,7 +4963,7 @@ function(model, show = TRUE)
 {
   checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_combo_box_new_with_model", model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_new_with_model", model)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -4978,7 +4978,7 @@ function(object, width)
   checkPtrType(object, "GtkComboBox")
   width <- as.integer(width)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_wrap_width", object, width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_wrap_width", object, width)
 
   return(invisible(w))
 } 
@@ -4990,7 +4990,7 @@ function(object, row.span)
   checkPtrType(object, "GtkComboBox")
   row.span <- as.integer(row.span)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_row_span_column", object, row.span, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_row_span_column", object, row.span)
 
   return(invisible(w))
 } 
@@ -5002,7 +5002,7 @@ function(object, column.span)
   checkPtrType(object, "GtkComboBox")
   column.span <- as.integer(column.span)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_column_span_column", object, column.span, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_column_span_column", object, column.span)
 
   return(invisible(w))
 } 
@@ -5013,7 +5013,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_active", object)
 
   return(w)
 } 
@@ -5025,7 +5025,7 @@ function(object, index)
   checkPtrType(object, "GtkComboBox")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_active", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_active", object, index)
 
   return(invisible(w))
 } 
@@ -5036,7 +5036,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_active_iter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_active_iter", object)
 
   return(w)
 } 
@@ -5048,7 +5048,7 @@ function(object, iter)
   checkPtrType(object, "GtkComboBox")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_combo_box_set_active_iter", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_active_iter", object, iter)
 
   return(invisible(w))
 } 
@@ -5060,7 +5060,7 @@ function(object, model = NULL)
   checkPtrType(object, "GtkComboBox")
   if (!is.null( model )) checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_combo_box_set_model", object, model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_model", object, model)
 
   return(invisible(w))
 } 
@@ -5071,7 +5071,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_model", object)
 
   return(w)
 } 
@@ -5082,7 +5082,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_new_text", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_new_text")
 
   return(w)
 } 
@@ -5094,7 +5094,7 @@ function(object, text)
   checkPtrType(object, "GtkComboBox")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_combo_box_append_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_append_text", object, text)
 
   return(invisible(w))
 } 
@@ -5107,7 +5107,7 @@ function(object, position, text)
   position <- as.integer(position)
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_combo_box_insert_text", object, position, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_insert_text", object, position, text)
 
   return(invisible(w))
 } 
@@ -5119,7 +5119,7 @@ function(object, text)
   checkPtrType(object, "GtkComboBox")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_combo_box_prepend_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_prepend_text", object, text)
 
   return(invisible(w))
 } 
@@ -5131,7 +5131,7 @@ function(object, position)
   checkPtrType(object, "GtkComboBox")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_combo_box_remove_text", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_remove_text", object, position)
 
   return(invisible(w))
 } 
@@ -5142,7 +5142,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_popup", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_popup", object)
 
   return(invisible(w))
 } 
@@ -5153,7 +5153,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_popdown", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_popdown", object)
 
   return(invisible(w))
 } 
@@ -5164,7 +5164,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_wrap_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_wrap_width", object)
 
   return(w)
 } 
@@ -5175,7 +5175,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_row_span_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_row_span_column", object)
 
   return(w)
 } 
@@ -5186,7 +5186,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_column_span_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_column_span_column", object)
 
   return(w)
 } 
@@ -5198,7 +5198,7 @@ function(object, add.tearoffs)
   checkPtrType(object, "GtkComboBox")
   add.tearoffs <- as.logical(add.tearoffs)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_add_tearoffs", object, add.tearoffs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_add_tearoffs", object, add.tearoffs)
 
   return(invisible(w))
 } 
@@ -5209,7 +5209,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_add_tearoffs", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_add_tearoffs", object)
 
   return(w)
 } 
@@ -5220,7 +5220,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_focus_on_click", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_focus_on_click", object)
 
   return(w)
 } 
@@ -5232,7 +5232,7 @@ function(object, focus.on.click)
   checkPtrType(object, "GtkComboBox")
   focus.on.click <- as.logical(focus.on.click)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_focus_on_click", object, focus.on.click, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_focus_on_click", object, focus.on.click)
 
   return(invisible(w))
 } 
@@ -5245,7 +5245,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_combo_box_set_row_separator_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_row_separator_func", object, func, data)
 
   return(w)
 } 
@@ -5256,7 +5256,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_row_separator_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_row_separator_func", object)
 
   return(w)
 } 
@@ -5267,7 +5267,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_active_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_active_text", object)
 
   return(w)
 } 
@@ -5278,7 +5278,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_popup_accessible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_popup_accessible", object)
 
   return(w)
 } 
@@ -5289,7 +5289,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_get_type")
 
   return(w)
 } 
@@ -5300,7 +5300,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -5315,7 +5315,7 @@ function(model, text.column)
   checkPtrType(model, "GtkTreeModel")
   text.column <- as.integer(text.column)
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_new_with_model", model, text.column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_new_with_model", model, text.column)
 
   return(w)
 } 
@@ -5327,7 +5327,7 @@ function(object, text.column)
   checkPtrType(object, "GtkComboBoxEntry")
   text.column <- as.integer(text.column)
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_set_text_column", object, text.column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_set_text_column", object, text.column)
 
   return(invisible(w))
 } 
@@ -5338,7 +5338,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBoxEntry")
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_get_text_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_get_text_column", object)
 
   return(w)
 } 
@@ -5349,7 +5349,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_combo_box_entry_new_text", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_entry_new_text")
 
   return(w)
 } 
@@ -5360,7 +5360,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_container_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_type")
 
   return(w)
 } 
@@ -5372,7 +5372,7 @@ function(object, border.width)
   checkPtrType(object, "GtkContainer")
   border.width <- as.numeric(border.width)
 
-  w <- .RGtkCall("S_gtk_container_set_border_width", object, border.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_border_width", object, border.width)
 
   return(invisible(w))
 } 
@@ -5383,7 +5383,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_border_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_border_width", object)
 
   return(w)
 } 
@@ -5395,7 +5395,7 @@ function(object, widget)
   checkPtrType(object, "GtkContainer")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_container_add", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_add", object, widget)
 
   return(invisible(w))
 } 
@@ -5407,7 +5407,7 @@ function(object, widget)
   checkPtrType(object, "GtkContainer")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_container_remove", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_remove", object, widget)
 
   return(invisible(w))
 } 
@@ -5419,7 +5419,7 @@ function(object, resize.mode)
   checkPtrType(object, "GtkContainer")
   
 
-  w <- .RGtkCall("S_gtk_container_set_resize_mode", object, resize.mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_resize_mode", object, resize.mode)
 
   return(invisible(w))
 } 
@@ -5430,7 +5430,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_resize_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_resize_mode", object)
 
   return(w)
 } 
@@ -5441,7 +5441,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_check_resize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_check_resize", object)
 
   return(invisible(w))
 } 
@@ -5454,7 +5454,7 @@ function(object, callback, callback.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_container_foreach", object, callback, callback.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_foreach", object, callback, callback.data)
 
   return(invisible(w))
 } 
@@ -5467,7 +5467,7 @@ function(object, callback, callback.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_container_foreach_full", object, callback, callback.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_foreach_full", object, callback, callback.data)
 
   return(invisible(w))
 } 
@@ -5478,7 +5478,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_children", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_children", object)
 
   return(w)
 } 
@@ -5492,7 +5492,7 @@ function(object)
 
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_children", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_children", object)
 
   return(w)
 } 
@@ -5505,7 +5505,7 @@ function(object, child, event)
   checkPtrType(child, "GtkWidget")
   checkPtrType(event, "GdkEventExpose")
 
-  w <- .RGtkCall("S_gtk_container_propagate_expose", object, child, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_propagate_expose", object, child, event)
 
   return(invisible(w))
 } 
@@ -5517,7 +5517,7 @@ function(object, focusable.widgets)
   checkPtrType(object, "GtkContainer")
   focusable.widgets <- as.GList(focusable.widgets)
 
-  w <- .RGtkCall("S_gtk_container_set_focus_chain", object, focusable.widgets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_focus_chain", object, focusable.widgets)
 
   return(invisible(w))
 } 
@@ -5528,7 +5528,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_focus_chain", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_focus_chain", object)
 
   return(w)
 } 
@@ -5539,7 +5539,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_unset_focus_chain", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_unset_focus_chain", object)
 
   return(invisible(w))
 } 
@@ -5551,7 +5551,7 @@ function(object, needs.redraws)
   checkPtrType(object, "GtkContainer")
   needs.redraws <- as.logical(needs.redraws)
 
-  w <- .RGtkCall("S_gtk_container_set_reallocate_redraws", object, needs.redraws, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_reallocate_redraws", object, needs.redraws)
 
   return(invisible(w))
 } 
@@ -5563,7 +5563,7 @@ function(object, child)
   checkPtrType(object, "GtkContainer")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_container_set_focus_child", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_focus_child", object, child)
 
   return(invisible(w))
 } 
@@ -5575,7 +5575,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkContainer")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_container_set_focus_vadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_focus_vadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -5586,7 +5586,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_focus_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_focus_vadjustment", object)
 
   return(w)
 } 
@@ -5598,7 +5598,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkContainer")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_container_set_focus_hadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_set_focus_hadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -5609,7 +5609,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_get_focus_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_get_focus_hadjustment", object)
 
   return(w)
 } 
@@ -5620,7 +5620,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_resize_children", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_resize_children", object)
 
   return(invisible(w))
 } 
@@ -5631,7 +5631,7 @@ function(object)
 {
   checkPtrType(object, "GtkContainer")
 
-  w <- .RGtkCall("S_gtk_container_child_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_child_type", object)
 
   return(w)
 } 
@@ -5644,7 +5644,7 @@ function(cclass, property.id, pspec)
   property.id <- as.numeric(property.id)
   pspec <- as.GParamSpec(pspec)
 
-  w <- .RGtkCall("S_gtk_container_class_install_child_property", cclass, property.id, pspec, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_class_install_child_property", cclass, property.id, pspec)
 
   return(w)
 } 
@@ -5656,7 +5656,7 @@ function(cclass, property.name)
   checkPtrType(cclass, "GObjectClass")
   property.name <- as.character(property.name)
 
-  w <- .RGtkCall("S_gtk_container_class_find_child_property", cclass, property.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_class_find_child_property", cclass, property.name)
 
   return(w)
 } 
@@ -5667,7 +5667,7 @@ function(cclass)
 {
   checkPtrType(cclass, "GObjectClass")
 
-  w <- .RGtkCall("S_gtk_container_class_list_child_properties", cclass, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_class_list_child_properties", cclass)
 
   return(w)
 } 
@@ -5681,7 +5681,7 @@ function(object, child, property.name, value)
   property.name <- as.character(property.name)
   
 
-  w <- .RGtkCall("S_gtk_container_child_set_property", object, child, property.name, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_child_set_property", object, child, property.name, value)
 
   return(invisible(w))
 } 
@@ -5694,7 +5694,7 @@ function(object, child, property.name)
   checkPtrType(child, "GtkWidget")
   property.name <- as.character(property.name)
 
-  w <- .RGtkCall("S_gtk_container_child_get_property", object, child, property.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_child_get_property", object, child, property.name)
 
   return(w)
 } 
@@ -5707,7 +5707,7 @@ function(object, callback, callback.data = NULL)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_container_forall", object, callback, callback.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_container_forall", object, callback, callback.data)
 
   return(invisible(w))
 } 
@@ -5718,7 +5718,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_ctree_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_get_type")
 
   return(w)
 } 
@@ -5734,7 +5734,7 @@ function(columns = 1, tree.column = 0, titles, show = TRUE)
   tree.column <- as.integer(tree.column)
   titles <- as.list(as.character(titles))
 
-  w <- .RGtkCall("S_gtk_ctree_new_with_titles", columns, tree.column, titles, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_new_with_titles", columns, tree.column, titles)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -5752,7 +5752,7 @@ function(columns = 1, tree.column = 0, show = TRUE)
   columns <- as.integer(columns)
   tree.column <- as.integer(tree.column)
 
-  w <- .RGtkCall("S_gtk_ctree_new", columns, tree.column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_new", columns, tree.column)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -5776,7 +5776,7 @@ function(object, parent, sibling, text, spacing = 5, pixmap.closed = NULL, mask.
   is.leaf <- as.logical(is.leaf)
   expanded <- as.logical(expanded)
 
-  w <- .RGtkCall("S_gtk_ctree_insert_node", object, parent, sibling, text, spacing, pixmap.closed, mask.closed, pixmap.opened, mask.opened, is.leaf, expanded, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_insert_node", object, parent, sibling, text, spacing, pixmap.closed, mask.closed, pixmap.opened, mask.opened, is.leaf, expanded)
 
   return(w)
 } 
@@ -5788,7 +5788,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_remove_node", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_remove_node", object, node)
 
   return(invisible(w))
 } 
@@ -5804,7 +5804,7 @@ function(object, parent, sibling, gnode, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_insert_gnode", object, parent, sibling, gnode, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_insert_gnode", object, parent, sibling, gnode, func, data)
 
   return(w)
 } 
@@ -5820,7 +5820,7 @@ function(object, parent, sibling, node, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_export_to_gnode", object, parent, sibling, node, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_export_to_gnode", object, parent, sibling, node, func, data)
 
   return(w)
 } 
@@ -5834,7 +5834,7 @@ function(object, node, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_post_recursive", object, node, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_post_recursive", object, node, func, data)
 
   return(invisible(w))
 } 
@@ -5849,7 +5849,7 @@ function(object, node, depth, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_post_recursive_to_depth", object, node, depth, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_post_recursive_to_depth", object, node, depth, func, data)
 
   return(invisible(w))
 } 
@@ -5863,7 +5863,7 @@ function(object, node, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_pre_recursive", object, node, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_pre_recursive", object, node, func, data)
 
   return(invisible(w))
 } 
@@ -5878,7 +5878,7 @@ function(object, node, depth, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_ctree_pre_recursive_to_depth", object, node, depth, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_pre_recursive_to_depth", object, node, depth, func, data)
 
   return(invisible(w))
 } 
@@ -5890,7 +5890,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_is_viewable", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_is_viewable", object, node)
 
   return(w)
 } 
@@ -5902,7 +5902,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_last", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_last", object, node)
 
   return(w)
 } 
@@ -5914,7 +5914,7 @@ function(object, ctree.row)
   checkPtrType(object, "GtkCTree")
   checkPtrType(ctree.row, "GtkCTreeRow")
 
-  w <- .RGtkCall("S_gtk_ctree_find_node_ptr", object, ctree.row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find_node_ptr", object, ctree.row)
 
   return(w)
 } 
@@ -5926,7 +5926,7 @@ function(object, row)
   checkPtrType(object, "GtkCTree")
   row <- as.numeric(row)
 
-  w <- .RGtkCall("S_gtk_ctree_node_nth", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_nth", object, row)
 
   return(w)
 } 
@@ -5939,7 +5939,7 @@ function(object, node, child)
   checkPtrType(node, "GtkCTreeNode")
   checkPtrType(child, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_find", object, node, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find", object, node, child)
 
   return(w)
 } 
@@ -5952,7 +5952,7 @@ function(object, node, child)
   checkPtrType(node, "GtkCTreeNode")
   checkPtrType(child, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_is_ancestor", object, node, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_is_ancestor", object, node, child)
 
   return(w)
 } 
@@ -5965,7 +5965,7 @@ function(object, node, data = NULL)
   checkPtrType(node, "GtkCTreeNode")
   
 
-  w <- .RGtkCall("S_gtk_ctree_find_by_row_data", object, node, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find_by_row_data", object, node, data)
 
   return(w)
 } 
@@ -5978,7 +5978,7 @@ function(object, node, data = NULL)
   checkPtrType(node, "GtkCTreeNode")
   
 
-  w <- .RGtkCall("S_gtk_ctree_find_all_by_row_data", object, node, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find_all_by_row_data", object, node, data)
 
   return(w)
 } 
@@ -5992,7 +5992,7 @@ function(object, node, data = NULL, func)
   
   func <- as.function(func)
 
-  w <- .RGtkCall("S_gtk_ctree_find_by_row_data_custom", object, node, data, func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find_by_row_data_custom", object, node, data, func)
 
   return(w)
 } 
@@ -6006,7 +6006,7 @@ function(object, node, data = NULL, func)
   
   func <- as.function(func)
 
-  w <- .RGtkCall("S_gtk_ctree_find_all_by_row_data_custom", object, node, data, func, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_find_all_by_row_data_custom", object, node, data, func)
 
   return(w)
 } 
@@ -6019,7 +6019,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_ctree_is_hot_spot", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_is_hot_spot", object, x, y)
 
   return(w)
 } 
@@ -6033,7 +6033,7 @@ function(object, node, new.parent = NULL, new.sibling = NULL)
   if (!is.null( new.parent )) checkPtrType(new.parent, "GtkCTreeNode")
   if (!is.null( new.sibling )) checkPtrType(new.sibling, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_move", object, node, new.parent, new.sibling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_move", object, node, new.parent, new.sibling)
 
   return(invisible(w))
 } 
@@ -6045,7 +6045,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_expand", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_expand", object, node)
 
   return(invisible(w))
 } 
@@ -6057,7 +6057,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_expand_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_expand_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6070,7 +6070,7 @@ function(object, node, depth)
   checkPtrType(node, "GtkCTreeNode")
   depth <- as.integer(depth)
 
-  w <- .RGtkCall("S_gtk_ctree_expand_to_depth", object, node, depth, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_expand_to_depth", object, node, depth)
 
   return(invisible(w))
 } 
@@ -6082,7 +6082,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_collapse", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_collapse", object, node)
 
   return(invisible(w))
 } 
@@ -6094,7 +6094,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_collapse_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_collapse_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6107,7 +6107,7 @@ function(object, node, depth)
   checkPtrType(node, "GtkCTreeNode")
   depth <- as.integer(depth)
 
-  w <- .RGtkCall("S_gtk_ctree_collapse_to_depth", object, node, depth, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_collapse_to_depth", object, node, depth)
 
   return(invisible(w))
 } 
@@ -6119,7 +6119,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_toggle_expansion", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_toggle_expansion", object, node)
 
   return(invisible(w))
 } 
@@ -6131,7 +6131,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_toggle_expansion_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_toggle_expansion_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6143,7 +6143,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_select", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_select", object, node)
 
   return(invisible(w))
 } 
@@ -6155,7 +6155,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_select_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_select_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6167,7 +6167,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_unselect", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_unselect", object, node)
 
   return(invisible(w))
 } 
@@ -6179,7 +6179,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_unselect_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_unselect_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6192,7 +6192,7 @@ function(object, node, state)
   checkPtrType(node, "GtkCTreeNode")
   state <- as.integer(state)
 
-  w <- .RGtkCall("S_gtk_ctree_real_select_recursive", object, node, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_real_select_recursive", object, node, state)
 
   return(invisible(w))
 } 
@@ -6206,7 +6206,7 @@ function(object, node, column, text)
   column <- as.integer(column)
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_text", object, node, column, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_text", object, node, column, text)
 
   return(invisible(w))
 } 
@@ -6221,7 +6221,7 @@ function(object, node, column, pixmap, mask = NULL)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_pixmap", object, node, column, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_pixmap", object, node, column, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -6238,7 +6238,7 @@ function(object, node, column, text, spacing, pixmap, mask = NULL)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_pixtext", object, node, column, text, spacing, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_pixtext", object, node, column, text, spacing, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -6258,7 +6258,7 @@ function(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, 
   is.leaf <- as.logical(is.leaf)
   expanded <- as.logical(expanded)
 
-  w <- .RGtkCall("S_gtk_ctree_set_node_info", object, node, text, spacing, pixmap.closed, mask.closed, pixmap.opened, mask.opened, is.leaf, expanded, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_node_info", object, node, text, spacing, pixmap.closed, mask.closed, pixmap.opened, mask.opened, is.leaf, expanded)
 
   return(invisible(w))
 } 
@@ -6273,7 +6273,7 @@ function(object, node, column, vertical, horizontal)
   vertical <- as.integer(vertical)
   horizontal <- as.integer(horizontal)
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_shift", object, node, column, vertical, horizontal, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_shift", object, node, column, vertical, horizontal)
 
   return(invisible(w))
 } 
@@ -6286,7 +6286,7 @@ function(object, node, selectable)
   checkPtrType(node, "GtkCTreeNode")
   selectable <- as.logical(selectable)
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_selectable", object, node, selectable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_selectable", object, node, selectable)
 
   return(invisible(w))
 } 
@@ -6298,7 +6298,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_selectable", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_selectable", object, node)
 
   return(w)
 } 
@@ -6311,7 +6311,7 @@ function(object, node, column)
   checkPtrType(node, "GtkCTreeNode")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_cell_type", object, node, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_cell_type", object, node, column)
 
   return(w)
 } 
@@ -6324,7 +6324,7 @@ function(object, node, column)
   checkPtrType(node, "GtkCTreeNode")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_text", object, node, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_text", object, node, column)
 
   return(w)
 } 
@@ -6337,7 +6337,7 @@ function(object, node, column)
   checkPtrType(node, "GtkCTreeNode")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_pixmap", object, node, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_pixmap", object, node, column)
 
   return(w)
 } 
@@ -6350,7 +6350,7 @@ function(object, node, column)
   checkPtrType(node, "GtkCTreeNode")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_pixtext", object, node, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_pixtext", object, node, column)
 
   return(w)
 } 
@@ -6362,7 +6362,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_get_node_info", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_get_node_info", object, node)
 
   return(w)
 } 
@@ -6375,7 +6375,7 @@ function(object, node, style)
   checkPtrType(node, "GtkCTreeNode")
   checkPtrType(style, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_row_style", object, node, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_row_style", object, node, style)
 
   return(invisible(w))
 } 
@@ -6387,7 +6387,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_row_style", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_row_style", object, node)
 
   return(w)
 } 
@@ -6401,7 +6401,7 @@ function(object, node, column, style)
   column <- as.integer(column)
   checkPtrType(style, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_cell_style", object, node, column, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_cell_style", object, node, column, style)
 
   return(invisible(w))
 } 
@@ -6414,7 +6414,7 @@ function(object, node, column)
   checkPtrType(node, "GtkCTreeNode")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_cell_style", object, node, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_cell_style", object, node, column)
 
   return(w)
 } 
@@ -6427,7 +6427,7 @@ function(object, node, color)
   checkPtrType(node, "GtkCTreeNode")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_foreground", object, node, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_foreground", object, node, color)
 
   return(invisible(w))
 } 
@@ -6440,7 +6440,7 @@ function(object, node, color)
   checkPtrType(node, "GtkCTreeNode")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_background", object, node, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_background", object, node, color)
 
   return(invisible(w))
 } 
@@ -6453,7 +6453,7 @@ function(object, node, data)
   checkPtrType(node, "GtkCTreeNode")
   
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_row_data", object, node, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_row_data", object, node, data)
 
   return(invisible(w))
 } 
@@ -6466,7 +6466,7 @@ function(object, node, data)
   checkPtrType(node, "GtkCTreeNode")
   
 
-  w <- .RGtkCall("S_gtk_ctree_node_set_row_data_full", object, node, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_set_row_data_full", object, node, data)
 
   return(w)
 } 
@@ -6478,7 +6478,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_row_data", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_row_data", object, node)
 
   return(w)
 } 
@@ -6493,7 +6493,7 @@ function(object, node, column, row.align, col.align)
   row.align <- as.numeric(row.align)
   col.align <- as.numeric(col.align)
 
-  w <- .RGtkCall("S_gtk_ctree_node_moveto", object, node, column, row.align, col.align, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_moveto", object, node, column, row.align, col.align)
 
   return(invisible(w))
 } 
@@ -6505,7 +6505,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_node_is_visible", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_is_visible", object, node)
 
   return(w)
 } 
@@ -6517,7 +6517,7 @@ function(object, indent)
   checkPtrType(object, "GtkCTree")
   indent <- as.integer(indent)
 
-  w <- .RGtkCall("S_gtk_ctree_set_indent", object, indent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_indent", object, indent)
 
   return(invisible(w))
 } 
@@ -6529,7 +6529,7 @@ function(object, spacing)
   checkPtrType(object, "GtkCTree")
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_ctree_set_spacing", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_spacing", object, spacing)
 
   return(invisible(w))
 } 
@@ -6541,7 +6541,7 @@ function(object, show.stub)
   checkPtrType(object, "GtkCTree")
   show.stub <- as.logical(show.stub)
 
-  w <- .RGtkCall("S_gtk_ctree_set_show_stub", object, show.stub, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_show_stub", object, show.stub)
 
   return(invisible(w))
 } 
@@ -6553,7 +6553,7 @@ function(object, line.style)
   checkPtrType(object, "GtkCTree")
   
 
-  w <- .RGtkCall("S_gtk_ctree_set_line_style", object, line.style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_line_style", object, line.style)
 
   return(invisible(w))
 } 
@@ -6565,7 +6565,7 @@ function(object, expander.style)
   checkPtrType(object, "GtkCTree")
   
 
-  w <- .RGtkCall("S_gtk_ctree_set_expander_style", object, expander.style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_set_expander_style", object, expander.style)
 
   return(invisible(w))
 } 
@@ -6577,7 +6577,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_sort_node", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_sort_node", object, node)
 
   return(invisible(w))
 } 
@@ -6589,7 +6589,7 @@ function(object, node)
   checkPtrType(object, "GtkCTree")
   checkPtrType(node, "GtkCTreeNode")
 
-  w <- .RGtkCall("S_gtk_ctree_sort_recursive", object, node, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_sort_recursive", object, node)
 
   return(invisible(w))
 } 
@@ -6600,7 +6600,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_ctree_node_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ctree_node_get_type")
 
   return(w)
 } 
@@ -6611,7 +6611,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_curve_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_get_type")
 
   return(w)
 } 
@@ -6622,7 +6622,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_curve_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -6636,7 +6636,7 @@ function(object)
 {
   checkPtrType(object, "GtkCurve")
 
-  w <- .RGtkCall("S_gtk_curve_reset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_reset", object)
 
   return(invisible(w))
 } 
@@ -6648,7 +6648,7 @@ function(object, gamma)
   checkPtrType(object, "GtkCurve")
   gamma <- as.numeric(gamma)
 
-  w <- .RGtkCall("S_gtk_curve_set_gamma", object, gamma, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_set_gamma", object, gamma)
 
   return(invisible(w))
 } 
@@ -6663,7 +6663,7 @@ function(object, min.x, max.x, min.y, max.y)
   min.y <- as.numeric(min.y)
   max.y <- as.numeric(max.y)
 
-  w <- .RGtkCall("S_gtk_curve_set_range", object, min.x, max.x, min.y, max.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_set_range", object, min.x, max.x, min.y, max.y)
 
   return(invisible(w))
 } 
@@ -6675,7 +6675,7 @@ function(object, veclen)
   checkPtrType(object, "GtkCurve")
   veclen <- as.integer(veclen)
 
-  w <- .RGtkCall("S_gtk_curve_get_vector", object, veclen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_get_vector", object, veclen)
 
   return(w)
 } 
@@ -6687,7 +6687,7 @@ function(object, vector)
   checkPtrType(object, "GtkCurve")
   vector <- as.list(as.numeric(vector))
 
-  w <- .RGtkCall("S_gtk_curve_set_vector", object, vector, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_set_vector", object, vector)
 
   return(w)
 } 
@@ -6699,7 +6699,7 @@ function(object, type)
   checkPtrType(object, "GtkCurve")
   
 
-  w <- .RGtkCall("S_gtk_curve_set_curve_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_curve_set_curve_type", object, type)
 
   return(invisible(w))
 } 
@@ -6710,7 +6710,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_get_type")
 
   return(w)
 } 
@@ -6721,7 +6721,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_dialog_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -6737,7 +6737,7 @@ function(object, child, response.id)
   checkPtrType(child, "GtkWidget")
   response.id <- as.integer(response.id)
 
-  w <- .RGtkCall("S_gtk_dialog_add_action_widget", object, child, response.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_add_action_widget", object, child, response.id)
 
   return(invisible(w))
 } 
@@ -6750,7 +6750,7 @@ function(object, button.text, response.id)
   button.text <- as.character(button.text)
   response.id <- as.integer(response.id)
 
-  w <- .RGtkCall("S_gtk_dialog_add_button", object, button.text, response.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_add_button", object, button.text, response.id)
 
   return(w)
 } 
@@ -6763,7 +6763,7 @@ function(object, response.id, setting)
   response.id <- as.integer(response.id)
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_dialog_set_response_sensitive", object, response.id, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_set_response_sensitive", object, response.id, setting)
 
   return(invisible(w))
 } 
@@ -6775,7 +6775,7 @@ function(object, response.id)
   checkPtrType(object, "GtkDialog")
   response.id <- as.integer(response.id)
 
-  w <- .RGtkCall("S_gtk_dialog_set_default_response", object, response.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_set_default_response", object, response.id)
 
   return(invisible(w))
 } 
@@ -6787,7 +6787,7 @@ function(object, widget)
   checkPtrType(object, "GtkDialog")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_dialog_get_response_for_widget", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_get_response_for_widget", object, widget)
 
   return(w)
 } 
@@ -6799,7 +6799,7 @@ function(object, setting)
   checkPtrType(object, "GtkDialog")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_dialog_set_has_separator", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_set_has_separator", object, setting)
 
   return(invisible(w))
 } 
@@ -6810,7 +6810,7 @@ function(object)
 {
   checkPtrType(object, "GtkDialog")
 
-  w <- .RGtkCall("S_gtk_dialog_get_has_separator", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_get_has_separator", object)
 
   return(w)
 } 
@@ -6822,7 +6822,7 @@ function(object, response.id)
   checkPtrType(object, "GtkDialog")
   response.id <- as.integer(response.id)
 
-  w <- .RGtkCall("S_gtk_dialog_response", object, response.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_response", object, response.id)
 
   return(invisible(w))
 } 
@@ -6833,7 +6833,7 @@ function(object)
 {
   checkPtrType(object, "GtkDialog")
 
-  w <- .RGtkCall("S_gtk_dialog_run", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_run", object)
 
   return(w)
 } 
@@ -6845,7 +6845,7 @@ function(object, new.order)
   checkPtrType(object, "GtkDialog")
   new.order <- as.list(as.integer(new.order))
 
-  w <- .RGtkCall("S_gtk_dialog_set_alternative_button_order_from_array", object, new.order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_dialog_set_alternative_button_order_from_array", object, new.order)
 
   return(w)
 } 
@@ -6860,7 +6860,7 @@ function(object, start.x, start.y, current.x, current.y)
   current.x <- as.integer(current.x)
   current.y <- as.integer(current.y)
 
-  w <- .RGtkCall("S_gtk_drag_check_threshold", object, start.x, start.y, current.x, current.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_check_threshold", object, start.x, start.y, current.x, current.y)
 
   return(w)
 } 
@@ -6874,7 +6874,7 @@ function(object, context, target, time = "GDK_CURRENT_TIME")
   target <- as.GdkAtom(target)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_drag_get_data", object, context, target, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_get_data", object, context, target, time)
 
   return(invisible(w))
 } 
@@ -6885,7 +6885,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_highlight", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_highlight", object)
 
   return(invisible(w))
 } 
@@ -6896,7 +6896,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_unhighlight", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_unhighlight", object)
 
   return(invisible(w))
 } 
@@ -6910,7 +6910,7 @@ function(object, flags, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_drag_dest_set", object, flags, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_set", object, flags, targets, actions)
 
   return(w)
 } 
@@ -6924,7 +6924,7 @@ function(object, proxy.window, protocol, use.coordinates)
   
   use.coordinates <- as.logical(use.coordinates)
 
-  w <- .RGtkCall("S_gtk_drag_dest_set_proxy", object, proxy.window, protocol, use.coordinates, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_set_proxy", object, proxy.window, protocol, use.coordinates)
 
   return(invisible(w))
 } 
@@ -6935,7 +6935,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_unset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_unset", object)
 
   return(invisible(w))
 } 
@@ -6948,7 +6948,7 @@ function(object, context, target.list)
   checkPtrType(context, "GdkDragContext")
   checkPtrType(target.list, "GtkTargetList")
 
-  w <- .RGtkCall("S_gtk_drag_dest_find_target", object, context, target.list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_find_target", object, context, target.list)
 
   return(w)
 } 
@@ -6959,7 +6959,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_get_target_list", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_get_target_list", object)
 
   return(w)
 } 
@@ -6971,7 +6971,7 @@ function(object, target.list)
   checkPtrType(object, "GtkWidget")
   checkPtrType(target.list, "GtkTargetList")
 
-  w <- .RGtkCall("S_gtk_drag_dest_set_target_list", object, target.list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_set_target_list", object, target.list)
 
   return(invisible(w))
 } 
@@ -6985,7 +6985,7 @@ function(object, start.button.mask, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_drag_source_set", object, start.button.mask, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set", object, start.button.mask, targets, actions)
 
   return(w)
 } 
@@ -6996,7 +6996,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_source_unset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_unset", object)
 
   return(invisible(w))
 } 
@@ -7010,7 +7010,7 @@ function(object, colormap, pixmap, mask = NULL)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_drag_source_set_icon", object, colormap, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set_icon", object, colormap, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -7022,7 +7022,7 @@ function(object, pixbuf)
   checkPtrType(object, "GtkWidget")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_drag_source_set_icon_pixbuf", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set_icon_pixbuf", object, pixbuf)
 
   return(invisible(w))
 } 
@@ -7034,7 +7034,7 @@ function(object, stock.id)
   checkPtrType(object, "GtkWidget")
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_drag_source_set_icon_stock", object, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set_icon_stock", object, stock.id)
 
   return(invisible(w))
 } 
@@ -7045,7 +7045,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_source_get_target_list", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_get_target_list", object)
 
   return(w)
 } 
@@ -7057,7 +7057,7 @@ function(object, target.list)
   checkPtrType(object, "GtkWidget")
   checkPtrType(target.list, "GtkTargetList")
 
-  w <- .RGtkCall("S_gtk_drag_source_set_target_list", object, target.list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set_target_list", object, target.list)
 
   return(invisible(w))
 } 
@@ -7072,7 +7072,7 @@ function(object, targets, actions, button, event)
   button <- as.integer(button)
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_drag_begin", object, targets, actions, button, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_begin", object, targets, actions, button, event)
 
   return(w)
 } 
@@ -7090,7 +7090,7 @@ function(colormap, pixmap, mask, hot.x, hot.y)
   hot.x <- as.integer(hot.x)
   hot.y <- as.integer(hot.y)
 
-  w <- .RGtkCall("S_gtk_drag_set_default_icon", colormap, pixmap, mask, hot.x, hot.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_set_default_icon", colormap, pixmap, mask, hot.x, hot.y)
 
   return(w)
 } 
@@ -7101,7 +7101,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_add_text_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_add_text_targets", object)
 
   return(invisible(w))
 } 
@@ -7112,7 +7112,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_add_image_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_add_image_targets", object)
 
   return(invisible(w))
 } 
@@ -7123,7 +7123,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_add_uri_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_add_uri_targets", object)
 
   return(invisible(w))
 } 
@@ -7134,7 +7134,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_source_add_text_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_add_text_targets", object)
 
   return(invisible(w))
 } 
@@ -7145,7 +7145,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_source_add_image_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_add_image_targets", object)
 
   return(invisible(w))
 } 
@@ -7156,7 +7156,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_source_add_uri_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_add_uri_targets", object)
 
   return(invisible(w))
 } 
@@ -7168,7 +7168,7 @@ function(list, info)
   checkPtrType(list, "GtkTargetList")
   info <- as.numeric(info)
 
-  w <- .RGtkCall("S_gtk_target_list_add_text_targets", list, info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add_text_targets", list, info)
 
   return(w)
 } 
@@ -7181,7 +7181,7 @@ function(list, info, writable)
   info <- as.numeric(info)
   writable <- as.logical(writable)
 
-  w <- .RGtkCall("S_gtk_target_list_add_image_targets", list, info, writable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add_image_targets", list, info, writable)
 
   return(w)
 } 
@@ -7193,7 +7193,7 @@ function(list, info)
   checkPtrType(list, "GtkTargetList")
   info <- as.numeric(info)
 
-  w <- .RGtkCall("S_gtk_target_list_add_uri_targets", list, info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add_uri_targets", list, info)
 
   return(w)
 } 
@@ -7204,7 +7204,7 @@ function(context)
 {
   checkPtrType(context, "GdkDragContext")
 
-  w <- .RGtkCall("S_gtk_drag_get_source_widget", context, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_get_source_widget", context)
 
   return(w)
 } 
@@ -7216,7 +7216,7 @@ function(widget, icon.name)
   checkPtrType(widget, "GtkWidget")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_drag_source_set_icon_name", widget, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_source_set_icon_name", widget, icon.name)
 
   return(w)
 } 
@@ -7227,7 +7227,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_drawing_area_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drawing_area_get_type")
 
   return(w)
 } 
@@ -7238,7 +7238,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_drawing_area_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drawing_area_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -7257,7 +7257,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_drawing_area_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drawing_area_size", object, width, height)
 
   return(invisible(w))
 } 
@@ -7268,7 +7268,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_editable_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_get_type")
 
   return(w)
 } 
@@ -7281,7 +7281,7 @@ function(object, start, end)
   start <- as.integer(start)
   end <- as.integer(end)
 
-  w <- .RGtkCall("S_gtk_editable_select_region", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_select_region", object, start, end)
 
   return(invisible(w))
 } 
@@ -7292,7 +7292,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_get_selection_bounds", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_get_selection_bounds", object)
 
   return(w)
 } 
@@ -7305,7 +7305,7 @@ function(object, new.text, position = 0)
   new.text <- as.character(new.text)
   position <- as.list(as.integer(position))
 
-  w <- .RGtkCall("S_gtk_editable_insert_text", object, new.text, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_insert_text", object, new.text, position)
 
   return(w)
 } 
@@ -7318,7 +7318,7 @@ function(object, start.pos, end.pos)
   start.pos <- as.integer(start.pos)
   end.pos <- as.integer(end.pos)
 
-  w <- .RGtkCall("S_gtk_editable_delete_text", object, start.pos, end.pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_delete_text", object, start.pos, end.pos)
 
   return(invisible(w))
 } 
@@ -7331,7 +7331,7 @@ function(object, start.pos, end.pos)
   start.pos <- as.integer(start.pos)
   end.pos <- as.integer(end.pos)
 
-  w <- .RGtkCall("S_gtk_editable_get_chars", object, start.pos, end.pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_get_chars", object, start.pos, end.pos)
 
   return(w)
 } 
@@ -7342,7 +7342,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_cut_clipboard", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_cut_clipboard", object)
 
   return(invisible(w))
 } 
@@ -7353,7 +7353,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_copy_clipboard", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_copy_clipboard", object)
 
   return(invisible(w))
 } 
@@ -7364,7 +7364,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_paste_clipboard", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_paste_clipboard", object)
 
   return(invisible(w))
 } 
@@ -7375,7 +7375,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_delete_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_delete_selection", object)
 
   return(invisible(w))
 } 
@@ -7387,7 +7387,7 @@ function(object, position)
   checkPtrType(object, "GtkEditable")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_editable_set_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_set_position", object, position)
 
   return(invisible(w))
 } 
@@ -7398,7 +7398,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_get_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_get_position", object)
 
   return(w)
 } 
@@ -7410,7 +7410,7 @@ function(object, is.editable)
   checkPtrType(object, "GtkEditable")
   is.editable <- as.logical(is.editable)
 
-  w <- .RGtkCall("S_gtk_editable_set_editable", object, is.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_set_editable", object, is.editable)
 
   return(invisible(w))
 } 
@@ -7421,7 +7421,7 @@ function(object)
 {
   checkPtrType(object, "GtkEditable")
 
-  w <- .RGtkCall("S_gtk_editable_get_editable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_editable_get_editable", object)
 
   return(w)
 } 
@@ -7432,7 +7432,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_entry_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_type")
 
   return(w)
 } 
@@ -7443,7 +7443,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_entry_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -7460,7 +7460,7 @@ function(max = 0, show = TRUE)
 
   max <- as.integer(max)
 
-  w <- .RGtkCall("S_gtk_entry_new_with_max_length", max, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_new_with_max_length", max)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -7475,7 +7475,7 @@ function(object, visible)
   checkPtrType(object, "GtkEntry")
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_entry_set_visibility", object, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_visibility", object, visible)
 
   return(invisible(w))
 } 
@@ -7486,7 +7486,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_visibility", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_visibility", object)
 
   return(w)
 } 
@@ -7498,7 +7498,7 @@ function(object, ch)
   checkPtrType(object, "GtkEntry")
   ch <- as.numeric(ch)
 
-  w <- .RGtkCall("S_gtk_entry_set_invisible_char", object, ch, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_invisible_char", object, ch)
 
   return(invisible(w))
 } 
@@ -7509,7 +7509,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_invisible_char", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_invisible_char", object)
 
   return(w)
 } 
@@ -7521,7 +7521,7 @@ function(object, setting)
   checkPtrType(object, "GtkEntry")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_entry_set_has_frame", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_has_frame", object, setting)
 
   return(invisible(w))
 } 
@@ -7532,7 +7532,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_has_frame", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_has_frame", object)
 
   return(w)
 } 
@@ -7544,7 +7544,7 @@ function(object, max)
   checkPtrType(object, "GtkEntry")
   max <- as.integer(max)
 
-  w <- .RGtkCall("S_gtk_entry_set_max_length", object, max, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_max_length", object, max)
 
   return(invisible(w))
 } 
@@ -7555,7 +7555,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_max_length", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_max_length", object)
 
   return(w)
 } 
@@ -7567,7 +7567,7 @@ function(object, setting)
   checkPtrType(object, "GtkEntry")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_entry_set_activates_default", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_activates_default", object, setting)
 
   return(invisible(w))
 } 
@@ -7578,7 +7578,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_activates_default", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_activates_default", object)
 
   return(w)
 } 
@@ -7590,7 +7590,7 @@ function(object, n.chars)
   checkPtrType(object, "GtkEntry")
   n.chars <- as.integer(n.chars)
 
-  w <- .RGtkCall("S_gtk_entry_set_width_chars", object, n.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_width_chars", object, n.chars)
 
   return(invisible(w))
 } 
@@ -7601,7 +7601,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_width_chars", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_width_chars", object)
 
   return(w)
 } 
@@ -7613,7 +7613,7 @@ function(object, text)
   checkPtrType(object, "GtkEntry")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_entry_set_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_text", object, text)
 
   return(invisible(w))
 } 
@@ -7624,7 +7624,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_text", object)
 
   return(w)
 } 
@@ -7635,7 +7635,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_layout", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_layout", object)
 
   return(w)
 } 
@@ -7646,7 +7646,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_layout_offsets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_layout_offsets", object)
 
   return(invisible(w))
 } 
@@ -7658,7 +7658,7 @@ function(object, layout.index)
   checkPtrType(object, "GtkEntry")
   layout.index <- as.integer(layout.index)
 
-  w <- .RGtkCall("S_gtk_entry_layout_index_to_text_index", object, layout.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_layout_index_to_text_index", object, layout.index)
 
   return(invisible(w))
 } 
@@ -7670,7 +7670,7 @@ function(object, text.index)
   checkPtrType(object, "GtkEntry")
   text.index <- as.integer(text.index)
 
-  w <- .RGtkCall("S_gtk_entry_text_index_to_layout_index", object, text.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_text_index_to_layout_index", object, text.index)
 
   return(invisible(w))
 } 
@@ -7682,7 +7682,7 @@ function(object, xalign)
   checkPtrType(object, "GtkEntry")
   xalign <- as.numeric(xalign)
 
-  w <- .RGtkCall("S_gtk_entry_set_alignment", object, xalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_alignment", object, xalign)
 
   return(invisible(w))
 } 
@@ -7693,7 +7693,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_alignment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_alignment", object)
 
   return(w)
 } 
@@ -7705,7 +7705,7 @@ function(object, completion)
   checkPtrType(object, "GtkEntry")
   checkPtrType(completion, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_set_completion", object, completion, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_completion", object, completion)
 
   return(invisible(w))
 } 
@@ -7716,7 +7716,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_completion", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_completion", object)
 
   return(w)
 } 
@@ -7731,7 +7731,7 @@ function(object, text)
   checkPtrType(object, "GtkEntry")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_entry_append_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_append_text", object, text)
 
   return(invisible(w))
 } 
@@ -7746,7 +7746,7 @@ function(object, text)
   checkPtrType(object, "GtkEntry")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_entry_prepend_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_prepend_text", object, text)
 
   return(invisible(w))
 } 
@@ -7758,7 +7758,7 @@ function(object, position)
   checkPtrType(object, "GtkEntry")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_entry_set_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_position", object, position)
 
   return(invisible(w))
 } 
@@ -7771,7 +7771,7 @@ function(object, start, end)
   start <- as.integer(start)
   end <- as.integer(end)
 
-  w <- .RGtkCall("S_gtk_entry_select_region", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_select_region", object, start, end)
 
   return(invisible(w))
 } 
@@ -7783,7 +7783,7 @@ function(object, editable)
   checkPtrType(object, "GtkEntry")
   editable <- as.logical(editable)
 
-  w <- .RGtkCall("S_gtk_entry_set_editable", object, editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_editable", object, editable)
 
   return(invisible(w))
 } 
@@ -7794,7 +7794,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_type")
 
   return(w)
 } 
@@ -7805,7 +7805,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_entry_completion_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_new")
 
   return(w)
 } 
@@ -7816,7 +7816,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_entry", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_entry", object)
 
   return(w)
 } 
@@ -7828,7 +7828,7 @@ function(object, model = NULL)
   checkPtrType(object, "GtkEntryCompletion")
   if (!is.null( model )) checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_model", object, model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_model", object, model)
 
   return(invisible(w))
 } 
@@ -7839,7 +7839,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_model", object)
 
   return(w)
 } 
@@ -7852,7 +7852,7 @@ function(object, func, func.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_match_func", object, func, func.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_match_func", object, func, func.data)
 
   return(w)
 } 
@@ -7864,7 +7864,7 @@ function(object, length)
   checkPtrType(object, "GtkEntryCompletion")
   length <- as.integer(length)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_minimum_key_length", object, length, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_minimum_key_length", object, length)
 
   return(invisible(w))
 } 
@@ -7875,7 +7875,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_minimum_key_length", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_minimum_key_length", object)
 
   return(w)
 } 
@@ -7886,7 +7886,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_complete", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_complete", object)
 
   return(invisible(w))
 } 
@@ -7899,7 +7899,7 @@ function(object, index, text)
   index <- as.integer(index)
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_entry_completion_insert_action_text", object, index, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_insert_action_text", object, index, text)
 
   return(invisible(w))
 } 
@@ -7912,7 +7912,7 @@ function(object, index, markup)
   index <- as.integer(index)
   markup <- as.character(markup)
 
-  w <- .RGtkCall("S_gtk_entry_completion_insert_action_markup", object, index, markup, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_insert_action_markup", object, index, markup)
 
   return(invisible(w))
 } 
@@ -7924,7 +7924,7 @@ function(object, index)
   checkPtrType(object, "GtkEntryCompletion")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_entry_completion_delete_action", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_delete_action", object, index)
 
   return(invisible(w))
 } 
@@ -7936,7 +7936,7 @@ function(object, column)
   checkPtrType(object, "GtkEntryCompletion")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_text_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_text_column", object, column)
 
   return(invisible(w))
 } 
@@ -7947,7 +7947,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_text_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_text_column", object)
 
   return(w)
 } 
@@ -7958,7 +7958,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_insert_prefix", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_insert_prefix", object)
 
   return(invisible(w))
 } 
@@ -7970,7 +7970,7 @@ function(object, inline.completion)
   checkPtrType(object, "GtkEntryCompletion")
   inline.completion <- as.logical(inline.completion)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_inline_completion", object, inline.completion, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_inline_completion", object, inline.completion)
 
   return(invisible(w))
 } 
@@ -7981,7 +7981,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_inline_completion", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_inline_completion", object)
 
   return(w)
 } 
@@ -7993,7 +7993,7 @@ function(object, popup.completion)
   checkPtrType(object, "GtkEntryCompletion")
   popup.completion <- as.logical(popup.completion)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_popup_completion", object, popup.completion, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_popup_completion", object, popup.completion)
 
   return(invisible(w))
 } 
@@ -8004,7 +8004,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_popup_completion", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_popup_completion", object)
 
   return(w)
 } 
@@ -8016,7 +8016,7 @@ function(object, popup.set.width)
   checkPtrType(object, "GtkEntryCompletion")
   popup.set.width <- as.logical(popup.set.width)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_popup_set_width", object, popup.set.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_popup_set_width", object, popup.set.width)
 
   return(invisible(w))
 } 
@@ -8027,7 +8027,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_popup_set_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_popup_set_width", object)
 
   return(w)
 } 
@@ -8039,7 +8039,7 @@ function(object, popup.single.match)
   checkPtrType(object, "GtkEntryCompletion")
   popup.single.match <- as.logical(popup.single.match)
 
-  w <- .RGtkCall("S_gtk_entry_completion_set_popup_single_match", object, popup.single.match, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_set_popup_single_match", object, popup.single.match)
 
   return(invisible(w))
 } 
@@ -8050,7 +8050,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntryCompletion")
 
-  w <- .RGtkCall("S_gtk_entry_completion_get_popup_single_match", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_completion_get_popup_single_match", object)
 
   return(w)
 } 
@@ -8061,7 +8061,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_event_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_get_type")
 
   return(w)
 } 
@@ -8072,7 +8072,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_event_box_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -8086,7 +8086,7 @@ function(object)
 {
   checkPtrType(object, "GtkEventBox")
 
-  w <- .RGtkCall("S_gtk_event_box_get_visible_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_get_visible_window", object)
 
   return(w)
 } 
@@ -8098,7 +8098,7 @@ function(object, visible.window)
   checkPtrType(object, "GtkEventBox")
   visible.window <- as.logical(visible.window)
 
-  w <- .RGtkCall("S_gtk_event_box_set_visible_window", object, visible.window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_set_visible_window", object, visible.window)
 
   return(invisible(w))
 } 
@@ -8109,7 +8109,7 @@ function(object)
 {
   checkPtrType(object, "GtkEventBox")
 
-  w <- .RGtkCall("S_gtk_event_box_get_above_child", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_get_above_child", object)
 
   return(w)
 } 
@@ -8121,7 +8121,7 @@ function(object, above.child)
   checkPtrType(object, "GtkEventBox")
   above.child <- as.logical(above.child)
 
-  w <- .RGtkCall("S_gtk_event_box_set_above_child", object, above.child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_event_box_set_above_child", object, above.child)
 
   return(invisible(w))
 } 
@@ -8132,7 +8132,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_expander_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_type")
 
   return(w)
 } 
@@ -8143,7 +8143,7 @@ function(label = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_expander_new", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_new", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -8157,7 +8157,7 @@ function(label = NULL)
 {
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_expander_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_new_with_mnemonic", label)
 
   return(w)
 } 
@@ -8169,7 +8169,7 @@ function(object, expanded)
   checkPtrType(object, "GtkExpander")
   expanded <- as.logical(expanded)
 
-  w <- .RGtkCall("S_gtk_expander_set_expanded", object, expanded, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_expanded", object, expanded)
 
   return(invisible(w))
 } 
@@ -8180,7 +8180,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_expanded", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_expanded", object)
 
   return(w)
 } 
@@ -8192,7 +8192,7 @@ function(object, spacing)
   checkPtrType(object, "GtkExpander")
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_expander_set_spacing", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_spacing", object, spacing)
 
   return(invisible(w))
 } 
@@ -8203,7 +8203,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_spacing", object)
 
   return(w)
 } 
@@ -8215,7 +8215,7 @@ function(object, label = NULL)
   checkPtrType(object, "GtkExpander")
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_expander_set_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_label", object, label)
 
   return(invisible(w))
 } 
@@ -8226,7 +8226,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_label", object)
 
   return(w)
 } 
@@ -8238,7 +8238,7 @@ function(object, use.underline)
   checkPtrType(object, "GtkExpander")
   use.underline <- as.logical(use.underline)
 
-  w <- .RGtkCall("S_gtk_expander_set_use_underline", object, use.underline, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_use_underline", object, use.underline)
 
   return(invisible(w))
 } 
@@ -8249,7 +8249,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_use_underline", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_use_underline", object)
 
   return(w)
 } 
@@ -8261,7 +8261,7 @@ function(object, use.markup)
   checkPtrType(object, "GtkExpander")
   use.markup <- as.logical(use.markup)
 
-  w <- .RGtkCall("S_gtk_expander_set_use_markup", object, use.markup, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_use_markup", object, use.markup)
 
   return(invisible(w))
 } 
@@ -8272,7 +8272,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_use_markup", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_use_markup", object)
 
   return(w)
 } 
@@ -8284,7 +8284,7 @@ function(object, label.widget = NULL)
   checkPtrType(object, "GtkExpander")
   if (!is.null( label.widget )) checkPtrType(label.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_expander_set_label_widget", object, label.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_set_label_widget", object, label.widget)
 
   return(invisible(w))
 } 
@@ -8295,7 +8295,7 @@ function(object)
 {
   checkPtrType(object, "GtkExpander")
 
-  w <- .RGtkCall("S_gtk_expander_get_label_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_expander_get_label_widget", object)
 
   return(w)
 } 
@@ -8306,7 +8306,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_type")
 
   return(w)
 } 
@@ -8317,7 +8317,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_error_quark", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_error_quark")
 
   return(w)
 } 
@@ -8329,7 +8329,7 @@ function(object, action)
   checkPtrType(object, "GtkFileChooser")
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_action", object, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_action", object, action)
 
   return(invisible(w))
 } 
@@ -8340,7 +8340,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_action", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_action", object)
 
   return(w)
 } 
@@ -8352,7 +8352,7 @@ function(object, local.only)
   checkPtrType(object, "GtkFileChooser")
   local.only <- as.logical(local.only)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_local_only", object, local.only, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_local_only", object, local.only)
 
   return(invisible(w))
 } 
@@ -8363,7 +8363,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_local_only", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_local_only", object)
 
   return(w)
 } 
@@ -8375,7 +8375,7 @@ function(object, select.multiple)
   checkPtrType(object, "GtkFileChooser")
   select.multiple <- as.logical(select.multiple)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_select_multiple", object, select.multiple, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_select_multiple", object, select.multiple)
 
   return(invisible(w))
 } 
@@ -8386,7 +8386,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_select_multiple", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_select_multiple", object)
 
   return(w)
 } 
@@ -8398,7 +8398,7 @@ function(object, show.hidden)
   checkPtrType(object, "GtkFileChooser")
   show.hidden <- as.logical(show.hidden)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_show_hidden", object, show.hidden, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_show_hidden", object, show.hidden)
 
   return(invisible(w))
 } 
@@ -8409,7 +8409,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_show_hidden", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_show_hidden", object)
 
   return(w)
 } 
@@ -8421,7 +8421,7 @@ function(object, do.overwrite.confirmation)
   checkPtrType(object, "GtkFileChooser")
   do.overwrite.confirmation <- as.logical(do.overwrite.confirmation)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_do_overwrite_confirmation", object, do.overwrite.confirmation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_do_overwrite_confirmation", object, do.overwrite.confirmation)
 
   return(invisible(w))
 } 
@@ -8432,7 +8432,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_do_overwrite_confirmation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_do_overwrite_confirmation", object)
 
   return(w)
 } 
@@ -8444,7 +8444,7 @@ function(object, name)
   checkPtrType(object, "GtkFileChooser")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_current_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_current_name", object, name)
 
   return(invisible(w))
 } 
@@ -8455,7 +8455,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_filename", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_filename", object)
 
   return(w)
 } 
@@ -8467,7 +8467,7 @@ function(object, filename)
   checkPtrType(object, "GtkFileChooser")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_filename", object, filename)
 
   return(w)
 } 
@@ -8479,7 +8479,7 @@ function(object, filename)
   checkPtrType(object, "GtkFileChooser")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_file_chooser_select_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_select_filename", object, filename)
 
   return(w)
 } 
@@ -8491,7 +8491,7 @@ function(object, filename)
   checkPtrType(object, "GtkFileChooser")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_file_chooser_unselect_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_unselect_filename", object, filename)
 
   return(invisible(w))
 } 
@@ -8502,7 +8502,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_select_all", object)
 
   return(invisible(w))
 } 
@@ -8513,7 +8513,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -8524,7 +8524,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_filenames", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_filenames", object)
 
   return(w)
 } 
@@ -8536,7 +8536,7 @@ function(object, filename)
   checkPtrType(object, "GtkFileChooser")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_current_folder", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_current_folder", object, filename)
 
   return(w)
 } 
@@ -8547,7 +8547,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_current_folder", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_current_folder", object)
 
   return(w)
 } 
@@ -8558,7 +8558,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_uri", object)
 
   return(w)
 } 
@@ -8570,7 +8570,7 @@ function(object, uri)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_uri", object, uri)
 
   return(w)
 } 
@@ -8582,7 +8582,7 @@ function(object, uri)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_select_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_select_uri", object, uri)
 
   return(w)
 } 
@@ -8594,7 +8594,7 @@ function(object, uri)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_unselect_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_unselect_uri", object, uri)
 
   return(invisible(w))
 } 
@@ -8605,7 +8605,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_uris", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_uris", object)
 
   return(w)
 } 
@@ -8617,7 +8617,7 @@ function(object, uri)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_current_folder_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_current_folder_uri", object, uri)
 
   return(w)
 } 
@@ -8628,7 +8628,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_current_folder_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_current_folder_uri", object)
 
   return(w)
 } 
@@ -8640,7 +8640,7 @@ function(object, preview.widget)
   checkPtrType(object, "GtkFileChooser")
   checkPtrType(preview.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_preview_widget", object, preview.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_preview_widget", object, preview.widget)
 
   return(invisible(w))
 } 
@@ -8651,7 +8651,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_preview_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_preview_widget", object)
 
   return(w)
 } 
@@ -8663,7 +8663,7 @@ function(object, active)
   checkPtrType(object, "GtkFileChooser")
   active <- as.logical(active)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_preview_widget_active", object, active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_preview_widget_active", object, active)
 
   return(invisible(w))
 } 
@@ -8674,7 +8674,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_preview_widget_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_preview_widget_active", object)
 
   return(w)
 } 
@@ -8686,7 +8686,7 @@ function(object, use.label)
   checkPtrType(object, "GtkFileChooser")
   use.label <- as.logical(use.label)
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_use_preview_label", object, use.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_use_preview_label", object, use.label)
 
   return(invisible(w))
 } 
@@ -8697,7 +8697,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_use_preview_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_use_preview_label", object)
 
   return(w)
 } 
@@ -8708,7 +8708,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_preview_filename", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_preview_filename", object)
 
   return(w)
 } 
@@ -8719,7 +8719,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_preview_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_preview_uri", object)
 
   return(w)
 } 
@@ -8731,7 +8731,7 @@ function(object, extra.widget)
   checkPtrType(object, "GtkFileChooser")
   checkPtrType(extra.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_extra_widget", object, extra.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_extra_widget", object, extra.widget)
 
   return(invisible(w))
 } 
@@ -8742,7 +8742,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_extra_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_extra_widget", object)
 
   return(w)
 } 
@@ -8754,7 +8754,7 @@ function(object, filter)
   checkPtrType(object, "GtkFileChooser")
   checkPtrType(filter, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_chooser_add_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_add_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -8766,7 +8766,7 @@ function(object, filter)
   checkPtrType(object, "GtkFileChooser")
   checkPtrType(filter, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_chooser_remove_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_remove_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -8777,7 +8777,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_list_filters", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_list_filters", object)
 
   return(w)
 } 
@@ -8789,7 +8789,7 @@ function(object, filter)
   checkPtrType(object, "GtkFileChooser")
   checkPtrType(filter, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_chooser_set_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_set_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -8800,7 +8800,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_get_filter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_get_filter", object)
 
   return(w)
 } 
@@ -8812,7 +8812,7 @@ function(object, folder, .errwarn = TRUE)
   checkPtrType(object, "GtkFileChooser")
   folder <- as.character(folder)
 
-  w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder", object, folder, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder", object, folder)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -8827,7 +8827,7 @@ function(object, folder, .errwarn = TRUE)
   checkPtrType(object, "GtkFileChooser")
   folder <- as.character(folder)
 
-  w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder", object, folder, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder", object, folder)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -8841,7 +8841,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_list_shortcut_folders", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_list_shortcut_folders", object)
 
   return(w)
 } 
@@ -8853,7 +8853,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_add_shortcut_folder_uri", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -8868,7 +8868,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkFileChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_remove_shortcut_folder_uri", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -8882,7 +8882,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooser")
 
-  w <- .RGtkCall("S_gtk_file_chooser_list_shortcut_folder_uris", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_list_shortcut_folder_uris", object)
 
   return(w)
 } 
@@ -8893,7 +8893,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_get_type")
 
   return(w)
 } 
@@ -8905,7 +8905,7 @@ function(title, action, show = TRUE)
   title <- as.character(title)
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_new", title, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_new", title, action)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -8921,7 +8921,7 @@ function(title, action, backend, show = TRUE)
   
   backend <- as.character(backend)
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_new_with_backend", title, action, backend, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_new_with_backend", title, action, backend)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -8935,7 +8935,7 @@ function(dialog)
 {
   checkPtrType(dialog, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_new_with_dialog", dialog, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_new_with_dialog", dialog)
 
   return(w)
 } 
@@ -8946,7 +8946,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooserButton")
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_get_title", object)
 
   return(w)
 } 
@@ -8958,7 +8958,7 @@ function(object, title)
   checkPtrType(object, "GtkFileChooserButton")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -8969,7 +8969,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooserButton")
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_get_width_chars", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_get_width_chars", object)
 
   return(w)
 } 
@@ -8981,7 +8981,7 @@ function(object, n.chars)
   checkPtrType(object, "GtkFileChooserButton")
   n.chars <- as.integer(n.chars)
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_set_width_chars", object, n.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_set_width_chars", object, n.chars)
 
   return(invisible(w))
 } 
@@ -8992,7 +8992,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_dialog_get_type")
 
   return(w)
 } 
@@ -9003,7 +9003,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_widget_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_widget_get_type")
 
   return(w)
 } 
@@ -9014,7 +9014,7 @@ function(action, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_file_chooser_widget_new", action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_widget_new", action)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9029,7 +9029,7 @@ function(action, backend, show = TRUE)
   
   backend <- as.character(backend)
 
-  w <- .RGtkCall("S_gtk_file_chooser_widget_new_with_backend", action, backend, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_widget_new_with_backend", action, backend)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9043,7 +9043,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_filter_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_get_type")
 
   return(w)
 } 
@@ -9054,7 +9054,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_filter_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_new")
 
   return(w)
 } 
@@ -9066,7 +9066,7 @@ function(object, name)
   checkPtrType(object, "GtkFileFilter")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_file_filter_set_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_set_name", object, name)
 
   return(invisible(w))
 } 
@@ -9077,7 +9077,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_filter_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_get_name", object)
 
   return(w)
 } 
@@ -9089,7 +9089,7 @@ function(object, mime.type)
   checkPtrType(object, "GtkFileFilter")
   mime.type <- as.character(mime.type)
 
-  w <- .RGtkCall("S_gtk_file_filter_add_mime_type", object, mime.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_add_mime_type", object, mime.type)
 
   return(invisible(w))
 } 
@@ -9101,7 +9101,7 @@ function(object, pattern)
   checkPtrType(object, "GtkFileFilter")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_file_filter_add_pattern", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_add_pattern", object, pattern)
 
   return(invisible(w))
 } 
@@ -9112,7 +9112,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_filter_add_pixbuf_formats", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_add_pixbuf_formats", object)
 
   return(invisible(w))
 } 
@@ -9126,7 +9126,7 @@ function(object, needed, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_file_filter_add_custom", object, needed, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_add_custom", object, needed, func, data)
 
   return(w)
 } 
@@ -9137,7 +9137,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileFilter")
 
-  w <- .RGtkCall("S_gtk_file_filter_get_needed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_get_needed", object)
 
   return(w)
 } 
@@ -9149,7 +9149,7 @@ function(object, filter.info)
   checkPtrType(object, "GtkFileFilter")
   filter.info <- as.GtkFileFilterInfo(filter.info)
 
-  w <- .RGtkCall("S_gtk_file_filter_filter", object, filter.info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_filter_filter", object, filter.info)
 
   return(w)
 } 
@@ -9160,7 +9160,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_file_selection_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_get_type")
 
   return(w)
 } 
@@ -9171,7 +9171,7 @@ function(title = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_file_selection_new", title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_new", title)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9186,7 +9186,7 @@ function(object, filename)
   checkPtrType(object, "GtkFileSelection")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_file_selection_set_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_set_filename", object, filename)
 
   return(invisible(w))
 } 
@@ -9197,7 +9197,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileSelection")
 
-  w <- .RGtkCall("S_gtk_file_selection_get_filename", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_get_filename", object)
 
   return(w)
 } 
@@ -9209,7 +9209,7 @@ function(object, pattern)
   checkPtrType(object, "GtkFileSelection")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_file_selection_complete", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_complete", object, pattern)
 
   return(invisible(w))
 } 
@@ -9220,7 +9220,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileSelection")
 
-  w <- .RGtkCall("S_gtk_file_selection_show_fileop_buttons", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_show_fileop_buttons", object)
 
   return(invisible(w))
 } 
@@ -9231,7 +9231,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileSelection")
 
-  w <- .RGtkCall("S_gtk_file_selection_hide_fileop_buttons", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_hide_fileop_buttons", object)
 
   return(invisible(w))
 } 
@@ -9242,7 +9242,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileSelection")
 
-  w <- .RGtkCall("S_gtk_file_selection_get_selections", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_get_selections", object)
 
   return(w)
 } 
@@ -9254,7 +9254,7 @@ function(object, select.multiple)
   checkPtrType(object, "GtkFileSelection")
   select.multiple <- as.logical(select.multiple)
 
-  w <- .RGtkCall("S_gtk_file_selection_set_select_multiple", object, select.multiple, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_set_select_multiple", object, select.multiple)
 
   return(invisible(w))
 } 
@@ -9265,7 +9265,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileSelection")
 
-  w <- .RGtkCall("S_gtk_file_selection_get_select_multiple", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_selection_get_select_multiple", object)
 
   return(w)
 } 
@@ -9276,7 +9276,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_fixed_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_get_type")
 
   return(w)
 } 
@@ -9287,7 +9287,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_fixed_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9304,7 +9304,7 @@ function(object, widget, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_fixed_put", object, widget, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_put", object, widget, x, y)
 
   return(invisible(w))
 } 
@@ -9318,7 +9318,7 @@ function(object, widget, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_fixed_move", object, widget, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_move", object, widget, x, y)
 
   return(invisible(w))
 } 
@@ -9330,7 +9330,7 @@ function(object, has.window)
   checkPtrType(object, "GtkFixed")
   has.window <- as.logical(has.window)
 
-  w <- .RGtkCall("S_gtk_fixed_set_has_window", object, has.window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_set_has_window", object, has.window)
 
   return(invisible(w))
 } 
@@ -9341,7 +9341,7 @@ function(object)
 {
   checkPtrType(object, "GtkFixed")
 
-  w <- .RGtkCall("S_gtk_fixed_get_has_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_fixed_get_has_window", object)
 
   return(w)
 } 
@@ -9352,7 +9352,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_font_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_type")
 
   return(w)
 } 
@@ -9363,7 +9363,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_font_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9377,7 +9377,7 @@ function(fontname)
 {
   fontname <- as.character(fontname)
 
-  w <- .RGtkCall("S_gtk_font_button_new_with_font", fontname, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_new_with_font", fontname)
 
   return(w)
 } 
@@ -9388,7 +9388,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_title", object)
 
   return(w)
 } 
@@ -9400,7 +9400,7 @@ function(object, title)
   checkPtrType(object, "GtkFontButton")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_font_button_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -9411,7 +9411,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_use_font", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_use_font", object)
 
   return(w)
 } 
@@ -9423,7 +9423,7 @@ function(object, use.font)
   checkPtrType(object, "GtkFontButton")
   use.font <- as.logical(use.font)
 
-  w <- .RGtkCall("S_gtk_font_button_set_use_font", object, use.font, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_use_font", object, use.font)
 
   return(invisible(w))
 } 
@@ -9434,7 +9434,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_use_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_use_size", object)
 
   return(w)
 } 
@@ -9446,7 +9446,7 @@ function(object, use.size)
   checkPtrType(object, "GtkFontButton")
   use.size <- as.logical(use.size)
 
-  w <- .RGtkCall("S_gtk_font_button_set_use_size", object, use.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_use_size", object, use.size)
 
   return(invisible(w))
 } 
@@ -9457,7 +9457,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_font_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_font_name", object)
 
   return(w)
 } 
@@ -9469,7 +9469,7 @@ function(object, fontname)
   checkPtrType(object, "GtkFontButton")
   fontname <- as.character(fontname)
 
-  w <- .RGtkCall("S_gtk_font_button_set_font_name", object, fontname, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_font_name", object, fontname)
 
   return(w)
 } 
@@ -9480,7 +9480,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_show_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_show_style", object)
 
   return(w)
 } 
@@ -9492,7 +9492,7 @@ function(object, show.style)
   checkPtrType(object, "GtkFontButton")
   show.style <- as.logical(show.style)
 
-  w <- .RGtkCall("S_gtk_font_button_set_show_style", object, show.style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_show_style", object, show.style)
 
   return(invisible(w))
 } 
@@ -9503,7 +9503,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontButton")
 
-  w <- .RGtkCall("S_gtk_font_button_get_show_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_get_show_size", object)
 
   return(w)
 } 
@@ -9515,7 +9515,7 @@ function(object, show.size)
   checkPtrType(object, "GtkFontButton")
   show.size <- as.logical(show.size)
 
-  w <- .RGtkCall("S_gtk_font_button_set_show_size", object, show.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_button_set_show_size", object, show.size)
 
   return(invisible(w))
 } 
@@ -9526,7 +9526,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_font_selection_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_get_type")
 
   return(w)
 } 
@@ -9537,7 +9537,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_font_selection_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9551,7 +9551,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontSelection")
 
-  w <- .RGtkCall("S_gtk_font_selection_get_font_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_get_font_name", object)
 
   return(w)
 } 
@@ -9565,7 +9565,7 @@ function(object)
 
   checkPtrType(object, "GtkFontSelection")
 
-  w <- .RGtkCall("S_gtk_font_selection_get_font", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_get_font", object)
 
   return(w)
 } 
@@ -9577,7 +9577,7 @@ function(object, fontname)
   checkPtrType(object, "GtkFontSelection")
   fontname <- as.character(fontname)
 
-  w <- .RGtkCall("S_gtk_font_selection_set_font_name", object, fontname, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_set_font_name", object, fontname)
 
   return(w)
 } 
@@ -9588,7 +9588,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontSelection")
 
-  w <- .RGtkCall("S_gtk_font_selection_get_preview_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_get_preview_text", object)
 
   return(w)
 } 
@@ -9600,7 +9600,7 @@ function(object, text)
   checkPtrType(object, "GtkFontSelection")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_font_selection_set_preview_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_set_preview_text", object, text)
 
   return(invisible(w))
 } 
@@ -9611,7 +9611,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_get_type")
 
   return(w)
 } 
@@ -9622,7 +9622,7 @@ function(title = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_new", title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_new", title)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9636,7 +9636,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontSelectionDialog")
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_get_font_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_get_font_name", object)
 
   return(w)
 } 
@@ -9650,7 +9650,7 @@ function(object)
 
   checkPtrType(object, "GtkFontSelectionDialog")
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_get_font", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_get_font", object)
 
   return(w)
 } 
@@ -9662,7 +9662,7 @@ function(object, fontname)
   checkPtrType(object, "GtkFontSelectionDialog")
   fontname <- as.character(fontname)
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_set_font_name", object, fontname, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_set_font_name", object, fontname)
 
   return(w)
 } 
@@ -9673,7 +9673,7 @@ function(object)
 {
   checkPtrType(object, "GtkFontSelectionDialog")
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_get_preview_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_get_preview_text", object)
 
   return(w)
 } 
@@ -9685,7 +9685,7 @@ function(object, text)
   checkPtrType(object, "GtkFontSelectionDialog")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_font_selection_dialog_set_preview_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_font_selection_dialog_set_preview_text", object, text)
 
   return(invisible(w))
 } 
@@ -9696,7 +9696,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_frame_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_get_type")
 
   return(w)
 } 
@@ -9707,7 +9707,7 @@ function(label = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_frame_new", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_new", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9722,7 +9722,7 @@ function(object, label = NULL)
   checkPtrType(object, "GtkFrame")
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_frame_set_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_set_label", object, label)
 
   return(invisible(w))
 } 
@@ -9733,7 +9733,7 @@ function(object)
 {
   checkPtrType(object, "GtkFrame")
 
-  w <- .RGtkCall("S_gtk_frame_get_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_get_label", object)
 
   return(w)
 } 
@@ -9745,7 +9745,7 @@ function(object, label.widget)
   checkPtrType(object, "GtkFrame")
   checkPtrType(label.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_frame_set_label_widget", object, label.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_set_label_widget", object, label.widget)
 
   return(invisible(w))
 } 
@@ -9756,7 +9756,7 @@ function(object)
 {
   checkPtrType(object, "GtkFrame")
 
-  w <- .RGtkCall("S_gtk_frame_get_label_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_get_label_widget", object)
 
   return(w)
 } 
@@ -9769,7 +9769,7 @@ function(object, xalign, yalign)
   xalign <- as.numeric(xalign)
   yalign <- as.numeric(yalign)
 
-  w <- .RGtkCall("S_gtk_frame_set_label_align", object, xalign, yalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_set_label_align", object, xalign, yalign)
 
   return(invisible(w))
 } 
@@ -9780,7 +9780,7 @@ function(object)
 {
   checkPtrType(object, "GtkFrame")
 
-  w <- .RGtkCall("S_gtk_frame_get_label_align", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_get_label_align", object)
 
   return(invisible(w))
 } 
@@ -9792,7 +9792,7 @@ function(object, type)
   checkPtrType(object, "GtkFrame")
   
 
-  w <- .RGtkCall("S_gtk_frame_set_shadow_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_set_shadow_type", object, type)
 
   return(invisible(w))
 } 
@@ -9803,7 +9803,7 @@ function(object)
 {
   checkPtrType(object, "GtkFrame")
 
-  w <- .RGtkCall("S_gtk_frame_get_shadow_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_frame_get_shadow_type", object)
 
   return(w)
 } 
@@ -9814,7 +9814,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_gamma_curve_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_gamma_curve_get_type")
 
   return(w)
 } 
@@ -9825,7 +9825,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_gamma_curve_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_gamma_curve_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9841,7 +9841,7 @@ function(depth, colormap, values)
   checkPtrType(colormap, "GdkColormap")
   values <- as.GdkGCValues(values)
 
-  w <- .RGtkCall("S_gtk_gc_get", depth, colormap, values, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_gc_get", depth, colormap, values)
 
   return(w)
 } 
@@ -9852,7 +9852,7 @@ function(gc)
 {
   checkPtrType(gc, "GdkGC")
 
-  w <- .RGtkCall("S_gtk_gc_release", gc, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_gc_release", gc)
 
   return(w)
 } 
@@ -9863,7 +9863,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_handle_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_get_type")
 
   return(w)
 } 
@@ -9874,7 +9874,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_handle_box_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9889,7 +9889,7 @@ function(object, type)
   checkPtrType(object, "GtkHandleBox")
   
 
-  w <- .RGtkCall("S_gtk_handle_box_set_shadow_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_set_shadow_type", object, type)
 
   return(invisible(w))
 } 
@@ -9900,7 +9900,7 @@ function(object)
 {
   checkPtrType(object, "GtkHandleBox")
 
-  w <- .RGtkCall("S_gtk_handle_box_get_shadow_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_get_shadow_type", object)
 
   return(w)
 } 
@@ -9912,7 +9912,7 @@ function(object, position)
   checkPtrType(object, "GtkHandleBox")
   
 
-  w <- .RGtkCall("S_gtk_handle_box_set_handle_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_set_handle_position", object, position)
 
   return(invisible(w))
 } 
@@ -9923,7 +9923,7 @@ function(object)
 {
   checkPtrType(object, "GtkHandleBox")
 
-  w <- .RGtkCall("S_gtk_handle_box_get_handle_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_get_handle_position", object)
 
   return(w)
 } 
@@ -9935,7 +9935,7 @@ function(object, edge)
   checkPtrType(object, "GtkHandleBox")
   
 
-  w <- .RGtkCall("S_gtk_handle_box_set_snap_edge", object, edge, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_set_snap_edge", object, edge)
 
   return(invisible(w))
 } 
@@ -9946,7 +9946,7 @@ function(object)
 {
   checkPtrType(object, "GtkHandleBox")
 
-  w <- .RGtkCall("S_gtk_handle_box_get_snap_edge", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_handle_box_get_snap_edge", object)
 
   return(w)
 } 
@@ -9957,7 +9957,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hbutton_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_get_type")
 
   return(w)
 } 
@@ -9968,7 +9968,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hbutton_box_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -9982,7 +9982,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hbutton_box_get_spacing_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_get_spacing_default")
 
   return(w)
 } 
@@ -9993,7 +9993,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hbutton_box_get_layout_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_get_layout_default")
 
   return(w)
 } 
@@ -10004,7 +10004,7 @@ function(spacing)
 {
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_hbutton_box_set_spacing_default", spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_set_spacing_default", spacing)
 
   return(w)
 } 
@@ -10015,7 +10015,7 @@ function(layout)
 {
   
 
-  w <- .RGtkCall("S_gtk_hbutton_box_set_layout_default", layout, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbutton_box_set_layout_default", layout)
 
   return(w)
 } 
@@ -10026,7 +10026,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hbox_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbox_get_type")
 
   return(w)
 } 
@@ -10037,7 +10037,7 @@ function(homogeneous = NULL, spacing = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hbox_new", homogeneous, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hbox_new", homogeneous, spacing)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10051,7 +10051,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hpaned_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hpaned_get_type")
 
   return(w)
 } 
@@ -10062,7 +10062,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hpaned_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hpaned_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10076,7 +10076,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hruler_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hruler_get_type")
 
   return(w)
 } 
@@ -10087,7 +10087,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hruler_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hruler_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10101,7 +10101,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hscale_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hscale_get_type")
 
   return(w)
 } 
@@ -10112,7 +10112,7 @@ function(adjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hscale_new", adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hscale_new", adjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10128,7 +10128,7 @@ function(min, max, step, show = TRUE)
   max <- as.numeric(max)
   step <- as.numeric(step)
 
-  w <- .RGtkCall("S_gtk_hscale_new_with_range", min, max, step, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hscale_new_with_range", min, max, step)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10142,7 +10142,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hscrollbar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hscrollbar_get_type")
 
   return(w)
 } 
@@ -10153,7 +10153,7 @@ function(adjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hscrollbar_new", adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hscrollbar_new", adjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10167,7 +10167,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_hseparator_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hseparator_get_type")
 
   return(w)
 } 
@@ -10178,7 +10178,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_hseparator_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_hseparator_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -10192,7 +10192,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_factory_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_get_type")
 
   return(w)
 } 
@@ -10203,7 +10203,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_factory_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_new")
 
   return(w)
 } 
@@ -10216,7 +10216,7 @@ function(object, stock.id, icon.set)
   stock.id <- as.character(stock.id)
   checkPtrType(icon.set, "GtkIconSet")
 
-  w <- .RGtkCall("S_gtk_icon_factory_add", object, stock.id, icon.set, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_add", object, stock.id, icon.set)
 
   return(invisible(w))
 } 
@@ -10228,7 +10228,7 @@ function(object, stock.id)
   checkPtrType(object, "GtkIconFactory")
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_icon_factory_lookup", object, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_lookup", object, stock.id)
 
   return(w)
 } 
@@ -10239,7 +10239,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconFactory")
 
-  w <- .RGtkCall("S_gtk_icon_factory_add_default", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_add_default", object)
 
   return(invisible(w))
 } 
@@ -10250,7 +10250,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconFactory")
 
-  w <- .RGtkCall("S_gtk_icon_factory_remove_default", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_remove_default", object)
 
   return(invisible(w))
 } 
@@ -10261,7 +10261,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_icon_factory_lookup_default", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_factory_lookup_default", stock.id)
 
   return(w)
 } 
@@ -10272,7 +10272,7 @@ function(size)
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_size_lookup", size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_lookup", size)
 
   return(w)
 } 
@@ -10284,7 +10284,7 @@ function(settings, size)
   checkPtrType(settings, "GtkSettings")
   
 
-  w <- .RGtkCall("S_gtk_icon_size_lookup_for_settings", settings, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_lookup_for_settings", settings, size)
 
   return(w)
 } 
@@ -10297,7 +10297,7 @@ function(name, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_icon_size_register", name, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_register", name, width, height)
 
   return(w)
 } 
@@ -10309,7 +10309,7 @@ function(alias, target)
   alias <- as.character(alias)
   
 
-  w <- .RGtkCall("S_gtk_icon_size_register_alias", alias, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_register_alias", alias, target)
 
   return(w)
 } 
@@ -10320,7 +10320,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_icon_size_from_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_from_name", name)
 
   return(w)
 } 
@@ -10331,7 +10331,7 @@ function(size)
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_size_get_name", size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_size_get_name", size)
 
   return(w)
 } 
@@ -10342,7 +10342,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_set_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_get_type")
 
   return(w)
 } 
@@ -10353,7 +10353,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_set_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_new")
 
   return(w)
 } 
@@ -10364,7 +10364,7 @@ function(pixbuf)
 {
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_icon_set_new_from_pixbuf", pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_new_from_pixbuf", pixbuf)
 
   return(w)
 } 
@@ -10375,7 +10375,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSet")
 
-  w <- .RGtkCall("S_gtk_icon_set_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_copy", object)
 
   return(w)
 } 
@@ -10392,7 +10392,7 @@ function(object, style, direction, state, size, widget = NULL, detail = NULL)
   if (!is.null( widget )) checkPtrType(widget, "GtkWidget")
   if (!is.null( detail )) detail <- as.character(detail)
 
-  w <- .RGtkCall("S_gtk_icon_set_render_icon", object, style, direction, state, size, widget, detail, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_render_icon", object, style, direction, state, size, widget, detail)
 
   return(w)
 } 
@@ -10404,7 +10404,7 @@ function(object, source)
   checkPtrType(object, "GtkIconSet")
   checkPtrType(source, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_set_add_source", object, source, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_add_source", object, source)
 
   return(invisible(w))
 } 
@@ -10415,7 +10415,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSet")
 
-  w <- .RGtkCall("S_gtk_icon_set_get_sizes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_set_get_sizes", object)
 
   return(invisible(w))
 } 
@@ -10426,7 +10426,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_source_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_type")
 
   return(w)
 } 
@@ -10437,7 +10437,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_source_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_new")
 
   return(w)
 } 
@@ -10448,7 +10448,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_copy", object)
 
   return(w)
 } 
@@ -10460,7 +10460,7 @@ function(object, filename)
   checkPtrType(object, "GtkIconSource")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_icon_source_set_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_filename", object, filename)
 
   return(invisible(w))
 } 
@@ -10472,7 +10472,7 @@ function(object, icon.name)
   checkPtrType(object, "GtkIconSource")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_icon_source_set_icon_name", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_icon_name", object, icon.name)
 
   return(invisible(w))
 } 
@@ -10484,7 +10484,7 @@ function(object, pixbuf)
   checkPtrType(object, "GtkIconSource")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_icon_source_set_pixbuf", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_pixbuf", object, pixbuf)
 
   return(invisible(w))
 } 
@@ -10495,7 +10495,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_filename", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_filename", object)
 
   return(w)
 } 
@@ -10506,7 +10506,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_icon_name", object)
 
   return(w)
 } 
@@ -10517,7 +10517,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_pixbuf", object)
 
   return(w)
 } 
@@ -10529,7 +10529,7 @@ function(object, setting)
   checkPtrType(object, "GtkIconSource")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_icon_source_set_direction_wildcarded", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_direction_wildcarded", object, setting)
 
   return(invisible(w))
 } 
@@ -10541,7 +10541,7 @@ function(object, setting)
   checkPtrType(object, "GtkIconSource")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_icon_source_set_state_wildcarded", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_state_wildcarded", object, setting)
 
   return(invisible(w))
 } 
@@ -10553,7 +10553,7 @@ function(object, setting)
   checkPtrType(object, "GtkIconSource")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_icon_source_set_size_wildcarded", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_size_wildcarded", object, setting)
 
   return(invisible(w))
 } 
@@ -10564,7 +10564,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_size_wildcarded", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_size_wildcarded", object)
 
   return(w)
 } 
@@ -10575,7 +10575,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_state_wildcarded", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_state_wildcarded", object)
 
   return(w)
 } 
@@ -10586,7 +10586,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_direction_wildcarded", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_direction_wildcarded", object)
 
   return(w)
 } 
@@ -10598,7 +10598,7 @@ function(object, direction)
   checkPtrType(object, "GtkIconSource")
   
 
-  w <- .RGtkCall("S_gtk_icon_source_set_direction", object, direction, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_direction", object, direction)
 
   return(invisible(w))
 } 
@@ -10610,7 +10610,7 @@ function(object, state)
   checkPtrType(object, "GtkIconSource")
   
 
-  w <- .RGtkCall("S_gtk_icon_source_set_state", object, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_state", object, state)
 
   return(invisible(w))
 } 
@@ -10622,7 +10622,7 @@ function(object, size)
   checkPtrType(object, "GtkIconSource")
   
 
-  w <- .RGtkCall("S_gtk_icon_source_set_size", object, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_set_size", object, size)
 
   return(invisible(w))
 } 
@@ -10633,7 +10633,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_direction", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_direction", object)
 
   return(w)
 } 
@@ -10644,7 +10644,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_state", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_state", object)
 
   return(w)
 } 
@@ -10655,7 +10655,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconSource")
 
-  w <- .RGtkCall("S_gtk_icon_source_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_source_get_size", object)
 
   return(w)
 } 
@@ -10666,7 +10666,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_error_quark", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_error_quark")
 
   return(w)
 } 
@@ -10677,7 +10677,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_type")
 
   return(w)
 } 
@@ -10688,7 +10688,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_new")
 
   return(w)
 } 
@@ -10699,7 +10699,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_default")
 
   return(w)
 } 
@@ -10710,7 +10710,7 @@ function(screen)
 {
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_for_screen", screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_for_screen", screen)
 
   return(w)
 } 
@@ -10722,7 +10722,7 @@ function(object, screen)
   checkPtrType(object, "GtkIconTheme")
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_icon_theme_set_screen", object, screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_set_screen", object, screen)
 
   return(invisible(w))
 } 
@@ -10733,7 +10733,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconTheme")
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_search_path", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_search_path", object)
 
   return(invisible(w))
 } 
@@ -10745,7 +10745,7 @@ function(object, path)
   checkPtrType(object, "GtkIconTheme")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_icon_theme_append_search_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_append_search_path", object, path)
 
   return(invisible(w))
 } 
@@ -10757,7 +10757,7 @@ function(object, path)
   checkPtrType(object, "GtkIconTheme")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_icon_theme_prepend_search_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_prepend_search_path", object, path)
 
   return(invisible(w))
 } 
@@ -10769,7 +10769,7 @@ function(object, theme.name)
   checkPtrType(object, "GtkIconTheme")
   theme.name <- as.character(theme.name)
 
-  w <- .RGtkCall("S_gtk_icon_theme_set_custom_theme", object, theme.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_set_custom_theme", object, theme.name)
 
   return(invisible(w))
 } 
@@ -10781,7 +10781,7 @@ function(object, icon.name)
   checkPtrType(object, "GtkIconTheme")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_icon_theme_has_icon", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_has_icon", object, icon.name)
 
   return(w)
 } 
@@ -10795,7 +10795,7 @@ function(object, icon.name, size, flags)
   size <- as.integer(size)
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_lookup_icon", object, icon.name, size, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_lookup_icon", object, icon.name, size, flags)
 
   return(w)
 } 
@@ -10809,7 +10809,7 @@ function(object, icon.name, size, flags, .errwarn = TRUE)
   size <- as.integer(size)
   
 
-  w <- .RGtkCall("S_gtk_icon_theme_load_icon", object, icon.name, size, flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_load_icon", object, icon.name, size, flags)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -10824,7 +10824,7 @@ function(object, context = NULL)
   checkPtrType(object, "GtkIconTheme")
   if (!is.null( context )) context <- as.character(context)
 
-  w <- .RGtkCall("S_gtk_icon_theme_list_icons", object, context, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_list_icons", object, context)
 
   return(w)
 } 
@@ -10835,7 +10835,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconTheme")
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_example_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_example_icon_name", object)
 
   return(w)
 } 
@@ -10846,7 +10846,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconTheme")
 
-  w <- .RGtkCall("S_gtk_icon_theme_rescan_if_needed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_rescan_if_needed", object)
 
   return(w)
 } 
@@ -10859,7 +10859,7 @@ function(icon.name, size, pixbuf)
   size <- as.integer(size)
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_icon_theme_add_builtin_icon", icon.name, size, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_add_builtin_icon", icon.name, size, pixbuf)
 
   return(w)
 } 
@@ -10870,7 +10870,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_info_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_type")
 
   return(w)
 } 
@@ -10881,7 +10881,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_copy", object)
 
   return(w)
 } 
@@ -10892,7 +10892,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_base_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_base_size", object)
 
   return(w)
 } 
@@ -10903,7 +10903,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_filename", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_filename", object)
 
   return(w)
 } 
@@ -10914,7 +10914,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_builtin_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_builtin_pixbuf", object)
 
   return(w)
 } 
@@ -10925,7 +10925,7 @@ function(object, .errwarn = TRUE)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_load_icon", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_load_icon", object)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -10940,7 +10940,7 @@ function(object, raw.coordinates)
   checkPtrType(object, "GtkIconInfo")
   raw.coordinates <- as.logical(raw.coordinates)
 
-  w <- .RGtkCall("S_gtk_icon_info_set_raw_coordinates", object, raw.coordinates, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_set_raw_coordinates", object, raw.coordinates)
 
   return(invisible(w))
 } 
@@ -10951,7 +10951,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_embedded_rect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_embedded_rect", object)
 
   return(w)
 } 
@@ -10962,7 +10962,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_attach_points", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_attach_points", object)
 
   return(w)
 } 
@@ -10973,7 +10973,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconInfo")
 
-  w <- .RGtkCall("S_gtk_icon_info_get_display_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_info_get_display_name", object)
 
   return(w)
 } 
@@ -10985,7 +10985,7 @@ function(object, icon.name)
   checkPtrType(object, "GtkIconTheme")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_icon_theme_get_icon_sizes", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_theme_get_icon_sizes", object, icon.name)
 
   return(w)
 } 
@@ -10996,7 +10996,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_view_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_type")
 
   return(w)
 } 
@@ -11007,7 +11007,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_view_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11021,7 +11021,7 @@ function(model = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_icon_view_new_with_model", model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_new_with_model", model)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11036,7 +11036,7 @@ function(object, model = NULL)
   checkPtrType(object, "GtkIconView")
   if (!is.null( model )) checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_icon_view_set_model", object, model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_model", object, model)
 
   return(invisible(w))
 } 
@@ -11047,7 +11047,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_model", object)
 
   return(w)
 } 
@@ -11059,7 +11059,7 @@ function(object, column)
   checkPtrType(object, "GtkIconView")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_text_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_text_column", object, column)
 
   return(invisible(w))
 } 
@@ -11070,7 +11070,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_text_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_text_column", object)
 
   return(w)
 } 
@@ -11082,7 +11082,7 @@ function(object, column)
   checkPtrType(object, "GtkIconView")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_markup_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_markup_column", object, column)
 
   return(invisible(w))
 } 
@@ -11093,7 +11093,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_markup_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_markup_column", object)
 
   return(w)
 } 
@@ -11105,7 +11105,7 @@ function(object, column)
   checkPtrType(object, "GtkIconView")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_pixbuf_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_pixbuf_column", object, column)
 
   return(invisible(w))
 } 
@@ -11116,7 +11116,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_pixbuf_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_pixbuf_column", object)
 
   return(w)
 } 
@@ -11128,7 +11128,7 @@ function(object, orientation)
   checkPtrType(object, "GtkIconView")
   
 
-  w <- .RGtkCall("S_gtk_icon_view_set_orientation", object, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_orientation", object, orientation)
 
   return(invisible(w))
 } 
@@ -11139,7 +11139,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_orientation", object)
 
   return(w)
 } 
@@ -11151,7 +11151,7 @@ function(object, columns)
   checkPtrType(object, "GtkIconView")
   columns <- as.integer(columns)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_columns", object, columns, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_columns", object, columns)
 
   return(invisible(w))
 } 
@@ -11162,7 +11162,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_columns", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_columns", object)
 
   return(w)
 } 
@@ -11174,7 +11174,7 @@ function(object, item.width)
   checkPtrType(object, "GtkIconView")
   item.width <- as.integer(item.width)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_item_width", object, item.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_item_width", object, item.width)
 
   return(invisible(w))
 } 
@@ -11185,7 +11185,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_item_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_item_width", object)
 
   return(w)
 } 
@@ -11197,7 +11197,7 @@ function(object, spacing)
   checkPtrType(object, "GtkIconView")
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_spacing", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_spacing", object, spacing)
 
   return(invisible(w))
 } 
@@ -11208,7 +11208,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_spacing", object)
 
   return(w)
 } 
@@ -11220,7 +11220,7 @@ function(object, row.spacing)
   checkPtrType(object, "GtkIconView")
   row.spacing <- as.integer(row.spacing)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_row_spacing", object, row.spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_row_spacing", object, row.spacing)
 
   return(invisible(w))
 } 
@@ -11231,7 +11231,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_row_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_row_spacing", object)
 
   return(w)
 } 
@@ -11243,7 +11243,7 @@ function(object, column.spacing)
   checkPtrType(object, "GtkIconView")
   column.spacing <- as.integer(column.spacing)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_column_spacing", object, column.spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_column_spacing", object, column.spacing)
 
   return(invisible(w))
 } 
@@ -11254,7 +11254,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_column_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_column_spacing", object)
 
   return(w)
 } 
@@ -11266,7 +11266,7 @@ function(object, margin)
   checkPtrType(object, "GtkIconView")
   margin <- as.integer(margin)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_margin", object, margin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_margin", object, margin)
 
   return(invisible(w))
 } 
@@ -11277,7 +11277,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_margin", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_margin", object)
 
   return(w)
 } 
@@ -11290,7 +11290,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_icon_view_get_path_at_pos", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_path_at_pos", object, x, y)
 
   return(w)
 } 
@@ -11303,7 +11303,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_icon_view_get_item_at_pos", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_item_at_pos", object, x, y)
 
   return(w)
 } 
@@ -11314,7 +11314,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_visible_range", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_visible_range", object)
 
   return(w)
 } 
@@ -11327,7 +11327,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_icon_view_selected_foreach", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_selected_foreach", object, func, data)
 
   return(invisible(w))
 } 
@@ -11339,7 +11339,7 @@ function(object, mode)
   checkPtrType(object, "GtkIconView")
   
 
-  w <- .RGtkCall("S_gtk_icon_view_set_selection_mode", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_selection_mode", object, mode)
 
   return(invisible(w))
 } 
@@ -11350,7 +11350,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_selection_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_selection_mode", object)
 
   return(w)
 } 
@@ -11362,7 +11362,7 @@ function(object, path)
   checkPtrType(object, "GtkIconView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_icon_view_select_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_select_path", object, path)
 
   return(invisible(w))
 } 
@@ -11374,7 +11374,7 @@ function(object, path)
   checkPtrType(object, "GtkIconView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_icon_view_unselect_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_unselect_path", object, path)
 
   return(invisible(w))
 } 
@@ -11386,7 +11386,7 @@ function(object, path)
   checkPtrType(object, "GtkIconView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_icon_view_path_is_selected", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_path_is_selected", object, path)
 
   return(w)
 } 
@@ -11397,7 +11397,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_selected_items", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_selected_items", object)
 
   return(w)
 } 
@@ -11408,7 +11408,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_select_all", object)
 
   return(invisible(w))
 } 
@@ -11419,7 +11419,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -11431,7 +11431,7 @@ function(object, path)
   checkPtrType(object, "GtkIconView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_icon_view_item_activated", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_item_activated", object, path)
 
   return(invisible(w))
 } 
@@ -11445,7 +11445,7 @@ function(object, path, cell, start.editing)
   checkPtrType(cell, "GtkCellRenderer")
   start.editing <- as.logical(start.editing)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_cursor", object, path, cell, start.editing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_cursor", object, path, cell, start.editing)
 
   return(invisible(w))
 } 
@@ -11456,7 +11456,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_cursor", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_cursor", object)
 
   return(w)
 } 
@@ -11471,7 +11471,7 @@ function(object, path, use.align, row.align, col.align)
   row.align <- as.numeric(row.align)
   col.align <- as.numeric(col.align)
 
-  w <- .RGtkCall("S_gtk_icon_view_scroll_to_path", object, path, use.align, row.align, col.align, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_scroll_to_path", object, path, use.align, row.align, col.align)
 
   return(invisible(w))
 } 
@@ -11485,7 +11485,7 @@ function(object, start.button.mask, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_icon_view_enable_model_drag_source", object, start.button.mask, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_enable_model_drag_source", object, start.button.mask, targets, actions)
 
   return(w)
 } 
@@ -11498,7 +11498,7 @@ function(object, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_icon_view_enable_model_drag_dest", object, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_enable_model_drag_dest", object, targets, actions)
 
   return(w)
 } 
@@ -11509,7 +11509,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_unset_model_drag_source", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_unset_model_drag_source", object)
 
   return(invisible(w))
 } 
@@ -11520,7 +11520,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_unset_model_drag_dest", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_unset_model_drag_dest", object)
 
   return(invisible(w))
 } 
@@ -11532,7 +11532,7 @@ function(object, reorderable)
   checkPtrType(object, "GtkIconView")
   reorderable <- as.logical(reorderable)
 
-  w <- .RGtkCall("S_gtk_icon_view_set_reorderable", object, reorderable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_reorderable", object, reorderable)
 
   return(invisible(w))
 } 
@@ -11543,7 +11543,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_reorderable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_reorderable", object)
 
   return(w)
 } 
@@ -11556,7 +11556,7 @@ function(object, path, pos)
   checkPtrType(path, "GtkTreePath")
   
 
-  w <- .RGtkCall("S_gtk_icon_view_set_drag_dest_item", object, path, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_set_drag_dest_item", object, path, pos)
 
   return(invisible(w))
 } 
@@ -11567,7 +11567,7 @@ function(object)
 {
   checkPtrType(object, "GtkIconView")
 
-  w <- .RGtkCall("S_gtk_icon_view_get_drag_dest_item", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_drag_dest_item", object)
 
   return(invisible(w))
 } 
@@ -11580,7 +11580,7 @@ function(object, drag.x, drag.y)
   drag.x <- as.integer(drag.x)
   drag.y <- as.integer(drag.y)
 
-  w <- .RGtkCall("S_gtk_icon_view_get_dest_item_at_pos", object, drag.x, drag.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_get_dest_item_at_pos", object, drag.x, drag.y)
 
   return(w)
 } 
@@ -11592,7 +11592,7 @@ function(object, path)
   checkPtrType(object, "GtkIconView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_icon_view_create_drag_icon", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_icon_view_create_drag_icon", object, path)
 
   return(w)
 } 
@@ -11603,7 +11603,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_image_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_type")
 
   return(w)
 } 
@@ -11614,7 +11614,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_image_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11629,7 +11629,7 @@ function(pixmap = NULL, mask = NULL, show = TRUE)
   if (!is.null( pixmap )) checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_image_new_from_pixmap", pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_pixmap", pixmap, mask)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11644,7 +11644,7 @@ function(image = NULL, mask = NULL, show = TRUE)
   if (!is.null( image )) checkPtrType(image, "GdkImage")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_image_new_from_image", image, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_image", image, mask)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11658,7 +11658,7 @@ function(filename, show = TRUE)
 {
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_image_new_from_file", filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_file", filename)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11672,7 +11672,7 @@ function(pixbuf = NULL, show = TRUE)
 {
   if (!is.null( pixbuf )) checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_image_new_from_pixbuf", pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_pixbuf", pixbuf)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -11687,7 +11687,7 @@ function(stock.id, size)
   stock.id <- as.character(stock.id)
   
 
-  w <- .RGtkCall("S_gtk_image_new_from_stock", stock.id, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_stock", stock.id, size)
 
   return(w)
 } 
@@ -11699,7 +11699,7 @@ function(icon.set, size)
   checkPtrType(icon.set, "GtkIconSet")
   
 
-  w <- .RGtkCall("S_gtk_image_new_from_icon_set", icon.set, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_icon_set", icon.set, size)
 
   return(w)
 } 
@@ -11710,7 +11710,7 @@ function(animation)
 {
   checkPtrType(animation, "GdkPixbufAnimation")
 
-  w <- .RGtkCall("S_gtk_image_new_from_animation", animation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_animation", animation)
 
   return(w)
 } 
@@ -11721,7 +11721,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_clear", object)
 
   return(invisible(w))
 } 
@@ -11734,7 +11734,7 @@ function(object, pixmap, mask = NULL)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_image_set_from_pixmap", object, pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_pixmap", object, pixmap, mask)
 
   return(invisible(w))
 } 
@@ -11747,7 +11747,7 @@ function(object, gdk.image = NULL, mask = NULL)
   if (!is.null( gdk.image )) checkPtrType(gdk.image, "GdkImage")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_image_set_from_image", object, gdk.image, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_image", object, gdk.image, mask)
 
   return(invisible(w))
 } 
@@ -11759,7 +11759,7 @@ function(object, filename = NULL)
   checkPtrType(object, "GtkImage")
   if (!is.null( filename )) filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_image_set_from_file", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_file", object, filename)
 
   return(invisible(w))
 } 
@@ -11771,7 +11771,7 @@ function(object, pixbuf = NULL)
   checkPtrType(object, "GtkImage")
   if (!is.null( pixbuf )) checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_image_set_from_pixbuf", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_pixbuf", object, pixbuf)
 
   return(invisible(w))
 } 
@@ -11784,7 +11784,7 @@ function(object, stock.id, size)
   stock.id <- as.character(stock.id)
   
 
-  w <- .RGtkCall("S_gtk_image_set_from_stock", object, stock.id, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_stock", object, stock.id, size)
 
   return(invisible(w))
 } 
@@ -11797,7 +11797,7 @@ function(object, icon.set, size)
   checkPtrType(icon.set, "GtkIconSet")
   
 
-  w <- .RGtkCall("S_gtk_image_set_from_icon_set", object, icon.set, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_icon_set", object, icon.set, size)
 
   return(invisible(w))
 } 
@@ -11809,7 +11809,7 @@ function(object, animation)
   checkPtrType(object, "GtkImage")
   checkPtrType(animation, "GdkPixbufAnimation")
 
-  w <- .RGtkCall("S_gtk_image_set_from_animation", object, animation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_animation", object, animation)
 
   return(invisible(w))
 } 
@@ -11820,7 +11820,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_storage_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_storage_type", object)
 
   return(w)
 } 
@@ -11831,7 +11831,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_pixmap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_pixmap", object)
 
   return(invisible(w))
 } 
@@ -11842,7 +11842,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_image", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_image", object)
 
   return(invisible(w))
 } 
@@ -11853,7 +11853,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_pixbuf", object)
 
   return(w)
 } 
@@ -11864,7 +11864,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_stock", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_stock", object)
 
   return(invisible(w))
 } 
@@ -11875,7 +11875,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_icon_set", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_icon_set", object)
 
   return(invisible(w))
 } 
@@ -11886,7 +11886,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_animation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_animation", object)
 
   return(w)
 } 
@@ -11899,7 +11899,7 @@ function(object, val, mask)
   checkPtrType(val, "GdkImage")
   checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_image_set", object, val, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set", object, val, mask)
 
   return(invisible(w))
 } 
@@ -11910,7 +11910,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get", object)
 
   return(invisible(w))
 } 
@@ -11922,7 +11922,7 @@ function(icon.name, size)
   icon.name <- as.character(icon.name)
   
 
-  w <- .RGtkCall("S_gtk_image_new_from_icon_name", icon.name, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_new_from_icon_name", icon.name, size)
 
   return(w)
 } 
@@ -11935,7 +11935,7 @@ function(object, icon.name, size)
   icon.name <- as.character(icon.name)
   
 
-  w <- .RGtkCall("S_gtk_image_set_from_icon_name", object, icon.name, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_from_icon_name", object, icon.name, size)
 
   return(invisible(w))
 } 
@@ -11947,7 +11947,7 @@ function(object, pixel.size)
   checkPtrType(object, "GtkImage")
   pixel.size <- as.integer(pixel.size)
 
-  w <- .RGtkCall("S_gtk_image_set_pixel_size", object, pixel.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_set_pixel_size", object, pixel.size)
 
   return(invisible(w))
 } 
@@ -11958,7 +11958,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_icon_name", object)
 
   return(invisible(w))
 } 
@@ -11969,7 +11969,7 @@ function(object)
 {
   checkPtrType(object, "GtkImage")
 
-  w <- .RGtkCall("S_gtk_image_get_pixel_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_get_pixel_size", object)
 
   return(w)
 } 
@@ -11980,7 +11980,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_image_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_get_type")
 
   return(w)
 } 
@@ -11991,7 +11991,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_image_menu_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12005,7 +12005,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_image_menu_item_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12019,7 +12019,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_image_menu_item_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12034,7 +12034,7 @@ function(stock.id, accel.group, show = TRUE)
   stock.id <- as.character(stock.id)
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_image_menu_item_new_from_stock", stock.id, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_new_from_stock", stock.id, accel.group)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12049,7 +12049,7 @@ function(object, image = NULL)
   checkPtrType(object, "GtkImageMenuItem")
   if (!is.null( image )) checkPtrType(image, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_image_menu_item_set_image", object, image, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_set_image", object, image)
 
   return(invisible(w))
 } 
@@ -12060,7 +12060,7 @@ function(object)
 {
   checkPtrType(object, "GtkImageMenuItem")
 
-  w <- .RGtkCall("S_gtk_image_menu_item_get_image", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_image_menu_item_get_image", object)
 
   return(w)
 } 
@@ -12071,7 +12071,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_im_context_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_get_type")
 
   return(w)
 } 
@@ -12083,7 +12083,7 @@ function(object, window)
   checkPtrType(object, "GtkIMContext")
   checkPtrType(window, "GdkWindow")
 
-  w <- .RGtkCall("S_gtk_im_context_set_client_window", object, window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_set_client_window", object, window)
 
   return(invisible(w))
 } 
@@ -12094,7 +12094,7 @@ function(object)
 {
   checkPtrType(object, "GtkIMContext")
 
-  w <- .RGtkCall("S_gtk_im_context_get_preedit_string", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_get_preedit_string", object)
 
   return(invisible(w))
 } 
@@ -12106,7 +12106,7 @@ function(object, event)
   checkPtrType(object, "GtkIMContext")
   checkPtrType(event, "GdkEventKey")
 
-  w <- .RGtkCall("S_gtk_im_context_filter_keypress", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_filter_keypress", object, event)
 
   return(w)
 } 
@@ -12117,7 +12117,7 @@ function(object)
 {
   checkPtrType(object, "GtkIMContext")
 
-  w <- .RGtkCall("S_gtk_im_context_focus_in", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_focus_in", object)
 
   return(invisible(w))
 } 
@@ -12128,7 +12128,7 @@ function(object)
 {
   checkPtrType(object, "GtkIMContext")
 
-  w <- .RGtkCall("S_gtk_im_context_focus_out", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_focus_out", object)
 
   return(invisible(w))
 } 
@@ -12139,7 +12139,7 @@ function(object)
 {
   checkPtrType(object, "GtkIMContext")
 
-  w <- .RGtkCall("S_gtk_im_context_reset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_reset", object)
 
   return(invisible(w))
 } 
@@ -12151,7 +12151,7 @@ function(object, area)
   checkPtrType(object, "GtkIMContext")
   area <- as.GdkRectangle(area)
 
-  w <- .RGtkCall("S_gtk_im_context_set_cursor_location", object, area, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_set_cursor_location", object, area)
 
   return(invisible(w))
 } 
@@ -12163,7 +12163,7 @@ function(object, use.preedit)
   checkPtrType(object, "GtkIMContext")
   use.preedit <- as.logical(use.preedit)
 
-  w <- .RGtkCall("S_gtk_im_context_set_use_preedit", object, use.preedit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_set_use_preedit", object, use.preedit)
 
   return(invisible(w))
 } 
@@ -12177,7 +12177,7 @@ function(object, text, len, cursor.index)
   len <- as.integer(len)
   cursor.index <- as.integer(cursor.index)
 
-  w <- .RGtkCall("S_gtk_im_context_set_surrounding", object, text, len, cursor.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_set_surrounding", object, text, len, cursor.index)
 
   return(invisible(w))
 } 
@@ -12188,7 +12188,7 @@ function(object)
 {
   checkPtrType(object, "GtkIMContext")
 
-  w <- .RGtkCall("S_gtk_im_context_get_surrounding", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_get_surrounding", object)
 
   return(w)
 } 
@@ -12201,7 +12201,7 @@ function(object, offset, n.chars)
   offset <- as.integer(offset)
   n.chars <- as.integer(n.chars)
 
-  w <- .RGtkCall("S_gtk_im_context_delete_surrounding", object, offset, n.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_delete_surrounding", object, offset, n.chars)
 
   return(w)
 } 
@@ -12212,7 +12212,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_im_context_simple_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_simple_get_type")
 
   return(w)
 } 
@@ -12223,7 +12223,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_im_context_simple_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_context_simple_new")
 
   return(w)
 } 
@@ -12234,7 +12234,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_im_multicontext_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_multicontext_get_type")
 
   return(w)
 } 
@@ -12245,7 +12245,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_im_multicontext_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_multicontext_new")
 
   return(w)
 } 
@@ -12257,7 +12257,7 @@ function(object, menushell)
   checkPtrType(object, "GtkIMMulticontext")
   checkPtrType(menushell, "GtkMenuShell")
 
-  w <- .RGtkCall("S_gtk_im_multicontext_append_menuitems", object, menushell, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_im_multicontext_append_menuitems", object, menushell)
 
   return(invisible(w))
 } 
@@ -12268,7 +12268,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_input_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_input_dialog_get_type")
 
   return(w)
 } 
@@ -12279,7 +12279,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_input_dialog_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_input_dialog_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12293,7 +12293,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_invisible_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_invisible_get_type")
 
   return(w)
 } 
@@ -12304,7 +12304,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_invisible_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_invisible_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12318,7 +12318,7 @@ function(screen, show = TRUE)
 {
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_invisible_new_for_screen", screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_invisible_new_for_screen", screen)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12333,7 +12333,7 @@ function(object, screen)
   checkPtrType(object, "GtkInvisible")
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_invisible_set_screen", object, screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_invisible_set_screen", object, screen)
 
   return(invisible(w))
 } 
@@ -12344,7 +12344,7 @@ function(object)
 {
   checkPtrType(object, "GtkInvisible")
 
-  w <- .RGtkCall("S_gtk_invisible_get_screen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_invisible_get_screen", object)
 
   return(w)
 } 
@@ -12355,7 +12355,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_get_type")
 
   return(w)
 } 
@@ -12366,7 +12366,7 @@ function(object)
 {
   checkPtrType(object, "GtkItem")
 
-  w <- .RGtkCall("S_gtk_item_select", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_select", object)
 
   return(invisible(w))
 } 
@@ -12377,7 +12377,7 @@ function(object)
 {
   checkPtrType(object, "GtkItem")
 
-  w <- .RGtkCall("S_gtk_item_deselect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_deselect", object)
 
   return(invisible(w))
 } 
@@ -12388,7 +12388,7 @@ function(object)
 {
   checkPtrType(object, "GtkItem")
 
-  w <- .RGtkCall("S_gtk_item_toggle", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_toggle", object)
 
   return(invisible(w))
 } 
@@ -12399,7 +12399,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_item_factory_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_get_type")
 
   return(w)
 } 
@@ -12415,7 +12415,7 @@ function(container.type, path, accel.group = NULL)
   path <- as.character(path)
   if (!is.null( accel.group )) checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_item_factory_new", container.type, path, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_new", container.type, path, accel.group)
 
   return(w)
 } 
@@ -12429,7 +12429,7 @@ function(object, container.type, path, accel.group)
   path <- as.character(path)
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_item_factory_construct", object, container.type, path, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_construct", object, container.type, path, accel.group)
 
   return(invisible(w))
 } 
@@ -12444,7 +12444,7 @@ function(accel.widget, full.path, accel.group, keyval, modifiers)
   keyval <- as.numeric(keyval)
   
 
-  w <- .RGtkCall("S_gtk_item_factory_add_foreign", accel.widget, full.path, accel.group, keyval, modifiers, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_add_foreign", accel.widget, full.path, accel.group, keyval, modifiers)
 
   return(w)
 } 
@@ -12455,7 +12455,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_item_factory_from_widget", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_from_widget", widget)
 
   return(w)
 } 
@@ -12466,7 +12466,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_item_factory_path_from_widget", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_path_from_widget", widget)
 
   return(w)
 } 
@@ -12478,7 +12478,7 @@ function(object, path)
   checkPtrType(object, "GtkItemFactory")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_item_factory_get_item", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_get_item", object, path)
 
   return(w)
 } 
@@ -12490,7 +12490,7 @@ function(object, path)
   checkPtrType(object, "GtkItemFactory")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_item_factory_get_widget", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_get_widget", object, path)
 
   return(w)
 } 
@@ -12502,7 +12502,7 @@ function(object, action)
   checkPtrType(object, "GtkItemFactory")
   action <- as.numeric(action)
 
-  w <- .RGtkCall("S_gtk_item_factory_get_widget_by_action", object, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_get_widget_by_action", object, action)
 
   return(w)
 } 
@@ -12514,7 +12514,7 @@ function(object, action)
   checkPtrType(object, "GtkItemFactory")
   action <- as.numeric(action)
 
-  w <- .RGtkCall("S_gtk_item_factory_get_item_by_action", object, action, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_get_item_by_action", object, action)
 
   return(w)
 } 
@@ -12528,7 +12528,7 @@ function(object, entry, callback.data = NULL, callback.type)
   
   callback.type <- as.numeric(callback.type)
 
-  w <- .RGtkCall("S_gtk_item_factory_create_item", object, entry, callback.data, callback.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_create_item", object, entry, callback.data, callback.type)
 
   return(invisible(w))
 } 
@@ -12541,7 +12541,7 @@ function(object, entries, callback.data = NULL)
   entries <- lapply(entries, function(x) { x <- as.GtkItemFactoryEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_item_factory_create_items", object, entries, callback.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_create_items", object, entries, callback.data)
 
   return(w)
 } 
@@ -12553,7 +12553,7 @@ function(object, path)
   checkPtrType(object, "GtkItemFactory")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_item_factory_delete_item", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_delete_item", object, path)
 
   return(invisible(w))
 } 
@@ -12565,7 +12565,7 @@ function(object, entry)
   checkPtrType(object, "GtkItemFactory")
   entry <- as.GtkItemFactoryEntry(entry)
 
-  w <- .RGtkCall("S_gtk_item_factory_delete_entry", object, entry, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_delete_entry", object, entry)
 
   return(invisible(w))
 } 
@@ -12577,7 +12577,7 @@ function(object, entries)
   checkPtrType(object, "GtkItemFactory")
   entries <- lapply(entries, function(x) { x <- as.GtkItemFactoryEntry(x); x })
 
-  w <- .RGtkCall("S_gtk_item_factory_delete_entries", object, entries, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_delete_entries", object, entries)
 
   return(w)
 } 
@@ -12592,7 +12592,7 @@ function(object, x, y, mouse.button, time = "GDK_CURRENT_TIME")
   mouse.button <- as.numeric(mouse.button)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_item_factory_popup", object, x, y, mouse.button, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_popup", object, x, y, mouse.button, time)
 
   return(invisible(w))
 } 
@@ -12608,7 +12608,7 @@ function(object, popup.data, x, y, mouse.button, time = "GDK_CURRENT_TIME")
   mouse.button <- as.numeric(mouse.button)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_item_factory_popup_with_data", object, popup.data, x, y, mouse.button, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_popup_with_data", object, popup.data, x, y, mouse.button, time)
 
   return(w)
 } 
@@ -12619,7 +12619,7 @@ function(object)
 {
   checkPtrType(object, "GtkItemFactory")
 
-  w <- .RGtkCall("S_gtk_item_factory_popup_data", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_popup_data", object)
 
   return(w)
 } 
@@ -12630,7 +12630,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_item_factory_popup_data_from_widget", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_popup_data_from_widget", widget)
 
   return(w)
 } 
@@ -12643,7 +12643,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_item_factory_set_translate_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_set_translate_func", object, func, data)
 
   return(w)
 } 
@@ -12654,7 +12654,7 @@ function(path)
 {
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_item_factory_from_path", path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_from_path", path)
 
   return(w)
 } 
@@ -12666,7 +12666,7 @@ function(ifactory.path, path)
   ifactory.path <- as.character(ifactory.path)
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_item_factories_path_delete", ifactory.path, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factories_path_delete", ifactory.path, path)
 
   return(w)
 } 
@@ -12680,7 +12680,7 @@ function(object, entries, callback.data, callback.type)
   
   callback.type <- as.numeric(callback.type)
 
-  w <- .RGtkCall("S_gtk_item_factory_create_items_ac", object, entries, callback.data, callback.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_item_factory_create_items_ac", object, entries, callback.data, callback.type)
 
   return(w)
 } 
@@ -12691,7 +12691,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_label_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_type")
 
   return(w)
 } 
@@ -12702,7 +12702,7 @@ function(str = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_label_new", str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_new", str)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12716,7 +12716,7 @@ function(str = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_label_new_with_mnemonic", str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_new_with_mnemonic", str)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -12731,7 +12731,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set_text", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_text", object, str)
 
   return(invisible(w))
 } 
@@ -12742,7 +12742,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_text", object)
 
   return(w)
 } 
@@ -12754,7 +12754,7 @@ function(object, attrs)
   checkPtrType(object, "GtkLabel")
   checkPtrType(attrs, "PangoAttrList")
 
-  w <- .RGtkCall("S_gtk_label_set_attributes", object, attrs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_attributes", object, attrs)
 
   return(invisible(w))
 } 
@@ -12765,7 +12765,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_attributes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_attributes", object)
 
   return(w)
 } 
@@ -12777,7 +12777,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set_label", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_label", object, str)
 
   return(invisible(w))
 } 
@@ -12788,7 +12788,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_label", object)
 
   return(w)
 } 
@@ -12800,7 +12800,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set_markup", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_markup", object, str)
 
   return(invisible(w))
 } 
@@ -12812,7 +12812,7 @@ function(object, setting)
   checkPtrType(object, "GtkLabel")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_label_set_use_markup", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_use_markup", object, setting)
 
   return(invisible(w))
 } 
@@ -12823,7 +12823,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_use_markup", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_use_markup", object)
 
   return(w)
 } 
@@ -12835,7 +12835,7 @@ function(object, setting)
   checkPtrType(object, "GtkLabel")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_label_set_use_underline", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_use_underline", object, setting)
 
   return(invisible(w))
 } 
@@ -12846,7 +12846,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_use_underline", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_use_underline", object)
 
   return(w)
 } 
@@ -12858,7 +12858,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set_markup_with_mnemonic", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_markup_with_mnemonic", object, str)
 
   return(invisible(w))
 } 
@@ -12869,7 +12869,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_mnemonic_keyval", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_mnemonic_keyval", object)
 
   return(w)
 } 
@@ -12881,7 +12881,7 @@ function(object, widget)
   checkPtrType(object, "GtkLabel")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_label_set_mnemonic_widget", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_mnemonic_widget", object, widget)
 
   return(invisible(w))
 } 
@@ -12892,7 +12892,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_mnemonic_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_mnemonic_widget", object)
 
   return(w)
 } 
@@ -12904,7 +12904,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set_text_with_mnemonic", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_text_with_mnemonic", object, str)
 
   return(invisible(w))
 } 
@@ -12916,7 +12916,7 @@ function(object, jtype)
   checkPtrType(object, "GtkLabel")
   
 
-  w <- .RGtkCall("S_gtk_label_set_justify", object, jtype, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_justify", object, jtype)
 
   return(invisible(w))
 } 
@@ -12927,7 +12927,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_justify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_justify", object)
 
   return(w)
 } 
@@ -12939,7 +12939,7 @@ function(object, pattern)
   checkPtrType(object, "GtkLabel")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_label_set_pattern", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_pattern", object, pattern)
 
   return(invisible(w))
 } 
@@ -12951,7 +12951,7 @@ function(object, wrap)
   checkPtrType(object, "GtkLabel")
   wrap <- as.logical(wrap)
 
-  w <- .RGtkCall("S_gtk_label_set_line_wrap", object, wrap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_line_wrap", object, wrap)
 
   return(invisible(w))
 } 
@@ -12962,7 +12962,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_line_wrap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_line_wrap", object)
 
   return(w)
 } 
@@ -12974,7 +12974,7 @@ function(object, setting)
   checkPtrType(object, "GtkLabel")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_label_set_selectable", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_selectable", object, setting)
 
   return(invisible(w))
 } 
@@ -12985,7 +12985,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_selectable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_selectable", object)
 
   return(w)
 } 
@@ -12998,7 +12998,7 @@ function(object, start.offset, end.offset)
   start.offset <- as.integer(start.offset)
   end.offset <- as.integer(end.offset)
 
-  w <- .RGtkCall("S_gtk_label_select_region", object, start.offset, end.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_select_region", object, start.offset, end.offset)
 
   return(invisible(w))
 } 
@@ -13009,7 +13009,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_selection_bounds", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_selection_bounds", object)
 
   return(w)
 } 
@@ -13020,7 +13020,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_layout", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_layout", object)
 
   return(w)
 } 
@@ -13031,7 +13031,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_layout_offsets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_layout_offsets", object)
 
   return(invisible(w))
 } 
@@ -13046,7 +13046,7 @@ function(object, str)
   checkPtrType(object, "GtkLabel")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_label_set", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set", object, str)
 
   return(invisible(w))
 } 
@@ -13060,7 +13060,7 @@ function(object)
 
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get", object)
 
   return(w)
 } 
@@ -13072,7 +13072,7 @@ function(object, string)
   checkPtrType(object, "GtkLabel")
   string <- as.character(string)
 
-  w <- .RGtkCall("S_gtk_label_parse_uline", object, string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_parse_uline", object, string)
 
   return(w)
 } 
@@ -13084,7 +13084,7 @@ function(object, mode)
   checkPtrType(object, "GtkLabel")
   
 
-  w <- .RGtkCall("S_gtk_label_set_ellipsize", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_ellipsize", object, mode)
 
   return(invisible(w))
 } 
@@ -13095,7 +13095,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_ellipsize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_ellipsize", object)
 
   return(w)
 } 
@@ -13107,7 +13107,7 @@ function(object, angle)
   checkPtrType(object, "GtkLabel")
   angle <- as.integer(angle)
 
-  w <- .RGtkCall("S_gtk_label_set_angle", object, angle, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_angle", object, angle)
 
   return(invisible(w))
 } 
@@ -13118,7 +13118,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_angle", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_angle", object)
 
   return(w)
 } 
@@ -13130,7 +13130,7 @@ function(object, n.chars)
   checkPtrType(object, "GtkLabel")
   n.chars <- as.integer(n.chars)
 
-  w <- .RGtkCall("S_gtk_label_set_width_chars", object, n.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_width_chars", object, n.chars)
 
   return(invisible(w))
 } 
@@ -13141,7 +13141,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_width_chars", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_width_chars", object)
 
   return(w)
 } 
@@ -13153,7 +13153,7 @@ function(object, n.chars)
   checkPtrType(object, "GtkLabel")
   n.chars <- as.integer(n.chars)
 
-  w <- .RGtkCall("S_gtk_label_set_max_width_chars", object, n.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_max_width_chars", object, n.chars)
 
   return(invisible(w))
 } 
@@ -13164,7 +13164,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_max_width_chars", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_max_width_chars", object)
 
   return(w)
 } 
@@ -13176,7 +13176,7 @@ function(object, single.line.mode)
   checkPtrType(object, "GtkLabel")
   single.line.mode <- as.logical(single.line.mode)
 
-  w <- .RGtkCall("S_gtk_label_set_single_line_mode", object, single.line.mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_set_single_line_mode", object, single.line.mode)
 
   return(invisible(w))
 } 
@@ -13187,7 +13187,7 @@ function(object)
 {
   checkPtrType(object, "GtkLabel")
 
-  w <- .RGtkCall("S_gtk_label_get_single_line_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_label_get_single_line_mode", object)
 
   return(w)
 } 
@@ -13198,7 +13198,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_layout_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_get_type")
 
   return(w)
 } 
@@ -13209,7 +13209,7 @@ function(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_layout_new", hadjustment, vadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_new", hadjustment, vadjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -13226,7 +13226,7 @@ function(object, child.widget, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_layout_put", object, child.widget, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_put", object, child.widget, x, y)
 
   return(invisible(w))
 } 
@@ -13240,7 +13240,7 @@ function(object, child.widget, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_layout_move", object, child.widget, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_move", object, child.widget, x, y)
 
   return(invisible(w))
 } 
@@ -13253,7 +13253,7 @@ function(object, width, height)
   width <- as.numeric(width)
   height <- as.numeric(height)
 
-  w <- .RGtkCall("S_gtk_layout_set_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_set_size", object, width, height)
 
   return(invisible(w))
 } 
@@ -13264,7 +13264,7 @@ function(object)
 {
   checkPtrType(object, "GtkLayout")
 
-  w <- .RGtkCall("S_gtk_layout_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_get_size", object)
 
   return(invisible(w))
 } 
@@ -13275,7 +13275,7 @@ function(object)
 {
   checkPtrType(object, "GtkLayout")
 
-  w <- .RGtkCall("S_gtk_layout_get_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_get_hadjustment", object)
 
   return(w)
 } 
@@ -13286,7 +13286,7 @@ function(object)
 {
   checkPtrType(object, "GtkLayout")
 
-  w <- .RGtkCall("S_gtk_layout_get_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_get_vadjustment", object)
 
   return(w)
 } 
@@ -13298,7 +13298,7 @@ function(object, adjustment = NULL)
   checkPtrType(object, "GtkLayout")
   if (!is.null( adjustment )) checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_layout_set_hadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_set_hadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -13310,7 +13310,7 @@ function(object, adjustment = NULL)
   checkPtrType(object, "GtkLayout")
   if (!is.null( adjustment )) checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_layout_set_vadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_set_vadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -13321,7 +13321,7 @@ function(object)
 {
   checkPtrType(object, "GtkLayout")
 
-  w <- .RGtkCall("S_gtk_layout_freeze", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_freeze", object)
 
   return(invisible(w))
 } 
@@ -13332,7 +13332,7 @@ function(object)
 {
   checkPtrType(object, "GtkLayout")
 
-  w <- .RGtkCall("S_gtk_layout_thaw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_layout_thaw", object)
 
   return(invisible(w))
 } 
@@ -13346,7 +13346,7 @@ function()
 
   
 
-  w <- .RGtkCall("S_gtk_list_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_get_type")
 
   return(w)
 } 
@@ -13360,7 +13360,7 @@ function(show = TRUE)
 
   
 
-  w <- .RGtkCall("S_gtk_list_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -13376,7 +13376,7 @@ function(object, items, position)
   items <- as.GList(items)
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_list_insert_items", object, items, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_insert_items", object, items, position)
 
   return(invisible(w))
 } 
@@ -13388,7 +13388,7 @@ function(object, items)
   checkPtrType(object, "GtkList")
   items <- as.GList(items)
 
-  w <- .RGtkCall("S_gtk_list_append_items", object, items, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_append_items", object, items)
 
   return(invisible(w))
 } 
@@ -13400,7 +13400,7 @@ function(object, items)
   checkPtrType(object, "GtkList")
   items <- as.GList(items)
 
-  w <- .RGtkCall("S_gtk_list_prepend_items", object, items, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_prepend_items", object, items)
 
   return(invisible(w))
 } 
@@ -13412,7 +13412,7 @@ function(object, items)
   checkPtrType(object, "GtkList")
   items <- as.GList(items)
 
-  w <- .RGtkCall("S_gtk_list_remove_items", object, items, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_remove_items", object, items)
 
   return(invisible(w))
 } 
@@ -13425,7 +13425,7 @@ function(object, start, end)
   start <- as.integer(start)
   end <- as.integer(end)
 
-  w <- .RGtkCall("S_gtk_list_clear_items", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_clear_items", object, start, end)
 
   return(invisible(w))
 } 
@@ -13437,7 +13437,7 @@ function(object, item)
   checkPtrType(object, "GtkList")
   item <- as.integer(item)
 
-  w <- .RGtkCall("S_gtk_list_select_item", object, item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_select_item", object, item)
 
   return(invisible(w))
 } 
@@ -13449,7 +13449,7 @@ function(object, item)
   checkPtrType(object, "GtkList")
   item <- as.integer(item)
 
-  w <- .RGtkCall("S_gtk_list_unselect_item", object, item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_unselect_item", object, item)
 
   return(invisible(w))
 } 
@@ -13461,7 +13461,7 @@ function(object, child)
   checkPtrType(object, "GtkList")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_list_select_child", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_select_child", object, child)
 
   return(invisible(w))
 } 
@@ -13473,7 +13473,7 @@ function(object, child)
   checkPtrType(object, "GtkList")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_list_unselect_child", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_unselect_child", object, child)
 
   return(invisible(w))
 } 
@@ -13485,7 +13485,7 @@ function(object, child)
   checkPtrType(object, "GtkList")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_list_child_position", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_child_position", object, child)
 
   return(w)
 } 
@@ -13497,7 +13497,7 @@ function(object, mode)
   checkPtrType(object, "GtkList")
   
 
-  w <- .RGtkCall("S_gtk_list_set_selection_mode", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_set_selection_mode", object, mode)
 
   return(invisible(w))
 } 
@@ -13511,7 +13511,7 @@ function(object, scroll.type, position, auto.start.selection)
   position <- as.numeric(position)
   auto.start.selection <- as.logical(auto.start.selection)
 
-  w <- .RGtkCall("S_gtk_list_extend_selection", object, scroll.type, position, auto.start.selection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_extend_selection", object, scroll.type, position, auto.start.selection)
 
   return(invisible(w))
 } 
@@ -13522,7 +13522,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_start_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_start_selection", object)
 
   return(invisible(w))
 } 
@@ -13533,7 +13533,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_end_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_end_selection", object)
 
   return(invisible(w))
 } 
@@ -13544,7 +13544,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_select_all", object)
 
   return(invisible(w))
 } 
@@ -13555,7 +13555,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -13568,7 +13568,7 @@ function(object, scroll.type, position)
   
   position <- as.numeric(position)
 
-  w <- .RGtkCall("S_gtk_list_scroll_horizontal", object, scroll.type, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_scroll_horizontal", object, scroll.type, position)
 
   return(invisible(w))
 } 
@@ -13581,7 +13581,7 @@ function(object, scroll.type, position)
   
   position <- as.numeric(position)
 
-  w <- .RGtkCall("S_gtk_list_scroll_vertical", object, scroll.type, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_scroll_vertical", object, scroll.type, position)
 
   return(invisible(w))
 } 
@@ -13592,7 +13592,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_toggle_add_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_toggle_add_mode", object)
 
   return(invisible(w))
 } 
@@ -13603,7 +13603,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_toggle_focus_row", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_toggle_focus_row", object)
 
   return(invisible(w))
 } 
@@ -13615,7 +13615,7 @@ function(object, item)
   checkPtrType(object, "GtkList")
   checkPtrType(item, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_list_toggle_row", object, item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_toggle_row", object, item)
 
   return(invisible(w))
 } 
@@ -13626,7 +13626,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_undo_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_undo_selection", object)
 
   return(invisible(w))
 } 
@@ -13637,7 +13637,7 @@ function(object)
 {
   checkPtrType(object, "GtkList")
 
-  w <- .RGtkCall("S_gtk_list_end_drag_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_end_drag_selection", object)
 
   return(invisible(w))
 } 
@@ -13648,7 +13648,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_list_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_item_get_type")
 
   return(w)
 } 
@@ -13662,7 +13662,7 @@ function(show = TRUE)
 
   
 
-  w <- .RGtkCall("S_gtk_list_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -13679,7 +13679,7 @@ function(label, show = TRUE)
 
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_list_item_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_item_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -13693,7 +13693,7 @@ function(object)
 {
   checkPtrType(object, "GtkListItem")
 
-  w <- .RGtkCall("S_gtk_list_item_select", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_item_select", object)
 
   return(invisible(w))
 } 
@@ -13704,7 +13704,7 @@ function(object)
 {
   checkPtrType(object, "GtkListItem")
 
-  w <- .RGtkCall("S_gtk_list_item_deselect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_item_deselect", object)
 
   return(invisible(w))
 } 
@@ -13715,7 +13715,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_list_store_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_get_type")
 
   return(w)
 } 
@@ -13726,7 +13726,7 @@ function(value)
 {
   value <- as.list(as.numeric(value))
 
-  w <- .RGtkCall("S_gtk_list_store_newv", value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_newv", value)
 
   return(w)
 } 
@@ -13738,7 +13738,7 @@ function(object, types)
   checkPtrType(object, "GtkListStore")
   types <- as.list(as.numeric(types))
 
-  w <- .RGtkCall("S_gtk_list_store_set_column_types", object, types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_set_column_types", object, types)
 
   return(w)
 } 
@@ -13752,7 +13752,7 @@ function(object, iter, column, value)
   column <- as.integer(column)
   
 
-  w <- .RGtkCall("S_gtk_list_store_set_value", object, iter, column, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_set_value", object, iter, column, value)
 
   return(invisible(w))
 } 
@@ -13764,7 +13764,7 @@ function(object, iter)
   checkPtrType(object, "GtkListStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_remove", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_remove", object, iter)
 
   return(w)
 } 
@@ -13776,7 +13776,7 @@ function(object, position)
   checkPtrType(object, "GtkListStore")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_list_store_insert", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_insert", object, position)
 
   return(w)
 } 
@@ -13788,7 +13788,7 @@ function(object, sibling)
   checkPtrType(object, "GtkListStore")
   checkPtrType(sibling, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_insert_before", object, sibling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_insert_before", object, sibling)
 
   return(w)
 } 
@@ -13800,7 +13800,7 @@ function(object, sibling)
   checkPtrType(object, "GtkListStore")
   checkPtrType(sibling, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_insert_after", object, sibling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_insert_after", object, sibling)
 
   return(w)
 } 
@@ -13812,7 +13812,7 @@ function(object, iter)
   checkPtrType(object, "GtkListStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_prepend", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_prepend", object, iter)
 
   return(invisible(w))
 } 
@@ -13823,7 +13823,7 @@ function(object)
 {
   checkPtrType(object, "GtkListStore")
 
-  w <- .RGtkCall("S_gtk_list_store_append", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_append", object)
 
   return(w)
 } 
@@ -13834,7 +13834,7 @@ function(object)
 {
   checkPtrType(object, "GtkListStore")
 
-  w <- .RGtkCall("S_gtk_list_store_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_clear", object)
 
   return(invisible(w))
 } 
@@ -13846,7 +13846,7 @@ function(object, iter)
   checkPtrType(object, "GtkListStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_iter_is_valid", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_iter_is_valid", object, iter)
 
   return(w)
 } 
@@ -13858,7 +13858,7 @@ function(object, new.order)
   checkPtrType(object, "GtkListStore")
   new.order <- as.list(as.integer(new.order))
 
-  w <- .RGtkCall("S_gtk_list_store_reorder", object, new.order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_reorder", object, new.order)
 
   return(invisible(w))
 } 
@@ -13871,7 +13871,7 @@ function(object, a, b)
   checkPtrType(a, "GtkTreeIter")
   checkPtrType(b, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_swap", object, a, b, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_swap", object, a, b)
 
   return(invisible(w))
 } 
@@ -13884,7 +13884,7 @@ function(object, iter, position = NULL)
   checkPtrType(iter, "GtkTreeIter")
   if (!is.null( position )) checkPtrType(position, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_move_after", object, iter, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_move_after", object, iter, position)
 
   return(invisible(w))
 } 
@@ -13897,7 +13897,7 @@ function(object, iter, position = NULL)
   checkPtrType(iter, "GtkTreeIter")
   if (!is.null( position )) checkPtrType(position, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_list_store_move_before", object, iter, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_list_store_move_before", object, iter, position)
 
   return(invisible(w))
 } 
@@ -13910,7 +13910,7 @@ function(required.major, required.minor, required.micro)
   required.minor <- as.numeric(required.minor)
   required.micro <- as.numeric(required.micro)
 
-  w <- .RGtkCall("S_gtk_check_version", required.major, required.minor, required.micro, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_check_version", required.major, required.minor, required.micro)
 
   return(w)
 } 
@@ -13921,7 +13921,7 @@ function(error.code)
 {
   error.code <- as.integer(error.code)
 
-  w <- .RGtkCall("S_gtk_exit", error.code, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_exit", error.code)
 
   return(w)
 } 
@@ -13932,7 +13932,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_disable_setlocale", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_disable_setlocale")
 
   return(w)
 } 
@@ -13943,7 +13943,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_get_default_language", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_default_language")
 
   return(w)
 } 
@@ -13954,7 +13954,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_events_pending", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_events_pending")
 
   return(w)
 } 
@@ -13965,7 +13965,7 @@ function(event)
 {
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_main_do_event", event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main_do_event", event)
 
   return(w)
 } 
@@ -13976,7 +13976,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_main", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main")
 
   return(w)
 } 
@@ -13987,7 +13987,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_main_level", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main_level")
 
   return(w)
 } 
@@ -13998,7 +13998,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_main_quit", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main_quit")
 
   return(w)
 } 
@@ -14009,7 +14009,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_main_iteration", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main_iteration")
 
   return(w)
 } 
@@ -14020,7 +14020,7 @@ function(blocking = TRUE)
 {
   blocking <- as.logical(blocking)
 
-  w <- .RGtkCall("S_gtk_main_iteration_do", blocking, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_main_iteration_do", blocking)
 
   return(w)
 } 
@@ -14031,7 +14031,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_true", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_true")
 
   return(w)
 } 
@@ -14042,7 +14042,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_false", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_false")
 
   return(w)
 } 
@@ -14053,7 +14053,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_grab_add", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_grab_add", object)
 
   return(invisible(w))
 } 
@@ -14064,7 +14064,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_grab_get_current", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_grab_get_current")
 
   return(w)
 } 
@@ -14075,7 +14075,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_grab_remove", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_grab_remove", object)
 
   return(invisible(w))
 } 
@@ -14087,7 +14087,7 @@ function(fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_init_add", fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_init_add", fun, data)
 
   return(w)
 } 
@@ -14099,7 +14099,7 @@ function(main.level, object)
   main.level <- as.numeric(main.level)
   checkPtrType(object, "GtkObject")
 
-  w <- .RGtkCall("S_gtk_quit_add_destroy", main.level, object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_quit_add_destroy", main.level, object)
 
   return(w)
 } 
@@ -14112,7 +14112,7 @@ function(main.level, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_quit_add", main.level, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_quit_add", main.level, fun, data)
 
   return(w)
 } 
@@ -14125,7 +14125,7 @@ function(main.level, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_quit_add_full", main.level, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_quit_add_full", main.level, fun, data)
 
   return(w)
 } 
@@ -14136,7 +14136,7 @@ function(quit.handler.id)
 {
   quit.handler.id <- as.numeric(quit.handler.id)
 
-  w <- .RGtkCall("S_gtk_quit_remove", quit.handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_quit_remove", quit.handler.id)
 
   return(w)
 } 
@@ -14147,7 +14147,7 @@ function(data)
 {
   
 
-  w <- .RGtkCall("S_gtk_quit_remove_by_data", data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_quit_remove_by_data", data)
 
   return(w)
 } 
@@ -14160,7 +14160,7 @@ function(interval, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_timeout_add", interval, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_timeout_add", interval, fun, data)
 
   return(w)
 } 
@@ -14173,7 +14173,7 @@ function(interval, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_timeout_add_full", interval, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_timeout_add_full", interval, fun, data)
 
   return(w)
 } 
@@ -14184,7 +14184,7 @@ function(timeout.handler.id)
 {
   timeout.handler.id <- as.numeric(timeout.handler.id)
 
-  w <- .RGtkCall("S_gtk_timeout_remove", timeout.handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_timeout_remove", timeout.handler.id)
 
   return(w)
 } 
@@ -14196,7 +14196,7 @@ function(fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_idle_add", fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_idle_add", fun, data)
 
   return(w)
 } 
@@ -14209,7 +14209,7 @@ function(priority, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_idle_add_priority", priority, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_idle_add_priority", priority, fun, data)
 
   return(w)
 } 
@@ -14222,7 +14222,7 @@ function(priority, fun, data = NULL)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_idle_add_full", priority, fun, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_idle_add_full", priority, fun, data)
 
   return(w)
 } 
@@ -14233,7 +14233,7 @@ function(idle.handler.id)
 {
   idle.handler.id <- as.numeric(idle.handler.id)
 
-  w <- .RGtkCall("S_gtk_idle_remove", idle.handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_idle_remove", idle.handler.id)
 
   return(w)
 } 
@@ -14244,7 +14244,7 @@ function(data)
 {
   
 
-  w <- .RGtkCall("S_gtk_idle_remove_by_data", data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_idle_remove_by_data", data)
 
   return(w)
 } 
@@ -14255,7 +14255,7 @@ function(input.handler.id)
 {
   input.handler.id <- as.numeric(input.handler.id)
 
-  w <- .RGtkCall("S_gtk_input_remove", input.handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_input_remove", input.handler.id)
 
   return(w)
 } 
@@ -14267,7 +14267,7 @@ function(snooper, func.data = NULL)
   snooper <- as.function(snooper)
   
 
-  w <- .RGtkCall("S_gtk_key_snooper_install", snooper, func.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_key_snooper_install", snooper, func.data)
 
   return(w)
 } 
@@ -14278,7 +14278,7 @@ function(snooper.handler.id)
 {
   snooper.handler.id <- as.numeric(snooper.handler.id)
 
-  w <- .RGtkCall("S_gtk_key_snooper_remove", snooper.handler.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_key_snooper_remove", snooper.handler.id)
 
   return(w)
 } 
@@ -14289,7 +14289,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_get_current_event", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_current_event")
 
   return(w)
 } 
@@ -14300,7 +14300,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_get_current_event_time", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_current_event_time")
 
   return(w)
 } 
@@ -14311,7 +14311,7 @@ function(state)
 {
   
 
-  w <- .RGtkCall("S_gtk_get_current_event_state", state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_current_event_state", state)
 
   return(w)
 } 
@@ -14322,7 +14322,7 @@ function(event)
 {
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_get_event_widget", event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_event_widget", event)
 
   return(w)
 } 
@@ -14334,7 +14334,7 @@ function(object, event)
   checkPtrType(object, "GtkWidget")
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_propagate_event", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_propagate_event", object, event)
 
   return(invisible(w))
 } 
@@ -14345,7 +14345,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_type")
 
   return(w)
 } 
@@ -14356,7 +14356,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -14376,7 +14376,7 @@ function(object, parent.menu.shell, parent.menu.item, func, data = NULL, button,
   button <- as.numeric(button)
   activate.time <- as.numeric(activate.time)
 
-  w <- .RGtkCall("S_gtk_menu_popup", object, parent.menu.shell, parent.menu.item, func, data, button, activate.time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_popup", object, parent.menu.shell, parent.menu.item, func, data, button, activate.time)
 
   return(invisible(w))
 } 
@@ -14387,7 +14387,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_reposition", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_reposition", object)
 
   return(invisible(w))
 } 
@@ -14398,7 +14398,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_popdown", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_popdown", object)
 
   return(invisible(w))
 } 
@@ -14409,7 +14409,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_active", object)
 
   return(w)
 } 
@@ -14421,7 +14421,7 @@ function(object, index)
   checkPtrType(object, "GtkMenu")
   index <- as.numeric(index)
 
-  w <- .RGtkCall("S_gtk_menu_set_active", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_active", object, index)
 
   return(invisible(w))
 } 
@@ -14433,7 +14433,7 @@ function(object, accel.group)
   checkPtrType(object, "GtkMenu")
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_menu_set_accel_group", object, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_accel_group", object, accel.group)
 
   return(invisible(w))
 } 
@@ -14444,7 +14444,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_get_accel_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_accel_group", object)
 
   return(w)
 } 
@@ -14456,7 +14456,7 @@ function(object, accel.path)
   checkPtrType(object, "GtkMenu")
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_menu_set_accel_path", object, accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_accel_path", object, accel.path)
 
   return(invisible(w))
 } 
@@ -14467,7 +14467,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_detach", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_detach", object)
 
   return(invisible(w))
 } 
@@ -14478,7 +14478,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_get_attach_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_attach_widget", object)
 
   return(w)
 } 
@@ -14490,7 +14490,7 @@ function(object, torn.off)
   checkPtrType(object, "GtkMenu")
   torn.off <- as.logical(torn.off)
 
-  w <- .RGtkCall("S_gtk_menu_set_tearoff_state", object, torn.off, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_tearoff_state", object, torn.off)
 
   return(invisible(w))
 } 
@@ -14501,7 +14501,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_get_tearoff_state", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_tearoff_state", object)
 
   return(w)
 } 
@@ -14513,7 +14513,7 @@ function(object, title)
   checkPtrType(object, "GtkMenu")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_menu_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -14524,7 +14524,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenu")
 
-  w <- .RGtkCall("S_gtk_menu_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_title", object)
 
   return(w)
 } 
@@ -14537,7 +14537,7 @@ function(object, child, position)
   checkPtrType(child, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_menu_reorder_child", object, child, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_reorder_child", object, child, position)
 
   return(invisible(w))
 } 
@@ -14549,7 +14549,7 @@ function(object, screen = NULL)
   checkPtrType(object, "GtkMenu")
   if (!is.null( screen )) checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_menu_set_screen", object, screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_screen", object, screen)
 
   return(invisible(w))
 } 
@@ -14565,7 +14565,7 @@ function(object, child, left.attach, right.attach, top.attach, bottom.attach)
   top.attach <- as.numeric(top.attach)
   bottom.attach <- as.numeric(bottom.attach)
 
-  w <- .RGtkCall("S_gtk_menu_attach", object, child, left.attach, right.attach, top.attach, bottom.attach, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_attach", object, child, left.attach, right.attach, top.attach, bottom.attach)
 
   return(invisible(w))
 } 
@@ -14577,7 +14577,7 @@ function(object, monitor.num)
   checkPtrType(object, "GtkMenu")
   monitor.num <- as.integer(monitor.num)
 
-  w <- .RGtkCall("S_gtk_menu_set_monitor", object, monitor.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_set_monitor", object, monitor.num)
 
   return(invisible(w))
 } 
@@ -14588,7 +14588,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_get_for_attach_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_get_for_attach_widget", object)
 
   return(w)
 } 
@@ -14599,7 +14599,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_bar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_get_type")
 
   return(w)
 } 
@@ -14610,7 +14610,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_bar_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -14624,7 +14624,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuBar")
 
-  w <- .RGtkCall("S_gtk_menu_bar_get_pack_direction", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_get_pack_direction", object)
 
   return(w)
 } 
@@ -14636,7 +14636,7 @@ function(object, pack.dir)
   checkPtrType(object, "GtkMenuBar")
   
 
-  w <- .RGtkCall("S_gtk_menu_bar_set_pack_direction", object, pack.dir, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_set_pack_direction", object, pack.dir)
 
   return(invisible(w))
 } 
@@ -14647,7 +14647,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuBar")
 
-  w <- .RGtkCall("S_gtk_menu_bar_get_child_pack_direction", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_get_child_pack_direction", object)
 
   return(w)
 } 
@@ -14659,7 +14659,7 @@ function(object, child.pack.dir)
   checkPtrType(object, "GtkMenuBar")
   
 
-  w <- .RGtkCall("S_gtk_menu_bar_set_child_pack_direction", object, child.pack.dir, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_bar_set_child_pack_direction", object, child.pack.dir)
 
   return(invisible(w))
 } 
@@ -14670,7 +14670,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_get_type")
 
   return(w)
 } 
@@ -14681,7 +14681,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -14695,7 +14695,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_menu_item_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -14709,7 +14709,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_menu_item_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -14724,7 +14724,7 @@ function(object, submenu)
   checkPtrType(object, "GtkMenuItem")
   checkPtrType(submenu, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_item_set_submenu", object, submenu, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_set_submenu", object, submenu)
 
   return(invisible(w))
 } 
@@ -14735,7 +14735,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_get_submenu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_get_submenu", object)
 
   return(w)
 } 
@@ -14746,7 +14746,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_remove_submenu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_remove_submenu", object)
 
   return(invisible(w))
 } 
@@ -14757,7 +14757,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_select", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_select", object)
 
   return(invisible(w))
 } 
@@ -14768,7 +14768,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_deselect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_deselect", object)
 
   return(invisible(w))
 } 
@@ -14779,7 +14779,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_activate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_activate", object)
 
   return(invisible(w))
 } 
@@ -14791,7 +14791,7 @@ function(object, requisition)
   checkPtrType(object, "GtkMenuItem")
   requisition <- as.list(as.integer(requisition))
 
-  w <- .RGtkCall("S_gtk_menu_item_toggle_size_request", object, requisition, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_toggle_size_request", object, requisition)
 
   return(invisible(w))
 } 
@@ -14803,7 +14803,7 @@ function(object, allocation)
   checkPtrType(object, "GtkMenuItem")
   allocation <- as.integer(allocation)
 
-  w <- .RGtkCall("S_gtk_menu_item_toggle_size_allocate", object, allocation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_toggle_size_allocate", object, allocation)
 
   return(invisible(w))
 } 
@@ -14815,7 +14815,7 @@ function(object, right.justified)
   checkPtrType(object, "GtkMenuItem")
   right.justified <- as.logical(right.justified)
 
-  w <- .RGtkCall("S_gtk_menu_item_set_right_justified", object, right.justified, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_set_right_justified", object, right.justified)
 
   return(invisible(w))
 } 
@@ -14826,7 +14826,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_get_right_justified", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_get_right_justified", object)
 
   return(w)
 } 
@@ -14838,7 +14838,7 @@ function(object, accel.path)
   checkPtrType(object, "GtkMenuItem")
   accel.path <- as.character(accel.path)
 
-  w <- .RGtkCall("S_gtk_menu_item_set_accel_path", object, accel.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_set_accel_path", object, accel.path)
 
   return(invisible(w))
 } 
@@ -14852,7 +14852,7 @@ function(object)
 
   checkPtrType(object, "GtkMenuItem")
 
-  w <- .RGtkCall("S_gtk_menu_item_right_justify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_item_right_justify", object)
 
   return(invisible(w))
 } 
@@ -14863,7 +14863,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_shell_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_get_type")
 
   return(w)
 } 
@@ -14875,7 +14875,7 @@ function(object, child)
   checkPtrType(object, "GtkMenuShell")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_shell_append", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_append", object, child)
 
   return(invisible(w))
 } 
@@ -14887,7 +14887,7 @@ function(object, child)
   checkPtrType(object, "GtkMenuShell")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_shell_prepend", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_prepend", object, child)
 
   return(invisible(w))
 } 
@@ -14900,7 +14900,7 @@ function(object, child, position)
   checkPtrType(child, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_menu_shell_insert", object, child, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_insert", object, child, position)
 
   return(invisible(w))
 } 
@@ -14911,7 +14911,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuShell")
 
-  w <- .RGtkCall("S_gtk_menu_shell_deactivate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_deactivate", object)
 
   return(invisible(w))
 } 
@@ -14923,7 +14923,7 @@ function(object, menu.item)
   checkPtrType(object, "GtkMenuShell")
   checkPtrType(menu.item, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_shell_select_item", object, menu.item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_select_item", object, menu.item)
 
   return(invisible(w))
 } 
@@ -14934,7 +14934,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuShell")
 
-  w <- .RGtkCall("S_gtk_menu_shell_deselect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_deselect", object)
 
   return(invisible(w))
 } 
@@ -14947,7 +14947,7 @@ function(object, menu.item, force.deactivate)
   checkPtrType(menu.item, "GtkWidget")
   force.deactivate <- as.logical(force.deactivate)
 
-  w <- .RGtkCall("S_gtk_menu_shell_activate_item", object, menu.item, force.deactivate, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_activate_item", object, menu.item, force.deactivate)
 
   return(invisible(w))
 } 
@@ -14959,7 +14959,7 @@ function(object, search.sensitive)
   checkPtrType(object, "GtkMenuShell")
   search.sensitive <- as.logical(search.sensitive)
 
-  w <- .RGtkCall("S_gtk_menu_shell_select_first", object, search.sensitive, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_select_first", object, search.sensitive)
 
   return(invisible(w))
 } 
@@ -14970,7 +14970,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuShell")
 
-  w <- .RGtkCall("S_gtk_menu_shell_cancel", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_cancel", object)
 
   return(invisible(w))
 } 
@@ -14981,7 +14981,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuShell")
 
-  w <- .RGtkCall("S_gtk_menu_shell_get_take_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_get_take_focus", object)
 
   return(w)
 } 
@@ -14993,7 +14993,7 @@ function(object, take.focus)
   checkPtrType(object, "GtkMenuShell")
   take.focus <- as.logical(take.focus)
 
-  w <- .RGtkCall("S_gtk_menu_shell_set_take_focus", object, take.focus, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_shell_set_take_focus", object, take.focus)
 
   return(invisible(w))
 } 
@@ -15004,7 +15004,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_get_type")
 
   return(w)
 } 
@@ -15016,7 +15016,7 @@ function(icon.widget, label, show = TRUE)
   checkPtrType(icon.widget, "GtkWidget")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_new", icon.widget, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_new", icon.widget, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -15030,7 +15030,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_new_from_stock", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_new_from_stock", stock.id)
 
   return(w)
 } 
@@ -15042,7 +15042,7 @@ function(object, menu)
   checkPtrType(object, "GtkMenuToolButton")
   checkPtrType(menu, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_set_menu", object, menu, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_set_menu", object, menu)
 
   return(invisible(w))
 } 
@@ -15053,7 +15053,7 @@ function(object)
 {
   checkPtrType(object, "GtkMenuToolButton")
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_get_menu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_get_menu", object)
 
   return(w)
 } 
@@ -15067,7 +15067,7 @@ function(object, tooltips, tip.text = NULL, tip.private = NULL)
   if (!is.null( tip.text )) tip.text <- as.character(tip.text)
   if (!is.null( tip.private )) tip.private <- as.character(tip.private)
 
-  w <- .RGtkCall("S_gtk_menu_tool_button_set_arrow_tooltip", object, tooltips, tip.text, tip.private, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_menu_tool_button_set_arrow_tooltip", object, tooltips, tip.text, tip.private)
 
   return(invisible(w))
 } 
@@ -15078,7 +15078,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_message_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_message_dialog_get_type")
 
   return(w)
 } 
@@ -15090,7 +15090,7 @@ function(object, str)
   checkPtrType(object, "GtkMessageDialog")
   str <- as.character(str)
 
-  w <- .RGtkCall("S_gtk_message_dialog_set_markup", object, str, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_message_dialog_set_markup", object, str)
 
   return(invisible(w))
 } 
@@ -15101,7 +15101,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_misc_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_misc_get_type")
 
   return(w)
 } 
@@ -15114,7 +15114,7 @@ function(object, xalign, yalign)
   xalign <- as.numeric(xalign)
   yalign <- as.numeric(yalign)
 
-  w <- .RGtkCall("S_gtk_misc_set_alignment", object, xalign, yalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_misc_set_alignment", object, xalign, yalign)
 
   return(invisible(w))
 } 
@@ -15125,7 +15125,7 @@ function(object)
 {
   checkPtrType(object, "GtkMisc")
 
-  w <- .RGtkCall("S_gtk_misc_get_alignment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_misc_get_alignment", object)
 
   return(invisible(w))
 } 
@@ -15138,7 +15138,7 @@ function(object, xpad, ypad)
   xpad <- as.integer(xpad)
   ypad <- as.integer(ypad)
 
-  w <- .RGtkCall("S_gtk_misc_set_padding", object, xpad, ypad, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_misc_set_padding", object, xpad, ypad)
 
   return(invisible(w))
 } 
@@ -15149,7 +15149,7 @@ function(object)
 {
   checkPtrType(object, "GtkMisc")
 
-  w <- .RGtkCall("S_gtk_misc_get_padding", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_misc_get_padding", object)
 
   return(invisible(w))
 } 
@@ -15160,7 +15160,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_notebook_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_type")
 
   return(w)
 } 
@@ -15171,7 +15171,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_notebook_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -15187,7 +15187,7 @@ function(object, child, tab.label = NULL)
   checkPtrType(child, "GtkWidget")
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_append_page", object, child, tab.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_append_page", object, child, tab.label)
 
   return(w)
 } 
@@ -15201,7 +15201,7 @@ function(object, child, tab.label = NULL, menu.label = NULL)
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
   if (!is.null( menu.label )) checkPtrType(menu.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_append_page_menu", object, child, tab.label, menu.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_append_page_menu", object, child, tab.label, menu.label)
 
   return(w)
 } 
@@ -15214,7 +15214,7 @@ function(object, child, tab.label = NULL)
   checkPtrType(child, "GtkWidget")
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_prepend_page", object, child, tab.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_prepend_page", object, child, tab.label)
 
   return(w)
 } 
@@ -15228,7 +15228,7 @@ function(object, child, tab.label = NULL, menu.label = NULL)
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
   if (!is.null( menu.label )) checkPtrType(menu.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_prepend_page_menu", object, child, tab.label, menu.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_prepend_page_menu", object, child, tab.label, menu.label)
 
   return(w)
 } 
@@ -15242,7 +15242,7 @@ function(object, child, tab.label = NULL, position = -1)
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_notebook_insert_page", object, child, tab.label, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_insert_page", object, child, tab.label, position)
 
   return(w)
 } 
@@ -15257,7 +15257,7 @@ function(object, child, tab.label = NULL, menu.label = NULL, position = -1)
   if (!is.null( menu.label )) checkPtrType(menu.label, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_notebook_insert_page_menu", object, child, tab.label, menu.label, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_insert_page_menu", object, child, tab.label, menu.label, position)
 
   return(w)
 } 
@@ -15269,7 +15269,7 @@ function(object, page.num)
   checkPtrType(object, "GtkNotebook")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_notebook_remove_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_remove_page", object, page.num)
 
   return(invisible(w))
 } 
@@ -15280,7 +15280,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_current_page", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_current_page", object)
 
   return(w)
 } 
@@ -15292,7 +15292,7 @@ function(object, page.num)
   checkPtrType(object, "GtkNotebook")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_notebook_get_nth_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_nth_page", object, page.num)
 
   return(w)
 } 
@@ -15303,7 +15303,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_n_pages", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_n_pages", object)
 
   return(w)
 } 
@@ -15315,7 +15315,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_page_num", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_page_num", object, child)
 
   return(w)
 } 
@@ -15327,7 +15327,7 @@ function(object, page.num)
   checkPtrType(object, "GtkNotebook")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_notebook_set_current_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_current_page", object, page.num)
 
   return(invisible(w))
 } 
@@ -15338,7 +15338,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_next_page", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_next_page", object)
 
   return(invisible(w))
 } 
@@ -15349,7 +15349,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_prev_page", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_prev_page", object)
 
   return(invisible(w))
 } 
@@ -15361,7 +15361,7 @@ function(object, show.border)
   checkPtrType(object, "GtkNotebook")
   show.border <- as.logical(show.border)
 
-  w <- .RGtkCall("S_gtk_notebook_set_show_border", object, show.border, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_show_border", object, show.border)
 
   return(invisible(w))
 } 
@@ -15372,7 +15372,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_show_border", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_show_border", object)
 
   return(w)
 } 
@@ -15384,7 +15384,7 @@ function(object, show.tabs)
   checkPtrType(object, "GtkNotebook")
   show.tabs <- as.logical(show.tabs)
 
-  w <- .RGtkCall("S_gtk_notebook_set_show_tabs", object, show.tabs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_show_tabs", object, show.tabs)
 
   return(invisible(w))
 } 
@@ -15395,7 +15395,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_show_tabs", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_show_tabs", object)
 
   return(w)
 } 
@@ -15407,7 +15407,7 @@ function(object, pos)
   checkPtrType(object, "GtkNotebook")
   
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_pos", object, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_pos", object, pos)
 
   return(invisible(w))
 } 
@@ -15418,7 +15418,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_tab_pos", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_tab_pos", object)
 
   return(w)
 } 
@@ -15430,7 +15430,7 @@ function(object, homogeneous)
   checkPtrType(object, "GtkNotebook")
   homogeneous <- as.logical(homogeneous)
 
-  w <- .RGtkCall("S_gtk_notebook_set_homogeneous_tabs", object, homogeneous, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_homogeneous_tabs", object, homogeneous)
 
   return(invisible(w))
 } 
@@ -15442,7 +15442,7 @@ function(object, border.width)
   checkPtrType(object, "GtkNotebook")
   border.width <- as.numeric(border.width)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_border", object, border.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_border", object, border.width)
 
   return(invisible(w))
 } 
@@ -15454,7 +15454,7 @@ function(object, tab.hborder)
   checkPtrType(object, "GtkNotebook")
   tab.hborder <- as.numeric(tab.hborder)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_hborder", object, tab.hborder, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_hborder", object, tab.hborder)
 
   return(invisible(w))
 } 
@@ -15466,7 +15466,7 @@ function(object, tab.vborder)
   checkPtrType(object, "GtkNotebook")
   tab.vborder <- as.numeric(tab.vborder)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_vborder", object, tab.vborder, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_vborder", object, tab.vborder)
 
   return(invisible(w))
 } 
@@ -15478,7 +15478,7 @@ function(object, scrollable)
   checkPtrType(object, "GtkNotebook")
   scrollable <- as.logical(scrollable)
 
-  w <- .RGtkCall("S_gtk_notebook_set_scrollable", object, scrollable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_scrollable", object, scrollable)
 
   return(invisible(w))
 } 
@@ -15489,7 +15489,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_scrollable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_scrollable", object)
 
   return(w)
 } 
@@ -15500,7 +15500,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_popup_enable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_popup_enable", object)
 
   return(invisible(w))
 } 
@@ -15511,7 +15511,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_popup_disable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_popup_disable", object)
 
   return(invisible(w))
 } 
@@ -15523,7 +15523,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_tab_label", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_tab_label", object, child)
 
   return(w)
 } 
@@ -15536,7 +15536,7 @@ function(object, child, tab.label = NULL)
   checkPtrType(child, "GtkWidget")
   if (!is.null( tab.label )) checkPtrType(tab.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_label", object, child, tab.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_label", object, child, tab.label)
 
   return(invisible(w))
 } 
@@ -15549,7 +15549,7 @@ function(object, child, tab.text)
   checkPtrType(child, "GtkWidget")
   tab.text <- as.character(tab.text)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_label_text", object, child, tab.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_label_text", object, child, tab.text)
 
   return(invisible(w))
 } 
@@ -15561,7 +15561,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_tab_label_text", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_tab_label_text", object, child)
 
   return(w)
 } 
@@ -15573,7 +15573,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_menu_label", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_menu_label", object, child)
 
   return(w)
 } 
@@ -15586,7 +15586,7 @@ function(object, child, menu.label = NULL)
   checkPtrType(child, "GtkWidget")
   if (!is.null( menu.label )) checkPtrType(menu.label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_set_menu_label", object, child, menu.label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_menu_label", object, child, menu.label)
 
   return(invisible(w))
 } 
@@ -15599,7 +15599,7 @@ function(object, child, menu.text)
   checkPtrType(child, "GtkWidget")
   menu.text <- as.character(menu.text)
 
-  w <- .RGtkCall("S_gtk_notebook_set_menu_label_text", object, child, menu.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_menu_label_text", object, child, menu.text)
 
   return(invisible(w))
 } 
@@ -15611,7 +15611,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_menu_label_text", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_menu_label_text", object, child)
 
   return(w)
 } 
@@ -15623,7 +15623,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_query_tab_label_packing", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_query_tab_label_packing", object, child)
 
   return(invisible(w))
 } 
@@ -15638,7 +15638,7 @@ function(object, child, expand, fill, pack.type)
   fill <- as.logical(fill)
   
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_label_packing", object, child, expand, fill, pack.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_label_packing", object, child, expand, fill, pack.type)
 
   return(invisible(w))
 } 
@@ -15651,7 +15651,7 @@ function(object, child, position)
   checkPtrType(child, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_notebook_reorder_child", object, child, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_reorder_child", object, child, position)
 
   return(invisible(w))
 } 
@@ -15665,7 +15665,7 @@ function(object)
 
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_current_page", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_current_page", object)
 
   return(w)
 } 
@@ -15680,7 +15680,7 @@ function(object, page.num)
   checkPtrType(object, "GtkNotebook")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_notebook_set_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_page", object, page.num)
 
   return(invisible(w))
 } 
@@ -15691,7 +15691,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_object_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_object_get_type")
 
   return(w)
 } 
@@ -15702,7 +15702,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_old_editable_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_old_editable_get_type")
 
   return(w)
 } 
@@ -15715,7 +15715,7 @@ function(object, claim, time = "GDK_CURRENT_TIME")
   claim <- as.logical(claim)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_old_editable_claim_selection", object, claim, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_old_editable_claim_selection", object, claim, time)
 
   return(invisible(w))
 } 
@@ -15726,7 +15726,7 @@ function(object)
 {
   checkPtrType(object, "GtkOldEditable")
 
-  w <- .RGtkCall("S_gtk_old_editable_changed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_old_editable_changed", object)
 
   return(invisible(w))
 } 
@@ -15737,7 +15737,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_option_menu_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_get_type")
 
   return(w)
 } 
@@ -15751,7 +15751,7 @@ function(show = TRUE)
 
   
 
-  w <- .RGtkCall("S_gtk_option_menu_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -15765,7 +15765,7 @@ function(object)
 {
   checkPtrType(object, "GtkOptionMenu")
 
-  w <- .RGtkCall("S_gtk_option_menu_get_menu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_get_menu", object)
 
   return(w)
 } 
@@ -15777,7 +15777,7 @@ function(object, menu)
   checkPtrType(object, "GtkOptionMenu")
   checkPtrType(menu, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_option_menu_set_menu", object, menu, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_set_menu", object, menu)
 
   return(invisible(w))
 } 
@@ -15788,7 +15788,7 @@ function(object)
 {
   checkPtrType(object, "GtkOptionMenu")
 
-  w <- .RGtkCall("S_gtk_option_menu_remove_menu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_remove_menu", object)
 
   return(invisible(w))
 } 
@@ -15799,7 +15799,7 @@ function(object)
 {
   checkPtrType(object, "GtkOptionMenu")
 
-  w <- .RGtkCall("S_gtk_option_menu_get_history", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_get_history", object)
 
   return(w)
 } 
@@ -15811,7 +15811,7 @@ function(object, index)
   checkPtrType(object, "GtkOptionMenu")
   index <- as.numeric(index)
 
-  w <- .RGtkCall("S_gtk_option_menu_set_history", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_option_menu_set_history", object, index)
 
   return(invisible(w))
 } 
@@ -15822,7 +15822,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_paned_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_get_type")
 
   return(w)
 } 
@@ -15834,7 +15834,7 @@ function(object, child)
   checkPtrType(object, "GtkPaned")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_paned_add1", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_add1", object, child)
 
   return(invisible(w))
 } 
@@ -15846,7 +15846,7 @@ function(object, child)
   checkPtrType(object, "GtkPaned")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_paned_add2", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_add2", object, child)
 
   return(invisible(w))
 } 
@@ -15860,7 +15860,7 @@ function(object, child, resize = FALSE, shrink = TRUE)
   resize <- as.logical(resize)
   shrink <- as.logical(shrink)
 
-  w <- .RGtkCall("S_gtk_paned_pack1", object, child, resize, shrink, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_pack1", object, child, resize, shrink)
 
   return(invisible(w))
 } 
@@ -15874,7 +15874,7 @@ function(object, child, resize = TRUE, shrink = TRUE)
   resize <- as.logical(resize)
   shrink <- as.logical(shrink)
 
-  w <- .RGtkCall("S_gtk_paned_pack2", object, child, resize, shrink, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_pack2", object, child, resize, shrink)
 
   return(invisible(w))
 } 
@@ -15885,7 +15885,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaned")
 
-  w <- .RGtkCall("S_gtk_paned_get_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_get_position", object)
 
   return(w)
 } 
@@ -15897,7 +15897,7 @@ function(object, position)
   checkPtrType(object, "GtkPaned")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_paned_set_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_set_position", object, position)
 
   return(invisible(w))
 } 
@@ -15908,7 +15908,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaned")
 
-  w <- .RGtkCall("S_gtk_paned_get_child1", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_get_child1", object)
 
   return(w)
 } 
@@ -15919,7 +15919,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaned")
 
-  w <- .RGtkCall("S_gtk_paned_get_child2", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paned_get_child2", object)
 
   return(w)
 } 
@@ -15930,7 +15930,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_pixmap_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_pixmap_get_type")
 
   return(w)
 } 
@@ -15945,7 +15945,7 @@ function(pixmap, mask = NULL, show = TRUE)
   checkPtrType(pixmap, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_pixmap_new", pixmap, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_pixmap_new", pixmap, mask)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -15961,7 +15961,7 @@ function(object, val, mask = NULL)
   checkPtrType(val, "GdkPixmap")
   if (!is.null( mask )) checkPtrType(mask, "GdkBitmap")
 
-  w <- .RGtkCall("S_gtk_pixmap_set", object, val, mask, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_pixmap_set", object, val, mask)
 
   return(invisible(w))
 } 
@@ -15972,7 +15972,7 @@ function(object)
 {
   checkPtrType(object, "GtkPixmap")
 
-  w <- .RGtkCall("S_gtk_pixmap_get", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_pixmap_get", object)
 
   return(invisible(w))
 } 
@@ -15984,7 +15984,7 @@ function(object, build)
   checkPtrType(object, "GtkPixmap")
   build <- as.logical(build)
 
-  w <- .RGtkCall("S_gtk_pixmap_set_build_insensitive", object, build, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_pixmap_set_build_insensitive", object, build)
 
   return(invisible(w))
 } 
@@ -15995,7 +15995,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_plug_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_get_type")
 
   return(w)
 } 
@@ -16007,7 +16007,7 @@ function(object, socket.id)
   checkPtrType(object, "GtkPlug")
   socket.id <- as.GdkNativeWindow(socket.id)
 
-  w <- .RGtkCall("S_gtk_plug_construct", object, socket.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_construct", object, socket.id)
 
   return(invisible(w))
 } 
@@ -16018,7 +16018,7 @@ function(socket.id, show = TRUE)
 {
   socket.id <- as.GdkNativeWindow(socket.id)
 
-  w <- .RGtkCall("S_gtk_plug_new", socket.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_new", socket.id)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16034,7 +16034,7 @@ function(object, display, socket.id)
   checkPtrType(display, "GdkDisplay")
   socket.id <- as.GdkNativeWindow(socket.id)
 
-  w <- .RGtkCall("S_gtk_plug_construct_for_display", object, display, socket.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_construct_for_display", object, display, socket.id)
 
   return(invisible(w))
 } 
@@ -16046,7 +16046,7 @@ function(display, socket.id)
   checkPtrType(display, "GdkDisplay")
   socket.id <- as.GdkNativeWindow(socket.id)
 
-  w <- .RGtkCall("S_gtk_plug_new_for_display", display, socket.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_new_for_display", display, socket.id)
 
   return(w)
 } 
@@ -16057,7 +16057,7 @@ function(object)
 {
   checkPtrType(object, "GtkPlug")
 
-  w <- .RGtkCall("S_gtk_plug_get_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_plug_get_id", object)
 
   return(w)
 } 
@@ -16068,7 +16068,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_get_type")
 
   return(w)
 } 
@@ -16079,7 +16079,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_uninit", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_uninit")
 
   return(w)
 } 
@@ -16093,7 +16093,7 @@ function(type, show = TRUE)
 
   
 
-  w <- .RGtkCall("S_gtk_preview_new", type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_new", type)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16109,7 +16109,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_preview_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_size", object, width, height)
 
   return(invisible(w))
 } 
@@ -16128,7 +16128,7 @@ function(object, window, gc, srcx, srcy, destx, desty, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_preview_put", object, window, gc, srcx, srcy, destx, desty, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_put", object, window, gc, srcx, srcy, destx, desty, width, height)
 
   return(invisible(w))
 } 
@@ -16142,7 +16142,7 @@ function(object, data, y, w)
   y <- as.integer(y)
   w <- as.integer(w)
 
-  w <- .RGtkCall("S_gtk_preview_draw_row", object, data, y, w, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_draw_row", object, data, y, w)
 
   return(w)
 } 
@@ -16154,7 +16154,7 @@ function(object, expand)
   checkPtrType(object, "GtkPreview")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_preview_set_expand", object, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_expand", object, expand)
 
   return(invisible(w))
 } 
@@ -16165,7 +16165,7 @@ function(gamma)
 {
   gamma <- as.numeric(gamma)
 
-  w <- .RGtkCall("S_gtk_preview_set_gamma", gamma, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_gamma", gamma)
 
   return(w)
 } 
@@ -16179,7 +16179,7 @@ function(nred.shades, ngreen.shades, nblue.shades, ngray.shades)
   nblue.shades <- as.numeric(nblue.shades)
   ngray.shades <- as.numeric(ngray.shades)
 
-  w <- .RGtkCall("S_gtk_preview_set_color_cube", nred.shades, ngreen.shades, nblue.shades, ngray.shades, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_color_cube", nred.shades, ngreen.shades, nblue.shades, ngray.shades)
 
   return(w)
 } 
@@ -16190,7 +16190,7 @@ function(install.cmap)
 {
   install.cmap <- as.integer(install.cmap)
 
-  w <- .RGtkCall("S_gtk_preview_set_install_cmap", install.cmap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_install_cmap", install.cmap)
 
   return(w)
 } 
@@ -16201,7 +16201,7 @@ function(nreserved)
 {
   nreserved <- as.integer(nreserved)
 
-  w <- .RGtkCall("S_gtk_preview_set_reserved", nreserved, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_reserved", nreserved)
 
   return(w)
 } 
@@ -16213,7 +16213,7 @@ function(object, dither)
   checkPtrType(object, "GtkPreview")
   
 
-  w <- .RGtkCall("S_gtk_preview_set_dither", object, dither, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_set_dither", object, dither)
 
   return(invisible(w))
 } 
@@ -16224,7 +16224,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_get_visual", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_get_visual")
 
   return(w)
 } 
@@ -16235,7 +16235,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_get_cmap", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_get_cmap")
 
   return(w)
 } 
@@ -16246,7 +16246,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_get_info", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_get_info")
 
   return(w)
 } 
@@ -16257,7 +16257,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_preview_reset", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_preview_reset")
 
   return(w)
 } 
@@ -16268,7 +16268,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_progress_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_type")
 
   return(w)
 } 
@@ -16283,7 +16283,7 @@ function(object, show.text)
   checkPtrType(object, "GtkProgress")
   show.text <- as.logical(show.text)
 
-  w <- .RGtkCall("S_gtk_progress_set_show_text", object, show.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_show_text", object, show.text)
 
   return(invisible(w))
 } 
@@ -16299,7 +16299,7 @@ function(object, x.align, y.align)
   x.align <- as.numeric(x.align)
   y.align <- as.numeric(y.align)
 
-  w <- .RGtkCall("S_gtk_progress_set_text_alignment", object, x.align, y.align, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_text_alignment", object, x.align, y.align)
 
   return(invisible(w))
 } 
@@ -16314,7 +16314,7 @@ function(object, format)
   checkPtrType(object, "GtkProgress")
   format <- as.character(format)
 
-  w <- .RGtkCall("S_gtk_progress_set_format_string", object, format, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_format_string", object, format)
 
   return(invisible(w))
 } 
@@ -16329,7 +16329,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkProgress")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_progress_set_adjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_adjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -16346,7 +16346,7 @@ function(object, value, min, max)
   min <- as.numeric(min)
   max <- as.numeric(max)
 
-  w <- .RGtkCall("S_gtk_progress_configure", object, value, min, max, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_configure", object, value, min, max)
 
   return(invisible(w))
 } 
@@ -16361,7 +16361,7 @@ function(object, percentage)
   checkPtrType(object, "GtkProgress")
   percentage <- as.numeric(percentage)
 
-  w <- .RGtkCall("S_gtk_progress_set_percentage", object, percentage, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_percentage", object, percentage)
 
   return(invisible(w))
 } 
@@ -16376,7 +16376,7 @@ function(object, value)
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_progress_set_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_value", object, value)
 
   return(invisible(w))
 } 
@@ -16390,7 +16390,7 @@ function(object)
 
   checkPtrType(object, "GtkProgress")
 
-  w <- .RGtkCall("S_gtk_progress_get_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_value", object)
 
   return(w)
 } 
@@ -16405,7 +16405,7 @@ function(object, activity.mode)
   checkPtrType(object, "GtkProgress")
   activity.mode <- as.logical(activity.mode)
 
-  w <- .RGtkCall("S_gtk_progress_set_activity_mode", object, activity.mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_set_activity_mode", object, activity.mode)
 
   return(invisible(w))
 } 
@@ -16419,7 +16419,7 @@ function(object)
 
   checkPtrType(object, "GtkProgress")
 
-  w <- .RGtkCall("S_gtk_progress_get_current_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_current_text", object)
 
   return(w)
 } 
@@ -16434,7 +16434,7 @@ function(object, value)
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_progress_get_text_from_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_text_from_value", object, value)
 
   return(w)
 } 
@@ -16448,7 +16448,7 @@ function(object)
 
   checkPtrType(object, "GtkProgress")
 
-  w <- .RGtkCall("S_gtk_progress_get_current_percentage", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_current_percentage", object)
 
   return(w)
 } 
@@ -16463,7 +16463,7 @@ function(object, value)
   checkPtrType(object, "GtkProgress")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_progress_get_percentage_from_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_get_percentage_from_value", object, value)
 
   return(w)
 } 
@@ -16474,7 +16474,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_type")
 
   return(w)
 } 
@@ -16485,7 +16485,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_progress_bar_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16499,7 +16499,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_pulse", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_pulse", object)
 
   return(invisible(w))
 } 
@@ -16511,7 +16511,7 @@ function(object, text)
   checkPtrType(object, "GtkProgressBar")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_text", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_text", object, text)
 
   return(invisible(w))
 } 
@@ -16523,7 +16523,7 @@ function(object, fraction)
   checkPtrType(object, "GtkProgressBar")
   fraction <- as.numeric(fraction)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_fraction", object, fraction, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_fraction", object, fraction)
 
   return(invisible(w))
 } 
@@ -16535,7 +16535,7 @@ function(object, fraction)
   checkPtrType(object, "GtkProgressBar")
   fraction <- as.numeric(fraction)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_pulse_step", object, fraction, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_pulse_step", object, fraction)
 
   return(invisible(w))
 } 
@@ -16547,7 +16547,7 @@ function(object, orientation)
   checkPtrType(object, "GtkProgressBar")
   
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_orientation", object, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_orientation", object, orientation)
 
   return(invisible(w))
 } 
@@ -16558,7 +16558,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_text", object)
 
   return(w)
 } 
@@ -16569,7 +16569,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_fraction", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_fraction", object)
 
   return(w)
 } 
@@ -16580,7 +16580,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_pulse_step", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_pulse_step", object)
 
   return(w)
 } 
@@ -16591,7 +16591,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_orientation", object)
 
   return(w)
 } 
@@ -16602,7 +16602,7 @@ function(adjustment = NULL, show = TRUE)
 {
   if (!is.null( adjustment )) checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_progress_bar_new_with_adjustment", adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_new_with_adjustment", adjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16617,7 +16617,7 @@ function(object, style)
   checkPtrType(object, "GtkProgressBar")
   
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_bar_style", object, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_bar_style", object, style)
 
   return(invisible(w))
 } 
@@ -16629,7 +16629,7 @@ function(object, blocks)
   checkPtrType(object, "GtkProgressBar")
   blocks <- as.numeric(blocks)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_discrete_blocks", object, blocks, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_discrete_blocks", object, blocks)
 
   return(invisible(w))
 } 
@@ -16641,7 +16641,7 @@ function(object, step)
   checkPtrType(object, "GtkProgressBar")
   step <- as.numeric(step)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_activity_step", object, step, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_activity_step", object, step)
 
   return(invisible(w))
 } 
@@ -16653,7 +16653,7 @@ function(object, blocks)
   checkPtrType(object, "GtkProgressBar")
   blocks <- as.numeric(blocks)
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_activity_blocks", object, blocks, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_activity_blocks", object, blocks)
 
   return(invisible(w))
 } 
@@ -16665,7 +16665,7 @@ function(object, percentage)
   checkPtrType(object, "GtkProgressBar")
   percentage <- as.numeric(percentage)
 
-  w <- .RGtkCall("S_gtk_progress_bar_update", object, percentage, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_update", object, percentage)
 
   return(invisible(w))
 } 
@@ -16677,7 +16677,7 @@ function(object, mode)
   checkPtrType(object, "GtkProgressBar")
   
 
-  w <- .RGtkCall("S_gtk_progress_bar_set_ellipsize", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_set_ellipsize", object, mode)
 
   return(invisible(w))
 } 
@@ -16688,7 +16688,7 @@ function(object)
 {
   checkPtrType(object, "GtkProgressBar")
 
-  w <- .RGtkCall("S_gtk_progress_bar_get_ellipsize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_progress_bar_get_ellipsize", object)
 
   return(w)
 } 
@@ -16699,7 +16699,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_radio_action_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_get_type")
 
   return(w)
 } 
@@ -16710,7 +16710,7 @@ function(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NUL
 {
   
 
-  w <- .RGtkCall("S_gtk_radio_action_new", name, label, tooltip, stock.id, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_new", name, label, tooltip, stock.id, value)
 
   return(w)
 } 
@@ -16722,7 +16722,7 @@ function(object, group)
   checkPtrType(object, "GtkRadioAction")
   group <- as.GSList(group)
 
-  w <- .RGtkCall("S_gtk_radio_action_set_group", object, group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_set_group", object, group)
 
   return(invisible(w))
 } 
@@ -16733,7 +16733,7 @@ function(object)
 {
   checkPtrType(object, "GtkRadioAction")
 
-  w <- .RGtkCall("S_gtk_radio_action_get_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_get_group", object)
 
   return(w)
 } 
@@ -16744,7 +16744,7 @@ function(object)
 {
   checkPtrType(object, "GtkRadioAction")
 
-  w <- .RGtkCall("S_gtk_radio_action_get_current_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_get_current_value", object)
 
   return(w)
 } 
@@ -16755,7 +16755,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_radio_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_get_type")
 
   return(w)
 } 
@@ -16766,7 +16766,7 @@ function(group = NULL, show = TRUE)
 {
   if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
 
-  w <- .RGtkCall("S_gtk_radio_button_new_from_widget", group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_new_from_widget", group)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16781,7 +16781,7 @@ function(group = NULL, label, show = TRUE)
   if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_radio_button_new_with_label_from_widget", group, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_new_with_label_from_widget", group, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16796,7 +16796,7 @@ function(group, label, show = TRUE)
   group <- as.GSList(group)
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_radio_button_new_with_mnemonic", group, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_new_with_mnemonic", group, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16811,7 +16811,7 @@ function(group = NULL, label, show = TRUE)
   if (!is.null( group )) checkPtrType(group, "GtkRadioButton")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_radio_button_new_with_mnemonic_from_widget", group, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_new_with_mnemonic_from_widget", group, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16825,7 +16825,7 @@ function(object)
 {
   checkPtrType(object, "GtkRadioButton")
 
-  w <- .RGtkCall("S_gtk_radio_button_get_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_get_group", object)
 
   return(w)
 } 
@@ -16837,7 +16837,7 @@ function(object, group)
   checkPtrType(object, "GtkRadioButton")
   group <- as.GSList(group)
 
-  w <- .RGtkCall("S_gtk_radio_button_set_group", object, group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_set_group", object, group)
 
   return(invisible(w))
 } 
@@ -16851,7 +16851,7 @@ function(object)
 
   checkPtrType(object, "GtkRadioButton")
 
-  w <- .RGtkCall("S_gtk_radio_button_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_button_group", object)
 
   return(w)
 } 
@@ -16862,7 +16862,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_get_type")
 
   return(w)
 } 
@@ -16873,7 +16873,7 @@ function(group = NULL, show = TRUE)
 {
   if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_new_from_widget", group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_new_from_widget", group)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16888,7 +16888,7 @@ function(group = NULL, label, show = TRUE)
   if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_new_with_mnemonic_from_widget", group, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_new_with_mnemonic_from_widget", group, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16903,7 +16903,7 @@ function(group = NULL, label, show = TRUE)
   if (!is.null( group )) checkPtrType(group, "GtkRadioMenuItem")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_new_with_label_from_widget", group, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_new_with_label_from_widget", group, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16917,7 +16917,7 @@ function(object)
 {
   checkPtrType(object, "GtkRadioMenuItem")
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_get_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_get_group", object)
 
   return(w)
 } 
@@ -16929,7 +16929,7 @@ function(object, group)
   checkPtrType(object, "GtkRadioMenuItem")
   group <- as.GSList(group)
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_set_group", object, group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_set_group", object, group)
 
   return(invisible(w))
 } 
@@ -16943,7 +16943,7 @@ function(object)
 
   checkPtrType(object, "GtkRadioMenuItem")
 
-  w <- .RGtkCall("S_gtk_radio_menu_item_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_menu_item_group", object)
 
   return(w)
 } 
@@ -16954,7 +16954,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_radio_tool_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_tool_button_get_type")
 
   return(w)
 } 
@@ -16965,7 +16965,7 @@ function(group = NULL, show = TRUE)
 {
   if (!is.null( group )) checkPtrType(group, "GtkRadioToolButton")
 
-  w <- .RGtkCall("S_gtk_radio_tool_button_new_from_widget", group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_tool_button_new_from_widget", group)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16980,7 +16980,7 @@ function(group = NULL, stock.id, show = TRUE)
   if (!is.null( group )) checkPtrType(group, "GtkRadioToolButton")
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_radio_tool_button_new_with_stock_from_widget", group, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_tool_button_new_with_stock_from_widget", group, stock.id)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -16995,7 +16995,7 @@ function(object, group)
   checkPtrType(object, "GtkRadioToolButton")
   group <- as.GSList(group)
 
-  w <- .RGtkCall("S_gtk_radio_tool_button_set_group", object, group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_tool_button_set_group", object, group)
 
   return(invisible(w))
 } 
@@ -17006,7 +17006,7 @@ function(object)
 {
   checkPtrType(object, "GtkRadioToolButton")
 
-  w <- .RGtkCall("S_gtk_radio_tool_button_get_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_tool_button_get_group", object)
 
   return(w)
 } 
@@ -17017,7 +17017,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_range_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_type")
 
   return(w)
 } 
@@ -17029,7 +17029,7 @@ function(object, policy)
   checkPtrType(object, "GtkRange")
   
 
-  w <- .RGtkCall("S_gtk_range_set_update_policy", object, policy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_update_policy", object, policy)
 
   return(invisible(w))
 } 
@@ -17040,7 +17040,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_update_policy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_update_policy", object)
 
   return(w)
 } 
@@ -17052,7 +17052,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkRange")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_range_set_adjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_adjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -17063,7 +17063,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_adjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_adjustment", object)
 
   return(w)
 } 
@@ -17075,7 +17075,7 @@ function(object, setting)
   checkPtrType(object, "GtkRange")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_range_set_inverted", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_inverted", object, setting)
 
   return(invisible(w))
 } 
@@ -17086,7 +17086,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_inverted", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_inverted", object)
 
   return(w)
 } 
@@ -17099,7 +17099,7 @@ function(object, step, page)
   step <- as.numeric(step)
   page <- as.numeric(page)
 
-  w <- .RGtkCall("S_gtk_range_set_increments", object, step, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_increments", object, step, page)
 
   return(invisible(w))
 } 
@@ -17112,7 +17112,7 @@ function(object, min, max)
   min <- as.numeric(min)
   max <- as.numeric(max)
 
-  w <- .RGtkCall("S_gtk_range_set_range", object, min, max, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_range", object, min, max)
 
   return(invisible(w))
 } 
@@ -17124,7 +17124,7 @@ function(object, value)
   checkPtrType(object, "GtkRange")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_range_set_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_value", object, value)
 
   return(invisible(w))
 } 
@@ -17135,7 +17135,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_value", object)
 
   return(w)
 } 
@@ -17146,7 +17146,7 @@ function(filename)
 {
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_rc_add_default_file", filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_add_default_file", filename)
 
   return(w)
 } 
@@ -17157,7 +17157,7 @@ function(filenames)
 {
   filenames <- as.list(as.character(filenames))
 
-  w <- .RGtkCall("S_gtk_rc_set_default_files", filenames, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_set_default_files", filenames)
 
   return(w)
 } 
@@ -17168,7 +17168,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_get_default_files", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_default_files")
 
   return(w)
 } 
@@ -17179,7 +17179,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_rc_get_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_style", object)
 
   return(w)
 } 
@@ -17193,7 +17193,7 @@ function(settings, widget.path, class.path, type)
   class.path <- as.character(class.path)
   type <- as.GType(type)
 
-  w <- .RGtkCall("S_gtk_rc_get_style_by_paths", settings, widget.path, class.path, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_style_by_paths", settings, widget.path, class.path, type)
 
   return(w)
 } 
@@ -17205,7 +17205,7 @@ function(settings, force.load)
   checkPtrType(settings, "GtkSettings")
   force.load <- as.logical(force.load)
 
-  w <- .RGtkCall("S_gtk_rc_reparse_all_for_settings", settings, force.load, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_reparse_all_for_settings", settings, force.load)
 
   return(w)
 } 
@@ -17216,7 +17216,7 @@ function(settings)
 {
   checkPtrType(settings, "GtkSettings")
 
-  w <- .RGtkCall("S_gtk_rc_reset_styles", settings, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_reset_styles", settings)
 
   return(w)
 } 
@@ -17229,7 +17229,7 @@ function(settings, scanner = NULL, pixmap.file)
   if (!is.null( scanner )) checkPtrType(scanner, "GScanner")
   pixmap.file <- as.character(pixmap.file)
 
-  w <- .RGtkCall("S_gtk_rc_find_pixmap_in_path", settings, scanner, pixmap.file, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_find_pixmap_in_path", settings, scanner, pixmap.file)
 
   return(w)
 } 
@@ -17240,7 +17240,7 @@ function(filename)
 {
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_rc_parse", filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse", filename)
 
   return(w)
 } 
@@ -17251,7 +17251,7 @@ function(rc.string)
 {
   rc.string <- as.character(rc.string)
 
-  w <- .RGtkCall("S_gtk_rc_parse_string", rc.string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_string", rc.string)
 
   return(w)
 } 
@@ -17262,7 +17262,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_reparse_all", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_reparse_all")
 
   return(w)
 } 
@@ -17274,7 +17274,7 @@ function(object, pattern)
   checkPtrType(object, "GtkRcStyle")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_rc_add_widget_name_style", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_add_widget_name_style", object, pattern)
 
   return(invisible(w))
 } 
@@ -17286,7 +17286,7 @@ function(object, pattern)
   checkPtrType(object, "GtkRcStyle")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_rc_add_widget_class_style", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_add_widget_class_style", object, pattern)
 
   return(invisible(w))
 } 
@@ -17298,7 +17298,7 @@ function(object, pattern)
   checkPtrType(object, "GtkRcStyle")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_rc_add_class_style", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_add_class_style", object, pattern)
 
   return(invisible(w))
 } 
@@ -17309,7 +17309,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_style_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_style_get_type")
 
   return(w)
 } 
@@ -17320,7 +17320,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_style_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_style_new")
 
   return(w)
 } 
@@ -17331,7 +17331,7 @@ function(object)
 {
   checkPtrType(object, "GtkRcStyle")
 
-  w <- .RGtkCall("S_gtk_rc_style_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_style_copy", object)
 
   return(w)
 } 
@@ -17342,7 +17342,7 @@ function(module.file)
 {
   module.file <- as.character(module.file)
 
-  w <- .RGtkCall("S_gtk_rc_find_module_in_path", module.file, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_find_module_in_path", module.file)
 
   return(w)
 } 
@@ -17353,7 +17353,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_get_theme_dir", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_theme_dir")
 
   return(w)
 } 
@@ -17364,7 +17364,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_get_module_dir", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_module_dir")
 
   return(w)
 } 
@@ -17375,7 +17375,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_get_im_module_path", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_im_module_path")
 
   return(w)
 } 
@@ -17386,7 +17386,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_get_im_module_file", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_get_im_module_file")
 
   return(w)
 } 
@@ -17397,7 +17397,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_rc_scanner_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_scanner_new")
 
   return(w)
 } 
@@ -17409,7 +17409,7 @@ function(scanner, color)
   checkPtrType(scanner, "GScanner")
   color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_rc_parse_color", scanner, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_color", scanner, color)
 
   return(w)
 } 
@@ -17421,7 +17421,7 @@ function(scanner, state)
   checkPtrType(scanner, "GScanner")
   
 
-  w <- .RGtkCall("S_gtk_rc_parse_state", scanner, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_state", scanner, state)
 
   return(w)
 } 
@@ -17433,7 +17433,7 @@ function(scanner, priority)
   checkPtrType(scanner, "GScanner")
   
 
-  w <- .RGtkCall("S_gtk_rc_parse_priority", scanner, priority, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_priority", scanner, priority)
 
   return(w)
 } 
@@ -17444,7 +17444,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_ruler_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ruler_get_type")
 
   return(w)
 } 
@@ -17456,7 +17456,7 @@ function(object, metric)
   checkPtrType(object, "GtkRuler")
   
 
-  w <- .RGtkCall("S_gtk_ruler_set_metric", object, metric, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ruler_set_metric", object, metric)
 
   return(invisible(w))
 } 
@@ -17471,7 +17471,7 @@ function(object, lower, upper, position, max.size)
   position <- as.numeric(position)
   max.size <- as.numeric(max.size)
 
-  w <- .RGtkCall("S_gtk_ruler_set_range", object, lower, upper, position, max.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ruler_set_range", object, lower, upper, position, max.size)
 
   return(invisible(w))
 } 
@@ -17482,7 +17482,7 @@ function(object)
 {
   checkPtrType(object, "GtkRuler")
 
-  w <- .RGtkCall("S_gtk_ruler_get_metric", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ruler_get_metric", object)
 
   return(w)
 } 
@@ -17493,7 +17493,7 @@ function(object)
 {
   checkPtrType(object, "GtkRuler")
 
-  w <- .RGtkCall("S_gtk_ruler_get_range", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ruler_get_range", object)
 
   return(invisible(w))
 } 
@@ -17504,7 +17504,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_scale_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_type")
 
   return(w)
 } 
@@ -17516,7 +17516,7 @@ function(object, digits)
   checkPtrType(object, "GtkScale")
   digits <- as.integer(digits)
 
-  w <- .RGtkCall("S_gtk_scale_set_digits", object, digits, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_set_digits", object, digits)
 
   return(invisible(w))
 } 
@@ -17527,7 +17527,7 @@ function(object)
 {
   checkPtrType(object, "GtkScale")
 
-  w <- .RGtkCall("S_gtk_scale_get_digits", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_digits", object)
 
   return(w)
 } 
@@ -17539,7 +17539,7 @@ function(object, draw.value)
   checkPtrType(object, "GtkScale")
   draw.value <- as.logical(draw.value)
 
-  w <- .RGtkCall("S_gtk_scale_set_draw_value", object, draw.value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_set_draw_value", object, draw.value)
 
   return(invisible(w))
 } 
@@ -17550,7 +17550,7 @@ function(object)
 {
   checkPtrType(object, "GtkScale")
 
-  w <- .RGtkCall("S_gtk_scale_get_draw_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_draw_value", object)
 
   return(w)
 } 
@@ -17562,7 +17562,7 @@ function(object, pos)
   checkPtrType(object, "GtkScale")
   
 
-  w <- .RGtkCall("S_gtk_scale_set_value_pos", object, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_set_value_pos", object, pos)
 
   return(invisible(w))
 } 
@@ -17573,7 +17573,7 @@ function(object)
 {
   checkPtrType(object, "GtkScale")
 
-  w <- .RGtkCall("S_gtk_scale_get_value_pos", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_value_pos", object)
 
   return(w)
 } 
@@ -17584,7 +17584,7 @@ function(object)
 {
   checkPtrType(object, "GtkScale")
 
-  w <- .RGtkCall("S_gtk_scale_get_layout", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_layout", object)
 
   return(w)
 } 
@@ -17595,7 +17595,7 @@ function(object)
 {
   checkPtrType(object, "GtkScale")
 
-  w <- .RGtkCall("S_gtk_scale_get_layout_offsets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scale_get_layout_offsets", object)
 
   return(invisible(w))
 } 
@@ -17606,7 +17606,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_scrollbar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrollbar_get_type")
 
   return(w)
 } 
@@ -17617,7 +17617,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_type")
 
   return(w)
 } 
@@ -17628,7 +17628,7 @@ function(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_scrolled_window_new", hadjustment, vadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_new", hadjustment, vadjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -17643,7 +17643,7 @@ function(object, hadjustment)
   checkPtrType(object, "GtkScrolledWindow")
   checkPtrType(hadjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_set_hadjustment", object, hadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_set_hadjustment", object, hadjustment)
 
   return(invisible(w))
 } 
@@ -17655,7 +17655,7 @@ function(object, hadjustment)
   checkPtrType(object, "GtkScrolledWindow")
   checkPtrType(hadjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_set_vadjustment", object, hadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_set_vadjustment", object, hadjustment)
 
   return(invisible(w))
 } 
@@ -17666,7 +17666,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_hadjustment", object)
 
   return(w)
 } 
@@ -17677,7 +17677,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_vadjustment", object)
 
   return(w)
 } 
@@ -17688,7 +17688,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_hscrollbar", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_hscrollbar", object)
 
   return(w)
 } 
@@ -17699,7 +17699,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_vscrollbar", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_vscrollbar", object)
 
   return(w)
 } 
@@ -17712,7 +17712,7 @@ function(object, hscrollbar.policy, vscrollbar.policy)
   
   
 
-  w <- .RGtkCall("S_gtk_scrolled_window_set_policy", object, hscrollbar.policy, vscrollbar.policy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_set_policy", object, hscrollbar.policy, vscrollbar.policy)
 
   return(invisible(w))
 } 
@@ -17723,7 +17723,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_policy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_policy", object)
 
   return(invisible(w))
 } 
@@ -17735,7 +17735,7 @@ function(object, window.placement)
   checkPtrType(object, "GtkScrolledWindow")
   
 
-  w <- .RGtkCall("S_gtk_scrolled_window_set_placement", object, window.placement, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_set_placement", object, window.placement)
 
   return(invisible(w))
 } 
@@ -17746,7 +17746,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_placement", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_placement", object)
 
   return(w)
 } 
@@ -17758,7 +17758,7 @@ function(object, type)
   checkPtrType(object, "GtkScrolledWindow")
   
 
-  w <- .RGtkCall("S_gtk_scrolled_window_set_shadow_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_set_shadow_type", object, type)
 
   return(invisible(w))
 } 
@@ -17769,7 +17769,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_get_shadow_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_get_shadow_type", object)
 
   return(w)
 } 
@@ -17781,7 +17781,7 @@ function(object, child)
   checkPtrType(object, "GtkScrolledWindow")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_add_with_viewport", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_add_with_viewport", object, child)
 
   return(invisible(w))
 } 
@@ -17792,7 +17792,7 @@ function(targets)
 {
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
 
-  w <- .RGtkCall("S_gtk_target_list_new", targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_new", targets)
 
   return(w)
 } 
@@ -17806,7 +17806,7 @@ function(object, target, flags, info)
   flags <- as.numeric(flags)
   info <- as.numeric(info)
 
-  w <- .RGtkCall("S_gtk_target_list_add", object, target, flags, info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add", object, target, flags, info)
 
   return(invisible(w))
 } 
@@ -17818,7 +17818,7 @@ function(object, targets)
   checkPtrType(object, "GtkTargetList")
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
 
-  w <- .RGtkCall("S_gtk_target_list_add_table", object, targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add_table", object, targets)
 
   return(w)
 } 
@@ -17830,7 +17830,7 @@ function(object, target)
   checkPtrType(object, "GtkTargetList")
   target <- as.GdkAtom(target)
 
-  w <- .RGtkCall("S_gtk_target_list_remove", object, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_remove", object, target)
 
   return(invisible(w))
 } 
@@ -17842,7 +17842,7 @@ function(object, target)
   checkPtrType(object, "GtkTargetList")
   target <- as.GdkAtom(target)
 
-  w <- .RGtkCall("S_gtk_target_list_find", object, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_find", object, target)
 
   return(w)
 } 
@@ -17855,7 +17855,7 @@ function(object, selection, time = "GDK_CURRENT_TIME")
   selection <- as.GdkAtom(selection)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_selection_owner_set", object, selection, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_owner_set", object, selection, time)
 
   return(w)
 } 
@@ -17869,7 +17869,7 @@ function(display, widget = NULL, selection, time = "GDK_CURRENT_TIME")
   selection <- as.GdkAtom(selection)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_selection_owner_set_for_display", display, widget, selection, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_owner_set_for_display", display, widget, selection, time)
 
   return(w)
 } 
@@ -17883,7 +17883,7 @@ function(object, selection, target, info)
   target <- as.GdkAtom(target)
   info <- as.numeric(info)
 
-  w <- .RGtkCall("S_gtk_selection_add_target", object, selection, target, info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_add_target", object, selection, target, info)
 
   return(invisible(w))
 } 
@@ -17896,7 +17896,7 @@ function(object, selection, targets)
   selection <- as.GdkAtom(selection)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
 
-  w <- .RGtkCall("S_gtk_selection_add_targets", object, selection, targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_add_targets", object, selection, targets)
 
   return(w)
 } 
@@ -17908,7 +17908,7 @@ function(object, selection)
   checkPtrType(object, "GtkWidget")
   selection <- as.GdkAtom(selection)
 
-  w <- .RGtkCall("S_gtk_selection_clear_targets", object, selection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_clear_targets", object, selection)
 
   return(invisible(w))
 } 
@@ -17922,7 +17922,7 @@ function(object, selection, target, time = "GDK_CURRENT_TIME")
   target <- as.GdkAtom(target)
   time <- as.numeric(time)
 
-  w <- .RGtkCall("S_gtk_selection_convert", object, selection, target, time, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_convert", object, selection, target, time)
 
   return(w)
 } 
@@ -17935,7 +17935,7 @@ function(object, str, len = -1)
   str <- as.character(str)
   len <- as.integer(len)
 
-  w <- .RGtkCall("S_gtk_selection_data_set_text", object, str, len, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_set_text", object, str, len)
 
   return(w)
 } 
@@ -17946,7 +17946,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_get_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_get_text", object)
 
   return(w)
 } 
@@ -17957,7 +17957,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_get_targets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_get_targets", object)
 
   return(w)
 } 
@@ -17968,7 +17968,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_targets_include_text", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_targets_include_text", object)
 
   return(w)
 } 
@@ -17979,7 +17979,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_selection_remove_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_remove_all", object)
 
   return(invisible(w))
 } 
@@ -17991,7 +17991,7 @@ function(object, event)
   checkPtrType(object, "GtkWidget")
   checkPtrType(event, "GdkEventSelection")
 
-  w <- .RGtkCall("S_gtk_selection_clear", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_clear", object, event)
 
   return(w)
 } 
@@ -18002,7 +18002,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_selection_data_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_get_type")
 
   return(w)
 } 
@@ -18013,7 +18013,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_copy", object)
 
   return(w)
 } 
@@ -18025,7 +18025,7 @@ function(object, pixbuf)
   checkPtrType(object, "GtkSelectionData")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_selection_data_set_pixbuf", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_set_pixbuf", object, pixbuf)
 
   return(w)
 } 
@@ -18036,7 +18036,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_get_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_get_pixbuf", object)
 
   return(w)
 } 
@@ -18048,7 +18048,7 @@ function(object, uris)
   checkPtrType(object, "GtkSelectionData")
   uris <- as.list(as.character(uris))
 
-  w <- .RGtkCall("S_gtk_selection_data_set_uris", object, uris, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_set_uris", object, uris)
 
   return(w)
 } 
@@ -18059,7 +18059,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_get_uris", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_get_uris", object)
 
   return(w)
 } 
@@ -18071,7 +18071,7 @@ function(object, writable)
   checkPtrType(object, "GtkSelectionData")
   writable <- as.logical(writable)
 
-  w <- .RGtkCall("S_gtk_selection_data_targets_include_image", object, writable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_targets_include_image", object, writable)
 
   return(w)
 } 
@@ -18082,7 +18082,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_separator_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_get_type")
 
   return(w)
 } 
@@ -18093,7 +18093,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_separator_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_menu_item_get_type")
 
   return(w)
 } 
@@ -18104,7 +18104,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_separator_menu_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_menu_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18118,7 +18118,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_separator_tool_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_tool_item_get_type")
 
   return(w)
 } 
@@ -18129,7 +18129,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_separator_tool_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_tool_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18143,7 +18143,7 @@ function(object)
 {
   checkPtrType(object, "GtkSeparatorToolItem")
 
-  w <- .RGtkCall("S_gtk_separator_tool_item_get_draw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_tool_item_get_draw", object)
 
   return(w)
 } 
@@ -18155,7 +18155,7 @@ function(object, draw)
   checkPtrType(object, "GtkSeparatorToolItem")
   draw <- as.logical(draw)
 
-  w <- .RGtkCall("S_gtk_separator_tool_item_set_draw", object, draw, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_separator_tool_item_set_draw", object, draw)
 
   return(invisible(w))
 } 
@@ -18166,7 +18166,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_settings_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_get_type")
 
   return(w)
 } 
@@ -18177,7 +18177,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_settings_get_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_get_default")
 
   return(w)
 } 
@@ -18188,7 +18188,7 @@ function(screen)
 {
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_settings_get_for_screen", screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_get_for_screen", screen)
 
   return(w)
 } 
@@ -18199,7 +18199,7 @@ function(pspec)
 {
   pspec <- as.GParamSpec(pspec)
 
-  w <- .RGtkCall("S_gtk_settings_install_property", pspec, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_install_property", pspec)
 
   return(w)
 } 
@@ -18211,7 +18211,7 @@ function(pspec, gstring)
   pspec <- as.GParamSpec(pspec)
   gstring <- as.GString(gstring)
 
-  w <- .RGtkCall("S_gtk_rc_property_parse_color", pspec, gstring, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_property_parse_color", pspec, gstring)
 
   return(w)
 } 
@@ -18223,7 +18223,7 @@ function(pspec, gstring)
   pspec <- as.GParamSpec(pspec)
   gstring <- as.GString(gstring)
 
-  w <- .RGtkCall("S_gtk_rc_property_parse_enum", pspec, gstring, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_property_parse_enum", pspec, gstring)
 
   return(w)
 } 
@@ -18235,7 +18235,7 @@ function(pspec, gstring)
   pspec <- as.GParamSpec(pspec)
   gstring <- as.GString(gstring)
 
-  w <- .RGtkCall("S_gtk_rc_property_parse_flags", pspec, gstring, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_property_parse_flags", pspec, gstring)
 
   return(w)
 } 
@@ -18247,7 +18247,7 @@ function(pspec, gstring)
   pspec <- as.GParamSpec(pspec)
   gstring <- as.GString(gstring)
 
-  w <- .RGtkCall("S_gtk_rc_property_parse_requisition", pspec, gstring, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_property_parse_requisition", pspec, gstring)
 
   return(w)
 } 
@@ -18259,7 +18259,7 @@ function(pspec, gstring)
   pspec <- as.GParamSpec(pspec)
   gstring <- as.GString(gstring)
 
-  w <- .RGtkCall("S_gtk_rc_property_parse_border", pspec, gstring, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_property_parse_border", pspec, gstring)
 
   return(w)
 } 
@@ -18272,7 +18272,7 @@ function(object, name, svalue)
   name <- as.character(name)
   svalue <- as.GtkSettingsValue(svalue)
 
-  w <- .RGtkCall("S_gtk_settings_set_property_value", object, name, svalue, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_set_property_value", object, name, svalue)
 
   return(invisible(w))
 } 
@@ -18286,7 +18286,7 @@ function(object, name, v.string, origin)
   v.string <- as.character(v.string)
   origin <- as.character(origin)
 
-  w <- .RGtkCall("S_gtk_settings_set_string_property", object, name, v.string, origin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_set_string_property", object, name, v.string, origin)
 
   return(invisible(w))
 } 
@@ -18300,7 +18300,7 @@ function(object, name, v.long, origin)
   v.long <- as.numeric(v.long)
   origin <- as.character(origin)
 
-  w <- .RGtkCall("S_gtk_settings_set_long_property", object, name, v.long, origin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_set_long_property", object, name, v.long, origin)
 
   return(invisible(w))
 } 
@@ -18314,7 +18314,7 @@ function(object, name, v.double, origin)
   v.double <- as.numeric(v.double)
   origin <- as.character(origin)
 
-  w <- .RGtkCall("S_gtk_settings_set_double_property", object, name, v.double, origin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_settings_set_double_property", object, name, v.double, origin)
 
   return(invisible(w))
 } 
@@ -18325,7 +18325,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_size_group_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_get_type")
 
   return(w)
 } 
@@ -18336,7 +18336,7 @@ function(mode = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_size_group_new", mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_new", mode)
 
   return(w)
 } 
@@ -18348,7 +18348,7 @@ function(object, mode)
   checkPtrType(object, "GtkSizeGroup")
   
 
-  w <- .RGtkCall("S_gtk_size_group_set_mode", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_set_mode", object, mode)
 
   return(invisible(w))
 } 
@@ -18359,7 +18359,7 @@ function(object)
 {
   checkPtrType(object, "GtkSizeGroup")
 
-  w <- .RGtkCall("S_gtk_size_group_get_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_get_mode", object)
 
   return(w)
 } 
@@ -18371,7 +18371,7 @@ function(object, ignore.hidden)
   checkPtrType(object, "GtkSizeGroup")
   ignore.hidden <- as.logical(ignore.hidden)
 
-  w <- .RGtkCall("S_gtk_size_group_set_ignore_hidden", object, ignore.hidden, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_set_ignore_hidden", object, ignore.hidden)
 
   return(invisible(w))
 } 
@@ -18382,7 +18382,7 @@ function(object)
 {
   checkPtrType(object, "GtkSizeGroup")
 
-  w <- .RGtkCall("S_gtk_size_group_get_ignore_hidden", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_get_ignore_hidden", object)
 
   return(w)
 } 
@@ -18394,7 +18394,7 @@ function(object, widget)
   checkPtrType(object, "GtkSizeGroup")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_size_group_add_widget", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_add_widget", object, widget)
 
   return(invisible(w))
 } 
@@ -18406,7 +18406,7 @@ function(object, widget)
   checkPtrType(object, "GtkSizeGroup")
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_size_group_remove_widget", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_remove_widget", object, widget)
 
   return(invisible(w))
 } 
@@ -18417,7 +18417,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_socket_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_socket_get_type")
 
   return(w)
 } 
@@ -18428,7 +18428,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_socket_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_socket_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18443,7 +18443,7 @@ function(object, window.id)
   checkPtrType(object, "GtkSocket")
   window.id <- as.GdkNativeWindow(window.id)
 
-  w <- .RGtkCall("S_gtk_socket_add_id", object, window.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_socket_add_id", object, window.id)
 
   return(invisible(w))
 } 
@@ -18454,7 +18454,7 @@ function(object)
 {
   checkPtrType(object, "GtkSocket")
 
-  w <- .RGtkCall("S_gtk_socket_get_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_socket_get_id", object)
 
   return(w)
 } 
@@ -18466,7 +18466,7 @@ function(object, wid)
   checkPtrType(object, "GtkSocket")
   wid <- as.GdkNativeWindow(wid)
 
-  w <- .RGtkCall("S_gtk_socket_steal", object, wid, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_socket_steal", object, wid)
 
   return(invisible(w))
 } 
@@ -18477,7 +18477,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_spin_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_type")
 
   return(w)
 } 
@@ -18491,7 +18491,7 @@ function(object, adjustment = NULL, climb.rate, digits)
   climb.rate <- as.numeric(climb.rate)
   digits <- as.numeric(digits)
 
-  w <- .RGtkCall("S_gtk_spin_button_configure", object, adjustment, climb.rate, digits, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_configure", object, adjustment, climb.rate, digits)
 
   return(invisible(w))
 } 
@@ -18502,7 +18502,7 @@ function(adjustment = NULL, climb.rate = NULL, digits = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_spin_button_new", adjustment, climb.rate, digits, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_new", adjustment, climb.rate, digits)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18518,7 +18518,7 @@ function(min, max, step, show = TRUE)
   max <- as.numeric(max)
   step <- as.numeric(step)
 
-  w <- .RGtkCall("S_gtk_spin_button_new_with_range", min, max, step, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_new_with_range", min, max, step)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18533,7 +18533,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkSpinButton")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_spin_button_set_adjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_adjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -18544,7 +18544,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_adjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_adjustment", object)
 
   return(w)
 } 
@@ -18556,7 +18556,7 @@ function(object, digits)
   checkPtrType(object, "GtkSpinButton")
   digits <- as.numeric(digits)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_digits", object, digits, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_digits", object, digits)
 
   return(invisible(w))
 } 
@@ -18567,7 +18567,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_digits", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_digits", object)
 
   return(w)
 } 
@@ -18580,7 +18580,7 @@ function(object, step, page)
   step <- as.numeric(step)
   page <- as.numeric(page)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_increments", object, step, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_increments", object, step, page)
 
   return(invisible(w))
 } 
@@ -18591,7 +18591,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_increments", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_increments", object)
 
   return(invisible(w))
 } 
@@ -18604,7 +18604,7 @@ function(object, min, max)
   min <- as.numeric(min)
   max <- as.numeric(max)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_range", object, min, max, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_range", object, min, max)
 
   return(invisible(w))
 } 
@@ -18615,7 +18615,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_range", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_range", object)
 
   return(invisible(w))
 } 
@@ -18626,7 +18626,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_value", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_value", object)
 
   return(w)
 } 
@@ -18637,7 +18637,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_value_as_int", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_value_as_int", object)
 
   return(w)
 } 
@@ -18649,7 +18649,7 @@ function(object, value)
   checkPtrType(object, "GtkSpinButton")
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_value", object, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_value", object, value)
 
   return(invisible(w))
 } 
@@ -18661,7 +18661,7 @@ function(object, policy)
   checkPtrType(object, "GtkSpinButton")
   
 
-  w <- .RGtkCall("S_gtk_spin_button_set_update_policy", object, policy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_update_policy", object, policy)
 
   return(invisible(w))
 } 
@@ -18672,7 +18672,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_update_policy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_update_policy", object)
 
   return(w)
 } 
@@ -18684,7 +18684,7 @@ function(object, numeric)
   checkPtrType(object, "GtkSpinButton")
   numeric <- as.logical(numeric)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_numeric", object, numeric, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_numeric", object, numeric)
 
   return(invisible(w))
 } 
@@ -18695,7 +18695,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_numeric", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_numeric", object)
 
   return(w)
 } 
@@ -18708,7 +18708,7 @@ function(object, direction, increment)
   
   increment <- as.numeric(increment)
 
-  w <- .RGtkCall("S_gtk_spin_button_spin", object, direction, increment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_spin", object, direction, increment)
 
   return(invisible(w))
 } 
@@ -18720,7 +18720,7 @@ function(object, wrap)
   checkPtrType(object, "GtkSpinButton")
   wrap <- as.logical(wrap)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_wrap", object, wrap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_wrap", object, wrap)
 
   return(invisible(w))
 } 
@@ -18731,7 +18731,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_wrap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_wrap", object)
 
   return(w)
 } 
@@ -18743,7 +18743,7 @@ function(object, snap.to.ticks)
   checkPtrType(object, "GtkSpinButton")
   snap.to.ticks <- as.logical(snap.to.ticks)
 
-  w <- .RGtkCall("S_gtk_spin_button_set_snap_to_ticks", object, snap.to.ticks, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_set_snap_to_ticks", object, snap.to.ticks)
 
   return(invisible(w))
 } 
@@ -18754,7 +18754,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_get_snap_to_ticks", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_get_snap_to_ticks", object)
 
   return(w)
 } 
@@ -18765,7 +18765,7 @@ function(object)
 {
   checkPtrType(object, "GtkSpinButton")
 
-  w <- .RGtkCall("S_gtk_spin_button_update", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_spin_button_update", object)
 
   return(invisible(w))
 } 
@@ -18776,7 +18776,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_statusbar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_get_type")
 
   return(w)
 } 
@@ -18787,7 +18787,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_statusbar_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -18802,7 +18802,7 @@ function(object, context.description)
   checkPtrType(object, "GtkStatusbar")
   context.description <- as.character(context.description)
 
-  w <- .RGtkCall("S_gtk_statusbar_get_context_id", object, context.description, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_get_context_id", object, context.description)
 
   return(w)
 } 
@@ -18815,7 +18815,7 @@ function(object, context.id, text)
   context.id <- as.numeric(context.id)
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_statusbar_push", object, context.id, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_push", object, context.id, text)
 
   return(w)
 } 
@@ -18827,7 +18827,7 @@ function(object, context.id)
   checkPtrType(object, "GtkStatusbar")
   context.id <- as.numeric(context.id)
 
-  w <- .RGtkCall("S_gtk_statusbar_pop", object, context.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_pop", object, context.id)
 
   return(invisible(w))
 } 
@@ -18840,7 +18840,7 @@ function(object, context.id, message.id)
   context.id <- as.numeric(context.id)
   message.id <- as.numeric(message.id)
 
-  w <- .RGtkCall("S_gtk_statusbar_remove", object, context.id, message.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_remove", object, context.id, message.id)
 
   return(invisible(w))
 } 
@@ -18852,7 +18852,7 @@ function(object, setting)
   checkPtrType(object, "GtkStatusbar")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_statusbar_set_has_resize_grip", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_set_has_resize_grip", object, setting)
 
   return(invisible(w))
 } 
@@ -18863,7 +18863,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusbar")
 
-  w <- .RGtkCall("S_gtk_statusbar_get_has_resize_grip", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_statusbar_get_has_resize_grip", object)
 
   return(w)
 } 
@@ -18874,7 +18874,7 @@ function(items)
 {
   items <- lapply(items, function(x) { x <- as.GtkStockItem(x); x })
 
-  w <- .RGtkCall("S_gtk_stock_add", items, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_add", items)
 
   return(invisible(w))
 } 
@@ -18885,7 +18885,7 @@ function(items)
 {
   items <- lapply(items, function(x) { x <- as.GtkStockItem(x); x })
 
-  w <- .RGtkCall("S_gtk_stock_add_static", items, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_add_static", items)
 
   return(invisible(w))
 } 
@@ -18896,7 +18896,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_stock_lookup", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_lookup", stock.id)
 
   return(w)
 } 
@@ -18907,7 +18907,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_stock_list_ids", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_list_ids")
 
   return(w)
 } 
@@ -18918,7 +18918,7 @@ function(object)
 {
   object <- as.GtkStockItem(object)
 
-  w <- .RGtkCall("S_gtk_stock_item_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_item_copy", object)
 
   return(w)
 } 
@@ -18931,7 +18931,7 @@ function(domain, func, data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_stock_set_translate_func", domain, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_stock_set_translate_func", domain, func, data)
 
   return(invisible(w))
 } 
@@ -18942,7 +18942,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_style_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_get_type")
 
   return(w)
 } 
@@ -18953,7 +18953,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_style_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_new")
 
   return(w)
 } 
@@ -18964,7 +18964,7 @@ function(object)
 {
   checkPtrType(object, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_style_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_copy", object)
 
   return(w)
 } 
@@ -18976,7 +18976,7 @@ function(object, window)
   checkPtrType(object, "GtkStyle")
   checkPtrType(window, "GdkWindow")
 
-  w <- .RGtkCall("S_gtk_style_attach", object, window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_attach", object, window)
 
   return(w)
 } 
@@ -18987,7 +18987,7 @@ function(object)
 {
   checkPtrType(object, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_style_detach", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_detach", object)
 
   return(invisible(w))
 } 
@@ -18998,7 +18998,7 @@ function(object)
 {
   checkPtrType(object, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_style_get_font", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_get_font", object)
 
   return(w)
 } 
@@ -19010,7 +19010,7 @@ function(object, font)
   checkPtrType(object, "GtkStyle")
   checkPtrType(font, "GdkFont")
 
-  w <- .RGtkCall("S_gtk_style_set_font", object, font, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_set_font", object, font)
 
   return(invisible(w))
 } 
@@ -19023,7 +19023,7 @@ function(object, window, state.type)
   checkPtrType(window, "GdkWindow")
   
 
-  w <- .RGtkCall("S_gtk_style_set_background", object, window, state.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_set_background", object, window, state.type)
 
   return(invisible(w))
 } 
@@ -19042,7 +19042,7 @@ function(object, window, set.bg, state.type, area = NULL, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_style_apply_default_background", object, window, set.bg, state.type, area, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_apply_default_background", object, window, set.bg, state.type, area, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19054,7 +19054,7 @@ function(object, stock.id)
   checkPtrType(object, "GtkStyle")
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_style_lookup_icon_set", object, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_lookup_icon_set", object, stock.id)
 
   return(w)
 } 
@@ -19071,7 +19071,7 @@ function(object, source, direction, state, size, widget = NULL, detail = NULL)
   if (!is.null( widget )) checkPtrType(widget, "GtkWidget")
   if (!is.null( detail )) detail <- as.character(detail)
 
-  w <- .RGtkCall("S_gtk_style_render_icon", object, source, direction, state, size, widget, detail, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_render_icon", object, source, direction, state, size, widget, detail)
 
   return(w)
 } 
@@ -19087,7 +19087,7 @@ function(object, window, state.type, x1, x2, y)
   x2 <- as.integer(x2)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_draw_hline", object, window, state.type, x1, x2, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_hline", object, window, state.type, x1, x2, y)
 
   return(invisible(w))
 } 
@@ -19103,7 +19103,7 @@ function(object, window, state.type, y1, y2, x)
   y2 <- as.integer(y2)
   x <- as.integer(x)
 
-  w <- .RGtkCall("S_gtk_draw_vline", object, window, state.type, y1, y2, x, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_vline", object, window, state.type, y1, y2, x)
 
   return(invisible(w))
 } 
@@ -19121,7 +19121,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_shadow", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_shadow", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19137,7 +19137,7 @@ function(object, window, state.type, shadow.type, points, fill)
   points <- lapply(points, function(x) { x <- as.GdkPoint(x); x })
   fill <- as.logical(fill)
 
-  w <- .RGtkCall("S_gtk_draw_polygon", object, window, state.type, shadow.type, points, fill, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_polygon", object, window, state.type, shadow.type, points, fill)
 
   return(w)
 } 
@@ -19157,7 +19157,7 @@ function(object, window, state.type, shadow.type, arrow.type, fill, x, y, width,
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_arrow", object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_arrow", object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19175,7 +19175,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_diamond", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_diamond", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19193,7 +19193,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_box", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_box", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19211,7 +19211,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_flat_box", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_flat_box", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19229,7 +19229,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_check", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_check", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19247,7 +19247,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_option", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_option", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19265,7 +19265,7 @@ function(object, window, state.type, shadow.type, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_tab", object, window, state.type, shadow.type, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_tab", object, window, state.type, shadow.type, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19286,7 +19286,7 @@ function(object, window, state.type, shadow.type, x, y, width, height, gap.side,
   gap.x <- as.integer(gap.x)
   gap.width <- as.integer(gap.width)
 
-  w <- .RGtkCall("S_gtk_draw_shadow_gap", object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_shadow_gap", object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)
 
   return(invisible(w))
 } 
@@ -19307,7 +19307,7 @@ function(object, window, state.type, shadow.type, x, y, width, height, gap.side,
   gap.x <- as.integer(gap.x)
   gap.width <- as.integer(gap.width)
 
-  w <- .RGtkCall("S_gtk_draw_box_gap", object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_box_gap", object, window, state.type, shadow.type, x, y, width, height, gap.side, gap.x, gap.width)
 
   return(invisible(w))
 } 
@@ -19326,7 +19326,7 @@ function(object, window, state.type, shadow.type, x, y, width, height, gap.side)
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_draw_extension", object, window, state.type, shadow.type, x, y, width, height, gap.side, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_extension", object, window, state.type, shadow.type, x, y, width, height, gap.side)
 
   return(invisible(w))
 } 
@@ -19342,7 +19342,7 @@ function(object, window, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_focus", object, window, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_focus", object, window, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19361,7 +19361,7 @@ function(object, window, state.type, shadow.type, x, y, width, height, orientati
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_draw_slider", object, window, state.type, shadow.type, x, y, width, height, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_slider", object, window, state.type, shadow.type, x, y, width, height, orientation)
 
   return(invisible(w))
 } 
@@ -19380,7 +19380,7 @@ function(object, window, state.type, shadow.type, x, y, width, height, orientati
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_draw_handle", object, window, state.type, shadow.type, x, y, width, height, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_handle", object, window, state.type, shadow.type, x, y, width, height, orientation)
 
   return(invisible(w))
 } 
@@ -19396,7 +19396,7 @@ function(object, window, state.type, x, y, is.open)
   y <- as.integer(y)
   is.open <- as.logical(is.open)
 
-  w <- .RGtkCall("S_gtk_draw_expander", object, window, state.type, x, y, is.open, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_expander", object, window, state.type, x, y, is.open)
 
   return(invisible(w))
 } 
@@ -19413,7 +19413,7 @@ function(object, window, state.type, use.text, x, y, layout)
   y <- as.integer(y)
   checkPtrType(layout, "PangoLayout")
 
-  w <- .RGtkCall("S_gtk_draw_layout", object, window, state.type, use.text, x, y, layout, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_layout", object, window, state.type, use.text, x, y, layout)
 
   return(invisible(w))
 } 
@@ -19431,7 +19431,7 @@ function(object, window, state.type, edge, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_draw_resize_grip", object, window, state.type, edge, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_resize_grip", object, window, state.type, edge, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19450,7 +19450,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   x2 <- as.integer(x2)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_paint_hline", object, window, state.type, area, widget, detail, x1, x2, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_hline", object, window, state.type, area, widget, detail, x1, x2, y)
 
   return(invisible(w))
 } 
@@ -19469,7 +19469,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   y2 <- as.integer(y2)
   x <- as.integer(x)
 
-  w <- .RGtkCall("S_gtk_paint_vline", object, window, state.type, area, widget, detail, y1, y2, x, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_vline", object, window, state.type, area, widget, detail, y1, y2, x)
 
   return(invisible(w))
 } 
@@ -19490,7 +19490,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_shadow", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_shadow", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19509,7 +19509,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   points <- lapply(points, function(x) { x <- as.GdkPoint(x); x })
   fill <- as.logical(fill)
 
-  w <- .RGtkCall("S_gtk_paint_polygon", object, window, state.type, shadow.type, area, widget, detail, points, fill, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_polygon", object, window, state.type, shadow.type, area, widget, detail, points, fill)
 
   return(w)
 } 
@@ -19532,7 +19532,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_arrow", object, window, state.type, shadow.type, area, widget, detail, arrow.type, fill, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_arrow", object, window, state.type, shadow.type, area, widget, detail, arrow.type, fill, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19553,7 +19553,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_diamond", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_diamond", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19574,7 +19574,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_box", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_box", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19595,7 +19595,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_flat_box", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_flat_box", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19616,7 +19616,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_check", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_check", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19637,7 +19637,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_option", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_option", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19658,7 +19658,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_tab", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_tab", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19682,7 +19682,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   gap.x <- as.integer(gap.x)
   gap.width <- as.integer(gap.width)
 
-  w <- .RGtkCall("S_gtk_paint_shadow_gap", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side, gap.x, gap.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_shadow_gap", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side, gap.x, gap.width)
 
   return(invisible(w))
 } 
@@ -19706,7 +19706,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   gap.x <- as.integer(gap.x)
   gap.width <- as.integer(gap.width)
 
-  w <- .RGtkCall("S_gtk_paint_box_gap", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side, gap.x, gap.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_box_gap", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side, gap.x, gap.width)
 
   return(invisible(w))
 } 
@@ -19728,7 +19728,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_paint_extension", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_extension", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, gap.side)
 
   return(invisible(w))
 } 
@@ -19748,7 +19748,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_focus", object, window, state.type, area, widget, detail, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_focus", object, window, state.type, area, widget, detail, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19770,7 +19770,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_paint_slider", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_slider", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, orientation)
 
   return(invisible(w))
 } 
@@ -19792,7 +19792,7 @@ function(object, window, state.type, shadow.type, area = NULL, widget = NULL, de
   height <- as.integer(height)
   
 
-  w <- .RGtkCall("S_gtk_paint_handle", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_handle", object, window, state.type, shadow.type, area, widget, detail, x, y, width, height, orientation)
 
   return(invisible(w))
 } 
@@ -19811,7 +19811,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   y <- as.integer(y)
   
 
-  w <- .RGtkCall("S_gtk_paint_expander", object, window, state.type, area, widget, detail, x, y, expander.style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_expander", object, window, state.type, area, widget, detail, x, y, expander.style)
 
   return(invisible(w))
 } 
@@ -19831,7 +19831,7 @@ function(object, window, state.type, use.text, area = NULL, widget = NULL, detai
   y <- as.integer(y)
   checkPtrType(layout, "PangoLayout")
 
-  w <- .RGtkCall("S_gtk_paint_layout", object, window, state.type, use.text, area, widget, detail, x, y, layout, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_layout", object, window, state.type, use.text, area, widget, detail, x, y, layout)
 
   return(invisible(w))
 } 
@@ -19852,7 +19852,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_paint_resize_grip", object, window, state.type, area, widget, detail, edge, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_resize_grip", object, window, state.type, area, widget, detail, edge, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19863,7 +19863,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_border_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_border_get_type")
 
   return(w)
 } 
@@ -19874,7 +19874,7 @@ function(object)
 {
   checkPtrType(object, "GtkBorder")
 
-  w <- .RGtkCall("S_gtk_border_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_border_copy", object)
 
   return(w)
 } 
@@ -19895,7 +19895,7 @@ function(object, window, set.bg, area, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_style_apply_default_pixmap", object, window, set.bg, area, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_apply_default_pixmap", object, window, set.bg, area, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -19911,7 +19911,7 @@ function(object, window, state.type, x, y, string)
   y <- as.integer(y)
   string <- as.character(string)
 
-  w <- .RGtkCall("S_gtk_draw_string", object, window, state.type, x, y, string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_string", object, window, state.type, x, y, string)
 
   return(invisible(w))
 } 
@@ -19930,7 +19930,7 @@ function(object, window, state.type, area = NULL, widget = NULL, detail = NULL, 
   y <- as.integer(y)
   string <- as.character(string)
 
-  w <- .RGtkCall("S_gtk_paint_string", object, window, state.type, area, widget, detail, x, y, string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paint_string", object, window, state.type, area, widget, detail, x, y, string)
 
   return(invisible(w))
 } 
@@ -19947,7 +19947,7 @@ function(widget, drawable, area = NULL, location, is.primary, direction, draw.ar
   
   draw.arrow <- as.logical(draw.arrow)
 
-  w <- .RGtkCall("S_gtk_draw_insertion_cursor", widget, drawable, area, location, is.primary, direction, draw.arrow, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_draw_insertion_cursor", widget, drawable, area, location, is.primary, direction, draw.arrow)
 
   return(w)
 } 
@@ -19958,7 +19958,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_table_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_type")
 
   return(w)
 } 
@@ -19969,7 +19969,7 @@ function(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_table_new", rows, columns, homogeneous, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_new", rows, columns, homogeneous)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -19985,7 +19985,7 @@ function(object, rows, columns)
   rows <- as.numeric(rows)
   columns <- as.numeric(columns)
 
-  w <- .RGtkCall("S_gtk_table_resize", object, rows, columns, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_resize", object, rows, columns)
 
   return(invisible(w))
 } 
@@ -20005,7 +20005,7 @@ function(object, child, left.attach, right.attach, top.attach, bottom.attach, xo
   xpadding <- as.numeric(xpadding)
   ypadding <- as.numeric(ypadding)
 
-  w <- .RGtkCall("S_gtk_table_attach", object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions, yoptions, xpadding, ypadding, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_attach", object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions, yoptions, xpadding, ypadding)
 
   return(invisible(w))
 } 
@@ -20021,7 +20021,7 @@ function(object, widget, left.attach, right.attach, top.attach, bottom.attach)
   top.attach <- as.numeric(top.attach)
   bottom.attach <- as.numeric(bottom.attach)
 
-  w <- .RGtkCall("S_gtk_table_attach_defaults", object, widget, left.attach, right.attach, top.attach, bottom.attach, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_attach_defaults", object, widget, left.attach, right.attach, top.attach, bottom.attach)
 
   return(invisible(w))
 } 
@@ -20034,7 +20034,7 @@ function(object, row, spacing)
   row <- as.numeric(row)
   spacing <- as.numeric(spacing)
 
-  w <- .RGtkCall("S_gtk_table_set_row_spacing", object, row, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_set_row_spacing", object, row, spacing)
 
   return(invisible(w))
 } 
@@ -20046,7 +20046,7 @@ function(object, row)
   checkPtrType(object, "GtkTable")
   row <- as.numeric(row)
 
-  w <- .RGtkCall("S_gtk_table_get_row_spacing", object, row, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_row_spacing", object, row)
 
   return(w)
 } 
@@ -20059,7 +20059,7 @@ function(object, column, spacing)
   column <- as.numeric(column)
   spacing <- as.numeric(spacing)
 
-  w <- .RGtkCall("S_gtk_table_set_col_spacing", object, column, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_set_col_spacing", object, column, spacing)
 
   return(invisible(w))
 } 
@@ -20071,7 +20071,7 @@ function(object, column)
   checkPtrType(object, "GtkTable")
   column <- as.numeric(column)
 
-  w <- .RGtkCall("S_gtk_table_get_col_spacing", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_col_spacing", object, column)
 
   return(w)
 } 
@@ -20083,7 +20083,7 @@ function(object, spacing)
   checkPtrType(object, "GtkTable")
   spacing <- as.numeric(spacing)
 
-  w <- .RGtkCall("S_gtk_table_set_row_spacings", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_set_row_spacings", object, spacing)
 
   return(invisible(w))
 } 
@@ -20094,7 +20094,7 @@ function(object)
 {
   checkPtrType(object, "GtkTable")
 
-  w <- .RGtkCall("S_gtk_table_get_default_row_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_default_row_spacing", object)
 
   return(w)
 } 
@@ -20106,7 +20106,7 @@ function(object, spacing)
   checkPtrType(object, "GtkTable")
   spacing <- as.numeric(spacing)
 
-  w <- .RGtkCall("S_gtk_table_set_col_spacings", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_set_col_spacings", object, spacing)
 
   return(invisible(w))
 } 
@@ -20117,7 +20117,7 @@ function(object)
 {
   checkPtrType(object, "GtkTable")
 
-  w <- .RGtkCall("S_gtk_table_get_default_col_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_default_col_spacing", object)
 
   return(w)
 } 
@@ -20129,7 +20129,7 @@ function(object, homogeneous)
   checkPtrType(object, "GtkTable")
   homogeneous <- as.logical(homogeneous)
 
-  w <- .RGtkCall("S_gtk_table_set_homogeneous", object, homogeneous, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_set_homogeneous", object, homogeneous)
 
   return(invisible(w))
 } 
@@ -20140,7 +20140,7 @@ function(object)
 {
   checkPtrType(object, "GtkTable")
 
-  w <- .RGtkCall("S_gtk_table_get_homogeneous", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_table_get_homogeneous", object)
 
   return(w)
 } 
@@ -20151,7 +20151,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tearoff_menu_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tearoff_menu_item_get_type")
 
   return(w)
 } 
@@ -20162,7 +20162,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_tearoff_menu_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tearoff_menu_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -20176,7 +20176,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_type")
 
   return(w)
 } 
@@ -20187,7 +20187,7 @@ function(table = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_text_buffer_new", table, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_new", table)
 
   return(w)
 } 
@@ -20198,7 +20198,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_line_count", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_line_count", object)
 
   return(w)
 } 
@@ -20209,7 +20209,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_char_count", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_char_count", object)
 
   return(w)
 } 
@@ -20220,7 +20220,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_tag_table", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_tag_table", object)
 
   return(w)
 } 
@@ -20233,7 +20233,7 @@ function(object, text, len = -1)
   text <- as.character(text)
   len <- as.integer(len)
 
-  w <- .RGtkCall("S_gtk_text_buffer_set_text", object, text, len, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_set_text", object, text, len)
 
   return(invisible(w))
 } 
@@ -20247,7 +20247,7 @@ function(object, iter, text, len = -1)
   text <- as.character(text)
   len <- as.integer(len)
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert", object, iter, text, len, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert", object, iter, text, len)
 
   return(invisible(w))
 } 
@@ -20260,7 +20260,7 @@ function(object, text, len = -1)
   text <- as.character(text)
   len <- as.integer(len)
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert_at_cursor", object, text, len, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert_at_cursor", object, text, len)
 
   return(invisible(w))
 } 
@@ -20274,7 +20274,7 @@ function(object, iter, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert_range", object, iter, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert_range", object, iter, start, end)
 
   return(invisible(w))
 } 
@@ -20289,7 +20289,7 @@ function(object, iter, start, end, default.editable)
   checkPtrType(end, "GtkTextIter")
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert_range_interactive", object, iter, start, end, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert_range_interactive", object, iter, start, end, default.editable)
 
   return(w)
 } 
@@ -20302,7 +20302,7 @@ function(object, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_delete", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_delete", object, start, end)
 
   return(invisible(w))
 } 
@@ -20316,7 +20316,7 @@ function(object, start.iter, end.iter, default.editable)
   checkPtrType(end.iter, "GtkTextIter")
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_delete_interactive", object, start.iter, end.iter, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_delete_interactive", object, start.iter, end.iter, default.editable)
 
   return(w)
 } 
@@ -20330,7 +20330,7 @@ function(object, start, end, include.hidden.chars = TRUE)
   checkPtrType(end, "GtkTextIter")
   include.hidden.chars <- as.logical(include.hidden.chars)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_text", object, start, end, include.hidden.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_text", object, start, end, include.hidden.chars)
 
   return(w)
 } 
@@ -20344,7 +20344,7 @@ function(object, start, end, include.hidden.chars = TRUE)
   checkPtrType(end, "GtkTextIter")
   include.hidden.chars <- as.logical(include.hidden.chars)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_slice", object, start, end, include.hidden.chars, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_slice", object, start, end, include.hidden.chars)
 
   return(w)
 } 
@@ -20357,7 +20357,7 @@ function(object, iter, pixbuf)
   checkPtrType(iter, "GtkTextIter")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert_pixbuf", object, iter, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert_pixbuf", object, iter, pixbuf)
 
   return(invisible(w))
 } 
@@ -20370,7 +20370,7 @@ function(object, iter, anchor)
   checkPtrType(iter, "GtkTextIter")
   checkPtrType(anchor, "GtkTextChildAnchor")
 
-  w <- .RGtkCall("S_gtk_text_buffer_insert_child_anchor", object, iter, anchor, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_insert_child_anchor", object, iter, anchor)
 
   return(invisible(w))
 } 
@@ -20382,7 +20382,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_create_child_anchor", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_create_child_anchor", object, iter)
 
   return(w)
 } 
@@ -20396,7 +20396,7 @@ function(object, mark.name = NULL, where, left.gravity = FALSE)
   checkPtrType(where, "GtkTextIter")
   left.gravity <- as.logical(left.gravity)
 
-  w <- .RGtkCall("S_gtk_text_buffer_create_mark", object, mark.name, where, left.gravity, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_create_mark", object, mark.name, where, left.gravity)
 
   return(w)
 } 
@@ -20409,7 +20409,7 @@ function(object, mark, where)
   checkPtrType(mark, "GtkTextMark")
   checkPtrType(where, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_move_mark", object, mark, where, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_move_mark", object, mark, where)
 
   return(invisible(w))
 } 
@@ -20421,7 +20421,7 @@ function(object, mark)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(mark, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_buffer_delete_mark", object, mark, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_delete_mark", object, mark)
 
   return(invisible(w))
 } 
@@ -20433,7 +20433,7 @@ function(object, name)
   checkPtrType(object, "GtkTextBuffer")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_mark", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_mark", object, name)
 
   return(w)
 } 
@@ -20446,7 +20446,7 @@ function(object, name, where)
   name <- as.character(name)
   checkPtrType(where, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_move_mark_by_name", object, name, where, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_move_mark_by_name", object, name, where)
 
   return(invisible(w))
 } 
@@ -20458,7 +20458,7 @@ function(object, name)
   checkPtrType(object, "GtkTextBuffer")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_text_buffer_delete_mark_by_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_delete_mark_by_name", object, name)
 
   return(invisible(w))
 } 
@@ -20469,7 +20469,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_insert", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_insert", object)
 
   return(w)
 } 
@@ -20480,7 +20480,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_selection_bound", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_selection_bound", object)
 
   return(w)
 } 
@@ -20492,7 +20492,7 @@ function(object, where)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(where, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_place_cursor", object, where, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_place_cursor", object, where)
 
   return(invisible(w))
 } 
@@ -20505,7 +20505,7 @@ function(object, ins, bound)
   checkPtrType(ins, "GtkTextIter")
   checkPtrType(bound, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_select_range", object, ins, bound, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_select_range", object, ins, bound)
 
   return(invisible(w))
 } 
@@ -20519,7 +20519,7 @@ function(object, tag, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_apply_tag", object, tag, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_apply_tag", object, tag, start, end)
 
   return(invisible(w))
 } 
@@ -20533,7 +20533,7 @@ function(object, tag, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_remove_tag", object, tag, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_remove_tag", object, tag, start, end)
 
   return(invisible(w))
 } 
@@ -20547,7 +20547,7 @@ function(object, name, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_apply_tag_by_name", object, name, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_apply_tag_by_name", object, name, start, end)
 
   return(invisible(w))
 } 
@@ -20561,7 +20561,7 @@ function(object, name, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_remove_tag_by_name", object, name, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_remove_tag_by_name", object, name, start, end)
 
   return(invisible(w))
 } 
@@ -20574,7 +20574,7 @@ function(object, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_remove_all_tags", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_remove_all_tags", object, start, end)
 
   return(invisible(w))
 } 
@@ -20587,7 +20587,7 @@ function(object, line.number, char.offset)
   line.number <- as.integer(line.number)
   char.offset <- as.integer(char.offset)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line_offset", object, line.number, char.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line_offset", object, line.number, char.offset)
 
   return(w)
 } 
@@ -20600,7 +20600,7 @@ function(object, line.number, byte.index)
   line.number <- as.integer(line.number)
   byte.index <- as.integer(byte.index)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line_index", object, line.number, byte.index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line_index", object, line.number, byte.index)
 
   return(w)
 } 
@@ -20612,7 +20612,7 @@ function(object, char.offset)
   checkPtrType(object, "GtkTextBuffer")
   char.offset <- as.integer(char.offset)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_offset", object, char.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_offset", object, char.offset)
 
   return(w)
 } 
@@ -20624,7 +20624,7 @@ function(object, line.number)
   checkPtrType(object, "GtkTextBuffer")
   line.number <- as.integer(line.number)
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line", object, line.number, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_line", object, line.number)
 
   return(w)
 } 
@@ -20635,7 +20635,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_start_iter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_start_iter", object)
 
   return(w)
 } 
@@ -20646,7 +20646,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_end_iter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_end_iter", object)
 
   return(w)
 } 
@@ -20657,7 +20657,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_bounds", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_bounds", object)
 
   return(invisible(w))
 } 
@@ -20669,7 +20669,7 @@ function(object, mark)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(mark, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_mark", object, mark, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_mark", object, mark)
 
   return(w)
 } 
@@ -20681,7 +20681,7 @@ function(object, anchor)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(anchor, "GtkTextChildAnchor")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_child_anchor", object, anchor, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_iter_at_child_anchor", object, anchor)
 
   return(w)
 } 
@@ -20692,7 +20692,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_modified", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_modified", object)
 
   return(w)
 } 
@@ -20704,7 +20704,7 @@ function(object, setting)
   checkPtrType(object, "GtkTextBuffer")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_text_buffer_set_modified", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_set_modified", object, setting)
 
   return(invisible(w))
 } 
@@ -20716,7 +20716,7 @@ function(object, clipboard)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(clipboard, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_text_buffer_add_selection_clipboard", object, clipboard, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_add_selection_clipboard", object, clipboard)
 
   return(invisible(w))
 } 
@@ -20728,7 +20728,7 @@ function(object, clipboard)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(clipboard, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_text_buffer_remove_selection_clipboard", object, clipboard, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_remove_selection_clipboard", object, clipboard)
 
   return(invisible(w))
 } 
@@ -20741,7 +20741,7 @@ function(object, clipboard, default.editable)
   checkPtrType(clipboard, "GtkClipboard")
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_cut_clipboard", object, clipboard, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_cut_clipboard", object, clipboard, default.editable)
 
   return(invisible(w))
 } 
@@ -20753,7 +20753,7 @@ function(object, clipboard)
   checkPtrType(object, "GtkTextBuffer")
   checkPtrType(clipboard, "GtkClipboard")
 
-  w <- .RGtkCall("S_gtk_text_buffer_copy_clipboard", object, clipboard, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_copy_clipboard", object, clipboard)
 
   return(invisible(w))
 } 
@@ -20767,7 +20767,7 @@ function(object, clipboard, override.location = NULL, default.editable)
   if (!is.null( override.location )) checkPtrType(override.location, "GtkTextIter")
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_paste_clipboard", object, clipboard, override.location, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_paste_clipboard", object, clipboard, override.location, default.editable)
 
   return(invisible(w))
 } 
@@ -20778,7 +20778,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_selection_bounds", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_selection_bounds", object)
 
   return(w)
 } 
@@ -20791,7 +20791,7 @@ function(object, interactive, default.editable)
   interactive <- as.logical(interactive)
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_delete_selection", object, interactive, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_delete_selection", object, interactive, default.editable)
 
   return(w)
 } 
@@ -20802,7 +20802,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_begin_user_action", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_begin_user_action", object)
 
   return(invisible(w))
 } 
@@ -20813,7 +20813,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_end_user_action", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_end_user_action", object)
 
   return(invisible(w))
 } 
@@ -20824,7 +20824,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_child_anchor_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_child_anchor_get_type")
 
   return(w)
 } 
@@ -20835,7 +20835,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_child_anchor_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_child_anchor_new")
 
   return(w)
 } 
@@ -20846,7 +20846,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextChildAnchor")
 
-  w <- .RGtkCall("S_gtk_text_child_anchor_get_widgets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_child_anchor_get_widgets", object)
 
   return(w)
 } 
@@ -20857,7 +20857,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextChildAnchor")
 
-  w <- .RGtkCall("S_gtk_text_child_anchor_get_deleted", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_child_anchor_get_deleted", object)
 
   return(w)
 } 
@@ -20871,7 +20871,7 @@ function(object, iter, interactive, default.editable)
   interactive <- as.logical(interactive)
   default.editable <- as.logical(default.editable)
 
-  w <- .RGtkCall("S_gtk_text_buffer_backspace", object, iter, interactive, default.editable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_backspace", object, iter, interactive, default.editable)
 
   return(w)
 } 
@@ -20882,7 +20882,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_buffer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_buffer", object)
 
   return(w)
 } 
@@ -20893,7 +20893,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_copy", object)
 
   return(w)
 } 
@@ -20904,7 +20904,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_iter_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_type")
 
   return(w)
 } 
@@ -20915,7 +20915,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_offset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_offset", object)
 
   return(w)
 } 
@@ -20926,7 +20926,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_line", object)
 
   return(w)
 } 
@@ -20937,7 +20937,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_line_offset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_line_offset", object)
 
   return(w)
 } 
@@ -20948,7 +20948,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_line_index", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_line_index", object)
 
   return(w)
 } 
@@ -20959,7 +20959,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_visible_line_offset", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_visible_line_offset", object)
 
   return(w)
 } 
@@ -20970,7 +20970,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_visible_line_index", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_visible_line_index", object)
 
   return(w)
 } 
@@ -20981,7 +20981,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_char", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_char", object)
 
   return(w)
 } 
@@ -20993,7 +20993,7 @@ function(object, end)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_slice", object, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_slice", object, end)
 
   return(w)
 } 
@@ -21005,7 +21005,7 @@ function(object, end)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_text", object, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_text", object, end)
 
   return(w)
 } 
@@ -21017,7 +21017,7 @@ function(object, end)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_visible_slice", object, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_visible_slice", object, end)
 
   return(w)
 } 
@@ -21029,7 +21029,7 @@ function(object, end)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_visible_text", object, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_visible_text", object, end)
 
   return(w)
 } 
@@ -21040,7 +21040,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_pixbuf", object)
 
   return(w)
 } 
@@ -21051,7 +21051,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_marks", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_marks", object)
 
   return(w)
 } 
@@ -21062,7 +21062,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_child_anchor", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_child_anchor", object)
 
   return(w)
 } 
@@ -21074,7 +21074,7 @@ function(object, toggled.on)
   checkPtrType(object, "GtkTextIter")
   toggled.on <- as.logical(toggled.on)
 
-  w <- .RGtkCall("S_gtk_text_iter_get_toggled_tags", object, toggled.on, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_toggled_tags", object, toggled.on)
 
   return(w)
 } 
@@ -21086,7 +21086,7 @@ function(object, tag = NULL)
   checkPtrType(object, "GtkTextIter")
   if (!is.null( tag )) checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_begins_tag", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_begins_tag", object, tag)
 
   return(w)
 } 
@@ -21098,7 +21098,7 @@ function(object, tag = NULL)
   checkPtrType(object, "GtkTextIter")
   if (!is.null( tag )) checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_ends_tag", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_ends_tag", object, tag)
 
   return(w)
 } 
@@ -21110,7 +21110,7 @@ function(object, tag = NULL)
   checkPtrType(object, "GtkTextIter")
   if (!is.null( tag )) checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_toggles_tag", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_toggles_tag", object, tag)
 
   return(w)
 } 
@@ -21122,7 +21122,7 @@ function(object, tag)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_has_tag", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_has_tag", object, tag)
 
   return(w)
 } 
@@ -21133,7 +21133,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_tags", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_tags", object)
 
   return(w)
 } 
@@ -21145,7 +21145,7 @@ function(object, default.setting)
   checkPtrType(object, "GtkTextIter")
   default.setting <- as.logical(default.setting)
 
-  w <- .RGtkCall("S_gtk_text_iter_editable", object, default.setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_editable", object, default.setting)
 
   return(w)
 } 
@@ -21157,7 +21157,7 @@ function(object, default.editability)
   checkPtrType(object, "GtkTextIter")
   default.editability <- as.logical(default.editability)
 
-  w <- .RGtkCall("S_gtk_text_iter_can_insert", object, default.editability, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_can_insert", object, default.editability)
 
   return(w)
 } 
@@ -21168,7 +21168,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_starts_word", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_starts_word", object)
 
   return(w)
 } 
@@ -21179,7 +21179,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_ends_word", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_ends_word", object)
 
   return(w)
 } 
@@ -21190,7 +21190,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_inside_word", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_inside_word", object)
 
   return(w)
 } 
@@ -21201,7 +21201,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_starts_sentence", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_starts_sentence", object)
 
   return(w)
 } 
@@ -21212,7 +21212,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_ends_sentence", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_ends_sentence", object)
 
   return(w)
 } 
@@ -21223,7 +21223,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_inside_sentence", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_inside_sentence", object)
 
   return(w)
 } 
@@ -21234,7 +21234,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_starts_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_starts_line", object)
 
   return(w)
 } 
@@ -21245,7 +21245,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_ends_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_ends_line", object)
 
   return(w)
 } 
@@ -21256,7 +21256,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_is_cursor_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_is_cursor_position", object)
 
   return(w)
 } 
@@ -21267,7 +21267,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_chars_in_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_chars_in_line", object)
 
   return(w)
 } 
@@ -21278,7 +21278,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_bytes_in_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_bytes_in_line", object)
 
   return(w)
 } 
@@ -21290,7 +21290,7 @@ function(object, values)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(values, "GtkTextAttributes")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_attributes", object, values, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_attributes", object, values)
 
   return(w)
 } 
@@ -21301,7 +21301,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_get_language", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_get_language", object)
 
   return(w)
 } 
@@ -21312,7 +21312,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_is_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_is_end", object)
 
   return(w)
 } 
@@ -21323,7 +21323,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_is_start", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_is_start", object)
 
   return(w)
 } 
@@ -21334,7 +21334,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_char", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_char", object)
 
   return(w)
 } 
@@ -21345,7 +21345,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_char", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_char", object)
 
   return(w)
 } 
@@ -21357,7 +21357,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_chars", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_chars", object, count)
 
   return(w)
 } 
@@ -21369,7 +21369,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_chars", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_chars", object, count)
 
   return(w)
 } 
@@ -21380,7 +21380,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_line", object)
 
   return(w)
 } 
@@ -21391,7 +21391,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_line", object)
 
   return(w)
 } 
@@ -21403,7 +21403,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_lines", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_lines", object, count)
 
   return(w)
 } 
@@ -21415,7 +21415,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_lines", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_lines", object, count)
 
   return(w)
 } 
@@ -21426,7 +21426,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_word_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_word_end", object)
 
   return(w)
 } 
@@ -21437,7 +21437,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_word_start", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_word_start", object)
 
   return(w)
 } 
@@ -21449,7 +21449,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_word_ends", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_word_ends", object, count)
 
   return(w)
 } 
@@ -21461,7 +21461,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_word_starts", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_word_starts", object, count)
 
   return(w)
 } 
@@ -21472,7 +21472,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_line", object)
 
   return(w)
 } 
@@ -21483,7 +21483,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_line", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_line", object)
 
   return(w)
 } 
@@ -21495,7 +21495,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_lines", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_lines", object, count)
 
   return(w)
 } 
@@ -21507,7 +21507,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_lines", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_lines", object, count)
 
   return(w)
 } 
@@ -21518,7 +21518,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_word_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_word_end", object)
 
   return(w)
 } 
@@ -21529,7 +21529,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_word_start", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_word_start", object)
 
   return(w)
 } 
@@ -21541,7 +21541,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_word_ends", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_word_ends", object, count)
 
   return(w)
 } 
@@ -21553,7 +21553,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_word_starts", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_word_starts", object, count)
 
   return(w)
 } 
@@ -21564,7 +21564,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_sentence_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_sentence_end", object)
 
   return(w)
 } 
@@ -21575,7 +21575,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_sentence_start", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_sentence_start", object)
 
   return(w)
 } 
@@ -21587,7 +21587,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_sentence_ends", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_sentence_ends", object, count)
 
   return(w)
 } 
@@ -21599,7 +21599,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_sentence_starts", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_sentence_starts", object, count)
 
   return(w)
 } 
@@ -21610,7 +21610,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_cursor_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_cursor_position", object)
 
   return(w)
 } 
@@ -21621,7 +21621,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_cursor_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_cursor_position", object)
 
   return(w)
 } 
@@ -21633,7 +21633,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_cursor_positions", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_cursor_positions", object, count)
 
   return(w)
 } 
@@ -21645,7 +21645,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_cursor_positions", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_cursor_positions", object, count)
 
   return(w)
 } 
@@ -21656,7 +21656,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_cursor_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_cursor_position", object)
 
   return(w)
 } 
@@ -21667,7 +21667,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_cursor_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_cursor_position", object)
 
   return(w)
 } 
@@ -21679,7 +21679,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_visible_cursor_positions", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_visible_cursor_positions", object, count)
 
   return(w)
 } 
@@ -21691,7 +21691,7 @@ function(object, count)
   checkPtrType(object, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_visible_cursor_positions", object, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_visible_cursor_positions", object, count)
 
   return(w)
 } 
@@ -21703,7 +21703,7 @@ function(object, char.offset)
   checkPtrType(object, "GtkTextIter")
   char.offset <- as.integer(char.offset)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_offset", object, char.offset, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_offset", object, char.offset)
 
   return(invisible(w))
 } 
@@ -21715,7 +21715,7 @@ function(object, line.number)
   checkPtrType(object, "GtkTextIter")
   line.number <- as.integer(line.number)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_line", object, line.number, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_line", object, line.number)
 
   return(invisible(w))
 } 
@@ -21727,7 +21727,7 @@ function(object, char.on.line)
   checkPtrType(object, "GtkTextIter")
   char.on.line <- as.integer(char.on.line)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_line_offset", object, char.on.line, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_line_offset", object, char.on.line)
 
   return(invisible(w))
 } 
@@ -21739,7 +21739,7 @@ function(object, byte.on.line)
   checkPtrType(object, "GtkTextIter")
   byte.on.line <- as.integer(byte.on.line)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_line_index", object, byte.on.line, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_line_index", object, byte.on.line)
 
   return(invisible(w))
 } 
@@ -21750,7 +21750,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_to_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_to_end", object)
 
   return(invisible(w))
 } 
@@ -21761,7 +21761,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_to_line_end", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_to_line_end", object)
 
   return(w)
 } 
@@ -21773,7 +21773,7 @@ function(object, char.on.line)
   checkPtrType(object, "GtkTextIter")
   char.on.line <- as.integer(char.on.line)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_visible_line_offset", object, char.on.line, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_visible_line_offset", object, char.on.line)
 
   return(invisible(w))
 } 
@@ -21785,7 +21785,7 @@ function(object, byte.on.line)
   checkPtrType(object, "GtkTextIter")
   byte.on.line <- as.integer(byte.on.line)
 
-  w <- .RGtkCall("S_gtk_text_iter_set_visible_line_index", object, byte.on.line, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_set_visible_line_index", object, byte.on.line)
 
   return(invisible(w))
 } 
@@ -21797,7 +21797,7 @@ function(object, tag = NULL)
   checkPtrType(object, "GtkTextIter")
   if (!is.null( tag )) checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_to_tag_toggle", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_to_tag_toggle", object, tag)
 
   return(w)
 } 
@@ -21809,7 +21809,7 @@ function(object, tag = NULL)
   checkPtrType(object, "GtkTextIter")
   if (!is.null( tag )) checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_to_tag_toggle", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_to_tag_toggle", object, tag)
 
   return(w)
 } 
@@ -21823,7 +21823,7 @@ function(object, pred, user.data = NULL, limit)
   
   checkPtrType(limit, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_find_char", object, pred, user.data, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_find_char", object, pred, user.data, limit)
 
   return(w)
 } 
@@ -21837,7 +21837,7 @@ function(object, pred, user.data = NULL, limit)
   
   checkPtrType(limit, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_find_char", object, pred, user.data, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_find_char", object, pred, user.data, limit)
 
   return(w)
 } 
@@ -21851,7 +21851,7 @@ function(object, str, flags, limit = NULL)
   
   if (!is.null( limit )) checkPtrType(limit, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_forward_search", object, str, flags, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_forward_search", object, str, flags, limit)
 
   return(w)
 } 
@@ -21865,7 +21865,7 @@ function(object, str, flags, limit = NULL)
   
   if (!is.null( limit )) checkPtrType(limit, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_backward_search", object, str, flags, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_backward_search", object, str, flags, limit)
 
   return(w)
 } 
@@ -21877,7 +21877,7 @@ function(object, rhs)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(rhs, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_equal", object, rhs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_equal", object, rhs)
 
   return(w)
 } 
@@ -21889,7 +21889,7 @@ function(object, rhs)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(rhs, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_compare", object, rhs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_compare", object, rhs)
 
   return(w)
 } 
@@ -21902,7 +21902,7 @@ function(object, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_in_range", object, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_in_range", object, start, end)
 
   return(w)
 } 
@@ -21914,7 +21914,7 @@ function(object, second)
   checkPtrType(object, "GtkTextIter")
   checkPtrType(second, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_iter_order", object, second, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_iter_order", object, second)
 
   return(invisible(w))
 } 
@@ -21925,7 +21925,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_mark_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_type")
 
   return(w)
 } 
@@ -21937,7 +21937,7 @@ function(object, setting)
   checkPtrType(object, "GtkTextMark")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_text_mark_set_visible", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_set_visible", object, setting)
 
   return(invisible(w))
 } 
@@ -21948,7 +21948,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_mark_get_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_visible", object)
 
   return(w)
 } 
@@ -21959,7 +21959,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_mark_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_name", object)
 
   return(w)
 } 
@@ -21970,7 +21970,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_mark_get_deleted", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_deleted", object)
 
   return(w)
 } 
@@ -21981,7 +21981,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_mark_get_buffer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_buffer", object)
 
   return(w)
 } 
@@ -21992,7 +21992,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_mark_get_left_gravity", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_mark_get_left_gravity", object)
 
   return(w)
 } 
@@ -22003,7 +22003,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_tag_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_get_type")
 
   return(w)
 } 
@@ -22014,7 +22014,7 @@ function(name = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_text_tag_new", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_new", name)
 
   return(w)
 } 
@@ -22025,7 +22025,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_tag_get_priority", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_get_priority", object)
 
   return(w)
 } 
@@ -22037,7 +22037,7 @@ function(object, priority)
   checkPtrType(object, "GtkTextTag")
   priority <- as.integer(priority)
 
-  w <- .RGtkCall("S_gtk_text_tag_set_priority", object, priority, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_set_priority", object, priority)
 
   return(invisible(w))
 } 
@@ -22051,7 +22051,7 @@ function(object, event.object, event, iter)
   checkPtrType(event, "GdkEvent")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_tag_event", object, event.object, event, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_event", object, event.object, event, iter)
 
   return(w)
 } 
@@ -22062,7 +22062,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_attributes_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_attributes_new")
 
   return(w)
 } 
@@ -22073,7 +22073,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextAttributes")
 
-  w <- .RGtkCall("S_gtk_text_attributes_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_attributes_copy", object)
 
   return(w)
 } 
@@ -22085,7 +22085,7 @@ function(object, dest)
   checkPtrType(object, "GtkTextAttributes")
   checkPtrType(dest, "GtkTextAttributes")
 
-  w <- .RGtkCall("S_gtk_text_attributes_copy_values", object, dest, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_attributes_copy_values", object, dest)
 
   return(invisible(w))
 } 
@@ -22096,7 +22096,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_attributes_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_attributes_get_type")
 
   return(w)
 } 
@@ -22107,7 +22107,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_tag_table_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_get_type")
 
   return(w)
 } 
@@ -22118,7 +22118,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_tag_table_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_new")
 
   return(w)
 } 
@@ -22130,7 +22130,7 @@ function(object, tag)
   checkPtrType(object, "GtkTextTagTable")
   checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_tag_table_add", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_add", object, tag)
 
   return(invisible(w))
 } 
@@ -22142,7 +22142,7 @@ function(object, tag)
   checkPtrType(object, "GtkTextTagTable")
   checkPtrType(tag, "GtkTextTag")
 
-  w <- .RGtkCall("S_gtk_text_tag_table_remove", object, tag, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_remove", object, tag)
 
   return(invisible(w))
 } 
@@ -22154,7 +22154,7 @@ function(object, name)
   checkPtrType(object, "GtkTextTagTable")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_text_tag_table_lookup", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_lookup", object, name)
 
   return(w)
 } 
@@ -22167,7 +22167,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_text_tag_table_foreach", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_foreach", object, func, data)
 
   return(invisible(w))
 } 
@@ -22178,7 +22178,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextTagTable")
 
-  w <- .RGtkCall("S_gtk_text_tag_table_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_tag_table_get_size", object)
 
   return(w)
 } 
@@ -22189,7 +22189,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_view_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_type")
 
   return(w)
 } 
@@ -22200,7 +22200,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_text_view_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -22214,7 +22214,7 @@ function(buffer = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_text_view_new_with_buffer", buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_new_with_buffer", buffer)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -22229,7 +22229,7 @@ function(object, buffer)
   checkPtrType(object, "GtkTextView")
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_view_set_buffer", object, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_buffer", object, buffer)
 
   return(invisible(w))
 } 
@@ -22240,7 +22240,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_buffer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_buffer", object)
 
   return(w)
 } 
@@ -22256,7 +22256,7 @@ function(object, iter, within.margin, use.align = FALSE, xalign = 0.5, yalign = 
   xalign <- as.numeric(xalign)
   yalign <- as.numeric(yalign)
 
-  w <- .RGtkCall("S_gtk_text_view_scroll_to_iter", object, iter, within.margin, use.align, xalign, yalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_scroll_to_iter", object, iter, within.margin, use.align, xalign, yalign)
 
   return(w)
 } 
@@ -22272,7 +22272,7 @@ function(object, mark, within.margin, use.align = FALSE, xalign = 0.5, yalign = 
   xalign <- as.numeric(xalign)
   yalign <- as.numeric(yalign)
 
-  w <- .RGtkCall("S_gtk_text_view_scroll_to_mark", object, mark, within.margin, use.align, xalign, yalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_scroll_to_mark", object, mark, within.margin, use.align, xalign, yalign)
 
   return(invisible(w))
 } 
@@ -22284,7 +22284,7 @@ function(object, mark)
   checkPtrType(object, "GtkTextView")
   checkPtrType(mark, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_view_scroll_mark_onscreen", object, mark, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_scroll_mark_onscreen", object, mark)
 
   return(invisible(w))
 } 
@@ -22296,7 +22296,7 @@ function(object, mark)
   checkPtrType(object, "GtkTextView")
   checkPtrType(mark, "GtkTextMark")
 
-  w <- .RGtkCall("S_gtk_text_view_move_mark_onscreen", object, mark, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_move_mark_onscreen", object, mark)
 
   return(w)
 } 
@@ -22307,7 +22307,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_place_cursor_onscreen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_place_cursor_onscreen", object)
 
   return(w)
 } 
@@ -22318,7 +22318,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_visible_rect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_visible_rect", object)
 
   return(w)
 } 
@@ -22330,7 +22330,7 @@ function(object, setting)
   checkPtrType(object, "GtkTextView")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_text_view_set_cursor_visible", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_cursor_visible", object, setting)
 
   return(invisible(w))
 } 
@@ -22341,7 +22341,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_cursor_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_cursor_visible", object)
 
   return(w)
 } 
@@ -22353,7 +22353,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_get_iter_location", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_iter_location", object, iter)
 
   return(w)
 } 
@@ -22366,7 +22366,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_text_view_get_iter_at_location", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_iter_at_location", object, x, y)
 
   return(w)
 } 
@@ -22379,7 +22379,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_text_view_get_iter_at_position", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_iter_at_position", object, x, y)
 
   return(invisible(w))
 } 
@@ -22391,7 +22391,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_get_line_yrange", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_line_yrange", object, iter)
 
   return(invisible(w))
 } 
@@ -22403,7 +22403,7 @@ function(object, y)
   checkPtrType(object, "GtkTextView")
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_text_view_get_line_at_y", object, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_line_at_y", object, y)
 
   return(invisible(w))
 } 
@@ -22417,7 +22417,7 @@ function(object, win, buffer.x, buffer.y)
   buffer.x <- as.integer(buffer.x)
   buffer.y <- as.integer(buffer.y)
 
-  w <- .RGtkCall("S_gtk_text_view_buffer_to_window_coords", object, win, buffer.x, buffer.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_buffer_to_window_coords", object, win, buffer.x, buffer.y)
 
   return(invisible(w))
 } 
@@ -22431,7 +22431,7 @@ function(object, win, window.x, window.y)
   window.x <- as.integer(window.x)
   window.y <- as.integer(window.y)
 
-  w <- .RGtkCall("S_gtk_text_view_window_to_buffer_coords", object, win, window.x, window.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_window_to_buffer_coords", object, win, window.x, window.y)
 
   return(invisible(w))
 } 
@@ -22443,7 +22443,7 @@ function(object, win)
   checkPtrType(object, "GtkTextView")
   
 
-  w <- .RGtkCall("S_gtk_text_view_get_window", object, win, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_window", object, win)
 
   return(w)
 } 
@@ -22455,7 +22455,7 @@ function(object, window)
   checkPtrType(object, "GtkTextView")
   checkPtrType(window, "GdkWindow")
 
-  w <- .RGtkCall("S_gtk_text_view_get_window_type", object, window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_window_type", object, window)
 
   return(w)
 } 
@@ -22468,7 +22468,7 @@ function(object, type, size)
   
   size <- as.integer(size)
 
-  w <- .RGtkCall("S_gtk_text_view_set_border_window_size", object, type, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_border_window_size", object, type, size)
 
   return(invisible(w))
 } 
@@ -22480,7 +22480,7 @@ function(object, type)
   checkPtrType(object, "GtkTextView")
   
 
-  w <- .RGtkCall("S_gtk_text_view_get_border_window_size", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_border_window_size", object, type)
 
   return(w)
 } 
@@ -22492,7 +22492,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_forward_display_line", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_forward_display_line", object, iter)
 
   return(w)
 } 
@@ -22504,7 +22504,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_backward_display_line", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_backward_display_line", object, iter)
 
   return(w)
 } 
@@ -22516,7 +22516,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_forward_display_line_end", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_forward_display_line_end", object, iter)
 
   return(w)
 } 
@@ -22528,7 +22528,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_backward_display_line_start", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_backward_display_line_start", object, iter)
 
   return(w)
 } 
@@ -22540,7 +22540,7 @@ function(object, iter)
   checkPtrType(object, "GtkTextView")
   checkPtrType(iter, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_view_starts_display_line", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_starts_display_line", object, iter)
 
   return(w)
 } 
@@ -22553,7 +22553,7 @@ function(object, iter, count)
   checkPtrType(iter, "GtkTextIter")
   count <- as.integer(count)
 
-  w <- .RGtkCall("S_gtk_text_view_move_visually", object, iter, count, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_move_visually", object, iter, count)
 
   return(w)
 } 
@@ -22566,7 +22566,7 @@ function(object, child, anchor)
   checkPtrType(child, "GtkWidget")
   checkPtrType(anchor, "GtkTextChildAnchor")
 
-  w <- .RGtkCall("S_gtk_text_view_add_child_at_anchor", object, child, anchor, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_add_child_at_anchor", object, child, anchor)
 
   return(invisible(w))
 } 
@@ -22581,7 +22581,7 @@ function(object, child, which.window, xpos, ypos)
   xpos <- as.integer(xpos)
   ypos <- as.integer(ypos)
 
-  w <- .RGtkCall("S_gtk_text_view_add_child_in_window", object, child, which.window, xpos, ypos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_add_child_in_window", object, child, which.window, xpos, ypos)
 
   return(invisible(w))
 } 
@@ -22595,7 +22595,7 @@ function(object, child, xpos, ypos)
   xpos <- as.integer(xpos)
   ypos <- as.integer(ypos)
 
-  w <- .RGtkCall("S_gtk_text_view_move_child", object, child, xpos, ypos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_move_child", object, child, xpos, ypos)
 
   return(invisible(w))
 } 
@@ -22607,7 +22607,7 @@ function(object, wrap.mode)
   checkPtrType(object, "GtkTextView")
   
 
-  w <- .RGtkCall("S_gtk_text_view_set_wrap_mode", object, wrap.mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_wrap_mode", object, wrap.mode)
 
   return(invisible(w))
 } 
@@ -22618,7 +22618,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_wrap_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_wrap_mode", object)
 
   return(w)
 } 
@@ -22630,7 +22630,7 @@ function(object, setting)
   checkPtrType(object, "GtkTextView")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_text_view_set_editable", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_editable", object, setting)
 
   return(invisible(w))
 } 
@@ -22641,7 +22641,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_editable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_editable", object)
 
   return(w)
 } 
@@ -22653,7 +22653,7 @@ function(object, overwrite)
   checkPtrType(object, "GtkTextView")
   overwrite <- as.logical(overwrite)
 
-  w <- .RGtkCall("S_gtk_text_view_set_overwrite", object, overwrite, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_overwrite", object, overwrite)
 
   return(invisible(w))
 } 
@@ -22664,7 +22664,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_overwrite", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_overwrite", object)
 
   return(w)
 } 
@@ -22676,7 +22676,7 @@ function(object, accepts.tab)
   checkPtrType(object, "GtkTextView")
   accepts.tab <- as.logical(accepts.tab)
 
-  w <- .RGtkCall("S_gtk_text_view_set_accepts_tab", object, accepts.tab, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_accepts_tab", object, accepts.tab)
 
   return(invisible(w))
 } 
@@ -22687,7 +22687,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_accepts_tab", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_accepts_tab", object)
 
   return(w)
 } 
@@ -22699,7 +22699,7 @@ function(object, pixels.above.lines)
   checkPtrType(object, "GtkTextView")
   pixels.above.lines <- as.integer(pixels.above.lines)
 
-  w <- .RGtkCall("S_gtk_text_view_set_pixels_above_lines", object, pixels.above.lines, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_pixels_above_lines", object, pixels.above.lines)
 
   return(invisible(w))
 } 
@@ -22710,7 +22710,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_pixels_above_lines", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_pixels_above_lines", object)
 
   return(w)
 } 
@@ -22722,7 +22722,7 @@ function(object, pixels.below.lines)
   checkPtrType(object, "GtkTextView")
   pixels.below.lines <- as.integer(pixels.below.lines)
 
-  w <- .RGtkCall("S_gtk_text_view_set_pixels_below_lines", object, pixels.below.lines, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_pixels_below_lines", object, pixels.below.lines)
 
   return(invisible(w))
 } 
@@ -22733,7 +22733,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_pixels_below_lines", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_pixels_below_lines", object)
 
   return(w)
 } 
@@ -22745,7 +22745,7 @@ function(object, pixels.inside.wrap)
   checkPtrType(object, "GtkTextView")
   pixels.inside.wrap <- as.integer(pixels.inside.wrap)
 
-  w <- .RGtkCall("S_gtk_text_view_set_pixels_inside_wrap", object, pixels.inside.wrap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_pixels_inside_wrap", object, pixels.inside.wrap)
 
   return(invisible(w))
 } 
@@ -22756,7 +22756,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_pixels_inside_wrap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_pixels_inside_wrap", object)
 
   return(w)
 } 
@@ -22768,7 +22768,7 @@ function(object, justification)
   checkPtrType(object, "GtkTextView")
   
 
-  w <- .RGtkCall("S_gtk_text_view_set_justification", object, justification, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_justification", object, justification)
 
   return(invisible(w))
 } 
@@ -22779,7 +22779,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_justification", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_justification", object)
 
   return(w)
 } 
@@ -22791,7 +22791,7 @@ function(object, left.margin)
   checkPtrType(object, "GtkTextView")
   left.margin <- as.integer(left.margin)
 
-  w <- .RGtkCall("S_gtk_text_view_set_left_margin", object, left.margin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_left_margin", object, left.margin)
 
   return(invisible(w))
 } 
@@ -22802,7 +22802,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_left_margin", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_left_margin", object)
 
   return(w)
 } 
@@ -22814,7 +22814,7 @@ function(object, right.margin)
   checkPtrType(object, "GtkTextView")
   right.margin <- as.integer(right.margin)
 
-  w <- .RGtkCall("S_gtk_text_view_set_right_margin", object, right.margin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_right_margin", object, right.margin)
 
   return(invisible(w))
 } 
@@ -22825,7 +22825,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_right_margin", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_right_margin", object)
 
   return(w)
 } 
@@ -22837,7 +22837,7 @@ function(object, indent)
   checkPtrType(object, "GtkTextView")
   indent <- as.integer(indent)
 
-  w <- .RGtkCall("S_gtk_text_view_set_indent", object, indent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_indent", object, indent)
 
   return(invisible(w))
 } 
@@ -22848,7 +22848,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_indent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_indent", object)
 
   return(w)
 } 
@@ -22860,7 +22860,7 @@ function(object, tabs)
   checkPtrType(object, "GtkTextView")
   checkPtrType(tabs, "PangoTabArray")
 
-  w <- .RGtkCall("S_gtk_text_view_set_tabs", object, tabs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_set_tabs", object, tabs)
 
   return(invisible(w))
 } 
@@ -22871,7 +22871,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_tabs", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_tabs", object)
 
   return(w)
 } 
@@ -22882,7 +22882,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextView")
 
-  w <- .RGtkCall("S_gtk_text_view_get_default_attributes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_view_get_default_attributes", object)
 
   return(w)
 } 
@@ -22893,7 +22893,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tips_query_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_get_type")
 
   return(w)
 } 
@@ -22904,7 +22904,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_tips_query_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -22918,7 +22918,7 @@ function(object)
 {
   checkPtrType(object, "GtkTipsQuery")
 
-  w <- .RGtkCall("S_gtk_tips_query_start_query", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_start_query", object)
 
   return(invisible(w))
 } 
@@ -22929,7 +22929,7 @@ function(object)
 {
   checkPtrType(object, "GtkTipsQuery")
 
-  w <- .RGtkCall("S_gtk_tips_query_stop_query", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_stop_query", object)
 
   return(invisible(w))
 } 
@@ -22941,7 +22941,7 @@ function(object, caller)
   checkPtrType(object, "GtkTipsQuery")
   checkPtrType(caller, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tips_query_set_caller", object, caller, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_set_caller", object, caller)
 
   return(invisible(w))
 } 
@@ -22954,7 +22954,7 @@ function(object, label.inactive, label.no.tip)
   label.inactive <- as.character(label.inactive)
   label.no.tip <- as.character(label.no.tip)
 
-  w <- .RGtkCall("S_gtk_tips_query_set_labels", object, label.inactive, label.no.tip, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tips_query_set_labels", object, label.inactive, label.no.tip)
 
   return(invisible(w))
 } 
@@ -22965,7 +22965,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_action_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_get_type")
 
   return(w)
 } 
@@ -22976,7 +22976,7 @@ function(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_action_new", name, label, tooltip, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_new", name, label, tooltip, stock.id)
 
   return(w)
 } 
@@ -22987,7 +22987,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleAction")
 
-  w <- .RGtkCall("S_gtk_toggle_action_toggled", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_toggled", object)
 
   return(invisible(w))
 } 
@@ -22999,7 +22999,7 @@ function(object, is.active)
   checkPtrType(object, "GtkToggleAction")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_toggle_action_set_active", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_set_active", object, is.active)
 
   return(invisible(w))
 } 
@@ -23010,7 +23010,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleAction")
 
-  w <- .RGtkCall("S_gtk_toggle_action_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_get_active", object)
 
   return(w)
 } 
@@ -23022,7 +23022,7 @@ function(object, draw.as.radio)
   checkPtrType(object, "GtkToggleAction")
   draw.as.radio <- as.logical(draw.as.radio)
 
-  w <- .RGtkCall("S_gtk_toggle_action_set_draw_as_radio", object, draw.as.radio, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_set_draw_as_radio", object, draw.as.radio)
 
   return(invisible(w))
 } 
@@ -23033,7 +23033,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleAction")
 
-  w <- .RGtkCall("S_gtk_toggle_action_get_draw_as_radio", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_action_get_draw_as_radio", object)
 
   return(w)
 } 
@@ -23044,7 +23044,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_get_type")
 
   return(w)
 } 
@@ -23055,7 +23055,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23069,7 +23069,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_toggle_button_new_with_label", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_new_with_label", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23083,7 +23083,7 @@ function(label, show = TRUE)
 {
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_toggle_button_new_with_mnemonic", label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_new_with_mnemonic", label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23098,7 +23098,7 @@ function(object, draw.indicator)
   checkPtrType(object, "GtkToggleButton")
   draw.indicator <- as.logical(draw.indicator)
 
-  w <- .RGtkCall("S_gtk_toggle_button_set_mode", object, draw.indicator, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_set_mode", object, draw.indicator)
 
   return(invisible(w))
 } 
@@ -23109,7 +23109,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleButton")
 
-  w <- .RGtkCall("S_gtk_toggle_button_get_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_get_mode", object)
 
   return(w)
 } 
@@ -23121,7 +23121,7 @@ function(object, is.active)
   checkPtrType(object, "GtkToggleButton")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_toggle_button_set_active", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_set_active", object, is.active)
 
   return(invisible(w))
 } 
@@ -23132,7 +23132,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleButton")
 
-  w <- .RGtkCall("S_gtk_toggle_button_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_get_active", object)
 
   return(w)
 } 
@@ -23143,7 +23143,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleButton")
 
-  w <- .RGtkCall("S_gtk_toggle_button_toggled", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_toggled", object)
 
   return(invisible(w))
 } 
@@ -23155,7 +23155,7 @@ function(object, setting)
   checkPtrType(object, "GtkToggleButton")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_toggle_button_set_inconsistent", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_set_inconsistent", object, setting)
 
   return(invisible(w))
 } 
@@ -23166,7 +23166,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleButton")
 
-  w <- .RGtkCall("S_gtk_toggle_button_get_inconsistent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_get_inconsistent", object)
 
   return(w)
 } 
@@ -23181,7 +23181,7 @@ function(object, is.active)
   checkPtrType(object, "GtkToggleButton")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_toggle_button_set_state", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_button_set_state", object, is.active)
 
   return(invisible(w))
 } 
@@ -23192,7 +23192,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_tool_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_tool_button_get_type")
 
   return(w)
 } 
@@ -23203,7 +23203,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_toggle_tool_button_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_tool_button_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23217,7 +23217,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_toggle_tool_button_new_from_stock", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_tool_button_new_from_stock", stock.id)
 
   return(w)
 } 
@@ -23229,7 +23229,7 @@ function(object, is.active)
   checkPtrType(object, "GtkToggleToolButton")
   is.active <- as.logical(is.active)
 
-  w <- .RGtkCall("S_gtk_toggle_tool_button_set_active", object, is.active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_tool_button_set_active", object, is.active)
 
   return(invisible(w))
 } 
@@ -23240,7 +23240,7 @@ function(object)
 {
   checkPtrType(object, "GtkToggleToolButton")
 
-  w <- .RGtkCall("S_gtk_toggle_tool_button_get_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toggle_tool_button_get_active", object)
 
   return(w)
 } 
@@ -23251,7 +23251,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_toolbar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_type")
 
   return(w)
 } 
@@ -23262,7 +23262,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_toolbar_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23278,7 +23278,7 @@ function(object, item, pos)
   checkPtrType(item, "GtkToolItem")
   pos <- as.integer(pos)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert", object, item, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert", object, item, pos)
 
   return(invisible(w))
 } 
@@ -23290,7 +23290,7 @@ function(object, item)
   checkPtrType(object, "GtkToolbar")
   checkPtrType(item, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_item_index", object, item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_item_index", object, item)
 
   return(w)
 } 
@@ -23301,7 +23301,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_n_items", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_n_items", object)
 
   return(w)
 } 
@@ -23313,7 +23313,7 @@ function(object, n)
   checkPtrType(object, "GtkToolbar")
   n <- as.integer(n)
 
-  w <- .RGtkCall("S_gtk_toolbar_get_nth_item", object, n, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_nth_item", object, n)
 
   return(w)
 } 
@@ -23326,7 +23326,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_toolbar_get_drop_index", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_drop_index", object, x, y)
 
   return(w)
 } 
@@ -23339,7 +23339,7 @@ function(object, tool.item = NULL, index)
   if (!is.null( tool.item )) checkPtrType(tool.item, "GtkToolItem")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_toolbar_set_drop_highlight_item", object, tool.item, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_drop_highlight_item", object, tool.item, index)
 
   return(invisible(w))
 } 
@@ -23351,7 +23351,7 @@ function(object, show.arrow)
   checkPtrType(object, "GtkToolbar")
   show.arrow <- as.logical(show.arrow)
 
-  w <- .RGtkCall("S_gtk_toolbar_set_show_arrow", object, show.arrow, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_show_arrow", object, show.arrow)
 
   return(invisible(w))
 } 
@@ -23362,7 +23362,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_show_arrow", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_show_arrow", object)
 
   return(w)
 } 
@@ -23373,7 +23373,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_relief_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_relief_style", object)
 
   return(w)
 } 
@@ -23393,7 +23393,7 @@ function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_toolbar_append_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_append_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
 
   return(w)
 } 
@@ -23413,7 +23413,7 @@ function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_toolbar_prepend_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_prepend_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
 
   return(w)
 } 
@@ -23434,7 +23434,7 @@ function(object, text, tooltip.text, tooltip.private.text, icon, callback, user.
   
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert_item", object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)
 
   return(w)
 } 
@@ -23454,7 +23454,7 @@ function(object, stock.id, tooltip.text, tooltip.private.text, callback, user.da
   
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert_stock", object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert_stock", object, stock.id, tooltip.text, tooltip.private.text, callback, user.data, position)
 
   return(w)
 } 
@@ -23465,7 +23465,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_append_space", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_append_space", object)
 
   return(invisible(w))
 } 
@@ -23476,7 +23476,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_prepend_space", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_prepend_space", object)
 
   return(invisible(w))
 } 
@@ -23488,7 +23488,7 @@ function(object, position)
   checkPtrType(object, "GtkToolbar")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert_space", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert_space", object, position)
 
   return(invisible(w))
 } 
@@ -23500,7 +23500,7 @@ function(object, position)
   checkPtrType(object, "GtkToolbar")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_remove_space", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_remove_space", object, position)
 
   return(invisible(w))
 } 
@@ -23522,7 +23522,7 @@ function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, c
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_toolbar_append_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_append_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
 
   return(w)
 } 
@@ -23544,7 +23544,7 @@ function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, c
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_toolbar_prepend_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_prepend_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data)
 
   return(w)
 } 
@@ -23567,7 +23567,7 @@ function(object, type, widget, text, tooltip.text, tooltip.private.text, icon, c
   
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert_element", object, type, widget, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)
 
   return(w)
 } 
@@ -23581,7 +23581,7 @@ function(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)
   if (!is.null( tooltip.text )) tooltip.text <- as.character(tooltip.text)
   if (!is.null( tooltip.private.text )) tooltip.private.text <- as.character(tooltip.private.text)
 
-  w <- .RGtkCall("S_gtk_toolbar_append_widget", object, widget, tooltip.text, tooltip.private.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_append_widget", object, widget, tooltip.text, tooltip.private.text)
 
   return(invisible(w))
 } 
@@ -23595,7 +23595,7 @@ function(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)
   if (!is.null( tooltip.text )) tooltip.text <- as.character(tooltip.text)
   if (!is.null( tooltip.private.text )) tooltip.private.text <- as.character(tooltip.private.text)
 
-  w <- .RGtkCall("S_gtk_toolbar_prepend_widget", object, widget, tooltip.text, tooltip.private.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_prepend_widget", object, widget, tooltip.text, tooltip.private.text)
 
   return(invisible(w))
 } 
@@ -23610,7 +23610,7 @@ function(object, widget, tooltip.text = NULL, tooltip.private.text = NULL, posit
   if (!is.null( tooltip.private.text )) tooltip.private.text <- as.character(tooltip.private.text)
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_toolbar_insert_widget", object, widget, tooltip.text, tooltip.private.text, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_insert_widget", object, widget, tooltip.text, tooltip.private.text, position)
 
   return(invisible(w))
 } 
@@ -23622,7 +23622,7 @@ function(object, orientation)
   checkPtrType(object, "GtkToolbar")
   
 
-  w <- .RGtkCall("S_gtk_toolbar_set_orientation", object, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_orientation", object, orientation)
 
   return(invisible(w))
 } 
@@ -23634,7 +23634,7 @@ function(object, style)
   checkPtrType(object, "GtkToolbar")
   
 
-  w <- .RGtkCall("S_gtk_toolbar_set_style", object, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_style", object, style)
 
   return(invisible(w))
 } 
@@ -23646,7 +23646,7 @@ function(object, icon.size)
   checkPtrType(object, "GtkToolbar")
   
 
-  w <- .RGtkCall("S_gtk_toolbar_set_icon_size", object, icon.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_icon_size", object, icon.size)
 
   return(invisible(w))
 } 
@@ -23658,7 +23658,7 @@ function(object, enable)
   checkPtrType(object, "GtkToolbar")
   enable <- as.logical(enable)
 
-  w <- .RGtkCall("S_gtk_toolbar_set_tooltips", object, enable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_set_tooltips", object, enable)
 
   return(invisible(w))
 } 
@@ -23669,7 +23669,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_unset_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_unset_style", object)
 
   return(invisible(w))
 } 
@@ -23680,7 +23680,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_unset_icon_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_unset_icon_size", object)
 
   return(invisible(w))
 } 
@@ -23691,7 +23691,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_orientation", object)
 
   return(w)
 } 
@@ -23702,7 +23702,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_style", object)
 
   return(w)
 } 
@@ -23713,7 +23713,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_icon_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_icon_size", object)
 
   return(w)
 } 
@@ -23724,7 +23724,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolbar")
 
-  w <- .RGtkCall("S_gtk_toolbar_get_tooltips", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_toolbar_get_tooltips", object)
 
   return(w)
 } 
@@ -23735,7 +23735,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tool_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_type")
 
   return(w)
 } 
@@ -23747,7 +23747,7 @@ function(icon.widget = NULL, label = NULL, show = TRUE)
   if (!is.null( icon.widget )) checkPtrType(icon.widget, "GtkWidget")
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_tool_button_new", icon.widget, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_new", icon.widget, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23761,7 +23761,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_tool_button_new_from_stock", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_new_from_stock", stock.id)
 
   return(w)
 } 
@@ -23773,7 +23773,7 @@ function(object, label = NULL)
   checkPtrType(object, "GtkToolButton")
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_tool_button_set_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_label", object, label)
 
   return(invisible(w))
 } 
@@ -23784,7 +23784,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_label", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_label", object)
 
   return(w)
 } 
@@ -23796,7 +23796,7 @@ function(object, use.underline)
   checkPtrType(object, "GtkToolButton")
   use.underline <- as.logical(use.underline)
 
-  w <- .RGtkCall("S_gtk_tool_button_set_use_underline", object, use.underline, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_use_underline", object, use.underline)
 
   return(invisible(w))
 } 
@@ -23807,7 +23807,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_use_underline", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_use_underline", object)
 
   return(w)
 } 
@@ -23819,7 +23819,7 @@ function(object, stock.id = NULL)
   checkPtrType(object, "GtkToolButton")
   if (!is.null( stock.id )) stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_tool_button_set_stock_id", object, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_stock_id", object, stock.id)
 
   return(invisible(w))
 } 
@@ -23831,7 +23831,7 @@ function(object, icon.name)
   checkPtrType(object, "GtkToolButton")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_tool_button_set_icon_name", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_icon_name", object, icon.name)
 
   return(invisible(w))
 } 
@@ -23842,7 +23842,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_icon_name", object)
 
   return(w)
 } 
@@ -23853,7 +23853,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_stock_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_stock_id", object)
 
   return(w)
 } 
@@ -23865,7 +23865,7 @@ function(object, icon.widget = NULL)
   checkPtrType(object, "GtkToolButton")
   if (!is.null( icon.widget )) checkPtrType(icon.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tool_button_set_icon_widget", object, icon.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_icon_widget", object, icon.widget)
 
   return(invisible(w))
 } 
@@ -23876,7 +23876,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_icon_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_icon_widget", object)
 
   return(w)
 } 
@@ -23888,7 +23888,7 @@ function(object, label.widget = NULL)
   checkPtrType(object, "GtkToolButton")
   if (!is.null( label.widget )) checkPtrType(label.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tool_button_set_label_widget", object, label.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_set_label_widget", object, label.widget)
 
   return(invisible(w))
 } 
@@ -23899,7 +23899,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolButton")
 
-  w <- .RGtkCall("S_gtk_tool_button_get_label_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_button_get_label_widget", object)
 
   return(w)
 } 
@@ -23910,7 +23910,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tool_item_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_type")
 
   return(w)
 } 
@@ -23921,7 +23921,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_tool_item_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -23936,7 +23936,7 @@ function(object, homogeneous)
   checkPtrType(object, "GtkToolItem")
   homogeneous <- as.logical(homogeneous)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_homogeneous", object, homogeneous, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_homogeneous", object, homogeneous)
 
   return(invisible(w))
 } 
@@ -23947,7 +23947,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_homogeneous", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_homogeneous", object)
 
   return(w)
 } 
@@ -23959,7 +23959,7 @@ function(object, expand)
   checkPtrType(object, "GtkToolItem")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_expand", object, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_expand", object, expand)
 
   return(invisible(w))
 } 
@@ -23970,7 +23970,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_expand", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_expand", object)
 
   return(w)
 } 
@@ -23984,7 +23984,7 @@ function(object, tooltips, tip.text = NULL, tip.private = NULL)
   if (!is.null( tip.text )) tip.text <- as.character(tip.text)
   if (!is.null( tip.private )) tip.private <- as.character(tip.private)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_tooltip", object, tooltips, tip.text, tip.private, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_tooltip", object, tooltips, tip.text, tip.private)
 
   return(invisible(w))
 } 
@@ -23996,7 +23996,7 @@ function(object, use.drag.window)
   checkPtrType(object, "GtkToolItem")
   use.drag.window <- as.logical(use.drag.window)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_use_drag_window", object, use.drag.window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_use_drag_window", object, use.drag.window)
 
   return(invisible(w))
 } 
@@ -24007,7 +24007,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_use_drag_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_use_drag_window", object)
 
   return(w)
 } 
@@ -24019,7 +24019,7 @@ function(object, visible.horizontal)
   checkPtrType(object, "GtkToolItem")
   visible.horizontal <- as.logical(visible.horizontal)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_visible_horizontal", object, visible.horizontal, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_visible_horizontal", object, visible.horizontal)
 
   return(invisible(w))
 } 
@@ -24030,7 +24030,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_visible_horizontal", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_visible_horizontal", object)
 
   return(w)
 } 
@@ -24042,7 +24042,7 @@ function(object, visible.vertical)
   checkPtrType(object, "GtkToolItem")
   visible.vertical <- as.logical(visible.vertical)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_visible_vertical", object, visible.vertical, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_visible_vertical", object, visible.vertical)
 
   return(invisible(w))
 } 
@@ -24053,7 +24053,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_visible_vertical", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_visible_vertical", object)
 
   return(w)
 } 
@@ -24065,7 +24065,7 @@ function(object, is.important)
   checkPtrType(object, "GtkToolItem")
   is.important <- as.logical(is.important)
 
-  w <- .RGtkCall("S_gtk_tool_item_set_is_important", object, is.important, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_is_important", object, is.important)
 
   return(invisible(w))
 } 
@@ -24076,7 +24076,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_is_important", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_is_important", object)
 
   return(w)
 } 
@@ -24087,7 +24087,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_icon_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_icon_size", object)
 
   return(w)
 } 
@@ -24098,7 +24098,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_orientation", object)
 
   return(w)
 } 
@@ -24109,7 +24109,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_toolbar_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_toolbar_style", object)
 
   return(w)
 } 
@@ -24120,7 +24120,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_get_relief_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_relief_style", object)
 
   return(w)
 } 
@@ -24131,7 +24131,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_retrieve_proxy_menu_item", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_retrieve_proxy_menu_item", object)
 
   return(w)
 } 
@@ -24144,7 +24144,7 @@ function(object, menu.item.id, menu.item = NULL)
   menu.item.id <- as.character(menu.item.id)
   if (!is.null( menu.item )) checkPtrType(menu.item, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tool_item_set_proxy_menu_item", object, menu.item.id, menu.item, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_set_proxy_menu_item", object, menu.item.id, menu.item)
 
   return(invisible(w))
 } 
@@ -24156,7 +24156,7 @@ function(object, menu.item.id)
   checkPtrType(object, "GtkToolItem")
   menu.item.id <- as.character(menu.item.id)
 
-  w <- .RGtkCall("S_gtk_tool_item_get_proxy_menu_item", object, menu.item.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_get_proxy_menu_item", object, menu.item.id)
 
   return(w)
 } 
@@ -24167,7 +24167,7 @@ function(object)
 {
   checkPtrType(object, "GtkToolItem")
 
-  w <- .RGtkCall("S_gtk_tool_item_rebuild_menu", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tool_item_rebuild_menu", object)
 
   return(invisible(w))
 } 
@@ -24178,7 +24178,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tooltips_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_get_type")
 
   return(w)
 } 
@@ -24189,7 +24189,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tooltips_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_new")
 
   return(w)
 } 
@@ -24200,7 +24200,7 @@ function(object)
 {
   checkPtrType(object, "GtkTooltips")
 
-  w <- .RGtkCall("S_gtk_tooltips_enable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_enable", object)
 
   return(invisible(w))
 } 
@@ -24211,7 +24211,7 @@ function(object)
 {
   checkPtrType(object, "GtkTooltips")
 
-  w <- .RGtkCall("S_gtk_tooltips_disable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_disable", object)
 
   return(invisible(w))
 } 
@@ -24223,7 +24223,7 @@ function(object, delay)
   checkPtrType(object, "GtkTooltips")
   delay <- as.numeric(delay)
 
-  w <- .RGtkCall("S_gtk_tooltips_set_delay", object, delay, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_set_delay", object, delay)
 
   return(invisible(w))
 } 
@@ -24237,7 +24237,7 @@ function(object, widget, tip.text = NULL, tip.private = NULL)
   if (!is.null( tip.text )) tip.text <- as.character(tip.text)
   if (!is.null( tip.private )) tip.private <- as.character(tip.private)
 
-  w <- .RGtkCall("S_gtk_tooltips_set_tip", object, widget, tip.text, tip.private, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_set_tip", object, widget, tip.text, tip.private)
 
   return(invisible(w))
 } 
@@ -24248,7 +24248,7 @@ function(widget)
 {
   checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tooltips_data_get", widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_data_get", widget)
 
   return(w)
 } 
@@ -24259,7 +24259,7 @@ function(object)
 {
   checkPtrType(object, "GtkTooltips")
 
-  w <- .RGtkCall("S_gtk_tooltips_force_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_force_window", object)
 
   return(invisible(w))
 } 
@@ -24270,7 +24270,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_tooltips_get_info_from_tip_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tooltips_get_info_from_tip_window", object)
 
   return(w)
 } 
@@ -24281,7 +24281,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_drag_source_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_source_get_type")
 
   return(w)
 } 
@@ -24293,7 +24293,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeDragSource")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_drag_source_row_draggable", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_source_row_draggable", object, path)
 
   return(w)
 } 
@@ -24305,7 +24305,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeDragSource")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_drag_source_drag_data_delete", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_source_drag_data_delete", object, path)
 
   return(w)
 } 
@@ -24317,7 +24317,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeDragSource")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_drag_source_drag_data_get", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_source_drag_data_get", object, path)
 
   return(w)
 } 
@@ -24328,7 +24328,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_drag_dest_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_dest_get_type")
 
   return(w)
 } 
@@ -24341,7 +24341,7 @@ function(object, dest, selection.data)
   checkPtrType(dest, "GtkTreePath")
   checkPtrType(selection.data, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_tree_drag_dest_drag_data_received", object, dest, selection.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_dest_drag_data_received", object, dest, selection.data)
 
   return(w)
 } 
@@ -24354,7 +24354,7 @@ function(object, dest.path, selection.data)
   checkPtrType(dest.path, "GtkTreePath")
   checkPtrType(selection.data, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_tree_drag_dest_row_drop_possible", object, dest.path, selection.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_drag_dest_row_drop_possible", object, dest.path, selection.data)
 
   return(w)
 } 
@@ -24367,7 +24367,7 @@ function(object, tree.model, path)
   checkPtrType(tree.model, "GtkTreeModel")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_set_row_drag_data", object, tree.model, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_set_row_drag_data", object, tree.model, path)
 
   return(w)
 } 
@@ -24378,7 +24378,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_tree_get_row_drag_data", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_get_row_drag_data", object)
 
   return(w)
 } 
@@ -24389,7 +24389,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_path_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_new")
 
   return(w)
 } 
@@ -24400,7 +24400,7 @@ function(path)
 {
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_tree_path_new_from_string", path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_new_from_string", path)
 
   return(w)
 } 
@@ -24411,7 +24411,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_to_string", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_to_string", object)
 
   return(w)
 } 
@@ -24422,7 +24422,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_path_new_first", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_new_first")
 
   return(w)
 } 
@@ -24434,7 +24434,7 @@ function(object, index)
   checkPtrType(object, "GtkTreePath")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_tree_path_append_index", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_append_index", object, index)
 
   return(invisible(w))
 } 
@@ -24446,7 +24446,7 @@ function(object, index)
   checkPtrType(object, "GtkTreePath")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_tree_path_prepend_index", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_prepend_index", object, index)
 
   return(invisible(w))
 } 
@@ -24457,7 +24457,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_get_depth", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_get_depth", object)
 
   return(w)
 } 
@@ -24468,7 +24468,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_get_indices", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_get_indices", object)
 
   return(w)
 } 
@@ -24479,7 +24479,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_copy", object)
 
   return(w)
 } 
@@ -24491,7 +24491,7 @@ function(object, b)
   checkPtrType(object, "GtkTreePath")
   checkPtrType(b, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_compare", object, b, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_compare", object, b)
 
   return(w)
 } 
@@ -24502,7 +24502,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_next", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_next", object)
 
   return(invisible(w))
 } 
@@ -24513,7 +24513,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_prev", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_prev", object)
 
   return(w)
 } 
@@ -24524,7 +24524,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_up", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_up", object)
 
   return(w)
 } 
@@ -24535,7 +24535,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_down", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_down", object)
 
   return(invisible(w))
 } 
@@ -24547,7 +24547,7 @@ function(object, descendant)
   checkPtrType(object, "GtkTreePath")
   checkPtrType(descendant, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_is_ancestor", object, descendant, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_is_ancestor", object, descendant)
 
   return(w)
 } 
@@ -24559,7 +24559,7 @@ function(object, ancestor)
   checkPtrType(object, "GtkTreePath")
   checkPtrType(ancestor, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_path_is_descendant", object, ancestor, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_path_is_descendant", object, ancestor)
 
   return(w)
 } 
@@ -24570,7 +24570,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_get_type")
 
   return(w)
 } 
@@ -24582,7 +24582,7 @@ function(model, path)
   checkPtrType(model, "GtkTreeModel")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_new", model, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_new", model, path)
 
   return(w)
 } 
@@ -24595,7 +24595,7 @@ function(proxy, model, path)
   checkPtrType(model, "GtkTreeModel")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_new_proxy", proxy, model, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_new_proxy", proxy, model, path)
 
   return(w)
 } 
@@ -24606,7 +24606,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeRowReference")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_get_path", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_get_path", object)
 
   return(w)
 } 
@@ -24617,7 +24617,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeRowReference")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_get_model", object)
 
   return(w)
 } 
@@ -24628,7 +24628,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeRowReference")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_valid", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_valid", object)
 
   return(w)
 } 
@@ -24639,7 +24639,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeRowReference")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_copy", object)
 
   return(w)
 } 
@@ -24651,7 +24651,7 @@ function(proxy, path)
   checkPtrType(proxy, "GObject")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_inserted", proxy, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_inserted", proxy, path)
 
   return(w)
 } 
@@ -24663,7 +24663,7 @@ function(proxy, path)
   checkPtrType(proxy, "GObject")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_deleted", proxy, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_deleted", proxy, path)
 
   return(w)
 } 
@@ -24677,7 +24677,7 @@ function(proxy, path, iter, new.order)
   checkPtrType(iter, "GtkTreeIter")
   new.order <- as.list(as.integer(new.order))
 
-  w <- .RGtkCall("S_gtk_tree_row_reference_reordered", proxy, path, iter, new.order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_row_reference_reordered", proxy, path, iter, new.order)
 
   return(w)
 } 
@@ -24688,7 +24688,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_iter_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_iter_copy", object)
 
   return(w)
 } 
@@ -24699,7 +24699,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_iter_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_iter_get_type")
 
   return(w)
 } 
@@ -24710,7 +24710,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_model_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_type")
 
   return(w)
 } 
@@ -24721,7 +24721,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_flags", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_flags", object)
 
   return(w)
 } 
@@ -24732,7 +24732,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_n_columns", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_n_columns", object)
 
   return(w)
 } 
@@ -24744,7 +24744,7 @@ function(object, index)
   checkPtrType(object, "GtkTreeModel")
   index <- as.integer(index)
 
-  w <- .RGtkCall("S_gtk_tree_model_get_column_type", object, index, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_column_type", object, index)
 
   return(w)
 } 
@@ -24756,7 +24756,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_iter", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_iter", object, path)
 
   return(w)
 } 
@@ -24768,7 +24768,7 @@ function(object, path.string)
   checkPtrType(object, "GtkTreeModel")
   path.string <- as.character(path.string)
 
-  w <- .RGtkCall("S_gtk_tree_model_get_iter_from_string", object, path.string, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_iter_from_string", object, path.string)
 
   return(w)
 } 
@@ -24780,7 +24780,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_string_from_iter", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_string_from_iter", object, iter)
 
   return(w)
 } 
@@ -24791,7 +24791,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_iter_root", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_iter_root", object)
 
   return(w)
 } 
@@ -24802,7 +24802,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_iter_first", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_iter_first", object)
 
   return(w)
 } 
@@ -24814,7 +24814,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_get_path", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_path", object, iter)
 
   return(w)
 } 
@@ -24827,7 +24827,7 @@ function(object, iter, column)
   checkPtrType(iter, "GtkTreeIter")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_tree_model_get_value", object, iter, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_get_value", object, iter, column)
 
   return(w)
 } 
@@ -24839,7 +24839,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_next", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_next", object, iter)
 
   return(w)
 } 
@@ -24851,7 +24851,7 @@ function(object, parent = NULL)
   checkPtrType(object, "GtkTreeModel")
   if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_children", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_children", object, parent)
 
   return(w)
 } 
@@ -24863,7 +24863,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_has_child", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_has_child", object, iter)
 
   return(w)
 } 
@@ -24875,7 +24875,7 @@ function(object, iter = NULL)
   checkPtrType(object, "GtkTreeModel")
   if (!is.null( iter )) checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_n_children", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_n_children", object, iter)
 
   return(w)
 } 
@@ -24888,7 +24888,7 @@ function(object, parent = NULL, n)
   if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
   n <- as.integer(n)
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_nth_child", object, parent, n, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_nth_child", object, parent, n)
 
   return(w)
 } 
@@ -24900,7 +24900,7 @@ function(object, child)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(child, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iter_parent", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iter_parent", object, child)
 
   return(w)
 } 
@@ -24912,7 +24912,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_ref_node", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_ref_node", object, iter)
 
   return(invisible(w))
 } 
@@ -24924,7 +24924,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_unref_node", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_unref_node", object, iter)
 
   return(invisible(w))
 } 
@@ -24937,7 +24937,7 @@ function(object, func, user.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_model_foreach", object, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_foreach", object, func, user.data)
 
   return(invisible(w))
 } 
@@ -24950,7 +24950,7 @@ function(object, path, iter)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_row_changed", object, path, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_row_changed", object, path, iter)
 
   return(invisible(w))
 } 
@@ -24963,7 +24963,7 @@ function(object, path, iter)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_row_inserted", object, path, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_row_inserted", object, path, iter)
 
   return(invisible(w))
 } 
@@ -24976,7 +24976,7 @@ function(object, path, iter)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_row_has_child_toggled", object, path, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_row_has_child_toggled", object, path, iter)
 
   return(invisible(w))
 } 
@@ -24988,7 +24988,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_row_deleted", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_row_deleted", object, path)
 
   return(invisible(w))
 } 
@@ -25002,7 +25002,7 @@ function(object, path, iter, new.order)
   checkPtrType(iter, "GtkTreeIter")
   new.order <- as.list(as.integer(new.order))
 
-  w <- .RGtkCall("S_gtk_tree_model_rows_reordered", object, path, iter, new.order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_rows_reordered", object, path, iter, new.order)
 
   return(invisible(w))
 } 
@@ -25013,7 +25013,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_get_type")
 
   return(w)
 } 
@@ -25025,7 +25025,7 @@ function(child.model, root = NULL)
   checkPtrType(child.model, "GtkTreeModel")
   if (!is.null( root )) checkPtrType(root, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_new", child.model, root, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_new", child.model, root)
 
   return(w)
 } 
@@ -25038,7 +25038,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_set_visible_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_set_visible_func", object, func, data)
 
   return(w)
 } 
@@ -25052,7 +25052,7 @@ function(object, types, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_set_modify_func", object, types, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_set_modify_func", object, types, func, data)
 
   return(invisible(w))
 } 
@@ -25064,7 +25064,7 @@ function(object, column)
   checkPtrType(object, "GtkTreeModelFilter")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_set_visible_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_set_visible_column", object, column)
 
   return(invisible(w))
 } 
@@ -25075,7 +25075,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelFilter")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_get_model", object)
 
   return(w)
 } 
@@ -25087,7 +25087,7 @@ function(object, child.iter)
   checkPtrType(object, "GtkTreeModelFilter")
   checkPtrType(child.iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_convert_child_iter_to_iter", object, child.iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_convert_child_iter_to_iter", object, child.iter)
 
   return(w)
 } 
@@ -25099,7 +25099,7 @@ function(object, filter.iter)
   checkPtrType(object, "GtkTreeModelFilter")
   checkPtrType(filter.iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_convert_iter_to_child_iter", object, filter.iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_convert_iter_to_child_iter", object, filter.iter)
 
   return(w)
 } 
@@ -25111,7 +25111,7 @@ function(object, child.path)
   checkPtrType(object, "GtkTreeModelFilter")
   checkPtrType(child.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_convert_child_path_to_path", object, child.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_convert_child_path_to_path", object, child.path)
 
   return(w)
 } 
@@ -25123,7 +25123,7 @@ function(object, filter.path)
   checkPtrType(object, "GtkTreeModelFilter")
   checkPtrType(filter.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_convert_path_to_child_path", object, filter.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_convert_path_to_child_path", object, filter.path)
 
   return(w)
 } 
@@ -25134,7 +25134,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelFilter")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_refilter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_refilter", object)
 
   return(invisible(w))
 } 
@@ -25145,7 +25145,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelFilter")
 
-  w <- .RGtkCall("S_gtk_tree_model_filter_clear_cache", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_filter_clear_cache", object)
 
   return(invisible(w))
 } 
@@ -25156,7 +25156,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_get_type")
 
   return(w)
 } 
@@ -25167,7 +25167,7 @@ function(child.model = NULL)
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_new_with_model", child.model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_new_with_model", child.model)
 
   return(w)
 } 
@@ -25178,7 +25178,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelSort")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_get_model", object)
 
   return(w)
 } 
@@ -25190,7 +25190,7 @@ function(object, child.path)
   checkPtrType(object, "GtkTreeModelSort")
   checkPtrType(child.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_convert_child_path_to_path", object, child.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_convert_child_path_to_path", object, child.path)
 
   return(w)
 } 
@@ -25202,7 +25202,7 @@ function(object, child.iter)
   checkPtrType(object, "GtkTreeModelSort")
   checkPtrType(child.iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_convert_child_iter_to_iter", object, child.iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_convert_child_iter_to_iter", object, child.iter)
 
   return(w)
 } 
@@ -25214,7 +25214,7 @@ function(object, sorted.path)
   checkPtrType(object, "GtkTreeModelSort")
   checkPtrType(sorted.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_convert_path_to_child_path", object, sorted.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_convert_path_to_child_path", object, sorted.path)
 
   return(w)
 } 
@@ -25226,7 +25226,7 @@ function(object, sorted.iter)
   checkPtrType(object, "GtkTreeModelSort")
   checkPtrType(sorted.iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_convert_iter_to_child_iter", object, sorted.iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_convert_iter_to_child_iter", object, sorted.iter)
 
   return(w)
 } 
@@ -25237,7 +25237,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelSort")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_reset_default_sort_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_reset_default_sort_func", object)
 
   return(invisible(w))
 } 
@@ -25248,7 +25248,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeModelSort")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_clear_cache", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_clear_cache", object)
 
   return(invisible(w))
 } 
@@ -25260,7 +25260,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeModelSort")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_sort_iter_is_valid", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_sort_iter_is_valid", object, iter)
 
   return(w)
 } 
@@ -25271,7 +25271,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_type")
 
   return(w)
 } 
@@ -25283,7 +25283,7 @@ function(object, type)
   checkPtrType(object, "GtkTreeSelection")
   
 
-  w <- .RGtkCall("S_gtk_tree_selection_set_mode", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_set_mode", object, type)
 
   return(invisible(w))
 } 
@@ -25294,7 +25294,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_mode", object)
 
   return(w)
 } 
@@ -25307,7 +25307,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_selection_set_select_function", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_set_select_function", object, func, data)
 
   return(w)
 } 
@@ -25318,7 +25318,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_user_data", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_user_data", object)
 
   return(w)
 } 
@@ -25329,7 +25329,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_tree_view", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_tree_view", object)
 
   return(w)
 } 
@@ -25340,7 +25340,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_selected", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_selected", object)
 
   return(w)
 } 
@@ -25351,7 +25351,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_get_selected_rows", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_get_selected_rows", object)
 
   return(w)
 } 
@@ -25362,7 +25362,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_count_selected_rows", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_count_selected_rows", object)
 
   return(w)
 } 
@@ -25375,7 +25375,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_selection_selected_foreach", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_selected_foreach", object, func, data)
 
   return(invisible(w))
 } 
@@ -25387,7 +25387,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_selection_select_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_select_path", object, path)
 
   return(invisible(w))
 } 
@@ -25399,7 +25399,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_selection_unselect_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_unselect_path", object, path)
 
   return(invisible(w))
 } 
@@ -25411,7 +25411,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_selection_select_iter", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_select_iter", object, iter)
 
   return(invisible(w))
 } 
@@ -25423,7 +25423,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_selection_unselect_iter", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_unselect_iter", object, iter)
 
   return(invisible(w))
 } 
@@ -25435,7 +25435,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_selection_path_is_selected", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_path_is_selected", object, path)
 
   return(w)
 } 
@@ -25447,7 +25447,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeSelection")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_selection_iter_is_selected", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_iter_is_selected", object, iter)
 
   return(w)
 } 
@@ -25458,7 +25458,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_select_all", object)
 
   return(invisible(w))
 } 
@@ -25469,7 +25469,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSelection")
 
-  w <- .RGtkCall("S_gtk_tree_selection_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -25482,7 +25482,7 @@ function(object, start.path, end.path)
   checkPtrType(start.path, "GtkTreePath")
   checkPtrType(end.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_selection_select_range", object, start.path, end.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_select_range", object, start.path, end.path)
 
   return(invisible(w))
 } 
@@ -25495,7 +25495,7 @@ function(object, start.path, end.path)
   checkPtrType(start.path, "GtkTreePath")
   checkPtrType(end.path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_selection_unselect_range", object, start.path, end.path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_selection_unselect_range", object, start.path, end.path)
 
   return(invisible(w))
 } 
@@ -25506,7 +25506,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_sortable_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_get_type")
 
   return(w)
 } 
@@ -25517,7 +25517,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSortable")
 
-  w <- .RGtkCall("S_gtk_tree_sortable_sort_column_changed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_sort_column_changed", object)
 
   return(invisible(w))
 } 
@@ -25528,7 +25528,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSortable")
 
-  w <- .RGtkCall("S_gtk_tree_sortable_get_sort_column_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_get_sort_column_id", object)
 
   return(w)
 } 
@@ -25541,7 +25541,7 @@ function(object, sort.column.id, order)
   sort.column.id <- as.integer(sort.column.id)
   
 
-  w <- .RGtkCall("S_gtk_tree_sortable_set_sort_column_id", object, sort.column.id, order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_set_sort_column_id", object, sort.column.id, order)
 
   return(invisible(w))
 } 
@@ -25555,7 +25555,7 @@ function(object, sort.column.id, sort.func, user.data = NULL)
   sort.func <- as.function(sort.func)
   
 
-  w <- .RGtkCall("S_gtk_tree_sortable_set_sort_func", object, sort.column.id, sort.func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_set_sort_func", object, sort.column.id, sort.func, user.data)
 
   return(w)
 } 
@@ -25568,7 +25568,7 @@ function(object, sort.func, user.data = NULL)
   sort.func <- as.function(sort.func)
   
 
-  w <- .RGtkCall("S_gtk_tree_sortable_set_default_sort_func", object, sort.func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_set_default_sort_func", object, sort.func, user.data)
 
   return(w)
 } 
@@ -25579,7 +25579,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeSortable")
 
-  w <- .RGtkCall("S_gtk_tree_sortable_has_default_sort_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_sortable_has_default_sort_func", object)
 
   return(w)
 } 
@@ -25590,7 +25590,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_store_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_get_type")
 
   return(w)
 } 
@@ -25601,7 +25601,7 @@ function(types)
 {
   types <- as.list(as.numeric(types))
 
-  w <- .RGtkCall("S_gtk_tree_store_newv", types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_newv", types)
 
   return(w)
 } 
@@ -25613,7 +25613,7 @@ function(object, types)
   checkPtrType(object, "GtkTreeStore")
   types <- as.list(as.numeric(types))
 
-  w <- .RGtkCall("S_gtk_tree_store_set_column_types", object, types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_set_column_types", object, types)
 
   return(w)
 } 
@@ -25627,7 +25627,7 @@ function(object, iter, column, value)
   column <- as.integer(column)
   
 
-  w <- .RGtkCall("S_gtk_tree_store_set_value", object, iter, column, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_set_value", object, iter, column, value)
 
   return(invisible(w))
 } 
@@ -25639,7 +25639,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_remove", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_remove", object, iter)
 
   return(w)
 } 
@@ -25652,7 +25652,7 @@ function(object, parent = NULL, position)
   if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_tree_store_insert", object, parent, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_insert", object, parent, position)
 
   return(w)
 } 
@@ -25665,7 +25665,7 @@ function(object, parent, sibling)
   checkPtrType(parent, "GtkTreeIter")
   checkPtrType(sibling, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_insert_before", object, parent, sibling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_insert_before", object, parent, sibling)
 
   return(w)
 } 
@@ -25678,7 +25678,7 @@ function(object, parent, sibling)
   checkPtrType(parent, "GtkTreeIter")
   checkPtrType(sibling, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_insert_after", object, parent, sibling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_insert_after", object, parent, sibling)
 
   return(w)
 } 
@@ -25690,7 +25690,7 @@ function(object, parent = NULL)
   checkPtrType(object, "GtkTreeStore")
   if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_prepend", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_prepend", object, parent)
 
   return(w)
 } 
@@ -25702,7 +25702,7 @@ function(object, parent = NULL)
   checkPtrType(object, "GtkTreeStore")
   if (!is.null( parent )) checkPtrType(parent, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_append", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_append", object, parent)
 
   return(w)
 } 
@@ -25715,7 +25715,7 @@ function(object, iter, descendant)
   checkPtrType(iter, "GtkTreeIter")
   checkPtrType(descendant, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_is_ancestor", object, iter, descendant, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_is_ancestor", object, iter, descendant)
 
   return(w)
 } 
@@ -25727,7 +25727,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_iter_depth", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_iter_depth", object, iter)
 
   return(w)
 } 
@@ -25738,7 +25738,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeStore")
 
-  w <- .RGtkCall("S_gtk_tree_store_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_clear", object)
 
   return(invisible(w))
 } 
@@ -25750,7 +25750,7 @@ function(object, iter)
   checkPtrType(object, "GtkTreeStore")
   checkPtrType(iter, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_iter_is_valid", object, iter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_iter_is_valid", object, iter)
 
   return(w)
 } 
@@ -25763,7 +25763,7 @@ function(object, parent, new.order)
   checkPtrType(parent, "GtkTreeIter")
   new.order <- as.list(as.integer(new.order))
 
-  w <- .RGtkCall("S_gtk_tree_store_reorder", object, parent, new.order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_reorder", object, parent, new.order)
 
   return(invisible(w))
 } 
@@ -25776,7 +25776,7 @@ function(object, a, b)
   checkPtrType(a, "GtkTreeIter")
   checkPtrType(b, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_swap", object, a, b, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_swap", object, a, b)
 
   return(invisible(w))
 } 
@@ -25789,7 +25789,7 @@ function(object, iter, position = NULL)
   checkPtrType(iter, "GtkTreeIter")
   if (!is.null( position )) checkPtrType(position, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_move_after", object, iter, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_move_after", object, iter, position)
 
   return(invisible(w))
 } 
@@ -25802,7 +25802,7 @@ function(object, iter, position = NULL)
   checkPtrType(iter, "GtkTreeIter")
   if (!is.null( position )) checkPtrType(position, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_store_move_before", object, iter, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_store_move_before", object, iter, position)
 
   return(invisible(w))
 } 
@@ -25813,7 +25813,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_queue_resize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_queue_resize", object)
 
   return(invisible(w))
 } 
@@ -25824,7 +25824,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_type")
 
   return(w)
 } 
@@ -25835,7 +25835,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -25849,7 +25849,7 @@ function(model = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_new_with_model", model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_new_with_model", model)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -25863,7 +25863,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_model", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_model", object)
 
   return(w)
 } 
@@ -25875,7 +25875,7 @@ function(object, model = NULL)
   checkPtrType(object, "GtkTreeView")
   if (!is.null( model )) checkPtrType(model, "GtkTreeModel")
 
-  w <- .RGtkCall("S_gtk_tree_view_set_model", object, model, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_model", object, model)
 
   return(invisible(w))
 } 
@@ -25886,7 +25886,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_selection", object)
 
   return(w)
 } 
@@ -25897,7 +25897,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_hadjustment", object)
 
   return(w)
 } 
@@ -25909,7 +25909,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_tree_view_set_hadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_hadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -25920,7 +25920,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_vadjustment", object)
 
   return(w)
 } 
@@ -25932,7 +25932,7 @@ function(object, adjustment)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_tree_view_set_vadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_vadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -25943,7 +25943,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_headers_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_headers_visible", object)
 
   return(w)
 } 
@@ -25955,7 +25955,7 @@ function(object, headers.visible)
   checkPtrType(object, "GtkTreeView")
   headers.visible <- as.logical(headers.visible)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_headers_visible", object, headers.visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_headers_visible", object, headers.visible)
 
   return(invisible(w))
 } 
@@ -25966,7 +25966,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_columns_autosize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_columns_autosize", object)
 
   return(invisible(w))
 } 
@@ -25978,7 +25978,7 @@ function(object, active)
   checkPtrType(object, "GtkTreeView")
   active <- as.logical(active)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_headers_clickable", object, active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_headers_clickable", object, active)
 
   return(invisible(w))
 } 
@@ -25990,7 +25990,7 @@ function(object, setting)
   checkPtrType(object, "GtkTreeView")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_rules_hint", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_rules_hint", object, setting)
 
   return(invisible(w))
 } 
@@ -26001,7 +26001,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_rules_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_rules_hint", object)
 
   return(w)
 } 
@@ -26013,7 +26013,7 @@ function(object, column)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_append_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_append_column", object, column)
 
   return(w)
 } 
@@ -26025,7 +26025,7 @@ function(object, column)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_remove_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_remove_column", object, column)
 
   return(w)
 } 
@@ -26038,7 +26038,7 @@ function(object, column, position)
   checkPtrType(column, "GtkTreeViewColumn")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_tree_view_insert_column", object, column, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_insert_column", object, column, position)
 
   return(w)
 } 
@@ -26054,7 +26054,7 @@ function(object, position, title, cell, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_insert_column_with_data_func", object, position, title, cell, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_insert_column_with_data_func", object, position, title, cell, func, data)
 
   return(w)
 } 
@@ -26066,7 +26066,7 @@ function(object, n)
   checkPtrType(object, "GtkTreeView")
   n <- as.integer(n)
 
-  w <- .RGtkCall("S_gtk_tree_view_get_column", object, n, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_column", object, n)
 
   return(w)
 } 
@@ -26077,7 +26077,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_columns", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_columns", object)
 
   return(w)
 } 
@@ -26090,7 +26090,7 @@ function(object, column, base.column = NULL)
   checkPtrType(column, "GtkTreeViewColumn")
   if (!is.null( base.column )) checkPtrType(base.column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_move_column_after", object, column, base.column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_move_column_after", object, column, base.column)
 
   return(invisible(w))
 } 
@@ -26102,7 +26102,7 @@ function(object, column)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_set_expander_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_expander_column", object, column)
 
   return(invisible(w))
 } 
@@ -26113,7 +26113,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_expander_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_expander_column", object)
 
   return(w)
 } 
@@ -26126,7 +26126,7 @@ function(object, func, user.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_column_drag_function", object, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_column_drag_function", object, func, user.data)
 
   return(w)
 } 
@@ -26139,7 +26139,7 @@ function(object, tree.x, tree.y)
   tree.x <- as.integer(tree.x)
   tree.y <- as.integer(tree.y)
 
-  w <- .RGtkCall("S_gtk_tree_view_scroll_to_point", object, tree.x, tree.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_scroll_to_point", object, tree.x, tree.y)
 
   return(invisible(w))
 } 
@@ -26155,7 +26155,7 @@ function(object, path, column = NULL, use.align = FALSE, row.align = 0, col.alig
   row.align <- as.numeric(row.align)
   col.align <- as.numeric(col.align)
 
-  w <- .RGtkCall("S_gtk_tree_view_scroll_to_cell", object, path, column, use.align, row.align, col.align, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_scroll_to_cell", object, path, column, use.align, row.align, col.align)
 
   return(invisible(w))
 } 
@@ -26168,7 +26168,7 @@ function(object, path, column)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_row_activated", object, path, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_row_activated", object, path, column)
 
   return(invisible(w))
 } 
@@ -26179,7 +26179,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_expand_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_expand_all", object)
 
   return(invisible(w))
 } 
@@ -26190,7 +26190,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_collapse_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_collapse_all", object)
 
   return(invisible(w))
 } 
@@ -26202,7 +26202,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_view_expand_to_path", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_expand_to_path", object, path)
 
   return(invisible(w))
 } 
@@ -26215,7 +26215,7 @@ function(object, path, open.all)
   checkPtrType(path, "GtkTreePath")
   open.all <- as.logical(open.all)
 
-  w <- .RGtkCall("S_gtk_tree_view_expand_row", object, path, open.all, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_expand_row", object, path, open.all)
 
   return(w)
 } 
@@ -26227,7 +26227,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_view_collapse_row", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_collapse_row", object, path)
 
   return(invisible(w))
 } 
@@ -26240,7 +26240,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_map_expanded_rows", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_map_expanded_rows", object, func, data)
 
   return(invisible(w))
 } 
@@ -26252,7 +26252,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_view_row_expanded", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_row_expanded", object, path)
 
   return(w)
 } 
@@ -26264,7 +26264,7 @@ function(object, reorderable)
   checkPtrType(object, "GtkTreeView")
   reorderable <- as.logical(reorderable)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_reorderable", object, reorderable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_reorderable", object, reorderable)
 
   return(invisible(w))
 } 
@@ -26275,7 +26275,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_reorderable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_reorderable", object)
 
   return(w)
 } 
@@ -26289,7 +26289,7 @@ function(object, path, focus.column = NULL, start.editing = FALSE)
   if (!is.null( focus.column )) checkPtrType(focus.column, "GtkTreeViewColumn")
   start.editing <- as.logical(start.editing)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_cursor", object, path, focus.column, start.editing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_cursor", object, path, focus.column, start.editing)
 
   return(invisible(w))
 } 
@@ -26304,7 +26304,7 @@ function(object, path, focus.column = NULL, focus.cell = NULL, start.editing = F
   if (!is.null( focus.cell )) checkPtrType(focus.cell, "GtkCellRenderer")
   start.editing <- as.logical(start.editing)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_cursor_on_cell", object, path, focus.column, focus.cell, start.editing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_cursor_on_cell", object, path, focus.column, focus.cell, start.editing)
 
   return(invisible(w))
 } 
@@ -26315,7 +26315,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_cursor", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_cursor", object)
 
   return(invisible(w))
 } 
@@ -26326,7 +26326,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_bin_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_bin_window", object)
 
   return(w)
 } 
@@ -26339,7 +26339,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_tree_view_get_path_at_pos", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_path_at_pos", object, x, y)
 
   return(w)
 } 
@@ -26352,7 +26352,7 @@ function(object, path, column)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_cell_area", object, path, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_cell_area", object, path, column)
 
   return(w)
 } 
@@ -26365,7 +26365,7 @@ function(object, path, column)
   checkPtrType(path, "GtkTreePath")
   checkPtrType(column, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_background_area", object, path, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_background_area", object, path, column)
 
   return(w)
 } 
@@ -26376,7 +26376,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_visible_rect", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_visible_rect", object)
 
   return(w)
 } 
@@ -26387,7 +26387,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_visible_range", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_visible_range", object)
 
   return(w)
 } 
@@ -26400,7 +26400,7 @@ function(object, wx, wy)
   wx <- as.integer(wx)
   wy <- as.integer(wy)
 
-  w <- .RGtkCall("S_gtk_tree_view_widget_to_tree_coords", object, wx, wy, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_widget_to_tree_coords", object, wx, wy)
 
   return(invisible(w))
 } 
@@ -26413,7 +26413,7 @@ function(object, tx, ty)
   tx <- as.integer(tx)
   ty <- as.integer(ty)
 
-  w <- .RGtkCall("S_gtk_tree_view_tree_to_widget_coords", object, tx, ty, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_tree_to_widget_coords", object, tx, ty)
 
   return(invisible(w))
 } 
@@ -26427,7 +26427,7 @@ function(object, start.button.mask, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_tree_view_enable_model_drag_source", object, start.button.mask, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_enable_model_drag_source", object, start.button.mask, targets, actions)
 
   return(w)
 } 
@@ -26440,7 +26440,7 @@ function(object, targets, actions)
   targets <- lapply(targets, function(x) { x <- as.GtkTargetEntry(x); x })
   
 
-  w <- .RGtkCall("S_gtk_tree_view_enable_model_drag_dest", object, targets, actions, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_enable_model_drag_dest", object, targets, actions)
 
   return(w)
 } 
@@ -26451,7 +26451,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_unset_rows_drag_source", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_unset_rows_drag_source", object)
 
   return(invisible(w))
 } 
@@ -26462,7 +26462,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_unset_rows_drag_dest", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_unset_rows_drag_dest", object)
 
   return(invisible(w))
 } 
@@ -26475,7 +26475,7 @@ function(object, path, pos)
   checkPtrType(path, "GtkTreePath")
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_drag_dest_row", object, path, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_drag_dest_row", object, path, pos)
 
   return(invisible(w))
 } 
@@ -26488,7 +26488,7 @@ function(object, path, pos)
   checkPtrType(path, "GtkTreePath")
   
 
-  w <- .RGtkCall("S_gtk_tree_view_get_drag_dest_row", object, path, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_drag_dest_row", object, path, pos)
 
   return(invisible(w))
 } 
@@ -26501,7 +26501,7 @@ function(object, drag.x, drag.y)
   drag.x <- as.integer(drag.x)
   drag.y <- as.integer(drag.y)
 
-  w <- .RGtkCall("S_gtk_tree_view_get_dest_row_at_pos", object, drag.x, drag.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_dest_row_at_pos", object, drag.x, drag.y)
 
   return(w)
 } 
@@ -26513,7 +26513,7 @@ function(object, path)
   checkPtrType(object, "GtkTreeView")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_view_create_row_drag_icon", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_create_row_drag_icon", object, path)
 
   return(w)
 } 
@@ -26525,7 +26525,7 @@ function(object, enable.search)
   checkPtrType(object, "GtkTreeView")
   enable.search <- as.logical(enable.search)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_enable_search", object, enable.search, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_enable_search", object, enable.search)
 
   return(invisible(w))
 } 
@@ -26536,7 +26536,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_enable_search", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_enable_search", object)
 
   return(w)
 } 
@@ -26547,7 +26547,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_search_column", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_search_column", object)
 
   return(w)
 } 
@@ -26559,7 +26559,7 @@ function(object, column)
   checkPtrType(object, "GtkTreeView")
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_search_column", object, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_search_column", object, column)
 
   return(invisible(w))
 } 
@@ -26570,7 +26570,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_search_equal_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_search_equal_func", object)
 
   return(w)
 } 
@@ -26583,7 +26583,7 @@ function(object, search.equal.func, search.user.data = NULL)
   search.equal.func <- as.function(search.equal.func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_search_equal_func", object, search.equal.func, search.user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_search_equal_func", object, search.equal.func, search.user.data)
 
   return(w)
 } 
@@ -26596,7 +26596,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_destroy_count_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_destroy_count_func", object, func, data)
 
   return(w)
 } 
@@ -26608,7 +26608,7 @@ function(object, enable)
   checkPtrType(object, "GtkTreeView")
   enable <- as.logical(enable)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_fixed_height_mode", object, enable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_fixed_height_mode", object, enable)
 
   return(invisible(w))
 } 
@@ -26619,7 +26619,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_fixed_height_mode", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_fixed_height_mode", object)
 
   return(w)
 } 
@@ -26631,7 +26631,7 @@ function(object, hover)
   checkPtrType(object, "GtkTreeView")
   hover <- as.logical(hover)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_hover_selection", object, hover, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_hover_selection", object, hover)
 
   return(invisible(w))
 } 
@@ -26642,7 +26642,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_hover_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_hover_selection", object)
 
   return(w)
 } 
@@ -26654,7 +26654,7 @@ function(object, expand)
   checkPtrType(object, "GtkTreeView")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_hover_expand", object, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_hover_expand", object, expand)
 
   return(invisible(w))
 } 
@@ -26665,7 +26665,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_hover_expand", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_hover_expand", object)
 
   return(w)
 } 
@@ -26676,7 +26676,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_row_separator_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_row_separator_func", object)
 
   return(w)
 } 
@@ -26689,7 +26689,7 @@ function(object, func, data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_row_separator_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_row_separator_func", object, func, data)
 
   return(w)
 } 
@@ -26700,7 +26700,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_type")
 
   return(w)
 } 
@@ -26711,7 +26711,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_column_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_new")
 
   return(w)
 } 
@@ -26724,7 +26724,7 @@ function(object, cell, expand = TRUE)
   checkPtrType(cell, "GtkCellRenderer")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_pack_start", object, cell, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_pack_start", object, cell, expand)
 
   return(invisible(w))
 } 
@@ -26737,7 +26737,7 @@ function(object, cell, expand = TRUE)
   checkPtrType(cell, "GtkCellRenderer")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_pack_end", object, cell, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_pack_end", object, cell, expand)
 
   return(invisible(w))
 } 
@@ -26748,7 +26748,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_clear", object)
 
   return(invisible(w))
 } 
@@ -26759,7 +26759,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_cell_renderers", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_cell_renderers", object)
 
   return(w)
 } 
@@ -26773,7 +26773,7 @@ function(object, cell.renderer, attribute, column)
   attribute <- as.character(attribute)
   column <- as.integer(column)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_add_attribute", object, cell.renderer, attribute, column, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_add_attribute", object, cell.renderer, attribute, column)
 
   return(invisible(w))
 } 
@@ -26787,7 +26787,7 @@ function(object, cell.renderer, func, func.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_cell_data_func", object, cell.renderer, func, func.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_cell_data_func", object, cell.renderer, func, func.data)
 
   return(w)
 } 
@@ -26799,7 +26799,7 @@ function(object, cell.renderer)
   checkPtrType(object, "GtkTreeViewColumn")
   checkPtrType(cell.renderer, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_clear_attributes", object, cell.renderer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_clear_attributes", object, cell.renderer)
 
   return(invisible(w))
 } 
@@ -26811,7 +26811,7 @@ function(object, spacing)
   checkPtrType(object, "GtkTreeViewColumn")
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_spacing", object, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_spacing", object, spacing)
 
   return(invisible(w))
 } 
@@ -26822,7 +26822,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_spacing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_spacing", object)
 
   return(w)
 } 
@@ -26834,7 +26834,7 @@ function(object, visible)
   checkPtrType(object, "GtkTreeViewColumn")
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_visible", object, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_visible", object, visible)
 
   return(invisible(w))
 } 
@@ -26845,7 +26845,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_visible", object)
 
   return(w)
 } 
@@ -26857,7 +26857,7 @@ function(object, resizable)
   checkPtrType(object, "GtkTreeViewColumn")
   resizable <- as.logical(resizable)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_resizable", object, resizable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_resizable", object, resizable)
 
   return(invisible(w))
 } 
@@ -26868,7 +26868,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_resizable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_resizable", object)
 
   return(w)
 } 
@@ -26880,7 +26880,7 @@ function(object, type)
   checkPtrType(object, "GtkTreeViewColumn")
   
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_sizing", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_sizing", object, type)
 
   return(invisible(w))
 } 
@@ -26891,7 +26891,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_sizing", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_sizing", object)
 
   return(w)
 } 
@@ -26902,7 +26902,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_width", object)
 
   return(w)
 } 
@@ -26913,7 +26913,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_fixed_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_fixed_width", object)
 
   return(w)
 } 
@@ -26925,7 +26925,7 @@ function(object, fixed.width)
   checkPtrType(object, "GtkTreeViewColumn")
   fixed.width <- as.integer(fixed.width)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_fixed_width", object, fixed.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_fixed_width", object, fixed.width)
 
   return(invisible(w))
 } 
@@ -26937,7 +26937,7 @@ function(object, min.width)
   checkPtrType(object, "GtkTreeViewColumn")
   min.width <- as.integer(min.width)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_min_width", object, min.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_min_width", object, min.width)
 
   return(invisible(w))
 } 
@@ -26948,7 +26948,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_min_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_min_width", object)
 
   return(w)
 } 
@@ -26960,7 +26960,7 @@ function(object, max.width)
   checkPtrType(object, "GtkTreeViewColumn")
   max.width <- as.integer(max.width)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_max_width", object, max.width, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_max_width", object, max.width)
 
   return(invisible(w))
 } 
@@ -26971,7 +26971,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_max_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_max_width", object)
 
   return(w)
 } 
@@ -26982,7 +26982,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_clicked", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_clicked", object)
 
   return(invisible(w))
 } 
@@ -26994,7 +26994,7 @@ function(object, title)
   checkPtrType(object, "GtkTreeViewColumn")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -27005,7 +27005,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_title", object)
 
   return(w)
 } 
@@ -27017,7 +27017,7 @@ function(object, expand)
   checkPtrType(object, "GtkTreeViewColumn")
   expand <- as.logical(expand)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_expand", object, expand, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_expand", object, expand)
 
   return(invisible(w))
 } 
@@ -27028,7 +27028,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_expand", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_expand", object)
 
   return(w)
 } 
@@ -27040,7 +27040,7 @@ function(object, active)
   checkPtrType(object, "GtkTreeViewColumn")
   active <- as.logical(active)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_clickable", object, active, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_clickable", object, active)
 
   return(invisible(w))
 } 
@@ -27051,7 +27051,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_clickable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_clickable", object)
 
   return(w)
 } 
@@ -27063,7 +27063,7 @@ function(object, widget = NULL)
   checkPtrType(object, "GtkTreeViewColumn")
   if (!is.null( widget )) checkPtrType(widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_widget", object, widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_widget", object, widget)
 
   return(invisible(w))
 } 
@@ -27074,7 +27074,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_widget", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_widget", object)
 
   return(w)
 } 
@@ -27086,7 +27086,7 @@ function(object, xalign)
   checkPtrType(object, "GtkTreeViewColumn")
   xalign <- as.numeric(xalign)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_alignment", object, xalign, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_alignment", object, xalign)
 
   return(invisible(w))
 } 
@@ -27097,7 +27097,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_alignment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_alignment", object)
 
   return(w)
 } 
@@ -27109,7 +27109,7 @@ function(object, reorderable)
   checkPtrType(object, "GtkTreeViewColumn")
   reorderable <- as.logical(reorderable)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_reorderable", object, reorderable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_reorderable", object, reorderable)
 
   return(invisible(w))
 } 
@@ -27120,7 +27120,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_reorderable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_reorderable", object)
 
   return(w)
 } 
@@ -27132,7 +27132,7 @@ function(object, sort.column.id)
   checkPtrType(object, "GtkTreeViewColumn")
   sort.column.id <- as.integer(sort.column.id)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_column_id", object, sort.column.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_column_id", object, sort.column.id)
 
   return(invisible(w))
 } 
@@ -27143,7 +27143,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_column_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_column_id", object)
 
   return(w)
 } 
@@ -27155,7 +27155,7 @@ function(object, setting)
   checkPtrType(object, "GtkTreeViewColumn")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_indicator", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_indicator", object, setting)
 
   return(invisible(w))
 } 
@@ -27166,7 +27166,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_indicator", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_indicator", object)
 
   return(w)
 } 
@@ -27178,7 +27178,7 @@ function(object, order)
   checkPtrType(object, "GtkTreeViewColumn")
   
 
-  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_order", object, order, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_set_sort_order", object, order)
 
   return(invisible(w))
 } 
@@ -27189,7 +27189,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_order", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_get_sort_order", object)
 
   return(w)
 } 
@@ -27204,7 +27204,7 @@ function(object, tree.model, iter, is.expander, is.expanded)
   is.expander <- as.logical(is.expander)
   is.expanded <- as.logical(is.expanded)
 
-  w <- .RGtkCall("S_gtk_tree_view_column_cell_set_cell_data", object, tree.model, iter, is.expander, is.expanded, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_cell_set_cell_data", object, tree.model, iter, is.expander, is.expanded)
 
   return(invisible(w))
 } 
@@ -27215,7 +27215,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_cell_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_cell_get_size", object)
 
   return(invisible(w))
 } 
@@ -27226,7 +27226,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeViewColumn")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_cell_is_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_cell_is_visible", object)
 
   return(w)
 } 
@@ -27238,7 +27238,7 @@ function(object, cell)
   checkPtrType(object, "GtkTreeViewColumn")
   checkPtrType(cell, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_focus_cell", object, cell, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_focus_cell", object, cell)
 
   return(invisible(w))
 } 
@@ -27250,7 +27250,7 @@ function(object, cell.renderer)
   checkPtrType(object, "GtkTreeViewColumn")
   checkPtrType(cell.renderer, "GtkCellRenderer")
 
-  w <- .RGtkCall("S_gtk_tree_view_column_cell_get_position", object, cell.renderer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_column_cell_get_position", object, cell.renderer)
 
   return(invisible(w))
 } 
@@ -27261,7 +27261,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_type")
 
   return(w)
 } 
@@ -27272,7 +27272,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_ui_manager_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_new")
 
   return(w)
 } 
@@ -27284,7 +27284,7 @@ function(object, add.tearoffs)
   checkPtrType(object, "GtkUIManager")
   add.tearoffs <- as.logical(add.tearoffs)
 
-  w <- .RGtkCall("S_gtk_ui_manager_set_add_tearoffs", object, add.tearoffs, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_set_add_tearoffs", object, add.tearoffs)
 
   return(invisible(w))
 } 
@@ -27295,7 +27295,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_add_tearoffs", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_add_tearoffs", object)
 
   return(w)
 } 
@@ -27308,7 +27308,7 @@ function(object, action.group, pos)
   checkPtrType(action.group, "GtkActionGroup")
   pos <- as.integer(pos)
 
-  w <- .RGtkCall("S_gtk_ui_manager_insert_action_group", object, action.group, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_insert_action_group", object, action.group, pos)
 
   return(invisible(w))
 } 
@@ -27320,7 +27320,7 @@ function(object, action.group)
   checkPtrType(object, "GtkUIManager")
   checkPtrType(action.group, "GtkActionGroup")
 
-  w <- .RGtkCall("S_gtk_ui_manager_remove_action_group", object, action.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_remove_action_group", object, action.group)
 
   return(invisible(w))
 } 
@@ -27331,7 +27331,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_action_groups", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_action_groups", object)
 
   return(w)
 } 
@@ -27342,7 +27342,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_accel_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_accel_group", object)
 
   return(w)
 } 
@@ -27354,7 +27354,7 @@ function(object, path)
   checkPtrType(object, "GtkUIManager")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_widget", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_widget", object, path)
 
   return(w)
 } 
@@ -27366,7 +27366,7 @@ function(object, types)
   checkPtrType(object, "GtkUIManager")
   
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_toplevels", object, types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_toplevels", object, types)
 
   return(w)
 } 
@@ -27378,7 +27378,7 @@ function(object, path)
   checkPtrType(object, "GtkUIManager")
   path <- as.character(path)
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_action", object, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_action", object, path)
 
   return(w)
 } 
@@ -27391,7 +27391,7 @@ function(object, buffer, length = -1, .errwarn = TRUE)
   buffer <- as.character(buffer)
   length <- as.integer(length)
 
-  w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_string", object, buffer, length, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_string", object, buffer, length)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -27406,7 +27406,7 @@ function(object, filename, .errwarn = TRUE)
   checkPtrType(object, "GtkUIManager")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_file", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_add_ui_from_file", object, filename)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -27426,7 +27426,7 @@ function(object, merge.id, path, name, action = NULL, type, top)
   
   top <- as.logical(top)
 
-  w <- .RGtkCall("S_gtk_ui_manager_add_ui", object, merge.id, path, name, action, type, top, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_add_ui", object, merge.id, path, name, action, type, top)
 
   return(invisible(w))
 } 
@@ -27438,7 +27438,7 @@ function(object, merge.id)
   checkPtrType(object, "GtkUIManager")
   merge.id <- as.numeric(merge.id)
 
-  w <- .RGtkCall("S_gtk_ui_manager_remove_ui", object, merge.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_remove_ui", object, merge.id)
 
   return(invisible(w))
 } 
@@ -27449,7 +27449,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_get_ui", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_get_ui", object)
 
   return(w)
 } 
@@ -27460,7 +27460,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_ensure_update", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_ensure_update", object)
 
   return(invisible(w))
 } 
@@ -27471,7 +27471,7 @@ function(object)
 {
   checkPtrType(object, "GtkUIManager")
 
-  w <- .RGtkCall("S_gtk_ui_manager_new_merge_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_ui_manager_new_merge_id", object)
 
   return(w)
 } 
@@ -27482,7 +27482,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vbutton_box_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_get_type")
 
   return(w)
 } 
@@ -27493,7 +27493,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vbutton_box_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27507,7 +27507,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vbutton_box_get_spacing_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_get_spacing_default")
 
   return(w)
 } 
@@ -27518,7 +27518,7 @@ function(spacing)
 {
   spacing <- as.integer(spacing)
 
-  w <- .RGtkCall("S_gtk_vbutton_box_set_spacing_default", spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_set_spacing_default", spacing)
 
   return(w)
 } 
@@ -27529,7 +27529,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vbutton_box_get_layout_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_get_layout_default")
 
   return(w)
 } 
@@ -27540,7 +27540,7 @@ function(layout)
 {
   
 
-  w <- .RGtkCall("S_gtk_vbutton_box_set_layout_default", layout, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbutton_box_set_layout_default", layout)
 
   return(w)
 } 
@@ -27551,7 +27551,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vbox_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbox_get_type")
 
   return(w)
 } 
@@ -27562,7 +27562,7 @@ function(homogeneous = NULL, spacing = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vbox_new", homogeneous, spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vbox_new", homogeneous, spacing)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27576,7 +27576,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_viewport_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_get_type")
 
   return(w)
 } 
@@ -27587,7 +27587,7 @@ function(hadjustment = NULL, vadjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_viewport_new", hadjustment, vadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_new", hadjustment, vadjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27601,7 +27601,7 @@ function(object)
 {
   checkPtrType(object, "GtkViewport")
 
-  w <- .RGtkCall("S_gtk_viewport_get_hadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_get_hadjustment", object)
 
   return(w)
 } 
@@ -27612,7 +27612,7 @@ function(object)
 {
   checkPtrType(object, "GtkViewport")
 
-  w <- .RGtkCall("S_gtk_viewport_get_vadjustment", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_get_vadjustment", object)
 
   return(w)
 } 
@@ -27624,7 +27624,7 @@ function(object, adjustment = NULL)
   checkPtrType(object, "GtkViewport")
   if (!is.null( adjustment )) checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_viewport_set_hadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_set_hadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -27636,7 +27636,7 @@ function(object, adjustment = NULL)
   checkPtrType(object, "GtkViewport")
   if (!is.null( adjustment )) checkPtrType(adjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_viewport_set_vadjustment", object, adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_set_vadjustment", object, adjustment)
 
   return(invisible(w))
 } 
@@ -27648,7 +27648,7 @@ function(object, type)
   checkPtrType(object, "GtkViewport")
   
 
-  w <- .RGtkCall("S_gtk_viewport_set_shadow_type", object, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_set_shadow_type", object, type)
 
   return(invisible(w))
 } 
@@ -27659,7 +27659,7 @@ function(object)
 {
   checkPtrType(object, "GtkViewport")
 
-  w <- .RGtkCall("S_gtk_viewport_get_shadow_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_viewport_get_shadow_type", object)
 
   return(w)
 } 
@@ -27670,7 +27670,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vpaned_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vpaned_get_type")
 
   return(w)
 } 
@@ -27681,7 +27681,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vpaned_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vpaned_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27695,7 +27695,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vruler_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vruler_get_type")
 
   return(w)
 } 
@@ -27706,7 +27706,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vruler_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vruler_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27720,7 +27720,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vscale_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vscale_get_type")
 
   return(w)
 } 
@@ -27731,7 +27731,7 @@ function(adjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vscale_new", adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vscale_new", adjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27747,7 +27747,7 @@ function(min, max, step, show = TRUE)
   max <- as.numeric(max)
   step <- as.numeric(step)
 
-  w <- .RGtkCall("S_gtk_vscale_new_with_range", min, max, step, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vscale_new_with_range", min, max, step)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27761,7 +27761,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vscrollbar_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vscrollbar_get_type")
 
   return(w)
 } 
@@ -27772,7 +27772,7 @@ function(adjustment = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vscrollbar_new", adjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vscrollbar_new", adjustment)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27786,7 +27786,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_vseparator_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vseparator_get_type")
 
   return(w)
 } 
@@ -27797,7 +27797,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_vseparator_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_vseparator_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -27811,7 +27811,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_type")
 
   return(w)
 } 
@@ -27822,7 +27822,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_unparent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_unparent", object)
 
   return(invisible(w))
 } 
@@ -27833,7 +27833,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_show", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_show", object)
 
   return(invisible(w))
 } 
@@ -27844,7 +27844,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_show_now", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_show_now", object)
 
   return(invisible(w))
 } 
@@ -27855,7 +27855,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_hide", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_hide", object)
 
   return(invisible(w))
 } 
@@ -27866,7 +27866,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_show_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_show_all", object)
 
   return(invisible(w))
 } 
@@ -27877,7 +27877,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_hide_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_hide_all", object)
 
   return(invisible(w))
 } 
@@ -27889,7 +27889,7 @@ function(object, no.show.all)
   checkPtrType(object, "GtkWidget")
   no.show.all <- as.logical(no.show.all)
 
-  w <- .RGtkCall("S_gtk_widget_set_no_show_all", object, no.show.all, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_no_show_all", object, no.show.all)
 
   return(invisible(w))
 } 
@@ -27900,7 +27900,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_no_show_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_no_show_all", object)
 
   return(w)
 } 
@@ -27911,7 +27911,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_map", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_map", object)
 
   return(invisible(w))
 } 
@@ -27922,7 +27922,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_unmap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_unmap", object)
 
   return(invisible(w))
 } 
@@ -27933,7 +27933,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_realize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_realize", object)
 
   return(invisible(w))
 } 
@@ -27944,7 +27944,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_unrealize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_unrealize", object)
 
   return(invisible(w))
 } 
@@ -27955,7 +27955,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_queue_draw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_draw", object)
 
   return(invisible(w))
 } 
@@ -27970,7 +27970,7 @@ function(object, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_widget_queue_draw_area", object, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_draw_area", object, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -27984,7 +27984,7 @@ function(object)
 
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_queue_clear", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_clear", object)
 
   return(invisible(w))
 } 
@@ -28002,7 +28002,7 @@ function(object, x, y, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_widget_queue_clear_area", object, x, y, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_clear_area", object, x, y, width, height)
 
   return(invisible(w))
 } 
@@ -28013,7 +28013,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_queue_resize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_resize", object)
 
   return(invisible(w))
 } 
@@ -28024,7 +28024,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_queue_resize_no_redraw", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_queue_resize_no_redraw", object)
 
   return(invisible(w))
 } 
@@ -28039,7 +28039,7 @@ function(object, area)
   checkPtrType(object, "GtkWidget")
   area <- as.GdkRectangle(area)
 
-  w <- .RGtkCall("S_gtk_widget_draw", object, area, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_draw", object, area)
 
   return(invisible(w))
 } 
@@ -28050,7 +28050,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_size_request", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_size_request", object)
 
   return(w)
 } 
@@ -28062,7 +28062,7 @@ function(object, allocation)
   checkPtrType(object, "GtkWidget")
   allocation <- as.GtkAllocation(allocation)
 
-  w <- .RGtkCall("S_gtk_widget_size_allocate", object, allocation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_size_allocate", object, allocation)
 
   return(invisible(w))
 } 
@@ -28073,7 +28073,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_child_requisition", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_child_requisition", object)
 
   return(w)
 } 
@@ -28089,7 +28089,7 @@ function(object, accel.signal, accel.group, accel.key, accel.mods, accel.flags)
   
   
 
-  w <- .RGtkCall("S_gtk_widget_add_accelerator", object, accel.signal, accel.group, accel.key, accel.mods, accel.flags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_add_accelerator", object, accel.signal, accel.group, accel.key, accel.mods, accel.flags)
 
   return(invisible(w))
 } 
@@ -28103,7 +28103,7 @@ function(object, accel.group, accel.key, accel.mods)
   accel.key <- as.numeric(accel.key)
   
 
-  w <- .RGtkCall("S_gtk_widget_remove_accelerator", object, accel.group, accel.key, accel.mods, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_remove_accelerator", object, accel.group, accel.key, accel.mods)
 
   return(w)
 } 
@@ -28116,7 +28116,7 @@ function(object, accel.path, accel.group)
   accel.path <- as.character(accel.path)
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_widget_set_accel_path", object, accel.path, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_accel_path", object, accel.path, accel.group)
 
   return(invisible(w))
 } 
@@ -28127,7 +28127,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_list_accel_closures", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_list_accel_closures", object)
 
   return(w)
 } 
@@ -28139,7 +28139,7 @@ function(object, signal.id)
   checkPtrType(object, "GtkWidget")
   signal.id <- as.numeric(signal.id)
 
-  w <- .RGtkCall("S_gtk_widget_can_activate_accel", object, signal.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_can_activate_accel", object, signal.id)
 
   return(w)
 } 
@@ -28151,7 +28151,7 @@ function(object, group.cycling)
   checkPtrType(object, "GtkWidget")
   group.cycling <- as.logical(group.cycling)
 
-  w <- .RGtkCall("S_gtk_widget_mnemonic_activate", object, group.cycling, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_mnemonic_activate", object, group.cycling)
 
   return(w)
 } 
@@ -28163,7 +28163,7 @@ function(object, event)
   checkPtrType(object, "GtkWidget")
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_widget_event", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_event", object, event)
 
   return(w)
 } 
@@ -28175,7 +28175,7 @@ function(object, event)
   checkPtrType(object, "GtkWidget")
   checkPtrType(event, "GdkEvent")
 
-  w <- .RGtkCall("S_gtk_widget_send_expose", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_send_expose", object, event)
 
   return(w)
 } 
@@ -28186,7 +28186,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_activate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_activate", object)
 
   return(w)
 } 
@@ -28199,7 +28199,7 @@ function(object, hadjustment = NULL, vadjustment = NULL)
   if (!is.null( hadjustment )) checkPtrType(hadjustment, "GtkAdjustment")
   if (!is.null( vadjustment )) checkPtrType(vadjustment, "GtkAdjustment")
 
-  w <- .RGtkCall("S_gtk_widget_set_scroll_adjustments", object, hadjustment, vadjustment, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_scroll_adjustments", object, hadjustment, vadjustment)
 
   return(w)
 } 
@@ -28211,7 +28211,7 @@ function(object, new.parent)
   checkPtrType(object, "GtkWidget")
   checkPtrType(new.parent, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_reparent", object, new.parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_reparent", object, new.parent)
 
   return(invisible(w))
 } 
@@ -28224,7 +28224,7 @@ function(object, area, intersection)
   area <- as.GdkRectangle(area)
   intersection <- as.GdkRectangle(intersection)
 
-  w <- .RGtkCall("S_gtk_widget_intersect", object, area, intersection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_intersect", object, area, intersection)
 
   return(w)
 } 
@@ -28236,7 +28236,7 @@ function(object, region)
   checkPtrType(object, "GtkWidget")
   checkPtrType(region, "GdkRegion")
 
-  w <- .RGtkCall("S_gtk_widget_region_intersect", object, region, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_region_intersect", object, region)
 
   return(w)
 } 
@@ -28247,7 +28247,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_freeze_child_notify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_freeze_child_notify", object)
 
   return(invisible(w))
 } 
@@ -28259,7 +28259,7 @@ function(object, child.property)
   checkPtrType(object, "GtkWidget")
   child.property <- as.character(child.property)
 
-  w <- .RGtkCall("S_gtk_widget_child_notify", object, child.property, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_child_notify", object, child.property)
 
   return(invisible(w))
 } 
@@ -28270,7 +28270,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_thaw_child_notify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_thaw_child_notify", object)
 
   return(invisible(w))
 } 
@@ -28281,7 +28281,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_is_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_is_focus", object)
 
   return(w)
 } 
@@ -28292,7 +28292,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_grab_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_grab_focus", object)
 
   return(invisible(w))
 } 
@@ -28303,7 +28303,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_grab_default", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_grab_default", object)
 
   return(invisible(w))
 } 
@@ -28315,7 +28315,7 @@ function(object, name)
   checkPtrType(object, "GtkWidget")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_widget_set_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_name", object, name)
 
   return(invisible(w))
 } 
@@ -28326,7 +28326,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_name", object)
 
   return(w)
 } 
@@ -28338,7 +28338,7 @@ function(object, state)
   checkPtrType(object, "GtkWidget")
   
 
-  w <- .RGtkCall("S_gtk_widget_set_state", object, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_state", object, state)
 
   return(invisible(w))
 } 
@@ -28350,7 +28350,7 @@ function(object, sensitive)
   checkPtrType(object, "GtkWidget")
   sensitive <- as.logical(sensitive)
 
-  w <- .RGtkCall("S_gtk_widget_set_sensitive", object, sensitive, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_sensitive", object, sensitive)
 
   return(invisible(w))
 } 
@@ -28362,7 +28362,7 @@ function(object, app.paintable)
   checkPtrType(object, "GtkWidget")
   app.paintable <- as.logical(app.paintable)
 
-  w <- .RGtkCall("S_gtk_widget_set_app_paintable", object, app.paintable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_app_paintable", object, app.paintable)
 
   return(invisible(w))
 } 
@@ -28374,7 +28374,7 @@ function(object, double.buffered)
   checkPtrType(object, "GtkWidget")
   double.buffered <- as.logical(double.buffered)
 
-  w <- .RGtkCall("S_gtk_widget_set_double_buffered", object, double.buffered, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_double_buffered", object, double.buffered)
 
   return(invisible(w))
 } 
@@ -28386,7 +28386,7 @@ function(object, redraw.on.allocate)
   checkPtrType(object, "GtkWidget")
   redraw.on.allocate <- as.logical(redraw.on.allocate)
 
-  w <- .RGtkCall("S_gtk_widget_set_redraw_on_allocate", object, redraw.on.allocate, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_redraw_on_allocate", object, redraw.on.allocate)
 
   return(invisible(w))
 } 
@@ -28398,7 +28398,7 @@ function(object, parent)
   checkPtrType(object, "GtkWidget")
   checkPtrType(parent, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_set_parent", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_parent", object, parent)
 
   return(invisible(w))
 } 
@@ -28410,7 +28410,7 @@ function(object, parent.window)
   checkPtrType(object, "GtkWidget")
   checkPtrType(parent.window, "GdkWindow")
 
-  w <- .RGtkCall("S_gtk_widget_set_parent_window", object, parent.window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_parent_window", object, parent.window)
 
   return(invisible(w))
 } 
@@ -28422,7 +28422,7 @@ function(object, is.visible)
   checkPtrType(object, "GtkWidget")
   is.visible <- as.logical(is.visible)
 
-  w <- .RGtkCall("S_gtk_widget_set_child_visible", object, is.visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_child_visible", object, is.visible)
 
   return(invisible(w))
 } 
@@ -28433,7 +28433,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_child_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_child_visible", object)
 
   return(w)
 } 
@@ -28444,7 +28444,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_parent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_parent", object)
 
   return(w)
 } 
@@ -28455,7 +28455,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_parent_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_parent_window", object)
 
   return(w)
 } 
@@ -28467,7 +28467,7 @@ function(object, direction)
   checkPtrType(object, "GtkWidget")
   
 
-  w <- .RGtkCall("S_gtk_widget_child_focus", object, direction, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_child_focus", object, direction)
 
   return(w)
 } 
@@ -28480,7 +28480,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_widget_set_size_request", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_size_request", object, width, height)
 
   return(invisible(w))
 } 
@@ -28491,7 +28491,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_size_request", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_size_request", object)
 
   return(invisible(w))
 } 
@@ -28504,7 +28504,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_widget_set_uposition", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_uposition", object, x, y)
 
   return(invisible(w))
 } 
@@ -28520,7 +28520,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_widget_set_usize", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_usize", object, width, height)
 
   return(invisible(w))
 } 
@@ -28532,7 +28532,7 @@ function(object, events)
   checkPtrType(object, "GtkWidget")
   events <- as.integer(events)
 
-  w <- .RGtkCall("S_gtk_widget_set_events", object, events, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_events", object, events)
 
   return(invisible(w))
 } 
@@ -28544,7 +28544,7 @@ function(object, events)
   checkPtrType(object, "GtkWidget")
   events <- as.integer(events)
 
-  w <- .RGtkCall("S_gtk_widget_add_events", object, events, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_add_events", object, events)
 
   return(invisible(w))
 } 
@@ -28556,7 +28556,7 @@ function(object, mode)
   checkPtrType(object, "GtkWidget")
   
 
-  w <- .RGtkCall("S_gtk_widget_set_extension_events", object, mode, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_extension_events", object, mode)
 
   return(invisible(w))
 } 
@@ -28567,7 +28567,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_extension_events", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_extension_events", object)
 
   return(w)
 } 
@@ -28578,7 +28578,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_toplevel", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_toplevel", object)
 
   return(w)
 } 
@@ -28590,7 +28590,7 @@ function(object, widget.type)
   checkPtrType(object, "GtkWidget")
   widget.type <- as.GType(widget.type)
 
-  w <- .RGtkCall("S_gtk_widget_get_ancestor", object, widget.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_ancestor", object, widget.type)
 
   return(w)
 } 
@@ -28601,7 +28601,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_colormap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_colormap", object)
 
   return(w)
 } 
@@ -28612,7 +28612,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_visual", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_visual", object)
 
   return(w)
 } 
@@ -28623,7 +28623,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_screen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_screen", object)
 
   return(w)
 } 
@@ -28634,7 +28634,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_has_screen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_has_screen", object)
 
   return(w)
 } 
@@ -28645,7 +28645,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_display", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_display", object)
 
   return(w)
 } 
@@ -28656,7 +28656,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_root_window", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_root_window", object)
 
   return(w)
 } 
@@ -28667,7 +28667,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_settings", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_settings", object)
 
   return(w)
 } 
@@ -28679,7 +28679,7 @@ function(object, selection)
   checkPtrType(object, "GtkWidget")
   selection <- as.GdkAtom(selection)
 
-  w <- .RGtkCall("S_gtk_widget_get_clipboard", object, selection, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_clipboard", object, selection)
 
   return(w)
 } 
@@ -28690,7 +28690,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_accessible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_accessible", object)
 
   return(w)
 } 
@@ -28702,7 +28702,7 @@ function(object, colormap)
   checkPtrType(object, "GtkWidget")
   checkPtrType(colormap, "GdkColormap")
 
-  w <- .RGtkCall("S_gtk_widget_set_colormap", object, colormap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_colormap", object, colormap)
 
   return(invisible(w))
 } 
@@ -28713,7 +28713,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_events", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_events", object)
 
   return(w)
 } 
@@ -28724,7 +28724,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_pointer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_pointer", object)
 
   return(invisible(w))
 } 
@@ -28736,7 +28736,7 @@ function(object, ancestor)
   checkPtrType(object, "GtkWidget")
   checkPtrType(ancestor, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_is_ancestor", object, ancestor, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_is_ancestor", object, ancestor)
 
   return(w)
 } 
@@ -28750,7 +28750,7 @@ function(object, dest.widget, src.x, src.y)
   src.x <- as.integer(src.x)
   src.y <- as.integer(src.y)
 
-  w <- .RGtkCall("S_gtk_widget_translate_coordinates", object, dest.widget, src.x, src.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_translate_coordinates", object, dest.widget, src.x, src.y)
 
   return(w)
 } 
@@ -28761,7 +28761,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_hide_on_delete", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_hide_on_delete", object)
 
   return(w)
 } 
@@ -28773,7 +28773,7 @@ function(object, style = NULL)
   checkPtrType(object, "GtkWidget")
   if (!is.null( style )) checkPtrType(style, "GtkStyle")
 
-  w <- .RGtkCall("S_gtk_widget_set_style", object, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_style", object, style)
 
   return(invisible(w))
 } 
@@ -28784,7 +28784,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_ensure_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_ensure_style", object)
 
   return(invisible(w))
 } 
@@ -28795,7 +28795,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_style", object)
 
   return(w)
 } 
@@ -28807,7 +28807,7 @@ function(object, style)
   checkPtrType(object, "GtkWidget")
   checkPtrType(style, "GtkRcStyle")
 
-  w <- .RGtkCall("S_gtk_widget_modify_style", object, style, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_style", object, style)
 
   return(invisible(w))
 } 
@@ -28818,7 +28818,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_modifier_style", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_modifier_style", object)
 
   return(w)
 } 
@@ -28831,7 +28831,7 @@ function(object, state, color = NULL)
   
   if (!is.null( color )) color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_widget_modify_fg", object, state, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_fg", object, state, color)
 
   return(invisible(w))
 } 
@@ -28844,7 +28844,7 @@ function(object, state, color = NULL)
   
   if (!is.null( color )) color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_widget_modify_bg", object, state, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_bg", object, state, color)
 
   return(invisible(w))
 } 
@@ -28857,7 +28857,7 @@ function(object, state, color = NULL)
   
   if (!is.null( color )) color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_widget_modify_text", object, state, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_text", object, state, color)
 
   return(invisible(w))
 } 
@@ -28870,7 +28870,7 @@ function(object, state, color = NULL)
   
   if (!is.null( color )) color <- as.GdkColor(color)
 
-  w <- .RGtkCall("S_gtk_widget_modify_base", object, state, color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_base", object, state, color)
 
   return(invisible(w))
 } 
@@ -28882,7 +28882,7 @@ function(object, font.desc = NULL)
   checkPtrType(object, "GtkWidget")
   if (!is.null( font.desc )) checkPtrType(font.desc, "PangoFontDescription")
 
-  w <- .RGtkCall("S_gtk_widget_modify_font", object, font.desc, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_modify_font", object, font.desc)
 
   return(invisible(w))
 } 
@@ -28893,7 +28893,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_create_pango_context", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_create_pango_context", object)
 
   return(w)
 } 
@@ -28904,7 +28904,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_pango_context", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_pango_context", object)
 
   return(w)
 } 
@@ -28916,7 +28916,7 @@ function(object, text)
   checkPtrType(object, "GtkWidget")
   text <- as.character(text)
 
-  w <- .RGtkCall("S_gtk_widget_create_pango_layout", object, text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_create_pango_layout", object, text)
 
   return(w)
 } 
@@ -28930,7 +28930,7 @@ function(object, stock.id, size, detail = NULL)
   
   if (!is.null( detail )) detail <- as.character(detail)
 
-  w <- .RGtkCall("S_gtk_widget_render_icon", object, stock.id, size, detail, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_render_icon", object, stock.id, size, detail)
 
   return(w)
 } 
@@ -28942,7 +28942,7 @@ function(object, name)
   checkPtrType(object, "GtkWidget")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_widget_set_composite_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_composite_name", object, name)
 
   return(invisible(w))
 } 
@@ -28953,7 +28953,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_composite_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_composite_name", object)
 
   return(w)
 } 
@@ -28964,7 +28964,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_reset_rc_styles", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_reset_rc_styles", object)
 
   return(invisible(w))
 } 
@@ -28975,7 +28975,7 @@ function(cmap)
 {
   checkPtrType(cmap, "GdkColormap")
 
-  w <- .RGtkCall("S_gtk_widget_push_colormap", cmap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_push_colormap", cmap)
 
   return(w)
 } 
@@ -28986,7 +28986,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_push_composite_child", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_push_composite_child")
 
   return(w)
 } 
@@ -28997,7 +28997,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_pop_composite_child", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_pop_composite_child")
 
   return(w)
 } 
@@ -29008,7 +29008,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_pop_colormap", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_pop_colormap")
 
   return(w)
 } 
@@ -29020,7 +29020,7 @@ function(klass, pspec)
   checkPtrType(klass, "GtkWidgetClass")
   pspec <- as.GParamSpec(pspec)
 
-  w <- .RGtkCall("S_gtk_widget_class_install_style_property", klass, pspec, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_class_install_style_property", klass, pspec)
 
   return(w)
 } 
@@ -29032,7 +29032,7 @@ function(klass, property.name)
   checkPtrType(klass, "GtkWidgetClass")
   property.name <- as.character(property.name)
 
-  w <- .RGtkCall("S_gtk_widget_class_find_style_property", klass, property.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_class_find_style_property", klass, property.name)
 
   return(w)
 } 
@@ -29043,7 +29043,7 @@ function(klass)
 {
   checkPtrType(klass, "GtkWidgetClass")
 
-  w <- .RGtkCall("S_gtk_widget_class_list_style_properties", klass, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_class_list_style_properties", klass)
 
   return(w)
 } 
@@ -29055,7 +29055,7 @@ function(object, property.name)
   checkPtrType(object, "GtkWidget")
   property.name <- as.character(property.name)
 
-  w <- .RGtkCall("S_gtk_widget_style_get_property", object, property.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_style_get_property", object, property.name)
 
   return(w)
 } 
@@ -29066,7 +29066,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_get_default_style", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_default_style")
 
   return(w)
 } 
@@ -29077,7 +29077,7 @@ function(colormap)
 {
   checkPtrType(colormap, "GdkColormap")
 
-  w <- .RGtkCall("S_gtk_widget_set_default_colormap", colormap, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_default_colormap", colormap)
 
   return(w)
 } 
@@ -29088,7 +29088,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_get_default_colormap", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_default_colormap")
 
   return(w)
 } 
@@ -29099,7 +29099,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_get_default_visual", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_default_visual")
 
   return(w)
 } 
@@ -29111,7 +29111,7 @@ function(object, dir)
   checkPtrType(object, "GtkWidget")
   
 
-  w <- .RGtkCall("S_gtk_widget_set_direction", object, dir, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_direction", object, dir)
 
   return(invisible(w))
 } 
@@ -29122,7 +29122,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_direction", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_direction", object)
 
   return(w)
 } 
@@ -29133,7 +29133,7 @@ function(dir)
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_set_default_direction", dir, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_set_default_direction", dir)
 
   return(w)
 } 
@@ -29144,7 +29144,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_widget_get_default_direction", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_default_direction")
 
   return(w)
 } 
@@ -29158,7 +29158,7 @@ function(object, shape.mask, offset.x, offset.y)
   offset.x <- as.integer(offset.x)
   offset.y <- as.integer(offset.y)
 
-  w <- .RGtkCall("S_gtk_widget_shape_combine_mask", object, shape.mask, offset.x, offset.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_shape_combine_mask", object, shape.mask, offset.x, offset.y)
 
   return(invisible(w))
 } 
@@ -29169,7 +29169,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_reset_shapes", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_reset_shapes", object)
 
   return(invisible(w))
 } 
@@ -29180,7 +29180,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_path", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_path", object)
 
   return(invisible(w))
 } 
@@ -29191,7 +29191,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_class_path", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_class_path", object)
 
   return(invisible(w))
 } 
@@ -29202,7 +29202,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_list_mnemonic_labels", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_list_mnemonic_labels", object)
 
   return(w)
 } 
@@ -29214,7 +29214,7 @@ function(object, label)
   checkPtrType(object, "GtkWidget")
   checkPtrType(label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_add_mnemonic_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_add_mnemonic_label", object, label)
 
   return(invisible(w))
 } 
@@ -29226,7 +29226,7 @@ function(object, label)
   checkPtrType(object, "GtkWidget")
   checkPtrType(label, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_remove_mnemonic_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_remove_mnemonic_label", object, label)
 
   return(invisible(w))
 } 
@@ -29237,7 +29237,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_requisition_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_requisition_get_type")
 
   return(w)
 } 
@@ -29248,7 +29248,7 @@ function(object)
 {
   checkPtrType(object, "GtkRequisition")
 
-  w <- .RGtkCall("S_gtk_requisition_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_requisition_copy", object)
 
   return(w)
 } 
@@ -29259,7 +29259,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_window_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_type")
 
   return(w)
 } 
@@ -29270,7 +29270,7 @@ function(type = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_window_new", type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_new", type)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -29285,7 +29285,7 @@ function(object, title)
   checkPtrType(object, "GtkWindow")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_window_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -29296,7 +29296,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_title", object)
 
   return(w)
 } 
@@ -29309,7 +29309,7 @@ function(object, wmclass.name, wmclass.class)
   wmclass.name <- as.character(wmclass.name)
   wmclass.class <- as.character(wmclass.class)
 
-  w <- .RGtkCall("S_gtk_window_set_wmclass", object, wmclass.name, wmclass.class, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_wmclass", object, wmclass.name, wmclass.class)
 
   return(invisible(w))
 } 
@@ -29321,7 +29321,7 @@ function(object, role)
   checkPtrType(object, "GtkWindow")
   role <- as.character(role)
 
-  w <- .RGtkCall("S_gtk_window_set_role", object, role, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_role", object, role)
 
   return(invisible(w))
 } 
@@ -29332,7 +29332,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_role", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_role", object)
 
   return(w)
 } 
@@ -29344,7 +29344,7 @@ function(object, accel.group)
   checkPtrType(object, "GtkWindow")
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_window_add_accel_group", object, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_add_accel_group", object, accel.group)
 
   return(invisible(w))
 } 
@@ -29356,7 +29356,7 @@ function(object, accel.group)
   checkPtrType(object, "GtkWindow")
   checkPtrType(accel.group, "GtkAccelGroup")
 
-  w <- .RGtkCall("S_gtk_window_remove_accel_group", object, accel.group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_remove_accel_group", object, accel.group)
 
   return(invisible(w))
 } 
@@ -29368,7 +29368,7 @@ function(object, position)
   checkPtrType(object, "GtkWindow")
   
 
-  w <- .RGtkCall("S_gtk_window_set_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_position", object, position)
 
   return(invisible(w))
 } 
@@ -29379,7 +29379,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_activate_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_activate_focus", object)
 
   return(w)
 } 
@@ -29391,7 +29391,7 @@ function(object, focus = NULL)
   checkPtrType(object, "GtkWindow")
   if (!is.null( focus )) checkPtrType(focus, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_window_set_focus", object, focus, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_focus", object, focus)
 
   return(invisible(w))
 } 
@@ -29402,7 +29402,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_focus", object)
 
   return(w)
 } 
@@ -29414,7 +29414,7 @@ function(object, default.widget = NULL)
   checkPtrType(object, "GtkWindow")
   if (!is.null( default.widget )) checkPtrType(default.widget, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_window_set_default", object, default.widget, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default", object, default.widget)
 
   return(invisible(w))
 } 
@@ -29425,7 +29425,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_activate_default", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_activate_default", object)
 
   return(w)
 } 
@@ -29437,7 +29437,7 @@ function(object, parent = NULL)
   checkPtrType(object, "GtkWindow")
   if (!is.null( parent )) checkPtrType(parent, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_set_transient_for", object, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_transient_for", object, parent)
 
   return(invisible(w))
 } 
@@ -29448,7 +29448,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_transient_for", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_transient_for", object)
 
   return(w)
 } 
@@ -29460,7 +29460,7 @@ function(object, hint)
   checkPtrType(object, "GtkWindow")
   
 
-  w <- .RGtkCall("S_gtk_window_set_type_hint", object, hint, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_type_hint", object, hint)
 
   return(invisible(w))
 } 
@@ -29471,7 +29471,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_type_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_type_hint", object)
 
   return(w)
 } 
@@ -29483,7 +29483,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_skip_taskbar_hint", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_skip_taskbar_hint", object, setting)
 
   return(invisible(w))
 } 
@@ -29494,7 +29494,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_skip_taskbar_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_skip_taskbar_hint", object)
 
   return(w)
 } 
@@ -29506,7 +29506,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_skip_pager_hint", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_skip_pager_hint", object, setting)
 
   return(invisible(w))
 } 
@@ -29517,7 +29517,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_skip_pager_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_skip_pager_hint", object)
 
   return(w)
 } 
@@ -29529,7 +29529,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_urgency_hint", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_urgency_hint", object, setting)
 
   return(invisible(w))
 } 
@@ -29540,7 +29540,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_urgency_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_urgency_hint", object)
 
   return(w)
 } 
@@ -29552,7 +29552,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_accept_focus", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_accept_focus", object, setting)
 
   return(invisible(w))
 } 
@@ -29563,7 +29563,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_accept_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_accept_focus", object)
 
   return(w)
 } 
@@ -29575,7 +29575,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_destroy_with_parent", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_destroy_with_parent", object, setting)
 
   return(invisible(w))
 } 
@@ -29586,7 +29586,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_destroy_with_parent", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_destroy_with_parent", object)
 
   return(w)
 } 
@@ -29598,7 +29598,7 @@ function(object, resizable)
   checkPtrType(object, "GtkWindow")
   resizable <- as.logical(resizable)
 
-  w <- .RGtkCall("S_gtk_window_set_resizable", object, resizable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_resizable", object, resizable)
 
   return(invisible(w))
 } 
@@ -29609,7 +29609,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_resizable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_resizable", object)
 
   return(w)
 } 
@@ -29621,7 +29621,7 @@ function(object, gravity)
   checkPtrType(object, "GtkWindow")
   
 
-  w <- .RGtkCall("S_gtk_window_set_gravity", object, gravity, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_gravity", object, gravity)
 
   return(invisible(w))
 } 
@@ -29632,7 +29632,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_gravity", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_gravity", object)
 
   return(w)
 } 
@@ -29645,7 +29645,7 @@ function(object, geometry.widget, geometry)
   checkPtrType(geometry.widget, "GtkWidget")
   geometry <- as.GdkGeometry(geometry)
 
-  w <- .RGtkCall("S_gtk_window_set_geometry_hints", object, geometry.widget, geometry, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_geometry_hints", object, geometry.widget, geometry)
 
   return(w)
 } 
@@ -29657,7 +29657,7 @@ function(object, screen)
   checkPtrType(object, "GtkWindow")
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_window_set_screen", object, screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_screen", object, screen)
 
   return(invisible(w))
 } 
@@ -29668,7 +29668,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_screen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_screen", object)
 
   return(w)
 } 
@@ -29679,7 +29679,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_is_active", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_is_active", object)
 
   return(w)
 } 
@@ -29690,7 +29690,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_has_toplevel_focus", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_has_toplevel_focus", object)
 
   return(w)
 } 
@@ -29702,7 +29702,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_has_frame", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_has_frame", object, setting)
 
   return(invisible(w))
 } 
@@ -29713,7 +29713,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_has_frame", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_has_frame", object)
 
   return(w)
 } 
@@ -29728,7 +29728,7 @@ function(object, left, top, right, bottom)
   right <- as.integer(right)
   bottom <- as.integer(bottom)
 
-  w <- .RGtkCall("S_gtk_window_set_frame_dimensions", object, left, top, right, bottom, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_frame_dimensions", object, left, top, right, bottom)
 
   return(invisible(w))
 } 
@@ -29739,7 +29739,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_frame_dimensions", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_frame_dimensions", object)
 
   return(invisible(w))
 } 
@@ -29751,7 +29751,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_decorated", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_decorated", object, setting)
 
   return(invisible(w))
 } 
@@ -29762,7 +29762,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_decorated", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_decorated", object)
 
   return(w)
 } 
@@ -29774,7 +29774,7 @@ function(object, list)
   checkPtrType(object, "GtkWindow")
   list <- as.GList(list)
 
-  w <- .RGtkCall("S_gtk_window_set_icon_list", object, list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_icon_list", object, list)
 
   return(invisible(w))
 } 
@@ -29785,7 +29785,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_icon_list", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_icon_list", object)
 
   return(w)
 } 
@@ -29797,7 +29797,7 @@ function(object, icon = NULL)
   checkPtrType(object, "GtkWindow")
   if (!is.null( icon )) checkPtrType(icon, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_window_set_icon", object, icon, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_icon", object, icon)
 
   return(invisible(w))
 } 
@@ -29809,7 +29809,7 @@ function(object, filename, .errwarn = TRUE)
   checkPtrType(object, "GtkWindow")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_window_set_icon_from_file", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_icon_from_file", object, filename)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -29823,7 +29823,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_icon", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_icon", object)
 
   return(w)
 } 
@@ -29834,7 +29834,7 @@ function(list)
 {
   list <- as.GList(list)
 
-  w <- .RGtkCall("S_gtk_window_set_default_icon_list", list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default_icon_list", list)
 
   return(w)
 } 
@@ -29845,7 +29845,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_window_get_default_icon_list", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_default_icon_list")
 
   return(w)
 } 
@@ -29856,7 +29856,7 @@ function(icon)
 {
   checkPtrType(icon, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_window_set_default_icon", icon, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default_icon", icon)
 
   return(w)
 } 
@@ -29867,7 +29867,7 @@ function(filename, .errwarn = TRUE)
 {
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_window_set_default_icon_from_file", filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default_icon_from_file", filename)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -29881,7 +29881,7 @@ function(setting)
 {
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_auto_startup_notification", setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_auto_startup_notification", setting)
 
   return(w)
 } 
@@ -29893,7 +29893,7 @@ function(object, modal)
   checkPtrType(object, "GtkWindow")
   modal <- as.logical(modal)
 
-  w <- .RGtkCall("S_gtk_window_set_modal", object, modal, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_modal", object, modal)
 
   return(invisible(w))
 } 
@@ -29904,7 +29904,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_modal", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_modal", object)
 
   return(w)
 } 
@@ -29915,7 +29915,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_window_list_toplevels", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_list_toplevels")
 
   return(w)
 } 
@@ -29928,7 +29928,7 @@ function(object, keyval, target)
   keyval <- as.numeric(keyval)
   checkPtrType(target, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_window_add_mnemonic", object, keyval, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_add_mnemonic", object, keyval, target)
 
   return(invisible(w))
 } 
@@ -29941,7 +29941,7 @@ function(object, keyval, target)
   keyval <- as.numeric(keyval)
   checkPtrType(target, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_window_remove_mnemonic", object, keyval, target, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_remove_mnemonic", object, keyval, target)
 
   return(invisible(w))
 } 
@@ -29954,7 +29954,7 @@ function(object, keyval, modifier)
   keyval <- as.numeric(keyval)
   
 
-  w <- .RGtkCall("S_gtk_window_mnemonic_activate", object, keyval, modifier, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_mnemonic_activate", object, keyval, modifier)
 
   return(w)
 } 
@@ -29966,7 +29966,7 @@ function(object, modifier)
   checkPtrType(object, "GtkWindow")
   
 
-  w <- .RGtkCall("S_gtk_window_set_mnemonic_modifier", object, modifier, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_mnemonic_modifier", object, modifier)
 
   return(invisible(w))
 } 
@@ -29977,7 +29977,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_mnemonic_modifier", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_mnemonic_modifier", object)
 
   return(w)
 } 
@@ -29989,7 +29989,7 @@ function(object, event)
   checkPtrType(object, "GtkWindow")
   checkPtrType(event, "GdkEventKey")
 
-  w <- .RGtkCall("S_gtk_window_activate_key", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_activate_key", object, event)
 
   return(w)
 } 
@@ -30001,7 +30001,7 @@ function(object, event)
   checkPtrType(object, "GtkWindow")
   checkPtrType(event, "GdkEventKey")
 
-  w <- .RGtkCall("S_gtk_window_propagate_key_event", object, event, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_propagate_key_event", object, event)
 
   return(w)
 } 
@@ -30012,7 +30012,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_present", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_present", object)
 
   return(invisible(w))
 } 
@@ -30024,7 +30024,7 @@ function(object, timestamp)
   checkPtrType(object, "GtkWindow")
   timestamp <- as.numeric(timestamp)
 
-  w <- .RGtkCall("S_gtk_window_present_with_time", object, timestamp, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_present_with_time", object, timestamp)
 
   return(invisible(w))
 } 
@@ -30035,7 +30035,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_iconify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_iconify", object)
 
   return(invisible(w))
 } 
@@ -30046,7 +30046,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_deiconify", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_deiconify", object)
 
   return(invisible(w))
 } 
@@ -30057,7 +30057,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_stick", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_stick", object)
 
   return(invisible(w))
 } 
@@ -30068,7 +30068,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_unstick", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_unstick", object)
 
   return(invisible(w))
 } 
@@ -30079,7 +30079,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_maximize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_maximize", object)
 
   return(invisible(w))
 } 
@@ -30090,7 +30090,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_unmaximize", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_unmaximize", object)
 
   return(invisible(w))
 } 
@@ -30101,7 +30101,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_fullscreen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_fullscreen", object)
 
   return(invisible(w))
 } 
@@ -30112,7 +30112,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_unfullscreen", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_unfullscreen", object)
 
   return(invisible(w))
 } 
@@ -30124,7 +30124,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_keep_above", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_keep_above", object, setting)
 
   return(invisible(w))
 } 
@@ -30136,7 +30136,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_keep_below", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_keep_below", object, setting)
 
   return(invisible(w))
 } 
@@ -30152,7 +30152,7 @@ function(object, edge, button, root.x, root.y, timestamp)
   root.y <- as.integer(root.y)
   timestamp <- as.numeric(timestamp)
 
-  w <- .RGtkCall("S_gtk_window_begin_resize_drag", object, edge, button, root.x, root.y, timestamp, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_begin_resize_drag", object, edge, button, root.x, root.y, timestamp)
 
   return(invisible(w))
 } 
@@ -30167,7 +30167,7 @@ function(object, button, root.x, root.y, timestamp)
   root.y <- as.integer(root.y)
   timestamp <- as.numeric(timestamp)
 
-  w <- .RGtkCall("S_gtk_window_begin_move_drag", object, button, root.x, root.y, timestamp, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_begin_move_drag", object, button, root.x, root.y, timestamp)
 
   return(invisible(w))
 } 
@@ -30184,7 +30184,7 @@ function(object, allow.shrink, allow.grow, auto.shrink)
   allow.grow <- as.integer(allow.grow)
   auto.shrink <- as.integer(auto.shrink)
 
-  w <- .RGtkCall("S_gtk_window_set_policy", object, allow.shrink, allow.grow, auto.shrink, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_policy", object, allow.shrink, allow.grow, auto.shrink)
 
   return(invisible(w))
 } 
@@ -30197,7 +30197,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_window_set_default_size", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default_size", object, width, height)
 
   return(invisible(w))
 } 
@@ -30208,7 +30208,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_default_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_default_size", object)
 
   return(invisible(w))
 } 
@@ -30221,7 +30221,7 @@ function(object, width, height)
   width <- as.integer(width)
   height <- as.integer(height)
 
-  w <- .RGtkCall("S_gtk_window_resize", object, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_resize", object, width, height)
 
   return(invisible(w))
 } 
@@ -30232,7 +30232,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_size", object)
 
   return(invisible(w))
 } 
@@ -30245,7 +30245,7 @@ function(object, x, y)
   x <- as.integer(x)
   y <- as.integer(y)
 
-  w <- .RGtkCall("S_gtk_window_move", object, x, y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_move", object, x, y)
 
   return(invisible(w))
 } 
@@ -30256,7 +30256,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_position", object)
 
   return(invisible(w))
 } 
@@ -30267,7 +30267,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_reshow_with_initial_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_reshow_with_initial_size", object)
 
   return(invisible(w))
 } 
@@ -30278,7 +30278,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_window_group_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_group_get_type")
 
   return(w)
 } 
@@ -30289,7 +30289,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_window_group_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_group_new")
 
   return(w)
 } 
@@ -30301,7 +30301,7 @@ function(object, window)
   checkPtrType(object, "GtkWindowGroup")
   checkPtrType(window, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_group_add_window", object, window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_group_add_window", object, window)
 
   return(invisible(w))
 } 
@@ -30313,7 +30313,7 @@ function(object, window)
   checkPtrType(object, "GtkWindowGroup")
   checkPtrType(window, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_group_remove_window", object, window, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_group_remove_window", object, window)
 
   return(invisible(w))
 } 
@@ -30325,7 +30325,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_focus_on_map", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_focus_on_map", object, setting)
 
   return(invisible(w))
 } 
@@ -30336,7 +30336,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_focus_on_map", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_focus_on_map", object)
 
   return(w)
 } 
@@ -30348,7 +30348,7 @@ function(object, name = NULL)
   checkPtrType(object, "GtkWindow")
   if (!is.null( name )) name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_window_set_icon_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_icon_name", object, name)
 
   return(invisible(w))
 } 
@@ -30359,7 +30359,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_icon_name", object)
 
   return(w)
 } 
@@ -30370,7 +30370,7 @@ function(name)
 {
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_window_set_default_icon_name", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_default_icon_name", name)
 
   return(w)
 } 
@@ -30381,7 +30381,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_get_action", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_get_action", object)
 
   return(w)
 } 
@@ -30392,7 +30392,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_assistant_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_type")
 
   return(w)
 } 
@@ -30403,7 +30403,7 @@ function(show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_assistant_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_new")
 
   if(show)
     gtkWidgetShowAll(w)
@@ -30417,7 +30417,7 @@ function(object)
 {
   checkPtrType(object, "GtkAssistant")
 
-  w <- .RGtkCall("S_gtk_assistant_get_current_page", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_current_page", object)
 
   return(w)
 } 
@@ -30429,7 +30429,7 @@ function(object, page.num)
   checkPtrType(object, "GtkAssistant")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_assistant_set_current_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_current_page", object, page.num)
 
   return(invisible(w))
 } 
@@ -30440,7 +30440,7 @@ function(object)
 {
   checkPtrType(object, "GtkAssistant")
 
-  w <- .RGtkCall("S_gtk_assistant_get_n_pages", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_n_pages", object)
 
   return(w)
 } 
@@ -30452,7 +30452,7 @@ function(object, page.num)
   checkPtrType(object, "GtkAssistant")
   page.num <- as.integer(page.num)
 
-  w <- .RGtkCall("S_gtk_assistant_get_nth_page", object, page.num, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_nth_page", object, page.num)
 
   return(w)
 } 
@@ -30464,7 +30464,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_prepend_page", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_prepend_page", object, page)
 
   return(w)
 } 
@@ -30476,7 +30476,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_append_page", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_append_page", object, page)
 
   return(w)
 } 
@@ -30489,7 +30489,7 @@ function(object, page, position)
   checkPtrType(page, "GtkWidget")
   position <- as.integer(position)
 
-  w <- .RGtkCall("S_gtk_assistant_insert_page", object, page, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_insert_page", object, page, position)
 
   return(w)
 } 
@@ -30502,7 +30502,7 @@ function(object, page.func, data)
   page.func <- as.function(page.func)
   
 
-  w <- .RGtkCall("S_gtk_assistant_set_forward_page_func", object, page.func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_forward_page_func", object, page.func, data)
 
   return(w)
 } 
@@ -30515,7 +30515,7 @@ function(object, page, type)
   checkPtrType(page, "GtkWidget")
   
 
-  w <- .RGtkCall("S_gtk_assistant_set_page_type", object, page, type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_page_type", object, page, type)
 
   return(invisible(w))
 } 
@@ -30527,7 +30527,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_get_page_type", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_page_type", object, page)
 
   return(w)
 } 
@@ -30540,7 +30540,7 @@ function(object, page, title)
   checkPtrType(page, "GtkWidget")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_assistant_set_page_title", object, page, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_page_title", object, page, title)
 
   return(invisible(w))
 } 
@@ -30552,7 +30552,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_get_page_title", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_page_title", object, page)
 
   return(w)
 } 
@@ -30565,7 +30565,7 @@ function(object, page, pixbuf = NULL)
   checkPtrType(page, "GtkWidget")
   if (!is.null( pixbuf )) checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_assistant_set_page_header_image", object, page, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_page_header_image", object, page, pixbuf)
 
   return(invisible(w))
 } 
@@ -30577,7 +30577,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_get_page_header_image", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_page_header_image", object, page)
 
   return(w)
 } 
@@ -30590,7 +30590,7 @@ function(object, page, pixbuf = NULL)
   checkPtrType(page, "GtkWidget")
   if (!is.null( pixbuf )) checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_assistant_set_page_side_image", object, page, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_page_side_image", object, page, pixbuf)
 
   return(invisible(w))
 } 
@@ -30602,7 +30602,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_get_page_side_image", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_page_side_image", object, page)
 
   return(w)
 } 
@@ -30615,7 +30615,7 @@ function(object, page, complete)
   checkPtrType(page, "GtkWidget")
   complete <- as.logical(complete)
 
-  w <- .RGtkCall("S_gtk_assistant_set_page_complete", object, page, complete, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_set_page_complete", object, page, complete)
 
   return(invisible(w))
 } 
@@ -30627,7 +30627,7 @@ function(object, page)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(page, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_get_page_complete", object, page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_get_page_complete", object, page)
 
   return(w)
 } 
@@ -30639,7 +30639,7 @@ function(object, child)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_add_action_widget", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_add_action_widget", object, child)
 
   return(invisible(w))
 } 
@@ -30651,7 +30651,7 @@ function(object, child)
   checkPtrType(object, "GtkAssistant")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_assistant_remove_action_widget", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_remove_action_widget", object, child)
 
   return(invisible(w))
 } 
@@ -30662,7 +30662,7 @@ function(object)
 {
   checkPtrType(object, "GtkAssistant")
 
-  w <- .RGtkCall("S_gtk_assistant_update_buttons_state", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_update_buttons_state", object)
 
   return(invisible(w))
 } 
@@ -30674,7 +30674,7 @@ function(object, position)
   checkPtrType(object, "GtkButton")
   
 
-  w <- .RGtkCall("S_gtk_button_set_image_position", object, position, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_set_image_position", object, position)
 
   return(invisible(w))
 } 
@@ -30685,7 +30685,7 @@ function(object)
 {
   checkPtrType(object, "GtkButton")
 
-  w <- .RGtkCall("S_gtk_button_get_image_position", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_button_get_image_position", object)
 
   return(w)
 } 
@@ -30696,7 +30696,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_accel_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_accel_get_type")
 
   return(w)
 } 
@@ -30707,7 +30707,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_accel_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_accel_new")
 
   return(w)
 } 
@@ -30718,7 +30718,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_spin_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_spin_get_type")
 
   return(w)
 } 
@@ -30729,7 +30729,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_spin_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_spin_new")
 
   return(w)
 } 
@@ -30743,7 +30743,7 @@ function(object, buffer, callback, user.data)
   callback <- as.function(callback)
   
 
-  w <- .RGtkCall("S_gtk_clipboard_request_rich_text", object, buffer, callback, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_request_rich_text", object, buffer, callback, user.data)
 
   return(invisible(w))
 } 
@@ -30755,7 +30755,7 @@ function(object, buffer)
   checkPtrType(object, "GtkClipboard")
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_for_rich_text", object, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_for_rich_text", object, buffer)
 
   return(w)
 } 
@@ -30767,7 +30767,7 @@ function(object, buffer)
   checkPtrType(object, "GtkClipboard")
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_clipboard_wait_is_rich_text_available", object, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clipboard_wait_is_rich_text_available", object, buffer)
 
   return(w)
 } 
@@ -30778,7 +30778,7 @@ function(object)
 {
   checkPtrType(object, "GtkComboBox")
 
-  w <- .RGtkCall("S_gtk_combo_box_get_title", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_get_title", object)
 
   return(w)
 } 
@@ -30790,7 +30790,7 @@ function(object, title)
   checkPtrType(object, "GtkComboBox")
   title <- as.character(title)
 
-  w <- .RGtkCall("S_gtk_combo_box_set_title", object, title, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_combo_box_set_title", object, title)
 
   return(invisible(w))
 } 
@@ -30802,7 +30802,7 @@ function(object, track.motion)
   checkPtrType(object, "GtkWidget")
   track.motion <- as.logical(track.motion)
 
-  w <- .RGtkCall("S_gtk_drag_dest_set_track_motion", object, track.motion, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_set_track_motion", object, track.motion)
 
   return(invisible(w))
 } 
@@ -30813,7 +30813,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_drag_dest_get_track_motion", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_drag_dest_get_track_motion", object)
 
   return(w)
 } 
@@ -30825,7 +30825,7 @@ function(object, border = NULL)
   checkPtrType(object, "GtkEntry")
   if (!is.null( border )) checkPtrType(border, "GtkBorder")
 
-  w <- .RGtkCall("S_gtk_entry_set_inner_border", object, border, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_set_inner_border", object, border)
 
   return(invisible(w))
 } 
@@ -30836,7 +30836,7 @@ function(object)
 {
   checkPtrType(object, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_entry_get_inner_border", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_entry_get_inner_border", object)
 
   return(w)
 } 
@@ -30847,7 +30847,7 @@ function(object)
 {
   checkPtrType(object, "GtkFileChooserButton")
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_get_focus_on_click", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_get_focus_on_click", object)
 
   return(w)
 } 
@@ -30859,7 +30859,7 @@ function(object, focus.on.click)
   checkPtrType(object, "GtkFileChooserButton")
   focus.on.click <- as.logical(focus.on.click)
 
-  w <- .RGtkCall("S_gtk_file_chooser_button_set_focus_on_click", object, focus.on.click, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_file_chooser_button_set_focus_on_click", object, focus.on.click)
 
   return(invisible(w))
 } 
@@ -30870,7 +30870,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_link_button_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_get_type")
 
   return(w)
 } 
@@ -30881,7 +30881,7 @@ function(uri)
 {
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_link_button_new", uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_new", uri)
 
   return(w)
 } 
@@ -30893,7 +30893,7 @@ function(uri, label = NULL, show = TRUE)
   uri <- as.character(uri)
   if (!is.null( label )) label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_link_button_new_with_label", uri, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_new_with_label", uri, label)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -30907,7 +30907,7 @@ function(object)
 {
   checkPtrType(object, "GtkLinkButton")
 
-  w <- .RGtkCall("S_gtk_link_button_get_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_get_uri", object)
 
   return(w)
 } 
@@ -30919,7 +30919,7 @@ function(object, uri)
   checkPtrType(object, "GtkLinkButton")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_link_button_set_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_set_uri", object, uri)
 
   return(invisible(w))
 } 
@@ -30931,7 +30931,7 @@ function(func, data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_link_button_set_uri_hook", func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_link_button_set_uri_hook", func, data)
 
   return(w)
 } 
@@ -30943,7 +30943,7 @@ function(object, image)
   checkPtrType(object, "GtkMessageDialog")
   checkPtrType(image, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_message_dialog_set_image", object, image, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_message_dialog_set_image", object, image)
 
   return(invisible(w))
 } 
@@ -30955,7 +30955,7 @@ function(func, data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_notebook_set_window_creation_hook", func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_window_creation_hook", func, data)
 
   return(invisible(w))
 } 
@@ -30967,7 +30967,7 @@ function(object, group.id)
   checkPtrType(object, "GtkNotebook")
   group.id <- as.integer(group.id)
 
-  w <- .RGtkCall("S_gtk_notebook_set_group_id", object, group.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_group_id", object, group.id)
 
   return(invisible(w))
 } 
@@ -30978,7 +30978,7 @@ function(object)
 {
   checkPtrType(object, "GtkNotebook")
 
-  w <- .RGtkCall("S_gtk_notebook_get_group_id", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_group_id", object)
 
   return(w)
 } 
@@ -30990,7 +30990,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_tab_reorderable", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_tab_reorderable", object, child)
 
   return(w)
 } 
@@ -31003,7 +31003,7 @@ function(object, child, reorderable)
   checkPtrType(child, "GtkWidget")
   reorderable <- as.logical(reorderable)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_reorderable", object, child, reorderable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_reorderable", object, child, reorderable)
 
   return(invisible(w))
 } 
@@ -31015,7 +31015,7 @@ function(object, child)
   checkPtrType(object, "GtkNotebook")
   checkPtrType(child, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_notebook_get_tab_detachable", object, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_get_tab_detachable", object, child)
 
   return(w)
 } 
@@ -31028,7 +31028,7 @@ function(object, child, detachable)
   checkPtrType(child, "GtkWidget")
   detachable <- as.logical(detachable)
 
-  w <- .RGtkCall("S_gtk_notebook_set_tab_detachable", object, child, detachable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_notebook_set_tab_detachable", object, child, detachable)
 
   return(invisible(w))
 } 
@@ -31039,7 +31039,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_type")
 
   return(w)
 } 
@@ -31050,7 +31050,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_page_setup_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_new")
 
   return(w)
 } 
@@ -31061,7 +31061,7 @@ function(object)
 {
   checkPtrType(object, "GtkPageSetup")
 
-  w <- .RGtkCall("S_gtk_page_setup_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_copy", object)
 
   return(w)
 } 
@@ -31072,7 +31072,7 @@ function(object)
 {
   checkPtrType(object, "GtkPageSetup")
 
-  w <- .RGtkCall("S_gtk_page_setup_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_orientation", object)
 
   return(w)
 } 
@@ -31084,7 +31084,7 @@ function(object, orientation)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_set_orientation", object, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_orientation", object, orientation)
 
   return(invisible(w))
 } 
@@ -31095,7 +31095,7 @@ function(object)
 {
   checkPtrType(object, "GtkPageSetup")
 
-  w <- .RGtkCall("S_gtk_page_setup_get_paper_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_paper_size", object)
 
   return(w)
 } 
@@ -31107,7 +31107,7 @@ function(object, size)
   checkPtrType(object, "GtkPageSetup")
   checkPtrType(size, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_page_setup_set_paper_size", object, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_paper_size", object, size)
 
   return(invisible(w))
 } 
@@ -31119,7 +31119,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_top_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_top_margin", object, unit)
 
   return(w)
 } 
@@ -31132,7 +31132,7 @@ function(object, margin, unit)
   margin <- as.numeric(margin)
   
 
-  w <- .RGtkCall("S_gtk_page_setup_set_top_margin", object, margin, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_top_margin", object, margin, unit)
 
   return(invisible(w))
 } 
@@ -31144,7 +31144,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_bottom_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_bottom_margin", object, unit)
 
   return(w)
 } 
@@ -31157,7 +31157,7 @@ function(object, margin, unit)
   margin <- as.numeric(margin)
   
 
-  w <- .RGtkCall("S_gtk_page_setup_set_bottom_margin", object, margin, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_bottom_margin", object, margin, unit)
 
   return(invisible(w))
 } 
@@ -31169,7 +31169,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_left_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_left_margin", object, unit)
 
   return(w)
 } 
@@ -31182,7 +31182,7 @@ function(object, margin, unit)
   margin <- as.numeric(margin)
   
 
-  w <- .RGtkCall("S_gtk_page_setup_set_left_margin", object, margin, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_left_margin", object, margin, unit)
 
   return(invisible(w))
 } 
@@ -31194,7 +31194,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_right_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_right_margin", object, unit)
 
   return(w)
 } 
@@ -31207,7 +31207,7 @@ function(object, margin, unit)
   margin <- as.numeric(margin)
   
 
-  w <- .RGtkCall("S_gtk_page_setup_set_right_margin", object, margin, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_right_margin", object, margin, unit)
 
   return(invisible(w))
 } 
@@ -31219,7 +31219,7 @@ function(object, size)
   checkPtrType(object, "GtkPageSetup")
   checkPtrType(size, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_page_setup_set_paper_size_and_default_margins", object, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_set_paper_size_and_default_margins", object, size)
 
   return(invisible(w))
 } 
@@ -31231,7 +31231,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_paper_width", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_paper_width", object, unit)
 
   return(w)
 } 
@@ -31243,7 +31243,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_paper_height", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_paper_height", object, unit)
 
   return(w)
 } 
@@ -31255,7 +31255,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_page_width", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_page_width", object, unit)
 
   return(w)
 } 
@@ -31267,7 +31267,7 @@ function(object, unit)
   checkPtrType(object, "GtkPageSetup")
   
 
-  w <- .RGtkCall("S_gtk_page_setup_get_page_height", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_setup_get_page_height", object, unit)
 
   return(w)
 } 
@@ -31278,7 +31278,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_type")
 
   return(w)
 } 
@@ -31289,7 +31289,7 @@ function(name = NULL)
 {
   if (!is.null( name )) name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_paper_size_new", name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_new", name)
 
   return(w)
 } 
@@ -31303,7 +31303,7 @@ function(ppd.name, ppd.display.name, width, height)
   width <- as.numeric(width)
   height <- as.numeric(height)
 
-  w <- .RGtkCall("S_gtk_paper_size_new_from_ppd", ppd.name, ppd.display.name, width, height, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_new_from_ppd", ppd.name, ppd.display.name, width, height)
 
   return(w)
 } 
@@ -31318,7 +31318,7 @@ function(name, display.name, width, height, unit)
   height <- as.numeric(height)
   
 
-  w <- .RGtkCall("S_gtk_paper_size_new_custom", name, display.name, width, height, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_new_custom", name, display.name, width, height, unit)
 
   return(w)
 } 
@@ -31329,7 +31329,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_copy", object)
 
   return(w)
 } 
@@ -31340,7 +31340,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_free", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_free", object)
 
   return(invisible(w))
 } 
@@ -31352,7 +31352,7 @@ function(object, size2)
   checkPtrType(object, "GtkPaperSize")
   checkPtrType(size2, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_is_equal", object, size2, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_is_equal", object, size2)
 
   return(w)
 } 
@@ -31363,7 +31363,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_name", object)
 
   return(w)
 } 
@@ -31374,7 +31374,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_get_display_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_display_name", object)
 
   return(w)
 } 
@@ -31385,7 +31385,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_get_ppd_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_ppd_name", object)
 
   return(w)
 } 
@@ -31397,7 +31397,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_width", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_width", object, unit)
 
   return(w)
 } 
@@ -31409,7 +31409,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_height", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_height", object, unit)
 
   return(w)
 } 
@@ -31420,7 +31420,7 @@ function(object)
 {
   checkPtrType(object, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_paper_size_is_custom", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_is_custom", object)
 
   return(w)
 } 
@@ -31434,7 +31434,7 @@ function(object, width, height, unit)
   height <- as.numeric(height)
   
 
-  w <- .RGtkCall("S_gtk_paper_size_set_size", object, width, height, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_set_size", object, width, height, unit)
 
   return(invisible(w))
 } 
@@ -31446,7 +31446,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_default_top_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_default_top_margin", object, unit)
 
   return(w)
 } 
@@ -31458,7 +31458,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_default_bottom_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_default_bottom_margin", object, unit)
 
   return(w)
 } 
@@ -31470,7 +31470,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_default_left_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_default_left_margin", object, unit)
 
   return(w)
 } 
@@ -31482,7 +31482,7 @@ function(object, unit)
   checkPtrType(object, "GtkPaperSize")
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_default_right_margin", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_default_right_margin", object, unit)
 
   return(w)
 } 
@@ -31493,7 +31493,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_paper_size_get_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_paper_size_get_default")
 
   return(w)
 } 
@@ -31504,7 +31504,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_context_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_type")
 
   return(w)
 } 
@@ -31515,7 +31515,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_cairo_context", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_cairo_context", object)
 
   return(w)
 } 
@@ -31526,7 +31526,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_page_setup", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_page_setup", object)
 
   return(w)
 } 
@@ -31537,7 +31537,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_width", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_width", object)
 
   return(w)
 } 
@@ -31548,7 +31548,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_height", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_height", object)
 
   return(w)
 } 
@@ -31559,7 +31559,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_dpi_x", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_dpi_x", object)
 
   return(w)
 } 
@@ -31570,7 +31570,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_dpi_y", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_dpi_y", object)
 
   return(w)
 } 
@@ -31581,7 +31581,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_get_pango_fontmap", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_get_pango_fontmap", object)
 
   return(w)
 } 
@@ -31592,7 +31592,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_create_pango_context", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_create_pango_context", object)
 
   return(w)
 } 
@@ -31603,7 +31603,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintContext")
 
-  w <- .RGtkCall("S_gtk_print_context_create_pango_layout", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_create_pango_layout", object)
 
   return(w)
 } 
@@ -31617,7 +31617,7 @@ function(object, cr, dpi.x, dpi.y)
   dpi.x <- as.numeric(dpi.x)
   dpi.y <- as.numeric(dpi.y)
 
-  w <- .RGtkCall("S_gtk_print_context_set_cairo_context", object, cr, dpi.x, dpi.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_context_set_cairo_context", object, cr, dpi.x, dpi.y)
 
   return(invisible(w))
 } 
@@ -31628,7 +31628,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_error_quark", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_error_quark")
 
   return(w)
 } 
@@ -31639,7 +31639,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_operation_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_type")
 
   return(w)
 } 
@@ -31650,7 +31650,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_operation_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_new")
 
   return(w)
 } 
@@ -31662,7 +31662,7 @@ function(object, default.page.setup = NULL)
   checkPtrType(object, "GtkPrintOperation")
   if (!is.null( default.page.setup )) checkPtrType(default.page.setup, "GtkPageSetup")
 
-  w <- .RGtkCall("S_gtk_print_operation_set_default_page_setup", object, default.page.setup, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_default_page_setup", object, default.page.setup)
 
   return(invisible(w))
 } 
@@ -31673,7 +31673,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_get_default_page_setup", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_default_page_setup", object)
 
   return(w)
 } 
@@ -31685,7 +31685,7 @@ function(object, print.settings = NULL)
   checkPtrType(object, "GtkPrintOperation")
   if (!is.null( print.settings )) checkPtrType(print.settings, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_operation_set_print_settings", object, print.settings, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_print_settings", object, print.settings)
 
   return(invisible(w))
 } 
@@ -31696,7 +31696,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_get_print_settings", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_print_settings", object)
 
   return(w)
 } 
@@ -31708,7 +31708,7 @@ function(object, job.name)
   checkPtrType(object, "GtkPrintOperation")
   job.name <- as.character(job.name)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_job_name", object, job.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_job_name", object, job.name)
 
   return(invisible(w))
 } 
@@ -31720,7 +31720,7 @@ function(object, n.pages)
   checkPtrType(object, "GtkPrintOperation")
   n.pages <- as.integer(n.pages)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_n_pages", object, n.pages, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_n_pages", object, n.pages)
 
   return(invisible(w))
 } 
@@ -31732,7 +31732,7 @@ function(object, current.page)
   checkPtrType(object, "GtkPrintOperation")
   current.page <- as.integer(current.page)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_current_page", object, current.page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_current_page", object, current.page)
 
   return(invisible(w))
 } 
@@ -31744,7 +31744,7 @@ function(object, full.page)
   checkPtrType(object, "GtkPrintOperation")
   full.page <- as.logical(full.page)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_use_full_page", object, full.page, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_use_full_page", object, full.page)
 
   return(invisible(w))
 } 
@@ -31756,7 +31756,7 @@ function(object, unit)
   checkPtrType(object, "GtkPrintOperation")
   
 
-  w <- .RGtkCall("S_gtk_print_operation_set_unit", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_unit", object, unit)
 
   return(invisible(w))
 } 
@@ -31768,7 +31768,7 @@ function(object, filename)
   checkPtrType(object, "GtkPrintOperation")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_export_filename", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_export_filename", object, filename)
 
   return(invisible(w))
 } 
@@ -31780,7 +31780,7 @@ function(object, track.status)
   checkPtrType(object, "GtkPrintOperation")
   track.status <- as.logical(track.status)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_track_print_status", object, track.status, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_track_print_status", object, track.status)
 
   return(invisible(w))
 } 
@@ -31792,7 +31792,7 @@ function(object, show.progress)
   checkPtrType(object, "GtkPrintOperation")
   show.progress <- as.logical(show.progress)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_show_progress", object, show.progress, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_show_progress", object, show.progress)
 
   return(invisible(w))
 } 
@@ -31804,7 +31804,7 @@ function(object, allow.async)
   checkPtrType(object, "GtkPrintOperation")
   allow.async <- as.logical(allow.async)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_allow_async", object, allow.async, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_allow_async", object, allow.async)
 
   return(invisible(w))
 } 
@@ -31816,7 +31816,7 @@ function(object, label)
   checkPtrType(object, "GtkPrintOperation")
   label <- as.character(label)
 
-  w <- .RGtkCall("S_gtk_print_operation_set_custom_tab_label", object, label, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_set_custom_tab_label", object, label)
 
   return(invisible(w))
 } 
@@ -31829,7 +31829,7 @@ function(object, action, parent = NULL, .errwarn = TRUE)
   
   if (!is.null( parent )) checkPtrType(parent, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_print_operation_run", object, action, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_run", object, action, parent)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -31843,7 +31843,7 @@ function(object, .errwarn = TRUE)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_get_error", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_error", object)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -31857,7 +31857,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_get_status", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_status", object)
 
   return(w)
 } 
@@ -31868,7 +31868,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_get_status_string", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_get_status_string", object)
 
   return(w)
 } 
@@ -31879,7 +31879,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_is_finished", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_is_finished", object)
 
   return(w)
 } 
@@ -31890,7 +31890,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperation")
 
-  w <- .RGtkCall("S_gtk_print_operation_cancel", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_cancel", object)
 
   return(invisible(w))
 } 
@@ -31903,7 +31903,7 @@ function(parent, page.setup = NULL, settings)
   if (!is.null( page.setup )) checkPtrType(page.setup, "GtkPageSetup")
   checkPtrType(settings, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_run_page_setup_dialog", parent, page.setup, settings, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_run_page_setup_dialog", parent, page.setup, settings)
 
   return(w)
 } 
@@ -31918,7 +31918,7 @@ function(parent, page.setup, settings, done.cb, data)
   done.cb <- as.function(done.cb)
   
 
-  w <- .RGtkCall("S_gtk_print_run_page_setup_dialog_async", parent, page.setup, settings, done.cb, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_run_page_setup_dialog_async", parent, page.setup, settings, done.cb, data)
 
   return(w)
 } 
@@ -31929,7 +31929,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_operation_preview_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_preview_get_type")
 
   return(w)
 } 
@@ -31941,7 +31941,7 @@ function(object, page.nr)
   checkPtrType(object, "GtkPrintOperationPreview")
   page.nr <- as.integer(page.nr)
 
-  w <- .RGtkCall("S_gtk_print_operation_preview_render_page", object, page.nr, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_preview_render_page", object, page.nr)
 
   return(invisible(w))
 } 
@@ -31952,7 +31952,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintOperationPreview")
 
-  w <- .RGtkCall("S_gtk_print_operation_preview_end_preview", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_preview_end_preview", object)
 
   return(invisible(w))
 } 
@@ -31964,7 +31964,7 @@ function(object, page.nr)
   checkPtrType(object, "GtkPrintOperationPreview")
   page.nr <- as.integer(page.nr)
 
-  w <- .RGtkCall("S_gtk_print_operation_preview_is_selected", object, page.nr, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_preview_is_selected", object, page.nr)
 
   return(w)
 } 
@@ -31975,7 +31975,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_settings_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_type")
 
   return(w)
 } 
@@ -31986,7 +31986,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_settings_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_new")
 
   return(w)
 } 
@@ -31997,7 +31997,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_copy", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_copy", object)
 
   return(w)
 } 
@@ -32009,7 +32009,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_has_key", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_has_key", object, key)
 
   return(w)
 } 
@@ -32021,7 +32021,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_get", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get", object, key)
 
   return(w)
 } 
@@ -32034,7 +32034,7 @@ function(object, key, value)
   key <- as.character(key)
   value <- as.character(value)
 
-  w <- .RGtkCall("S_gtk_print_settings_set", object, key, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set", object, key, value)
 
   return(invisible(w))
 } 
@@ -32046,7 +32046,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_unset", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_unset", object, key)
 
   return(invisible(w))
 } 
@@ -32059,7 +32059,7 @@ function(object, func, user.data = NULL)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_print_settings_foreach", object, func, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_foreach", object, func, user.data)
 
   return(invisible(w))
 } 
@@ -32071,7 +32071,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_get_bool", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_bool", object, key)
 
   return(w)
 } 
@@ -32084,7 +32084,7 @@ function(object, key, value)
   key <- as.character(key)
   value <- as.logical(value)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_bool", object, key, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_bool", object, key, value)
 
   return(invisible(w))
 } 
@@ -32096,7 +32096,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_get_double", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_double", object, key)
 
   return(w)
 } 
@@ -32109,7 +32109,7 @@ function(object, key, def)
   key <- as.character(key)
   def <- as.numeric(def)
 
-  w <- .RGtkCall("S_gtk_print_settings_get_double_with_default", object, key, def, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_double_with_default", object, key, def)
 
   return(w)
 } 
@@ -32122,7 +32122,7 @@ function(object, key, value)
   key <- as.character(key)
   value <- as.numeric(value)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_double", object, key, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_double", object, key, value)
 
   return(invisible(w))
 } 
@@ -32135,7 +32135,7 @@ function(object, key, unit)
   key <- as.character(key)
   
 
-  w <- .RGtkCall("S_gtk_print_settings_get_length", object, key, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_length", object, key, unit)
 
   return(w)
 } 
@@ -32149,7 +32149,7 @@ function(object, key, value, unit)
   value <- as.numeric(value)
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_length", object, key, value, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_length", object, key, value, unit)
 
   return(invisible(w))
 } 
@@ -32161,7 +32161,7 @@ function(object, key)
   checkPtrType(object, "GtkPrintSettings")
   key <- as.character(key)
 
-  w <- .RGtkCall("S_gtk_print_settings_get_int", object, key, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_int", object, key)
 
   return(w)
 } 
@@ -32174,7 +32174,7 @@ function(object, key, def)
   key <- as.character(key)
   def <- as.integer(def)
 
-  w <- .RGtkCall("S_gtk_print_settings_get_int_with_default", object, key, def, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_int_with_default", object, key, def)
 
   return(w)
 } 
@@ -32187,7 +32187,7 @@ function(object, key, value)
   key <- as.character(key)
   value <- as.integer(value)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_int", object, key, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_int", object, key, value)
 
   return(invisible(w))
 } 
@@ -32198,7 +32198,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_printer", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_printer", object)
 
   return(w)
 } 
@@ -32210,7 +32210,7 @@ function(object, printer)
   checkPtrType(object, "GtkPrintSettings")
   printer <- as.character(printer)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_printer", object, printer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_printer", object, printer)
 
   return(invisible(w))
 } 
@@ -32221,7 +32221,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_orientation", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_orientation", object)
 
   return(w)
 } 
@@ -32233,7 +32233,7 @@ function(object, orientation)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_orientation", object, orientation, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_orientation", object, orientation)
 
   return(invisible(w))
 } 
@@ -32244,7 +32244,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_paper_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_paper_size", object)
 
   return(w)
 } 
@@ -32256,7 +32256,7 @@ function(object, paper.size)
   checkPtrType(object, "GtkPrintSettings")
   checkPtrType(paper.size, "GtkPaperSize")
 
-  w <- .RGtkCall("S_gtk_print_settings_set_paper_size", object, paper.size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_paper_size", object, paper.size)
 
   return(invisible(w))
 } 
@@ -32268,7 +32268,7 @@ function(object, unit)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_get_paper_width", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_paper_width", object, unit)
 
   return(w)
 } 
@@ -32281,7 +32281,7 @@ function(object, width, unit)
   width <- as.numeric(width)
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_paper_width", object, width, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_paper_width", object, width, unit)
 
   return(invisible(w))
 } 
@@ -32293,7 +32293,7 @@ function(object, unit)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_get_paper_height", object, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_paper_height", object, unit)
 
   return(w)
 } 
@@ -32306,7 +32306,7 @@ function(object, height, unit)
   height <- as.numeric(height)
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_paper_height", object, height, unit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_paper_height", object, height, unit)
 
   return(invisible(w))
 } 
@@ -32317,7 +32317,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_use_color", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_use_color", object)
 
   return(w)
 } 
@@ -32329,7 +32329,7 @@ function(object, use.color)
   checkPtrType(object, "GtkPrintSettings")
   use.color <- as.logical(use.color)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_use_color", object, use.color, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_use_color", object, use.color)
 
   return(invisible(w))
 } 
@@ -32340,7 +32340,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_collate", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_collate", object)
 
   return(w)
 } 
@@ -32352,7 +32352,7 @@ function(object, collate)
   checkPtrType(object, "GtkPrintSettings")
   collate <- as.logical(collate)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_collate", object, collate, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_collate", object, collate)
 
   return(invisible(w))
 } 
@@ -32363,7 +32363,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_reverse", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_reverse", object)
 
   return(w)
 } 
@@ -32375,7 +32375,7 @@ function(object, reverse)
   checkPtrType(object, "GtkPrintSettings")
   reverse <- as.logical(reverse)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_reverse", object, reverse, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_reverse", object, reverse)
 
   return(invisible(w))
 } 
@@ -32386,7 +32386,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_duplex", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_duplex", object)
 
   return(w)
 } 
@@ -32398,7 +32398,7 @@ function(object, duplex)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_duplex", object, duplex, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_duplex", object, duplex)
 
   return(invisible(w))
 } 
@@ -32409,7 +32409,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_quality", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_quality", object)
 
   return(w)
 } 
@@ -32421,7 +32421,7 @@ function(object, quality)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_quality", object, quality, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_quality", object, quality)
 
   return(invisible(w))
 } 
@@ -32432,7 +32432,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_n_copies", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_n_copies", object)
 
   return(w)
 } 
@@ -32444,7 +32444,7 @@ function(object, num.copies)
   checkPtrType(object, "GtkPrintSettings")
   num.copies <- as.integer(num.copies)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_n_copies", object, num.copies, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_n_copies", object, num.copies)
 
   return(invisible(w))
 } 
@@ -32455,7 +32455,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_number_up", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_number_up", object)
 
   return(w)
 } 
@@ -32467,7 +32467,7 @@ function(object, number.up)
   checkPtrType(object, "GtkPrintSettings")
   number.up <- as.integer(number.up)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_number_up", object, number.up, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_number_up", object, number.up)
 
   return(invisible(w))
 } 
@@ -32478,7 +32478,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_resolution", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_resolution", object)
 
   return(w)
 } 
@@ -32490,7 +32490,7 @@ function(object, resolution)
   checkPtrType(object, "GtkPrintSettings")
   resolution <- as.integer(resolution)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_resolution", object, resolution, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_resolution", object, resolution)
 
   return(invisible(w))
 } 
@@ -32501,7 +32501,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_scale", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_scale", object)
 
   return(w)
 } 
@@ -32513,7 +32513,7 @@ function(object, scale)
   checkPtrType(object, "GtkPrintSettings")
   scale <- as.numeric(scale)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_scale", object, scale, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_scale", object, scale)
 
   return(invisible(w))
 } 
@@ -32524,7 +32524,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_print_pages", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_print_pages", object)
 
   return(w)
 } 
@@ -32536,7 +32536,7 @@ function(object, pages)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_print_pages", object, pages, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_print_pages", object, pages)
 
   return(invisible(w))
 } 
@@ -32548,7 +32548,7 @@ function(object, num.ranges)
   checkPtrType(object, "GtkPrintSettings")
   num.ranges <- as.list(as.integer(num.ranges))
 
-  w <- .RGtkCall("S_gtk_print_settings_get_page_ranges", object, num.ranges, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_page_ranges", object, num.ranges)
 
   return(w)
 } 
@@ -32561,7 +32561,7 @@ function(object, page.ranges, num.ranges)
   page.ranges <- as.GtkPageRange(page.ranges)
   num.ranges <- as.integer(num.ranges)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_page_ranges", object, page.ranges, num.ranges, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_page_ranges", object, page.ranges, num.ranges)
 
   return(invisible(w))
 } 
@@ -32572,7 +32572,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_page_set", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_page_set", object)
 
   return(w)
 } 
@@ -32584,7 +32584,7 @@ function(object, page.set)
   checkPtrType(object, "GtkPrintSettings")
   
 
-  w <- .RGtkCall("S_gtk_print_settings_set_page_set", object, page.set, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_page_set", object, page.set)
 
   return(invisible(w))
 } 
@@ -32595,7 +32595,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_default_source", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_default_source", object)
 
   return(w)
 } 
@@ -32607,7 +32607,7 @@ function(object, default.source)
   checkPtrType(object, "GtkPrintSettings")
   default.source <- as.character(default.source)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_default_source", object, default.source, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_default_source", object, default.source)
 
   return(invisible(w))
 } 
@@ -32618,7 +32618,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_media_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_media_type", object)
 
   return(w)
 } 
@@ -32630,7 +32630,7 @@ function(object, media.type)
   checkPtrType(object, "GtkPrintSettings")
   media.type <- as.character(media.type)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_media_type", object, media.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_media_type", object, media.type)
 
   return(invisible(w))
 } 
@@ -32641,7 +32641,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_dither", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_dither", object)
 
   return(w)
 } 
@@ -32653,7 +32653,7 @@ function(object, dither)
   checkPtrType(object, "GtkPrintSettings")
   dither <- as.character(dither)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_dither", object, dither, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_dither", object, dither)
 
   return(invisible(w))
 } 
@@ -32664,7 +32664,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_finishings", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_finishings", object)
 
   return(w)
 } 
@@ -32676,7 +32676,7 @@ function(object, finishings)
   checkPtrType(object, "GtkPrintSettings")
   finishings <- as.character(finishings)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_finishings", object, finishings, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_finishings", object, finishings)
 
   return(invisible(w))
 } 
@@ -32687,7 +32687,7 @@ function(object)
 {
   checkPtrType(object, "GtkPrintSettings")
 
-  w <- .RGtkCall("S_gtk_print_settings_get_output_bin", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_get_output_bin", object)
 
   return(w)
 } 
@@ -32699,7 +32699,7 @@ function(object, output.bin)
   checkPtrType(object, "GtkPrintSettings")
   output.bin <- as.character(output.bin)
 
-  w <- .RGtkCall("S_gtk_print_settings_set_output_bin", object, output.bin, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_settings_set_output_bin", object, output.bin)
 
   return(invisible(w))
 } 
@@ -32711,7 +32711,7 @@ function(object, current.value)
   checkPtrType(object, "GtkRadioAction")
   current.value <- as.integer(current.value)
 
-  w <- .RGtkCall("S_gtk_radio_action_set_current_value", object, current.value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_radio_action_set_current_value", object, current.value)
 
   return(invisible(w))
 } 
@@ -32723,7 +32723,7 @@ function(object, sensitivity)
   checkPtrType(object, "GtkRange")
   
 
-  w <- .RGtkCall("S_gtk_range_set_lower_stepper_sensitivity", object, sensitivity, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_lower_stepper_sensitivity", object, sensitivity)
 
   return(invisible(w))
 } 
@@ -32734,7 +32734,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_lower_stepper_sensitivity", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_lower_stepper_sensitivity", object)
 
   return(w)
 } 
@@ -32746,7 +32746,7 @@ function(object, sensitivity)
   checkPtrType(object, "GtkRange")
   
 
-  w <- .RGtkCall("S_gtk_range_set_upper_stepper_sensitivity", object, sensitivity, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_set_upper_stepper_sensitivity", object, sensitivity)
 
   return(invisible(w))
 } 
@@ -32757,7 +32757,7 @@ function(object)
 {
   checkPtrType(object, "GtkRange")
 
-  w <- .RGtkCall("S_gtk_range_get_upper_stepper_sensitivity", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_range_get_upper_stepper_sensitivity", object)
 
   return(w)
 } 
@@ -32768,7 +32768,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_dialog_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_dialog_get_type")
 
   return(w)
 } 
@@ -32779,7 +32779,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_error_quark", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_error_quark")
 
   return(w)
 } 
@@ -32790,7 +32790,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_type")
 
   return(w)
 } 
@@ -32802,7 +32802,7 @@ function(object, show.private)
   checkPtrType(object, "GtkRecentChooser")
   show.private <- as.logical(show.private)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_show_private", object, show.private, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_show_private", object, show.private)
 
   return(invisible(w))
 } 
@@ -32813,7 +32813,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_show_private", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_show_private", object)
 
   return(w)
 } 
@@ -32825,7 +32825,7 @@ function(object, show.not.found)
   checkPtrType(object, "GtkRecentChooser")
   show.not.found <- as.logical(show.not.found)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_show_not_found", object, show.not.found, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_show_not_found", object, show.not.found)
 
   return(invisible(w))
 } 
@@ -32836,7 +32836,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_show_not_found", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_show_not_found", object)
 
   return(w)
 } 
@@ -32848,7 +32848,7 @@ function(object, select.multiple)
   checkPtrType(object, "GtkRecentChooser")
   select.multiple <- as.logical(select.multiple)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_select_multiple", object, select.multiple, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_select_multiple", object, select.multiple)
 
   return(invisible(w))
 } 
@@ -32859,7 +32859,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_select_multiple", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_select_multiple", object)
 
   return(w)
 } 
@@ -32871,7 +32871,7 @@ function(object, limit)
   checkPtrType(object, "GtkRecentChooser")
   limit <- as.integer(limit)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_limit", object, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_limit", object, limit)
 
   return(invisible(w))
 } 
@@ -32882,7 +32882,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_limit", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_limit", object)
 
   return(w)
 } 
@@ -32894,7 +32894,7 @@ function(object, local.only)
   checkPtrType(object, "GtkRecentChooser")
   local.only <- as.logical(local.only)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_local_only", object, local.only, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_local_only", object, local.only)
 
   return(invisible(w))
 } 
@@ -32905,7 +32905,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_local_only", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_local_only", object)
 
   return(w)
 } 
@@ -32917,7 +32917,7 @@ function(object, show.tips)
   checkPtrType(object, "GtkRecentChooser")
   show.tips <- as.logical(show.tips)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_show_tips", object, show.tips, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_show_tips", object, show.tips)
 
   return(invisible(w))
 } 
@@ -32928,7 +32928,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_show_tips", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_show_tips", object)
 
   return(w)
 } 
@@ -32940,7 +32940,7 @@ function(object, show.icons)
   checkPtrType(object, "GtkRecentChooser")
   show.icons <- as.logical(show.icons)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_show_icons", object, show.icons, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_show_icons", object, show.icons)
 
   return(invisible(w))
 } 
@@ -32951,7 +32951,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_show_icons", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_show_icons", object)
 
   return(w)
 } 
@@ -32963,7 +32963,7 @@ function(object, sort.type)
   checkPtrType(object, "GtkRecentChooser")
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_sort_type", object, sort.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_sort_type", object, sort.type)
 
   return(invisible(w))
 } 
@@ -32974,7 +32974,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_sort_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_sort_type", object)
 
   return(w)
 } 
@@ -32987,7 +32987,7 @@ function(object, sort.func, sort.data)
   sort.func <- as.function(sort.func)
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_sort_func", object, sort.func, sort.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_sort_func", object, sort.func, sort.data)
 
   return(w)
 } 
@@ -32999,7 +32999,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkRecentChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_current_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_current_uri", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33013,7 +33013,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_current_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_current_uri", object)
 
   return(w)
 } 
@@ -33024,7 +33024,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_current_item", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_current_item", object)
 
   return(w)
 } 
@@ -33036,7 +33036,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkRecentChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_select_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_select_uri", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33051,7 +33051,7 @@ function(object, uri)
   checkPtrType(object, "GtkRecentChooser")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_unselect_uri", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_unselect_uri", object, uri)
 
   return(invisible(w))
 } 
@@ -33062,7 +33062,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_select_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_select_all", object)
 
   return(invisible(w))
 } 
@@ -33073,7 +33073,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_unselect_all", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_unselect_all", object)
 
   return(invisible(w))
 } 
@@ -33084,7 +33084,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_items", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_items", object)
 
   return(w)
 } 
@@ -33095,7 +33095,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_uris", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_uris", object)
 
   return(w)
 } 
@@ -33107,7 +33107,7 @@ function(object, filter)
   checkPtrType(object, "GtkRecentChooser")
   checkPtrType(filter, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_add_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_add_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -33119,7 +33119,7 @@ function(object, filter)
   checkPtrType(object, "GtkRecentChooser")
   checkPtrType(filter, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_remove_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_remove_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -33130,7 +33130,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_list_filters", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_list_filters", object)
 
   return(w)
 } 
@@ -33142,7 +33142,7 @@ function(object, filter)
   checkPtrType(object, "GtkRecentChooser")
   checkPtrType(filter, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_set_filter", object, filter, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_set_filter", object, filter)
 
   return(invisible(w))
 } 
@@ -33153,7 +33153,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooser")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_get_filter", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_get_filter", object)
 
   return(w)
 } 
@@ -33164,7 +33164,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_menu_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_menu_get_type")
 
   return(w)
 } 
@@ -33175,7 +33175,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_menu_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_menu_new")
 
   return(w)
 } 
@@ -33186,7 +33186,7 @@ function(manager = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_menu_new_for_manager", manager, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_menu_new_for_manager", manager)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -33200,7 +33200,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentChooserMenu")
 
-  w <- .RGtkCall("S_gtk_recent_chooser_menu_get_show_numbers", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_menu_get_show_numbers", object)
 
   return(w)
 } 
@@ -33212,7 +33212,7 @@ function(object, show.numbers)
   checkPtrType(object, "GtkRecentChooserMenu")
   show.numbers <- as.logical(show.numbers)
 
-  w <- .RGtkCall("S_gtk_recent_chooser_menu_set_show_numbers", object, show.numbers, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_menu_set_show_numbers", object, show.numbers)
 
   return(invisible(w))
 } 
@@ -33223,7 +33223,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_widget_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_widget_get_type")
 
   return(w)
 } 
@@ -33234,7 +33234,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_widget_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_widget_new")
 
   return(w)
 } 
@@ -33245,7 +33245,7 @@ function(manager = NULL, show = TRUE)
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_widget_new_for_manager", manager, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_widget_new_for_manager", manager)
 
   if(show)
     gtkWidgetShowAll(w)
@@ -33259,7 +33259,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_filter_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_get_type")
 
   return(w)
 } 
@@ -33270,7 +33270,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_filter_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_new")
 
   return(w)
 } 
@@ -33282,7 +33282,7 @@ function(object, name)
   checkPtrType(object, "GtkRecentFilter")
   name <- as.character(name)
 
-  w <- .RGtkCall("S_gtk_recent_filter_set_name", object, name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_set_name", object, name)
 
   return(invisible(w))
 } 
@@ -33293,7 +33293,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_filter_get_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_get_name", object)
 
   return(w)
 } 
@@ -33305,7 +33305,7 @@ function(object, mime.type)
   checkPtrType(object, "GtkRecentFilter")
   mime.type <- as.character(mime.type)
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_mime_type", object, mime.type, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_mime_type", object, mime.type)
 
   return(invisible(w))
 } 
@@ -33317,7 +33317,7 @@ function(object, pattern)
   checkPtrType(object, "GtkRecentFilter")
   pattern <- as.character(pattern)
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_pattern", object, pattern, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_pattern", object, pattern)
 
   return(invisible(w))
 } 
@@ -33328,7 +33328,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_pixbuf_formats", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_pixbuf_formats", object)
 
   return(invisible(w))
 } 
@@ -33340,7 +33340,7 @@ function(object, application)
   checkPtrType(object, "GtkRecentFilter")
   application <- as.character(application)
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_application", object, application, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_application", object, application)
 
   return(invisible(w))
 } 
@@ -33352,7 +33352,7 @@ function(object, group)
   checkPtrType(object, "GtkRecentFilter")
   group <- as.character(group)
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_group", object, group, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_group", object, group)
 
   return(invisible(w))
 } 
@@ -33364,7 +33364,7 @@ function(object, days)
   checkPtrType(object, "GtkRecentFilter")
   days <- as.integer(days)
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_age", object, days, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_age", object, days)
 
   return(invisible(w))
 } 
@@ -33378,7 +33378,7 @@ function(object, needed, func, data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_recent_filter_add_custom", object, needed, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_add_custom", object, needed, func, data)
 
   return(w)
 } 
@@ -33389,7 +33389,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentFilter")
 
-  w <- .RGtkCall("S_gtk_recent_filter_get_needed", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_get_needed", object)
 
   return(w)
 } 
@@ -33401,7 +33401,7 @@ function(object, filter.info)
   checkPtrType(object, "GtkRecentFilter")
   filter.info <- as.GtkRecentFilterInfo(filter.info)
 
-  w <- .RGtkCall("S_gtk_recent_filter_filter", object, filter.info, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_filter", object, filter.info)
 
   return(w)
 } 
@@ -33412,7 +33412,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_manager_error_quark", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_error_quark")
 
   return(w)
 } 
@@ -33423,7 +33423,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_manager_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_get_type")
 
   return(w)
 } 
@@ -33434,7 +33434,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_manager_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_new")
 
   return(w)
 } 
@@ -33445,7 +33445,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_manager_get_default", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_get_default")
 
   return(w)
 } 
@@ -33456,7 +33456,7 @@ function(screen)
 {
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_recent_manager_get_for_screen", screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_get_for_screen", screen)
 
   return(w)
 } 
@@ -33468,7 +33468,7 @@ function(object, screen)
   checkPtrType(object, "GtkRecentManager")
   checkPtrType(screen, "GdkScreen")
 
-  w <- .RGtkCall("S_gtk_recent_manager_set_screen", object, screen, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_set_screen", object, screen)
 
   return(invisible(w))
 } 
@@ -33480,7 +33480,7 @@ function(object, uri)
   checkPtrType(object, "GtkRecentManager")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_manager_add_item", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_add_item", object, uri)
 
   return(w)
 } 
@@ -33493,7 +33493,7 @@ function(object, uri, recent.data)
   uri <- as.character(uri)
   recent.data <- as.GtkRecentData(recent.data)
 
-  w <- .RGtkCall("S_gtk_recent_manager_add_full", object, uri, recent.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_add_full", object, uri, recent.data)
 
   return(w)
 } 
@@ -33505,7 +33505,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkRecentManager")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_manager_remove_item", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_remove_item", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33520,7 +33520,7 @@ function(object, uri, .errwarn = TRUE)
   checkPtrType(object, "GtkRecentManager")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_manager_lookup_item", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_lookup_item", object, uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33535,7 +33535,7 @@ function(object, uri)
   checkPtrType(object, "GtkRecentManager")
   uri <- as.character(uri)
 
-  w <- .RGtkCall("S_gtk_recent_manager_has_item", object, uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_has_item", object, uri)
 
   return(w)
 } 
@@ -33548,7 +33548,7 @@ function(object, uri, new.uri, .errwarn = TRUE)
   uri <- as.character(uri)
   new.uri <- as.character(new.uri)
 
-  w <- .RGtkCall("S_gtk_recent_manager_move_item", object, uri, new.uri, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_move_item", object, uri, new.uri)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33563,7 +33563,7 @@ function(object, limit)
   checkPtrType(object, "GtkRecentManager")
   limit <- as.integer(limit)
 
-  w <- .RGtkCall("S_gtk_recent_manager_set_limit", object, limit, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_set_limit", object, limit)
 
   return(invisible(w))
 } 
@@ -33574,7 +33574,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentManager")
 
-  w <- .RGtkCall("S_gtk_recent_manager_get_limit", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_get_limit", object)
 
   return(w)
 } 
@@ -33585,7 +33585,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentManager")
 
-  w <- .RGtkCall("S_gtk_recent_manager_get_items", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_get_items", object)
 
   return(w)
 } 
@@ -33596,7 +33596,7 @@ function(object, .errwarn = TRUE)
 {
   checkPtrType(object, "GtkRecentManager")
 
-  w <- .RGtkCall("S_gtk_recent_manager_purge_items", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_purge_items", object)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -33610,7 +33610,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_info_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_type")
 
   return(w)
 } 
@@ -33621,7 +33621,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_ref", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_ref", object)
 
   return(w)
 } 
@@ -33632,7 +33632,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_unref", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_unref", object)
 
   return(invisible(w))
 } 
@@ -33643,7 +33643,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_uri", object)
 
   return(w)
 } 
@@ -33654,7 +33654,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_display_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_display_name", object)
 
   return(w)
 } 
@@ -33665,7 +33665,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_description", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_description", object)
 
   return(w)
 } 
@@ -33676,7 +33676,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_mime_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_mime_type", object)
 
   return(w)
 } 
@@ -33687,7 +33687,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_added", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_added", object)
 
   return(w)
 } 
@@ -33698,7 +33698,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_modified", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_modified", object)
 
   return(w)
 } 
@@ -33709,7 +33709,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_visited", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_visited", object)
 
   return(w)
 } 
@@ -33720,7 +33720,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_private_hint", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_private_hint", object)
 
   return(w)
 } 
@@ -33732,7 +33732,7 @@ function(object, app.name)
   checkPtrType(object, "GtkRecentInfo")
   app.name <- as.character(app.name)
 
-  w <- .RGtkCall("S_gtk_recent_info_get_application_info", object, app.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_application_info", object, app.name)
 
   return(w)
 } 
@@ -33744,7 +33744,7 @@ function(object, length)
   checkPtrType(object, "GtkRecentInfo")
   length <- as.list(as.numeric(length))
 
-  w <- .RGtkCall("S_gtk_recent_info_get_applications", object, length, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_applications", object, length)
 
   return(w)
 } 
@@ -33755,7 +33755,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_last_application", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_last_application", object)
 
   return(w)
 } 
@@ -33767,7 +33767,7 @@ function(object, app.name)
   checkPtrType(object, "GtkRecentInfo")
   app.name <- as.character(app.name)
 
-  w <- .RGtkCall("S_gtk_recent_info_has_application", object, app.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_has_application", object, app.name)
 
   return(w)
 } 
@@ -33778,7 +33778,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_groups", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_groups", object)
 
   return(w)
 } 
@@ -33790,7 +33790,7 @@ function(object, group.name)
   checkPtrType(object, "GtkRecentInfo")
   group.name <- as.character(group.name)
 
-  w <- .RGtkCall("S_gtk_recent_info_has_group", object, group.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_has_group", object, group.name)
 
   return(w)
 } 
@@ -33802,7 +33802,7 @@ function(object, size)
   checkPtrType(object, "GtkRecentInfo")
   size <- as.integer(size)
 
-  w <- .RGtkCall("S_gtk_recent_info_get_icon", object, size, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_icon", object, size)
 
   return(w)
 } 
@@ -33813,7 +33813,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_short_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_short_name", object)
 
   return(w)
 } 
@@ -33824,7 +33824,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_uri_display", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_uri_display", object)
 
   return(w)
 } 
@@ -33835,7 +33835,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_get_age", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_get_age", object)
 
   return(w)
 } 
@@ -33846,7 +33846,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_is_local", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_is_local", object)
 
   return(w)
 } 
@@ -33857,7 +33857,7 @@ function(object)
 {
   checkPtrType(object, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_exists", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_exists", object)
 
   return(w)
 } 
@@ -33869,7 +33869,7 @@ function(object, info.b)
   checkPtrType(object, "GtkRecentInfo")
   checkPtrType(info.b, "GtkRecentInfo")
 
-  w <- .RGtkCall("S_gtk_recent_info_match", object, info.b, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_info_match", object, info.b)
 
   return(w)
 } 
@@ -33880,7 +33880,7 @@ function(object)
 {
   checkPtrType(object, "GtkScrolledWindow")
 
-  w <- .RGtkCall("S_gtk_scrolled_window_unset_placement", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_scrolled_window_unset_placement", object)
 
   return(invisible(w))
 } 
@@ -33894,7 +33894,7 @@ function(list, info, deserializable, buffer)
   deserializable <- as.logical(deserializable)
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_target_list_add_rich_text_targets", list, info, deserializable, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_add_rich_text_targets", list, info, deserializable, buffer)
 
   return(w)
 } 
@@ -33905,7 +33905,7 @@ function(list)
 {
   checkPtrType(list, "GtkTargetList")
 
-  w <- .RGtkCall("S_gtk_target_table_new_from_list", list, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_table_new_from_list", list)
 
   return(w)
 } 
@@ -33917,7 +33917,7 @@ function(object, buffer)
   checkPtrType(object, "GtkSelectionData")
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_selection_data_targets_include_rich_text", object, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_targets_include_rich_text", object, buffer)
 
   return(w)
 } 
@@ -33928,7 +33928,7 @@ function(object)
 {
   checkPtrType(object, "GtkSelectionData")
 
-  w <- .RGtkCall("S_gtk_selection_data_targets_include_uri", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_selection_data_targets_include_uri", object)
 
   return(w)
 } 
@@ -33939,7 +33939,7 @@ function(targets)
 {
   targets <- lapply(targets, function(x) { x <- as.GdkAtom(x); x })
 
-  w <- .RGtkCall("S_gtk_targets_include_text", targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_targets_include_text", targets)
 
   return(w)
 } 
@@ -33951,7 +33951,7 @@ function(targets, buffer)
   targets <- lapply(targets, function(x) { x <- as.GdkAtom(x); x })
   checkPtrType(buffer, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_targets_include_rich_text", targets, buffer, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_targets_include_rich_text", targets, buffer)
 
   return(w)
 } 
@@ -33963,7 +33963,7 @@ function(targets, writable)
   targets <- lapply(targets, function(x) { x <- as.GdkAtom(x); x })
   writable <- as.logical(writable)
 
-  w <- .RGtkCall("S_gtk_targets_include_image", targets, writable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_targets_include_image", targets, writable)
 
   return(w)
 } 
@@ -33974,7 +33974,7 @@ function(targets)
 {
   targets <- lapply(targets, function(x) { x <- as.GdkAtom(x); x })
 
-  w <- .RGtkCall("S_gtk_targets_include_uri", targets, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_targets_include_uri", targets)
 
   return(w)
 } 
@@ -33985,7 +33985,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_target_list_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_target_list_get_type")
 
   return(w)
 } 
@@ -33996,7 +33996,7 @@ function(object)
 {
   checkPtrType(object, "GtkSizeGroup")
 
-  w <- .RGtkCall("S_gtk_size_group_get_widgets", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_size_group_get_widgets", object)
 
   return(w)
 } 
@@ -34007,7 +34007,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_status_icon_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_type")
 
   return(w)
 } 
@@ -34018,7 +34018,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_status_icon_new", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_new")
 
   return(w)
 } 
@@ -34029,7 +34029,7 @@ function(pixbuf)
 {
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_status_icon_new_from_pixbuf", pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_new_from_pixbuf", pixbuf)
 
   return(w)
 } 
@@ -34040,7 +34040,7 @@ function(filename)
 {
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_status_icon_new_from_file", filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_new_from_file", filename)
 
   return(w)
 } 
@@ -34051,7 +34051,7 @@ function(stock.id)
 {
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_status_icon_new_from_stock", stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_new_from_stock", stock.id)
 
   return(w)
 } 
@@ -34062,7 +34062,7 @@ function(icon.name)
 {
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_status_icon_new_from_icon_name", icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_new_from_icon_name", icon.name)
 
   return(w)
 } 
@@ -34074,7 +34074,7 @@ function(object, pixbuf)
   checkPtrType(object, "GtkStatusIcon")
   checkPtrType(pixbuf, "GdkPixbuf")
 
-  w <- .RGtkCall("S_gtk_status_icon_set_from_pixbuf", object, pixbuf, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_from_pixbuf", object, pixbuf)
 
   return(invisible(w))
 } 
@@ -34086,7 +34086,7 @@ function(object, filename)
   checkPtrType(object, "GtkStatusIcon")
   filename <- as.character(filename)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_from_file", object, filename, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_from_file", object, filename)
 
   return(invisible(w))
 } 
@@ -34098,7 +34098,7 @@ function(object, stock.id)
   checkPtrType(object, "GtkStatusIcon")
   stock.id <- as.character(stock.id)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_from_stock", object, stock.id, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_from_stock", object, stock.id)
 
   return(invisible(w))
 } 
@@ -34110,7 +34110,7 @@ function(object, icon.name)
   checkPtrType(object, "GtkStatusIcon")
   icon.name <- as.character(icon.name)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_from_icon_name", object, icon.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_from_icon_name", object, icon.name)
 
   return(invisible(w))
 } 
@@ -34121,7 +34121,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_storage_type", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_storage_type", object)
 
   return(w)
 } 
@@ -34132,7 +34132,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_pixbuf", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_pixbuf", object)
 
   return(w)
 } 
@@ -34143,7 +34143,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_stock", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_stock", object)
 
   return(w)
 } 
@@ -34154,7 +34154,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_icon_name", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_icon_name", object)
 
   return(w)
 } 
@@ -34165,7 +34165,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_size", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_size", object)
 
   return(w)
 } 
@@ -34177,7 +34177,7 @@ function(object, tooltip.text)
   checkPtrType(object, "GtkStatusIcon")
   tooltip.text <- as.character(tooltip.text)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_tooltip", object, tooltip.text, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_tooltip", object, tooltip.text)
 
   return(invisible(w))
 } 
@@ -34189,7 +34189,7 @@ function(object, visible)
   checkPtrType(object, "GtkStatusIcon")
   visible <- as.logical(visible)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_visible", object, visible, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_visible", object, visible)
 
   return(invisible(w))
 } 
@@ -34200,7 +34200,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_visible", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_visible", object)
 
   return(w)
 } 
@@ -34212,7 +34212,7 @@ function(object, blinking)
   checkPtrType(object, "GtkStatusIcon")
   blinking <- as.logical(blinking)
 
-  w <- .RGtkCall("S_gtk_status_icon_set_blinking", object, blinking, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_set_blinking", object, blinking)
 
   return(invisible(w))
 } 
@@ -34223,7 +34223,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_blinking", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_blinking", object)
 
   return(w)
 } 
@@ -34234,7 +34234,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_is_embedded", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_is_embedded", object)
 
   return(w)
 } 
@@ -34246,7 +34246,7 @@ function(menu, user.data)
   checkPtrType(menu, "GtkMenu")
   
 
-  w <- .RGtkCall("S_gtk_status_icon_position_menu", menu, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_position_menu", menu, user.data)
 
   return(invisible(w))
 } 
@@ -34257,7 +34257,7 @@ function(object)
 {
   checkPtrType(object, "GtkStatusIcon")
 
-  w <- .RGtkCall("S_gtk_status_icon_get_geometry", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_status_icon_get_geometry", object)
 
   return(w)
 } 
@@ -34269,7 +34269,7 @@ function(object, color.name)
   checkPtrType(object, "GtkStyle")
   color.name <- as.character(color.name)
 
-  w <- .RGtkCall("S_gtk_style_lookup_color", object, color.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_style_lookup_color", object, color.name)
 
   return(w)
 } 
@@ -34280,7 +34280,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_has_selection", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_has_selection", object)
 
   return(w)
 } 
@@ -34291,7 +34291,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_copy_target_list", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_copy_target_list", object)
 
   return(w)
 } 
@@ -34302,7 +34302,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_paste_target_list", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_paste_target_list", object)
 
   return(w)
 } 
@@ -34316,7 +34316,7 @@ function(object, mime.type, fun, user.data)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_text_buffer_register_serialize_format", object, mime.type, fun, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_register_serialize_format", object, mime.type, fun, user.data)
 
   return(w)
 } 
@@ -34328,7 +34328,7 @@ function(object, tagset.name = NULL)
   checkPtrType(object, "GtkTextBuffer")
   if (!is.null( tagset.name )) tagset.name <- as.character(tagset.name)
 
-  w <- .RGtkCall("S_gtk_text_buffer_register_serialize_tagset", object, tagset.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_register_serialize_tagset", object, tagset.name)
 
   return(w)
 } 
@@ -34342,7 +34342,7 @@ function(object, mime.type, fun, user.data)
   fun <- as.function(fun)
   
 
-  w <- .RGtkCall("S_gtk_text_buffer_register_deserialize_format", object, mime.type, fun, user.data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_register_deserialize_format", object, mime.type, fun, user.data)
 
   return(w)
 } 
@@ -34354,7 +34354,7 @@ function(object, tagset.name = NULL)
   checkPtrType(object, "GtkTextBuffer")
   if (!is.null( tagset.name )) tagset.name <- as.character(tagset.name)
 
-  w <- .RGtkCall("S_gtk_text_buffer_register_deserialize_tagset", object, tagset.name, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_register_deserialize_tagset", object, tagset.name)
 
   return(w)
 } 
@@ -34366,7 +34366,7 @@ function(object, format)
   checkPtrType(object, "GtkTextBuffer")
   format <- as.GdkAtom(format)
 
-  w <- .RGtkCall("S_gtk_text_buffer_unregister_serialize_format", object, format, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_unregister_serialize_format", object, format)
 
   return(invisible(w))
 } 
@@ -34378,7 +34378,7 @@ function(object, format)
   checkPtrType(object, "GtkTextBuffer")
   format <- as.GdkAtom(format)
 
-  w <- .RGtkCall("S_gtk_text_buffer_unregister_deserialize_format", object, format, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_unregister_deserialize_format", object, format)
 
   return(invisible(w))
 } 
@@ -34391,7 +34391,7 @@ function(object, format, can.create.tags)
   format <- as.GdkAtom(format)
   can.create.tags <- as.logical(can.create.tags)
 
-  w <- .RGtkCall("S_gtk_text_buffer_deserialize_set_can_create_tags", object, format, can.create.tags, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_deserialize_set_can_create_tags", object, format, can.create.tags)
 
   return(invisible(w))
 } 
@@ -34403,7 +34403,7 @@ function(object, format)
   checkPtrType(object, "GtkTextBuffer")
   format <- as.GdkAtom(format)
 
-  w <- .RGtkCall("S_gtk_text_buffer_deserialize_get_can_create_tags", object, format, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_deserialize_get_can_create_tags", object, format)
 
   return(w)
 } 
@@ -34414,7 +34414,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_serialize_formats", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_serialize_formats", object)
 
   return(w)
 } 
@@ -34425,7 +34425,7 @@ function(object)
 {
   checkPtrType(object, "GtkTextBuffer")
 
-  w <- .RGtkCall("S_gtk_text_buffer_get_deserialize_formats", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_get_deserialize_formats", object)
 
   return(w)
 } 
@@ -34440,7 +34440,7 @@ function(object, content.buffer, format, start, end)
   checkPtrType(start, "GtkTextIter")
   checkPtrType(end, "GtkTextIter")
 
-  w <- .RGtkCall("S_gtk_text_buffer_serialize", object, content.buffer, format, start, end, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_serialize", object, content.buffer, format, start, end)
 
   return(w)
 } 
@@ -34455,7 +34455,7 @@ function(object, content.buffer, format, iter, data, .errwarn = TRUE)
   checkPtrType(iter, "GtkTextIter")
   data <- as.list(as.raw(data))
 
-  w <- .RGtkCall("S_gtk_text_buffer_deserialize", object, content.buffer, format, iter, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_deserialize", object, content.buffer, format, iter, data)
 
   if(.errwarn && !is.null(w$error))
     warning(w$error[["message"]])
@@ -34469,7 +34469,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_headers_clickable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_headers_clickable", object)
 
   return(w)
 } 
@@ -34480,7 +34480,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_search_entry", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_search_entry", object)
 
   return(w)
 } 
@@ -34492,7 +34492,7 @@ function(object, entry = NULL)
   checkPtrType(object, "GtkTreeView")
   if (!is.null( entry )) checkPtrType(entry, "GtkEntry")
 
-  w <- .RGtkCall("S_gtk_tree_view_set_search_entry", object, entry, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_search_entry", object, entry)
 
   return(invisible(w))
 } 
@@ -34503,7 +34503,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_search_position_func", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_search_position_func", object)
 
   return(w)
 } 
@@ -34516,7 +34516,7 @@ function(object, func, data)
   func <- as.function(func)
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_search_position_func", object, func, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_search_position_func", object, func, data)
 
   return(w)
 } 
@@ -34528,7 +34528,7 @@ function(object, enable)
   checkPtrType(object, "GtkTreeView")
   enable <- as.logical(enable)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_rubber_banding", object, enable, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_rubber_banding", object, enable)
 
   return(invisible(w))
 } 
@@ -34539,7 +34539,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_rubber_banding", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_rubber_banding", object)
 
   return(w)
 } 
@@ -34550,7 +34550,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_grid_lines", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_grid_lines", object)
 
   return(w)
 } 
@@ -34562,7 +34562,7 @@ function(object, grid.lines)
   checkPtrType(object, "GtkTreeView")
   
 
-  w <- .RGtkCall("S_gtk_tree_view_set_grid_lines", object, grid.lines, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_grid_lines", object, grid.lines)
 
   return(invisible(w))
 } 
@@ -34573,7 +34573,7 @@ function(object)
 {
   checkPtrType(object, "GtkTreeView")
 
-  w <- .RGtkCall("S_gtk_tree_view_get_enable_tree_lines", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_enable_tree_lines", object)
 
   return(w)
 } 
@@ -34585,7 +34585,7 @@ function(object, enabled)
   checkPtrType(object, "GtkTreeView")
   enabled <- as.logical(enabled)
 
-  w <- .RGtkCall("S_gtk_tree_view_set_enable_tree_lines", object, enabled, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_set_enable_tree_lines", object, enabled)
 
   return(invisible(w))
 } 
@@ -34596,7 +34596,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_assistant_page_type_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_assistant_page_type_get_type")
 
   return(w)
 } 
@@ -34607,7 +34607,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_cell_renderer_accel_mode_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_cell_renderer_accel_mode_get_type")
 
   return(w)
 } 
@@ -34618,7 +34618,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_sensitivity_type_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_sensitivity_type_get_type")
 
   return(w)
 } 
@@ -34629,7 +34629,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_pages_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_pages_get_type")
 
   return(w)
 } 
@@ -34640,7 +34640,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_page_set_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_set_get_type")
 
   return(w)
 } 
@@ -34651,7 +34651,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_page_orientation_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_page_orientation_get_type")
 
   return(w)
 } 
@@ -34662,7 +34662,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_quality_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_quality_get_type")
 
   return(w)
 } 
@@ -34673,7 +34673,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_duplex_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_duplex_get_type")
 
   return(w)
 } 
@@ -34684,7 +34684,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_unit_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_unit_get_type")
 
   return(w)
 } 
@@ -34695,7 +34695,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_tree_view_grid_lines_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_grid_lines_get_type")
 
   return(w)
 } 
@@ -34706,7 +34706,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_print_operation_action_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_print_operation_action_get_type")
 
   return(w)
 } 
@@ -34717,7 +34717,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_sort_type_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_sort_type_get_type")
 
   return(w)
 } 
@@ -34728,7 +34728,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_chooser_error_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_chooser_error_get_type")
 
   return(w)
 } 
@@ -34739,7 +34739,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_filter_flags_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_filter_flags_get_type")
 
   return(w)
 } 
@@ -34750,7 +34750,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_recent_manager_error_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_recent_manager_error_get_type")
 
   return(w)
 } 
@@ -34761,7 +34761,7 @@ function()
 {
   
 
-  w <- .RGtkCall("S_gtk_text_buffer_target_info_get_type", PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_text_buffer_target_info_get_type")
 
   return(w)
 } 
@@ -34772,7 +34772,7 @@ function(object)
 {
   checkPtrType(object, "GtkWidget")
 
-  w <- .RGtkCall("S_gtk_widget_is_composited", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_is_composited", object)
 
   return(w)
 } 
@@ -34786,7 +34786,7 @@ function(object, shape.mask = NULL, offset.x, offset.y)
   offset.x <- as.integer(offset.x)
   offset.y <- as.integer(offset.y)
 
-  w <- .RGtkCall("S_gtk_widget_input_shape_combine_mask", object, shape.mask, offset.x, offset.y, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_widget_input_shape_combine_mask", object, shape.mask, offset.x, offset.y)
 
   return(invisible(w))
 } 
@@ -34798,7 +34798,7 @@ function(object, setting)
   checkPtrType(object, "GtkWindow")
   setting <- as.logical(setting)
 
-  w <- .RGtkCall("S_gtk_window_set_deletable", object, setting, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_set_deletable", object, setting)
 
   return(invisible(w))
 } 
@@ -34809,7 +34809,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_deletable", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_deletable", object)
 
   return(w)
 } 
@@ -34820,7 +34820,7 @@ function(object)
 {
   checkPtrType(object, "GtkWindow")
 
-  w <- .RGtkCall("S_gtk_window_get_group", object, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_window_get_group", object)
 
   return(w)
 } 

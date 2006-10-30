@@ -854,6 +854,10 @@ S_virtual_gtk_cell_renderer_get_size(GtkCellRenderer* s_object, GtkWidget* s_wid
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 3)));
 }
 static 
 void
@@ -4281,6 +4285,9 @@ S_virtual_gtk_imcontext_get_preedit_string(GtkIMContext* s_object, gchar** s_str
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_str = ((gchar*)asCString(VECTOR_ELT(s_ans, 0)));
+  *s_attrs = ((PangoAttrList*)getPtrValue(VECTOR_ELT(s_ans, 1)));
+  *s_cursor_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
 }
 static 
 gboolean
@@ -4486,7 +4493,9 @@ S_virtual_gtk_imcontext_get_surrounding(GtkIMContext* s_object, gchar** s_text, 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+  *s_text = ((gchar*)asCString(VECTOR_ELT(s_ans, 1)));
+  *s_cursor_index = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 void
 S_gtk_imcontext_class_init(GtkIMContextClass * c, SEXP e)
@@ -5393,6 +5402,7 @@ S_virtual_gtk_menu_item_toggle_size_request(GtkMenuItem* s_object, gint* s_requi
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_requisition = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
 }
 static 
 void
@@ -7427,6 +7437,8 @@ S_virtual_gtk_scale_get_layout_offsets(GtkScale* s_object, gint* s_x, gint* s_y)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 void
 S_gtk_scale_class_init(GtkScaleClass * c, SEXP e)
@@ -7694,7 +7706,8 @@ S_virtual_gtk_spin_button_input(GtkSpinButton* s_object, gdouble* s_new_value)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gint)asCInteger(s_ans)));
+  *s_new_value = ((gdouble)asCNumeric(VECTOR_ELT(s_ans, 1)));
+  return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gint
@@ -14827,7 +14840,9 @@ S_virtual_gtk_editable_get_selection_bounds(GtkEditable* s_object, gint* s_start
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+  *s_start_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_end_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void
@@ -15315,13 +15330,15 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
@@ -15369,7 +15386,7 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
@@ -15380,6 +15397,8 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -15424,13 +15443,15 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_parent), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
@@ -15505,13 +15526,15 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 15));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_parent), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
@@ -15534,13 +15557,15 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
   GTypeQuery query;
   g_type_query(G_OBJECT_TYPE(s_object), &query);
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 16));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_child), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
@@ -15699,7 +15724,9 @@ S_virtual_gtk_tree_sortable_get_sort_column_id(GtkTreeSortable* s_object, gint* 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+  *s_sort_column_id = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_order = ((GtkSortType)asCEnum(VECTOR_ELT(s_ans, 2), GTK_TYPE_SORT_TYPE));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void

@@ -81,6 +81,8 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_ink_rect = *asCPangoRectangle(VECTOR_ELT(s_ans, 0));
+  *s_logical_rect = *asCPangoRectangle(VECTOR_ELT(s_ans, 1));
 }
 static 
 PangoFontMetrics*
@@ -231,6 +233,8 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_sizes = ((int*)asCArray(VECTOR_ELT(s_ans, 0), int, asCInteger));
+  *s_n_sizes = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 void
 S_pango_font_face_class_init(PangoFontFaceClass * c, SEXP e)
@@ -275,6 +279,8 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_faces = ((PangoFontFace**)asCArray(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValue));
+  *s_n_faces = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 const char*
@@ -398,6 +404,8 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_families = ((PangoFontFamily**)asCArray(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValue));
+  *s_n_families = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 PangoFontset*

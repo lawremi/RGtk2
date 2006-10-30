@@ -349,7 +349,7 @@ USER_OBJECT_
      GdkGC* ans ;
     USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-    values = asCGdkGCValues(s_values, &values_mask) ;
+    values = asCGdkGCValuesWithMask(s_values, &values_mask) ;
      ans =  gtk_gc_get ( depth, colormap, values, values_mask );
     _result = toRPointerWithFinalizer ( ans, "GdkGC", (RPointerFinalizer)gtk_gc_release );
 

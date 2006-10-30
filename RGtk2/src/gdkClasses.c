@@ -701,6 +701,8 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 void
@@ -917,7 +919,9 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(GDK_DRAWABLE(getPtrValue(s_ans)));
+  *s_composite_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_composite_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  return(GDK_DRAWABLE(getPtrValue(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void
@@ -1173,6 +1177,7 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_values = *asCGdkGCValues(VECTOR_ELT(s_ans, 0));
 }
 static 
 void
@@ -1405,6 +1410,8 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  *s_width = ((int)asCInteger(VECTOR_ELT(s_ans, 0)));
+  *s_height = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
 GdkPixbufAnimationIter*

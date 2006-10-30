@@ -81,7 +81,7 @@ USER_OBJECT_
          GdkGC* ans ;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        values = asCGdkGCValues(s_values, &values_mask);
+        values = asCGdkGCValuesWithMask(s_values, &values_mask);
 
          ans =  gdk_gc_new_with_values ( object, values, values_mask );
         _result = toRPointerWithRef ( ans, "GdkGC" );
@@ -97,7 +97,7 @@ USER_OBJECT_
          GdkGCValuesMask values_mask;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        values = asCGdkGCValues(s_values, &values_mask) ;
+        values = asCGdkGCValuesWithMask(s_values, &values_mask) ;
 
           gdk_gc_set_values ( object, values, values_mask );
 
