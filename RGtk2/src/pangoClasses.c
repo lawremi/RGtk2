@@ -12,22 +12,19 @@ S_virtual_pango_font_describe(PangoFont* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFont", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((PangoFontDescription*)getPtrValue(s_ans)));
+  return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
 static 
 PangoCoverage*
@@ -37,16 +34,13 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFont", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer((s_lang), "PangoLanguage"));
   tmp = CDR(tmp);
@@ -54,7 +48,7 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((PangoCoverage*)getPtrValue(s_ans)));
+  return(((PangoCoverage*)pango_coverage_ref(getPtrValue(s_ans))));
 }
 static 
 void
@@ -64,13 +58,10 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
@@ -92,16 +83,13 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFont", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer((s_language), "PangoLanguage"));
   tmp = CDR(tmp);
@@ -109,7 +97,7 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((PangoFontMetrics*)getPtrValue(s_ans)));
+  return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
 static 
 PangoFontMap*
@@ -119,13 +107,10 @@ S_virtual_pango_font_get_font_map(PangoFont* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
@@ -141,11 +126,11 @@ S_pango_font_class_init(PangoFontClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoFont_symbol = install("S_PangoFont");
+  S_PangoFont_symbol = install("PangoFont");
   s = findVar(S_PangoFont_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->describe = S_virtual_pango_font_describe;
@@ -168,13 +153,10 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
@@ -193,22 +175,19 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFontFace", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((PangoFontDescription*)getPtrValue(s_ans)));
+  return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
 static 
 void
@@ -218,13 +197,10 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
@@ -233,7 +209,7 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  *s_sizes = ((int*)asCArray(VECTOR_ELT(s_ans, 0), int, asCInteger));
+  *s_sizes = ((int*)asCArrayDup(VECTOR_ELT(s_ans, 0), int, asCInteger));
   *s_n_sizes = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 void
@@ -241,11 +217,11 @@ S_pango_font_face_class_init(PangoFontFaceClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoFontFace_symbol = install("S_PangoFontFace");
+  S_PangoFontFace_symbol = install("PangoFontFace");
   s = findVar(S_PangoFontFace_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontFaceClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_face_name = S_virtual_pango_font_face_get_face_name;
@@ -264,13 +240,10 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
@@ -279,7 +252,7 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  *s_faces = ((PangoFontFace**)asCArray(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValue));
+  *s_faces = ((PangoFontFace**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValueWithRef));
   *s_n_faces = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
@@ -290,13 +263,10 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
@@ -315,13 +285,10 @@ S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
@@ -337,11 +304,11 @@ S_pango_font_family_class_init(PangoFontFamilyClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoFontFamily_symbol = install("S_PangoFontFamily");
+  S_PangoFontFamily_symbol = install("PangoFontFamily");
   s = findVar(S_PangoFontFamily_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontFamilyClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->list_faces = S_virtual_pango_font_family_list_faces;
@@ -360,18 +327,15 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFontMap", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithRef(s_context, "PangoContext"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_context, "PangoContext", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(pango_font_description_copy(s_desc), "PangoFontDescription"));
   tmp = CDR(tmp);
@@ -379,7 +343,7 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(PANGO_FONT(getPtrValue(s_ans)));
+  return(PANGO_FONT(getPtrValueWithRef(s_ans)));
 }
 static 
 void
@@ -389,13 +353,10 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
@@ -404,7 +365,7 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  *s_families = ((PangoFontFamily**)asCArray(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValue));
+  *s_families = ((PangoFontFamily**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValueWithRef));
   *s_n_families = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
 static 
@@ -415,18 +376,15 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFontMap", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithRef(s_context, "PangoContext"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_context, "PangoContext", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(pango_font_description_copy(s_desc), "PangoFontDescription"));
   tmp = CDR(tmp);
@@ -436,18 +394,18 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(PANGO_FONTSET(getPtrValue(s_ans)));
+  return(PANGO_FONTSET(getPtrValueWithRef(s_ans)));
 }
 void
 S_pango_font_map_class_init(PangoFontMapClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoFontMap_symbol = install("S_PangoFontMap");
+  S_PangoFontMap_symbol = install("PangoFontMap");
   s = findVar(S_PangoFontMap_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontMapClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->load_font = S_virtual_pango_font_map_load_font;
@@ -466,13 +424,10 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
@@ -493,22 +448,19 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFontset", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((PangoFontMetrics*)getPtrValue(s_ans)));
+  return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
 static 
 PangoLanguage*
@@ -518,13 +470,10 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
@@ -543,13 +492,10 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
@@ -568,11 +514,11 @@ S_pango_fontset_class_init(PangoFontsetClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoFontset_symbol = install("S_PangoFontset");
+  S_PangoFontset_symbol = install("PangoFontset");
   s = findVar(S_PangoFontset_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoFontsetClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_font = S_virtual_pango_fontset_get_font;
@@ -593,13 +539,10 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -625,13 +568,10 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -659,13 +599,10 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -691,13 +628,10 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -721,13 +655,10 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 9));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -759,13 +690,10 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -791,13 +719,10 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -817,13 +742,10 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -841,13 +763,10 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -865,13 +784,10 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoLayoutRun* s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
@@ -888,11 +804,11 @@ S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
 {
   SEXP s;
 
-  S_PangoRenderer_symbol = install("S_PangoRenderer");
+  S_PangoRenderer_symbol = install("PangoRenderer");
   s = findVar(S_PangoRenderer_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(PangoRendererClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->draw_glyphs = S_virtual_pango_renderer_draw_glyphs;

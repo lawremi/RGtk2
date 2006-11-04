@@ -9,11 +9,11 @@ S_gdk_bitmap_class_init(GdkDrawableClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkBitmap_symbol = install("S_GdkBitmap");
+  S_GdkBitmap_symbol = install("GdkBitmap");
   s = findVar(S_GdkBitmap_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDrawableClass)) = e;
 
-  S_gdk_drawable_class_init(((GdkDrawableClass *)c), s);
+  S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
 
 } 
 
@@ -23,11 +23,11 @@ S_gdk_colormap_class_init(GdkColormapClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkColormap_symbol = install("S_GdkColormap");
+  S_GdkColormap_symbol = install("GdkColormap");
   s = findVar(S_GdkColormap_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkColormapClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -40,13 +40,10 @@ S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplay"));
@@ -65,13 +62,10 @@ S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplay"));
@@ -90,13 +84,10 @@ S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplay"));
@@ -117,13 +108,10 @@ S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplay"));
@@ -142,13 +130,10 @@ S_virtual_gdk_display_closed(GdkDisplay* s_object, gboolean s_is_error)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplay_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplay"));
@@ -165,11 +150,11 @@ S_gdk_display_class_init(GdkDisplayClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkDisplay_symbol = install("S_GdkDisplay");
+  S_GdkDisplay_symbol = install("GdkDisplay");
   s = findVar(S_GdkDisplay_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDisplayClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_display_name = S_virtual_gdk_display_get_display_name;
@@ -192,13 +177,10 @@ S_virtual_gdk_display_manager_display_opened(GdkDisplayManager* s_object, GdkDis
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplayManager_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDisplayManager_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDisplayManager"));
@@ -215,11 +197,11 @@ S_gdk_display_manager_class_init(GdkDisplayManagerClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkDisplayManager_symbol = install("S_GdkDisplayManager");
+  S_GdkDisplayManager_symbol = install("GdkDisplayManager");
   s = findVar(S_GdkDisplayManager_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDisplayManagerClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->display_opened = S_virtual_gdk_display_manager_display_opened;
@@ -231,11 +213,11 @@ S_gdk_drag_context_class_init(GdkDragContextClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkDragContext_symbol = install("S_GdkDragContext");
+  S_GdkDragContext_symbol = install("GdkDragContext");
   s = findVar(S_GdkDragContext_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDragContextClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -248,16 +230,13 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GdkDrawable", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRGdkGCValues(s_values));
   tmp = CDR(tmp);
@@ -267,7 +246,7 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(GDK_GC(getPtrValue(s_ans)));
+  return(GDK_GC(getPtrValueWithRef(s_ans)));
 }
 static 
 void
@@ -277,13 +256,10 @@ S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboole
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -313,13 +289,10 @@ S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_f
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -353,13 +326,10 @@ S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -385,13 +355,10 @@ S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -421,13 +388,10 @@ S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkG
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -457,13 +421,10 @@ S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDraw
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -497,13 +458,10 @@ S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint*
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -527,13 +485,10 @@ S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegm
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -557,13 +512,10 @@ S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -587,13 +539,10 @@ S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -621,13 +570,10 @@ S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 11));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -661,13 +607,10 @@ S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -686,13 +629,10 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 13));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -712,13 +652,10 @@ S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 14));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -738,13 +675,10 @@ S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 15));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -763,13 +697,10 @@ S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 16));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -788,13 +719,10 @@ S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 17));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -813,13 +741,10 @@ S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 18));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -846,22 +771,19 @@ S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 19));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GdkDrawable", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((GdkRegion*)getPtrValue(s_ans)));
+  return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
 static 
 GdkRegion*
@@ -871,22 +793,19 @@ S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 20));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GdkDrawable", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((GdkRegion*)getPtrValue(s_ans)));
+  return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
 static 
 GdkDrawable*
@@ -896,16 +815,13 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 21));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GdkDrawable", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -921,7 +837,7 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   UNPROTECT(1);
   *s_composite_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_composite_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
-  return(GDK_DRAWABLE(getPtrValue(VECTOR_ELT(s_ans, 0))));
+  return(GDK_DRAWABLE(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void
@@ -931,13 +847,10 @@ S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 13));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 22));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -977,13 +890,10 @@ S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_g
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 23));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 23));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -1013,13 +923,10 @@ S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTr
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 24));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 24));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -1043,13 +950,10 @@ S_virtual_gdk_drawable_ref_cairo_surface(GdkDrawable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 25));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkDrawable_symbol, S_GOBJECT_GET_ENV(s_object)), 25));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkDrawable"));
@@ -1065,11 +969,11 @@ S_gdk_drawable_class_init(GdkDrawableClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkDrawable_symbol = install("S_GdkDrawable");
+  S_GdkDrawable_symbol = install("GdkDrawable");
   s = findVar(S_GdkDrawable_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkDrawableClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->create_gc = S_virtual_gdk_drawable_create_gc;
@@ -1131,11 +1035,11 @@ S_gdk_window_class_init(GdkWindowClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkWindow_symbol = install("S_GdkWindow");
+  S_GdkWindow_symbol = install("GdkWindow");
   s = findVar(S_GdkWindow_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkWindowClass)) = e;
 
-  S_gdk_drawable_class_init(((GdkDrawableClass *)c), s);
+  S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
 
 } 
 
@@ -1145,11 +1049,11 @@ S_gdk_pixmap_class_init(GdkPixmapObjectClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkPixmap_symbol = install("S_GdkPixmap");
+  S_GdkPixmap_symbol = install("GdkPixmap");
   s = findVar(S_GdkPixmap_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixmapObjectClass)) = e;
 
-  S_gdk_drawable_class_init(((GdkDrawableClass *)c), s);
+  S_gdk_drawable_class_init(((GdkDrawableClass *)c), e);
 
 } 
 
@@ -1162,13 +1066,10 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkGC"));
@@ -1187,13 +1088,10 @@ S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesM
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkGC"));
@@ -1215,13 +1113,10 @@ S_virtual_gdk_gc_set_dashes(GdkGC* s_object, gint s_dash_offset, gint8* s_dash_l
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkGC_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkGC"));
@@ -1242,11 +1137,11 @@ S_gdk_gc_class_init(GdkGCClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkGC_symbol = install("S_GdkGC");
+  S_GdkGC_symbol = install("GdkGC");
   s = findVar(S_GdkGC_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkGCClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_values = S_virtual_gdk_gc_get_values;
@@ -1262,11 +1157,11 @@ S_gdk_image_class_init(GdkImageClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkImage_symbol = install("S_GdkImage");
+  S_GdkImage_symbol = install("GdkImage");
   s = findVar(S_GdkImage_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkImageClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1279,13 +1174,10 @@ S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkKeymap_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkKeymap_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkKeymap"));
@@ -1303,13 +1195,10 @@ S_virtual_gdk_keymap_keys_changed(GdkKeymap* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkKeymap_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkKeymap_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkKeymap"));
@@ -1324,11 +1213,11 @@ S_gdk_keymap_class_init(GdkKeymapClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkKeymap_symbol = install("S_GdkKeymap");
+  S_GdkKeymap_symbol = install("GdkKeymap");
   s = findVar(S_GdkKeymap_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkKeymapClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->direction_changed = S_virtual_gdk_keymap_direction_changed;
@@ -1345,13 +1234,10 @@ S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimation"));
@@ -1370,13 +1256,10 @@ S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimation"));
@@ -1395,13 +1278,10 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimation"));
@@ -1421,13 +1301,10 @@ S_virtual_gdk_pixbuf_animation_get_iter(GdkPixbufAnimation* s_object, const GTim
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimation_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimation"));
@@ -1445,11 +1322,11 @@ S_gdk_pixbuf_animation_class_init(GdkPixbufAnimationClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkPixbufAnimation_symbol = install("S_GdkPixbufAnimation");
+  S_GdkPixbufAnimation_symbol = install("GdkPixbufAnimation");
   s = findVar(S_GdkPixbufAnimation_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufAnimationClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->is_static_image = S_virtual_gdk_pixbuf_animation_is_static_image;
@@ -1470,13 +1347,10 @@ S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_obj
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimationIter"));
@@ -1495,13 +1369,10 @@ S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimationIter"));
@@ -1520,13 +1391,10 @@ S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimatio
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimationIter"));
@@ -1545,13 +1413,10 @@ S_virtual_gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIter* s_object, co
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufAnimationIter_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufAnimationIter"));
@@ -1569,11 +1434,11 @@ S_gdk_pixbuf_animation_iter_class_init(GdkPixbufAnimationIterClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkPixbufAnimationIter_symbol = install("S_GdkPixbufAnimationIter");
+  S_GdkPixbufAnimationIter_symbol = install("GdkPixbufAnimationIter");
   s = findVar(S_GdkPixbufAnimationIter_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufAnimationIterClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_delay_time = S_virtual_gdk_pixbuf_animation_iter_get_delay_time;
@@ -1594,13 +1459,10 @@ S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufLoader"));
@@ -1622,13 +1484,10 @@ S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufLoader"));
@@ -1646,13 +1505,10 @@ S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufLoader"));
@@ -1678,13 +1534,10 @@ S_virtual_gdk_pixbuf_loader_closed(GdkPixbufLoader* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkPixbufLoader_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkPixbufLoader"));
@@ -1699,11 +1552,11 @@ S_gdk_pixbuf_loader_class_init(GdkPixbufLoaderClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkPixbufLoader_symbol = install("S_GdkPixbufLoader");
+  S_GdkPixbufLoader_symbol = install("GdkPixbufLoader");
   s = findVar(S_GdkPixbufLoader_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPixbufLoaderClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->size_prepared = S_virtual_gdk_pixbuf_loader_size_prepared;
@@ -1721,11 +1574,11 @@ S_gdk_pango_renderer_class_init(GdkPangoRendererClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkPangoRenderer_symbol = install("S_GdkPangoRenderer");
+  S_GdkPangoRenderer_symbol = install("GdkPangoRenderer");
   s = findVar(S_GdkPangoRenderer_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkPangoRendererClass)) = e;
 
-  S_pango_renderer_class_init(((PangoRendererClass *)c), s);
+  S_pango_renderer_class_init(((PangoRendererClass *)c), e);
 
 } 
 
@@ -1738,13 +1591,10 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkScreen_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkScreen_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkScreen"));
@@ -1762,13 +1612,10 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkScreen_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GdkScreen_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GdkScreen"));
@@ -1783,11 +1630,11 @@ S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
 {
   SEXP s;
 
-  S_GdkScreen_symbol = install("S_GdkScreen");
+  S_GdkScreen_symbol = install("GdkScreen");
   s = findVar(S_GdkScreen_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(GdkScreenClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->size_changed = S_virtual_gdk_screen_size_changed;

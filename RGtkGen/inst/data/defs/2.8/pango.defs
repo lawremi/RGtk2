@@ -2526,6 +2526,7 @@
 
 (define-virtual describe
   (of-object "PangoFontFace")
+  (caller-owns-return #t)
   (return-type "PangoFontDescription*")
 )
 
@@ -2540,11 +2541,13 @@
 
 (define-virtual describe
   (of-object "PangoFont")
+  (caller-owns-return #t)
   (return-type "PangoFontDescription*")
 )
 
 (define-virtual get_coverage
   (of-object "PangoFont")
+  (caller-owns-return #t)
   (return-type "PangoCoverage*")
   (parameters
     '("PangoLanguage*" "lang")
@@ -2573,6 +2576,7 @@
 (define-virtual get_metrics
   (of-object "PangoFont")
   (return-type "PangoFontMetrics*")
+  (caller-owns-return #t)
   (parameters
     '("PangoLanguage*" "language")
   )
@@ -2586,6 +2590,7 @@
 (define-virtual load_font
   (of-object "PangoFontMap")
   (return-type "PangoFont*")
+  (caller-owns-return #t)
   (parameters
     '("PangoContext*" "context")
     '("const-PangoFontDescription*" "desc")
@@ -2604,6 +2609,7 @@
 (define-virtual load_fontset
   (of-object "PangoFontMap")
   (return-type "PangoFontset*")
+  (caller-owns-return #t)
   (parameters
     '("PangoContext*" "context")
     '("const-PangoFontDescription*" "desc")
@@ -2621,6 +2627,7 @@
 
 (define-virtual get_metrics
   (of-object "PangoFontset")
+  (caller-owns-return #t)
   (return-type "PangoFontMetrics*")
 )
 

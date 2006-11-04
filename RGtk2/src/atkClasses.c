@@ -12,13 +12,10 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkHyperlink", (RPointerFinalizer) g_object_unref));
@@ -29,7 +26,7 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
 AtkObject*
@@ -39,13 +36,10 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -66,13 +60,10 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -91,13 +82,10 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -116,13 +104,10 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -141,13 +126,10 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -166,13 +148,10 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -191,13 +170,10 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -216,13 +192,10 @@ S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
@@ -237,11 +210,11 @@ S_atk_hyperlink_class_init(AtkHyperlinkClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkHyperlink_symbol = install("S_AtkHyperlink");
+  S_AtkHyperlink_symbol = install("AtkHyperlink");
   s = findVar(S_AtkHyperlink_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHyperlinkClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_uri = S_virtual_atk_hyperlink_get_uri;
@@ -272,13 +245,10 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -297,13 +267,10 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -322,13 +289,10 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -347,13 +311,10 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -372,16 +333,13 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkObject", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -389,7 +347,7 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_OBJECT(getPtrValue(s_ans)));
+  return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
 gint
@@ -399,13 +357,10 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -424,22 +379,19 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkObject", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_RELATION_SET(getPtrValue(s_ans)));
+  return(ATK_RELATION_SET(getPtrValueWithRef(s_ans)));
 }
 static 
 AtkRole
@@ -449,13 +401,10 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -474,13 +423,10 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -499,13 +445,10 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -524,22 +467,19 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkObject", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_STATE_SET(getPtrValue(s_ans)));
+  return(ATK_STATE_SET(getPtrValueWithRef(s_ans)));
 }
 static 
 void
@@ -549,13 +489,10 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 11));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -575,13 +512,10 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -601,13 +535,10 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 13));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -627,13 +558,10 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 14));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -653,13 +581,10 @@ S_virtual_atk_object_connect_property_change_handler(AtkObject* s_object, AtkPro
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 15));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -680,13 +605,10 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 16));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -706,13 +628,10 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 17));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -732,13 +651,10 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 18));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -760,13 +676,10 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 19));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -786,13 +699,10 @@ S_virtual_atk_object_property_change(AtkObject* s_object, AtkPropertyValues* s_v
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 20));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -812,13 +722,10 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 21));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -840,13 +747,10 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 22));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -864,13 +768,10 @@ S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 23));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 23));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
@@ -887,11 +788,11 @@ S_atk_object_class_init(AtkObjectClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkObject_symbol = install("S_AtkObject");
+  S_AtkObject_symbol = install("AtkObject");
   s = findVar(S_AtkObject_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkObjectClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_name = S_virtual_atk_object_get_name;
@@ -949,11 +850,11 @@ S_atk_gobject_accessible_class_init(AtkGObjectAccessibleClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkGObjectAccessible_symbol = install("S_AtkGObjectAccessible");
+  S_AtkGObjectAccessible_symbol = install("AtkGObjectAccessible");
   s = findVar(S_AtkGObjectAccessible_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkGObjectAccessibleClass)) = e;
 
-  S_atk_object_class_init(((AtkObjectClass *)c), s);
+  S_atk_object_class_init(((AtkObjectClass *)c), e);
 
 } 
 
@@ -963,11 +864,11 @@ S_atk_no_op_object_class_init(AtkNoOpObjectClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkNoOpObject_symbol = install("S_AtkNoOpObject");
+  S_AtkNoOpObject_symbol = install("AtkNoOpObject");
   s = findVar(S_AtkNoOpObject_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkNoOpObjectClass)) = e;
 
-  S_atk_object_class_init(((AtkObjectClass *)c), s);
+  S_atk_object_class_init(((AtkObjectClass *)c), e);
 
 } 
 
@@ -980,13 +881,10 @@ S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObjectFactory_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObjectFactory_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkObjectFactory"));
@@ -1001,11 +899,11 @@ S_atk_object_factory_class_init(AtkObjectFactoryClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkObjectFactory_symbol = install("S_AtkObjectFactory");
+  S_AtkObjectFactory_symbol = install("AtkObjectFactory");
   s = findVar(S_AtkObjectFactory_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkObjectFactoryClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->invalidate = S_virtual_atk_object_factory_invalidate;
@@ -1017,11 +915,11 @@ S_atk_no_op_object_factory_class_init(AtkNoOpObjectFactoryClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkNoOpObjectFactory_symbol = install("S_AtkNoOpObjectFactory");
+  S_AtkNoOpObjectFactory_symbol = install("AtkNoOpObjectFactory");
   s = findVar(S_AtkNoOpObjectFactory_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkNoOpObjectFactoryClass)) = e;
 
-  S_atk_object_factory_class_init(((AtkObjectFactoryClass *)c), s);
+  S_atk_object_factory_class_init(((AtkObjectFactoryClass *)c), e);
 
 } 
 
@@ -1031,11 +929,11 @@ S_atk_registry_class_init(AtkRegistryClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkRegistry_symbol = install("S_AtkRegistry");
+  S_AtkRegistry_symbol = install("AtkRegistry");
   s = findVar(S_AtkRegistry_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRegistryClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1045,11 +943,11 @@ S_atk_relation_class_init(AtkRelationClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkRelation_symbol = install("S_AtkRelation");
+  S_AtkRelation_symbol = install("AtkRelation");
   s = findVar(S_AtkRelation_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRelationClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1059,11 +957,11 @@ S_atk_relation_set_class_init(AtkRelationSetClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkRelationSet_symbol = install("S_AtkRelationSet");
+  S_AtkRelationSet_symbol = install("AtkRelationSet");
   s = findVar(S_AtkRelationSet_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkRelationSetClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1073,11 +971,11 @@ S_atk_state_set_class_init(AtkStateSetClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkStateSet_symbol = install("S_AtkStateSet");
+  S_AtkStateSet_symbol = install("AtkStateSet");
   s = findVar(S_AtkStateSet_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkStateSetClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1087,11 +985,11 @@ S_atk_util_class_init(AtkUtilClass * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkUtil_symbol = install("S_AtkUtil");
+  S_AtkUtil_symbol = install("AtkUtil");
   s = findVar(S_AtkUtil_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkUtilClass)) = e;
 
-  S_gobject_class_init(((GObjectClass *)c), s);
+  S_gobject_class_init(((GObjectClass *)c), e);
 
 } 
 
@@ -1104,16 +1002,13 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkTable", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1123,7 +1018,7 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_OBJECT(getPtrValue(s_ans)));
+  return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
 gint
@@ -1133,13 +1028,10 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1162,13 +1054,10 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1189,13 +1078,10 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1216,13 +1102,10 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1241,13 +1124,10 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1266,13 +1146,10 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1295,13 +1172,10 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1324,13 +1198,10 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1349,13 +1220,10 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1376,13 +1244,10 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1403,13 +1268,10 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 11));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1430,13 +1292,10 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1457,13 +1316,10 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 13));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1482,13 +1338,10 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 14));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1508,13 +1361,10 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 15));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1536,13 +1386,10 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 16));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1564,13 +1411,10 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 17));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1592,13 +1436,10 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 18));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1620,13 +1461,10 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 19));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1646,13 +1484,10 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 20));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1661,7 +1496,7 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  *s_selected = ((gint*)asCArray(VECTOR_ELT(s_ans, 1), gint, asCInteger));
+  *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
 static 
@@ -1672,13 +1507,10 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 21));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1687,7 +1519,7 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  *s_selected = ((gint*)asCArray(VECTOR_ELT(s_ans, 1), gint, asCInteger));
+  *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
 static 
@@ -1698,13 +1530,10 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 22));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1725,13 +1554,10 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 23));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 23));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1752,13 +1578,10 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 24));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 24));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1781,13 +1604,10 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 25));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 25));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1808,13 +1628,10 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 26));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 26));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1835,13 +1652,10 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 27));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 27));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1862,13 +1676,10 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 28));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 28));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1889,13 +1700,10 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 29));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 29));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1917,13 +1725,10 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 30));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 30));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1945,13 +1750,10 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 31));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 31));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -1973,13 +1775,10 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 32));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 32));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -2001,13 +1800,10 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 33));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 33));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -2025,13 +1821,10 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 34));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 34));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -2049,13 +1842,10 @@ S_virtual_atk_table_model_changed(AtkTable* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 35));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 35));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
@@ -2070,7 +1860,7 @@ S_atk_table_class_init(AtkTableIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkTable_symbol = install("S_AtkTable");
+  S_AtkTable_symbol = install("AtkTable");
   s = findVar(S_AtkTable_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkTableIface)) = e;
 
@@ -2157,13 +1947,10 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkStreamableContent"));
@@ -2182,13 +1969,10 @@ S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, g
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkStreamableContent"));
@@ -2206,7 +1990,7 @@ S_atk_streamable_content_class_init(AtkStreamableContentIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkStreamableContent_symbol = install("S_AtkStreamableContent");
+  S_AtkStreamableContent_symbol = install("AtkStreamableContent");
   s = findVar(S_AtkStreamableContent_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkStreamableContentIface)) = e;
 
@@ -2225,13 +2009,10 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2252,13 +2033,10 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2277,16 +2055,13 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkSelection", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -2294,7 +2069,7 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_OBJECT(getPtrValue(s_ans)));
+  return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
 gint
@@ -2304,13 +2079,10 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2329,13 +2101,10 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2356,13 +2125,10 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2383,13 +2149,10 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2408,13 +2171,10 @@ S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
@@ -2429,7 +2189,7 @@ S_atk_selection_class_init(AtkSelectionIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkSelection_symbol = install("S_AtkSelection");
+  S_AtkSelection_symbol = install("AtkSelection");
   s = findVar(S_AtkSelection_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkSelectionIface)) = e;
 
@@ -2460,29 +2220,26 @@ S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImplementor_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImplementor_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImplementor"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkImplementor", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_OBJECT(getPtrValue(s_ans)));
+  return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 void
 S_atk_implementor_class_init(AtkImplementorIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkImplementor_symbol = install("S_AtkImplementor");
+  S_AtkImplementor_symbol = install("AtkImplementor");
   s = findVar(S_AtkImplementor_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkImplementorIface)) = e;
 
@@ -2499,13 +2256,10 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
@@ -2527,13 +2281,10 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
@@ -2552,13 +2303,10 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
@@ -2578,13 +2326,10 @@ S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_des
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
@@ -2602,7 +2347,7 @@ S_atk_image_class_init(AtkImageIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkImage_symbol = install("S_AtkImage");
+  S_AtkImage_symbol = install("AtkImage");
   s = findVar(S_AtkImage_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkImageIface)) = e;
 
@@ -2625,13 +2370,10 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
@@ -2652,13 +2394,10 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
@@ -2677,13 +2416,10 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
@@ -2704,13 +2440,10 @@ S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
@@ -2727,7 +2460,7 @@ S_atk_hypertext_class_init(AtkHypertextIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkHypertext_symbol = install("S_AtkHypertext");
+  S_AtkHypertext_symbol = install("AtkHypertext");
   s = findVar(S_AtkHypertext_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHypertextIface)) = e;
 
@@ -2750,13 +2483,10 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2781,13 +2511,10 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2807,13 +2534,10 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2837,13 +2561,10 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2865,13 +2586,10 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2893,13 +2611,10 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2921,13 +2636,10 @@ S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_positio
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
@@ -2944,7 +2656,7 @@ S_atk_editable_text_class_init(AtkEditableTextIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkEditableText_symbol = install("S_AtkEditableText");
+  S_AtkEditableText_symbol = install("AtkEditableText");
   s = findVar(S_AtkEditableText_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkEditableTextIface)) = e;
 
@@ -2973,13 +2685,10 @@ S_virtual_atk_component_add_focus_handler(AtkComponent* s_object, AtkFocusHandle
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3000,13 +2709,10 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3031,16 +2737,13 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkComponent", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -3052,7 +2755,7 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(ATK_OBJECT(getPtrValue(s_ans)));
+  return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
 void
@@ -3062,13 +2765,10 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3092,13 +2792,10 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3120,13 +2817,10 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3146,13 +2840,10 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3171,13 +2862,10 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3197,13 +2885,10 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3232,13 +2917,10 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3263,13 +2945,10 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3292,13 +2971,10 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 11));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3317,13 +2993,10 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3342,13 +3015,10 @@ S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_b
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 13));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
@@ -3365,7 +3035,7 @@ S_atk_component_class_init(AtkComponentIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkComponent_symbol = install("S_AtkComponent");
+  S_AtkComponent_symbol = install("AtkComponent");
   s = findVar(S_AtkComponent_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkComponentIface)) = e;
 
@@ -3408,13 +3078,10 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3435,13 +3102,10 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3460,13 +3124,10 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3487,13 +3148,10 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3514,13 +3172,10 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3541,13 +3196,10 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3570,13 +3222,10 @@ S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
@@ -3594,7 +3243,7 @@ S_atk_action_class_init(AtkActionIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkAction_symbol = install("S_AtkAction");
+  S_AtkAction_symbol = install("AtkAction");
   s = findVar(S_AtkAction_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkActionIface)) = e;
 
@@ -3623,13 +3272,10 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
@@ -3649,13 +3295,10 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
@@ -3675,13 +3318,10 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
@@ -3701,13 +3341,10 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
@@ -3725,7 +3362,7 @@ S_atk_value_class_init(AtkValueIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkValue_symbol = install("S_AtkValue");
+  S_AtkValue_symbol = install("AtkValue");
   s = findVar(S_AtkValue_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkValueIface)) = e;
 
@@ -3748,13 +3385,10 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
@@ -3767,7 +3401,7 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((gchar*)asCString(s_ans)));
+  return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
 gchar*
@@ -3777,13 +3411,10 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
@@ -3798,7 +3429,7 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
-  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
+  return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
 static 
 gchar*
@@ -3808,13 +3439,10 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 2));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
@@ -3829,7 +3457,7 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
-  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
+  return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
 static 
 gunichar
@@ -3839,13 +3467,10 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 3));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -3866,13 +3491,10 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 4));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
@@ -3887,7 +3509,7 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
-  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
+  return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
 static 
 gint
@@ -3897,13 +3519,10 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 5));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -3922,13 +3541,10 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 6));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -3951,13 +3567,10 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 7));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -3976,13 +3589,10 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 8));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4008,13 +3618,10 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 9));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4033,13 +3640,10 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 10));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4064,13 +3668,10 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 11));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4089,13 +3690,10 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 12));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
@@ -4108,7 +3706,7 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
-  return(((gchar*)asCString(VECTOR_ELT(s_ans, 0))));
+  return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
 }
 static 
 gboolean
@@ -4118,13 +3716,10 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 13));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4147,13 +3742,10 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 14));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4174,13 +3766,10 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 15));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4205,13 +3794,10 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 16));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4232,13 +3818,10 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 17));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4260,13 +3843,10 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 18));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4286,13 +3866,10 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 19));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4310,13 +3887,10 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 20));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4334,13 +3908,10 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 21));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
@@ -4365,16 +3936,13 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 22));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_object, "AtkText", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, asRAtkTextRectangle(s_rect));
   tmp = CDR(tmp);
@@ -4388,14 +3956,14 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(((AtkTextRange**)asCArray(s_ans, AtkTextRange*, asCAtkTextRange)));
+  return(((AtkTextRange**)asCArrayDup(s_ans, AtkTextRange*, asCAtkTextRange)));
 }
 void
 S_atk_text_class_init(AtkTextIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkText_symbol = install("S_AtkText");
+  S_AtkText_symbol = install("AtkText");
   s = findVar(S_AtkText_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkTextIface)) = e;
 
@@ -4456,13 +4024,10 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 0));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkDocument"));
@@ -4481,13 +4046,10 @@ S_virtual_atk_document_get_document(AtkDocument* s_object)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
 
-  GTypeQuery query;
-  g_type_query(G_OBJECT_TYPE(s_object), &query);
-
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
 
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size)), 1));
+  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
   SETCAR(tmp, toRPointerWithRef(s_object, "AtkDocument"));
@@ -4503,7 +4065,7 @@ S_atk_document_class_init(AtkDocumentIface * c, SEXP e)
 {
   SEXP s;
 
-  S_AtkDocument_symbol = install("S_AtkDocument");
+  S_AtkDocument_symbol = install("AtkDocument");
   s = findVar(S_AtkDocument_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkDocumentIface)) = e;
 

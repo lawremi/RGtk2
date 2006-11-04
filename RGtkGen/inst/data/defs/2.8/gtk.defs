@@ -23228,6 +23228,7 @@
 
 (define-virtual create_rc_style
   (of-object "GtkRcStyle")
+  (caller-owns-return #t)
   (return-type "GtkRcStyle*")
 )
 
@@ -23250,6 +23251,7 @@
 (define-virtual create_style
   (of-object "GtkRcStyle")
   (return-type "GtkStyle*")
+  (caller-owns-return #t)
 )
 
 (define-virtual draw_ticks
@@ -23365,6 +23367,7 @@
 (define-virtual clone
   (of-object "GtkStyle")
   (return-type "GtkStyle*")
+  (caller-owns-return #t)
 )
 
 (define-virtual init_from_rc
@@ -23385,6 +23388,7 @@
 (define-virtual render_icon
   (of-object "GtkStyle")
   (return-type "GdkPixbuf*")
+  (caller-owns-return #t)
   (parameters
     '("const-GtkIconSource*" "source")
     '("GtkTextDirection" "direction")
@@ -24162,6 +24166,7 @@
 )
 (define-virtual get_path
   (of-object "GtkTreeModel")
+  (caller-owns-return #t)
   (return-type "GtkTreePath*")
   (parameters
     '("GtkTreeIter*" "iter")

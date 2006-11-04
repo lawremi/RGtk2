@@ -186,52 +186,36 @@ R_internal_getInterfaces(GType type)
 /* GObject properties */
 
 USER_OBJECT_
-R_getGTypeParamSpecs(USER_OBJECT_ sobj, USER_OBJECT_ parent)
+R_getGTypeParamSpecs(USER_OBJECT_ sobj)
 {
-    GType type, objectType;
-    int n, i;
+    GType type = (GType) NUMERIC_POINTER(sobj)[0];
     USER_OBJECT_ ans;
-
-    type = objectType = (GType) NUMERIC_POINTER(sobj)[0];
-
-    if(LOGICAL_DATA(parent)[0] == FALSE) {
-        gpointer class = g_type_class_ref(type);
-        ans = R_internal_getClassParamSpecs(G_OBJECT_CLASS(class));
-        g_type_class_unref(class);
-        return(ans);
-    }
-
-    n = 0;
-    while(type != G_TYPE_INVALID) {
-    type = g_type_parent(type);
-        n++;
-    }
-
-    PROTECT(ans = NEW_LIST(n));
-    type = objectType;
-    i = 0;
-    do {
-        gpointer class = g_type_class_ref(type);
-        SET_VECTOR_ELT(ans, i++, R_internal_getClassParamSpecs(G_OBJECT_CLASS(class)));
-        g_type_class_unref(class);
-    } while((type = g_type_parent(type)) != G_TYPE_INVALID);
-
-    SET_NAMES(ans, R_internal_getGTypeHierarchy(objectType));
-    UNPROTECT(1);
-
+    gpointer class = g_type_class_ref(type);
+    
+    ans = R_internal_getClassParamSpecs(G_OBJECT_CLASS(class));
+    g_type_class_unref(class);
     return(ans);
 }
 
 USER_OBJECT_
 R_internal_getClassParamSpecs(GObjectClass *class)
 {
-    USER_OBJECT_ ans, names, argNames, tmp;
+    USER_OBJECT_ ans, names/*, argNames, tmp*/;
     int i;
-	guint num;
+    guint num;
     GParamSpec **specs;
 
     specs = g_object_class_list_properties(class, &num);
 
+    PROTECT(names = NEW_CHARACTER(num));
+    PROTECT(ans = NEW_LIST(num));
+    for (i = 0; i < num; i++) {
+      SET_VECTOR_ELT(ans, i, asRGParamSpec(specs[i]));
+      SET_STRING_ELT(names, i, COPY_TO_USER_STRING(g_param_spec_get_name(specs[i])));
+    }
+    SET_NAMES(ans, names);
+    UNPROTECT(2);
+    /*
     PROTECT(argNames = NEW_CHARACTER(2));
     SET_STRING_ELT(argNames, 0, COPY_TO_USER_STRING("type"));
     SET_STRING_ELT(argNames, 1, COPY_TO_USER_STRING("flag"));
@@ -249,7 +233,7 @@ R_internal_getClassParamSpecs(GObjectClass *class)
     }
 
     SET_NAMES(ans, names);
-    UNPROTECT(3);
+    UNPROTECT(3);*/
     return(ans);
 }
 
@@ -347,7 +331,7 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 	GType type = asCNumeric(stype);
     int i,n = GET_LENGTH(argNames);
 	GParameter *params = g_new0(GParameter, n);
-	GObjectClass *class = g_type_class_peek(type);
+	GObjectClass *class = g_type_class_ref(type);
 	GObject *ans;
 
 	USER_OBJECT_ result = NULL_USER_OBJECT;
@@ -359,8 +343,12 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 
 	ans = g_object_newv(type, n, params);
 	g_free(params);
-	result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
+  if (g_type_is_a(type, GTK_TYPE_OBJECT))
+    result = toRPointerWithSink(ans, "GtkObject");
+	else result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
 	
+  g_type_class_unref(class);
+  
     return(result);
 }
 
@@ -419,30 +407,374 @@ parseConstructorParams(GType obj_type, char **prop_names, GParameter *params,
     return TRUE;
 }
 
+/* our own GType/GParamSpec for SEXPs */
+
+static USER_OBJECT_
+r_gtk_sexp_copy(USER_OBJECT_ sexp)
+{
+  /* FIXME: do we want to duplicate() here? */
+  R_PreserveObject(sexp);
+  return sexp;
+}
+
+GType
+r_gtk_sexp_get_type (void)
+{
+  static GType our_type = 0;
+
+  if (our_type == 0)
+    our_type = g_boxed_type_register_static ("RGtkSexp", (GBoxedCopyFunc)r_gtk_sexp_copy,
+      (GBoxedFreeFunc)R_ReleaseObject);
+
+  return our_type;
+}
+
+static void
+param_sexp_finalize(GParamSpec *pspec)
+{
+  USER_OBJECT_ default_value = ((RGtkParamSpecSexp *)pspec)->default_value;
+  GParamSpecClass *parent_class = g_type_class_peek(g_type_parent(R_GTK_TYPE_PARAM_SEXP));
+  R_ReleaseObject(default_value);
+  parent_class->finalize(pspec);
+}
+
+static void
+param_sexp_set_default(GParamSpec *pspec, GValue *value)
+{
+  g_value_set_boxed(value, ((RGtkParamSpecSexp *)pspec)->default_value);
+}
+
+static gboolean
+param_sexp_validate(GParamSpec *pspec, GValue *value)
+{
+  USER_OBJECT_ sexp = g_value_get_boxed(value);
+  /* FIXME: Do we want to allow NULL here? */
+  if (!sexp || (/*sexp != NULL_USER_OBJECT && */TYPEOF(sexp) != ((RGtkParamSpecSexp *)pspec)->s_type)) {
+    g_value_set_boxed(value, ((RGtkParamSpecSexp *)pspec)->default_value);
+    return TRUE;
+  }
+  return FALSE;
+}
+
+static gint
+param_sexp_values_cmp(GParamSpec *pspec, const GValue *value1, const GValue *value2)
+{
+  guint8 *p1 = value1->data[0].v_pointer;
+  guint8 *p2 = value2->data[0].v_pointer;
+
+  return p1 < p2 ? -1 : p1 > p2;
+}
+
+GType
+r_gtk_param_spec_sexp_get_type(void)
+{
+  static our_type = 0;
+  if (!our_type) {
+    GParamSpecTypeInfo info = {
+      sizeof(RGtkParamSpecSexp),
+      0,
+      NULL,
+      r_gtk_sexp_get_type(),
+      param_sexp_finalize,
+      param_sexp_set_default,
+      param_sexp_validate,
+      param_sexp_values_cmp
+    };
+    our_type = g_param_type_register_static("RGtkParamSexp", &info);
+  }
+  return our_type;
+}
+
+GParamSpec *
+r_gtk_param_spec_sexp(const gchar *name, const gchar *nick, const gchar *blurb,
+  guint s_type, USER_OBJECT_ default_value, GParamFlags flags)
+{
+  GParamSpec *sspec;
+  
+  /* FIXME: do some sort of check to make sure s_type is valid? */
+  
+  g_return_val_if_fail(default_value != NULL, NULL);
+  
+  sspec = g_param_spec_internal(R_GTK_TYPE_PARAM_SEXP, name, nick, blurb, flags);
+  sspec->value_type = R_GTK_TYPE_SEXP;
+  
+  ((RGtkParamSpecSexp *)sspec)->s_type = s_type;
+  ((RGtkParamSpecSexp *)sspec)->default_value = default_value;
+  
+  return sspec;
+}
+
 GParamSpec*
 asCGParamSpec(USER_OBJECT_ s_spec)
 {
     GParamSpec* spec;
-
-    spec = g_param_spec_internal(asCNumeric(VECTOR_ELT(s_spec,0)), asCString(VECTOR_ELT(s_spec, 1)),
-                asCString(VECTOR_ELT(s_spec, 2)), asCString(VECTOR_ELT(s_spec, 3)),
-                (GParamFlags)asCFlag(VECTOR_ELT(s_spec,4), G_TYPE_PARAM_FLAGS));
-
+    GType type = g_type_from_name(asCString(GET_CLASS(s_spec)));
+    const gchar *name;
+    const gchar *nick;
+    const gchar *blurb;
+    GParamFlags flags;
+    
+    name = asCString(VECTOR_ELT(s_spec, 0));
+    
+    if (type == G_TYPE_PARAM_OVERRIDE)
+      return g_param_spec_override(name, asCGParamSpec(VECTOR_ELT(s_spec, 1)));
+    
+    nick = asCString(VECTOR_ELT(s_spec, 1));
+    blurb = asCString(VECTOR_ELT(s_spec, 2));
+    flags = (GParamFlags)asCFlag(VECTOR_ELT(s_spec,3), G_TYPE_PARAM_FLAGS);
+    
+    if (type == G_TYPE_PARAM_BOOLEAN)
+      spec = g_param_spec_boolean(name, nick, blurb, asCLogical(VECTOR_ELT(s_spec, 4)), flags);
+    else if (type == G_TYPE_PARAM_CHAR) {
+      gchar min = G_MININT8, max = G_MAXINT8;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCRaw(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCRaw(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_char(name, nick, blurb, min, max, asCRaw(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_UCHAR) {
+      guchar min = 0, max = G_MAXUINT8;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCRaw(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCRaw(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_uchar(name, nick, blurb, min, max, asCRaw(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_INT) {
+      gint min = G_MININT, max = G_MAXINT;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCInteger(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCInteger(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_int(name, nick, blurb, min, max, asCInteger(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_UINT) {
+      guint min = 0, max = G_MAXUINT;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_uint(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_LONG) { 
+      glong min = G_MINLONG, max = G_MAXLONG;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_long(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_ULONG) {
+      gulong min = 0, max = G_MAXULONG;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_ulong(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_INT64) {
+      gint64 min = G_MININT64, max = G_MAXINT64;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_int64(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_UINT64) {
+      guint64 min = 0, max = G_MAXUINT64;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_uint64(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_FLOAT) {
+      gfloat min = G_MINFLOAT, max = G_MAXFLOAT;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_float(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_DOUBLE) {
+      gdouble min = G_MINDOUBLE, max = G_MAXDOUBLE;
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 4)))
+        min = asCNumeric(VECTOR_ELT(s_spec, 4));
+      if (GET_LENGTH(VECTOR_ELT(s_spec, 5)))
+        max = asCNumeric(VECTOR_ELT(s_spec, 5));
+      spec = g_param_spec_double(name, nick, blurb, min, max, asCNumeric(VECTOR_ELT(s_spec, 6)), flags);
+    }
+    else if (type == G_TYPE_PARAM_ENUM) {
+      spec = g_param_spec_enum(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), 
+        asCEnum(VECTOR_ELT(s_spec, 5), asCNumeric(VECTOR_ELT(s_spec, 4))), flags);
+    }
+    else if (type == G_TYPE_PARAM_FLAGS) {
+      spec = g_param_spec_flags(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), 
+        asCFlag(VECTOR_ELT(s_spec, 5), asCNumeric(VECTOR_ELT(s_spec, 4))), flags);
+    }
+    else if (type == G_TYPE_PARAM_STRING) {
+      spec = g_param_spec_string(name, nick, blurb, asCString(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_PARAM) {
+      spec = g_param_spec_param(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_BOXED) {
+      spec = g_param_spec_boxed(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_POINTER) {
+      spec = g_param_spec_pointer(name, nick, blurb, flags);
+    }
+    else if (type == G_TYPE_PARAM_OBJECT) {
+      spec = g_param_spec_object(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_UNICHAR) {
+      spec = g_param_spec_unichar(name, nick, blurb, asCInteger(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_VALUE_ARRAY) {
+      spec = g_param_spec_value_array(name, nick, blurb, asCGParamSpec(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == G_TYPE_PARAM_GTYPE) {
+      spec = g_param_spec_gtype(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), flags);
+    }
+    else if (type == R_GTK_TYPE_PARAM_SEXP) {
+      USER_OBJECT_ default_value = VECTOR_ELT(s_spec, 5);
+      R_PreserveObject(default_value);
+      spec = r_gtk_param_spec_sexp(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)),
+        default_value, flags);
+    } else {
+      spec = g_param_spec_internal(type, name, nick, blurb, flags);
+    }
+    
     return(spec);
 }
 USER_OBJECT_
 asRGParamSpec(GParamSpec* spec)
 {
     USER_OBJECT_ s_spec;
+    GType type = G_PARAM_SPEC_TYPE(spec);
+    const gchar* const classes[] = { G_PARAM_SPEC_TYPE_NAME(spec), "GParamSpec", "RGtkObject" };
+    
+    if (type == G_TYPE_PARAM_BOOLEAN) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRLogical(G_PARAM_SPEC_BOOLEAN(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_CHAR) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRRaw(G_PARAM_SPEC_CHAR(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRRaw(G_PARAM_SPEC_CHAR(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRRaw(G_PARAM_SPEC_CHAR(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_UCHAR) {
+      PROTECT(s_spec = NEW_LIST(8));
+      SET_VECTOR_ELT(s_spec, 4, asRRaw(G_PARAM_SPEC_UCHAR(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRRaw(G_PARAM_SPEC_UCHAR(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRRaw(G_PARAM_SPEC_UCHAR(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_INT) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRInteger(G_PARAM_SPEC_INT(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRInteger(G_PARAM_SPEC_INT(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRInteger(G_PARAM_SPEC_INT(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_UINT) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_UINT(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_UINT(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_UINT(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_LONG) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_LONG(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_LONG(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_LONG(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_ULONG) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_ULONG(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_ULONG(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_ULONG(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_INT64) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_INT64(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_INT64(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_INT64(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_UINT64) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_UINT64(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_UINT64(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_UINT64(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_FLOAT) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_DOUBLE) {
+      PROTECT(s_spec = NEW_LIST(7));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->minimum));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->maximum));
+      SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_ENUM) {
+      PROTECT(s_spec = NEW_LIST(6));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_ENUM_CLASS_TYPE(G_PARAM_SPEC_ENUM(spec)->enum_class)));
+      SET_VECTOR_ELT(s_spec, 5, asRInteger(G_PARAM_SPEC_ENUM(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_FLAGS) {
+      PROTECT(s_spec = NEW_LIST(6));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_FLAGS_CLASS_TYPE(G_PARAM_SPEC_FLAGS(spec)->flags_class)));
+      SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_FLAGS(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_STRING) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRString(G_PARAM_SPEC_STRING(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_PARAM) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
+    }
+    else if (type == G_TYPE_PARAM_BOXED) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
+    }
+    else if (type == G_TYPE_PARAM_POINTER) {
+      PROTECT(s_spec = NEW_LIST(4));
+    }
+    else if (type == G_TYPE_PARAM_OBJECT) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
+    }
+    else if (type == G_TYPE_PARAM_UNICHAR) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRInteger(G_PARAM_SPEC_UNICHAR(spec)->default_value));
+    }
+    else if (type == G_TYPE_PARAM_VALUE_ARRAY) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRGParamSpec(G_PARAM_SPEC_VALUE_ARRAY(spec)->element_spec));
+    }
+    else if (type == G_TYPE_PARAM_GTYPE) {
+      PROTECT(s_spec = NEW_LIST(5));
+      SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_GTYPE(spec)->is_a_type));
+    }
+    else if (type == R_GTK_TYPE_PARAM_SEXP) {
+      PROTECT(s_spec = NEW_LIST(6));
+      SET_VECTOR_ELT(s_spec, 4, asRNumeric(((RGtkParamSpecSexp *)spec)->s_type));
+      SET_VECTOR_ELT(s_spec, 5, ((RGtkParamSpecSexp *)spec)->default_value);
+    } else {
+      PROTECT(s_spec = NEW_LIST(4));
+    }
 
-    PROTECT(s_spec = NEW_LIST(5));
+    SET_VECTOR_ELT(s_spec, 0, asRString(g_param_spec_get_name(spec)));
+    SET_VECTOR_ELT(s_spec, 1, asRString(g_param_spec_get_nick(spec)));
+    SET_VECTOR_ELT(s_spec, 2, asRString(g_param_spec_get_blurb(spec)));
+    SET_VECTOR_ELT(s_spec, 3, asRFlag(spec->flags, G_TYPE_PARAM_FLAGS));
 
-    SET_VECTOR_ELT(s_spec, 0, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
-    SET_VECTOR_ELT(s_spec, 1, asRString(g_param_spec_get_name(spec)));
-    SET_VECTOR_ELT(s_spec, 2, asRString(g_param_spec_get_nick(spec)));
-    SET_VECTOR_ELT(s_spec, 3, asRString(g_param_spec_get_blurb(spec)));
-    SET_VECTOR_ELT(s_spec, 4, S_check_GParamFlags_value(asRInteger(spec->flags)));
-
+    SET_CLASS(s_spec, asRStringArrayWithSize(classes, 3));
+    
     UNPROTECT(1);
 
     return(s_spec);
@@ -922,7 +1254,9 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
 			g_value_set_flags(value, asCFlag(sval, G_VALUE_TYPE(value)));
 		break;
 		case G_TYPE_BOXED:
-			if (sval == NULL_USER_OBJECT)
+      if (G_VALUE_TYPE(value) == R_GTK_TYPE_SEXP)
+        g_value_set_boxed(value, sval);
+			else if (sval == NULL_USER_OBJECT)
 				g_value_set_boxed(value, NULL);
 			else if (G_VALUE_TYPE(value) == G_TYPE_STRV)
 				g_value_set_boxed(value, asCStringArray(sval));
@@ -1067,6 +1401,8 @@ asRGValue(const GValue *value)
       case G_TYPE_BOXED:
         if (G_VALUE_TYPE(value) == GDK_TYPE_EVENT)
           ans = toRGdkEvent(g_value_get_boxed(value), FALSE);
+        else if (G_VALUE_TYPE(value) == R_GTK_TYPE_SEXP)
+          ans = g_value_get_boxed(value);
         else ans = toRPointer(g_value_get_boxed(value), G_VALUE_TYPE_NAME(value));
       break;
 
@@ -1074,8 +1410,6 @@ asRGValue(const GValue *value)
 	  	/*Rprintf("%s\n", g_type_name(G_VALUE_TYPE(value)));*/
       if (G_VALUE_TYPE(value) == G_TYPE_VALUE)
         ans = asRGValue(value); /* yes the GValues can be nested */
-      else if (G_VALUE_TYPE(value) == R_GTK_TYPE_SEXP)
-        ans = g_value_get_pointer(value);
       else ans = toRPointer(g_value_get_pointer(value), G_VALUE_TYPE_NAME(value));
       break;
 

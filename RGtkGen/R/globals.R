@@ -100,6 +100,8 @@ finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetL
 	"PangoItem" = "pango_item_free", "cairo_font_options_t" = "cairo_font_options_destroy",
 	"PangoGlyphItem" = "pango_glyph_item_free", "PangoCoverage" = "pango_coverage_unref")
 
+copyFuncs <- c("GdkRegion" = "gdk_region_copy", "PangoCoverage" = "pango_coverage_ref")
+
 # type names are now pure C (glib) so we map them to generic types to simplify conversion
 
 CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",

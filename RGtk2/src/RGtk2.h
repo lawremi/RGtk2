@@ -40,8 +40,5 @@
    unless we include this. Seems harmless on other systems! */
 #include <time.h>
 
-/* so we can pass R objects through GValue */
-#define R_GTK_TYPE_SEXP (r_gtk_sexp_get_type ())
-
 #endif
 

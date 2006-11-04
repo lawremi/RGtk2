@@ -33,4 +33,13 @@ typedef struct {
 } R_CallbackData;
 
 void R_freeCBData(R_CallbackData *cbdata);
+
+/* getting the environment (with the overrides) out of a GObject extended by R */
+#define S_GOBJECT_GET_ENV(s_object) \
+__extension__ \
+({ \
+    GTypeQuery query; \
+    g_type_query(G_OBJECT_TYPE(s_object), &query); \
+    G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size - sizeof(SEXP)); \
+})
 #endif

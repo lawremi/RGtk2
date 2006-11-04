@@ -1,4 +1,4 @@
-# how is the definition structured?
+# how are the overrides structured?
   # list(
   #   GtkWidget = list(method1 = function() {...},
   #                    method2 = function() {...},
@@ -9,7 +9,7 @@
   # )
   #
   
-gClass <- function(name, parent = "GtkWidget", class_def)
+gClass <- function(name, parent = "GObject", class_def = NULL)
 {
   # make sure name is valid
   
@@ -30,12 +30,14 @@ gClass <- function(name, parent = "GtkWidget", class_def)
   
   # process class definition
   
+  reserved <- c(".props", ".initialize", ".signals")
   class_list <- as.list(class_def)
-  known_types <- names(class_list) %in% names(.virtuals)
+  types <- class_list[!(names(class_list) %in% reserved)]
+  known_types <- names(types) %in% names(.virtuals)
   if (any(!known_types))
-    warning("The types ", paste(names(class_list)[!known_types], collapse=","), 
+    warning("The types ", paste(names(types)[!known_types], collapse=","), 
       " are not recognized")
-  types <- class_list[known_types]
+  types <- types[known_types]
   ancestors <- lapply(names(types), gTypeGetAncestors)
   interfaces <- sapply(ancestors, function(hierarchy) 
     hierarchy[length(hierarchy)] == "GInterface")
@@ -61,18 +63,51 @@ gClass <- function(name, parent = "GtkWidget", class_def)
   
   # fill in the gaps
   
-  missing_classes <- !(full_hierarchy %in% names(classes))
-  types[full_hierarchy[missing_classes]] <- list()
+  missing_classes <- which(!(full_hierarchy %in% names(classes)))
+  types[full_hierarchy[missing_classes]] <- replicate(length(missing_classes), list())
   
   sapply(names(types), function(type_name)
       types[[type_name]] <<- types[[type_name]][.virtuals[[type_name]]])
   
+  # check init function
+  
+  init <- class_list[[".init"]]
+  if (!is.null(init))
+    init <- as.function(init)
+  
+  # check property paramspecs
+  
+  props <- lapply(class_list[[".props"]], as.GParamSpec)
+  
+  # check signals
+  
+  signals <- lapply(class_list[[".signals"]], function(signal) {
+    name <- as.character(signal[[1]])
+    invalid_chars <- sub("^[a-zA-Z][a-zA-Z_-]*", "", name)
+    if (nchar(invalid_chars))
+      stop("Invalid signal name: ", name, ". Signal names must start with a letter",
+        " and contain only letters, '-', or '_'")
+    ret_type <- as.GType(signal[[2]])
+    param_types <- sapply(signal[[3]], as.GType)
+    list(name = name, ret_type = ret_type, param_types = param_types)
+  })
+  
   # create new type that extends specified class and implements specified interfaces
   
-  class_init_func <- function(class_name) paste("S", class_name, "class_init", sep="_")
-  class_init_sym <- getNativeSymbolInfo(class_init_func(parent))
-  interface_init_syms <- getNativeSymbolInfo(class_init_func(interface_names))
+  class_init_func <- function(class_name) paste("S", collapseClassName(class_name), "class_init", sep="_")
+  class_init_sym <- getNativeSymbolInfo(class_init_func(parent))$address
+  interface_init_syms <- NULL
+  if (length(interface_names))
+    interface_init_syms <- sapply(getNativeSymbolInfo(class_init_func(interface_names)),
+      function(symbol) symbol$address)
+  
+  class_env <- as.environment.list(types)
+  assign(".initialize", init, class_env)
+  
+  # create an environment for storing properties
+  prop_env <- new.env(T, emptyenv())
+  assign(".props", prop_env, class_env)
   
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
-    class_init_sym, interface_init_syms, as.environment(types))
+    class_init_sym, interface_init_syms, class_env, props, signals)
 }

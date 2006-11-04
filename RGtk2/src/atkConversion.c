@@ -86,17 +86,18 @@ asRAtkTextRange(AtkTextRange *range)
 	return(s_range);
 }
 
+/* NOTE: this allocates memory on the GLib stack, not R's */
 AtkTextRange *
 asCAtkTextRange(USER_OBJECT_ s_obj)
 {
   AtkTextRange * obj;
 
-  obj = ((AtkTextRange *)R_alloc(1, sizeof(AtkTextRange)));
+  obj = g_new(AtkTextRange, 1);
 
   obj->bounds = *(asCAtkTextRectangle(VECTOR_ELT(s_obj, 0)));
   obj->start_offset = ((gint)asCInteger(VECTOR_ELT(s_obj, 1)));
   obj->end_offset = ((gint)asCInteger(VECTOR_ELT(s_obj, 2)));
-  obj->content = ((gchar*)asCString(VECTOR_ELT(s_obj, 3)));
+  obj->content = g_strdup((gchar*)asCString(VECTOR_ELT(s_obj, 3)));
 
   return(obj);
 }

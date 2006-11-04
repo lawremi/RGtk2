@@ -266,6 +266,14 @@ getPtrValue(USER_OBJECT_ sval)
 
   return(R_ExternalPtrAddr(sval));
 }
+void *
+getPtrValueWithRef(USER_OBJECT_ sval)
+{
+  void *val = getPtrValue(sval);
+  if (val)
+    g_object_ref(val);
+  return val;
+}
 
 /* enum and flag stuff - experimental */
 

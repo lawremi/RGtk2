@@ -4998,6 +4998,7 @@
 (define-virtual create_gc
   (of-object "GdkDrawable")
   (return-type "GdkGC*")
+  (caller-owns-return #t)
   (parameters
     '("GdkGCValues*" "values")
     '("GdkGCValuesMask" "mask")
@@ -5191,17 +5192,20 @@
 
 (define-virtual get_clip_region
   (of-object "GdkDrawable")
+  (caller-owns-return #t)
   (return-type "GdkRegion*")
 )
 
 (define-virtual get_visible_region
   (of-object "GdkDrawable")
+  (caller-owns-return #t)
   (return-type "GdkRegion*")
 )
 
 (define-virtual get_composite_drawable
   (of-object "GdkDrawable")
   (return-type "GdkDrawable*")
+  (caller-owns-return #t)
   (parameters
     '("gint" "x")
     '("gint" "y")

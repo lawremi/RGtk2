@@ -173,4 +173,28 @@ imagefile <- function(name)
 	.Call("convertPtrToNumeric", ptr, PACKAGE="RGtk2")
 }
 
+# Text manipulation
+
+collapseClassName <-
+  #
+  # converts a class name of the form GtkButton
+  # to gtk_button.
+  # Also handles GtkCList to gtk_clist.
+  #
+function(name)
+{
+  tmp <- gsub("([ABCDEFGHIJKLMNOPQRSTUVWXYZ]+)", "_\\1", name)
+  tmp <- tolower(substring(tmp, 2))
+  gsub("_([abcdefghijklmnopqrstuvwxyz])_","_\\1", tmp)
+}
+
+# Create an environment from a list
+
+as.environment.list <- function(l, parent = emptyenv())
+{
+  e <- new.env(TRUE, parent)
+  sapply(names(l), function(name) assign(name, l[[name]], e))
+  e
+}
+
 # .Call("R_getSignalNames", gtkButton())

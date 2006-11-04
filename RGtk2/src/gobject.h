@@ -53,3 +53,17 @@ GType getSValueGType(USER_OBJECT_ sval);
 /* Class creation */
 
 void S_gobject_class_init(GObjectClass *c);
+
+/* RGtkParamSpecSexp */
+
+GType r_gtk_sexp_get_type(void);
+#define R_GTK_TYPE_SEXP r_gtk_sexp_get_type()
+
+GType r_gtk_param_spec_sexp_get_type(void);
+#define R_GTK_TYPE_PARAM_SEXP r_gtk_param_spec_sexp_get_type()
+
+typedef struct _RGtkParamSpecSexp {
+  GParamSpec parent_instance;
+  guint s_type;
+  USER_OBJECT_ default_value;
+} RGtkParamSpecSexp;

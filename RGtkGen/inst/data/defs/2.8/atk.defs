@@ -1895,6 +1895,7 @@
 (define-virtual ref_accessible_at_point
   (of-object "AtkComponent")
   (return-type "AtkObject*")
+  (caller-owns-return #t)
   (parameters
     '("gint" "x")
     '("gint" "y")
@@ -2197,6 +2198,7 @@
 (define-virtual ref_accessible
   (of-object "AtkImplementor")
   (return-type "AtkObject*")
+  (caller-owns-return #t)
 )
 
 (define-virtual get_name
@@ -2222,6 +2224,7 @@
 (define-virtual ref_child
   (of-object "AtkObject")
   (return-type "AtkObject*")
+  (caller-owns-return #t)
   (parameters
     '("gint" "i")
   )
@@ -2235,6 +2238,7 @@
 (define-virtual ref_relation_set
   (of-object "AtkObject")
   (return-type "AtkRelationSet*")
+  (caller-owns-return #t)
 )
 
 (define-virtual get_role
@@ -2255,6 +2259,7 @@
 (define-virtual ref_state_set
   (of-object "AtkObject")
   (return-type "AtkStateSet*")
+  (caller-owns-return #t)
 )
 
 (define-virtual set_name
@@ -2376,6 +2381,7 @@
 (define-virtual ref_selection
   (of-object "AtkSelection")
   (return-type "AtkObject*")
+  (caller-owns-return #t)
   (parameters
     '("gint" "i")
   )
@@ -2436,6 +2442,7 @@
 (define-virtual ref_at
   (of-object "AtkTable")
   (return-type "AtkObject*")
+  (caller-owns-return #t)
   (parameters
     '("gint" "row")
     '("gint" "column")
@@ -2902,6 +2909,7 @@
 (define-virtual get_bounded_ranges
   (of-object "AtkText")
   (return-type "AtkTextRange*[]")
+  (caller-owns-return #t)
   (parameters
     '("AtkTextRectangle*" "rect")
     '("AtkCoordType" "coord_type")

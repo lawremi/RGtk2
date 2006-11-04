@@ -1159,7 +1159,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
 ### C - the R stuff was just a warmup
 
 convertToCType <-
-function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
+function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, owns = F)
 {
 
  if(is.list(paramtype))
@@ -1177,12 +1177,16 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
  macro <- NULL
  args <- name
 
+ out <- !is.null(params) && params[[paramname]]$access == "out"
+ 
  if(!is.null(gtype <- getGenericType(type))) {
 	 # automatically initialize array size parameters to vector length
      if (!is.null(params) && isArrayLengthParam(params[[paramname]], params)) {
          fun <- "GET_LENGTH"
          args <- nameToSArg(getArrayParamForSize(paramname, params)$name)
      } else fun <- asC(gtype) # primitive type conversion functions ~ 'asType'
+     if ((out || is.null(params)) && gtype == "string" && !isConst(paramtype))
+       macro <- "g_strdup"
  } else if(isEnum(type, defs)) { # enums and flags are converted using GEnum
     fun <- "asCEnum"
 	args <- c(args, defs$typecodes[[type]])
@@ -1192,10 +1196,8 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
  } else if (type %in% transparentTypes) { # transparent types ~ 'asCType'
     fun <- asC(type)
     cast <- NULL
-    if (!is.null(params) && params[[paramname]]$access == "out" && !isRef(paramtype)) {
-      print(paste("dereffing", fun))
+    if (out && !isRef(paramtype))
       fun <- derefName(fun)
-    }
  # if we have a destroy function as a parameter, we need to provide the correct one
  # for user data passed when registering a callback, we just sink the gclosure
  # that encapsulates the R callback
@@ -1220,13 +1222,17 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
      else {
          if (vtype %in% transparentTypes && !isPrimitiveType(vtype))
              fun <- "asCArrayRef"
+         else if (owns)
+           fun <- "asCArrayDup"
          else fun <- "asCArray"
-         args <- c(args, vtype, convertToCType(name, vtype, defs)$fun)
+         args <- c(args, vtype, convertToCType(name, vtype, defs, owns = owns)$fun)
      }
  } else if (type == "gpointer") {
      fun <- "asCGenericData" # for associating some R object with some GObject
  } else {
      fun <- "getPtrValue"
+     if (owns && isObject(type, defs))
+       fun <- paste(fun, "WithRef", sep="")
 	 if (isCairoType(type))
 		 cast <- paramtype
      else if (type %in% names(defs$typecodes) || type %in% opaqueTypes) {
@@ -1244,6 +1250,13 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T)
 	 
  }
 
+ if (owns) {
+   if (isBoxed(type, defs))
+     macro <- defs$boxes[[type]]$copy
+   else if (type %in% names(copyFuncs))
+     macro <- copyFuncs[type]
+ }
+ 
  val <- args
  if (!is.null(fun))
      val <- invoke(fun, val)
@@ -1828,8 +1841,9 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   fun_code <- ifelse(virtual, 
     #vecind(paste("*", cast(refType("SEXP"), "s_object + query.instance_size"), sep=""), virtual),
     #vecind(invokev("g_object_get_qdata", invoke("G_OBJECT", "s_object"), classQuark(fun$ofobject)), virtual),
-    vecind(invokev("findVar", classSymbol(fun$ofobject), invokev("G_STRUCT_MEMBER", "SEXP", 
-      invoke("G_OBJECT_GET_CLASS", "s_object"), "query.class_size")), virtual),
+    vecind(invokev("findVar", classSymbol(fun$ofobject), invoke("S_GOBJECT_GET_ENV", "s_object")), virtual),
+    #invokev("G_STRUCT_MEMBER", "SEXP", 
+    #  invoke("G_OBJECT_GET_CLASS", "s_object"), "query.class_size")), virtual),
     field(dataName, "function"))
   
   code <- c(code,
@@ -1839,11 +1853,11 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
     statement(decl("USER_OBJECT_", "tmp")),
     statement(decl("USER_OBJECT_", retName)),
     "",
-    if (virtual) {
-      c(statement(decl("GTypeQuery", "query")), 
-        statement(invokev("g_type_query", invoke("G_OBJECT_TYPE", "s_object"), refName("query"))),
-        "")
-    },
+    #if (virtual) {
+    #  c(statement(decl("GTypeQuery", "query")), 
+    #    statement(invokev("g_type_query", invoke("G_OBJECT_TYPE", "s_object"), refName("query"))),
+    #    "")
+    #},
     statement(alloc("e", "lang", length(in_params)+1+!virtual)),
     statement(cassign("tmp", "e")),
     "",
@@ -1867,13 +1881,14 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
       code <- c(code, statement(cassign(derefName(nameToSArg(names(out_params))), 
         sapply(names(dummy_out_params), function(param_name)
           convertToCType(param_name, deref(dummy_out_params[[param_name]]$type), 
-            defs, dummy_out_params, prefix=F)$code))))
+            defs, dummy_out_params, prefix=F, owns=T)$code))))
       s_result <- vecind("s_ans", 1)
     }
     
     if (hasReturn)
       code <- c(code,
-        statement(returnValue(convertToCType(s_result, fun$return, defs, prefix=F)$code)))
+        statement(returnValue(convertToCType(s_result, fun$return, defs, prefix=F, 
+          owns=fun$owns)$code)))
   code <- c(code,
   "}")
   

@@ -38,7 +38,7 @@ genCClass <- function(name = "GtkWidget", defs, interface = F)
   if (length(hierarchy) > 1) {
     parent <- hierarchy[2]
     parent_class_init <- invokev(paste(nameToC(collapseClassName(parent)), "class_init", sep="_"),
-        cast(refType(mapClassType(paste(parent, "Class", sep=""))), "c"), "s")
+        cast(refType(mapClassType(paste(parent, "Class", sep=""))), "c"), "e")
   }
     
   class_init_name <- paste(nameToC(fun_name), "_class_init", sep="")
@@ -49,7 +49,7 @@ genCClass <- function(name = "GtkWidget", defs, interface = F)
     "{",
       statement(decl("SEXP", "s")),
       "",
-      statement(cassign(classSymbol(name), invoke("install", lit(nameToC(name))))),
+      statement(cassign(classSymbol(name), invoke("install", lit(name)))),
       statement(cassign("s", invokev("findVar", classSymbol(name), "e"))),
       statement(cassign(invokev("G_STRUCT_MEMBER", "SEXP", "c", invoke("sizeof", class_type)), "e")),
       "",

@@ -3,7 +3,7 @@
 /* This is an simple version of the event handler for windows.
    It mimicks what we do in Rggobi, namely hijacking the hook into the
    event loop that Tk uses.
-   This currently doesn't handle timed and idle tasks.
+   This currently doesn't handle timed tasks.
    More to come later on an overhaul of the R event loop.
  */
 #ifdef G_OS_WIN32
@@ -21,17 +21,6 @@ void
 R_gtk_handle_events()
 {
   R_gtk_eventHandler(NULL);
-}
-
-GType
-r_gtk_sexp_get_type (void)
-{
-  static GType our_type = 0;
-
-  if (our_type == 0)
-    our_type = g_pointer_type_register_static ("RGtkSexp");
-
-  return our_type;
 }
 
 void
@@ -55,5 +44,5 @@ R_gtkInit(long *rargc, char **rargv)
     R_tcldo = R_gtk_handle_events;
 #endif
 
-  r_gtk_sexp_get_type();
+  r_gtk_param_spec_sexp_get_type();
 }

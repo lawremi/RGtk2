@@ -2,23 +2,14 @@
 Adding support for extending GObjects
 ----------
   
-Type conversion issues:
-
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)
 - Field setting: GtkTreeIter (many in GtkTreeModel), 
     GValue (gtk_tree_model_get_value, many in AtkValue),
-    
 
 TODO: 
 
 1) calling parent handlers
-2) GObject virtuals
-3) signal/property definition support
-
-Stuff to think about:
-
-- Integration with other object models in R
 
 Some current issues/bugs with RGtk2
 ----------

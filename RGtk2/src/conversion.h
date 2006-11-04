@@ -287,6 +287,12 @@ __extension__ \
 \
     array; \
 })
+#define asCArrayDup(s, type, converter) \
+__extension__ \
+({ \
+    type* array = asCArray(s, type, converter); \
+    g_memdup(array, sizeof(type) * GET_LENGTH(s)); \
+})
 
 #define asCEnumArray(s_array, type, code) \
 __extension__ \
@@ -341,6 +347,7 @@ USER_OBJECT_ toRPointer(gconstpointer, const char *name);
 void RGtk_finalizer(USER_OBJECT_ extptr);
 
 void *getPtrValue(USER_OBJECT_);
+void *getPtrValueWithRef(USER_OBJECT_);
 
 /* GObject */
 int R_setGValueFromSValue(GValue *, USER_OBJECT_);

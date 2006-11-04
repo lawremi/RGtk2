@@ -157,33 +157,21 @@ function(x)
 }
 
 gObjectGetPropInfo <-
-function(obj, parents = TRUE, collapse = FALSE)
+function(obj)
 {
   checkPtrType(obj, "GObject")
-  
-  type <- as.GType(class(obj)[1])
-  
-  v <- .Call("R_getGTypeParamSpecs", as.numeric(type), as.logical(parents), PACKAGE = "RGtk2")
-
-  if(collapse) {
-         # Merge into a new list (vals)
-         # making certain not to overwrite values in
-         # more specific classes with names
-    vals <- list()
-    sapply(v, function(x) {
-                  which <- is.na(match(names(x), names(vals)))
-                    Names <- names(x)[which]
-                  vals[Names] <<- x[which]
-              })
-    v <- vals
-    #
-    #unlist(v, recursive = FALSE)
-    # messes up the names.
-  }
-
-  v
+  gTypeGetPropInfo(class(obj)[1])
 }
 
+gTypeGetPropInfo <-
+function(type)
+{
+  type <- as.GType(type)
+  if (!("GObject" %in% gTypeGetAncestors(type)))
+    stop("Cannot retrieve properties, because type is not a GObject type")
+  
+  .RGtkCall("R_getGTypeParamSpecs", as.numeric(type))
+}
 
 gObjectGet <-
 function(obj, ...)
@@ -219,7 +207,7 @@ function(obj, propNames, value)
 }
 
 gObject <- gObjectNew <-
-function(type, ... = TRUE)
+function(type, ...)
 {
   args <- list(...)
   type <- as.GType(type)
@@ -231,14 +219,110 @@ function(type, ... = TRUE)
   invisible(.RGtkCall("R_gObjectNew", type, args, PACKAGE = "RGtk2"))
 }
 
+## Parameter specifications
+
+GParamFlags <- c("readable" = 1, "writable" = 2, "construct" = 4, 
+  "construct-only" = 8, "lax-validation" = 16, "static-name" = 32,
+  "private" = 32, "static-nick" = 64, "static-blurb" = 128)
+  
+gParamSpec <-
+function(type, name, nick = NULL, blurb = NULL, flags = NULL, ...)
+{
+  # map type to param spec type, pass on the args
+  
+  spec <- list(name = name, nick = nick, blurb = blurb, flags = flags, ...)
+  
+  if (type == "integer")
+    param_type <- "GParamInt"
+  else if (type == "numeric")
+    param_type <- "GParamDouble"
+  else if (type == "logical")
+    param_type <- "GParamBoolean"
+  else if (type == "character")
+    param_type <- "GParamString"
+  else if (type == "raw")
+    param_type <- "GParamUChar"
+  else if (type == "R")
+    param_type <- "RGtkParamSexp"
+  else param_type <- type
+  
+  class(spec) <- c(param_type)
+  
+  as.GParamSpec(spec)
+}
+
 as.GParamSpec <- 
 function(x)
 {
-	x <- as.struct(x, "GParamSpec", c("param.type", "name", "nick", "blurb", "flags"))
-	x[[1]] <- as.GType(x[[1]])
+  type <- sub(".*Param", "", class(x)[1])
+  
+  fields <- NULL
+  common_fields <- c("name", "nick", "blurb", "flags")
+  if (type %in% c("Boolean", "String", "Unichar"))
+    fields <- "default.value"
+  else if (type == "Flags")
+    fields <- c("flags.type", "default.value")
+  else if (type == "Enum")
+    fields <- c("enum.type", "default.value")
+  else if (type %in% c("Char", "UChar", "Int", "UInt", "ULong", "Long", "UInt64",
+      "Int64", "Float", "Double"))
+    fields <- c("minimum", "maximum", "default.value")
+  else if (type == "Param")
+    fields <- "param.type"
+  else if (type == "Boxed")
+    fields <- "boxed.type"
+  else if (type == "Object")
+    fields <- "object.type"
+  else if (type == "ValueArray")
+    fields <- "element.spec"
+  else if (type == "GType")
+    fields <- "is.a.type"
+  else if (type == "Sexp")
+    fields <- c("s.type", "default.value")
+  
+	x <- as.struct(x, c(class(x)[1], "GParamSpec"), c(common_fields, fields))
+
+	x[[1]] <- as.character(x[[1]])
 	x[[2]] <- as.character(x[[2]])
 	x[[3]] <- as.character(x[[3]])
-	x[[4]] <- as.character(x[[4]])
+  
+  if (is.null(x[[4]]))
+    x[[4]] <- sum(GParamFlags[c("readable", "writable", "construct")])
+  
+  if (type == "Boolean")
+    x[[5]] <- ifelse(is.null(x[[5]]), F, as.logical(x[[5]]))
+  else if (type == "String")
+    x[[5]] <- ifelse(is.null(x[[5]]), "", as.character(x[[5]]))
+  else if (type == "Unichar")
+    x[[5]] <- ifelse(is.null(x[[5]]), as.integer(0), as.integer(x[[5]]))
+  else if (type %in% c("Flags", "Enum", "Param", "Boxed", "Object", "GType"))
+    x[[5]] <- as.GType(x[[5]])
+  else if (type %in% c("Char", "UChar")) {
+    x[[5]] <- ifelse(is.null(x[[5]]), 0, as.raw(x[[5]]))
+    x[[6]] <- as.raw(x[[6]])
+    x[[7]] <- as.raw(x[[7]])
+  } else if (type == "Int") {
+    x[[5]] <- ifelse(is.null(x[[5]]), 0, as.integer(x[[5]]))
+    x[[6]] <- as.integer(x[[6]])
+    x[[7]] <- as.integer(x[[7]])
+  } else if (type %in% c("UInt", "ULong", "Long", "UInt64", "Int64", "Float", "Double")) {
+    x[[5]] <- ifelse(is.null(x[[5]]), 0, as.numeric(x[[5]]))
+    x[[6]] <- as.numeric(x[[6]])
+    x[[7]] <- as.numeric(x[[7]])
+  } else if (type == "ValueArray")
+    x[[5]] <- as.GParamSpec(x[[5]])
+  else if (type == "Sexp") {
+    # if there's no type, try to get it from the default value
+    if (is.null(x[[5]]))
+      x[[5]] <- typeof(x[[6]])
+    # if there's no default value, create one given the type
+    if (is.null(x[[6]]))
+      x[[6]] <- new(as.character(x[[5]]))
+    # if type is numeric, assume it's a type code, otherwise assume it's a type 
+    # name and ask the C side to query the default value for the code
+    if (!is.numeric(x[[5]]))
+      x[[5]] <- .RGtkCall("getNumericType", x[[6]])
+  }
 	
 	return(x)
 }
@@ -321,7 +405,7 @@ function(x, field)
   if (!inherits(sym, "try-error"))
 	  val <- eval(substitute(sym(x), list(sym=sym)))
   else if (inherits(x, "GObject")) {
-   val <- x$get(field)
+   val <- x$get(field)[[1]]
   } else val <- sym
   return(val)
 }
@@ -388,3 +472,9 @@ function(c_closure)
 	attr(closure, "ref") <- c_closure
 	closure
 }
+
+# virtuals for GObject
+.virtuals <- c(.virtuals, list(
+  GObject = c("set_property", "get_property")
+))
+
