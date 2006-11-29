@@ -37,6 +37,8 @@
 \code{\link{gdkDisplayRequestSelectionNotification}(object, selection)}\cr
 \code{\link{gdkDisplaySupportsClipboardPersistence}(object)}\cr
 \code{\link{gdkDisplayStoreClipboard}(object, clipboard.window, targets)}\cr
+\code{\link{gdkDisplaySupportsShapes}(object)}\cr
+\code{\link{gdkDisplaySupportsInputShapes}(object)}\cr
 \code{gdkDisplay(display.name)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}

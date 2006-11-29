@@ -11,14 +11,15 @@
 \code{gtkToggleToolButton(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkToolItem}
-                                 +----\link{GtkToolButton}
-                                       +----GtkToggleToolButton
-                                             +----\link{GtkRadioToolButton}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkToolItem}
+                                       +----\link{GtkToolButton}
+                                             +----GtkToggleToolButton
+                                                   +----\link{GtkRadioToolButton}}}
 \section{Interfaces}{GtkToggleToolButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{  A \code{\link{GtkToggleToolButton}} is a \code{\link{GtkToolItem}} that contains a toggle

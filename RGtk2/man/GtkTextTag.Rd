@@ -31,8 +31,11 @@ See \command{gtk-demo} for numerous examples.
 The "invisible" property was not implemented for GTK+ 2.0; it's
 planned to be implemented in future releases.}
 \section{Structures}{\describe{
-\item{\code{GtkTextTag}}{\emph{undocumented
-}}
+\item{\code{GtkTextTag}}{
+\emph{undocumented
+}
+
+}
 \item{\code{GtkTextAttributes}}{
 Using \code{\link{GtkTextAttributes}} directly should rarely be necessary. It's
 primarily useful with \code{\link{gtkTextIterGetAttributes}}. As with most
@@ -62,7 +65,8 @@ modified directly.
 
 }
 \item{\code{GtkTextAppearance}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{bgColor}}{[\code{\link{GdkColor}}] }
@@ -94,7 +98,8 @@ Describes a type of line wrapping.
 
 }}}
 \section{Signals}{\describe{\item{\code{event(texttag, arg1, event, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{texttag}}{[\code{\link{GtkTextTag}}] the object which received the signal.}
@@ -143,7 +148,7 @@ Whether this tag affects the background stipple.  Default value: FALSE
 }
 \item{\code{direction} [\code{\link{GtkTextDirection}} : Read / Write]}{
 
-Text direction, e.g. right-to-left or left-to-right.  Default value: GTK\_TEXT\_DIR\_LTR
+Text direction, e.g. right-to-left or left-to-right.  Default value: GTK\_TEXT\_DIR\_NONE
 
 }
 \item{\code{editable} [logical : Read / Write]}{
@@ -168,7 +173,12 @@ Whether this tag affects the font family.  Default value: FALSE
 }
 \item{\code{font} [character : Read / Write]}{
 
-Font description as a string, e.g. "Sans Italic 12".  Default value: NULL
+Font description as string, e.g. \\"Sans Italic 12\\". 
+  
+Note that the initial value of this property depends on
+the internals of \code{\link{PangoFontDescription}}.  
+
+  Default value: NULL
 
 }
 \item{\code{font-desc} [\code{\link{PangoFontDescription}} : Read / Write]}{
@@ -239,7 +249,14 @@ Whether this tag affects paragraph justification.  Default value: FALSE
 }
 \item{\code{language} [character : Read / Write]}{
 
-The language this text is in, as an ISO code. Pango can use this as a hint when rendering the text. If not set, an appropriate default will be used.  Default value: NULL
+The language this text is in, as an ISO code. Pango can use this as a 
+hint when rendering the text. If not set, an appropriate default will be 
+used.
+  
+Note that the initial value of this property depends on the current
+locale, see also \code{\link{gtkGetDefaultLanguage}}.  
+
+  Default value: NULL
 
 }
 \item{\code{language-set} [logical : Read / Write]}{

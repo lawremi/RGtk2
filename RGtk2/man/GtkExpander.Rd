@@ -21,11 +21,12 @@
 \code{gtkExpander(label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkExpander}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkExpander}}
 \section{Interfaces}{GtkExpander implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking on an expander triangle similar to 
@@ -44,22 +45,22 @@ the triangles used in a \code{\link{GtkTreeView}}.
       expander widget has an \code{expanded} property
       which can be used to monitor its expansion state.  You should
       watch this property with a signal connection as follows:
-      \preformatted{expander = gtk\_expander\_new\_with\_mnemonic ("\_More Options");
-g\_signal\_connect (expander, "notify::expanded",
-                  G\_CALLBACK (expander\_callback), NULL);
+      \preformatted{expander = gtk_expander_new_with_mnemonic ("_More Options");
+g_signal_connect (expander, "notify::expanded",
+                  G_CALLBACK (expander_callback), NULL);
 
 ...
 
 static void
-expander\_callback (GObject    *object,
-                   GParamSpec *param\_spec,
-                   gpointer    user\_data)
+expander_callback (GObject    *object,
+                   GParamSpec *param_spec,
+                   gpointer    user_data)
 {
   GtkExpander *expander;
 
-  expander = GTK\_EXPANDER (object);
+  expander = GTK_EXPANDER (object);
 
-  if (gtk\_expander\_get\_expanded (expander))
+  if (gtk_expander_get_expanded (expander))
     {
       /* Show or create widgets */
     }
@@ -69,12 +70,17 @@ expander\_callback (GObject    *object,
     }
 }
 
-    }}
-\section{Structures}{\describe{\item{\code{GtkExpander}}{\emph{undocumented
-}}}}
+    
+}}
+\section{Structures}{\describe{\item{\code{GtkExpander}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkExpander} is the equivalent of \code{\link{gtkExpanderNew}}.}
 \section{Signals}{\describe{\item{\code{activate(expander, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{expander}}{[\code{\link{GtkExpander}}] the object which received the signal.}

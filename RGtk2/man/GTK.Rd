@@ -16,6 +16,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkAlignment}}{A widget which controls the alignment and size of its child}
 \item{\link{GtkArrow}}{Displays an arrow}
 \item{\link{GtkAspectFrame}}{A frame that constrains its child to a particular aspect ratio}
+\item{\link{GtkAssistant}}{A widget used to guide users through multi-step operations}
 \item{\link{GtkButtonBox}}{Base class for    and }
 \item{\link{GtkBin}}{A container with just one child}
 \item{\link{GtkBox}}{Base class for box containers}
@@ -24,9 +25,11 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkCellEditable}}{Interface for widgets which can are used for editing cells}
 \item{\link{GtkCellLayout}}{An interface for packing cells}
 \item{\link{GtkCellRenderer}}{An object for rendering a single cell on a }
+\item{\link{GtkCellRendererAccel}}{Renders a keyboard accelerator in a cell}
 \item{\link{GtkCellRendererCombo}}{Renders a combobox in a cell}
 \item{\link{GtkCellRendererPixbuf}}{Renders a pixbuf in a cell}
 \item{\link{GtkCellRendererProgress}}{Renders numbers as progress bars}
+\item{\link{GtkCellRendererSpin}}{Renders a spin button in a cell}
 \item{\link{GtkCellRendererText}}{Renders text in a cell}
 \item{\link{GtkCellRendererToggle}}{Renders a toggle button in a cell}
 \item{\link{GtkCellView}}{A widget displaying a single row of a GtkTreeModel}
@@ -87,6 +90,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkItemFactory}}{A factory for menus}
 \item{\link{GtkLabel}}{A widget that displays a small to medium amount of text}
 \item{\link{GtkLayout}}{Infinite scrollable area containing child widgets and/or custom drawing}
+\item{\link{GtkLinkButton}}{Create buttons bound to a URL}
 \item{\link{GtkList}}{Widget for packing a list of selectable items}
 \item{\link{GtkListItem}}{An item in a GtkList}
 \item{\link{GtkListStore}}{A list-like data structure that can be used with the }
@@ -100,10 +104,15 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkNotebook}}{A tabbed notebook container}
 \item{\link{GtkOldEditable}}{Base class for text-editing widgets}
 \item{\link{GtkOptionMenu}}{A widget used to choose from a list of valid choices}
+\item{\link{GtkPageSetup}}{Stores page setup information}
 \item{\link{GtkPaned}}{Base class for widgets with two adjustable panes}
+\item{\link{gtk-GtkPaperSize}}{Support for named paper sizes}
 \item{\link{GtkPixmap}}{A widget displaying a graphical image or icon}
 \item{\link{GtkPlug}}{Toplevel for embedding into other processes}
 \item{\link{GtkPreview}}{A widget to display RGB or grayscale data}
+\item{\link{GtkPrintContext}}{Encapsulates context for drawing pages}
+\item{\link{gtk-High-level-Printing-API}}{High-level Printing API}
+\item{\link{GtkPrintSettings}}{Stores print settings}
 \item{\link{GtkProgress}}{Base class for GtkProgressBar}
 \item{\link{GtkProgressBar}}{A widget which indicates progress visually}
 \item{\link{GtkRadioAction}}{An action of which only one in a group can be active}
@@ -112,6 +121,12 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkRadioToolButton}}{A toolbar item that contains a radio button}
 \item{\link{GtkRange}}{Base class for widgets which visualize an adjustment}
 \item{\link{gtk-Resource-Files}}{Routines for handling resource files}
+\item{\link{GtkRecentChooser}}{Interface implemented by GtkRecentChooserWidget, GtkRecentChooserMenu and GtkRecentChooserDialog}
+\item{\link{GtkRecentChooserDialog}}{Displays recently used files in a dialog}
+\item{\link{GtkRecentChooserMenu}}{Displays recently used files in a menu}
+\item{\link{GtkRecentChooserWidget}}{Displays recently used files}
+\item{\link{GtkRecentFilter}}{A filter for selecting a subset of recently used files}
+\item{\link{GtkRecentManager}}{Managing Recently Used Files}
 \item{\link{GtkRuler}}{Base class for horizontal or vertical rulers}
 \item{\link{GtkScale}}{Base class for GtkHScale and GtkVScale}
 \item{\link{GtkScrollbar}}{Base class for GtkHScrollbar and GtkVScrollbar}
@@ -125,6 +140,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkSocket}}{Container for widgets from other processes}
 \item{\link{GtkSpinButton}}{Retrieve an integer or floating-point number from the user}
 \item{\link{GtkStatusbar}}{Report messages of minor importance to the user}
+\item{\link{GtkStatusIcon}}{Display an icon in the system tray}
 \item{\link{gtk-Stock-Items}}{Prebuilt common menu/toolbar items and corresponding icons}
 \item{\link{GtkStyle}}{Functions for drawing widget parts}
 \item{\link{GtkTable}}{Pack widgets in regular patterns}

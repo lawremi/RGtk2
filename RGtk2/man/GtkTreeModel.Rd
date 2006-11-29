@@ -162,7 +162,7 @@ the second is much more common, as you often get paths from callbacks.
   
 This second example shows a quick way of iterating through a list and
 getting a string and an integer from each row.  The
-\code{populate\Model} function used below is not shown, as
+\code{populateModel} function used below is not shown, as
 it is specific to the \code{\link{GtkListStore}}.  For information on how to write
 such a function, see the \code{\link{GtkListStore}} documentation.
 \preformatted{
@@ -192,8 +192,11 @@ such a function, see the \code{\link{GtkListStore}} documentation.
     }
 }}
 \section{Structures}{\describe{
-\item{\code{GtkTreeModel}}{\emph{undocumented
-}}
+\item{\code{GtkTreeModel}}{
+\emph{undocumented
+}
+
+}
 \item{\code{GtkTreeIter}}{
 The \code{GtkTreeIter} is the primary structure for
 accessing a structure.  Models are expected to put a unique integer in
@@ -208,10 +211,16 @@ data in the three \code{user_data} members.
 }
 
 }
-\item{\code{GtkTreePath}}{\emph{undocumented
-}}
-\item{\code{GtkTreeRowReference}}{\emph{undocumented
-}}
+\item{\code{GtkTreePath}}{
+\emph{undocumented
+}
+
+}
+\item{\code{GtkTreeRowReference}}{
+\emph{undocumented
+}
+
+}
 }}
 \section{Enums and Flags}{\describe{\item{\code{GtkTreeModelFlags}}{
 These flags indicate various properties of a \code{\link{GtkTreeModel}}.  They are
@@ -227,7 +236,8 @@ section.
 
 }}}
 \section{User Functions}{\describe{\item{\code{GtkTreeModelForeachFunc(model, path, iter, data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{model}}{[\code{\link{GtkTreeModel}}] }
@@ -238,57 +248,77 @@ section.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{row-changed(treemodel, arg1, arg2, user.data)}}{
-
+\item{\code{row-changed(tree.model, path, iter, user.data)}}{
+This signal is emitted when a row in the model has changed.  
 
 \describe{
-\item{\code{treemodel}}{[\code{\link{GtkTreeModel}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
-\item{\code{arg2}}{[\code{\link{GtkTreeIter}}] }
+\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} on which the signal is emitted}
+\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} identifying the changed row}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the changed row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 }
-\item{\code{row-deleted(treemodel, arg1, user.data)}}{
-
+\item{\code{row-deleted(tree.model, path, user.data)}}{
+This signal is emitted when a row has been deleted.
+  
+Note that no iterator is passed to the signal handler,
+since the row is already deleted.
+  
+Implementations of GtkTreeModel must emit row-deleted 
+\emph{before} removing the node from its
+internal data structures.  This is because models and 
+views which access and monitor this model might have
+references on the node which need to be released in the
+row-deleted handler.  
 
 \describe{
-\item{\code{treemodel}}{[\code{\link{GtkTreeModel}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
+\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} on which the signal is emitted}
+\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} identifying the row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 }
-\item{\code{row-has-child-toggled(treemodel, arg1, arg2, user.data)}}{
-
+\item{\code{row-has-child-toggled(tree.model, path, iter, user.data)}}{
+This signal is emitted when a row has gotten the first child row or lost
+its last child row.  
 
 \describe{
-\item{\code{treemodel}}{[\code{\link{GtkTreeModel}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
-\item{\code{arg2}}{[\code{\link{GtkTreeIter}}] }
+\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} on which the signal is emitted}
+\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} identifying the row}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 }
-\item{\code{row-inserted(treemodel, arg1, arg2, user.data)}}{
-
+\item{\code{row-inserted(tree.model, path, iter, user.data)}}{
+This signal is emitted when a new row has been inserted in the model.
+  
+Note that the row may still be empty at this point, since
+it is a common pattern to first insert an empty row, and 
+then fill it with the desired values.  
 
 \describe{
-\item{\code{treemodel}}{[\code{\link{GtkTreeModel}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
-\item{\code{arg2}}{[\code{\link{GtkTreeIter}}] }
+\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} on which the signal is emitted}
+\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} identifying the new row}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the new row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 }
-\item{\code{rows-reordered(treemodel, arg1, arg2, arg3, user.data)}}{
-
+\item{\code{rows-reordered(tree.model, path, iter, user.data)}}{
+This signal is emitted when the children of a node in the \code{\link{GtkTreeModel}}
+have been reordered. 
+  
+Note that this signal is \emph{not} emitted
+when rows are reordered by DND, since this is implemented
+by removing and then reinserting the row.  
 
 \describe{
-\item{\code{treemodel}}{[\code{\link{GtkTreeModel}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
-\item{\code{arg2}}{[\code{\link{GtkTreeIter}}] }
-\item{\code{arg3}}{[R object] }
+\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} on which the signal is emitted}
+\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} identifying the tree node whose children
+       have been reordered}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the node whose }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

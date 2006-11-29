@@ -10,6 +10,7 @@ lines will use the foreground color.}
 \item{\code{green}}{[integer]  the green value}
 \item{\code{blue}}{[integer]  the blue value}
 }
-\value{[\code{\link{PangoAttribute}}]  the new \code{\link{PangoAttribute}}.}
+\details{  Since  1.8}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

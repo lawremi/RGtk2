@@ -1,0 +1,25 @@
+require(RGtk2)
+# generate some fake microarray-ish data
+n <- 5000
+backbone <- rnorm(n)
+ma_data <- cbind(backbone, backbone+rnorm(n,,0.3))
+require(cairoDevice)
+win <- gtkWindow(show = F)
+da <- gtkDrawingArea()
+asCairoDevice(da)
+par(pty = "s")
+scale_cb <- function(range) 
+  plot(ma_data, col = rgb(0,0,0,(range$getValue())^3),
+    xlab = "Replicate 1", ylab = "Replicate 2", 
+    main = "Expression levels of WT at time 0",  pch = 19)
+format_cb <- function(range, value) as.character(value^3)
+s <- gtkHScale(,0.15, 1.00, 0.05)
+gSignalConnect(s, "value-changed", scale_cb)
+gSignalConnect(s, "format-value", format_cb)
+vbox <- gtkVBox()
+vbox$packStart(da)
+vbox$packStart(s, FALSE)
+win$add(vbox)
+win$setDefaultSize(400,400)
+win$showAll() 
+s$setValue(0.7)

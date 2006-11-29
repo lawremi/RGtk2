@@ -8,7 +8,7 @@ your icon sets in the icon factory, add the icon factory to the
 list of default factories with \code{\link{gtkIconFactoryAddDefault}}, and
 then use \code{\link{gtkImageNewFromStock}}. This will allow themes to
 override the icon you ship with your application.}
-\usage{gtkImageNewFromIconSet(icon.set, size)}
+\usage{gtkImageNewFromIconSet(icon.set, size, show = TRUE)}
 \arguments{
 \item{\code{icon.set}}{[\code{\link{GtkIconSet}}]  a \code{\link{GtkIconSet}}}
 \item{\code{size}}{[\code{\link{GtkIconSize}}]  a stock icon size}

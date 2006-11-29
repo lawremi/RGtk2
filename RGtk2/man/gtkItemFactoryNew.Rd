@@ -3,7 +3,7 @@
 \title{gtkItemFactoryNew}
 \description{
 Creates a new \code{\link{GtkItemFactory}}.
-\strong{WARNING: \code{gtk_item_factory_new} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_new} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryNew(container.type, path, accel.group = NULL)}
 \arguments{

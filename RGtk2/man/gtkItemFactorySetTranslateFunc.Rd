@@ -4,7 +4,7 @@
 \description{
 Sets a function to be used for translating the path elements before they
 are displayed.
-\strong{WARNING: \code{gtk_item_factory_set_translate_func} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_set_translate_func} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactorySetTranslateFunc(object, func, data = NULL)}
 \arguments{

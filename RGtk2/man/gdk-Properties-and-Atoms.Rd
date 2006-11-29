@@ -6,6 +6,7 @@
 \description{Functions to manipulate properties on windows}
 \section{Methods and Functions}{
 \code{\link{gdkAtomIntern}(atom.name, only.if.exists = FALSE)}\cr
+\code{\link{gdkAtomInternStaticString}(atom.name)}\cr
 \code{\link{gdkAtomName}(atom)}\cr
 \code{\link{gdkPropertyGet}(object, property, type, offset, length, pdelete)}\cr
 \code{\link{gdkPropertyChange}(object, property, type, format, mode, data)}\cr

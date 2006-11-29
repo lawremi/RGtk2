@@ -31,12 +31,13 @@ point is at \code{x} + the window width and \code{y} + the window height, and
 the bottom-right corner of the window border will be placed at that
 reference point. So, to place a window in the bottom right corner
 you would first set gravity to south east, then write:
-\code{gtk_window_move (window, }.
+\code{gtk_window_move (window, } (note that this
+example does not take multi-head scenarios into account).
   
 The Extended Window Manager Hints specification at 
 http://www.org/Standards/wm-spec (\url{http://www.org/Standards/wm-spec}) has a 
 nice table of gravities in the "implementation notes" section.
   
-The \code{\link{gtkWindowGetPosition}} documentation may also be relevant.  .}
+The \code{\link{gtkWindowGetPosition}} documentation may also be relevant.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

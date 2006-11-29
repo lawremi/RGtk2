@@ -1,4 +1,5 @@
 \alias{GtkRange}
+\alias{GtkSensitivityType}
 \name{GtkRange}
 \title{GtkRange}
 \description{Base class for widgets which visualize an adjustment}
@@ -13,21 +14,42 @@
 \code{\link{gtkRangeSetIncrements}(object, step, page)}\cr
 \code{\link{gtkRangeSetRange}(object, min, max)}\cr
 \code{\link{gtkRangeSetValue}(object, value)}\cr
+\code{\link{gtkRangeSetLowerStepperSensitivity}(object, sensitivity)}\cr
+\code{\link{gtkRangeGetLowerStepperSensitivity}(object)}\cr
+\code{\link{gtkRangeSetUpperStepperSensitivity}(object, sensitivity)}\cr
+\code{\link{gtkRangeGetUpperStepperSensitivity}(object)}\cr
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkRange
-                     +----\link{GtkScale}
-                     +----\link{GtkScrollbar}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkRange
+                           +----\link{GtkScale}
+                           +----\link{GtkScrollbar}}}
 \section{Interfaces}{GtkRange implements
  AtkImplementorIface.}
-\section{Structures}{\describe{\item{\code{GtkRange}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkRange}}{
+\emph{undocumented
+}
+
+}}}
+\section{Enums and Flags}{\describe{\item{\code{GtkSensitivityType}}{
+Determines how GTK+ handles the sensitivity of stepper arrows
+at the end of range widgets.
+
+\describe{
+\item{\code{auto}}{The arrow is made insensitive if the
+   thumb is at the end}
+\item{\code{on}}{The arrow is always sensitive}
+\item{\code{off}}{The arrow is always insensitive}
+}
+
+}}}
 \section{Signals}{\describe{
 \item{\code{adjust-bounds(range, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{range}}{[\code{\link{GtkRange}}] the object which received the signal.}
@@ -96,13 +118,28 @@ The GtkAdjustment that contains the current value of this range object.
 Invert direction slider moves to increase range value.  Default value: FALSE
 
 }
+\item{\code{lower-stepper-sensitivity} [\code{\link{GtkSensitivityType}} : Read / Write]}{
+
+The sensitivity policy for the stepper that points to the adjustment's lower side.  Default value: GTK\_SENSITIVITY\_AUTO
+
+}
 \item{\code{update-policy} [\code{\link{GtkUpdateType}} : Read / Write]}{
 
 How the range should be updated on the screen.  Default value: GTK\_UPDATE\_CONTINUOUS
 
 }
+\item{\code{upper-stepper-sensitivity} [\code{\link{GtkSensitivityType}} : Read / Write]}{
+
+The sensitivity policy for the stepper that points to the adjustment's upper side.  Default value: GTK\_SENSITIVITY\_AUTO
+
+}
 }}
 \section{Style Properties}{\describe{
+\item{\code{activate-slider} [logical : Read]}{
+
+With this option set to TRUE, sliders will be drawn ACTIVE and with shadow IN while they are dragged.  Default value: FALSE
+
+}
 \item{\code{arrow-displacement-x} [integer : Read]}{
 
 How far in the x direction to move the arrow when the button is depressed.  Default value: 0
@@ -125,12 +162,34 @@ Length of step buttons at ends.  Allowed values: >= 0  Default value: 14
 }
 \item{\code{stepper-spacing} [integer : Read]}{
 
-Spacing between step buttons and thumb.  Allowed values: >= 0  Default value: 0
+The spacing between the stepper buttons and thumb. Note that
+setting this value to anything > 0 will automatically set the
+trough-under-steppers style property to TRUE as well. Also,
+stepper-spacing won't have any effect if there are no steppers.  
+
+  Allowed values: >= 0  Default value: 0
 
 }
 \item{\code{trough-border} [integer : Read]}{
 
 Spacing between thumb/steppers and outer trough bevel.  Allowed values: >= 0  Default value: 1
+
+}
+\item{\code{trough-side-details} [logical : Read]}{
+
+  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{trough-under-steppers} [logical : Read]}{
+
+Whether to draw the trough across the full length of the range or
+to exclude the steppers and their spacing. Note that setting the
+stepper-spacing style property to any value > 0 will
+automatically enable trough-under-steppers too.  
+
+  Default value: TRUE  Since  2.10
 
 }
 }}

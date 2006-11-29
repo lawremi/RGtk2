@@ -17,8 +17,11 @@
    +----AtkHyperlink}}
 \section{Interfaces}{AtkHyperlink implements
  \code{\link{AtkAction}}.}
-\section{Detailed Description}{An ATK object which encapsulates a link or set of links in a hypertext document.
-It implements the AtkAction interface.}
+\section{Detailed Description}{An ATK object which encapsulates a link or set of links 
+(for instance in the case of client-side image maps) in a hypertext document.
+It may implement the AtkAction interface.  AtkHyperlink may also be used
+to refer to inline embedded content, since it allows specification of a start
+and end offset within the host AtkHypertext object.}
 \section{Structures}{\describe{\item{\code{AtkHyperlink}}{
 The AtkHyperlink structure should not be accessed directly.
 

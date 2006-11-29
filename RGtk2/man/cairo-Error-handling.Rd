@@ -8,7 +8,10 @@
 \code{\link{CairoStatus}} is used to indicate errors that can occur when
 using Cairo. In some cases it is returned directly by functions.
 but when using \code{\link{Cairo}}, the last error, if any, is stored in
-the context and can be retrieved with \code{\link{cairoStatus}}.  
+the context and can be retrieved with \code{\link{cairoStatus}}.
+  
+New entries may be added in future versions.  Use \code{\link{cairoStatusToString}}
+to get a human-readable representation of an error message.  
 
 \describe{
 \item{\code{success}}{ no error has occurred}
@@ -31,6 +34,7 @@ the context and can be retrieved with \code{\link{cairoStatus}}.
 \item{\code{invalid-visual}}{ invalid value for an input Visual*}
 \item{\code{file-not-found}}{ file not found}
 \item{\code{invalid-dash}}{ invalid value for a dash setting}
+\item{\code{invalid-dsc-comment}}{ invalid value for a DSC comment (Since 1.2)}
 }
 
 }}}

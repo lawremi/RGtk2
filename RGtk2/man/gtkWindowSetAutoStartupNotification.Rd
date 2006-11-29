@@ -1,12 +1,11 @@
 \alias{gtkWindowSetAutoStartupNotification}
 \name{gtkWindowSetAutoStartupNotification}
 \title{gtkWindowSetAutoStartupNotification}
-\description{By default, after showing the first \code{\link{GtkWindow}} for each \code{\link{GdkScreen}},
-GTK+ calls \code{gdk\Screen\Notify\Startup\Complete()}.  Call this
-function to disable the automatic startup notification. You might
-do this if your first window is a splash screen, and you want to
-delay notification until after your real main window has been
-shown, for example.}
+\description{By default, after showing the first \code{\link{GtkWindow}}, GTK+ calls 
+\code{\link{gdkNotifyStartupComplete}}.  Call this function to disable 
+the automatic startup notification. You might do this if your 
+first window is a splash screen, and you want to delay notification 
+until after your real main window has been shown, for example.}
 \usage{gtkWindowSetAutoStartupNotification(setting)}
 \arguments{\item{\code{setting}}{[logical]  \code{TRUE} to automatically do startup notification}}
 \details{In that example, you would disable startup notification

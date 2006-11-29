@@ -10,24 +10,26 @@
 \code{\link{gtkCellRendererActivate}(object, event, widget, path, background.area, cell.area, flags)}\cr
 \code{\link{gtkCellRendererStartEditing}(object, event, widget, path, background.area, cell.area, flags)}\cr
 \code{\link{gtkCellRendererEditingCanceled}(object)}\cr
+\code{\link{gtkCellRendererEditingCanceled}(object)}\cr
 \code{\link{gtkCellRendererStopEditing}(object, canceled)}\cr
 \code{\link{gtkCellRendererGetFixedSize}(object)}\cr
 \code{\link{gtkCellRendererSetFixedSize}(object, width, height)}\cr
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkCellRenderer
-               +----\link{GtkCellRendererText}
-               +----\link{GtkCellRendererPixbuf}
-               +----\link{GtkCellRendererProgress}
-               +----\link{GtkCellRendererToggle}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----GtkCellRenderer
+                     +----\link{GtkCellRendererText}
+                     +----\link{GtkCellRendererPixbuf}
+                     +----\link{GtkCellRendererProgress}
+                     +----\link{GtkCellRendererToggle}}}
 \section{Detailed Description}{The \code{\link{GtkCellRenderer}} is a base class of a set of objects used for
 rendering a cell to a \code{\link{GdkDrawable}}.  These objects are used primarily by
 the \code{\link{GtkTreeView}} widget, though they aren't tied to them in any
 specific way.  It is worth noting that \code{\link{GtkCellRenderer}} is not a
 \code{\link{GtkWidget}} and cannot be treated as such.
-  
+  \code{\link{GtkCellRenderer}}  \code{GtkCellRenderer}  \code{\link{GdkDrawable}}  \code{GdkDrawable}  \code{\link{GtkTreeView}}  \code{GtkTreeView}  \code{\link{GtkCellRenderer}}  \code{GtkCellRenderer}  \code{\link{GtkWidget}}  \code{GtkWidget}  
 The primary use of a \code{\link{GtkCellRenderer}} is for drawing a certain graphical
 elements on a \code{\link{GdkDrawable}}.  Typically, one cell renderer is used to
 draw many cells on the screen.  To this extent, it isn't expected that a
@@ -35,13 +37,13 @@ CellRenderer keep any permanent state around.  Instead, any state is set
 just prior to use using \code{\link{GObject}}s property system.  Then, the
 cell is measured using \code{\link{gtkCellRendererGetSize}}.  Finally, the cell
 is rendered in the correct location using \code{\link{gtkCellRendererRender}}.
-  
+  \code{\link{GtkCellRenderer}}  \code{GtkCellRenderer}  \code{\link{GdkDrawable}}  \code{GdkDrawable}  \code{\link{GObject}}  \code{GObject}  \code{\link{gtkCellRendererGetSize}}  \code{gtkCellRendererGetSize()}  \code{\link{gtkCellRendererRender}}  \code{gtkCellRendererRender()}  
 There are a number of rules that must be followed when writing a new
 \code{\link{GtkCellRenderer}}.  First and formost, it's important that a certain set
 of properties will always yield a cell renderer of the same size,
 barring a \code{\link{GtkStyle}} change.  The \code{\link{GtkCellRenderer}} also has a number of
 generic properties that are expected to be honored by all children.
-  
+  \code{\link{GtkCellRenderer}}  \code{GtkCellRenderer}  \code{\link{GtkStyle}}  \code{GtkStyle}  \code{\link{GtkCellRenderer}}  \code{GtkCellRenderer}  
 Beyond merely rendering a cell, cell renderers can optionally 
 provide active user interface elements. A cell renderer can be 
 \dfn{activatable} like \code{\link{GtkCellRendererToggle}}, 
@@ -50,9 +52,13 @@ which toggles when it gets activated by a mouse click, or it can be
 allows the user to edit the text using a \code{\link{GtkEntry}}.
 To make a cell renderer activatable or editable, you have to 
 implement the \code{activate} or \code{start.editing} virtual functions, 
-respectively.}
-\section{Structures}{\describe{\item{\code{GtkCellRenderer}}{\emph{undocumented
-}}}}
+respectively.
+  \dfn{activatable}  \code{\link{GtkCellRendererToggle}}  \code{GtkCellRendererToggle}  \dfn{editable}  \code{\link{GtkCellRendererText}}  \code{GtkCellRendererText}  \code{\link{GtkEntry}}  \code{GtkEntry}  \code{activate}  \code{start.editing}}
+\section{Structures}{\describe{\item{\code{GtkCellRenderer}}{
+\emph{undocumented
+}
+
+}}}
 \section{Enums and Flags}{\describe{
 \item{\code{GtkCellRendererState}}{
 Tells how a cell is to be rendererd.

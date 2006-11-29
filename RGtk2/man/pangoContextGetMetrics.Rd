@@ -1,7 +1,7 @@
 \alias{pangoContextGetMetrics}
 \name{pangoContextGetMetrics}
 \title{pangoContextGetMetrics}
-\description{Get overall metric information for a font particular font
+\description{Get overall metric information for a particular font
 description.  Since the metrics may be substantially different for
 different scripts, a language tag can be provided to indicate that
 the metrics should be retrieved that correspond to the script(s)
@@ -23,7 +23,6 @@ list of figures. If characters from multiple of these families
 would be used to render the string, then the returned fonts would
 be a composite of the metrics for the fonts loaded for the
 individual families.  }
-\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object. The caller must call \code{pango\Font\Metrics\Unref()}
-  when finished using the object.}
+\value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

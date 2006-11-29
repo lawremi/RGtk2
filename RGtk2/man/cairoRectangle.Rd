@@ -1,7 +1,7 @@
 \alias{cairoRectangle}
 \name{cairoRectangle}
 \title{cairoRectangle}
-\description{Adds a closed-subpath rectangle of the given size to the current
+\description{Adds a closed sub-path rectangle of the given size to the current
 path at position (\code{x}, \code{y}) in user-space coordinates.}
 \usage{cairoRectangle(cr, x, y, width, height)}
 \arguments{

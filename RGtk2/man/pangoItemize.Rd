@@ -16,7 +16,7 @@ offsets of the items are ascending).}
             after \code{start.index}.
             This must be >= 0.}
 \item{\code{attrs}}{[\code{\link{PangoAttrList}}]      the set of attributes that apply to \code{text}.}
-\item{\code{cached.iter}}{[\code{\link{PangoAttrIterator}}]       Cached attribute iterator, or NULL}
+\item{\code{cached.iter}}{[\code{\link{PangoAttrIterator}}]       Cached attribute iterator, or \code{NULL}}
 }
 \details{\code{cached.iter} should be an iterator over \code{attrs} currently positioned at a
 range before or containing \code{start.index}; \code{cached.iter} will be advanced to

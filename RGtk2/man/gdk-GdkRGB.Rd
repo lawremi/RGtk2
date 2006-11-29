@@ -91,18 +91,16 @@ colors. This is used only for \code{\link{gdkDrawIndexedImage}}.
 }}}
 \section{Enums and Flags}{\describe{\item{\code{GdkRgbDither}}{
 Selects whether or not GdkRGB applies dithering
-to the image on display. There are three values:
+to the image on display. 
   
 Since GdkRGB currently only handles images with 8 bits per component,
 dithering on 24 bit per pixel displays is a moot point.
 
 \describe{
-\item{\code{none}}{\emph{undocumented
-}}
-\item{\code{normal}}{\emph{undocumented
-}}
-\item{\code{max}}{\emph{undocumented
-}}
+\item{\code{none}}{Never use dithering.}
+\item{\code{normal}}{Use dithering in 8 bits per pixel (and below)
+only.}
+\item{\code{max}}{Use dithering in 16 bits per pixel and below.}
 }
 
 }}}

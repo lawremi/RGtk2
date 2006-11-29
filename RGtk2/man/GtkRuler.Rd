@@ -10,11 +10,12 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkRuler
-                     +----\link{GtkHRuler}
-                     +----\link{GtkVRuler}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkRuler
+                           +----\link{GtkHRuler}
+                           +----\link{GtkVRuler}}}
 \section{Interfaces}{GtkRuler implements
  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   

@@ -10,7 +10,7 @@
 \details{This \emph{does not} actually sort the model.  Use
 \code{\link{gtkTreeViewColumnSetSortColumnId}} if you want automatic sorting
 support.  This function is primarily for custom sorting behavior, and should
-be used in conjunction with \code{gtk\Tree\Sortable\Set\Sort\Column()} to do
+be used in conjunction with \code{gtkTreeSortableSetSortColumn()} to do
 that. For custom models, the mechanism will vary. 
   
 The sort indicator changes direction to indicate normal sort or reverse sort.

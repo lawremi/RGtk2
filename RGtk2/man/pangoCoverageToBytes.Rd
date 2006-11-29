@@ -6,7 +6,7 @@
 \arguments{\item{\code{object}}{[\code{\link{PangoCoverage}}]  a \code{\link{PangoCoverage}}}}
 \value{
 A list containing the following elements:
-\item{\code{bytes}}{[raw]  location to store result (must be freed with \code{g\Free()})}
+\item{\code{bytes}}{[raw]  location to store result (must be freed with \code{gFree()})}
 \item{\code{n.bytes}}{[integer]  location to store size of result}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

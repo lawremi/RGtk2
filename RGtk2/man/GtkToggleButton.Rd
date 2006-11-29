@@ -17,28 +17,29 @@
 \code{gtkToggleButton(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkToggleButton
-                                       +----\link{GtkCheckButton}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkButton}
+                                       +----GtkToggleButton
+                                             +----\link{GtkCheckButton}}}
 \section{Interfaces}{GtkToggleButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
-  
+  \code{\link{GtkToggleButton}}  \code{GtkToggleButton}  \code{\link{GtkButton}}  \code{GtkButton}  
 A toggle button is created by calling either \code{\link{gtkToggleButtonNew}} or
 \code{\link{gtkToggleButtonNewWithLabel}}. If using the former, it is advisable to
 pack a widget, (such as a \code{\link{GtkLabel}} and/or a \code{\link{GtkPixmap}}), into the toggle
 button's container. (See \code{\link{GtkButton}} for more information).
-  
+  \code{\link{gtkToggleButtonNew}}  \code{gtkToggleButtonNew()}  \code{\link{gtkToggleButtonNewWithLabel}}  \code{gtkToggleButtonNewWithLabel()}  \code{\link{GtkLabel}}  \code{GtkLabel}  \code{\link{GtkPixmap}}  \code{GtkPixmap}  \code{\link{GtkButton}}  \code{GtkButton}  
 The state of a \code{\link{GtkToggleButton}} can be set specifically using
 \code{\link{gtkToggleButtonSetActive}}, and retrieved using
 \code{\link{gtkToggleButtonGetActive}}.
-  
+  \code{\link{GtkToggleButton}}  \code{GtkToggleButton}  \code{\link{gtkToggleButtonSetActive}}  \code{gtkToggleButtonSetActive()}  \code{\link{gtkToggleButtonGetActive}}  \code{gtkToggleButtonGetActive()}  
 To simply switch the state of a toggle button, use gtk\_toggle\_button\_toggled.
   \preformatted{
 # Let's make two toggle buttons
@@ -58,6 +59,29 @@ make_toggles <- function() {
    dialog[["actionArea"]]$packStart(toggle2, FALSE, FALSE, 2)
 
    dialog$showAll()
+}
+}  \code{GtkToggleButton}  \preformatted{void make_toggles (void) {
+   GtkWidget *dialog, *toggle1, *toggle2;
+
+   dialog = gtk_dialog_new (    );
+   toggle1 = gtk_toggle_button_new_with_label ("Hi, i'm a toggle button.");
+
+   /* Makes this toggle button invisible */
+   gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (toggle1), TRUE);
+   
+   g_signal_connect (toggle1, "toggled",
+                     G_CALLBACK (output_state), NULL);
+   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->action_area),
+                       toggle1, FALSE, FALSE, 2);
+
+   toggle2 = gtk_toggle_button_new_with_label ("Hi, i'm another toggle button.");
+   gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (toggle2), FALSE);
+   g_signal_connect (toggle2, "toggled",
+                     G_CALLBACK (output_state), NULL);
+   gtk_box_pack_start (GTK_BOX (GTK_DIALOG (dialog)->action_area),
+                       toggle2, FALSE, FALSE, 2);
+
+   gtk_widget_show_all (dialog);
 }
 }}
 \section{Structures}{\describe{\item{\code{GtkToggleButton}}{

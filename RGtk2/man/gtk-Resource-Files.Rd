@@ -40,7 +40,7 @@ various aspects of the operation of a GTK+ program
 at runtime.}
 \section{Default files}{An application can cause GTK+ to parse a specific RC
 file by calling \code{\link{gtkRcParse}}. In addition to this,
-certain files will be read at the end of \code{\link{gtkInit}}.
+certain files will be read at the end of \code{gtkInit()}.
 Unless modified, the files looked for will be 
 \file{<SYSCONFDIR>/gtk-2.0/gtkrc} 
 and \file{.gtkrc-2.0} in the users home directory.
@@ -64,6 +64,60 @@ For instance, if \env{LANG} is set to \code{ja_JP.ujis},
 when loading the default file \file{~/.gtkrc} then GTK+ looks 
 for \file{~/.gtkrc.ja\_JP} and \file{~/.gtkrc.ja}, 
 and parses the first of those that exists.}
+\section{Optimizing RC Style Matches}{  
+Everytime a widget is created and added to the layout hierarchy of a \code{\link{GtkWindow}}
+("anchored" to be exact), a list of matching RC styles out of all RC styles read
+in so far is composed.
+For this, every RC style is matched against the widgets class path,
+the widgets name path and widgets inheritance hierarchy.
+As a consequence, significant slowdown can be caused by utilization of many
+RC styles and by using RC style patterns that are slow or complicated to match
+against a given widget.
+The following ordered list provides a number of advices (prioritized by 
+effectiveness) to reduce the performance overhead associated with RC style 
+matches:
+
+\enumerate{
+\item   Move RC styles for specific applications into RC files dedicated to those
+  applications and parse application specific RC files only from
+  applications that are affected by them.
+  This reduces the overall amount of RC styles that have to be considered
+  for a match across a group of applications.
+  
+\item   Merge multiple styles which use the same matching rule, for instance:
+\preformatted{     style "Foo" { foo_content }
+     class "X" style "Foo"
+     style "Bar" { bar_content }
+     class "X" style "Bar"
+}
+   is faster to match as:
+\preformatted{     style "FooBar" { foo_content bar_content }
+     class "X" style "FooBar"
+}
+  
+\item   Use of wildcards should be avoided, this can reduce the individual RC style
+  match to a single integer comparison in most cases.
+  
+\item   To avoid complex recursive matching, specification of full class names
+  (for \code{class} matches) or full path names (for
+  \code{widget} and \code{widget_class} matches)
+  is to be preferred over shortened names
+  containing \code{"*"} or \code{"?"}.
+  
+\item   If at all necessary, wildcards should only be used at the tail or head
+  of a pattern. This reduces the match complexity to a string comparison
+  per RC style.
+  
+\item   When using wildcards, use of \code{"?"} should be preferred
+  over \code{"*"}. This can reduce the matching complexity from
+  O(n\^2) to O(n). For example \code{"Gtk*Box"} can be turned into
+  \code{"Gtk?Box"} and will still match \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
+  
+\item   The use of \code{"*"} wildcards should be restricted as much
+  as possible, because matching \code{"A*B*C*RestString"} can
+  result in matching complexities of O(n\^2) worst case.
+  
+}}
 \section{Structures}{\describe{\item{\code{GtkRcStyle}}{
 The \code{\link{GtkRcStyle}} structure is used to represent a set
 of information about the appearance of a widget.

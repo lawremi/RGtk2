@@ -8,6 +8,7 @@ content on-screen.}
 \code{\link{atkImageGetImageDescription}(object)}\cr
 \code{\link{atkImageSetImageDescription}(object, description)}\cr
 \code{\link{atkImageGetImageSize}(object)}\cr
+\code{\link{atkImageGetImageLocale}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkImage}}

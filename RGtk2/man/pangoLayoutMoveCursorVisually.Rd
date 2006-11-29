@@ -4,7 +4,7 @@
 \description{Computes a new cursor position from an old position and
 a count of positions to move visually. If \code{count} is positive,
 then the new strong cursor position will be one position
-to the right of the old cursor position. If \code{count} is position
+to the right of the old cursor position. If \code{count} is negative,
 then the new strong cursor position will be one position
 to the left of the old cursor position. }
 \usage{pangoLayoutMoveCursorVisually(object, strong, old.index, old.trailing, direction)}

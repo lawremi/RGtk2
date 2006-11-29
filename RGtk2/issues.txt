@@ -1,16 +1,13 @@
+==== TO DO =====
+- Support introspection, when it arrives
 
 Adding support for extending GObjects
 ----------
   
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)
-- Field setting: GtkTreeIter (many in GtkTreeModel), 
-    GValue (gtk_tree_model_get_value, many in AtkValue),
-
-TODO: 
-
-1) calling parent handlers
-
+  -- this also affects the insert-text signal, so this is a good way around that
+    
 Some current issues/bugs with RGtk2
 ----------
 
@@ -21,7 +18,6 @@ Stuff that can wait for introspection
 - PangoGlyphString: can only get first glyph from 'glyphs' array
 - perhaps we should make sure we 'own' stuff in signal callbacks and accessors
 --- the only 'stuff' we don't own is boxed types (and pointers)
-- GTK property parsing - needs better GParamSpec support, manual GValue initialization                                                                                                                                                                                                                                           xxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxx
 - field setting
 
 Low Priority Issues
@@ -30,17 +26,10 @@ Low Priority Issues
 - atkStreamableContentGetStream: need to map GIOChannel to R connection - not doable right now
 - support translation of messages
 - should not send code to type cast macros (results in slight slowdown)
-- GError's in user functions - how to handle?
 - Returning *Funcs to R
-
-==== TO DO =====
-- Check out the signal documentation problem
-- Mismatch between return list names and docs ('.' vs '_')
-- Weird \ problem instead of _ in \code{}
-- gtk_main_* documentation has strange deprecation warnings
+- GTK property parsing - GtkRcPropertyParser - can we return the GValue by ref?
+- GtkTreeIter - just pass the id?
 - allow specification of numeric precision on GtkCellRendererText
-- Support introspection
-- Implement GObjects from R
 
 Introspection?
 ----------------
@@ -49,13 +38,14 @@ Introspection?
 	`-> Should cairo be made a separate package? - It has little utility outside of GTK
 `-> Syntax tricks like the '$' and '[' operators could allow us to bind to 
 	methods and fields at runtime
-	`-> What about constructors? Need a "gNew" function?
+	`-> What about constructors? There's gObjectNew...
 	`-> What about ordinary functions - relatively few in number, 
 		could be explicitly bound at runtime
   `-> Could use RObjectTables-like functionality here
-`-> I think that, in general, we could generate some R bindings at build time,
-	then have those tied into the type libraries on the C side, thus there are
-	no compilation requirements on a certain GTK version.
+`-> Verdict: compiled bindings will always be faster, so for often used libraries,
+    there should be a set of generated bindings. Other libraries can be bound
+    on the fly with introspection. Introspection could help even in the compiled
+    case. For example, parent handlers for virtuals could be invoked dynamically.
 		
 Unsupported funcs
 -----------------
@@ -96,7 +86,8 @@ These 25 functions fall into 3 categories:
 2) undocumented/extremely low-level (10): The R programmer should not need these things. Never supported.
 3) callbacks sans user data (9): need to record callbacks in an attribute on the R object then have
 	one closure that calls the rest or if the callback scope is a function call something similar
-	could be done as long as the calls aren't nested... May be supported, but probably not
+	could be done as long as the calls aren't nested... May be supported, but probably not.
+  See the dynamic variables package by Luke Tierney for possible solution.
 	
 Problems with defs files (as provided by pygtk)
 --------------------

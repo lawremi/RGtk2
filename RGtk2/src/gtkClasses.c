@@ -1,6 +1,8 @@
 #include "gtkClasses.h"
 #include "conversion.h"
 #include "utils.h"
+#include "userfuncs.h"
+#include "gobject.h"
 #include "RGtk2.h"
 
 static SEXP S_GtkAboutDialog_symbol;
@@ -58,7 +60,24 @@ S_gtk_accel_group_class_init(GtkAccelGroupClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->accel_changed = S_virtual_gtk_accel_group_accel_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_accel_group_class_accel_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_keyval, USER_OBJECT_ s_modifier, USER_OBJECT_ s_accel_closure)
+{
+  GtkAccelGroupClass* object_class = ((GtkAccelGroupClass*)getPtrValue(s_object_class));
+  GtkAccelGroup* object = GTK_ACCEL_GROUP(getPtrValue(s_object));
+  guint keyval = ((guint)asCNumeric(s_keyval));
+  GdkModifierType modifier = ((GdkModifierType)asCFlag(s_modifier, GDK_TYPE_MODIFIER_TYPE));
+  GClosure* accel_closure = asCGClosure(s_accel_closure);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->accel_changed(object, keyval, modifier, accel_closure);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkAccelLabel_symbol;
 void
@@ -109,7 +128,21 @@ S_gtk_accessible_class_init(GtkAccessibleClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->connect_widget_destroyed = S_virtual_gtk_accessible_connect_widget_destroyed;
-} 
+}
+USER_OBJECT_
+S_gtk_accessible_class_connect_widget_destroyed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAccessibleClass* object_class = ((GtkAccessibleClass*)getPtrValue(s_object_class));
+  GtkAccessible* object = GTK_ACCESSIBLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->connect_widget_destroyed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkAction_symbol;
 static 
@@ -244,7 +277,83 @@ S_gtk_action_class_init(GtkActionClass * c, SEXP e)
     c->create_tool_item = S_virtual_gtk_action_create_tool_item;
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->disconnect_proxy = S_virtual_gtk_action_disconnect_proxy;
-} 
+}
+USER_OBJECT_
+S_gtk_action_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkActionClass* object_class = ((GtkActionClass*)getPtrValue(s_object_class));
+  GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_action_class_connect_proxy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_proxy)
+{
+  GtkActionClass* object_class = ((GtkActionClass*)getPtrValue(s_object_class));
+  GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+  GtkWidget* proxy = GTK_WIDGET(getPtrValue(s_proxy));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->connect_proxy(object, proxy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_action_class_create_menu_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkActionClass* object_class = ((GtkActionClass*)getPtrValue(s_object_class));
+  GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+
+  GtkWidget* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_menu_item(object);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_action_class_create_tool_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkActionClass* object_class = ((GtkActionClass*)getPtrValue(s_object_class));
+  GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+
+  GtkWidget* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_tool_item(object);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_action_class_disconnect_proxy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_proxy)
+{
+  GtkActionClass* object_class = ((GtkActionClass*)getPtrValue(s_object_class));
+  GtkAction* object = GTK_ACTION(getPtrValue(s_object));
+  GtkWidget* proxy = GTK_WIDGET(getPtrValue(s_proxy));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->disconnect_proxy(object, proxy);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkActionGroup_symbol;
 static 
@@ -284,7 +393,24 @@ S_gtk_action_group_class_init(GtkActionGroupClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->get_action = S_virtual_gtk_action_group_get_action;
-} 
+}
+USER_OBJECT_
+S_gtk_action_group_class_get_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action_name)
+{
+  GtkActionGroupClass* object_class = ((GtkActionGroupClass*)getPtrValue(s_object_class));
+  GtkActionGroup* object = GTK_ACTION_GROUP(getPtrValue(s_object));
+  const gchar* action_name = ((const gchar*)asCString(s_action_name));
+
+  GtkAction* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_action(object, action_name);
+
+  _result = toRPointerWithRef(ans, "GtkAction");
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkAdjustment_symbol;
 static 
@@ -344,7 +470,35 @@ S_gtk_adjustment_class_init(GtkAdjustmentClass * c, SEXP e)
     c->changed = S_virtual_gtk_adjustment_changed;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->value_changed = S_virtual_gtk_adjustment_value_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_adjustment_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAdjustmentClass* object_class = ((GtkAdjustmentClass*)getPtrValue(s_object_class));
+  GtkAdjustment* object = GTK_ADJUSTMENT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_adjustment_class_value_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAdjustmentClass* object_class = ((GtkAdjustmentClass*)getPtrValue(s_object_class));
+  GtkAdjustment* object = GTK_ADJUSTMENT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->value_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkAlignment_symbol;
 void
@@ -566,7 +720,91 @@ S_gtk_button_class_init(GtkButtonClass * c, SEXP e)
     c->leave = S_virtual_gtk_button_leave;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_button_activate;
-} 
+}
+USER_OBJECT_
+S_gtk_button_class_pressed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->pressed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_button_class_released(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->released(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_button_class_clicked(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clicked(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_button_class_enter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->enter(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_button_class_leave(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->leave(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_button_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkButtonClass* object_class = ((GtkButtonClass*)getPtrValue(s_object_class));
+  GtkButton* object = GTK_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkButtonBox_symbol;
 void
@@ -755,7 +993,105 @@ S_gtk_calendar_class_init(GtkCalendarClass * c, SEXP e)
     c->prev_year = S_virtual_gtk_calendar_prev_year;
   if(VECTOR_ELT(s, 6) != NULL_USER_OBJECT)
     c->next_year = S_virtual_gtk_calendar_next_year;
-} 
+}
+USER_OBJECT_
+S_gtk_calendar_class_month_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->month_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_day_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->day_selected(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_day_selected_double_click(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->day_selected_double_click(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_prev_month(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->prev_month(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_next_month(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->next_month(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_prev_year(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->prev_year(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_calendar_class_next_year(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCalendarClass* object_class = ((GtkCalendarClass*)getPtrValue(s_object_class));
+  GtkCalendar* object = GTK_CALENDAR(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->next_year(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellRenderer_symbol;
 static 
@@ -957,7 +1293,123 @@ S_gtk_cell_renderer_class_init(GtkCellRendererClass * c, SEXP e)
     c->editing_started = S_virtual_gtk_cell_renderer_editing_started;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->start_editing = S_virtual_gtk_cell_renderer_start_editing;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_renderer_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_cell_area)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  GdkRectangle* cell_area = asCGdkRectangle(s_cell_area);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint x_offset;
+  gint y_offset;
+  gint width;
+  gint height;
+
+  object_class->get_size(object, widget, cell_area, &x_offset, &y_offset, &width, &height);
+
+
+  _result = retByVal(_result, "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_class_render(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_widget, USER_OBJECT_ s_background_area, USER_OBJECT_ s_cell_area, USER_OBJECT_ s_expose_area, USER_OBJECT_ s_flags)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+  GdkDrawable* window = GDK_DRAWABLE(getPtrValue(s_window));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  GdkRectangle* background_area = asCGdkRectangle(s_background_area);
+  GdkRectangle* cell_area = asCGdkRectangle(s_cell_area);
+  GdkRectangle* expose_area = asCGdkRectangle(s_expose_area);
+  GtkCellRendererState flags = ((GtkCellRendererState)asCFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->render(object, window, widget, background_area, cell_area, expose_area, flags);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event, USER_OBJECT_ s_widget, USER_OBJECT_ s_path, USER_OBJECT_ s_background_area, USER_OBJECT_ s_cell_area, USER_OBJECT_ s_flags)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* path = ((const gchar*)asCString(s_path));
+  GdkRectangle* background_area = asCGdkRectangle(s_background_area);
+  GdkRectangle* cell_area = asCGdkRectangle(s_cell_area);
+  GtkCellRendererState flags = ((GtkCellRendererState)asCFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->activate(object, event, widget, path, background_area, cell_area, flags);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_class_editing_canceled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->editing_canceled(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_class_editing_started(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_editable, USER_OBJECT_ s_path)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+  GtkCellEditable* editable = GTK_CELL_EDITABLE(getPtrValue(s_editable));
+  const gchar* path = ((const gchar*)asCString(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->editing_started(object, editable, path);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_class_start_editing(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event, USER_OBJECT_ s_widget, USER_OBJECT_ s_path, USER_OBJECT_ s_background_area, USER_OBJECT_ s_cell_area, USER_OBJECT_ s_flags)
+{
+  GtkCellRendererClass* object_class = ((GtkCellRendererClass*)getPtrValue(s_object_class));
+  GtkCellRenderer* object = GTK_CELL_RENDERER(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* path = ((const gchar*)asCString(s_path));
+  GdkRectangle* background_area = asCGdkRectangle(s_background_area);
+  GdkRectangle* cell_area = asCGdkRectangle(s_cell_area);
+  GtkCellRendererState flags = ((GtkCellRendererState)asCFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
+
+  GtkCellEditable* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->start_editing(object, event, widget, path, background_area, cell_area, flags);
+
+  _result = toRPointerWithRef(ans, "GtkCellEditable");
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellRendererCombo_symbol;
 void
@@ -1040,7 +1492,23 @@ S_gtk_cell_renderer_text_class_init(GtkCellRendererTextClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->edited = S_virtual_gtk_cell_renderer_text_edited;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_renderer_text_class_edited(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_new_text)
+{
+  GtkCellRendererTextClass* object_class = ((GtkCellRendererTextClass*)getPtrValue(s_object_class));
+  GtkCellRendererText* object = GTK_CELL_RENDERER_TEXT(getPtrValue(s_object));
+  const gchar* path = ((const gchar*)asCString(s_path));
+  const gchar* new_text = ((const gchar*)asCString(s_new_text));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->edited(object, path, new_text);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellRendererToggle_symbol;
 static 
@@ -1079,7 +1547,22 @@ S_gtk_cell_renderer_toggle_class_init(GtkCellRendererToggleClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_cell_renderer_toggle_toggled;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_renderer_toggle_class_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkCellRendererToggleClass* object_class = ((GtkCellRendererToggleClass*)getPtrValue(s_object_class));
+  GtkCellRendererToggle* object = GTK_CELL_RENDERER_TOGGLE(getPtrValue(s_object));
+  const gchar* path = ((const gchar*)asCString(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggled(object, path);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellView_symbol;
 void
@@ -1132,7 +1615,22 @@ S_gtk_check_button_class_init(GtkCheckButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->draw_indicator = S_virtual_gtk_check_button_draw_indicator;
-} 
+}
+USER_OBJECT_
+S_gtk_check_button_class_draw_indicator(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_area)
+{
+  GtkCheckButtonClass* object_class = ((GtkCheckButtonClass*)getPtrValue(s_object_class));
+  GtkCheckButton* object = GTK_CHECK_BUTTON(getPtrValue(s_object));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_indicator(object, area);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCheckMenuItem_symbol;
 static 
@@ -1194,7 +1692,36 @@ S_gtk_check_menu_item_class_init(GtkCheckMenuItemClass * c, SEXP e)
     c->toggled = S_virtual_gtk_check_menu_item_toggled;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->draw_indicator = S_virtual_gtk_check_menu_item_draw_indicator;
-} 
+}
+USER_OBJECT_
+S_gtk_check_menu_item_class_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCheckMenuItemClass* object_class = ((GtkCheckMenuItemClass*)getPtrValue(s_object_class));
+  GtkCheckMenuItem* object = GTK_CHECK_MENU_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggled(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_check_menu_item_class_draw_indicator(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_area)
+{
+  GtkCheckMenuItemClass* object_class = ((GtkCheckMenuItemClass*)getPtrValue(s_object_class));
+  GtkCheckMenuItem* object = GTK_CHECK_MENU_ITEM(getPtrValue(s_object));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_indicator(object, area);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCList_symbol;
 static 
@@ -1662,7 +2189,7 @@ S_virtual_gtk_clist_selection_find(GtkCList* s_object, gint s_row_number, GList*
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
-  return(asCGList(s_ans));
+  return(((GList*)asCArrayRef(s_ans, GList, asCGList)));
 }
 static 
 void
@@ -1887,7 +2414,7 @@ S_virtual_gtk_clist_cell_size_request(GtkCList* s_object, GtkCListRow* s_clist_r
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer((s_requisition), "GtkRequisition"));
+  SETCAR(tmp, toRPointer(s_requisition ? (s_requisition) : NULL, "GtkRequisition"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1963,7 +2490,461 @@ S_gtk_clist_class_init(GtkCListClass * c, SEXP e)
     c->set_cell_contents = S_virtual_gtk_clist_set_cell_contents;
   if(VECTOR_ELT(s, 28) != NULL_USER_OBJECT)
     c->cell_size_request = S_virtual_gtk_clist_cell_size_request;
-} 
+}
+USER_OBJECT_
+S_gtk_clist_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_refresh(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->refresh(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_select_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column, USER_OBJECT_ s_event)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+  gint column = ((gint)asCInteger(s_column));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_row(object, row, column, event);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_unselect_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column, USER_OBJECT_ s_event)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+  gint column = ((gint)asCInteger(s_column));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unselect_row(object, row, column, event);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_row_move(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_source_row, USER_OBJECT_ s_dest_row)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint source_row = ((gint)asCInteger(s_source_row));
+  gint dest_row = ((gint)asCInteger(s_dest_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_move(object, source_row, dest_row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_click_column(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint column = ((gint)asCInteger(s_column));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->click_column(object, column);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_resize_column(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_width)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint column = ((gint)asCInteger(s_column));
+  gint width = ((gint)asCInteger(s_width));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->resize_column(object, column, width);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_toggle_focus_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_focus_row(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_select_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_unselect_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unselect_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_undo_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->undo_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_start_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->start_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_end_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->end_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_extend_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position, USER_OBJECT_ s_auto_start_selection)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+  gboolean auto_start_selection = ((gboolean)asCLogical(s_auto_start_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->extend_selection(object, scroll_type, position, auto_start_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_scroll_horizontal(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->scroll_horizontal(object, scroll_type, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_scroll_vertical(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->scroll_vertical(object, scroll_type, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_toggle_add_mode(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_add_mode(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_abort_column_resize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->abort_column_resize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_resync_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->resync_selection(object, event);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_selection_find(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row_list_element)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row_number = ((gint)GET_LENGTH(s_row_list_element));
+  GList* row_list_element = ((GList*)asCArrayRef(s_row_list_element, GList, asCGList));
+
+  GList* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->selection_find(object, row_number, row_list_element);
+
+  _result = asRGList(ans, "GtkCListRow");
+  CLEANUP(g_list_free, ((GList*)row_list_element));
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_draw_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_area, USER_OBJECT_ s_row, USER_OBJECT_ s_clist_row)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  gint row = ((gint)asCInteger(s_row));
+  GtkCListRow* clist_row = ((GtkCListRow*)getPtrValue(s_clist_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_row(object, area, row, clist_row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_draw_drag_highlight(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_target_row, USER_OBJECT_ s_target_row_number, USER_OBJECT_ s_drag_pos)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkCListRow* target_row = ((GtkCListRow*)getPtrValue(s_target_row));
+  gint target_row_number = ((gint)asCInteger(s_target_row_number));
+  GtkCListDragPos drag_pos = ((GtkCListDragPos)asCEnum(s_drag_pos, GTK_TYPE_CLIST_DRAG_POS));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_drag_highlight(object, target_row, target_row_number, drag_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_clear(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clear(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_fake_unselect_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->fake_unselect_all(object, row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_sort_list(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->sort_list(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_insert_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_text)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+  gchar** text = ((gchar**)asCStringArray(s_text));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->insert_row(object, row, text);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_remove_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->remove_row(object, row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_set_cell_contents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_clist_row, USER_OBJECT_ s_column, USER_OBJECT_ s_type, USER_OBJECT_ s_text, USER_OBJECT_ s_spacing, USER_OBJECT_ s_pixmap, USER_OBJECT_ s_mask)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkCListRow* clist_row = ((GtkCListRow*)getPtrValue(s_clist_row));
+  gint column = ((gint)asCInteger(s_column));
+  GtkCellType type = ((GtkCellType)asCEnum(s_type, GTK_TYPE_CELL_TYPE));
+  const gchar* text = ((const gchar*)asCString(s_text));
+  guint8 spacing = ((guint8)asCRaw(s_spacing));
+  GdkPixmap* pixmap = GDK_PIXMAP(getPtrValue(s_pixmap));
+  GdkBitmap* mask = GDK_DRAWABLE(getPtrValue(s_mask));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_cell_contents(object, clist_row, column, type, text, spacing, pixmap, mask);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_clist_class_cell_size_request(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_clist_row, USER_OBJECT_ s_column, USER_OBJECT_ s_requisition)
+{
+  GtkCListClass* object_class = ((GtkCListClass*)getPtrValue(s_object_class));
+  GtkCList* object = GTK_CLIST(getPtrValue(s_object));
+  GtkCListRow* clist_row = ((GtkCListRow*)getPtrValue(s_clist_row));
+  gint column = ((gint)asCInteger(s_column));
+  GtkRequisition* requisition = ((GtkRequisition*)getPtrValue(s_requisition));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cell_size_request(object, clist_row, column, requisition);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkColorButton_symbol;
 static 
@@ -2000,7 +2981,21 @@ S_gtk_color_button_class_init(GtkColorButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->color_set = S_virtual_gtk_color_button_color_set;
-} 
+}
+USER_OBJECT_
+S_gtk_color_button_class_color_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkColorButtonClass* object_class = ((GtkColorButtonClass*)getPtrValue(s_object_class));
+  GtkColorButton* object = GTK_COLOR_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->color_set(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkColorSelection_symbol;
 static 
@@ -2037,7 +3032,21 @@ S_gtk_color_selection_class_init(GtkColorSelectionClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->color_changed = S_virtual_gtk_color_selection_color_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_color_selection_class_color_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkColorSelectionClass* object_class = ((GtkColorSelectionClass*)getPtrValue(s_object_class));
+  GtkColorSelection* object = GTK_COLOR_SELECTION(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->color_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkColorSelectionDialog_symbol;
 void
@@ -2126,7 +3135,38 @@ S_gtk_combo_box_class_init(GtkComboBoxClass * c, SEXP e)
     c->changed = S_virtual_gtk_combo_box_changed;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->get_active_text = S_virtual_gtk_combo_box_get_active_text;
-} 
+}
+USER_OBJECT_
+S_gtk_combo_box_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkComboBoxClass* object_class = ((GtkComboBoxClass*)getPtrValue(s_object_class));
+  GtkComboBox* object = GTK_COMBO_BOX(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_combo_box_class_get_active_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkComboBoxClass* object_class = ((GtkComboBoxClass*)getPtrValue(s_object_class));
+  GtkComboBox* object = GTK_COMBO_BOX(getPtrValue(s_object));
+
+  char* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_active_text(object);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkComboBoxEntry_symbol;
 void
@@ -2393,7 +3433,160 @@ S_gtk_container_class_init(GtkContainerClass * c, SEXP e)
     c->set_child_property = S_virtual_gtk_container_set_child_property;
   if(VECTOR_ELT(s, 8) != NULL_USER_OBJECT)
     c->get_child_property = S_virtual_gtk_container_get_child_property;
-} 
+}
+USER_OBJECT_
+S_gtk_container_class_add(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->add(object, widget);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_remove(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->remove(object, widget);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_check_resize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->check_resize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_forall(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_include_internals, USER_OBJECT_ s_callback, USER_OBJECT_ s_callback_data)
+{
+  GtkCallback callback = ((GtkCallback)S_GtkCallback);
+  R_CallbackData* callback_data = R_createCBData(s_callback, s_callback_data);
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  gboolean include_internals = ((gboolean)asCLogical(s_include_internals));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->forall(object, include_internals, callback, callback_data);
+
+  R_freeCBData(callback_data);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_set_focus_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_focus_child(object, widget);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_child_type(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+
+  GType ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->child_type(object);
+
+  _result = asRGType(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_composite_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+
+  gchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->composite_name(object, child);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_set_child_property(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_property_id, USER_OBJECT_ s_value, USER_OBJECT_ s_pspec)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+  guint property_id = ((guint)asCNumeric(s_property_id));
+  const GValue* value = asCGValue(s_value);
+  GParamSpec* pspec = asCGParamSpec(s_pspec);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_child_property(object, child, property_id, value, pspec);
+
+  CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));
+  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_container_class_get_child_property(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_property_id, USER_OBJECT_ s_value, USER_OBJECT_ s_pspec)
+{
+  GtkContainerClass* object_class = ((GtkContainerClass*)getPtrValue(s_object_class));
+  GtkContainer* object = GTK_CONTAINER(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+  guint property_id = ((guint)asCNumeric(s_property_id));
+  GValue* value = asCGValue(s_value);
+  GParamSpec* pspec = asCGParamSpec(s_pspec);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->get_child_property(object, child, property_id, value, pspec);
+
+  CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));
+  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCTree_symbol;
 static 
@@ -2565,7 +3758,101 @@ S_gtk_ctree_class_init(GtkCTreeClass * c, SEXP e)
     c->tree_move = S_virtual_gtk_ctree_tree_move;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->change_focus_row_expansion = S_virtual_gtk_ctree_change_focus_row_expansion;
-} 
+}
+USER_OBJECT_
+S_gtk_ctree_class_tree_select_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeNode* row = ((GtkCTreeNode*)getPtrValue(s_row));
+  gint column = ((gint)asCInteger(s_column));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tree_select_row(object, row, column);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ctree_class_tree_unselect_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeNode* row = ((GtkCTreeNode*)getPtrValue(s_row));
+  gint column = ((gint)asCInteger(s_column));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tree_unselect_row(object, row, column);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ctree_class_tree_expand(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_node)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeNode* node = ((GtkCTreeNode*)getPtrValue(s_node));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tree_expand(object, node);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ctree_class_tree_collapse(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_node)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeNode* node = ((GtkCTreeNode*)getPtrValue(s_node));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tree_collapse(object, node);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ctree_class_tree_move(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_node, USER_OBJECT_ s_new_parent, USER_OBJECT_ s_new_sibling)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeNode* node = ((GtkCTreeNode*)getPtrValue(s_node));
+  GtkCTreeNode* new_parent = ((GtkCTreeNode*)getPtrValue(s_new_parent));
+  GtkCTreeNode* new_sibling = ((GtkCTreeNode*)getPtrValue(s_new_sibling));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tree_move(object, node, new_parent, new_sibling);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ctree_class_change_focus_row_expansion(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action)
+{
+  GtkCTreeClass* object_class = ((GtkCTreeClass*)getPtrValue(s_object_class));
+  GtkCTree* object = GTK_CTREE(getPtrValue(s_object));
+  GtkCTreeExpansionType action = ((GtkCTreeExpansionType)asCEnum(s_action, GTK_TYPE_CTREE_EXPANSION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->change_focus_row_expansion(object, action);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCurve_symbol;
 static 
@@ -2602,7 +3889,21 @@ S_gtk_curve_class_init(GtkCurveClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->curve_type_changed = S_virtual_gtk_curve_curve_type_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_curve_class_curve_type_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCurveClass* object_class = ((GtkCurveClass*)getPtrValue(s_object_class));
+  GtkCurve* object = GTK_CURVE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->curve_type_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkDialog_symbol;
 static 
@@ -2664,7 +3965,36 @@ S_gtk_dialog_class_init(GtkDialogClass * c, SEXP e)
     c->response = S_virtual_gtk_dialog_response;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->close = S_virtual_gtk_dialog_close;
-} 
+}
+USER_OBJECT_
+S_gtk_dialog_class_response(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_response_id)
+{
+  GtkDialogClass* object_class = ((GtkDialogClass*)getPtrValue(s_object_class));
+  GtkDialog* object = GTK_DIALOG(getPtrValue(s_object));
+  gint response_id = ((gint)asCInteger(s_response_id));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->response(object, response_id);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_dialog_class_close(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkDialogClass* object_class = ((GtkDialogClass*)getPtrValue(s_object_class));
+  GtkDialog* object = GTK_DIALOG(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->close(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkDrawingArea_symbol;
 void
@@ -2936,7 +4266,154 @@ S_gtk_entry_class_init(GtkEntryClass * c, SEXP e)
     c->paste_clipboard = S_virtual_gtk_entry_paste_clipboard;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->toggle_overwrite = S_virtual_gtk_entry_toggle_overwrite;
-} 
+}
+USER_OBJECT_
+S_gtk_entry_class_populate_popup(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_menu)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+  GtkMenu* menu = GTK_MENU(getPtrValue(s_menu));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->populate_popup(object, menu);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_step, USER_OBJECT_ s_count, USER_OBJECT_ s_extend_selection)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+  GtkMovementStep step = ((GtkMovementStep)asCEnum(s_step, GTK_TYPE_MOVEMENT_STEP));
+  gint count = ((gint)asCInteger(s_count));
+  gboolean extend_selection = ((gboolean)asCLogical(s_extend_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_cursor(object, step, count, extend_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_insert_at_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_str)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+  const gchar* str = ((const gchar*)asCString(s_str));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_at_cursor(object, str);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_delete_from_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_count)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+  GtkDeleteType type = ((GtkDeleteType)asCEnum(s_type, GTK_TYPE_DELETE_TYPE));
+  gint count = ((gint)asCInteger(s_count));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->delete_from_cursor(object, type, count);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_backspace(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->backspace(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_cut_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cut_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_copy_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->copy_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_paste_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->paste_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_class_toggle_overwrite(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEntryClass* object_class = ((GtkEntryClass*)getPtrValue(s_object_class));
+  GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_overwrite(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkEntryCompletion_symbol;
 static 
@@ -2957,7 +4434,7 @@ S_virtual_gtk_entry_completion_match_selected(GtkEntryCompletion* s_object, GtkT
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3029,7 +4506,57 @@ S_gtk_entry_completion_class_init(GtkEntryCompletionClass * c, SEXP e)
     c->action_activated = S_virtual_gtk_entry_completion_action_activated;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->insert_prefix = S_virtual_gtk_entry_completion_insert_prefix;
-} 
+}
+USER_OBJECT_
+S_gtk_entry_completion_class_match_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_model, USER_OBJECT_ s_iter)
+{
+  GtkEntryCompletionClass* object_class = ((GtkEntryCompletionClass*)getPtrValue(s_object_class));
+  GtkEntryCompletion* object = GTK_ENTRY_COMPLETION(getPtrValue(s_object));
+  GtkTreeModel* model = GTK_TREE_MODEL(getPtrValue(s_model));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->match_selected(object, model, iter);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_completion_class_action_activated(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_index_)
+{
+  GtkEntryCompletionClass* object_class = ((GtkEntryCompletionClass*)getPtrValue(s_object_class));
+  GtkEntryCompletion* object = GTK_ENTRY_COMPLETION(getPtrValue(s_object));
+  gint index_ = ((gint)asCInteger(s_index_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->action_activated(object, index_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_entry_completion_class_insert_prefix(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_prefix)
+{
+  GtkEntryCompletionClass* object_class = ((GtkEntryCompletionClass*)getPtrValue(s_object_class));
+  GtkEntryCompletion* object = GTK_ENTRY_COMPLETION(getPtrValue(s_object));
+  const gchar* prefix = ((const gchar*)asCString(s_prefix));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->insert_prefix(object, prefix);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkEventBox_symbol;
 void
@@ -3080,7 +4607,21 @@ S_gtk_expander_class_init(GtkExpanderClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->activate = S_virtual_gtk_expander_activate;
-} 
+}
+USER_OBJECT_
+S_gtk_expander_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkExpanderClass* object_class = ((GtkExpanderClass*)getPtrValue(s_object_class));
+  GtkExpander* object = GTK_EXPANDER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkFileChooserButton_symbol;
 void
@@ -3187,7 +4728,21 @@ S_gtk_font_button_class_init(GtkFontButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->font_set = S_virtual_gtk_font_button_font_set;
-} 
+}
+USER_OBJECT_
+S_gtk_font_button_class_font_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkFontButtonClass* object_class = ((GtkFontButtonClass*)getPtrValue(s_object_class));
+  GtkFontButton* object = GTK_FONT_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->font_set(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkFontSelection_symbol;
 void
@@ -3254,7 +4809,22 @@ S_gtk_frame_class_init(GtkFrameClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->compute_child_allocation = S_virtual_gtk_frame_compute_child_allocation;
-} 
+}
+USER_OBJECT_
+S_gtk_frame_class_compute_child_allocation(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_allocation)
+{
+  GtkFrameClass* object_class = ((GtkFrameClass*)getPtrValue(s_object_class));
+  GtkFrame* object = GTK_FRAME(getPtrValue(s_object));
+  GtkAllocation* allocation = asCGtkAllocation(s_allocation);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->compute_child_allocation(object, allocation);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkGammaCurve_symbol;
 void
@@ -3332,7 +4902,37 @@ S_gtk_handle_box_class_init(GtkHandleBoxClass * c, SEXP e)
     c->child_attached = S_virtual_gtk_handle_box_child_attached;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->child_detached = S_virtual_gtk_handle_box_child_detached;
-} 
+}
+USER_OBJECT_
+S_gtk_handle_box_class_child_attached(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
+{
+  GtkHandleBoxClass* object_class = ((GtkHandleBoxClass*)getPtrValue(s_object_class));
+  GtkHandleBox* object = GTK_HANDLE_BOX(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->child_attached(object, child);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_handle_box_class_child_detached(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
+{
+  GtkHandleBoxClass* object_class = ((GtkHandleBoxClass*)getPtrValue(s_object_class));
+  GtkHandleBox* object = GTK_HANDLE_BOX(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->child_detached(object, child);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkHBox_symbol;
 void
@@ -3481,7 +5081,21 @@ S_gtk_icon_theme_class_init(GtkIconThemeClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_icon_theme_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_icon_theme_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconThemeClass* object_class = ((GtkIconThemeClass*)getPtrValue(s_object_class));
+  GtkIconTheme* object = GTK_ICON_THEME(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkIconView_symbol;
 static 
@@ -3525,7 +5139,7 @@ S_virtual_gtk_icon_view_item_activated(GtkIconView* s_object, GtkTreePath* s_pat
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkIconView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3714,7 +5328,142 @@ S_gtk_icon_view_class_init(GtkIconViewClass * c, SEXP e)
     c->move_cursor = S_virtual_gtk_icon_view_move_cursor;
   if(VECTOR_ELT(s, 8) != NULL_USER_OBJECT)
     c->activate_cursor_item = S_virtual_gtk_icon_view_activate_cursor_item;
-} 
+}
+USER_OBJECT_
+S_gtk_icon_view_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_item_activated(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->item_activated(object, path);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->selection_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_select_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_unselect_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unselect_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_select_cursor_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_cursor_item(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_toggle_cursor_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_cursor_item(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_step, USER_OBJECT_ s_count)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+  GtkMovementStep step = ((GtkMovementStep)asCEnum(s_step, GTK_TYPE_MOVEMENT_STEP));
+  gint count = ((gint)asCInteger(s_count));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->move_cursor(object, step, count);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_icon_view_class_activate_cursor_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIconViewClass* object_class = ((GtkIconViewClass*)getPtrValue(s_object_class));
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->activate_cursor_item(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkImage_symbol;
 void
@@ -4153,7 +5902,258 @@ S_gtk_imcontext_class_init(GtkIMContextClass * c, SEXP e)
     c->set_surrounding = S_virtual_gtk_imcontext_set_surrounding;
   if(VECTOR_ELT(s, 15) != NULL_USER_OBJECT)
     c->get_surrounding = S_virtual_gtk_imcontext_get_surrounding;
-} 
+}
+USER_OBJECT_
+S_gtk_imcontext_class_preedit_start(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->preedit_start(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_preedit_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->preedit_end(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_preedit_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->preedit_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_commit(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_str)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  const gchar* str = ((const gchar*)asCString(s_str));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->commit(object, str);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_retrieve_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->retrieve_surrounding(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_delete_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_n_chars)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  gint offset = ((gint)asCInteger(s_offset));
+  gint n_chars = ((gint)asCInteger(s_n_chars));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->delete_surrounding(object, offset, n_chars);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_set_client_window(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_client_window(object, window);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_get_preedit_string(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gchar* str = NULL;
+  PangoAttrList* attrs = NULL;
+  gint cursor_pos;
+
+  object_class->get_preedit_string(object, &str, &attrs, &cursor_pos);
+
+
+  _result = retByVal(_result, "str", asRString(str), "attrs", toRPointerWithFinalizer(attrs ? pango_attr_list_ref(attrs) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "cursor.pos", asRInteger(cursor_pos), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_filter_keypress(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  GdkEventKey* event = ((GdkEventKey*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->filter_keypress(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_focus_in(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->focus_in(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_focus_out(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->focus_out(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_reset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->reset(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_set_cursor_location(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_area)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_cursor_location(object, area);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_set_use_preedit(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_use_preedit)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  gboolean use_preedit = ((gboolean)asCLogical(s_use_preedit));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_use_preedit(object, use_preedit);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_set_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_len, USER_OBJECT_ s_cursor_index)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+  const gchar* text = ((const gchar*)asCString(s_text));
+  gint len = ((gint)asCInteger(s_len));
+  gint cursor_index = ((gint)asCInteger(s_cursor_index));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_surrounding(object, text, len, cursor_index);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_imcontext_class_get_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkIMContextClass* object_class = ((GtkIMContextClass*)getPtrValue(s_object_class));
+  GtkIMContext* object = GTK_IM_CONTEXT(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gchar* text = NULL;
+  gint cursor_index;
+
+  ans = object_class->get_surrounding(object, &text, &cursor_index);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "text", asRString(text), "cursor.index", asRInteger(cursor_index), NULL);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkIMContextSimple_symbol;
 void
@@ -4245,7 +6245,37 @@ S_gtk_input_dialog_class_init(GtkInputDialogClass * c, SEXP e)
     c->enable_device = S_virtual_gtk_input_dialog_enable_device;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->disable_device = S_virtual_gtk_input_dialog_disable_device;
-} 
+}
+USER_OBJECT_
+S_gtk_input_dialog_class_enable_device(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_device)
+{
+  GtkInputDialogClass* object_class = ((GtkInputDialogClass*)getPtrValue(s_object_class));
+  GtkInputDialog* object = GTK_INPUT_DIALOG(getPtrValue(s_object));
+  GdkDevice* device = GDK_DEVICE(getPtrValue(s_device));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->enable_device(object, device);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_input_dialog_class_disable_device(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_device)
+{
+  GtkInputDialogClass* object_class = ((GtkInputDialogClass*)getPtrValue(s_object_class));
+  GtkInputDialog* object = GTK_INPUT_DIALOG(getPtrValue(s_object));
+  GdkDevice* device = GDK_DEVICE(getPtrValue(s_device));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->disable_device(object, device);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkInvisible_symbol;
 void
@@ -4342,7 +6372,49 @@ S_gtk_item_class_init(GtkItemClass * c, SEXP e)
     c->deselect = S_virtual_gtk_item_deselect;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->toggle = S_virtual_gtk_item_toggle;
-} 
+}
+USER_OBJECT_
+S_gtk_item_class_select(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkItemClass* object_class = ((GtkItemClass*)getPtrValue(s_object_class));
+  GtkItem* object = GTK_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_item_class_deselect(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkItemClass* object_class = ((GtkItemClass*)getPtrValue(s_object_class));
+  GtkItem* object = GTK_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->deselect(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_item_class_toggle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkItemClass* object_class = ((GtkItemClass*)getPtrValue(s_object_class));
+  GtkItem* object = GTK_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkItemFactory_symbol;
 void
@@ -4447,7 +6519,53 @@ S_gtk_label_class_init(GtkLabelClass * c, SEXP e)
     c->copy_clipboard = S_virtual_gtk_label_copy_clipboard;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->populate_popup = S_virtual_gtk_label_populate_popup;
-} 
+}
+USER_OBJECT_
+S_gtk_label_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_step, USER_OBJECT_ s_count, USER_OBJECT_ s_extend_selection)
+{
+  GtkLabelClass* object_class = ((GtkLabelClass*)getPtrValue(s_object_class));
+  GtkLabel* object = GTK_LABEL(getPtrValue(s_object));
+  GtkMovementStep step = ((GtkMovementStep)asCEnum(s_step, GTK_TYPE_MOVEMENT_STEP));
+  gint count = ((gint)asCInteger(s_count));
+  gboolean extend_selection = ((gboolean)asCLogical(s_extend_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_cursor(object, step, count, extend_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_label_class_copy_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkLabelClass* object_class = ((GtkLabelClass*)getPtrValue(s_object_class));
+  GtkLabel* object = GTK_LABEL(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->copy_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_label_class_populate_popup(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_menu)
+{
+  GtkLabelClass* object_class = ((GtkLabelClass*)getPtrValue(s_object_class));
+  GtkLabel* object = GTK_LABEL(getPtrValue(s_object));
+  GtkMenu* menu = GTK_MENU(getPtrValue(s_menu));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->populate_popup(object, menu);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkLayout_symbol;
 static 
@@ -4488,7 +6606,23 @@ S_gtk_layout_class_init(GtkLayoutClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_layout_set_scroll_adjustments;
-} 
+}
+USER_OBJECT_
+S_gtk_layout_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkLayoutClass* object_class = ((GtkLayoutClass*)getPtrValue(s_object_class));
+  GtkLayout* object = GTK_LAYOUT(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkList_symbol;
 static 
@@ -4575,7 +6709,51 @@ S_gtk_list_class_init(GtkListClass * c, SEXP e)
     c->select_child = S_virtual_gtk_list_select_child;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->unselect_child = S_virtual_gtk_list_unselect_child;
-} 
+}
+USER_OBJECT_
+S_gtk_list_class_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListClass* object_class = ((GtkListClass*)getPtrValue(s_object_class));
+  GtkList* object = GTK_LIST(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->selection_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_class_select_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
+{
+  GtkListClass* object_class = ((GtkListClass*)getPtrValue(s_object_class));
+  GtkList* object = GTK_LIST(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_child(object, child);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_class_unselect_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
+{
+  GtkListClass* object_class = ((GtkListClass*)getPtrValue(s_object_class));
+  GtkList* object = GTK_LIST(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unselect_child(object, child);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkListItem_symbol;
 static 
@@ -4833,7 +7011,154 @@ S_gtk_list_item_class_init(GtkListItemClass * c, SEXP e)
     c->scroll_vertical = S_virtual_gtk_list_item_scroll_vertical;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->toggle_add_mode = S_virtual_gtk_list_item_toggle_add_mode;
-} 
+}
+USER_OBJECT_
+S_gtk_list_item_class_toggle_focus_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_focus_row(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_select_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_unselect_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unselect_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_undo_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->undo_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_start_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->start_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_end_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->end_selection(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_extend_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position, USER_OBJECT_ s_auto_start_selection)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+  gboolean auto_start_selection = ((gboolean)asCLogical(s_auto_start_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->extend_selection(object, scroll_type, position, auto_start_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_scroll_horizontal(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->scroll_horizontal(object, scroll_type, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_scroll_vertical(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll_type, USER_OBJECT_ s_position)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+  GtkScrollType scroll_type = ((GtkScrollType)asCEnum(s_scroll_type, GTK_TYPE_SCROLL_TYPE));
+  gfloat position = ((gfloat)asCNumeric(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->scroll_vertical(object, scroll_type, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_list_item_class_toggle_add_mode(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkListItemClass* object_class = ((GtkListItemClass*)getPtrValue(s_object_class));
+  GtkListItem* object = GTK_LIST_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_add_mode(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkListStore_symbol;
 void
@@ -4984,7 +7309,67 @@ S_gtk_menu_item_class_init(GtkMenuItemClass * c, SEXP e)
     c->toggle_size_request = S_virtual_gtk_menu_item_toggle_size_request;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->toggle_size_allocate = S_virtual_gtk_menu_item_toggle_size_allocate;
-} 
+}
+USER_OBJECT_
+S_gtk_menu_item_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuItemClass* object_class = ((GtkMenuItemClass*)getPtrValue(s_object_class));
+  GtkMenuItem* object = GTK_MENU_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_item_class_activate_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuItemClass* object_class = ((GtkMenuItemClass*)getPtrValue(s_object_class));
+  GtkMenuItem* object = GTK_MENU_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate_item(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_item_class_toggle_size_request(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuItemClass* object_class = ((GtkMenuItemClass*)getPtrValue(s_object_class));
+  GtkMenuItem* object = GTK_MENU_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint requisition;
+
+  object_class->toggle_size_request(object, &requisition);
+
+
+  _result = retByVal(_result, "requisition", asRInteger(requisition), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_item_class_toggle_size_allocate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_allocation)
+{
+  GtkMenuItemClass* object_class = ((GtkMenuItemClass*)getPtrValue(s_object_class));
+  GtkMenuItem* object = GTK_MENU_ITEM(getPtrValue(s_object));
+  gint allocation = ((gint)asCInteger(s_allocation));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_size_allocate(object, allocation);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkMenuShell_symbol;
 static 
@@ -5193,7 +7578,126 @@ S_gtk_menu_shell_class_init(GtkMenuShellClass * c, SEXP e)
     c->insert = S_virtual_gtk_menu_shell_insert;
   if(VECTOR_ELT(s, 7) != NULL_USER_OBJECT)
     c->get_popup_delay = S_virtual_gtk_menu_shell_get_popup_delay;
-} 
+}
+USER_OBJECT_
+S_gtk_menu_shell_class_deactivate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->deactivate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_selection_done(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->selection_done(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_move_current(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+  GtkMenuDirectionType direction = ((GtkMenuDirectionType)asCEnum(s_direction, GTK_TYPE_MENU_DIRECTION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_current(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_activate_current(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_force_hide)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+  gboolean force_hide = ((gboolean)asCLogical(s_force_hide));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate_current(object, force_hide);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_cancel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cancel(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_select_item(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_menu_item)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+  GtkWidget* menu_item = GTK_WIDGET(getPtrValue(s_menu_item));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->select_item(object, menu_item);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_insert(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_position)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+  gint position = ((gint)asCInteger(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert(object, child, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_menu_shell_class_get_popup_delay(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuShellClass* object_class = ((GtkMenuShellClass*)getPtrValue(s_object_class));
+  GtkMenuShell* object = GTK_MENU_SHELL(getPtrValue(s_object));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_popup_delay(object);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkMenuToolButton_symbol;
 static 
@@ -5230,7 +7734,21 @@ S_gtk_menu_tool_button_class_init(GtkMenuToolButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->show_menu = S_virtual_gtk_menu_tool_button_show_menu;
-} 
+}
+USER_OBJECT_
+S_gtk_menu_tool_button_class_show_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkMenuToolButtonClass* object_class = ((GtkMenuToolButtonClass*)getPtrValue(s_object_class));
+  GtkMenuToolButton* object = GTK_MENU_TOOL_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->show_menu(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkMessageDialog_symbol;
 void
@@ -5460,7 +7978,123 @@ S_gtk_notebook_class_init(GtkNotebookClass * c, SEXP e)
     c->reorder_tab = S_virtual_gtk_notebook_reorder_tab;
   if(VECTOR_ELT(s, 6) != NULL_USER_OBJECT)
     c->insert_page = S_virtual_gtk_notebook_insert_page;
-} 
+}
+USER_OBJECT_
+S_gtk_notebook_class_switch_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_page, USER_OBJECT_ s_page_num)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  GtkNotebookPage* page = ((GtkNotebookPage*)getPtrValue(s_page));
+  guint page_num = ((guint)asCNumeric(s_page_num));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->switch_page(object, page, page_num);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_select_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_move_focus)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  gboolean move_focus = ((gboolean)asCLogical(s_move_focus));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->select_page(object, move_focus);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_focus_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_type)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  GtkNotebookTab type = ((GtkNotebookTab)asCEnum(s_type, GTK_TYPE_NOTEBOOK_TAB));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->focus_tab(object, type);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_change_current_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  gint offset = ((gint)asCInteger(s_offset));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->change_current_page(object, offset);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_move_focus_out(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_focus_out(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_reorder_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction, USER_OBJECT_ s_move_to_last)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+  gboolean move_to_last = ((gboolean)asCLogical(s_move_to_last));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->reorder_tab(object, direction, move_to_last);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_notebook_class_insert_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJECT_ s_tab_label, USER_OBJECT_ s_menu_label, USER_OBJECT_ s_position)
+{
+  GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
+  GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
+  GtkWidget* child = GTK_WIDGET(getPtrValue(s_child));
+  GtkWidget* tab_label = GTK_WIDGET(getPtrValue(s_tab_label));
+  GtkWidget* menu_label = GTK_WIDGET(getPtrValue(s_menu_label));
+  gint position = ((gint)asCInteger(s_position));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->insert_page(object, child, tab_label, menu_label, position);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkObject_symbol;
 void
@@ -5916,7 +8550,266 @@ S_gtk_old_editable_class_init(GtkOldEditableClass * c, SEXP e)
     c->set_selection = S_virtual_gtk_old_editable_set_selection;
   if(VECTOR_ELT(s, 16) != NULL_USER_OBJECT)
     c->set_position = S_virtual_gtk_old_editable_set_position;
-} 
+}
+USER_OBJECT_
+S_gtk_old_editable_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_set_editable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_is_editable)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gboolean is_editable = ((gboolean)asCLogical(s_is_editable));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_editable(object, is_editable);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_cursor(object, x, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_move_word(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_n)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint n = ((gint)asCInteger(s_n));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_word(object, n);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_move_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_page(object, x, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_move_to_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_to_row(object, row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_move_to_column(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint row = ((gint)asCInteger(s_row));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_to_column(object, row);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_kill_char(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint direction = ((gint)asCInteger(s_direction));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->kill_char(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_kill_word(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint direction = ((gint)asCInteger(s_direction));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->kill_word(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_kill_line(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint direction = ((gint)asCInteger(s_direction));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->kill_line(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_cut_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cut_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_copy_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->copy_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_paste_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->paste_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_update_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->update_text(object, start_pos, end_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_get_chars(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  gchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_chars(object, start_pos, end_pos);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_set_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_selection(object, start_pos, end_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_old_editable_class_set_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_position)
+{
+  GtkOldEditableClass* object_class = ((GtkOldEditableClass*)getPtrValue(s_object_class));
+  GtkOldEditable* object = GTK_OLD_EDITABLE(getPtrValue(s_object));
+  gint position = ((gint)asCInteger(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_position(object, position);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkOptionMenu_symbol;
 static 
@@ -5953,7 +8846,21 @@ S_gtk_option_menu_class_init(GtkOptionMenuClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_option_menu_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_option_menu_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkOptionMenuClass* object_class = ((GtkOptionMenuClass*)getPtrValue(s_object_class));
+  GtkOptionMenu* object = GTK_OPTION_MENU(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkPaned_symbol;
 static 
@@ -6117,7 +9024,106 @@ S_gtk_paned_class_init(GtkPanedClass * c, SEXP e)
     c->accept_position = S_virtual_gtk_paned_accept_position;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->cancel_position = S_virtual_gtk_paned_cancel_position;
-} 
+}
+USER_OBJECT_
+S_gtk_paned_class_cycle_child_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_reverse)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+  gboolean reverse = ((gboolean)asCLogical(s_reverse));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->cycle_child_focus(object, reverse);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_paned_class_toggle_handle_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->toggle_handle_focus(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_paned_class_move_handle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+  GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->move_handle(object, scroll);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_paned_class_cycle_handle_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_reverse)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+  gboolean reverse = ((gboolean)asCLogical(s_reverse));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->cycle_handle_focus(object, reverse);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_paned_class_accept_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->accept_position(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_paned_class_cancel_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPanedClass* object_class = ((GtkPanedClass*)getPtrValue(s_object_class));
+  GtkPaned* object = GTK_PANED(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->cancel_position(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkPixmap_symbol;
 void
@@ -6168,7 +9174,21 @@ S_gtk_plug_class_init(GtkPlugClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->embedded = S_virtual_gtk_plug_embedded;
-} 
+}
+USER_OBJECT_
+S_gtk_plug_class_embedded(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPlugClass* object_class = ((GtkPlugClass*)getPtrValue(s_object_class));
+  GtkPlug* object = GTK_PLUG(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->embedded(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkPreview_symbol;
 void
@@ -6265,7 +9285,49 @@ S_gtk_progress_class_init(GtkProgressClass * c, SEXP e)
     c->update = S_virtual_gtk_progress_update;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->act_mode_enter = S_virtual_gtk_progress_act_mode_enter;
-} 
+}
+USER_OBJECT_
+S_gtk_progress_class_paint(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkProgressClass* object_class = ((GtkProgressClass*)getPtrValue(s_object_class));
+  GtkProgress* object = GTK_PROGRESS(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->paint(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_progress_class_update(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkProgressClass* object_class = ((GtkProgressClass*)getPtrValue(s_object_class));
+  GtkProgress* object = GTK_PROGRESS(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->update(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_progress_class_act_mode_enter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkProgressClass* object_class = ((GtkProgressClass*)getPtrValue(s_object_class));
+  GtkProgress* object = GTK_PROGRESS(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->act_mode_enter(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkProgressBar_symbol;
 void
@@ -6318,7 +9380,22 @@ S_gtk_radio_action_class_init(GtkRadioActionClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_radio_action_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_radio_action_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_current)
+{
+  GtkRadioActionClass* object_class = ((GtkRadioActionClass*)getPtrValue(s_object_class));
+  GtkRadioAction* object = GTK_RADIO_ACTION(getPtrValue(s_object));
+  GtkRadioAction* current = GTK_RADIO_ACTION(getPtrValue(s_current));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object, current);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRadioButton_symbol;
 static 
@@ -6355,7 +9432,21 @@ S_gtk_radio_button_class_init(GtkRadioButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->group_changed = S_virtual_gtk_radio_button_group_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_radio_button_class_group_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRadioButtonClass* object_class = ((GtkRadioButtonClass*)getPtrValue(s_object_class));
+  GtkRadioButton* object = GTK_RADIO_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->group_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRadioMenuItem_symbol;
 static 
@@ -6392,7 +9483,21 @@ S_gtk_radio_menu_item_class_init(GtkRadioMenuItemClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->group_changed = S_virtual_gtk_radio_menu_item_group_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_radio_menu_item_class_group_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRadioMenuItemClass* object_class = ((GtkRadioMenuItemClass*)getPtrValue(s_object_class));
+  GtkRadioMenuItem* object = GTK_RADIO_MENU_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->group_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRadioToolButton_symbol;
 void
@@ -6492,7 +9597,7 @@ S_virtual_gtk_range_get_range_border(GtkRange* s_object, GtkBorder* s_border_)
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkRange"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_border_copy(s_border_), "GtkBorder", (RPointerFinalizer) gtk_border_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_border_ ? gtk_border_copy(s_border_) : NULL, "GtkBorder", (RPointerFinalizer) gtk_border_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -6546,7 +9651,84 @@ S_gtk_range_class_init(GtkRangeClass * c, SEXP e)
     c->get_range_border = S_virtual_gtk_range_get_range_border;
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->change_value = S_virtual_gtk_range_change_value;
-} 
+}
+USER_OBJECT_
+S_gtk_range_class_value_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRangeClass* object_class = ((GtkRangeClass*)getPtrValue(s_object_class));
+  GtkRange* object = GTK_RANGE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->value_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_range_class_adjust_bounds(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_new_value)
+{
+  GtkRangeClass* object_class = ((GtkRangeClass*)getPtrValue(s_object_class));
+  GtkRange* object = GTK_RANGE(getPtrValue(s_object));
+  gdouble new_value = ((gdouble)asCNumeric(s_new_value));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->adjust_bounds(object, new_value);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_range_class_move_slider(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll)
+{
+  GtkRangeClass* object_class = ((GtkRangeClass*)getPtrValue(s_object_class));
+  GtkRange* object = GTK_RANGE(getPtrValue(s_object));
+  GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_slider(object, scroll);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_range_class_get_range_border(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_border_)
+{
+  GtkRangeClass* object_class = ((GtkRangeClass*)getPtrValue(s_object_class));
+  GtkRange* object = GTK_RANGE(getPtrValue(s_object));
+  GtkBorder* border_ = ((GtkBorder*)getPtrValue(s_border_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->get_range_border(object, border_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_range_class_change_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll, USER_OBJECT_ s_new_value)
+{
+  GtkRangeClass* object_class = ((GtkRangeClass*)getPtrValue(s_object_class));
+  GtkRange* object = GTK_RANGE(getPtrValue(s_object));
+  GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
+  gdouble new_value = ((gdouble)asCNumeric(s_new_value));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->change_value(object, scroll, new_value);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRcStyle_symbol;
 static 
@@ -6661,7 +9843,72 @@ S_gtk_rc_style_class_init(GtkRcStyleClass * c, SEXP e)
     c->merge = S_virtual_gtk_rc_style_merge;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->create_style = S_virtual_gtk_rc_style_create_style;
-} 
+}
+USER_OBJECT_
+S_gtk_rc_style_class_create_rc_style(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRcStyleClass* object_class = ((GtkRcStyleClass*)getPtrValue(s_object_class));
+  GtkRcStyle* object = GTK_RC_STYLE(getPtrValue(s_object));
+
+  GtkRcStyle* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_rc_style(object);
+
+  _result = toRPointerWithFinalizer(ans, "GtkRcStyle", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_rc_style_class_parse(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_settings, USER_OBJECT_ s_scanner)
+{
+  GtkRcStyleClass* object_class = ((GtkRcStyleClass*)getPtrValue(s_object_class));
+  GtkRcStyle* object = GTK_RC_STYLE(getPtrValue(s_object));
+  GtkSettings* settings = GTK_SETTINGS(getPtrValue(s_settings));
+  GScanner* scanner = ((GScanner*)getPtrValue(s_scanner));
+
+  guint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->parse(object, settings, scanner);
+
+  _result = asRNumeric(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_rc_style_class_merge(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_src)
+{
+  GtkRcStyleClass* object_class = ((GtkRcStyleClass*)getPtrValue(s_object_class));
+  GtkRcStyle* object = GTK_RC_STYLE(getPtrValue(s_object));
+  GtkRcStyle* src = GTK_RC_STYLE(getPtrValue(s_src));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->merge(object, src);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_rc_style_class_create_style(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRcStyleClass* object_class = ((GtkRcStyleClass*)getPtrValue(s_object_class));
+  GtkRcStyle* object = GTK_RC_STYLE(getPtrValue(s_object));
+
+  GtkStyle* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_style(object);
+
+  _result = toRPointerWithFinalizer(ans, "GtkStyle", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRuler_symbol;
 static 
@@ -6721,7 +9968,35 @@ S_gtk_ruler_class_init(GtkRulerClass * c, SEXP e)
     c->draw_ticks = S_virtual_gtk_ruler_draw_ticks;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->draw_pos = S_virtual_gtk_ruler_draw_pos;
-} 
+}
+USER_OBJECT_
+S_gtk_ruler_class_draw_ticks(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRulerClass* object_class = ((GtkRulerClass*)getPtrValue(s_object_class));
+  GtkRuler* object = GTK_RULER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_ticks(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_ruler_class_draw_pos(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRulerClass* object_class = ((GtkRulerClass*)getPtrValue(s_object_class));
+  GtkRuler* object = GTK_RULER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_pos(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkScale_symbol;
 static 
@@ -6809,7 +10084,57 @@ S_gtk_scale_class_init(GtkScaleClass * c, SEXP e)
     c->draw_value = S_virtual_gtk_scale_draw_value;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->get_layout_offsets = S_virtual_gtk_scale_get_layout_offsets;
-} 
+}
+USER_OBJECT_
+S_gtk_scale_class_format_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_value)
+{
+  GtkScaleClass* object_class = ((GtkScaleClass*)getPtrValue(s_object_class));
+  GtkScale* object = GTK_SCALE(getPtrValue(s_object));
+  gdouble value = ((gdouble)asCNumeric(s_value));
+
+  gchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->format_value(object, value);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_scale_class_draw_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkScaleClass* object_class = ((GtkScaleClass*)getPtrValue(s_object_class));
+  GtkScale* object = GTK_SCALE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_value(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_scale_class_get_layout_offsets(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkScaleClass* object_class = ((GtkScaleClass*)getPtrValue(s_object_class));
+  GtkScale* object = GTK_SCALE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint x;
+  gint y;
+
+  object_class->get_layout_offsets(object, &x, &y);
+
+
+  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkScrollbar_symbol;
 void
@@ -6889,7 +10214,38 @@ S_gtk_scrolled_window_class_init(GtkScrolledWindowClass * c, SEXP e)
     c->scroll_child = S_virtual_gtk_scrolled_window_scroll_child;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->move_focus_out = S_virtual_gtk_scrolled_window_move_focus_out;
-} 
+}
+USER_OBJECT_
+S_gtk_scrolled_window_class_scroll_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll, USER_OBJECT_ s_horizontal)
+{
+  GtkScrolledWindowClass* object_class = ((GtkScrolledWindowClass*)getPtrValue(s_object_class));
+  GtkScrolledWindow* object = GTK_SCROLLED_WINDOW(getPtrValue(s_object));
+  GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
+  gboolean horizontal = ((gboolean)asCLogical(s_horizontal));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->scroll_child(object, scroll, horizontal);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_scrolled_window_class_move_focus_out(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkScrolledWindowClass* object_class = ((GtkScrolledWindowClass*)getPtrValue(s_object_class));
+  GtkScrolledWindow* object = GTK_SCROLLED_WINDOW(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_focus_out(object, direction);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkSeparator_symbol;
 void
@@ -7020,7 +10376,37 @@ S_gtk_socket_class_init(GtkSocketClass * c, SEXP e)
     c->plug_added = S_virtual_gtk_socket_plug_added;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->plug_removed = S_virtual_gtk_socket_plug_removed;
-} 
+}
+USER_OBJECT_
+S_gtk_socket_class_plug_added(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSocketClass* object_class = ((GtkSocketClass*)getPtrValue(s_object_class));
+  GtkSocket* object = GTK_SOCKET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->plug_added(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_socket_class_plug_removed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSocketClass* object_class = ((GtkSocketClass*)getPtrValue(s_object_class));
+  GtkSocket* object = GTK_SOCKET(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->plug_removed(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkSpinButton_symbol;
 static 
@@ -7154,7 +10540,85 @@ S_gtk_spin_button_class_init(GtkSpinButtonClass * c, SEXP e)
     c->change_value = S_virtual_gtk_spin_button_change_value;
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->wrapped = S_virtual_gtk_spin_button_wrapped;
-} 
+}
+USER_OBJECT_
+S_gtk_spin_button_class_input(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSpinButtonClass* object_class = ((GtkSpinButtonClass*)getPtrValue(s_object_class));
+  GtkSpinButton* object = GTK_SPIN_BUTTON(getPtrValue(s_object));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gdouble new_value;
+
+  ans = object_class->input(object, &new_value);
+
+  _result = asRInteger(ans);
+
+  _result = retByVal(_result, "new.value", asRNumeric(new_value), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_spin_button_class_output(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSpinButtonClass* object_class = ((GtkSpinButtonClass*)getPtrValue(s_object_class));
+  GtkSpinButton* object = GTK_SPIN_BUTTON(getPtrValue(s_object));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->output(object);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_spin_button_class_value_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSpinButtonClass* object_class = ((GtkSpinButtonClass*)getPtrValue(s_object_class));
+  GtkSpinButton* object = GTK_SPIN_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->value_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_spin_button_class_change_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_scroll)
+{
+  GtkSpinButtonClass* object_class = ((GtkSpinButtonClass*)getPtrValue(s_object_class));
+  GtkSpinButton* object = GTK_SPIN_BUTTON(getPtrValue(s_object));
+  GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->change_value(object, scroll);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_spin_button_class_wrapped(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkSpinButtonClass* object_class = ((GtkSpinButtonClass*)getPtrValue(s_object_class));
+  GtkSpinButton* object = GTK_SPIN_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->wrapped(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkStatusbar_symbol;
 static 
@@ -7222,7 +10686,39 @@ S_gtk_statusbar_class_init(GtkStatusbarClass * c, SEXP e)
     c->text_pushed = S_virtual_gtk_statusbar_text_pushed;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->text_popped = S_virtual_gtk_statusbar_text_popped;
-} 
+}
+USER_OBJECT_
+S_gtk_statusbar_class_text_pushed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context_id, USER_OBJECT_ s_text)
+{
+  GtkStatusbarClass* object_class = ((GtkStatusbarClass*)getPtrValue(s_object_class));
+  GtkStatusbar* object = GTK_STATUSBAR(getPtrValue(s_object));
+  guint context_id = ((guint)asCNumeric(s_context_id));
+  const gchar* text = ((const gchar*)asCString(s_text));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->text_pushed(object, context_id, text);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_statusbar_class_text_popped(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context_id, USER_OBJECT_ s_text)
+{
+  GtkStatusbarClass* object_class = ((GtkStatusbarClass*)getPtrValue(s_object_class));
+  GtkStatusbar* object = GTK_STATUSBAR(getPtrValue(s_object));
+  guint context_id = ((guint)asCNumeric(s_context_id));
+  const gchar* text = ((const gchar*)asCString(s_text));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->text_popped(object, context_id, text);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkStyle_symbol;
 static 
@@ -7376,7 +10872,7 @@ S_virtual_gtk_style_render_icon(GtkStyle* s_object, const GtkIconSource* s_sourc
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkStyle", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_icon_source_copy(s_source), "GtkIconSource"));
+  SETCAR(tmp, toRPointer(s_source ? gtk_icon_source_copy(s_source) : NULL, "GtkIconSource"));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_TEXT_DIRECTION));
   tmp = CDR(tmp);
@@ -8322,7 +11818,623 @@ S_gtk_style_class_init(GtkStyleClass * c, SEXP e)
     c->draw_layout = S_virtual_gtk_style_draw_layout;
   if(VECTOR_ELT(s, 27) != NULL_USER_OBJECT)
     c->draw_resize_grip = S_virtual_gtk_style_draw_resize_grip;
-} 
+}
+USER_OBJECT_
+S_gtk_style_class_realize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->realize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_unrealize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unrealize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_copy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_src)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GtkStyle* src = GTK_STYLE(getPtrValue(s_src));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->copy(object, src);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_clone(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+
+  GtkStyle* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->clone(object);
+
+  _result = toRPointerWithFinalizer(ans, "GtkStyle", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_init_from_rc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_rc_style)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GtkRcStyle* rc_style = GTK_RC_STYLE(getPtrValue(s_rc_style));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->init_from_rc(object, rc_style);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_set_background(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_background(object, window, state_type);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_render_icon(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_source, USER_OBJECT_ s_direction, USER_OBJECT_ s_state, USER_OBJECT_ s_size, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  const GtkIconSource* source = ((const GtkIconSource*)getPtrValue(s_source));
+  GtkTextDirection direction = ((GtkTextDirection)asCEnum(s_direction, GTK_TYPE_TEXT_DIRECTION));
+  GtkStateType state = ((GtkStateType)asCEnum(s_state, GTK_TYPE_STATE_TYPE));
+  GtkIconSize size = ((GtkIconSize)asCEnum(s_size, GTK_TYPE_ICON_SIZE));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+
+  GdkPixbuf* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->render_icon(object, source, direction, state, size, widget, detail);
+
+  _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_hline(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x1, USER_OBJECT_ s_x2, USER_OBJECT_ s_y)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x1 = ((gint)asCInteger(s_x1));
+  gint x2 = ((gint)asCInteger(s_x2));
+  gint y = ((gint)asCInteger(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_hline(object, window, state_type, area, widget, detail, x1, x2, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_vline(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_y1_, USER_OBJECT_ s_y2_, USER_OBJECT_ s_x)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint y1_ = ((gint)asCInteger(s_y1_));
+  gint y2_ = ((gint)asCInteger(s_y2_));
+  gint x = ((gint)asCInteger(s_x));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_vline(object, window, state_type, area, widget, detail, y1_, y2_, x);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_shadow(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_shadow(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_polygon(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_point, USER_OBJECT_ s_npoints, USER_OBJECT_ s_fill)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  GdkPoint* point = asCGdkPoint(s_point);
+  gint npoints = ((gint)asCInteger(s_npoints));
+  gboolean fill = ((gboolean)asCLogical(s_fill));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_polygon(object, window, state_type, shadow_type, area, widget, detail, point, npoints, fill);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_arrow(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_arrow_type, USER_OBJECT_ s_fill, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  GtkArrowType arrow_type = ((GtkArrowType)asCEnum(s_arrow_type, GTK_TYPE_ARROW_TYPE));
+  gboolean fill = ((gboolean)asCLogical(s_fill));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_arrow(object, window, state_type, shadow_type, area, widget, detail, arrow_type, fill, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_diamond(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_diamond(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_string(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_string)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  const gchar* string = ((const gchar*)asCString(s_string));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_string(object, window, state_type, area, widget, detail, x, y, string);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_box(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_box(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_flat_box(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_flat_box(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_check(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_check(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_option(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_option(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_tab(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_shadow_gap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_gap_side, USER_OBJECT_ s_gap_x, USER_OBJECT_ s_gap_width)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  GtkPositionType gap_side = ((GtkPositionType)asCEnum(s_gap_side, GTK_TYPE_POSITION_TYPE));
+  gint gap_x = ((gint)asCInteger(s_gap_x));
+  gint gap_width = ((gint)asCInteger(s_gap_width));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_shadow_gap(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height, gap_side, gap_x, gap_width);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_box_gap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_gap_side, USER_OBJECT_ s_gap_x, USER_OBJECT_ s_gap_width)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  GtkPositionType gap_side = ((GtkPositionType)asCEnum(s_gap_side, GTK_TYPE_POSITION_TYPE));
+  gint gap_x = ((gint)asCInteger(s_gap_x));
+  gint gap_width = ((gint)asCInteger(s_gap_width));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_box_gap(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height, gap_side, gap_x, gap_width);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_extension(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_gap_side)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  GtkPositionType gap_side = ((GtkPositionType)asCEnum(s_gap_side, GTK_TYPE_POSITION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_extension(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height, gap_side);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_focus(object, window, state_type, area, widget, detail, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_slider(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_orientation)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  GtkOrientation orientation = ((GtkOrientation)asCEnum(s_orientation, GTK_TYPE_ORIENTATION));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_slider(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height, orientation);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_handle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_shadow_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_orientation)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GtkShadowType shadow_type = ((GtkShadowType)asCEnum(s_shadow_type, GTK_TYPE_SHADOW_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+  GtkOrientation orientation = ((GtkOrientation)asCEnum(s_orientation, GTK_TYPE_ORIENTATION));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_handle(object, window, state_type, shadow_type, area, widget, detail, x, y, width, height, orientation);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_expander(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_expander_style)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  GtkExpanderStyle expander_style = ((GtkExpanderStyle)asCEnum(s_expander_style, GTK_TYPE_EXPANDER_STYLE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_expander(object, window, state_type, area, widget, detail, x, y, expander_style);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_layout(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_use_text, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_layout)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  gboolean use_text = ((gboolean)asCLogical(s_use_text));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  PangoLayout* layout = PANGO_LAYOUT(getPtrValue(s_layout));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_layout(object, window, state_type, use_text, area, widget, detail, x, y, layout);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_style_class_draw_resize_grip(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_window, USER_OBJECT_ s_state_type, USER_OBJECT_ s_area, USER_OBJECT_ s_widget, USER_OBJECT_ s_detail, USER_OBJECT_ s_edge, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  GtkStyleClass* object_class = ((GtkStyleClass*)getPtrValue(s_object_class));
+  GtkStyle* object = GTK_STYLE(getPtrValue(s_object));
+  GdkWindow* window = GDK_WINDOW(getPtrValue(s_window));
+  GtkStateType state_type = ((GtkStateType)asCEnum(s_state_type, GTK_TYPE_STATE_TYPE));
+  GdkRectangle* area = asCGdkRectangle(s_area);
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* detail = ((const gchar*)asCString(s_detail));
+  GdkWindowEdge edge = ((GdkWindowEdge)asCEnum(s_edge, GDK_TYPE_WINDOW_EDGE));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint width = ((gint)asCInteger(s_width));
+  gint height = ((gint)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_resize_grip(object, window, state_type, area, widget, detail, edge, x, y, width, height);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTable_symbol;
 void
@@ -8369,7 +12481,7 @@ S_virtual_gtk_text_buffer_insert_text(GtkTextBuffer* s_object, GtkTextIter* s_po
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_pos), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_pos ? gtk_text_iter_copy(s_pos) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_text));
   tmp = CDR(tmp);
@@ -8396,7 +12508,7 @@ S_virtual_gtk_text_buffer_insert_pixbuf(GtkTextBuffer* s_object, GtkTextIter* s_
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_pos), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_pos ? gtk_text_iter_copy(s_pos) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_pixbuf, "GdkPixbuf"));
   tmp = CDR(tmp);
@@ -8421,7 +12533,7 @@ S_virtual_gtk_text_buffer_insert_child_anchor(GtkTextBuffer* s_object, GtkTextIt
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_pos), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_pos ? gtk_text_iter_copy(s_pos) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_anchor, "GtkTextChildAnchor"));
   tmp = CDR(tmp);
@@ -8446,9 +12558,9 @@ S_virtual_gtk_text_buffer_delete_range(GtkTextBuffer* s_object, GtkTextIter* s_s
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_start), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_start ? gtk_text_iter_copy(s_start) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_end), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_end ? gtk_text_iter_copy(s_end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -8513,7 +12625,7 @@ S_virtual_gtk_text_buffer_mark_set(GtkTextBuffer* s_object, const GtkTextIter* s
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_location), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_location ? gtk_text_iter_copy(s_location) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_mark, "GtkTextMark"));
   tmp = CDR(tmp);
@@ -8563,9 +12675,9 @@ S_virtual_gtk_text_buffer_apply_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag, 
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_start_char), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_end_char), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -8590,9 +12702,9 @@ S_virtual_gtk_text_buffer_remove_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_start_char), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_end_char), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -8676,7 +12788,193 @@ S_gtk_text_buffer_class_init(GtkTextBufferClass * c, SEXP e)
     c->begin_user_action = S_virtual_gtk_text_buffer_begin_user_action;
   if(VECTOR_ELT(s, 11) != NULL_USER_OBJECT)
     c->end_user_action = S_virtual_gtk_text_buffer_end_user_action;
-} 
+}
+USER_OBJECT_
+S_gtk_text_buffer_class_insert_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_pos, USER_OBJECT_ s_text, USER_OBJECT_ s_length)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextIter* pos = ((GtkTextIter*)getPtrValue(s_pos));
+  const gchar* text = ((const gchar*)asCString(s_text));
+  gint length = ((gint)asCInteger(s_length));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_text(object, pos, text, length);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_insert_pixbuf(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_pos, USER_OBJECT_ s_pixbuf)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextIter* pos = ((GtkTextIter*)getPtrValue(s_pos));
+  GdkPixbuf* pixbuf = GDK_PIXBUF(getPtrValue(s_pixbuf));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_pixbuf(object, pos, pixbuf);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_insert_child_anchor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_pos, USER_OBJECT_ s_anchor)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextIter* pos = ((GtkTextIter*)getPtrValue(s_pos));
+  GtkTextChildAnchor* anchor = GTK_TEXT_CHILD_ANCHOR(getPtrValue(s_anchor));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_child_anchor(object, pos, anchor);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_delete_range(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start, USER_OBJECT_ s_end)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextIter* start = ((GtkTextIter*)getPtrValue(s_start));
+  GtkTextIter* end = ((GtkTextIter*)getPtrValue(s_end));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->delete_range(object, start, end);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_modified_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->modified_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_mark_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_location, USER_OBJECT_ s_mark)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  const GtkTextIter* location = ((const GtkTextIter*)getPtrValue(s_location));
+  GtkTextMark* mark = GTK_TEXT_MARK(getPtrValue(s_mark));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->mark_set(object, location, mark);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_mark_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_mark)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextMark* mark = GTK_TEXT_MARK(getPtrValue(s_mark));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->mark_deleted(object, mark);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_apply_tag(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tag, USER_OBJECT_ s_start_char, USER_OBJECT_ s_end_char)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextTag* tag = GTK_TEXT_TAG(getPtrValue(s_tag));
+  const GtkTextIter* start_char = ((const GtkTextIter*)getPtrValue(s_start_char));
+  const GtkTextIter* end_char = ((const GtkTextIter*)getPtrValue(s_end_char));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->apply_tag(object, tag, start_char, end_char);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_remove_tag(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tag, USER_OBJECT_ s_start_char, USER_OBJECT_ s_end_char)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+  GtkTextTag* tag = GTK_TEXT_TAG(getPtrValue(s_tag));
+  const GtkTextIter* start_char = ((const GtkTextIter*)getPtrValue(s_start_char));
+  const GtkTextIter* end_char = ((const GtkTextIter*)getPtrValue(s_end_char));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->remove_tag(object, tag, start_char, end_char);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_begin_user_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->begin_user_action(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_buffer_class_end_user_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextBufferClass* object_class = ((GtkTextBufferClass*)getPtrValue(s_object_class));
+  GtkTextBuffer* object = GTK_TEXT_BUFFER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->end_user_action(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTextChildAnchor_symbol;
 void
@@ -8727,7 +13025,7 @@ S_virtual_gtk_text_tag_event(GtkTextTag* s_object, GObject* s_event_object, GdkE
   tmp = CDR(tmp);
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(gtk_text_iter_copy(s_iter), "GtkTextIter"));
+  SETCAR(tmp, toRPointer(s_iter ? gtk_text_iter_copy(s_iter) : NULL, "GtkTextIter"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -8748,7 +13046,26 @@ S_gtk_text_tag_class_init(GtkTextTagClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->event = S_virtual_gtk_text_tag_event;
-} 
+}
+USER_OBJECT_
+S_gtk_text_tag_class_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event_object, USER_OBJECT_ s_event, USER_OBJECT_ s_iter)
+{
+  GtkTextTagClass* object_class = ((GtkTextTagClass*)getPtrValue(s_object_class));
+  GtkTextTag* object = GTK_TEXT_TAG(getPtrValue(s_object));
+  GObject* event_object = G_OBJECT(getPtrValue(s_event_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+  const GtkTextIter* iter = ((const GtkTextIter*)getPtrValue(s_iter));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->event(object, event_object, event, iter);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTextTagTable_symbol;
 static 
@@ -8839,7 +13156,53 @@ S_gtk_text_tag_table_class_init(GtkTextTagTableClass * c, SEXP e)
     c->tag_added = S_virtual_gtk_text_tag_table_tag_added;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->tag_removed = S_virtual_gtk_text_tag_table_tag_removed;
-} 
+}
+USER_OBJECT_
+S_gtk_text_tag_table_class_tag_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tag, USER_OBJECT_ s_size_changed)
+{
+  GtkTextTagTableClass* object_class = ((GtkTextTagTableClass*)getPtrValue(s_object_class));
+  GtkTextTagTable* object = GTK_TEXT_TAG_TABLE(getPtrValue(s_object));
+  GtkTextTag* tag = GTK_TEXT_TAG(getPtrValue(s_tag));
+  gboolean size_changed = ((gboolean)asCLogical(s_size_changed));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tag_changed(object, tag, size_changed);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_tag_table_class_tag_added(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tag)
+{
+  GtkTextTagTableClass* object_class = ((GtkTextTagTableClass*)getPtrValue(s_object_class));
+  GtkTextTagTable* object = GTK_TEXT_TAG_TABLE(getPtrValue(s_object));
+  GtkTextTag* tag = GTK_TEXT_TAG(getPtrValue(s_tag));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tag_added(object, tag);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_tag_table_class_tag_removed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tag)
+{
+  GtkTextTagTableClass* object_class = ((GtkTextTagTableClass*)getPtrValue(s_object_class));
+  GtkTextTagTable* object = GTK_TEXT_TAG_TABLE(getPtrValue(s_object));
+  GtkTextTag* tag = GTK_TEXT_TAG(getPtrValue(s_tag));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->tag_removed(object, tag);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTextView_symbol;
 static 
@@ -9176,7 +13539,201 @@ S_gtk_text_view_class_init(GtkTextViewClass * c, SEXP e)
     c->toggle_overwrite = S_virtual_gtk_text_view_toggle_overwrite;
   if(VECTOR_ELT(s, 12) != NULL_USER_OBJECT)
     c->move_focus = S_virtual_gtk_text_view_move_focus;
-} 
+}
+USER_OBJECT_
+S_gtk_text_view_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_populate_popup(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_menu)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  GtkMenu* menu = GTK_MENU(getPtrValue(s_menu));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->populate_popup(object, menu);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_step, USER_OBJECT_ s_count, USER_OBJECT_ s_extend_selection)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  GtkMovementStep step = ((GtkMovementStep)asCEnum(s_step, GTK_TYPE_MOVEMENT_STEP));
+  gint count = ((gint)asCInteger(s_count));
+  gboolean extend_selection = ((gboolean)asCLogical(s_extend_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_cursor(object, step, count, extend_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_page_horizontally(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_count, USER_OBJECT_ s_extend_selection)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  gint count = ((gint)asCInteger(s_count));
+  gboolean extend_selection = ((gboolean)asCLogical(s_extend_selection));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->page_horizontally(object, count, extend_selection);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_set_anchor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_anchor(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_insert_at_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_str)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  const gchar* str = ((const gchar*)asCString(s_str));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_at_cursor(object, str);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_delete_from_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_count)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  GtkDeleteType type = ((GtkDeleteType)asCEnum(s_type, GTK_TYPE_DELETE_TYPE));
+  gint count = ((gint)asCInteger(s_count));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->delete_from_cursor(object, type, count);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_backspace(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->backspace(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_cut_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cut_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_copy_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->copy_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_paste_clipboard(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->paste_clipboard(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_toggle_overwrite(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggle_overwrite(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_text_view_class_move_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkTextViewClass* object_class = ((GtkTextViewClass*)getPtrValue(s_object_class));
+  GtkTextView* object = GTK_TEXT_VIEW(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_focus(object, direction);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTipsQuery_symbol;
 static 
@@ -9297,7 +13854,72 @@ S_gtk_tips_query_class_init(GtkTipsQueryClass * c, SEXP e)
     c->widget_entered = S_virtual_gtk_tips_query_widget_entered;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->widget_selected = S_virtual_gtk_tips_query_widget_selected;
-} 
+}
+USER_OBJECT_
+S_gtk_tips_query_class_start_query(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTipsQueryClass* object_class = ((GtkTipsQueryClass*)getPtrValue(s_object_class));
+  GtkTipsQuery* object = GTK_TIPS_QUERY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->start_query(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tips_query_class_stop_query(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTipsQueryClass* object_class = ((GtkTipsQueryClass*)getPtrValue(s_object_class));
+  GtkTipsQuery* object = GTK_TIPS_QUERY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->stop_query(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tips_query_class_widget_entered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_tip_text, USER_OBJECT_ s_tip_private)
+{
+  GtkTipsQueryClass* object_class = ((GtkTipsQueryClass*)getPtrValue(s_object_class));
+  GtkTipsQuery* object = GTK_TIPS_QUERY(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* tip_text = ((const gchar*)asCString(s_tip_text));
+  const gchar* tip_private = ((const gchar*)asCString(s_tip_private));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->widget_entered(object, widget, tip_text, tip_private);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tips_query_class_widget_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_OBJECT_ s_tip_text, USER_OBJECT_ s_tip_private, USER_OBJECT_ s_event)
+{
+  GtkTipsQueryClass* object_class = ((GtkTipsQueryClass*)getPtrValue(s_object_class));
+  GtkTipsQuery* object = GTK_TIPS_QUERY(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+  const gchar* tip_text = ((const gchar*)asCString(s_tip_text));
+  const gchar* tip_private = ((const gchar*)asCString(s_tip_private));
+  GdkEventButton* event = ((GdkEventButton*)getPtrValue(s_event));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->widget_selected(object, widget, tip_text, tip_private, event);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToggleAction_symbol;
 static 
@@ -9334,7 +13956,21 @@ S_gtk_toggle_action_class_init(GtkToggleActionClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_action_toggled;
-} 
+}
+USER_OBJECT_
+S_gtk_toggle_action_class_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToggleActionClass* object_class = ((GtkToggleActionClass*)getPtrValue(s_object_class));
+  GtkToggleAction* object = GTK_TOGGLE_ACTION(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggled(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToggleButton_symbol;
 static 
@@ -9371,7 +14007,21 @@ S_gtk_toggle_button_class_init(GtkToggleButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_button_toggled;
-} 
+}
+USER_OBJECT_
+S_gtk_toggle_button_class_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToggleButtonClass* object_class = ((GtkToggleButtonClass*)getPtrValue(s_object_class));
+  GtkToggleButton* object = GTK_TOGGLE_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggled(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToggleToolButton_symbol;
 static 
@@ -9408,7 +14058,21 @@ S_gtk_toggle_tool_button_class_init(GtkToggleToolButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->toggled = S_virtual_gtk_toggle_tool_button_toggled;
-} 
+}
+USER_OBJECT_
+S_gtk_toggle_tool_button_class_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToggleToolButtonClass* object_class = ((GtkToggleToolButtonClass*)getPtrValue(s_object_class));
+  GtkToggleToolButton* object = GTK_TOGGLE_TOOL_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toggled(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToolbar_symbol;
 static 
@@ -9502,7 +14166,56 @@ S_gtk_toolbar_class_init(GtkToolbarClass * c, SEXP e)
     c->style_changed = S_virtual_gtk_toolbar_style_changed;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->popup_context_menu = S_virtual_gtk_toolbar_popup_context_menu;
-} 
+}
+USER_OBJECT_
+S_gtk_toolbar_class_orientation_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_orientation)
+{
+  GtkToolbarClass* object_class = ((GtkToolbarClass*)getPtrValue(s_object_class));
+  GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+  GtkOrientation orientation = ((GtkOrientation)asCEnum(s_orientation, GTK_TYPE_ORIENTATION));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->orientation_changed(object, orientation);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_toolbar_class_style_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_style)
+{
+  GtkToolbarClass* object_class = ((GtkToolbarClass*)getPtrValue(s_object_class));
+  GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+  GtkToolbarStyle style = ((GtkToolbarStyle)asCEnum(s_style, GTK_TYPE_TOOLBAR_STYLE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->style_changed(object, style);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_toolbar_class_popup_context_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_button_number)
+{
+  GtkToolbarClass* object_class = ((GtkToolbarClass*)getPtrValue(s_object_class));
+  GtkToolbar* object = GTK_TOOLBAR(getPtrValue(s_object));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  gint button_number = ((gint)asCInteger(s_button_number));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->popup_context_menu(object, x, y, button_number);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToolButton_symbol;
 static 
@@ -9539,7 +14252,21 @@ S_gtk_tool_button_class_init(GtkToolButtonClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->clicked = S_virtual_gtk_tool_button_clicked;
-} 
+}
+USER_OBJECT_
+S_gtk_tool_button_class_clicked(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToolButtonClass* object_class = ((GtkToolButtonClass*)getPtrValue(s_object_class));
+  GtkToolButton* object = GTK_TOOL_BUTTON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clicked(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkToolItem_symbol;
 static 
@@ -9630,7 +14357,56 @@ S_gtk_tool_item_class_init(GtkToolItemClass * c, SEXP e)
     c->toolbar_reconfigured = S_virtual_gtk_tool_item_toolbar_reconfigured;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->set_tooltip = S_virtual_gtk_tool_item_set_tooltip;
-} 
+}
+USER_OBJECT_
+S_gtk_tool_item_class_create_menu_proxy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToolItemClass* object_class = ((GtkToolItemClass*)getPtrValue(s_object_class));
+  GtkToolItem* object = GTK_TOOL_ITEM(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_menu_proxy(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_item_class_toolbar_reconfigured(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkToolItemClass* object_class = ((GtkToolItemClass*)getPtrValue(s_object_class));
+  GtkToolItem* object = GTK_TOOL_ITEM(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->toolbar_reconfigured(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tool_item_class_set_tooltip(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_tooltips, USER_OBJECT_ s_tip_text, USER_OBJECT_ s_tip_private)
+{
+  GtkToolItemClass* object_class = ((GtkToolItemClass*)getPtrValue(s_object_class));
+  GtkToolItem* object = GTK_TOOL_ITEM(getPtrValue(s_object));
+  GtkTooltips* tooltips = GTK_TOOLTIPS(getPtrValue(s_tooltips));
+  const gchar* tip_text = ((const gchar*)asCString(s_tip_text));
+  const gchar* tip_private = ((const gchar*)asCString(s_tip_private));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->set_tooltip(object, tooltips, tip_text, tip_private);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTooltips_symbol;
 void
@@ -9709,7 +14485,21 @@ S_gtk_tree_selection_class_init(GtkTreeSelectionClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_tree_selection_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_selection_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeSelectionClass* object_class = ((GtkTreeSelectionClass*)getPtrValue(s_object_class));
+  GtkTreeSelection* object = GTK_TREE_SELECTION(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeStore_symbol;
 void
@@ -9767,7 +14557,7 @@ S_virtual_gtk_tree_view_row_activated(GtkTreeView* s_object, GtkTreePath* s_path
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithSink(s_column, "GtkTreeViewColumn"));
   tmp = CDR(tmp);
@@ -9792,9 +14582,9 @@ S_virtual_gtk_tree_view_test_expand_row(GtkTreeView* s_object, GtkTreeIter* s_it
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -9818,9 +14608,9 @@ S_virtual_gtk_tree_view_test_collapse_row(GtkTreeView* s_object, GtkTreeIter* s_
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -9844,9 +14634,9 @@ S_virtual_gtk_tree_view_row_expanded(GtkTreeView* s_object, GtkTreeIter* s_iter,
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -9869,9 +14659,9 @@ S_virtual_gtk_tree_view_row_collapsed(GtkTreeView* s_object, GtkTreeIter* s_iter
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -10151,7 +14941,269 @@ S_gtk_tree_view_class_init(GtkTreeViewClass * c, SEXP e)
     c->select_cursor_parent = S_virtual_gtk_tree_view_select_cursor_parent;
   if(VECTOR_ELT(s, 15) != NULL_USER_OBJECT)
     c->start_interactive_search = S_virtual_gtk_tree_view_start_interactive_search;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_view_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_row_activated(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_column)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkTreeViewColumn* column = GTK_TREE_VIEW_COLUMN(getPtrValue(s_column));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_activated(object, path, column);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_test_expand_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->test_expand_row(object, iter, path);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_test_collapse_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->test_collapse_row(object, iter, path);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_row_expanded(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_expanded(object, iter, path);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_row_collapsed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_collapsed(object, iter, path);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_columns_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->columns_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_cursor_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cursor_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_move_cursor(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_step, USER_OBJECT_ s_count)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  GtkMovementStep step = ((GtkMovementStep)asCEnum(s_step, GTK_TYPE_MOVEMENT_STEP));
+  gint count = ((gint)asCInteger(s_count));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->move_cursor(object, step, count);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_select_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->select_all(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_unselect_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->unselect_all(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_select_cursor_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_editing)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  gboolean start_editing = ((gboolean)asCLogical(s_start_editing));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->select_cursor_row(object, start_editing);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_toggle_cursor_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->toggle_cursor_row(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_expand_collapse_cursor_row(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_logical, USER_OBJECT_ s_expand, USER_OBJECT_ s_open_all)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  gboolean logical = ((gboolean)asCLogical(s_logical));
+  gboolean expand = ((gboolean)asCLogical(s_expand));
+  gboolean open_all = ((gboolean)asCLogical(s_open_all));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->expand_collapse_cursor_row(object, logical, expand, open_all);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_select_cursor_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->select_cursor_parent(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_view_class_start_interactive_search(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewClass* object_class = ((GtkTreeViewClass*)getPtrValue(s_object_class));
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->start_interactive_search(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeViewColumn_symbol;
 static 
@@ -10188,7 +15240,21 @@ S_gtk_tree_view_column_class_init(GtkTreeViewColumnClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->clicked = S_virtual_gtk_tree_view_column_clicked;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_view_column_class_clicked(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeViewColumnClass* object_class = ((GtkTreeViewColumnClass*)getPtrValue(s_object_class));
+  GtkTreeViewColumn* object = GTK_TREE_VIEW_COLUMN(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clicked(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkUIManager_symbol;
 static 
@@ -10406,7 +15472,132 @@ S_gtk_uimanager_class_init(GtkUIManagerClass * c, SEXP e)
     c->get_widget = S_virtual_gtk_uimanager_get_widget;
   if(VECTOR_ELT(s, 7) != NULL_USER_OBJECT)
     c->get_action = S_virtual_gtk_uimanager_get_action;
-} 
+}
+USER_OBJECT_
+S_gtk_uimanager_class_add_widget(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->add_widget(object, widget);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_actions_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->actions_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_connect_proxy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action, USER_OBJECT_ s_proxy)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+  GtkWidget* proxy = GTK_WIDGET(getPtrValue(s_proxy));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->connect_proxy(object, action, proxy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_disconnect_proxy(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action, USER_OBJECT_ s_proxy)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+  GtkWidget* proxy = GTK_WIDGET(getPtrValue(s_proxy));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->disconnect_proxy(object, action, proxy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_pre_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->pre_activate(object, action);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_post_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_action)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  GtkAction* action = GTK_ACTION(getPtrValue(s_action));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->post_activate(object, action);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_get_widget(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  const gchar* path = ((const gchar*)asCString(s_path));
+
+  GtkWidget* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_widget(object, path);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_uimanager_class_get_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkUIManagerClass* object_class = ((GtkUIManagerClass*)getPtrValue(s_object_class));
+  GtkUIManager* object = GTK_UI_MANAGER(getPtrValue(s_object));
+  const gchar* path = ((const gchar*)asCString(s_path));
+
+  GtkAction* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_action(object, path);
+
+  _result = toRPointerWithRef(ans, "GtkAction");
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkVBox_symbol;
 void
@@ -10475,7 +15666,23 @@ S_gtk_viewport_class_init(GtkViewportClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->set_scroll_adjustments = S_virtual_gtk_viewport_set_scroll_adjustments;
-} 
+}
+USER_OBJECT_
+S_gtk_viewport_class_set_scroll_adjustments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_hadjustment, USER_OBJECT_ s_vadjustment)
+{
+  GtkViewportClass* object_class = ((GtkViewportClass*)getPtrValue(s_object_class));
+  GtkViewport* object = GTK_VIEWPORT(getPtrValue(s_object));
+  GtkAdjustment* hadjustment = GTK_ADJUSTMENT(getPtrValue(s_hadjustment));
+  GtkAdjustment* vadjustment = GTK_ADJUSTMENT(getPtrValue(s_vadjustment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_scroll_adjustments(object, hadjustment, vadjustment);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkVPaned_symbol;
 void
@@ -10757,7 +15964,7 @@ S_virtual_gtk_widget_size_request(GtkWidget* s_object, GtkRequisition* s_requisi
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkWidget"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer((s_requisition), "GtkRequisition"));
+  SETCAR(tmp, toRPointer(s_requisition ? (s_requisition) : NULL, "GtkRequisition"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -11681,7 +16888,7 @@ S_virtual_gtk_widget_selection_get(GtkWidget* s_object, GtkSelectionData* s_sele
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkWidget"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_info));
   tmp = CDR(tmp);
@@ -11708,7 +16915,7 @@ S_virtual_gtk_widget_selection_received(GtkWidget* s_object, GtkSelectionData* s
 
   SETCAR(tmp, toRPointerWithSink(s_object, "GtkWidget"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
@@ -11781,7 +16988,7 @@ S_virtual_gtk_widget_drag_data_get(GtkWidget* s_object, GdkDragContext* s_contex
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_context, "GdkDragContext"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_info));
   tmp = CDR(tmp);
@@ -11922,7 +17129,7 @@ S_virtual_gtk_widget_drag_data_received(GtkWidget* s_object, GdkDragContext* s_c
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_info));
   tmp = CDR(tmp);
@@ -12234,7 +17441,1062 @@ S_gtk_widget_class_init(GtkWidgetClass * c, SEXP e)
     c->grab_broken_event = S_virtual_gtk_widget_grab_broken_event;
   if(VECTOR_ELT(s, 64) != NULL_USER_OBJECT)
     c->composited_changed = S_virtual_gtk_widget_composited_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_widget_class_dispatch_child_properties_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_pspecs)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  guint n_pspecs = ((guint)GET_LENGTH(s_pspecs));
+  GParamSpec** pspecs = ((GParamSpec**)asCArray(s_pspecs, GParamSpec*, asCGParamSpec));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->dispatch_child_properties_changed(object, n_pspecs, pspecs);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_show(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->show(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_show_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->show_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_hide(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->hide(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_hide_all(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->hide_all(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_map(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->map(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_unmap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unmap(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_realize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->realize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_unrealize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unrealize(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_size_request(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_requisition)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkRequisition* requisition = ((GtkRequisition*)getPtrValue(s_requisition));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->size_request(object, requisition);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_size_allocate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_allocation)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkAllocation* allocation = asCGtkAllocation(s_allocation);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->size_allocate(object, allocation);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_state_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_state)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkStateType previous_state = ((GtkStateType)asCEnum(s_previous_state, GTK_TYPE_STATE_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->state_changed(object, previous_state);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_parent_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_parent)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkWidget* previous_parent = GTK_WIDGET(getPtrValue(s_previous_parent));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->parent_set(object, previous_parent);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_hierarchy_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_toplevel)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkWidget* previous_toplevel = GTK_WIDGET(getPtrValue(s_previous_toplevel));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->hierarchy_changed(object, previous_toplevel);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_style_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_style)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkStyle* previous_style = GTK_STYLE(getPtrValue(s_previous_style));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->style_set(object, previous_style);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_direction_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_direction)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkTextDirection previous_direction = ((GtkTextDirection)asCEnum(s_previous_direction, GTK_TYPE_TEXT_DIRECTION));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->direction_changed(object, previous_direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_grab_notify(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_was_grabbed)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  gboolean was_grabbed = ((gboolean)asCLogical(s_was_grabbed));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->grab_notify(object, was_grabbed);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_child_notify(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_pspec)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GParamSpec* pspec = asCGParamSpec(s_pspec);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->child_notify(object, pspec);
+
+  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_mnemonic_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_group_cycling)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  gboolean group_cycling = ((gboolean)asCLogical(s_group_cycling));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->mnemonic_activate(object, group_cycling);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_grab_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->grab_focus(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->focus(object, direction);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_button_press_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventButton* event = ((GdkEventButton*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->button_press_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_button_release_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventButton* event = ((GdkEventButton*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->button_release_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_scroll_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventScroll* event = ((GdkEventScroll*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->scroll_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_motion_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventMotion* event = ((GdkEventMotion*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->motion_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_delete_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventAny* event = ((GdkEventAny*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->delete_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_destroy_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventAny* event = ((GdkEventAny*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->destroy_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_expose_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventExpose* event = ((GdkEventExpose*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->expose_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_key_press_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventKey* event = ((GdkEventKey*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->key_press_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_key_release_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventKey* event = ((GdkEventKey*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->key_release_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_enter_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventCrossing* event = ((GdkEventCrossing*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->enter_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_leave_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventCrossing* event = ((GdkEventCrossing*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->leave_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_configure_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventConfigure* event = ((GdkEventConfigure*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->configure_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_focus_in_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventFocus* event = ((GdkEventFocus*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->focus_in_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_focus_out_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventFocus* event = ((GdkEventFocus*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->focus_out_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_map_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventAny* event = ((GdkEventAny*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->map_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_unmap_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventAny* event = ((GdkEventAny*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->unmap_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_property_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventProperty* event = ((GdkEventProperty*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->property_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_selection_clear_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventSelection* event = ((GdkEventSelection*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->selection_clear_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_selection_request_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventSelection* event = ((GdkEventSelection*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->selection_request_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_selection_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventSelection* event = ((GdkEventSelection*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->selection_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_proximity_in_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventProximity* event = ((GdkEventProximity*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->proximity_in_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_proximity_out_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventProximity* event = ((GdkEventProximity*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->proximity_out_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_visibility_notify_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventVisibility* event = ((GdkEventVisibility*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->visibility_notify_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_client_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventClient* event = ((GdkEventClient*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->client_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_no_expose_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventAny* event = ((GdkEventAny*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->no_expose_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_window_state_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventWindowState* event = ((GdkEventWindowState*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->window_state_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_selection_get(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_selection_data, USER_OBJECT_ s_info, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+  guint info = ((guint)asCNumeric(s_info));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->selection_get(object, selection_data, info, time_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_selection_received(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_selection_data, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->selection_received(object, selection_data, time_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_begin(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_begin(object, context);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_end(object, context);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_data_get(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_selection_data, USER_OBJECT_ s_info, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+  guint info = ((guint)asCNumeric(s_info));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_data_get(object, context, selection_data, info, time_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_data_delete(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_data_delete(object, context);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_leave(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_leave(object, context, time_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_motion(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->drag_motion(object, context, x, y, time_);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_drop(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->drag_drop(object, context, x, y, time_);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_drag_data_received(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_selection_data, USER_OBJECT_ s_info, USER_OBJECT_ s_time_)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkDragContext* context = GDK_DRAG_CONTEXT(getPtrValue(s_context));
+  gint x = ((gint)asCInteger(s_x));
+  gint y = ((gint)asCInteger(s_y));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+  guint info = ((guint)asCNumeric(s_info));
+  guint time_ = ((guint)asCNumeric(s_time_));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->drag_data_received(object, context, x, y, selection_data, info, time_);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_popup_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->popup_menu(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_show_help(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_help_type)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GtkWidgetHelpType help_type = ((GtkWidgetHelpType)asCEnum(s_help_type, GTK_TYPE_WIDGET_HELP_TYPE));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->show_help(object, help_type);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_get_accessible(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  AtkObject* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_accessible(object);
+
+  _result = toRPointerWithRef(ans, "AtkObject");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_screen_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_previous_screen)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkScreen* previous_screen = GDK_SCREEN(getPtrValue(s_previous_screen));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->screen_changed(object, previous_screen);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_can_activate_accel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_signal_id)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  guint signal_id = ((guint)asCNumeric(s_signal_id));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->can_activate_accel(object, signal_id);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_grab_broken_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+  GdkEventGrabBroken* event = ((GdkEventGrabBroken*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->grab_broken_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_widget_class_composited_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWidgetClass* object_class = ((GtkWidgetClass*)getPtrValue(s_object_class));
+  GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->composited_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkWindow_symbol;
 static 
@@ -12393,7 +18655,96 @@ S_gtk_window_class_init(GtkWindowClass * c, SEXP e)
     c->move_focus = S_virtual_gtk_window_move_focus;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->keys_changed = S_virtual_gtk_window_keys_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_window_class_set_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_focus)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+  GtkWidget* focus = GTK_WIDGET(getPtrValue(s_focus));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_focus(object, focus);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_window_class_frame_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->frame_event(object, event);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_window_class_activate_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate_focus(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_window_class_activate_default(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate_default(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_window_class_move_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+  GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->move_focus(object, direction);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_window_class_keys_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkWindowClass* object_class = ((GtkWindowClass*)getPtrValue(s_object_class));
+  GtkWindow* object = GTK_WINDOW(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->keys_changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkWindowGroup_symbol;
 void
@@ -12477,7 +18828,40 @@ S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e)
     c->accel_edited = S_virtual_gtk_cell_renderer_accel_accel_edited;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->accel_cleared = S_virtual_gtk_cell_renderer_accel_accel_cleared;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_renderer_accel_class_accel_edited(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path_string, USER_OBJECT_ s_accel_key, USER_OBJECT_ s_accel_mods, USER_OBJECT_ s_hardware_keycode)
+{
+  GtkCellRendererAccelClass* object_class = ((GtkCellRendererAccelClass*)getPtrValue(s_object_class));
+  GtkCellRendererAccel* object = GTK_CELL_RENDERER_ACCEL(getPtrValue(s_object));
+  const gchar* path_string = ((const gchar*)asCString(s_path_string));
+  guint accel_key = ((guint)asCNumeric(s_accel_key));
+  GdkModifierType accel_mods = ((GdkModifierType)asCFlag(s_accel_mods, GDK_TYPE_MODIFIER_TYPE));
+  guint hardware_keycode = ((guint)asCNumeric(s_hardware_keycode));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->accel_edited(object, path_string, accel_key, accel_mods, hardware_keycode);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_renderer_accel_class_accel_cleared(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path_string)
+{
+  GtkCellRendererAccelClass* object_class = ((GtkCellRendererAccelClass*)getPtrValue(s_object_class));
+  GtkCellRendererAccel* object = GTK_CELL_RENDERER_ACCEL(getPtrValue(s_object));
+  const gchar* path_string = ((const gchar*)asCString(s_path_string));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->accel_cleared(object, path_string);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellRendererSpin_symbol;
 void
@@ -12764,7 +19148,166 @@ S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e)
     c->custom_widget_apply = S_virtual_gtk_print_operation_custom_widget_apply;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->preview = S_virtual_gtk_print_operation_preview;
-} 
+}
+USER_OBJECT_
+S_gtk_print_operation_class_done(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_result)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintOperationResult result = ((GtkPrintOperationResult)asCEnum(s_result, GTK_TYPE_PRINT_OPERATION_RESULT));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->done(object, result);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_begin_print(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->begin_print(object, context);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_paginate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->paginate(object, context);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_request_page_setup(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_page_nr, USER_OBJECT_ s_setup)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+  gint page_nr = ((gint)asCInteger(s_page_nr));
+  GtkPageSetup* setup = GTK_PAGE_SETUP(getPtrValue(s_setup));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->request_page_setup(object, context, page_nr, setup);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_draw_page(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_page_nr)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+  gint page_nr = ((gint)asCInteger(s_page_nr));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_page(object, context, page_nr);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_end_print(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->end_print(object, context);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_status_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->status_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_create_custom_widget(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+
+  GtkWidget* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_custom_widget(object);
+
+  _result = toRPointerWithSink(ans, "GtkWidget");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_custom_widget_apply(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_widget)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkWidget* widget = GTK_WIDGET(getPtrValue(s_widget));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->custom_widget_apply(object, widget);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_print_operation_class_preview(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_preview, USER_OBJECT_ s_context, USER_OBJECT_ s_parent)
+{
+  GtkPrintOperationClass* object_class = ((GtkPrintOperationClass*)getPtrValue(s_object_class));
+  GtkPrintOperation* object = GTK_PRINT_OPERATION(getPtrValue(s_object));
+  GtkPrintOperationPreview* preview = GTK_PRINT_OPERATION_PREVIEW(getPtrValue(s_preview));
+  GtkPrintContext* context = GTK_PRINT_CONTEXT(getPtrValue(s_context));
+  GtkWindow* parent = GTK_WINDOW(getPtrValue(s_parent));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->preview(object, preview, context, parent);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRecentManager_symbol;
 static 
@@ -12801,7 +19344,21 @@ S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->changed = S_virtual_gtk_recent_manager_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_recent_manager_class_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkRecentManagerClass* object_class = ((GtkRecentManagerClass*)getPtrValue(s_object_class));
+  GtkRecentManager* object = GTK_RECENT_MANAGER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkStatusIcon_symbol;
 static 
@@ -12891,7 +19448,54 @@ S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e)
     c->popup_menu = S_virtual_gtk_status_icon_popup_menu;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->size_changed = S_virtual_gtk_status_icon_size_changed;
-} 
+}
+USER_OBJECT_
+S_gtk_status_icon_class_activate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkStatusIconClass* object_class = ((GtkStatusIconClass*)getPtrValue(s_object_class));
+  GtkStatusIcon* object = GTK_STATUS_ICON(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->activate(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_status_icon_class_popup_menu(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_button, USER_OBJECT_ s_activate_time)
+{
+  GtkStatusIconClass* object_class = ((GtkStatusIconClass*)getPtrValue(s_object_class));
+  GtkStatusIcon* object = GTK_STATUS_ICON(getPtrValue(s_object));
+  guint button = ((guint)asCNumeric(s_button));
+  guint32 activate_time = ((guint32)asCNumeric(s_activate_time));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->popup_menu(object, button, activate_time);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_status_icon_class_size_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_size)
+{
+  GtkStatusIconClass* object_class = ((GtkStatusIconClass*)getPtrValue(s_object_class));
+  GtkStatusIcon* object = GTK_STATUS_ICON(getPtrValue(s_object));
+  gint size = ((gint)asCInteger(s_size));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->size_changed(object, size);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkRecentChooserMenu_symbol;
 void
@@ -13055,7 +19659,64 @@ S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
     c->close = S_virtual_gtk_assistant_close;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->cancel = S_virtual_gtk_assistant_cancel;
-} 
+}
+USER_OBJECT_
+S_gtk_assistant_class_prepare(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_page)
+{
+  GtkAssistantClass* object_class = ((GtkAssistantClass*)getPtrValue(s_object_class));
+  GtkAssistant* object = GTK_ASSISTANT(getPtrValue(s_object));
+  GtkWidget* page = GTK_WIDGET(getPtrValue(s_page));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->prepare(object, page);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_assistant_class_apply(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAssistantClass* object_class = ((GtkAssistantClass*)getPtrValue(s_object_class));
+  GtkAssistant* object = GTK_ASSISTANT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->apply(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_assistant_class_close(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAssistantClass* object_class = ((GtkAssistantClass*)getPtrValue(s_object_class));
+  GtkAssistant* object = GTK_ASSISTANT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->close(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_assistant_class_cancel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkAssistantClass* object_class = ((GtkAssistantClass*)getPtrValue(s_object_class));
+  GtkAssistant* object = GTK_ASSISTANT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->cancel(object);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellEditable_symbol;
 static 
@@ -13138,7 +19799,50 @@ S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)
     c->remove_widget = S_virtual_gtk_cell_editable_remove_widget;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->start_editing = S_virtual_gtk_cell_editable_start_editing;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_editable_iface_editing_done(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCellEditableIface* object_class = ((GtkCellEditableIface*)getPtrValue(s_object_class));
+  GtkCellEditable* object = GTK_CELL_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->editing_done(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_editable_iface_remove_widget(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCellEditableIface* object_class = ((GtkCellEditableIface*)getPtrValue(s_object_class));
+  GtkCellEditable* object = GTK_CELL_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->remove_widget(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_editable_iface_start_editing(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_event)
+{
+  GtkCellEditableIface* object_class = ((GtkCellEditableIface*)getPtrValue(s_object_class));
+  GtkCellEditable* object = GTK_CELL_EDITABLE(getPtrValue(s_object));
+  GdkEvent* event = ((GdkEvent*)getPtrValue(s_event));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->start_editing(object, event);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkCellLayout_symbol;
 static 
@@ -13339,7 +20043,119 @@ S_gtk_cell_layout_class_init(GtkCellLayoutIface * c, SEXP e)
     c->clear_attributes = S_virtual_gtk_cell_layout_clear_attributes;
   if(VECTOR_ELT(s, 6) != NULL_USER_OBJECT)
     c->reorder = S_virtual_gtk_cell_layout_reorder;
-} 
+}
+USER_OBJECT_
+S_gtk_cell_layout_iface_pack_start(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_expand)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+  gboolean expand = ((gboolean)asCLogical(s_expand));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->pack_start(object, cell, expand);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_pack_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_expand)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+  gboolean expand = ((gboolean)asCLogical(s_expand));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->pack_end(object, cell, expand);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_clear(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clear(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_add_attribute(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_attribute, USER_OBJECT_ s_column)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+  const gchar* attribute = ((const gchar*)asCString(s_attribute));
+  gint column = ((gint)asCInteger(s_column));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->add_attribute(object, cell, attribute, column);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_set_cell_data_func(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_func, USER_OBJECT_ s_func_data)
+{
+  GtkCellLayoutDataFunc func = ((GtkCellLayoutDataFunc)S_GtkCellLayoutDataFunc);
+  R_CallbackData* func_data = R_createCBData(s_func, s_func_data);
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+  GDestroyNotify destroy = ((GDestroyNotify)R_freeCBData);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_cell_data_func(object, cell, func, func_data, destroy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_clear_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->clear_attributes(object, cell);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_cell_layout_iface_reorder(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USER_OBJECT_ s_position)
+{
+  GtkCellLayoutIface* object_class = ((GtkCellLayoutIface*)getPtrValue(s_object_class));
+  GtkCellLayout* object = GTK_CELL_LAYOUT(getPtrValue(s_object));
+  GtkCellRenderer* cell = GTK_CELL_RENDERER(getPtrValue(s_cell));
+  gint position = ((gint)asCInteger(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->reorder(object, cell, position);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkEditable_symbol;
 static 
@@ -13616,7 +20432,173 @@ S_gtk_editable_class_init(GtkEditableClass * c, SEXP e)
     c->set_position = S_virtual_gtk_editable_set_position;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->get_position = S_virtual_gtk_editable_get_position;
-} 
+}
+USER_OBJECT_
+S_gtk_editable_iface_insert_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_position)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  const gchar* text = ((const gchar*)asCString(s_text));
+  gint length = ((gint)GET_LENGTH(s_position));
+  gint* position = ((gint*)asCArray(s_position, gint, asCInteger));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->insert_text(object, text, length, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_delete_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->delete_text(object, start_pos, end_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_do_insert_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_position)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  const gchar* text = ((const gchar*)asCString(s_text));
+  gint length = ((gint)GET_LENGTH(s_position));
+  gint* position = ((gint*)asCArray(s_position, gint, asCInteger));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->do_insert_text(object, text, length, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_do_delete_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->do_delete_text(object, start_pos, end_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_get_chars(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  gchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_chars(object, start_pos, end_pos);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_set_selection_bounds(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  gint start_pos = ((gint)asCInteger(s_start_pos));
+  gint end_pos = ((gint)asCInteger(s_end_pos));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_selection_bounds(object, start_pos, end_pos);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_get_selection_bounds(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint start_pos;
+  gint end_pos;
+
+  ans = object_class->get_selection_bounds(object, &start_pos, &end_pos);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "start.pos", asRInteger(start_pos), "end.pos", asRInteger(end_pos), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_set_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_position)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+  gint position = ((gint)asCInteger(s_position));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_position(object, position);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_editable_iface_get_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkEditableClass* object_class = ((GtkEditableClass*)getPtrValue(s_object_class));
+  GtkEditable* object = GTK_EDITABLE(getPtrValue(s_object));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_position(object);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeDragDest_symbol;
 static 
@@ -13635,9 +20617,9 @@ S_virtual_gtk_tree_drag_dest_drag_data_received(GtkTreeDragDest* s_object, GtkTr
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeDragDest"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_dest), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_dest ? gtk_tree_path_copy(s_dest) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13661,9 +20643,9 @@ S_virtual_gtk_tree_drag_dest_row_drop_possible(GtkTreeDragDest* s_object, GtkTre
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeDragDest"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_dest_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_dest_path ? gtk_tree_path_copy(s_dest_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13684,7 +20666,43 @@ S_gtk_tree_drag_dest_class_init(GtkTreeDragDestIface * c, SEXP e)
     c->drag_data_received = S_virtual_gtk_tree_drag_dest_drag_data_received;
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->row_drop_possible = S_virtual_gtk_tree_drag_dest_row_drop_possible;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_drag_dest_iface_drag_data_received(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_dest, USER_OBJECT_ s_selection_data)
+{
+  GtkTreeDragDestIface* object_class = ((GtkTreeDragDestIface*)getPtrValue(s_object_class));
+  GtkTreeDragDest* object = GTK_TREE_DRAG_DEST(getPtrValue(s_object));
+  GtkTreePath* dest = ((GtkTreePath*)getPtrValue(s_dest));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->drag_data_received(object, dest, selection_data);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_drag_dest_iface_row_drop_possible(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_dest_path, USER_OBJECT_ s_selection_data)
+{
+  GtkTreeDragDestIface* object_class = ((GtkTreeDragDestIface*)getPtrValue(s_object_class));
+  GtkTreeDragDest* object = GTK_TREE_DRAG_DEST(getPtrValue(s_object));
+  GtkTreePath* dest_path = ((GtkTreePath*)getPtrValue(s_dest_path));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->row_drop_possible(object, dest_path, selection_data);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeDragSource_symbol;
 static 
@@ -13703,7 +20721,7 @@ S_virtual_gtk_tree_drag_source_row_draggable(GtkTreeDragSource* s_object, GtkTre
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeDragSource"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13727,9 +20745,9 @@ S_virtual_gtk_tree_drag_source_drag_data_get(GtkTreeDragSource* s_object, GtkTre
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeDragSource"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13753,7 +20771,7 @@ S_virtual_gtk_tree_drag_source_drag_data_delete(GtkTreeDragSource* s_object, Gtk
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeDragSource"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13776,7 +20794,59 @@ S_gtk_tree_drag_source_class_init(GtkTreeDragSourceIface * c, SEXP e)
     c->drag_data_get = S_virtual_gtk_tree_drag_source_drag_data_get;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->drag_data_delete = S_virtual_gtk_tree_drag_source_drag_data_delete;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_drag_source_iface_row_draggable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkTreeDragSourceIface* object_class = ((GtkTreeDragSourceIface*)getPtrValue(s_object_class));
+  GtkTreeDragSource* object = GTK_TREE_DRAG_SOURCE(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->row_draggable(object, path);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_drag_source_iface_drag_data_get(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_selection_data)
+{
+  GtkTreeDragSourceIface* object_class = ((GtkTreeDragSourceIface*)getPtrValue(s_object_class));
+  GtkTreeDragSource* object = GTK_TREE_DRAG_SOURCE(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkSelectionData* selection_data = ((GtkSelectionData*)getPtrValue(s_selection_data));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->drag_data_get(object, path, selection_data);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_drag_source_iface_drag_data_delete(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkTreeDragSourceIface* object_class = ((GtkTreeDragSourceIface*)getPtrValue(s_object_class));
+  GtkTreeDragSource* object = GTK_TREE_DRAG_SOURCE(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->drag_data_delete(object, path);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeModel_symbol;
 static 
@@ -13795,9 +20865,9 @@ S_virtual_gtk_tree_model_row_changed(GtkTreeModel* s_object, GtkTreePath* s_path
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13820,9 +20890,9 @@ S_virtual_gtk_tree_model_row_inserted(GtkTreeModel* s_object, GtkTreePath* s_pat
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13845,9 +20915,9 @@ S_virtual_gtk_tree_model_row_has_child_toggled(GtkTreeModel* s_object, GtkTreePa
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13870,7 +20940,7 @@ S_virtual_gtk_tree_model_row_deleted(GtkTreeModel* s_object, GtkTreePath* s_path
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13893,9 +20963,9 @@ S_virtual_gtk_tree_model_rows_reordered(GtkTreeModel* s_object, GtkTreePath* s_p
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRIntegerArray(s_new_order));
   tmp = CDR(tmp);
@@ -13988,9 +21058,9 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14014,7 +21084,7 @@ S_virtual_gtk_tree_model_get_path(GtkTreeModel* s_object, GtkTreeIter* s_iter)
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkTreeModel", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14038,7 +21108,7 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -14065,7 +21135,7 @@ S_virtual_gtk_tree_model_iter_next(GtkTreeModel* s_object, GtkTreeIter* s_iter)
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14089,9 +21159,9 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_parent), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_parent ? gtk_tree_iter_copy(s_parent) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14115,7 +21185,7 @@ S_virtual_gtk_tree_model_iter_has_child(GtkTreeModel* s_object, GtkTreeIter* s_i
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14139,7 +21209,7 @@ S_virtual_gtk_tree_model_iter_n_children(GtkTreeModel* s_object, GtkTreeIter* s_
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14163,9 +21233,9 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_parent), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_parent ? gtk_tree_iter_copy(s_parent) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_n));
   tmp = CDR(tmp);
@@ -14191,9 +21261,9 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_child), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_child ? gtk_tree_iter_copy(s_child) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14217,7 +21287,7 @@ S_virtual_gtk_tree_model_ref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14240,7 +21310,7 @@ S_virtual_gtk_tree_model_unref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -14294,7 +21364,326 @@ S_gtk_tree_model_class_init(GtkTreeModelIface * c, SEXP e)
     c->ref_node = S_virtual_gtk_tree_model_ref_node;
   if(VECTOR_ELT(s, 18) != NULL_USER_OBJECT)
     c->unref_node = S_virtual_gtk_tree_model_unref_node;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_model_iface_row_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_changed(object, path, iter);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_row_inserted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_inserted(object, path, iter);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_row_has_child_toggled(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_has_child_toggled(object, path, iter);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_row_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->row_deleted(object, path);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_rows_reordered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_iter, USER_OBJECT_ s_new_order)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  gint* new_order = ((gint*)asCArray(s_new_order, gint, asCInteger));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->rows_reordered(object, path, iter, new_order);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_flags(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+
+  GtkTreeModelFlags ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_flags(object);
+
+  _result = asRFlag(ans, GTK_TYPE_TREE_MODEL_FLAGS);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_n_columns(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_n_columns(object);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_column_type(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_index_)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  gint index_ = ((gint)asCInteger(s_index_));
+
+  GType ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_column_type(object, index_);
+
+  _result = asRGType(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_iter(object, iter, path);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_path(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  GtkTreePath* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_path(object, iter);
+
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_get_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_column, USER_OBJECT_ s_value)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  gint column = ((gint)asCInteger(s_column));
+  GValue* value = asCGValue(s_value);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->get_value(object, iter, column, value);
+
+  CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_next(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_next(object, iter);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_parent)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreeIter* parent = ((GtkTreeIter*)getPtrValue(s_parent));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_children(object, iter, parent);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_has_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_has_child(object, iter);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_n_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  gint ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_n_children(object, iter);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_nth_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_parent, USER_OBJECT_ s_n)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreeIter* parent = ((GtkTreeIter*)getPtrValue(s_parent));
+  gint n = ((gint)asCInteger(s_n));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_nth_child(object, iter, parent, n);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_iter_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_child)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+  GtkTreeIter* child = ((GtkTreeIter*)getPtrValue(s_child));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->iter_parent(object, iter, child);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_ref_node(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->ref_node(object, iter);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_model_iface_unref_node(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
+{
+  GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
+  GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
+  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->unref_node(object, iter);
+
+
+  return(_result);
+}
+ 
 
 static SEXP S_GtkTreeSortable_symbol;
 static 
@@ -14466,5 +21855,106 @@ S_gtk_tree_sortable_class_init(GtkTreeSortableIface * c, SEXP e)
     c->set_default_sort_func = S_virtual_gtk_tree_sortable_set_default_sort_func;
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->has_default_sort_func = S_virtual_gtk_tree_sortable_has_default_sort_func;
-} 
+}
+USER_OBJECT_
+S_gtk_tree_sortable_iface_sort_column_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->sort_column_changed(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_sortable_iface_get_sort_column_id(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint sort_column_id;
+  GtkSortType order;
+
+  ans = object_class->get_sort_column_id(object, &sort_column_id, &order);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "sort.column.id", asRInteger(sort_column_id), "order", asREnum(order, GTK_TYPE_SORT_TYPE), NULL);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_sortable_iface_set_sort_column_id(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_sort_column_id, USER_OBJECT_ s_order)
+{
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+  gint sort_column_id = ((gint)asCInteger(s_sort_column_id));
+  GtkSortType order = ((GtkSortType)asCEnum(s_order, GTK_TYPE_SORT_TYPE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_sort_column_id(object, sort_column_id, order);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_sortable_iface_set_sort_func(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_sort_column_id, USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+{
+  GtkTreeIterCompareFunc func = ((GtkTreeIterCompareFunc)S_GtkTreeIterCompareFunc);
+  R_CallbackData* data = R_createCBData(s_func, s_data);
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+  gint sort_column_id = ((gint)asCInteger(s_sort_column_id));
+  GtkDestroyNotify destroy = ((GtkDestroyNotify)R_freeCBData);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_sort_func(object, sort_column_id, func, data, destroy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_sortable_iface_set_default_sort_func(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+{
+  GtkTreeIterCompareFunc func = ((GtkTreeIterCompareFunc)S_GtkTreeIterCompareFunc);
+  R_CallbackData* data = R_createCBData(s_func, s_data);
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+  GtkDestroyNotify destroy = ((GtkDestroyNotify)R_freeCBData);
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_default_sort_func(object, func, data, destroy);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_tree_sortable_iface_has_default_sort_func(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  GtkTreeSortableIface* object_class = ((GtkTreeSortableIface*)getPtrValue(s_object_class));
+  GtkTreeSortable* object = GTK_TREE_SORTABLE(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->has_default_sort_func(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 

@@ -3,11 +3,9 @@
 \title{cairoPatternCreateForSurface}
 \description{Create a new cairo\_pattern\_t for the given surface.}
 \usage{cairoPatternCreateForSurface(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  the surface }}
+\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  the surface}}
 \value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if succesful, or
-an error pattern in case of no memory.  The caller owns the
-returned object and should call \code{cairo\Pattern\Destroy()} when
-finished with it.
+an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error
 occurred the pattern status will be set to an error.  To inspect

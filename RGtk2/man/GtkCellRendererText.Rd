@@ -9,10 +9,13 @@
 \code{gtkCellRendererText()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererText
-                     +----\link{GtkCellRendererCombo}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkCellRenderer}
+                     +----GtkCellRendererText
+                           +----\link{GtkCellRendererAccel}
+                           +----\link{GtkCellRendererCombo}
+                           +----\link{GtkCellRendererSpin}}}
 \section{Detailed Description}{A \code{\link{GtkCellRendererText}} renders a given text in its cell, using the font, color and 
 style information provided by its properties. The text will be ellipsized if it is 
 too long and the ellipsize 
@@ -20,11 +23,15 @@ property allows it.
   
 If the mode is \code{GTK_CELL_RENDERER_MODE_EDITABLE},
 the \code{\link{GtkCellRendererText}} allows to edit its text using an entry.}
-\section{Structures}{\describe{\item{\code{GtkCellRendererText}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkCellRendererText}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkCellRendererText} is the equivalent of \code{\link{gtkCellRendererTextNew}}.}
 \section{Signals}{\describe{\item{\code{edited(cellrenderertext, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{cellrenderertext}}{[\code{\link{GtkCellRendererText}}] the object which received the signal.}
@@ -35,6 +42,13 @@ the \code{\link{GtkCellRendererText}} allows to edit its text using an entry.}
 
 }}}
 \section{Properties}{\describe{
+\item{\code{alignment} [\code{\link{PangoAlignment}} : Read / Write]}{
+
+Specifies how to align the lines of text.  
+
+  Default value: PANGO\_ALIGN\_LEFT  Since  2.10
+
+}
 \item{\code{attributes} [\code{\link{PangoAttrList}} : Read / Write]}{
 
 A list of style attributes to apply to the text of the renderer.
@@ -92,7 +106,7 @@ Whether this tag affects the font family.  Default value: FALSE
 }
 \item{\code{font} [character : Read / Write]}{
 
-Font description as a string.  Default value: NULL
+Font description as a string, e.g. "Sans Italic 12".  Default value: NULL
 
 }
 \item{\code{font-desc} [\code{\link{PangoFontDescription}} : Read / Write]}{

@@ -17,7 +17,8 @@
          +----GtkToggleAction
                +----\link{GtkRadioAction}}}
 \section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
-"active" state specifying whether the action has been checked or not.}
+"active" state specifying whether the action has been checked or not.
+  \code{\link{GtkToggleAction}}  \code{GtkToggleAction}  \code{\link{GtkCheckMenuItem}}  \code{GtkCheckMenuItem}}
 \section{Structures}{\describe{\item{\code{GtkToggleAction}}{
 The \code{GtkToggleAction} struct contains only 
 private members and should not be accessed directly.
@@ -25,7 +26,8 @@ private members and should not be accessed directly.
 }}}
 \section{Convenient Construction}{\code{gtkToggleAction} is the equivalent of \code{\link{gtkToggleActionNew}}.}
 \section{Signals}{\describe{\item{\code{toggled(toggleaction, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{toggleaction}}{[\code{\link{GtkToggleAction}}] the object which received the signal.}
@@ -33,11 +35,20 @@ private members and should not be accessed directly.
 }
 
 }}}
-\section{Properties}{\describe{\item{\code{draw-as-radio} [logical : Read / Write]}{
+\section{Properties}{\describe{
+\item{\code{active} [logical : Read / Write]}{
+
+If the toggle action should be active in or not.  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{draw-as-radio} [logical : Read / Write]}{
 
 Whether the proxies for this action look like radio action proxies.  Default value: FALSE
 
-}}}
+}
+}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToggleAction.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

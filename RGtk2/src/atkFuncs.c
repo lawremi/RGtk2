@@ -2679,7 +2679,7 @@ S_atk_text_get_text_after_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, U
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start_offset", asRInteger(start_offset), "end_offset", asRInteger(end_offset), NULL);
+  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -2702,7 +2702,7 @@ S_atk_text_get_text_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start_offset", asRInteger(start_offset), "end_offset", asRInteger(end_offset), NULL);
+  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -2725,7 +2725,7 @@ S_atk_text_get_text_before_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, 
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start_offset", asRInteger(start_offset), "end_offset", asRInteger(end_offset), NULL);
+  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -2827,7 +2827,7 @@ S_atk_text_get_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 
   _result = asRAtkAttributeSet(ans);
 
-  _result = retByVal(_result, "start_offset", asRInteger(start_offset), "end_offset", asRInteger(end_offset), NULL);
+  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
   CLEANUP(atk_attribute_set_free, ans);
 
   return(_result);
@@ -2917,7 +2917,7 @@ S_atk_text_get_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 
   _result = asRString(ans);
 
-  _result = retByVal(_result, "start_offset", asRInteger(start_offset), "end_offset", asRInteger(end_offset), NULL);
+  _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -3431,6 +3431,22 @@ S_atk_role_get_localized_name(USER_OBJECT_ s_role)
  
 
 USER_OBJECT_
+S_atk_hyperlink_impl_get_hyperlink(USER_OBJECT_ s_object)
+{
+  AtkHyperlinkImpl* object = ATK_HYPERLINK_IMPL(getPtrValue(s_object));
+
+  AtkHyperlink* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = atk_hyperlink_impl_get_hyperlink(object);
+
+  _result = toRPointerWithRef(ans, "AtkHyperlink");
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
 S_atk_document_get_locale(USER_OBJECT_ s_object)
 {
   AtkDocument* object = ATK_DOCUMENT(getPtrValue(s_object));
@@ -3540,6 +3556,43 @@ S_atk_object_get_attributes(USER_OBJECT_ s_object)
   ans = atk_object_get_attributes(object);
 
   _result = asRAtkAttributeSet(ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_atk_streamable_content_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_type)
+{
+  AtkStreamableContent* object = ATK_STREAMABLE_CONTENT(getPtrValue(s_object));
+  const gchar* mime_type = ((const gchar*)asCString(s_mime_type));
+
+  gchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = atk_streamable_content_get_uri(object, mime_type);
+
+  _result = asRString(ans);
+  CLEANUP(g_free, ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_atk_value_get_minimum_increment(USER_OBJECT_ s_object)
+{
+  AtkValue* object = ATK_VALUE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  GValue* value = ((GValue *)g_new0(GValue, 1));
+
+  atk_value_get_minimum_increment(object, value);
+
+
+  _result = retByVal(_result, "value", asRGValue(value), NULL);
+  CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);
 
   return(_result);
 }

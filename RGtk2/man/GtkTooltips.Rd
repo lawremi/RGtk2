@@ -16,8 +16,9 @@
 \code{gtkTooltips()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkTooltips}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----GtkTooltips}}
 \section{Detailed Description}{Tooltips are the messages that appear next to a widget when the mouse pointer is held over it for a short amount of time. They are especially helpful for adding more verbose descriptions of things such as buttons in a toolbar.
   
 An individual tooltip belongs to a group of tooltips. A group is created with a call to \code{\link{gtkTooltipsNew}}. Every tooltip in the group can then be turned off with a call to \code{\link{gtkTooltipsDisable}} and enabled with \code{\link{gtkTooltipsEnable}}.
@@ -28,7 +29,7 @@ To assign a tip to a particular \code{\link{GtkWidget}}, \code{\link{gtkTooltips
   \strong{PLEASE NOTE:}   
 Tooltips can only be set on widgets which have their own X window and
 receive enter and leave events.
-To check if a widget has its own window use \code{gtk\Widget\No\Window()}.
+To check if a widget has its own window use \code{gtkWidgetNoWindow()}.
 To add a tooltip to a widget that doesn't have its own window, place the
 widget inside a \code{\link{GtkEventBox}} and add a tooltip to that instead.
     

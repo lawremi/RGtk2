@@ -2,7 +2,7 @@
 \name{gdkPixbufSaveToCallbackv}
 \title{gdkPixbufSaveToCallbackv}
 \description{Saves pixbuf to a callback in format \code{type}, which is currently "jpeg",
-"png", "ico" or "bmp".  If \code{error} is set, \code{FALSE} will be returned. See
+"png", "tiff", "ico" or "bmp".  If \code{error} is set, \code{FALSE} will be returned. See
 \code{\link{gdkPixbufSaveToCallback}} for more details.}
 \usage{gdkPixbufSaveToCallbackv(object, save.func, user.data, type, option.keys, option.values, .errwarn = TRUE)}
 \arguments{

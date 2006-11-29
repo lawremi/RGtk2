@@ -16,6 +16,12 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRelationSet}}
+\section{Detailed Description}{The AtkRelationSet held by an object establishes its relationships with
+objects beyond the normal "parent/child" hierarchical relationships that all
+user interface objects have.  AtkRelationSets establish whether objects are
+labelled or controlled by other components, share group membership with other
+components (for instance within a radio-button group), or share content which
+"flows" between them, among other types of possible relationships.}
 \section{Structures}{\describe{\item{\code{AtkRelationSet}}{
 The AtkRelationSet structure should not be accessed directly.
 

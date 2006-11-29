@@ -17,7 +17,7 @@ in the toolbar where it will be inserted.
 \item{\code{user.data}}{[R object]  a pointer to any data you wish to be passed to the callback.}
 }
 \details{\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
-arguments. Use the \code{gtk\Signal\Func()} to cast the function to \code{GtkSignalFunc}.  }
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 \value{[\code{\link{GtkWidget}}]  the new toolbar item as a \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

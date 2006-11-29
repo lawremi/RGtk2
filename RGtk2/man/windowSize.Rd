@@ -26,7 +26,7 @@ gdkGetWindowSize(w)
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 
 }

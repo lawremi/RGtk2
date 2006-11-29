@@ -27,10 +27,11 @@
 \code{gtkProgressBar(adjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkProgress}
-                     +----GtkProgressBar}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkProgress}
+                           +----GtkProgressBar}}
 \section{Interfaces}{GtkProgressBar implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkProgressBar}} is typically used to display the progress of a long
@@ -104,7 +105,7 @@ The number of blocks which can fit in the progress bar area in activity mode (De
 }
 \item{\code{activity-step} [numeric : Read / Write]}{
 
-The increment used for each iteration in activity mode (Deprecated).  Allowed values: >= 1  Default value: 3
+The increment used for each iteration in activity mode (Deprecated).  Default value: 3
 
 }
 \item{\code{adjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{

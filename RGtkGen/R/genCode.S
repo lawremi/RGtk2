@@ -10,6 +10,17 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
           libName = filePrefix, package = "RGtk2")
 {
 
+  # get "bad" types for a function
+  getBadTypes <- function(fun)
+  {
+    allTypes <- fun$return
+    if (!isPropertyConstructor(fun))
+        allTypes <- c(allTypes, getParamTypes(fun$parameters))
+    if (isMethod(fun))
+        allTypes <- c(allTypes, fun$ofobject)
+    allTypes[baseType(allTypes, complete=T) %in% badTypes]
+  }
+
  toCppSymbol <- function(name) {
   toupper(gsub(.Platform$file.sep, "_", name))
  }
@@ -135,15 +146,10 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
        next
    }
 
-   allTypes <- c(fun$return)
-   if (!isPropertyConstructor(fun))
-       allTypes <- c(allTypes, getParamTypes(fun$parameters))
-   if (isMethod(fun))
-       allTypes <- c(allTypes, fun$ofobject)
-   badType <- which(baseType(allTypes, complete=T) %in% badTypes)
-   if (length(badType)) {
-       badTypeList <- c(badTypeList, paste(fun$name, "(", paste(allTypes[badType],collapse=", "), ")"))
-       next
+   bad_types <- getBadTypes(fun)
+   if (length(bad_types)) {
+      badTypeList <- c(badTypeList, paste(fun$name, "(", paste(bad_types,collapse=", "), ")"))
+      next
    }
 
    if(verbose)
@@ -210,10 +216,12 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    ClassCHeader <- file(getFileName("Classes.h"))
    open(ClassCHeader,"w")
  
-   cat("#include \"", filePrefix, "Classes.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n", 
-    file=ClassCFuncs, sep="")
+   cat("#include \"", filePrefix, "Classes.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n",
+    "#include \"userfuncs.h\"\n#include \"gobject.h\"\n", file=ClassCFuncs, sep="")
    cat("#include \"", package, ".h\"\n\n", file = ClassCFuncs, sep = "")
    cat("#include \"", package, ".h\"\n\n", file = ClassCHeader, sep = "")
+   
+   virtual_classes <- sapply(defs$virtuals, function(virtual) virtual$ofobject)
    
    write_classes <- function(type)
    {
@@ -222,7 +230,10 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
      for(i in class_names) {
        if(verbose)
            cat("processing ", toupper(type), ": ", i, "\n")
-       gen <- genCClass(i, allDefs, type == "interface")
+       virtuals <- defs$virtuals[virtual_classes == i]
+       virtuals <- virtuals[as.logical(sapply(virtuals, function(virtual) 
+        length(getBadTypes(virtual)) == 0))]
+       gen <- genCClass(i, virtuals, allDefs)
        cat(gen$decl, "\n", file=ClassCHeader)
        cat(gen$code, "\n\n", file=ClassCFuncs)
      }
@@ -235,10 +246,14 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    close(ClassCHeader)
  }
  
- RVirtuals <- file(getFileName("Virtuals.R"))
- open(RVirtuals,"w")
- cat(genRVirtuals(getNonDiscardedNames("virtuals"), allDefs), file=RVirtuals)
- close(RVirtuals)
+ if (length(defs$virtuals)) {
+   RVirtuals <- file(getFileName("Virtuals.R"))
+   open(RVirtuals,"w")
+   virtuals <- defs$virtuals[getNonDiscardedNames("virtuals")]
+   virtuals <- virtuals[sapply(virtuals, function(virtual) length(getBadTypes(virtual)) == 0)]
+   cat(genRVirtuals(names(virtuals), allDefs), file=RVirtuals)
+   close(RVirtuals)
+ }
  
   # Now do field accessors
 

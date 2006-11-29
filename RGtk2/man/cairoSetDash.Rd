@@ -3,16 +3,25 @@
 \title{cairoSetDash}
 \description{Sets the dash pattern to be used by \code{\link{cairoStroke}}. A dash pattern
 is specified by \code{dashes}, a list of positive values. Each value
-provides the user-space length of altenate "on" and "off" portions
-of the stroke. The \code{offset} specifies an offset into the pattern at
-which the stroke begins.}
+provides the length of alternate "on" and "off" portions of the
+stroke. The \code{offset} specifies an offset into the pattern at which
+the stroke begins.}
 \usage{cairoSetDash(cr, dashes, offset)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{dashes}}{[numeric]  a list specifying alternate lengths of on and off po}
+\item{\code{dashes}}{[numeric]  a list specifying alternate lengths of on and off stroke portions}
 \item{\code{offset}}{[numeric]  an offset into the dash pattern at which the stroke should start}
 }
-\details{If \code{num.dashes} is 0 dashing is disabled.
+\details{Each "on" segment will have caps applied as if the segment were a
+separate sub-path. In particular, it is valid to use an "on" length
+of 0.0 with CAIRO\_LINE\_CAP\_ROUND or CAIRO\_LINE\_CAP\_SQUARE in order
+to distributed dots or squares along a path.
+  
+Note: The length values are in user-space units as evaluated at the
+time of stroking. This is not necessarily the same as the user
+space at the time of \code{\link{cairoSetDash}}.
+  
+If \code{num.dashes} is 0 dashing is disabled.
   
 If \code{num.dashes} is 1 a symmetric pattern is assumed with alternating
 on and off portions of the size specified by the single value in

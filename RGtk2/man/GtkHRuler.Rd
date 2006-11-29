@@ -8,10 +8,11 @@
 \code{gtkHRuler(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRuler}
-                     +----GtkHRuler}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRuler}
+                           +----GtkHRuler}}
 \section{Interfaces}{GtkHRuler implements
  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   

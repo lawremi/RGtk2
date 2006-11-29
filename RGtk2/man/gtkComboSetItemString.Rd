@@ -4,7 +4,7 @@
 \description{
 Sets the string to place in the \code{\link{GtkEntry}} field when a particular list item is
 selected. This is needed if the list item is not a simple label.
-\strong{WARNING: \code{gtk_combo_set_item_string} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{gtk_combo_set_item_string} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 }
 \usage{gtkComboSetItemString(object, item, item.value)}
 \arguments{

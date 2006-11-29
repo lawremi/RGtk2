@@ -1,8 +1,7 @@
 \alias{gtkTreeModelGetValue}
 \name{gtkTreeModelGetValue}
 \title{gtkTreeModelGetValue}
-\description{Sets initializes and sets \code{value} to that at \code{column}.  When done with \code{value},
-\code{g\Value\Unset()} needs to be called to free any allocated memory.}
+\description{Sets initializes and sets \code{value} to that at \code{column}.  When done with \code{value}.}
 \usage{gtkTreeModelGetValue(object, iter, column)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}

@@ -2,7 +2,8 @@
 \name{gdkWindowGetPointer}
 \title{gdkWindowGetPointer}
 \description{Obtains the current pointer position and modifier state.
-The position is given in coordinates relative to \code{window}.}
+The position is given in coordinates relative to the upper left 
+corner of \code{window}.}
 \usage{gdkWindowGetPointer(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
 \value{

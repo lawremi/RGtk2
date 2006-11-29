@@ -7,11 +7,5 @@ want to block look at \code{\link{gtkMainIterationDo}} or check if any events ar
 pending with \code{\link{gtkEventsPending}} first.}
 \usage{gtkMainIteration()}
 \value{[logical] \code{TRUE} if \code{\link{gtkMainQuit}} has been called for the innermost mainloop.}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

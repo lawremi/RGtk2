@@ -11,7 +11,8 @@ a new list.}
        should be filtered out.}
 \item{\code{data}}{[R object]  Data to be passed to \code{func}}
 }
-\value{[\code{\link{PangoAttrList}}]  a newly allocated \code{\link{PangoAttrList}} or \code{NULL} if
+\details{  Since  1.2}
+\value{[\code{\link{PangoAttrList}}]  the new \code{\link{PangoAttrList}} or \code{NULL} if
  no attributes of the given types were found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \description{Obtains the coordinates where the scale will draw the \code{\link{PangoLayout}}
 representing the text in the scale. Remember
 when using the \code{\link{PangoLayout}} function you need to convert to
-and from pixels using \code{pango\Pixels()} or \code{PANGO_SCALE}. }
+and from pixels using \code{pangoPixels()} or \code{PANGO_SCALE}. }
 \usage{gtkScaleGetLayoutOffsets(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkScale}}]  a \code{\link{GtkScale}}}}
 \details{If the draw\_value property is \code{FALSE}, the return values are 

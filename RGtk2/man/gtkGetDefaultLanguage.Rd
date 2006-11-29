@@ -10,15 +10,5 @@ right-to-left or left-to-right text direction. See
 \usage{gtkGetDefaultLanguage()}
 \value{[\code{\link{PangoLanguage}}]  the default language as a \code{\link{PangoLanguage}}, must not be
 freed}
-\note{
-This function will terminate your program if it was unable to initialize 
-the GUI for some reason. If you want your program to fall back to a 
-textual interface you want to call \code{\link{gtkInitCheck}} instead.
-
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

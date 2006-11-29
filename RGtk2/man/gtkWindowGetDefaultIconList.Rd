@@ -1,7 +1,9 @@
 \alias{gtkWindowGetDefaultIconList}
 \name{gtkWindowGetDefaultIconList}
 \title{gtkWindowGetDefaultIconList}
-\description{Gets the value set by \code{\link{gtkWindowSetDefaultIconList}}.}
+\description{Gets the value set by \code{\link{gtkWindowSetDefaultIconList}},
+but the pixbufs in the list have not had their reference count
+incremented.}
 \usage{gtkWindowGetDefaultIconList()}
 \value{[list]  copy of default icon list }
 \author{Derived by RGtkGen from GTK+ documentation}

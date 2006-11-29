@@ -4,7 +4,7 @@
 \description{
 Selects the menu item specified by \code{index.} making it the newly
 selected value for the option menu.
-\strong{WARNING: \code{gtk_option_menu_set_history} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{gtk_option_menu_set_history} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 }
 \usage{gtkOptionMenuSetHistory(object, index)}
 \arguments{

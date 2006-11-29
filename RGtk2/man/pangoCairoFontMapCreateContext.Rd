@@ -5,6 +5,6 @@
 \usage{pangoCairoFontMapCreateContext(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoCairoFontMap}}]  a \code{\link{PangoCairoFontMap}}}}
 \details{  Since  1.10}
-\value{[\code{\link{PangoContext}}]  the newly created context; free with \code{g\Object\Unref()}.}
+\value{[\code{\link{PangoContext}}] .}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

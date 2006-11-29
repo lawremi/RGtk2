@@ -31,10 +31,11 @@
 \code{gtkList(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkList}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkList}}
 \section{Interfaces}{GtkList implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkList}} widget is a container whose children are displayed
@@ -47,7 +48,8 @@ GtkList has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\code{GtkList}}{
 \strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 
 }}}
 \section{Convenient Construction}{\code{gtkList} is the equivalent of \code{\link{gtkListNew}}.}

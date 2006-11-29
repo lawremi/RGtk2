@@ -175,7 +175,7 @@ imagefile <- function(name)
 
 # Text manipulation
 
-collapseClassName <-
+.collapseClassName <-
   #
   # converts a class name of the form GtkButton
   # to gtk_button.
@@ -190,7 +190,7 @@ function(name)
 
 # Create an environment from a list
 
-as.environment.list <- function(l, parent = emptyenv())
+.as.environment.list <- function(l, parent = emptyenv())
 {
   e <- new.env(TRUE, parent)
   sapply(names(l), function(name) assign(name, l[[name]], e))

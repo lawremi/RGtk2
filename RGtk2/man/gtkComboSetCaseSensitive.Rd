@@ -4,7 +4,7 @@
 \description{
 Specifies whether the text entered into the \code{\link{GtkEntry}} field and the text in
 the list items is case sensitive.
-\strong{WARNING: \code{gtk_combo_set_case_sensitive} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{gtk_combo_set_case_sensitive} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 }
 \usage{gtkComboSetCaseSensitive(object, val)}
 \arguments{

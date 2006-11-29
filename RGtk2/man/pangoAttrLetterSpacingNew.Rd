@@ -6,6 +6,6 @@
 \arguments{\item{\code{letter.spacing}}{[integer]  amount of extra space to add between graphemes
   of the text, in Pango units.}}
 \details{  Since  1.6}
-\value{[\code{\link{PangoAttribute}}]  the new \code{\link{PangoAttribute}}.}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

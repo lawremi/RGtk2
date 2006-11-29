@@ -13,27 +13,28 @@
 \code{gtkFontSelection(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkVBox}
-                                 +----GtkFontSelection}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkVBox}
+                                       +----GtkFontSelection}}
 \section{Interfaces}{GtkFontSelection implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFontSelection}} widget lists the available fonts, styles and sizes,
 allowing the user to select a font.
 It is used in the \code{\link{GtkFontSelectionDialog}} widget to provide a dialog box for
 selecting fonts.
-  
+  \code{\link{GtkFontSelection}}  \code{GtkFontSelection}  \code{\link{GtkFontSelectionDialog}}  \code{GtkFontSelectionDialog}  
 To set the font which is initially selected, use
 \code{\link{gtkFontSelectionSetFontName}}.
-  
-To get the selected font use \code{\link{gtkFontSelectionGetFont}}
-or \code{\link{gtkFontSelectionGetFontName}}.
-  
+  \code{\link{gtkFontSelectionSetFontName}}  \code{gtkFontSelectionSetFontName()}  
+To get the selected font use \code{\link{gtkFontSelectionGetFontName}}.
+  \code{\link{gtkFontSelectionGetFontName}}  \code{gtkFontSelectionGetFontName()}  
 To change the text which is shown in the preview area, use
-\code{\link{gtkFontSelectionSetPreviewText}}.}
+\code{\link{gtkFontSelectionSetPreviewText}}.
+  \code{\link{gtkFontSelectionSetPreviewText}}  \code{gtkFontSelectionSetPreviewText()}}
 \section{Structures}{\describe{\item{\code{GtkFontSelection}}{
 The \code{\link{GtkFontSelection}} struct contains private data only, and should
 only be accessed using the functions below.

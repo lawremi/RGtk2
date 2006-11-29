@@ -8,13 +8,14 @@
 \code{gtkColorSelectionDialog(title = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkColorSelectionDialog}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----\link{GtkDialog}
+                                             +----GtkColorSelectionDialog}}
 \section{Interfaces}{GtkColorSelectionDialog implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkColorSelectionDialog}} provides a standard dialog which

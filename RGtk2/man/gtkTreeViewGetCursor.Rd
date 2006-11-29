@@ -6,7 +6,7 @@ the cursor isn't currently set, then *\code{path} will be \code{NULL}.  If no co
 currently has focus, then *\code{focus.column} will be \code{NULL}.}
 \usage{gtkTreeViewGetCursor(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}}
-\details{  .}
+\details{.  }
 \value{
 A list containing the following elements:
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  A pointer to be filled with the current cursor path, or \code{NULL}}

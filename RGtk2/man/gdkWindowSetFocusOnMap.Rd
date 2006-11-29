@@ -14,6 +14,6 @@ interactively (such as popups from network activity).}
 this hint.org window
 manager extension specification should respect it.  
 
-  Since  2.6 .}
+  Since  2.6 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

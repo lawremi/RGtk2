@@ -28,7 +28,8 @@ using the same stock ID); it's possible to register a stock item but
 no icon, and vice versa. Stock icons may have a RTL variant which gets
 used for right-to-left locales. }
 \section{Structures}{\describe{\item{\code{GtkStockItem}}{
-
+\emph{undocumented
+}
 \strong{\code{GtkStockItem} is a \link{transparent-type}.}
 
 \describe{

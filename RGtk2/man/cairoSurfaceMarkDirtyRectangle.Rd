@@ -12,5 +12,8 @@ for other parts of the surface.}
 \item{\code{width}}{[integer]  width of dirty rectangle}
 \item{\code{height}}{[integer]  height of dirty rectangle}
 }
+\details{Any cached clip set on the surface will be reset by this function,
+to make sure that future cairo calls have the clip set that they
+expect.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

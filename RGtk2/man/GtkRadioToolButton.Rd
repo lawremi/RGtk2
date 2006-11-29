@@ -13,14 +13,15 @@
 \code{gtkRadioToolButton(group = NULL, stock.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkToolItem}
-                                 +----\link{GtkToolButton}
-                                       +----\link{GtkToggleToolButton}
-                                             +----GtkRadioToolButton}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkToolItem}
+                                       +----\link{GtkToolButton}
+                                             +----\link{GtkToggleToolButton}
+                                                   +----GtkRadioToolButton}}
 \section{Interfaces}{GtkRadioToolButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkRadioToolButton}} is a \code{\link{GtkToolItem}} that contains a radio button,
@@ -32,7 +33,7 @@ Use \code{\link{gtkRadioToolButtonNew}} to create a new
 create a new \code{\link{GtkRadioToolButton}} that is part of the same group as an
 existing \code{\link{GtkRadioToolButton}}. Use
 \code{\link{gtkRadioToolButtonNewFromStock}} or
-\code{gtk\Radio\Tool\Button\New\From\Widget\With\Stock()} to create a new
+\code{gtkRadioToolButtonNewFromWidgetWithStock()} to create a new
 \code{GtkRAdioToolButton} containing a stock item.}
 \section{Structures}{\describe{\item{\code{GtkRadioToolButton}}{
   The \code{\link{GtkRadioToolButton}} contains only private data and should only

@@ -1,4 +1,6 @@
 \alias{AtkState}
+\alias{AtkRectangle}
+\alias{GtkNotebookTab}
 \alias{GtkContainerClass}
 \alias{GtkKeySnoopFunc}
 \name{undocumented}

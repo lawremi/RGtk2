@@ -3,7 +3,7 @@
 \title{gdkKeymapGetEntriesForKeycode}
 \description{Returns the keyvals bound to \code{hardware.keycode}.
 The Nth \code{\link{GdkKeymapKey}} in \code{keys} is bound to the Nth
-keyval in \code{keyvals}. Free the returned lists with \code{g\Free()}.
+keyval in \code{keyvals}.
 When a keycode is pressed by the user, the keyval from
 this list of entries is selected by considering the effective
 keyboard group and level. See \code{\link{gdkKeymapTranslateKeyboardState}}.}

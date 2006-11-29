@@ -23,9 +23,10 @@
 \code{gtkPreview(type, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkPreview}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkPreview}}
 \section{Interfaces}{GtkPreview implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkPreview}} widget provides a simple interface 

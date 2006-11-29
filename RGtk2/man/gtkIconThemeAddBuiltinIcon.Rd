@@ -21,7 +21,7 @@ you should also install the icon in the icon theme, so
 that the icon is generally available.
   
 This function will generally be used with pixbufs loaded
-via \code{gdk\Pixbuf\New\From\Inline()}.  
+via \code{gdkPixbufNewFromInline()}.  
 
   Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

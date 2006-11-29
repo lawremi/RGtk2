@@ -8,11 +8,12 @@
 \code{gtkHScrollbar(adjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----\link{GtkScrollbar}
-                           +----GtkHScrollbar}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRange}
+                           +----\link{GtkScrollbar}
+                                 +----GtkHScrollbar}}
 \section{Interfaces}{GtkHScrollbar implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHScrollbar}} widget is a widget arranged horizontally creating a

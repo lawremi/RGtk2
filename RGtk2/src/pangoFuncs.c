@@ -33,7 +33,7 @@ S_pango_color_copy(USER_OBJECT_ s_object)
 
   ans = pango_color_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_color_copy(ans), "PangoColor", (RPointerFinalizer) pango_color_free);
+  _result = toRPointerWithFinalizer(ans ? pango_color_copy(ans) : NULL, "PangoColor", (RPointerFinalizer) pango_color_free);
 
   return(_result);
 }
@@ -66,7 +66,7 @@ S_pango_color_parse(USER_OBJECT_ s_spec)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "color", toRPointerWithFinalizer(pango_color_copy(&color), "PangoColor", (RPointerFinalizer) pango_color_free), NULL);
+  _result = retByVal(_result, "color", toRPointerWithFinalizer(&color ? pango_color_copy(&color) : NULL, "PangoColor", (RPointerFinalizer) pango_color_free), NULL);
 
   return(_result);
 }
@@ -507,7 +507,7 @@ S_pango_attr_list_new(void)
 
   ans = pango_attr_list_new();
 
-  _result = toRPointerWithFinalizer(pango_attr_list_ref(ans), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_attr_list_ref(ans) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
 
   return(_result);
 }
@@ -551,7 +551,7 @@ S_pango_attr_list_copy(USER_OBJECT_ s_object)
 
   ans = pango_attr_list_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_attr_list_ref(ans), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_attr_list_ref(ans) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
 
   return(_result);
 }
@@ -647,7 +647,7 @@ S_pango_attr_list_filter(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT
 
   ans = pango_attr_list_filter(object, func, data);
 
-  _result = toRPointerWithFinalizer(pango_attr_list_ref(ans), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_attr_list_ref(ans) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
   R_freeCBData(data);
 
   return(_result);
@@ -729,7 +729,7 @@ S_pango_attr_iterator_get(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
 
   ans = pango_attr_iterator_get(object, type);
 
-  _result = asRPangoAttribute(ans);
+  _result = asRPangoAttributeCopy(ans);
 
   return(_result);
 }
@@ -745,7 +745,7 @@ S_pango_attr_iterator_get_attrs(USER_OBJECT_ s_object)
 
   ans = pango_attr_iterator_get_attrs(object);
 
-  _result = asRGSListConv(ans, ((ElementConverter)asRPangoAttribute));
+  _result = asRGSListConv(ans, ((ElementConverter)asRPangoAttributeCopy));
   CLEANUP(g_slist_free, ans);
 
   return(_result);
@@ -770,7 +770,7 @@ S_pango_parse_markup(USER_OBJECT_ s_markup_text, USER_OBJECT_ s_length, USER_OBJ
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "attr_list", toRPointerWithFinalizer(pango_attr_list_ref(attr_list), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "text", asRString(text), "accel_char", asRNumeric(accel_char), "error", asRGError(error), NULL);
+  _result = retByVal(_result, "attr.list", toRPointerWithFinalizer(attr_list ? pango_attr_list_ref(attr_list) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "text", asRString(text), "accel.char", asRNumeric(accel_char), "error", asRGError(error), NULL);
   CLEANUP(g_error_free, error);
 
   return(_result);
@@ -790,7 +790,7 @@ S_pango_find_paragraph_boundary(USER_OBJECT_ s_text, USER_OBJECT_ s_length)
   pango_find_paragraph_boundary(text, length, &paragraph_delimiter_index, &next_paragraph_start);
 
 
-  _result = retByVal(_result, "paragraph_delimiter_index", asRInteger(paragraph_delimiter_index), "next_paragraph_start", asRInteger(next_paragraph_start), NULL);
+  _result = retByVal(_result, "paragraph.delimiter.index", asRInteger(paragraph_delimiter_index), "next.paragraph.start", asRInteger(next_paragraph_start), NULL);
 
   return(_result);
 }
@@ -1131,7 +1131,7 @@ S_pango_context_list_families(USER_OBJECT_ s_object)
   pango_context_list_families(object, &families, &n_families);
 
 
-  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n_families", asRInteger(n_families), NULL);
+  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
   CLEANUP(g_free, families);
 
   return(_result);
@@ -1151,7 +1151,7 @@ S_pango_get_mirror_char(USER_OBJECT_ s_ch)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "mirrored_ch", asRNumeric(mirrored_ch), NULL);
+  _result = retByVal(_result, "mirrored.ch", asRNumeric(mirrored_ch), NULL);
 
   return(_result);
 }
@@ -1250,7 +1250,7 @@ S_pango_context_get_matrix(USER_OBJECT_ s_object)
 
   ans = pango_context_get_matrix(object);
 
-  _result = toRPointer(pango_matrix_copy(ans), "PangoMatrix");
+  _result = toRPointer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix");
 
   return(_result);
 }
@@ -1268,7 +1268,7 @@ S_pango_context_get_metrics(USER_OBJECT_ s_object, USER_OBJECT_ s_desc, USER_OBJ
 
   ans = pango_context_get_metrics(object, desc, language);
 
-  _result = toRPointerWithFinalizer(pango_font_metrics_ref(ans), "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
 
   return(_result);
 }
@@ -1299,7 +1299,7 @@ S_pango_context_get_font_description(USER_OBJECT_ s_object)
 
   ans = pango_context_get_font_description(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -1315,7 +1315,7 @@ S_pango_context_get_language(USER_OBJECT_ s_object)
 
   ans = pango_context_get_language(object);
 
-  _result = toRPointer((ans), "PangoLanguage");
+  _result = toRPointer(ans ? (ans) : NULL, "PangoLanguage");
 
   return(_result);
 }
@@ -1533,7 +1533,7 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object)
   pango_coverage_to_bytes(object, &bytes, &n_bytes);
 
 
-  _result = retByVal(_result, "bytes", asRRawArrayWithSize(bytes, n_bytes), "n_bytes", asRInteger(n_bytes), NULL);
+  _result = retByVal(_result, "bytes", asRRawArrayWithSize(bytes, n_bytes), "n.bytes", asRInteger(n_bytes), NULL);
   CLEANUP(g_free, bytes);
 
   return(_result);
@@ -1566,7 +1566,7 @@ S_pango_font_description_new(void)
 
   ans = pango_font_description_new();
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -1582,7 +1582,7 @@ S_pango_font_description_copy(USER_OBJECT_ s_object)
 
   ans = pango_font_description_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -1598,7 +1598,7 @@ S_pango_font_description_copy_static(USER_OBJECT_ s_object)
 
   ans = pango_font_description_copy_static(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -1974,7 +1974,7 @@ S_pango_font_description_from_string(USER_OBJECT_ s_str)
 
   ans = pango_font_description_from_string(str);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -2039,7 +2039,7 @@ S_pango_font_metrics_ref(USER_OBJECT_ s_object)
 
   ans = pango_font_metrics_ref(object);
 
-  _result = toRPointerWithFinalizer(pango_font_metrics_ref(ans), "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
 
   return(_result);
 }
@@ -2214,7 +2214,7 @@ S_pango_font_family_list_faces(USER_OBJECT_ s_object)
   pango_font_family_list_faces(object, &faces, &n_faces);
 
 
-  _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n_faces", asRInteger(n_faces), NULL);
+  _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n.faces", asRInteger(n_faces), NULL);
   CLEANUP(g_free, faces);
 
   return(_result);
@@ -2278,7 +2278,7 @@ S_pango_font_face_describe(USER_OBJECT_ s_object)
 
   ans = pango_font_face_describe(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -2312,7 +2312,7 @@ S_pango_font_face_list_sizes(USER_OBJECT_ s_object)
   pango_font_face_list_sizes(object, &sizes, &n_sizes);
 
 
-  _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n_sizes", asRInteger(n_sizes), NULL);
+  _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
   CLEANUP(g_free, sizes);
 
   return(_result);
@@ -2344,7 +2344,7 @@ S_pango_font_describe(USER_OBJECT_ s_object)
 
   ans = pango_font_describe(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -2378,7 +2378,7 @@ S_pango_font_get_metrics(USER_OBJECT_ s_object, USER_OBJECT_ s_language)
 
   ans = pango_font_get_metrics(object, language);
 
-  _result = toRPointerWithFinalizer(pango_font_metrics_ref(ans), "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
 
   return(_result);
 }
@@ -2397,7 +2397,7 @@ S_pango_font_get_glyph_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph)
   pango_font_get_glyph_extents(object, glyph, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -2470,7 +2470,7 @@ S_pango_font_map_list_families(USER_OBJECT_ s_object)
   pango_font_map_list_families(object, &families, &n_families);
 
 
-  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n_families", asRInteger(n_families), NULL);
+  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
   CLEANUP(g_free, families);
 
   return(_result);
@@ -2504,7 +2504,7 @@ S_pango_fontset_get_metrics(USER_OBJECT_ s_object)
 
   ans = pango_fontset_get_metrics(object);
 
-  _result = toRPointerWithFinalizer(pango_font_metrics_ref(ans), "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
 
   return(_result);
 }
@@ -2536,7 +2536,7 @@ S_pango_glyph_string_new(void)
 
   ans = pango_glyph_string_new();
 
-  _result = toRPointerWithFinalizer(pango_glyph_string_copy(ans), "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free);
+  _result = toRPointerWithFinalizer(ans ? pango_glyph_string_copy(ans) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free);
 
   return(_result);
 }
@@ -2582,7 +2582,7 @@ S_pango_glyph_string_copy(USER_OBJECT_ s_object)
 
   ans = pango_glyph_string_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_glyph_string_copy(ans), "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free);
+  _result = toRPointerWithFinalizer(ans ? pango_glyph_string_copy(ans) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free);
 
   return(_result);
 }
@@ -2615,7 +2615,7 @@ S_pango_glyph_string_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_font)
   pango_glyph_string_extents(object, font, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -2638,7 +2638,7 @@ S_pango_glyph_string_extents_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start, 
   pango_glyph_string_extents_range(object, start, end, font, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -2662,7 +2662,7 @@ S_pango_glyph_string_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER
   pango_glyph_string_index_to_x(object, text, length, analysis, index, trailing, &x_pos);
 
 
-  _result = retByVal(_result, "x_pos", asRInteger(x_pos), NULL);
+  _result = retByVal(_result, "x.pos", asRInteger(x_pos), NULL);
 
   return(_result);
 }
@@ -2816,7 +2816,7 @@ S_pango_matrix_copy(USER_OBJECT_ s_object)
 
   ans = pango_matrix_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_matrix_copy(ans), "PangoMatrix", (RPointerFinalizer) pango_matrix_free);
+  _result = toRPointerWithFinalizer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix", (RPointerFinalizer) pango_matrix_free);
 
   return(_result);
 }
@@ -2994,7 +2994,7 @@ S_pango_layout_get_attributes(USER_OBJECT_ s_object)
 
   ans = pango_layout_get_attributes(object);
 
-  _result = toRPointerWithFinalizer(pango_attr_list_ref(ans), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_attr_list_ref(ans) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
 
   return(_result);
 }
@@ -3062,7 +3062,7 @@ S_pango_layout_set_markup_with_accel(USER_OBJECT_ s_object, USER_OBJECT_ s_marku
   pango_layout_set_markup_with_accel(object, markup, length, accel_marker, &accel_char);
 
 
-  _result = retByVal(_result, "accel_char", asRNumeric(accel_char), NULL);
+  _result = retByVal(_result, "accel.char", asRNumeric(accel_char), NULL);
 
   return(_result);
 }
@@ -3093,7 +3093,7 @@ S_pango_layout_get_font_description(USER_OBJECT_ s_object)
 
   ans = pango_layout_get_font_description(object);
 
-  _result = toRPointer(pango_font_description_copy(ans), "PangoFontDescription");
+  _result = toRPointer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription");
 
   return(_result);
 }
@@ -3341,7 +3341,7 @@ S_pango_layout_get_tabs(USER_OBJECT_ s_object)
 
   ans = pango_layout_get_tabs(object);
 
-  _result = toRPointerWithFinalizer(pango_tab_array_copy(ans), "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
+  _result = toRPointerWithFinalizer(ans ? pango_tab_array_copy(ans) : NULL, "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
 
   return(_result);
 }
@@ -3435,7 +3435,7 @@ S_pango_layout_get_log_attrs(USER_OBJECT_ s_object)
   pango_layout_get_log_attrs(object, &attrs, &n_attrs);
 
 
-  _result = retByVal(_result, "attrs", asRStructArrayWithSize(attrs, "PangoLogAttr", n_attrs), "n_attrs", asRInteger(n_attrs), NULL);
+  _result = retByVal(_result, "attrs", asRStructArrayWithSize(attrs, "PangoLogAttr", n_attrs), "n.attrs", asRInteger(n_attrs), NULL);
   CLEANUP(g_free, attrs);
 
   return(_result);
@@ -3471,7 +3471,7 @@ S_pango_layout_get_cursor_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
   pango_layout_get_cursor_pos(object, index, strong_pos, weak_pos);
 
 
-  _result = retByVal(_result, "strong_pos", asRPangoRectangle(strong_pos), "weak_pos", asRPangoRectangle(weak_pos), NULL);
+  _result = retByVal(_result, "strong.pos", asRPangoRectangle(strong_pos), "weak.pos", asRPangoRectangle(weak_pos), NULL);
   CLEANUP(g_free, strong_pos);
   CLEANUP(g_free, weak_pos);
 
@@ -3495,7 +3495,7 @@ S_pango_layout_move_cursor_visually(USER_OBJECT_ s_object, USER_OBJECT_ s_strong
   pango_layout_move_cursor_visually(object, strong, old_index, old_trailing, direction, &new_index, &new_trailing);
 
 
-  _result = retByVal(_result, "new_index", asRInteger(new_index), "new_trailing", asRInteger(new_trailing), NULL);
+  _result = retByVal(_result, "new.index", asRInteger(new_index), "new.trailing", asRInteger(new_trailing), NULL);
 
   return(_result);
 }
@@ -3535,7 +3535,7 @@ S_pango_layout_get_extents(USER_OBJECT_ s_object)
   pango_layout_get_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3555,7 +3555,7 @@ S_pango_layout_get_pixel_extents(USER_OBJECT_ s_object)
   pango_layout_get_pixel_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3666,7 +3666,7 @@ S_pango_layout_line_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index, USER
   pango_layout_line_index_to_x(object, index, trailing, &x_pos);
 
 
-  _result = retByVal(_result, "x_pos", asRInteger(x_pos), NULL);
+  _result = retByVal(_result, "x.pos", asRInteger(x_pos), NULL);
 
   return(_result);
 }
@@ -3686,7 +3686,7 @@ S_pango_layout_line_get_x_ranges(USER_OBJECT_ s_object, USER_OBJECT_ s_start_ind
   pango_layout_line_get_x_ranges(object, start_index, end_index, &ranges, &n_ranges);
 
 
-  _result = retByVal(_result, "ranges", asRIntegerArrayWithSize(ranges, n_ranges), "n_ranges", asRInteger(n_ranges), NULL);
+  _result = retByVal(_result, "ranges", asRIntegerArrayWithSize(ranges, n_ranges), "n.ranges", asRInteger(n_ranges), NULL);
   CLEANUP(g_free, ranges);
 
   return(_result);
@@ -3705,7 +3705,7 @@ S_pango_layout_line_get_extents(USER_OBJECT_ s_object)
   pango_layout_line_get_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3725,7 +3725,7 @@ S_pango_layout_line_get_pixel_extents(USER_OBJECT_ s_object)
   pango_layout_line_get_pixel_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3758,7 +3758,7 @@ S_pango_layout_get_iter(USER_OBJECT_ s_object)
 
   ans = pango_layout_get_iter(object);
 
-  _result = toRPointerWithFinalizer((ans), "PangoLayoutIter", (RPointerFinalizer) pango_layout_iter_free);
+  _result = toRPointerWithFinalizer(ans ? (ans) : NULL, "PangoLayoutIter", (RPointerFinalizer) pango_layout_iter_free);
 
   return(_result);
 }
@@ -3917,7 +3917,7 @@ S_pango_layout_iter_get_char_extents(USER_OBJECT_ s_object)
   pango_layout_iter_get_char_extents(object, logical_rect);
 
 
-  _result = retByVal(_result, "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, logical_rect);
 
   return(_result);
@@ -3936,7 +3936,7 @@ S_pango_layout_iter_get_cluster_extents(USER_OBJECT_ s_object)
   pango_layout_iter_get_cluster_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3956,7 +3956,7 @@ S_pango_layout_iter_get_run_extents(USER_OBJECT_ s_object)
   pango_layout_iter_get_run_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -3976,7 +3976,7 @@ S_pango_layout_iter_get_line_extents(USER_OBJECT_ s_object)
   pango_layout_iter_get_line_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -4014,7 +4014,7 @@ S_pango_layout_iter_get_layout_extents(USER_OBJECT_ s_object)
   pango_layout_iter_get_layout_extents(object, ink_rect, logical_rect);
 
 
-  _result = retByVal(_result, "ink_rect", asRPangoRectangle(ink_rect), "logical_rect", asRPangoRectangle(logical_rect), NULL);
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
   CLEANUP(g_free, ink_rect);
   CLEANUP(g_free, logical_rect);
 
@@ -4251,7 +4251,7 @@ S_pango_renderer_get_color(USER_OBJECT_ s_object, USER_OBJECT_ s_part)
 
   ans = pango_renderer_get_color(object, part);
 
-  _result = toRPointerWithFinalizer(pango_color_copy(ans), "PangoColor", (RPointerFinalizer) pango_color_free);
+  _result = toRPointerWithFinalizer(ans ? pango_color_copy(ans) : NULL, "PangoColor", (RPointerFinalizer) pango_color_free);
 
   return(_result);
 }
@@ -4282,7 +4282,7 @@ S_pango_renderer_get_matrix(USER_OBJECT_ s_object)
 
   ans = pango_renderer_get_matrix(object);
 
-  _result = toRPointer(pango_matrix_copy(ans), "PangoMatrix");
+  _result = toRPointer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix");
 
   return(_result);
 }
@@ -4299,7 +4299,7 @@ S_pango_tab_array_new(USER_OBJECT_ s_initial_size, USER_OBJECT_ s_positions_in_p
 
   ans = pango_tab_array_new(initial_size, positions_in_pixels);
 
-  _result = toRPointerWithFinalizer(pango_tab_array_copy(ans), "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
+  _result = toRPointerWithFinalizer(ans ? pango_tab_array_copy(ans) : NULL, "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
 
   return(_result);
 }
@@ -4330,7 +4330,7 @@ S_pango_tab_array_copy(USER_OBJECT_ s_object)
 
   ans = pango_tab_array_copy(object);
 
-  _result = toRPointerWithFinalizer(pango_tab_array_copy(ans), "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
+  _result = toRPointerWithFinalizer(ans ? pango_tab_array_copy(ans) : NULL, "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
 
   return(_result);
 }
@@ -4443,7 +4443,7 @@ S_pango_language_from_string(USER_OBJECT_ s_language)
 
   ans = pango_language_from_string(language);
 
-  _result = toRPointer((ans), "PangoLanguage");
+  _result = toRPointer(ans ? (ans) : NULL, "PangoLanguage");
 
   return(_result);
 }
@@ -4544,7 +4544,59 @@ S_pango_font_describe_with_absolute_size(USER_OBJECT_ s_object)
 
   ans = pango_font_describe_with_absolute_size(object);
 
-  _result = toRPointerWithFinalizer(pango_font_description_copy(ans), "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_glyph_string_get_width(USER_OBJECT_ s_object)
+{
+  PangoGlyphString* object = ((PangoGlyphString*)getPtrValue(s_object));
+
+  int ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = pango_glyph_string_get_width(object);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_matrix_get_font_scale_factor(USER_OBJECT_ s_object)
+{
+  PangoMatrix* object = ((PangoMatrix*)getPtrValue(s_object));
+
+  double ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = pango_matrix_get_font_scale_factor(object);
+
+  _result = asRNumeric(ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_layout_index_to_line_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index_, USER_OBJECT_ s_trailing)
+{
+  PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
+  int index_ = ((int)asCInteger(s_index_));
+  gboolean trailing = ((gboolean)asCLogical(s_trailing));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  int line;
+  int x_pos;
+
+  pango_layout_index_to_line_x(object, index_, trailing, &line, &x_pos);
+
+
+  _result = retByVal(_result, "line", asRInteger(line), "x.pos", asRInteger(x_pos), NULL);
 
   return(_result);
 }

@@ -34,7 +34,7 @@ genDoc <- function(file, defs, output, verbose)
 	if (sub("\.[^.]*$", "", basename(file)) %in% undocumentedConcepts)
 		return(NA)
 	
-	entities <- c("num" = "\#", "nbsp" = " ", "sol" = "/",, "mdash"="--", "percnt" = "\%",
+	entities <- c("num" = "\#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\%",
 		"gdk-pixbuf" = "<application>gdk-pixbuf</application>")
 	text <- paste(readLines(file), collapse="\n")
 	sapply(names(entities), function(entity) 
@@ -344,9 +344,9 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_ulink <- function(ulink) paste(child_val(ulink), " (", rd("url", xmlGetAttr(ulink, "url")), ")", sep="")
 	markup_filename <- function(filename) rd("file", escape(child_val(filename)))
 	markup_program <- function(program) {
-		#if (length(getNodeSet(program, "/parent::informalexample|/parent::example")) == 0)
-		#	print("---MISSING PROGRAMLISTING---")
-		rd("preformatted", markup(xmlChildren(program), T))
+		if (length(getNodeSet(program, "/parent::informalexample|/parent::example")) == 0)
+			print("---MISSING PROGRAMLISTING---")
+		rd("preformatted", paste(markup(xmlChildren(program), T), "\n", sep=""))
 	}
 	#markup_example <- function(example) rd("emph", "C language example intentionally omitted, please see reference")
 	markup_example <- function(example) {
@@ -398,9 +398,14 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	#markup_important <- markup_note <- function(imp) rd("emph", markup(xmlChildren(imp)))
 	markup_first <- function(first) rd("dfn", child_val(first))
 	markup_param <- function(param) rd("code", nameToS(child_val(param)))
-	markup_func <- function(func) rd("code", toCapPhraseName(markup(xmlChildren(func)), T))
+	markup_func <- function(func) rd("code", toCapPhraseName(markup(xmlChildren(func), T), T))
 	markup_ignore <- function(ignore) ""
-	markup_text <- function(text) escape(xmlValue(text))
+	markup_text <- function(text) {
+    val <- xmlValue(text)
+    if (!preformat)
+      val <- escape(val)
+    val
+  }
 	
 	handlers <- list(
 		"text" = markup_text,
@@ -447,7 +452,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 }
 
 escape <- function(text) {
-	gsub("([_#$\\])", "\\\\\\1", text)
+	gsub("([_#$\\^])", "\\\\\\1", text)
 	#text
 }
 strip <- function(text) {
@@ -556,7 +561,7 @@ toSignals <- function(signal_nodes)
 }
 
 toFuncText <- function(node) {
-	markup(getNodeSet(node, desc_text_path))
+	ensureText(markup(getNodeSet(node, desc_text_path)))
 }
 
 toParameterItems <- function(node, paramNames = NULL) {
@@ -582,7 +587,7 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 		}
 		name <- gsub(".* ", "", name)
 		type_name <- asRTypeName(name)
-		text <- markup(getNodeSet(node, text_path))
+		text <- ensureText(markup(getNodeSet(node, text_path)))
 		warning <- getNodeSet(node, warning_path)
 		if (name %in% transparentTypes)
 			text <- c(text, rd("strong", paste(rd("code", type_name), " is a ", 
@@ -662,6 +667,13 @@ mapType <- function(type) {
 #	else alias
 #}
 
+ensureText <- function(param)
+{
+  if (length(param) == 0 || all(nchar(param) == 0))
+			param <- rd("emph", "undocumented\n")
+  param
+}
+
 rd <- function(tag, ...) {
 	# LaTeX doesn't like empty describes
 	if (length(c(...)) == 0 && tag == "describe") {
@@ -671,8 +683,7 @@ rd <- function(tag, ...) {
 	params <- sapply(list(...), function(param) {
 		if (length(param) > 1) 
 			param <- c("", param, "")
-		if (length(param) == 0 || all(nchar(param) == 0))
-			param <- rd("emph", "undocumented\n")
+		param <- ensureText(param)
 		paste("{", paste(param, collapse="\n"), "}", sep="")
 	})
 	paste("\\", tag, paste(params, collapse=""), sep="")
@@ -704,8 +715,10 @@ writeRd <- function(doc, output) {
 }
 
 filter <- function(text) {
-	if (T) {
-	sentences <- strsplit(text, ".", fixed=T)[[1]]
+	sentences <- strsplit(text, "[.,]")[[1]]
+  if (length(grep("[.,]$", text)) > 0)
+    sentences <- c(sentences, "")
+  punctuation <- c("", strsplit(gsub("[^.,]*([.,])[^.,]*", "\\1 ", text), " ")[[1]])
 	funcs <- unlist(c(cleanupFuncs, finalizerFuncs, memFuncs))
 	funcs <- funcs[which(nchar(funcs) > 0)]
 	good_sentences <- as.logical(sapply(sentences, function(sentence) 
@@ -716,8 +729,8 @@ filter <- function(text) {
 	#print(good_sentences)
 	if (any(!good_sentences)) {
 		#writeLines(sentences[!good_sentences], filterFile)
-		text <- paste(paste(sentences[which(good_sentences)], collapse="."), ".", sep="")
-	}
+		text <- paste(punctuation[good_sentences], sentences[good_sentences], 
+      collapse="", sep="")
 	}
 	text
 }

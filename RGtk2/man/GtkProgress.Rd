@@ -19,10 +19,11 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkProgress
-                     +----\link{GtkProgressBar}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkProgress
+                           +----\link{GtkProgressBar}}}
 \section{Interfaces}{GtkProgress implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
@@ -36,7 +37,7 @@ and should be accessed using the functions below.
 \section{Properties}{\describe{
 \item{\code{activity-mode} [logical : Read / Write]}{
 
-If TRUE the GtkProgress is in activity mode, meaning that it signals something is happening, but not how much of the activity is finished. This is used when you're doing something that you don't know how long it will take.  Default value: FALSE
+If TRUE, the GtkProgress is in activity mode, meaning that it signals something is happening, but not how much of the activity is finished. This is used when you're doing something that you don't know how long it will take.  Default value: FALSE
 
 }
 \item{\code{show-text} [logical : Read / Write]}{

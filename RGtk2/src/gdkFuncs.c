@@ -573,7 +573,7 @@ S_gdk_cursor_new(USER_OBJECT_ s_cursor_type)
 
   ans = gdk_cursor_new(cursor_type);
 
-  _result = toRPointerWithFinalizer(gdk_cursor_ref(ans), "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
 
   return(_result);
 }
@@ -590,7 +590,7 @@ S_gdk_cursor_new_from_name(USER_OBJECT_ s_display, USER_OBJECT_ s_name)
 
   ans = gdk_cursor_new_from_name(display, name);
 
-  _result = toRPointerWithFinalizer(gdk_cursor_ref(ans), "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
 
   return(_result);
 }
@@ -607,7 +607,7 @@ S_gdk_cursor_new_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_cursor_type)
 
   ans = gdk_cursor_new_for_display(display, cursor_type);
 
-  _result = toRPointerWithFinalizer(gdk_cursor_ref(ans), "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
 
   return(_result);
 }
@@ -628,7 +628,7 @@ S_gdk_cursor_new_from_pixmap(USER_OBJECT_ s_source, USER_OBJECT_ s_mask, USER_OB
 
   ans = gdk_cursor_new_from_pixmap(source, mask, fg, bg, x, y);
 
-  _result = toRPointerWithFinalizer(gdk_cursor_ref(ans), "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
 
   return(_result);
 }
@@ -647,7 +647,7 @@ S_gdk_cursor_new_from_pixbuf(USER_OBJECT_ s_display, USER_OBJECT_ s_source, USER
 
   ans = gdk_cursor_new_from_pixbuf(display, source, x, y);
 
-  _result = toRPointerWithFinalizer(gdk_cursor_ref(ans), "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
+  _result = toRPointerWithFinalizer(ans ? gdk_cursor_ref(ans) : NULL, "GdkCursor", (RPointerFinalizer) gdk_cursor_unref);
 
   return(_result);
 }
@@ -1031,7 +1031,7 @@ S_gdk_display_get_window_at_pointer(USER_OBJECT_ s_object)
 
   _result = toRPointerWithRef(ans, "GdkWindow");
 
-  _result = retByVal(_result, "win_x", asRInteger(win_x), "win_y", asRInteger(win_y), NULL);
+  _result = retByVal(_result, "win.x", asRInteger(win_x), "win.y", asRInteger(win_y), NULL);
 
   return(_result);
 }
@@ -1484,7 +1484,7 @@ S_gdk_drag_find_window(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_window, USER_O
   gdk_drag_find_window(object, drag_window, x_root, y_root, &dest_window, &protocol);
 
 
-  _result = retByVal(_result, "dest_window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  _result = retByVal(_result, "dest.window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
 
   return(_result);
 }
@@ -1524,7 +1524,7 @@ S_gdk_drag_find_window_for_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_win
   gdk_drag_find_window_for_screen(object, drag_window, screen, x_root, y_root, &dest_window, &protocol);
 
 
-  _result = retByVal(_result, "dest_window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  _result = retByVal(_result, "dest.window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
 
   return(_result);
 }
@@ -2433,7 +2433,7 @@ S_gdk_event_get_coords(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "x_win", asRNumeric(x_win), "y_win", asRNumeric(y_win), NULL);
+  _result = retByVal(_result, "x.win", asRNumeric(x_win), "y.win", asRNumeric(y_win), NULL);
 
   return(_result);
 }
@@ -2453,7 +2453,7 @@ S_gdk_event_get_root_coords(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "x_root", asRNumeric(x_root), "y_root", asRNumeric(y_root), NULL);
+  _result = retByVal(_result, "x.root", asRNumeric(x_root), "y.root", asRNumeric(y_root), NULL);
 
   return(_result);
 }
@@ -3755,7 +3755,7 @@ S_gdk_keymap_translate_keyboard_state(USER_OBJECT_ s_object, USER_OBJECT_ s_hard
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "keyval", asRNumeric(keyval), "effective_group", asRInteger(effective_group), "level", asRInteger(level), "consumed_modifiers", asRFlag(consumed_modifiers, GDK_TYPE_MODIFIER_TYPE), NULL);
+  _result = retByVal(_result, "keyval", asRNumeric(keyval), "effective.group", asRInteger(effective_group), "level", asRInteger(level), "consumed.modifiers", asRFlag(consumed_modifiers, GDK_TYPE_MODIFIER_TYPE), NULL);
 
   return(_result);
 }
@@ -3776,7 +3776,7 @@ S_gdk_keymap_get_entries_for_keyval(USER_OBJECT_ s_object, USER_OBJECT_ s_keyval
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_keys), "n_keys", asRInteger(n_keys), NULL);
+  _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_keys), "n.keys", asRInteger(n_keys), NULL);
   CLEANUP(g_free, keys);
 
   return(_result);
@@ -3799,7 +3799,7 @@ S_gdk_keymap_get_entries_for_keycode(USER_OBJECT_ s_object, USER_OBJECT_ s_hardw
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_entries), "keyvals", asRNumericArrayWithSize(keyvals, n_entries), "n_entries", asRInteger(n_entries), NULL);
+  _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_entries), "keyvals", asRNumericArrayWithSize(keyvals, n_entries), "n.entries", asRInteger(n_entries), NULL);
   CLEANUP(g_free, keys);
   CLEANUP(g_free, keyvals);
 
@@ -4552,7 +4552,7 @@ S_gdk_property_get(USER_OBJECT_ s_object, USER_OBJECT_ s_property, USER_OBJECT_ 
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "actual_property_type", asRGdkAtom(actual_property_type), "actual_format", asRInteger(actual_format), "actual_length", asRInteger(actual_length), "data", asRRawArrayWithSize(data, actual_format), NULL);
+  _result = retByVal(_result, "actual.property.type", asRGdkAtom(actual_property_type), "actual.format", asRInteger(actual_format), "actual.length", asRInteger(actual_length), "data", asRRawArrayWithSize(data, actual_format), NULL);
   CLEANUP(g_free, data);
 
   return(_result);
@@ -5403,7 +5403,7 @@ S_gdk_selection_property_get(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "data", asRRawArrayWithSize(data, prop_format), "prop_type", asRGdkAtom(prop_type), "prop_format", asRInteger(prop_format), NULL);
+  _result = retByVal(_result, "data", asRRawArrayWithSize(data, prop_format), "prop.type", asRGdkAtom(prop_type), "prop.format", asRInteger(prop_format), NULL);
   CLEANUP(g_free, data);
 
   return(_result);
@@ -5639,7 +5639,7 @@ S_gdk_window_at_pointer(void)
 
   _result = toRPointerWithRef(ans, "GdkWindow");
 
-  _result = retByVal(_result, "win_x", asRInteger(win_x), "win_y", asRInteger(win_y), NULL);
+  _result = retByVal(_result, "win.x", asRInteger(win_x), "win.y", asRInteger(win_y), NULL);
 
   return(_result);
 }
@@ -5882,7 +5882,7 @@ USER_OBJECT_
 S_gdk_window_set_user_data(USER_OBJECT_ s_object, USER_OBJECT_ s_user_data)
 {
   GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
-  gpointer user_data = ((gpointer)asCGenericData(s_user_data));
+  GtkWidget* user_data = GET_LENGTH(s_user_data) == 0 ? NULL : ((GtkWidget*)getPtrValue(s_user_data));
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
@@ -5899,12 +5899,12 @@ S_gdk_window_get_user_data(USER_OBJECT_ s_object)
   GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
 
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-  gpointer user_data;
+  GtkWidget* user_data = NULL;
 
   gdk_window_get_user_data(object, &user_data);
 
 
-  _result = retByVal(_result, "user_data", user_data, NULL);
+  _result = retByVal(_result, "user.data", toRPointer(user_data, "GtkWidget"), NULL);
 
   return(_result);
 }
@@ -7018,7 +7018,7 @@ S_gdk_window_get_internal_paint_info(USER_OBJECT_ s_object)
   gdk_window_get_internal_paint_info(object, &real_drawable, &x_offset, &y_offset);
 
 
-  _result = retByVal(_result, "real_drawable", toRPointerWithRef(real_drawable, "GdkDrawable"), "x_offset", asRInteger(x_offset), "y_offset", asRInteger(y_offset), NULL);
+  _result = retByVal(_result, "real.drawable", toRPointerWithRef(real_drawable, "GdkDrawable"), "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), NULL);
 
   return(_result);
 }
@@ -8521,7 +8521,7 @@ S_gdk_region_get_rectangles(USER_OBJECT_ s_object)
   gdk_region_get_rectangles(object, &rectangles, &n_rectangles);
 
 
-  _result = retByVal(_result, "rectangles", asRArrayRefWithSize(rectangles, asRGdkRectangle, n_rectangles), "n_rectangles", asRInteger(n_rectangles), NULL);
+  _result = retByVal(_result, "rectangles", asRArrayRefWithSize(rectangles, asRGdkRectangle, n_rectangles), "n.rectangles", asRInteger(n_rectangles), NULL);
   CLEANUP(g_free, rectangles);
 
   return(_result);

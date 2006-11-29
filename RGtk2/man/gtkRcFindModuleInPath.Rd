@@ -5,6 +5,7 @@
 is not useful for applications and should not be used.}
 \usage{gtkRcFindModuleInPath(module.file)}
 \arguments{\item{\code{module.file}}{[character]  name of a theme engine}}
-\value{[character] .}
+\value{[character]  The filename,
+  otherwise \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

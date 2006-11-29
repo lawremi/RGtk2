@@ -36,18 +36,21 @@
 \code{gtkItemFactory(container.type, path, accel.group = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkItemFactory}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----GtkItemFactory}}
 \section{Detailed Description}{As of GTK+ 2.4, \code{\link{GtkItemFactory}} has been deprecated in favour of \code{\link{GtkUIManager}}.}
 \section{Structures}{\describe{
 \item{\code{GtkItemFactory}}{
 \strong{WARNING: \code{GtkItemFactory} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 
 }
 \item{\code{GtkItemFactoryEntry}}{
 \strong{WARNING: \code{GtkItemFactoryEntry} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 \strong{\code{GtkItemFactoryEntry} is a \link{transparent-type}.}
 
 }
@@ -55,7 +58,8 @@
 \section{Convenient Construction}{\code{gtkItemFactory} is the equivalent of \code{\link{gtkItemFactoryNew}}.}
 \section{User Functions}{\describe{
 \item{\code{GtkPrintFunc(func.data, str)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{func.data}}{[R object] }
@@ -75,10 +79,16 @@ and \code{\link{GtkActionGroup}}.
 }
 
 }
-\item{\code{GtkItemFactoryCallback()}}{\emph{undocumented
-}}
-\item{\code{GtkItemFactoryCallback1(callback.data, callback.action, widget)}}{
+\item{\code{GtkItemFactoryCallback()}}{
+\emph{undocumented
+}
 
+
+
+}
+\item{\code{GtkItemFactoryCallback1(callback.data, callback.action, widget)}}{
+\emph{undocumented
+}
 
 \describe{
 \item{\code{callback.data}}{[R object] }
@@ -88,7 +98,8 @@ and \code{\link{GtkActionGroup}}.
 
 }
 \item{\code{GtkItemFactoryCallback2(widget, callback.data, callback.action)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{widget}}{[\code{\link{GtkWidget}}] }

@@ -71,7 +71,7 @@ This signal is emitted when text is deleted from
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
 the text, so by connecting to this signal and then
-stopping the signal with \code{gtk\Signal\Emit\Stop()}, it
+stopping the signal with \code{gtkSignalEmitStop()}, it
 is possible to modify the inserted text, or prevent
 it from being inserted entirely. The \code{start.pos}
 and \code{end.pos} parameters are interpreted as for
@@ -90,7 +90,7 @@ This signal is emitted when text is inserted into
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
 the text, so by connecting to this signal and then
-stopping the signal with \code{gtk\Signal\Emit\Stop()}, it
+stopping the signal with \code{gtkSignalEmitStop()}, it
 is possible to modify the inserted text, or prevent
 it from being inserted entirely.
 

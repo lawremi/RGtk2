@@ -448,12 +448,15 @@ USER_OBJECT_ asRAtkTextRectangle(AtkTextRectangle *rect);
 USER_OBJECT_ asRAtkTextRange(AtkTextRange *range);
 AtkTextRange *asCAtkTextRange(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRAtkKeyEventStruct(AtkKeyEventStruct * obj);
+AtkRectangle* asCAtkRectangle(USER_OBJECT_ s_rect);
+USER_OBJECT_ asRAtkRectangle(AtkRectangle *rect);
 
 /* Pango */
 
 PangoRectangle* asCPangoRectangle(USER_OBJECT_ s_rect);
 USER_OBJECT_ asRPangoRectangle(PangoRectangle *rect);
 USER_OBJECT_ asRPangoAttribute(PangoAttribute *attr);
+USER_OBJECT_ asRPangoAttributeCopy(PangoAttribute *attr);
 USER_OBJECT_ toRPangoAttribute(PangoAttribute *attr, gboolean finalize);
 
 /* Cairo */

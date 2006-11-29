@@ -14,18 +14,23 @@
 \code{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkViewport}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkViewport}}
 \section{Interfaces}{GtkViewport implements
  AtkImplementorIface.}
-\section{Structures}{\describe{\item{\code{GtkViewport}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkViewport}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkViewport} is the equivalent of \code{\link{gtkViewportNew}}.}
 \section{Signals}{\describe{\item{\code{set-scroll-adjustments(viewport, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{viewport}}{[\code{\link{GtkViewport}}] the object which received the signal.}

@@ -3,7 +3,6 @@
 \title{pangoFontDescriptionNew}
 \description{Creates a new font description structure with all fields unset.}
 \usage{pangoFontDescriptionNew()}
-\value{[\code{\link{PangoFontDescription}}]  the newly-created \code{\link{PangoFontDescription}}. Use
-\code{pango\Font\Description\Free()} to free the result.}
+\value{[\code{\link{PangoFontDescription}}]  the newly allocated \code{\link{PangoFontDescription}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

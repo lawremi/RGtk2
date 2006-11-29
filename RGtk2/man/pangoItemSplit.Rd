@@ -17,6 +17,6 @@ length of the split items itself.}
 \item{\code{split.index}}{[integer]  byte index of position to split item, relative to the start of the item}
 \item{\code{split.offset}}{[integer]  number of chars between start of \code{orig} and \code{split.index}}
 }
-\value{[\code{\link{PangoItem}}]  new item representing text before \code{split.index}}
+\value{[\code{\link{PangoItem}}]  new item representing text before \code{split.index}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

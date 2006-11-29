@@ -38,7 +38,7 @@ A list containing the following elements:
                 \code{actual.length}/sizeof(glong) to ensure portability to
                 64 bit systems.}
 \item{\code{data}}{[raw] location to store a pointer to the data. The retrieved
-       data should be freed with \code{g\Free()} when you are finished
+       data should be freed with \code{gFree()} when you are finished
        using it.}
 }
 \note{The \code{xgetwindowproperty()} function that \code{\link{gdkPropertyGet}}

@@ -62,7 +62,8 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
-\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{stock_id}}{[character] The stock id for the action, or the name of an icon from the icon 
+    theme.}
 \item{\code{label}}{[character] The label for the action. This field should typically be marked for 
     translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
@@ -80,7 +81,8 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
-\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{stock_id}}{[character] The stock id for the action, or the name of an icon from the icon 
+    theme.}
 \item{\code{label}}{[character] The label for the action. This field should typically be marked for 
     translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
@@ -99,7 +101,8 @@ members and should not be accessed directly.
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
-\item{\code{stock_id}}{[character] The stock id for the action.}
+\item{\code{stock_id}}{[character] The stock id for the action, or the name of an icon from the icon 
+    theme.}
 \item{\code{label}}{[character] The label for the action. This field should typically be marked for 
     translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
 \item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 

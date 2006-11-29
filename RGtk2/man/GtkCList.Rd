@@ -85,11 +85,12 @@
 \code{gtkCList(columns = 1, titles, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkCList
-                           +----\link{GtkCTree}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkCList
+                                 +----\link{GtkCTree}}}
 \section{Interfaces}{GtkCList implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
@@ -302,7 +303,8 @@ by calling \code{\link{gtkCListSelectAll}}.
 
 }
 \item{\code{set-scroll-adjustments(clist, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
@@ -332,7 +334,8 @@ This signal is emitted when "add mode" is toggled.
 
 }
 \item{\code{toggle-focus-row(clist, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}

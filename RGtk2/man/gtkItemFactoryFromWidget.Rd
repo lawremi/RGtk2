@@ -3,7 +3,7 @@
 \title{gtkItemFactoryFromWidget}
 \description{
 Obtains the item factory from which a widget was created.
-\strong{WARNING: \code{gtk_item_factory_from_widget} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_from_widget} is deprecated and should not be used in newly-written code. 2.4}
 }
 \usage{gtkItemFactoryFromWidget(widget)}
 \arguments{\item{\code{widget}}{[\code{\link{GtkWidget}}]  a widget}}

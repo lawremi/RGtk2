@@ -13,12 +13,13 @@
 \code{gtkOptionMenu(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkOptionMenu}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkButton}
+                                       +----GtkOptionMenu}}
 \section{Interfaces}{GtkOptionMenu implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
@@ -36,14 +37,15 @@ menu item with \code{\link{gtkOptionMenuGetHistory}}.
   
 As of GTK+ 2.4, \code{\link{GtkOptionMenu}} has been deprecated in favor of \code{\link{GtkComboBox}}.}
 \section{Structures}{\describe{\item{\code{GtkOptionMenu}}{
-\strong{WARNING: \code{GtkOptionMenu} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{GtkOptionMenu} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 The \code{\link{GtkOptionMenu}} struct contains private data only, and 
 should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkOptionMenu} is the equivalent of \code{\link{gtkOptionMenuNew}}.}
 \section{Signals}{\describe{\item{\code{changed(optionmenu, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{optionmenu}}{[\code{\link{GtkOptionMenu}}] the object which received the signal.}

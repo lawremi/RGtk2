@@ -25,7 +25,6 @@ as one of the elements in the list.
 
   Since  1.2}
 \value{[list]  a list of glyph items resulting from splitting
-  \code{glyph.item}. Free the elements using \code{pango\Glyph\Item\Free()},
-  the list using \code{g\Slist\Free()}.}
+  \code{glyph.item}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

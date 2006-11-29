@@ -82,11 +82,12 @@
 \code{gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkCList}
-                           +----GtkCTree}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkCList}
+                                 +----GtkCTree}}
 \section{Interfaces}{GtkCTree implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree 

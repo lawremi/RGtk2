@@ -8,8 +8,8 @@ embedding a picture or a widget inside a PangoLayout.}
 \usage{pangoAttrShapeNew(ink.rect, logical.rect)}
 \arguments{
 \item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]      ink rectangle to assign to each character}
-\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  logical rectangle assign to each character}
+\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  logical rectangle to assign to each character}
 }
-\value{[\code{\link{PangoAttribute}}]  the newly created attribute}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

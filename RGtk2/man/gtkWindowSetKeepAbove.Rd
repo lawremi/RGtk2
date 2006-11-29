@@ -24,6 +24,6 @@ Manager Hints (\url{http://www.org/Standards/wm-spec}) specification, the above 
 for user preferences and should not be used by applications e.g. for 
 drawing attention to their dialogs.  
 
-  Since  2.4.}
+  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

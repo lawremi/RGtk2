@@ -12,11 +12,12 @@
 \code{gtkTipsQuery(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----\link{GtkLabel}
-                           +----GtkTipsQuery}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkMisc}
+                           +----\link{GtkLabel}
+                                 +----GtkTipsQuery}}
 \section{Interfaces}{GtkTipsQuery implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display

@@ -1,8 +1,10 @@
 \alias{gtkWidgetGetPangoContext}
 \name{gtkWidgetGetPangoContext}
 \title{gtkWidgetGetPangoContext}
-\description{Gets a \code{\link{PangoContext}} with the appropriate colormap, font description
-and base direction for this widget.}
+\description{Gets a \code{\link{PangoContext}} with the appropriate font map, font description,
+and base direction for this widget. Unlike the context returned
+by \code{\link{gtkWidgetCreatePangoContext}}, and will be updated to
+match any changes to the widget's attributes.}
 \usage{gtkWidgetGetPangoContext(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{If you create and keep a \code{\link{PangoLayout}} using this context, you must

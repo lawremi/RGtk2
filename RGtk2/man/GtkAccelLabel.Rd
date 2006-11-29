@@ -13,11 +13,12 @@
 \code{gtkAccelLabel(string = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----\link{GtkLabel}
-                           +----GtkAccelLabel}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkMisc}
+                           +----\link{GtkLabel}
+                                 +----GtkAccelLabel}}
 \section{Interfaces}{GtkAccelLabel implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAccelLabel}} widget is a subclass of \code{\link{GtkLabel}} that also displays an

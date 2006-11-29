@@ -8,7 +8,7 @@ the \code{\link{GtkWidget}} that owns a \code{\link{GdkWindow}} as user data on 
 this function for that. If GTK+ receives an event for a \code{\link{GdkWindow}},
 and the user data for the window is non-\code{NULL}, GTK+ will assume the
 user data is a \code{\link{GtkWidget}}, and forward the event to that widget.}
-\usage{gdkWindowSetUserData(object, user.data)}
+\usage{gdkWindowSetUserData(object, user.data = NULL)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
 \item{\code{user.data}}{[R object]  user data}

@@ -17,6 +17,6 @@ a second time; use \code{\link{gtkWindowPresent}} to move the already-open dialo
 where the user can see it.
   
 If you are calling this function in response to a user interaction,
-it is preferable to use \code{gdk\Window\Present\With\Time()}.  }
+it is preferable to use \code{\link{gtkWindowPresentWithTime}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

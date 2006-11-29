@@ -11,9 +11,10 @@
 \code{gtkInvisible(screen, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkInvisible}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkInvisible}}
 \section{Interfaces}{GtkInvisible implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkInvisible}} widget is used internally in GTK+, and is probably not 

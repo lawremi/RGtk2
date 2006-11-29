@@ -9,18 +9,19 @@ mapClassType <- function(type_name)
     classTypeMap[type_name]
   else type_name
 }
-  
-genCClass <- function(name = "GtkWidget", defs, interface = F)
+toClassType <- function(type_name, defs)
+  paste(type_name, ifelse(isInterface(type_name, defs), "Iface", "Class"), sep="")
+
+genCClass <- function(name = "GtkWidget", virtuals, defs)
 {
   fun_name <- collapseClassName(name)
   
-  class_type <- mapClassType(paste(name, ifelse(interface, "Iface", "Class"), sep=""))
+  raw_class_type <- toClassType(name, defs)
+  class_type <- mapClassType(raw_class_type)
   
   symbol <- statement(static(decl("SEXP", classSymbol(name))), depth=0)
     
   hierarchy <- getClassHierarchy(name, defs$objects)
-  virtual_classes <- sapply(defs$virtuals, function(virtual) virtual$ofobject)
-  virtuals <- defs$virtuals[virtual_classes == name]
   virtual_wrappers <- virtual_assigns <- NULL
   if (length(virtuals)) {
     wrapper_names <- paste("virtual", names(virtuals), sep="_")
@@ -60,18 +61,31 @@ genCClass <- function(name = "GtkWidget", defs, interface = F)
         statement(virtual_assigns),
     "}")
   
+  class_wrappers <- unlist(sapply(virtuals, function(virtual) {
+    fun_name <- paste(collapseClassName(raw_class_type), virtual$vname, sep="_")
+    if (!(fun_name %in% badCFuncs))
+      genCCode(virtual, defs, fun_name)$code
+    else NULL
+  }))
+  
   list(decl = statement(declaration, depth=0), 
-    code = paste(c(symbol, virtual_wrappers, class_init), collapse = "\n"))
+    code = paste(c(symbol, virtual_wrappers, class_init, class_wrappers), collapse = "\n"))
 }
 
 genRVirtuals <- function(virtual_names, defs)
 {
   virtuals <- defs$virtuals[virtual_names]
   virtual_classes <- sapply(virtuals, function(virtual) virtual$ofobject)
+  short_names <- sapply(virtuals, function(virtual) virtual$vname)
   #print(virtual_classes)
   virtual_vectors <- sapply(unique(virtual_classes), function(virtual_class)
-    named(virtual_class, invoke("c", lit(stripVirtual(virtual_names[virtual_classes == virtual_class], 
-    collapseClassName(virtual_class))))))
-  rassign(".virtuals", invokev("c", ".virtuals", invoke("list", paste("\n", ind(virtual_vectors), sep="")))) 
+    named(virtual_class, invoke("c", lit(short_names[virtual_classes == virtual_class]))))
+  virtual_list <- rassign(".virtuals", invokev("c", ".virtuals", 
+    invoke("list", paste("\n", ind(virtual_vectors), sep=""))))
+  wrappers <- sapply(virtuals, function(virtual) {
+    genRCode(virtual, defs, paste(collapseClassName(toClassType(virtual$ofobject, defs)), 
+      virtual$vname, sep="_"))
+  })
+  paste(c(virtual_list, "", wrappers), collapse="\n")
 }
 

@@ -14,12 +14,13 @@
 \code{gtkStatusbar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkStatusbar}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkHBox}
+                                       +----GtkStatusbar}}
 \section{Interfaces}{GtkStatusbar implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkStatusbar}} is usually placed along the bottom of an application's main

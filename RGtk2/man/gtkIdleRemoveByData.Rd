@@ -7,11 +7,5 @@ Removes the idle function identified by the user data.
 }
 \usage{gtkIdleRemoveByData(data)}
 \arguments{\item{\code{data}}{[R object] remove the idle function which was registered with this user data.}}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ borderless window. If you set the decorated property to \code{FALSE}
 using this function, GTK+ will do its best to convince the window
 manager not to decorate the window. Depending on the system, this
 function may not have any effect when called on a window that is
-already visible, so you should call it before calling \code{gtk\Window\Show()}.}
+already visible, so you should call it before calling \code{gtkWindowShow()}.}
 \usage{gtkWindowSetDecorated(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}

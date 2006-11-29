@@ -5,6 +5,6 @@
 \usage{gtkCellViewGetCellRenderers(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCellView}}]  a \code{\link{GtkCellView}}}}
 \details{  Since  2.6}
-\value{[list]  a list of cell renderers.}
+\value{[list]  a list of cell renderers. The list.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

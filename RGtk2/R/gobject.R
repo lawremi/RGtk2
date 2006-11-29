@@ -40,7 +40,10 @@ gTypeGetClass <-
 function(type)
 {
 	type <- as.GType(type)
-	.Call("R_getGTypeClass", type, PACKAGE = "RGtk2")
+  ancestors <- gTypeGetAncestors(type)
+	class_ptr <- .Call("R_getGTypeClass", type, PACKAGE = "RGtk2")
+  class(class_ptr) <- c(paste(ancestors, "Class", sep=""), class(class_ptr))
+  class_ptr
 }
 
 gTypeFromName <-
@@ -50,6 +53,17 @@ function(name)
 }
 
 # GSignal support
+
+GSignalFlags <- c(
+  "run-first"	= 1,
+  "run-last"	= 2,
+  "run-cleanup"	= 4,
+  "no-recurse"	= 8,
+  "detailed"	= 16,
+  "action"	= 32,
+  "no-hooks"	= 64
+)
+
 connectSignal <- gSignalConnect <-
 function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
 {
@@ -153,14 +167,29 @@ names.GObject <-
   #
 function(x)
 {
-  names(gObjectGetPropInfo(x, parents = TRUE, collapse = TRUE, strip = TRUE))
+  names(gObjectGetPropInfo(x, parents = TRUE, collapse = TRUE))
 }
 
 gObjectGetPropInfo <-
-function(obj)
+function(obj, parents = TRUE, collapse = TRUE)
 {
   checkPtrType(obj, "GObject")
-  gTypeGetPropInfo(class(obj)[1])
+  real_classes <- class(obj)[-length(class(obj))]
+  props <- lapply(real_classes, gTypeGetPropInfo)
+  if (parents && collapse)
+    return(props[[1]])
+  # props is a list containing the properties for each class in the hierarchy
+  # as well as the parents of that class. We must remove the duplicates.
+  n_dups <- c(sapply(props, length), 0)
+  stripped <- lapply(1:length(props), function(ind) 
+    if (n_dups[ind+1] > 0)
+      props[[ind]][-(1:n_dups[ind+1])]
+    else props[[ind]])
+  names(stripped) <- real_classes
+  result <- stripped
+  if (!parents)
+    result <- stripped[[1]]
+  result
 }
 
 gTypeGetPropInfo <-

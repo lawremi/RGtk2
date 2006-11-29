@@ -59,10 +59,11 @@
 \code{gtkIconView(model = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkIconView}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkIconView}}
 \section{Interfaces}{GtkIconView implements
  AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{\code{\link{GtkIconView}} provides an alternative view on a list model. 
@@ -78,21 +79,15 @@ private fields and should not be directly accessed.
 }}}
 \section{Convenient Construction}{\code{gtkIconView} is the result of collapsing the constructors of \code{GtkIconView} (\code{\link{gtkIconViewNew}}, \code{\link{gtkIconViewNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{\item{\code{GtkIconViewDropPosition}}{
-
+An enum for determining where a dropped item goes.
 
 \describe{
-\item{\code{no-drop}}{\emph{undocumented
-}}
-\item{\code{drop-into}}{\emph{undocumented
-}}
-\item{\code{drop-left}}{\emph{undocumented
-}}
-\item{\code{drop-right}}{\emph{undocumented
-}}
-\item{\code{drop-above}}{\emph{undocumented
-}}
-\item{\code{drop-below}}{\emph{undocumented
-}}
+\item{\code{no-drop}}{no drop possible}
+\item{\code{drop-into}}{dropped item replaces the item}
+\item{\code{drop-left}}{droppped item is inserted to the left}
+\item{\code{drop-right}}{dropped item is inserted to the right}
+\item{\code{drop-above}}{dropped item is inserted above}
+\item{\code{drop-below}}{dropped item is inserted below}
 }
 
 }}}
@@ -101,7 +96,7 @@ A function used by \code{\link{gtkIconViewSelectedForeach}} to map all
 selected rows.  It will be called on every selected row in the view.
 
 \describe{
-\item{\code{icon.view}}{[\code{\link{GtkIconView}}] }
+\item{\code{icon.view}}{[\code{\link{GtkIconView}}] a \code{\link{GtkIconView}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}] The \code{\link{GtkTreePath}} of a selected row}
 \item{\code{data}}{[R object] user data}
 }
@@ -109,7 +104,8 @@ selected rows.  It will be called on every selected row in the view.
 }}}
 \section{Signals}{\describe{
 \item{\code{activate-cursor-item(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -118,7 +114,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{item-activated(iconview, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -128,7 +125,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{move-cursor(iconview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -139,7 +137,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{select-all(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -148,7 +147,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{select-cursor-item(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -157,7 +157,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{selection-changed(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -166,7 +167,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{set-scroll-adjustments(iconview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -177,7 +179,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{toggle-cursor-item(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -186,7 +189,8 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 \item{\code{unselect-all(iconview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
@@ -198,7 +202,10 @@ selected rows.  It will be called on every selected row in the view.
 \section{Properties}{\describe{
 \item{\code{column-spacing} [integer : Read / Write]}{
 
-Space which is inserted between grid column.  Allowed values: >= 0  Default value: 6
+The column-spacing property specifies the space which is inserted between
+the columns of the icon view.  
+
+  Allowed values: >= 0  Default value: 6  Since  2.6
 
 }
 \item{\code{columns} [integer : Read / Write]}{
@@ -212,12 +219,19 @@ be chosen automatically to fill the available area.
 }
 \item{\code{item-width} [integer : Read / Write]}{
 
-The width used for each item.  Allowed values: >= -1  Default value: -1
+The item-width property specifies the width to use for each item. 
+If it is set to -1, the icon view will automatically determine a 
+suitable item size.  
+
+  Allowed values: >= -1  Default value: -1  Since  2.6
 
 }
 \item{\code{margin} [integer : Read / Write]}{
 
-Space which is inserted at the edges of the icon view.  Allowed values: >= 0  Default value: 6
+The margin property specifies the space which is inserted 
+at the edges of the icon view.  
+
+  Allowed values: >= 0  Default value: 6  Since  2.6
 
 }
 \item{\code{markup-column} [integer : Read / Write]}{
@@ -238,7 +252,10 @@ The model for the icon view.
 }
 \item{\code{orientation} [\code{\link{GtkOrientation}} : Read / Write]}{
 
-How the text and icon of each item are positioned relative to each other.  Default value: GTK\_ORIENTATION\_VERTICAL
+The orientation property specifies how the cells (i.e. the icon and 
+the text) of the item are positioned relative to each other.  
+
+  Default value: GTK\_ORIENTATION\_VERTICAL  Since  2.6
 
 }
 \item{\code{pixbuf-column} [integer : Read / Write]}{
@@ -254,14 +271,17 @@ display of pixbufs.
 \item{\code{reorderable} [logical : Read / Write]}{
 
 The reorderable property specifies if the items can be reordered
-by drag-and-drop.  
+by DND.  
 
   Default value: FALSE  Since  2.8
 
 }
 \item{\code{row-spacing} [integer : Read / Write]}{
 
-Space which is inserted between grid rows.  Allowed values: >= 0  Default value: 6
+The row-spacing property specifies the space which is inserted between
+the rows of the icon view.  
+
+  Allowed values: >= 0  Default value: 6  Since  2.6
 
 }
 \item{\code{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
@@ -275,7 +295,10 @@ is enabled, for the other modes, only keyboard selection is possible.
 }
 \item{\code{spacing} [integer : Read / Write]}{
 
-Space which is inserted between cells of an item.  Allowed values: >= 0  Default value: 0
+The spacing property specifies the space which is inserted between
+the cells (i.e. the icon and the text) of an item.  
+
+  Allowed values: >= 0  Default value: 0  Since  2.6
 
 }
 \item{\code{text-column} [integer : Read / Write]}{

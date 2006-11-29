@@ -37,25 +37,26 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkContainer
-                     +----\link{GtkBin}
-                     +----\link{GtkBox}
-                     +----\link{GtkCList}
-                     +----\link{GtkFixed}
-                     +----\link{GtkPaned}
-                     +----\link{GtkIconView}
-                     +----\link{GtkLayout}
-                     +----\link{GtkList}
-                     +----\link{GtkMenuShell}
-                     +----\link{GtkNotebook}
-                     +----\link{GtkSocket}
-                     +----\link{GtkTable}
-                     +----\link{GtkTextView}
-                     +----\link{GtkToolbar}
-                     +----GtkTree
-                     +----\link{GtkTreeView}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkContainer
+                           +----\link{GtkBin}
+                           +----\link{GtkBox}
+                           +----\link{GtkCList}
+                           +----\link{GtkFixed}
+                           +----\link{GtkPaned}
+                           +----\link{GtkIconView}
+                           +----\link{GtkLayout}
+                           +----\link{GtkList}
+                           +----\link{GtkMenuShell}
+                           +----\link{GtkNotebook}
+                           +----\link{GtkSocket}
+                           +----\link{GtkTable}
+                           +----\link{GtkTextView}
+                           +----\link{GtkToolbar}
+                           +----GtkTree
+                           +----\link{GtkTreeView}}}
 \section{Interfaces}{GtkContainer implements
  AtkImplementorIface.}
 \section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. Container widgets are the inner
@@ -114,13 +115,14 @@ for a container class and \code{\link{gtkContainerClassFindChildProperty}} or
 child properties.
   
 To set the value of a child property, use \code{\link{gtkContainerChildSetProperty}}, 
-\code{\link{gtkContainerChildSet}} or \code{gtk\Container\Child\Set\Valist()}. 
+\code{\link{gtkContainerChildSet}} or \code{gtkContainerChildSetValist()}. 
 To obtain the value of a child property, use 
 \code{\link{gtkContainerChildGetProperty}}, \code{\link{gtkContainerChildGet}} or
-\code{gtk\Container\Child\Get\Valist()}. To emit notification about child property 
+\code{gtkContainerChildGetValist()}. To emit notification about child property 
 changes, use \code{\link{gtkWidgetChildNotify}}.}
 \section{Structures}{\describe{\item{\code{GtkContainer}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{focusChild}}{[\code{\link{GtkWidget}}] }
@@ -134,7 +136,8 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 }}}
 \section{Signals}{\describe{
 \item{\code{add(container, widget, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
@@ -144,7 +147,8 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 }
 \item{\code{check-resize(container, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
@@ -153,7 +157,8 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 }
 \item{\code{remove(container, widget, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
@@ -163,7 +168,8 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 }
 \item{\code{set-focus-child(container, widget, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}

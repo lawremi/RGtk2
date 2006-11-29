@@ -12,12 +12,13 @@
 \code{gtkComboBoxEntry(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkComboBox}
-                                 +----GtkComboBoxEntry}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkComboBox}
+                                       +----GtkComboBoxEntry}}
 \section{Interfaces}{GtkComboBoxEntry implements
  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkComboBoxEntry}} is a widget that allows the user to choose from a
@@ -29,12 +30,20 @@ In contrast to a \code{\link{GtkComboBox}}, the underlying model of a \code{\lin
 must always have a text column (see \code{\link{gtkComboBoxEntrySetTextColumn}}),
 and the entry will show the content of the text column in the selected row.  To
 get the text from the entry, use \code{\link{gtkComboBoxGetActiveText}}.
-  
+  The changed signal will be emitted while typing into a GtkComboBoxEntry, 
+as well as when selecting an item from the GtkComboBoxEntry's list. Use 
+\code{\link{gtkComboBoxGetActive}} or \code{\link{gtkComboBoxGetActiveIter}} to discover 
+whether an item was actually selected from the list.
+  Connect to the activate signal of the GtkEntry (use \code{\link{gtkBinGetChild}}) to 
+detect when the user actually finishes entering text.  
 The convenience API to construct simple text-only \code{\link{GtkComboBox}}es can
 also be used with \code{\link{GtkComboBoxEntry}}s which have been constructed
 with \code{\link{gtkComboBoxEntryNewText}}.}
-\section{Structures}{\describe{\item{\code{GtkComboBoxEntry}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkComboBoxEntry}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkComboBoxEntry} is the equivalent of \code{\link{gtkComboBoxEntryNew}}.}
 \section{Properties}{\describe{\item{\code{text-column} [integer : Read / Write]}{
 

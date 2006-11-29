@@ -11,6 +11,6 @@ folder.
 
   Since  2.4}
 \value{[character]  The currently selected URI, or \code{NULL}
- if no file is selected. Free with \code{g\Free()}}
+ if no file is selected}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

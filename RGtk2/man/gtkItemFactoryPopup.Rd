@@ -3,7 +3,7 @@
 \title{gtkItemFactoryPopup}
 \description{
 Pops up the menu constructed from the item factory at (\code{x}, \code{y}).
-\strong{WARNING: \code{gtk_item_factory_popup} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_popup} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryPopup(object, x, y, mouse.button, time = "GDK_CURRENT_TIME")}
 \arguments{

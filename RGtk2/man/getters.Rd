@@ -319,7 +319,6 @@
 \alias{gtkWindowGetFrameLeft}
 \alias{gtkWindowGetFrameRight}
 \alias{gtkWindowGetFrameTop}
-\alias{gtkWindowGetGroup}
 \alias{gtkWindowGetHasFocus}
 \alias{gtkWindowGetHasUserRefCount}
 \alias{gtkWindowGetIconifyInitially}

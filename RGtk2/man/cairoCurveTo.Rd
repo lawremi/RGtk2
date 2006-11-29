@@ -15,5 +15,8 @@ will be (\code{x3}, \code{y3}).}
 \item{\code{x3}}{[numeric]  the X coordinate of the end of the curve}
 \item{\code{y3}}{[numeric]  the Y coordinate of the end of the curve}
 }
+\details{If there is no current point before the call to \code{\link{cairoCurveTo}}
+this function will behave as if preceded by a call to
+cairo\_move\_to (\code{cr}, \code{x1}, \code{y1}).  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

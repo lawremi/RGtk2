@@ -6,7 +6,6 @@
 \title{GtkFileChooser}
 \description{File chooser interface used by GtkFileChooserWidget and GtkFileChooserDialog}
 \section{Methods and Functions}{
-\code{\link{gtkFileChooserErrorQuark}()}\cr
 \code{\link{gtkFileChooserSetAction}(object, action)}\cr
 \code{\link{gtkFileChooserGetAction}(object)}\cr
 \code{\link{gtkFileChooserSetLocalOnly}(object, local.only)}\cr
@@ -103,7 +102,7 @@
 	  \code{fopen(3)}, you may not be able to
 	  directly set it as the text of a \code{\link{GtkLabel}} widget unless you
 	  convert it first to UTF-8, which all GTK+ widgets expect.
-	  You should use \code{g\Filename\To\Utf8()} to convert filenames
+	  You should use \code{gFilenameToUtf8()} to convert filenames
 	  into strings that can be passed to GTK+ widgets.
 	  
       }
@@ -111,7 +110,7 @@
 	get notification about when the preview needs to be updated.
 	To install a preview widget, use
 	\code{\link{gtkFileChooserSetPreviewWidget}}.  Then, connect to the
-	\code{\link{GtkFileChooser}}::update-preview signal to get notified when
+	\code{GtkFileChooser::update-preview} signal to get notified when
 	you need to update the contents of the preview.
         
 	Your callback should use
@@ -171,8 +170,13 @@ my_file_chooser$setExtraWidget(toggle)
 
 	\tabular{ll}{
 Signal name \tab Default key combinations \cr
-location-popup \tab 		    \kbd{Control}-\kbd{L}-\kbd{/}  ;
-		    \kbd{/}  
+location-popup \tab 		    \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{~}   (empty path);
+		    \kbd{/}   (path of "/")  \strong{PLEASE NOTE:} 		      
+		      Both the individual \kbd{/} key and the
+		      numeric keypad's "divide" key are supported.
+		      
+		    ;
+		    \kbd{~}   (path of "~")
 		 \cr
 up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \strong{PLEASE NOTE:} 		      
 		      Both the individual Up key and the numeric
@@ -184,6 +188,8 @@ up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \strong{PLEASE NOTE:}
 		 \cr
 down-folder \tab \kbd{Alt}-\kbd{Down} \cr
 home-folder \tab \kbd{Alt}-\kbd{Home} \cr
+desktop-folder \tab \kbd{Alt}-\kbd{D} \cr
+quick-bookmark \tab \kbd{Alt}-\kbd{1}   through   \kbd{Alt}-\kbd{0} \cr
 }
 
 	
@@ -206,14 +212,16 @@ home-folder \tab \kbd{Alt}-\kbd{Home} \cr
 }
 
 class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
-	}
+	
+}
         
 	\emph{The "GtkFileChooserDefault::location-popup" signal}
 
-	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                               const char            *path,
-                                gpointer   user\_data);
-	}
+                                gpointer   user_data);
+	
+}
 
 	
 	  This is used to make the file chooser show a "Location"
@@ -221,12 +229,14 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	  the file he wishes to select.  The
 	  \code{path} argument is a string that gets
 	  put in the text entry for the file name.  By default this is bound to
-	  \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{/}
+	  \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{/}-\kbd{~}
 	  with a \code{path} string of "" (the empty
-	  string); it is also bound to \kbd{/} with a
+	  string).  It is also bound to \kbd{/} with a
 	  \code{path} string of "\code{/}"
 	  (a slash):  this lets you type \kbd{/} and
-	  immediately type a path name.
+	  immediately type a path name.  On Unix systems, this is bound to
+	  \kbd{~} (tilde) with a \code{path} string
+	  of "~" itself for access to home directories.
 	
 
 	\describe{
@@ -256,14 +266,16 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 }
 
 class "GtkFileChooserDefault" binding "misc-shortcut"
-	  }  
+	  
+}  
 	
         
 	\emph{The "GtkFileChooserDefault::up-folder" signal}
 
-	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
-                                gpointer   user\_data);
-	}
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+                                gpointer   user_data);
+	
+}
 
 	
 	  This is used to make the file chooser go to the parent of
@@ -282,9 +294,10 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
         
 	\emph{The "GtkFileChooserDefault::down-folder" signal}
 
-	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
-                                gpointer   user\_data);
-	}
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+                                gpointer   user_data);
+	
+}
 
 	
 	  This is used to make the file chooser go to a child of the
@@ -307,9 +320,10 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
         
 	\emph{The "GtkFileChooserDefault::home-folder" signal}
 
-	\preformatted{          void user\_function (GtkFileChooserDefault *chooser,
-                                gpointer   user\_data);
-	}
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+                                gpointer   user_data);
+	
+}
 
 	
 	  This is used to make the file chooser show the user's home
@@ -324,9 +338,66 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
 }
+        
+	\emph{The "GtkFileChooserDefault::desktop-folder" signal}
+
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+                                gpointer   user_data);
+	
+}
+
+	
+	  This is used to make the file chooser show the user's Desktop
+	  folder in the file list.  By default this is bound to
+	  \kbd{Alt}-\kbd{D}.
+	
+
+	\describe{
+\item{\code{chooser} :}{		the object which received the signal.
+	      }
+\item{\code{user.data} :}{		user data set when the signal handler was connected.
+	      }
+}
+        
+	\emph{The "GtkFileChooserDefault::quick-bookmark" signal}
+
+	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+                              gint bookmark_index,
+                                gpointer   user_data);
+	
+}
+
+	
+	  This is used to make the file chooser switch to the bookmark
+	  specified in the \code{bookmark.index} parameter.
+	  For example, if you have three bookmarks, you can pass 0, 1, 2 to
+	  this signal to switch to each of them, respectively.  By default this is bound to
+	  \kbd{Alt}-\kbd{1},
+	  \kbd{Alt}-\kbd{2}, 
+	  etc. until
+	  \kbd{Alt}-\kbd{0}.  Note
+	  that in the default binding,
+	  that \kbd{Alt}-\kbd{1} is
+	  actually defined to switch to the bookmark at index 0, and so on
+	  successively;
+	  \kbd{Alt}-\kbd{0} is
+	  defined to switch to the bookmark at index 10.
+	
+
+	\describe{
+\item{\code{chooser} :}{		the object which received the signal.
+	      }
+\item{\code{bookmark.indes} :}{		index of the bookmark to switch to; the indices start at 0.
+	      }
+\item{\code{user.data} :}{		user data set when the signal handler was connected.
+	      }
+}
       }
-\section{Structures}{\describe{\item{\code{GtkFileChooser}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkFileChooser}}{
+\emph{undocumented
+}
+
+}}}
 \section{Enums and Flags}{\describe{
 \item{\code{GtkFileChooserAction}}{
       Describes whether a \code{\link{GtkFileChooser}} is being used to open
@@ -490,7 +561,7 @@ signal is emitted.  You can use the functions
 \code{\link{gtkFileChooserGetPreviewFilename}} or
 \code{\link{gtkFileChooserGetPreviewUri}} to get the name of the file to preview.
 Your widget may not be able to preview all kinds of files; your callback
-must call \code{gtk\File\Chooser\Set\Preview\Wiget\Active()} to inform the file
+must call \code{gtkFileChooserSetPreviewWigetActive()} to inform the file
 chooser about whether the preview was generated successfully or not.
   
 Please see the example code in .
@@ -516,7 +587,7 @@ The type of operation that the file selector is performing.  Default value: GTK\
 }
 \item{\code{do-overwrite-confirmation} [logical : Read / Write]}{
 
-Whether a file chooser in GTK\_FILE\_CHOOSER\_ACTION\_SAVE
+Whether a file chooser in \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode
 will present an overwrite confirmation dialog if the user
 selects a file name that already exists.  
 

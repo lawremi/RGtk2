@@ -1,8 +1,8 @@
 \alias{cairoMoveTo}
 \name{cairoMoveTo}
 \title{cairoMoveTo}
-\description{If the current subpath is not empty, begin a new subpath. After
-this call the current point will be (\code{x}, \code{y}).}
+\description{Begin a new sub-path. After this call the current point will be (\code{x},
+\code{y}).}
 \usage{cairoMoveTo(cr, x, y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}

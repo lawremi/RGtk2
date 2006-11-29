@@ -6,7 +6,7 @@
 GtkToolItem::toolbar\_reconfigured signal to find out in what style
 the toolbar is displayed and change themselves accordingly }
 \usage{gtkToolItemGetToolbarStyle(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}: }}
+\arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}} }}
 \details{Possibilities are:
 \itemize{
 \item 

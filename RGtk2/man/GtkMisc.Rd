@@ -10,13 +10,14 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkMisc
-                     +----\link{GtkLabel}
-                     +----\link{GtkArrow}
-                     +----\link{GtkImage}
-                     +----\link{GtkPixmap}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkMisc
+                           +----\link{GtkLabel}
+                           +----\link{GtkArrow}
+                           +----\link{GtkImage}
+                           +----\link{GtkPixmap}}}
 \section{Interfaces}{GtkMisc implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but

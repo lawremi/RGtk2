@@ -7,7 +7,7 @@ specified GC.  This is done using GdkRGB, so the specified drawable must have
 the GdkRGB visual and colormap.  Note that this function will ignore the
 opacity information for images with an alpha channel; the GC must already
 have the clipping mask set if you want transparent regions to show through.
-\strong{WARNING: \code{gdk_pixbuf_render_to_drawable} is deprecated and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.}
+\strong{WARNING: \code{gdk_pixbuf_render_to_drawable} has been deprecated since version 2.4 and should not be used in newly-written code. This function is obsolete. Use \code{\link{gdkDrawPixbuf}} instead.}
 }
 \usage{gdkPixbufRenderToDrawable(object, drawable, gc, src.x = 0, src.y = 0, dest.x, dest.y, width = -1, height = -1, dither = "GDK_RGB_DITHER_NORMAL", x.dither = 0, y.dither = 0)}
 \arguments{

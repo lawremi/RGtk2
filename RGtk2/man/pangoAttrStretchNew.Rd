@@ -4,6 +4,6 @@
 \description{Create a new font stretch attribute}
 \usage{pangoAttrStretchNew(stretch)}
 \arguments{\item{\code{stretch}}{[\code{\link{PangoStretch}}]  the stretch}}
-\value{[\code{\link{PangoAttribute}}]  the new \code{\link{PangoAttribute}}.}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

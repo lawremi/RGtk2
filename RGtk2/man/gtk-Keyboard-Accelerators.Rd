@@ -52,7 +52,9 @@ An object representing and maintaining a group of accelerators.
 
 }
 \item{\code{GtkAccelKey}}{
-
+\emph{undocumented
+}
+\strong{\code{GtkAccelKey} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{accelKey}}{[numeric] }
@@ -65,7 +67,8 @@ An object representing and maintaining a group of accelerators.
 \section{Convenient Construction}{\code{gtkAccelGroup} is the equivalent of \code{\link{gtkAccelGroupNew}}.}
 \section{User Functions}{\describe{
 \item{\code{GtkAccelGroupActivate(accel.group, acceleratable, keyval, modifier)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{accel.group}}{[\code{\link{GtkAccelGroup}}] }

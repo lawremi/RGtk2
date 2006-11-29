@@ -14,11 +14,12 @@
 \code{gtkHandleBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkHandleBox}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkHandleBox}}
 \section{Interfaces}{GtkHandleBox implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn

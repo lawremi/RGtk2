@@ -5,10 +5,12 @@
 \usage{pangoLayoutSetText(object, text, length = -1)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{text}}{[char]  a UTF-8 string}
-\item{\code{length}}{[integer]  the length of \code{text}, in bytes. -1 indicates that
+\item{\code{text}}{[char]  a valid UTF-8 string}
+\item{\code{length}}{[integer]  maximum length of \code{text}, in bytes. -1 indicates that
          the string is and the length should be
-         calculated.}
+         calculated.  The text will also be truncated on
+         encountaring a nul-termination even when \code{length} is
+         positive.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

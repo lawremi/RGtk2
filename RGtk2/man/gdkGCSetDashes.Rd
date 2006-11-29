@@ -10,7 +10,7 @@ be changed with \code{\link{gdkGCSetLineAttributes}}.)}
 \usage{gdkGCSetDashes(object, dash.list)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{dash.list}}{[integer]  a list of dash lengths.}
+\item{\code{dash.list}}{[raw]  a list of dash lengths.}
 }
 \details{The \code{dash.offset} defines the phase of the pattern, 
 specifying how many pixels into the dash-list the pattern 

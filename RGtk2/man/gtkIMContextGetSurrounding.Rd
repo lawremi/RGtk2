@@ -21,7 +21,7 @@ A list containing the following elements:
 \item{\code{text}}{[character]  location to store a UTF-8 encoded string of text
        holding context around the insertion point.
        If the function returns \code{TRUE}, then you must free
-       the result stored in this location with \code{g\Free()}.}
+       the result stored in this location with \code{gFree()}.}
 \item{\code{cursor.index}}{[integer]  location to store byte index of the insertion cursor
        within \code{text}.}
 }

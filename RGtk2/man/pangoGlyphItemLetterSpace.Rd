@@ -2,7 +2,7 @@
 \name{pangoGlyphItemLetterSpace}
 \title{pangoGlyphItemLetterSpace}
 \description{Adds spacing between the graphemes of \code{glyph.item} to
-give the effect of typographic letter spacing.b}
+give the effect of typographic letter spacing.}
 \usage{pangoGlyphItemLetterSpace(glyph.item, text, log.attrs, letter.spacing)}
 \arguments{
 \item{\code{glyph.item}}{[\code{\link{PangoGlyphItem}}]  a \code{\link{PangoGlyphItem}}}

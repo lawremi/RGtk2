@@ -6,6 +6,7 @@
 \code{\link{gdkCairoCreate}(drawable)}\cr
 \code{\link{gdkCairoSetSourceColor}(cr, color)}\cr
 \code{\link{gdkCairoSetSourcePixbuf}(cr, pixbuf, pixbuf.x, pixbuf.y)}\cr
+\code{\link{gdkCairoSetSourcePixmap}(cr, pixmap, pixmap.x, pixmap.y)}\cr
 \code{\link{gdkCairoRectangle}(cr, rectangle)}\cr
 \code{\link{gdkCairoRegion}(cr, region)}\cr
 }

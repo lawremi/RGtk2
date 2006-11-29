@@ -21,6 +21,6 @@ function(libname, pkgname)
  #    eventLoop(REventLoop("R_Gtk2EventLoop"))
  #    runEventLoop()
  #} else 
- if (interactive())
-   gtkInit(args)
+ if(!(gtkInit(args)))
+   print("Note: R session is headless; GTK+ not initialized")
 }

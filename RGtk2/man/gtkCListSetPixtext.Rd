@@ -11,7 +11,7 @@ Sets text and a pixmap/bitmap on the specified cell.
 \item{\code{row}}{[integer] The row of the cell.}
 \item{\code{column}}{[integer] The column of the cell.}
 \item{\code{text}}{[character] The text to set in the cell.}
-\item{\code{spacing}}{[integer] The spacing between the cell's text and pixmap.}
+\item{\code{spacing}}{[raw] The spacing between the cell's text and pixmap.}
 \item{\code{pixmap}}{[\code{\link{GdkPixmap}}] A pointer to a \code{\link{GdkPixmap}} for the cell.}
 \item{\code{mask}}{[\code{\link{GdkBitmap}}] A pointer to a \code{\link{GdkBitmap}} mask for the cell.}
 }

@@ -20,11 +20,15 @@
    +----GtkIMContext
          +----\link{GtkIMContextSimple}
          +----\link{GtkIMMulticontext}}}
-\section{Structures}{\describe{\item{\code{GtkIMContext}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkIMContext}}{
+\emph{undocumented
+}
+
+}}}
 \section{Signals}{\describe{
 \item{\code{commit(imcontext, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
@@ -34,7 +38,8 @@
 
 }
 \item{\code{delete-surrounding(imcontext, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
@@ -45,7 +50,8 @@
 
 }
 \item{\code{preedit-changed(imcontext, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
@@ -54,7 +60,8 @@
 
 }
 \item{\code{preedit-end(imcontext, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
@@ -63,7 +70,8 @@
 
 }
 \item{\code{preedit-start(imcontext, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
@@ -72,7 +80,8 @@
 
 }
 \item{\code{retrieve-surrounding(imcontext, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}

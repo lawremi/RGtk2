@@ -5,8 +5,8 @@
 iterator.}
 \usage{pangoAttrIteratorGetAttrs(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoAttrIterator}}]  a \code{\link{PangoAttrIterator}}}}
+\details{  Since  1.2}
 \value{[list]  a list of all attributes for the current range.
-  To free this value, call \code{pango\Attribute\Destroy()} on
-  each value and \code{g\Slist\Free()} on the list.}
+  To free this value.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

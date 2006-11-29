@@ -11,10 +11,15 @@
 \description{The cairo drawing context}
 \section{Methods and Functions}{
 \code{\link{cairoCreate}(target)}\cr
+\code{\link{cairoStatus}(cr)}\cr
 \code{\link{cairoSave}(cr)}\cr
 \code{\link{cairoRestore}(cr)}\cr
-\code{\link{cairoStatus}(cr)}\cr
 \code{\link{cairoGetTarget}(cr)}\cr
+\code{\link{cairoPushGroup}(cr)}\cr
+\code{\link{cairoPushGroupWithContent}(cr, content)}\cr
+\code{\link{cairoPopGroup}(cr)}\cr
+\code{\link{cairoPopGroupToSource}(cr)}\cr
+\code{\link{cairoGetGroupTarget}(cr)}\cr
 \code{\link{cairoSetSourceRgb}(cr, red, green, blue)}\cr
 \code{\link{cairoSetSourceRgba}(cr, red, green, blue, alpha)}\cr
 \code{\link{cairoSetSource}(cr, source)}\cr
@@ -96,7 +101,9 @@ at intersections with the path. The ray can be in any direction,
 as long as it doesn't pass through the end point of a segment
 or have a tricky intersection such as intersecting tangent to the path.
 (Note that filling is not actually implemented in this way. This
-is just a description of the rule that is applied.)  
+is just a description of the rule that is applied.)
+  
+New entries may be added in future versions.  
 
 \describe{
 \item{\code{winding}}{ If the path crosses the ray from
@@ -122,7 +129,8 @@ enumeration for style of line-endings
 
 }
 \item{\code{CairoLineJoin}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{miter}}{\emph{undocumented
@@ -135,7 +143,8 @@ enumeration for style of line-endings
 
 }
 \item{\code{CairoOperator}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{clear}}{\emph{undocumented

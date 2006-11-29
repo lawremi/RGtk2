@@ -8,13 +8,14 @@
 \code{gtkTearoffMenuItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkItem}
-                                 +----\link{GtkMenuItem}
-                                       +----GtkTearoffMenuItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkItem}
+                                       +----\link{GtkMenuItem}
+                                             +----GtkTearoffMenuItem}}
 \section{Interfaces}{GtkTearoffMenuItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkTearoffMenuItem}} is a special \code{\link{GtkMenuItem}} which is used to

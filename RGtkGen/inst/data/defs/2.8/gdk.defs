@@ -3334,12 +3334,13 @@
   )
 )
 
+; note: we enforce the 'user_data' to be a GtkWidget, since GTK+ assumes that
 (define-method set_user_data
   (of-object "GdkWindow")
   (c-name "gdk_window_set_user_data")
   (return-type "none")
   (parameters
-    '("gpointer" "user_data" (in))
+    '("GtkWidget*" "user_data" (in) (null-ok))
   )
 )
 
@@ -3348,7 +3349,7 @@
   (c-name "gdk_window_get_user_data")
   (return-type "none")
   (parameters
-    '("gpointer*" "user_data" (out))
+    '("GtkWidget**" "user_data" (out))
   )
 )
 

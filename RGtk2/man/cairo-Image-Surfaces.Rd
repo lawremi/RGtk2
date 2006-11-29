@@ -6,8 +6,11 @@
 \section{Methods and Functions}{
 \code{\link{cairoImageSurfaceCreate}(format, width, height)}\cr
 \code{\link{cairoImageSurfaceCreateForData}(data, format, width, height, stride)}\cr
+\code{\link{cairoImageSurfaceGetData}(surface)}\cr
+\code{\link{cairoImageSurfaceGetFormat}(surface)}\cr
 \code{\link{cairoImageSurfaceGetWidth}(surface)}\cr
 \code{\link{cairoImageSurfaceGetHeight}(surface)}\cr
+\code{\link{cairoImageSurfaceGetStride}(surface)}\cr
 }
 \section{Detailed Description}{    Image surfaces provide the ability to render to memory buffers
     either allocated by cairo or by the calling code.  The supported
@@ -15,7 +18,9 @@
   }
 \section{Enums and Flags}{\describe{\item{\code{CairoFormat}}{
 \code{\link{CairoFormat}} is used to identify the memory format of
-image data.  
+image data.
+  
+New entries may be added in future versions.  
 
 \describe{
 \item{\code{argb32}}{ each pixel is a 32-bit quantity, with
@@ -34,6 +39,16 @@ image data.
   endianess of the platform. On a big-endian machine, the
   first pixel is in the uppermost bit, on a little-endian
   machine the first pixel is in the least-significant bit.}
+\item{\code{rgb16-565}}{ This format value is deprecated. It has
+  never been properly implemented in cairo and should not be used
+  by applications. For example, any attempt to create an image
+  surface with a format of CAIRO\_FORMAT\_RGB16\_565 will fail. This
+  format value was added as part of fixing cairo's xlib backend to
+  work with X servers advertising a 16-bit, 565 visual. But as it
+  turned out, adding this format to \code{\link{CairoFormat}} was not
+  necessary, and was a mistake, (cairo's xlib backend can work fine
+  with 16-bit visuals in the same way it works with BGR visuals
+  without any BGR formats in \code{\link{CairoFormat}}). (Since 1.2)}
 }
 
 }}}

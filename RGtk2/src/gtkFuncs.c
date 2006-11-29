@@ -864,7 +864,7 @@ S_gtk_accelerator_parse(USER_OBJECT_ s_accelerator)
   gtk_accelerator_parse(accelerator, &accelerator_key, &accelerator_mods);
 
 
-  _result = retByVal(_result, "accelerator_key", asRNumeric(accelerator_key), "accelerator_mods", asRFlag(accelerator_mods, GDK_TYPE_MODIFIER_TYPE), NULL);
+  _result = retByVal(_result, "accelerator.key", asRNumeric(accelerator_key), "accelerator.mods", asRFlag(accelerator_mods, GDK_TYPE_MODIFIER_TYPE), NULL);
 
   return(_result);
 }
@@ -2102,7 +2102,7 @@ S_gtk_alignment_get_padding(USER_OBJECT_ s_object)
   gtk_alignment_get_padding(object, &padding_top, &padding_bottom, &padding_left, &padding_right);
 
 
-  _result = retByVal(_result, "padding_top", asRNumeric(padding_top), "padding_bottom", asRNumeric(padding_bottom), "padding_left", asRNumeric(padding_left), "padding_right", asRNumeric(padding_right), NULL);
+  _result = retByVal(_result, "padding.top", asRNumeric(padding_top), "padding.bottom", asRNumeric(padding_bottom), "padding.left", asRNumeric(padding_left), "padding.right", asRNumeric(padding_right), NULL);
 
   return(_result);
 }
@@ -2329,7 +2329,7 @@ S_gtk_button_box_get_child_size(USER_OBJECT_ s_object)
   gtk_button_box_get_child_size(object, &min_width, &min_height);
 
 
-  _result = retByVal(_result, "min_width", asRInteger(min_width), "min_height", asRInteger(min_height), NULL);
+  _result = retByVal(_result, "min.width", asRInteger(min_width), "min.height", asRInteger(min_height), NULL);
 
   return(_result);
 }
@@ -2347,7 +2347,7 @@ S_gtk_button_box_get_child_ipadding(USER_OBJECT_ s_object)
   gtk_button_box_get_child_ipadding(object, &ipad_x, &ipad_y);
 
 
-  _result = retByVal(_result, "ipad_x", asRInteger(ipad_x), "ipad_y", asRInteger(ipad_y), NULL);
+  _result = retByVal(_result, "ipad.x", asRInteger(ipad_x), "ipad.y", asRInteger(ipad_y), NULL);
 
   return(_result);
 }
@@ -2558,7 +2558,7 @@ S_gtk_box_query_child_packing(USER_OBJECT_ s_object, USER_OBJECT_ s_child)
   gtk_box_query_child_packing(object, child, &expand, &fill, &padding, &pack_type);
 
 
-  _result = retByVal(_result, "expand", asRLogical(expand), "fill", asRLogical(fill), "padding", asRNumeric(padding), "pack_type", asREnum(pack_type, GTK_TYPE_PACK_TYPE), NULL);
+  _result = retByVal(_result, "expand", asRLogical(expand), "fill", asRLogical(fill), "padding", asRNumeric(padding), "pack.type", asREnum(pack_type, GTK_TYPE_PACK_TYPE), NULL);
 
   return(_result);
 }
@@ -3371,7 +3371,7 @@ S_gtk_cell_renderer_get_size(USER_OBJECT_ s_object, USER_OBJECT_ s_widget, USER_
   gtk_cell_renderer_get_size(object, widget, cell_area, &x_offset, &y_offset, &width, &height);
 
 
-  _result = retByVal(_result, "x_offset", asRInteger(x_offset), "y_offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(_result, "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
 
   return(_result);
 }
@@ -3849,7 +3849,7 @@ S_gtk_cell_view_get_displayed_row(USER_OBJECT_ s_object)
 
   ans = gtk_cell_view_get_displayed_row(object);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -3869,7 +3869,7 @@ S_gtk_cell_view_get_size_of_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "requisition", toRPointer((&requisition), "GtkRequisition"), NULL);
+  _result = retByVal(_result, "requisition", toRPointer(&requisition ? (&requisition) : NULL, "GtkRequisition"), NULL);
 
   return(_result);
 }
@@ -4425,7 +4425,7 @@ S_gtk_clipboard_wait_for_contents(USER_OBJECT_ s_object, USER_OBJECT_ s_target)
 
   ans = gtk_clipboard_wait_for_contents(object, target);
 
-  _result = toRPointerWithFinalizer(gtk_selection_data_copy(ans), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_selection_data_copy(ans) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free);
 
   return(_result);
 }
@@ -4527,7 +4527,7 @@ S_gtk_clipboard_wait_for_targets(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "targets", asRArrayWithSize(targets, asRGdkAtom, n_targets), "n_targets", asRInteger(n_targets), NULL);
+  _result = retByVal(_result, "targets", asRArrayWithSize(targets, asRGdkAtom, n_targets), "n.targets", asRInteger(n_targets), NULL);
   CLEANUP(g_free, targets);
 
   return(_result);
@@ -6122,7 +6122,7 @@ S_gtk_color_selection_palette_from_string(USER_OBJECT_ s_str)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "colors", asRArrayRefWithSize(colors, asRGdkColor, n_colors), "n_colors", asRInteger(n_colors), NULL);
+  _result = retByVal(_result, "colors", asRArrayRefWithSize(colors, asRGdkColor, n_colors), "n.colors", asRInteger(n_colors), NULL);
   CLEANUP(g_free, colors);
 
   return(_result);
@@ -6534,7 +6534,7 @@ S_gtk_combo_box_get_active_iter(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -7193,7 +7193,7 @@ S_gtk_container_get_focus_chain(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "focusable_widgets", asRGListWithSink(focusable_widgets, "GtkWidget"), NULL);
+  _result = retByVal(_result, "focusable.widgets", asRGListWithSink(focusable_widgets, "GtkWidget"), NULL);
   CLEANUP(g_list_free, focusable_widgets);
 
   return(_result);
@@ -7383,7 +7383,7 @@ S_gtk_container_class_list_child_properties(USER_OBJECT_ s_cclass)
 
   _result = asRArrayWithSize(ans, asRGParamSpec, n_properties);
 
-  _result = retByVal(_result, "n_properties", asRNumeric(n_properties), NULL);
+  _result = retByVal(_result, "n.properties", asRNumeric(n_properties), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -8287,7 +8287,7 @@ S_gtk_ctree_get_node_info(USER_OBJECT_ s_object, USER_OBJECT_ s_node)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "text", asRString(text), "spacing", asRRaw(spacing), "pixmap_closed", toRPointerWithRef(pixmap_closed, "GdkPixmap"), "mask_closed", toRPointerWithRef(mask_closed, "GdkBitmap"), "pixmap_opened", toRPointerWithRef(pixmap_opened, "GdkPixmap"), "mask_opened", toRPointerWithRef(mask_opened, "GdkBitmap"), "is_leaf", asRLogical(is_leaf), "expanded", asRLogical(expanded), NULL);
+  _result = retByVal(_result, "text", asRString(text), "spacing", asRRaw(spacing), "pixmap.closed", toRPointerWithRef(pixmap_closed, "GdkPixmap"), "mask.closed", toRPointerWithRef(mask_closed, "GdkBitmap"), "pixmap.opened", toRPointerWithRef(pixmap_opened, "GdkPixmap"), "mask.opened", toRPointerWithRef(mask_opened, "GdkBitmap"), "is.leaf", asRLogical(is_leaf), "expanded", asRLogical(expanded), NULL);
 
   return(_result);
 }
@@ -13297,7 +13297,7 @@ S_gtk_icon_factory_lookup(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id)
 
   ans = gtk_icon_factory_lookup(object, stock_id);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13341,7 +13341,7 @@ S_gtk_icon_factory_lookup_default(USER_OBJECT_ s_stock_id)
 
   ans = gtk_icon_factory_lookup_default(stock_id);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13477,7 +13477,7 @@ S_gtk_icon_set_new(void)
 
   ans = gtk_icon_set_new();
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13493,7 +13493,7 @@ S_gtk_icon_set_new_from_pixbuf(USER_OBJECT_ s_pixbuf)
 
   ans = gtk_icon_set_new_from_pixbuf(pixbuf);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13509,7 +13509,7 @@ S_gtk_icon_set_ref(USER_OBJECT_ s_object)
 
   ans = gtk_icon_set_ref(object);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13539,7 +13539,7 @@ S_gtk_icon_set_copy(USER_OBJECT_ s_object)
 
   ans = gtk_icon_set_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -13594,7 +13594,7 @@ S_gtk_icon_set_get_sizes(USER_OBJECT_ s_object)
   gtk_icon_set_get_sizes(object, &sizes, &n_sizes);
 
 
-  _result = retByVal(_result, "sizes", asREnumArrayWithSize(sizes, GTK_TYPE_ICON_SIZE, n_sizes), "n_sizes", asRInteger(n_sizes), NULL);
+  _result = retByVal(_result, "sizes", asREnumArrayWithSize(sizes, GTK_TYPE_ICON_SIZE, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
   CLEANUP(g_free, sizes);
 
   return(_result);
@@ -13625,7 +13625,7 @@ S_gtk_icon_source_new(void)
 
   ans = gtk_icon_source_new();
 
-  _result = toRPointerWithFinalizer(gtk_icon_source_copy(ans), "GtkIconSource", (RPointerFinalizer) gtk_icon_source_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_source_copy(ans) : NULL, "GtkIconSource", (RPointerFinalizer) gtk_icon_source_free);
 
   return(_result);
 }
@@ -13641,7 +13641,7 @@ S_gtk_icon_source_copy(USER_OBJECT_ s_object)
 
   ans = gtk_icon_source_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_icon_source_copy(ans), "GtkIconSource", (RPointerFinalizer) gtk_icon_source_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_source_copy(ans) : NULL, "GtkIconSource", (RPointerFinalizer) gtk_icon_source_free);
 
   return(_result);
 }
@@ -14043,7 +14043,7 @@ S_gtk_icon_theme_get_search_path(USER_OBJECT_ s_object)
   gtk_icon_theme_get_search_path(object, &path, &n_elements);
 
 
-  _result = retByVal(_result, "path", asRStringArrayWithSize(path, n_elements), "n_elements", asRInteger(n_elements), NULL);
+  _result = retByVal(_result, "path", asRStringArrayWithSize(path, n_elements), "n.elements", asRInteger(n_elements), NULL);
   CLEANUP(g_strfreev, path);
 
   return(_result);
@@ -14125,7 +14125,7 @@ S_gtk_icon_theme_lookup_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_icon_name, US
 
   ans = gtk_icon_theme_lookup_icon(object, icon_name, size, flags);
 
-  _result = toRPointerWithFinalizer(gtk_icon_info_copy(ans), "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_info_copy(ans) : NULL, "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
 
   return(_result);
 }
@@ -14247,7 +14247,7 @@ S_gtk_icon_info_copy(USER_OBJECT_ s_object)
 
   ans = gtk_icon_info_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_icon_info_copy(ans), "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_info_copy(ans) : NULL, "GtkIconInfo", (RPointerFinalizer) gtk_icon_info_free);
 
   return(_result);
 }
@@ -14384,7 +14384,7 @@ S_gtk_icon_info_get_attach_points(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "points", asRArrayRefWithSize(points, asRGdkPoint, n_points), "n_points", asRInteger(n_points), NULL);
+  _result = retByVal(_result, "points", asRArrayRefWithSize(points, asRGdkPoint, n_points), "n.points", asRInteger(n_points), NULL);
   CLEANUP(g_free, points);
 
   return(_result);
@@ -14825,7 +14825,7 @@ S_gtk_icon_view_get_path_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OB
 
   ans = gtk_icon_view_get_path_at_pos(object, x, y);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -14847,7 +14847,7 @@ S_gtk_icon_view_get_item_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
 
   return(_result);
 }
@@ -14867,7 +14867,7 @@ S_gtk_icon_view_get_visible_range(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "start_path", toRPointerWithFinalizer(gtk_tree_path_copy(start_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "end_path", toRPointerWithFinalizer(gtk_tree_path_copy(end_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
+  _result = retByVal(_result, "start.path", toRPointerWithFinalizer(start_path ? gtk_tree_path_copy(start_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "end.path", toRPointerWithFinalizer(end_path ? gtk_tree_path_copy(end_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
 
   return(_result);
 }
@@ -15059,7 +15059,7 @@ S_gtk_icon_view_get_cursor(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "cell", toRPointerWithSink(cell, "GtkCellRenderer"), NULL);
 
   return(_result);
 }
@@ -15205,7 +15205,7 @@ S_gtk_icon_view_get_drag_dest_item(USER_OBJECT_ s_object)
   gtk_icon_view_get_drag_dest_item(object, &path, &pos);
 
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_ICON_VIEW_DROP_POSITION), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_ICON_VIEW_DROP_POSITION), NULL);
 
   return(_result);
 }
@@ -15227,7 +15227,7 @@ S_gtk_icon_view_get_dest_item_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_ICON_VIEW_DROP_POSITION), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_ICON_VIEW_DROP_POSITION), NULL);
 
   return(_result);
 }
@@ -15565,7 +15565,7 @@ S_gtk_image_get_image(USER_OBJECT_ s_object)
   gtk_image_get_image(object, &gdk_image, &mask);
 
 
-  _result = retByVal(_result, "gdk_image", toRPointerWithRef(gdk_image, "GdkImage"), "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
+  _result = retByVal(_result, "gdk.image", toRPointerWithRef(gdk_image, "GdkImage"), "mask", toRPointerWithRef(mask, "GdkBitmap"), NULL);
 
   return(_result);
 }
@@ -15599,7 +15599,7 @@ S_gtk_image_get_stock(USER_OBJECT_ s_object)
   gtk_image_get_stock(object, &stock_id, &size);
 
 
-  _result = retByVal(_result, "stock_id", asRString(stock_id), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
+  _result = retByVal(_result, "stock.id", asRString(stock_id), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
 
   return(_result);
 }
@@ -15617,7 +15617,7 @@ S_gtk_image_get_icon_set(USER_OBJECT_ s_object)
   gtk_image_get_icon_set(object, &icon_set, &size);
 
 
-  _result = retByVal(_result, "icon_set", toRPointerWithFinalizer(gtk_icon_set_copy(icon_set), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
+  _result = retByVal(_result, "icon.set", toRPointerWithFinalizer(icon_set ? gtk_icon_set_copy(icon_set) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
 
   return(_result);
 }
@@ -15733,7 +15733,7 @@ S_gtk_image_get_icon_name(USER_OBJECT_ s_object)
   gtk_image_get_icon_name(object, &icon_name, &size);
 
 
-  _result = retByVal(_result, "icon_name", asRString(icon_name), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
+  _result = retByVal(_result, "icon.name", asRString(icon_name), "size", asREnum(size, GTK_TYPE_ICON_SIZE), NULL);
 
   return(_result);
 }
@@ -15908,7 +15908,7 @@ S_gtk_im_context_get_preedit_string(USER_OBJECT_ s_object)
   gtk_im_context_get_preedit_string(object, &str, &attrs, &cursor_pos);
 
 
-  _result = retByVal(_result, "str", asRString(str), "attrs", toRPointerWithFinalizer(pango_attr_list_ref(attrs), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "cursor_pos", asRInteger(cursor_pos), NULL);
+  _result = retByVal(_result, "str", asRString(str), "attrs", toRPointerWithFinalizer(attrs ? pango_attr_list_ref(attrs) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "cursor.pos", asRInteger(cursor_pos), NULL);
 
   return(_result);
 }
@@ -16034,7 +16034,7 @@ S_gtk_im_context_get_surrounding(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "text", asRString(text), "cursor_index", asRInteger(cursor_index), NULL);
+  _result = retByVal(_result, "text", asRString(text), "cursor.index", asRInteger(cursor_index), NULL);
 
   return(_result);
 }
@@ -16717,7 +16717,7 @@ S_gtk_label_get_attributes(USER_OBJECT_ s_object)
 
   ans = gtk_label_get_attributes(object);
 
-  _result = toRPointerWithFinalizer(pango_attr_list_ref(ans), "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
+  _result = toRPointerWithFinalizer(ans ? pango_attr_list_ref(ans) : NULL, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref);
 
   return(_result);
 }
@@ -18026,7 +18026,7 @@ S_gtk_list_store_insert(USER_OBJECT_ s_object, USER_OBJECT_ s_position)
   gtk_list_store_insert(object, &iter, position);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -18044,7 +18044,7 @@ S_gtk_list_store_insert_before(USER_OBJECT_ s_object, USER_OBJECT_ s_sibling)
   gtk_list_store_insert_before(object, &iter, sibling);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -18062,7 +18062,7 @@ S_gtk_list_store_insert_after(USER_OBJECT_ s_object, USER_OBJECT_ s_sibling)
   gtk_list_store_insert_after(object, &iter, sibling);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -18094,7 +18094,7 @@ S_gtk_list_store_append(USER_OBJECT_ s_object)
   gtk_list_store_append(object, &iter);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -18249,7 +18249,7 @@ S_gtk_get_default_language(void)
 
   ans = gtk_get_default_language();
 
-  _result = toRPointer((ans), "PangoLanguage");
+  _result = toRPointer(ans ? (ans) : NULL, "PangoLanguage");
 
   return(_result);
 }
@@ -18821,8 +18821,8 @@ S_gtk_menu_popup(USER_OBJECT_ s_object, USER_OBJECT_ s_parent_menu_shell, USER_O
   GtkMenuPositionFunc func = ((GtkMenuPositionFunc)S_GtkMenuPositionFunc);
   R_CallbackData* data = R_createCBData(s_func, s_data);
   GtkMenu* object = GTK_MENU(getPtrValue(s_object));
-  GtkWidget* parent_menu_shell = GTK_WIDGET(getPtrValue(s_parent_menu_shell));
-  GtkWidget* parent_menu_item = GTK_WIDGET(getPtrValue(s_parent_menu_item));
+  GtkWidget* parent_menu_shell = GET_LENGTH(s_parent_menu_shell) == 0 ? NULL : GTK_WIDGET(getPtrValue(s_parent_menu_shell));
+  GtkWidget* parent_menu_item = GET_LENGTH(s_parent_menu_item) == 0 ? NULL : GTK_WIDGET(getPtrValue(s_parent_menu_item));
   guint button = ((guint)asCNumeric(s_button));
   guint32 activate_time = ((guint32)asCNumeric(s_activate_time));
 
@@ -20443,7 +20443,7 @@ S_gtk_notebook_query_tab_label_packing(USER_OBJECT_ s_object, USER_OBJECT_ s_chi
   gtk_notebook_query_tab_label_packing(object, child, &expand, &fill, &pack_type);
 
 
-  _result = retByVal(_result, "expand", asRLogical(expand), "fill", asRLogical(fill), "pack_type", asREnum(pack_type, GTK_TYPE_PACK_TYPE), NULL);
+  _result = retByVal(_result, "expand", asRLogical(expand), "fill", asRLogical(fill), "pack.type", asREnum(pack_type, GTK_TYPE_PACK_TYPE), NULL);
 
   return(_result);
 }
@@ -22925,7 +22925,7 @@ S_gtk_ruler_get_range(USER_OBJECT_ s_object)
   gtk_ruler_get_range(object, &lower, &upper, &position, &max_size);
 
 
-  _result = retByVal(_result, "lower", asRNumeric(lower), "upper", asRNumeric(upper), "position", asRNumeric(position), "max_size", asRNumeric(max_size), NULL);
+  _result = retByVal(_result, "lower", asRNumeric(lower), "upper", asRNumeric(upper), "position", asRNumeric(position), "max.size", asRNumeric(max_size), NULL);
 
   return(_result);
 }
@@ -23242,7 +23242,7 @@ S_gtk_scrolled_window_get_policy(USER_OBJECT_ s_object)
   gtk_scrolled_window_get_policy(object, &hscrollbar_policy, &vscrollbar_policy);
 
 
-  _result = retByVal(_result, "hscrollbar_policy", asREnum(hscrollbar_policy, GTK_TYPE_POLICY_TYPE), "vscrollbar_policy", asREnum(vscrollbar_policy, GTK_TYPE_POLICY_TYPE), NULL);
+  _result = retByVal(_result, "hscrollbar.policy", asREnum(hscrollbar_policy, GTK_TYPE_POLICY_TYPE), "vscrollbar.policy", asREnum(vscrollbar_policy, GTK_TYPE_POLICY_TYPE), NULL);
 
   return(_result);
 }
@@ -23610,7 +23610,7 @@ S_gtk_selection_data_get_targets(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "targets", asRArrayWithSize(targets, asRGdkAtom, n_atoms), "n_atoms", asRInteger(n_atoms), NULL);
+  _result = retByVal(_result, "targets", asRArrayWithSize(targets, asRGdkAtom, n_atoms), "n.atoms", asRInteger(n_atoms), NULL);
   CLEANUP(g_free, targets);
 
   return(_result);
@@ -23689,7 +23689,7 @@ S_gtk_selection_data_copy(USER_OBJECT_ s_object)
 
   ans = gtk_selection_data_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_selection_data_copy(ans), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_selection_data_copy(ans) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free);
 
   return(_result);
 }
@@ -23974,7 +23974,7 @@ S_gtk_rc_property_parse_color(USER_OBJECT_ s_pspec, USER_OBJECT_ s_gstring)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "property_value", asRGValue(property_value), NULL);
+  _result = retByVal(_result, "property.value", asRGValue(property_value), NULL);
   CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
   CLEANUP(free_g_string, ((GString*)gstring));
   CLEANUP(g_value_unset, property_value);
@@ -23998,7 +23998,7 @@ S_gtk_rc_property_parse_enum(USER_OBJECT_ s_pspec, USER_OBJECT_ s_gstring)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "property_value", asRGValue(property_value), NULL);
+  _result = retByVal(_result, "property.value", asRGValue(property_value), NULL);
   CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
   CLEANUP(free_g_string, ((GString*)gstring));
   CLEANUP(g_value_unset, property_value);
@@ -24022,7 +24022,7 @@ S_gtk_rc_property_parse_flags(USER_OBJECT_ s_pspec, USER_OBJECT_ s_gstring)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "property_value", asRGValue(property_value), NULL);
+  _result = retByVal(_result, "property.value", asRGValue(property_value), NULL);
   CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
   CLEANUP(free_g_string, ((GString*)gstring));
   CLEANUP(g_value_unset, property_value);
@@ -24046,7 +24046,7 @@ S_gtk_rc_property_parse_requisition(USER_OBJECT_ s_pspec, USER_OBJECT_ s_gstring
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "property_value", asRGValue(property_value), NULL);
+  _result = retByVal(_result, "property.value", asRGValue(property_value), NULL);
   CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
   CLEANUP(free_g_string, ((GString*)gstring));
   CLEANUP(g_value_unset, property_value);
@@ -24070,7 +24070,7 @@ S_gtk_rc_property_parse_border(USER_OBJECT_ s_pspec, USER_OBJECT_ s_gstring)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "property_value", asRGValue(property_value), NULL);
+  _result = retByVal(_result, "property.value", asRGValue(property_value), NULL);
   CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
   CLEANUP(free_g_string, ((GString*)gstring));
   CLEANUP(g_value_unset, property_value);
@@ -25174,7 +25174,7 @@ S_gtk_style_lookup_icon_set(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id)
 
   ans = gtk_style_lookup_icon_set(object, stock_id);
 
-  _result = toRPointerWithFinalizer(gtk_icon_set_copy(ans), "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_icon_set_copy(ans) : NULL, "GtkIconSet", (RPointerFinalizer) gtk_icon_set_unref);
 
   return(_result);
 }
@@ -26130,7 +26130,7 @@ S_gtk_border_copy(USER_OBJECT_ s_object)
 
   ans = gtk_border_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_border_copy(ans), "GtkBorder", (RPointerFinalizer) gtk_border_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_border_copy(ans) : NULL, "GtkBorder", (RPointerFinalizer) gtk_border_free);
 
   return(_result);
 }
@@ -27098,7 +27098,7 @@ S_gtk_text_buffer_get_iter_at_line_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_
   gtk_text_buffer_get_iter_at_line_offset(object, &iter, line_number, char_offset);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27117,7 +27117,7 @@ S_gtk_text_buffer_get_iter_at_line_index(USER_OBJECT_ s_object, USER_OBJECT_ s_l
   gtk_text_buffer_get_iter_at_line_index(object, &iter, line_number, byte_index);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27135,7 +27135,7 @@ S_gtk_text_buffer_get_iter_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_char_
   gtk_text_buffer_get_iter_at_offset(object, &iter, char_offset);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27153,7 +27153,7 @@ S_gtk_text_buffer_get_iter_at_line(USER_OBJECT_ s_object, USER_OBJECT_ s_line_nu
   gtk_text_buffer_get_iter_at_line(object, &iter, line_number);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27170,7 +27170,7 @@ S_gtk_text_buffer_get_start_iter(USER_OBJECT_ s_object)
   gtk_text_buffer_get_start_iter(object, &iter);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27187,7 +27187,7 @@ S_gtk_text_buffer_get_end_iter(USER_OBJECT_ s_object)
   gtk_text_buffer_get_end_iter(object, &iter);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27205,7 +27205,7 @@ S_gtk_text_buffer_get_bounds(USER_OBJECT_ s_object)
   gtk_text_buffer_get_bounds(object, &start, &end);
 
 
-  _result = retByVal(_result, "start", toRPointerWithFinalizer(gtk_text_iter_copy(&start), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "end", toRPointerWithFinalizer(gtk_text_iter_copy(&end), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "start", toRPointerWithFinalizer(&start ? gtk_text_iter_copy(&start) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "end", toRPointerWithFinalizer(&end ? gtk_text_iter_copy(&end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27223,7 +27223,7 @@ S_gtk_text_buffer_get_iter_at_mark(USER_OBJECT_ s_object, USER_OBJECT_ s_mark)
   gtk_text_buffer_get_iter_at_mark(object, &iter, mark);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27241,7 +27241,7 @@ S_gtk_text_buffer_get_iter_at_child_anchor(USER_OBJECT_ s_object, USER_OBJECT_ s
   gtk_text_buffer_get_iter_at_child_anchor(object, &iter, anchor);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27370,7 +27370,7 @@ S_gtk_text_buffer_get_selection_bounds(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "start", toRPointerWithFinalizer(gtk_text_iter_copy(&start), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "end", toRPointerWithFinalizer(gtk_text_iter_copy(&end), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "start", toRPointerWithFinalizer(&start ? gtk_text_iter_copy(&start) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "end", toRPointerWithFinalizer(&end ? gtk_text_iter_copy(&end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -27530,7 +27530,7 @@ S_gtk_text_iter_copy(USER_OBJECT_ s_object)
 
   ans = gtk_text_iter_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_text_iter_copy(ans), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_text_iter_copy(ans) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free);
 
   return(_result);
 }
@@ -28138,7 +28138,7 @@ S_gtk_text_iter_get_language(USER_OBJECT_ s_object)
 
   ans = gtk_text_iter_get_language(object);
 
-  _result = toRPointer((ans), "PangoLanguage");
+  _result = toRPointer(ans ? (ans) : NULL, "PangoLanguage");
 
   return(_result);
 }
@@ -28915,7 +28915,7 @@ S_gtk_text_iter_forward_search(USER_OBJECT_ s_object, USER_OBJECT_ s_str, USER_O
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "match_start", toRPointerWithFinalizer(gtk_text_iter_copy(&match_start), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "match_end", toRPointerWithFinalizer(gtk_text_iter_copy(&match_end), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "match.start", toRPointerWithFinalizer(&match_start ? gtk_text_iter_copy(&match_start) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "match.end", toRPointerWithFinalizer(&match_end ? gtk_text_iter_copy(&match_end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -28938,7 +28938,7 @@ S_gtk_text_iter_backward_search(USER_OBJECT_ s_object, USER_OBJECT_ s_str, USER_
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "match_start", toRPointerWithFinalizer(gtk_text_iter_copy(&match_start), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "match_end", toRPointerWithFinalizer(gtk_text_iter_copy(&match_end), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "match.start", toRPointerWithFinalizer(&match_start ? gtk_text_iter_copy(&match_start) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "match.end", toRPointerWithFinalizer(&match_end ? gtk_text_iter_copy(&match_end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -29212,7 +29212,7 @@ S_gtk_text_attributes_new(void)
 
   ans = gtk_text_attributes_new();
 
-  _result = toRPointerWithFinalizer(gtk_text_attributes_copy(ans), "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_text_attributes_copy(ans) : NULL, "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
 
   return(_result);
 }
@@ -29228,7 +29228,7 @@ S_gtk_text_attributes_copy(USER_OBJECT_ s_object)
 
   ans = gtk_text_attributes_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_text_attributes_copy(ans), "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_text_attributes_copy(ans) : NULL, "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
 
   return(_result);
 }
@@ -29579,7 +29579,7 @@ S_gtk_text_view_get_visible_rect(USER_OBJECT_ s_object)
   gtk_text_view_get_visible_rect(object, visible_rect);
 
 
-  _result = retByVal(_result, "visible_rect", asRGdkRectangle(visible_rect), NULL);
+  _result = retByVal(_result, "visible.rect", asRGdkRectangle(visible_rect), NULL);
   CLEANUP(g_free, visible_rect);
 
   return(_result);
@@ -29649,7 +29649,7 @@ S_gtk_text_view_get_iter_at_location(USER_OBJECT_ s_object, USER_OBJECT_ s_x, US
   gtk_text_view_get_iter_at_location(object, &iter, x, y);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), NULL);
 
   return(_result);
 }
@@ -29669,7 +29669,7 @@ S_gtk_text_view_get_iter_at_position(USER_OBJECT_ s_object, USER_OBJECT_ s_x, US
   gtk_text_view_get_iter_at_position(object, &iter, &trailing, x, y);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_text_iter_copy(&iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "trailing", asRInteger(trailing), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_text_iter_copy(&iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "trailing", asRInteger(trailing), NULL);
 
   return(_result);
 }
@@ -29707,7 +29707,7 @@ S_gtk_text_view_get_line_at_y(USER_OBJECT_ s_object, USER_OBJECT_ s_y)
   gtk_text_view_get_line_at_y(object, &target_iter, y, &line_top);
 
 
-  _result = retByVal(_result, "target_iter", toRPointerWithFinalizer(gtk_text_iter_copy(&target_iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "line_top", asRInteger(line_top), NULL);
+  _result = retByVal(_result, "target.iter", toRPointerWithFinalizer(&target_iter ? gtk_text_iter_copy(&target_iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free), "line.top", asRInteger(line_top), NULL);
 
   return(_result);
 }
@@ -29728,7 +29728,7 @@ S_gtk_text_view_buffer_to_window_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wi
   gtk_text_view_buffer_to_window_coords(object, win, buffer_x, buffer_y, &window_x, &window_y);
 
 
-  _result = retByVal(_result, "window_x", asRInteger(window_x), "window_y", asRInteger(window_y), NULL);
+  _result = retByVal(_result, "window.x", asRInteger(window_x), "window.y", asRInteger(window_y), NULL);
 
   return(_result);
 }
@@ -29749,7 +29749,7 @@ S_gtk_text_view_window_to_buffer_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wi
   gtk_text_view_window_to_buffer_coords(object, win, window_x, window_y, &buffer_x, &buffer_y);
 
 
-  _result = retByVal(_result, "buffer_x", asRInteger(buffer_x), "buffer_y", asRInteger(buffer_y), NULL);
+  _result = retByVal(_result, "buffer.x", asRInteger(buffer_x), "buffer.y", asRInteger(buffer_y), NULL);
 
   return(_result);
 }
@@ -30342,7 +30342,7 @@ S_gtk_text_view_get_tabs(USER_OBJECT_ s_object)
 
   ans = gtk_text_view_get_tabs(object);
 
-  _result = toRPointerWithFinalizer(pango_tab_array_copy(ans), "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
+  _result = toRPointerWithFinalizer(ans ? pango_tab_array_copy(ans) : NULL, "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
 
   return(_result);
 }
@@ -30358,7 +30358,7 @@ S_gtk_text_view_get_default_attributes(USER_OBJECT_ s_object)
 
   ans = gtk_text_view_get_default_attributes(object);
 
-  _result = toRPointerWithFinalizer(gtk_text_attributes_copy(ans), "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_text_attributes_copy(ans) : NULL, "GtkTextAttributes", (RPointerFinalizer) gtk_text_attributes_unref);
 
   return(_result);
 }
@@ -32158,7 +32158,7 @@ S_gtk_tooltips_get_info_from_tip_window(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "tooltips", toRPointerWithSink(tooltips, "GtkTooltips"), "current_widget", toRPointerWithSink(current_widget, "GtkWidget"), NULL);
+  _result = retByVal(_result, "tooltips", toRPointerWithSink(tooltips, "GtkTooltips"), "current.widget", toRPointerWithSink(current_widget, "GtkWidget"), NULL);
 
   return(_result);
 }
@@ -32227,7 +32227,7 @@ S_gtk_tree_drag_source_drag_data_get(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "selection_data", toRPointerWithFinalizer(gtk_selection_data_copy(&selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free), NULL);
+  _result = retByVal(_result, "selection.data", toRPointerWithFinalizer(&selection_data ? gtk_selection_data_copy(&selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free), NULL);
 
   return(_result);
 }
@@ -32316,7 +32316,7 @@ S_gtk_tree_get_row_drag_data(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "tree_model", toRPointerWithRef(tree_model, "GtkTreeModel"), "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
+  _result = retByVal(_result, "tree.model", toRPointerWithRef(tree_model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
 
   return(_result);
 }
@@ -32331,7 +32331,7 @@ S_gtk_tree_path_new(void)
 
   ans = gtk_tree_path_new();
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -32347,7 +32347,7 @@ S_gtk_tree_path_new_from_string(USER_OBJECT_ s_path)
 
   ans = gtk_tree_path_new_from_string(path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -32379,7 +32379,7 @@ S_gtk_tree_path_new_first(void)
 
   ans = gtk_tree_path_new_first();
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -32455,7 +32455,7 @@ S_gtk_tree_path_copy(USER_OBJECT_ s_object)
 
   ans = gtk_tree_path_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -32598,7 +32598,7 @@ S_gtk_tree_row_reference_new(USER_OBJECT_ s_model, USER_OBJECT_ s_path)
 
   ans = gtk_tree_row_reference_new(model, path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_row_reference_copy(ans), "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_row_reference_copy(ans) : NULL, "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
 
   return(_result);
 }
@@ -32616,7 +32616,7 @@ S_gtk_tree_row_reference_new_proxy(USER_OBJECT_ s_proxy, USER_OBJECT_ s_model, U
 
   ans = gtk_tree_row_reference_new_proxy(proxy, model, path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_row_reference_copy(ans), "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_row_reference_copy(ans) : NULL, "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
 
   return(_result);
 }
@@ -32632,7 +32632,7 @@ S_gtk_tree_row_reference_get_path(USER_OBJECT_ s_object)
 
   ans = gtk_tree_row_reference_get_path(object);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -32680,7 +32680,7 @@ S_gtk_tree_row_reference_copy(USER_OBJECT_ s_object)
 
   ans = gtk_tree_row_reference_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_tree_row_reference_copy(ans), "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_row_reference_copy(ans) : NULL, "GtkTreeRowReference", (RPointerFinalizer) gtk_tree_row_reference_free);
 
   return(_result);
 }
@@ -32757,7 +32757,7 @@ S_gtk_tree_iter_copy(USER_OBJECT_ s_object)
 
   ans = gtk_tree_iter_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_tree_iter_copy(ans), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_iter_copy(ans) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free);
 
   return(_result);
 }
@@ -32870,7 +32870,7 @@ S_gtk_tree_model_get_iter(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -32890,7 +32890,7 @@ S_gtk_tree_model_get_iter_from_string(USER_OBJECT_ s_object, USER_OBJECT_ s_path
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -32927,7 +32927,7 @@ S_gtk_tree_model_get_iter_root(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -32946,7 +32946,7 @@ S_gtk_tree_model_get_iter_first(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -32963,7 +32963,7 @@ S_gtk_tree_model_get_path(USER_OBJECT_ s_object, USER_OBJECT_ s_iter)
 
   ans = gtk_tree_model_get_path(object, iter);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -33021,7 +33021,7 @@ S_gtk_tree_model_iter_children(USER_OBJECT_ s_object, USER_OBJECT_ s_parent)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33076,7 +33076,7 @@ S_gtk_tree_model_iter_nth_child(USER_OBJECT_ s_object, USER_OBJECT_ s_parent, US
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33096,7 +33096,7 @@ S_gtk_tree_model_iter_parent(USER_OBJECT_ s_object, USER_OBJECT_ s_child)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33340,7 +33340,7 @@ S_gtk_tree_model_filter_convert_child_iter_to_iter(USER_OBJECT_ s_object, USER_O
   gtk_tree_model_filter_convert_child_iter_to_iter(object, &filter_iter, child_iter);
 
 
-  _result = retByVal(_result, "filter_iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&filter_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "filter.iter", toRPointerWithFinalizer(&filter_iter ? gtk_tree_iter_copy(&filter_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33358,7 +33358,7 @@ S_gtk_tree_model_filter_convert_iter_to_child_iter(USER_OBJECT_ s_object, USER_O
   gtk_tree_model_filter_convert_iter_to_child_iter(object, &child_iter, filter_iter);
 
 
-  _result = retByVal(_result, "child_iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&child_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "child.iter", toRPointerWithFinalizer(&child_iter ? gtk_tree_iter_copy(&child_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33375,7 +33375,7 @@ S_gtk_tree_model_filter_convert_child_path_to_path(USER_OBJECT_ s_object, USER_O
 
   ans = gtk_tree_model_filter_convert_child_path_to_path(object, child_path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -33392,7 +33392,7 @@ S_gtk_tree_model_filter_convert_path_to_child_path(USER_OBJECT_ s_object, USER_O
 
   ans = gtk_tree_model_filter_convert_path_to_child_path(object, filter_path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -33485,7 +33485,7 @@ S_gtk_tree_model_sort_convert_child_path_to_path(USER_OBJECT_ s_object, USER_OBJ
 
   ans = gtk_tree_model_sort_convert_child_path_to_path(object, child_path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -33503,7 +33503,7 @@ S_gtk_tree_model_sort_convert_child_iter_to_iter(USER_OBJECT_ s_object, USER_OBJ
   gtk_tree_model_sort_convert_child_iter_to_iter(object, &sort_iter, child_iter);
 
 
-  _result = retByVal(_result, "sort_iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&sort_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "sort.iter", toRPointerWithFinalizer(&sort_iter ? gtk_tree_iter_copy(&sort_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33520,7 +33520,7 @@ S_gtk_tree_model_sort_convert_path_to_child_path(USER_OBJECT_ s_object, USER_OBJ
 
   ans = gtk_tree_model_sort_convert_path_to_child_path(object, sorted_path);
 
-  _result = toRPointerWithFinalizer(gtk_tree_path_copy(ans), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_tree_path_copy(ans) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free);
 
   return(_result);
 }
@@ -33538,7 +33538,7 @@ S_gtk_tree_model_sort_convert_iter_to_child_iter(USER_OBJECT_ s_object, USER_OBJ
   gtk_tree_model_sort_convert_iter_to_child_iter(object, &child_iter, sorted_iter);
 
 
-  _result = retByVal(_result, "child_iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&child_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "child.iter", toRPointerWithFinalizer(&child_iter ? gtk_tree_iter_copy(&child_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33698,7 +33698,7 @@ S_gtk_tree_selection_get_selected(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "model", toRPointerWithRef(model, "GtkTreeModel"), "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "model", toRPointerWithRef(model, "GtkTreeModel"), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -33954,7 +33954,7 @@ S_gtk_tree_sortable_get_sort_column_id(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "sort_column_id", asRInteger(sort_column_id), "order", asREnum(order, GTK_TYPE_SORT_TYPE), NULL);
+  _result = retByVal(_result, "sort.column.id", asRInteger(sort_column_id), "order", asREnum(order, GTK_TYPE_SORT_TYPE), NULL);
 
   return(_result);
 }
@@ -34105,7 +34105,7 @@ S_gtk_tree_store_insert(USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USER_OBJEC
   gtk_tree_store_insert(object, &iter, parent, position);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -34124,7 +34124,7 @@ S_gtk_tree_store_insert_before(USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USE
   gtk_tree_store_insert_before(object, &iter, parent, sibling);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -34143,7 +34143,7 @@ S_gtk_tree_store_insert_after(USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USER
   gtk_tree_store_insert_after(object, &iter, parent, sibling);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -34161,7 +34161,7 @@ S_gtk_tree_store_prepend(USER_OBJECT_ s_object, USER_OBJECT_ s_parent)
   gtk_tree_store_prepend(object, &iter, parent);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -34179,7 +34179,7 @@ S_gtk_tree_store_append(USER_OBJECT_ s_object, USER_OBJECT_ s_parent)
   gtk_tree_store_append(object, &iter, parent);
 
 
-  _result = retByVal(_result, "iter", toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
 
   return(_result);
 }
@@ -34987,7 +34987,7 @@ S_gtk_tree_view_get_cursor(USER_OBJECT_ s_object)
   gtk_tree_view_get_cursor(object, &path, &focus_column);
 
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "focus_column", toRPointerWithSink(focus_column, "GtkTreeViewColumn"), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "focus.column", toRPointerWithSink(focus_column, "GtkTreeViewColumn"), NULL);
 
   return(_result);
 }
@@ -35027,7 +35027,7 @@ S_gtk_tree_view_get_path_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OB
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "column", toRPointerWithSink(column, "GtkTreeViewColumn"), "cell_x", asRInteger(cell_x), "cell_y", asRInteger(cell_y), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "column", toRPointerWithSink(column, "GtkTreeViewColumn"), "cell.x", asRInteger(cell_x), "cell.y", asRInteger(cell_y), NULL);
 
   return(_result);
 }
@@ -35084,7 +35084,7 @@ S_gtk_tree_view_get_visible_rect(USER_OBJECT_ s_object)
   gtk_tree_view_get_visible_rect(object, visible_rect);
 
 
-  _result = retByVal(_result, "visible_rect", asRGdkRectangle(visible_rect), NULL);
+  _result = retByVal(_result, "visible.rect", asRGdkRectangle(visible_rect), NULL);
   CLEANUP(g_free, visible_rect);
 
   return(_result);
@@ -35105,7 +35105,7 @@ S_gtk_tree_view_get_visible_range(USER_OBJECT_ s_object)
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "start_path", toRPointerWithFinalizer(gtk_tree_path_copy(start_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "end_path", toRPointerWithFinalizer(gtk_tree_path_copy(end_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
+  _result = retByVal(_result, "start.path", toRPointerWithFinalizer(start_path ? gtk_tree_path_copy(start_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "end.path", toRPointerWithFinalizer(end_path ? gtk_tree_path_copy(end_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), NULL);
 
   return(_result);
 }
@@ -35262,7 +35262,7 @@ S_gtk_tree_view_get_dest_row_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_x
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "path", toRPointerWithFinalizer(gtk_tree_path_copy(path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_TREE_VIEW_DROP_POSITION), NULL);
+  _result = retByVal(_result, "path", toRPointerWithFinalizer(path ? gtk_tree_path_copy(path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "pos", asREnum(pos, GTK_TYPE_TREE_VIEW_DROP_POSITION), NULL);
 
   return(_result);
 }
@@ -36225,7 +36225,7 @@ S_gtk_tree_view_column_cell_get_size(USER_OBJECT_ s_object)
   gtk_tree_view_column_cell_get_size(object, cell_area, &x_offset, &y_offset, &width, &height);
 
 
-  _result = retByVal(_result, "cell_area", asRGdkRectangle(cell_area), "x_offset", asRInteger(x_offset), "y_offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  _result = retByVal(_result, "cell.area", asRGdkRectangle(cell_area), "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
   CLEANUP(g_free, cell_area);
 
   return(_result);
@@ -36276,7 +36276,7 @@ S_gtk_tree_view_column_cell_get_position(USER_OBJECT_ s_object, USER_OBJECT_ s_c
   gtk_tree_view_column_cell_get_position(object, cell_renderer, &start_pos, &width);
 
 
-  _result = retByVal(_result, "start_pos", asRInteger(start_pos), "width", asRInteger(width), NULL);
+  _result = retByVal(_result, "start.pos", asRInteger(start_pos), "width", asRInteger(width), NULL);
 
   return(_result);
 }
@@ -37332,7 +37332,7 @@ S_gtk_widget_size_request(USER_OBJECT_ s_object)
   gtk_widget_size_request(object, &requisition);
 
 
-  _result = retByVal(_result, "requisition", toRPointer((&requisition), "GtkRequisition"), NULL);
+  _result = retByVal(_result, "requisition", toRPointer(&requisition ? (&requisition) : NULL, "GtkRequisition"), NULL);
 
   return(_result);
 }
@@ -37364,7 +37364,7 @@ S_gtk_widget_get_child_requisition(USER_OBJECT_ s_object)
   gtk_widget_get_child_requisition(object, &requisition);
 
 
-  _result = retByVal(_result, "requisition", toRPointer((&requisition), "GtkRequisition"), NULL);
+  _result = retByVal(_result, "requisition", toRPointer(&requisition ? (&requisition) : NULL, "GtkRequisition"), NULL);
 
   return(_result);
 }
@@ -38284,7 +38284,7 @@ S_gtk_widget_translate_coordinates(USER_OBJECT_ s_object, USER_OBJECT_ s_dest_wi
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "dest_x", asRInteger(dest_x), "dest_y", asRInteger(dest_y), NULL);
+  _result = retByVal(_result, "dest.x", asRInteger(dest_x), "dest.y", asRInteger(dest_y), NULL);
 
   return(_result);
 }
@@ -38674,7 +38674,7 @@ S_gtk_widget_class_list_style_properties(USER_OBJECT_ s_klass)
 
   _result = asRArrayWithSize(ans, asRGParamSpec, n_properties);
 
-  _result = retByVal(_result, "n_properties", asRNumeric(n_properties), NULL);
+  _result = retByVal(_result, "n.properties", asRNumeric(n_properties), NULL);
   CLEANUP(g_free, ans);
 
   return(_result);
@@ -38864,7 +38864,7 @@ S_gtk_widget_path(USER_OBJECT_ s_object)
   gtk_widget_path(object, &path_length, &path, &path_reversed);
 
 
-  _result = retByVal(_result, "path_length", asRNumeric(path_length), "path", asRString(path), "path_reversed", asRString(path_reversed), NULL);
+  _result = retByVal(_result, "path.length", asRNumeric(path_length), "path", asRString(path), "path.reversed", asRString(path_reversed), NULL);
 
   return(_result);
 }
@@ -38883,7 +38883,7 @@ S_gtk_widget_class_path(USER_OBJECT_ s_object)
   gtk_widget_class_path(object, &path_length, &path, &path_reversed);
 
 
-  _result = retByVal(_result, "path_length", asRNumeric(path_length), "path", asRString(path), "path_reversed", asRString(path_reversed), NULL);
+  _result = retByVal(_result, "path.length", asRNumeric(path_length), "path", asRString(path), "path.reversed", asRString(path_reversed), NULL);
 
   return(_result);
 }
@@ -38962,7 +38962,7 @@ S_gtk_requisition_copy(USER_OBJECT_ s_object)
 
   ans = gtk_requisition_copy(object);
 
-  _result = toRPointer((ans), "GtkRequisition");
+  _result = toRPointer(ans ? (ans) : NULL, "GtkRequisition");
 
   return(_result);
 }
@@ -40300,7 +40300,7 @@ S_gtk_window_get_position(USER_OBJECT_ s_object)
   gtk_window_get_position(object, &root_x, &root_y);
 
 
-  _result = retByVal(_result, "root_x", asRInteger(root_x), "root_y", asRInteger(root_y), NULL);
+  _result = retByVal(_result, "root.x", asRInteger(root_x), "root.y", asRInteger(root_y), NULL);
 
   return(_result);
 }
@@ -41095,7 +41095,7 @@ S_gtk_entry_get_inner_border(USER_OBJECT_ s_object)
 
   ans = gtk_entry_get_inner_border(object);
 
-  _result = toRPointerWithFinalizer(gtk_border_copy(ans), "GtkBorder", (RPointerFinalizer) gtk_border_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_border_copy(ans) : NULL, "GtkBorder", (RPointerFinalizer) gtk_border_free);
 
   return(_result);
 }
@@ -41126,6 +41126,37 @@ S_gtk_file_chooser_button_set_focus_on_click(USER_OBJECT_ s_object, USER_OBJECT_
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   gtk_file_chooser_button_set_focus_on_click(object, focus_on_click);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_label_get_line_wrap_mode(USER_OBJECT_ s_object)
+{
+  GtkLabel* object = GTK_LABEL(getPtrValue(s_object));
+
+  PangoWrapMode ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = gtk_label_get_line_wrap_mode(object);
+
+  _result = asREnum(ans, PANGO_TYPE_WRAP_MODE);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gtk_label_set_line_wrap_mode(USER_OBJECT_ s_object, USER_OBJECT_ s_wrap_mode)
+{
+  GtkLabel* object = GTK_LABEL(getPtrValue(s_object));
+  PangoWrapMode wrap_mode = ((PangoWrapMode)asCEnum(s_wrap_mode, PANGO_TYPE_WRAP_MODE));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  gtk_label_set_line_wrap_mode(object, wrap_mode);
 
 
   return(_result);
@@ -41444,7 +41475,7 @@ S_gtk_page_setup_get_paper_size(USER_OBJECT_ s_object)
 
   ans = gtk_page_setup_get_paper_size(object);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -41705,7 +41736,7 @@ S_gtk_paper_size_new(USER_OBJECT_ s_name)
 
   ans = gtk_paper_size_new(name);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -41724,7 +41755,7 @@ S_gtk_paper_size_new_from_ppd(USER_OBJECT_ s_ppd_name, USER_OBJECT_ s_ppd_displa
 
   ans = gtk_paper_size_new_from_ppd(ppd_name, ppd_display_name, width, height);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -41744,7 +41775,7 @@ S_gtk_paper_size_new_custom(USER_OBJECT_ s_name, USER_OBJECT_ s_display_name, US
 
   ans = gtk_paper_size_new_custom(name, display_name, width, height, unit);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -41760,7 +41791,7 @@ S_gtk_paper_size_copy(USER_OBJECT_ s_object)
 
   ans = gtk_paper_size_copy(object);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -42998,7 +43029,7 @@ S_gtk_print_settings_get_paper_size(USER_OBJECT_ s_object)
 
   ans = gtk_print_settings_get_paper_size(object);
 
-  _result = toRPointerWithFinalizer(gtk_paper_size_copy(ans), "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
+  _result = toRPointerWithFinalizer(ans ? gtk_paper_size_copy(ans) : NULL, "GtkPaperSize", (RPointerFinalizer) gtk_paper_size_free);
 
   return(_result);
 }
@@ -44049,7 +44080,7 @@ S_gtk_recent_chooser_get_current_item(USER_OBJECT_ s_object)
 
   ans = gtk_recent_chooser_get_current_item(object);
 
-  _result = toRPointerWithFinalizer(gtk_recent_info_ref(ans), "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_recent_info_ref(ans) : NULL, "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
 
   return(_result);
 }
@@ -44717,7 +44748,7 @@ S_gtk_recent_manager_lookup_item(USER_OBJECT_ s_object, USER_OBJECT_ s_uri)
 
   ans = gtk_recent_manager_lookup_item(object, uri, &error);
 
-  _result = toRPointerWithFinalizer(gtk_recent_info_ref(ans), "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_recent_info_ref(ans) : NULL, "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
   CLEANUP(g_error_free, error);
@@ -44858,7 +44889,7 @@ S_gtk_recent_info_ref(USER_OBJECT_ s_object)
 
   ans = gtk_recent_info_ref(object);
 
-  _result = toRPointerWithFinalizer(gtk_recent_info_ref(ans), "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
+  _result = toRPointerWithFinalizer(ans ? gtk_recent_info_ref(ans) : NULL, "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref);
 
   return(_result);
 }
@@ -45022,7 +45053,7 @@ S_gtk_recent_info_get_application_info(USER_OBJECT_ s_object, USER_OBJECT_ s_app
 
   _result = asRLogical(ans);
 
-  _result = retByVal(_result, "app_exec", asRString(app_exec), "count", asRNumeric(count), "time_", asRInteger(time_), NULL);
+  _result = retByVal(_result, "app.exec", asRString(app_exec), "count", asRNumeric(count), "time.", asRInteger(time_), NULL);
 
   return(_result);
 }
@@ -45275,7 +45306,7 @@ S_gtk_target_table_new_from_list(USER_OBJECT_ s_list)
 
   _result = asRArrayRefWithSize(ans, asRGtkTargetEntry, n_targets);
 
-  _result = retByVal(_result, "n_targets", asRInteger(n_targets), NULL);
+  _result = retByVal(_result, "n.targets", asRInteger(n_targets), NULL);
 
   return(_result);
 }
@@ -45756,7 +45787,7 @@ S_gtk_status_icon_position_menu(USER_OBJECT_ s_menu, USER_OBJECT_ s_user_data)
   gtk_status_icon_position_menu(menu, &x, &y, &push_in, user_data);
 
 
-  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "push_in", asRLogical(push_in), NULL);
+  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "push.in", asRLogical(push_in), NULL);
 
   return(_result);
 }
@@ -46003,7 +46034,7 @@ S_gtk_text_buffer_get_serialize_formats(USER_OBJECT_ s_object)
 
   _result = asRArrayWithSize(ans, asRGdkAtom, n_formats);
 
-  _result = retByVal(_result, "n_formats", asRInteger(n_formats), NULL);
+  _result = retByVal(_result, "n.formats", asRInteger(n_formats), NULL);
 
   return(_result);
 }
@@ -46022,7 +46053,7 @@ S_gtk_text_buffer_get_deserialize_formats(USER_OBJECT_ s_object)
 
   _result = asRArrayWithSize(ans, asRGdkAtom, n_formats);
 
-  _result = retByVal(_result, "n_formats", asRInteger(n_formats), NULL);
+  _result = retByVal(_result, "n.formats", asRInteger(n_formats), NULL);
 
   return(_result);
 }

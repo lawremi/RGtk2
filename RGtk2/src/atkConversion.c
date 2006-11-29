@@ -66,6 +66,17 @@ asRAtkTextRectangle(AtkTextRectangle *rect)
     return asRGdkRectangle((GdkRectangle*)rect);
 }
 
+AtkRectangle*
+asCAtkRectangle(USER_OBJECT_ s_rect)
+{
+    return (AtkRectangle*)asCGdkRectangle(s_rect);
+}
+USER_OBJECT_
+asRAtkRectangle(AtkRectangle *rect)
+{
+    return asRGdkRectangle((GdkRectangle*)rect);
+}
+
 USER_OBJECT_
 asRAtkTextRange(AtkTextRange *range)
 {

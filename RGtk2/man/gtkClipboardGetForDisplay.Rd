@@ -31,9 +31,10 @@ underscore-prefixed), and namespace it as well. For example,
 if your application called "Foo" has a special-purpose
 clipboard, you might call it "\_FOO\_SPECIAL\_CLIPBOARD".  
 
-  Since  2.2.}
+  Since  2.2}
 \value{[\code{\link{GtkClipboard}}]  the appropriate clipboard object. If no
             clipboard already exists, a new one will
-            be created.}
+            be created. Once a clipboard object has
+            been created, it is persistent and.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

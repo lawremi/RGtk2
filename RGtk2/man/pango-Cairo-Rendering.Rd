@@ -19,9 +19,11 @@
 \code{\link{pangoCairoShowGlyphString}(cr, font, glyphs)}\cr
 \code{\link{pangoCairoShowLayoutLine}(cr, line)}\cr
 \code{\link{pangoCairoShowLayout}(cr, layout)}\cr
+\code{\link{pangoCairoShowErrorUnderline}(cr, x, y, width, height)}\cr
 \code{\link{pangoCairoGlyphStringPath}(cr, font, glyphs)}\cr
 \code{\link{pangoCairoLayoutLinePath}(cr, line)}\cr
 \code{\link{pangoCairoLayoutPath}(cr, layout)}\cr
+\code{\link{pangoCairoErrorUnderlinePath}(cr, x, y, width, height)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----PangoCairoFontMap}}

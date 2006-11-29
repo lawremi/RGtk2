@@ -31,7 +31,7 @@ gtkParent(object)
 }
 \author{Duncan Temple Lang}
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 This is a slightly modified function from Duncan's original. It now always behaves 
 as if the former argument \code{FULL} is \code{TRUE}.

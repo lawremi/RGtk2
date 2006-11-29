@@ -21,6 +21,8 @@ very old X servers, and occasionally the implementation will be
 buggy. On servers without the shape extension, this function
 will do nothing.
   
+On the Win32 platform, this functionality is always present.
+  
 This function works on both toplevel and child windows.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

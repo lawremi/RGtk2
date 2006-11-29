@@ -17,6 +17,7 @@ the screen.}
 \code{\link{atkComponentSetExtents}(object, x, y, width, height, coord.type)}\cr
 \code{\link{atkComponentSetPosition}(object, x, y, coord.type)}\cr
 \code{\link{atkComponentSetSize}(object, width, height)}\cr
+\code{\link{atkComponentGetAlpha}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkComponent}}
@@ -42,7 +43,7 @@ a component changes.
 
 \describe{
 \item{\code{atkcomponent}}{[\code{\link{AtkComponent}}] the object which received the signal.}
-\item{\code{arg1}}{[AtkRectangle] The AtkRectangle giving the new position and size.}
+\item{\code{arg1}}{[\code{\link{AtkRectangle}}] The AtkRectangle giving the new position and size.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

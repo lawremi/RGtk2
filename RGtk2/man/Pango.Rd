@@ -12,7 +12,7 @@ The RGtk binding to the Pango library consists of the following components:
 \item{\link{pango-Text-Processing}}{Functions to run the rendering pipeline}
 \item{\link{pango-PangoRenderer}}{Rendering driver base class}
 \item{\link{pango-Cairo-Rendering}}{Rendering with the Cairo backend}
-\item{\link{pango-Tab-Stops}}{Structures for storing Tab Stops}
+\item{\link{pango-Tab-Stops}}{Structures for storing tab stops}
 \item{\link{pango-Text-Attributes}}{Font and other attributes for annotating text}
 }
 }

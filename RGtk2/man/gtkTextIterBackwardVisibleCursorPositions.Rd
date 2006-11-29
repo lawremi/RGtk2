@@ -2,7 +2,7 @@
 \name{gtkTextIterBackwardVisibleCursorPositions}
 \title{gtkTextIterBackwardVisibleCursorPositions}
 \description{Moves up to \code{count} visible cursor positions. See
-\code{\link{gtkTextIterForwardCursorPosition}} for details.}
+\code{\link{gtkTextIterBackwardCursorPosition}} for details.}
 \usage{gtkTextIterBackwardVisibleCursorPositions(object, count)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}

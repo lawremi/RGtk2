@@ -1,10 +1,13 @@
 \alias{gtkScrolledWindowGetPlacement}
 \name{gtkScrolledWindowGetPlacement}
 \title{gtkScrolledWindowGetPlacement}
-\description{Gets the placement of the scrollbars for the scrolled window. See 
-\code{\link{gtkScrolledWindowSetPlacement}}.}
+\description{Gets the placement of the contents with respect to the scrollbars
+for the scrolled window. See \code{\link{gtkScrolledWindowSetPlacement}}.}
 \usage{gtkScrolledWindowGetPlacement(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkScrolledWindow}}]  a \code{\link{GtkScrolledWindow}}}}
-\value{[\code{\link{GtkCornerType}}]  the current placement value.}
+\value{[\code{\link{GtkCornerType}}]  the current placement value.
+
+See also \code{\link{gtkScrolledWindowSetPlacement}} and
+\code{\link{gtkScrolledWindowUnsetPlacement}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

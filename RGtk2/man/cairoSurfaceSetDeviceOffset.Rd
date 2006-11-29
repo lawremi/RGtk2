@@ -15,7 +15,7 @@ sufficient to do this, since functions like
 \item{\code{x.offset}}{[numeric]  the offset in the X direction, in device units}
 \item{\code{y.offset}}{[numeric]  the offset in the Y direction, in device units}
 }
-\details{Note that the offset only affects drawing to the surface, not using
-the surface in a surface pattern.  }
+\details{Note that the offset affects drawing to the surface as well as
+using the surface in a source pattern.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ drawing area may actually be allocated a size
 larger than this depending on how it is packed
 within the enclosing containers. The effect
 of this is determined by whether the preview
-is set to expand or not (see \code{gtk\Preview\Expand()})
+is set to expand or not (see \code{gtkPreviewExpand()})
 \strong{WARNING: \code{gtk_preview_size} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPreviewSize(object, width, height)}

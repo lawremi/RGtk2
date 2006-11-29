@@ -25,6 +25,9 @@ with it.
 
 This function always returns a valid pointer, but it will return a
 pointer to a "nil" surface if an error such as out of memory
-occurs. You can use \code{\link{cairoSurfaceStatus}} to check for this.}
+occurs. You can use \code{\link{cairoSurfaceStatus}} to check for this.
+
+See \code{\link{cairoSurfaceSetUserData}} for a means of attaching a
+destroy-notification fallback to the surface if necessary.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

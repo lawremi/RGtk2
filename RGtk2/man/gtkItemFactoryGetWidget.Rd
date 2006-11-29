@@ -3,7 +3,7 @@
 \title{gtkItemFactoryGetWidget}
 \description{
 Obtains the widget which corresponds to \code{path}. 
-\strong{WARNING: \code{gtk_item_factory_get_widget} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_get_widget} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryGetWidget(object, path)}
 \arguments{

@@ -75,7 +75,8 @@ AtkRole<-c("invalid" = 0,
 	"autocomplete" = 74,
 	"editbar" = 75,
 	"embedded" = 76,
-	"last-defined" = 77)
+	"form" = 77,
+	"last-defined" = 78)
 storage.mode(AtkRole) <- 'integer'
 class(AtkRole) <- 'enums' 
 
@@ -104,7 +105,9 @@ AtkRelationType<-c("null" = 0,
 	"embedded-by" = 11,
 	"popup-for" = 12,
 	"parent-window-of" = 13,
-	"last-defined" = 14)
+	"description-for" = 14,
+	"described-by" = 15,
+	"last-defined" = 16)
 storage.mode(AtkRelationType) <- 'integer'
 class(AtkRelationType) <- 'enums' 
 
@@ -141,7 +144,10 @@ AtkStateType<-c("invalid" = 0,
 	"indeterminate" = 30,
 	"truncated" = 31,
 	"required" = 32,
-	"last-defined" = 33)
+	"animated" = 33,
+	"visited" = 34,
+	"default" = 35,
+	"last-defined" = 36)
 storage.mode(AtkStateType) <- 'integer'
 class(AtkStateType) <- 'enums' 
 

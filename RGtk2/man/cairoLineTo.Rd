@@ -10,5 +10,7 @@ will be (\code{x}, \code{y}).}
 \item{\code{x}}{[numeric]  the X coordinate of the end of the new line}
 \item{\code{y}}{[numeric]  the Y coordinate of the end of the new line}
 }
+\details{If there is no current point before the call to \code{\link{cairoLineTo}}
+this function will behave as cairo\_move\_to (\code{cr}, \code{x}, \code{y}).  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

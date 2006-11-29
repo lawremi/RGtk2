@@ -6,7 +6,7 @@ screen. It's equivalent to listing the visuals
 (\code{\link{gdkListVisuals}}) and then looking at the type field in each
 visual, removing duplicates.}
 \usage{gdkQueryVisualTypes()}
-\details{  .}
+\details{.  }
 \value{
 A list containing the following elements:
 \item{\code{visual.types}}{[\code{\link{GdkVisualType}}]  return location for the available visual types}

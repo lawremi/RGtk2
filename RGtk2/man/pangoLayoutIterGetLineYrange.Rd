@@ -6,7 +6,7 @@ between the lines in the layout, and returns the space belonging to
 the current line.  A line's range includes the line's logical
 extents, plus half of the spacing above and below the line, if
 \code{\link{pangoLayoutSetSpacing}} has been called to set layout spacing.
-The y positions are in layout coordinates (origin at top left of the
+The Y positions are in layout coordinates (origin at top left of the
 entire layout).}
 \usage{pangoLayoutIterGetLineYrange(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}

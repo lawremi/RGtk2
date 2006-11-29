@@ -12,6 +12,7 @@
 \code{\link{gtkScrolledWindowSetPolicy}(object, hscrollbar.policy, vscrollbar.policy)}\cr
 \code{\link{gtkScrolledWindowAddWithViewport}(object, child)}\cr
 \code{\link{gtkScrolledWindowSetPlacement}(object, window.placement)}\cr
+\code{\link{gtkScrolledWindowUnsetPlacement}(object)}\cr
 \code{\link{gtkScrolledWindowSetShadowType}(object, type)}\cr
 \code{\link{gtkScrolledWindowSetHadjustment}(object, hadjustment)}\cr
 \code{\link{gtkScrolledWindowSetVadjustment}(object, hadjustment)}\cr
@@ -21,11 +22,12 @@
 \code{gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkScrolledWindow}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkScrolledWindow}}
 \section{Interfaces}{GtkScrolledWindow implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container 
@@ -80,7 +82,8 @@ only be accessed using the functions below.
 \section{Convenient Construction}{\code{gtkScrolledWindow} is the equivalent of \code{\link{gtkScrolledWindowNew}}.}
 \section{Signals}{\describe{
 \item{\code{move-focus-out(scrolledwindow, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{scrolledwindow}}{[\code{\link{GtkScrolledWindow}}] the object which received the signal.}
@@ -90,7 +93,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{scroll-child(scrolledwindow, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{scrolledwindow}}{[\code{\link{GtkScrolledWindow}}] the object which received the signal.}
@@ -129,7 +133,16 @@ When the vertical scrollbar is displayed.  Default value: GTK\_POLICY\_ALWAYS
 }
 \item{\code{window-placement} [\code{\link{GtkCornerType}} : Read / Write]}{
 
-Where the contents are located with respect to the scrollbars.  Default value: GTK\_CORNER\_TOP\_LEFT
+Where the contents are located with respect to the scrollbars. This property only takes effect if "window-placement-set" is TRUE.  Default value: GTK\_CORNER\_TOP\_LEFT
+
+}
+\item{\code{window-placement-set} [logical : Read / Write]}{
+
+Whether "window-placement" should be used to determine the location 
+of the contents with respect to the scrollbars. Otherwise, the 
+"gtk-scrolled-window-placement" setting is used.  
+
+  Default value: FALSE  Since  2.10
 
 }
 }}

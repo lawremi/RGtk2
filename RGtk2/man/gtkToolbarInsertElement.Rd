@@ -25,7 +25,7 @@ the radio group for the new element. In all other cases, \code{widget} must
 be \code{NULL}.
   
 \code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
-arguments. Use the \code{gtk\Signal\Func()} to cast the function to \code{GtkSignalFunc}.  }
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 \value{[\code{\link{GtkWidget}}]  the new toolbar element as a \code{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

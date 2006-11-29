@@ -15,7 +15,7 @@ Note that as the user scrolls around in the entry the offsets will
 change; you'll need to connect to the "notify::scroll-offset"
 signal to track this. Remember when using the \code{\link{PangoLayout}}
 functions you need to convert to and from pixels using
-\code{pango\Pixels()} or \code{PANGO_SCALE}.
+\code{pangoPixels()} or \code{PANGO_SCALE}.
   
 Keep in mind that the layout text may contain a preedit string, so
 \code{\link{gtkEntryLayoutIndexToTextIndex}} and

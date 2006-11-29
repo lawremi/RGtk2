@@ -279,7 +279,7 @@ S_PangoAnalysisGetExtraAttrs (USER_OBJECT_ s_obj)
 
    obj = ((PangoAnalysis*)getPtrValue(s_obj)) ;
    val = obj->extra_attrs;
-   _result = asRGSListConv(val, ((ElementConverter)asRPangoAttribute));
+   _result = asRGSListConv(val, ((ElementConverter)asRPangoAttributeCopy));
 
    return(_result);
 } 

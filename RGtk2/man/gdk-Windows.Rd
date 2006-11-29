@@ -71,7 +71,7 @@
 \code{\link{gdkWindowGetInternalPaintInfo}(object)}\cr
 \code{\link{gdkWindowEnableSynchronizedConfigure}(object)}\cr
 \code{\link{gdkWindowConfigureFinished}(object)}\cr
-\code{\link{gdkWindowSetUserData}(object, user.data)}\cr
+\code{\link{gdkWindowSetUserData}(object, user.data = NULL)}\cr
 \code{\link{gdkWindowSetOverrideRedirect}(object, override.redirect)}\cr
 \code{\link{gdkWindowSetAcceptFocus}(object, accept.focus)}\cr
 \code{\link{gdkWindowSetFocusOnMap}(object, focus.on.map)}\cr
@@ -81,6 +81,10 @@
 \code{\link{gdkWindowShapeCombineRegion}(object, shape.region = NULL, offset.x, offset.y)}\cr
 \code{\link{gdkWindowSetChildShapes}(object)}\cr
 \code{\link{gdkWindowMergeChildShapes}(object)}\cr
+\code{\link{gdkWindowInputShapeCombineMask}(object, mask, x, y)}\cr
+\code{\link{gdkWindowInputShapeCombineRegion}(object, shape.region, offset.x, offset.y)}\cr
+\code{\link{gdkWindowSetChildInputShapes}(object)}\cr
+\code{\link{gdkWindowMergeChildInputShapes}(object)}\cr
 \code{\link{gdkWindowSetStaticGravities}(object, use.static)}\cr
 \code{\link{gdkWindowSetHints}(object, x, y, min.width, min.height, max.width, max.height, flags)}\cr
 \code{\link{gdkWindowSetTitle}(object, title)}\cr
@@ -93,6 +97,7 @@
 \code{\link{gdkWindowSetIconList}(object, pixbufs)}\cr
 \code{\link{gdkWindowSetModalHint}(object, modal)}\cr
 \code{\link{gdkWindowSetTypeHint}(object, hint)}\cr
+\code{\link{gdkWindowGetTypeHint}(object)}\cr
 \code{\link{gdkWindowSetSkipTaskbarHint}(object, modal)}\cr
 \code{\link{gdkWindowSetSkipPagerHint}(object, modal)}\cr
 \code{\link{gdkWindowSetUrgencyHint}(object, urgent)}\cr
@@ -184,9 +189,8 @@ ratio.
 \strong{\code{GdkGeometry} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{min_width}}{[integer] minimum width of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)
-\code{min.height} minimum height of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
-\item{\code{min_height}}{[integer] }
+\item{\code{min_width}}{[integer] minimum width of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
+\item{\code{min_height}}{[integer] minimum height of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
 \item{\code{max_width}}{[integer] maximum width of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
 \item{\code{max_height}}{[integer] maximum height of window (or -1 to use requisition, with \code{\link{GtkWindow}} only)}
 \item{\code{base_width}}{[integer] allowed window widths are \code{base.width} + \code{width.inc} * N where N is any integer (-1 allowed with \code{\link{GtkWindow}})}
@@ -239,7 +243,7 @@ Describes the kind of window.
 \item{\code{child}}{child window (used to implement e.g. \code{\link{GtkButton}})}
 \item{\code{dialog}}{useless/deprecated compatibility type}
 \item{\code{temp}}{override redirect temporary window (used to implement \code{\link{GtkMenu}})}
-\item{\code{foreign}}{foreign window (see \code{gdk\Window\Foreign\New()})}
+\item{\code{foreign}}{foreign window (see \code{gdkWindowForeignNew()})}
 }
 
 }
@@ -261,7 +265,7 @@ to. Also, the presence/absence of \code{GDK.HINT.POS}, \code{GDK.HINT.USER.POS},
 \code{\link{GdkGeometry}} fields.  \code{GDK.HINT.USER.POS} will be set automatically by \code{\link{GtkWindow}}
 if you call \code{\link{gtkWindowMove}}. \code{GDK.HINT.USER.POS} and \code{GDK.HINT.USER.SIZE} 
 should be set if the user specified a size/position using a --geometry 
-command-line argument; \code{gtk\Window\Parse\Geometry()} automatically sets these
+command-line argument; \code{gtkWindowParseGeometry()} automatically sets these
 flags.
 
 \describe{
@@ -376,6 +380,10 @@ in various event types. Typical modifier keys are Shift, Control, Meta, Super,
 Hyper, Alt, Compose, Apple, CapsLock or ShiftLock. 
   
 Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
+  
+Since 2.10, GDK recognizes which of the Meta, Super or Hyper keys are mapped 
+to Mod2 - Mod5, and indicates this by setting \code{GDK_SUPER_MASK}, \code{GDK_HYPER_MASK}
+or \code{GDK_META_MASK} in the state field of key events.
 
 \describe{
 \item{\code{shift-mask}}{the Shift key.}
@@ -398,9 +406,8 @@ Like the X Window System, GDK supports 8 modifier keys and 5 mouse buttons.
 \item{\code{button3-mask}}{the third mouse button.}
 \item{\code{button4-mask}}{the fourth mouse button.}
 \item{\code{button5-mask}}{the fifth mouse button.}
-\item{\code{release-mask}}{not used in GDK itself. GTK+ uses it to differentiate 
-  between (keyval, modifiers) pairs from key press and release events.}
-\item{\code{modifier-mask}}{a mask covering all modifier types.}
+\item{\code{release-mask}}{the Super modifier. Since 2.10}
+\item{\code{modifier-mask}}{the Hyper modifier. Since 2.10}
 }
 
 }

@@ -9,6 +9,6 @@ the saved state. Multiple calls to \code{\link{cairoSave}} and
 restores the state from the matching paired \code{\link{cairoSave}}.}
 \usage{cairoSave(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
-\details{  .}
+\details{.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -14,12 +14,13 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkPaned
-                           +----\link{GtkHPaned}
-                           +----\link{GtkVPaned}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkPaned
+                                 +----\link{GtkHPaned}
+                                 +----\link{GtkVPaned}}}
 \section{Interfaces}{GtkPaned implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkPaned}} is the base class for widgets with two panes,
@@ -71,11 +72,15 @@ hpaned$pack2(frame2, FALSE, FALSE)
 frame2$setSizeRequest(50, -1)
 
 }}
-\section{Structures}{\describe{\item{\code{GtkPaned}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkPaned}}{
+\emph{undocumented
+}
+
+}}}
 \section{Signals}{\describe{
 \item{\code{accept-position(paned, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
@@ -84,7 +89,8 @@ frame2$setSizeRequest(50, -1)
 
 }
 \item{\code{cancel-position(paned, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
@@ -93,7 +99,8 @@ frame2$setSizeRequest(50, -1)
 
 }
 \item{\code{cycle-child-focus(paned, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
@@ -103,7 +110,8 @@ frame2$setSizeRequest(50, -1)
 
 }
 \item{\code{cycle-handle-focus(paned, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
@@ -113,7 +121,8 @@ frame2$setSizeRequest(50, -1)
 
 }
 \item{\code{move-handle(paned, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
@@ -123,7 +132,8 @@ frame2$setSizeRequest(50, -1)
 
 }
 \item{\code{toggle-handle-focus(paned, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}

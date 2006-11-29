@@ -2,12 +2,13 @@
 \name{cairoImageSurfaceCreate}
 \title{cairoImageSurfaceCreate}
 \description{Creates an image surface of the specified format and
-dimensions. The initial contents of the surface is undefined; you
-must explicitely clear the buffer, using, for example,
-\code{\link{cairoRectangle}} and \code{\link{cairoFill}} if you want it cleared.}
+dimensions. Initially the surface contents are all
+0. (Specifically, within each pixel, each color or alpha channel
+belonging to format will be 0. The contents of bits within a pixel,
+but not belonging to the given format are undefined).}
 \usage{cairoImageSurfaceCreate(format, width, height)}
 \arguments{
-\item{\code{format}}{[\code{\link{CairoFormat}}]  format of pixels in the surface to create }
+\item{\code{format}}{[\code{\link{CairoFormat}}]  format of pixels in the surface to create}
 \item{\code{width}}{[integer]  width of the surface, in pixels}
 \item{\code{height}}{[integer]  height of the surface, in pixels}
 }

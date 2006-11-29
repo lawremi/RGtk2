@@ -31,17 +31,20 @@
 \code{\link{gtkComboBoxSetRowSeparatorFunc}(object, func, data = NULL)}\cr
 \code{\link{gtkComboBoxSetAddTearoffs}(object, add.tearoffs)}\cr
 \code{\link{gtkComboBoxGetAddTearoffs}(object)}\cr
+\code{\link{gtkComboBoxSetTitle}(object, title)}\cr
+\code{\link{gtkComboBoxGetTitle}(object)}\cr
 \code{\link{gtkComboBoxSetFocusOnClick}(object, focus.on.click)}\cr
 \code{\link{gtkComboBoxGetFocusOnClick}(object)}\cr
 \code{gtkComboBox(model, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkComboBox
-                                 +----\link{GtkComboBoxEntry}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkComboBox
+                                       +----\link{GtkComboBoxEntry}}}
 \section{Interfaces}{GtkComboBox implements
  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkComboBox}} is a widget that allows the user to choose from a
@@ -66,14 +69,19 @@ the data in a model. It consists of the functions \code{\link{gtkComboBoxNewText
 \code{\link{gtkComboBoxAppendText}}, \code{\link{gtkComboBoxInsertText}}, 
 \code{\link{gtkComboBoxPrependText}}, \code{\link{gtkComboBoxRemoveText}} and 
 \code{\link{gtkComboBoxGetActiveText}}.}
-\section{Structures}{\describe{\item{\code{GtkComboBox}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkComboBox}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkComboBox} is the result of collapsing the constructors of \code{GtkComboBox} (\code{\link{gtkComboBoxNew}}, \code{\link{gtkComboBoxNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{changed(widget, user.data)}}{
-The changed signal gets emitted when the active
+The changed signal is emitted when the active
 item is changed. The can be due to the user selecting
 a different item from the list, or due to a 
-call to \code{\link{gtkComboBoxSetActiveIter}}.  
+call to \code{\link{gtkComboBoxSetActiveIter}}.
+It will also be emitted while typing into a GtkComboBoxEntry, 
+as well as when selecting an item from the GtkComboBoxEntry's list.  
 
   Since  2.4
 
@@ -136,6 +144,15 @@ in the list.
   Since  2.4
 
 }
+\item{\code{popup-shown} [logical : Read]}{
+
+Whether the combo boxes dropdown is popped up. 
+Note that this property is mainly useful, because
+it allows you to connect to notify::popup-shown.  
+
+  Default value: FALSE  Since  2.10
+
+}
 \item{\code{row-span-column} [integer : Read / Write]}{
 
 If this is set to a non-negative value, it must be the index of a column 
@@ -146,6 +163,14 @@ in the list will span. Therefore, the values in the model column pointed
 to by this property must be greater than zero and not larger than wrap-width.  
 
   Allowed values: >= -1  Default value: -1  Since  2.4
+
+}
+\item{\code{tearoff-title} [character : Read / Write]}{
+
+A title that may be displayed by the window manager 
+when the popup is torn-off.  
+
+  Default value: ""  Since  2.10
 
 }
 \item{\code{wrap-width} [integer : Read / Write]}{

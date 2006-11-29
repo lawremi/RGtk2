@@ -6,12 +6,12 @@ this function to display context-sensitive menus, and will typically supply
 \code{NULL} for the \code{parent.menu.shell}, \code{parent.menu.item}, \code{func} and \code{data} 
 parameters. The default menu positioning function will position the menu
 at the current mouse cursor position.}
-\usage{gtkMenuPopup(object, parent.menu.shell, parent.menu.item, func, data = NULL, button, activate.time)}
+\usage{gtkMenuPopup(object, parent.menu.shell = NULL, parent.menu.item = NULL, func = NULL, data = NULL, button, activate.time)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkMenu}}]  a \code{\link{GtkMenu}}.}
 \item{\code{parent.menu.shell}}{[\code{\link{GtkWidget}}]  the menu shell containing the triggering menu item, or \code{NULL}}
 \item{\code{parent.menu.item}}{[\code{\link{GtkWidget}}]  the menu item whose activation triggered the popup, or \code{NULL}}
-\item{\code{func}}{[\code{\link{GtkMenuPositionFunc}}]  a user supplied function used to position the menu, or \code{NULL}}
+\item{\code{func}}{[GtkMenuPositionFunc]  a user supplied function used to position the menu, or \code{NULL}}
 \item{\code{data}}{[R object]  user supplied data to be passed to \code{func}.}
 \item{\code{button}}{[numeric]  the mouse button which was pressed to initiate the event.}
 \item{\code{activate.time}}{[numeric]  the time at which the activation event occurred.}

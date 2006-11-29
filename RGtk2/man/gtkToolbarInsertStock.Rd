@@ -19,7 +19,7 @@ except that underscores used to mark mnemonics are removed.
            -1 means at the end.}
 }
 \details{\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
-arguments. Use the \code{gtk\Signal\Func()} to cast the function to \code{GtkSignalFunc}.  }
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
 \value{[\code{\link{GtkWidget}}]  the inserted widget}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

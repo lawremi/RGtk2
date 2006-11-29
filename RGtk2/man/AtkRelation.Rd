@@ -29,8 +29,7 @@ The AtkRelation structure should not be accessed directly.
 Describes the type of the relation  
 
 \describe{
-\item{\code{null}}{\emph{undocumented
-}}
+\item{\code{null}}{ Not used, represens "no relationship" or an error condition.}
 \item{\code{controlled-by}}{ Indicates an object controlled by one or more target objects.}
 \item{\code{controller-for}}{ Indicates an object is an controller for one or more target objects.}
 \item{\code{label-for}}{ Indicates an object is a label for one or more target objects.}
@@ -49,8 +48,9 @@ Describes the type of the relation
  this object's content is visualy embedded in another object.}
 \item{\code{popup-for}}{ Indicates that an object is a popup for another object.}
 \item{\code{parent-window-of}}{ Indicates that an object is a parent window of another object.}
-\item{\code{last-defined}}{\emph{undocumented
-}}
+\item{\code{description-for}}{ Indicates that another object provides descriptive information about this object; more verbose than ATK\_RELATION\_LABELLED\_BY.}
+\item{\code{described-by}}{ Indicates that an object provides descriptive information about another object; more verbose than ATK\_RELATION\_LABEL\_FOR.}
+\item{\code{last-defined}}{ Not used, this value indicates the end of the enumeration.}
 }
 
 }}}

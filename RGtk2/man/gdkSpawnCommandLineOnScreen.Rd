@@ -1,7 +1,7 @@
 \alias{gdkSpawnCommandLineOnScreen}
 \name{gdkSpawnCommandLineOnScreen}
 \title{gdkSpawnCommandLineOnScreen}
-\description{Like \code{g\Spawn\Command\Line\Async()}, except the child process is
+\description{Like \code{gSpawnCommandLineAsync()}, except the child process is
 spawned in such an environment that on calling \code{\link{gdkDisplayOpen}}
 it would be returned a \code{\link{GdkDisplay}} with \code{screen} as the default
 screen.}

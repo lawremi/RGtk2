@@ -1,7 +1,7 @@
 \alias{gtkWidgetCreatePangoContext}
 \name{gtkWidgetCreatePangoContext}
 \title{gtkWidgetCreatePangoContext}
-\description{Creates a new \code{\link{PangoContext}} with the appropriate colormap,
+\description{Creates a new \code{\link{PangoContext}} with the appropriate font map,
 font description, and base direction for drawing text for
 this widget. See also \code{\link{gtkWidgetGetPangoContext}}.}
 \usage{gtkWidgetCreatePangoContext(object)}

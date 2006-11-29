@@ -17,11 +17,6 @@ you can do this in \code{function} as well)... So this function will mostly be
 used by GTK+ wrappers for languages other than C.}
 \value{[numeric] A handle for this quit handler (you need this for \code{\link{gtkQuitRemove}})
   or 0 if you passed a \code{NULL} pointer in \code{function}.}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
+
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,4 +1,4 @@
-; as of pango 1.13.2
+; as of pango 1.13.3 (1.14.7)
 
 (include "../2.8/pango.defs")
 
@@ -32,3 +32,31 @@
   (c-name "pango_font_describe_with_absolute_size")
   (return-type "PangoFontDescription*")
 )
+
+; glyph string
+(define-method get_width
+  (of-object "PangoGlyphString")
+  (c-name "pango_glyph_string_get_width")
+  (return-type "int")
+)
+
+; matrix
+(define-method get_font_scale_factor
+  (of-object "PangoMatrix")
+  (c-name "pango_matrix_get_font_scale_factor")
+  (return-type "double")
+)
+
+; layout
+(define-method index_to_line_x
+  (of-object "PangoLayout")
+  (c-name "pango_layout_index_to_line_x")
+  (return-type "none")
+  (parameters
+    '("int" "index_")
+    '("gboolean" "trailing")
+    '("int*" "line" (out))
+    '("int*" "x_pos" (out))
+  )
+)
+

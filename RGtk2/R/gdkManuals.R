@@ -146,6 +146,14 @@ function()
 	return(w)
 } 
 
+# these virtual wrappers have capitalization issues:
+gdkGCClassGetValues <- function(object.class, object) 
+  gdkGCclassGetValues(object.class, object) 
+gdkGCClassSetDashes <- function(object.class, object, values) 
+  gdkGCclassSetDashes(object.class, object, values) 
+gdkGCClassSetValues <- function(object.class, object, dash.list)
+  gdkGCclassSetValues(object.class, object, dash.list)
+
 gdkDisplaySetPointerHooks <-
 function(object, new.hooks)
 {

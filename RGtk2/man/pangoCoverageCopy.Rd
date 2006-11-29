@@ -6,6 +6,7 @@ since we refcount the structure. Mail otaylor\code{redhat.com} if you
 use it.)}
 \usage{pangoCoverageCopy(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoCoverage}}]  a \code{\link{PangoCoverage}}}}
-\value{[\code{\link{PangoCoverage}}]  a copy of \code{coverage} with a reference count of 1}
+\value{[\code{\link{PangoCoverage}}]  the newly allocated \code{\link{PangoCoverage}},
+              with a reference count of one.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

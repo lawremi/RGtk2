@@ -17,6 +17,7 @@
 \code{\link{gtkLabelGet}(object)}\cr
 \code{\link{gtkLabelParseUline}(object, string)}\cr
 \code{\link{gtkLabelSetLineWrap}(object, wrap)}\cr
+\code{\link{gtkLabelSetLineWrapMode}(object, wrap.mode)}\cr
 \code{\link{gtkLabelGetLayoutOffsets}(object)}\cr
 \code{\link{gtkLabelGetMnemonicKeyval}(object)}\cr
 \code{\link{gtkLabelGetSelectable}(object)}\cr
@@ -34,6 +35,7 @@
 \code{\link{gtkLabelGetLabel}(object)}\cr
 \code{\link{gtkLabelGetLayout}(object)}\cr
 \code{\link{gtkLabelGetLineWrap}(object)}\cr
+\code{\link{gtkLabelGetLineWrapMode}(object)}\cr
 \code{\link{gtkLabelGetMnemonicWidget}(object)}\cr
 \code{\link{gtkLabelGetSelectionBounds}(object)}\cr
 \code{\link{gtkLabelGetUseMarkup}(object)}\cr
@@ -48,12 +50,13 @@
 \code{gtkLabel(str = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----GtkLabel
-                           +----\link{GtkAccelLabel}
-                           +----\link{GtkTipsQuery}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkMisc}
+                           +----GtkLabel
+                                 +----\link{GtkAccelLabel}
+                                 +----\link{GtkTipsQuery}}}
 \section{Interfaces}{GtkLabel implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkLabel}} widget displays a small amount of text. As the name
@@ -110,7 +113,7 @@ The markup passed to \code{\link{gtkLabelSetMarkup}} must be valid; for example,
 literal </>/& characters must be escaped as &lt;,
 &gt;, and &amp;. If you pass text obtained from the user, file,
 or a network to \code{\link{gtkLabelSetMarkup}}, you'll want to escape it with
-\code{g\Markup\Escape\Text()} or \code{g\Markup\Printf\Escaped()}.
+\code{gMarkupEscapeText()} or \code{gMarkupPrintfEscaped()}.
   
 Markup strings are just a convenient way to set the \code{\link{PangoAttrList}} on
 a label; \code{\link{gtkLabelSetAttributes}} may be a simpler way to set
@@ -143,7 +146,8 @@ described below.
 \section{Convenient Construction}{\code{gtkLabel} is the result of collapsing the constructors of \code{GtkLabel} (\code{\link{gtkLabelNew}}, \code{\link{gtkLabelNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
 \item{\code{copy-clipboard(label, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{label}}{[\code{\link{GtkLabel}}] the object which received the signal.}
@@ -152,7 +156,8 @@ described below.
 
 }
 \item{\code{move-cursor(label, arg1, arg2, arg3, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{label}}{[\code{\link{GtkLabel}}] the object which received the signal.}
@@ -164,7 +169,8 @@ described below.
 
 }
 \item{\code{populate-popup(label, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{label}}{[\code{\link{GtkLabel}}] the object which received the signal.}
@@ -291,6 +297,15 @@ max-width-chars property is ignored.
 \item{\code{wrap} [logical : Read / Write]}{
 
 If set, wrap lines if the text becomes too wide.  Default value: FALSE
+
+}
+\item{\code{wrap-mode} [\code{\link{PangoWrapMode}} : Read / Write]}{
+
+If line wrapping is on (see the wrap property) this controls how
+the line wrapping is done. The default is \code{PANGO_WRAP_WORD} which means
+wrap on word boundaries.  
+
+  Default value: PANGO\_WRAP\_WORD  Since  2.10
 
 }
 }}

@@ -3,12 +3,13 @@
 \title{GtkScrollbar}
 \description{Base class for GtkHScrollbar and GtkVScrollbar}
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----GtkScrollbar
-                           +----\link{GtkHScrollbar}
-                           +----\link{GtkVScrollbar}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRange}
+                           +----GtkScrollbar
+                                 +----\link{GtkHScrollbar}
+                                 +----\link{GtkVScrollbar}}}
 \section{Interfaces}{GtkScrollbar implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkScrollbar}} widget is an abstract base class for \code{\link{GtkHScrollbar}} and
@@ -49,7 +50,7 @@ Display a second backward arrow button on the opposite end of the scrollbar.  De
 }
 \item{\code{has-secondary-forward-stepper} [logical : Read]}{
 
-Display a secondary forward arrow button on the opposite end of the scrollbar.  Default value: FALSE
+Display a second forward arrow button on the opposite end of the scrollbar.  Default value: FALSE
 
 }
 \item{\code{min-slider-length} [integer : Read]}{

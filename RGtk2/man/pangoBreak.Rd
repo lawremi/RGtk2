@@ -2,7 +2,8 @@
 \name{pangoBreak}
 \title{pangoBreak}
 \description{Determines possible line, word, and character breaks
-for a string of Unicode text.}
+for a string of Unicode text with a single analysis.  For most
+purposes you may want to use \code{\link{pangoGetLogAttrs}}.}
 \usage{pangoBreak(text, analysis)}
 \arguments{
 \item{\code{text}}{[character]       the text to process}

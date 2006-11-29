@@ -6,6 +6,7 @@ tab list, and text from the original layout are all copied by
 value.}
 \usage{pangoLayoutCopy(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
-\value{[\code{\link{PangoLayout}}]  a new \code{\link{PangoLayout}} identical to \code{src}}
+\value{[\code{\link{PangoLayout}}]  the newly allocated \code{\link{PangoLayout}}, with a reference
+              count of one.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,6 +1,22 @@
-; for atk 1.11.0
+; for atk 1.12.1 (1.12.3)
 
 (include "../2.8/atk.defs")
+
+; for simplicity, we include types together with the methods for ATK from now on
+
+; AtkHyperlinkImpl
+
+(define-interface HyperlinkImpl
+  (in-module "Atk")
+  (c-name "AtkHyperlinkImpl")
+  (gtype-id "ATK_TYPE_HYPERLINK_IMPL")
+)
+
+(define-method get_hyperlink
+  (of-object "AtkHyperlinkImpl")
+  (c-name "atk_hyperlink_impl_get_hyperlink")
+  (return-type "AtkHyperlink*")
+)
 
 ; AtkDocument
 
@@ -59,4 +75,42 @@
   (c-name "atk_object_get_attributes")
   (return-type "AtkAttributeSet*")
 )
+
+; AtkStreamableContent
+
+(define-method get_uri
+  (of-object "AtkStreamableContent")
+  (c-name "atk_streamable_content_get_uri")
+  (parameters
+    '("const-gchar*" "mime_type")
+  )
+  (return-type "gchar*")
+)
+
+; AtkValue
+
+(define-method get_minimum_increment
+  (of-object "AtkValue")
+  (c-name "atk_value_get_minimum_increment")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value" (out))
+  )
+)
+
+; Virtuals
+
+(define-virtual get_minimum_increment
+  (of-object "AtkValue")
+  (return-type "none")
+  (parameters
+    '("GValue*" "value" (out))
+  )
+)
+
+(define-virtual get_hyperlink
+  (of-object "AtkHyperlinkImpl")
+  (return-type "AtkHyperlink*")
+)
+
 

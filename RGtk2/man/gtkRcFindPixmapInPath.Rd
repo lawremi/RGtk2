@@ -3,7 +3,7 @@
 \title{gtkRcFindPixmapInPath}
 \description{Looks up a file in pixmap path for the specified \code{\link{GtkSettings}}.
 If the file is not found, it outputs a warning message using
-\code{g\Warning()} and returns \code{NULL}.}
+\code{gWarning()} and returns \code{NULL}.}
 \usage{gtkRcFindPixmapInPath(settings, scanner = NULL, pixmap.file)}
 \arguments{
 \item{\code{settings}}{[\code{\link{GtkSettings}}]  a \code{\link{GtkSettings}}}

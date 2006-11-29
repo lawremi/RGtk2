@@ -14,7 +14,7 @@ Get the parameters of a cell containing both a pixmap and text.
 \value{
 A list containing the following elements:
 \item{\code{text}}{[character] }
-\item{\code{spacing}}{[integer] }
+\item{\code{spacing}}{[raw] }
 \item{\code{pixmap}}{[\code{\link{GdkPixmap}}] }
 \item{\code{mask}}{[\code{\link{GdkBitmap}}] }
 }

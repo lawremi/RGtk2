@@ -5,7 +5,7 @@
 location of that window in \code{win.x}, \code{win.y}. Returns \code{NULL} if the
 window under the mouse pointer is not known to GDK (if the window
 belongs to another application and a \code{\link{GdkWindow}} hasn't been created
-for it with \code{gdk\Window\Foreign\New()})}
+for it with \code{gdkWindowForeignNew()})}
 \usage{gdkWindowAtPointer()}
 \details{NOTE: For multihead-aware widgets or applications use
 \code{\link{gdkDisplayGetWindowAtPointer}} instead.  }

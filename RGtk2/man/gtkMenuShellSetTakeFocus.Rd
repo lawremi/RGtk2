@@ -22,7 +22,7 @@ programmatically picking a submenu and popping it up manually, the
 Note that setting it to \code{FALSE} has side-effects:
   
 If the focus is in some other app, it keeps the focus and keynav in
-the menu doesn't work.
+the menu doesn't work. Consequently.
   
 To avoid confusing the user, menus with \code{take.focus} set to \code{FALSE}
 should not display mnemonics or accelerators, since it cannot be
@@ -30,6 +30,6 @@ guaranteed that they will work.
   
 See also \code{\link{gdkKeyboardGrab}}  
 
-  Since  2.8.}
+  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

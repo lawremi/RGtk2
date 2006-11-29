@@ -44,7 +44,7 @@ S_PangoAttrFilterFunc(PangoAttribute* s_attribute, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
   tmp = CDR(tmp);
 
-  SETCAR(tmp, asRPangoAttribute(s_attribute));
+  SETCAR(tmp, asRPangoAttributeCopy(s_attribute));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);

@@ -50,6 +50,7 @@
 \code{\link{gtkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)}\cr
 \code{\link{gtkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)}\cr
 \code{\link{gtkWindowSetDecorated}(object, setting)}\cr
+\code{\link{gtkWindowSetDeletable}(object, setting)}\cr
 \code{\link{gtkWindowSetFrameDimensions}(object, left, top, right, bottom)}\cr
 \code{\link{gtkWindowSetHasFrame}(object, setting)}\cr
 \code{\link{gtkWindowSetMnemonicModifier}(object, modifier)}\cr
@@ -61,6 +62,7 @@
 \code{\link{gtkWindowSetAcceptFocus}(object, setting)}\cr
 \code{\link{gtkWindowSetFocusOnMap}(object, setting)}\cr
 \code{\link{gtkWindowGetDecorated}(object)}\cr
+\code{\link{gtkWindowGetDeletable}(object)}\cr
 \code{\link{gtkWindowGetDefaultIconList}()}\cr
 \code{\link{gtkWindowGetDefaultSize}(object)}\cr
 \code{\link{gtkWindowGetDestroyWithParent}(object)}\cr
@@ -82,6 +84,7 @@
 \code{\link{gtkWindowGetUrgencyHint}(object)}\cr
 \code{\link{gtkWindowGetAcceptFocus}(object)}\cr
 \code{\link{gtkWindowGetFocusOnMap}(object)}\cr
+\code{\link{gtkWindowGetGroup}(object)}\cr
 \code{\link{gtkWindowMove}(object, x, y)}\cr
 \code{\link{gtkWindowReshowWithInitialSize}(object)}\cr
 \code{\link{gtkWindowResize}(object, width, height)}\cr
@@ -97,17 +100,20 @@
 \code{gtkWindow(type = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkWindow
-                                 +----\link{GtkDialog}
-                                 +----\link{GtkPlug}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkWindow
+                                       +----\link{GtkDialog}
+                                       +----\link{GtkAssistant}
+                                       +----\link{GtkPlug}}}
 \section{Interfaces}{GtkWindow implements
  AtkImplementorIface.}
 \section{Structures}{\describe{\item{\code{GtkWindow}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{title}}{[character] }
@@ -150,7 +156,8 @@
 \section{Convenient Construction}{\code{gtkWindow} is the equivalent of \code{\link{gtkWindowNew}}.}
 \section{Signals}{\describe{
 \item{\code{activate-default(window, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -159,7 +166,8 @@
 
 }
 \item{\code{activate-focus(window, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -168,7 +176,8 @@
 
 }
 \item{\code{frame-event(window, event, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -178,7 +187,8 @@
 
 }
 \item{\code{keys-changed(window, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -187,7 +197,8 @@
 
 }
 \item{\code{move-focus(window, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -197,7 +208,8 @@
 
 }
 \item{\code{set-focus(window, widget, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
@@ -238,6 +250,13 @@ The default height of the window, used when initially showing the window.  Allow
 \item{\code{default-width} [integer : Read / Write]}{
 
 The default width of the window, used when initially showing the window.  Allowed values: >= -1  Default value: -1
+
+}
+\item{\code{deletable} [logical : Read / Write]}{
+
+Whether the window frame should have a close button.  
+
+  Default value: TRUE  Since  2.10
 
 }
 \item{\code{destroy-with-parent} [logical : Read / Write]}{
@@ -314,6 +333,14 @@ TRUE if the window should not be in the task bar.  Default value: FALSE
 \item{\code{title} [character : Read / Write]}{
 
 The title of the window.  Default value: NULL
+
+}
+\item{\code{transient-for} [\code{\link{GtkWindow}} : Read / Write / Construct]}{
+
+The transient parent of the window. See \code{\link{gtkWindowSetTransientFor}} for
+more details about transient windows.  
+
+  Since  2.10
 
 }
 \item{\code{type} [\code{\link{GtkWindowType}} : Read / Write / Construct Only]}{

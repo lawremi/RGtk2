@@ -72,8 +72,6 @@ Defines the position and size of a rectangle.
 }
 \item{\code{GdkRegion}}{
 A GdkRegion represents a set of pixels on the screen.
-The only user-visible field of the structure is the user\_data member, which
-can be used to attach arbitrary data to the \code{\link{GdkRegion}}.
 
 }
 \item{\code{GdkSpan}}{

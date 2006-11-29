@@ -30,12 +30,13 @@
 \code{gtkColorSelection(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkVBox}
-                                 +----GtkColorSelection}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkVBox}
+                                       +----GtkColorSelection}}
 \section{Interfaces}{GtkColorSelection implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkColorSelection}} is a widget that is used to select 
@@ -51,7 +52,8 @@ and should be accessed using the functions below.
 \section{Convenient Construction}{\code{gtkColorSelection} is the equivalent of \code{\link{gtkColorSelectionNew}}.}
 \section{User Functions}{\describe{
 \item{\code{GtkColorSelectionChangePaletteFunc(colors, n.colors)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{colors}}{[\code{\link{GdkColor}}] }

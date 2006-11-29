@@ -11,7 +11,7 @@
 }
 \usage{
 names.GtkObject(x)
-gtkObjectGetArgInfo(obj, parents=TRUE, collapse=FALSE)
+gtkObjectGetArgInfo(obj, parents=TRUE, collapse=TRUE)
 }
 \arguments{
   \item{x}{the Gtk object the names of whose properties are to be queried}
@@ -64,7 +64,7 @@ gtkObjectGetArgInfo(obj, parents=TRUE, collapse=FALSE)
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 
 }

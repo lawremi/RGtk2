@@ -1,7 +1,8 @@
 \alias{gtkActionGetProxies}
 \name{gtkActionGetProxies}
 \title{gtkActionGetProxies}
-\description{Returns the proxy widgets for an action.}
+\description{Returns the proxy widgets for an action.
+See also \code{\link{gtkWidgetGetAction}}.}
 \usage{gtkActionGetProxies(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}}
 \details{  Since  2.4}

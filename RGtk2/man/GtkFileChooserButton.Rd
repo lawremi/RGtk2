@@ -11,17 +11,20 @@
 \code{\link{gtkFileChooserButtonSetTitle}(object, title)}\cr
 \code{\link{gtkFileChooserButtonGetWidthChars}(object)}\cr
 \code{\link{gtkFileChooserButtonSetWidthChars}(object, n.chars)}\cr
+\code{\link{gtkFileChooserButtonGetFocusOnClick}(object)}\cr
+\code{\link{gtkFileChooserButtonSetFocusOnClick}(object, focus.on.click)}\cr
 \code{gtkFileChooserButton(title, action, backend, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkFileChooserButton}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkHBox}
+                                       +----GtkFileChooserButton}}
 \section{Interfaces}{GtkFileChooserButton implements
- AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
+ \code{\link{GtkFileChooser}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFileChooserButton}} is a widget that lets the user select a
 file.  It implements the \code{\link{GtkFileChooser}} interface.  Visually, it is a
 file name with a button to bring up a \code{\link{GtkFileChooserDialog}}.
@@ -52,6 +55,14 @@ This should not be accessed directly.  Use the accessor functions below.
 Instance of the \code{\link{GtkFileChooserDialog}} associated with the button.  
 
   Since  2.6
+
+}
+\item{\code{focus-on-click} [logical : Read / Write]}{
+
+Whether the \code{\link{GtkFileChooserButton}} button grabs focus when it is clicked
+with the mouse.  
+
+  Default value: TRUE  Since  2.10
 
 }
 \item{\code{title} [character : Read / Write]}{

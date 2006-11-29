@@ -41,12 +41,12 @@ that were realized in the call.
 }
 
 \examples{
- gtkInit()
- w <- gtkWindow(show = FALSE) 
- b <- gtkButton("Hit me") # automatically shown in the creation.
- w$Add(b)
-
- gtkShow(w)
+  if (gtkInit()) {
+    w <- gtkWindow(show = FALSE) 
+    b <- gtkButton("Hit me") # automatically shown in the creation.
+    w$add(b)
+    gtkShow(w)
+  }
 }
 
 \keyword{interface}

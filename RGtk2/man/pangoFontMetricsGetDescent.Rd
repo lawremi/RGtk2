@@ -8,6 +8,6 @@ actual drawn ink. It is necessary to lay out the text to figure
 where the ink will be.)}
 \usage{pangoFontMetricsGetDescent(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} structure}}
-\value{[integer]  the descent, in pango units. (1 point == \code{PANGO_SCALE} pango units.)}
+\value{[integer]  the descent, in Pango units. (1 point == \code{PANGO_SCALE} Pango units.)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

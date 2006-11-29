@@ -51,8 +51,11 @@ only emit one signal when a range of rows is selected.  Additionally, it
 may on occasion emit a "changed" signal when nothing has happened
 (mostly as a result of programmers calling select\_row on an already
 selected row).}
-\section{Structures}{\describe{\item{\code{GtkTreeSelection}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkTreeSelection}}{
+\emph{undocumented
+}
+
+}}}
 \section{User Functions}{\describe{
 \item{\code{GtkTreeSelectionFunc(selection, model, path, path.currently.selected, data)}}{
 A function used by \code{\link{gtkTreeSelectionSetSelectFunction}} to filter

@@ -9,11 +9,12 @@
 \code{gtkHScale(adjustment = NULL, min, max, step, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----\link{GtkScale}
-                           +----GtkHScale}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRange}
+                           +----\link{GtkScale}
+                                 +----GtkHScale}}
 \section{Interfaces}{GtkHScale implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHScale}} widget is used to allow the user to select a value using

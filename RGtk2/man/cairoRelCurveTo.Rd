@@ -20,6 +20,10 @@ point will be offset by (\code{dx3}, \code{dy3}).}
 \details{Given a current point of (x, y), cairo\_rel\_curve\_to (\code{cr}, \code{dx1},
 \code{dy1}, \code{dx2}, \code{dy2}, \code{dx3}, \code{dy3}) is logically equivalent to
 cairo\_curve\_to (\code{cr}, x + \code{dx1}, y + \code{dy1}, x + \code{dx2}, y + \code{dy2}, x +
-\code{dx3}, y + \code{dy3}).  }
+\code{dx3}, y + \code{dy3}).
+  
+It is an error to call this function with no current point. Doing
+so will cause \code{cr} to shutdown with a status of
+CAIRO\_STATUS\_NO\_CURRENT\_POINT.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

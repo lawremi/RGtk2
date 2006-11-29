@@ -67,9 +67,23 @@ insertion and deletion, and not fast at random data access.  The
 \code{\link{GtkListStore}} sets the \code{GTK_TREE_MODEL_ITERS_PERSIST} flag, which means
 that \code{\link{GtkTreeIter}}s can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
-run on older versions of GTK+, it is worth keeping the iter around.}
-\section{Structures}{\describe{\item{\code{GtkListStore}}{\emph{undocumented
-}}}}
+run on older versions of GTK+, it is worth keeping the iter around.
+  
+It is important to note that only the methods \code{gtk.list.store.insert.with.values} and
+\code{gtk.list.store.insert.with.valuesv} are atomic, in the sense that the row is being appended
+to the store and the values filled in in a single operation with regard to \code{\link{GtkTreeModel}} signaling.
+In contrast, using e.g. \code{gtk.list.store.append} and then \code{gtk.list.store.set} will first create a row,
+which triggers the "row\_inserted" \code{\link{GtkTreeModel}} signal on \code{\link{GtkListStore}}. The row, however, is still
+empty, and any signal handler connecting to "row\_inserted" on this particular store should be prepared
+for the situation that the row might be empty.
+This is especially important if you are wrapping the \code{\link{GtkListStore}} inside a \code{\link{GtkTreeModelFilter}} and are
+using a \code{\link{GtkTreeModelFilterVisibleFunc}}. Using any of the non-atomic operations to append rows to the \code{\link{GtkListStore}}
+will cause the \code{\link{GtkTreeModelFilterVisibleFunc}} to be visited with an empty row first; the function must be prepared for that.}
+\section{Structures}{\describe{\item{\code{GtkListStore}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkListStore} is the result of collapsing the constructors of \code{GtkListStore} (\code{\link{gtkListStoreNew}}, \code{\link{gtkListStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkListStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

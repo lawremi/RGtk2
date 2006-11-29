@@ -43,7 +43,8 @@
 \description{Public enumerated types used throughout GTK+}
 \section{Enums and Flags}{\describe{
 \item{\code{GtkAccelFlags}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{visible}}{\emph{undocumented
@@ -56,7 +57,8 @@
 
 }
 \item{\code{GtkAnchorType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{center}}{\emph{undocumented
@@ -152,7 +154,8 @@ widget.}
 
 }
 \item{\code{GtkCurveType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{linear}}{\emph{undocumented
@@ -165,7 +168,8 @@ widget.}
 
 }
 \item{\code{GtkDeleteType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{chars}}{\emph{undocumented
@@ -188,7 +192,8 @@ widget.}
 
 }
 \item{\code{GtkDirectionType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{tab-forward}}{\emph{undocumented
@@ -218,7 +223,8 @@ Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 
 }
 \item{\code{GtkIMPreeditStyle}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{nothing}}{\emph{undocumented
@@ -231,7 +237,8 @@ Used to specify the style of the expanders drawn by a \code{\link{GtkTreeView}}.
 
 }
 \item{\code{GtkIMStatusStyle}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{nothing}}{\emph{undocumented
@@ -255,7 +262,8 @@ Used for justifying the text inside a \code{\link{GtkLabel}} widget. (See also
 }
 \item{\code{GtkMatchType}}{
 \strong{WARNING: \code{GtkMatchType} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{all}}{\emph{undocumented
@@ -284,7 +292,8 @@ Used to indicate which metric is used by a \code{\link{GtkRuler}}.
 
 }
 \item{\code{GtkMovementStep}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{logical-positions}}{\emph{undocumented
@@ -331,7 +340,8 @@ Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link
 
 }
 \item{\code{GtkPathPriorityType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{lowest}}{\emph{undocumented
@@ -350,7 +360,8 @@ Represents the packing location \code{\link{GtkBox}} children. (See: \code{\link
 
 }
 \item{\code{GtkPathType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{widget}}{\emph{undocumented
@@ -408,7 +419,8 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 
 }
 \item{\code{GtkResizeMode}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{parent}}{\emph{undocumented
@@ -420,7 +432,8 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 
 }
 \item{\code{GtkScrollStep}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{steps}}{\emph{undocumented
@@ -439,7 +452,8 @@ Indicated the relief to be drawn around a \code{\link{GtkButton}}.
 
 }
 \item{\code{GtkScrollType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{none}}{\emph{undocumented
@@ -504,16 +518,15 @@ Used to change the appearance of an outline typically provided by a \code{\link{
 \item{\code{none}}{No outline.}
 \item{\code{in}}{The outline is bevelled inwards.}
 \item{\code{out}}{The outline is bevelled outwards like a button.}
-\item{\code{etched-in}}{The outline itself is an inward bevel, but the frame
-does}
-\item{\code{etched-out}}{\emph{undocumented
-}}
+\item{\code{etched-in}}{The outline has a sunken 3d appearance.}
+\item{\code{etched-out}}{The outline has a raised 3d appearance}
 }
 
 }
 \item{\code{GtkSideType}}{
 \strong{WARNING: \code{GtkSideType} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{top}}{\emph{undocumented
@@ -557,7 +570,8 @@ Indicates the direction a sub-menu will appear.
 }
 \item{\code{GtkSubmenuPlacement}}{
 \strong{WARNING: \code{GtkSubmenuPlacement} is deprecated and should not be used in newly-written code.}
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{top-bottom}}{\emph{undocumented
@@ -570,7 +584,9 @@ Indicates the direction a sub-menu will appear.
 \item{\code{GtkToolbarStyle}}{
 Used to customize the appearance of a \code{\link{GtkToolbar}}. Note that 
 setting the toolbar style overrides the user's preferences
-for the default toolbar style.
+for the default toolbar style.  Note that if the button has only
+a label set and GTK\_TOOLBAR\_ICONS is used, the label will be
+visible, and vice versa.
 
 \describe{
 \item{\code{icons}}{Buttons display only icons in the toolbar.}
@@ -582,7 +598,8 @@ other, rather than vertically stacked}
 
 }
 \item{\code{GtkUpdateType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{continuous}}{\emph{undocumented

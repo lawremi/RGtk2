@@ -2729,6 +2729,21 @@ S_cairo_new_sub_path(USER_OBJECT_ s_cr)
  
 
 USER_OBJECT_
+S_cairo_set_scaled_font(USER_OBJECT_ s_cr, USER_OBJECT_ s_scaled_font)
+{
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_set_scaled_font(cr, scaled_font);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
 S_cairo_scaled_font_get_font_face(USER_OBJECT_ s_scaled_font)
 {
   cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
@@ -2755,7 +2770,7 @@ S_cairo_scaled_font_get_font_matrix(USER_OBJECT_ s_scaled_font)
   cairo_scaled_font_get_font_matrix(scaled_font, font_matrix);
 
 
-  _result = retByVal(_result, "font_matrix", toRPointerWithFinalizer(font_matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  _result = retByVal(_result, "font.matrix", toRPointerWithFinalizer(font_matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
 
   return(_result);
 }
@@ -2773,6 +2788,438 @@ S_cairo_scaled_font_get_ctm(USER_OBJECT_ s_scaled_font)
 
 
   _result = retByVal(_result, "ctm", toRPointerWithFinalizer(ctm, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_scaled_font_get_font_options(USER_OBJECT_ s_scaled_font)
+{
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  cairo_font_options_t* options = cairo_font_options_create();
+
+  cairo_scaled_font_get_font_options(scaled_font, options);
+
+
+  _result = retByVal(_result, "options", toRPointerWithFinalizer(options, "CairoFontOptions", (RPointerFinalizer) cairo_font_options_destroy), NULL);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_scaled_font_text_extents(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_utf8)
+{
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+  const char* utf8 = ((const char*)asCString(s_utf8));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  cairo_text_extents_t* extents = ((cairo_text_extents_t *)g_new0(cairo_text_extents_t, 1));
+
+  cairo_scaled_font_text_extents(scaled_font, utf8, extents);
+
+
+  _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_scaled_font_get_type(USER_OBJECT_ s_scaled_font)
+{
+  cairo_scaled_font_t* scaled_font = ((cairo_scaled_font_t*)getPtrValue(s_scaled_font));
+
+  cairo_font_type_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_scaled_font_get_type(scaled_font);
+
+  _result = asREnum(ans, CAIRO_TYPE_FONT_TYPE);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_font_face_get_type(USER_OBJECT_ s_font_face)
+{
+  cairo_font_face_t* font_face = ((cairo_font_face_t*)getPtrValue(s_font_face));
+
+  cairo_font_type_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_font_face_get_type(font_face);
+
+  _result = asREnum(ans, CAIRO_TYPE_FONT_TYPE);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_get_type(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  cairo_surface_type_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_surface_get_type(surface);
+
+  _result = asREnum(ans, CAIRO_TYPE_SURFACE_TYPE);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_get_device_offset(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  double x_offset;
+  double y_offset;
+
+  cairo_surface_get_device_offset(surface, &x_offset, &y_offset);
+
+
+  _result = retByVal(_result, "x.offset", asRNumeric(x_offset), "y.offset", asRNumeric(y_offset), NULL);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_set_fallback_resolution(USER_OBJECT_ s_surface, USER_OBJECT_ s_x_pixels_per_inch, USER_OBJECT_ s_y_pixels_per_inch)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  double x_pixels_per_inch = ((double)asCNumeric(s_x_pixels_per_inch));
+  double y_pixels_per_inch = ((double)asCNumeric(s_y_pixels_per_inch));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_surface_set_fallback_resolution(surface, x_pixels_per_inch, y_pixels_per_inch);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_get_content(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  cairo_content_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_surface_get_content(surface);
+
+  _result = asREnum(ans, CAIRO_TYPE_CONTENT);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_image_surface_get_format(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  cairo_format_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_image_surface_get_format(surface);
+
+  _result = asREnum(ans, CAIRO_TYPE_FORMAT);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_image_surface_get_stride(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  int ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_image_surface_get_stride(surface);
+
+  _result = asRInteger(ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_image_surface_get_data(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  guchar* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_image_surface_get_data(surface);
+
+  _result = asRRawArray(ans);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_pattern_get_type(USER_OBJECT_ s_pattern)
+{
+  cairo_pattern_t* pattern = ((cairo_pattern_t*)getPtrValue(s_pattern));
+
+  cairo_pattern_type_t ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_pattern_get_type(pattern);
+
+  _result = asREnum(ans, CAIRO_TYPE_PATTERN_TYPE);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_pdf_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  const gchar* filename = ((const gchar*)asCString(s_filename));
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_pdf_surface_create(filename, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_pdf_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  cairo_write_func_t write_func = ((cairo_write_func_t)S_cairo_write_func_t);
+  R_CallbackData* closure = R_createCBData(s_write_func, s_closure);
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_pdf_surface_create_for_stream(write_func, closure, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+  R_freeCBData(closure);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_pdf_surface_set_size(USER_OBJECT_ s_surface, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_pdf_surface_set_size(surface, width_in_points, height_in_points);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  const char* filename = ((const char*)asCString(s_filename));
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_ps_surface_create(filename, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  cairo_write_func_t write_func = ((cairo_write_func_t)S_cairo_write_func_t);
+  R_CallbackData* closure = R_createCBData(s_write_func, s_closure);
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_ps_surface_create_for_stream(write_func, closure, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+  R_freeCBData(closure);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_set_size(USER_OBJECT_ s_surface, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_ps_surface_set_size(surface, width_in_points, height_in_points);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_dsc_comment(USER_OBJECT_ s_surface, USER_OBJECT_ s_comment)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  const char* comment = ((const char*)asCString(s_comment));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_ps_surface_dsc_comment(surface, comment);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_dsc_begin_setup(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_ps_surface_dsc_begin_setup(surface);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_dsc_begin_page_setup(USER_OBJECT_ s_surface)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_ps_surface_dsc_begin_page_setup(surface);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_svg_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  const char* filename = ((const char*)asCString(s_filename));
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_svg_surface_create(filename, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_svg_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points)
+{
+  cairo_write_func_t write_func = ((cairo_write_func_t)S_cairo_write_func_t);
+  R_CallbackData* closure = R_createCBData(s_write_func, s_closure);
+  double width_in_points = ((double)asCNumeric(s_width_in_points));
+  double height_in_points = ((double)asCNumeric(s_height_in_points));
+
+  cairo_surface_t* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_svg_surface_create_for_stream(write_func, closure, width_in_points, height_in_points);
+
+  _result = toRPointerWithCairoRef(ans, "CairoSurface", cairo_surface);
+  R_freeCBData(closure);
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_svg_surface_restrict_to_version(USER_OBJECT_ s_surface, USER_OBJECT_ s_version)
+{
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  cairo_svg_version_t version = ((cairo_svg_version_t)asCEnum(s_version, CAIRO_TYPE_SVG_VERSION));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_svg_surface_restrict_to_version(surface, version);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions)
+{
+  cairo_svg_version_t const** versions = ((cairo_svg_version_t const**)getPtrValue(s_versions));
+  int* num_versions = ((int*)asCArray(s_num_versions, int, asCInteger));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  cairo_svg_get_versions(versions, num_versions);
+
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_svg_version_to_string(USER_OBJECT_ s_version)
+{
+  cairo_svg_version_t version = ((cairo_svg_version_t)asCEnum(s_version, CAIRO_TYPE_SVG_VERSION));
+
+  const char* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = cairo_svg_version_to_string(version);
+
+  _result = asRString(ans);
 
   return(_result);
 }

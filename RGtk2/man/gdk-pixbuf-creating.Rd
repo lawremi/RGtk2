@@ -30,7 +30,7 @@
     function to create a pixbuf from inline XPM image data.
     
     You can also copy an existing pixbuf with the \code{\link{gdkPixbufCopy}}
-    function.  This is not the same as just doing a \code{g\Object\Ref()}
+    function.  This is not the same as just doing a \code{gObjectRef()}
     on the old pixbuf; the copy function will actually duplicate the
     pixel data in memory and create a new \code{\link{GdkPixbuf}} structure for it.
   }

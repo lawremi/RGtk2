@@ -12,11 +12,12 @@
 \code{gtkEventBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkEventBox}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkEventBox}}
 \section{Interfaces}{GtkEventBox implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkEventBox}} widget is a subclass of \code{\link{GtkBin}} which also has its own window.

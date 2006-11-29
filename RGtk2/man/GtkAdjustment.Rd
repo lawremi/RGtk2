@@ -13,8 +13,9 @@
 \code{gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkAdjustment}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----GtkAdjustment}}
 \section{Detailed Description}{The \code{\link{GtkAdjustment}} object represents a value which has an associated lower
 and upper bound, together with step and page increments, and a page size.
 It is used within several GTK+ widgets, including

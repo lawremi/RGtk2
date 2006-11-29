@@ -912,7 +912,7 @@ S_gtk_tree_path_get_indices(USER_OBJECT_ s_object)
 /* reason: discard text length parameter and handle in-out position
 	it's probably too much trouble to add automatic in-out support, especially
 	because it only affects primitive types
-	- why couldn't they just return that by value? */
+	- why couldn't they just return that by value? C-level convenience.. */
 USER_OBJECT_
 S_gtk_editable_insert_text(USER_OBJECT_ s_object, USER_OBJECT_ s_new_text, USER_OBJECT_ s_position)
 {
@@ -1449,4 +1449,29 @@ S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ 
 	UNPROTECT(1);
 
 	return(result);
+}
+
+/* problem: the user data in the GtkTreeIter must be statically allocated */
+/* there's no way to 'free' a GtkTreeIter, so we will leak memory if
+   we PreserveObject() here. unfortunately, we crash otherwise. */
+/* thus, we just pass an integer.. which can serve as an index into some
+   structure in the R environment */
+USER_OBJECT_
+S_gtk_tree_iter_set_id(USER_OBJECT_ s_iter, USER_OBJECT_ s_data)
+{
+  GtkTreeIter *iter = getPtrValue(s_iter);
+  gint index = asCInteger(s_data);
+  iter->user_data2 = GINT_TO_POINTER(R_GTK_TYPE_SEXP);
+  iter->user_data = GINT_TO_POINTER(index);
+  return NULL_USER_OBJECT;
+}
+USER_OBJECT_
+S_gtk_tree_iter_get_id(USER_OBJECT_ s_iter)
+{
+  GtkTreeIter *iter = getPtrValue(s_iter);
+  /* this serves as a flag to try to ensure people don't get data from the
+     wrong iter */
+  if (GPOINTER_TO_INT(iter->user_data2) == R_GTK_TYPE_SEXP)
+    return asRInteger(GPOINTER_TO_INT(iter->user_data));
+  return NULL_USER_OBJECT;
 }

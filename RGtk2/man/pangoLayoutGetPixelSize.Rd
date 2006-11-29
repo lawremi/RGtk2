@@ -3,8 +3,9 @@
 \title{pangoLayoutGetPixelSize}
 \description{Determines the logical width and height of a \code{\link{PangoLayout}}
 in device units. (\code{\link{pangoLayoutGetSize}} returns the width
-and height in thousandths of a device unit.) This
-is simply a convenience function around \code{\link{pangoLayoutGetExtents}}.}
+and height scaled by \code{PANGO_SCALE}.) This
+is simply a convenience function around
+\code{\link{pangoLayoutGetPixelExtents}}.}
 \usage{pangoLayoutGetPixelSize(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
 \value{

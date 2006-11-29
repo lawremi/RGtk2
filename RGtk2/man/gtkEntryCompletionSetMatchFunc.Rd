@@ -10,6 +10,6 @@ list.}
 \item{\code{func}}{[\code{\link{GtkEntryCompletionMatchFunc}}]  The \code{\link{GtkEntryCompletionMatchFunc}} to use.}
 \item{\code{func.data}}{[R object]  The user data for \code{func}.}
 }
-\details{  Since  2.4.}
+\details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

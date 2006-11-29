@@ -3,7 +3,7 @@
 \title{gtkItemFactoryGetItem}
 \description{
 Obtains the menu item which corresponds to \code{path}. 
-\strong{WARNING: \code{gtk_item_factory_get_item} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_get_item} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryGetItem(object, path)}
 \arguments{

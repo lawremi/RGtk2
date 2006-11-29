@@ -21,20 +21,21 @@
 \code{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkToolItem}
-                                 +----GtkToolButton
-                                       +----\link{GtkMenuToolButton}
-                                       +----\link{GtkToggleToolButton}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkToolItem}
+                                       +----GtkToolButton
+                                             +----\link{GtkMenuToolButton}
+                                             +----\link{GtkToggleToolButton}}}
 \section{Interfaces}{GtkToolButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
   
 Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
-\code{gtk\Tool\Button\New\With\Stock()} to create a \code{\link{GtkToolButton}}
+\code{gtkToolButtonNewWithStock()} to create a \code{\link{GtkToolButton}}
 containing a stock item.
   
 The label of a \code{\link{GtkToolButton}} is determined by the properties
@@ -101,6 +102,11 @@ If set, an underline in the label property indicates that the next character sho
 
 }
 }}
+\section{Style Properties}{\describe{\item{\code{icon-spacing} [integer : Read / Write]}{
+
+Spacing in pixels between the icon and label.  Allowed values: >= 0  Default value: 0
+
+}}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkToolButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2,7 +2,7 @@
 \name{pangoLayoutGetSize}
 \title{pangoLayoutGetSize}
 \description{Determines the logical width and height of a \code{\link{PangoLayout}}
-in Pango units. (device units divided by \code{PANGO_SCALE}). This
+in Pango units. (device units scaled by \code{PANGO_SCALE}). This
 is simply a convenience function around \code{\link{pangoLayoutGetExtents}}.}
 \usage{pangoLayoutGetSize(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}

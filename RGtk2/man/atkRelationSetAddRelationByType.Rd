@@ -11,6 +11,6 @@ is added to the relation.}
 \item{\code{relationship}}{[\code{\link{AtkRelationType}}]  an \code{\link{AtkRelationType}}}
 \item{\code{target}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 }
-\details{  Since  1.9}
+\details{  Since  ATK 1.9}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

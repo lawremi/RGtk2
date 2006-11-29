@@ -3,7 +3,7 @@
 \title{gtkTextBufferCreateTag}
 \description{Creates a tag and adds it to the tag table for \code{buffer}.
 Equivalent to calling \code{\link{gtkTextTagNew}} and then adding the
-tag to the buffer's tag table.}
+tag to the buffer's tag table, so the ref count will be equal to one.}
 \usage{gtkTextBufferCreateTag(object, tag.name, ...)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}

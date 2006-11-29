@@ -9,8 +9,8 @@ primarily for performance reasons.}
 \item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}}.}
 }
-\details{This function is primarily meant as a way for views to let caching model know
-when nodes are being displayed (and hence, whether or not to cache that
+\details{This function is primarily meant as a way for views to let caching model 
+know when nodes are being displayed (and hence, whether or not to cache that
 node.)  For example, a file-system based model would not want to keep the
 entire file-hierarchy in memory, just the sections that are currently being
 displayed by every current view.

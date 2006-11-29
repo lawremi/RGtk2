@@ -8,6 +8,7 @@ See \code{\link{gtkClipboardGetForDisplay}} for complete details.}
             to use.}}
 \value{[\code{\link{GtkClipboard}}]  the appropriate clipboard object. If no
             clipboard already exists, a new one will
-            be created.}
+            be created. Once a clipboard object has
+            been created, it is persistent and.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

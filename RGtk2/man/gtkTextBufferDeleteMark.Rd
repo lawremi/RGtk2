@@ -2,7 +2,8 @@
 \name{gtkTextBufferDeleteMark}
 \title{gtkTextBufferDeleteMark}
 \description{Deletes \code{mark}, so that it's no longer located anywhere in the
-buffer. There is no way to undelete a
+buffer. Removes the reference the buffer holds to the mark, most operations on \code{mark} become
+invalid. There is no way to undelete a
 mark. \code{\link{gtkTextMarkGetDeleted}} will return TRUE after this
 function has been called on a mark; \code{\link{gtkTextMarkGetDeleted}}
 indicates that a mark no longer belongs to a buffer. The "mark\_deleted"

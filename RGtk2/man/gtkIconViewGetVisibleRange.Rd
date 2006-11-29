@@ -5,9 +5,9 @@
 Note that there may be invisible paths in between.}
 \usage{gtkIconViewGetVisibleRange(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}}}
-\details{  
+\details{.  
 
-  Since  2.8.}
+  Since  2.8}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE}, if valid paths were placed in \code{start.path} and \code{end.path}}

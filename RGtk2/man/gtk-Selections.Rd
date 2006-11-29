@@ -11,8 +11,10 @@
 \code{\link{gtkTargetListAddTextTargets}(list, info)}\cr
 \code{\link{gtkTargetListAddImageTargets}(list, info, writable)}\cr
 \code{\link{gtkTargetListAddUriTargets}(list, info)}\cr
+\code{\link{gtkTargetListAddRichTextTargets}(list, info, deserializable, buffer)}\cr
 \code{\link{gtkTargetListRemove}(object, target)}\cr
 \code{\link{gtkTargetListFind}(object, target)}\cr
+\code{\link{gtkTargetTableNewFromList}(list)}\cr
 \code{\link{gtkSelectionOwnerSet}(object, selection, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gtkSelectionOwnerSetForDisplay}(display, widget = NULL, selection, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gtkSelectionAddTarget}(object, selection, target, info)}\cr
@@ -29,7 +31,14 @@
 \code{\link{gtkSelectionDataGetTargets}(object)}\cr
 \code{\link{gtkSelectionDataTargetsIncludeImage}(object, writable)}\cr
 \code{\link{gtkSelectionDataTargetsIncludeText}(object)}\cr
+\code{\link{gtkSelectionDataTargetsIncludeUri}(object)}\cr
+\code{\link{gtkSelectionDataTargetsIncludeRichText}(object, buffer)}\cr
+\code{\link{gtkTargetsIncludeImage}(targets, writable)}\cr
+\code{\link{gtkTargetsIncludeText}(targets)}\cr
+\code{\link{gtkTargetsIncludeUri}(targets)}\cr
+\code{\link{gtkTargetsIncludeRichText}(targets, buffer)}\cr
 \code{\link{gtkSelectionRemoveAll}(object)}\cr
+\code{\link{gtkSelectionClear}(object, event)}\cr
 \code{\link{gtkSelectionClear}(object, event)}\cr
 \code{\link{gtkSelectionDataCopy}(object)}\cr
 }
@@ -58,6 +67,12 @@ ID will later be passed as a signal parameter for signals
 like "selection\_get". It allows the application to identify
 the target type without extensive string compares.
 \strong{\code{GtkTargetEntry} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{target}}{[character] }
+\item{\code{flags}}{[numeric] }
+\item{\code{info}}{[integer] }
+}
 
 }
 \item{\code{GtkTargetList}}{

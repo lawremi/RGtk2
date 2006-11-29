@@ -13,6 +13,8 @@
 \code{\link{gtkTreeStoreInsert}(object, parent = NULL, position)}\cr
 \code{\link{gtkTreeStoreInsertBefore}(object, parent, sibling)}\cr
 \code{\link{gtkTreeStoreInsertAfter}(object, parent, sibling)}\cr
+\code{\link{gtkTreeStoreInsertWithValues}(object, parent, position, ...)}\cr
+\code{\link{gtkTreeStoreInsertWithValuesv}(object, parent, position, columns, values)}\cr
 \code{\link{gtkTreeStorePrepend}(object, parent = NULL)}\cr
 \code{\link{gtkTreeStoreAppend}(object, parent = NULL)}\cr
 \code{\link{gtkTreeStoreIsAncestor}(object, iter, descendant)}\cr
@@ -35,8 +37,11 @@ can use all of the methods available there.  It also implements the
 \code{\link{GtkTreeSortable}} interface so it can be sorted by the view.  Finally,
 it also implements the tree drag and
 drop interfaces.}
-\section{Structures}{\describe{\item{\code{GtkTreeStore}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkTreeStore}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkTreeStore} is the result of collapsing the constructors of \code{GtkTreeStore} (\code{\link{gtkTreeStoreNew}}, \code{\link{gtkTreeStoreNewv}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

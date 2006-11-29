@@ -8,8 +8,7 @@ timeouts, etc, may be dispatched during the wait.}
 \usage{gtkClipboardWaitForImage(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}}
 \details{  Since  2.6}
-\value{[\code{\link{GdkPixbuf}}]  a newly-allocated \code{\link{GdkPixbuf}} object which must
-              be disposed with \code{g\Object\Unref()}, or \code{NULL} if 
+\value{[\code{\link{GdkPixbuf}}] , or \code{NULL} if 
               retrieving the selection data failed. (This 
               could happen for various reasons, in particular 
               if the clipboard was empty or if the contents of 

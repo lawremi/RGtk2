@@ -9,7 +9,7 @@ width and other aspects.}
 \value{
 A list containing the following elements:
 \item{\code{faces}}{[\code{\link{PangoFontFace}}]  location to store a list of pointers to \code{\link{PangoFontFace}}
-  objects, or \code{NULL}. This list should be freed with \code{g\Free()}
+  objects, or \code{NULL}. This list should be freed with \code{gFree()}
   when it is no longer needed.}
 \item{\code{n.faces}}{[integer]  location to store number of elements in \code{faces}.}
 }

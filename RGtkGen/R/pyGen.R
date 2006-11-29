@@ -134,6 +134,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   }
   convertVirtual <- function(virtual) {
     f <- c(convertCall(virtual), ofobject = virtual[["of_object"]])
+    f$vname <- f$name
     f$name <-  paste(collapseClassName(f$ofobject), "_", f$name, sep="")
     class(f) <- "VirtualDef"
     f
@@ -504,6 +505,11 @@ function(type)
 {
     length(grep("Class$",type)) > 0
 }
+isIface <-
+function(type)
+{
+  length(grep("Iface$",type)) > 0
+}
 
 isCairoType <-
 function(type)
@@ -554,8 +560,15 @@ function(type, defs)
 isMethod <-
 function(fun)
 {
-    inherits(fun, "MethodDef")
+    inherits(fun, "MethodDef") | inherits(fun, "VirtualDef")
 }
+
+isVirtual <-
+function(fun)
+{
+  inherits(fun, "VirtualDef")
+}
+
 # do the defs define this constructor as a generic property-based constructor?
 # ie, do we have to use g_object_new?
 isPropertyConstructor <-
@@ -937,7 +950,7 @@ returnValue <- function(name = "_result") {
     invoke("return", name)
 }
 
-# this isn't required anymore but for older versions, ok
+# this isn't required anymore but it's sort of conventional
 nameToS <-
 function(name)
 {
@@ -1080,6 +1093,8 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
 
   if (isMethod(fun)) # method definitions leave off the object (first parameter)
       inParams <- c(object=makeObjectParam(fun$ofobject), inParams)
+  if (isVirtual(fun))
+     inParams <- c(object_class=makeObjectParam(toClassType(fun$ofobject, defs)), inParams)
 
   sargs <- list()
   coerce <- NULL
@@ -1130,9 +1145,9 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     txt <- c(txt,
     ind(coerce),
     "",
-    ind(rassign("w", invoke(".RGtkCall", c(lit(nameToC(name)), nameToS(names(inParams)))))))
-    
-    # named("PACKAGE", lit(package))
+    ind(rassign("w", invoke(".RGtkCall", c(lit(nameToC(name)), nameToS(names(inParams)),
+      named("PACKAGE", lit(package)))))))
+ 
 
     if (".errwarn" %in% names(sargs))
         txt <- c(txt, "",
@@ -1235,11 +1250,12 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, 
        fun <- paste(fun, "WithRef", sep="")
 	 if (isCairoType(type))
 		 cast <- paramtype
-     else if (type %in% names(defs$typecodes) || type %in% opaqueTypes) {
+     else if (type %in% names(defs$typecodes) || type %in% opaqueTypes ||
+      isClass(type) || isIface(type)) {
          if (isObject(type,defs) || isInterface(type, defs)) { # use the GType macro for casting
              macro <- sub("TYPE_","",defs$typecodes[[type]])
-             if (isClass(type))
-                 macro <- paste(macro, "_CLASS", sep="")
+             #if (isClass(type))
+             #    macro <- paste(macro, "_CLASS", sep="")
              if (type == "GdkDisplay") # one special case
                  macro <- paste(macro, "_OBJECT", sep="")
              cast <- NULL
@@ -1355,6 +1371,8 @@ function(var, ptype, fun = NULL, defs)
       args <- c(cast(refType("GdkEvent"), args), ifelse(fun$owns, "TRUE", "FALSE"))
     } else if(type == "PangoAttribute") {
       fn <- "asRPangoAttribute" # special handling of pango attributes
+      if (is.null(fun) || !fun$owns)
+        fn <- paste(fn, "Copy", sep="")
     } else if (type == "GdkFont") { # also GdkFont (need to ref it)
       fn <- "toRGdkFont"
     } else if (type != "gpointer") {
@@ -1368,8 +1386,8 @@ function(var, ptype, fun = NULL, defs)
         else if (type %in% names(finalizerFuncs))
           finalizer <- finalizerFuncs[[type]]
         else if (isBoxed(type, defs)) { # boxed type -> release func as finalizer
-          # but we must own memory before freeing it
-          args[1] <- invoke(defs$boxes[[type]]$copy, args[1])
+          # but we must own memory before freeing it (gotta check for NULL though)
+          args[1] <- paste(args[1], "?", invoke(defs$boxes[[type]]$copy, args[1]), ": NULL")
           finalizer <- defs$boxes[[type]]$release
         } else if (isPointer(type, defs) && (fun$owns == 1 || out)) {
           finalizer <- "g_free"
@@ -1461,7 +1479,10 @@ function(fun, defs, name)
  parameters <- fun$parameters
  if (isMethod(fun))
      parameters <- c(object=makeObjectParam(fun$ofobject), parameters)
-
+ if (isVirtual(fun))
+   parameters <- c(object_class=makeObjectParam(mapClassType(toClassType(fun$ofobject, defs))), 
+    parameters)
+   
  params <- parameters
  if (length(parameters)) {
      ignore <- which(sapply(parameters, isIgnoredParam))
@@ -1559,8 +1580,8 @@ function(fun, defs, name)
        if (isBoxed(dtype, defs) && !(dtype %in% transparentTypes))
          conv_name <- refName(name)
        else conv_name <- name
-       outRetParams <<- c(outRetParams,
-          lit(name), convertToR(conv_name, deref(outParams[[name]]$type), fun, defs)$code)
+       outRetParams <<- c(outRetParams, lit(nameToS(name)), 
+        convertToR(conv_name, deref(outParams[[name]]$type), fun, defs)$code)
      })
 
      if (!is.null(outRetParams)) {
@@ -1569,6 +1590,11 @@ function(fun, defs, name)
      }
  }
 
+ if (isVirtual(fun)) {
+   call <- field(argCallNames[1], fun$vname)
+   argCallNames <- argCallNames[-1]
+ }
+ 
  invocation <- invoke(call, argCallNames)
  if (length(retVal) > 0) {
      invocation <- cassign(retVal, invocation)
@@ -2179,7 +2205,7 @@ function(name, className, croutine, type, defs)
 }
 
 genFieldAccessorRCode <-
-function(sname, className, croutine, type, defs)
+function(sname, className, croutine, type, defs, package = "RGtk2")
 {
    # Converts the return value to the appropriate R type
    # assigning class information deduced from the `type'
@@ -2197,13 +2223,11 @@ function(sname, className, croutine, type, defs)
             "function(obj)",
             "{",
             paste("  checkPtrType(obj, '", className, "')", collapse="", sep=""),
-            paste("  v <- .Call('", croutine, "', obj, ", ")", 
+            paste("  v <- .Call('", croutine, "', obj, ", named("PACKAGE", lit(package)), ")", 
 				collapse="", sep=""),
             setClassInfo,
             "  v",
             "}")
-
-            #named("PACKAGE", lit("RGtk2"))
  rcode
 }
 

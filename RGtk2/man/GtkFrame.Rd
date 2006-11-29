@@ -16,12 +16,13 @@
 \code{gtkFrame(label = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkFrame
-                                 +----\link{GtkAspectFrame}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkFrame
+                                       +----\link{GtkAspectFrame}}}
 \section{Interfaces}{GtkFrame implements
  AtkImplementorIface.}
 \section{Detailed Description}{The frame widget is a Bin that surrounds its child
@@ -29,8 +30,11 @@ with a decorative frame and an optional label.
 If present, the label is drawn in a gap in the
 top side of the frame. The position of the
 label can be controlled with \code{\link{gtkFrameSetLabelAlign}}.}
-\section{Structures}{\describe{\item{\code{GtkFrame}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkFrame}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkFrame} is the equivalent of \code{\link{gtkFrameNew}}.}
 \section{Properties}{\describe{
 \item{\code{label} [character : Read / Write]}{

@@ -146,6 +146,13 @@ CairoSurfaceType<-c("image" = 0,
 storage.mode(CairoSurfaceType) <- 'integer'
 class(CairoSurfaceType) <- 'enums' 
 
+CairoFontType<-c("toy" = 0,
+	"ft" = 1,
+	"win32" = 2,
+	"atsui" = 3)
+storage.mode(CairoFontType) <- 'integer'
+class(CairoFontType) <- 'enums' 
+
 CairoPatternType<-c("solid" = 0,
 	"surface" = 1,
 	"linear" = 2,
@@ -154,8 +161,7 @@ storage.mode(CairoPatternType) <- 'integer'
 class(CairoPatternType) <- 'enums' 
 
 CairoSvgVersion<-c("1-1" = 0,
-	"1-2" = 1,
-	"last" = 2)
+	"1-2" = 1)
 storage.mode(CairoSvgVersion) <- 'integer'
 class(CairoSvgVersion) <- 'enums' 
 

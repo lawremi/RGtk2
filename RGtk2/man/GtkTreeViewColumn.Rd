@@ -59,8 +59,9 @@
 \code{gtkTreeViewColumn(title, cell, ...)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----GtkTreeViewColumn}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----GtkTreeViewColumn}}
 \section{Interfaces}{GtkTreeViewColumn implements
  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{The GtkTreeViewColumn object represents a visible column in a \code{\link{GtkTreeView}} widget.
@@ -70,8 +71,11 @@ the cell renderers which determine how the data in the column is displayed.
 Please refer to the tree widget conceptual overview 
 for an overview of all the objects and data types related to the tree widget and how 
 they work together.}
-\section{Structures}{\describe{\item{\code{GtkTreeViewColumn}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkTreeViewColumn}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkTreeViewColumn} is the result of collapsing the constructors of \code{GtkTreeViewColumn} (\code{\link{gtkTreeViewColumnNew}}, \code{\link{gtkTreeViewColumnNewWithAttributes}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{\item{\code{GtkTreeViewColumnSizing}}{
 The sizing method the column uses to determine its width.  Please note
@@ -103,7 +107,8 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 
 }}}
 \section{Signals}{\describe{\item{\code{clicked(treeviewcolumn, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{treeviewcolumn}}{[\code{\link{GtkTreeViewColumn}}] the object which received the signal.}

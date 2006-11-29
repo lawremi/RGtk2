@@ -18,12 +18,12 @@ represent a particular character, and also how well it can represent
 that character. The \code{\link{PangoCoverage}} is a data structure that is used
 to represent that information.}
 \section{Structures}{\describe{\item{\code{PangoCoverage}}{
-The \code{\link{PangoCoverage}} structure represents a map from ISO-10646 character
-point to \code{\link{PangoCoverageLevel}}. It is an opaque structure with no public fields.
+The \code{\link{PangoCoverage}} structure represents a map from Unicode characters
+to \code{\link{PangoCoverageLevel}}. It is an opaque structure with no public fields.
 
 }}}
 \section{Enums and Flags}{\describe{\item{\code{PangoCoverageLevel}}{
-Used to indicate how well a font can represent a particular ISO 10646
+Used to indicate how well a font can represent a particular Unicode
 character point for a particular script.
 
 \describe{

@@ -8,6 +8,9 @@
 \alias{gFileErrorQuark}
 \alias{gdkPixbufErrorQuark}
 \alias{gtkIconThemeErrorQuark}
+\alias{gtkPrintErrorQuark}
+\alias{gtkRecentChooserErrorQuark}
+\alias{gtkRecentManagerErrorQuark}
 \title{The GError object}
 \description{
 GLib provides a standard method of reporting errors from a called function to the calling code. 
@@ -27,6 +30,9 @@ For example, for \code{\link{GdkPixbuf}}, the error domain is provided by \code{
 \seealso{
 \code{\link{GdkPixbufError}}
 \code{\link{GtkFileChooserError}}
+\code{\link{GtkPrintError}}
+\code{\link{GtkRecentChooserError}}
+\code{\link{GtkRecentManagerError}}
 }
 \references{\url{http://developer.gnome.org/doc/API/2.0/glib/glib-Error-Reporting.html}}
 \keyword{interface}

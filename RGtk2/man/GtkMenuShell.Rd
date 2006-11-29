@@ -18,12 +18,13 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkMenuShell
-                           +----\link{GtkMenuBar}
-                           +----\link{GtkMenu}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkMenuShell
+                                 +----\link{GtkMenuBar}
+                                 +----\link{GtkMenu}}}
 \section{Interfaces}{GtkMenuShell implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkMenuShell}} is the abstract base class used to derive the 
@@ -75,7 +76,8 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 
 }
 \item{\code{cycle-focus(menushell, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{menushell}}{[\code{\link{GtkMenuShell}}] the object which received the signal.}

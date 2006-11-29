@@ -10,7 +10,7 @@ the \code{\link{GtkProgress}}.
 \arguments{
 \item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}
 \item{\code{value}}{[numeric] the current progress value.}
-\item{\code{min}}{[numeric] the minimum progress value.}
+\item{\code{min}}{[numeric] }
 \item{\code{max}}{[numeric] the maximum progress value.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

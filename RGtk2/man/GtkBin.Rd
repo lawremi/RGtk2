@@ -7,22 +7,23 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkBin
-                           +----\link{GtkWindow}
-                           +----\link{GtkAlignment}
-                           +----\link{GtkFrame}
-                           +----\link{GtkButton}
-                           +----\link{GtkItem}
-                           +----\link{GtkComboBox}
-                           +----\link{GtkEventBox}
-                           +----\link{GtkExpander}
-                           +----\link{GtkHandleBox}
-                           +----\link{GtkToolItem}
-                           +----\link{GtkScrolledWindow}
-                           +----\link{GtkViewport}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkBin
+                                 +----\link{GtkWindow}
+                                 +----\link{GtkAlignment}
+                                 +----\link{GtkFrame}
+                                 +----\link{GtkButton}
+                                 +----\link{GtkItem}
+                                 +----\link{GtkComboBox}
+                                 +----\link{GtkEventBox}
+                                 +----\link{GtkExpander}
+                                 +----\link{GtkHandleBox}
+                                 +----\link{GtkToolItem}
+                                 +----\link{GtkScrolledWindow}
+                                 +----\link{GtkViewport}}}
 \section{Interfaces}{GtkBin implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkBin}} widget is a container with just one child.

@@ -11,14 +11,17 @@ The RGtk binding to the CAIRO library consists of the following components:
 \item{\link{cairo-cairo-matrix-t}}{Generic matrix operations}
 \item{\link{cairo-Paths}}{Creating paths and manipulating path data}
 \item{\link{cairo-Patterns}}{Gradients and filtered sources}
+\item{\link{cairo-PDF-Surfaces}}{Rendering PDF documents}
 \item{\link{cairo-PNG-Support}}{Reading and writing PNG images}
+\item{\link{cairo-PostScript-Surfaces}}{Rendering PostScript documents}
 \item{\link{cairo-Scaled-Fonts}}{Caching metrics for a particular font size}
 \item{\link{cairo-Error-handling}}{Decoding cairo's status}
 \item{\link{cairo-cairo-surface-t}}{Base class for surfaces}
+\item{\link{cairo-SVG-Surfaces}}{Rendering SVG documents}
 \item{\link{cairo-Text}}{Rendering text and sets of glyphs}
 \item{\link{cairo-Transformations}}{Manipulating the current transformation matrix}
 \item{\link{cairo-Types}}{Generic data types used in the cairo API}
-\item{\link{cairo-Version-Information}}{Compile and run time version checks}
+\item{\link{cairo-Version-Information}}{Compile-time and run-time version checks.}
 \item{\link{cairo-cairo-t}}{The cairo drawing context}
 }
 }

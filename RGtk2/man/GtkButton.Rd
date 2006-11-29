@@ -27,18 +27,22 @@
 \code{\link{gtkButtonGetAlignment}(object)}\cr
 \code{\link{gtkButtonSetImage}(object, image)}\cr
 \code{\link{gtkButtonGetImage}(object)}\cr
+\code{\link{gtkButtonSetImagePosition}(object, position)}\cr
+\code{\link{gtkButtonGetImagePosition}(object)}\cr
 \code{gtkButton(label, stock.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkButton
-                                 +----\link{GtkToggleButton}
-                                 +----\link{GtkColorButton}
-                                 +----\link{GtkFontButton}
-                                 +----\link{GtkOptionMenu}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkButton
+                                       +----\link{GtkToggleButton}
+                                       +----\link{GtkColorButton}
+                                       +----\link{GtkFontButton}
+                                       +----\link{GtkLinkButton}
+                                       +----\link{GtkOptionMenu}}}
 \section{Interfaces}{GtkButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkButton}} widget is generally used to attach a function to that
@@ -68,9 +72,6 @@ Applications should never connect to this signal, but use the
 }
 \item{\code{clicked(button, user.data)}}{
 Emitted when the button has been activated (pressed and released).  
-Emitted when a button clicked on by the mouse and the cursor stays on the
-button.  If the cursor is not on the button when the mouse button is released,
-the signal is not emitted.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -82,7 +83,6 @@ the signal is not emitted.
 Emitted when the pointer enters the button.
   
 \code{Deprecated}: Use the GtkWidget::enter-notify-event signal.  
-Emitted when the mouse cursor enters the region of the button.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -94,7 +94,6 @@ Emitted when the mouse cursor enters the region of the button.
 Emitted when the pointer leaves the button.
   
 \code{Deprecated}: Use the GtkWidget::leave-notify-event signal.  
-Emitted when the mouse cursor leaves the region of the button.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -106,7 +105,6 @@ Emitted when the mouse cursor leaves the region of the button.
 Emitted when the button is pressed.
   
 \code{Deprecated}: Use the GtkWidget::button-press-event signal.  
-Emitted when the button is initially pressed.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -118,8 +116,6 @@ Emitted when the button is initially pressed.
 Emitted when the button is released.
   
 \code{Deprecated}: Use the GtkWidget::button-release-event signal.  
-Emitted when a button which is pressed is released, no matter where the
-mouse cursor is.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -137,6 +133,13 @@ Whether the button grabs focus when it is clicked with the mouse.  Default value
 \item{\code{image} [\code{\link{GtkWidget}} : Read / Write]}{
 
 Child widget to appear next to the button text.
+
+}
+\item{\code{image-position} [\code{\link{GtkPositionType}} : Read / Write]}{
+
+The position of the image relative to the text inside the button.  
+
+  Default value: GTK\_POS\_LEFT  Since  2.10
 
 }
 \item{\code{label} [character : Read / Write / Construct]}{
@@ -205,6 +208,18 @@ Whether the child\_displacement\_x/child\_displacement\_y properties should also
 affect the focus rectangle.  
 
   Default value: FALSE  Since  2.6
+
+}
+\item{\code{image-spacing} [integer : Read]}{
+
+Spacing in pixels between the image and label.  Allowed values: >= 0  Default value: 2
+
+}
+\item{\code{inner-border} [\code{\link{GtkBorder}} : Read]}{
+
+Sets the border between the button edges and child.  
+
+  Since  2.10
 
 }
 }}

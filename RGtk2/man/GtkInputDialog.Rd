@@ -8,13 +8,14 @@
 \code{gtkInputDialog(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkInputDialog}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----\link{GtkDialog}
+                                             +----GtkInputDialog}}
 \section{Interfaces}{GtkInputDialog implements
  AtkImplementorIface.}
 \section{Detailed Description}{ NOTE this widget is considered too specialized/little-used for
@@ -39,8 +40,11 @@ the dialog, and one for saving the changes.
 No actions are bound to these by default.
 The changes that the user makes take effect
 immediately. }
-\section{Structures}{\describe{\item{\code{GtkInputDialog}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkInputDialog}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkInputDialog} is the equivalent of \code{\link{gtkInputDialogNew}}.}
 \section{Signals}{\describe{
 \item{\code{disable-device(inputdialog, deviceid, user.data)}}{

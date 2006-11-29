@@ -19,11 +19,15 @@
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
-\section{Structures}{\describe{\item{\code{GtkTextTagTable}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkTextTagTable}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkTextTagTable} is the equivalent of \code{\link{gtkTextTagTableNew}}.}
 \section{User Functions}{\describe{\item{\code{GtkTextTagTableForeach(tag, data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{tag}}{[\code{\link{GtkTextTag}}] }
@@ -33,7 +37,8 @@ types related to the text widget and how they work together.
 }}}
 \section{Signals}{\describe{
 \item{\code{tag-added(texttagtable, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}
@@ -43,7 +48,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{tag-changed(texttagtable, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}
@@ -54,7 +60,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{tag-removed(texttagtable, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}

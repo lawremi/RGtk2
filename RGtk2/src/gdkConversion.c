@@ -47,15 +47,22 @@ asCGdkAtomArray(USER_OBJECT_ s_atoms)
 GdkWindowAttr*
 asCGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
 {
-	GdkWindowAttr* attr = (GdkWindowAttr*)R_alloc(1, sizeof(GdkWindowAttr));
-	
+	GdkWindowAttr* attr = (GdkWindowAttr*)S_alloc(1, sizeof(GdkWindowAttr));
+	*mask = 0;
+  
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 0)) > 0) {
 		*mask |= GDK_WA_TITLE;
 		attr->title = asCString(VECTOR_ELT(s_window_attr, 0));
 	}
 	attr->event_mask = asCInteger(VECTOR_ELT(s_window_attr, 1));
-	attr->x = asCInteger(VECTOR_ELT(s_window_attr, 2));
-	attr->y = asCInteger(VECTOR_ELT(s_window_attr, 3));
+  if (GET_LENGTH(VECTOR_ELT(s_window_attr, 2)) > 0) {
+    *mask |= GDK_WA_X;
+    attr->x = asCInteger(VECTOR_ELT(s_window_attr, 2));
+  }
+  if (GET_LENGTH(VECTOR_ELT(s_window_attr, 3)) > 0) {
+    *mask |= GDK_WA_Y;
+    attr->y = asCInteger(VECTOR_ELT(s_window_attr, 3));
+  }
 	attr->width = asCInteger(VECTOR_ELT(s_window_attr, 4));
 	attr->height = asCInteger(VECTOR_ELT(s_window_attr, 5));
 	attr->wclass = asCEnum(VECTOR_ELT(s_window_attr, 6), GDK_TYPE_WINDOW_CLASS);

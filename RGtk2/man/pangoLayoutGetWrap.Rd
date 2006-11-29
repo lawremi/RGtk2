@@ -4,6 +4,6 @@
 \description{Gets the wrap mode for the layout.}
 \usage{pangoLayoutGetWrap(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
-\value{[\code{\link{PangoWrapMode}}]  Active wrap mode.}
+\value{[\code{\link{PangoWrapMode}}]  active wrap mode.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

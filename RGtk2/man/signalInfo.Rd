@@ -69,12 +69,11 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 }
 
 \examples{
-  # initialization
- gtkInit()
- gtkButton()
-
- sigs <- gtkTypeGetSignals("GtkButton")
- gtkSignalGetInfo(sigs[["clicked"]])
+  if (gtkInit()) {
+    gtkButton()
+    sigs <- gtkTypeGetSignals("GtkButton")
+    gtkSignalGetInfo(sigs[["clicked"]])
+  }
 }
 
 

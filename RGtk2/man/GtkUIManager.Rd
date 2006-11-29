@@ -41,28 +41,29 @@ roughly described by the following DTD.
 <!ELEMENT toolitem     (menu?) >
 <!ELEMENT separator    EMPTY >
 <!ELEMENT accelerator  EMPTY >
-<!ATTLIST menubar      name                  \#IMPLIED 
-                       action                \#IMPLIED >
-<!ATTLIST toolbar      name                  \#IMPLIED 
-                       action                \#IMPLIED >
-<!ATTLIST popup        name                  \#IMPLIED 
-                       action                \#IMPLIED >
-<!ATTLIST placeholder  name                  \#IMPLIED
-                       action                \#IMPLIED >
-<!ATTLIST separator    name                  \#IMPLIED
-                       action                \#IMPLIED
-                       expand   (true|false) \#IMPLIED >
-<!ATTLIST menu         name                  \#IMPLIED
-                       action                \#REQUIRED
-                       position (top|bot)    \#IMPLIED >
-<!ATTLIST menuitem     name                  \#IMPLIED
-                       action                \#REQUIRED
-                       position (top|bot)    \#IMPLIED >
-<!ATTLIST toolitem     name                  \#IMPLIED
-                       action                \#REQUIRED
-                       position (top|bot)    \#IMPLIED >
-<!ATTLIST accelerator  name                  \#IMPLIED
-                       action                \#REQUIRED >}
+<!ATTLIST menubar      name                  #IMPLIED 
+                       action                #IMPLIED >
+<!ATTLIST toolbar      name                  #IMPLIED 
+                       action                #IMPLIED >
+<!ATTLIST popup        name                  #IMPLIED 
+                       action                #IMPLIED >
+<!ATTLIST placeholder  name                  #IMPLIED
+                       action                #IMPLIED >
+<!ATTLIST separator    name                  #IMPLIED
+                       action                #IMPLIED
+                       expand   (true|false) #IMPLIED >
+<!ATTLIST menu         name                  #IMPLIED
+                       action                #REQUIRED
+                       position (top|bot)    #IMPLIED >
+<!ATTLIST menuitem     name                  #IMPLIED
+                       action                #REQUIRED
+                       position (top|bot)    #IMPLIED >
+<!ATTLIST toolitem     name                  #IMPLIED
+                       action                #REQUIRED
+                       position (top|bot)    #IMPLIED >
+<!ATTLIST accelerator  name                  #IMPLIED
+                       action                #REQUIRED >
+}
 There are some additional restrictions beyond those specified in the
 DTD, e.g. every toolitem must have a toolbar in its anchestry and
 every menuitem must have a menubar or popup in its anchestry. Since
@@ -100,7 +101,8 @@ to the &quot; entity.
       <separator/>
     </placeholder>
   </toolbar>
-</ui>}
+</ui>
+}
   
 The constructed widget hierarchy is very similar to the element tree
 of the XML, with the exception that placeholders are merged into their
@@ -287,7 +289,7 @@ menus never have tearoff menu items.
 }
 \item{\code{ui} [character : Read]}{
 
-An XML string describing the merged UI.  Default value: "<ui>\\n</ui>"
+An XML string describing the merged UI.  Default value: "<ui>\\n</ui>\\n"
 
 }
 }}

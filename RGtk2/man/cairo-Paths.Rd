@@ -10,6 +10,7 @@
 \code{\link{cairoAppendPath}(cr, path)}\cr
 \code{\link{cairoGetCurrentPoint}(cr, x, y)}\cr
 \code{\link{cairoNewPath}(cr)}\cr
+\code{\link{cairoNewSubPath}(cr)}\cr
 \code{\link{cairoClosePath}(cr)}\cr
 \code{\link{cairoArc}(cr, xc, yc, radius, angle1, angle2)}\cr
 \code{\link{cairoArcNegative}(cr, xc, yc, radius, angle1, angle2)}\cr
@@ -25,8 +26,8 @@
 }
 \section{Structures}{\describe{\item{\code{CairoPath}}{
 A data structure for holding a path. This data structure serves as
-the return value for \code{cairo\Copy\Path\Data()} and
-\code{cairo\Copy\Path\Data\Flat()} as well the input value for
+the return value for \code{\link{cairoCopyPath}} and
+\code{\link{cairoCopyPathFlat}} as well the input value for
 \code{\link{cairoAppendPath}}.
   
 See \code{\link{CairoPathData}} for hints on how to iterate over the
@@ -46,7 +47,8 @@ includes both headers and coordinates for each portion.
 
 }}}
 \section{Enums and Flags}{\describe{\item{\code{CairoPathDataType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{move-to}}{\emph{undocumented

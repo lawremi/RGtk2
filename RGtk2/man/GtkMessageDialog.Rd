@@ -9,25 +9,27 @@
 \code{\link{gtkMessageDialogNew}(parent = NULL, flags, type, buttons, ..., show = TRUE)}\cr
 \code{\link{gtkMessageDialogNewWithMarkup}(parent, flags, type, buttons, ..., show = TRUE)}\cr
 \code{\link{gtkMessageDialogSetMarkup}(object, str)}\cr
+\code{\link{gtkMessageDialogSetImage}(object, image)}\cr
 \code{\link{gtkMessageDialogFormatSecondaryText}(object, ...)}\cr
 \code{\link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)}\cr
 \code{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkMessageDialog}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----\link{GtkDialog}
+                                             +----GtkMessageDialog}}
 \section{Interfaces}{GtkMessageDialog implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
 message (Error, Question, etc.) alongside some message text. It's simply a 
 convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}} 
 from \code{\link{GtkDialog}} without too much effort, but \code{\link{GtkMessageDialog}} saves typing.
-  
+  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \code{\link{GtkDialog}}  \code{GtkDialog}  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  
 The easiest way to do a modal message dialog is to use \code{\link{gtkDialogRun}}, though
 you can also pass in the \code{GTK_DIALOG_MODAL} flag, \code{\link{gtkDialogRun}} automatically
 makes the dialog modal and waits for the user to respond to it. \code{\link{gtkDialogRun}}
@@ -41,7 +43,23 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 dialog$run()
 dialog$destroy()
 }
-  
+  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \code{GTK_DIALOG_MODAL}  \code{GTK_DIALOG_MODAL}  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \preformatted{
+# A Modal dialog
+dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
+                                  "error", "close",
+                                  "Error loading file '", filename, "': ", message)
+
+dialog$run()
+dialog$destroy()
+}  \preformatted{ dialog = gtk_message_dialog_new (main_application_window,
+                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  GTK_MESSAGE_ERROR,
+                                  GTK_BUTTONS_CLOSE,
+                                  "Error loading file '%s': %s",
+                                  filename, g_strerror (errno));
+ gtk_dialog_run (GTK_DIALOG (dialog));
+ gtk_widget_destroy (dialog);
+}  
 You might do a non-modal \code{\link{GtkMessageDialog}} as follows:
 \preformatted{
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
@@ -50,9 +68,29 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 
  # Destroy the dialog when the user responds to it (e.g. clicks a button)
  gSignalConnect(dialog, "response", gtkWidgetDestroy)
+}
+  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \preformatted{
+dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
+                                  "error", "close",
+                                  "Error loading file '", filename, "': ", message)
+
+ # Destroy the dialog when the user responds to it (e.g. clicks a button)
+ gSignalConnect(dialog, "response", gtkWidgetDestroy)
+}  \preformatted{ dialog = gtk_message_dialog_new (main_application_window,
+                                  GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  GTK_MESSAGE_ERROR,
+                                  GTK_BUTTONS_CLOSE,
+                                  "Error loading file '%s': %s",
+                                  filename, g_strerror (errno));
+
+ /* Destroy the dialog when the user responds to it (e.g. clicks a button) */
+ g_signal_connect_swapped (dialog, "response",
+                           G_CALLBACK (gtk_widget_destroy),
+                           dialog);
 }}
 \section{Structures}{\describe{\item{\code{GtkMessageDialog}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{image}}{[\code{\link{GtkWidget}}] }
@@ -95,9 +133,51 @@ then call \code{\link{gtkDialogAddButtons}}.
 The buttons shown in the message dialog.  Default value: GTK\_BUTTONS\_NONE
 
 }
+\item{\code{image} [\code{\link{GtkWidget}} : Read / Write]}{
+
+The image for this dialog.  
+
+  Since  2.10
+
+}
 \item{\code{message-type} [\code{\link{GtkMessageType}} : Read / Write / Construct]}{
 
-The type of message.  Default value: GTK\_MESSAGE\_INFO
+The type of the message. The type is used to determine
+the image that is shown in the dialog, unless the image is 
+explicitly set by the ::image property.  
+
+  Default value: GTK\_MESSAGE\_INFO
+
+}
+\item{\code{secondary-text} [character : Read / Write]}{
+
+The secondary text of the message dialog.  
+
+  Default value: NULL  Since  2.10
+
+}
+\item{\code{secondary-use-markup} [logical : Read / Write]}{
+
+\code{TRUE} if the secondary text of the dialog includes Pango markup. 
+See \code{\link{pangoParseMarkup}}.  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{text} [character : Read / Write]}{
+
+The primary text of the message dialog. If the dialog has 
+a secondary text, this will appear as the title.  
+
+  Default value: NULL  Since  2.10
+
+}
+\item{\code{use-markup} [logical : Read / Write]}{
+
+\code{TRUE} if the primary text of the dialog includes Pango markup. 
+See \code{\link{pangoParseMarkup}}.  
+
+  Default value: FALSE  Since  2.10
 
 }
 }}
@@ -109,7 +189,10 @@ Width of border around the label and image in the message dialog.  Allowed value
 }
 \item{\code{use-separator} [logical : Read]}{
 
-Whether to put a separator between the message dialog's text and the buttons.  Default value: FALSE
+Whether to draw a separator line between the message label and the buttons
+in the dialog.  
+
+  Default value: FALSE  Since  2.4
 
 }
 }}

@@ -2,7 +2,9 @@
 \name{gdkDisplayStoreClipboard}
 \title{gdkDisplayStoreClipboard}
 \description{Issues a request to the clipboard manager to store the
-clipboard data.org/Standards/clipboard-manager-spec (\url{http://www.org/Standards/clipboard-manager-spec}).}
+clipboard data. On X11, available at
+
+http://www.org/Standards/clipboard-manager-spec (\url{http://www.org/Standards/clipboard-manager-spec}).}
 \usage{gdkDisplayStoreClipboard(object, clipboard.window, targets)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDisplay}}]           a \code{\link{GdkDisplay}}}

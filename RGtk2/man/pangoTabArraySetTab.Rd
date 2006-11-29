@@ -9,7 +9,7 @@ implementation.}
 \item{\code{object}}{[\code{\link{PangoTabArray}}]  a \code{\link{PangoTabArray}}}
 \item{\code{tab.index}}{[integer]  the index of a tab stop}
 \item{\code{alignment}}{[\code{\link{PangoTabAlign}}]  tab alignment}
-\item{\code{location}}{[integer]  tab location in pango units}
+\item{\code{location}}{[integer]  tab location in Pango units}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

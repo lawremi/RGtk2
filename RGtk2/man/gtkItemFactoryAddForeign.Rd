@@ -4,7 +4,7 @@
 \description{
 Installs an accelerator for \code{accel.widget} in \code{accel.group}, that causes
 the ::activate signal to be emitted if the accelerator is activated.
-\strong{WARNING: \code{gtk_item_factory_add_foreign} is deprecated and should not be used in newly-written code. The recommended API for this purpose are the functions 
+\strong{WARNING: \code{gtk_item_factory_add_foreign} has been deprecated since version 2.4 and should not be used in newly-written code. The recommended API for this purpose are the functions 
 \code{\link{gtkMenuItemSetAccelPath}} and \code{\link{gtkWidgetSetAccelPath}}; don't 
 use \code{\link{gtkItemFactoryAddForeign}} in new code, since it is likely to
 be removed in the future.}

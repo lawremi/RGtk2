@@ -11,8 +11,11 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkWindowGroup}}
-\section{Structures}{\describe{\item{\code{GtkWindowGroup}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkWindowGroup}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkWindowGroup} is the equivalent of \code{\link{gtkWindowGroupNew}}.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkWindowGroup.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

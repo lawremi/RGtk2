@@ -81,33 +81,53 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   # check signals
   
+  signal_fields <- c("name", "param_types", "ret_type", "flags")
   signals <- lapply(class_list[[".signals"]], function(signal) {
+    signal <- as.struct(signal, "GSignal", signal_fields)
     name <- as.character(signal[[1]])
     invalid_chars <- sub("^[a-zA-Z][a-zA-Z_-]*", "", name)
     if (nchar(invalid_chars))
       stop("Invalid signal name: ", name, ". Signal names must start with a letter",
         " and contain only letters, '-', or '_'")
-    ret_type <- as.GType(signal[[2]])
-    param_types <- sapply(signal[[3]], as.GType)
-    list(name = name, ret_type = ret_type, param_types = param_types)
+    signal[[1]] <- name
+    flags <- signal[[4]]
+    if (is.null(flags))
+      flags <- c("run-last", "action")
+    if (is.character(flags))
+      flags <- sum(GSignalFlags[flags])
+    signal[[4]] <- as.numeric(flags)
+    if (is.null(signal[[3]]))
+      signal[[3]] <- "void"
+    signal[[3]] <- as.GType(signal[[3]])
+    if (is.null(signal[[2]]))
+      signal[[2]] <- "void"
+    signal[[2]] <- lapply(signal[[2]], as.GType)
+    signal
   })
   
   # create new type that extends specified class and implements specified interfaces
   
-  class_init_func <- function(class_name) paste("S", collapseClassName(class_name), "class_init", sep="_")
-  class_init_sym <- getNativeSymbolInfo(class_init_func(parent))$address
+  get_class_init_funcs <- function(class_name) paste("S", sapply(class_name, .collapseClassName),
+    "class_init", sep="_")
+  class_init_funcs <- get_class_init_funcs(full_hierarchy)
+  parent_class_init <- class_init_funcs[sapply(class_init_funcs, is.loaded, PACKAGE="RGtk2")][1]
+  class_init_sym <- getNativeSymbolInfo(parent_class_init)$address
   interface_init_syms <- NULL
   if (length(interface_names))
-    interface_init_syms <- sapply(getNativeSymbolInfo(class_init_func(interface_names)),
+    interface_init_syms <- sapply(getNativeSymbolInfo(get_class_init_funcs(interface_names)),
       function(symbol) symbol$address)
   
-  class_env <- as.environment.list(types)
+  class_env <- .as.environment.list(types)
   assign(".initialize", init, class_env)
-  
-  # create an environment for storing properties
-  prop_env <- new.env(T, emptyenv())
-  assign(".props", prop_env, class_env)
   
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
     class_init_sym, interface_init_syms, class_env, props, signals)
 }
+
+# useful for chaining up
+# obj$parentClass()$doSomething(obj, ...)
+gObjectParentClass <- function(obj)
+{
+  gTypeGetClass(class(obj)[2])
+}
+

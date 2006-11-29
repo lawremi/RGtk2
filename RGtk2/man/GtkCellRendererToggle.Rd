@@ -12,15 +12,19 @@
 \code{gtkCellRendererToggle()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererToggle}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkCellRenderer}
+                     +----GtkCellRendererToggle}}
 \section{Detailed Description}{\code{\link{GtkCellRendererToggle}} renders a toggle button in a cell. The 
 button is drawn as a radio- or checkbutton, depending on the 
 radio 
 property. When activated, it emits the toggled signal.}
-\section{Structures}{\describe{\item{\code{GtkCellRendererToggle}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkCellRendererToggle}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkCellRendererToggle} is the equivalent of \code{\link{gtkCellRendererToggleNew}}.}
 \section{Signals}{\describe{\item{\code{toggled(cell.renderer, path, user.data)}}{
 The ::toggled signal is emitted when the cell is toggled.  
@@ -47,6 +51,11 @@ The toggle state of the button.  Default value: FALSE
 \item{\code{inconsistent} [logical : Read / Write]}{
 
 The inconsistent state of the button.  Default value: FALSE
+
+}
+\item{\code{indicator-size} [integer : Read / Write]}{
+
+Size of check or radio indicator.  Allowed values: >= 0  Default value: 12
 
 }
 \item{\code{radio} [logical : Read / Write]}{

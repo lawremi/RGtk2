@@ -3,7 +3,17 @@
 #include "utils.h"
 
 static USER_OBJECT_ S_GObject_symbol;
-static USER_OBJECT_ _S_PropertyEnv_symbol;
+
+static
+void
+S_virtual_gobject_finalize(GObject *object)
+{
+  USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
+  if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
+    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
+    R_ReleaseObject(s_prop_env);
+  }
+}
 
 static
 void
@@ -13,10 +23,15 @@ S_virtual_gobject_set_property(GObject *object, guint id, const GValue *value, G
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
   
   s_fun = VECTOR_ELT(findVar(S_GObject_symbol, s_env), 0);
-  if (s_fun == NULL_USER_OBJECT) {
-    USER_OBJECT_ s_prop_env = findVar(_S_PropertyEnv_symbol, s_env);
+  /* If 'get_property' is not overriden, then we store properties in our
+     own little environment
+  */
+  if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
+    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
     defineVar(install(pspec->name), asRGValue(value), s_prop_env);
-  } else {
+  } 
+  
+  if (s_fun != NULL_USER_OBJECT) {
     USER_OBJECT_ e;
     USER_OBJECT_ tmp;
   
@@ -51,7 +66,7 @@ S_virtual_gobject_get_property(GObject *object, guint id, GValue *value, GParamS
   
   s_fun = VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1);
   if (s_fun == NULL_USER_OBJECT) {
-    USER_OBJECT_ s_prop_env = findVar(_S_PropertyEnv_symbol, s_env);
+    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
     s_ans = findVar(install(pspec->name), s_prop_env);
     if (s_ans == R_UnboundValue) {
       g_param_value_set_default(pspec, value);
@@ -105,15 +120,17 @@ void
 S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
 {
   USER_OBJECT_ s, signals, props;
+  GTypeQuery query;
   
   S_GObject_symbol = install("GObject");
-  _S_PropertyEnv_symbol = install(".props");
   _S_InstanceInit_symbol = install(".initialize");
   
-  G_STRUCT_MEMBER(SEXP, c, sizeof(GObjectClass)) = e;
+  g_type_query(G_OBJECT_CLASS_TYPE(c), &query);
+  G_STRUCT_MEMBER(SEXP, c, query.class_size - sizeof(SEXP)) = e;
 
   c->set_property = S_virtual_gobject_set_property;
   c->get_property = S_virtual_gobject_get_property;
+  c->finalize = S_virtual_gobject_finalize;
   /*if (VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->constructor = S_virtual_gobject_constructor;*/
 }
@@ -124,8 +141,25 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
-  USER_OBJECT_ s_fun = findVar(_S_InstanceInit_symbol, S_GOBJECT_GET_ENV(object));
-
+  USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
+  USER_OBJECT_ s_fun = findVar(_S_InstanceInit_symbol, s_env);
+  
+  /* install environment for properties if 'get_property' is not overriden */
+  if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
+    USER_OBJECT_ emptyenv, propenv;
+    GTypeQuery query;
+    g_type_query(G_OBJECT_TYPE(object), &query);
+    PROTECT(tmp = lang1(findFun(install("emptyenv"), R_GlobalEnv))); 
+    PROTECT(emptyenv = eval(tmp, R_GlobalEnv));
+    PROTECT(tmp = lang2(findFun(install("new.env"), R_GlobalEnv), emptyenv));
+    propenv = eval(tmp, R_GlobalEnv);
+    R_PreserveObject(propenv);
+    G_STRUCT_MEMBER(SEXP, object, query.instance_size - sizeof(SEXP)) = propenv;
+    UNPROTECT(3);
+  }
+  
+  /* run user function if it exists */
+  
   if (s_fun == NULL_USER_OBJECT)
     return;
   
@@ -163,7 +197,7 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   type_info.class_size = query.class_size + sizeof(SEXP);
   type_info.class_init = getPtrValue(s_class_init_sym);
   type_info.class_data = s_def;
-  type_info.instance_size = query.instance_size;
+  type_info.instance_size = query.instance_size + sizeof(SEXP);
   type_info.instance_init = (GInstanceInitFunc)S_gobject_instance_init;
   
   new_type = g_type_register_static(parent_type, asCString(s_name), &type_info, 0);
@@ -180,25 +214,28 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   /* install properties */
   /* FIXME: move this to the class_init function so that we lazily create the class? */
   c = g_type_class_ref(new_type);
-  g_debug("Installing props");
-  for (i = 0; i < GET_LENGTH(s_props); i++)
-    g_object_class_install_property(c, i+1, asCGParamSpec(VECTOR_ELT(s_props, i)));
+  for (i = 0; i < GET_LENGTH(s_props); i++) {
+    GParamSpec *pspec = asCGParamSpec(VECTOR_ELT(s_props, i));
+    const GParamSpec *existing = g_object_class_find_property(c, pspec->name);
+    if (existing)
+      g_object_class_override_property(c, i+1, pspec->name);
+    else g_object_class_install_property(c, i+1, pspec);
+  }
   g_type_class_unref(c);
-  g_debug("Finished");
   
   /* install signals */
   for (i = 0; i < GET_LENGTH(s_signals); i++) {
     USER_OBJECT_ s_signal = VECTOR_ELT(s_signals, i);
     g_signal_newv(asCString(VECTOR_ELT(s_signal, 0)), /* name */
       new_type, /* type */
-      asCNumeric(VECTOR_ELT(s_signal, 1)), /* signal flags */
+      asCNumeric(VECTOR_ELT(s_signal, 3)), /* signal flags */
       NULL, /* class offset */
       NULL, /* accumulator */
       NULL, /* accumulator data */
       NULL, /* C marshaller, all we need is R marshaller */
       asCNumeric(VECTOR_ELT(s_signal, 2)), /* return type */
-      GET_LENGTH(VECTOR_ELT(s_signal, 3)), /* number of parameters */
-      asCArray(VECTOR_ELT(s_signal, 3), GType, asCNumeric)); /* parameter types */
+      GET_LENGTH(VECTOR_ELT(s_signal, 1)), /* number of parameters */
+      asCArray(VECTOR_ELT(s_signal, 1), GType, asCNumeric)); /* parameter types */
   }
 
   return asRGType(new_type);

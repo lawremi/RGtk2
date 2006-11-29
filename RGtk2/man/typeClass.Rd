@@ -59,7 +59,7 @@ gtkTypeGetClasses(type)
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 
   Type information about a particular class is not available
@@ -81,15 +81,13 @@ THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 
 }
 
 \examples{
-  b <- gtkButton()
-  class(b)
+  if (gtkInit()) {
+    b <- gtkButton()
+    class(b)
 
-   # Should be true, but computed in different ways
-   # and at different times.
-   # class(b) is computed when the RGtk package was generated.
-   # gtkObjectGetClasses() is computed at run-time.
-  class(b) == gtkObjectGetClasses(b)
-
+     # Should be true
+    class(b) == gtkObjectGetClasses(b)
+  }
 }
 
 \keyword{interface}

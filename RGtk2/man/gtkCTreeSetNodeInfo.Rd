@@ -11,7 +11,7 @@ to the parameters of \code{\link{gtkCTreeInsertNode}}.
 \item{\code{object}}{[\code{\link{GtkCTree}}] }
 \item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
 \item{\code{text}}{[character] The text to be in the tree column.}
-\item{\code{spacing}}{[integer] }
+\item{\code{spacing}}{[raw] }
 \item{\code{pixmap.closed}}{[\code{\link{GdkPixmap}}] }
 \item{\code{mask.closed}}{[\code{\link{GdkBitmap}}] }
 \item{\code{pixmap.opened}}{[\code{\link{GdkPixmap}}] }

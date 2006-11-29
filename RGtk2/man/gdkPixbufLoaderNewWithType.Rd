@@ -12,6 +12,11 @@ the user manually forces a specific type.}
 \item{\code{image.type}}{[char]  name of the image format to be loaded with the image}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
+\details{The list of supported image formats depends on what image loaders
+are installed, but typically "png", "jpeg", "gif", "tiff" and 
+"xpm" are among the supported formats. To obtain the full list of
+supported image formats, call \code{\link{gdkPixbufFormatGetName}} on each 
+of the \code{\link{GdkPixbufFormat}} structs returned by \code{\link{gdkPixbufGetFormats}}.  }
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}

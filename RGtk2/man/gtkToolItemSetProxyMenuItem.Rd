@@ -6,7 +6,7 @@
 should also be used with \code{\link{gtkToolItemGetProxyMenuItem}}.}
 \usage{gtkToolItemSetProxyMenuItem(object, menu.item.id, menu.item = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}:}
+\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}}}
 \item{\code{menu.item.id}}{[character]  a string used to identify \code{menu.item}}
 \item{\code{menu.item}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkMenuItem}} to be used in the overflow menu}
 }

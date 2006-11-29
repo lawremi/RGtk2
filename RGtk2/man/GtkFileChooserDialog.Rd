@@ -9,15 +9,16 @@
 \code{gtkFileChooserDialog(title = NULL, parent = NULL, action, ..., backend, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkFileChooserDialog}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----\link{GtkDialog}
+                                             +----GtkFileChooserDialog}}
 \section{Interfaces}{GtkFileChooserDialog implements
- AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
+ \code{\link{GtkFileChooser}} and  AtkImplementorIface.}
 \section{Detailed Description}{      \code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
       "File/Open" or "File/Save as" commands.  This widget works by
       putting a \code{\link{GtkFileChooserWidget}} inside a \code{\link{GtkDialog}}.  It exposes
@@ -36,9 +37,10 @@
 # This is how one creates a dialog with buttons and associated response codes.
 # (Please ignore the C "Response Code" example in the next section)
 dialog <- gtkFileChooserDialog("Open File", parent_window, "open",
-				      "gtk-cancel", "cancel", "gtk-open", "accept")
+				      "gtk-cancel", GtkResponseType["cancel"], 
+              "gtk-open", GtkResponseType["accept"])
 
-if (dialog$run() == "accept")
+if (dialog$run() == GtkResponseType["accept"])
   {
     filename <- dialog$getFileName()
     f <- file(filename)
@@ -52,13 +54,14 @@ dialog$destroy()
       could call \code{\link{gtkFileChooserDialogNew}} as follows:
       \preformatted{GtkWidget *dialog;
 
-dialog = gtk\_file\_chooser\_dialog\_new ("Open File",
-				      parent\_window,
-				      GTK\_FILE\_CHOOSER\_ACTION\_OPEN,
-				      GTK\_STOCK\_CANCEL, GTK\_RESPONSE\_CANCEL,
-				      GTK\_STOCK\_OPEN, GTK\_RESPONSE\_ACCEPT,
+dialog = gtk_file_chooser_dialog_new ("Open File",
+				      parent_window,
+				      GTK_FILE_CHOOSER_ACTION_OPEN,
+				      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+				      GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
 				      NULL);
-    }  
+    
+}  
       This will create buttons for "Cancel" and "Open" that use stock
       response identifiers from \code{\link{GtkResponseType}}.  For most dialog
       boxes you can use your own custom response codes rather than the
@@ -84,8 +87,11 @@ dialog = gtk\_file\_chooser\_dialog\_new ("Open File",
 	proper operation.
         
     }
-\section{Structures}{\describe{\item{\code{GtkFileChooserDialog}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkFileChooserDialog}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkFileChooserDialog} is the result of collapsing the constructors of \code{GtkFileChooserDialog} (\code{\link{gtkFileChooserDialogNew}}, \code{\link{gtkFileChooserDialogNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFileChooserDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

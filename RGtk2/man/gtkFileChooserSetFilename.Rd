@@ -25,17 +25,18 @@ on it.  If you don't have a file name already -- for example, if the user just c
 a new file and is saving it for the first time, do not call this function.  Instead, use
 something similar to this:
   
-\preformatted{if (document\_is\_new)
+\preformatted{if (document_is_new)
   {
     /    * the user just created a new document *    /
-    gtk\_file\_chooser\_set\_current\_folder (chooser, default\_folder\_for\_saving);
-    gtk\_file\_chooser\_set\_current\_name (chooser, "Untitled document");
+    gtk_file_chooser_set_current_folder (chooser, default_folder_for_saving);
+    gtk_file_chooser_set_current_name (chooser, "Untitled document");
   }
 else
   {
     /    * the user edited an existing document *    / 
-    gtk\_file\_chooser\_set\_filename (chooser, existing\_filename);
-  }}  
+    gtk_file_chooser_set_filename (chooser, existing_filename);
+  }
+}  
 
   Since  2.4}
 \value{[logical]  \code{TRUE} if both the folder could be changed and the file was

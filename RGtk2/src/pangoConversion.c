@@ -13,11 +13,15 @@ asRPangoRectangle(PangoRectangle *rect)
 }
 
 USER_OBJECT_
-toRPangoAttribute(PangoAttribute *attr, gboolean finalize)
+toRPangoAttribute(PangoAttribute *attr, gboolean owns)
 {
     char *type = NULL;
     USER_OBJECT_ result;
+    char *classes[] = { NULL, "PangoAttribute", "RGtkObject", NULL };
 
+    if (!attr)
+      return NULL_USER_OBJECT;
+    
     switch(attr->klass->type) {
          case PANGO_ATTR_LANGUAGE:
             type = "PangoAttrLanguage";
@@ -63,13 +67,14 @@ toRPangoAttribute(PangoAttribute *attr, gboolean finalize)
 			ERROR;
 	}
 	
-	RPointerFinalizer finalizer = NULL;
-    if (finalize)
-        finalizer = (RPointerFinalizer)pango_attribute_destroy;
-	PROTECT(result = toRPointerWithFinalizer(attr, NULL, finalizer));
+	classes[0] = type;
+  
+  if (!owns)
+    attr = pango_attribute_copy(attr);
+  
+	PROTECT(result = toRPointerWithFinalizer(attr, NULL, (RPointerFinalizer)pango_attribute_destroy));
 	
-	char *classes[] = { type, "PangoAttribute", "RGtkObject", NULL };
-    SET_CLASS(result, asRStringArray(classes));
+	SET_CLASS(result, asRStringArray(classes));
 	
 	UNPROTECT(1);
 	
@@ -80,6 +85,11 @@ USER_OBJECT_
 asRPangoAttribute(PangoAttribute *attr)
 {
     return(toRPangoAttribute(attr, TRUE));
+}
+USER_OBJECT_
+asRPangoAttributeCopy(PangoAttribute *attr)
+{
+  return(toRPangoAttribute(attr, FALSE));
 }
 
 /*

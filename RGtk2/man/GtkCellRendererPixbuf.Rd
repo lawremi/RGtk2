@@ -8,9 +8,10 @@
 \code{gtkCellRendererPixbuf()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererPixbuf}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkCellRenderer}
+                     +----GtkCellRendererPixbuf}}
 \section{Detailed Description}{A \code{\link{GtkCellRendererPixbuf}} can be used to render an image in a cell. It allows to render 
 either a given \code{\link{GdkPixbuf}} (set via the 
 pixbuf property) or a stock icon 
@@ -26,8 +27,11 @@ is-expanded property is \code{FALSE} and
 the 
 pixbuf-expander-closed 
 property is set to a pixbuf, it renders that one. }
-\section{Structures}{\describe{\item{\code{GtkCellRendererPixbuf}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkCellRendererPixbuf}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkCellRendererPixbuf} is the equivalent of \code{\link{gtkCellRendererPixbufNew}}.}
 \section{Properties}{\describe{
 \item{\code{follow-state} [logical : Read / Write]}{

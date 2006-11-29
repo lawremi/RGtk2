@@ -33,8 +33,11 @@ The GladeXML object can also be used to connect handlers to the named
 signals in the description.  Libglade also provides an interface by which
 it can look up the signal handler names in the program's symbol table and
 automatically connect as many handlers up as it can that way.}
-\section{Structures}{\describe{\item{\code{GladeXML}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GladeXML}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gladeXML} is the result of collapsing the constructors of \code{GladeXML} (\code{\link{gladeXMLNew}}, \code{\link{gladeXMLNewFromBuffer}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{User Functions}{\describe{
 \item{\code{GladeXMLConnectFunc(handler.name, object, signal.name, signal.data, connect.object, after, user.data)}}{

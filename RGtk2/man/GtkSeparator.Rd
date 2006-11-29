@@ -3,11 +3,12 @@
 \title{GtkSeparator}
 \description{Base class for    and }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkSeparator
-                     +----\link{GtkHSeparator}
-                     +----\link{GtkVSeparator}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkSeparator
+                           +----\link{GtkHSeparator}
+                           +----\link{GtkVSeparator}}}
 \section{Interfaces}{GtkSeparator implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkSeparator}} widget is an abstract class, used only for deriving the

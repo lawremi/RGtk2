@@ -11,18 +11,20 @@
 \code{gtkListItem(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkItem}
-                                 +----GtkListItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkItem}
+                                       +----GtkListItem}}
 \section{Interfaces}{GtkListItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
-  
+  \code{\link{GtkListItem}}  \code{GtkListItem}  \code{\link{GtkList}}  \code{GtkList}  
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
+in newly written code. Use \code{\link{GtkTreeView}} instead.
+  \code{\link{GtkTreeView}}  \code{GtkTreeView}}
 \section{Structures}{\describe{\item{\code{GtkListItem}}{
 \strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkListItem}} struct contains private data only, and should
@@ -32,7 +34,8 @@ only be accessed using the functions below.
 \section{Convenient Construction}{\code{gtkListItem} is the result of collapsing the constructors of \code{GtkListItem} (\code{\link{gtkListItemNew}}, \code{\link{gtkListItemNewWithLabel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
 \item{\code{end-selection(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -41,7 +44,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{extend-selection(listitem, scroll.type, position, auto.start.selection, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -53,7 +57,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{scroll-horizontal(listitem, scroll.type, position, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -64,7 +69,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{scroll-vertical(listitem, scroll.type, position, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -75,7 +81,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{select-all(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -84,7 +91,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{start-selection(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -93,7 +101,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{toggle-add-mode(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -102,7 +111,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{toggle-focus-row(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -111,7 +121,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{undo-selection(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
@@ -120,7 +131,8 @@ only be accessed using the functions below.
 
 }
 \item{\code{unselect-all(listitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}

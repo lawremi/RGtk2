@@ -2736,7 +2736,7 @@
   (of-object "PangoRenderer")
   (return-type "none")
   (parameters
-    '("PangoLayoutRun*" "run")
+    '("PangoGlyphItem*" "run")
   )
 )
 

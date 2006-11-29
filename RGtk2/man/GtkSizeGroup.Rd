@@ -12,6 +12,7 @@
 \code{\link{gtkSizeGroupGetIgnoreHidden}(object)}\cr
 \code{\link{gtkSizeGroupAddWidget}(object, widget)}\cr
 \code{\link{gtkSizeGroupRemoveWidget}(object, widget)}\cr
+\code{\link{gtkSizeGroupGetWidgets}(object)}\cr
 \code{gtkSizeGroup(mode = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -36,7 +37,7 @@ include the \code{GTK_FILL} flag.
   
 \code{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
 so once you have added all widgets to a \code{\link{GtkSizeGroup}}, you can drop
-the initial reference to the size group with \code{g\Object\Unref()}. If the
+the initial reference to the size group with \code{gObjectUnref()}. If the
 widgets in the size group are subsequently destroyed, then they will
 be removed from the size group and drop their references on the size
 group; when all widgets have been removed, the size group will be
@@ -49,8 +50,11 @@ of type \code{GTK_SIZE_GROUP_HORIZONTAL} or \code{GTK_SIZE_GROUP_BOTH}, and the
 vertical size from the vertical requisition of all widgets that can be
 reached from the widget by a chain of size groups of type
 \code{GTK_SIZE_GROUP_VERTICAL} or \code{GTK_SIZE_GROUP_BOTH}.}
-\section{Structures}{\describe{\item{\code{GtkSizeGroup}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkSizeGroup}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkSizeGroup} is the equivalent of \code{\link{gtkSizeGroupNew}}.}
 \section{Enums and Flags}{\describe{\item{\code{GtkSizeGroupMode}}{
 The mode of the size group determines the directions in which the size
@@ -67,7 +71,7 @@ group affects the requested sizes of its component widgets.
 \section{Properties}{\describe{
 \item{\code{ignore-hidden} [logical : Read / Write]}{
 
-If \code{TRUE}, hidden widgets are ignored when determining 
+If \code{TRUE}, unmapped widgets are ignored when determining 
 the size of the group.  
 
   Default value: FALSE  Since  2.8

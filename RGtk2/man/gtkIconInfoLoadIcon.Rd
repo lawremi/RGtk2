@@ -19,8 +19,7 @@ up too far. (This maintains sharpness.)}
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbuf}}]  the rendered icon; this may be a newly created icon
  or a new reference to an internal icon, so you must not modify
- the icon. Use \code{g\Object\Unref()} to release your reference to the
- icon.}
+ the icon.}
 \item{\code{error}}{[\code{\link{GError}}]  location to store error information on failure, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

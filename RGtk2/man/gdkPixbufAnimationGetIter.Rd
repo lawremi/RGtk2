@@ -8,7 +8,7 @@ the frames that should be displayed at a given time.}
 \item{\code{object}}{[\code{\link{GdkPixbufAnimation}}]  a \code{\link{GdkPixbufAnimation}}}
 \item{\code{start.time}}{[\code{\link{GTimeVal}}]  time when the animation starts playing}
 }
-\details{\code{start.time} would normally come from \code{g\Get\Current\Time()}, and
+\details{\code{start.time} would normally come from \code{gGetCurrentTime()}, and
 marks the beginning of animation playback. After creating an
 iterator, you should immediately display the pixbuf returned by
 \code{\link{gdkPixbufAnimationIterGetPixbuf}}. Then, you should install a
@@ -19,7 +19,7 @@ the image is updated, you should reinstall the timeout with the new,
 possibly-changed delay time.
   
 As a shortcut, if \code{start.time} is \code{NULL}, the result of
-\code{g\Get\Current\Time()} will be used automatically.
+\code{gGetCurrentTime()} will be used automatically.
   
 To update the image (i.e. possibly change the result of
 \code{\link{gdkPixbufAnimationIterGetPixbuf}} to a new frame of the animation),

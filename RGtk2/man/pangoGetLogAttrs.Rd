@@ -6,8 +6,8 @@ array must have one \code{\link{PangoLogAttr}} for each position in \code{text};
 \code{text} contains N characters, it has N+1 positions, including the
 last position at the end of the text. \code{text} should be an entire
 paragraph; logical attributes can't be computed without context
-(for example you need to see spaces on either side of a word to know the
-word is a word).}
+(for example you need to see spaces on either side of a word to know
+the word is a word).}
 \usage{pangoGetLogAttrs(text, level, language)}
 \arguments{
 \item{\code{text}}{[char]  text to process}

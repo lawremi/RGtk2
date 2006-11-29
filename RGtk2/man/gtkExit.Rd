@@ -11,11 +11,5 @@ for GTK+.
 \arguments{\item{\code{error.code}}{[integer] Return value to pass to the caller. This is dependend on the
 target system but at least on Unix systems \code{0} means 
 success.}}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

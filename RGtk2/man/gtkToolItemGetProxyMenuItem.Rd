@@ -5,7 +5,7 @@
 \code{\link{gtkToolItemSetProxyMenuItem}} return the corresponding \code{\link{GtkMenuItem}}.}
 \usage{gtkToolItemGetProxyMenuItem(object, menu.item.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}: }
+\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}} }
 \item{\code{menu.item.id}}{[character]  a string used to identify the menu item}
 }
 \details{Custom subclasses of \code{\link{GtkToolItem}} should use this function to update

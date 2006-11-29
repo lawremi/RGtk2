@@ -14,6 +14,9 @@ in the original rectangle)}
 \item{\code{width}}{[integer]  width of underline, in Pango units in user coordinate system}
 \item{\code{height}}{[integer]  height of underline, in Pango units in user coordinate system}
 }
-\details{  Since  1.8}
+\details{This should be called while \code{renderer} is already active.  Use
+\code{\link{pangoRendererActivate}} to activate a renderer.  
+
+  Since  1.8}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

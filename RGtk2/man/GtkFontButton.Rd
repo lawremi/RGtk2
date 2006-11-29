@@ -21,22 +21,31 @@
 \code{gtkFontButton(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkFontButton}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkButton}
+                                       +----GtkFontButton}}
 \section{Interfaces}{GtkFontButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection 
 dialog to change the font. It is suitable widget for selecting a font in a preference dialog.}
-\section{Structures}{\describe{\item{\code{GtkFontButton}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkFontButton}}{
+The GtkFontButton struct has only private members and should not be used
+directly.
+
+}}}
 \section{Convenient Construction}{\code{gtkFontButton} is the equivalent of \code{\link{gtkFontButtonNew}}.}
 \section{Signals}{\describe{\item{\code{font-set(widget, user.data)}}{
-The ::font-set signal is emitted when the user selects a font. When handling this signal,
-use \code{\link{gtkFontButtonGetFontName}} to find out which font was just selected.  
+The ::font-set signal is emitted when the user selects a font. 
+When handling this signal, use \code{\link{gtkFontButtonGetFontName}} 
+to find out which font was just selected.
+  
+Note that this signal is only emitted when the \emph{user}
+changes the font. If you need to react to programmatic font changes
+as well, use the notify::font-name signal.  
 
   Since  2.4
 
@@ -56,16 +65,18 @@ The name of the currently selected font.
 }
 \item{\code{show-size} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the selected font size will be shown in the label. For
-a more WYSIWIG way to show the selected size, see the ::use-size property.  
+If this property is set to \code{TRUE}, the selected font size will be shown 
+in the label. For a more WYSIWYG way to show the selected size, see the 
+::use-size property.  
 
   Default value: TRUE  Since  2.4
 
 }
 \item{\code{show-style} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the name of the selected font style will be shown in the label. For
-a more WYSIWIG way to show the selected style, see the ::use-font property.  
+If this property is set to \code{TRUE}, the name of the selected font style 
+will be shown in the label. For a more WYSIWYG way to show the selected 
+style, see the ::use-font property.  
 
   Default value: TRUE  Since  2.4
 
@@ -79,14 +90,16 @@ The title of the font selection dialog.
 }
 \item{\code{use-font} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the label will be drawn in the selected font.  
+If this property is set to \code{TRUE}, the label will be drawn 
+in the selected font.  
 
   Default value: FALSE  Since  2.4
 
 }
 \item{\code{use-size} [logical : Read / Write]}{
 
-If this property is set to \code{TRUE}, the label will be drawn with the selected font size.  
+If this property is set to \code{TRUE}, the label will be drawn 
+with the selected font size.  
 
   Default value: FALSE  Since  2.4
 

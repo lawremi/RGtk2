@@ -13,14 +13,14 @@
 \code{\link{gdkPixmapColormapCreateFromXpm}(drawable, colormap, transparent.color, filename)}\cr
 \code{\link{gdkPixmapCreateFromXpmD}(drawable, transparent.color, data)}\cr
 \code{\link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)}\cr
-\code{gdkPixmap(drawable = NULL, width, height, depth = -1)}
+\code{gdkPixmap(drawable, data, transparent.color, height, width, depth, filename, colormap, fg, bg)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----\link{GdkDrawable}
          +----GdkPixmap}}
 \section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the
 standard drawing primitives, then copied to another drawable (such as
-a \code{\link{GdkWindow}}) with \code{gdk\Pixmap\Draw()}. The depth of a pixmap
+a \code{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
 is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}

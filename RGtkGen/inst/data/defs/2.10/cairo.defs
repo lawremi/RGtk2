@@ -22,6 +22,17 @@
     '("svg" "CAIRO_SURFACE_TYPE_SVG")
   )
 )
+(define-enum font_type
+  (in-module "cairo")
+  (c-name "cairo_font_type_t")
+  (gtype-id "CAIRO_TYPE_FONT_TYPE")
+  (values
+    '("toy" "CAIRO_FONT_TYPE_TOY")
+    '("ft" "CAIRO_FONT_TYPE_FT")
+    '("win32" "CAIRO_FONT_TYPE_WIN32")
+    '("atsui" "CAIRO_FONT_TYPE_ATSUI")
+  )
+)
 (define-enum pattern_type
   (in-module "cairo")
   (c-name "cairo_pattern_type_t")
@@ -40,7 +51,7 @@
   (values
     '("1-1" "CAIRO_SVG_VERSION_1_1")
     '("1-2" "CAIRO_SVG_VERSION_1_2")
-    '("last" "CAIRO_SVG_VERSION_LAST")
+;    '("last" "CAIRO_SVG_VERSION_LAST")
   )
 )
 
@@ -98,6 +109,15 @@
 
 ; Scaled fonts
 
+(define-function cairo_set_scaled_font
+  (c-name "cairo_set_scaled_font")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("cairo_scaled_font_t*" "scaled_font")
+  )
+)
+
 (define-function cairo_scaled_font_get_font_face
   (c-name "cairo_scaled_font_get_font_face")
   (return-type "cairo_font_face_t*")
@@ -129,8 +149,7 @@
     '("cairo_scaled_font_t*" "scaled_font")
     '("cairo_font_options_t*" "options" (out))
   )
-
-; scaled fonts
+)
 
 (define-function cairo_scaled_font_text_extents
   (c-name "cairo_scaled_font_text_extents")
@@ -139,6 +158,24 @@
     '("cairo_scaled_font_t*" "scaled_font")
     '("const-char*" "utf8")
     '("cairo_text_extents_t*" "extents" (out))
+  )
+)
+
+(define-function cairo_scaled_font_get_type
+  (c-name "cairo_scaled_font_get_type")
+  (return-type "cairo_font_type_t")
+  (parameters
+    '("cairo_scaled_font_t*" "scaled_font")
+  )
+)
+
+; font faces
+
+(define-function cairo_font_face_get_type
+  (c-name "cairo_font_face_get_type")
+  (return-type "cairo_font_type_t")
+  (parameters
+    '("cairo_font_face_t*" "font_face")
   )
 )
 
@@ -171,6 +208,17 @@
     '("double" "x_pixels_per_inch")
     '("double" "y_pixels_per_inch")
   )
+)
+
+(define-function cairo_surface_get_content
+  (c-name "cairo_surface_get_content")
+  (return-type "cairo_content_t")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+)
+
+; Image surfaces
 
 (define-function cairo_image_surface_get_format
   (c-name "cairo_image_surface_get_format")
@@ -183,6 +231,14 @@
 (define-function cairo_image_surface_get_stride
   (c-name "cairo_image_surface_get_stride")
   (return-type "int")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+)
+
+(define-function cairo_image_surface_get_data
+  (c-name "cairo_image_surface_get_data")
+  (return-type "guchar*")
   (parameters
     '("cairo_surface_t*" "surface")
   )

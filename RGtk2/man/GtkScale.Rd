@@ -14,12 +14,13 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----GtkScale
-                           +----\link{GtkHScale}
-                           +----\link{GtkVScale}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRange}
+                           +----GtkScale
+                                 +----\link{GtkHScale}
+                                 +----\link{GtkVScale}}}
 \section{Interfaces}{GtkScale implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkScale}} is a slider control used to select a numeric value.

@@ -7,7 +7,6 @@
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
 \value{[list]  a \code{list} containing the URIs of all selected
-  files and subfolders in the current folder. Free the returned list
-  with \code{g\Slist\Free()}, and the filenames with \code{g\Free()}.}
+  files and subfolders in the current folder.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

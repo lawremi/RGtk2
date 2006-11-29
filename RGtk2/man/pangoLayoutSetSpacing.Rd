@@ -1,7 +1,8 @@
 \alias{pangoLayoutSetSpacing}
 \name{pangoLayoutSetSpacing}
 \title{pangoLayoutSetSpacing}
-\description{Sets the amount of spacing between the lines of the layout.}
+\description{Sets the amount of spacing in \code{integer} between the lines of the
+layout.}
 \usage{pangoLayoutSetSpacing(object, spacing)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}

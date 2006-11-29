@@ -685,7 +685,19 @@
 
 ;; From gtklabel.h
 
-
+(define-method get_line_wrap_mode
+  (c-name "gtk_label_get_line_wrap_mode")
+  (of-object "GtkLabel")
+  (return-type "PangoWrapMode")
+)
+(define-method set_line_wrap_mode
+  (c-name "gtk_label_set_line_wrap_mode")
+  (of-object "GtkLabel")
+  (return-type "none")
+  (parameters
+    '("PangoWrapMode" "wrap_mode")
+  )
+)
 
 ;; From gtklayout.h
 

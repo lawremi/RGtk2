@@ -12,6 +12,11 @@ object for an object of a particular GType.}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----AtkRegistry}}
+\section{Detailed Description}{The AtkRegistry is normally used to create appropriate ATK "peers" for user
+interface components.  Application developers usually need only interact with
+the AtkRegistry by associating appropriate ATK implementation classes with
+GObject classes via the atk\_registry\_set\_factory\_type call, passing the
+appropriate GType for application custom widget classes.}
 \section{Structures}{\describe{\item{\code{AtkRegistry}}{
 The AtkRegistry structure should not be accessed directly.
 

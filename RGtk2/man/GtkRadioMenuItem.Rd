@@ -15,14 +15,15 @@
 \code{gtkRadioMenuItem(group = NULL, label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkItem}
-                                 +----\link{GtkMenuItem}
-                                       +----\link{GtkCheckMenuItem}
-                                             +----GtkRadioMenuItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkItem}
+                                       +----\link{GtkMenuItem}
+                                             +----\link{GtkCheckMenuItem}
+                                                   +----GtkRadioMenuItem}}
 \section{Interfaces}{GtkRadioMenuItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{A radio menu item is a check menu item that belongs to a group. At each
@@ -51,7 +52,8 @@ the interface functions.
 }}}
 \section{Convenient Construction}{\code{gtkRadioMenuItem} is the result of collapsing the constructors of \code{GtkRadioMenuItem} (\code{\link{gtkRadioMenuItemNew}}, \code{\link{gtkRadioMenuItemNewWithLabel}}, \code{\link{gtkRadioMenuItemNewWithMnemonic}}, \code{\link{gtkRadioMenuItemNewFromWidget}}, \code{\link{gtkRadioMenuItemNewWithMnemonicFromWidget}}, \code{\link{gtkRadioMenuItemNewWithLabelFromWidget}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{group-changed(radiomenuitem, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{radiomenuitem}}{[\code{\link{GtkRadioMenuItem}}] the object which received the signal.}

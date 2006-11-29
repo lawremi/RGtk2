@@ -69,8 +69,8 @@ fields:
 
 \describe{
 \item{\code{font}}{[\code{\link{PangoFont}}] the engine for doing rendering-system-dependent processing.}
-\item{\code{level}}{[integer] the engine for doing rendering-system-independent processing.}
-\item{\code{language}}{[\code{\link{PangoLanguage}}] }
+\item{\code{level}}{[raw] the engine for doing rendering-system-independent processing.}
+\item{\code{language}}{[\code{\link{PangoLanguage}}] the font for this segment.}
 \item{\code{extraAttrs}}{[list] the bidrectional level for this segment.}
 }
 
@@ -80,17 +80,31 @@ The \code{\link{PangoLogAttr}} structure stores information
 about the attributes of a single character.
 
 \describe{
-\item{\code{isLineBreak}}{[numeric] }
-\item{\code{isMandatoryBreak}}{[numeric] }
-\item{\code{isCharBreak}}{[numeric] }
-\item{\code{isWhite}}{[numeric] }
-\item{\code{isCursorPosition}}{[numeric] }
-\item{\code{isWordStart}}{[numeric] }
-\item{\code{isWordEnd}}{[numeric] }
-\item{\code{isSentenceBoundary}}{[numeric] }
-\item{\code{isSentenceStart}}{[numeric] }
-\item{\code{isSentenceEnd}}{[numeric] }
-\item{\code{backspaceDeletesCharacter}}{[numeric] If set, backspace deletes one character
+\item{\code{isLineBreak}}{[numeric] if set, can break line in front of character}
+\item{\code{isMandatoryBreak}}{[numeric] if set, must break line in front of character}
+\item{\code{isCharBreak}}{[numeric] if set, can break here when doing character wrapping}
+\item{\code{isWhite}}{[numeric] is whitespace character}
+\item{\code{isCursorPosition}}{[numeric] if set, cursor can appear in front of character.
+	i.e. this is a grapheme boundary, or the first character
+        in the text.}
+\item{\code{isWordStart}}{[numeric] is first character in a word}
+\item{\code{isWordEnd}}{[numeric] is first non-word char after a word
+	Note that in degenerate cases, you could have both \code{is.word.start}
+	and \code{is.word.end} set for some character.}
+\item{\code{isSentenceBoundary}}{[numeric] is a sentence boundary.
+        There are two ways to divide sentences. The first assigns all
+	intersentence whitespace/control/format chars to some sentence,
+	so all chars are in some sentence; \code{is.sentence.boundary} denotes
+	the boundaries there. The second way doesn't assign
+	between-sentence spaces, etc. to any sentence, so
+	\code{is.sentence.start}/\code{is.sentence.end} mark the boundaries
+	of those sentences.}
+\item{\code{isSentenceStart}}{[numeric] is first character in a sentence}
+\item{\code{isSentenceEnd}}{[numeric] is first char after a sentence.
+	Note that in degenerate cases, you could have both \code{is.sentence.start}
+	and \code{is.sentence.end} set for some character. (e.g. no space after a
+	period, so the next sentence starts right away)}
+\item{\code{backspaceDeletesCharacter}}{[numeric] if set, backspace deletes one character
                               rather than the entire grapheme cluster. This
                               field is only meaningful on grapheme
                               boundaries (where \code{is.cursor.position} is
@@ -115,7 +129,7 @@ and \code{\link{pangoFindBaseDir}} cannot be \code{PANGO_DIRECTION_WEAK_LTR}
 or \code{PANGO_DIRECTION_WEAK_RTL}, since every character is either
 neutral or has a strong direction; on the other hand
 \code{PANGO_DIRECTION_NEUTRAL} doesn't make sense to pass
-to \code{pango\Log2vis\Get\Embedding\Levels()}.
+to \code{\link{pangoItemizeWithBaseDir}}.
   
 The \code{PANGO_DIRECTION_TTB_LTR}, \code{PANGO_DIRECTION_TTB_RTL}
 values come from an earlier interpretation of this
@@ -132,7 +146,7 @@ can be found there as well.
 \item{\code{ttb-ltr}}{ Deprecated value; treated the
   same as \code{PANGO_DIRECTION_RTL}.}
 \item{\code{ttb-rtl}}{ Deprecated value; treated the
-  same as PANGO\_DIRECTION\_LTR}
+  same as \code{PANGO_DIRECTION_LTR}}
 }
 
 }}}

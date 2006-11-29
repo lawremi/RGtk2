@@ -15,12 +15,13 @@
 \code{gtkCombo(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkHBox}
-                                 +----GtkCombo}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkHBox}
+                                       +----GtkCombo}}
 \section{Interfaces}{GtkCombo implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
@@ -30,7 +31,7 @@ button to the right of the entry field.
 The drop-down list is a \code{\link{GtkList}} widget and can be accessed using the
 \code{list} member of the \code{\link{GtkCombo}}.
 List elements can contain arbitrary widgets, but if an element is not a
-plain label, then you must use the \code{gtk\List\Set\Item\String()} function.
+plain label, then you must use the \code{gtkListSetItemString()} function.
 This sets the string which will be placed in the text entry field when the
 item is selected.
   
@@ -74,7 +75,7 @@ As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\li
   combo[["list"]]$add(item)
 }}
 \section{Structures}{\describe{\item{\code{GtkCombo}}{
-\strong{WARNING: \code{GtkCombo} is deprecated and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
+\strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
 The \code{\link{GtkFixedChild}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)

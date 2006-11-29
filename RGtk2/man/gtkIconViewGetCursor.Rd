@@ -6,9 +6,9 @@ If the cursor isn't currently set, then *\code{path} will be \code{NULL}.
 If no cell currently has focus, then *\code{cell} will be \code{NULL}.}
 \usage{gtkIconViewGetCursor(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}}}
-\details{  
+\details{.  
 
-  Since  2.8.}
+  Since  2.8}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if the cursor is set.}

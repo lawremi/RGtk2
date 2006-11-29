@@ -16,13 +16,14 @@
 \code{gtkFileSelection(title = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----\link{GtkDialog}
-                                       +----GtkFileSelection}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----\link{GtkDialog}
+                                             +----GtkFileSelection}}
 \section{Interfaces}{GtkFileSelection implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 

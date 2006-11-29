@@ -90,6 +90,16 @@ The GtkActionGroup this GtkAction is associated with, or NULL (for internal use)
 When TRUE, empty menu proxies for this action are hidden.  Default value: TRUE
 
 }
+\item{\code{icon-name} [character : Read / Write]}{
+
+The name of the icon from the icon theme. 
+Note that the stock icon is preferred, if
+the ::stock-id property holds the id of an
+existing stock icon.  
+
+  Default value: NULL  Since  2.10
+
+}
 \item{\code{is-important} [logical : Read / Write]}{
 
 Whether the action is considered important. When TRUE, toolitem proxies for this action show text in GTK\_TOOLBAR\_BOTH\_HORIZ mode.  Default value: FALSE

@@ -11,10 +11,11 @@
 \code{gtkPixmap(pixmap, mask = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----GtkPixmap}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkMisc}
+                           +----GtkPixmap}}
 \section{Interfaces}{GtkPixmap implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkPixmap}} widget displays a graphical image or icon.

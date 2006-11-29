@@ -42,7 +42,8 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 }
 
 \examples{
- getSignalInfo("GtkButton")
+  if (gtkInit())
+    getSignalInfo("GtkButton")
 }
 
 \keyword{interface}

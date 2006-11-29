@@ -29,13 +29,14 @@
 \code{gtkToolItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkToolItem
-                                 +----\link{GtkToolButton}
-                                 +----\link{GtkSeparatorToolItem}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkToolItem
+                                       +----\link{GtkToolButton}
+                                       +----\link{GtkSeparatorToolItem}}}
 \section{Interfaces}{GtkToolItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkToolItem}}s are widgets that can appear on a toolbar. To

@@ -619,6 +619,9 @@ S_atk_object_remove_relationship(USER_OBJECT_ s_object, USER_OBJECT_ s_relations
 S_atk_role_get_localized_name(USER_OBJECT_ s_role); 
 
   USER_OBJECT_
+S_atk_hyperlink_impl_get_hyperlink(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
 S_atk_document_get_locale(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
@@ -638,5 +641,11 @@ S_atk_image_get_image_locale(USER_OBJECT_ s_object);
 
   USER_OBJECT_
 S_atk_object_get_attributes(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_atk_streamable_content_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_type); 
+
+  USER_OBJECT_
+S_atk_value_get_minimum_increment(USER_OBJECT_ s_object); 
 
 #endif /* S_GTK_FUNCS_H */ 

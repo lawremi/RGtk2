@@ -14,7 +14,7 @@ in that grapheme. The reverse is true for a left-to-right line.}
 \usage{pangoLayoutLineXToIndex(object, x.pos)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayoutLine}}]       a \code{\link{PangoLayoutLine}}}
-\item{\code{x.pos}}{[integer]      the x offset (in \code{integer})
+\item{\code{x.pos}}{[integer]      the X offset (in \code{integer})
             from the left edge of the line.}
 }
 \value{

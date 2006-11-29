@@ -20,9 +20,10 @@
 \code{gtkCalendar(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkCalendar}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkCalendar}}
 \section{Interfaces}{GtkCalendar implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
@@ -82,7 +83,8 @@ Emitted when the user selects a day.
 
 }
 \item{\code{day-selected-double-click(calendar, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
@@ -101,7 +103,8 @@ calendar.
 
 }
 \item{\code{next-month(calendar, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
@@ -110,7 +113,8 @@ calendar.
 
 }
 \item{\code{next-year(calendar, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
@@ -119,7 +123,8 @@ calendar.
 
 }
 \item{\code{prev-month(calendar, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
@@ -128,7 +133,8 @@ calendar.
 
 }
 \item{\code{prev-year(calendar, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}

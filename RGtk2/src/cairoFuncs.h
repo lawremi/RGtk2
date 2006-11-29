@@ -508,6 +508,9 @@ S_cairo_get_group_target(USER_OBJECT_ s_cr);
 S_cairo_new_sub_path(USER_OBJECT_ s_cr); 
 
   USER_OBJECT_
+S_cairo_set_scaled_font(USER_OBJECT_ s_cr, USER_OBJECT_ s_scaled_font); 
+
+  USER_OBJECT_
 S_cairo_scaled_font_get_font_face(USER_OBJECT_ s_scaled_font); 
 
   USER_OBJECT_
@@ -515,5 +518,83 @@ S_cairo_scaled_font_get_font_matrix(USER_OBJECT_ s_scaled_font);
 
   USER_OBJECT_
 S_cairo_scaled_font_get_ctm(USER_OBJECT_ s_scaled_font); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_get_font_options(USER_OBJECT_ s_scaled_font); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_text_extents(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_utf8); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_get_type(USER_OBJECT_ s_scaled_font); 
+
+  USER_OBJECT_
+S_cairo_font_face_get_type(USER_OBJECT_ s_font_face); 
+
+  USER_OBJECT_
+S_cairo_surface_get_type(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_surface_get_device_offset(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_surface_set_fallback_resolution(USER_OBJECT_ s_surface, USER_OBJECT_ s_x_pixels_per_inch, USER_OBJECT_ s_y_pixels_per_inch); 
+
+  USER_OBJECT_
+S_cairo_surface_get_content(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_image_surface_get_format(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_image_surface_get_stride(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_image_surface_get_data(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_type(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_pdf_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_pdf_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_pdf_surface_set_size(USER_OBJECT_ s_surface, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_set_size(USER_OBJECT_ s_surface, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_dsc_comment(USER_OBJECT_ s_surface, USER_OBJECT_ s_comment); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_dsc_begin_setup(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_dsc_begin_page_setup(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_svg_surface_create(USER_OBJECT_ s_filename, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_svg_surface_create_for_stream(USER_OBJECT_ s_write_func, USER_OBJECT_ s_closure, USER_OBJECT_ s_width_in_points, USER_OBJECT_ s_height_in_points); 
+
+  USER_OBJECT_
+S_cairo_svg_surface_restrict_to_version(USER_OBJECT_ s_surface, USER_OBJECT_ s_version); 
+
+  USER_OBJECT_
+S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions); 
+
+  USER_OBJECT_
+S_cairo_svg_version_to_string(USER_OBJECT_ s_version); 
 
 #endif /* S_GTK_FUNCS_H */ 

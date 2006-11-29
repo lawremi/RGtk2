@@ -11,6 +11,6 @@ and position for \code{size} tab stops.}
 \item{\code{positions.in.pixels}}{[logical]  whether positions are in pixel units}
 \item{\code{...}}{ additional alignment/position pairs}
 }
-\value{[\code{\link{PangoTabArray}}]  a new \code{\link{PangoTabArray}}}
+\value{[\code{\link{PangoTabArray}}]  the newly allocated \code{\link{PangoTabArray}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

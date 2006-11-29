@@ -2,17 +2,18 @@
 \name{cairoMatrixTransformDistance}
 \title{cairoMatrixTransformDistance}
 \description{Transforms the distance vector (\code{dx},\code{dy}) by \code{matrix}. This is
-similar to \code{cairo\Matrix\Transform()} except that the translation
+similar to \code{\link{cairoMatrixTransformPoint}} except that the translation
 components of the transformation are ignored. The calculation of
 the returned vector is as follows:}
 \usage{cairoMatrixTransformDistance(matrix, dx, dy)}
 \arguments{
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{cairo.matrix.t}}
+\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
 \item{\code{dx}}{[numeric]  X component of a distance vector. An in/out parameter}
 \item{\code{dy}}{[numeric]  Y component of a distance vector. An in/out parameter}
 }
 \details{\preformatted{dx2 = dx1 * a + dy1 * c;
-dy2 = dx1 * b + dy1 * d;}
+dy2 = dx1 * b + dy1 * d;
+}
   
 Affine transformations are position invariant, so the same vector
 always transforms to the same vector. If (\code{x1},\code{y1}) transforms

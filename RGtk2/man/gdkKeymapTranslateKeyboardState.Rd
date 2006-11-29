@@ -4,7 +4,7 @@
 \description{Translates the contents of a \code{\link{GdkEventKey}} into a keyval, effective
 group, and level. Modifiers that affected the translation and
 are thus unavailable for application use are returned in
-\code{consumed.modifiers}.  See \code{gdk\Keyval\Get\Keys()} for an explanation of
+\code{consumed.modifiers}.  See \code{gdkKeyvalGetKeys()} for an explanation of
 groups and levels.  The \code{effective.group} is the group that was
 actually used for the translation; some keys such as Enter are not
 affected by the active keyboard group. The \code{level} is derived from

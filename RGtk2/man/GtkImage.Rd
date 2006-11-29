@@ -14,12 +14,12 @@
 \code{\link{gtkImageGetIconName}(object)}\cr
 \code{\link{gtkImageGetStorageType}(object)}\cr
 \code{\link{gtkImageNewFromFile}(filename, show = TRUE)}\cr
-\code{\link{gtkImageNewFromIconSet}(icon.set, size)}\cr
+\code{\link{gtkImageNewFromIconSet}(icon.set, size, show = TRUE)}\cr
 \code{\link{gtkImageNewFromImage}(image = NULL, mask = NULL, show = TRUE)}\cr
 \code{\link{gtkImageNewFromPixbuf}(pixbuf = NULL, show = TRUE)}\cr
 \code{\link{gtkImageNewFromPixmap}(pixmap = NULL, mask = NULL, show = TRUE)}\cr
-\code{\link{gtkImageNewFromStock}(stock.id, size)}\cr
-\code{\link{gtkImageNewFromAnimation}(animation)}\cr
+\code{\link{gtkImageNewFromStock}(stock.id, size, show = TRUE)}\cr
+\code{\link{gtkImageNewFromAnimation}(animation, show = TRUE)}\cr
 \code{\link{gtkImageNewFromIconName}(icon.name, size)}\cr
 \code{\link{gtkImageSetFromFile}(object, filename = NULL)}\cr
 \code{\link{gtkImageSetFromIconSet}(object, icon.set, size)}\cr
@@ -35,13 +35,14 @@
 \code{\link{gtkImageGet}(object)}\cr
 \code{\link{gtkImageSetPixelSize}(object, pixel.size)}\cr
 \code{\link{gtkImageGetPixelSize}(object)}\cr
-\code{gtkImage(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)}
+\code{gtkImage(mask = NULL, size, pixmap = NULL, image = NULL, filename, pixbuf = NULL, stock.id, icon.set, animation, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkMisc}
-                     +----GtkImage}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkMisc}
+                           +----GtkImage}}
 \section{Interfaces}{GtkImage implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkImage}} widget displays an image. Various kinds of object 
@@ -112,13 +113,13 @@ files, such as image files. GTK+ comes with a program to avoid this,
 called \command{gdk-pixbuf-csource}. This program
 allows you to convert an image into a C variable declaration, which
 can then be loaded into a \code{\link{GdkPixbuf}} using
-\code{gdk\Pixbuf\New\From\Inline()}.}
+\code{gdkPixbufNewFromInline()}.}
 \section{Structures}{\describe{\item{\code{GtkImage}}{
 This struct contain private data only and should be accessed by the functions
 below.
 
 }}}
-\section{Convenient Construction}{\code{gtkImage} is the result of collapsing the constructors of \code{GtkImage} (\code{\link{gtkImageNew}}, \code{\link{gtkImageNewFromPixmap}}, \code{\link{gtkImageNewFromImage}}, \code{\link{gtkImageNewFromFile}}, \code{\link{gtkImageNewFromPixbuf}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Convenient Construction}{\code{gtkImage} is the result of collapsing the constructors of \code{GtkImage} (\code{\link{gtkImageNew}}, \code{\link{gtkImageNewFromPixmap}}, \code{\link{gtkImageNewFromImage}}, \code{\link{gtkImageNewFromFile}}, \code{\link{gtkImageNewFromPixbuf}}, \code{\link{gtkImageNewFromStock}}, \code{\link{gtkImageNewFromIconSet}}, \code{\link{gtkImageNewFromAnimation}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{\item{\code{GtkImageType}}{
 Describes the image data representation used by a \code{\link{GtkImage}}. If you
 want to get the image from the widget, you can only get the

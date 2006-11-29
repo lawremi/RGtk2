@@ -14,13 +14,14 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----GtkButtonBox
-                                 +----\link{GtkHButtonBox}
-                                 +----\link{GtkVButtonBox}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----GtkButtonBox
+                                       +----\link{GtkHButtonBox}
+                                       +----\link{GtkVButtonBox}}}
 \section{Interfaces}{GtkButtonBox implements
  AtkImplementorIface.}
 \section{Detailed Description}{The primary purpose of this class is to keep track of the various properties
@@ -34,7 +35,7 @@ The internal padding of buttons can be retrieved and changed per button box usin
 \code{\link{gtkButtonBoxGetChildIpadding}} and \code{\link{gtkButtonBoxSetChildIpadding}}
 respectively.
   
-\code{gtk\Button\Box\Get\Spacing()} and \code{gtk\Button\Box\Set\Spacing()} retrieve and
+\code{gtkButtonBoxGetSpacing()} and \code{gtkButtonBoxSetSpacing()} retrieve and
 change default number of pixels between buttons, respectively.
   
 \code{\link{gtkButtonBoxGetLayout}} and \code{\link{gtkButtonBoxSetLayout}} retrieve and alter the method

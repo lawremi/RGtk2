@@ -8,6 +8,6 @@ widget. See \code{\link{gtkFileChooserSetPreviewWidget}}.}
 \details{  Since  2.4}
 \value{[char]  the filename to preview, or \code{NULL} if no file
  is selected, or if the selected file cannot be represented
- as a local filename. Free with \code{g\Free()}}
+ as a local filename}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

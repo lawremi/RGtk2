@@ -67,8 +67,8 @@ The GtkEntryCompletion struct contains only private data.
 \section{User Functions}{\describe{\item{\code{GtkEntryCompletionMatchFunc(completion, key, iter, user.data)}}{
 A function which decides whether the row indicated by \code{iter} matches a given 
 \code{key}, and should be displayed as a possible completion for \code{key}. Note that
-\code{key} is normalized and case-folded (see \code{g\Utf8\Normalize()} and 
-\code{g\Utf8\Casefold()}). If this is not appropriate, match functions have access
+\code{key} is normalized and case-folded (see \code{gUtf8Normalize()} and 
+\code{gUtf8Casefold()}). If this is not appropriate, match functions have access
 to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_completion_get_entry (}.
 
 \describe{

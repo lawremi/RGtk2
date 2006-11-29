@@ -1,7 +1,8 @@
 \alias{gtkTableSetColSpacing}
 \name{gtkTableSetColSpacing}
 \title{gtkTableSetColSpacing}
-\description{Alters the amount of space between a given table column and the adjacent columns.}
+\description{Alters the amount of space between a given table column and the following 
+column.}
 \usage{gtkTableSetColSpacing(object, column, spacing)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTable}}] a \code{\link{GtkTable}}.}

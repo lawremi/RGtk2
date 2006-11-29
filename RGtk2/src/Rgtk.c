@@ -23,26 +23,27 @@ R_gtk_handle_events()
   R_gtk_eventHandler(NULL);
 }
 
-void
+Rboolean
 R_gtkInit(long *rargc, char **rargv)
 {
-    int argc;
+  int argc;
 
-    argc = (int) *rargc;
+  argc = (int) *rargc;
 
-    gtk_init_check(&argc, &rargv);
+  if (!gtk_init_check(&argc, &rargv))
+    return FALSE;
 
 #ifndef G_OS_WIN32
-    {
-      if (!GDK_DISPLAY())
-        error("GDK display not found - please make sure X11 is running");
-      InputHandler *h;
-      h = addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
-            R_gtk_eventHandler, -1);
-    }
+  {
+    InputHandler *h;
+    h = addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
+          R_gtk_eventHandler, -1);
+  }
 #else
-    R_tcldo = R_gtk_handle_events;
+  R_tcldo = R_gtk_handle_events;
 #endif
 
   r_gtk_param_spec_sexp_get_type();
+  
+  return TRUE;
 }

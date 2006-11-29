@@ -825,4 +825,13 @@ S_pango_cairo_error_underline_path(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJ
   USER_OBJECT_
 S_pango_font_describe_with_absolute_size(USER_OBJECT_ s_object); 
 
+  USER_OBJECT_
+S_pango_glyph_string_get_width(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_matrix_get_font_scale_factor(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_index_to_line_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index_, USER_OBJECT_ s_trailing); 
+
 #endif /* S_GTK_FUNCS_H */ 

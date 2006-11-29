@@ -5,7 +5,7 @@
 \usage{gtkProgressBarSetText(object, text)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkProgressBar}}]  a \code{\link{GtkProgressBar}}}
-\item{\code{text}}{[character]  a UTF-8 string}
+\item{\code{text}}{[character]  a UTF-8 string, or \code{NULL} }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

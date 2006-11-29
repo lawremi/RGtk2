@@ -3,7 +3,7 @@
 \alias{PangoTabAlign}
 \name{pango-Tab-Stops}
 \title{Tab Stops}
-\description{Structures for storing Tab Stops}
+\description{Structures for storing tab stops}
 \section{Methods and Functions}{
 \code{\link{pangoTabArrayNew}(initial.size, positions.in.pixels)}\cr
 \code{\link{pangoTabArrayNewWithPositions}(size, positions.in.pixels, ...)}\cr
@@ -15,8 +15,10 @@
 \code{\link{pangoTabArrayGetTabs}(object)}\cr
 \code{\link{pangoTabArrayGetPositionsInPixels}(object)}\cr
 }
+\section{Detailed Description}{Functions in this section are used to deal with \code{\link{PangoTabArray}} objects
+that can be used to set tab stop positions in a \code{\link{PangoLayout}}.}
 \section{Structures}{\describe{\item{\code{PangoTabArray}}{
-A \code{PangoTabArray} struct contains a list
+A \code{\link{PangoTabArray}} struct contains a list
 of tab stops. Each tab stop has an alignment and a position.
 
 }}}

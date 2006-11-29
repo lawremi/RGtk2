@@ -12,12 +12,13 @@
 \code{gtkVButtonBox(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkButtonBox}
-                                 +----GtkVButtonBox}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkButtonBox}
+                                       +----GtkVButtonBox}}
 \section{Interfaces}{GtkVButtonBox implements
  AtkImplementorIface.}
 \section{Detailed Description}{A button box should be used to provide a consistent layout of buttons

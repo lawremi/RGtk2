@@ -9,5 +9,10 @@ by the edge of the widget if it exceeds the widget size.}
 \item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}
 \item{\code{wrap}}{[logical]  the setting}
 }
+\details{Note that setting line wrapping to \code{TRUE} does not make the label
+wrap at its parent container's width, because GTK+ widgets
+conceptually can't make their requisition depend on the parent
+container's size. For a label that wraps at a specific position,
+set the label's width using \code{\link{gtkWidgetSetSizeRequest}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

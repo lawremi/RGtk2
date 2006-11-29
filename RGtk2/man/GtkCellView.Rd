@@ -17,17 +17,21 @@
 \code{gtkCellView(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----GtkCellView}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----GtkCellView}}
 \section{Interfaces}{GtkCellView implements
  AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkCellView}} displays a single row of a \code{\link{GtkTreeModel}}, using
 cell renderers just like \code{\link{GtkTreeView}}. \code{\link{GtkCellView}} doesn't support
 some of the more complex features of \code{\link{GtkTreeView}}, like cell editing
 and drag and drop.}
-\section{Structures}{\describe{\item{\code{GtkCellView}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkCellView}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkCellView} is the equivalent of \code{\link{gtkCellViewNew}}.}
 \section{Properties}{\describe{
 \item{\code{background} [character : Write]}{
@@ -43,6 +47,13 @@ Background color as a GdkColor.
 \item{\code{background-set} [logical : Read / Write]}{
 
 Whether this tag affects the background color.  Default value: FALSE
+
+}
+\item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write]}{
+
+The model for cell view
+  
+since 2.10  
 
 }
 }}

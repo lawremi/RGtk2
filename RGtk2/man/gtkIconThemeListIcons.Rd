@@ -4,8 +4,8 @@
 \description{Lists the icons in the current icon theme. Only a subset
 of the icons can be listed by providing a context string.
 The set of values for the context string is system dependent,
-but will typically include such values as 'apps' and
-'mimetypes'.}
+but will typically include such values as "Applications" and
+"MimeTypes".}
 \usage{gtkIconThemeListIcons(object, context = NULL)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
@@ -14,8 +14,6 @@ but will typically include such values as 'apps' and
 }
 \details{  Since  2.4}
 \value{[list]  a \code{list} list holding the names of all the
- icons in the theme. You must first free each element
- in the list with \code{g\Free()}, then free the list itself
- with \code{g\List\Free()}.}
+ icons in the theme.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

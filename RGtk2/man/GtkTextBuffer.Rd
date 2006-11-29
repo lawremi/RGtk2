@@ -1,5 +1,8 @@
 \alias{GtkTextBuffer}
 \alias{gtkTextBuffer}
+\alias{GtkTextBufferDeserializeFunc}
+\alias{GtkTextBufferSerializeFunc}
+\alias{GtkTextBufferTargetInfo}
 \name{GtkTextBuffer}
 \title{GtkTextBuffer}
 \description{Stores attributed text for display in a }
@@ -33,6 +36,7 @@
 \code{\link{gtkTextBufferGetMark}(object, name)}\cr
 \code{\link{gtkTextBufferGetInsert}(object)}\cr
 \code{\link{gtkTextBufferGetSelectionBound}(object)}\cr
+\code{\link{gtkTextBufferGetHasSelection}(object)}\cr
 \code{\link{gtkTextBufferPlaceCursor}(object, where)}\cr
 \code{\link{gtkTextBufferSelectRange}(object, ins, bound)}\cr
 \code{\link{gtkTextBufferApplyTag}(object, tag, start, end)}\cr
@@ -61,6 +65,20 @@
 \code{\link{gtkTextBufferEndUserAction}(object)}\cr
 \code{\link{gtkTextBufferAddSelectionClipboard}(object, clipboard)}\cr
 \code{\link{gtkTextBufferRemoveSelectionClipboard}(object, clipboard)}\cr
+\code{\link{gtkTextBufferDeserialize}(object, content.buffer, format, iter, data, .errwarn = TRUE)}\cr
+\code{\link{gtkTextBufferDeserializeGetCanCreateTags}(object, format)}\cr
+\code{\link{gtkTextBufferDeserializeSetCanCreateTags}(object, format, can.create.tags)}\cr
+\code{\link{gtkTextBufferGetCopyTargetList}(object)}\cr
+\code{\link{gtkTextBufferGetDeserializeFormats}(object)}\cr
+\code{\link{gtkTextBufferGetPasteTargetList}(object)}\cr
+\code{\link{gtkTextBufferGetSerializeFormats}(object)}\cr
+\code{\link{gtkTextBufferRegisterDeserializeFormat}(object, mime.type, fun, user.data)}\cr
+\code{\link{gtkTextBufferRegisterDeserializeTagset}(object, tagset.name = NULL)}\cr
+\code{\link{gtkTextBufferRegisterSerializeFormat}(object, mime.type, fun, user.data)}\cr
+\code{\link{gtkTextBufferRegisterSerializeTagset}(object, tagset.name = NULL)}\cr
+\code{\link{gtkTextBufferSerialize}(object, content.buffer, format, start, end)}\cr
+\code{\link{gtkTextBufferUnregisterDeserializeFormat}(object, format)}\cr
+\code{\link{gtkTextBufferUnregisterSerializeFormat}(object, format)}\cr
 \code{gtkTextBuffer(table = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -70,15 +88,63 @@ conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
 \section{Structures}{\describe{\item{\code{GtkTextBuffer}}{
-
+\emph{undocumented
+}
 
 \describe{\item{\code{tagTable}}{[\code{\link{GtkTextTagTable}}] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkTextBuffer} is the equivalent of \code{\link{gtkTextBufferNew}}.}
+\section{Enums and Flags}{\describe{\item{\code{GtkTextBufferTargetInfo}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{buffer-contents}}{\emph{undocumented
+}}
+\item{\code{rich-text}}{\emph{undocumented
+}}
+\item{\code{text}}{\emph{undocumented
+}}
+}
+
+}}}
+\section{User Functions}{\describe{
+\item{\code{GtkTextBufferDeserializeFunc(register.buffer, content.buffer, iter, data, length, create.tags, user.data, error)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] }
+\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] }
+\item{\code{iter}}{[\code{\link{GtkTextIter}}] }
+\item{\code{data}}{[raw] }
+\item{\code{length}}{[numeric] }
+\item{\code{create.tags}}{[logical] }
+\item{\code{user.data}}{[R object] }
+\item{\code{error}}{[\code{\link{GError}}] }
+}
+
+}
+\item{\code{GtkTextBufferSerializeFunc(register.buffer, content.buffer, start, end, length, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] }
+\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] }
+\item{\code{start}}{[\code{\link{GtkTextIter}}] }
+\item{\code{end}}{[\code{\link{GtkTextIter}}] }
+\item{\code{length}}{[numeric] }
+\item{\code{user.data}}{[R object] }
+}
+
+}
+}}
 \section{Signals}{\describe{
 \item{\code{apply-tag(textbuffer, arg1, arg2, arg3, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -90,7 +156,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{begin-user-action(textbuffer, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -99,7 +166,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{changed(textbuffer, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -108,7 +176,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{delete-range(textbuffer, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -119,7 +188,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{end-user-action(textbuffer, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -128,7 +198,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{insert-child-anchor(textbuffer, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -139,7 +210,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{insert-pixbuf(textbuffer, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -150,7 +222,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{insert-text(textbuffer, arg1, arg2, arg3, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -162,7 +235,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{mark-deleted(textbuffer, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -172,7 +246,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{mark-set(textbuffer, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -183,7 +258,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{modified-changed(textbuffer, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -192,7 +268,8 @@ types related to the text widget and how they work together.
 
 }
 \item{\code{remove-tag(textbuffer, arg1, arg2, arg3, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
@@ -205,6 +282,37 @@ types related to the text widget and how they work together.
 }
 }}
 \section{Properties}{\describe{
+\item{\code{copy-target-list} [\code{\link{GtkTargetList}} : Read]}{
+
+The list of targets this buffer supports for clipboard copying
+and as DND source.  
+
+  Since  2.10
+
+}
+\item{\code{cursor-position} [integer : Read]}{
+
+The position of the insert mark (as offset from the beginning of the buffer). 
+It is useful for getting notified when the cursor moves.  
+
+  Allowed values: >= 0  Default value: 0  Since  2.10
+
+}
+\item{\code{has-selection} [logical : Read]}{
+
+Whether the buffer has some text currently selected.  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{paste-target-list} [\code{\link{GtkTargetList}} : Read]}{
+
+The list of targets this buffer supports for clipboard pasting
+and as DND destination.  
+
+  Since  2.10
+
+}
 \item{\code{tag-table} [\code{\link{GtkTextTagTable}} : Read / Write / Construct Only]}{
 
 Text Tag Table.

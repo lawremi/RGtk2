@@ -70,16 +70,26 @@ will display the icon, or the convenience function
 \code{\link{gtkWidgetRenderIcon}}. These functions take the theme into account when
 looking up the icon to use for a given stock ID.}
 \section{Structures}{\describe{
-\item{\code{GtkIconSource}}{\emph{undocumented
-}}
-\item{\code{GtkIconFactory}}{\emph{undocumented
-}}
-\item{\code{GtkIconSet}}{\emph{undocumented
-}}
+\item{\code{GtkIconSource}}{
+\emph{undocumented
+}
+
+}
+\item{\code{GtkIconFactory}}{
+\emph{undocumented
+}
+
+}
+\item{\code{GtkIconSet}}{
+\emph{undocumented
+}
+
+}
 }}
 \section{Convenient Construction}{\code{gtkIconFactory} is the equivalent of \code{\link{gtkIconFactoryNew}}.}
 \section{Enums and Flags}{\describe{\item{\code{GtkIconSize}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{invalid}}{\emph{undocumented

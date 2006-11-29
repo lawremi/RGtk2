@@ -8,11 +8,12 @@
 \code{gtkVScrollbar(adjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkRange}
-                     +----\link{GtkScrollbar}
-                           +----GtkVScrollbar}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkRange}
+                           +----\link{GtkScrollbar}
+                                 +----GtkVScrollbar}}
 \section{Interfaces}{GtkVScrollbar implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkVScrollbar}} widget is a widget arranged vertically creating a scrollbar.

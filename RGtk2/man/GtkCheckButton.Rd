@@ -10,14 +10,15 @@
 \code{gtkCheckButton(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----\link{GtkToggleButton}
-                                       +----GtkCheckButton
-                                             +----\link{GtkRadioButton}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkButton}
+                                       +----\link{GtkToggleButton}
+                                             +----GtkCheckButton
+                                                   +----\link{GtkRadioButton}}}
 \section{Interfaces}{GtkCheckButton implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkCheckButton}} places a discrete \code{\link{GtkToggleButton}} next to a widget, (usually a \code{\link{GtkLabel}}). See the section on \code{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.

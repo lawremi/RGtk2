@@ -1,6 +1,8 @@
 #include "pangoClasses.h"
 #include "conversion.h"
 #include "utils.h"
+#include "userfuncs.h"
+#include "gobject.h"
 #include "RGtk2.h"
 
 static SEXP S_PangoFont_symbol;
@@ -42,7 +44,7 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFont", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer((s_lang), "PangoLanguage"));
+  SETCAR(tmp, toRPointer(s_lang ? (s_lang) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -91,7 +93,7 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
 
   SETCAR(tmp, toRPointerWithFinalizer(s_object, "PangoFont", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer((s_language), "PangoLanguage"));
+  SETCAR(tmp, toRPointer(s_language ? (s_language) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -142,7 +144,94 @@ S_pango_font_class_init(PangoFontClass * c, SEXP e)
     c->get_metrics = S_virtual_pango_font_get_metrics;
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->get_font_map = S_virtual_pango_font_get_font_map;
-} 
+}
+USER_OBJECT_
+S_pango_font_class_describe(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontClass* object_class = ((PangoFontClass*)getPtrValue(s_object_class));
+  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+
+  PangoFontDescription* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->describe(object);
+
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_class_get_coverage(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_lang)
+{
+  PangoFontClass* object_class = ((PangoFontClass*)getPtrValue(s_object_class));
+  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+  PangoLanguage* lang = ((PangoLanguage*)getPtrValue(s_lang));
+
+  PangoCoverage* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_coverage(object, lang);
+
+  _result = toRPointerWithFinalizer(ans, "PangoCoverage", (RPointerFinalizer) pango_coverage_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_class_get_glyph_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_glyph)
+{
+  PangoFontClass* object_class = ((PangoFontClass*)getPtrValue(s_object_class));
+  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+  PangoGlyph glyph = ((PangoGlyph)asCNumeric(s_glyph));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  PangoRectangle* ink_rect = ((PangoRectangle *)g_new0(PangoRectangle, 1));
+  PangoRectangle* logical_rect = ((PangoRectangle *)g_new0(PangoRectangle, 1));
+
+  object_class->get_glyph_extents(object, glyph, ink_rect, logical_rect);
+
+
+  _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
+  CLEANUP(g_free, ink_rect);
+  CLEANUP(g_free, logical_rect);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_class_get_metrics(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_language)
+{
+  PangoFontClass* object_class = ((PangoFontClass*)getPtrValue(s_object_class));
+  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+  PangoLanguage* language = ((PangoLanguage*)getPtrValue(s_language));
+
+  PangoFontMetrics* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_metrics(object, language);
+
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_class_get_font_map(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontClass* object_class = ((PangoFontClass*)getPtrValue(s_object_class));
+  PangoFont* object = PANGO_FONT(getPtrValue(s_object));
+
+  PangoFontMap* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_font_map(object);
+
+  _result = toRPointerWithRef(ans, "PangoFontMap");
+
+  return(_result);
+}
+ 
 
 static SEXP S_PangoFontFace_symbol;
 static 
@@ -229,7 +318,58 @@ S_pango_font_face_class_init(PangoFontFaceClass * c, SEXP e)
     c->describe = S_virtual_pango_font_face_describe;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->list_sizes = S_virtual_pango_font_face_list_sizes;
-} 
+}
+USER_OBJECT_
+S_pango_font_face_class_get_face_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFaceClass* object_class = ((PangoFontFaceClass*)getPtrValue(s_object_class));
+  PangoFontFace* object = PANGO_FONT_FACE(getPtrValue(s_object));
+
+  const char* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_face_name(object);
+
+  _result = asRString(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_face_class_describe(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFaceClass* object_class = ((PangoFontFaceClass*)getPtrValue(s_object_class));
+  PangoFontFace* object = PANGO_FONT_FACE(getPtrValue(s_object));
+
+  PangoFontDescription* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->describe(object);
+
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_face_class_list_sizes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFaceClass* object_class = ((PangoFontFaceClass*)getPtrValue(s_object_class));
+  PangoFontFace* object = PANGO_FONT_FACE(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  int* sizes = NULL;
+  int n_sizes;
+
+  object_class->list_sizes(object, &sizes, &n_sizes);
+
+
+  _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
+  CLEANUP(g_free, sizes);
+
+  return(_result);
+}
+ 
 
 static SEXP S_PangoFontFamily_symbol;
 static 
@@ -316,7 +456,58 @@ S_pango_font_family_class_init(PangoFontFamilyClass * c, SEXP e)
     c->get_name = S_virtual_pango_font_family_get_name;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->is_monospace = S_virtual_pango_font_family_is_monospace;
-} 
+}
+USER_OBJECT_
+S_pango_font_family_class_list_faces(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFamilyClass* object_class = ((PangoFontFamilyClass*)getPtrValue(s_object_class));
+  PangoFontFamily* object = PANGO_FONT_FAMILY(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  PangoFontFace** faces = NULL;
+  int n_faces;
+
+  object_class->list_faces(object, &faces, &n_faces);
+
+
+  _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n.faces", asRInteger(n_faces), NULL);
+  CLEANUP(g_free, faces);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_family_class_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFamilyClass* object_class = ((PangoFontFamilyClass*)getPtrValue(s_object_class));
+  PangoFontFamily* object = PANGO_FONT_FAMILY(getPtrValue(s_object));
+
+  const char* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_name(object);
+
+  _result = asRString(ans);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_family_class_is_monospace(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontFamilyClass* object_class = ((PangoFontFamilyClass*)getPtrValue(s_object_class));
+  PangoFontFamily* object = PANGO_FONT_FAMILY(getPtrValue(s_object));
+
+  gboolean ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->is_monospace(object);
+
+  _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
 
 static SEXP S_PangoFontMap_symbol;
 static 
@@ -337,7 +528,7 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_context, "PangoContext", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(pango_font_description_copy(s_desc), "PangoFontDescription"));
+  SETCAR(tmp, toRPointer(s_desc ? pango_font_description_copy(s_desc) : NULL, "PangoFontDescription"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -386,9 +577,9 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_context, "PangoContext", (RPointerFinalizer) g_object_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(pango_font_description_copy(s_desc), "PangoFontDescription"));
+  SETCAR(tmp, toRPointer(s_desc ? pango_font_description_copy(s_desc) : NULL, "PangoFontDescription"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer((s_language), "PangoLanguage"));
+  SETCAR(tmp, toRPointer(s_language ? (s_language) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -413,7 +604,63 @@ S_pango_font_map_class_init(PangoFontMapClass * c, SEXP e)
     c->list_families = S_virtual_pango_font_map_list_families;
   if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->load_fontset = S_virtual_pango_font_map_load_fontset;
-} 
+}
+USER_OBJECT_
+S_pango_font_map_class_load_font(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_desc)
+{
+  PangoFontMapClass* object_class = ((PangoFontMapClass*)getPtrValue(s_object_class));
+  PangoFontMap* object = PANGO_FONT_MAP(getPtrValue(s_object));
+  PangoContext* context = PANGO_CONTEXT(getPtrValue(s_context));
+  const PangoFontDescription* desc = ((const PangoFontDescription*)getPtrValue(s_desc));
+
+  PangoFont* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->load_font(object, context, desc);
+
+  _result = toRPointerWithFinalizer(ans, "PangoFont", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_map_class_list_families(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontMapClass* object_class = ((PangoFontMapClass*)getPtrValue(s_object_class));
+  PangoFontMap* object = PANGO_FONT_MAP(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  PangoFontFamily** families = NULL;
+  int n_families;
+
+  object_class->list_families(object, &families, &n_families);
+
+
+  _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
+  CLEANUP(g_free, families);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_font_map_class_load_fontset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_context, USER_OBJECT_ s_desc, USER_OBJECT_ s_language)
+{
+  PangoFontMapClass* object_class = ((PangoFontMapClass*)getPtrValue(s_object_class));
+  PangoFontMap* object = PANGO_FONT_MAP(getPtrValue(s_object));
+  PangoContext* context = PANGO_CONTEXT(getPtrValue(s_context));
+  const PangoFontDescription* desc = ((const PangoFontDescription*)getPtrValue(s_desc));
+  PangoLanguage* language = ((PangoLanguage*)getPtrValue(s_language));
+
+  PangoFontset* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->load_fontset(object, context, desc, language);
+
+  _result = toRPointerWithFinalizer(ans, "PangoFontset", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+ 
 
 static SEXP S_PangoFontset_symbol;
 static 
@@ -528,7 +775,73 @@ S_pango_fontset_class_init(PangoFontsetClass * c, SEXP e)
     c->get_language = S_virtual_pango_fontset_get_language;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->foreach = S_virtual_pango_fontset_foreach;
-} 
+}
+USER_OBJECT_
+S_pango_fontset_class_get_font(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_wc)
+{
+  PangoFontsetClass* object_class = ((PangoFontsetClass*)getPtrValue(s_object_class));
+  PangoFontset* object = PANGO_FONTSET(getPtrValue(s_object));
+  guint wc = ((guint)asCNumeric(s_wc));
+
+  PangoFont* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_font(object, wc);
+
+  _result = toRPointerWithRef(ans, "PangoFont");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_fontset_class_get_metrics(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontsetClass* object_class = ((PangoFontsetClass*)getPtrValue(s_object_class));
+  PangoFontset* object = PANGO_FONTSET(getPtrValue(s_object));
+
+  PangoFontMetrics* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_metrics(object);
+
+  _result = toRPointerWithFinalizer(ans ? pango_font_metrics_ref(ans) : NULL, "PangoFontMetrics", (RPointerFinalizer) pango_font_metrics_unref);
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_fontset_class_get_language(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoFontsetClass* object_class = ((PangoFontsetClass*)getPtrValue(s_object_class));
+  PangoFontset* object = PANGO_FONTSET(getPtrValue(s_object));
+
+  PangoLanguage* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->get_language(object);
+
+  _result = toRPointer(ans ? (ans) : NULL, "PangoLanguage");
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_fontset_class_foreach(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+{
+  PangoFontsetForeachFunc func = ((PangoFontsetForeachFunc)S_PangoFontsetForeachFunc);
+  R_CallbackData* data = R_createCBData(s_func, s_data);
+  PangoFontsetClass* object_class = ((PangoFontsetClass*)getPtrValue(s_object_class));
+  PangoFontset* object = PANGO_FONTSET(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->foreach(object, func, data);
+
+  R_freeCBData(data);
+
+  return(_result);
+}
+ 
 
 static SEXP S_PangoRenderer_symbol;
 static 
@@ -549,7 +862,7 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_font, "PangoFont"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(pango_glyph_string_copy(s_glyphs), "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_glyphs ? pango_glyph_string_copy(s_glyphs) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -778,7 +1091,7 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
 }
 static 
 void
-S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoLayoutRun* s_run)
+S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_run)
 {
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
@@ -792,7 +1105,7 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoLayoutRun* s_
 
   SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_run, "PangoLayoutRun"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_run, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -830,5 +1143,174 @@ S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)
     c->end = S_virtual_pango_renderer_end;
   if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
     c->prepare_run = S_virtual_pango_renderer_prepare_run;
-} 
+}
+USER_OBJECT_
+S_pango_renderer_class_draw_glyphs(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJECT_ s_glyphs, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoFont* font = PANGO_FONT(getPtrValue(s_font));
+  PangoGlyphString* glyphs = ((PangoGlyphString*)getPtrValue(s_glyphs));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_glyphs(object, font, glyphs, x, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_rectangle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_part, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoRenderPart part = ((PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+  int width = ((int)asCInteger(s_width));
+  int height = ((int)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_rectangle(object, part, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_error_underline(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+  int width = ((int)asCInteger(s_width));
+  int height = ((int)asCInteger(s_height));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_error_underline(object, x, y, width, height);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_shape(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_attr, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoAttrShape* attr = ((PangoAttrShape*)getPtrValue(s_attr));
+  int x = ((int)asCInteger(s_x));
+  int y = ((int)asCInteger(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_shape(object, attr, x, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_trapezoid(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_part, USER_OBJECT_ s_y1_, USER_OBJECT_ s_x11, USER_OBJECT_ s_x21, USER_OBJECT_ s_y2, USER_OBJECT_ s_x12, USER_OBJECT_ s_x22)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoRenderPart part = ((PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART));
+  double y1_ = ((double)asCNumeric(s_y1_));
+  double x11 = ((double)asCNumeric(s_x11));
+  double x21 = ((double)asCNumeric(s_x21));
+  double y2 = ((double)asCNumeric(s_y2));
+  double x12 = ((double)asCNumeric(s_x12));
+  double x22 = ((double)asCNumeric(s_x22));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_trapezoid(object, part, y1_, x11, x21, y2, x12, x22);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_draw_glyph(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJECT_ s_glyph, USER_OBJECT_ s_x, USER_OBJECT_ s_y)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoFont* font = PANGO_FONT(getPtrValue(s_font));
+  PangoGlyph glyph = ((PangoGlyph)asCNumeric(s_glyph));
+  double x = ((double)asCNumeric(s_x));
+  double y = ((double)asCNumeric(s_y));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->draw_glyph(object, font, glyph, x, y);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_part_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_part)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoRenderPart part = ((PangoRenderPart)asCEnum(s_part, PANGO_TYPE_RENDER_PART));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->part_changed(object, part);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_begin(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->begin(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->end(object);
+
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_pango_renderer_class_prepare_run(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_run)
+{
+  PangoRendererClass* object_class = ((PangoRendererClass*)getPtrValue(s_object_class));
+  PangoRenderer* object = PANGO_RENDERER(getPtrValue(s_object));
+  PangoGlyphItem* run = ((PangoGlyphItem*)getPtrValue(s_run));
+
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->prepare_run(object, run);
+
+
+  return(_result);
+}
+ 
 

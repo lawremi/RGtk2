@@ -71,10 +71,11 @@
 }
 \section{Hierarchy}{\preformatted{
   \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkTextView
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkTextView
   \link{GObject}
    +----GtkTextChildAnchor
 }}
@@ -85,8 +86,11 @@ conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
 \section{Structures}{\describe{
-\item{\code{GtkTextView}}{\emph{undocumented
-}}
+\item{\code{GtkTextView}}{
+\emph{undocumented
+}
+
+}
 \item{\code{GtkTextChildAnchor}}{
 A \code{GtkTextChildAnchor} is a spot in the buffer 
 where child widgets can be "anchored" (inserted inline, as if they were 
@@ -100,7 +104,8 @@ multiple views.
 \code{gtkTextChildAnchor} is the equivalent of \code{\link{gtkTextChildAnchorNew}}.
 }
 \section{Enums and Flags}{\describe{\item{\code{GtkTextWindowType}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{private}}{\emph{undocumented
@@ -122,7 +127,8 @@ multiple views.
 }}}
 \section{Signals}{\describe{
 \item{\code{backspace(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -131,7 +137,8 @@ multiple views.
 
 }
 \item{\code{copy-clipboard(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -140,7 +147,8 @@ multiple views.
 
 }
 \item{\code{cut-clipboard(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -149,7 +157,8 @@ multiple views.
 
 }
 \item{\code{delete-from-cursor(textview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -160,7 +169,8 @@ multiple views.
 
 }
 \item{\code{insert-at-cursor(textview, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -174,7 +184,7 @@ The ::move-cursor signal is a keybinding signal which gets emitted
 when the user initiates a cursor movement. 
   
 Applications should not connect to it, but may emit it with 
-\code{g\Signal\Emit\By\Name()} if they need to control scrolling 
+\code{gSignalEmitByName()} if they need to control scrolling 
 programmatically.  
 
 \describe{
@@ -187,7 +197,8 @@ programmatically.
 
 }
 \item{\code{move-focus(textview, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -197,7 +208,8 @@ programmatically.
 
 }
 \item{\code{move-viewport(textview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -208,7 +220,8 @@ programmatically.
 
 }
 \item{\code{page-horizontally(textview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -219,7 +232,8 @@ programmatically.
 
 }
 \item{\code{paste-clipboard(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -228,7 +242,8 @@ programmatically.
 
 }
 \item{\code{populate-popup(textview, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -238,7 +253,8 @@ programmatically.
 
 }
 \item{\code{select-all(textview, arg1, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -248,7 +264,8 @@ programmatically.
 
 }
 \item{\code{set-anchor(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -257,7 +274,8 @@ programmatically.
 
 }
 \item{\code{set-scroll-adjustments(textview, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
@@ -268,7 +286,8 @@ programmatically.
 
 }
 \item{\code{toggle-overwrite(textview, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}

@@ -13,10 +13,11 @@
 \code{gtkFixed(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkFixed}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkFixed}}
 \section{Interfaces}{GtkFixed implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFixed}} widget is a container which can place child widgets at fixed

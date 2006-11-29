@@ -8,11 +8,19 @@
 \code{gtkCellRendererProgress()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkCellRenderer}
-               +----GtkCellRendererProgress}}
-\section{Structures}{\describe{\item{\code{GtkCellRendererProgress}}{\emph{undocumented
-}}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkCellRenderer}
+                     +----GtkCellRendererProgress}}
+\section{Detailed Description}{\code{\link{GtkCellRendererProgress}} renders a numeric value as a progress par in a cell.
+Additionally, it can display a text on top of the progress bar.
+  
+The \code{\link{GtkCellRendererProgress}} cell renderer was added in GTK+ 2.6.}
+\section{Structures}{\describe{\item{\code{GtkCellRendererProgress}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkCellRendererProgress} is the equivalent of \code{\link{gtkCellRendererProgressNew}}.}
 \section{Properties}{\describe{
 \item{\code{text} [character : Read / Write]}{

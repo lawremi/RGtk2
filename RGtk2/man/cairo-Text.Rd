@@ -17,6 +17,7 @@
 \code{\link{cairoGetFontFace}(cr)}\cr
 \code{\link{cairoFontExtents}(cr)}\cr
 \code{\link{cairoSetFontFace}(cr, font.face)}\cr
+\code{\link{cairoSetScaledFont}(cr, scaled.font)}\cr
 \code{\link{cairoTextExtents}(cr, utf8)}\cr
 \code{\link{cairoGlyphExtents}(cr, glyphs)}\cr
 }
@@ -49,7 +50,8 @@ with respect to the overall origin
 }}}
 \section{Enums and Flags}{\describe{
 \item{\code{CairoFontSlant}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{normal}}{\emph{undocumented
@@ -62,7 +64,8 @@ with respect to the overall origin
 
 }
 \item{\code{CairoFontWeight}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{normal}}{\emph{undocumented

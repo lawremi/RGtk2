@@ -10,12 +10,13 @@
 \code{gtkSeparatorToolItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkToolItem}
-                                 +----GtkSeparatorToolItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkToolItem}
+                                       +----GtkSeparatorToolItem}}
 \section{Interfaces}{GtkSeparatorToolItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{  A \code{GtkSeparatorItem} is a \code{\link{GtkToolItem}} that separates groups of other
@@ -40,4 +41,8 @@ Whether the separator is drawn, or just blank.  Default value: TRUE
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSeparatorToolItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
+\seealso{
+\code{\link{GtkToolbar}}
+\code{\link{GtkRadioToolButton}}
+}
 \keyword{internal}

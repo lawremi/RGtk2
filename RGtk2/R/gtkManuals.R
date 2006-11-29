@@ -765,6 +765,21 @@ dimnames.GtkTreeModel <- function(x, ...)
 	list(x$getData("rownames"), x$getData("colnames"))
 }
 }
+
+# setting id's on GtkTreeIter's (for implementing new models)
+
+gtkTreeIterGetId <- function(iter)
+{
+  checkPtrType(iter, "GtkTreeIter")
+  .RGtkCall("S_gtk_tree_iter_get_id", iter)
+}
+gtkTreeIterSetId <- function(iter, id)
+{
+  checkPtrType(iter, "GtkTreeIter")
+  id <- as.integer(id)
+  .RGtkCall("S_gtk_tree_iter_set_id", iter, id)
+}
+
 # aliases for error domains
 GTK_ICON_THEME_ERROR <- gtkIconThemeErrorQuark
 GTK_FILE_CHOOSER_ERROR <- gtkFileChooserErrorQuark

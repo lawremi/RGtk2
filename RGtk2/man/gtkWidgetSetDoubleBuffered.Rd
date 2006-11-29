@@ -5,7 +5,7 @@
 to turn off the buffering. "Double buffered" simply means that
 \code{\link{gdkWindowBeginPaintRegion}} and \code{\link{gdkWindowEndPaint}} are called
 automatically around expose events sent to the
-widget. \code{gdk\Window\Begin\Paint()} diverts all drawing to a widget's
+widget. \code{gdkWindowBeginPaint()} diverts all drawing to a widget's
 window to an offscreen buffer, and \code{\link{gdkWindowEndPaint}} draws the
 buffer to the screen. The result is that users see the window
 update in one smooth step, and don't see individual graphics
@@ -22,6 +22,6 @@ if you had special needs and really knew what you were doing.
 Note: if you turn off double-buffering, you have to handle
 expose events, since even the clearing to the background color or 
 pixmap will not happen automatically (as it is done in 
-\code{gdk\Window\Begin\Paint()}).  }
+\code{gdkWindowBeginPaint()}).  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

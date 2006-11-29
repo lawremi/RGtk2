@@ -15,6 +15,8 @@
 \alias{[.GObject}
 \alias{[<-.GObject}
 \alias{interface.GObject}
+\alias{gObjectParentClass}
+\alias{gTypeGetPropInfo}
 \description{
 GObject is the fundamental type providing the common attributes and 
 methods for all object types in GTK+, Pango and other libraries based on GObject.
@@ -30,13 +32,15 @@ gObjectNew(type, ...)
 gObjectSetData(obj, key, data = NULL) 
 gObjectGetData(obj, key)
 gObjectGetSignals(obj)
-gObjectGetPropInfo(obj, parents = TRUE, collapse = FALSE)
+gObjectGetPropInfo(obj, parents = TRUE, collapse = TRUE)
+gTypeGetPropInfo(type)
 names.GObject(x)
 interface.GObject(obj)
+gObjectParentClass(obj)
 }
 \arguments{
 \item{obj}{an instance of a \code{GObject}}
-\item{type}{the type of \code{GObject} to create}
+\item{type}{the type of \code{GObject}}
 \item{key}{the unique identifier under which the data is stored}
 \item{data}{the data to store with the \code{GObject}}
 \item{...}{named arguments of properties to set or names of properties to retrieve}
@@ -49,9 +53,12 @@ interface.GObject(obj)
 \value{
 Properties and data for \code{gObjectGet} and \code{gObjectGetData}, respectively. 
 \code{gObjectNew} returns a new instance of the specified \code{type}.
-\code{gObjectGetPropInfo} returns a named list of property info pertaining to a \code{GObject} type, 
-including the types of the properties and their flags (read-only, read-write, construct, etc). 
+\code{gObjectGetPropInfo} and \code{gTypeGetPropInfo} return a named list 
+(or list of lists if \code{collapse} is \code{FALSE}) of 
+properties (\code{\link{GParamSpec}}s) belonging to the \code{GObject} type and 
+its parents (unless \code{parents} is \code{FALSE}).
 \code{gObjectGetSignals} gets a list of signal ids with names for the signals supported by the object.
+\code{gObjectParentClass} returns a pointer to the parent class of the object.
 }
 \details{
 Every \code{GObject} has a type, known as a \code{\link{GType}}. Like all 

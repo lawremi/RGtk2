@@ -14,6 +14,8 @@
 \code{\link{gtkDragDestAddTextTargets}(object)}\cr
 \code{\link{gtkDragDestAddImageTargets}(object)}\cr
 \code{\link{gtkDragDestAddUriTargets}(object)}\cr
+\code{\link{gtkDragDestSetTrackMotion}(object, track.motion)}\cr
+\code{\link{gtkDragDestGetTrackMotion}(object)}\cr
 \code{\link{gtkDragFinish}(object, success, del, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gtkDragGetData}(object, context, target, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gtkDragGetSourceWidget}(context)}\cr

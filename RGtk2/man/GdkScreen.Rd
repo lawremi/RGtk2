@@ -12,6 +12,7 @@
 \code{\link{gdkScreenGetRgbVisual}(object)}\cr
 \code{\link{gdkScreenGetRgbaColormap}(object)}\cr
 \code{\link{gdkScreenGetRgbaVisual}(object)}\cr
+\code{\link{gdkScreenIsComposited}(object)}\cr
 \code{\link{gdkScreenGetRootWindow}(object)}\cr
 \code{\link{gdkScreenGetDisplay}(object)}\cr
 \code{\link{gdkScreenGetNumber}(object)}\cr
@@ -28,6 +29,12 @@
 \code{\link{gdkScreenGetMonitorAtWindow}(object, window)}\cr
 \code{\link{gdkScreenBroadcastClientMessage}(object, event)}\cr
 \code{\link{gdkScreenGetSetting}(object, name)}\cr
+\code{\link{gdkScreenGetFontOptions}(object)}\cr
+\code{\link{gdkScreenSetFontOptions}(object, options)}\cr
+\code{\link{gdkScreenGetResolution}(object)}\cr
+\code{\link{gdkScreenSetResolution}(object, dpi)}\cr
+\code{\link{gdkScreenGetActiveWindow}(object)}\cr
+\code{\link{gdkScreenGetWindowStack}(object)}\cr
 \code{\link{gdkSpawnCommandLineOnScreen}(screen, command.line, .errwarn = TRUE)}\cr
 
 }
@@ -48,7 +55,20 @@ when GDK gets multihead support.
   Since 2.2
 
 }}}
-\section{Signals}{\describe{\item{\code{size-changed(screen, user.data)}}{
+\section{Signals}{\describe{
+\item{\code{composited-changed(screen, user.data)}}{
+The ::composited\_changed signal is emitted when the composited
+status of the screen changes  
+
+  Since  2.10
+
+\describe{
+\item{\code{screen}}{[\code{\link{GdkScreen}}]  the object on which the signal is emitted}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+}
+\item{\code{size-changed(screen, user.data)}}{
 The ::size\_changed signal is emitted when the pixel width or 
 height of a screen changes.  
 
@@ -59,7 +79,20 @@ height of a screen changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-}}}
+}
+}}
+\section{Properties}{\describe{
+\item{\code{font-options} [R object : Read / Write]}{
+
+The default font options for the screen.
+
+}
+\item{\code{resolution} [numeric : Read / Write]}{
+
+The resolution for fonts on the screen.  Default value: -1
+
+}
+}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/GdkScreen.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

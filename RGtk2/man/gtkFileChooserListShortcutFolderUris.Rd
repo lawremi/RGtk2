@@ -7,7 +7,6 @@
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
 \value{[list]  A list of folder URIs, or \code{NULL} if there are no shortcut
-folders.  Free the returned list with \code{g\Slist\Free()}, and the URIs with
-\code{g\Free()}.}
+folders.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

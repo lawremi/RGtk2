@@ -2,12 +2,12 @@
 \name{gtkImageNewFromStock}
 \title{gtkImageNewFromStock}
 \description{Creates a \code{\link{GtkImage}} displaying a stock icon. Sample stock icon
-names are \code{GTK_STOCK_OPEN}, \code{GTK_STOCK_EXIT}. Sample stock sizes
+names are \code{GTK_STOCK_OPEN}, \code{GTK_STOCK_QUIT}. Sample stock sizes
 are \code{GTK_ICON_SIZE_MENU}, \code{GTK_ICON_SIZE_SMALL_TOOLBAR}. If the stock
 icon name isn't known, the image will be empty.
 You can register your own stock icon names, see
 \code{\link{gtkIconFactoryAddDefault}} and \code{\link{gtkIconFactoryAdd}}.}
-\usage{gtkImageNewFromStock(stock.id, size)}
+\usage{gtkImageNewFromStock(stock.id, size, show = TRUE)}
 \arguments{
 \item{\code{stock.id}}{[character]  a stock icon name}
 \item{\code{size}}{[\code{\link{GtkIconSize}}]  a stock icon size}

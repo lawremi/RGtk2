@@ -8,10 +8,11 @@
 \code{gtkVSeparator(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkSeparator}
-                     +----GtkVSeparator}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkSeparator}
+                           +----GtkVSeparator}}
 \section{Interfaces}{GtkVSeparator implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkVSeparator}} widget is a vertical separator, used to group the

@@ -3,8 +3,8 @@
 \title{gdkWindowSetHints}
 \description{
 This function is broken and useless and you should ignore it.
-If using GTK+, use functions such as \code{\link{gtkWindowResize}}, \code{gtk\Window\Set\Size\Request()},
-\code{\link{gtkWindowMove}}, \code{gtk\Window\Parse\Geometry()}, and \code{\link{gtkWindowSetGeometryHints}},
+If using GTK+, use functions such as \code{\link{gtkWindowResize}}, \code{gtkWindowSetSizeRequest()},
+\code{\link{gtkWindowMove}}, \code{gtkWindowParseGeometry()}, and \code{\link{gtkWindowSetGeometryHints}},
 depending on what you're trying to do.
 \strong{WARNING: \code{gdk_window_set_hints} is deprecated and should not be used in newly-written code.}
 }

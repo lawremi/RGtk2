@@ -52,7 +52,7 @@ GType getSValueGType(USER_OBJECT_ sval);
 
 /* Class creation */
 
-void S_gobject_class_init(GObjectClass *c);
+void S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e);
 
 /* RGtkParamSpecSexp */
 

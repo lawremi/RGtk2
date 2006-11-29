@@ -12,7 +12,7 @@ the parent-sibling notation, as explained in the introduction above.
 \item{\code{parent}}{[\code{\link{GtkCTreeNode}}] The parent node to be.}
 \item{\code{sibling}}{[\code{\link{GtkCTreeNode}}] The sibling node to be.}
 \item{\code{text}}{[character] The texts to be shown in each column.}
-\item{\code{spacing}}{[integer] The extra space between the pixmap and the text.}
+\item{\code{spacing}}{[raw] The extra space between the pixmap and the text.}
 \item{\code{pixmap.closed}}{[\code{\link{GdkPixmap}}] The pixmap to be used when the node is collapsed. Can be \code{NULL}.}
 \item{\code{mask.closed}}{[\code{\link{GdkBitmap}}] The mask for the above pixmap. Can be \code{NULL}.}
 \item{\code{pixmap.opened}}{[\code{\link{GdkPixmap}}] The pixmap to be used when the children are visible. Can be \code{NULL}.}

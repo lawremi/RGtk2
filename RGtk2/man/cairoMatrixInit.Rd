@@ -4,8 +4,9 @@
 \description{Sets \code{matrix} to be the affine transformation given by
 \code{xx}, \code{yx}, \code{xy}, \code{yy}, \code{x0}, \code{y0}. The transformation is given
 by:
-\preformatted{ x\_new = xx * x + xy * y + x0;
- y\_new = yx * x + yy * y + y0;}}
+\preformatted{ x_new = xx * x + xy * y + x0;
+ y_new = yx * x + yy * y + y0;
+}}
 \usage{cairoMatrixInit(xx, yx, xy, yy, x0, y0)}
 \arguments{
 \item{\code{xx}}{[numeric]  xx component of the affine transformation}

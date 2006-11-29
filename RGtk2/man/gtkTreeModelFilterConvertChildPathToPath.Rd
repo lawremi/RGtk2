@@ -4,7 +4,8 @@
 \description{Converts \code{child.path} to a path relative to \code{filter}. That is, \code{child.path}
 points to a path in the child model. The rerturned path will point to the
 same row in the filtered model. If \code{child.path} isn't a valid path on the
-child model, then \code{NULL} is returned.}
+child model or points to a row which is not visible in \code{filter}, then \code{NULL}
+is returned.}
 \usage{gtkTreeModelFilterConvertChildPathToPath(object, child.path)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeModelFilter}}]  A \code{\link{GtkTreeModelFilter}}.}

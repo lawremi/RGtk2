@@ -11,21 +11,22 @@
 \code{gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkAlignment}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkAlignment}}
 \section{Interfaces}{GtkAlignment implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
-  
+  \code{\link{GtkAlignment}}  \code{GtkAlignment}  
 The scale settings are used to specify how much the child widget should
 expand to fill the space allocated to the \code{\link{GtkAlignment}}.
 The values can range from 0 (meaning the child doesn't expand at all) to
 1 (meaning the child expands to fill all of the available space).
-  
+  \code{\link{GtkAlignment}}  \code{GtkAlignment}  
 The align settings are used to place the child widget within the available
 area. The values range from 0 (top or left) to 1 (bottom or right).
 Of course, if the scale settings are both set to 1, the alignment settings

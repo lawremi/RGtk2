@@ -11,7 +11,7 @@ FIXME
 \item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
 \item{\code{column}}{[integer] }
 \item{\code{text}}{[character] }
-\item{\code{spacing}}{[integer] }
+\item{\code{spacing}}{[raw] }
 \item{\code{pixmap}}{[\code{\link{GdkPixmap}}] }
 \item{\code{mask}}{[\code{\link{GdkBitmap}}] }
 }

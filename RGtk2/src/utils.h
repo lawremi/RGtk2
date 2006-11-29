@@ -42,4 +42,12 @@ __extension__ \
     g_type_query(G_OBJECT_TYPE(s_object), &query); \
     G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size - sizeof(SEXP)); \
 })
+/* getting the property environment out of an object */
+#define S_GOBJECT_GET_PROPS(s_object) \
+__extension__ \
+({ \
+    GTypeQuery query; \
+    g_type_query(G_OBJECT_TYPE(s_object), &query); \
+    G_STRUCT_MEMBER(SEXP, s_object, query.instance_size - sizeof(SEXP)); \
+})
 #endif

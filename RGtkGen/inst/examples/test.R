@@ -26,16 +26,16 @@ for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 # generating the documentation
 source("genDoc.S")
 src_dir <- "/home/larman/research/src"
-subs <- c("atk-1.10.1/docs", "pango-1.10.1/docs",
-    file.path("gtk+-2.8.8/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
-	"cairo-1.0.2/doc/public", "libglade-2.5.1/doc")
+subs <- c("atk-1.12.3/docs", "pango-1.14.7/docs",
+    file.path("gtk+-2.10.6/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
+	"cairo-1.2.6/doc/public", "libglade-2.5.1/doc")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 
 #defs <- getDefs(files[1])
 #doc_file <- doc_files[[1]][11]
 #genDoc(doc_file, defs, file.path(path, "docgen"))
-#doc_files[[4]] <- doc_files[[4]][-(1:which(sapply(doc_files[[4]], basename) == "gtkcheckmenuitem.xml"))]
+#doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtktreemodelfilter.xml")-1))]
 #source("genDoc.S")
+#genDocs(doc_files[4:length(doc_files)], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
-

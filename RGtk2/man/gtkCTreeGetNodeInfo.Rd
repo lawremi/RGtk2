@@ -14,7 +14,7 @@ Any of the return parameters can be null.
 \value{
 A list containing the following elements:
 \item{\code{text}}{[character] }
-\item{\code{spacing}}{[integer] }
+\item{\code{spacing}}{[raw] }
 \item{\code{pixmap.closed}}{[\code{\link{GdkPixmap}}] }
 \item{\code{mask.closed}}{[\code{\link{GdkBitmap}}] }
 \item{\code{pixmap.opened}}{[\code{\link{GdkPixmap}}] }

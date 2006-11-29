@@ -110,7 +110,7 @@ gtkObjectDisconnectCallback(obj, id)
 }
 \author{Duncan Temple Lang}
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 This is an extra-ordinarily early release 
 intended to encourage others to contribute code, etc.}
@@ -120,15 +120,16 @@ intended to encourage others to contribute code, etc.}
 }
 
 \examples{
- gtkInit()
- w <- gtkWindow(show = FALSE)  
- b <- gtkButton("Hit me")
- w$Add(b)
-
- gtkShow(w)
- gtkAddCallback(b, "clicked", function(w) {
-                                 help.start();
-                                 TRUE})
+  if (gtkInit()) {
+    w <- gtkWindow(show = FALSE)  
+    b <- gtkButton("Hit me")
+    w$add(b)
+    w$show()
+    gtkAddCallback(b, "clicked", function(w) {
+      help.start();
+      TRUE
+    })
+  }
 }
 
 \keyword{interface}

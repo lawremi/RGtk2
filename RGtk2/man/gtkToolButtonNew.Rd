@@ -1,7 +1,7 @@
 \alias{gtkToolButtonNew}
 \name{gtkToolButtonNew}
 \title{gtkToolButtonNew}
-\description{Creates a new \code{GtkToolButton} using \code{icon.widget} as icon and \code{label} as
+\description{Creates a new \code{\link{GtkToolButton}} using \code{icon.widget} as icon and \code{label} as
 label.}
 \usage{gtkToolButtonNew(icon.widget = NULL, label = NULL, show = TRUE)}
 \arguments{

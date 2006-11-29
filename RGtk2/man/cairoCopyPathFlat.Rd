@@ -22,8 +22,6 @@ conditions hold:
 \item 
 \item 
 }  }
-\value{[\code{\link{CairoPath}}]  the copy of the current path. The caller owns the
-returned object and should call \code{cairo\Path\Destroy()} when finished
-with it.}
+\value{[\code{\link{CairoPath}}]  the copy of the current path.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

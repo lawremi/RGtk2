@@ -35,14 +35,21 @@
     sprite and instructions for moving the sprite around a background. To display 
     an animation you don't need to understand its representation, however; you just
     ask \command{gdk-pixbuf} what should be displayed at a given point in time. 
-  }
+    \command{gdk-pixbuf}  \command{gdk-pixbuf}}
 \section{Structures}{\describe{
-\item{\code{GdkPixbufAnimation}}{\emph{undocumented
-}}
-\item{\code{GdkPixbufAnimationIter}}{\emph{undocumented
-}}
-\item{\code{GdkPixbufSimpleAnim}}{\emph{undocumented
-}}
+\item{\code{GdkPixbufAnimation}}{
+And opaque struct representing an animation.
+
+}
+\item{\code{GdkPixbufAnimationIter}}{
+And opaque struct representing an iterator which points to a
+certain position in an animation.
+
+}
+\item{\code{GdkPixbufSimpleAnim}}{
+An
+
+}
 }}
 \section{Convenient Construction}{
 \code{gdkPixbufAnimation} is the equivalent of \code{\link{gdkPixbufAnimationNewFromFile}}.

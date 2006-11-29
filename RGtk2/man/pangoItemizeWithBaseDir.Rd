@@ -15,8 +15,9 @@ is specified explicitely rather than gotten from the \code{\link{PangoContext}}.
             after \code{start.index}.
             This must be >= 0.}
 \item{\code{attrs}}{[\code{\link{PangoAttrList}}]      the set of attributes that apply to \code{text}.}
-\item{\code{cached.iter}}{[\code{\link{PangoAttrIterator}}]       Cached attribute iterator, or NULL}
+\item{\code{cached.iter}}{[\code{\link{PangoAttrIterator}}]       Cached attribute iterator, or \code{NULL}}
 }
+\details{  Since  1.4}
 \value{[list]  a GList of PangoItem structures.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

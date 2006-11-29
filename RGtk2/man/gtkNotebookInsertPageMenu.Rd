@@ -19,6 +19,6 @@ the widget to use as the label in the popup menu.}
            or -1 to append the page after all other pages.}
 }
 \value{[integer]  the index (starting from 0) of the inserted
-page in the notebook, or -1 if function fails}
+page in the notebook}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

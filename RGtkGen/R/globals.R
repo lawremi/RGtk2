@@ -39,7 +39,8 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner", "gtk_
 	"gdk_pixbuf_render_pixmap_and_mask_for_colormap", "gdk_colormap_alloc_colors",
 	"gdk_query_depths", "gdk_query_visual_types", "glade_xml_signal_connect_data", "glade_xml_signal_connect",
   "gtk_radio_action_set_group", "gtk_radio_button_set_group", "gtk_radio_menu_item_set_group",
-  "gtk_radio_tool_button_set_group", "gtk_tree_store_insert_with_valuesv")
+  "gtk_radio_tool_button_set_group", "gtk_tree_store_insert_with_valuesv",
+  "gdk_drawable_class_create_gc", "gdk_gcclass_set_values")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -70,7 +71,7 @@ manUserFuncs <- c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupAc
 
 # this is a list of types that are not defined and probably don't need to be
 # we just let them pass through as opaque external pointers
-opaqueTypes <- c("GScanner", "GNode")
+opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode")
 
 # this is a list of simple types that are easily converted to native R types (like lists)
 # and (in most cases) are not instantiable via the any defined API
@@ -82,7 +83,7 @@ transparentTypes <- c("GParamSpec", "GtkFileFilterInfo", "GtkTargetEntry", "AtkA
     "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError", "GdkWindowAttr", "GdkTrapezoid",
 	"GtkActionEntry", "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t", "cairo_glyph_t",
 	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord",
-  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", "GtkAccelKey")
+  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", "GtkAccelKey", "AtkRectangle")
 
 # functions for releasing memory
 # objects are automatically assigned g_object_unref and boxed types have release funcs in the defs
@@ -155,7 +156,8 @@ lowlevel_funcs <- c("pango_context_new", "pango_fontset_simple_new", "pango_font
 "gdk_spawn_on_screen", "gdk_spawn_on_screen_with_pipes", "gdk_init", "gdk_init_check", 
 "gdk_parse_args", "gdk_set_locale", "gdk_exit", "gdk_get_use_xshm", "gdk_set_sm_client_id",
 "gdk_set_use_xshm", "gdk_error_trap_push", "gdk_error_trap_pop", "gdk_pixmap_foreign_new",
-"gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup", "gdk_pixmap_lookup_for_display")
+"gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup", "gdk_pixmap_lookup_for_display",
+"pango_font_find_shaper", "gtk_disable_setlocale", "gdk_pixmap_foreign_new_for_screen")
 
 useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_copy", 
 "gdk_colors_alloc", "gdk_color_hash", "gdk_color_equal", "gdk_wcstombs", "gdk_mbstowcs",
@@ -168,7 +170,8 @@ useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_cop
  "cairo_debug_reset_static_data", "cairo_destroy_func_t", "gtk_window_parse_geometry",
  "gtk_decorated_window_init", "gtk_decorated_window_calculate_frame_size", "gtk_widget_style_get_valist",
  "gtk_tree_store_set_valist", "gtk_tree_model_get_valist", "gtk_list_store_set_valist", 
- "gtk_container_child_get_valist", "gtk_container_child_set_valist", "cairo_read_func_t", "cairo_write_func_t")
+ "gtk_container_child_get_valist", "gtk_container_child_set_valist", "cairo_read_func_t", 
+ "cairo_write_func_t", "gtk_recent_chooser_set_show_numbers", "gtk_recent_chooser_get_show_numbers")
 
 mem_funcs <- c("atk_text_free_ranges", "pango_font_description_merge_static",
 "pango_font_descriptions_free", "pango_matrix_free", "pango_glyph_item_free", "pango_layout_line_ref",
@@ -189,7 +192,7 @@ mem_funcs <- c("atk_text_free_ranges", "pango_font_description_merge_static",
 "gdk_event_free", "gtk_border_free", "gtk_icon_info_free", "gtk_icon_source_free", 
 "gtk_requisition_free", "gtk_selection_data_free", "gtk_stock_item_free", "gtk_text_iter_free",
 "gtk_tree_iter_free", "gtk_tree_path_free", "pango_font_description_free", "pango_glyph_string_free",
-"pango_layout_iter_free", "pango_tab_array_free")
+"pango_layout_iter_free", "pango_tab_array_free", "gtk_target_table_free")
 
 cleanups <- unlist(cleanupFuncs)[sapply(unlist(cleanupFuncs), function(func) nchar(func) > 0)]
 mem_funcs <- unique(c(mem_funcs, cleanups, finalizerFuncs, "g_object_unref", "g_object_ref", "g_strfreev"))
@@ -203,9 +206,11 @@ undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
 "win32-fonts", "x-fonts", "xft-fonts", "input", "threads", "x_interaction", "glossary", "gtkbindings",
 "gtkfeatures", "gtkobject", "gtksignal", "gtktext", "gtkthemes", "gtktree", "gtktreeitem", "gtktypeutils",
 "selections", "gdk-pixbuf-xlib-from-drawables", "gdk-pixbuf-xlib-rgb", "gdk-pixbuf-xlib-init", 
-"gdk-pixbuf-xlib-rendering", "inline", "refcounting", "cairo-ft", "cairo-glitz", "cairo-pdf", "cairo-ps",
+"gdk-pixbuf-xlib-rendering", "inline", "refcounting", "cairo-ft", "cairo-glitz",
 "cairo-quartz", "cairo-win32", "cairo-win32-fonts", "cairo-xcb-xrender", "cairo-xcb", "cairo-xlib-xrender",
-"cairo-xlib", "glade-build", "glade-parser", "glade-init", "gtkmain")
+"cairo-xlib", "glade-build", "glade-parser", "glade-init", "gtkmain", "atsui-fonts", "utils",
+"gtkpagesetupunixdialog", "gtkprinter", "gtkprintjob", "gtkprintunixdialog",
+"cairo-beos")
 
 # some sections are not appropriate for the R documentation
 omittedSections <- c("image-data", "Pathnames and patterns", "Toplevel declarations", 

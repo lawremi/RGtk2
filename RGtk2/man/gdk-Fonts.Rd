@@ -7,10 +7,14 @@
 \section{Methods and Functions}{
 \code{\link{gdkFontLoad}(font.name)}\cr
 \code{\link{gdkFontLoadForDisplay}(display, font.name)}\cr
+\code{\link{gdkFontLoadForDisplay}(display, font.name)}\cr
 \code{\link{gdkFontsetLoad}(fontset.name)}\cr
+\code{\link{gdkFontsetLoadForDisplay}(display, fontset.name)}\cr
 \code{\link{gdkFontsetLoadForDisplay}(display, fontset.name)}\cr
 \code{\link{gdkFontFromDescription}(font.desc)}\cr
 \code{\link{gdkFontFromDescriptionForDisplay}(display, font.desc)}\cr
+\code{\link{gdkFontFromDescriptionForDisplay}(display, font.desc)}\cr
+\code{\link{gdkFontGetDisplay}(object)}\cr
 \code{\link{gdkFontGetDisplay}(object)}\cr
 \code{\link{gdkFontId}(object)}\cr
 \code{\link{gdkStringExtents}(object, string)}\cr
@@ -42,7 +46,8 @@ X reference documentation. A X Logical Font Description (XLFD)
 consists of a sequence of fields separated (and surrounded by) '-'
 characters. For example, Adobe Helvetica Bold 12 pt, has the
 full description: 
-\preformatted{"-adobe-helvetica-bold-r-normal--12-120-75-75-p-70-iso8859-1"}
+\preformatted{"-adobe-helvetica-bold-r-normal--12-120-75-75-p-70-iso8859-1"
+}
   
 The fields in the XLFD are:
 
@@ -76,7 +81,8 @@ When specifying a font via a X logical Font Description,
 '*' can be used as a wildcard to match any portion of
 the XLFD. For instance, the above example could
 also be specified as
-\preformatted{"-*-helvetica-bold-r-normal--*-120-*-*-*-*-iso8859-1"}
+\preformatted{"-*-helvetica-bold-r-normal--*-120-*-*-*-*-iso8859-1"
+}
 
 It is generally a good idea to use wildcards for any
 portion of the XLFD that your program does not care
@@ -123,7 +129,7 @@ of forms of string input:
     of one or more bytes, with different lengths for different
     characters in the string). They can be converted to and
     from wide character strings (see below) using
-    \code{gdk\Wcstombs()} and \code{gdk\Mbstowcs()}.) The string will
+    \code{gdkWcstombs()} and \code{gdkMbstowcs()}.) The string will
     be rendered using one or more different fonts from
     the fontset.
     }
@@ -168,7 +174,7 @@ here).
 The \code{GdkFont} structure represents a font or fontset. It
 contains the following public fields. A new \code{GdkFont}
 structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad}},
-and is reference counted with \code{gdk\Font\Ref()} and \code{gdk\Font\Unref()}
+and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}
 
 \describe{
 \item{\code{type}}{[\code{\link{GdkFontType}}] a value of type \code{\link{GdkFontType}} which indicates

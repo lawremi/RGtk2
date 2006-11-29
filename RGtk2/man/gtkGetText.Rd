@@ -40,7 +40,7 @@ gtkTextClearText(w, start=0, end=-1)
 }
 \author{Duncan Temple Lang}
 \note{
-THIS FUNCTION STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
+THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 This is an extra-ordinarily early release 
 intended to encourage others to contribute code, etc.}

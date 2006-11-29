@@ -18,14 +18,15 @@
 \code{gtkCheckMenuItem(label, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkItem}
-                                 +----\link{GtkMenuItem}
-                                       +----GtkCheckMenuItem
-                                             +----\link{GtkRadioMenuItem}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkItem}
+                                       +----\link{GtkMenuItem}
+                                             +----GtkCheckMenuItem
+                                                   +----\link{GtkRadioMenuItem}}}
 \section{Interfaces}{GtkCheckMenuItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkCheckMenuItem}} is a menu item that maintains the state of a boolean 

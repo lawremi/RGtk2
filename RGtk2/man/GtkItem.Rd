@@ -9,14 +9,15 @@
 
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----GtkItem
-                                 +----\link{GtkMenuItem}
-                                 +----\link{GtkListItem}
-                                 +----GtkTreeItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----GtkItem
+                                       +----\link{GtkMenuItem}
+                                       +----\link{GtkListItem}
+                                       +----GtkTreeItem}}
 \section{Interfaces}{GtkItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}

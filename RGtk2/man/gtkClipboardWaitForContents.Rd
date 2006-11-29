@@ -11,6 +11,6 @@ loop, so events, timeouts, etc, may be dispatched during the wait.}
          owner should convert the selection.}
 }
 \value{[\code{\link{GtkSelectionData}}]  a newly-allocated \code{\link{GtkSelectionData}} object or \code{NULL}
-              if retrieving the given target failed.}
+              if retrieving the given target failed. If non-\code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

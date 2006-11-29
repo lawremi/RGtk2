@@ -1,7 +1,7 @@
 \alias{gtkTableSetRowSpacing}
 \name{gtkTableSetRowSpacing}
 \title{gtkTableSetRowSpacing}
-\description{Changes the space between a given table row and its surrounding rows.}
+\description{Changes the space between a given table row and the subsequent row.}
 \usage{gtkTableSetRowSpacing(object, row, spacing)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTable}}] a \code{\link{GtkTable}} containing the row whose properties you wish to change.}

@@ -8,12 +8,13 @@
 \code{gtkGammaCurve(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBox}
-                           +----\link{GtkVBox}
-                                 +----GtkGammaCurve}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBox}
+                                 +----\link{GtkVBox}
+                                       +----GtkGammaCurve}}
 \section{Interfaces}{GtkGammaCurve implements
  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   

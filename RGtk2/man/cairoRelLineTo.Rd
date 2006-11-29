@@ -12,6 +12,10 @@ current point will be offset by (\code{dx}, \code{dy}).}
 \item{\code{dy}}{[numeric]  the Y offset to the end of the new line}
 }
 \details{Given a current point of (x, y), cairo\_rel\_line\_to(\code{cr}, \code{dx}, \code{dy})
-is logically equivalent to cairo\_line\_to (\code{cr}, x + \code{dx}, y + \code{dy}).  }
+is logically equivalent to cairo\_line\_to (\code{cr}, x + \code{dx}, y + \code{dy}).
+  
+It is an error to call this function with no current point. Doing
+so will cause \code{cr} to shutdown with a status of
+CAIRO\_STATUS\_NO\_CURRENT\_POINT.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

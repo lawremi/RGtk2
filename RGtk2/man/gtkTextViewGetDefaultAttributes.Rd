@@ -8,7 +8,7 @@ You'd typically pass the default attributes in to
 attributes in effect at a given text position.}
 \usage{gtkTextViewGetDefaultAttributes(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}}
-\details{  .}
+\details{.  }
 \value{[\code{\link{GtkTextAttributes}}]  a new \code{\link{GtkTextAttributes}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

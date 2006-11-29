@@ -14,11 +14,6 @@ point the timeout is destroyed and will not be called again.
 \item{\code{data}}{[R object] The data to pass to the function.}
 }
 \value{[numeric] A unique id for the event source.}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
+
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

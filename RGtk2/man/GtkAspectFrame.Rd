@@ -9,12 +9,13 @@
 \code{gtkAspectFrame(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkFrame}
-                                 +----GtkAspectFrame}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkFrame}
+                                       +----GtkAspectFrame}}
 \section{Interfaces}{GtkAspectFrame implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAspectFrame}} is useful when you want
@@ -24,8 +25,11 @@ drawing a small preview of a larger image. \code{\link{GtkAspectFrame}}
 derives from \code{\link{GtkFrame}}, so it can draw a label and
 a frame around the child. The frame will be
 "shrink-wrapped" to the size of the child.}
-\section{Structures}{\describe{\item{\code{GtkAspectFrame}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkAspectFrame}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkAspectFrame} is the equivalent of \code{\link{gtkAspectFrameNew}}.}
 \section{Properties}{\describe{
 \item{\code{obey-child} [logical : Read / Write]}{

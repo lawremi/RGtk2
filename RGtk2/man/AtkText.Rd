@@ -65,8 +65,8 @@ A structure used to describe a text range.
 
 \describe{
 \item{\code{bounds}}{[\code{\link{AtkTextRectangle}}]  A rectangle giving the bounds of the text range}
-\item{\code{start_offset}}{[integer]  The start offset of a AtkTextRange}
-\item{\code{end_offset}}{[integer]  The end offset of a AtkTextRange}
+\item{\code{startOffset}}{[integer]  The start offset of a AtkTextRange}
+\item{\code{endOffset}}{[integer]  The end offset of a AtkTextRange}
 \item{\code{content}}{[character]  The text in the text range}
 }
 
@@ -88,9 +88,9 @@ A string name/value pair representing a text attribute.
 \strong{\code{AtkAttribute} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{name}}{[character]  The attribute name. Call \code{atk\Text\Attr\Get\Name()}}
+\item{\code{name}}{[character]  The attribute name. Call \code{atkTextAttrGetName()}}
 \item{\code{value}}{[character]  the value of the attribute, represented as a string. 
-Call \code{atk\Text\Attr\Get\Value()} for those which are strings.
+Call \code{atkTextAttrGetValue()} for those which are strings.
 For values which are numbers, the string representation of the number 
 is in value.}
 }
@@ -102,20 +102,17 @@ is in value.}
 Text boundary types used for specifying boundaries for regions of text  
 
 \describe{
-\item{\code{char}}{\emph{undocumented
-}}
-\item{\code{word-start}}{\emph{undocumented
-}}
-\item{\code{word-end}}{\emph{undocumented
-}}
-\item{\code{sentence-start}}{\emph{undocumented
-}}
-\item{\code{sentence-end}}{\emph{undocumented
-}}
-\item{\code{line-start}}{\emph{undocumented
-}}
-\item{\code{line-end}}{\emph{undocumented
-}}
+\item{\code{char}}{ Boundary is the boundary between characters 
+(including non-printing characters)}
+\item{\code{word-start}}{ Boundary is the start (i.e. first character) of a word. }
+\item{\code{word-end}}{ Boundary is the end (i.e. last character) of a word.}
+\item{\code{sentence-start}}{ Boundary is the first character in a sentence.}
+\item{\code{sentence-end}}{ Boundary is the last (terminal) character in a sentence; 
+in languages which use "sentence stop" punctuation such as English, the boundary is thus the
+'.', '?', or similar terminal punctuation character.}
+\item{\code{line-start}}{ Boundary is the initial character of the content or a 
+character immediately following a newline, linefeed, or return character.}
+\item{\code{line-end}}{ Boundary is the linefeed, or return character.}
 }
 
 }
@@ -197,8 +194,8 @@ change was an insertion or a deletion
 
 \describe{
 \item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
-\item{\code{arg1}}{[integer] The position of the insertion or deletion.}
-\item{\code{arg2}}{[integer] The length of text inserted or deleted.}
+\item{\code{arg1}}{[integer] The position (character offset) of the insertion or deletion.}
+\item{\code{arg2}}{[integer] The length (in characters) of text inserted or deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

@@ -25,10 +25,10 @@ outside the widget. If returning \code{TRUE}, widgets normally
 call \code{\link{gtkWidgetGrabFocus}} to place the focus accordingly;
 if returning \code{FALSE}, they don't modify the current focus location.
   
-This function replaces \code{gtk\Container\Focus()} from GTK+ 1.2.  It was
+This function replaces \code{gtkContainerFocus()} from GTK+ 1.2.  It was
 necessary to check that the child was visible, sensitive, and
 focusable before calling
-\code{gtk\Container\Focus()}. \code{\link{gtkWidgetChildFocus}} returns \code{FALSE} if
+\code{gtkContainerFocus()}. \code{\link{gtkWidgetChildFocus}} returns \code{FALSE} if
 the widget is not currently in a focusable state, so there's no
 need for those checks.  }
 \value{[logical]  \code{TRUE} if focus ended up inside \code{widget}}

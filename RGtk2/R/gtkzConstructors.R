@@ -244,14 +244,19 @@ function(model = NULL, show = TRUE)
 }
 
 gtkImage <-
-function(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show = TRUE)
+function(mask = NULL, size, pixmap = NULL, image = NULL, filename, pixbuf = NULL, stock.id, icon.set, animation, show = TRUE)
 {
-  if (!missing(pixmap)) {
-    gtkImageNewFromPixmap(pixmap, mask, show)
+  if (!missing(icon.set)) {
+    gtkImageNewFromIconSet(icon.set, size, show)
   }
   else {
     if (!missing(mask)) {
-      gtkImageNewFromImage(image, mask, show)
+      if (!missing(pixmap)) {
+        gtkImageNewFromPixmap(pixmap, mask, show)
+      }
+      else {
+        gtkImageNewFromImage(image, mask, show)
+      }
     }
     else {
       if (!missing(filename)) {
@@ -262,7 +267,17 @@ function(mask = NULL, pixmap = NULL, image = NULL, filename, pixbuf = NULL, show
           gtkImageNewFromPixbuf(pixbuf, show)
         }
         else {
-          gtkImageNew(show)
+          if (!missing(stock.id)) {
+            gtkImageNewFromStock(stock.id, size, show)
+          }
+          else {
+            if (!missing(animation)) {
+              gtkImageNewFromAnimation(animation, show)
+            }
+            else {
+              gtkImageNew(show)
+            }
+          }
         }
       }
     }

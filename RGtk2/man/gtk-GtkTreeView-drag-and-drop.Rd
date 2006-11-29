@@ -39,10 +39,16 @@ bookkeeping of rows is done for you, as well as things like hover-to-open
 and auto-scroll, but your models have to implement the 
 \code{\link{GtkTreeDragSource}} and \code{\link{GtkTreeDragDest}} interfaces.}
 \section{Structures}{\describe{
-\item{\code{GtkTreeDragSource}}{\emph{undocumented
-}}
-\item{\code{GtkTreeDragDest}}{\emph{undocumented
-}}
+\item{\code{GtkTreeDragSource}}{
+\emph{undocumented
+}
+
+}
+\item{\code{GtkTreeDragDest}}{
+\emph{undocumented
+}
+
+}
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-GtkTreeView-drag-and-drop.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

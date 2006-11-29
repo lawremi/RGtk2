@@ -7,9 +7,9 @@
 \item{\code{object}}{[\code{\link{PangoRenderer}}]  a \code{\link{PangoRenderer}}}
 \item{\code{font}}{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}}
 \item{\code{glyphs}}{[\code{\link{PangoGlyphString}}]  a \code{\link{PangoGlyphString}}}
-\item{\code{x}}{[integer]  x position of left edge of baseline, in user space coordinates
+\item{\code{x}}{[integer]  X position of left edge of baseline, in user space coordinates
   in Pango units.}
-\item{\code{y}}{[integer]  x position of left edge of baseline, in user space coordinates
+\item{\code{y}}{[integer]  Y position of left edge of baseline, in user space coordinates
    in Pango units.}
 }
 \details{  Since  1.8}

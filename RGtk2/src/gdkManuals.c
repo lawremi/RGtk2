@@ -66,7 +66,7 @@ USER_OBJECT_
          geometry = asCGdkGeometry(s_geometry, &flags);
           gdk_window_constrain_size ( geometry, flags, width, height, &new_width, &new_height );
 
-        _result = retByVal(_result, "new_width", asRInteger ( new_width ), "new_height", asRInteger ( new_height ), NULL);
+        _result = retByVal(_result, "new.width", asRInteger ( new_width ), "new.height", asRInteger ( new_height ), NULL);
 
         return(_result);
 }
@@ -103,6 +103,40 @@ USER_OBJECT_
 
         return(_result);
 }
+
+USER_OBJECT_
+S_gdk_drawable_class_create_gc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_values)
+{
+  GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
+  GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
+  GdkGCValuesMask mask;
+  GdkGCValues* values = asCGdkGCValuesWithMask(s_values, &mask);
+  
+  GdkGC* ans;
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  ans = object_class->create_gc(object, values, mask);
+
+  _result = toRPointerWithFinalizer(ans, "GdkGC", (RPointerFinalizer) g_object_unref);
+
+  return(_result);
+}
+USER_OBJECT_
+S_gdk_gcclass_set_values(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_values)
+{
+  GdkGCClass* object_class = ((GdkGCClass*)getPtrValue(s_object_class));
+  GdkGC* object = GDK_GC(getPtrValue(s_object));
+  GdkGCValuesMask mask;
+  GdkGCValues* values = asCGdkGCValuesWithMask(s_values, &mask);
+  
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+  object_class->set_values(object, values, mask);
+
+
+  return(_result);
+}
+
 
 void
 S_GdkPixbufDestroyNotify(guchar *pixels, gpointer data)
@@ -156,7 +190,7 @@ USER_OBJECT_
         }
         gdk_device_free_history(events, n_events);
 
-        _result = retByVal(_result, "events", s_events, "n_events", asRInteger ( n_events ), NULL);
+        _result = retByVal(_result, "events", s_events, "n.events", asRInteger ( n_events ), NULL);
 
         UNPROTECT(1);
         return(_result);
@@ -333,7 +367,7 @@ S_gdk_query_visual_types()
         gdk_query_visual_types(&visual_types, &count);
 
 
-        _result = retByVal(_result, "visual_types", asREnumArrayWithSize(visual_types, GDK_TYPE_VISUAL_TYPE, count), "count", asRInteger(count), NULL);
+        _result = retByVal(_result, "visual.types", asREnumArrayWithSize(visual_types, GDK_TYPE_VISUAL_TYPE, count), "count", asRInteger(count), NULL);
 
         return(_result);
 }
@@ -352,7 +386,7 @@ S_gdk_pixbuf_render_pixmap_and_mask(USER_OBJECT_ s_object, USER_OBJECT_ s_alpha_
         gdk_pixbuf_render_pixmap_and_mask(object, &pixmap_return, &mask_return, alpha_threshold);
 
 
-        _result = retByVal(_result, "pixmap_return", toRPointerWithFinalizer(pixmap_return, "GdkPixmap", (RPointerFinalizer)g_object_unref), "mask_return", toRPointerWithFinalizer(mask_return, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
+        _result = retByVal(_result, "pixmap.return", toRPointerWithFinalizer(pixmap_return, "GdkPixmap", (RPointerFinalizer)g_object_unref), "mask.return", toRPointerWithFinalizer(mask_return, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
 
         return(_result);
 }
@@ -370,7 +404,7 @@ S_gdk_pixbuf_render_pixmap_and_mask_for_colormap(USER_OBJECT_ s_object, USER_OBJ
         gdk_pixbuf_render_pixmap_and_mask_for_colormap(object, colormap, &pixmap_return, &mask_return, alpha_threshold);
 
 
-        _result = retByVal(_result, "pixmap_return", toRPointerWithFinalizer(pixmap_return, "GdkPixmap", (RPointerFinalizer)g_object_unref), "mask_return", toRPointerWithFinalizer(mask_return, "GdkBitmap", (RPointerFinalizer)g_object_unref), NULL);
+        _result = retByVal(_result, "pixmap.return", toRPointerWithFinalizer(pixmap_return, "GdkPixmap", (RPointerFinalizer)g_object_unref), "mask.return", toRPointerWithFinalizer(mask_return, "GdkBitmap", (RPointerFinalizer)g_object_unref), NULL);
 
         return(_result);
 }
@@ -476,7 +510,7 @@ S_gdk_pixbuf_save_to_bufferv(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OB
 		for (i = 0; i < buffer_size; i++)
 			RAW(_result)[i] = (Rbyte)buffer[i];
 		
-        _result = retByVal(NULL_USER_OBJECT, "buffer", _result, "buffer_size", asRNumeric(buffer_size), "error", asRGError(error), NULL);
+        _result = retByVal(NULL_USER_OBJECT, "buffer", _result, "buffer.size", asRNumeric(buffer_size), "error", asRGError(error), NULL);
         CLEANUP(g_error_free, error);
 		CLEANUP(g_free, buffer);
 		
@@ -497,3 +531,4 @@ S_gdk_pixbuf_error_quark()
 
 	return(_result);
 }
+

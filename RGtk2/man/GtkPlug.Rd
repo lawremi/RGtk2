@@ -12,12 +12,13 @@
 \code{gtkPlug(socket.id, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----GtkPlug}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----GtkPlug}}
 \section{Interfaces}{GtkPlug implements
  AtkImplementorIface.}
 \section{Detailed Description}{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
@@ -32,11 +33,15 @@ inside the first applications window.
 The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.
   }
-\section{Structures}{\describe{\item{\code{GtkPlug}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkPlug}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{gtkPlug} is the equivalent of \code{\link{gtkPlugNew}}.}
 \section{Signals}{\describe{\item{\code{embedded(plug, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{plug}}{[\code{\link{GtkPlug}}] the object which received the signal.}

@@ -17,23 +17,32 @@
 \code{gtkColorButton(color, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkButton}
-                                 +----GtkColorButton}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkButton}
+                                       +----GtkColorButton}}
 \section{Interfaces}{GtkColorButton implements
  AtkImplementorIface.}
-\section{Detailed Description}{The \code{\link{GtkColorButton}} is a button which displays the currently selected color an allows to open a color 
-selection dialog to change the color. It is suitable widget for selecting a color in a preference dialog.}
-\section{Structures}{\describe{\item{\code{GtkColorButton}}{\emph{undocumented
-}}}}
+\section{Detailed Description}{The \code{\link{GtkColorButton}} is a button which displays the currently selected color 
+an allows to open a color selection dialog to change the color. It is suitable 
+widget for selecting a color in a preference dialog.}
+\section{Structures}{\describe{\item{\code{GtkColorButton}}{
+The GtkColorButton struct has only private fields and 
+should not be used directly.
+
+}}}
 \section{Convenient Construction}{\code{gtkColorButton} is the result of collapsing the constructors of \code{GtkColorButton} (\code{\link{gtkColorButtonNew}}, \code{\link{gtkColorButtonNewWithColor}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{color-set(widget, user.data)}}{
-The ::color-set signal is emitted when the user selects a color. When handling this signal,
-use \code{\link{gtkColorButtonGetColor}} and \code{\link{gtkColorButtonGetAlpha}} to find out which color 
-was just selected.  
+The ::color-set signal is emitted when the user selects a color. 
+When handling this signal, use \code{\link{gtkColorButtonGetColor}} and 
+\code{\link{gtkColorButtonGetAlpha}} to find out which color was just selected.
+  
+Note that this signal is only emitted when the \emph{user}
+changes the color. If you need to react to programmatic color changes
+as well, use the notify::color signal.  
 
   Since  2.4
 

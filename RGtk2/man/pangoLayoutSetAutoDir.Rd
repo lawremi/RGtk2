@@ -16,11 +16,13 @@ characters get their direction from the surrounding paragraphs.}
   from the layout's contents.}
 }
 \details{When \code{FALSE}, the choice between left-to-right and
-right-to-left layout is done by according to the base direction
+right-to-left layout is done according to the base direction
 of the layout's \code{\link{PangoContext}}. (See \code{\link{pangoContextSetBaseDir}}).
   
-When the auto-computed direction or a paragraph differs from the
-base direction of the context, then the interpretation of
-\code{PANGO_ALIGN_LEFT} and \code{PANGO_ALIGN_RIGHT} are swapped.  }
+When the auto-computed direction of a paragraph differs from the
+base direction of the context, the interpretation of
+\code{PANGO_ALIGN_LEFT} and \code{PANGO_ALIGN_RIGHT} are swapped.  
+
+  Since  1.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -15,11 +15,5 @@ Note that you will interfere with GTK+ if you use a priority above
 \item{\code{data}}{[R object] Data to pass to that function.}
 }
 \value{[numeric] A unique id for the event source.}
-\note{
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
-}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

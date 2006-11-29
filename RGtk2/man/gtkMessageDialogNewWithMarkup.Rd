@@ -16,7 +16,7 @@ response IDs from \code{\link{GtkResponseType}}. See \code{\link{GtkDialog}} for
 }
 \details{Special XML characters in the \code{printf()} arguments passed to this
 function will automatically be escaped as necessary.
-(See \code{g\Markup\Printf\Escaped()} for how this is implemented.)
+(See \code{gMarkupPrintfEscaped()} for how this is implemented.)
 Usually this is what you want, but if you have an existing
 Pango markup string that you want to use literally as the
 label, then you need to use \code{\link{gtkMessageDialogSetMarkup}}

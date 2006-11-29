@@ -3,7 +3,7 @@
 \title{gtkItemFactoryConstruct}
 \description{
 Initializes an item factory.
-\strong{WARNING: \code{gtk_item_factory_construct} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_construct} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryConstruct(object, container.type, path, accel.group)}
 \arguments{

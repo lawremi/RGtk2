@@ -8,7 +8,7 @@ the \code{layout}.}
 \value{
 A list containing the following elements:
 \item{\code{attrs}}{[\code{\link{PangoLogAttr}}]  location to store a pointer to a list of logical attributes
-        This value must be freed with \code{g\Free()}.}
+        This value must be freed with \code{gFree()}.}
 \item{\code{n.attrs}}{[integer]  location to store the number of the attributes in the
           list. (The stored value will be one more than the total number
           of characters in the layout, since there need to be attributes

@@ -8,7 +8,7 @@ Sets the time between the user moving the mouse over a widget and the widget's t
 \usage{gtkTooltipsSetDelay(object, delay)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTooltips}}] a \code{\link{GtkTooltips}}.}
-\item{\code{delay}}{[numeric] an integer value representing seconds (FIXME: double-check this).}
+\item{\code{delay}}{[numeric] an integer value representing milliseconds.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

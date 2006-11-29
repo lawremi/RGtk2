@@ -15,7 +15,7 @@ Gets the text, pixmap and bitmap mask for the specified cell.
 A list containing the following elements:
 \item{retval}{[integer] 1 if the retrieval was successful, 0 otherwise.}
 \item{\code{text}}{[character] A pointer to a pointer to store the text.}
-\item{\code{spacing}}{[integer] A pointer to a \code{integer} to store the spacing.}
+\item{\code{spacing}}{[raw] A pointer to a \code{raw} to store the spacing.}
 \item{\code{pixmap}}{[\code{\link{GdkPixmap}}] A pointer to a \code{\link{GdkPixmap}} pointer to store the cell's pixmap.}
 \item{\code{mask}}{[\code{\link{GdkBitmap}}] A pointer to a \code{\link{GdkBitmap}} pointer to store the cell's bitmap mask.}
 }

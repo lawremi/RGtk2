@@ -15,7 +15,7 @@ language-bindings.}
 \details{  Since  2.6}
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An unset \code{\link{GtkTreeIter}} to set to the new row}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An unset \code{\link{GtkTreeIter}} to set to the new row, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

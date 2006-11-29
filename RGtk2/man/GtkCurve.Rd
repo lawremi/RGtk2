@@ -14,10 +14,11 @@
 \code{gtkCurve(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkDrawingArea}
-                     +----GtkCurve}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkDrawingArea}
+                           +----GtkCurve}}
 \section{Interfaces}{GtkCurve implements
  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   

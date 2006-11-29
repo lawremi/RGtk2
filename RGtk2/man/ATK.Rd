@@ -9,11 +9,13 @@ The RGtk binding to the ATK library consists of the following components:
 activate/interact with,}
 \item{\link{AtkComponent}}{The ATK interface provided by UI components which occupy a physical area on
 the screen.}
-\item{\link{AtkDocument}}{The ATK interface which allows access to a DOM associated with on object.}
+\item{\link{AtkDocument}}{The ATK interface which represents the toplevel container for document content.}
 \item{\link{AtkEditableText}}{The ATK interface implemented by components containing user-editable text content.}
 \item{\link{AtkGObjectAccessible}}{This object class is derived from AtkObject and can be used as a basis 
 implementing accessible objects.}
 \item{\link{AtkHyperlink}}{An ATK object which encapsulates a link or set of links in a hypertext document.}
+\item{\link{atk-AtkHyperlinkImpl}}{An interface from which the AtkHyperlink associated with an
+AtkObject may be obtained.}
 \item{\link{AtkHypertext}}{The ATK interface which provides standard mechanism for manipulating hyperlinks.}
 \item{\link{AtkImage}}{The ATK Interface implemented by components which expose image or pixmap
 content on-screen.}
@@ -35,7 +37,7 @@ can be selected.}
 \item{\link{AtkTable}}{The ATK interface implemented for UI components which contain tabular or
 row/column information.}
 \item{\link{AtkText}}{The ATK interface implemented by components with text content.}
-\item{\link{AtkUtil}}{This is a utility class which supports the adding and removal of event listeners.}
+\item{\link{AtkUtil}}{A set of ATK utility functions for event and toolkit support.}
 \item{\link{AtkValue}}{The ATK interface implemented by valuators and components which display or
 select a value from a bounded range of values.}
 }

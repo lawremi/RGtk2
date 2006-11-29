@@ -7636,6 +7636,12 @@ S_gtk_file_chooser_button_get_focus_on_click(USER_OBJECT_ s_object);
 S_gtk_file_chooser_button_set_focus_on_click(USER_OBJECT_ s_object, USER_OBJECT_ s_focus_on_click); 
 
   USER_OBJECT_
+S_gtk_label_get_line_wrap_mode(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_label_set_line_wrap_mode(USER_OBJECT_ s_object, USER_OBJECT_ s_wrap_mode); 
+
+  USER_OBJECT_
 S_gtk_link_button_get_type(void); 
 
   USER_OBJECT_

@@ -38,7 +38,7 @@ you'll usually want to use \code{\link{gtkWidgetGetPangoContext}}, or
 can set the text and attributes of it with Pango functions like
 \code{\link{pangoLayoutSetText}} and get its size with \code{\link{pangoLayoutGetSize}}.
 (Note that Pango uses a fixed point system internally, so converting
-between Pango units and pixels using PANGO\_SCALE or the \code{pango\Pixels()} function.)
+between Pango units and pixels using PANGO\_SCALE or the \code{pangoPixels()} function.)
   
 Rendering a Pango layout is done most simply with \code{\link{gdkDrawLayout}};
 you can also draw pieces of the layout with \code{\link{gdkDrawLayout}} or

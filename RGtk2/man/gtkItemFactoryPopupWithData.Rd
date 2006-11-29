@@ -5,7 +5,7 @@
 Pops up the menu constructed from the item factory at (\code{x}, \code{y}). Callbacks
 can access the \code{popup.data} while the menu is posted via 
 \code{\link{gtkItemFactoryPopupData}} and \code{\link{gtkItemFactoryPopupDataFromWidget}}.
-\strong{WARNING: \code{gtk_item_factory_popup_with_data} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_item_factory_popup_with_data} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryPopupWithData(object, popup.data, x, y, mouse.button, time = "GDK_CURRENT_TIME")}
 \arguments{

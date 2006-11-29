@@ -10,7 +10,13 @@
 \code{\link{cairoScaledFontCreate}(font.face, font.matrix, ctm, option)}\cr
 \code{\link{cairoScaledFontStatus}(scaled.font)}\cr
 \code{\link{cairoScaledFontExtents}(scaled.font)}\cr
+\code{\link{cairoScaledFontTextExtents}(scaled.font, utf8)}\cr
 \code{\link{cairoScaledFontGlyphExtents}(scaled.font, glyphs, num.glyphs)}\cr
+\code{\link{cairoScaledFontGetFontFace}(scaled.font)}\cr
+\code{\link{cairoScaledFontGetFontOptions}(scaled.font)}\cr
+\code{\link{cairoScaledFontGetFontMatrix}(scaled.font)}\cr
+\code{\link{cairoScaledFontGetCtm}(scaled.font)}\cr
+\code{\link{cairoScaledFontGetType}(scaled.font)}\cr
 \code{cairoScaledFont(font.face, font.matrix, ctm, option)}
 }
 \section{Structures}{\describe{
@@ -22,7 +28,7 @@ to a scaled font to speed up the computation of metrics.
 
 }
 \item{\code{CairoFontExtents}}{
-The \code{\link{CairoTextExtents}} structure stores metric information for
+The \code{\link{CairoFontExtents}} structure stores metric information for
 a font. Values are given in the current user-space coordinate
 system.
   
@@ -54,7 +60,7 @@ matrix), but otherwise will remain unchanged.
          or \dfn{external leading}. When space
          is at a premium, most fonts can be set with only
          a distance of \code{ascent}+\code{descent} between lines.}
-\item{\code{maxXAdvance}}{[numeric]  the maximum distance in the X direction that 
+\item{\code{maxXAdvance}}{[numeric]  the maximum distance in the X direction that
         the the origin is advanced for any glyph in the font.}
 \item{\code{maxYAdvance}}{[numeric]  the maximum distance in the Y direction that
         the the origin is advanced for any glyph in the font.

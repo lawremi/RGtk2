@@ -43,8 +43,9 @@
 \code{\link{pangoLayoutSetSingleParagraphMode}(object, setting)}\cr
 \code{\link{pangoLayoutGetSingleParagraphMode}(object)}\cr
 \code{\link{pangoLayoutGetLogAttrs}(object)}\cr
-\code{\link{pangoLayoutXyToIndex}(object, x, y)}\cr
 \code{\link{pangoLayoutIndexToPos}(object, index, pos)}\cr
+\code{\link{pangoLayoutIndexToLineX}(object, index., trailing)}\cr
+\code{\link{pangoLayoutXyToIndex}(object, x, y)}\cr
 \code{\link{pangoLayoutGetCursorPos}(object, index)}\cr
 \code{\link{pangoLayoutMoveCursorVisually}(object, strong, old.index, old.trailing, direction)}\cr
 \code{\link{pangoLayoutGetExtents}(object)}\cr
@@ -80,7 +81,7 @@
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
 that functionality directly involves writing a fairly large amount
-of code. The objects and functions in this structure provide a
+of code. The objects and functions in this section provide a
 high-level driver for formatting entire paragraphs of text
 at once.}
 \section{Structures}{\describe{
@@ -103,10 +104,10 @@ fields.
 
 }
 \item{\code{PangoLayoutIter}}{
-A \code{PangoLayoutIter} structure can be used to
+A \code{\link{PangoLayoutIter}} structure can be used to
 iterate over the visual extents of a \code{\link{PangoLayout}}. 
   
-The \code{PangoLayoutIter} structure is opaque, and 
+The \code{\link{PangoLayoutIter}} structure is opaque, and 
 has no user-visible fields.
 
 }
@@ -121,12 +122,12 @@ Routines for rendering PangoLayout objects are provided in
 code specific to each rendering system.
 
 \describe{
-\item{\code{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line.}
-\item{\code{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}.}
-\item{\code{length}}{[integer] the length of the line in bytes.}
-\item{\code{runs}}{[list] a list containing the runs of the line in visual order.}
-\item{\code{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph.}
-\item{\code{resolvedDir}}{[numeric] }
+\item{\code{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line}
+\item{\code{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
+\item{\code{length}}{[integer] the length of the line in bytes}
+\item{\code{runs}}{[list] a list containing the runs of the line in visual order}
+\item{\code{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph}
+\item{\code{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
 }
 
 }
@@ -160,8 +161,7 @@ with an ellipsis.
 \item{\code{PangoAlignment}}{
 A PangoAlignment describes how to align the lines of a \code{\link{PangoLayout}} within the
 available space. If the \code{\link{PangoLayout}} is set to justify
-using \code{\link{pangoLayoutSetJustify}}, then this only has an effect
-for partial lines.
+using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial lines.
 
 \describe{
 \item{\code{left}}{Put all available space on the right}

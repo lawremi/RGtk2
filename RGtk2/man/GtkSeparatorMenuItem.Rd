@@ -8,13 +8,14 @@
 \code{gtkSeparatorMenuItem(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkItem}
-                                 +----\link{GtkMenuItem}
-                                       +----GtkSeparatorMenuItem}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkItem}
+                                       +----\link{GtkMenuItem}
+                                             +----GtkSeparatorMenuItem}}
 \section{Interfaces}{GtkSeparatorMenuItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkSeparatorMenuItem}} is a separator used to group

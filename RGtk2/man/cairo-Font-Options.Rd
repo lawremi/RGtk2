@@ -23,8 +23,11 @@
 \code{\link{cairoFontOptionsGetHintMetrics}(options)}\cr
 \code{cairoFontOptions()}
 }
-\section{Structures}{\describe{\item{\code{CairoFontOptions}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{CairoFontOptions}}{
+\emph{undocumented
+}
+
+}}}
 \section{Convenient Construction}{\code{cairoFontOptions} is the equivalent of \code{\link{cairoFontOptionsCreate}}.}
 \section{Enums and Flags}{\describe{
 \item{\code{CairoSubpixelOrder}}{
@@ -52,7 +55,9 @@ is the process of fitting outlines to the pixel grid in order
 to improve the appearance of the result. Since hinting outlines
 involves distorting them, it also reduces the faithfulness
 to the original outline shapes. Not all of the outline hinting
-styles are supported by all font backends.  
+styles are supported by all font backends.
+  
+New entries may be added in future versions.  
 
 \describe{
 \item{\code{default}}{ Use the default hint style for

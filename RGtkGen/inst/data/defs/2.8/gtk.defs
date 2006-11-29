@@ -8165,6 +8165,7 @@
 
 (define-function image_new_from_stock
   (c-name "gtk_image_new_from_stock")
+  (is-constructor-of "GtkImage")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
@@ -8175,6 +8176,7 @@
 
 (define-function image_new_from_icon_set
   (c-name "gtk_image_new_from_icon_set")
+  (is-constructor-of "GtkImage")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
@@ -8185,6 +8187,7 @@
 
 (define-function image_new_from_animation
   (c-name "gtk_image_new_from_animation")
+  (is-constructor-of "GtkImage")
   (caller-owns-return #t)
   (return-type "GtkWidget*")
   (parameters
@@ -10127,9 +10130,9 @@
   (c-name "gtk_menu_popup")
   (return-type "none")
   (parameters
-    '("GtkWidget*" "parent_menu_shell" (in))
-    '("GtkWidget*" "parent_menu_item" (in))
-    '("GtkMenuPositionFunc" "func" (in))
+    '("GtkWidget*" "parent_menu_shell" (in) (null-ok))
+    '("GtkWidget*" "parent_menu_item" (in) (null-ok))
+    '("GtkMenuPositionFunc" "func" (in) (null-ok))
     '("gpointer" "data" (in) (null-ok))
     '("guint" "button" (in))
     '("guint32" "activate_time" (in))
@@ -22138,7 +22141,7 @@
 
 (define-virtual selection_find
   (of-object "GtkCList")
-  (return-type "GList*")
+  (return-type "GList[GtkCListRow]")
   (parameters
     '("gint" "row_number")
     '("GList[GtkCListRow]" "row_list_element")

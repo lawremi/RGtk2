@@ -19,6 +19,6 @@ following for details on how they affect the current point:
 \code{\link{cairoNewPath}}, \code{\link{cairoMoveTo}}, \code{\link{cairoLineTo}},
 \code{\link{cairoCurveTo}}, \code{\link{cairoArc}}, \code{\link{cairoRelMoveTo}},
 \code{\link{cairoRelLineTo}}, \code{\link{cairoRelCurveTo}}, \code{\link{cairoArc}},
-\code{\link{cairoTextPath}}, \code{cairo\Stroke\To\Path()}  }
+\code{\link{cairoTextPath}}, \code{cairoStrokeToPath()}  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

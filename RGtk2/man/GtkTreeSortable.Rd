@@ -18,8 +18,11 @@
 \section{Detailed Description}{\code{\link{GtkTreeSortable}} is an interface to be implemented by tree models which
 support sorting. The \code{\link{GtkTreeView}} uses the methods provided by this interface
 to sort the model.}
-\section{Structures}{\describe{\item{\code{GtkTreeSortable}}{\emph{undocumented
-}}}}
+\section{Structures}{\describe{\item{\code{GtkTreeSortable}}{
+\emph{undocumented
+}
+
+}}}
 \section{User Functions}{\describe{\item{\code{GtkTreeIterCompareFunc(model, a, b, user.data)}}{
 A GtkTreeIterCompareFunc should return a negative integer, zero, or a positive
 integer if \code{a} sorts before \code{b}, \code{a} sorts with \code{b}, or \code{a} sorts after \code{b}
@@ -42,7 +45,8 @@ for the "price" column could be one which returns
 
 }}}
 \section{Signals}{\describe{\item{\code{sort-column-changed(treesortable, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{treesortable}}{[\code{\link{GtkTreeSortable}}] the object which received the signal.}

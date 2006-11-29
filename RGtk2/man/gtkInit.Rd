@@ -1,30 +1,27 @@
-\alias{gtkInit}
 \name{gtkInit}
-\title{gtkInit}
-\description{Call this function before using any other GTK+ functions in your GUI
-applications.  It will initialize everything needed to operate the 
-toolkit and parses some standard command line options. \code{argc} and 
-\code{argv} are adjusted accordingly so your own code will 
-never see those standard arguments. }
-\usage{gtkInit(args = .GtkInitArgs)}
-\details{Note that there are some alternative ways to initialize GTK+: 
-if you are calling \code{gtkParseArgs()}, \code{\link{gtkInitCheck}}, 
-\code{gtkInitWithArgs()} or \code{gOptionContextParse()} with 
-the option group returned by \code{gtkGetOptionGroup()}, you 
-\emph{don't} have to call \code{\link{gtkInit}}.
-  
-\emph{This function will terminate your program if it was unable to initialize 
-the GUI for some reason. If you want your program to fall back to a 
-textual interface you want to call \code{\link{gtkInitCheck}} instead.}  }
-\note{
-This function will terminate your program if it was unable to initialize 
-the GUI for some reason. If you want your program to fall back to a 
-textual interface you want to call \code{\link{gtkInitCheck}} instead.
-
-This function is deprecated. You should use \code{GDK_PRIORITY_REDRAW} instead.
-This function is deprecated. You should use \code{G_PRIORITY_HIGH} instead.
-This function is deprecated. You should use \code{G_PRIORITY_DEFAULT_IDLE} instead.
-This function is deprecated. You should use \code{G_PRIORITY_LOW} instead.
+\alias{gtkInit}
+\title{GTK+ initialization}
+\description{
+  Initializes the GTK+ library, returning \code{TRUE} on success.
 }
-\author{Derived by RGtkGen from GTK+ documentation}
+\usage{
+gtkInit(args="R")
+}
+\arguments{
+  \item{args}{ Command-line arguments to pass to GTK+. The first token is the
+  program name (by default 'R').}
+}
+\value{
+  \code{TRUE} if initialization suceeded, \code{FALSE} if GTK+ cannot run
+  in the current environment (such as in a headless shell).
+}
+\details{
+  This is always called upon the loading of RGtk2,
+  but it is also useful for checking whether GTK+ has been successfully initialized
+  (calling it multiple times is harmless). This allows, for example, preventing
+  the execution of examples in a headless environment (where GTK+ fails to initialize)
+  during \code{R CMD check}.
+}
+\author{ Michael Lawrence }
 \keyword{internal}
+\keyword{interface}

@@ -8,6 +8,6 @@ not already present.}
 \item{\code{object}}{[\code{\link{AtkRelation}}]  an \code{\link{AtkRelation}}}
 \item{\code{target}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 }
-\details{  Since  1.9}
+\details{  Since  ATK 1.9}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

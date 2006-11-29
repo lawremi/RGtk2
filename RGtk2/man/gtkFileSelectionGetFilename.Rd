@@ -2,7 +2,7 @@
 \name{gtkFileSelectionGetFilename}
 \title{gtkFileSelectionGetFilename}
 \description{This function returns the selected filename in the GLib file name
-encoding. To convert to UTF-8, call \code{g\Filename\To\Utf8()}. The
+encoding. To convert to UTF-8, call \code{gFilenameToUtf8()}. The
 returned string points to a statically allocated buffer and should
 be copied if you plan to keep it around.}
 \usage{gtkFileSelectionGetFilename(object)}

@@ -6,7 +6,7 @@
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}
 \item{\code{targets}}{[\code{\link{GtkTargetEntry}}]  the table of targets that the drag will support}
-\item{\code{actions}}{[\code{\link{GdkDragAction}}]  the bitmask of possible actions for a drag from this
+\item{\code{actions}}{[\code{\link{GdkDragAction}}]  the bitmask of possible actions for a drag to this
    widget}
 }
 \details{  Since  2.8}

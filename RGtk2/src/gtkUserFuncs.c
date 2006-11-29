@@ -49,7 +49,7 @@ S_GtkCellLayoutDataFunc(GtkCellLayout* s_cell_layout, GtkCellRenderer* s_cell, G
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tree_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -75,7 +75,7 @@ S_GtkClipboardGetFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_selection_d
 
   SETCAR(tmp, toRPointerWithRef(s_clipboard, "GtkClipboard"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_info));
   tmp = CDR(tmp);
@@ -103,7 +103,7 @@ S_GtkClipboardReceivedFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_select
 
   SETCAR(tmp, toRPointerWithRef(s_clipboard, "GtkClipboard"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_selection_data_copy(s_selection_data), "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -324,7 +324,7 @@ S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_k
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_key));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
@@ -376,7 +376,7 @@ S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer
 
   SETCAR(tmp, toRPointerWithSink(s_icon_view, "GtkIconView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -477,9 +477,9 @@ S_GtkTreeModelForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTreeIte
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -506,7 +506,7 @@ S_GtkTreeModelFilterVisibleFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoi
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -533,7 +533,7 @@ S_GtkTreeModelFilterModifyFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, GValu
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
@@ -566,7 +566,7 @@ S_GtkTreeSelectionFunc(GtkTreeSelection* s_selection, GtkTreeModel* s_model, Gtk
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRLogical(s_path_currently_selected));
   tmp = CDR(tmp);
@@ -595,9 +595,9 @@ S_GtkTreeSelectionForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTre
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -623,9 +623,9 @@ S_GtkTreeIterCompareFunc(GtkTreeModel* s_model, GtkTreeIter* s_a, GtkTreeIter* s
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_a), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_a ? gtk_tree_iter_copy(s_a) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_b), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_b ? gtk_tree_iter_copy(s_b) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
@@ -656,7 +656,7 @@ S_GtkTreeCellDataFunc(GtkTreeViewColumn* s_tree_column, GtkCellRenderer* s_cell,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tree_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -713,7 +713,7 @@ S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer
 
   SETCAR(tmp, toRPointerWithSink(s_tree_view, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
@@ -743,7 +743,7 @@ S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* 
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_key));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_search_data)->data);
   tmp = CDR(tmp);
@@ -770,7 +770,7 @@ S_GtkTreeDestroyCountFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gint s_
 
   SETCAR(tmp, toRPointerWithSink(s_tree_view, "GtkTreeView"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_path_copy(s_path), "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_children));
   tmp = CDR(tmp);
@@ -798,7 +798,7 @@ S_GtkTreeViewRowSeparatorFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoint
 
   SETCAR(tmp, toRPointerWithRef(s_model, "GtkTreeModel"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_tree_iter_copy(s_iter), "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
@@ -1199,9 +1199,9 @@ S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_recent_info_ref(s_a), "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref));
+  SETCAR(tmp, toRPointerWithFinalizer(s_a ? gtk_recent_info_ref(s_a) : NULL, "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_recent_info_ref(s_b), "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref));
+  SETCAR(tmp, toRPointerWithFinalizer(s_b ? gtk_recent_info_ref(s_b) : NULL, "GtkRecentInfo", (RPointerFinalizer) gtk_recent_info_unref));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
@@ -1255,7 +1255,7 @@ S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* 
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_content_buffer, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(gtk_text_iter_copy(s_iter), "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_text_iter_copy(s_iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRRawArrayWithSize(s_data, s_length));
   tmp = CDR(tmp);

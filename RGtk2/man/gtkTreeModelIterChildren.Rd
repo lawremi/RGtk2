@@ -1,9 +1,9 @@
 \alias{gtkTreeModelIterChildren}
 \name{gtkTreeModelIterChildren}
 \title{gtkTreeModelIterChildren}
-\description{Sets \code{iter} to point to the first child of \code{parent}.  If \code{parent} has no children,
-\code{FALSE} is returned and \code{iter} is set to be invalid.  \code{parent} will remain a valid
-node after this function has been called.}
+\description{Sets \code{iter} to point to the first child of \code{parent}.  If \code{parent} has no 
+children, \code{FALSE} is returned and \code{iter} is set to be invalid.  \code{parent} 
+will remain a valid node after this function has been called.}
 \usage{gtkTreeModelIterChildren(object, parent = NULL)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}

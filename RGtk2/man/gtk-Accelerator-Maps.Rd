@@ -23,10 +23,14 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkAccelMap}}
-\section{Structures}{\describe{\item{\code{GtkAccelMap}}{\emph{undocumented
-}}}}
-\section{User Functions}{\describe{\item{\code{GtkAccelMapForeach(data, accel.path, accel.key, accel.mods, changed)}}{
+\section{Structures}{\describe{\item{\code{GtkAccelMap}}{
+\emph{undocumented
+}
 
+}}}
+\section{User Functions}{\describe{\item{\code{GtkAccelMapForeach(data, accel.path, accel.key, accel.mods, changed)}}{
+\emph{undocumented
+}
 
 \describe{
 \item{\code{data}}{[R object] }

@@ -18,10 +18,11 @@
 \code{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkLayout}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkLayout}}
 \section{Interfaces}{GtkLayout implements
  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
@@ -36,14 +37,16 @@ GTK\_LAYOUT (layout)->bin\_window, rather than to
 GTK\_WIDGET (layout)->window, as you would for a drawing
 area.}
 \section{Structures}{\describe{\item{\code{GtkLayout}}{
-
+\emph{undocumented
+}
 
 \describe{\item{\code{binWindow}}{[\code{\link{GdkWindow}}] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkLayout} is the equivalent of \code{\link{gtkLayoutNew}}.}
 \section{Signals}{\describe{\item{\code{set-scroll-adjustments(layout, arg1, arg2, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{layout}}{[\code{\link{GtkLayout}}] the object which received the signal.}

@@ -46,3 +46,5 @@ void
 S_atk_text_class_init(AtkTextIface * c, SEXP e); 
 void
 S_atk_document_class_init(AtkDocumentIface * c, SEXP e); 
+void
+S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e); 

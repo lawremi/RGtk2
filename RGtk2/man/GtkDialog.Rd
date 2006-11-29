@@ -24,19 +24,23 @@
 \code{gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----\link{GtkBin}
-                           +----\link{GtkWindow}
-                                 +----GtkDialog
-                                       +----\link{GtkAboutDialog}
-                                       +----\link{GtkColorSelectionDialog}
-                                       +----\link{GtkFileChooserDialog}
-                                       +----\link{GtkFileSelection}
-                                       +----\link{GtkFontSelectionDialog}
-                                       +----\link{GtkInputDialog}
-                                       +----\link{GtkMessageDialog}}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----\link{GtkBin}
+                                 +----\link{GtkWindow}
+                                       +----GtkDialog
+                                             +----\link{GtkAboutDialog}
+                                             +----\link{GtkColorSelectionDialog}
+                                             +----\link{GtkFileChooserDialog}
+                                             +----\link{GtkFileSelection}
+                                             +----\link{GtkFontSelectionDialog}
+                                             +----\link{GtkInputDialog}
+                                             +----\link{GtkMessageDialog}
+                                             +----GtkPageSetupUnixDialog
+                                             +----GtkPrintUnixDialog
+                                             +----\link{GtkRecentChooserDialog}}}
 \section{Interfaces}{GtkDialog implements
  AtkImplementorIface.}
 \section{Detailed Description}{Dialog boxes are a convenient way to prompt the user for a small amount of
@@ -62,7 +66,7 @@ as can be seen from the example, below.
   
 A 'modal' dialog (that is, one which freezes the rest of the application from
 user input), can be created by calling \code{\link{gtkWindowSetModal}} on the dialog. Use
-the \code{gtk\Window()} function to cast the widget returned from \code{\link{gtkDialogNew}} into a
+the \code{gtkWindow()} function to cast the widget returned from \code{\link{gtkDialogNew}} into a
 \code{\link{GtkWindow}}. When using \code{\link{gtkDialogNewWithButtons}} you can also pass the
 \code{GTK_DIALOG_MODAL} flag to make a dialog modal.
   
@@ -122,7 +126,7 @@ Flags used to influence dialog construction.
 
 \describe{
 \item{\code{modal}}{Make the constructed dialog modal, 
-  see \code{gtk\Widget\Set\Modal()}.}
+  see \code{gtkWidgetSetModal()}.}
 \item{\code{destroy-with-parent}}{Destroy the dialog when its
   parent is destroyed, see \code{\link{gtkWindowSetDestroyWithParent}}.}
 \item{\code{no-separator}}{Don't put a separator between the
@@ -154,7 +158,8 @@ application-defined response ids.
 }}
 \section{Signals}{\describe{
 \item{\code{close(dialog, user.data)}}{
-
+\emph{undocumented
+}
 
 \describe{
 \item{\code{dialog}}{[\code{\link{GtkDialog}}] the object which received the signal.}
@@ -189,7 +194,7 @@ Width of border around the button area at the bottom of the dialog.  Allowed val
 }
 \item{\code{button-spacing} [integer : Read]}{
 
-Spacing between buttons.  Allowed values: >= 0  Default value: 10
+Spacing between buttons.  Allowed values: >= 0  Default value: 6
 
 }
 \item{\code{content-area-border} [integer : Read]}{

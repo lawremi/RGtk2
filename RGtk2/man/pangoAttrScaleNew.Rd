@@ -5,6 +5,6 @@
 affected text will have its size multiplied by \code{scale.factor}.}
 \usage{pangoAttrScaleNew(scale.factor)}
 \arguments{\item{\code{scale.factor}}{[numeric]  factor to scale the font}}
-\value{[\code{\link{PangoAttribute}}]  the new \code{\link{PangoAttribute}}.}
+\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

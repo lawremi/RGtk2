@@ -11,10 +11,11 @@
 \code{gtkSocket(show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
-   +----\link{GtkObject}
-         +----\link{GtkWidget}
-               +----\link{GtkContainer}
-                     +----GtkSocket}}
+   +----GInitiallyUnowned
+         +----\link{GtkObject}
+               +----\link{GtkWidget}
+                     +----\link{GtkContainer}
+                           +----GtkSocket}}
 \section{Interfaces}{GtkSocket implements
  AtkImplementorIface.}
 \section{Detailed Description}{Together with \code{\link{GtkPlug}}, \code{\link{GtkSocket}} provides the ability

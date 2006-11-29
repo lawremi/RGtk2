@@ -1,12 +1,8 @@
 \alias{pangoFontDescriptionUnsetFields}
 \name{pangoFontDescriptionUnsetFields}
 \title{pangoFontDescriptionUnsetFields}
-\description{Unsets some of the fields in a \code{\link{PangoFontDescription}}. Note that
-this merely marks the fields cleared, it does not clear the
-settings for those fields, to clear a family name set with
-\code{\link{pangoFontDescriptionSetFamilyStatic}} so that it won't
-be returned by subsequent calls to \code{\link{pangoFontDescriptionGetFamily}},
-you must actually call pango\_font\_description\_set\_family (desc, NULL);}
+\description{Unsets some of the fields in a \code{\link{PangoFontDescription}}.  The unset
+fields will get back to their default values.}
 \usage{pangoFontDescriptionUnsetFields(object, to.unset)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}

@@ -12,7 +12,14 @@ the user manually forces a specific mime type.}
 \item{\code{mime.type}}{[char]  the mime type to be loaded }
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
-\details{  Since  2.4}
+\details{The list of supported mime types depends on what image loaders
+are installed, but typically "image/png", "image/jpeg", "image/gif", 
+"image/tiff" and "image/x-xpixmap" are among the supported mime types. 
+To obtain the full list of supported mime types, call 
+\code{\link{gdkPixbufFormatGetMimeTypes}} on each of the \code{\link{GdkPixbufFormat}} 
+structs returned by \code{\link{gdkPixbufGetFormats}}.  
+
+  Since  2.4}
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}

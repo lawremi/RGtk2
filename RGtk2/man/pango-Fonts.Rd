@@ -52,8 +52,8 @@
 \code{\link{pangoFontMetricsGetUnderlinePosition}(object)}\cr
 \code{\link{pangoFontMetricsGetStrikethroughThickness}(object)}\cr
 \code{\link{pangoFontMetricsGetStrikethroughPosition}(object)}\cr
-\code{\link{pangoFontFindShaper}(object, language, ch)}\cr
 \code{\link{pangoFontDescribe}(object)}\cr
+\code{\link{pangoFontDescribeWithAbsoluteSize}(object)}\cr
 \code{\link{pangoFontGetCoverage}(object, language)}\cr
 \code{\link{pangoFontGetGlyphExtents}(object, glyph)}\cr
 \code{\link{pangoFontGetMetrics}(object, language = NULL)}\cr
@@ -113,6 +113,24 @@ structure are private to implementations of a font backend. See
 the documentation of the corresponding getters for documentation
 of their meaning.
 
+\describe{
+\item{\code{ref_count}}{[numeric] reference count.  Used internally.  See \code{pangoFontMetricsRef()}
+            and \code{pangoFontMetricsUnref()}.}
+\item{\code{ascent}}{[integer] the distance from the baseline to the highest point of the glyphs of
+	 the font. This is positive in practically all fonts.}
+\item{\code{descent}}{[integer] the distance from the baseline to the lowest point of the glyphs of
+	 the font. This is positive in practically all fonts.}
+\item{\code{approximate_char_width}}{[integer] approximate average width of the regular glyphs of
+         the font.}
+\item{\code{approximate_digit_width}}{[integer] approximate average width of the glyphs for digits
+         of the font.}
+\item{\code{underline_position}}{[integer] position of the underline. This is normally negative.}
+\item{\code{underline_thickness}}{[integer] thickness of the underline.}
+\item{\code{strikethrough_position}}{[integer] position of the strikethrough line. This is
+	 normally positive.}
+\item{\code{strikethrough_thickness}}{[integer] thickness of the strikethrough line.}
+}
+
 }
 \item{\code{PangoFont}}{
 The \code{\link{PangoFont}} structure is used to represent
@@ -123,10 +141,10 @@ a larger structure that contains a nested
 \code{\link{PangoFont}}, fill in the klass member of
 the nested \code{\link{PangoFont}} with a pointer to
 a appropriate \code{PangoFontClass}, then call
-\code{pango\Font\Init()} on the structure.
+\code{pangoFontInit()} on the structure.
   
 The \code{\link{PangoFont}} structure contains one member
-which the implementation fills in:
+which the implementation fills in.
 
 }
 \item{\code{PangoFontFamily}}{
@@ -148,9 +166,10 @@ create an implementation of a \code{\link{PangoFontMap}}, the rendering-system
 specific code should malloc a larger structure that contains a nested
 \code{\link{PangoFontMap}}, fill in the klass member of the nested \code{\link{PangoFontMap}} with a
 pointer to a appropriate \code{PangoFontMapClass}, then call
-\code{pango\Font\Map\Init()} on the structure.
+\code{pangoFontMapInit()} on the structure.
   
-The \code{\link{PangoFont}} structure contains one member which the implementation fills in:
+The \code{\link{PangoFontMap}} structure contains one member which the implementation
+fills in.
 
 }
 \item{\code{PangoFontset}}{
@@ -163,10 +182,10 @@ set of metrics for the entire fontset.
 
 }
 \item{\code{PangoFontsetSimple}}{
-\code{PangoFontSetSimple} is a implementation of the abstract
-\code{PangoFontSet} base class in terms of a list of fonts,
+\code{\link{PangoFontsetSimple}} is a implementation of the abstract
+\code{\link{PangoFontset}} base class in terms of a list of fonts,
 which the creator provides when constructing the
-\code{PangoFontSetSimple}.
+\code{\link{PangoFontsetSimple}}.
 
 }
 }}
@@ -211,23 +230,15 @@ An enumeration specifying the width of the font relative to other designs
 within a family.
 
 \describe{
-\item{\code{ultra-condensed}}{\emph{undocumented
-}}
-\item{\code{extra-condensed}}{\emph{undocumented
-}}
-\item{\code{condensed}}{\emph{undocumented
-}}
-\item{\code{semi-condensed}}{\emph{undocumented
-}}
+\item{\code{ultra-condensed}}{ultra condensed width}
+\item{\code{extra-condensed}}{extra condensed width}
+\item{\code{condensed}}{condensed width}
+\item{\code{semi-condensed}}{semi condensed width}
 \item{\code{normal}}{the normal width}
-\item{\code{semi-expanded}}{\emph{undocumented
-}}
-\item{\code{expanded}}{\emph{undocumented
-}}
-\item{\code{extra-expanded}}{\emph{undocumented
-}}
-\item{\code{ultra-expanded}}{\emph{undocumented
-}}
+\item{\code{semi-expanded}}{semi expanded width}
+\item{\code{expanded}}{expanded width}
+\item{\code{extra-expanded}}{extra expanded width}
+\item{\code{ultra-expanded}}{ultra expanded width}
 }
 
 }
