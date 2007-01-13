@@ -1,8 +1,4 @@
-#include "atkUserFuncs.h"
-#include "conversion.h"
-#include "utils.h"
-#include "RGtk2.h"
-
+#include "RGtk2/atkUserFuncs.h"
 
 gint
 S_AtkKeySnoopFunc(AtkKeyEventStruct* s_event, gpointer s_func_data)

@@ -1,4 +1,4 @@
-#include "conversion.h"
+#include "RGtk2/atk.h"
 
 AtkAttributeSet*
 asCAtkAttributeSet(USER_OBJECT_ s_set)
@@ -53,6 +53,10 @@ asRAtkAttribute(AtkAttribute* attr)
 
     return(s_attr);
 }
+
+typedef AtkRectangle GdkRectangle;
+GdkRectangle* asCGdkRectangle(USER_OBJECT_ s_rect);
+USER_OBJECT_ asRGdkRectangle(GdkRectangle *rect);
 
 AtkTextRectangle*
 asCAtkTextRectangle(USER_OBJECT_ s_rect)

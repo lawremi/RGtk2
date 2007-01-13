@@ -1,12 +1,8 @@
-#include "utils.h"
-#include "conversion.h"
-#include "gobject.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/libglade.h"
+
 #include "libgladeFuncs.h"
-#include "userfuncs.h"
-#include "glib.h"
 
-
-#include "RGtk2.h"
 
 USER_OBJECT_
 S_glade_require(USER_OBJECT_ s_library)

@@ -1,4 +1,4 @@
-#include "RGtk2.h"
+#include "RGtk2/gtk.h"
 
 /* This is an simple version of the event handler for windows.
    It mimicks what we do in Rggobi, namely hijacking the hook into the
@@ -7,7 +7,11 @@
    More to come later on an overhaul of the R event loop.
  */
 #ifdef G_OS_WIN32
+#include <sys/types.h>
 extern  __declspec(dllimport) void (* R_tcldo)();
+#else
+#include "R_ext/eventloop.h"
+#include <gdk/gdkx.h>
 #endif
 
 void
@@ -43,7 +47,5 @@ R_gtkInit(long *rargc, char **rargv)
   R_tcldo = R_gtk_handle_events;
 #endif
 
-  r_gtk_param_spec_sexp_get_type();
-  
   return TRUE;
 }

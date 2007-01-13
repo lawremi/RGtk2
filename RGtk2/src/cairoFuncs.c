@@ -1,12 +1,8 @@
-#include "utils.h"
-#include "conversion.h"
-#include "gobject.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/cairo.h"
+
 #include "cairoFuncs.h"
-#include "userfuncs.h"
-#include "glib.h"
 
-
-#include "RGtk2.h"
 
 USER_OBJECT_
 S_cairo_version(void)

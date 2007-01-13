@@ -1,5 +1,7 @@
 #ifndef S_GDK_FUNCS_H
 #define S_GDK_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_gdk_notify_startup_complete(void); 
 
@@ -1605,4 +1607,4 @@ S_gdk_window_merge_child_input_shapes(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_gdk_window_get_type_hint(USER_OBJECT_ s_object); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

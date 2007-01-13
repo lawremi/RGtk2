@@ -1,8 +1,4 @@
-#include "gdkUserFuncs.h"
-#include "conversion.h"
-#include "utils.h"
-#include "RGtk2.h"
-
+#include "RGtk2/gdkUserFuncs.h"
 
 void
 S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)

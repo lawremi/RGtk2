@@ -1,8 +1,4 @@
-#include "cairoUserFuncs.h"
-#include "conversion.h"
-#include "utils.h"
-#include "RGtk2.h"
-
+#include "RGtk2/cairoUserFuncs.h"
 
 cairo_status_t
 S_cairo_write_func_t(gpointer s_closure, const guchar* s_data, guint s_length)

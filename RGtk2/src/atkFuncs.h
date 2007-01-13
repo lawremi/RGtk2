@@ -1,5 +1,7 @@
 #ifndef S_ATK_FUNCS_H
 #define S_ATK_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_atk_action_get_type(void); 
 
@@ -648,4 +650,4 @@ S_atk_streamable_content_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_mime_type
   USER_OBJECT_
 S_atk_value_get_minimum_increment(USER_OBJECT_ s_object); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

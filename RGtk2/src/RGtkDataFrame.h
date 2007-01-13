@@ -1,4 +1,4 @@
-#include "RGtk2.h"
+#include "RGtk2/gtk.h"
 
 #define R_GTK_TYPE_DATA_FRAME	       (r_gtk_data_frame_get_type ())
 #define R_GTK_DATA_FRAME(obj)	       (G_TYPE_CHECK_INSTANCE_CAST ((obj), R_GTK_TYPE_DATA_FRAME, RGtkDataFrame))

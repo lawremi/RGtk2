@@ -1,4 +1,4 @@
-; as of cairo 1.1.10
+; as of cairo 1.1.10 (1.2.6)
 
 (include "../2.8/cairo.defs")
 

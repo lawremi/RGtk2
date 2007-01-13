@@ -1,7 +1,4 @@
-#include "conversion.h"
-#include "gobject.h"
-#include "userfuncs.h"
-#include "utils.h"
+#include "RGtk2/gtk.h"
 #include "gtkFuncs.h"
 
 /* reason: needs to serve as a finalizer for the user data to the clipboard user funcs */
@@ -23,7 +20,7 @@ S_gtk_action_group_add_toggle_actions_full(USER_OBJECT_ s_action_group, USER_OBJ
 
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
         GtkToggleAction *action;
-        USER_OBJECT_ s_entry = padVector(VECTOR_ELT(s_entries, i), 7), callback = VECTOR_ELT(s_entry, 5);
+        USER_OBJECT_ s_entry = VECTOR_ELT(s_entries, i), callback = VECTOR_ELT(s_entry, 5);
         const gchar* accel = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 3)));
         const gchar* tooltip = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 4)));
         action = gtk_toggle_action_new(asCString(VECTOR_ELT(s_entry, 0)), asCString(VECTOR_ELT(s_entry, 2)),
@@ -45,7 +42,7 @@ S_gtk_action_group_add_toggle_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ 
     return(S_gtk_action_group_add_toggle_actions_full(s_action_group, s_entries, s_user_data));
 }
 
-/* reason: same asC above basically
+/* reason: same as above basically
 */
 USER_OBJECT_
 S_gtk_action_group_add_radio_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_value, USER_OBJECT_ s_on_change, USER_OBJECT_ s_user_data)
@@ -60,7 +57,7 @@ S_gtk_action_group_add_radio_actions_full(USER_OBJECT_ s_action_group, USER_OBJE
 
     for (i = 0; i < GET_LENGTH(s_entries); i++) {
 
-        USER_OBJECT_ s_entry = padVector(VECTOR_ELT(s_entries, i), 6);
+        USER_OBJECT_ s_entry = VECTOR_ELT(s_entries, i);
         const gchar* accel = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 3)));
         const gchar* tooltip = gtk_action_group_translate_string(group, asCString(VECTOR_ELT(s_entry, 4)));
         action = gtk_radio_action_new(asCString(VECTOR_ELT(s_entry, 0)), asCString(VECTOR_ELT(s_entry, 2)),

@@ -1,8 +1,4 @@
-#include "pangoUserFuncs.h"
-#include "conversion.h"
-#include "utils.h"
-#include "RGtk2.h"
-
+#include "RGtk2/pangoUserFuncs.h"
 
 gboolean
 S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s_data)

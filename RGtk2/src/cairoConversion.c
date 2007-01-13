@@ -1,4 +1,4 @@
-#include "conversion.h"
+#include "RGtk2/cairo.h"
 
 USER_OBJECT_
 asRCairoPath(cairo_path_t *path)

@@ -1,10 +1,4 @@
-#include "pangoClasses.h"
-#include "conversion.h"
-#include "utils.h"
-#include "userfuncs.h"
-#include "gobject.h"
-#include "RGtk2.h"
-
+#include "RGtk2/pangoClasses.h"
 static SEXP S_PangoFont_symbol;
 static 
 PangoFontDescription*

@@ -1,4 +1,4 @@
-#include "conversion.h"
+#include "RGtk2/gtk.h"
 
 USER_OBJECT_
 asRGdkAtom(GdkAtom val)

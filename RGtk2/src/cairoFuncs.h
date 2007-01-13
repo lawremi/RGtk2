@@ -1,5 +1,7 @@
 #ifndef S_CAIRO_FUNCS_H
 #define S_CAIRO_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_cairo_version(void); 
 
@@ -597,4 +599,4 @@ S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions);
   USER_OBJECT_
 S_cairo_svg_version_to_string(USER_OBJECT_ s_version); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

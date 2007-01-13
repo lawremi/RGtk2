@@ -129,12 +129,16 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  open(CHeader, "w")
  open(RFuncs, "w")
 
- cat('#include "utils.h"\n#include "conversion.h"\n#include "gobject.h"\n#include "',
-    filePrefix,'Funcs.h"\n#include "userfuncs.h"\n#include "glib.h"\n\n\n', file=CFuncs, sep="")
- cat("#include \"", package, ".h\"\n\n", file = CFuncs, sep = "")
-
- cat("#ifndef S_", toCppSymbol(filePrefix), "_FUNCS_H\n#define S_", toCppSymbol(filePrefix),"_FUNCS_H\n", file=CHeader, sep="")
-
+ # include custom (package-specific) header, plus gobject.h (just to be safe)
+ common_includes <- c('#include <RGtk2/gobject.h>\n#include "', 
+  file.path(package, filePrefix), '.h"\n\n')
+  
+ # the generated wrapper file has a header that declares the wrappers
+ cat(common_includes, '#include "', filePrefix,'Funcs.h"\n\n\n', file=CFuncs, sep="")
+ 
+ cat("#ifndef S_", toCppSymbol(filePrefix), "_FUNCS_H\n#define S_", 
+  toCppSymbol(filePrefix),"_FUNCS_H\n", file=CHeader, sep="")
+ cat('#include <RGtk2/RSCommon.h>\n\n', file = CHeader, sep = "")
 
  varargs <- character(0)
  badTypeList <- character(0)
@@ -175,7 +179,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  close(CFuncs)
  close(RFuncs)
 
- cat("#endif /* S_GTK_FUNCS_H */ \n", file=CHeader)
+ cat("#endif\n", file=CHeader)
  close(CHeader)
 
  if(length(varargs) > 0)
@@ -192,11 +196,11 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  open(UserCFuncs,"w")
  open(UserCHeader,"w")
 
- cat("#include \"", filePrefix, "UserFuncs.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n", 
-  file=UserCFuncs, sep="")
- cat("#include \"", package, ".h\"\n\n", file = UserCFuncs, sep = "")
-
- cat("#include \"", package, ".h\"\n\n", file = UserCHeader, sep = "")
+ cat("#include \"", file.path(package, filePrefix), "UserFuncs.h\"\n", file=UserCFuncs, sep="")
+ 
+ cat("#ifndef S_", toCppSymbol(filePrefix), "_USERFUNCS_H\n#define S_", 
+  toCppSymbol(filePrefix),"_USERFUNCS_H\n", file=UserCHeader, sep="")
+ cat(common_includes, "\n", file = UserCHeader, sep = "")
 
  for(i in getNonDiscardedNames("userfunctions")) {
      if(verbose)
@@ -205,6 +209,9 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
      cat(tmp$code, "\n\n", file=UserCFuncs)
      cat(tmp$decl, "\n\n", file=UserCHeader)
  }
+ 
+ cat("#endif\n", file=UserCHeader)
+ 
  close(UserCFuncs)
  close(UserCHeader)
 
@@ -216,10 +223,11 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    ClassCHeader <- file(getFileName("Classes.h"))
    open(ClassCHeader,"w")
  
-   cat("#include \"", filePrefix, "Classes.h\"\n#include \"conversion.h\"\n#include \"utils.h\"\n",
-    "#include \"userfuncs.h\"\n#include \"gobject.h\"\n", file=ClassCFuncs, sep="")
-   cat("#include \"", package, ".h\"\n\n", file = ClassCFuncs, sep = "")
-   cat("#include \"", package, ".h\"\n\n", file = ClassCHeader, sep = "")
+   cat('#include "', file.path(package, filePrefix), 'Classes.h"\n', file=ClassCFuncs, sep="")
+   
+   cat("#ifndef S_", toCppSymbol(filePrefix), "_CLASSES_H\n#define S_", 
+    toCppSymbol(filePrefix),"_CLASSES_H\n", file=ClassCHeader, sep="")
+   cat(common_includes, file = ClassCHeader, sep = "")
    
    virtual_classes <- sapply(defs$virtuals, function(virtual) virtual$ofobject)
    
@@ -242,6 +250,8 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    write_classes("object")
    write_classes("interface")
    
+   cat("#endif\n", file=ClassCHeader)
+   
    close(ClassCFuncs)
    close(ClassCHeader)
  }
@@ -263,8 +273,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
   open(CAccessors, "w")
   open(RAccessors, "w")
 
-  cat('#include "conversion.h"\n\n\n', file=CAccessors, sep="")
-  cat("#include \"", package, ".h\"\n\n", file = CAccessors, sep = "")
+  cat(common_includes, file = CAccessors, sep = "")
 
   accessors <- c(defs$objects[getNonDiscardedNames("objects")], defs$boxes[getNonDiscardedNames("boxes")],
                     defs$pointers[getNonDiscardedNames("pointers")])
@@ -290,7 +299,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
     # Note the name to get this to be the final name so it is sourced() last
     # if the S files are listed by named.
 
-	tmp = outputConstructors(defs, getFileName("zConstructors.R"))
+	#tmp = outputConstructors(defs, getFileName("zConstructors.R"))
 	definedRFuncs = c(definedRFuncs, sapply(names(defs$objects), changeCapitalization, FALSE))
 
   list(varargs = varargs, definedRFuncs = definedRFuncs)

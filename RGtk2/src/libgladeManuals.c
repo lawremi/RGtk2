@@ -1,5 +1,4 @@
-#include "conversion.h"
-#include "gobject.h"
+#include "RGtk2/libglade.h"
 
 /* reason: we need special handling for connecting R functions to signals from the xml */
 

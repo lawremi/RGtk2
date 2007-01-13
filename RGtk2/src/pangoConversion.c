@@ -1,4 +1,8 @@
-#include "conversion.h"
+#include "RGtk2/pango.h"
+
+typedef PangoRectangle GdkRectangle;
+GdkRectangle* asCGdkRectangle(USER_OBJECT_ s_rect);
+USER_OBJECT_ asRGdkRectangle(GdkRectangle *rect);
 
 PangoRectangle*
 asCPangoRectangle(USER_OBJECT_ s_rect)

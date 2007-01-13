@@ -1,5 +1,4 @@
-#include "conversion.h"
-#include "utils.h"
+#include "RGtk2/pango.h"
 
 /* reason: hide string length (bytes) and allocate PangoLogAttr array. */
 USER_OBJECT_

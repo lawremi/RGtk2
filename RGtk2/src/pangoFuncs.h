@@ -1,5 +1,7 @@
 #ifndef S_PANGO_FUNCS_H
 #define S_PANGO_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_pango_color_get_type(void); 
 
@@ -834,4 +836,4 @@ S_pango_matrix_get_font_scale_factor(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_pango_layout_index_to_line_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index_, USER_OBJECT_ s_trailing); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

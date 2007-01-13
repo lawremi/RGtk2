@@ -143,7 +143,8 @@ function(x, y)
   else if (inherits(y, "enum"))
     ans <- names(get(class(y)[1]))[y+1] == x
   
-  class(x) <- class(y) <- ""
+  x <- unclass(x)
+  y <- unclass(y)
   
   if (!ans)
     ans <- x == y

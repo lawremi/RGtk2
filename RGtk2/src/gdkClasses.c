@@ -1,10 +1,4 @@
-#include "gdkClasses.h"
-#include "conversion.h"
-#include "utils.h"
-#include "userfuncs.h"
-#include "gobject.h"
-#include "RGtk2.h"
-
+#include "RGtk2/gdkClasses.h"
 static SEXP S_GdkBitmap_symbol;
 void
 S_gdk_bitmap_class_init(GdkDrawableClass * c, SEXP e)

@@ -143,7 +143,7 @@ void R_mainLoop();
 
 SEXP R_localAddIdle(R_IdleFunc f, void *userData);
 
-
+/*
 typedef enum {RGTK_CALLBACK, RGTK_TIMER, RGTK_IDLE} RCallbackDataType;
 
 typedef struct {
@@ -153,6 +153,6 @@ typedef struct {
 
     RCallbackDataType type;
 } R_CallbackData;
-
+*/
 
 #endif

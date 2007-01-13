@@ -1,7 +1,5 @@
-#include "conversion.h"
-
-
-#include "RGtk2.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/gdk.h"
 
 USER_OBJECT_
 S_GdkDeviceGetName (USER_OBJECT_ s_obj)

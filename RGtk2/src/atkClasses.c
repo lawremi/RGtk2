@@ -1,10 +1,4 @@
-#include "atkClasses.h"
-#include "conversion.h"
-#include "utils.h"
-#include "userfuncs.h"
-#include "gobject.h"
-#include "RGtk2.h"
-
+#include "RGtk2/atkClasses.h"
 static SEXP S_AtkHyperlink_symbol;
 static 
 gchar*

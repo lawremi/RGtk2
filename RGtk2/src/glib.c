@@ -1,7 +1,4 @@
-#include "RGtk2.h"
-#include "conversion.h"
-#include "glib.h"
-#include "utils.h"
+#include "RGtk2/gobject.h"
 
 /* Transparents */
 
@@ -68,20 +65,6 @@ asRGListWithRef(GList *glist, const gchar* type)
 	return(asRGListWithFinalizer(glist, type, g_object_unref));
 }
 USER_OBJECT_
-asRGListWithSink(GList *glist, const gchar* type)
-{
-	USER_OBJECT_ list;
-    GList * cur = glist;
-    int size = g_list_length(glist), i;
-    PROTECT(list = NEW_LIST(size));
-    for (i = 0; i < size; i++) {
-        SET_VECTOR_ELT(list, i, toRPointerWithSink(cur->data, type));
-        cur = g_list_next(cur);
-    }
-    UNPROTECT(1);
-    return list;
-}
-USER_OBJECT_
 asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer) {
     USER_OBJECT_ list;
     GList * cur = glist;
@@ -119,6 +102,8 @@ asCGSList(USER_OBJECT_ s_list)
         gpointer element;
         if (IS_CHARACTER(s_element))
             element = CHAR_DEREF(STRING_ELT(s_element, 0));
+        else if (IS_INTEGER(s_element))
+            element = GINT_TO_POINTER(INTEGER(s_element)[0]);
         else element = (gpointer)getPtrValue(s_element);
         list = g_slist_append(list, element);
     }
@@ -141,21 +126,6 @@ asRGSListWithRef(GSList *gslist, const gchar* type)
 	}
 		
 	return(asRGSListWithFinalizer(gslist, type, g_object_unref));
-}
-USER_OBJECT_
-asRGSListWithSink(GSList *gslist, const gchar* type) { 
-    USER_OBJECT_ list;
-    GSList * cur = gslist;
-    int l = g_slist_length(gslist), i;
-    PROTECT(list = NEW_LIST(l));
-    for (i = 0; i < l; i++) {
-        USER_OBJECT_ element;
-        element = toRPointerWithSink(cur->data, type);
-        SET_VECTOR_ELT(list, i, element);
-        cur = g_slist_next(cur);
-    }
-    UNPROTECT(1);
-    return list;
 }
 USER_OBJECT_
 asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer) { 
@@ -384,12 +354,6 @@ R_addGIdleHandler(USER_OBJECT_ sfunc, USER_OBJECT_ data, USER_OBJECT_ useData)
     SET_CLASS(ans, asRString("GIdleId"));
     UNPROTECT(1);
     return(ans);
-}
-
-/* Utils */
-
-void free_g_string(GString* string) {
-    g_string_free(string, (gboolean)1);
 }
 
 /* The G_FILE_ERROR quark */

@@ -1,8 +1,4 @@
-#include "gtkUserFuncs.h"
-#include "conversion.h"
-#include "utils.h"
-#include "RGtk2.h"
-
+#include "RGtk2/gtkUserFuncs.h"
 
 void
 S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, gpointer s_data)

@@ -1,10 +1,4 @@
-#include "gtkClasses.h"
-#include "conversion.h"
-#include "utils.h"
-#include "userfuncs.h"
-#include "gobject.h"
-#include "RGtk2.h"
-
+#include "RGtk2/gtkClasses.h"
 static SEXP S_GtkAboutDialog_symbol;
 void
 S_gtk_about_dialog_class_init(GtkAboutDialogClass * c, SEXP e)

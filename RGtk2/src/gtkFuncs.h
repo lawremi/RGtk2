@@ -1,5 +1,7 @@
 #ifndef S_GTK_FUNCS_H
 #define S_GTK_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_GTK_OBJECT_FLAGS(USER_OBJECT_ s_object); 
 
@@ -8652,4 +8654,4 @@ S_gtk_window_get_deletable(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_gtk_window_get_group(USER_OBJECT_ s_object); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

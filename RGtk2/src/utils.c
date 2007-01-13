@@ -1,5 +1,4 @@
-#include "utils.h"
-#include "conversion.h"
+#include "RGtk2/gobject.h"
 
 void
 RGtkDebug()
@@ -60,9 +59,10 @@ retByVal(USER_OBJECT_ retval, ...) {
  (the real names from the header files and the local names/aliases
   from the .defs files from which the enumerations are built.)
 
-  If the value is matched, the asCsociated integer is returned.
+  If the value is matched, the associated integer is returned.
 
  */
+ /* not used 
 USER_OBJECT_
 S_checkEnum(USER_OBJECT_ val, const char *const localNames[], const char *const realNames[],
                           const int cValues[], int len, const char *const enumName)
@@ -117,7 +117,7 @@ S_checkEnum(USER_OBJECT_ val, const char *const localNames[], const char *const 
 
     return(ans);
 }
-
+*/
 
 /**
   val can be an integer or a character vector.
@@ -125,7 +125,7 @@ S_checkEnum(USER_OBJECT_ val, const char *const localNames[], const char *const 
   OR'ing the values in cValues[] by matching the elements in the vector
   with the elements in localNames or realNames.
  */
-
+/* not used
 USER_OBJECT_
 S_checkFlag(USER_OBJECT_ val, const char *const localNames[], const char *const realNames[],
                           const int cValues[], int len, const char *const flagName)
@@ -172,40 +172,7 @@ S_checkFlag(USER_OBJECT_ val, const char *const localNames[], const char *const 
 
     return(ans);
 }
-
-USER_OBJECT_
-padVector(USER_OBJECT_ vector, guint size)
-{
-    USER_OBJECT_ padded;
-    int i;
-
-    PROTECT(padded = NEW_LIST(size));
-
-    for (i = 0; i < GET_LENGTH(vector); i++) {
-        SET_VECTOR_ELT(padded, i, VECTOR_ELT(vector, i));
-    }
-
-    for (; i < GET_LENGTH(padded); i++) {
-        SET_VECTOR_ELT(padded, i, NULL_USER_OBJECT);
-    }
-
-    UNPROTECT(1);
-
-    return(padded);
-}
-
-void
-nameMembers(USER_OBJECT_ s_obj, char ** names)
-{
-    USER_OBJECT_ s_names;
-    int i;
-    PROTECT(s_names = NEW_CHARACTER(GET_LENGTH(s_obj)));
-    for (i = 0; i < GET_LENGTH(s_obj); i++)
-        SET_STRING_ELT(s_names, i, COPY_TO_USER_STRING(names[i]));
-
-    SET_NAMES(s_obj, s_names);
-    UNPROTECT(1);
-}
+*/
 
 /* Generic callback stuff */
 void R_freeCBData(R_CallbackData *cbdata) {

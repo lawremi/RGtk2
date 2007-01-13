@@ -1,12 +1,8 @@
-#include "utils.h"
-#include "conversion.h"
-#include "gobject.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/gdk.h"
+
 #include "gdkFuncs.h"
-#include "userfuncs.h"
-#include "glib.h"
 
-
-#include "RGtk2.h"
 
 USER_OBJECT_
 S_gdk_notify_startup_complete(void)

@@ -1,12 +1,8 @@
-#include "utils.h"
-#include "conversion.h"
-#include "gobject.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/pango.h"
+
 #include "pangoFuncs.h"
-#include "userfuncs.h"
-#include "glib.h"
 
-
-#include "RGtk2.h"
 
 USER_OBJECT_
 S_pango_color_get_type(void)

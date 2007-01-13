@@ -1,6 +1,4 @@
-#include "RGtk2.h"
-#include "conversion.h"
-#include "utils.h"
+#include "RGtk2/gobject.h"
 
 static USER_OBJECT_ S_GObject_symbol;
 

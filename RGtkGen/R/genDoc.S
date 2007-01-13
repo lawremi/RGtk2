@@ -147,6 +147,14 @@ func_value_type_path <- "/programlisting/link[1]/text()"
 warning_path <- "/warning"
 note_path <- "/note|/para/note"
 
+toReturnValue <- function(node) {
+  value <- filter(markup(getNodeSet(node, func_value_path)))
+	value_type <- paste("[", mapTypeToLink(xmlValue(getNodeSet(node, func_value_type_path)[[1]])), "]", sep="")
+  if (nchar(value) > 0)
+		value <- paste(value_type, value)
+	value
+}
+
 parseFunction <- function(node, defs, verbose) {
 	func <- list()
 	name <- sub(" ()", "", xmlValue(getNodeSet(node, func_name_path)[[1]]))
@@ -186,10 +194,7 @@ parseFunction <- function(node, defs, verbose) {
 		out_items <- param_items[-which(in_params)]
 	} else out_items <- param_items
 	func[["details"]] <- filter(markup(text[-1]))
-	value <- filter(markup(getNodeSet(node, func_value_path)))
-	value_type <- paste("[", mapTypeToLink(xmlValue(getNodeSet(node, func_value_type_path)[[1]])), "]", sep="")
-	if (nchar(value) > 0)
-		value <- paste(value_type, value)
+	value <- toReturnValue(node)
 	if (length(out_items) > 0) {
 		if (nchar(value) > 0)
 			out_items <- c(rd("item", "retval", value), out_items)
@@ -545,8 +550,10 @@ toCallbacks <- function(callback_nodes, name_path) {
 		name <- xmlValue(getNodeSet(node, name_path)[[1]])
 		name <- extract_quotes(name)
 		callback_names <<- c(callback_names, name)
+    retval <- toReturnValue(node)
 		rd("item", rd("code", invoke(name, s_signature(sapply(getNodeSet(node, param_name_path), child_val)))),
-			c(toFuncText(node), "", rd("describe", toParameterItems(node)), ""))
+			c(toFuncText(node), "", rd("describe", toParameterItems(node)), "", 
+      if (nchar(retval)) paste(rd("emph", "Returns:"), retval), ""))
 	}))
 	list(code = code, names = callback_names)
 }

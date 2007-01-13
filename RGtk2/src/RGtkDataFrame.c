@@ -1,6 +1,4 @@
 #include "RGtkDataFrame.h"
-#include "gobject.h"
-#include "conversion.h"
 
 #define VALID_ITER(iter, data_frame) ((iter)!= NULL && data_frame->stamp == (iter)->stamp && GPOINTER_TO_INT((iter)->user_data) < r_gtk_data_frame_get_n_rows(data_frame))
 

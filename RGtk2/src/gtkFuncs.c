@@ -1,12 +1,8 @@
-#include "utils.h"
-#include "conversion.h"
-#include "gobject.h"
+#include <RGtk2/gobject.h>
+#include "RGtk2/gtk.h"
+
 #include "gtkFuncs.h"
-#include "userfuncs.h"
-#include "glib.h"
 
-
-#include "RGtk2.h"
 
 USER_OBJECT_
 S_GTK_OBJECT_FLAGS(USER_OBJECT_ s_object)

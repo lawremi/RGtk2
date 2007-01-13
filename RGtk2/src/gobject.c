@@ -1,6 +1,4 @@
-#include "gobject.h"
-#include "conversion.h"
-#include "glib.h"
+#include "RGtk2/gobject.h"
 
 /* GType */
 
@@ -186,18 +184,6 @@ R_internal_getInterfaces(GType type)
 /* GObject properties */
 
 USER_OBJECT_
-R_getGTypeParamSpecs(USER_OBJECT_ sobj)
-{
-    GType type = (GType) NUMERIC_POINTER(sobj)[0];
-    USER_OBJECT_ ans;
-    gpointer class = g_type_class_ref(type);
-    
-    ans = R_internal_getClassParamSpecs(G_OBJECT_CLASS(class));
-    g_type_class_unref(class);
-    return(ans);
-}
-
-USER_OBJECT_
 R_internal_getClassParamSpecs(GObjectClass *class)
 {
     USER_OBJECT_ ans, names/*, argNames, tmp*/;
@@ -234,6 +220,18 @@ R_internal_getClassParamSpecs(GObjectClass *class)
 
     SET_NAMES(ans, names);
     UNPROTECT(3);*/
+    return(ans);
+}
+
+USER_OBJECT_
+R_getGTypeParamSpecs(USER_OBJECT_ sobj)
+{
+    GType type = (GType) NUMERIC_POINTER(sobj)[0];
+    USER_OBJECT_ ans;
+    gpointer class = g_type_class_ref(type);
+    
+    ans = R_internal_getClassParamSpecs(G_OBJECT_CLASS(class));
+    g_type_class_unref(class);
     return(ans);
 }
 
@@ -343,8 +341,8 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 
 	ans = g_object_newv(type, n, params);
 	g_free(params);
-  if (g_type_is_a(type, GTK_TYPE_OBJECT))
-    result = toRPointerWithSink(ans, "GtkObject");
+  if (g_type_is_a(type, G_TYPE_INITIALLY_UNOWNED))
+    result = toRPointerWithSink(ans, "GInitiallyUnowned");
 	else result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
 	
   g_type_class_unref(class);
@@ -352,29 +350,7 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
     return(result);
 }
 
-/* adapted from pygtk, needed to handle their "property-based constructors"... */
-gpointer
-propertyConstructor(GType obj_type, char **prop_names, USER_OBJECT_ *args, int nargs)
-{
-    gpointer obj;
-    if (nargs > 0) {
-        int i;
-		guint nparams;
-        GParameter params[nargs];
-        memset(params, 0, sizeof(GParameter)*nargs);
-
-        if(!parseConstructorParams(obj_type, prop_names, params, &nparams, args))
-            return(NULL);
-
-        obj = g_object_newv(obj_type, nparams, params);
-
-        for (i = 0; i < nparams; ++i)
-            g_value_unset(&params[i].value);
-    } else obj = g_object_newv(obj_type, 0, NULL);
-
-    return(obj);
-}
-gboolean
+static gboolean
 parseConstructorParams(GType obj_type, char **prop_names, GParameter *params,
                            guint *nparams, USER_OBJECT_ *args)
 {
@@ -405,6 +381,29 @@ parseConstructorParams(GType obj_type, char **prop_names, GParameter *params,
     g_type_class_unref(oclass);
     *nparams = param_i;
     return TRUE;
+}
+
+/* adapted from pygtk, needed to handle their "property-based constructors"... */
+gpointer
+propertyConstructor(GType obj_type, char **prop_names, USER_OBJECT_ *args, int nargs)
+{
+    gpointer obj;
+    if (nargs > 0) {
+        int i;
+		guint nparams;
+        GParameter params[nargs];
+        memset(params, 0, sizeof(GParameter)*nargs);
+
+        if(!parseConstructorParams(obj_type, prop_names, params, &nparams, args))
+            return(NULL);
+
+        obj = g_object_newv(obj_type, nparams, params);
+
+        for (i = 0; i < nparams; ++i)
+            g_value_unset(&params[i].value);
+    } else obj = g_object_newv(obj_type, 0, NULL);
+
+    return(obj);
 }
 
 /* our own GType/GParamSpec for SEXPs */
@@ -468,7 +467,7 @@ param_sexp_values_cmp(GParamSpec *pspec, const GValue *value1, const GValue *val
 GType
 r_gtk_param_spec_sexp_get_type(void)
 {
-  static our_type = 0;
+  static GType our_type = 0;
   if (!our_type) {
     GParamSpecTypeInfo info = {
       sizeof(RGtkParamSpecSexp),
@@ -779,29 +778,6 @@ asRGParamSpec(GParamSpec* spec)
 
     return(s_spec);
 }
-USER_OBJECT_
-S_check_GParamFlags_value(USER_OBJECT_ val)
-{
-  static const char * const localNames[] = {"readable",
-        "writable",
-        "construct",
-        "construct-only"
-        "lax-validation",
-        "private"};
-  static const char * const realNames[]  = {"G_PARAM_READABLE",
-        "G_PARAM_WRITABLE",
-        "G_PARAM_CONSTRUCT",
-        "G_PARAM_CONSTRUCT_ONLY",
-        "G_PARAM_LAX_VALIDATION",
-        "G_PARAM_PRIVATE"};
-  static const int        cValues[]      = {G_PARAM_READABLE,
-    G_PARAM_WRITABLE,
-    G_PARAM_CONSTRUCT,
-    G_PARAM_CONSTRUCT_ONLY,
-    G_PARAM_LAX_VALIDATION,
-    G_PARAM_PRIVATE};
-  return(S_checkFlag(val, localNames, realNames, cValues, 6,"GParamFlags"));
-}
 
 /* User-data stuff */
 USER_OBJECT_
@@ -903,7 +879,7 @@ USER_OBJECT_
 R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
 {
     int n, i;
-    GtkObject *obj;
+    GObject *obj;
     GValue *instance_and_args;
     GValue return_value;
     GQuark detail;
@@ -912,7 +888,7 @@ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
     char *sigName;
     GSignalQuery query;
 
-    obj = GTK_OBJECT(getPtrValue(sobj));
+    obj = G_OBJECT(getPtrValue(sobj));
 
     n = GET_LENGTH(sargs);
     instance_and_args = g_new0(GValue, n+1);
@@ -956,17 +932,21 @@ R_gSignalStopEmssion(USER_OBJECT_ s_obj, USER_OBJECT_ s_signal)
 }
 
 USER_OBJECT_
-R_getGSignalIdsByType(USER_OBJECT_ className)
+R_createGSignalId(guint id, const char *val)
 {
-    GType type;
+    USER_OBJECT_ ans;
+    PROTECT(ans = NEW_NUMERIC(1));
 
-    type = (GType)  NUMERIC_DATA(className)[0];
-    if(type == 0 || type == G_TYPE_INVALID) {
-    PROBLEM "No type for class %s",
-        CHAR_DEREF(STRING_ELT(className, 0))
-        ERROR;
-    }
-    return(R_internal_getGSignalIds(type));
+    NUMERIC_DATA(ans)[0] =  id;
+    if(val == NULL)
+        val =  g_signal_name(id);
+
+    SET_CLASS(ans, asRString("GSignalId"));
+    SET_NAMES(ans, asRString(val));
+
+    UNPROTECT(1);
+
+    return(ans);
 }
 
 USER_OBJECT_
@@ -988,30 +968,21 @@ R_internal_getGSignalIds(GType type)
     return(ans);
 }
 
-
 USER_OBJECT_
-R_createGSignalId(guint id, const char *val)
+R_getGSignalIdsByType(USER_OBJECT_ className)
 {
-    USER_OBJECT_ ans;
-    PROTECT(ans = NEW_NUMERIC(1));
+    GType type;
 
-    NUMERIC_DATA(ans)[0] =  id;
-    if(val == NULL)
-        val =  g_signal_name(id);
-
-    SET_CLASS(ans, asRString("GSignalId"));
-    SET_NAMES(ans, asRString(val));
-
-    UNPROTECT(1);
-
-    return(ans);
+    type = (GType)  NUMERIC_DATA(className)[0];
+    if(type == 0 || type == G_TYPE_INVALID) {
+    PROBLEM "No type for class %s",
+        CHAR_DEREF(STRING_ELT(className, 0))
+        ERROR;
+    }
+    return(R_internal_getGSignalIds(type));
 }
 
-USER_OBJECT_
-R_getGSignalInfo(USER_OBJECT_ sid)
-{
-    return(R_internal_getGSignalInfo(NUMERIC_DATA(sid)[0]));
-}
+enum { RETURN_SLOT, SIGNAL_SLOT, PARAMS_SLOT, OBJECT_SLOT, FLAGS_SLOT, SIGNAL_INFO_NUM_SLOTS };
 
 USER_OBJECT_
 R_internal_getGSignalInfo(guint id)
@@ -1050,6 +1021,12 @@ R_internal_getGSignalInfo(guint id)
     UNPROTECT(2);
 
     return(ans);
+}
+
+USER_OBJECT_
+R_getGSignalInfo(USER_OBJECT_ sid)
+{
+    return(R_internal_getGSignalInfo(NUMERIC_DATA(sid)[0]));
 }
 
 /* GClosure */
@@ -1199,6 +1176,9 @@ asRGClosure(GClosure *closure)
 {
 	return(toRPointer(closure, "GClosure"));
 }
+
+/* for special casing of GdkColor and GdkEvent */
+#include "RGtk2/gtk.h"
 
 /* GValue */
 
@@ -1423,7 +1403,7 @@ asRGValue(const GValue *value)
 
       case G_TYPE_OBJECT:
       case G_TYPE_INTERFACE:
-        if (G_VALUE_HOLDS(value, GTK_TYPE_OBJECT))
+        if (G_VALUE_HOLDS(value, G_TYPE_INITIALLY_UNOWNED))
           ans = toRPointerWithSink(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
         else ans = toRPointerWithRef(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
       break;
@@ -1570,4 +1550,74 @@ asCGValue(USER_OBJECT_ sval)
 		ERROR;
 	}
 	return(gval);
+}
+
+void 
+R_g_initially_unowned_destroyed(GInitiallyUnowned *val, USER_OBJECT_ s_val)
+{
+	SET_CLASS(s_val, asRString("<invalid>"));
+	R_ClearExternalPtr(s_val);
+	g_object_unref(G_OBJECT(val));
+}
+
+void R_g_initially_unowned_finalizer(USER_OBJECT_ extptr) {
+	void *ptr = getPtrValue(extptr);
+    /*Rprintf("finalizing a %s\n", asCString(GET_CLASS(extptr)));*/
+    if (ptr) {
+		g_signal_handlers_disconnect_by_func(ptr, R_g_initially_unowned_destroyed, extptr);
+		g_object_unref(ptr);
+		R_ClearExternalPtr(extptr);
+	}
+}
+
+/* All GInitiallyUnknown need to be sunk, because otherwise memory would leak if
+   it got "lost" before being added to a parent. By sinking it, we own it,
+   so we have to add the first non-floating reference and then register it
+   for finalization. We also need to connect to the "destroy" signal in case
+   it was explicitly destroyed. It is then our responsibility to release all
+   references. When we do that, we also clear the "class" attribute so that
+   the user can't use the object anymore, since it's invalid. The finalization
+   step therefore not only releases our reference but also disconnects from
+   the "destroy" signal since the R object is no longer valid.
+*/
+USER_OBJECT_
+toRPointerWithSink(void *val, const char *type) {
+	USER_OBJECT_ s_val;
+	if (val)
+		g_object_ref_sink(G_INITIALLY_UNOWNED(val));
+	s_val = toRPointer(val, type);
+	R_RegisterCFinalizer(s_val, R_g_initially_unowned_finalizer);
+	g_signal_connect(G_OBJECT(val), "destroy", 
+    G_CALLBACK(R_g_initially_unowned_destroyed), s_val);
+	return(s_val);
+}
+
+USER_OBJECT_
+asRGListWithSink(GList *glist, const gchar* type)
+{
+	USER_OBJECT_ list;
+    GList * cur = glist;
+    int size = g_list_length(glist), i;
+    PROTECT(list = NEW_LIST(size));
+    for (i = 0; i < size; i++) {
+        SET_VECTOR_ELT(list, i, toRPointerWithSink(cur->data, type));
+        cur = g_list_next(cur);
+    }
+    UNPROTECT(1);
+    return list;
+}
+USER_OBJECT_
+asRGSListWithSink(GSList *gslist, const gchar* type) { 
+    USER_OBJECT_ list;
+    GSList * cur = gslist;
+    int l = g_slist_length(gslist), i;
+    PROTECT(list = NEW_LIST(l));
+    for (i = 0; i < l; i++) {
+        USER_OBJECT_ element;
+        element = toRPointerWithSink(cur->data, type);
+        SET_VECTOR_ELT(list, i, element);
+        cur = g_slist_next(cur);
+    }
+    UNPROTECT(1);
+    return list;
 }

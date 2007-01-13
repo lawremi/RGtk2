@@ -1,5 +1,4 @@
-#include "conversion.h"
-#include "utils.h"
+#include "RGtk2/cairo.h"
 
 /* reason: these two functions are just to efficiently copy paths between cairo contexts */
 USER_OBJECT_

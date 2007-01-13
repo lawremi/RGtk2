@@ -1,5 +1,7 @@
 #ifndef S_LIBGLADE_FUNCS_H
 #define S_LIBGLADE_FUNCS_H
+#include <RGtk2/RSCommon.h>
+
   USER_OBJECT_
 S_glade_require(USER_OBJECT_ s_library); 
 
@@ -36,4 +38,4 @@ S_glade_get_widget_tree(USER_OBJECT_ s_widget);
   USER_OBJECT_
 S_glade_set_custom_handler(USER_OBJECT_ s_handler, USER_OBJECT_ s_user_data); 
 
-#endif /* S_GTK_FUNCS_H */ 
+#endif

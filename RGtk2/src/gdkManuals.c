@@ -1,7 +1,4 @@
-#include "conversion.h"
-#include "gobject.h"
-#include "utils.h"
-#include "userfuncs.h"
+#include "RGtk2/gtk.h"
 
 gboolean
 S_GdkWindowInvalidateMaybeRecurseFunc(GdkWindow* s_window, gpointer s_data)
