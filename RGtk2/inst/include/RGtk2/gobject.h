@@ -331,7 +331,7 @@ gchar asCCharacter(USER_OBJECT_ s_char);
 #define asRRaw ScalarRaw
 
 USER_OBJECT_ asRCharacter(gchar c);
-USER_OBJECT_ asRString(const gchar *);
+USER_OBJECT_ asRString(const gchar *str);
 
 #define asCGenericData(sval) ({ R_PreserveObject(sval); sval; })
 
@@ -348,7 +348,7 @@ USER_OBJECT_ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName,
 USER_OBJECT_ toRPointerWithRef(gconstpointer val, const gchar *type);
 
 #define getPtrValue(sval) (sval == NULL_USER_OBJECT ? NULL : R_ExternalPtrAddr(sval))
-gpointer getPtrValueWithRef(USER_OBJECT_);
+gpointer getPtrValueWithRef(USER_OBJECT_ sval);
 
 
 /********* GLib structure conversion *********/
@@ -359,7 +359,6 @@ GString* asCGString(USER_OBJECT_ s_string);
 GList* asCGList(USER_OBJECT_ s_list);
 USER_OBJECT_ asRGList(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithRef(GList *gslist, const gchar* type);
-USER_OBJECT_ asRGListWithSink(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGListConv(GList *glist, ElementConverter converter);
 GSList* asCGSList(USER_OBJECT_ s_list);
@@ -371,13 +370,13 @@ USER_OBJECT_ asRGError(GError *error);
 GError *asCGError(USER_OBJECT_ s_error); 
 
 /******* GObject structure conversion *********/
-int R_setGValueFromSValue(GValue *, USER_OBJECT_);
+int R_setGValueFromSValue(GValue *val, USER_OBJECT_ sval);
 GValue* createGValueFromSValue(USER_OBJECT_ sval);
 gboolean initGValueFromSValue(USER_OBJECT_ sval, GValue *raw);
 gboolean initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw);
-USER_OBJECT_ asRGValue(const GValue *);
-GValue* asCGValue(USER_OBJECT_);
-USER_OBJECT_ asRGType(GType);
+USER_OBJECT_ asRGValue(const GValue *val);
+GValue* asCGValue(USER_OBJECT_ sval);
+USER_OBJECT_ asRGType(GType type);
 GParamSpec* asCGParamSpec(USER_OBJECT_ s_spec);
 USER_OBJECT_ asRGParamSpec(GParamSpec* spec);
 GClosure* asCGClosure(USER_OBJECT_ s_closure);
@@ -448,7 +447,7 @@ void R_freeCBData(R_CallbackData *cbdata);
 /* introspection support */
 GType getSValueGType(USER_OBJECT_ sval);
 USER_OBJECT_ R_internal_getInterfaces(GType type);
-USER_OBJECT_ R_internal_getGTypeHierarchy(GType type);
+USER_OBJECT_ R_internal_getGTypeAncestors(GType type);
 
 /* property stuff */
 gpointer propertyConstructor(GType obj_type, char **prop_names, USER_OBJECT_ *args, int nargs);

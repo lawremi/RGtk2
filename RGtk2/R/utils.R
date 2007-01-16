@@ -46,7 +46,7 @@ function(name, ..., PACKAGE = "RGtk2")
    #print(paste("Calling", name, "with args:", paste(..., collapse=", ")))
     val <- .Call(name, ..., PACKAGE = PACKAGE)
 	if (getOption("gdkFlush")) {
-		.Call("S_gdk_flush", PACKAGE = PACKAGE)
+		.Call("S_gdk_flush", PACKAGE = "RGtk2")
 	}
     val
 }

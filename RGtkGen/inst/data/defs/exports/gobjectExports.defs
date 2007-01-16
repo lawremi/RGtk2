@@ -1,0 +1,500 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../../RGtk2/inst/include/RGtk2/gobject.h
+
+(define-function asCStringArray
+  (c-name "asCStringArray")
+  (return-type "gchar**")
+  (parameters
+    '("USER_OBJECT_" "svec")
+  )
+)
+
+(define-function asCString
+  (c-name "asCString")
+  (return-type "gchar*")
+  (parameters
+    '("USER_OBJECT_" "s_str")
+  )
+)
+
+(define-function asCCharacter
+  (c-name "asCCharacter")
+  (return-type "gchar")
+  (parameters
+    '("USER_OBJECT_" "s_char")
+  )
+)
+
+(define-function asRCharacter
+  (c-name "asRCharacter")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("gchar" "c")
+  )
+)
+
+(define-function asRString
+  (c-name "asRString")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-gchar*" "str")
+  )
+)
+
+(define-function asREnum
+  (c-name "asREnum")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("int" "value")
+    '("GType" "etype")
+  )
+)
+
+(define-function asRFlag
+  (c-name "asRFlag")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("guint" "value")
+    '("GType" "ftype")
+  )
+)
+
+(define-function asCFlag
+  (c-name "asCFlag")
+  (return-type "guint")
+  (parameters
+    '("USER_OBJECT_" "s_flag")
+    '("GType" "ftype")
+  )
+)
+
+(define-function asCEnum
+  (c-name "asCEnum")
+  (return-type "gint")
+  (parameters
+    '("USER_OBJECT_" "s_enum")
+    '("GType" "etype")
+  )
+)
+
+(define-function toRPointerWithFinalizer
+  (c-name "toRPointerWithFinalizer")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("gconstpointer" "val")
+    '("const-gchar*" "typeName")
+    '("RPointerFinalizer" "finalizer")
+  )
+)
+
+(define-function toRPointerWithRef
+  (c-name "toRPointerWithRef")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("gconstpointer" "val")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function getPtrValueWithRef
+  (c-name "getPtrValueWithRef")
+  (return-type "gpointer")
+  (parameters
+    '("USER_OBJECT_" "sval")
+  )
+)
+
+(define-function asRGQuark
+  (c-name "asRGQuark")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GQuark" "val")
+  )
+)
+
+(define-function asCGTimeVal
+  (c-name "asCGTimeVal")
+  (return-type "GTimeVal*")
+  (parameters
+    '("USER_OBJECT_" "s_timeval")
+  )
+)
+
+(define-function asRGTimeVal
+  (c-name "asRGTimeVal")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-GTimeVal*" "timeval")
+  )
+)
+
+(define-function asCGString
+  (c-name "asCGString")
+  (return-type "GString*")
+  (parameters
+    '("USER_OBJECT_" "s_string")
+  )
+)
+
+(define-function asCGList
+  (c-name "asCGList")
+  (return-type "GList*")
+  (parameters
+    '("USER_OBJECT_" "s_list")
+  )
+)
+
+(define-function asRGList
+  (c-name "asRGList")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GList*" "glist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function asRGListWithRef
+  (c-name "asRGListWithRef")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GList*" "gslist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function asRGListWithFinalizer
+  (c-name "asRGListWithFinalizer")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GList*" "glist")
+    '("const-gchar*" "type")
+    '("RPointerFinalizer" "finalizer")
+  )
+)
+
+(define-function asRGListConv
+  (c-name "asRGListConv")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GList*" "glist")
+    '("ElementConverter" "converter")
+  )
+)
+
+(define-function asCGSList
+  (c-name "asCGSList")
+  (return-type "GSList*")
+  (parameters
+    '("USER_OBJECT_" "s_list")
+  )
+)
+
+(define-function asRGSList
+  (c-name "asRGSList")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GSList*" "gslist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function asRGSListWithRef
+  (c-name "asRGSListWithRef")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GSList*" "gslist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function asRGSListWithFinalizer
+  (c-name "asRGSListWithFinalizer")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GSList*" "gslist")
+    '("const-gchar*" "type")
+    '("RPointerFinalizer" "finalizer")
+  )
+)
+
+(define-function asRGSListConv
+  (c-name "asRGSListConv")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GSList*" "gslist")
+    '("ElementConverter" "converter")
+  )
+)
+
+(define-function asRGError
+  (c-name "asRGError")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GError*" "error")
+  )
+)
+
+(define-function asCGError
+  (c-name "asCGError")
+  (return-type "GError*")
+  (parameters
+    '("USER_OBJECT_" "s_error")
+  )
+)
+
+(define-function R_setGValueFromSValue
+  (c-name "R_setGValueFromSValue")
+  (return-type "int")
+  (parameters
+    '("GValue*" "val")
+    '("USER_OBJECT_" "sval")
+  )
+)
+
+(define-function createGValueFromSValue
+  (c-name "createGValueFromSValue")
+  (return-type "GValue*")
+  (parameters
+    '("USER_OBJECT_" "sval")
+  )
+)
+
+(define-function initGValueFromSValue
+  (c-name "initGValueFromSValue")
+  (return-type "gboolean")
+  (parameters
+    '("USER_OBJECT_" "sval")
+    '("GValue*" "raw")
+  )
+)
+
+(define-function initGValueFromVector
+  (c-name "initGValueFromVector")
+  (return-type "gboolean")
+  (parameters
+    '("USER_OBJECT_" "sval")
+    '("gint" "n")
+    '("GValue*" "raw")
+  )
+)
+
+(define-function asRGValue
+  (c-name "asRGValue")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-GValue*" "val")
+  )
+)
+
+(define-function asCGValue
+  (c-name "asCGValue")
+  (return-type "GValue*")
+  (parameters
+    '("USER_OBJECT_" "sval")
+  )
+)
+
+(define-function asRGType
+  (c-name "asRGType")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GType" "type")
+  )
+)
+
+(define-function asCGParamSpec
+  (c-name "asCGParamSpec")
+  (return-type "GParamSpec*")
+  (parameters
+    '("USER_OBJECT_" "s_spec")
+  )
+)
+
+(define-function asRGParamSpec
+  (c-name "asRGParamSpec")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GParamSpec*" "spec")
+  )
+)
+
+(define-function asCGClosure
+  (c-name "asCGClosure")
+  (return-type "GClosure*")
+  (parameters
+    '("USER_OBJECT_" "s_closure")
+  )
+)
+
+(define-function asRGClosure
+  (c-name "asRGClosure")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GClosure*" "closure")
+  )
+)
+
+(define-function toRPointerWithSink
+  (c-name "toRPointerWithSink")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("void*" "val")
+    '("const-char*" "type")
+  )
+)
+
+(define-function asRGListWithSink
+  (c-name "asRGListWithSink")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GList*" "glist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function asRGSListWithSink
+  (c-name "asRGSListWithSink")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GSList*" "gslist")
+    '("const-gchar*" "type")
+  )
+)
+
+(define-function S_GCompareFunc
+  (c-name "S_GCompareFunc")
+  (return-type "none")
+  (parameters
+    '("gconstpointer" "s_a")
+    '("gconstpointer" "s_b")
+  )
+)
+
+(define-function R_createGClosure
+  (c-name "R_createGClosure")
+  (return-type "GClosure*")
+  (parameters
+    '("USER_OBJECT_" "s_func")
+    '("USER_OBJECT_" "s_data")
+  )
+)
+
+(define-function r_gtk_sexp_get_type
+  (c-name "r_gtk_sexp_get_type")
+  (return-type "GType")
+)
+
+(define-function r_gtk_param_spec_sexp_get_type
+  (c-name "r_gtk_param_spec_sexp_get_type")
+  (return-type "GType")
+)
+
+(define-function S_gobject_class_init
+  (c-name "S_gobject_class_init")
+  (return-type "none")
+  (parameters
+    '("GObjectClass*" "c")
+    '("USER_OBJECT_" "e")
+  )
+)
+
+(define-function retByVal
+  (c-name "retByVal")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("USER_OBJECT_" "retval")
+  )
+  (varargs #t)
+)
+
+(define-function R_createCBData
+  (c-name "R_createCBData")
+  (return-type "R_CallbackData*")
+  (parameters
+    '("USER_OBJECT_" "s_func")
+    '("USER_OBJECT_" "s_data")
+  )
+)
+
+(define-function R_freeCBData
+  (c-name "R_freeCBData")
+  (return-type "none")
+  (parameters
+    '("R_CallbackData*" "cbdata")
+  )
+)
+
+(define-function getSValueGType
+  (c-name "getSValueGType")
+  (return-type "GType")
+  (parameters
+    '("USER_OBJECT_" "sval")
+  )
+)
+
+(define-function R_internal_getInterfaces
+  (c-name "R_internal_getInterfaces")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GType" "type")
+  )
+)
+
+(define-function R_internal_getGTypeAncestors
+  (c-name "R_internal_getGTypeAncestors")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GType" "type")
+  )
+)
+
+(define-function propertyConstructor
+  (c-name "propertyConstructor")
+  (return-type "gpointer")
+  (parameters
+    '("GType" "obj_type")
+    '("char**" "prop_names")
+    '("USER_OBJECT_*" "args")
+    '("int" "nargs")
+  )
+)
+
+(define-function R_setGObjectProps
+  (c-name "R_setGObjectProps")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("USER_OBJECT_" "sobj")
+    '("USER_OBJECT_" "svals")
+  )
+)
+
+(define-function R_getGObjectProps
+  (c-name "R_getGObjectProps")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("USER_OBJECT_" "sobj")
+    '("USER_OBJECT_" "argNames")
+  )
+)
+
+(define-function GSListFreeStrings
+  (c-name "GSListFreeStrings")
+  (return-type "none")
+  (parameters
+    '("GSList*" "gslist")
+  )
+)
+
+(define-function GListFreeStrings
+  (c-name "GListFreeStrings")
+  (return-type "none")
+  (parameters
+    '("GList*" "glist")
+  )
+)
+
+

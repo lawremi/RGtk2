@@ -1,0 +1,42 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../../RGtk2/inst/include/RGtk2/cairo.h
+
+(define-function S_cairo_read_func_t
+  (c-name "S_cairo_read_func_t")
+  (return-type "cairo_status_t")
+  (parameters
+    '("gpointer" "s_closure")
+    '("guchar*" "s_data")
+    '("guint" "s_length")
+  )
+)
+
+(define-function asRCairoPath
+  (c-name "asRCairoPath")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("cairo_path_t*" "path")
+  )
+)
+
+(define-function asCCairoPath
+  (c-name "asCCairoPath")
+  (return-type "cairo_path_t*")
+  (parameters
+    '("USER_OBJECT_" "s_path")
+  )
+)
+
+(define-function asCCairoGlyph
+  (c-name "asCCairoGlyph")
+  (return-type "cairo_glyph_t*")
+  (parameters
+    '("USER_OBJECT_" "s_glyph")
+  )
+)
+
+

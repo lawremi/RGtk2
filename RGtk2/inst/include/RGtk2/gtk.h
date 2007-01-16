@@ -59,7 +59,6 @@ USER_OBJECT_ toRGdkFont(GdkFont *font);
 GdkTrapezoid * asCGdkTrapezoid(USER_OBJECT_ s_trapezoid);
 USER_OBJECT_ asRGdkTrapezoid(GdkTrapezoid * obj);
 USER_OBJECT_ asRGdkGCValues(GdkGCValues *values);
-USER_OBJECT_ asRGdkEvent(GdkEvent *event);
 GdkSpan* asCGdkSpan(USER_OBJECT_ s_span);
 USER_OBJECT_ asRGdkSpan(GdkSpan * obj);
 

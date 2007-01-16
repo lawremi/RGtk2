@@ -1,0 +1,49 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../../RGtk2/inst/include/RGtk2/pango.h
+
+(define-function asCPangoRectangle
+  (c-name "asCPangoRectangle")
+  (return-type "PangoRectangle*")
+  (parameters
+    '("USER_OBJECT_" "s_rect")
+  )
+)
+
+(define-function asRPangoRectangle
+  (c-name "asRPangoRectangle")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("PangoRectangle*" "rect")
+  )
+)
+
+(define-function asRPangoAttribute
+  (c-name "asRPangoAttribute")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("PangoAttribute*" "attr")
+  )
+)
+
+(define-function asRPangoAttributeCopy
+  (c-name "asRPangoAttributeCopy")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("PangoAttribute*" "attr")
+  )
+)
+
+(define-function toRPangoAttribute
+  (c-name "toRPangoAttribute")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("PangoAttribute*" "attr")
+    '("gboolean" "finalize")
+  )
+)
+
+

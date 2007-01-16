@@ -22,11 +22,9 @@ asCStringArray(USER_OBJECT_ svec)
 gchar *
 asCString(USER_OBJECT_ s_str)
 {
-  if (s_str == NULL_USER_OBJECT)
-    return NULL;
   if (IS_VECTOR(s_str)) {
     if (GET_LENGTH(s_str) == 0)
-      return("");
+      return(NULL);
     s_str = STRING_ELT(s_str, 0);
   }
   return(CHAR_DEREF(s_str));
@@ -142,7 +140,7 @@ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinali
             type = G_TYPE_FROM_INSTANCE(val);
         if (G_TYPE_IS_DERIVED(type)) {
             setAttrib(ans, install("interfaces"), R_internal_getInterfaces(type));
-            PROTECT(klass = R_internal_getGTypeHierarchy(type));
+            PROTECT(klass = R_internal_getGTypeAncestors(type));
         }
     }
     if (!klass && typeName) {

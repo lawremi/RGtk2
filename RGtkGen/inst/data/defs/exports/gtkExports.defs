@@ -1,0 +1,441 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../../RGtk2/inst/include/RGtk2/gtk.h
+
+(define-function S_GtkClipboardClearFunc
+  (c-name "S_GtkClipboardClearFunc")
+  (return-type "none")
+  (parameters
+    '("GtkClipboard*" "clipboard")
+    '("gpointer" "user_data_or_owner")
+  )
+)
+
+(define-function S_GtkSignalFunc
+  (c-name "S_GtkSignalFunc")
+  (return-type "none")
+  (parameters
+    '("GtkWidget*" "s_child")
+    '("gpointer" "s_data")
+  )
+)
+
+(define-function S_GtkTextBufferSerializeFunc
+  (c-name "S_GtkTextBufferSerializeFunc")
+  (return-type "guint8*")
+  (parameters
+    '("GtkTextBuffer*" "s_register_buffer")
+    '("GtkTextBuffer*" "s_content_buffer")
+    '("GtkTextIter*" "s_start")
+    '("GtkTextIter*" "s_end")
+    '("gsize*" "s_length")
+    '("gpointer" "s_user_data")
+  )
+)
+
+(define-function S_GtkMenuPositionFunc
+  (c-name "S_GtkMenuPositionFunc")
+  (return-type "gint")
+  (parameters
+    '("GtkMenu*" "s_menu")
+    '("gint*" "s_x")
+    '("gint*" "s_y")
+    '("gboolean*" "s_push_in")
+    '("gpointer" "s_user_data")
+  )
+)
+
+(define-function asRGdkAtom
+  (c-name "asRGdkAtom")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkAtom" "val")
+  )
+)
+
+(define-function asCGdkAtom
+  (c-name "asCGdkAtom")
+  (return-type "GdkAtom")
+  (parameters
+    '("USER_OBJECT_" "s_atom")
+  )
+)
+
+(define-function asCGdkAtomArray
+  (c-name "asCGdkAtomArray")
+  (return-type "GdkAtom*")
+  (parameters
+    '("USER_OBJECT_" "s_atoms")
+  )
+)
+
+(define-function asCGdkGeometry
+  (c-name "asCGdkGeometry")
+  (return-type "GdkGeometry*")
+  (parameters
+    '("USER_OBJECT_" "s_geom")
+    '("GdkWindowHints*" "hints")
+  )
+)
+
+(define-function asCGdkGCValues
+  (c-name "asCGdkGCValues")
+  (return-type "GdkGCValues*")
+  (parameters
+    '("USER_OBJECT_" "s_values")
+  )
+)
+
+(define-function asCGdkGCValuesWithMask
+  (c-name "asCGdkGCValuesWithMask")
+  (return-type "GdkGCValues*")
+  (parameters
+    '("USER_OBJECT_" "s_values")
+    '("GdkGCValuesMask*" "mask")
+  )
+)
+
+(define-function asCGdkWindowAttr
+  (c-name "asCGdkWindowAttr")
+  (return-type "GdkWindowAttr*")
+  (parameters
+    '("USER_OBJECT_" "s_attr")
+    '("GdkWindowAttributesType*" "mask")
+  )
+)
+
+(define-function asRGdkTimeCoord
+  (c-name "asRGdkTimeCoord")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkTimeCoord*" "coord")
+    '("int" "num_axes")
+  )
+)
+
+(define-function asCGdkRectangle
+  (c-name "asCGdkRectangle")
+  (return-type "GdkRectangle*")
+  (parameters
+    '("USER_OBJECT_" "s_rect")
+  )
+)
+
+(define-function asRGdkRectangle
+  (c-name "asRGdkRectangle")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkRectangle*" "rect")
+  )
+)
+
+(define-function asCGdkRgbCmap
+  (c-name "asCGdkRgbCmap")
+  (return-type "GdkRgbCmap*")
+  (parameters
+    '("USER_OBJECT_" "s_cmap")
+  )
+)
+
+(define-function asRGdkRgbCmap
+  (c-name "asRGdkRgbCmap")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkRgbCmap*" "map")
+  )
+)
+
+(define-function asCGdkKeymapKey
+  (c-name "asCGdkKeymapKey")
+  (return-type "GdkKeymapKey*")
+  (parameters
+    '("USER_OBJECT_" "s_key")
+  )
+)
+
+(define-function asRGdkKeymapKey
+  (c-name "asRGdkKeymapKey")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkKeymapKey*" "key")
+  )
+)
+
+(define-function asCGdkPoint
+  (c-name "asCGdkPoint")
+  (return-type "GdkPoint*")
+  (parameters
+    '("USER_OBJECT_" "s_point")
+  )
+)
+
+(define-function asRGdkPoint
+  (c-name "asRGdkPoint")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkPoint*" "point")
+  )
+)
+
+(define-function asCGdkSegment
+  (c-name "asCGdkSegment")
+  (return-type "GdkSegment*")
+  (parameters
+    '("USER_OBJECT_" "s_segment")
+  )
+)
+
+(define-function asRGdkSegment
+  (c-name "asRGdkSegment")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkSegment*" "obj")
+  )
+)
+
+(define-function asCGdkColor
+  (c-name "asCGdkColor")
+  (return-type "GdkColor*")
+  (parameters
+    '("USER_OBJECT_" "s_color")
+  )
+)
+
+(define-function asRGdkColor
+  (c-name "asRGdkColor")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-GdkColor*" "color")
+  )
+)
+
+(define-function asRGdkNativeWindow
+  (c-name "asRGdkNativeWindow")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkNativeWindow" "window")
+  )
+)
+
+(define-function asCGdkNativeWindow
+  (c-name "asCGdkNativeWindow")
+  (return-type "GdkNativeWindow")
+  (parameters
+    '("USER_OBJECT_" "s_window")
+  )
+)
+
+(define-function asRGdkEvent
+  (c-name "asRGdkEvent")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkEvent*" "event")
+  )
+)
+
+(define-function toRGdkEvent
+  (c-name "toRGdkEvent")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkEvent*" "event")
+    '("gboolean" "finalize")
+  )
+)
+
+(define-function toRGdkFont
+  (c-name "toRGdkFont")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkFont*" "font")
+  )
+)
+
+(define-function asCGdkTrapezoid
+  (c-name "asCGdkTrapezoid")
+  (return-type "GdkTrapezoid*")
+  (parameters
+    '("USER_OBJECT_" "s_trapezoid")
+  )
+)
+
+(define-function asRGdkTrapezoid
+  (c-name "asRGdkTrapezoid")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkTrapezoid*" "obj")
+  )
+)
+
+(define-function asRGdkGCValues
+  (c-name "asRGdkGCValues")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkGCValues*" "values")
+  )
+)
+
+(define-function asCGdkSpan
+  (c-name "asCGdkSpan")
+  (return-type "GdkSpan*")
+  (parameters
+    '("USER_OBJECT_" "s_span")
+  )
+)
+
+(define-function asRGdkSpan
+  (c-name "asRGdkSpan")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GdkSpan*" "obj")
+  )
+)
+
+(define-function asCGtkTargetEntry
+  (c-name "asCGtkTargetEntry")
+  (return-type "GtkTargetEntry*")
+  (parameters
+    '("USER_OBJECT_" "s_entry")
+  )
+)
+
+(define-function asRGtkTargetEntry
+  (c-name "asRGtkTargetEntry")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GtkTargetEntry*" "obj")
+  )
+)
+
+(define-function asCGtkFileFilterInfo
+  (c-name "asCGtkFileFilterInfo")
+  (return-type "GtkFileFilterInfo*")
+  (parameters
+    '("USER_OBJECT_" "s_info")
+  )
+)
+
+(define-function asRGtkFileFilterInfo
+  (c-name "asRGtkFileFilterInfo")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-GtkFileFilterInfo*" "obj")
+  )
+)
+
+(define-function asCGtkSettingsValue
+  (c-name "asCGtkSettingsValue")
+  (return-type "GtkSettingsValue*")
+  (parameters
+    '("USER_OBJECT_" "s_value")
+  )
+)
+
+(define-function asCGtkStockItem
+  (c-name "asCGtkStockItem")
+  (return-type "GtkStockItem*")
+  (parameters
+    '("USER_OBJECT_" "s_item")
+  )
+)
+
+(define-function asRGtkStockItem
+  (c-name "asRGtkStockItem")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GtkStockItem*" "item")
+  )
+)
+
+(define-function asCGtkItemFactoryEntry
+  (c-name "asCGtkItemFactoryEntry")
+  (return-type "GtkItemFactoryEntry*")
+  (parameters
+    '("USER_OBJECT_" "s_entry")
+  )
+)
+
+(define-function asCGtkItemFactoryEntry2
+  (c-name "asCGtkItemFactoryEntry2")
+  (return-type "GtkItemFactoryEntry*")
+  (parameters
+    '("USER_OBJECT_" "s_entry")
+  )
+)
+
+(define-function R_createGtkItemFactoryEntry
+  (c-name "R_createGtkItemFactoryEntry")
+  (return-type "GtkItemFactoryEntry*")
+  (parameters
+    '("USER_OBJECT_" "s_entry")
+    '("guint" "cbtype")
+  )
+)
+
+(define-function asCGtkAllocation
+  (c-name "asCGtkAllocation")
+  (return-type "GtkAllocation*")
+  (parameters
+    '("USER_OBJECT_" "s_alloc")
+  )
+)
+
+(define-function asRGtkAllocation
+  (c-name "asRGtkAllocation")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GtkAllocation*" "alloc")
+  )
+)
+
+(define-function asCGtkRecentFilterInfo
+  (c-name "asCGtkRecentFilterInfo")
+  (return-type "GtkRecentFilterInfo*")
+  (parameters
+    '("USER_OBJECT_" "s_obj")
+  )
+)
+
+(define-function asRGtkRecentFilterInfo
+  (c-name "asRGtkRecentFilterInfo")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("const-GtkRecentFilterInfo*" "obj")
+  )
+)
+
+(define-function asCGtkRecentData
+  (c-name "asCGtkRecentData")
+  (return-type "GtkRecentData*")
+  (parameters
+    '("USER_OBJECT_" "s_obj")
+  )
+)
+
+(define-function asRGtkPageRange
+  (c-name "asRGtkPageRange")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GtkPageRange*" "obj")
+  )
+)
+
+(define-function asCGtkPageRange
+  (c-name "asCGtkPageRange")
+  (return-type "GtkPageRange*")
+  (parameters
+    '("USER_OBJECT_" "s_obj")
+  )
+)
+
+(define-function asRGtkAccelKey
+  (c-name "asRGtkAccelKey")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("GtkAccelKey*" "obj")
+  )
+)
+
+

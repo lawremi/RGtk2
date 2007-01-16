@@ -42,7 +42,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
 
   parseType <- function(type)
   {
-      gsub("-"," ",type)
+      sub("-", " ", type)
   }
   convertDef <- function(def) {
       name <- def[["c_name"]]
@@ -1823,7 +1823,7 @@ function(fun, defs) {
 
 classSymbol <- function(name) nameToC(paste(name, "symbol", sep="_"))
 
-genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
+genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package = "RGtk2")
 {
   code <- ""
   params <- fun$parameters
@@ -1831,9 +1831,15 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   if (virtual)
     params <- c(object=makeObjectParam(fun$ofobject), params)
   
-  header <- declareFunction(toValidType(fun$return), name, 
-    getParamTypes(params), names(params))
+  param_types <- getParamTypes(params)
+  param_names <- names(params)
+  ret_type <- toValidType(fun$return)
+  
+  header <- declareFunction(ret_type, name, param_types, param_names)
   declaration <- header
+  
+  export_code <- exportFunc(nameToC(name), param_types, param_names, package)
+  import_code <- importFunc(nameToC(name), ret_type, param_types, param_names, package)
   
   if (!virtual) { # user function needs user-data
     dataInd <- which(getParamTypes(params) == "gpointer")
@@ -1918,7 +1924,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0)
   code <- c(code,
   "}")
   
-  list(code=paste(code,collapse="\n"), decl=statement(declaration))
+  list(code=paste(code,collapse="\n"), decl=statement(declaration),
+    import = import_code, export = export_code)
 }
 
 ########
@@ -1994,6 +2001,37 @@ function(struct, defs)
    )),
   "}")
   paste(code, collapse="\n")
+}
+
+
+# exporting and importing using [register/get]CCallable()
+
+exportFunc <- 
+function(name, arg_types, arg_names, package)
+{
+  statement(invokev("R_RegisterCCallable", lit(package), lit(name), cast("DL_FUNC", name)), 0)
+}
+
+declareFunctionVar <- function(ret_type, name, arg_types)
+{
+  invoke(paste(ret_type, " (", derefName(name), ")", sep=""), arg_types) 
+}
+
+importFunc <- 
+function(name, ret_type, arg_types, arg_names, package)
+{
+  if (ret_type == "none")
+    ret_type <- "void"
+  invocation <- invoke("fun", arg_names)
+  func_type <- invoke(paste(ret_type, " (*)", sep=""), arg_types)
+  code <- c(declareFunction(ret_type, name, arg_types, arg_names, F),
+  "{",
+    statement(cassign(static(declareFunctionVar(ret_type, "fun", arg_types)), "NULL")),
+    statement(paste("if(!fun)",
+      cassign("fun", cast(func_type, invokev("R_GetCCallable", lit(package), lit(name)))))),
+    statement(if (ret_type != "none") returnValue(invocation) else invocation),
+  "}")
+  paste(code, collapse = "\n")
 }
 
 #############################
@@ -2109,7 +2147,7 @@ function(enum, name, defs = NULL, local = T, isEnum = T)
 ####################################################################
 
 genFieldAccessors <-
-function(types, defs)
+function(types, defs, package = "RGtk2")
 {
   code <- list()
 
@@ -2122,7 +2160,7 @@ function(types, defs)
        #  Check there isn't already an explicitly registered function for doing this.
        #  if(is.na(match(paste( classname to gtk_class format, get, i,sep="_") , names(defs$functions)))
 
-      tmp[[f]] <-  genFieldAccessor(f, type$fields[[f]], i, defs)
+      tmp[[f]] <-  genFieldAccessor(f, type$fields[[f]], i, defs, package)
      }
      code[[i]] <- tmp
     }
@@ -2157,7 +2195,7 @@ genFieldAccessor <-
   #         toRPointer(w, "GtkWidget")
   #  }
   #
-function(name, type, className, defs)
+function(name, type, className, defs, package = "RGtk2")
 {
 
  sName <- asRTypeName(className)
@@ -2167,7 +2205,7 @@ function(name, type, className, defs)
 
  croutine <- paste("S_", sName,"Get", sSuffix, collapse="", sep="")
 
- rcode <- genFieldAccessorRCode(sFuncName, sName, croutine, type, defs)
+ rcode <- genFieldAccessorRCode(sFuncName, sName, croutine, type, defs, package)
 
  ccode <- genFieldAccessorCCode(name, className, croutine, type, defs)
 
@@ -2230,7 +2268,6 @@ function(sname, className, croutine, type, defs, package = "RGtk2")
             "}")
  rcode
 }
-
 
 ####################################################################
 

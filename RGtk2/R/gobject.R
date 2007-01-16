@@ -33,7 +33,7 @@ gTypeGetAncestors <-
 function(type)
 {
   type <- as.GType(type)
-  .Call("R_getGTypeHierarchy", type, PACKAGE = "RGtk2")
+  .Call("R_getGTypeAncestors", type, PACKAGE = "RGtk2")
 }
 
 gTypeGetClass <-

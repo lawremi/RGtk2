@@ -1,4 +1,4 @@
-#include "RGtk2/gtk.h"
+#include "RGtk2/libglade.h"
 
 /* This is an simple version of the event handler for windows.
    It mimicks what we do in Rggobi, namely hijacking the hook into the
@@ -48,4 +48,17 @@ R_gtkInit(long *rargc, char **rargv)
 #endif
 
   return TRUE;
+}
+
+#include <R_ext/Rdynload.h>
+
+void
+R_init_RGtk2(DllInfo *dll)
+{
+  #include "exports/gobjectExports.c"
+  #include "exports/atkExports.c"
+  #include "exports/cairoExports.c"
+  #include "exports/pangoExports.c"
+  #include "exports/gtkExports.c"
+  #include "exports/libgladeExports.c"
 }

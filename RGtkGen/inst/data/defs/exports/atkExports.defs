@@ -1,0 +1,96 @@
+;; -*- scheme -*-
+; object definitions ...
+;; Enumerations and flags ...
+
+
+;; From ../../../RGtk2/inst/include/RGtk2/atk.h
+
+(define-function asCAtkAttributeSet
+  (c-name "asCAtkAttributeSet")
+  (return-type "AtkAttributeSet*")
+  (parameters
+    '("USER_OBJECT_" "s_set")
+  )
+)
+
+(define-function asCAtkAttribute
+  (c-name "asCAtkAttribute")
+  (return-type "AtkAttribute*")
+  (parameters
+    '("USER_OBJECT_" "s_attr")
+  )
+)
+
+(define-function asRAtkAttributeSet
+  (c-name "asRAtkAttributeSet")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkAttributeSet*" "set")
+  )
+)
+
+(define-function asRAtkAttribute
+  (c-name "asRAtkAttribute")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkAttribute*" "attr")
+  )
+)
+
+(define-function asCAtkTextRectangle
+  (c-name "asCAtkTextRectangle")
+  (return-type "AtkTextRectangle*")
+  (parameters
+    '("USER_OBJECT_" "s_rect")
+  )
+)
+
+(define-function asRAtkTextRectangle
+  (c-name "asRAtkTextRectangle")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkTextRectangle*" "rect")
+  )
+)
+
+(define-function asRAtkTextRange
+  (c-name "asRAtkTextRange")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkTextRange*" "range")
+  )
+)
+
+(define-function asCAtkTextRange
+  (c-name "asCAtkTextRange")
+  (return-type "AtkTextRange*")
+  (parameters
+    '("USER_OBJECT_" "s_obj")
+  )
+)
+
+(define-function asRAtkKeyEventStruct
+  (c-name "asRAtkKeyEventStruct")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkKeyEventStruct*" "obj")
+  )
+)
+
+(define-function asCAtkRectangle
+  (c-name "asCAtkRectangle")
+  (return-type "AtkRectangle*")
+  (parameters
+    '("USER_OBJECT_" "s_rect")
+  )
+)
+
+(define-function asRAtkRectangle
+  (c-name "asRAtkRectangle")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("AtkRectangle*" "rect")
+  )
+)
+
+

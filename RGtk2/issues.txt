@@ -32,6 +32,7 @@ Low Priority Issues
 - allow specification of numeric precision on GtkCellRendererText
 - could throw custom signal in response to GError, instead of warning
 - could use new namespaced .Call mechanism (dll$foo) - better if cached
+- GTypeModule support (create bindings and add module arg to gClass)
 
 Introspection?
 ----------------

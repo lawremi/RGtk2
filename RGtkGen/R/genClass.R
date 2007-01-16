@@ -12,7 +12,7 @@ mapClassType <- function(type_name)
 toClassType <- function(type_name, defs)
   paste(type_name, ifelse(isInterface(type_name, defs), "Iface", "Class"), sep="")
 
-genCClass <- function(name = "GtkWidget", virtuals, defs)
+genCClass <- function(name = "GtkWidget", virtuals, defs, package = "RGtk2")
 {
   fun_name <- collapseClassName(name)
   
@@ -43,8 +43,14 @@ genCClass <- function(name = "GtkWidget", virtuals, defs)
   }
     
   class_init_name <- paste(nameToC(fun_name), "_class_init", sep="")
-  declaration <- declareFunction("void", 
-    class_init_name, c(refType(class_type), "SEXP"), c("c", "e"), prefix=F)
+  class_init_arg_types <- c(refType(class_type), "SEXP")
+  class_init_arg_names <- c("c", "e")
+  declaration <- declareFunction("void", class_init_name, class_init_arg_types, 
+    class_init_arg_names, prefix=F)
+  import_code <- importFunc(class_init_name, "none", class_init_arg_types, 
+    class_init_arg_names, package)
+  export_code <- exportFunc(class_init_name, class_init_arg_types, 
+    class_init_arg_names, package)
   class_init <- c(
     declaration,
     "{",
@@ -69,7 +75,8 @@ genCClass <- function(name = "GtkWidget", virtuals, defs)
   }))
   
   list(decl = statement(declaration, depth=0), 
-    code = paste(c(symbol, virtual_wrappers, class_init, class_wrappers), collapse = "\n"))
+    code = paste(c(symbol, virtual_wrappers, class_init, class_wrappers), collapse = "\n"),
+    import = import_code, export = export_code)
 }
 
 genRVirtuals <- function(virtual_names, defs)
@@ -78,6 +85,7 @@ genRVirtuals <- function(virtual_names, defs)
   virtual_classes <- sapply(virtuals, function(virtual) virtual$ofobject)
   short_names <- sapply(virtuals, function(virtual) virtual$vname)
   #print(virtual_classes)
+  virtual_header <- "if(!exists('.virtuals')) .virtuals <- NULL"
   virtual_vectors <- sapply(unique(virtual_classes), function(virtual_class)
     named(virtual_class, invoke("c", lit(short_names[virtual_classes == virtual_class]))))
   virtual_list <- rassign(".virtuals", invokev("c", ".virtuals", 
@@ -86,6 +94,6 @@ genRVirtuals <- function(virtual_names, defs)
     genRCode(virtual, defs, paste(collapseClassName(toClassType(virtual$ofobject, defs)), 
       virtual$vname, sep="_"))
   })
-  paste(c(virtual_list, "", wrappers), collapse="\n")
+  paste(c(virtual_header, virtual_list, "", wrappers), collapse="\n")
 }
 

@@ -3,7 +3,7 @@
 /* GType */
 
 USER_OBJECT_
-R_internal_getGTypeHierarchy(GType type)
+R_internal_getGTypeAncestors(GType type)
 {
   USER_OBJECT_ ans;
   int n = 0;
@@ -42,7 +42,7 @@ R_internal_getGTypeHierarchy(GType type)
 
  */
 USER_OBJECT_
-R_getGObjectTypeHierarchy(USER_OBJECT_ sobj)
+R_getGObjectTypeAncestors(USER_OBJECT_ sobj)
 {
   GType type;
   GObject *obj;
@@ -55,16 +55,16 @@ R_getGObjectTypeHierarchy(USER_OBJECT_ sobj)
   }
   type = G_OBJECT_TYPE(obj);
 
-  return(R_internal_getGTypeHierarchy(type));
+  return(R_internal_getGTypeAncestors(type));
 }
 
 USER_OBJECT_
-R_getGTypeHierarchy(USER_OBJECT_ sobj)
+R_getGTypeAncestors(USER_OBJECT_ sobj)
 {
   GType type;
   type = (GType) NUMERIC_POINTER(sobj)[0];
 
-  return(R_internal_getGTypeHierarchy(type));
+  return(R_internal_getGTypeAncestors(type));
 }
 
 USER_OBJECT_

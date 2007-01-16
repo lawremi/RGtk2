@@ -3,6 +3,10 @@ source("pyGen.R")
 # source("cons.S")
 # source("load.S")
 
+toCppSymbol <- function(name) {
+  toupper(gsub(.Platform$file.sep, "_", name))
+}
+ 
 genCode <-
 #
 #
@@ -20,10 +24,6 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
         allTypes <- c(allTypes, fun$ofobject)
     allTypes[baseType(allTypes, complete=T) %in% badTypes]
   }
-
- toCppSymbol <- function(name) {
-  toupper(gsub(.Platform$file.sep, "_", name))
- }
 
  if(is.function(dir))
    getFileName <- dir
@@ -193,8 +193,13 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
 
  UserCFuncs <- file(getFileName("UserFuncs.c"))
  UserCHeader <- file(getFileName("UserFuncs.h"))
+ UserCExports <- file(getFileName("UserFuncExports.c"))
+ UserCImports <- file(getFileName("UserFuncImports.c"))
+ 
  open(UserCFuncs,"w")
  open(UserCHeader,"w")
+ open(UserCExports, "w")
+ open(UserCImports, "w")
 
  cat("#include \"", file.path(package, filePrefix), "UserFuncs.h\"\n", file=UserCFuncs, sep="")
  
@@ -205,15 +210,19 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
  for(i in getNonDiscardedNames("userfunctions")) {
      if(verbose)
          cat("processing USER function", i, "\n")
-     tmp <- genUserFunctionCode(defs$userfunctions[[i]], allDefs)
+     tmp <- genUserFunctionCode(defs$userfunctions[[i]], allDefs, package = package)
      cat(tmp$code, "\n\n", file=UserCFuncs)
      cat(tmp$decl, "\n\n", file=UserCHeader)
+     cat(tmp$export, "\n", file=UserCExports)
+     cat(tmp$import, "\n\n", file=UserCImports)
  }
  
  cat("#endif\n", file=UserCHeader)
  
  close(UserCFuncs)
  close(UserCHeader)
+ close(UserCExports)
+ close(UserCImports)
 
  # GObject class wrappers
  
@@ -222,7 +231,11 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    open(ClassCFuncs,"w")
    ClassCHeader <- file(getFileName("Classes.h"))
    open(ClassCHeader,"w")
- 
+   ClassCExports <- file(getFileName("ClassExports.c"))
+   open(ClassCExports,"w")
+   ClassCImports <- file(getFileName("ClassImports.c"))
+   open(ClassCImports,"w")
+   
    cat('#include "', file.path(package, filePrefix), 'Classes.h"\n', file=ClassCFuncs, sep="")
    
    cat("#ifndef S_", toCppSymbol(filePrefix), "_CLASSES_H\n#define S_", 
@@ -241,9 +254,11 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
        virtuals <- defs$virtuals[virtual_classes == i]
        virtuals <- virtuals[as.logical(sapply(virtuals, function(virtual) 
         length(getBadTypes(virtual)) == 0))]
-       gen <- genCClass(i, virtuals, allDefs)
+       gen <- genCClass(i, virtuals, allDefs, package)
        cat(gen$decl, "\n", file=ClassCHeader)
        cat(gen$code, "\n\n", file=ClassCFuncs)
+       cat(gen$export, "\n", file=ClassCExports)
+       cat(gen$import, "\n\n", file=ClassCImports)
      }
    }
    
@@ -254,6 +269,8 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    
    close(ClassCFuncs)
    close(ClassCHeader)
+   close(ClassCImports)
+   close(ClassCExports)
  }
  
  if (length(defs$virtuals)) {
@@ -281,7 +298,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
   if (length(trans) > 0)
 	  accessors <- accessors[-trans]
   
-  for(i in genFieldAccessors(accessors, allDefs)) {
+  for(i in genFieldAccessors(accessors, allDefs, package)) {
    for(j in i) {
      definedRFuncs = c(definedRFuncs, j$rfuncName)
      cat(j$rcode, "\n", file=RAccessors)
@@ -305,6 +322,58 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
   list(varargs = varargs, definedRFuncs = definedRFuncs)
 }
 
+# generate code for exporting (and importing) the functions in a defs file
+# any exports/imports for user-funcs or classes for the API are #included
+genExports <-
+function(api, out_dir, defs_dir, deps, package = "RGtk2")
+{
+  getFileName <- function(name) file.path(out_dir, paste(api, name, sep=""))
+  
+  defs <- getDefs(file.path(defs_dir, paste(api, "Exports.defs", sep="")))
+  
+  exportFile <- file(getFileName("Exports.c"))
+  importFile <- file(getFileName("Imports.c"))
+  
+  open(importFile, "w")
+  open(exportFile, "w")
+  
+  cat("#ifndef S_", toCppSymbol(api), "_IMPORTS_C\n#define S_", 
+    toCppSymbol(api),"_IMPORTS_C\n", file=importFile, sep="")
+  
+  includeFile <- function(filename) paste("#include <", filename, ">\n\n", sep="")
+  
+  cat(includeFile(paste(file.path(package, api), "h", sep=".")), file = importFile)
+  
+  sapply(deps, function(dep) {
+    cat(includeFile(paste(dep, "Imports.c", sep="")), file = importFile)
+  })
+  
+  includeSubFile <- function(subFile, outFile, subDir = NULL) {
+    subFile <- getFileName(subFile)
+    subOut <- file.path(subDir, basename(subFile))
+    if (file.exists(subFile))
+      cat(includeFile(subOut), sep = "", file = outFile)
+  }
+  sapply(c("UserFunc", "Class"), function(sub) {
+    includeSubFile(paste(sub, "Exports.c", sep = ""), exportFile, "exports")
+    includeSubFile(paste(sub, "Imports.c", sep = ""), importFile, package)
+  })
+  
+  sapply(defs$functions, function(fun) {
+    param_types <- getParamTypes(fun$parameters)
+    param_names <- names(fun$parameters)
+    ret_type <- toValidType(fun$return)
+    export <- exportFunc(fun$name, param_types, param_names, package)
+    import <- importFunc(fun$name, ret_type, param_types, param_names, package)
+    cat(import, "\n\n", file = importFile)
+    cat(export, "\n", file = exportFile)
+  })
+  
+  cat("#endif\n", file=importFile)
+  
+  close(importFile)
+  close(exportFile)
+}
 
 generateCodeFiles <-
   #
