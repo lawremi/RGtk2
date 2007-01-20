@@ -3830,7 +3830,7 @@
 
 (define-virtual reorder_tab
   (of-object "GtkNotebook")
-  (return-type "none")
+  (return-type "gboolean")
   (parameters
     '("GtkDirectionType" "direction")
     '("gboolean" "move_to_last")

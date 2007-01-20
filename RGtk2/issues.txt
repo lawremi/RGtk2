@@ -1,8 +1,37 @@
 ==== TO DO =====
-- Support introspection, when it arrives
+- Support introspection, if/when it arrives
 
 Adding support for extending GObjects
 ----------
+
+1) there's no way to override an existing property
+- should be easy, just add GParamOverride support
+
+2) property and field storage
+- private fields (and properties) stored in an environment with the instance,
+  and it is an attr of the pointer when it is sent to the R virtuals
+- protected fields stored in their own environment, which is a parent of the
+  private env, and inherits from protected env of the parent instance
+- .private and .protected lists initialize the environments, which are stored in
+  the class environment, until being copied into an instance environment
+
+All R types will be identified by a GInterface. The $, [, and [[ ops for
+that type will look first to see if the environment is attached as an attr,
+if it isn't they just go to the next method, otherwise they retrieve
+the symbol from the environment.
+
+3) chaining up to R handlers and new virtuals
+- the class environment should store the new virtuals as well as overrides
+- the class environment should inherit from that of the parent class, unless
+  the class extends from a non-R class, it shouldn't "pad" the environment
+- chaining up will be handled on the R side: when the parent class is
+  an R class, it will have a special class added to it, so that method 
+  dispatches look in the class environment first
+- new virtuals are registered with RGtk2 automatically
+- wrappers must be implemented separately using the RGtk2 naming scheme, or
+  maybe it could be done automatically if the virtuals are marked public
+- in order to make the env private, we need to create it on the C side and
+  attach it only as an attribute when giving it to R virtuals
   
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)

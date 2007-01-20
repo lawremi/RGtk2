@@ -356,12 +356,16 @@ USER_OBJECT_ asRGQuark(GQuark val);
 GTimeVal* asCGTimeVal(USER_OBJECT_ s_timeval);
 USER_OBJECT_ asRGTimeVal(const GTimeVal *timeval);
 GString* asCGString(USER_OBJECT_ s_string);
-GList* asCGList(USER_OBJECT_ s_list);
+GList* toCGList(USER_OBJECT_ s_list, gboolean dup);
+#define asCGList(s_list) toCGList(s_list, FALSE)
+#define asCGListDup(s_list) toCGList(s_list, TRUE)
 USER_OBJECT_ asRGList(GList *glist, const gchar* type);
 USER_OBJECT_ asRGListWithRef(GList *gslist, const gchar* type);
 USER_OBJECT_ asRGListWithFinalizer(GList *glist, const gchar* type, RPointerFinalizer finalizer);
 USER_OBJECT_ asRGListConv(GList *glist, ElementConverter converter);
-GSList* asCGSList(USER_OBJECT_ s_list);
+GSList* toCGSList(USER_OBJECT_ s_list, gboolean dup);
+#define asCGSList(s_list) toCGSList(s_list, FALSE)
+#define asCGSListDup(s_list) toCGSList(s_list, TRUE)
 USER_OBJECT_ asRGSList(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithRef(GSList *gslist, const gchar* type);
 USER_OBJECT_ asRGSListWithFinalizer(GSList *gslist, const gchar* type, RPointerFinalizer finalizer);

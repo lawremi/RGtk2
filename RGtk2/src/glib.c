@@ -32,7 +32,7 @@ asCGString(USER_OBJECT_ s_string) {
 }
 
 GList*
-asCGList(USER_OBJECT_ s_list)
+toCGList(USER_OBJECT_ s_list, gboolean dup)
 {
     GList* list = NULL;
     int i;
@@ -40,9 +40,15 @@ asCGList(USER_OBJECT_ s_list)
     for (i = 0; i < GET_LENGTH(s_list); i++) {
         SEXP s_element = VECTOR_ELT(s_list, i);
         gpointer element;
-        if (IS_CHARACTER(s_element))
+        if (IS_CHARACTER(s_element)) {
             element = CHAR_DEREF(STRING_ELT(s_element, 0));
-        else element = (gpointer)getPtrValue(s_element);
+            if (dup && element) element = g_strdup(element);
+        } else if (IS_INTEGER(s_element))
+            element = GINT_TO_POINTER(INTEGER(s_element)[0]);
+        else {
+          element = (gpointer)getPtrValue(s_element);
+          if (dup && G_IS_OBJECT(element)) g_object_ref(G_OBJECT(element));
+        }
         list = g_list_append(list, element);
     }
     return(list);
@@ -92,7 +98,7 @@ asRGListConv(GList *glist, ElementConverter converter) {
 }
 
 GSList*
-asCGSList(USER_OBJECT_ s_list)
+toCGSList(USER_OBJECT_ s_list, gboolean dup)
 {
     GSList* list = NULL;
     int i;
@@ -100,11 +106,15 @@ asCGSList(USER_OBJECT_ s_list)
     for (i = 0; i < GET_LENGTH(s_list); i++) {
         SEXP s_element = VECTOR_ELT(s_list, i);
         gpointer element;
-        if (IS_CHARACTER(s_element))
+        if (IS_CHARACTER(s_element)) {
             element = CHAR_DEREF(STRING_ELT(s_element, 0));
-        else if (IS_INTEGER(s_element))
+            if (dup && element) element = g_strdup(element);
+        } else if (IS_INTEGER(s_element))
             element = GINT_TO_POINTER(INTEGER(s_element)[0]);
-        else element = (gpointer)getPtrValue(s_element);
+        else {
+          element = (gpointer)getPtrValue(s_element);
+          if (dup && G_IS_OBJECT(element)) g_object_ref(G_OBJECT(element));
+        }
         list = g_slist_append(list, element);
     }
 

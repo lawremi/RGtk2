@@ -7847,7 +7847,7 @@ S_virtual_gtk_notebook_focus_tab(GtkNotebook* s_object, GtkNotebookTab s_type)
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
-void
+gboolean
 S_virtual_gtk_notebook_change_current_page(GtkNotebook* s_object, gint s_offset)
 {
   USER_OBJECT_ e;
@@ -7868,6 +7868,7 @@ S_virtual_gtk_notebook_change_current_page(GtkNotebook* s_object, gint s_offset)
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 }
 static 
 void
@@ -7893,7 +7894,7 @@ S_virtual_gtk_notebook_move_focus_out(GtkNotebook* s_object, GtkDirectionType s_
   UNPROTECT(1);
 }
 static 
-void
+gboolean
 S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_direction, gboolean s_move_to_last)
 {
   USER_OBJECT_ e;
@@ -7916,6 +7917,7 @@ S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_dir
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 }
 static 
 gint
@@ -8030,10 +8032,12 @@ S_gtk_notebook_class_change_current_page(USER_OBJECT_ s_object_class, USER_OBJEC
   GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
 
+  gboolean ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-  object_class->change_current_page(object, offset);
+  ans = object_class->change_current_page(object, offset);
 
+  _result = asRLogical(ans);
 
   return(_result);
 }
@@ -8061,10 +8065,12 @@ S_gtk_notebook_class_reorder_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   gboolean move_to_last = ((gboolean)asCLogical(s_move_to_last));
 
+  gboolean ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-  object_class->reorder_tab(object, direction, move_to_last);
+  ans = object_class->reorder_tab(object, direction, move_to_last);
 
+  _result = asRLogical(ans);
 
   return(_result);
 }
@@ -9739,7 +9745,7 @@ S_virtual_gtk_rc_style_create_rc_style(GtkRcStyle* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkRcStyle_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkRcStyle", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkRcStyle"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -9810,7 +9816,7 @@ S_virtual_gtk_rc_style_create_style(GtkRcStyle* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkRcStyle_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkRcStyle", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkRcStyle"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -10146,7 +10152,7 @@ S_gtk_scrollbar_class_init(GtkScrollbarClass * c, SEXP e)
 
 static SEXP S_GtkScrolledWindow_symbol;
 static 
-void
+gboolean
 S_virtual_gtk_scrolled_window_scroll_child(GtkScrolledWindow* s_object, GtkScrollType s_scroll, gboolean s_horizontal)
 {
   USER_OBJECT_ e;
@@ -10169,6 +10175,7 @@ S_virtual_gtk_scrolled_window_scroll_child(GtkScrolledWindow* s_object, GtkScrol
   s_ans = eval(e, R_GlobalEnv);
 
   UNPROTECT(1);
+  return(((gboolean)asCLogical(s_ans)));
 }
 static 
 void
@@ -10217,10 +10224,12 @@ S_gtk_scrolled_window_class_scroll_child(USER_OBJECT_ s_object_class, USER_OBJEC
   GtkScrollType scroll = ((GtkScrollType)asCEnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
   gboolean horizontal = ((gboolean)asCLogical(s_horizontal));
 
+  gboolean ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-  object_class->scroll_child(object, scroll, horizontal);
+  ans = object_class->scroll_child(object, scroll, horizontal);
 
+  _result = asRLogical(ans);
 
   return(_result);
 }
@@ -10794,7 +10803,7 @@ S_virtual_gtk_style_clone(GtkStyle* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkStyle_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkStyle", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkStyle"));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -10864,9 +10873,9 @@ S_virtual_gtk_style_render_icon(GtkStyle* s_object, const GtkIconSource* s_sourc
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkStyle_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkStyle", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkStyle"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_source ? gtk_icon_source_copy(s_source) : NULL, "GtkIconSource"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_source ? gtk_icon_source_copy(s_source) : NULL, "GtkIconSource", (RPointerFinalizer) gtk_icon_source_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_TEXT_DIRECTION));
   tmp = CDR(tmp);
@@ -12619,7 +12628,7 @@ S_virtual_gtk_text_buffer_mark_set(GtkTextBuffer* s_object, const GtkTextIter* s
 
   SETCAR(tmp, toRPointerWithRef(s_object, "GtkTextBuffer"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_location ? gtk_text_iter_copy(s_location) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_location ? gtk_text_iter_copy(s_location) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_mark, "GtkTextMark"));
   tmp = CDR(tmp);
@@ -12669,9 +12678,9 @@ S_virtual_gtk_text_buffer_apply_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag, 
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -12696,9 +12705,9 @@ S_virtual_gtk_text_buffer_remove_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag,
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_start_char ? gtk_text_iter_copy(s_start_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -13019,7 +13028,7 @@ S_virtual_gtk_text_tag_event(GtkTextTag* s_object, GObject* s_event_object, GdkE
   tmp = CDR(tmp);
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointer(s_iter ? gtk_text_iter_copy(s_iter) : NULL, "GtkTextIter"));
+  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_text_iter_copy(s_iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -20291,7 +20300,7 @@ S_virtual_gtk_editable_get_chars(GtkEditable* s_object, gint s_start_pos, gint s
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkEditable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkEditable", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkEditable"));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_pos));
   tmp = CDR(tmp);
@@ -21076,7 +21085,7 @@ S_virtual_gtk_tree_model_get_path(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithFinalizer(s_object, "GtkTreeModel", (RPointerFinalizer) g_object_unref));
+  SETCAR(tmp, toRPointerWithRef(s_object, "GtkTreeModel"));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);

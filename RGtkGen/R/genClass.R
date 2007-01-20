@@ -85,15 +85,19 @@ genRVirtuals <- function(virtual_names, defs)
   virtual_classes <- sapply(virtuals, function(virtual) virtual$ofobject)
   short_names <- sapply(virtuals, function(virtual) virtual$vname)
   #print(virtual_classes)
-  virtual_header <- "if(!exists('.virtuals')) .virtuals <- NULL"
-  virtual_vectors <- sapply(unique(virtual_classes), function(virtual_class)
-    named(virtual_class, invoke("c", lit(short_names[virtual_classes == virtual_class]))))
-  virtual_list <- rassign(".virtuals", invokev("c", ".virtuals", 
-    invoke("list", paste("\n", ind(virtual_vectors), sep=""))))
+  virtual_header <- "if(!exists('.virtuals')) .virtuals <- new.env()"
+  #virtual_vectors <- sapply(unique(virtual_classes), function(virtual_class)
+  #  named(virtual_class, invoke("c", lit(short_names[virtual_classes == virtual_class]))))
+  virtual_assigns <- sapply(unique(virtual_classes), function(virtual_class)
+    invokev("assign", lit(virtual_class), 
+      invoke("c", lit(short_names[virtual_classes == virtual_class])), ".virtuals"))
+  #virtual_list <- rassign(".virtuals", invokev("c", ".virtuals", 
+  #  invoke("list", paste("\n", ind(virtual_vectors), sep=""))))
   wrappers <- sapply(virtuals, function(virtual) {
     genRCode(virtual, defs, paste(collapseClassName(toClassType(virtual$ofobject, defs)), 
       virtual$vname, sep="_"))
   })
-  paste(c(virtual_header, virtual_list, "", wrappers), collapse="\n")
+  #paste(c(virtual_header, virtual_list, "", wrappers), collapse="\n")
+  paste(c(virtual_header, virtual_assigns, "", wrappers), collapse="\n")
 }
 

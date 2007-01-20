@@ -133,11 +133,11 @@ asCGString(USER_OBJECT_ s_string)
 } 
 
 GList*
-asCGList(USER_OBJECT_ s_list)
+toCGList(USER_OBJECT_ s_list, gboolean dup)
 {
-  static GList* (*fun)(USER_OBJECT_) = NULL;
-  if(!fun) fun = ((GList* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCGList"));
-  return(fun(s_list));
+  static GList* (*fun)(USER_OBJECT_, gboolean) = NULL;
+  if(!fun) fun = ((GList* (*)(USER_OBJECT_, gboolean))R_GetCCallable("RGtk2", "toCGList"));
+  return(fun(s_list, dup));
 } 
 
 USER_OBJECT_
@@ -173,11 +173,11 @@ asRGListConv(GList* glist, ElementConverter converter)
 } 
 
 GSList*
-asCGSList(USER_OBJECT_ s_list)
+toCGSList(USER_OBJECT_ s_list, gboolean dup)
 {
-  static GSList* (*fun)(USER_OBJECT_) = NULL;
-  if(!fun) fun = ((GSList* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCGSList"));
-  return(fun(s_list));
+  static GSList* (*fun)(USER_OBJECT_, gboolean) = NULL;
+  if(!fun) fun = ((GSList* (*)(USER_OBJECT_, gboolean))R_GetCCallable("RGtk2", "toCGSList"));
+  return(fun(s_list, dup));
 } 
 
 USER_OBJECT_
@@ -380,7 +380,6 @@ S_gobject_class_init(GObjectClass* c, USER_OBJECT_ e)
   return(fun(c, e));
 } 
 
-/* just manually copy and pasted this here - because of the var-args */
 USER_OBJECT_
 retByVal(USER_OBJECT_ retval, ...) {
     va_list va;

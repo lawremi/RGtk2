@@ -1,95 +1,95 @@
-.virtuals <- c(.virtuals, list(
-  GtkAccelGroup = c("accel_changed"), 
-  GtkAccessible = c("connect_widget_destroyed"), 
-  GtkAction = c("activate", "connect_proxy", "create_menu_item", "create_tool_item", "disconnect_proxy"), 
-  GtkActionGroup = c("get_action"), 
-  GtkAdjustment = c("changed", "value_changed"), 
-  GtkButton = c("pressed", "released", "clicked", "enter", "leave", "activate"), 
-  GtkCalendar = c("month_changed", "day_selected", "day_selected_double_click", "prev_month", "next_month", "prev_year", "next_year"), 
-  GtkCellEditable = c("editing_done", "remove_widget", "start_editing"), 
-  GtkCellLayout = c("pack_start", "pack_end", "clear", "add_attribute", "set_cell_data_func", "clear_attributes", "reorder"), 
-  GtkCellRenderer = c("get_size", "render", "activate", "editing_canceled", "editing_started", "start_editing"), 
-  GtkCellRendererText = c("edited"), 
-  GtkCellRendererToggle = c("toggled"), 
-  GtkCheckButton = c("draw_indicator"), 
-  GtkCheckMenuItem = c("toggled", "draw_indicator"), 
-  GtkCList = c("set_scroll_adjustments", "refresh", "select_row", "unselect_row", "row_move", "click_column", "resize_column", "toggle_focus_row", "select_all", "unselect_all", "undo_selection", "start_selection", "end_selection", "extend_selection", "scroll_horizontal", "scroll_vertical", "toggle_add_mode", "abort_column_resize", "resync_selection", "selection_find", "draw_row", "draw_drag_highlight", "clear", "fake_unselect_all", "sort_list", "insert_row", "remove_row", "set_cell_contents", "cell_size_request"), 
-  GtkColorButton = c("color_set"), 
-  GtkColorSelection = c("color_changed"), 
-  GtkComboBox = c("changed", "get_active_text"), 
-  GtkContainer = c("add", "remove", "check_resize", "forall", "set_focus_child", "child_type", "composite_name", "set_child_property", "get_child_property"), 
-  GtkCTree = c("tree_select_row", "tree_unselect_row", "tree_expand", "tree_collapse", "tree_move", "change_focus_row_expansion"), 
-  GtkCurve = c("curve_type_changed"), 
-  GtkDialog = c("response", "close"), 
-  GtkEditable = c("insert_text", "delete_text", "changed", "do_insert_text", "do_delete_text", "get_chars", "set_selection_bounds", "get_selection_bounds", "set_position", "get_position"), 
-  GtkEntry = c("populate_popup", "activate", "move_cursor", "insert_at_cursor", "delete_from_cursor", "backspace", "cut_clipboard", "copy_clipboard", "paste_clipboard", "toggle_overwrite"), 
-  GtkEntryCompletion = c("match_selected", "action_activated", "insert_prefix"), 
-  GtkExpander = c("activate"), 
-  GtkFontButton = c("font_set"), 
-  GtkFrame = c("compute_child_allocation"), 
-  GtkHandleBox = c("child_attached", "child_detached"), 
-  GtkIconTheme = c("changed"), 
-  GtkIconView = c("set_scroll_adjustments", "item_activated", "selection_changed", "select_all", "unselect_all", "select_cursor_item", "toggle_cursor_item", "move_cursor", "activate_cursor_item"), 
-  GtkIMContext = c("preedit_start", "preedit_end", "preedit_changed", "commit", "retrieve_surrounding", "delete_surrounding", "set_client_window", "get_preedit_string", "filter_keypress", "focus_in", "focus_out", "reset", "set_cursor_location", "set_use_preedit", "set_surrounding", "get_surrounding"), 
-  GtkInputDialog = c("enable_device", "disable_device"), 
-  GtkItem = c("select", "deselect", "toggle"), 
-  GtkLabel = c("move_cursor", "copy_clipboard", "populate_popup"), 
-  GtkLayout = c("set_scroll_adjustments"), 
-  GtkList = c("selection_changed", "select_child", "unselect_child"), 
-  GtkListItem = c("toggle_focus_row", "select_all", "unselect_all", "undo_selection", "start_selection", "end_selection", "extend_selection", "scroll_horizontal", "scroll_vertical", "toggle_add_mode"), 
-  GtkMenuItem = c("activate", "activate_item", "toggle_size_request", "toggle_size_allocate"), 
-  GtkMenuShell = c("deactivate", "selection_done", "move_current", "activate_current", "cancel", "select_item", "insert", "get_popup_delay"), 
-  GtkMenuToolButton = c("show_menu"), 
-  GtkNotebook = c("switch_page", "select_page", "focus_tab", "change_current_page", "move_focus_out", "reorder_tab", "insert_page"), 
-  GtkOldEditable = c("activate", "set_editable", "move_cursor", "move_word", "move_page", "move_to_row", "move_to_column", "kill_char", "kill_word", "kill_line", "cut_clipboard", "copy_clipboard", "paste_clipboard", "update_text", "get_chars", "set_selection", "set_position"), 
-  GtkOptionMenu = c("changed"), 
-  GtkPaned = c("cycle_child_focus", "toggle_handle_focus", "move_handle", "cycle_handle_focus", "accept_position", "cancel_position"), 
-  GtkPlug = c("embedded"), 
-  GtkProgress = c("paint", "update", "act_mode_enter"), 
-  GtkRadioAction = c("changed"), 
-  GtkRadioButton = c("group_changed"), 
-  GtkRadioMenuItem = c("group_changed"), 
-  GtkRange = c("value_changed", "adjust_bounds", "move_slider", "get_range_border", "change_value"), 
-  GtkRcStyle = c("create_rc_style", "parse", "merge", "create_style"), 
-  GtkRuler = c("draw_ticks", "draw_pos"), 
-  GtkScale = c("format_value", "draw_value", "get_layout_offsets"), 
-  GtkScrolledWindow = c("scroll_child", "move_focus_out"), 
-  GtkSocket = c("plug_added", "plug_removed"), 
-  GtkSpinButton = c("input", "output", "value_changed", "change_value", "wrapped"), 
-  GtkStatusbar = c("text_pushed", "text_popped"), 
-  GtkStyle = c("realize", "unrealize", "copy", "clone", "init_from_rc", "set_background", "render_icon", "draw_hline", "draw_vline", "draw_shadow", "draw_polygon", "draw_arrow", "draw_diamond", "draw_string", "draw_box", "draw_flat_box", "draw_check", "draw_option", "draw_tab", "draw_shadow_gap", "draw_box_gap", "draw_extension", "draw_focus", "draw_slider", "draw_handle", "draw_expander", "draw_layout", "draw_resize_grip"), 
-  GtkText = c("set_scroll_adjustments"), 
-  GtkTextBuffer = c("insert_text", "insert_pixbuf", "insert_child_anchor", "delete_range", "changed", "modified_changed", "mark_set", "mark_deleted", "apply_tag", "remove_tag", "begin_user_action", "end_user_action"), 
-  GtkTextTag = c("event"), 
-  GtkTextTagTable = c("tag_changed", "tag_added", "tag_removed"), 
-  GtkTextView = c("set_scroll_adjustments", "populate_popup", "move_cursor", "page_horizontally", "set_anchor", "insert_at_cursor", "delete_from_cursor", "backspace", "cut_clipboard", "copy_clipboard", "paste_clipboard", "toggle_overwrite", "move_focus"), 
-  GtkTipsQuery = c("start_query", "stop_query", "widget_entered", "widget_selected"), 
-  GtkToggleAction = c("toggled"), 
-  GtkToggleButton = c("toggled"), 
-  GtkToggleToolButton = c("toggled"), 
-  GtkToolbar = c("orientation_changed", "style_changed", "popup_context_menu"), 
-  GtkToolButton = c("clicked"), 
-  GtkToolItem = c("create_menu_proxy", "toolbar_reconfigured", "set_tooltip"), 
-  GtkTreeDragSource = c("row_draggable", "drag_data_get", "drag_data_delete"), 
-  GtkTreeDragDest = c("drag_data_received", "row_drop_possible"), 
-  GtkTreeSelection = c("changed", "changed"), 
-  GtkTree = c("select_child", "unselect_child"), 
-  GtkTreeItem = c("expand", "collapse"), 
-  GtkTreeModel = c("row_changed", "row_inserted", "row_has_child_toggled", "row_deleted", "rows_reordered", "get_flags", "get_n_columns", "get_column_type", "get_iter", "get_path", "get_value", "iter_next", "iter_children", "iter_has_child", "iter_n_children", "iter_nth_child", "iter_parent", "ref_node", "unref_node"), 
-  GtkTreeSortable = c("sort_column_changed", "get_sort_column_id", "set_sort_column_id", "set_sort_func", "set_default_sort_func", "has_default_sort_func"), 
-  GtkTreeView = c("set_scroll_adjustments", "row_activated", "test_expand_row", "test_collapse_row", "row_expanded", "row_collapsed", "columns_changed", "cursor_changed", "move_cursor", "select_all", "unselect_all", "select_cursor_row", "toggle_cursor_row", "expand_collapse_cursor_row", "select_cursor_parent", "start_interactive_search"), 
-  GtkTreeViewColumn = c("clicked"), 
-  GtkUIManager = c("add_widget", "actions_changed", "connect_proxy", "disconnect_proxy", "pre_activate", "post_activate", "get_widget", "get_action"), 
-  GtkViewport = c("set_scroll_adjustments"), 
-  GtkWidget = c("dispatch_child_properties_changed", "show", "show_all", "hide", "hide_all", "map", "unmap", "realize", "unrealize", "size_request", "size_allocate", "state_changed", "parent_set", "hierarchy_changed", "style_set", "direction_changed", "grab_notify", "child_notify", "mnemonic_activate", "grab_focus", "focus", "event", "button_press_event", "button_release_event", "scroll_event", "motion_notify_event", "delete_event", "destroy_event", "expose_event", "key_press_event", "key_release_event", "enter_notify_event", "leave_notify_event", "configure_event", "focus_in_event", "focus_out_event", "map_event", "unmap_event", "property_notify_event", "selection_clear_event", "selection_request_event", "selection_notify_event", "proximity_in_event", "proximity_out_event", "visibility_notify_event", "client_event", "no_expose_event", "window_state_event", "selection_get", "selection_received", "drag_begin", "drag_end", "drag_data_get", "drag_data_delete", "drag_leave", "drag_motion", "drag_drop", "drag_data_received", "popup_menu", "show_help", "get_accessible", "screen_changed", "can_activate_accel", "grab_broken_event", "composited_changed"), 
-  GtkWindow = c("set_focus", "frame_event", "activate_focus", "activate_default", "move_focus", "keys_changed"), 
-  GtkAssistant = c("prepare", "apply", "close", "cancel"), 
-  GtkCellRendererAccel = c("accel_edited", "accel_cleared"), 
-  GtkPrintOperation = c("done", "begin_print", "paginate", "request_page_setup", "draw_page", "end_print", "status_changed", "create_custom_widget", "custom_widget_apply", "preview"), 
-  GtkPrintOperationPreview = c("ready", "got_page_size", "render_page", "is_selected", "end_preview"), 
-  GtkRecentChooser = c("set_current_uri", "get_current_uri", "select_uri", "unselect_uri", "select_all", "unselect_all", "get_items", "get_recent_manager", "add_filter", "remove_filter", "list_filters", "set_sort_func", "item_activated", "selection_changed"), 
-  GtkRecentManager = c("changed"), 
-  GtkStatusIcon = c("activate", "popup_menu", "size_changed")))
+if(!exists('.virtuals')) .virtuals <- new.env()
+assign("GtkAccelGroup", c("accel_changed"), .virtuals)
+assign("GtkAccessible", c("connect_widget_destroyed"), .virtuals)
+assign("GtkAction", c("activate", "connect_proxy", "create_menu_item", "create_tool_item", "disconnect_proxy"), .virtuals)
+assign("GtkActionGroup", c("get_action"), .virtuals)
+assign("GtkAdjustment", c("changed", "value_changed"), .virtuals)
+assign("GtkButton", c("pressed", "released", "clicked", "enter", "leave", "activate"), .virtuals)
+assign("GtkCalendar", c("month_changed", "day_selected", "day_selected_double_click", "prev_month", "next_month", "prev_year", "next_year"), .virtuals)
+assign("GtkCellEditable", c("editing_done", "remove_widget", "start_editing"), .virtuals)
+assign("GtkCellLayout", c("pack_start", "pack_end", "clear", "add_attribute", "set_cell_data_func", "clear_attributes", "reorder"), .virtuals)
+assign("GtkCellRenderer", c("get_size", "render", "activate", "editing_canceled", "editing_started", "start_editing"), .virtuals)
+assign("GtkCellRendererText", c("edited"), .virtuals)
+assign("GtkCellRendererToggle", c("toggled"), .virtuals)
+assign("GtkCheckButton", c("draw_indicator"), .virtuals)
+assign("GtkCheckMenuItem", c("toggled", "draw_indicator"), .virtuals)
+assign("GtkCList", c("set_scroll_adjustments", "refresh", "select_row", "unselect_row", "row_move", "click_column", "resize_column", "toggle_focus_row", "select_all", "unselect_all", "undo_selection", "start_selection", "end_selection", "extend_selection", "scroll_horizontal", "scroll_vertical", "toggle_add_mode", "abort_column_resize", "resync_selection", "selection_find", "draw_row", "draw_drag_highlight", "clear", "fake_unselect_all", "sort_list", "insert_row", "remove_row", "set_cell_contents", "cell_size_request"), .virtuals)
+assign("GtkColorButton", c("color_set"), .virtuals)
+assign("GtkColorSelection", c("color_changed"), .virtuals)
+assign("GtkComboBox", c("changed", "get_active_text"), .virtuals)
+assign("GtkContainer", c("add", "remove", "check_resize", "forall", "set_focus_child", "child_type", "composite_name", "set_child_property", "get_child_property"), .virtuals)
+assign("GtkCTree", c("tree_select_row", "tree_unselect_row", "tree_expand", "tree_collapse", "tree_move", "change_focus_row_expansion"), .virtuals)
+assign("GtkCurve", c("curve_type_changed"), .virtuals)
+assign("GtkDialog", c("response", "close"), .virtuals)
+assign("GtkEditable", c("insert_text", "delete_text", "changed", "do_insert_text", "do_delete_text", "get_chars", "set_selection_bounds", "get_selection_bounds", "set_position", "get_position"), .virtuals)
+assign("GtkEntry", c("populate_popup", "activate", "move_cursor", "insert_at_cursor", "delete_from_cursor", "backspace", "cut_clipboard", "copy_clipboard", "paste_clipboard", "toggle_overwrite"), .virtuals)
+assign("GtkEntryCompletion", c("match_selected", "action_activated", "insert_prefix"), .virtuals)
+assign("GtkExpander", c("activate"), .virtuals)
+assign("GtkFontButton", c("font_set"), .virtuals)
+assign("GtkFrame", c("compute_child_allocation"), .virtuals)
+assign("GtkHandleBox", c("child_attached", "child_detached"), .virtuals)
+assign("GtkIconTheme", c("changed"), .virtuals)
+assign("GtkIconView", c("set_scroll_adjustments", "item_activated", "selection_changed", "select_all", "unselect_all", "select_cursor_item", "toggle_cursor_item", "move_cursor", "activate_cursor_item"), .virtuals)
+assign("GtkIMContext", c("preedit_start", "preedit_end", "preedit_changed", "commit", "retrieve_surrounding", "delete_surrounding", "set_client_window", "get_preedit_string", "filter_keypress", "focus_in", "focus_out", "reset", "set_cursor_location", "set_use_preedit", "set_surrounding", "get_surrounding"), .virtuals)
+assign("GtkInputDialog", c("enable_device", "disable_device"), .virtuals)
+assign("GtkItem", c("select", "deselect", "toggle"), .virtuals)
+assign("GtkLabel", c("move_cursor", "copy_clipboard", "populate_popup"), .virtuals)
+assign("GtkLayout", c("set_scroll_adjustments"), .virtuals)
+assign("GtkList", c("selection_changed", "select_child", "unselect_child"), .virtuals)
+assign("GtkListItem", c("toggle_focus_row", "select_all", "unselect_all", "undo_selection", "start_selection", "end_selection", "extend_selection", "scroll_horizontal", "scroll_vertical", "toggle_add_mode"), .virtuals)
+assign("GtkMenuItem", c("activate", "activate_item", "toggle_size_request", "toggle_size_allocate"), .virtuals)
+assign("GtkMenuShell", c("deactivate", "selection_done", "move_current", "activate_current", "cancel", "select_item", "insert", "get_popup_delay"), .virtuals)
+assign("GtkMenuToolButton", c("show_menu"), .virtuals)
+assign("GtkNotebook", c("switch_page", "select_page", "focus_tab", "change_current_page", "move_focus_out", "reorder_tab", "insert_page"), .virtuals)
+assign("GtkOldEditable", c("activate", "set_editable", "move_cursor", "move_word", "move_page", "move_to_row", "move_to_column", "kill_char", "kill_word", "kill_line", "cut_clipboard", "copy_clipboard", "paste_clipboard", "update_text", "get_chars", "set_selection", "set_position"), .virtuals)
+assign("GtkOptionMenu", c("changed"), .virtuals)
+assign("GtkPaned", c("cycle_child_focus", "toggle_handle_focus", "move_handle", "cycle_handle_focus", "accept_position", "cancel_position"), .virtuals)
+assign("GtkPlug", c("embedded"), .virtuals)
+assign("GtkProgress", c("paint", "update", "act_mode_enter"), .virtuals)
+assign("GtkRadioAction", c("changed"), .virtuals)
+assign("GtkRadioButton", c("group_changed"), .virtuals)
+assign("GtkRadioMenuItem", c("group_changed"), .virtuals)
+assign("GtkRange", c("value_changed", "adjust_bounds", "move_slider", "get_range_border", "change_value"), .virtuals)
+assign("GtkRcStyle", c("create_rc_style", "parse", "merge", "create_style"), .virtuals)
+assign("GtkRuler", c("draw_ticks", "draw_pos"), .virtuals)
+assign("GtkScale", c("format_value", "draw_value", "get_layout_offsets"), .virtuals)
+assign("GtkScrolledWindow", c("scroll_child", "move_focus_out"), .virtuals)
+assign("GtkSocket", c("plug_added", "plug_removed"), .virtuals)
+assign("GtkSpinButton", c("input", "output", "value_changed", "change_value", "wrapped"), .virtuals)
+assign("GtkStatusbar", c("text_pushed", "text_popped"), .virtuals)
+assign("GtkStyle", c("realize", "unrealize", "copy", "clone", "init_from_rc", "set_background", "render_icon", "draw_hline", "draw_vline", "draw_shadow", "draw_polygon", "draw_arrow", "draw_diamond", "draw_string", "draw_box", "draw_flat_box", "draw_check", "draw_option", "draw_tab", "draw_shadow_gap", "draw_box_gap", "draw_extension", "draw_focus", "draw_slider", "draw_handle", "draw_expander", "draw_layout", "draw_resize_grip"), .virtuals)
+assign("GtkText", c("set_scroll_adjustments"), .virtuals)
+assign("GtkTextBuffer", c("insert_text", "insert_pixbuf", "insert_child_anchor", "delete_range", "changed", "modified_changed", "mark_set", "mark_deleted", "apply_tag", "remove_tag", "begin_user_action", "end_user_action"), .virtuals)
+assign("GtkTextTag", c("event"), .virtuals)
+assign("GtkTextTagTable", c("tag_changed", "tag_added", "tag_removed"), .virtuals)
+assign("GtkTextView", c("set_scroll_adjustments", "populate_popup", "move_cursor", "page_horizontally", "set_anchor", "insert_at_cursor", "delete_from_cursor", "backspace", "cut_clipboard", "copy_clipboard", "paste_clipboard", "toggle_overwrite", "move_focus"), .virtuals)
+assign("GtkTipsQuery", c("start_query", "stop_query", "widget_entered", "widget_selected"), .virtuals)
+assign("GtkToggleAction", c("toggled"), .virtuals)
+assign("GtkToggleButton", c("toggled"), .virtuals)
+assign("GtkToggleToolButton", c("toggled"), .virtuals)
+assign("GtkToolbar", c("orientation_changed", "style_changed", "popup_context_menu"), .virtuals)
+assign("GtkToolButton", c("clicked"), .virtuals)
+assign("GtkToolItem", c("create_menu_proxy", "toolbar_reconfigured", "set_tooltip"), .virtuals)
+assign("GtkTreeDragSource", c("row_draggable", "drag_data_get", "drag_data_delete"), .virtuals)
+assign("GtkTreeDragDest", c("drag_data_received", "row_drop_possible"), .virtuals)
+assign("GtkTreeSelection", c("changed", "changed"), .virtuals)
+assign("GtkTree", c("select_child", "unselect_child"), .virtuals)
+assign("GtkTreeItem", c("expand", "collapse"), .virtuals)
+assign("GtkTreeModel", c("row_changed", "row_inserted", "row_has_child_toggled", "row_deleted", "rows_reordered", "get_flags", "get_n_columns", "get_column_type", "get_iter", "get_path", "get_value", "iter_next", "iter_children", "iter_has_child", "iter_n_children", "iter_nth_child", "iter_parent", "ref_node", "unref_node"), .virtuals)
+assign("GtkTreeSortable", c("sort_column_changed", "get_sort_column_id", "set_sort_column_id", "set_sort_func", "set_default_sort_func", "has_default_sort_func"), .virtuals)
+assign("GtkTreeView", c("set_scroll_adjustments", "row_activated", "test_expand_row", "test_collapse_row", "row_expanded", "row_collapsed", "columns_changed", "cursor_changed", "move_cursor", "select_all", "unselect_all", "select_cursor_row", "toggle_cursor_row", "expand_collapse_cursor_row", "select_cursor_parent", "start_interactive_search"), .virtuals)
+assign("GtkTreeViewColumn", c("clicked"), .virtuals)
+assign("GtkUIManager", c("add_widget", "actions_changed", "connect_proxy", "disconnect_proxy", "pre_activate", "post_activate", "get_widget", "get_action"), .virtuals)
+assign("GtkViewport", c("set_scroll_adjustments"), .virtuals)
+assign("GtkWidget", c("dispatch_child_properties_changed", "show", "show_all", "hide", "hide_all", "map", "unmap", "realize", "unrealize", "size_request", "size_allocate", "state_changed", "parent_set", "hierarchy_changed", "style_set", "direction_changed", "grab_notify", "child_notify", "mnemonic_activate", "grab_focus", "focus", "event", "button_press_event", "button_release_event", "scroll_event", "motion_notify_event", "delete_event", "destroy_event", "expose_event", "key_press_event", "key_release_event", "enter_notify_event", "leave_notify_event", "configure_event", "focus_in_event", "focus_out_event", "map_event", "unmap_event", "property_notify_event", "selection_clear_event", "selection_request_event", "selection_notify_event", "proximity_in_event", "proximity_out_event", "visibility_notify_event", "client_event", "no_expose_event", "window_state_event", "selection_get", "selection_received", "drag_begin", "drag_end", "drag_data_get", "drag_data_delete", "drag_leave", "drag_motion", "drag_drop", "drag_data_received", "popup_menu", "show_help", "get_accessible", "screen_changed", "can_activate_accel", "grab_broken_event", "composited_changed"), .virtuals)
+assign("GtkWindow", c("set_focus", "frame_event", "activate_focus", "activate_default", "move_focus", "keys_changed"), .virtuals)
+assign("GtkAssistant", c("prepare", "apply", "close", "cancel"), .virtuals)
+assign("GtkCellRendererAccel", c("accel_edited", "accel_cleared"), .virtuals)
+assign("GtkPrintOperation", c("done", "begin_print", "paginate", "request_page_setup", "draw_page", "end_print", "status_changed", "create_custom_widget", "custom_widget_apply", "preview"), .virtuals)
+assign("GtkPrintOperationPreview", c("ready", "got_page_size", "render_page", "is_selected", "end_preview"), .virtuals)
+assign("GtkRecentChooser", c("set_current_uri", "get_current_uri", "select_uri", "unselect_uri", "select_all", "unselect_all", "get_items", "get_recent_manager", "add_filter", "remove_filter", "list_filters", "set_sort_func", "item_activated", "selection_changed"), .virtuals)
+assign("GtkRecentManager", c("changed"), .virtuals)
+assign("GtkStatusIcon", c("activate", "popup_menu", "size_changed"), .virtuals)
 
 
 gtkAccelGroupClassAccelChanged <-

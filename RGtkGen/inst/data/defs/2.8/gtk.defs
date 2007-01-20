@@ -22957,7 +22957,7 @@
 )
 (define-virtual change_current_page
   (of-object "GtkNotebook")
-  (return-type "none")
+  (return-type "gboolean")
   (parameters
     '("gint" "offset")
   )
@@ -23289,7 +23289,7 @@
 
 (define-virtual scroll_child
   (of-object "GtkScrolledWindow")
-  (return-type "none")
+  (return-type "gboolean")
   (parameters
     '("GtkScrollType" "scroll")
     '("gboolean" "horizontal")

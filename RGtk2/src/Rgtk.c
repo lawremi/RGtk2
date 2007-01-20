@@ -47,6 +47,8 @@ R_gtkInit(long *rargc, char **rargv)
   R_tcldo = R_gtk_handle_events;
 #endif
 
+  R_GTK_TYPE_PARAM_SEXP;
+  
   return TRUE;
 }
 

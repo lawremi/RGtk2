@@ -1,2 +1,0 @@
-.virtuals <- c(.virtuals, list(
-  ))

@@ -203,10 +203,13 @@ function(type)
 }
 
 gObjectGet <-
-function(obj, ...)
+function(obj, ..., drop = T)
 {
    checkPtrType(obj, "GObject")
-   .Call("R_getGObjectProps", obj, as.character(c(...)), PACKAGE = "RGtk2")
+   props <- .Call("R_getGObjectProps", obj, as.character(c(...)), PACKAGE = "RGtk2")
+   if (drop && length(props) == 1)
+     props[[1]]
+   else props
 }
 
 "[.GObject" <-
@@ -503,7 +506,5 @@ function(c_closure)
 }
 
 # virtuals for GObject
-.virtuals <- c(.virtuals, list(
-  GObject = c("set_property", "get_property")
-))
+assign("GObject", c("set_property", "get_property"), .virtuals)
 

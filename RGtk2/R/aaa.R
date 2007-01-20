@@ -1,1 +1,1 @@
-.virtuals <- NULL
+.virtuals <- new.env()

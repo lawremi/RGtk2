@@ -22,6 +22,8 @@ asCStringArray(USER_OBJECT_ svec)
 gchar *
 asCString(USER_OBJECT_ s_str)
 {
+  if (s_str == NULL_USER_OBJECT)
+    return(NULL);
   if (IS_VECTOR(s_str)) {
     if (GET_LENGTH(s_str) == 0)
       return(NULL);

@@ -737,7 +737,10 @@ isArrayParamWithSize <-
 function(param)
 { # great majority of incoming string arrays are NULL terminated, this avoids some confusion
     etype <- toValidType(deref(dequalify(param$type)))
-    isArray(dequalify(param$type)) && (!isPrimitiveType(etype) || getGenericType(etype) != "string")
+    #if (nchar(arraySize(param$type))) print(param$type)
+    isArray(dequalify(param$type)) && 
+    (!isPrimitiveType(etype) || getGenericType(etype) != "string") &&
+    !nchar(arraySize(param$type))
 }
 # simply gets the types of defs param definitions
 getParamTypes <- function(params) {
@@ -1181,7 +1184,10 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, 
    paramtype <- paramtype[[1]][1]
 
  type <- baseType(paramtype)
-
+ # don't get confused by the array-like G[S]List specification
+ if (length(grep("G[S]List", dearray(type))) > 0)
+   type <- dearray(type)
+ 
  if (prefix)
    name <- nameToSArg(paramname)
  else name <- paramname
@@ -1210,6 +1216,8 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, 
     args <- c(args, defs$typecodes[[type]]) 
  } else if (type %in% transparentTypes) { # transparent types ~ 'asCType'
     fun <- asC(type)
+    if ((type == "GList" || type == "GSList") && owns)
+      fun <- paste(fun, "Dup", sep="")
     cast <- NULL
     if (out && !isRef(paramtype))
       fun <- derefName(fun)
@@ -1865,10 +1873,12 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   dummyParams <- lapply(in_params, function(param) {
     param$access <- "out"
     param$name <- nameToSArg(param$name)
+    param$type <- dequalify(param$type)
     param
   })
   dummyFun <- fun
   dummyFun$parameters <- dummyParams
+  dummyFun$owns <- 0
   
   fun_code <- ifelse(virtual, 
     #vecind(paste("*", cast(refType("SEXP"), "s_object + query.instance_size"), sep=""), virtual),

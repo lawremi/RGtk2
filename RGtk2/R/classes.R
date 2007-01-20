@@ -11,6 +11,8 @@
   
 gClass <- function(name, parent = "GObject", class_def = NULL)
 {
+  virtuals <- as.list(.virtuals)
+  
   # make sure name is valid
   
   name <- as.character(name)
@@ -33,14 +35,14 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   reserved <- c(".props", ".initialize", ".signals")
   class_list <- as.list(class_def)
   types <- class_list[!(names(class_list) %in% reserved)]
-  known_types <- names(types) %in% names(.virtuals)
+  known_types <- names(types) %in% names(virtuals)
   if (any(!known_types))
     warning("The types ", paste(names(types)[!known_types], collapse=","), 
       " are not recognized")
   types <- types[known_types]
   ancestors <- lapply(names(types), gTypeGetAncestors)
-  interfaces <- sapply(ancestors, function(hierarchy) 
-    hierarchy[length(hierarchy)] == "GInterface")
+  interfaces <- as.logical(sapply(ancestors, function(hierarchy) 
+    hierarchy[length(hierarchy)] == "GInterface"))
   classes <- types[!interfaces]
   interface_names <- names(types)[interfaces]
   
@@ -67,7 +69,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   types[full_hierarchy[missing_classes]] <- replicate(length(missing_classes), list())
   
   sapply(names(types), function(type_name)
-      types[[type_name]] <<- types[[type_name]][.virtuals[[type_name]]])
+      types[[type_name]] <<- types[[type_name]][virtuals[[type_name]]])
   
   # check init function
   
@@ -110,7 +112,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   get_class_init_funcs <- function(class_name) paste("S", sapply(class_name, .collapseClassName),
     "class_init", sep="_")
   class_init_funcs <- get_class_init_funcs(full_hierarchy)
-  parent_class_init <- class_init_funcs[sapply(class_init_funcs, is.loaded, PACKAGE="RGtk2")][1]
+  parent_class_init <- class_init_funcs[sapply(class_init_funcs, is.loaded)][1]
   class_init_sym <- getNativeSymbolInfo(parent_class_init)$address
   interface_init_syms <- NULL
   if (length(interface_names))
@@ -124,10 +126,21 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
     class_init_sym, interface_init_syms, class_env, props, signals)
 }
 
+registerVirtuals <- function(virtuals)
+{
+  virtuals <- as.environment(virtuals)
+  sapply(ls(virtuals), function(virtual) 
+    assign(virtual, get(virtual, virtuals), .virtuals))
+}
+unregisterVirtuals <- function(virtuals)
+{
+  virtuals <- as.environment(virtuals)
+  eapply(virtuals, rm, .virtuals)
+}
+
 # useful for chaining up
 # obj$parentClass()$doSomething(obj, ...)
 gObjectParentClass <- function(obj)
 {
   gTypeGetClass(class(obj)[2])
 }
-
