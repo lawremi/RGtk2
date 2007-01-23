@@ -177,14 +177,14 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
 USER_OBJECT_
 S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_interfaces, 
   USER_OBJECT_ s_class_init_sym, USER_OBJECT_ s_interface_init_syms, USER_OBJECT_ s_def,
-  USER_OBJECT_ s_props, USER_OBJECT_ s_signals)
+  USER_OBJECT_ s_props, USER_OBJECT_ s_prop_overrides, USER_OBJECT_ s_signals)
 {
   GTypeQuery query;
   GTypeInfo type_info = {0, };
   GInterfaceInfo interface_info = {0, };
   GType new_type, parent_type = g_type_from_name(asCString(s_parent));
   GObjectClass *c;
-  gint i;
+  gint i, j;
   
   R_PreserveObject(s_def);
   
@@ -214,11 +214,11 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   c = g_type_class_ref(new_type);
   for (i = 0; i < GET_LENGTH(s_props); i++) {
     GParamSpec *pspec = asCGParamSpec(VECTOR_ELT(s_props, i));
-    const GParamSpec *existing = g_object_class_find_property(c, pspec->name);
-    if (existing)
-      g_object_class_override_property(c, i+1, pspec->name);
-    else g_object_class_install_property(c, i+1, pspec);
+    g_object_class_install_property(c, i+1, pspec);
   }
+  for (j = 0; j < GET_LENGTH(s_prop_overrides); j++)
+    g_object_class_override_property(c, i+1, 
+      asCString(STRING_ELT(s_prop_overrides, j)));
   g_type_class_unref(c);
   
   /* install signals */

@@ -32,7 +32,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   # process class definition
   
-  reserved <- c(".props", ".initialize", ".signals")
+  reserved <- c(".props", ".prop_overrides", ".initialize", ".signals")
   class_list <- as.list(class_def)
   types <- class_list[!(names(class_list) %in% reserved)]
   known_types <- names(types) %in% names(virtuals)
@@ -81,6 +81,10 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   props <- lapply(class_list[[".props"]], as.GParamSpec)
   
+  # and get any overriden properties
+  
+  prop_overrides <- as.character(class_list[[".prop_overrides"]])
+  
   # check signals
   
   signal_fields <- c("name", "param_types", "ret_type", "flags")
@@ -123,7 +127,8 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   assign(".initialize", init, class_env)
   
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
-    class_init_sym, interface_init_syms, class_env, props, signals)
+    class_init_sym, interface_init_syms, class_env, props, prop_overrides, 
+    signals)
 }
 
 registerVirtuals <- function(virtuals)

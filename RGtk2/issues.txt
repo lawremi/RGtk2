@@ -22,16 +22,19 @@ the symbol from the environment.
 
 3) chaining up to R handlers and new virtuals
 - the class environment should store the new virtuals as well as overrides
-- the class environment should inherit from that of the parent class, unless
+- the class environment should inherit from that of the parent class; unless
   the class extends from a non-R class, it shouldn't "pad" the environment
-- chaining up will be handled on the R side: when the parent class is
-  an R class, it will have a special class added to it, so that method 
-  dispatches look in the class environment first
+- when chaining up, the parent environment is searched for the method and, 
+  if found, it is invoked by calling a C function with the function and its
+  arguments; the C function will invoke the function after attaching the
+  parent object's environments
+- %$% could indicate calling a parent virtual method, instead of $
 - new virtuals are registered with RGtk2 automatically
-- wrappers must be implemented separately using the RGtk2 naming scheme, or
-  maybe it could be done automatically if the virtuals are marked public
 - in order to make the env private, we need to create it on the C side and
   attach it only as an attribute when giving it to R virtuals
+- the class structure will also contain a "public" (and locked) environmnent
+  that can be accessed using the $ operator,
+  which will invoke functions through a call to the C side
   
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)

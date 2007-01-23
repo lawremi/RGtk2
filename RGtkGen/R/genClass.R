@@ -79,7 +79,7 @@ genCClass <- function(name = "GtkWidget", virtuals, defs, package = "RGtk2")
     import = import_code, export = export_code)
 }
 
-genRVirtuals <- function(virtual_names, defs)
+genRVirtuals <- function(virtual_names, defs, package = "RGtk2")
 {
   virtuals <- defs$virtuals[virtual_names]
   virtual_classes <- sapply(virtuals, function(virtual) virtual$ofobject)
@@ -95,7 +95,7 @@ genRVirtuals <- function(virtual_names, defs)
   #  invoke("list", paste("\n", ind(virtual_vectors), sep=""))))
   wrappers <- sapply(virtuals, function(virtual) {
     genRCode(virtual, defs, paste(collapseClassName(toClassType(virtual$ofobject, defs)), 
-      virtual$vname, sep="_"))
+      virtual$vname, sep="_"), package = package)
   })
   #paste(c(virtual_header, virtual_list, "", wrappers), collapse="\n")
   paste(c(virtual_header, virtual_assigns, "", wrappers), collapse="\n")

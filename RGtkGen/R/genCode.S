@@ -278,7 +278,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    open(RVirtuals,"w")
    virtuals <- defs$virtuals[getNonDiscardedNames("virtuals")]
    virtuals <- virtuals[sapply(virtuals, function(virtual) length(getBadTypes(virtual)) == 0)]
-   cat(genRVirtuals(names(virtuals), allDefs), file=RVirtuals)
+   cat(genRVirtuals(names(virtuals), allDefs, package), file=RVirtuals)
    close(RVirtuals)
  }
  
