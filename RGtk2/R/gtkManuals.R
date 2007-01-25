@@ -626,6 +626,15 @@ gtkRadioToolButtonNewFromStock <-
 function(group = NULL, stock.id, show = TRUE) 
 gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
 
+# getting child widgets by index
+"[[.GtkContainer" <-
+function(x, field)
+{
+  if(is.numeric(field))
+    return(x$getChildren()[[field]])
+  else NextMethod("[[")
+}
+
 # EXPERIMENTAL TREE MODEL ACCESS
 # Currently deprecated in favor of custom RGtkDataFrame model
 if (FALSE) {

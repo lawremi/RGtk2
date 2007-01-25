@@ -1,4 +1,7 @@
+#include "RGtk2/gtk.h"
+#ifdef HAVE_LIBGLADE
 #include "RGtk2/libglade.h"
+#endif
 
 /* This is an simple version of the event handler for windows.
    It mimicks what we do in Rggobi, namely hijacking the hook into the
@@ -33,7 +36,8 @@ R_gtkInit(long *rargc, char **rargv)
   int argc;
 
   argc = (int) *rargc;
-
+  
+  gtk_disable_setlocale();
   if (!gtk_init_check(&argc, &rargv))
     return FALSE;
 
@@ -62,5 +66,7 @@ R_init_RGtk2(DllInfo *dll)
   #include "exports/cairoExports.c"
   #include "exports/pangoExports.c"
   #include "exports/gtkExports.c"
+  #ifdef HAVE_LIBGLADE
   #include "exports/libgladeExports.c"
+  #endif
 }

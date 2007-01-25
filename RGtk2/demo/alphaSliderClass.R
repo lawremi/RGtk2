@@ -16,6 +16,7 @@ tform_scale_type <- gClass("RTransformedHScale", "GtkHScale", list(
     gParamSpec("R", "expr", "e", "Transformation of scale value",
       default.value = expression(x))
   ),
+  .public = list(getExpr = function(self) self["expr"]),
   GtkScale = list(
     format_value = function(range, x)
       as.character(eval(range[["expr"]]))
@@ -40,5 +41,7 @@ vbox$packStart(da)
 vbox$packStart(s, FALSE)
 win$add(vbox)
 win$setDefaultSize(400,400)
-win$showAll() 
+win$showAll()
+
+#debug("[[.RGtkObject")
 s$setValue(0.7)

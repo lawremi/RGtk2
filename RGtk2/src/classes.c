@@ -8,8 +8,8 @@ S_virtual_gobject_finalize(GObject *object)
 {
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
   if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
-    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
-    R_ReleaseObject(s_prop_env);
+    USER_OBJECT_ s_instance_env = S_G_OBJECT_GET_INSTANCE_ENV(object);
+    R_ReleaseObject(s_instance_env);
   }
 }
 
@@ -21,15 +21,12 @@ S_virtual_gobject_set_property(GObject *object, guint id, const GValue *value, G
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
   
   s_fun = VECTOR_ELT(findVar(S_GObject_symbol, s_env), 0);
-  /* If 'get_property' is not overriden, then we store properties in our
-     own little environment
+  /* If the user does not override set_property, we store automatically
   */
-  if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
-    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
+  if (s_fun == NULL_USER_OBJECT) {
+    USER_OBJECT_ s_prop_env = S_G_OBJECT_GET_INSTANCE_ENV(object);
     defineVar(install(pspec->name), asRGValue(value), s_prop_env);
-  } 
-  
-  if (s_fun != NULL_USER_OBJECT) {
+  } else {
     USER_OBJECT_ e;
     USER_OBJECT_ tmp;
   
@@ -63,8 +60,10 @@ S_virtual_gobject_get_property(GObject *object, guint id, GValue *value, GParamS
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
   
   s_fun = VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1);
+  /* If the user does not override get_property, we retrieve automatically
+  */
   if (s_fun == NULL_USER_OBJECT) {
-    USER_OBJECT_ s_prop_env = S_GOBJECT_GET_PROPS(object);
+    USER_OBJECT_ s_prop_env = S_G_OBJECT_GET_INSTANCE_ENV(object);
     s_ans = findVar(install(pspec->name), s_prop_env);
     if (s_ans == R_UnboundValue) {
       g_param_value_set_default(pspec, value);
@@ -112,7 +111,8 @@ S_virtual_gobject_constructor(GType type, guint n_properties, GObjectConstructPa
   
 }*/
 
-static USER_OBJECT_ _S_InstanceInit_symbol;
+static USER_OBJECT_ _S_InstanceInit_symbol = NULL;
+static USER_OBJECT_ _S_InstanceEnv_fun;
 
 void
 S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
@@ -121,7 +121,6 @@ S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
   GTypeQuery query;
   
   S_GObject_symbol = install("GObject");
-  _S_InstanceInit_symbol = install(".initialize");
   
   g_type_query(G_OBJECT_CLASS_TYPE(c), &query);
   G_STRUCT_MEMBER(SEXP, c, query.class_size - sizeof(SEXP)) = e;
@@ -141,20 +140,30 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_env = S_GOBJECT_GET_ENV(object);
   USER_OBJECT_ s_fun = findVar(_S_InstanceInit_symbol, s_env);
-  
-  /* install environment for properties if 'get_property' is not overriden */
-  if (VECTOR_ELT(findVar(S_GObject_symbol, s_env), 1) == NULL_USER_OBJECT) {
-    USER_OBJECT_ emptyenv, propenv;
-    GTypeQuery query;
-    g_type_query(G_OBJECT_TYPE(object), &query);
-    PROTECT(tmp = lang1(findFun(install("emptyenv"), R_GlobalEnv))); 
-    PROTECT(emptyenv = eval(tmp, R_GlobalEnv));
-    PROTECT(tmp = lang2(findFun(install("new.env"), R_GlobalEnv), emptyenv));
-    propenv = eval(tmp, R_GlobalEnv);
-    R_PreserveObject(propenv);
-    G_STRUCT_MEMBER(SEXP, object, query.instance_size - sizeof(SEXP)) = propenv;
-    UNPROTECT(3);
+  USER_OBJECT_ instance_env, envs;
+  guint size = 0;
+  gint i;
+  GTypeQuery query;
+  GType type = G_OBJECT_TYPE(object);
+  GObject *tmp_object = object;
+  /* create instance environment */
+  /* we need to get the environment out of every SGObject ancestor class */
+  while(g_type_is_a(type, S_TYPE_G_OBJECT)) {
+    size++;
+    type = g_type_parent(type);
   }
+  envs = NEW_LIST(size);
+  for (i = size-1; i >= 0; i--) {
+    SET_VECTOR_ELT(envs, i, S_GOBJECT_GET_ENV(tmp_object));
+    tmp_object -= sizeof(USER_OBJECT_);
+  }
+  /* and send those to be cloned in R */
+  PROTECT(tmp = lang2(_S_InstanceEnv_fun, envs));
+  PROTECT(instance_env = eval(tmp, R_GlobalEnv));
+  R_PreserveObject(instance_env);
+  g_type_query(G_OBJECT_TYPE(object), &query);
+  G_STRUCT_MEMBER(SEXP, object, query.instance_size - sizeof(SEXP)) = instance_env;
+  UNPROTECT(2);
   
   /* run user function if it exists */
   
@@ -174,6 +183,17 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   UNPROTECT(1);
 }
 
+static USER_OBJECT_
+S_g_object_get_environment(SGObject *obj)
+{
+  return S_G_OBJECT_GET_INSTANCE_ENV(obj);
+}
+
+static void S_g_object_init(SGObjectIface *iface, gpointer data)
+{
+  iface->get_environment = S_g_object_get_environment;
+}
+
 USER_OBJECT_
 S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_interfaces, 
   USER_OBJECT_ s_class_init_sym, USER_OBJECT_ s_interface_init_syms, USER_OBJECT_ s_def,
@@ -186,6 +206,12 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   GObjectClass *c;
   gint i, j;
   
+  if (!_S_InstanceInit_symbol) { /* initialize globals */
+    _S_InstanceInit_symbol = install(".initialize");
+    _S_InstanceEnv_fun = findFun(install(".instanceEnv"), 
+      R_FindNamespace(asRString("RGtk2")));
+  }
+    
   R_PreserveObject(s_def);
   
   g_type_query(parent_type, &query);
@@ -208,6 +234,9 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
     g_type_add_interface_static(new_type, 
       g_type_from_name(asCString(STRING_ELT(s_interfaces, i))), &interface_info);
   }
+  
+  interface_info.interface_init = (GInterfaceInitFunc)S_g_object_init;
+  g_type_add_interface_static(new_type, S_TYPE_G_OBJECT, &interface_info);
   
   /* install properties */
   /* FIXME: move this to the class_init function so that we lazily create the class? */
@@ -237,4 +266,15 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   }
 
   return asRGType(new_type);
+}
+
+/* SGObject interface, for getting the instance environment out */
+GType
+s_g_object_get_type(void)
+{
+  static GType object_type = 0;
+  if (!object_type)
+    object_type = g_type_register_static_simple(G_TYPE_INTERFACE, "SGObject", 
+      sizeof(SGObjectIface), NULL, 0, NULL, 0);
+  return object_type;
 }

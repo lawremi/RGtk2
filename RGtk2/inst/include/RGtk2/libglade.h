@@ -1,4 +1,3 @@
-#ifdef HAVE_LIBGLADE
 #ifndef RGTK2_LIBGLADE_H
 #define RGTK2_LIBGLADE_H
 
@@ -8,5 +7,4 @@
 
 #include <RGtk2/libgladeUserFuncs.h>
 
-#endif
 #endif

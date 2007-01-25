@@ -36,6 +36,13 @@ function(type)
   .Call("R_getGTypeAncestors", type, PACKAGE = "RGtk2")
 }
 
+gTypeGetInterfaces <-
+function(type)
+{
+  type <- as.GType(type)
+  .Call("R_getInterfaces", type, PACKAGE = "RGtk2")
+}
+
 gTypeGetClass <-
 function(type)
 {
@@ -389,10 +396,68 @@ function(obj, name)
 	stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
 }
 
+"$<-.GObject" <-
+function(x, member, value)
+{ 
+  x[[member]] <- value
+  x
+}
+
+"[[<-.GObject" <-
+function(x, member, value)
+{ # first try for prop (most common), then fall back to private env
+  result <- try(x[member] <- value, T)
+  if (inherits(result, "try-error")) {
+    env <- attr(x, ".private")
+    if (is.null(env))
+      stop("Cannot find '", member, "' to set in ", paste(class(x),collapse=", "))
+    protected_env <- parent.env(env)
+    if (exists(member, protected_env))
+      env <- protected_env
+    assign(member, value, env)
+  }
+  x
+}
+
+# access a member in the parent class
+"%$%" <- function(x, method) UseMethod("%$%")
+
+"%$%.GObject" <-
+function(x, method)
+{ # NOT WORKING YET
+  stopifnot(implements(x, "SGObject"))
+  this_env <- attr(x, ".private")
+  stopifnot(!is.null(this_env))
+  ancestor_env <- parent.env(parent.env(this_env))
+  if (exists(method, ancestor_env))
+    result <- get(method, ancestor_env)
+  else eval(substitute(function(...) gTypeGetClass(class(obj)[2])$sym(obj, ...), 
+    list(obj=obj,sym=as.name(method))))
+}
+
 "$.RGtkObject" <-
 function(x, method)
+{ # try for a declared method first, else fall back to member
+ result <- try(.getAutoMethodByName(x, method), T)
+ if (inherits(result, "try-error"))
+   result <- x[[method]]
+ result
+}
+
+.getAutoMemberByName <- 
+function(obj, name)
 {
- .getAutoMethodByName(x, method)
+  # if we have an SGObject, try private env (includes protected) then public
+  stopifnot(implements(obj, "SGObject"))
+  attrs <- attributes(obj)
+  has_private <- ".private" %in% names(attrs)
+  if (has_private)
+    member <- try(get(name, attrs$.private), T)
+  if (!has_private || inherits(member, "try-error"))
+    member <- try(get(name, attrs$.public), T)
+  if (is.function(member))
+    function(...) member(obj, ...)
+  else member
 }
 
 .getAutoMethodByName <-
@@ -430,15 +495,17 @@ function(x, y) {
   #
 function(x, field)
 {
-  if(is.numeric(field)) {
-    return(x$getChildren()[[field]])
+  val <- try(.getAutoMemberByName(x, field), T)
+  if (inherits(val, "try-error")) {
+    sym <- try(.getAutoElementByName(x, field, error = FALSE), T)
+    if (!inherits(sym, "try-error"))
+      val <- eval(substitute(sym(x), list(sym=sym)))
+    else if (inherits(x, "GObject")) {
+     val <- try(x$get(field)[[1]], T)
+    } else val <- sym
   }
-  sym <- try(.getAutoElementByName(x, field, error = FALSE))
-  if (!inherits(sym, "try-error"))
-	  val <- eval(substitute(sym(x), list(sym=sym)))
-  else if (inherits(x, "GObject")) {
-   val <- x$get(field)[[1]]
-  } else val <- sym
+  if (inherits(val, "try-error"))
+   stop("Cannot find '", field, "' for classes ", paste(class(x), collapse=", "))
   return(val)
 }
 if (FALSE) {
@@ -466,7 +533,7 @@ function(obj, name, op = "Get", error = TRUE)
  which <- sapply(sym, exists)
 
  if(!any(which)) {
-	 message <- paste("Could not", op, "element/property", name,"for classes", paste(class(obj), collapse=", "))
+	 message <- paste("Could not", op, "field", name,"for classes", paste(class(obj), collapse=", "))
    if(error)
      stop(message)
    else {

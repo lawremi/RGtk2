@@ -8,7 +8,10 @@
   #   ...
   # )
   #
-  
+
+.reserved <- c(".props", ".prop_overrides", ".initialize", ".signals",
+    ".public", ".protected", ".private")
+
 gClass <- function(name, parent = "GObject", class_def = NULL)
 {
   virtuals <- as.list(.virtuals)
@@ -32,9 +35,8 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   # process class definition
   
-  reserved <- c(".props", ".prop_overrides", ".initialize", ".signals")
   class_list <- as.list(class_def)
-  types <- class_list[!(names(class_list) %in% reserved)]
+  types <- class_list[!(names(class_list) %in% .reserved)]
   known_types <- names(types) %in% names(virtuals)
   if (any(!known_types))
     warning("The types ", paste(names(types)[!known_types], collapse=","), 
@@ -68,7 +70,9 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   missing_classes <- which(!(full_hierarchy %in% names(classes)))
   types[full_hierarchy[missing_classes]] <- replicate(length(missing_classes), list())
   
+  # don't want to fill in the virtuals for SGObject parents
   sapply(names(types), function(type_name)
+    if (!("SGObject" %in% gTypeGetInterfaces(type_name)))
       types[[type_name]] <<- types[[type_name]][virtuals[[type_name]]])
   
   # check init function
@@ -111,6 +115,53 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
     signal
   })
   
+  whichFuncs <- function(env, syms) 
+    unlist(sapply(sapply(syms, get, env), is.function))
+  
+  # get the public members (env locked, fields locked, functions locked)
+  publics <- .newEnv(class_list[[".public"]])
+  public_syms <- ls(publics)
+  public_which_funcs <- whichFuncs(publics, public_syms)
+  
+  # get the protected members (env locked, fields unlocked, functions locked)
+  protecteds <- .newEnv(class_list[[".protected"]])
+  protected_syms <- ls(protecteds)
+  protected_which_funcs <- whichFuncs(protecteds, protected_syms)
+  
+  # get the private members (env unlocked, fields and methods unlocked)
+  # private env inherits from protected
+  privates <- .newEnv(class_list[[".private"]])
+  private_syms <- ls(privates)
+  
+  # check for conflicts between declared members
+  
+  syms <- c(private_syms, protected_syms, public_syms)
+  sym_dups <- duplicated(syms)
+  if (any(sym_dups))
+    stop("Duplicate symbols in class definition: ", 
+      paste(unique(syms[sym_dups]), collapse = ", "))
+  
+  # check for conflicts with ancestors
+  
+  ancestor_syms <- unlist(c(mget(names(types), .virtuals), 
+    mget(names(types), .fields)))
+  ancestor_conflicts <- ancestor_syms %in% syms
+  if (any(ancestor_conflicts))
+    stop("Declared symbols already declared in parent: ", 
+      paste(ancestor_syms[ancestor_conflicts], collapse = ", "))
+  
+  # assume all public and protected methods are "virtuals"
+  my_virtuals <- list(c(public_syms[public_which_funcs], 
+    protected_syms[protected_which_funcs]))
+  names(my_virtuals) <- name
+  registerVirtuals(my_virtuals)
+  
+  # remember all public and protected fields to avoid conflicts
+  my_fields <- list(c(public_syms[!public_which_funcs],
+    protected_syms[!protected_which_funcs]))
+  names(my_fields) <- name
+  .registerFields(my_fields)
+  
   # create new type that extends specified class and implements specified interfaces
   
   get_class_init_funcs <- function(class_name) paste("S", sapply(class_name, .collapseClassName),
@@ -123,8 +174,15 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
     interface_init_syms <- sapply(getNativeSymbolInfo(get_class_init_funcs(interface_names)),
       function(symbol) symbol$address)
   
-  class_env <- .as.environment.list(types)
+  class_env <- .as.environment(types)
   assign(".initialize", init, class_env)
+  
+  # add public, protected, and private to the class env
+  # they need to be cloned and given the corresponding cloned environments
+  # from the parent class (except private) during instantiation
+  assign(".public", publics, class_env)
+  assign(".protected", protecteds, class_env)
+  assign(".private", privates, class_env)
   
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
     class_init_sym, interface_init_syms, class_env, props, prop_overrides, 
@@ -133,14 +191,21 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
 
 registerVirtuals <- function(virtuals)
 {
-  virtuals <- as.environment(virtuals)
-  sapply(ls(virtuals), function(virtual) 
-    assign(virtual, get(virtual, virtuals), .virtuals))
+  .massign(virtuals, .virtuals)
 }
+
 unregisterVirtuals <- function(virtuals)
 {
-  virtuals <- as.environment(virtuals)
-  eapply(virtuals, rm, .virtuals)
+  .mrm(virtuals, .virtuals)
+}
+
+.registerFields <- function(fields)
+{
+  .massign(fields, .fields)
+}
+.unregisterFields <- function(fields)
+{
+  .mrm(fields, .fields)
 }
 
 # useful for chaining up
@@ -149,3 +214,30 @@ gObjectParentClass <- function(obj)
 {
   gTypeGetClass(class(obj)[2])
 }
+
+# takes vector of class env's starting from root, clones the protected env's,
+# establishes the inheritance structure, and then clones the private env
+# for the leaf type, inheriting from its protected env
+# finally, needs to copy overrides from static env to public/protected envs
+# the functions are static, but this way we just worry about 2 environments in R
+.instanceEnv <- function(hierarchy)
+{
+  static <- hierarchy[[length(hierarchy)]]
+  prot <- emptyenv()
+  sapply(hierarchy, function(env) {
+    prot <<- .copyEnv(get(".protected", env), prot)
+  })
+  priv <- .copyEnv(get(".private", static), prot)
+  # need to change parent of public first
+  pub <- .copyEnv(get(".public", static), get(".public", parent.env(static)))
+  assign(".public", pub, static)
+  # if something in static exists in public or protected (parents), copy it over
+  static_syms <- ls(static)
+  static_syms <- static_syms[!(static_syms %in% .reserved)]
+  sapply(sapply(static_syms, exists, pub), function(sym) 
+    assign(sym, get(sym, static), pub))
+  sapply(sapply(static_syms, exists, priv), function(sym) 
+    assign(sym, get(sym, static), priv))
+  priv
+}
+

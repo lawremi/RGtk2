@@ -4,37 +4,14 @@
 Adding support for extending GObjects
 ----------
 
-1) there's no way to override an existing property
-- should be easy, just add GParamOverride support
-
-2) property and field storage
-- private fields (and properties) stored in an environment with the instance,
-  and it is an attr of the pointer when it is sent to the R virtuals
-- protected fields stored in their own environment, which is a parent of the
-  private env, and inherits from protected env of the parent instance
-- .private and .protected lists initialize the environments, which are stored in
-  the class environment, until being copied into an instance environment
-
-All R types will be identified by a GInterface. The $, [, and [[ ops for
-that type will look first to see if the environment is attached as an attr,
-if it isn't they just go to the next method, otherwise they retrieve
-the symbol from the environment.
-
-3) chaining up to R handlers and new virtuals
-- the class environment should store the new virtuals as well as overrides
-- the class environment should inherit from that of the parent class; unless
-  the class extends from a non-R class, it shouldn't "pad" the environment
+1) chaining up to R handlers
+- the class environment should store the overrides (as well as templates)
+- unless the class extends from a non-R class, it shouldn't "pad" the environment
+- the overrides are copied into the instance structure during instantiation
 - when chaining up, the parent environment is searched for the method and, 
-  if found, it is invoked by calling a C function with the function and its
-  arguments; the C function will invoke the function after attaching the
-  parent object's environments
+  if found, it is invoked by entirely within R (may use R wrappers of C code)
 - %$% could indicate calling a parent virtual method, instead of $
 - new virtuals are registered with RGtk2 automatically
-- in order to make the env private, we need to create it on the C side and
-  attach it only as an attribute when giving it to R virtuals
-- the class structure will also contain a "public" (and locked) environmnent
-  that can be accessed using the $ operator,
-  which will invoke functions through a call to the C side
   
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)
@@ -59,12 +36,12 @@ Low Priority Issues
 - support translation of messages
 - should not send code to type cast macros (results in slight slowdown)
 - Returning *Funcs to R
-- GTK property parsing - GtkRcPropertyParser - can we return the GValue by ref?
-- GtkTreeIter - just pass the id?
+- GtkRcPropertyParser - can we return the GValue by ref?
 - allow specification of numeric precision on GtkCellRendererText
 - could throw custom signal in response to GError, instead of warning
 - could use new namespaced .Call mechanism (dll$foo) - better if cached
 - GTypeModule support (create bindings and add module arg to gClass)
+- R wrappers for callbacks so that return values are coerced
 
 Introspection?
 ----------------

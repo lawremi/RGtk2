@@ -397,7 +397,7 @@ void S_GCompareFunc(gconstpointer s_a, gconstpointer s_b);
 
 GClosure* R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data);
 
-/****** Custom RGtk2 types for R objects ********/
+/****** Custom RGtk2 types supporting R objects ********/
 
 GType r_gtk_sexp_get_type(void);
 #define R_GTK_TYPE_SEXP r_gtk_sexp_get_type()
@@ -411,10 +411,21 @@ typedef struct _RGtkParamSpecSexp {
   USER_OBJECT_ default_value;
 } RGtkParamSpecSexp;
 
+/* Marker interface for SGObjects */
+
+typedef struct _SGObject SGObject; /* Dummy typedef */
+typedef struct _SGObjectIface {
+  GTypeInterface parent;
+  USER_OBJECT_ (*get_environment)(SGObject *);
+} SGObjectIface;
+
+GType s_g_object_get_type(void);
+#define S_TYPE_G_OBJECT s_g_object_get_type()
+
 /******* GObject extension ********/
 
 void S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e);
-/* getting the environment (with the overrides) out of a GObject extended by R */
+/* getting the static environment out of the class of a SGObject */
 #define S_GOBJECT_GET_ENV(s_object) \
 __extension__ \
 ({ \
@@ -422,13 +433,21 @@ __extension__ \
     g_type_query(G_OBJECT_TYPE(s_object), &query); \
     G_STRUCT_MEMBER(SEXP, G_OBJECT_GET_CLASS(s_object), query.class_size - sizeof(SEXP)); \
 })
-/* getting the property environment out of an object */
-#define S_GOBJECT_GET_PROPS(s_object) \
+/* getting the instance-level environment out of a SGObject */
+#define S_G_OBJECT_GET_INSTANCE_ENV(s_object) \
 __extension__ \
 ({ \
     GTypeQuery query; \
     g_type_query(G_OBJECT_TYPE(s_object), &query); \
     G_STRUCT_MEMBER(SEXP, s_object, query.instance_size - sizeof(SEXP)); \
+})
+/* add the instance environment as an attribute of an R user object */
+#define S_G_OBJECT_ADD_ENV(s_object, user_object) \
+__extension__ \
+({ \
+    USER_OBJECT_ user_obj = user_object; \
+    setAttrib(user_obj, install(".private"), S_G_OBJECT_GET_INSTANCE_ENV(s_object)); \
+    user_obj; \
 })
 
 /******* Utilities *******/

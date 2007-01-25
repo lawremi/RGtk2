@@ -14,7 +14,7 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -38,7 +38,7 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -62,7 +62,7 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -84,7 +84,7 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -106,7 +106,7 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -128,7 +128,7 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -150,7 +150,7 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -172,7 +172,7 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -194,7 +194,7 @@ S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlink_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlink"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -392,7 +392,7 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -414,7 +414,7 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -436,7 +436,7 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -458,7 +458,7 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -480,7 +480,7 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -504,7 +504,7 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -526,7 +526,7 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -548,7 +548,7 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -570,7 +570,7 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -592,7 +592,7 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -614,7 +614,7 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -636,7 +636,7 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_name));
   tmp = CDR(tmp);
@@ -659,7 +659,7 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
@@ -682,9 +682,9 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithRef(s_parent, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_parent, toRPointerWithRef(s_parent, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -705,7 +705,7 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_role, ATK_TYPE_ROLE));
   tmp = CDR(tmp);
@@ -728,7 +728,7 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_handler_id));
   tmp = CDR(tmp);
@@ -751,7 +751,7 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);
@@ -774,11 +774,11 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_change_index));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithRef(s_changed_child, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_changed_child, toRPointerWithRef(s_changed_child, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -799,7 +799,7 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRLogical(s_focus_in));
   tmp = CDR(tmp);
@@ -822,7 +822,7 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_name));
   tmp = CDR(tmp);
@@ -847,7 +847,7 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -868,9 +868,9 @@ S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObject_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithRef(s_child, "AtkObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_child, toRPointerWithRef(s_child, "AtkObject")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1320,7 +1320,7 @@ S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkObjectFactory_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkObjectFactory"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObjectFactory")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1455,7 +1455,7 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1481,7 +1481,7 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1507,7 +1507,7 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_index));
   tmp = CDR(tmp);
@@ -1531,7 +1531,7 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_index));
   tmp = CDR(tmp);
@@ -1555,7 +1555,7 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1577,7 +1577,7 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1599,7 +1599,7 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1625,7 +1625,7 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1651,7 +1651,7 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1673,7 +1673,7 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -1697,7 +1697,7 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -1721,7 +1721,7 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1745,7 +1745,7 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1769,7 +1769,7 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1791,7 +1791,7 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_caption, "AtkObject"));
   tmp = CDR(tmp);
@@ -1814,7 +1814,7 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -1839,7 +1839,7 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -1864,7 +1864,7 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1889,7 +1889,7 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -1914,7 +1914,7 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_accessible, "AtkObject"));
   tmp = CDR(tmp);
@@ -1937,7 +1937,7 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1960,7 +1960,7 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1983,7 +1983,7 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -2007,7 +2007,7 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 23));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2031,7 +2031,7 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 24));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2057,7 +2057,7 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 25));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2081,7 +2081,7 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 26));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2105,7 +2105,7 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 27));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -2129,7 +2129,7 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 28));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -2153,7 +2153,7 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 29));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2178,7 +2178,7 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 30));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -2203,7 +2203,7 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 31));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
@@ -2228,7 +2228,7 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 32));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
@@ -2253,7 +2253,7 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 33));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -2274,7 +2274,7 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 34));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -2295,7 +2295,7 @@ S_virtual_atk_table_model_changed(AtkTable* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkTable_symbol, S_GOBJECT_GET_ENV(s_object)), 35));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkTable"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -2998,7 +2998,7 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkStreamableContent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkStreamableContent")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3020,7 +3020,7 @@ S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, g
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkStreamableContent_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkStreamableContent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkStreamableContent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -3093,7 +3093,7 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -3117,7 +3117,7 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3139,7 +3139,7 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -3163,7 +3163,7 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3185,7 +3185,7 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -3209,7 +3209,7 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -3233,7 +3233,7 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3255,7 +3255,7 @@ S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkSelection_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkSelection"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3434,7 +3434,7 @@ S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImplementor_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImplementor"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImplementor")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3486,7 +3486,7 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
@@ -3511,7 +3511,7 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3533,7 +3533,7 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3556,7 +3556,7 @@ S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_des
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkImage_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkImage"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
@@ -3670,7 +3670,7 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHypertext")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_link_index));
   tmp = CDR(tmp);
@@ -3694,7 +3694,7 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHypertext")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -3716,7 +3716,7 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHypertext")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_char_index));
   tmp = CDR(tmp);
@@ -3740,7 +3740,7 @@ S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHypertext_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHypertext"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHypertext")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_link_index));
   tmp = CDR(tmp);
@@ -3848,7 +3848,7 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRAtkAttributeSet(s_attrib_set));
   tmp = CDR(tmp);
@@ -3876,7 +3876,7 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_string));
   tmp = CDR(tmp);
@@ -3899,7 +3899,7 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_string));
   tmp = CDR(tmp);
@@ -3926,7 +3926,7 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_pos));
   tmp = CDR(tmp);
@@ -3951,7 +3951,7 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_pos));
   tmp = CDR(tmp);
@@ -3976,7 +3976,7 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_pos));
   tmp = CDR(tmp);
@@ -4001,7 +4001,7 @@ S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_positio
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkEditableText_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkEditableText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkEditableText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
@@ -4165,7 +4165,7 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -4193,7 +4193,7 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -4221,7 +4221,7 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
@@ -4248,7 +4248,7 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
@@ -4273,7 +4273,7 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -4296,7 +4296,7 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -4318,7 +4318,7 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_handler_id));
   tmp = CDR(tmp);
@@ -4341,7 +4341,7 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -4373,7 +4373,7 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -4401,7 +4401,7 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_width));
   tmp = CDR(tmp);
@@ -4427,7 +4427,7 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -4449,7 +4449,7 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -4471,7 +4471,7 @@ S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_b
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkComponent_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkComponent"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRAtkRectangle(s_bounds));
   tmp = CDR(tmp);
@@ -4764,7 +4764,7 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -4788,7 +4788,7 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -4810,7 +4810,7 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -4834,7 +4834,7 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -4858,7 +4858,7 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -4882,7 +4882,7 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -4908,7 +4908,7 @@ S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkAction_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkAction"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
@@ -5077,7 +5077,7 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5099,7 +5099,7 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5121,7 +5121,7 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5143,7 +5143,7 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
@@ -5167,7 +5167,7 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkValue_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkValue"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5306,7 +5306,7 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_offset));
   tmp = CDR(tmp);
@@ -5332,7 +5332,7 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5360,7 +5360,7 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5388,7 +5388,7 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5412,7 +5412,7 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5440,7 +5440,7 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5462,7 +5462,7 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5488,7 +5488,7 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5510,7 +5510,7 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5539,7 +5539,7 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5561,7 +5561,7 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -5589,7 +5589,7 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 11));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5611,7 +5611,7 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_selection_num));
   tmp = CDR(tmp);
@@ -5637,7 +5637,7 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 13));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_offset));
   tmp = CDR(tmp);
@@ -5663,7 +5663,7 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 14));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_selection_num));
   tmp = CDR(tmp);
@@ -5687,7 +5687,7 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_selection_num));
   tmp = CDR(tmp);
@@ -5715,7 +5715,7 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
@@ -5739,7 +5739,7 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 17));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
@@ -5764,7 +5764,7 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 18));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_location));
   tmp = CDR(tmp);
@@ -5787,7 +5787,7 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 19));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5808,7 +5808,7 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 20));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -5829,7 +5829,7 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 21));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_start_offset));
   tmp = CDR(tmp);
@@ -5857,7 +5857,7 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkText_symbol, S_GOBJECT_GET_ENV(s_object)), 22));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkText"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRAtkTextRectangle(s_rect));
   tmp = CDR(tmp);
@@ -6370,7 +6370,7 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkDocument"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkDocument")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -6392,7 +6392,7 @@ S_virtual_atk_document_get_document(AtkDocument* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkDocument_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkDocument"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkDocument")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -6462,7 +6462,7 @@ S_virtual_atk_hyperlink_impl_get_hyperlink(AtkHyperlinkImpl* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlinkImpl_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "AtkHyperlinkImpl"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlinkImpl")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);

@@ -160,6 +160,11 @@ toRPointerWithFinalizer(gconstpointer val, const gchar *typeName, RPointerFinali
     SET_STRING_ELT(rgtk_class, i, COPY_TO_USER_STRING("RGtkObject"));
     SET_CLASS(ans, rgtk_class);
 
+    if (g_type_is_a(type, S_TYPE_G_OBJECT)) {
+      USER_OBJECT_ public_sym = install(".public");
+      setAttrib(ans, public_sym, findVar(public_sym, S_GOBJECT_GET_ENV(val)));
+    }
+        
     if (klass)
         UNPROTECT(1);
     if (finalizer)

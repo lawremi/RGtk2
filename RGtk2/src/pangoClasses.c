@@ -14,7 +14,7 @@ S_virtual_pango_font_describe(PangoFont* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -36,7 +36,7 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(s_lang ? (s_lang) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
@@ -60,7 +60,7 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_glyph));
   tmp = CDR(tmp);
@@ -85,7 +85,7 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(s_language ? (s_language) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
@@ -109,7 +109,7 @@ S_virtual_pango_font_get_font_map(PangoFont* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFont_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFont"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -242,7 +242,7 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -264,7 +264,7 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -286,7 +286,7 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFace_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFace"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -380,7 +380,7 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -403,7 +403,7 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -425,7 +425,7 @@ S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontFamily_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontFamily"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -518,7 +518,7 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontMap")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_context, "PangoContext"));
   tmp = CDR(tmp);
@@ -544,7 +544,7 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontMap")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -567,7 +567,7 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontMap_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontMap"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontMap")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_context, "PangoContext"));
   tmp = CDR(tmp);
@@ -671,7 +671,7 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_wc));
   tmp = CDR(tmp);
@@ -695,7 +695,7 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -717,7 +717,7 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -739,7 +739,7 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoFontset_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoFontset"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(s_func, "PangoFontsetForeachFunc"));
   tmp = CDR(tmp);
@@ -852,7 +852,7 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_font, "PangoFont"));
   tmp = CDR(tmp);
@@ -881,7 +881,7 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_part, PANGO_TYPE_RENDER_PART));
   tmp = CDR(tmp);
@@ -912,7 +912,7 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
@@ -941,7 +941,7 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(s_attr, "PangoAttrShape"));
   tmp = CDR(tmp);
@@ -968,7 +968,7 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_part, PANGO_TYPE_RENDER_PART));
   tmp = CDR(tmp);
@@ -1003,7 +1003,7 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_font, "PangoFont"));
   tmp = CDR(tmp);
@@ -1032,7 +1032,7 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, asREnum(s_part, PANGO_TYPE_RENDER_PART));
   tmp = CDR(tmp);
@@ -1055,7 +1055,7 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1076,7 +1076,7 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
 
   s_ans = eval(e, R_GlobalEnv);
@@ -1097,7 +1097,7 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   SETCAR(tmp, VECTOR_ELT(findVar(S_PangoRenderer_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(s_object, "PangoRenderer"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_run, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free));
   tmp = CDR(tmp);

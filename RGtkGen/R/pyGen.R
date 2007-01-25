@@ -1894,6 +1894,7 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     statement(decl("USER_OBJECT_", "e")),
     statement(decl("USER_OBJECT_", "tmp")),
     statement(decl("USER_OBJECT_", retName)),
+    statement(decl("gint", "err")),
     "",
     #if (virtual) {
     #  c(statement(decl("GTypeQuery", "query")), 
@@ -1906,12 +1907,15 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     statement(pushvec("tmp", fun_code)),
     "",
     statement(sapply(dummyParams, function(param) {
-      pushvec("tmp", convertToR(param$name, param$type, dummyFun, defs)$code)
+      conversion <- convertToR(param$name, param$type, dummyFun, defs)$code
+      if (virtual && baseType(param$type) == fun$ofobject)
+        conversion <- invokev("S_G_OBJECT_ADD_ENV", param$name, conversion)
+      pushvec("tmp", conversion)
     })),
     if (!virtual)
       statement(pushvec("tmp", field(dataName, "data"))),
     "",
-    statement(cassign("s_ans", invokev("eval", "e", "R_GlobalEnv"))),
+    statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err")))),
     "",
     statement(unprotect(1)))
     
