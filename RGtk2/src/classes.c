@@ -183,6 +183,47 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   UNPROTECT(1);
 }
 
+/* clone a pointer to the SGObject and add parent envs */
+USER_OBJECT_
+S_g_object_parent(USER_OBJECT_ s_obj)
+{
+  USER_OBJECT_ parent = toRPointerWithRef(getPtrValue(s_obj), "GObject");
+  USER_OBJECT_ public_env = getAttrib(parent, install(".public"));
+  USER_OBJECT_ private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
+  
+  if (public_env == NULL_USER_OBJECT)
+    return NULL_USER_OBJECT;
+  
+  setAttrib(parent, install(".public"), ENCLOS(public_env));
+  setAttrib(parent, install(".private"), ENCLOS(private_env));
+  
+  return parent;
+}
+
+/* clone a pointer to the SGObject and add private env */
+USER_OBJECT_
+S_g_object_private(USER_OBJECT_ s_obj)
+{
+  USER_OBJECT_ private = toRPointerWithRef(getPtrValue(s_obj), "GObject");
+  USER_OBJECT_ private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
+  
+  setAttrib(private, install(".private"), private_env);
+  
+  return private;
+}
+
+/* so that R can get the public environment out for a named type, allowing it
+   to establish the parent of a new public env without later cloning */
+USER_OBJECT_
+S_g_object_type_get_public_env(USER_OBJECT_ s_type_name)
+{
+  GType type = g_type_from_name(asCString(s_type_name));
+  GObjectClass *c = g_type_class_peek(type);
+  GTypeQuery query;
+  g_type_query(type, &query);
+  return G_STRUCT_MEMBER(USER_OBJECT_, c, query.class_size - sizeof(USER_OBJECT_));
+}
+
 static USER_OBJECT_
 S_g_object_get_environment(SGObject *obj)
 {

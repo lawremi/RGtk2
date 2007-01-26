@@ -119,17 +119,24 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
     unlist(sapply(sapply(syms, get, env), is.function))
   
   # get the public members (env locked, fields locked, functions locked)
-  publics <- .newEnv(class_list[[".public"]])
+  # public env is static, so always inherits from parent
+  public_parent <- emptyenv()
+  if ("SGObject" %in% gTypeGetInterfaces(parent))
+    public_parent <- .Call("S_g_object_type_get_public_env", parent, PACKAGE = "RGtk2")
+  publics <- .newEnv(class_list[[".public"]], public_parent)
   public_syms <- ls(publics)
   public_which_funcs <- whichFuncs(publics, public_syms)
+  # this can be retrieved by R, so lock it now
+  lockEnvironment(publics, TRUE)
   
   # get the protected members (env locked, fields unlocked, functions locked)
+  # protected is attached to parent after being cloned
   protecteds <- .newEnv(class_list[[".protected"]])
   protected_syms <- ls(protecteds)
   protected_which_funcs <- whichFuncs(protecteds, protected_syms)
   
   # get the private members (env unlocked, fields and methods unlocked)
-  # private env inherits from protected
+  # private env inherits from protected after cloning
   privates <- .newEnv(class_list[[".private"]])
   private_syms <- ls(privates)
   
@@ -228,8 +235,7 @@ gObjectParentClass <- function(obj)
     prot <<- .copyEnv(get(".protected", env), prot)
   })
   priv <- .copyEnv(get(".private", static), prot)
-  # need to change parent of public first
-  pub <- .copyEnv(get(".public", static), get(".public", parent.env(static)))
+  pub <- get(".public", static)
   assign(".public", pub, static)
   # if something in static exists in public or protected (parents), copy it over
   static_syms <- ls(static)
@@ -238,6 +244,13 @@ gObjectParentClass <- function(obj)
     assign(sym, get(sym, static), pub))
   sapply(sapply(static_syms, exists, priv), function(sym) 
     assign(sym, get(sym, static), priv))
+  # note that C overrides are not copied here, and they shouldn't be
+  # need to lock up the envs now (public completely, protected just funcs)
+  lockEnvironment(pub, TRUE)
+  lockEnvironment(prot)
+  prot_syms <- ls(prot)
+  prot_funcs <- sapply(sapply(prot_syms, get, prot), is.function)
+  sapply(prot_syms[prot_funcs], lockBinding, prot)
   priv
 }
 

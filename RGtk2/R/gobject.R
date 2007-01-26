@@ -405,7 +405,8 @@ function(x, member, value)
 
 "[[<-.GObject" <-
 function(x, member, value)
-{ # first try for prop (most common), then fall back to private env
+{ # first try for prop, then fall back to private env
+  # this encourages the setting of properties, rather than using the back door
   result <- try(x[member] <- value, T)
   if (inherits(result, "try-error")) {
     env <- attr(x, ".private")
@@ -419,20 +420,27 @@ function(x, member, value)
   x
 }
 
-# access a member in the parent class
+# call a function in the parent class
 "%$%" <- function(x, method) UseMethod("%$%")
 
 "%$%.GObject" <-
 function(x, method)
-{ # NOT WORKING YET
+{
+  # NOT WORKING YET
+  # chaining up is only allowed/makes sense from inside a GObject implementation
   stopifnot(implements(x, "SGObject"))
-  this_env <- attr(x, ".private")
-  stopifnot(!is.null(this_env))
-  ancestor_env <- parent.env(parent.env(this_env))
-  if (exists(method, ancestor_env))
-    result <- get(method, ancestor_env)
-  else eval(substitute(function(...) gTypeGetClass(class(obj)[2])$sym(obj, ...), 
-    list(obj=obj,sym=as.name(method))))
+  if (is.null(attr(x, ".private")))
+    stop("Parent methods should only be invoked within the instance")
+  # assume looking for a function, does not make sense for fields
+  function(...) {
+    # is this a function defined by a parent R class?
+    parent <- .Call("S_g_object_parent", x, PACKAGE = "RGtk2")
+    if (!is.null(parent) && is.function(try(parent[[method]], T))) {
+      parent[[method]](...)
+    } else # fallback to calling a wrapper of the C virtual
+      eval(substitute(gTypeGetClass(class(obj)[2])$sym(obj, ...), 
+        list(obj=x,sym=as.name(method))))
+  }
 }
 
 "$.RGtkObject" <-
@@ -455,8 +463,12 @@ function(obj, name)
     member <- try(get(name, attrs$.private), T)
   if (!has_private || inherits(member, "try-error"))
     member <- try(get(name, attrs$.public), T)
-  if (is.function(member))
+  if (is.function(member)) {
+    # we need to add private env if it's not there
+    if (!has_private)
+      obj <- .Call("S_g_object_private", obj)
     function(...) member(obj, ...)
+  }
   else member
 }
 
@@ -495,6 +507,7 @@ function(x, y) {
   #
 function(x, field)
 {
+  # check SGObject environments (fast), then C field (fast), then GObject prop
   val <- try(.getAutoMemberByName(x, field), T)
   if (inherits(val, "try-error")) {
     sym <- try(.getAutoElementByName(x, field, error = FALSE), T)
