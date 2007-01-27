@@ -116,7 +116,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   })
   
   whichFuncs <- function(env, syms) 
-    unlist(sapply(sapply(syms, get, env), is.function))
+    as.logical(unlist(sapply(sapply(syms, get, env), is.function)))
   
   # get the public members (env locked, fields locked, functions locked)
   # public env is static, so always inherits from parent
@@ -151,7 +151,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   # check for conflicts with ancestors
   
   ancestor_syms <- unlist(c(mget(names(types), .virtuals), 
-    mget(names(types), .fields)))
+    mget(names(types), .fields, ifnotfound = vector("list", length(types)))))
   ancestor_conflicts <- ancestor_syms %in% syms
   if (any(ancestor_conflicts))
     stop("Declared symbols already declared in parent: ", 
@@ -240,16 +240,16 @@ gObjectParentClass <- function(obj)
   # if something in static exists in public or protected (parents), copy it over
   static_syms <- ls(static)
   static_syms <- static_syms[!(static_syms %in% .reserved)]
-  sapply(sapply(static_syms, exists, pub), function(sym) 
+  sapply(static_syms[sapply(static_syms, exists, pub)], function(sym) 
     assign(sym, get(sym, static), pub))
-  sapply(sapply(static_syms, exists, priv), function(sym) 
+  sapply(static_syms[sapply(static_syms, exists, priv)], function(sym) 
     assign(sym, get(sym, static), priv))
   # note that C overrides are not copied here, and they shouldn't be
   # need to lock up the envs now (public completely, protected just funcs)
   lockEnvironment(pub, TRUE)
   lockEnvironment(prot)
   prot_syms <- ls(prot)
-  prot_funcs <- sapply(sapply(prot_syms, get, prot), is.function)
+  prot_funcs <- as.logical(sapply(sapply(prot_syms, get, prot), is.function))
   sapply(prot_syms[prot_funcs], lockBinding, prot)
   priv
 }

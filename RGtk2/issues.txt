@@ -4,15 +4,6 @@
 Adding support for extending GObjects
 ----------
 
-1) chaining up to R handlers
-- the class environment should store the overrides (as well as templates)
-- unless the class extends from a non-R class, it shouldn't "pad" the environment
-- the overrides are copied into the instance structure during instantiation
-- when chaining up, the parent environment is searched for the method and, 
-  if found, it is invoked by entirely within R (may use R wrappers of C code)
-- %$% could indicate calling a parent virtual method, instead of $
-- new virtuals are registered with RGtk2 automatically
-  
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)
   -- this also affects the insert-text signal, so this is a good way around that
