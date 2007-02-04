@@ -187,12 +187,15 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
 USER_OBJECT_
 S_g_object_parent(USER_OBJECT_ s_obj)
 {
-  USER_OBJECT_ parent = toRPointerWithRef(getPtrValue(s_obj), "GObject");
-  USER_OBJECT_ public_env = getAttrib(parent, install(".public"));
-  USER_OBJECT_ private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
+  GObject *obj = getPtrValue(s_obj);
+  USER_OBJECT_ parent = toRPointerWithRef(obj, "GObject");
+  USER_OBJECT_ public_env, private_env;
   
-  if (public_env == NULL_USER_OBJECT)
+  if (!g_type_is_a(g_type_parent(G_OBJECT_TYPE(obj)), S_TYPE_G_OBJECT))
     return NULL_USER_OBJECT;
+  
+  public_env = findVar(install(".public"), S_GOBJECT_GET_ENV(obj));
+  private_env = S_G_OBJECT_GET_INSTANCE_ENV(s_obj);
   
   setAttrib(parent, install(".public"), ENCLOS(public_env));
   setAttrib(parent, install(".private"), ENCLOS(private_env));

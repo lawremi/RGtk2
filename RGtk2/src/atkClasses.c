@@ -7,6 +7,7 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19,7 +20,9 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -31,6 +34,7 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -43,7 +47,9 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -55,6 +61,7 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -65,7 +72,9 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -77,6 +86,7 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -87,7 +97,9 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -99,6 +111,7 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -109,7 +122,9 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -121,6 +136,7 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -131,7 +147,9 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -143,6 +161,7 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -153,7 +172,9 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((guint)0));
 
   UNPROTECT(1);
   return(((guint)asCNumeric(s_ans)));
@@ -165,6 +186,7 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -175,7 +197,9 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -187,6 +211,7 @@ S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -197,7 +222,9 @@ S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlink")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -385,6 +412,7 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -395,7 +423,9 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -407,6 +437,7 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -417,7 +448,9 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -429,6 +462,7 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -439,7 +473,9 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -451,6 +487,7 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -461,7 +498,9 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -473,6 +512,7 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -485,7 +525,9 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
@@ -497,6 +539,7 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -507,7 +550,9 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -519,6 +564,7 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -529,7 +575,9 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkRelationSet*)0));
 
   UNPROTECT(1);
   return(ATK_RELATION_SET(getPtrValueWithRef(s_ans)));
@@ -541,6 +589,7 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -551,7 +600,9 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkRole)0));
 
   UNPROTECT(1);
   return(((AtkRole)asCEnum(s_ans, ATK_TYPE_ROLE)));
@@ -563,6 +614,7 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -573,7 +625,9 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkLayer)0));
 
   UNPROTECT(1);
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
@@ -585,6 +639,7 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -595,7 +650,9 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -607,6 +664,7 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -617,7 +675,9 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkStateSet*)0));
 
   UNPROTECT(1);
   return(ATK_STATE_SET(getPtrValueWithRef(s_ans)));
@@ -629,6 +689,7 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -641,7 +702,9 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   SETCAR(tmp, asRString(s_name));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -652,6 +715,7 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -664,7 +728,9 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -675,6 +741,7 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -687,7 +754,9 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_parent, toRPointerWithRef(s_parent, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -698,6 +767,7 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -710,7 +780,9 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   SETCAR(tmp, asREnum(s_role, ATK_TYPE_ROLE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -721,6 +793,7 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -733,7 +806,9 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   SETCAR(tmp, asRNumeric(s_handler_id));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -744,6 +819,7 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -756,7 +832,9 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -767,6 +845,7 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -781,7 +860,9 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_changed_child, toRPointerWithRef(s_changed_child, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -792,6 +873,7 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -804,7 +886,9 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   SETCAR(tmp, asRLogical(s_focus_in));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -815,6 +899,7 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -829,7 +914,9 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   SETCAR(tmp, asRLogical(s_state_set));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -840,6 +927,7 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -850,7 +938,9 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -861,6 +951,7 @@ S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -873,7 +964,9 @@ S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_child, toRPointerWithRef(s_child, "AtkObject")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1313,6 +1406,7 @@ S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1323,7 +1417,9 @@ S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkObjectFactory")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1448,6 +1544,7 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1462,7 +1559,9 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
@@ -1474,6 +1573,7 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1488,7 +1588,9 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1500,6 +1602,7 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1512,7 +1615,9 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
   SETCAR(tmp, asRInteger(s_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1524,6 +1629,7 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1536,7 +1642,9 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
   SETCAR(tmp, asRInteger(s_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1548,6 +1656,7 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1558,7 +1667,9 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1570,6 +1681,7 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1580,7 +1692,9 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1592,6 +1706,7 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1606,7 +1721,9 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1618,6 +1735,7 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1632,7 +1750,9 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1644,6 +1764,7 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1654,7 +1775,9 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -1666,6 +1789,7 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1678,7 +1802,9 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -1690,6 +1816,7 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1702,7 +1829,9 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -1714,6 +1843,7 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1726,7 +1856,9 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -1738,6 +1870,7 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1750,7 +1883,9 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -1762,6 +1897,7 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1772,7 +1908,9 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -1784,6 +1922,7 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1796,7 +1935,9 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   SETCAR(tmp, toRPointerWithRef(s_caption, "AtkObject"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1807,6 +1948,7 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1821,7 +1963,9 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1832,6 +1976,7 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1846,7 +1991,9 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   SETCAR(tmp, toRPointerWithRef(s_header, "AtkObject"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1857,6 +2004,7 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1871,7 +2019,9 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1882,6 +2032,7 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1896,7 +2047,9 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   SETCAR(tmp, toRPointerWithRef(s_header, "AtkObject"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1907,6 +2060,7 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1919,7 +2073,9 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   SETCAR(tmp, toRPointerWithRef(s_accessible, "AtkObject"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1930,6 +2086,7 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1940,7 +2097,9 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
@@ -1953,6 +2112,7 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1963,7 +2123,9 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
@@ -1976,6 +2138,7 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1988,7 +2151,9 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2000,6 +2165,7 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2012,7 +2178,9 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2024,6 +2192,7 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2038,7 +2207,9 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2050,6 +2221,7 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2062,7 +2234,9 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2074,6 +2248,7 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2086,7 +2261,9 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2098,6 +2275,7 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2110,7 +2288,9 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2122,6 +2302,7 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2134,7 +2315,9 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2146,6 +2329,7 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2160,7 +2344,9 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   SETCAR(tmp, asRInteger(s_num_inserted));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2171,6 +2357,7 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2185,7 +2372,9 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   SETCAR(tmp, asRInteger(s_num_inserted));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2196,6 +2385,7 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2210,7 +2400,9 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   SETCAR(tmp, asRInteger(s_num_deleted));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2221,6 +2413,7 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2235,7 +2428,9 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   SETCAR(tmp, asRInteger(s_num_deleted));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2246,6 +2441,7 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2256,7 +2452,9 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2267,6 +2465,7 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2277,7 +2476,9 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2288,6 +2489,7 @@ S_virtual_atk_table_model_changed(AtkTable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2298,7 +2500,9 @@ S_virtual_atk_table_model_changed(AtkTable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkTable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2991,6 +3195,7 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3001,7 +3206,9 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkStreamableContent")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -3013,6 +3220,7 @@ S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3025,7 +3233,9 @@ S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, g
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -3086,6 +3296,7 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3098,7 +3309,9 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3110,6 +3323,7 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3120,7 +3334,9 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3132,6 +3348,7 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3144,7 +3361,9 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
@@ -3156,6 +3375,7 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3166,7 +3386,9 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -3178,6 +3400,7 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3190,7 +3413,9 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3202,6 +3427,7 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3214,7 +3440,9 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3226,6 +3454,7 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3236,7 +3465,9 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3248,6 +3479,7 @@ S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3258,7 +3490,9 @@ S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3427,6 +3661,7 @@ S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3437,7 +3672,9 @@ S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImplementor")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
@@ -3479,6 +3716,7 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3491,7 +3729,9 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -3504,6 +3744,7 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3514,7 +3755,9 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -3526,6 +3769,7 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3536,7 +3780,9 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkImage")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -3549,6 +3795,7 @@ S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_des
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3561,7 +3808,9 @@ S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_des
   SETCAR(tmp, asRString(s_description));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3663,6 +3912,7 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3675,7 +3925,9 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
   SETCAR(tmp, asRInteger(s_link_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkHyperlink*)0));
 
   UNPROTECT(1);
   return(ATK_HYPERLINK(getPtrValue(s_ans)));
@@ -3687,6 +3939,7 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3697,7 +3950,9 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHypertext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -3709,6 +3964,7 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3721,7 +3977,9 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
   SETCAR(tmp, asRInteger(s_char_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -3733,6 +3991,7 @@ S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3745,7 +4004,9 @@ S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
   SETCAR(tmp, asRInteger(s_link_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3841,6 +4102,7 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -3857,7 +4119,9 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
   SETCAR(tmp, asRInteger(s_end_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -3869,6 +4133,7 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3881,7 +4146,9 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   SETCAR(tmp, asRString(s_string));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3892,6 +4159,7 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -3908,7 +4176,9 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   SETCAR(tmp, asRIntegerArrayWithSize(s_position, s_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3919,6 +4189,7 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -3933,7 +4204,9 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3944,6 +4217,7 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -3958,7 +4232,9 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3969,6 +4245,7 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -3983,7 +4260,9 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3994,6 +4273,7 @@ S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_positio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4006,7 +4286,9 @@ S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_positio
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4158,6 +4440,7 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -4174,7 +4457,9 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4186,6 +4471,7 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -4202,7 +4488,9 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
@@ -4214,6 +4502,7 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4226,7 +4515,9 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -4241,6 +4532,7 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4253,7 +4545,9 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -4266,6 +4560,7 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4276,7 +4571,9 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -4289,6 +4586,7 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4299,7 +4597,9 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4311,6 +4611,7 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4323,7 +4624,9 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   SETCAR(tmp, asRNumeric(s_handler_id));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4334,6 +4637,7 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
@@ -4354,7 +4658,9 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4366,6 +4672,7 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -4382,7 +4689,9 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4394,6 +4703,7 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -4408,7 +4718,9 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4420,6 +4732,7 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4430,7 +4743,9 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkLayer)0));
 
   UNPROTECT(1);
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
@@ -4442,6 +4757,7 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4452,7 +4768,9 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkComponent")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -4464,6 +4782,7 @@ S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_b
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4476,7 +4795,9 @@ S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_b
   SETCAR(tmp, asRAtkRectangle(s_bounds));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4757,6 +5078,7 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4769,7 +5091,9 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4781,6 +5105,7 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4791,7 +5116,9 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -4803,6 +5130,7 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4815,7 +5143,9 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -4827,6 +5157,7 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4839,7 +5170,9 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -4851,6 +5184,7 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4863,7 +5197,9 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -4875,6 +5211,7 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -4889,7 +5226,9 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
   SETCAR(tmp, asRString(s_desc));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4901,6 +5240,7 @@ S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4913,7 +5253,9 @@ S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
   SETCAR(tmp, asRInteger(s_i));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -5070,6 +5412,7 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5080,7 +5423,9 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
@@ -5092,6 +5437,7 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5102,7 +5448,9 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
@@ -5114,6 +5462,7 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5124,7 +5473,9 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
@@ -5136,6 +5487,7 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5148,7 +5500,9 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
   SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5160,6 +5514,7 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5170,7 +5525,9 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkValue")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
@@ -5299,6 +5656,7 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5313,7 +5671,9 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   SETCAR(tmp, asRInteger(s_end_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -5325,6 +5685,7 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5339,7 +5700,9 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   SETCAR(tmp, asREnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -5353,6 +5716,7 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5367,7 +5731,9 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   SETCAR(tmp, asREnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -5381,6 +5747,7 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5393,7 +5760,9 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gunichar)0));
 
   UNPROTECT(1);
   return(((gunichar)asCNumeric(s_ans)));
@@ -5405,6 +5774,7 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5419,7 +5789,9 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   SETCAR(tmp, asREnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -5433,6 +5805,7 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5443,7 +5816,9 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -5455,6 +5830,7 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5467,7 +5843,9 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkAttributeSet*)0));
 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -5481,6 +5859,7 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5491,7 +5870,9 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkAttributeSet*)0));
 
   UNPROTECT(1);
   return(asCAtkAttributeSet(s_ans));
@@ -5503,6 +5884,7 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5517,7 +5899,9 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   SETCAR(tmp, asREnum(s_coords, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -5532,6 +5916,7 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5542,7 +5927,9 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -5554,6 +5941,7 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -5570,7 +5958,9 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
   SETCAR(tmp, asREnum(s_coords, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -5582,6 +5972,7 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5592,7 +5983,9 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -5604,6 +5997,7 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5616,7 +6010,9 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   SETCAR(tmp, asRInteger(s_selection_num));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -5630,6 +6026,7 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5644,7 +6041,9 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
   SETCAR(tmp, asRInteger(s_end_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5656,6 +6055,7 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5668,7 +6068,9 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
   SETCAR(tmp, asRInteger(s_selection_num));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5680,6 +6082,7 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -5696,7 +6099,9 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
   SETCAR(tmp, asRInteger(s_end_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5708,6 +6113,7 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5720,7 +6126,9 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5732,6 +6140,7 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5746,7 +6155,9 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   SETCAR(tmp, asRInteger(s_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5757,6 +6168,7 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5769,7 +6181,9 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   SETCAR(tmp, asRInteger(s_location));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5780,6 +6194,7 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5790,7 +6205,9 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5801,6 +6218,7 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5811,7 +6229,9 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkText")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5822,6 +6242,7 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -5838,7 +6259,9 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   SETCAR(tmp, asREnum(s_coord_type, ATK_TYPE_COORD_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_rect = *asCAtkTextRectangle(VECTOR_ELT(s_ans, 0));
@@ -5850,6 +6273,7 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -5868,7 +6292,9 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   SETCAR(tmp, asREnum(s_y_clip_type, ATK_TYPE_TEXT_CLIP_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkTextRange**)0));
 
   UNPROTECT(1);
   return(((AtkTextRange**)asCArrayDup(s_ans, AtkTextRange*, asCAtkTextRange)));
@@ -6363,6 +6789,7 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6373,7 +6800,9 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkDocument")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -6385,6 +6814,7 @@ S_virtual_atk_document_get_document(AtkDocument* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6395,7 +6825,9 @@ S_virtual_atk_document_get_document(AtkDocument* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkDocument")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gpointer)0));
 
   UNPROTECT(1);
   return(((gpointer)asCGenericData(s_ans)));
@@ -6455,6 +6887,7 @@ S_virtual_atk_hyperlink_impl_get_hyperlink(AtkHyperlinkImpl* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6465,7 +6898,9 @@ S_virtual_atk_hyperlink_impl_get_hyperlink(AtkHyperlinkImpl* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlinkImpl")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkHyperlink*)0));
 
   UNPROTECT(1);
   return(ATK_HYPERLINK(getPtrValue(s_ans)));

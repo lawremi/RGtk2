@@ -329,6 +329,7 @@ gchar asCCharacter(USER_OBJECT_ s_char);
 #define asRInteger ScalarInteger
 #define asRNumeric ScalarReal
 #define asRRaw ScalarRaw
+USER_OBJECT_ asRUnsigned(guint num);
 
 USER_OBJECT_ asRCharacter(gchar c);
 USER_OBJECT_ asRString(const gchar *str);

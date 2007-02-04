@@ -64,6 +64,13 @@ asRString(const char *val)
   return(ans);
 }
 
+/* for special case when converting elements of G[S]Lists */
+USER_OBJECT_
+asRUnsigned(guint num)
+{
+  return asRNumeric(num); /* implicit conversion to double */
+}
+
 USER_OBJECT_
 asREnum(int value, GType etype)
 {

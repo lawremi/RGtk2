@@ -420,27 +420,46 @@ function(x, member, value)
   x
 }
 
-# call a function in the parent class
-"%$%" <- function(x, method) UseMethod("%$%")
-
-"%$%.GObject" <-
-function(x, method)
+parentHandler <-
+function(method, obj = NULL, ...)
 {
-  # NOT WORKING YET
+  # untested stuff
   # chaining up is only allowed/makes sense from inside a GObject implementation
-  stopifnot(implements(x, "SGObject"))
-  if (is.null(attr(x, ".private")))
+  stopifnot(implements(obj, "SGObject"))
+  if (is.null(attr(obj, ".private")))
     stop("Parent methods should only be invoked within the instance")
+  if (FALSE) { # stuff that might work some day
+  parent_call <- sys.call(sys.parent(1))
+  parent_frame <- parent.frame()
+  formal_args <- formals(parent_call[[1]])
+  if (missing(obj))
+    obj <- get(names(formal_args)[1], parent_frame)
+  args <- list(...)
+  formal_names <- names(formal_args)[-1]
+  missing_names <- formal_names[!(formal_names %in% names(args))]
+  unnamed <- sapply(names(args), nchar) == 0
+  names(args)[unnamed] <- missing_names[seq(along=unnamed)]
+  missing_names <- missing_names[!(missing_names %in% names(args))]
+  args[missing_args] <- lapply(missing_names, get, parent_frame)
+  parent <- .Call("S_g_object_parent", obj, PACKAGE = "RGtk2")
+  if (!is.null(parent) && is.function(try(parent[[method]], T)))
+    fun <- parent[[method]]
+  else { # fallback to calling a wrapper of the C virtual
+    fun <- eval(substitute(gTypeGetClass(class(obj)[2])$sym, list(sym=method)))
+    args <- c(obj, args)
+  }      
+  do.call(fun, args)
+  }
   # assume looking for a function, does not make sense for fields
-  function(...) {
+  #function(...) {
     # is this a function defined by a parent R class?
-    parent <- .Call("S_g_object_parent", x, PACKAGE = "RGtk2")
+    parent <- .Call("S_g_object_parent", obj, PACKAGE = "RGtk2")
     if (!is.null(parent) && is.function(try(parent[[method]], T))) {
       parent[[method]](...)
     } else # fallback to calling a wrapper of the C virtual
       eval(substitute(gTypeGetClass(class(obj)[2])$sym(obj, ...), 
-        list(obj=x,sym=as.name(method))))
-  }
+        list(obj=obj,sym=method)))
+  #}
 }
 
 "$.RGtkObject" <-

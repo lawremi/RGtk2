@@ -6,6 +6,7 @@ S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20,7 +21,9 @@ S_GtkAboutDialogActivateLinkFunc(GtkAboutDialog* s_about, const gchar* s_link, g
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -32,6 +35,7 @@ S_GtkCellLayoutDataFunc(GtkCellLayout* s_cell_layout, GtkCellRenderer* s_cell, G
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -50,7 +54,9 @@ S_GtkCellLayoutDataFunc(GtkCellLayout* s_cell_layout, GtkCellRenderer* s_cell, G
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -62,6 +68,7 @@ S_GtkClipboardGetFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_selection_d
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -78,7 +85,9 @@ S_GtkClipboardGetFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_selection_d
   SETCAR(tmp, ((R_CallbackData *)s_user_data_or_owner)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -90,6 +99,7 @@ S_GtkClipboardReceivedFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_select
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -104,7 +114,9 @@ S_GtkClipboardReceivedFunc(GtkClipboard* s_clipboard, GtkSelectionData* s_select
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -116,6 +128,7 @@ S_GtkClipboardImageReceivedFunc(GtkClipboard* s_clipboard, GdkPixbuf* s_image, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -130,7 +143,9 @@ S_GtkClipboardImageReceivedFunc(GtkClipboard* s_clipboard, GdkPixbuf* s_image, g
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -142,6 +157,7 @@ S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -156,7 +172,9 @@ S_GtkClipboardTextReceivedFunc(GtkClipboard* s_clipboard, const gchar* s_text, g
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -168,6 +186,7 @@ S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -184,7 +203,9 @@ S_GtkClipboardTargetsReceivedFunc(GtkClipboard* s_clipboard, GdkAtom* s_atoms, g
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -197,6 +218,7 @@ S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -211,7 +233,9 @@ S_GtkColorSelectionChangePaletteFunc(const GdkColor* s_colors, gint s_n_colors)
   SETCAR(tmp, GtkColorSelectionChangePaletteFunc_cbdata->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -224,6 +248,7 @@ S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkCol
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -240,7 +265,9 @@ S_GtkColorSelectionChangePaletteWithScreenFunc(GdkScreen* s_screen, const GdkCol
   SETCAR(tmp, GtkColorSelectionChangePaletteWithScreenFunc_cbdata->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -252,6 +279,7 @@ S_GtkCTreeGNodeFunc(GtkCTree* s_ctree, guint s_depth, GNode* s_gnode, GtkCTreeNo
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -270,7 +298,9 @@ S_GtkCTreeGNodeFunc(GtkCTree* s_ctree, guint s_depth, GNode* s_gnode, GtkCTreeNo
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -283,6 +313,7 @@ S_GtkCTreeFunc(GtkCTree* s_ctree, GtkCTreeNode* s_node, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -297,7 +328,9 @@ S_GtkCTreeFunc(GtkCTree* s_ctree, GtkCTreeNode* s_node, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -309,6 +342,7 @@ S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_k
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -325,7 +359,9 @@ S_GtkEntryCompletionMatchFunc(GtkEntryCompletion* s_completion, const gchar* s_k
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -338,6 +374,7 @@ S_GtkFileFilterFunc(const GtkFileFilterInfo* s_filter_info, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -350,7 +387,9 @@ S_GtkFileFilterFunc(const GtkFileFilterInfo* s_filter_info, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -363,6 +402,7 @@ S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -377,7 +417,9 @@ S_GtkIconViewForeachFunc(GtkIconView* s_icon_view, GtkTreePath* s_path, gpointer
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -389,6 +431,7 @@ S_GtkTranslateFunc(const gchar* s_path, gpointer s_func_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -401,7 +444,9 @@ S_GtkTranslateFunc(const gchar* s_path, gpointer s_func_data)
   SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -413,6 +458,7 @@ S_GtkFunction(gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -424,7 +470,9 @@ S_GtkFunction(gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -437,6 +485,7 @@ S_GtkKeySnoopFunc(GtkWidget* s_grab_widget, GdkEventKey* s_event, gpointer s_fun
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -451,7 +500,9 @@ S_GtkKeySnoopFunc(GtkWidget* s_grab_widget, GdkEventKey* s_event, gpointer s_fun
   SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -464,6 +515,7 @@ S_GtkTreeModelForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTreeIte
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -480,7 +532,9 @@ S_GtkTreeModelForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTreeIte
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -493,6 +547,7 @@ S_GtkTreeModelFilterVisibleFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -507,7 +562,9 @@ S_GtkTreeModelFilterVisibleFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoi
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -520,6 +577,7 @@ S_GtkTreeModelFilterModifyFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, GValu
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -538,7 +596,9 @@ S_GtkTreeModelFilterModifyFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, GValu
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -551,6 +611,7 @@ S_GtkTreeSelectionFunc(GtkTreeSelection* s_selection, GtkTreeModel* s_model, Gtk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -569,7 +630,9 @@ S_GtkTreeSelectionFunc(GtkTreeSelection* s_selection, GtkTreeModel* s_model, Gtk
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -582,6 +645,7 @@ S_GtkTreeSelectionForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTre
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -598,7 +662,9 @@ S_GtkTreeSelectionForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTre
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -610,6 +676,7 @@ S_GtkTreeIterCompareFunc(GtkTreeModel* s_model, GtkTreeIter* s_a, GtkTreeIter* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -626,7 +693,9 @@ S_GtkTreeIterCompareFunc(GtkTreeModel* s_model, GtkTreeIter* s_a, GtkTreeIter* s
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -639,6 +708,7 @@ S_GtkTreeCellDataFunc(GtkTreeViewColumn* s_tree_column, GtkCellRenderer* s_cell,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -657,7 +727,9 @@ S_GtkTreeCellDataFunc(GtkTreeViewColumn* s_tree_column, GtkCellRenderer* s_cell,
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -669,6 +741,7 @@ S_GtkTreeViewColumnDropFunc(GtkTreeView* s_tree_view, GtkTreeViewColumn* s_colum
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -687,7 +760,9 @@ S_GtkTreeViewColumnDropFunc(GtkTreeView* s_tree_view, GtkTreeViewColumn* s_colum
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -700,6 +775,7 @@ S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -714,7 +790,9 @@ S_GtkTreeViewMappingFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gpointer
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -726,6 +804,7 @@ S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -744,7 +823,9 @@ S_GtkTreeViewSearchEqualFunc(GtkTreeModel* s_model, gint s_column, const gchar* 
   SETCAR(tmp, ((R_CallbackData *)s_search_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -757,6 +838,7 @@ S_GtkTreeDestroyCountFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gint s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -773,7 +855,9 @@ S_GtkTreeDestroyCountFunc(GtkTreeView* s_tree_view, GtkTreePath* s_path, gint s_
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -785,6 +869,7 @@ S_GtkTreeViewRowSeparatorFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -799,7 +884,9 @@ S_GtkTreeViewRowSeparatorFunc(GtkTreeModel* s_model, GtkTreeIter* s_iter, gpoint
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -812,6 +899,7 @@ S_GtkCallback(GtkWidget* s_child, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -824,7 +912,9 @@ S_GtkCallback(GtkWidget* s_child, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -836,6 +926,7 @@ S_GtkAccelMapForeach(gpointer s_data, const gchar* s_accel_path, guint s_accel_k
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -854,7 +945,9 @@ S_GtkAccelMapForeach(gpointer s_data, const gchar* s_accel_path, guint s_accel_k
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -866,6 +959,7 @@ S_GtkAccelGroupFindFunc(GtkAccelKey* s_key, GClosure* s_closure, gpointer s_data
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -880,7 +974,9 @@ S_GtkAccelGroupFindFunc(GtkAccelKey* s_key, GClosure* s_closure, gpointer s_data
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -894,6 +990,7 @@ S_GtkAccelGroupActivate(GtkAccelGroup* s_accel_group, GObject* s_acceleratable, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -912,7 +1009,9 @@ S_GtkAccelGroupActivate(GtkAccelGroup* s_accel_group, GObject* s_acceleratable, 
   SETCAR(tmp, GtkAccelGroupActivate_cbdata->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -925,6 +1024,7 @@ S_GtkTextTagTableForeach(GtkTextTag* s_tag, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -937,7 +1037,9 @@ S_GtkTextTagTableForeach(GtkTextTag* s_tag, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -949,6 +1051,7 @@ S_GtkTextCharPredicate(gunichar s_ch, gpointer s_user_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -961,7 +1064,9 @@ S_GtkTextCharPredicate(gunichar s_ch, gpointer s_user_data)
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -974,6 +1079,7 @@ S_GtkItemFactoryCallback1(gpointer s_callback_data, guint s_callback_action, Gtk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -988,7 +1094,9 @@ S_GtkItemFactoryCallback1(gpointer s_callback_data, guint s_callback_action, Gtk
   SETCAR(tmp, ((R_CallbackData *)s_callback_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1000,6 +1108,7 @@ S_GtkItemFactoryCallback2(GtkWidget* s_widget, gpointer s_callback_data, guint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1014,7 +1123,9 @@ S_GtkItemFactoryCallback2(GtkWidget* s_widget, gpointer s_callback_data, guint s
   SETCAR(tmp, ((R_CallbackData *)s_callback_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1026,6 +1137,7 @@ S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1038,7 +1150,9 @@ S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1051,6 +1165,7 @@ S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -1069,7 +1184,9 @@ S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, 
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1081,6 +1198,7 @@ S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1095,7 +1213,9 @@ S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1107,6 +1227,7 @@ S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -1125,7 +1246,9 @@ S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkNotebook*)0));
 
   UNPROTECT(1);
   return(GTK_NOTEBOOK(getPtrValue(s_ans)));
@@ -1138,6 +1261,7 @@ S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1150,7 +1274,9 @@ S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data)
   SETCAR(tmp, ((R_CallbackData *)s_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1162,6 +1288,7 @@ S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1176,7 +1303,9 @@ S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 
@@ -1188,6 +1317,7 @@ S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1202,7 +1332,9 @@ S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -1215,6 +1347,7 @@ S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1227,7 +1360,9 @@ S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -1240,6 +1375,7 @@ S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -1262,7 +1398,9 @@ S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* 
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
@@ -1276,6 +1414,7 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_di
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1290,7 +1429,9 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_di
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 

@@ -46,7 +46,7 @@ create_page1 <- function(assistant)
 
 create_page2 <- function(assistant)
 {
-  box <- gtkVBox(12, FALSE)
+  box <- gtkVBox(FALSE, 12)
   box$setBorderWidth(12)
 
   checkbutton <- gtkCheckButton(paste("This is optional data, you may continue",

@@ -6,6 +6,7 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 9));
   tmp = e;
@@ -30,7 +31,9 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkWidget*)0));
 
   UNPROTECT(1);
   return(GTK_WIDGET(getPtrValue(s_ans)));
@@ -43,6 +46,7 @@ S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gcha
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -65,7 +69,9 @@ S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gcha
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 } 

@@ -3,6 +3,7 @@ R_RegisterCCallable("RGtk2", "asCString", ((DL_FUNC)asCString));
 R_RegisterCCallable("RGtk2", "asCCharacter", ((DL_FUNC)asCCharacter)); 
 R_RegisterCCallable("RGtk2", "asRCharacter", ((DL_FUNC)asRCharacter)); 
 R_RegisterCCallable("RGtk2", "asRString", ((DL_FUNC)asRString)); 
+R_RegisterCCallable("RGtk2", "asRUnsigned", ((DL_FUNC)asRUnsigned)); 
 R_RegisterCCallable("RGtk2", "asREnum", ((DL_FUNC)asREnum)); 
 R_RegisterCCallable("RGtk2", "asRFlag", ((DL_FUNC)asRFlag)); 
 R_RegisterCCallable("RGtk2", "asCFlag", ((DL_FUNC)asCFlag)); 

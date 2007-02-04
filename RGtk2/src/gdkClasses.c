@@ -35,6 +35,7 @@ S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -45,7 +46,9 @@ S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDisplay")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const gchar*)0));
 
   UNPROTECT(1);
   return(((const gchar*)asCString(s_ans)));
@@ -57,6 +60,7 @@ S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -67,7 +71,9 @@ S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDisplay")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -79,6 +85,7 @@ S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -91,7 +98,9 @@ S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
   SETCAR(tmp, asRInteger(s_screen_num));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkScreen*)0));
 
   UNPROTECT(1);
   return(GDK_SCREEN(getPtrValue(s_ans)));
@@ -103,6 +112,7 @@ S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -113,7 +123,9 @@ S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDisplay")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkScreen*)0));
 
   UNPROTECT(1);
   return(GDK_SCREEN(getPtrValue(s_ans)));
@@ -125,6 +137,7 @@ S_virtual_gdk_display_closed(GdkDisplay* s_object, gboolean s_is_error)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -137,7 +150,9 @@ S_virtual_gdk_display_closed(GdkDisplay* s_object, gboolean s_is_error)
   SETCAR(tmp, asRLogical(s_is_error));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -252,6 +267,7 @@ S_virtual_gdk_display_manager_display_opened(GdkDisplayManager* s_object, GdkDis
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -264,7 +280,9 @@ S_virtual_gdk_display_manager_display_opened(GdkDisplayManager* s_object, GdkDis
   SETCAR(tmp, toRPointerWithRef(s_display, "GdkDisplay"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -320,6 +338,7 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -334,7 +353,9 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
   SETCAR(tmp, asRFlag(s_mask, GDK_TYPE_GC_VALUES_MASK));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkGC*)0));
 
   UNPROTECT(1);
   return(GDK_GC(getPtrValueWithRef(s_ans)));
@@ -346,6 +367,7 @@ S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboole
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -368,7 +390,9 @@ S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboole
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -379,6 +403,7 @@ S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_f
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -405,7 +430,9 @@ S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_f
   SETCAR(tmp, asRInteger(s_angle2));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -416,6 +443,7 @@ S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -434,7 +462,9 @@ S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean
   SETCAR(tmp, asRInteger(s_npoints));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -445,6 +475,7 @@ S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -467,7 +498,9 @@ S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* 
   SETCAR(tmp, asRInteger(s_text_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -478,6 +511,7 @@ S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkG
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -500,7 +534,9 @@ S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkG
   SETCAR(tmp, asRInteger(s_text_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -511,6 +547,7 @@ S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDraw
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -537,7 +574,9 @@ S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDraw
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -548,6 +587,7 @@ S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -564,7 +604,9 @@ S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint*
   SETCAR(tmp, asRInteger(s_npoints));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -575,6 +617,7 @@ S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegm
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -591,7 +634,9 @@ S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegm
   SETCAR(tmp, asRInteger(s_nsegs));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -602,6 +647,7 @@ S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -618,7 +664,9 @@ S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* 
   SETCAR(tmp, asRInteger(s_npoints));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -629,6 +677,7 @@ S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
@@ -649,7 +698,9 @@ S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont
   SETCAR(tmp, toRPointerWithFinalizer(s_glyphs ? pango_glyph_string_copy(s_glyphs) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -660,6 +711,7 @@ S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -686,7 +738,9 @@ S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* 
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -697,6 +751,7 @@ S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -707,7 +762,9 @@ S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -719,6 +776,7 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -729,7 +787,9 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -742,6 +802,7 @@ S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -754,7 +815,9 @@ S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
   SETCAR(tmp, toRPointerWithRef(s_cmap, "GdkColormap"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -765,6 +828,7 @@ S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -775,7 +839,9 @@ S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkColormap*)0));
 
   UNPROTECT(1);
   return(GDK_COLORMAP(getPtrValue(s_ans)));
@@ -787,6 +853,7 @@ S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -797,7 +864,9 @@ S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkVisual*)0));
 
   UNPROTECT(1);
   return(GDK_VISUAL(getPtrValue(s_ans)));
@@ -809,6 +878,7 @@ S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -819,7 +889,9 @@ S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkScreen*)0));
 
   UNPROTECT(1);
   return(GDK_SCREEN(getPtrValue(s_ans)));
@@ -831,6 +903,7 @@ S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -849,7 +922,9 @@ S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkImage*)0));
 
   UNPROTECT(1);
   return(GDK_IMAGE(getPtrValue(s_ans)));
@@ -861,6 +936,7 @@ S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -871,7 +947,9 @@ S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkRegion*)0));
 
   UNPROTECT(1);
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
@@ -883,6 +961,7 @@ S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -893,7 +972,9 @@ S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkRegion*)0));
 
   UNPROTECT(1);
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
@@ -905,6 +986,7 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -923,7 +1005,9 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkDrawable*)0));
 
   UNPROTECT(1);
   *s_composite_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -937,6 +1021,7 @@ S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 13));
   tmp = e;
@@ -969,7 +1054,9 @@ S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf
   SETCAR(tmp, asRInteger(s_y_dither));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -980,6 +1067,7 @@ S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -1002,7 +1090,9 @@ S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_g
   SETCAR(tmp, toRPointerWithFinalizer(s_glyphs ? pango_glyph_string_copy(s_glyphs) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1013,6 +1103,7 @@ S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTr
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -1029,7 +1120,9 @@ S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTr
   SETCAR(tmp, asRInteger(s_n_trapezoids));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1040,6 +1133,7 @@ S_virtual_gdk_drawable_ref_cairo_surface(GdkDrawable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1050,7 +1144,9 @@ S_virtual_gdk_drawable_ref_cairo_surface(GdkDrawable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkDrawable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((cairo_surface_t*)0));
 
   UNPROTECT(1);
   return(((cairo_surface_t*)getPtrValue(s_ans)));
@@ -1621,6 +1717,7 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1631,7 +1728,9 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkGC")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_values = *asCGdkGCValues(VECTOR_ELT(s_ans, 0));
@@ -1643,6 +1742,7 @@ S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesM
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1657,7 +1757,9 @@ S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesM
   SETCAR(tmp, asRFlag(s_mask, GDK_TYPE_GC_VALUES_MASK));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1668,6 +1770,7 @@ S_virtual_gdk_gc_set_dashes(GdkGC* s_object, gint s_dash_offset, gint8* s_dash_l
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -1684,7 +1787,9 @@ S_virtual_gdk_gc_set_dashes(GdkGC* s_object, gint s_dash_offset, gint8* s_dash_l
   SETCAR(tmp, asRInteger(s_n));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1764,6 +1869,7 @@ S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1774,7 +1880,9 @@ S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkKeymap")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1785,6 +1893,7 @@ S_virtual_gdk_keymap_keys_changed(GdkKeymap* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1795,7 +1904,9 @@ S_virtual_gdk_keymap_keys_changed(GdkKeymap* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkKeymap")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1852,6 +1963,7 @@ S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1862,7 +1974,9 @@ S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimation")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -1874,6 +1988,7 @@ S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1884,7 +1999,9 @@ S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimation")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
   return(GDK_PIXBUF(getPtrValue(s_ans)));
@@ -1896,6 +2013,7 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1906,7 +2024,9 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimation")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_width = ((int)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -1919,6 +2039,7 @@ S_virtual_gdk_pixbuf_animation_get_iter(GdkPixbufAnimation* s_object, const GTim
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1931,7 +2052,9 @@ S_virtual_gdk_pixbuf_animation_get_iter(GdkPixbufAnimation* s_object, const GTim
   SETCAR(tmp, asRGTimeVal(s_start_time));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkPixbufAnimationIter*)0));
 
   UNPROTECT(1);
   return(GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_ans)));
@@ -2032,6 +2155,7 @@ S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_obj
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2042,7 +2166,9 @@ S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_obj
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimationIter")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((int)0));
 
   UNPROTECT(1);
   return(((int)asCInteger(s_ans)));
@@ -2054,6 +2180,7 @@ S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2064,7 +2191,9 @@ S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimationIter")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
   return(GDK_PIXBUF(getPtrValue(s_ans)));
@@ -2076,6 +2205,7 @@ S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimatio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2086,7 +2216,9 @@ S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimatio
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufAnimationIter")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2098,6 +2230,7 @@ S_virtual_gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIter* s_object, co
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2110,7 +2243,9 @@ S_virtual_gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIter* s_object, co
   SETCAR(tmp, asRGTimeVal(s_current_time));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -2209,6 +2344,7 @@ S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2223,7 +2359,9 @@ S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2234,6 +2372,7 @@ S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2244,7 +2383,9 @@ S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufLoader")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2255,6 +2396,7 @@ S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -2273,7 +2415,9 @@ S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2284,6 +2428,7 @@ S_virtual_gdk_pixbuf_loader_closed(GdkPixbufLoader* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2294,7 +2439,9 @@ S_virtual_gdk_pixbuf_loader_closed(GdkPixbufLoader* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkPixbufLoader")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2403,6 +2550,7 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2413,7 +2561,9 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkScreen")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2424,6 +2574,7 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2434,7 +2585,9 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GdkScreen")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }

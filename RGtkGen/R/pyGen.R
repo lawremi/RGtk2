@@ -950,7 +950,9 @@ unprotect <- function(count)
 }
 # returns a value from a function
 returnValue <- function(name = "_result") {
-    invoke("return", name)
+  if (is.null(name))
+    "return"
+  else invoke("return", name)
 }
 
 # this isn't required anymore but it's sort of conventional
@@ -1318,6 +1320,8 @@ function(var, ptype, fun = NULL, defs)
 		if (length(grep("^toRPointer", conv$fun)) > 0)
 			fn <- paste(fn, sub("toRPointer", "", conv$fun), sep="")
 		else {
+      if (conv$fun == "asRNumeric") # unsigned integer, asRNumeric won't work
+        conv$fun <- "asRUnsigned"
 			args <- c(args, cast("ElementConverter", conv$fun))
 			fn <- paste(fn, "Conv", sep = "")
 		}
@@ -1865,7 +1869,10 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
 
   hasReturn <- fun$return != "none"
   retName <- nameToSArg("ans")
-  
+  err_ret <- NULL
+  if (hasReturn)
+    err_ret = cast(ret_type, "0")
+    
   in_params <- list()
   if (length(params) > 0)
     in_params <- params[sapply(params, isInParam)]
@@ -1915,7 +1922,9 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     if (!virtual)
       statement(pushvec("tmp", field(dataName, "data"))),
     "",
-    statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err")))),
+    statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err"))),
+    ind("if(err)"),
+      statement(returnValue(err_ret), 2),
     "",
     statement(unprotect(1)))
     

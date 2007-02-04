@@ -7,6 +7,7 @@ S_virtual_pango_font_describe(PangoFont* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -17,7 +18,9 @@ S_virtual_pango_font_describe(PangoFont* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontDescription*)0));
 
   UNPROTECT(1);
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
@@ -29,6 +32,7 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -41,7 +45,9 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   SETCAR(tmp, toRPointer(s_lang ? (s_lang) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoCoverage*)0));
 
   UNPROTECT(1);
   return(((PangoCoverage*)pango_coverage_ref(getPtrValue(s_ans))));
@@ -53,6 +59,7 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -65,7 +72,9 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   SETCAR(tmp, asRNumeric(s_glyph));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_ink_rect = *asCPangoRectangle(VECTOR_ELT(s_ans, 0));
@@ -78,6 +87,7 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -90,7 +100,9 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   SETCAR(tmp, toRPointer(s_language ? (s_language) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontMetrics*)0));
 
   UNPROTECT(1);
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
@@ -102,6 +114,7 @@ S_virtual_pango_font_get_font_map(PangoFont* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -112,7 +125,9 @@ S_virtual_pango_font_get_font_map(PangoFont* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFont")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontMap*)0));
 
   UNPROTECT(1);
   return(PANGO_FONT_MAP(getPtrValue(s_ans)));
@@ -235,6 +250,7 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -245,7 +261,9 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const char*)0));
 
   UNPROTECT(1);
   return(((const char*)asCString(s_ans)));
@@ -257,6 +275,7 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -267,7 +286,9 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontDescription*)0));
 
   UNPROTECT(1);
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
@@ -279,6 +300,7 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -289,7 +311,9 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFace")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_sizes = ((int*)asCArrayDup(VECTOR_ELT(s_ans, 0), int, asCInteger));
@@ -373,6 +397,7 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -383,7 +408,9 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_faces = ((PangoFontFace**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValueWithRef));
@@ -396,6 +423,7 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -406,7 +434,9 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((const char*)0));
 
   UNPROTECT(1);
   return(((const char*)asCString(s_ans)));
@@ -418,6 +448,7 @@ S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -428,7 +459,9 @@ S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontFamily")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -511,6 +544,7 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -525,7 +559,9 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   SETCAR(tmp, toRPointerWithFinalizer(s_desc ? pango_font_description_copy(s_desc) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFont*)0));
 
   UNPROTECT(1);
   return(PANGO_FONT(getPtrValueWithRef(s_ans)));
@@ -537,6 +573,7 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -547,7 +584,9 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontMap")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_families = ((PangoFontFamily**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValueWithRef));
@@ -560,6 +599,7 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -576,7 +616,9 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   SETCAR(tmp, toRPointer(s_language ? (s_language) : NULL, "PangoLanguage"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontset*)0));
 
   UNPROTECT(1);
   return(PANGO_FONTSET(getPtrValueWithRef(s_ans)));
@@ -664,6 +706,7 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -676,7 +719,9 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
   SETCAR(tmp, asRNumeric(s_wc));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFont*)0));
 
   UNPROTECT(1);
   return(PANGO_FONT(getPtrValue(s_ans)));
@@ -688,6 +733,7 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -698,7 +744,9 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoFontMetrics*)0));
 
   UNPROTECT(1);
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
@@ -710,6 +758,7 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -720,7 +769,9 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoFontset")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((PangoLanguage*)0));
 
   UNPROTECT(1);
   return(((PangoLanguage*)getPtrValue(s_ans)));
@@ -732,6 +783,7 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -746,7 +798,9 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
   SETCAR(tmp, s_data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -845,6 +899,7 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -863,7 +918,9 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -874,6 +931,7 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 7));
   tmp = e;
@@ -894,7 +952,9 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -905,6 +965,7 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -923,7 +984,9 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -934,6 +997,7 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -950,7 +1014,9 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -961,6 +1027,7 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 9));
   tmp = e;
@@ -985,7 +1052,9 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   SETCAR(tmp, asRNumeric(s_x22));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -996,6 +1065,7 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -1014,7 +1084,9 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   SETCAR(tmp, asRNumeric(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1025,6 +1097,7 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1037,7 +1110,9 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   SETCAR(tmp, asREnum(s_part, PANGO_TYPE_RENDER_PART));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1048,6 +1123,7 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1058,7 +1134,9 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1069,6 +1147,7 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1079,7 +1158,9 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "PangoRenderer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1090,6 +1171,7 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1102,7 +1184,9 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   SETCAR(tmp, toRPointerWithFinalizer(s_run, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }

@@ -21,6 +21,7 @@ S_virtual_gtk_accel_group_accel_changed(GtkAccelGroup* s_object, guint s_keyval,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -37,7 +38,9 @@ S_virtual_gtk_accel_group_accel_changed(GtkAccelGroup* s_object, guint s_keyval,
   SETCAR(tmp, asRGClosure(s_accel_closure));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -95,6 +98,7 @@ S_virtual_gtk_accessible_connect_widget_destroyed(GtkAccessible* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -105,7 +109,9 @@ S_virtual_gtk_accessible_connect_widget_destroyed(GtkAccessible* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkAccessible")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -146,6 +152,7 @@ S_virtual_gtk_action_activate(GtkAction* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -156,7 +163,9 @@ S_virtual_gtk_action_activate(GtkAction* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -167,6 +176,7 @@ S_virtual_gtk_action_connect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -179,7 +189,9 @@ S_virtual_gtk_action_connect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   SETCAR(tmp, toRPointerWithSink(s_proxy, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -190,6 +202,7 @@ S_virtual_gtk_action_create_menu_item(GtkAction* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -200,7 +213,9 @@ S_virtual_gtk_action_create_menu_item(GtkAction* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkWidget*)0));
 
   UNPROTECT(1);
   return(GTK_WIDGET(getPtrValue(s_ans)));
@@ -212,6 +227,7 @@ S_virtual_gtk_action_create_tool_item(GtkAction* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -222,7 +238,9 @@ S_virtual_gtk_action_create_tool_item(GtkAction* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkWidget*)0));
 
   UNPROTECT(1);
   return(GTK_WIDGET(getPtrValue(s_ans)));
@@ -234,6 +252,7 @@ S_virtual_gtk_action_disconnect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -246,7 +265,9 @@ S_virtual_gtk_action_disconnect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   SETCAR(tmp, toRPointerWithSink(s_proxy, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -357,6 +378,7 @@ S_virtual_gtk_action_group_get_action(GtkActionGroup* s_object, const gchar* s_a
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -369,7 +391,9 @@ S_virtual_gtk_action_group_get_action(GtkActionGroup* s_object, const gchar* s_a
   SETCAR(tmp, asRString(s_action_name));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkAction*)0));
 
   UNPROTECT(1);
   return(GTK_ACTION(getPtrValue(s_ans)));
@@ -414,6 +438,7 @@ S_virtual_gtk_adjustment_changed(GtkAdjustment* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -424,7 +449,9 @@ S_virtual_gtk_adjustment_changed(GtkAdjustment* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkAdjustment")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -435,6 +462,7 @@ S_virtual_gtk_adjustment_value_changed(GtkAdjustment* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -445,7 +473,9 @@ S_virtual_gtk_adjustment_value_changed(GtkAdjustment* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkAdjustment")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -572,6 +602,7 @@ S_virtual_gtk_button_pressed(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -582,7 +613,9 @@ S_virtual_gtk_button_pressed(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -593,6 +626,7 @@ S_virtual_gtk_button_released(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -603,7 +637,9 @@ S_virtual_gtk_button_released(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -614,6 +650,7 @@ S_virtual_gtk_button_clicked(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -624,7 +661,9 @@ S_virtual_gtk_button_clicked(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -635,6 +674,7 @@ S_virtual_gtk_button_enter(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -645,7 +685,9 @@ S_virtual_gtk_button_enter(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -656,6 +698,7 @@ S_virtual_gtk_button_leave(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -666,7 +709,9 @@ S_virtual_gtk_button_leave(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -677,6 +722,7 @@ S_virtual_gtk_button_activate(GtkButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -687,7 +733,9 @@ S_virtual_gtk_button_activate(GtkButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -822,6 +870,7 @@ S_virtual_gtk_calendar_month_changed(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -832,7 +881,9 @@ S_virtual_gtk_calendar_month_changed(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -843,6 +894,7 @@ S_virtual_gtk_calendar_day_selected(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -853,7 +905,9 @@ S_virtual_gtk_calendar_day_selected(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -864,6 +918,7 @@ S_virtual_gtk_calendar_day_selected_double_click(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -874,7 +929,9 @@ S_virtual_gtk_calendar_day_selected_double_click(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -885,6 +942,7 @@ S_virtual_gtk_calendar_prev_month(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -895,7 +953,9 @@ S_virtual_gtk_calendar_prev_month(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -906,6 +966,7 @@ S_virtual_gtk_calendar_next_month(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -916,7 +977,9 @@ S_virtual_gtk_calendar_next_month(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -927,6 +990,7 @@ S_virtual_gtk_calendar_prev_year(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -937,7 +1001,9 @@ S_virtual_gtk_calendar_prev_year(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -948,6 +1014,7 @@ S_virtual_gtk_calendar_next_year(GtkCalendar* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -958,7 +1025,9 @@ S_virtual_gtk_calendar_next_year(GtkCalendar* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCalendar")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1095,6 +1164,7 @@ S_virtual_gtk_cell_renderer_get_size(GtkCellRenderer* s_object, GtkWidget* s_wid
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1109,7 +1179,9 @@ S_virtual_gtk_cell_renderer_get_size(GtkCellRenderer* s_object, GtkWidget* s_wid
   SETCAR(tmp, asRGdkRectangle(s_cell_area));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -1124,6 +1196,7 @@ S_virtual_gtk_cell_renderer_render(GtkCellRenderer* s_object, GdkDrawable* s_win
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -1146,7 +1219,9 @@ S_virtual_gtk_cell_renderer_render(GtkCellRenderer* s_object, GdkDrawable* s_win
   SETCAR(tmp, asRFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1157,6 +1232,7 @@ S_virtual_gtk_cell_renderer_activate(GtkCellRenderer* s_object, GdkEvent* s_even
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -1179,7 +1255,9 @@ S_virtual_gtk_cell_renderer_activate(GtkCellRenderer* s_object, GdkEvent* s_even
   SETCAR(tmp, asRFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -1191,6 +1269,7 @@ S_virtual_gtk_cell_renderer_editing_canceled(GtkCellRenderer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1201,7 +1280,9 @@ S_virtual_gtk_cell_renderer_editing_canceled(GtkCellRenderer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCellRenderer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1212,6 +1293,7 @@ S_virtual_gtk_cell_renderer_editing_started(GtkCellRenderer* s_object, GtkCellEd
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1226,7 +1308,9 @@ S_virtual_gtk_cell_renderer_editing_started(GtkCellRenderer* s_object, GtkCellEd
   SETCAR(tmp, asRString(s_path));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1237,6 +1321,7 @@ S_virtual_gtk_cell_renderer_start_editing(GtkCellRenderer* s_object, GdkEvent* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -1259,7 +1344,9 @@ S_virtual_gtk_cell_renderer_start_editing(GtkCellRenderer* s_object, GdkEvent* s
   SETCAR(tmp, asRFlag(s_flags, GTK_TYPE_CELL_RENDERER_STATE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkCellEditable*)0));
 
   UNPROTECT(1);
   return(GTK_CELL_EDITABLE(getPtrValue(s_ans)));
@@ -1455,6 +1542,7 @@ S_virtual_gtk_cell_renderer_text_edited(GtkCellRendererText* s_object, const gch
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1469,7 +1557,9 @@ S_virtual_gtk_cell_renderer_text_edited(GtkCellRendererText* s_object, const gch
   SETCAR(tmp, asRString(s_new_text));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1512,6 +1602,7 @@ S_virtual_gtk_cell_renderer_toggle_toggled(GtkCellRendererToggle* s_object, cons
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1524,7 +1615,9 @@ S_virtual_gtk_cell_renderer_toggle_toggled(GtkCellRendererToggle* s_object, cons
   SETCAR(tmp, asRString(s_path));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1580,6 +1673,7 @@ S_virtual_gtk_check_button_draw_indicator(GtkCheckButton* s_object, GdkRectangle
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1592,7 +1686,9 @@ S_virtual_gtk_check_button_draw_indicator(GtkCheckButton* s_object, GdkRectangle
   SETCAR(tmp, asRGdkRectangle(s_area));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1634,6 +1730,7 @@ S_virtual_gtk_check_menu_item_toggled(GtkCheckMenuItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1644,7 +1741,9 @@ S_virtual_gtk_check_menu_item_toggled(GtkCheckMenuItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCheckMenuItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1655,6 +1754,7 @@ S_virtual_gtk_check_menu_item_draw_indicator(GtkCheckMenuItem* s_object, GdkRect
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1667,7 +1767,9 @@ S_virtual_gtk_check_menu_item_draw_indicator(GtkCheckMenuItem* s_object, GdkRect
   SETCAR(tmp, asRGdkRectangle(s_area));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1725,6 +1827,7 @@ S_virtual_gtk_clist_set_scroll_adjustments(GtkCList* s_object, GtkAdjustment* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1739,7 +1842,9 @@ S_virtual_gtk_clist_set_scroll_adjustments(GtkCList* s_object, GtkAdjustment* s_
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1750,6 +1855,7 @@ S_virtual_gtk_clist_refresh(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1760,7 +1866,9 @@ S_virtual_gtk_clist_refresh(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1771,6 +1879,7 @@ S_virtual_gtk_clist_select_row(GtkCList* s_object, gint s_row, gint s_column, Gd
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -1787,7 +1896,9 @@ S_virtual_gtk_clist_select_row(GtkCList* s_object, gint s_row, gint s_column, Gd
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1798,6 +1909,7 @@ S_virtual_gtk_clist_unselect_row(GtkCList* s_object, gint s_row, gint s_column, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -1814,7 +1926,9 @@ S_virtual_gtk_clist_unselect_row(GtkCList* s_object, gint s_row, gint s_column, 
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1825,6 +1939,7 @@ S_virtual_gtk_clist_row_move(GtkCList* s_object, gint s_source_row, gint s_dest_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1839,7 +1954,9 @@ S_virtual_gtk_clist_row_move(GtkCList* s_object, gint s_source_row, gint s_dest_
   SETCAR(tmp, asRInteger(s_dest_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1850,6 +1967,7 @@ S_virtual_gtk_clist_click_column(GtkCList* s_object, gint s_column)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -1862,7 +1980,9 @@ S_virtual_gtk_clist_click_column(GtkCList* s_object, gint s_column)
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1873,6 +1993,7 @@ S_virtual_gtk_clist_resize_column(GtkCList* s_object, gint s_column, gint s_widt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -1887,7 +2008,9 @@ S_virtual_gtk_clist_resize_column(GtkCList* s_object, gint s_column, gint s_widt
   SETCAR(tmp, asRInteger(s_width));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1898,6 +2021,7 @@ S_virtual_gtk_clist_toggle_focus_row(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1908,7 +2032,9 @@ S_virtual_gtk_clist_toggle_focus_row(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1919,6 +2045,7 @@ S_virtual_gtk_clist_select_all(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1929,7 +2056,9 @@ S_virtual_gtk_clist_select_all(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1940,6 +2069,7 @@ S_virtual_gtk_clist_unselect_all(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1950,7 +2080,9 @@ S_virtual_gtk_clist_unselect_all(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1961,6 +2093,7 @@ S_virtual_gtk_clist_undo_selection(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1971,7 +2104,9 @@ S_virtual_gtk_clist_undo_selection(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -1982,6 +2117,7 @@ S_virtual_gtk_clist_start_selection(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -1992,7 +2128,9 @@ S_virtual_gtk_clist_start_selection(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2003,6 +2141,7 @@ S_virtual_gtk_clist_end_selection(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2013,7 +2152,9 @@ S_virtual_gtk_clist_end_selection(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2024,6 +2165,7 @@ S_virtual_gtk_clist_extend_selection(GtkCList* s_object, GtkScrollType s_scroll_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -2040,7 +2182,9 @@ S_virtual_gtk_clist_extend_selection(GtkCList* s_object, GtkScrollType s_scroll_
   SETCAR(tmp, asRLogical(s_auto_start_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2051,6 +2195,7 @@ S_virtual_gtk_clist_scroll_horizontal(GtkCList* s_object, GtkScrollType s_scroll
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2065,7 +2210,9 @@ S_virtual_gtk_clist_scroll_horizontal(GtkCList* s_object, GtkScrollType s_scroll
   SETCAR(tmp, asRNumeric(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2076,6 +2223,7 @@ S_virtual_gtk_clist_scroll_vertical(GtkCList* s_object, GtkScrollType s_scroll_t
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2090,7 +2238,9 @@ S_virtual_gtk_clist_scroll_vertical(GtkCList* s_object, GtkScrollType s_scroll_t
   SETCAR(tmp, asRNumeric(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2101,6 +2251,7 @@ S_virtual_gtk_clist_toggle_add_mode(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2111,7 +2262,9 @@ S_virtual_gtk_clist_toggle_add_mode(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2122,6 +2275,7 @@ S_virtual_gtk_clist_abort_column_resize(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2132,7 +2286,9 @@ S_virtual_gtk_clist_abort_column_resize(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2143,6 +2299,7 @@ S_virtual_gtk_clist_resync_selection(GtkCList* s_object, GdkEvent* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2155,7 +2312,9 @@ S_virtual_gtk_clist_resync_selection(GtkCList* s_object, GdkEvent* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2166,6 +2325,7 @@ S_virtual_gtk_clist_selection_find(GtkCList* s_object, gint s_row_number, GList*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2180,7 +2340,9 @@ S_virtual_gtk_clist_selection_find(GtkCList* s_object, gint s_row_number, GList*
   SETCAR(tmp, asRGList(s_row_list_element, "GtkCListRow"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GList*)0));
 
   UNPROTECT(1);
   return(((GList*)asCArrayRef(s_ans, GList, asCGList)));
@@ -2192,6 +2354,7 @@ S_virtual_gtk_clist_draw_row(GtkCList* s_object, GdkRectangle* s_area, gint s_ro
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -2208,7 +2371,9 @@ S_virtual_gtk_clist_draw_row(GtkCList* s_object, GdkRectangle* s_area, gint s_ro
   SETCAR(tmp, toRPointer(s_clist_row, "GtkCListRow"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2219,6 +2384,7 @@ S_virtual_gtk_clist_draw_drag_highlight(GtkCList* s_object, GtkCListRow* s_targe
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -2235,7 +2401,9 @@ S_virtual_gtk_clist_draw_drag_highlight(GtkCList* s_object, GtkCListRow* s_targe
   SETCAR(tmp, asREnum(s_drag_pos, GTK_TYPE_CLIST_DRAG_POS));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2246,6 +2414,7 @@ S_virtual_gtk_clist_clear(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2256,7 +2425,9 @@ S_virtual_gtk_clist_clear(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2267,6 +2438,7 @@ S_virtual_gtk_clist_fake_unselect_all(GtkCList* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2279,7 +2451,9 @@ S_virtual_gtk_clist_fake_unselect_all(GtkCList* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2290,6 +2464,7 @@ S_virtual_gtk_clist_sort_list(GtkCList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2300,7 +2475,9 @@ S_virtual_gtk_clist_sort_list(GtkCList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2311,6 +2488,7 @@ S_virtual_gtk_clist_insert_row(GtkCList* s_object, gint s_row, gchar** s_text)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -2325,7 +2503,9 @@ S_virtual_gtk_clist_insert_row(GtkCList* s_object, gint s_row, gchar** s_text)
   SETCAR(tmp, asRStringArrayWithSize(s_text, s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -2337,6 +2517,7 @@ S_virtual_gtk_clist_remove_row(GtkCList* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -2349,7 +2530,9 @@ S_virtual_gtk_clist_remove_row(GtkCList* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2360,6 +2543,7 @@ S_virtual_gtk_clist_set_cell_contents(GtkCList* s_object, GtkCListRow* s_clist_r
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 9));
   tmp = e;
@@ -2384,7 +2568,9 @@ S_virtual_gtk_clist_set_cell_contents(GtkCList* s_object, GtkCListRow* s_clist_r
   SETCAR(tmp, toRPointerWithRef(s_mask, "GdkBitmap"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2395,6 +2581,7 @@ S_virtual_gtk_clist_cell_size_request(GtkCList* s_object, GtkCListRow* s_clist_r
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -2411,7 +2598,9 @@ S_virtual_gtk_clist_cell_size_request(GtkCList* s_object, GtkCListRow* s_clist_r
   SETCAR(tmp, toRPointer(s_requisition ? (s_requisition) : NULL, "GtkRequisition"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2948,6 +3137,7 @@ S_virtual_gtk_color_button_color_set(GtkColorButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -2958,7 +3148,9 @@ S_virtual_gtk_color_button_color_set(GtkColorButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkColorButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -2999,6 +3191,7 @@ S_virtual_gtk_color_selection_color_changed(GtkColorSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3009,7 +3202,9 @@ S_virtual_gtk_color_selection_color_changed(GtkColorSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkColorSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3078,6 +3273,7 @@ S_virtual_gtk_combo_box_changed(GtkComboBox* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3088,7 +3284,9 @@ S_virtual_gtk_combo_box_changed(GtkComboBox* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkComboBox")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3099,6 +3297,7 @@ S_virtual_gtk_combo_box_get_active_text(GtkComboBox* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3109,7 +3308,9 @@ S_virtual_gtk_combo_box_get_active_text(GtkComboBox* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkComboBox")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((char*)0));
 
   UNPROTECT(1);
   return(((char*)g_strdup(asCString(s_ans))));
@@ -3184,6 +3385,7 @@ S_virtual_gtk_container_add(GtkContainer* s_object, GtkWidget* s_widget)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3196,7 +3398,9 @@ S_virtual_gtk_container_add(GtkContainer* s_object, GtkWidget* s_widget)
   SETCAR(tmp, toRPointerWithSink(s_widget, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3207,6 +3411,7 @@ S_virtual_gtk_container_remove(GtkContainer* s_object, GtkWidget* s_widget)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3219,7 +3424,9 @@ S_virtual_gtk_container_remove(GtkContainer* s_object, GtkWidget* s_widget)
   SETCAR(tmp, toRPointerWithSink(s_widget, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3230,6 +3437,7 @@ S_virtual_gtk_container_check_resize(GtkContainer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3240,7 +3448,9 @@ S_virtual_gtk_container_check_resize(GtkContainer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkContainer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3251,6 +3461,7 @@ S_virtual_gtk_container_forall(GtkContainer* s_object, gboolean s_include_intern
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -3267,7 +3478,9 @@ S_virtual_gtk_container_forall(GtkContainer* s_object, gboolean s_include_intern
   SETCAR(tmp, s_callback_data);
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3278,6 +3491,7 @@ S_virtual_gtk_container_set_focus_child(GtkContainer* s_object, GtkWidget* s_wid
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3290,7 +3504,9 @@ S_virtual_gtk_container_set_focus_child(GtkContainer* s_object, GtkWidget* s_wid
   SETCAR(tmp, toRPointerWithSink(s_widget, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3301,6 +3517,7 @@ S_virtual_gtk_container_child_type(GtkContainer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3311,7 +3528,9 @@ S_virtual_gtk_container_child_type(GtkContainer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkContainer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GType)0));
 
   UNPROTECT(1);
   return(((GType)asCNumeric(s_ans)));
@@ -3323,6 +3542,7 @@ S_virtual_gtk_container_composite_name(GtkContainer* s_object, GtkWidget* s_chil
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3335,7 +3555,9 @@ S_virtual_gtk_container_composite_name(GtkContainer* s_object, GtkWidget* s_chil
   SETCAR(tmp, toRPointerWithSink(s_child, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -3347,6 +3569,7 @@ S_virtual_gtk_container_set_child_property(GtkContainer* s_object, GtkWidget* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -3365,7 +3588,9 @@ S_virtual_gtk_container_set_child_property(GtkContainer* s_object, GtkWidget* s_
   SETCAR(tmp, asRGParamSpec(s_pspec));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3376,6 +3601,7 @@ S_virtual_gtk_container_get_child_property(GtkContainer* s_object, GtkWidget* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -3394,7 +3620,9 @@ S_virtual_gtk_container_get_child_property(GtkContainer* s_object, GtkWidget* s_
   SETCAR(tmp, asRGParamSpec(s_pspec));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3590,6 +3818,7 @@ S_virtual_gtk_ctree_tree_select_row(GtkCTree* s_object, GtkCTreeNode* s_row, gin
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -3604,7 +3833,9 @@ S_virtual_gtk_ctree_tree_select_row(GtkCTree* s_object, GtkCTreeNode* s_row, gin
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3615,6 +3846,7 @@ S_virtual_gtk_ctree_tree_unselect_row(GtkCTree* s_object, GtkCTreeNode* s_row, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -3629,7 +3861,9 @@ S_virtual_gtk_ctree_tree_unselect_row(GtkCTree* s_object, GtkCTreeNode* s_row, g
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3640,6 +3874,7 @@ S_virtual_gtk_ctree_tree_expand(GtkCTree* s_object, GtkCTreeNode* s_node)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3652,7 +3887,9 @@ S_virtual_gtk_ctree_tree_expand(GtkCTree* s_object, GtkCTreeNode* s_node)
   SETCAR(tmp, toRPointer(s_node, "GtkCTreeNode"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3663,6 +3900,7 @@ S_virtual_gtk_ctree_tree_collapse(GtkCTree* s_object, GtkCTreeNode* s_node)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3675,7 +3913,9 @@ S_virtual_gtk_ctree_tree_collapse(GtkCTree* s_object, GtkCTreeNode* s_node)
   SETCAR(tmp, toRPointer(s_node, "GtkCTreeNode"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3686,6 +3926,7 @@ S_virtual_gtk_ctree_tree_move(GtkCTree* s_object, GtkCTreeNode* s_node, GtkCTree
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -3702,7 +3943,9 @@ S_virtual_gtk_ctree_tree_move(GtkCTree* s_object, GtkCTreeNode* s_node, GtkCTree
   SETCAR(tmp, toRPointer(s_new_sibling, "GtkCTreeNode"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3713,6 +3956,7 @@ S_virtual_gtk_ctree_change_focus_row_expansion(GtkCTree* s_object, GtkCTreeExpan
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3725,7 +3969,9 @@ S_virtual_gtk_ctree_change_focus_row_expansion(GtkCTree* s_object, GtkCTreeExpan
   SETCAR(tmp, asREnum(s_action, GTK_TYPE_CTREE_EXPANSION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3856,6 +4102,7 @@ S_virtual_gtk_curve_curve_type_changed(GtkCurve* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3866,7 +4113,9 @@ S_virtual_gtk_curve_curve_type_changed(GtkCurve* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkCurve")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3907,6 +4156,7 @@ S_virtual_gtk_dialog_response(GtkDialog* s_object, gint s_response_id)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -3919,7 +4169,9 @@ S_virtual_gtk_dialog_response(GtkDialog* s_object, gint s_response_id)
   SETCAR(tmp, asRInteger(s_response_id));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -3930,6 +4182,7 @@ S_virtual_gtk_dialog_close(GtkDialog* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -3940,7 +4193,9 @@ S_virtual_gtk_dialog_close(GtkDialog* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkDialog")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4012,6 +4267,7 @@ S_virtual_gtk_entry_populate_popup(GtkEntry* s_object, GtkMenu* s_menu)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4024,7 +4280,9 @@ S_virtual_gtk_entry_populate_popup(GtkEntry* s_object, GtkMenu* s_menu)
   SETCAR(tmp, toRPointerWithSink(s_menu, "GtkMenu"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4035,6 +4293,7 @@ S_virtual_gtk_entry_activate(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4045,7 +4304,9 @@ S_virtual_gtk_entry_activate(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4056,6 +4317,7 @@ S_virtual_gtk_entry_move_cursor(GtkEntry* s_object, GtkMovementStep s_step, gint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -4072,7 +4334,9 @@ S_virtual_gtk_entry_move_cursor(GtkEntry* s_object, GtkMovementStep s_step, gint
   SETCAR(tmp, asRLogical(s_extend_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4083,6 +4347,7 @@ S_virtual_gtk_entry_insert_at_cursor(GtkEntry* s_object, const gchar* s_str)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4095,7 +4360,9 @@ S_virtual_gtk_entry_insert_at_cursor(GtkEntry* s_object, const gchar* s_str)
   SETCAR(tmp, asRString(s_str));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4106,6 +4373,7 @@ S_virtual_gtk_entry_delete_from_cursor(GtkEntry* s_object, GtkDeleteType s_type,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -4120,7 +4388,9 @@ S_virtual_gtk_entry_delete_from_cursor(GtkEntry* s_object, GtkDeleteType s_type,
   SETCAR(tmp, asRInteger(s_count));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4131,6 +4401,7 @@ S_virtual_gtk_entry_backspace(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4141,7 +4412,9 @@ S_virtual_gtk_entry_backspace(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4152,6 +4425,7 @@ S_virtual_gtk_entry_cut_clipboard(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4162,7 +4436,9 @@ S_virtual_gtk_entry_cut_clipboard(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4173,6 +4449,7 @@ S_virtual_gtk_entry_copy_clipboard(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4183,7 +4460,9 @@ S_virtual_gtk_entry_copy_clipboard(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4194,6 +4473,7 @@ S_virtual_gtk_entry_paste_clipboard(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4204,7 +4484,9 @@ S_virtual_gtk_entry_paste_clipboard(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4215,6 +4497,7 @@ S_virtual_gtk_entry_toggle_overwrite(GtkEntry* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4225,7 +4508,9 @@ S_virtual_gtk_entry_toggle_overwrite(GtkEntry* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkEntry")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4417,6 +4702,7 @@ S_virtual_gtk_entry_completion_match_selected(GtkEntryCompletion* s_object, GtkT
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -4431,7 +4717,9 @@ S_virtual_gtk_entry_completion_match_selected(GtkEntryCompletion* s_object, GtkT
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4443,6 +4731,7 @@ S_virtual_gtk_entry_completion_action_activated(GtkEntryCompletion* s_object, gi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4455,7 +4744,9 @@ S_virtual_gtk_entry_completion_action_activated(GtkEntryCompletion* s_object, gi
   SETCAR(tmp, asRInteger(s_index_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4466,6 +4757,7 @@ S_virtual_gtk_entry_completion_insert_prefix(GtkEntryCompletion* s_object, const
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4478,7 +4770,9 @@ S_virtual_gtk_entry_completion_insert_prefix(GtkEntryCompletion* s_object, const
   SETCAR(tmp, asRString(s_prefix));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -4574,6 +4868,7 @@ S_virtual_gtk_expander_activate(GtkExpander* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4584,7 +4879,9 @@ S_virtual_gtk_expander_activate(GtkExpander* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkExpander")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4695,6 +4992,7 @@ S_virtual_gtk_font_button_font_set(GtkFontButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -4705,7 +5003,9 @@ S_virtual_gtk_font_button_font_set(GtkFontButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkFontButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4774,6 +5074,7 @@ S_virtual_gtk_frame_compute_child_allocation(GtkFrame* s_object, GtkAllocation* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4786,7 +5087,9 @@ S_virtual_gtk_frame_compute_child_allocation(GtkFrame* s_object, GtkAllocation* 
   SETCAR(tmp, asRGtkAllocation(s_allocation));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4842,6 +5145,7 @@ S_virtual_gtk_handle_box_child_attached(GtkHandleBox* s_object, GtkWidget* s_chi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4854,7 +5158,9 @@ S_virtual_gtk_handle_box_child_attached(GtkHandleBox* s_object, GtkWidget* s_chi
   SETCAR(tmp, toRPointerWithSink(s_child, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -4865,6 +5171,7 @@ S_virtual_gtk_handle_box_child_detached(GtkHandleBox* s_object, GtkWidget* s_chi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -4877,7 +5184,9 @@ S_virtual_gtk_handle_box_child_detached(GtkHandleBox* s_object, GtkWidget* s_chi
   SETCAR(tmp, toRPointerWithSink(s_child, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5048,6 +5357,7 @@ S_virtual_gtk_icon_theme_changed(GtkIconTheme* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5058,7 +5368,9 @@ S_virtual_gtk_icon_theme_changed(GtkIconTheme* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkIconTheme")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5099,6 +5411,7 @@ S_virtual_gtk_icon_view_set_scroll_adjustments(GtkIconView* s_object, GtkAdjustm
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5113,7 +5426,9 @@ S_virtual_gtk_icon_view_set_scroll_adjustments(GtkIconView* s_object, GtkAdjustm
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5124,6 +5439,7 @@ S_virtual_gtk_icon_view_item_activated(GtkIconView* s_object, GtkTreePath* s_pat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5136,7 +5452,9 @@ S_virtual_gtk_icon_view_item_activated(GtkIconView* s_object, GtkTreePath* s_pat
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5147,6 +5465,7 @@ S_virtual_gtk_icon_view_selection_changed(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5157,7 +5476,9 @@ S_virtual_gtk_icon_view_selection_changed(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5168,6 +5489,7 @@ S_virtual_gtk_icon_view_select_all(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5178,7 +5500,9 @@ S_virtual_gtk_icon_view_select_all(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5189,6 +5513,7 @@ S_virtual_gtk_icon_view_unselect_all(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5199,7 +5524,9 @@ S_virtual_gtk_icon_view_unselect_all(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5210,6 +5537,7 @@ S_virtual_gtk_icon_view_select_cursor_item(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5220,7 +5548,9 @@ S_virtual_gtk_icon_view_select_cursor_item(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5231,6 +5561,7 @@ S_virtual_gtk_icon_view_toggle_cursor_item(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5241,7 +5572,9 @@ S_virtual_gtk_icon_view_toggle_cursor_item(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5252,6 +5585,7 @@ S_virtual_gtk_icon_view_move_cursor(GtkIconView* s_object, GtkMovementStep s_ste
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5266,7 +5600,9 @@ S_virtual_gtk_icon_view_move_cursor(GtkIconView* s_object, GtkMovementStep s_ste
   SETCAR(tmp, asRInteger(s_count));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5278,6 +5614,7 @@ S_virtual_gtk_icon_view_activate_cursor_item(GtkIconView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5288,7 +5625,9 @@ S_virtual_gtk_icon_view_activate_cursor_item(GtkIconView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIconView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5495,6 +5834,7 @@ S_virtual_gtk_imcontext_preedit_start(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5505,7 +5845,9 @@ S_virtual_gtk_imcontext_preedit_start(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5516,6 +5858,7 @@ S_virtual_gtk_imcontext_preedit_end(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5526,7 +5869,9 @@ S_virtual_gtk_imcontext_preedit_end(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5537,6 +5882,7 @@ S_virtual_gtk_imcontext_preedit_changed(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5547,7 +5893,9 @@ S_virtual_gtk_imcontext_preedit_changed(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5558,6 +5906,7 @@ S_virtual_gtk_imcontext_commit(GtkIMContext* s_object, const gchar* s_str)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5570,7 +5919,9 @@ S_virtual_gtk_imcontext_commit(GtkIMContext* s_object, const gchar* s_str)
   SETCAR(tmp, asRString(s_str));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5581,6 +5932,7 @@ S_virtual_gtk_imcontext_retrieve_surrounding(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5591,7 +5943,9 @@ S_virtual_gtk_imcontext_retrieve_surrounding(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5603,6 +5957,7 @@ S_virtual_gtk_imcontext_delete_surrounding(GtkIMContext* s_object, gint s_offset
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -5617,7 +5972,9 @@ S_virtual_gtk_imcontext_delete_surrounding(GtkIMContext* s_object, gint s_offset
   SETCAR(tmp, asRInteger(s_n_chars));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5629,6 +5986,7 @@ S_virtual_gtk_imcontext_set_client_window(GtkIMContext* s_object, GdkWindow* s_w
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5641,7 +5999,9 @@ S_virtual_gtk_imcontext_set_client_window(GtkIMContext* s_object, GdkWindow* s_w
   SETCAR(tmp, toRPointerWithRef(s_window, "GdkWindow"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5652,6 +6012,7 @@ S_virtual_gtk_imcontext_get_preedit_string(GtkIMContext* s_object, gchar** s_str
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5662,7 +6023,9 @@ S_virtual_gtk_imcontext_get_preedit_string(GtkIMContext* s_object, gchar** s_str
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_str = ((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0))));
@@ -5676,6 +6039,7 @@ S_virtual_gtk_imcontext_filter_keypress(GtkIMContext* s_object, GdkEventKey* s_e
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5688,7 +6052,9 @@ S_virtual_gtk_imcontext_filter_keypress(GtkIMContext* s_object, GdkEventKey* s_e
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -5700,6 +6066,7 @@ S_virtual_gtk_imcontext_focus_in(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5710,7 +6077,9 @@ S_virtual_gtk_imcontext_focus_in(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5721,6 +6090,7 @@ S_virtual_gtk_imcontext_focus_out(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5731,7 +6101,9 @@ S_virtual_gtk_imcontext_focus_out(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5742,6 +6114,7 @@ S_virtual_gtk_imcontext_reset(GtkIMContext* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5752,7 +6125,9 @@ S_virtual_gtk_imcontext_reset(GtkIMContext* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5763,6 +6138,7 @@ S_virtual_gtk_imcontext_set_cursor_location(GtkIMContext* s_object, GdkRectangle
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5775,7 +6151,9 @@ S_virtual_gtk_imcontext_set_cursor_location(GtkIMContext* s_object, GdkRectangle
   SETCAR(tmp, asRGdkRectangle(s_area));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5786,6 +6164,7 @@ S_virtual_gtk_imcontext_set_use_preedit(GtkIMContext* s_object, gboolean s_use_p
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -5798,7 +6177,9 @@ S_virtual_gtk_imcontext_set_use_preedit(GtkIMContext* s_object, gboolean s_use_p
   SETCAR(tmp, asRLogical(s_use_preedit));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5809,6 +6190,7 @@ S_virtual_gtk_imcontext_set_surrounding(GtkIMContext* s_object, const gchar* s_t
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -5825,7 +6207,9 @@ S_virtual_gtk_imcontext_set_surrounding(GtkIMContext* s_object, const gchar* s_t
   SETCAR(tmp, asRInteger(s_cursor_index));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -5836,6 +6220,7 @@ S_virtual_gtk_imcontext_get_surrounding(GtkIMContext* s_object, gchar** s_text, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -5846,7 +6231,9 @@ S_virtual_gtk_imcontext_get_surrounding(GtkIMContext* s_object, gchar** s_text, 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkIMContext")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   *s_text = ((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 1))));
@@ -6185,6 +6572,7 @@ S_virtual_gtk_input_dialog_enable_device(GtkInputDialog* s_object, GdkDevice* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -6197,7 +6585,9 @@ S_virtual_gtk_input_dialog_enable_device(GtkInputDialog* s_object, GdkDevice* s_
   SETCAR(tmp, toRPointerWithRef(s_device, "GdkDevice"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6208,6 +6598,7 @@ S_virtual_gtk_input_dialog_disable_device(GtkInputDialog* s_object, GdkDevice* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -6220,7 +6611,9 @@ S_virtual_gtk_input_dialog_disable_device(GtkInputDialog* s_object, GdkDevice* s
   SETCAR(tmp, toRPointerWithRef(s_device, "GdkDevice"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6293,6 +6686,7 @@ S_virtual_gtk_item_select(GtkItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6303,7 +6697,9 @@ S_virtual_gtk_item_select(GtkItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6314,6 +6710,7 @@ S_virtual_gtk_item_deselect(GtkItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6324,7 +6721,9 @@ S_virtual_gtk_item_deselect(GtkItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6335,6 +6734,7 @@ S_virtual_gtk_item_toggle(GtkItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6345,7 +6745,9 @@ S_virtual_gtk_item_toggle(GtkItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6432,6 +6834,7 @@ S_virtual_gtk_label_move_cursor(GtkLabel* s_object, GtkMovementStep s_step, gint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -6448,7 +6851,9 @@ S_virtual_gtk_label_move_cursor(GtkLabel* s_object, GtkMovementStep s_step, gint
   SETCAR(tmp, asRLogical(s_extend_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6459,6 +6864,7 @@ S_virtual_gtk_label_copy_clipboard(GtkLabel* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6469,7 +6875,9 @@ S_virtual_gtk_label_copy_clipboard(GtkLabel* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkLabel")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6480,6 +6888,7 @@ S_virtual_gtk_label_populate_popup(GtkLabel* s_object, GtkMenu* s_menu)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -6492,7 +6901,9 @@ S_virtual_gtk_label_populate_popup(GtkLabel* s_object, GtkMenu* s_menu)
   SETCAR(tmp, toRPointerWithSink(s_menu, "GtkMenu"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6569,6 +6980,7 @@ S_virtual_gtk_layout_set_scroll_adjustments(GtkLayout* s_object, GtkAdjustment* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -6583,7 +6995,9 @@ S_virtual_gtk_layout_set_scroll_adjustments(GtkLayout* s_object, GtkAdjustment* 
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6626,6 +7040,7 @@ S_virtual_gtk_list_selection_changed(GtkList* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6636,7 +7051,9 @@ S_virtual_gtk_list_selection_changed(GtkList* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkList")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6647,6 +7064,7 @@ S_virtual_gtk_list_select_child(GtkList* s_object, GtkWidget* s_child)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -6659,7 +7077,9 @@ S_virtual_gtk_list_select_child(GtkList* s_object, GtkWidget* s_child)
   SETCAR(tmp, toRPointerWithSink(s_child, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6670,6 +7090,7 @@ S_virtual_gtk_list_unselect_child(GtkList* s_object, GtkWidget* s_child)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -6682,7 +7103,9 @@ S_virtual_gtk_list_unselect_child(GtkList* s_object, GtkWidget* s_child)
   SETCAR(tmp, toRPointerWithSink(s_child, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6757,6 +7180,7 @@ S_virtual_gtk_list_item_toggle_focus_row(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6767,7 +7191,9 @@ S_virtual_gtk_list_item_toggle_focus_row(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6778,6 +7204,7 @@ S_virtual_gtk_list_item_select_all(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6788,7 +7215,9 @@ S_virtual_gtk_list_item_select_all(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6799,6 +7228,7 @@ S_virtual_gtk_list_item_unselect_all(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6809,7 +7239,9 @@ S_virtual_gtk_list_item_unselect_all(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6820,6 +7252,7 @@ S_virtual_gtk_list_item_undo_selection(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6830,7 +7263,9 @@ S_virtual_gtk_list_item_undo_selection(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6841,6 +7276,7 @@ S_virtual_gtk_list_item_start_selection(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6851,7 +7287,9 @@ S_virtual_gtk_list_item_start_selection(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6862,6 +7300,7 @@ S_virtual_gtk_list_item_end_selection(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6872,7 +7311,9 @@ S_virtual_gtk_list_item_end_selection(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6883,6 +7324,7 @@ S_virtual_gtk_list_item_extend_selection(GtkListItem* s_object, GtkScrollType s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -6899,7 +7341,9 @@ S_virtual_gtk_list_item_extend_selection(GtkListItem* s_object, GtkScrollType s_
   SETCAR(tmp, asRLogical(s_auto_start_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6910,6 +7354,7 @@ S_virtual_gtk_list_item_scroll_horizontal(GtkListItem* s_object, GtkScrollType s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -6924,7 +7369,9 @@ S_virtual_gtk_list_item_scroll_horizontal(GtkListItem* s_object, GtkScrollType s
   SETCAR(tmp, asRNumeric(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6935,6 +7382,7 @@ S_virtual_gtk_list_item_scroll_vertical(GtkListItem* s_object, GtkScrollType s_s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -6949,7 +7397,9 @@ S_virtual_gtk_list_item_scroll_vertical(GtkListItem* s_object, GtkScrollType s_s
   SETCAR(tmp, asRNumeric(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -6960,6 +7410,7 @@ S_virtual_gtk_list_item_toggle_add_mode(GtkListItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -6970,7 +7421,9 @@ S_virtual_gtk_list_item_toggle_add_mode(GtkListItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkListItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7204,6 +7657,7 @@ S_virtual_gtk_menu_item_activate(GtkMenuItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7214,7 +7668,9 @@ S_virtual_gtk_menu_item_activate(GtkMenuItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7225,6 +7681,7 @@ S_virtual_gtk_menu_item_activate_item(GtkMenuItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7235,7 +7692,9 @@ S_virtual_gtk_menu_item_activate_item(GtkMenuItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7246,6 +7705,7 @@ S_virtual_gtk_menu_item_toggle_size_request(GtkMenuItem* s_object, gint* s_requi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7256,7 +7716,9 @@ S_virtual_gtk_menu_item_toggle_size_request(GtkMenuItem* s_object, gint* s_requi
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_requisition = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -7268,6 +7730,7 @@ S_virtual_gtk_menu_item_toggle_size_allocate(GtkMenuItem* s_object, gint s_alloc
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7280,7 +7743,9 @@ S_virtual_gtk_menu_item_toggle_size_allocate(GtkMenuItem* s_object, gint s_alloc
   SETCAR(tmp, asRInteger(s_allocation));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7373,6 +7838,7 @@ S_virtual_gtk_menu_shell_deactivate(GtkMenuShell* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7383,7 +7849,9 @@ S_virtual_gtk_menu_shell_deactivate(GtkMenuShell* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuShell")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7394,6 +7862,7 @@ S_virtual_gtk_menu_shell_selection_done(GtkMenuShell* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7404,7 +7873,9 @@ S_virtual_gtk_menu_shell_selection_done(GtkMenuShell* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuShell")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7415,6 +7886,7 @@ S_virtual_gtk_menu_shell_move_current(GtkMenuShell* s_object, GtkMenuDirectionTy
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7427,7 +7899,9 @@ S_virtual_gtk_menu_shell_move_current(GtkMenuShell* s_object, GtkMenuDirectionTy
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_MENU_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7438,6 +7912,7 @@ S_virtual_gtk_menu_shell_activate_current(GtkMenuShell* s_object, gboolean s_for
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7450,7 +7925,9 @@ S_virtual_gtk_menu_shell_activate_current(GtkMenuShell* s_object, gboolean s_for
   SETCAR(tmp, asRLogical(s_force_hide));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7461,6 +7938,7 @@ S_virtual_gtk_menu_shell_cancel(GtkMenuShell* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7471,7 +7949,9 @@ S_virtual_gtk_menu_shell_cancel(GtkMenuShell* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuShell")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7482,6 +7962,7 @@ S_virtual_gtk_menu_shell_select_item(GtkMenuShell* s_object, GtkWidget* s_menu_i
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7494,7 +7975,9 @@ S_virtual_gtk_menu_shell_select_item(GtkMenuShell* s_object, GtkWidget* s_menu_i
   SETCAR(tmp, toRPointerWithSink(s_menu_item, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7505,6 +7988,7 @@ S_virtual_gtk_menu_shell_insert(GtkMenuShell* s_object, GtkWidget* s_child, gint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -7519,7 +8003,9 @@ S_virtual_gtk_menu_shell_insert(GtkMenuShell* s_object, GtkWidget* s_child, gint
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7530,6 +8016,7 @@ S_virtual_gtk_menu_shell_get_popup_delay(GtkMenuShell* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7540,7 +8027,9 @@ S_virtual_gtk_menu_shell_get_popup_delay(GtkMenuShell* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuShell")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -7701,6 +8190,7 @@ S_virtual_gtk_menu_tool_button_show_menu(GtkMenuToolButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -7711,7 +8201,9 @@ S_virtual_gtk_menu_tool_button_show_menu(GtkMenuToolButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkMenuToolButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7780,6 +8272,7 @@ S_virtual_gtk_notebook_switch_page(GtkNotebook* s_object, GtkNotebookPage* s_pag
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -7794,7 +8287,9 @@ S_virtual_gtk_notebook_switch_page(GtkNotebook* s_object, GtkNotebookPage* s_pag
   SETCAR(tmp, asRNumeric(s_page_num));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7805,6 +8300,7 @@ S_virtual_gtk_notebook_select_page(GtkNotebook* s_object, gboolean s_move_focus)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7817,7 +8313,9 @@ S_virtual_gtk_notebook_select_page(GtkNotebook* s_object, gboolean s_move_focus)
   SETCAR(tmp, asRLogical(s_move_focus));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -7829,6 +8327,7 @@ S_virtual_gtk_notebook_focus_tab(GtkNotebook* s_object, GtkNotebookTab s_type)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7841,7 +8340,9 @@ S_virtual_gtk_notebook_focus_tab(GtkNotebook* s_object, GtkNotebookTab s_type)
   SETCAR(tmp, asREnum(s_type, GTK_TYPE_NOTEBOOK_TAB));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -7853,6 +8354,7 @@ S_virtual_gtk_notebook_change_current_page(GtkNotebook* s_object, gint s_offset)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7865,7 +8367,9 @@ S_virtual_gtk_notebook_change_current_page(GtkNotebook* s_object, gint s_offset)
   SETCAR(tmp, asRInteger(s_offset));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -7877,6 +8381,7 @@ S_virtual_gtk_notebook_move_focus_out(GtkNotebook* s_object, GtkDirectionType s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -7889,7 +8394,9 @@ S_virtual_gtk_notebook_move_focus_out(GtkNotebook* s_object, GtkDirectionType s_
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -7900,6 +8407,7 @@ S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_dir
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -7914,7 +8422,9 @@ S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_dir
   SETCAR(tmp, asRLogical(s_move_to_last));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -7926,6 +8436,7 @@ S_virtual_gtk_notebook_insert_page(GtkNotebook* s_object, GtkWidget* s_child, Gt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -7944,7 +8455,9 @@ S_virtual_gtk_notebook_insert_page(GtkNotebook* s_object, GtkWidget* s_child, Gt
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -8118,6 +8631,7 @@ S_virtual_gtk_old_editable_activate(GtkOldEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8128,7 +8642,9 @@ S_virtual_gtk_old_editable_activate(GtkOldEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkOldEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8139,6 +8655,7 @@ S_virtual_gtk_old_editable_set_editable(GtkOldEditable* s_object, gboolean s_is_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8151,7 +8668,9 @@ S_virtual_gtk_old_editable_set_editable(GtkOldEditable* s_object, gboolean s_is_
   SETCAR(tmp, asRLogical(s_is_editable));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8162,6 +8681,7 @@ S_virtual_gtk_old_editable_move_cursor(GtkOldEditable* s_object, gint s_x, gint 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -8176,7 +8696,9 @@ S_virtual_gtk_old_editable_move_cursor(GtkOldEditable* s_object, gint s_x, gint 
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8187,6 +8709,7 @@ S_virtual_gtk_old_editable_move_word(GtkOldEditable* s_object, gint s_n)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8199,7 +8722,9 @@ S_virtual_gtk_old_editable_move_word(GtkOldEditable* s_object, gint s_n)
   SETCAR(tmp, asRInteger(s_n));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8210,6 +8735,7 @@ S_virtual_gtk_old_editable_move_page(GtkOldEditable* s_object, gint s_x, gint s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -8224,7 +8750,9 @@ S_virtual_gtk_old_editable_move_page(GtkOldEditable* s_object, gint s_x, gint s_
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8235,6 +8763,7 @@ S_virtual_gtk_old_editable_move_to_row(GtkOldEditable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8247,7 +8776,9 @@ S_virtual_gtk_old_editable_move_to_row(GtkOldEditable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8258,6 +8789,7 @@ S_virtual_gtk_old_editable_move_to_column(GtkOldEditable* s_object, gint s_row)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8270,7 +8802,9 @@ S_virtual_gtk_old_editable_move_to_column(GtkOldEditable* s_object, gint s_row)
   SETCAR(tmp, asRInteger(s_row));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8281,6 +8815,7 @@ S_virtual_gtk_old_editable_kill_char(GtkOldEditable* s_object, gint s_direction)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8293,7 +8828,9 @@ S_virtual_gtk_old_editable_kill_char(GtkOldEditable* s_object, gint s_direction)
   SETCAR(tmp, asRInteger(s_direction));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8304,6 +8841,7 @@ S_virtual_gtk_old_editable_kill_word(GtkOldEditable* s_object, gint s_direction)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8316,7 +8854,9 @@ S_virtual_gtk_old_editable_kill_word(GtkOldEditable* s_object, gint s_direction)
   SETCAR(tmp, asRInteger(s_direction));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8327,6 +8867,7 @@ S_virtual_gtk_old_editable_kill_line(GtkOldEditable* s_object, gint s_direction)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8339,7 +8880,9 @@ S_virtual_gtk_old_editable_kill_line(GtkOldEditable* s_object, gint s_direction)
   SETCAR(tmp, asRInteger(s_direction));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8350,6 +8893,7 @@ S_virtual_gtk_old_editable_cut_clipboard(GtkOldEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8360,7 +8904,9 @@ S_virtual_gtk_old_editable_cut_clipboard(GtkOldEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkOldEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8371,6 +8917,7 @@ S_virtual_gtk_old_editable_copy_clipboard(GtkOldEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8381,7 +8928,9 @@ S_virtual_gtk_old_editable_copy_clipboard(GtkOldEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkOldEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8392,6 +8941,7 @@ S_virtual_gtk_old_editable_paste_clipboard(GtkOldEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8402,7 +8952,9 @@ S_virtual_gtk_old_editable_paste_clipboard(GtkOldEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkOldEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8413,6 +8965,7 @@ S_virtual_gtk_old_editable_update_text(GtkOldEditable* s_object, gint s_start_po
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -8427,7 +8980,9 @@ S_virtual_gtk_old_editable_update_text(GtkOldEditable* s_object, gint s_start_po
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8438,6 +8993,7 @@ S_virtual_gtk_old_editable_get_chars(GtkOldEditable* s_object, gint s_start_pos,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -8452,7 +9008,9 @@ S_virtual_gtk_old_editable_get_chars(GtkOldEditable* s_object, gint s_start_pos,
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -8464,6 +9022,7 @@ S_virtual_gtk_old_editable_set_selection(GtkOldEditable* s_object, gint s_start_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -8478,7 +9037,9 @@ S_virtual_gtk_old_editable_set_selection(GtkOldEditable* s_object, gint s_start_
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8489,6 +9050,7 @@ S_virtual_gtk_old_editable_set_position(GtkOldEditable* s_object, gint s_positio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8501,7 +9063,9 @@ S_virtual_gtk_old_editable_set_position(GtkOldEditable* s_object, gint s_positio
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8819,6 +9383,7 @@ S_virtual_gtk_option_menu_changed(GtkOptionMenu* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8829,7 +9394,9 @@ S_virtual_gtk_option_menu_changed(GtkOptionMenu* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkOptionMenu")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -8870,6 +9437,7 @@ S_virtual_gtk_paned_cycle_child_focus(GtkPaned* s_object, gboolean s_reverse)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8882,7 +9450,9 @@ S_virtual_gtk_paned_cycle_child_focus(GtkPaned* s_object, gboolean s_reverse)
   SETCAR(tmp, asRLogical(s_reverse));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -8894,6 +9464,7 @@ S_virtual_gtk_paned_toggle_handle_focus(GtkPaned* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8904,7 +9475,9 @@ S_virtual_gtk_paned_toggle_handle_focus(GtkPaned* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkPaned")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -8916,6 +9489,7 @@ S_virtual_gtk_paned_move_handle(GtkPaned* s_object, GtkScrollType s_scroll)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8928,7 +9502,9 @@ S_virtual_gtk_paned_move_handle(GtkPaned* s_object, GtkScrollType s_scroll)
   SETCAR(tmp, asREnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -8940,6 +9516,7 @@ S_virtual_gtk_paned_cycle_handle_focus(GtkPaned* s_object, gboolean s_reverse)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -8952,7 +9529,9 @@ S_virtual_gtk_paned_cycle_handle_focus(GtkPaned* s_object, gboolean s_reverse)
   SETCAR(tmp, asRLogical(s_reverse));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -8964,6 +9543,7 @@ S_virtual_gtk_paned_accept_position(GtkPaned* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8974,7 +9554,9 @@ S_virtual_gtk_paned_accept_position(GtkPaned* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkPaned")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -8986,6 +9568,7 @@ S_virtual_gtk_paned_cancel_position(GtkPaned* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -8996,7 +9579,9 @@ S_virtual_gtk_paned_cancel_position(GtkPaned* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkPaned")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -9147,6 +9732,7 @@ S_virtual_gtk_plug_embedded(GtkPlug* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9157,7 +9743,9 @@ S_virtual_gtk_plug_embedded(GtkPlug* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkPlug")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9212,6 +9800,7 @@ S_virtual_gtk_progress_paint(GtkProgress* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9222,7 +9811,9 @@ S_virtual_gtk_progress_paint(GtkProgress* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkProgress")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9233,6 +9824,7 @@ S_virtual_gtk_progress_update(GtkProgress* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9243,7 +9835,9 @@ S_virtual_gtk_progress_update(GtkProgress* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkProgress")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9254,6 +9848,7 @@ S_virtual_gtk_progress_act_mode_enter(GtkProgress* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9264,7 +9859,9 @@ S_virtual_gtk_progress_act_mode_enter(GtkProgress* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkProgress")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9351,6 +9948,7 @@ S_virtual_gtk_radio_action_changed(GtkRadioAction* s_object, GtkRadioAction* s_c
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -9363,7 +9961,9 @@ S_virtual_gtk_radio_action_changed(GtkRadioAction* s_object, GtkRadioAction* s_c
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_current, toRPointerWithRef(s_current, "GtkRadioAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9405,6 +10005,7 @@ S_virtual_gtk_radio_button_group_changed(GtkRadioButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9415,7 +10016,9 @@ S_virtual_gtk_radio_button_group_changed(GtkRadioButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkRadioButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9456,6 +10059,7 @@ S_virtual_gtk_radio_menu_item_group_changed(GtkRadioMenuItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9466,7 +10070,9 @@ S_virtual_gtk_radio_menu_item_group_changed(GtkRadioMenuItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkRadioMenuItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9521,6 +10127,7 @@ S_virtual_gtk_range_value_changed(GtkRange* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9531,7 +10138,9 @@ S_virtual_gtk_range_value_changed(GtkRange* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkRange")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9542,6 +10151,7 @@ S_virtual_gtk_range_adjust_bounds(GtkRange* s_object, gdouble s_new_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -9554,7 +10164,9 @@ S_virtual_gtk_range_adjust_bounds(GtkRange* s_object, gdouble s_new_value)
   SETCAR(tmp, asRNumeric(s_new_value));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9565,6 +10177,7 @@ S_virtual_gtk_range_move_slider(GtkRange* s_object, GtkScrollType s_scroll)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -9577,7 +10190,9 @@ S_virtual_gtk_range_move_slider(GtkRange* s_object, GtkScrollType s_scroll)
   SETCAR(tmp, asREnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9588,6 +10203,7 @@ S_virtual_gtk_range_get_range_border(GtkRange* s_object, GtkBorder* s_border_)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -9600,7 +10216,9 @@ S_virtual_gtk_range_get_range_border(GtkRange* s_object, GtkBorder* s_border_)
   SETCAR(tmp, toRPointerWithFinalizer(s_border_ ? gtk_border_copy(s_border_) : NULL, "GtkBorder", (RPointerFinalizer) gtk_border_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9611,6 +10229,7 @@ S_virtual_gtk_range_change_value(GtkRange* s_object, GtkScrollType s_scroll, gdo
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -9625,7 +10244,9 @@ S_virtual_gtk_range_change_value(GtkRange* s_object, GtkScrollType s_scroll, gdo
   SETCAR(tmp, asRNumeric(s_new_value));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -9738,6 +10359,7 @@ S_virtual_gtk_rc_style_create_rc_style(GtkRcStyle* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9748,7 +10370,9 @@ S_virtual_gtk_rc_style_create_rc_style(GtkRcStyle* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkRcStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkRcStyle*)0));
 
   UNPROTECT(1);
   return(GTK_RC_STYLE(getPtrValueWithRef(s_ans)));
@@ -9760,6 +10384,7 @@ S_virtual_gtk_rc_style_parse(GtkRcStyle* s_object, GtkSettings* s_settings, GSca
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -9774,7 +10399,9 @@ S_virtual_gtk_rc_style_parse(GtkRcStyle* s_object, GtkSettings* s_settings, GSca
   SETCAR(tmp, toRPointer(s_scanner, "GScanner"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((guint)0));
 
   UNPROTECT(1);
   return(((guint)asCNumeric(s_ans)));
@@ -9786,6 +10413,7 @@ S_virtual_gtk_rc_style_merge(GtkRcStyle* s_object, GtkRcStyle* s_src)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -9798,7 +10426,9 @@ S_virtual_gtk_rc_style_merge(GtkRcStyle* s_object, GtkRcStyle* s_src)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_src, toRPointerWithRef(s_src, "GtkRcStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9809,6 +10439,7 @@ S_virtual_gtk_rc_style_create_style(GtkRcStyle* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9819,7 +10450,9 @@ S_virtual_gtk_rc_style_create_style(GtkRcStyle* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkRcStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkStyle*)0));
 
   UNPROTECT(1);
   return(GTK_STYLE(getPtrValueWithRef(s_ans)));
@@ -9918,6 +10551,7 @@ S_virtual_gtk_ruler_draw_ticks(GtkRuler* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9928,7 +10562,9 @@ S_virtual_gtk_ruler_draw_ticks(GtkRuler* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkRuler")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -9939,6 +10575,7 @@ S_virtual_gtk_ruler_draw_pos(GtkRuler* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -9949,7 +10586,9 @@ S_virtual_gtk_ruler_draw_pos(GtkRuler* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkRuler")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10006,6 +10645,7 @@ S_virtual_gtk_scale_format_value(GtkScale* s_object, gdouble s_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -10018,7 +10658,9 @@ S_virtual_gtk_scale_format_value(GtkScale* s_object, gdouble s_value)
   SETCAR(tmp, asRNumeric(s_value));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -10030,6 +10672,7 @@ S_virtual_gtk_scale_draw_value(GtkScale* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10040,7 +10683,9 @@ S_virtual_gtk_scale_draw_value(GtkScale* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkScale")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10051,6 +10696,7 @@ S_virtual_gtk_scale_get_layout_offsets(GtkScale* s_object, gint* s_x, gint* s_y)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10061,7 +10707,9 @@ S_virtual_gtk_scale_get_layout_offsets(GtkScale* s_object, gint* s_x, gint* s_y)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkScale")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
@@ -10158,6 +10806,7 @@ S_virtual_gtk_scrolled_window_scroll_child(GtkScrolledWindow* s_object, GtkScrol
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -10172,7 +10821,9 @@ S_virtual_gtk_scrolled_window_scroll_child(GtkScrolledWindow* s_object, GtkScrol
   SETCAR(tmp, asRLogical(s_horizontal));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -10184,6 +10835,7 @@ S_virtual_gtk_scrolled_window_move_focus_out(GtkScrolledWindow* s_object, GtkDir
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -10196,7 +10848,9 @@ S_virtual_gtk_scrolled_window_move_focus_out(GtkScrolledWindow* s_object, GtkDir
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10328,6 +10982,7 @@ S_virtual_gtk_socket_plug_added(GtkSocket* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10338,7 +10993,9 @@ S_virtual_gtk_socket_plug_added(GtkSocket* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSocket")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10349,6 +11006,7 @@ S_virtual_gtk_socket_plug_removed(GtkSocket* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10359,7 +11017,9 @@ S_virtual_gtk_socket_plug_removed(GtkSocket* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSocket")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -10419,6 +11079,7 @@ S_virtual_gtk_spin_button_input(GtkSpinButton* s_object, gdouble* s_new_value)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10429,7 +11090,9 @@ S_virtual_gtk_spin_button_input(GtkSpinButton* s_object, gdouble* s_new_value)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSpinButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   *s_new_value = ((gdouble)asCNumeric(VECTOR_ELT(s_ans, 1)));
@@ -10442,6 +11105,7 @@ S_virtual_gtk_spin_button_output(GtkSpinButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10452,7 +11116,9 @@ S_virtual_gtk_spin_button_output(GtkSpinButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSpinButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -10464,6 +11130,7 @@ S_virtual_gtk_spin_button_value_changed(GtkSpinButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10474,7 +11141,9 @@ S_virtual_gtk_spin_button_value_changed(GtkSpinButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSpinButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10485,6 +11154,7 @@ S_virtual_gtk_spin_button_change_value(GtkSpinButton* s_object, GtkScrollType s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -10497,7 +11167,9 @@ S_virtual_gtk_spin_button_change_value(GtkSpinButton* s_object, GtkScrollType s_
   SETCAR(tmp, asREnum(s_scroll, GTK_TYPE_SCROLL_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10508,6 +11180,7 @@ S_virtual_gtk_spin_button_wrapped(GtkSpinButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10518,7 +11191,9 @@ S_virtual_gtk_spin_button_wrapped(GtkSpinButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkSpinButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10631,6 +11306,7 @@ S_virtual_gtk_statusbar_text_pushed(GtkStatusbar* s_object, guint s_context_id, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -10645,7 +11321,9 @@ S_virtual_gtk_statusbar_text_pushed(GtkStatusbar* s_object, guint s_context_id, 
   SETCAR(tmp, asRString(s_text));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10656,6 +11334,7 @@ S_virtual_gtk_statusbar_text_popped(GtkStatusbar* s_object, guint s_context_id, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -10670,7 +11349,9 @@ S_virtual_gtk_statusbar_text_popped(GtkStatusbar* s_object, guint s_context_id, 
   SETCAR(tmp, asRString(s_text));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10731,6 +11412,7 @@ S_virtual_gtk_style_realize(GtkStyle* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10741,7 +11423,9 @@ S_virtual_gtk_style_realize(GtkStyle* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10752,6 +11436,7 @@ S_virtual_gtk_style_unrealize(GtkStyle* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10762,7 +11447,9 @@ S_virtual_gtk_style_unrealize(GtkStyle* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10773,6 +11460,7 @@ S_virtual_gtk_style_copy(GtkStyle* s_object, GtkStyle* s_src)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -10785,7 +11473,9 @@ S_virtual_gtk_style_copy(GtkStyle* s_object, GtkStyle* s_src)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_src, toRPointerWithRef(s_src, "GtkStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10796,6 +11486,7 @@ S_virtual_gtk_style_clone(GtkStyle* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -10806,7 +11497,9 @@ S_virtual_gtk_style_clone(GtkStyle* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkStyle")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkStyle*)0));
 
   UNPROTECT(1);
   return(GTK_STYLE(getPtrValueWithRef(s_ans)));
@@ -10818,6 +11511,7 @@ S_virtual_gtk_style_init_from_rc(GtkStyle* s_object, GtkRcStyle* s_rc_style)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -10830,7 +11524,9 @@ S_virtual_gtk_style_init_from_rc(GtkStyle* s_object, GtkRcStyle* s_rc_style)
   SETCAR(tmp, toRPointerWithRef(s_rc_style, "GtkRcStyle"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10841,6 +11537,7 @@ S_virtual_gtk_style_set_background(GtkStyle* s_object, GdkWindow* s_window, GtkS
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -10855,7 +11552,9 @@ S_virtual_gtk_style_set_background(GtkStyle* s_object, GdkWindow* s_window, GtkS
   SETCAR(tmp, asREnum(s_state_type, GTK_TYPE_STATE_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10866,6 +11565,7 @@ S_virtual_gtk_style_render_icon(GtkStyle* s_object, const GtkIconSource* s_sourc
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -10888,7 +11588,9 @@ S_virtual_gtk_style_render_icon(GtkStyle* s_object, const GtkIconSource* s_sourc
   SETCAR(tmp, asRString(s_detail));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
   return(GDK_PIXBUF(getPtrValueWithRef(s_ans)));
@@ -10900,6 +11602,7 @@ S_virtual_gtk_style_draw_hline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -10926,7 +11629,9 @@ S_virtual_gtk_style_draw_hline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   SETCAR(tmp, asRInteger(s_y));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10937,6 +11642,7 @@ S_virtual_gtk_style_draw_vline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -10963,7 +11669,9 @@ S_virtual_gtk_style_draw_vline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   SETCAR(tmp, asRInteger(s_x));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -10974,6 +11682,7 @@ S_virtual_gtk_style_draw_shadow(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11004,7 +11713,9 @@ S_virtual_gtk_style_draw_shadow(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11015,6 +11726,7 @@ S_virtual_gtk_style_draw_polygon(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 11));
   tmp = e;
@@ -11043,7 +11755,9 @@ S_virtual_gtk_style_draw_polygon(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   SETCAR(tmp, asRLogical(s_fill));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11054,6 +11768,7 @@ S_virtual_gtk_style_draw_arrow(GtkStyle* s_object, GdkWindow* s_window, GtkState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 14));
   tmp = e;
@@ -11088,7 +11803,9 @@ S_virtual_gtk_style_draw_arrow(GtkStyle* s_object, GdkWindow* s_window, GtkState
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11099,6 +11816,7 @@ S_virtual_gtk_style_draw_diamond(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11129,7 +11847,9 @@ S_virtual_gtk_style_draw_diamond(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11140,6 +11860,7 @@ S_virtual_gtk_style_draw_string(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -11166,7 +11887,9 @@ S_virtual_gtk_style_draw_string(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, asRString(s_string));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11177,6 +11900,7 @@ S_virtual_gtk_style_draw_box(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11207,7 +11931,9 @@ S_virtual_gtk_style_draw_box(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11218,6 +11944,7 @@ S_virtual_gtk_style_draw_flat_box(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11248,7 +11975,9 @@ S_virtual_gtk_style_draw_flat_box(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11259,6 +11988,7 @@ S_virtual_gtk_style_draw_check(GtkStyle* s_object, GdkWindow* s_window, GtkState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11289,7 +12019,9 @@ S_virtual_gtk_style_draw_check(GtkStyle* s_object, GdkWindow* s_window, GtkState
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11300,6 +12032,7 @@ S_virtual_gtk_style_draw_option(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11330,7 +12063,9 @@ S_virtual_gtk_style_draw_option(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11341,6 +12076,7 @@ S_virtual_gtk_style_draw_tab(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11371,7 +12107,9 @@ S_virtual_gtk_style_draw_tab(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11382,6 +12120,7 @@ S_virtual_gtk_style_draw_shadow_gap(GtkStyle* s_object, GdkWindow* s_window, Gtk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 15));
   tmp = e;
@@ -11418,7 +12157,9 @@ S_virtual_gtk_style_draw_shadow_gap(GtkStyle* s_object, GdkWindow* s_window, Gtk
   SETCAR(tmp, asRInteger(s_gap_width));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11429,6 +12170,7 @@ S_virtual_gtk_style_draw_box_gap(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 15));
   tmp = e;
@@ -11465,7 +12207,9 @@ S_virtual_gtk_style_draw_box_gap(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   SETCAR(tmp, asRInteger(s_gap_width));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11476,6 +12220,7 @@ S_virtual_gtk_style_draw_extension(GtkStyle* s_object, GdkWindow* s_window, GtkS
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 13));
   tmp = e;
@@ -11508,7 +12253,9 @@ S_virtual_gtk_style_draw_extension(GtkStyle* s_object, GdkWindow* s_window, GtkS
   SETCAR(tmp, asREnum(s_gap_side, GTK_TYPE_POSITION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11519,6 +12266,7 @@ S_virtual_gtk_style_draw_focus(GtkStyle* s_object, GdkWindow* s_window, GtkState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 11));
   tmp = e;
@@ -11547,7 +12295,9 @@ S_virtual_gtk_style_draw_focus(GtkStyle* s_object, GdkWindow* s_window, GtkState
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11558,6 +12308,7 @@ S_virtual_gtk_style_draw_slider(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 13));
   tmp = e;
@@ -11590,7 +12341,9 @@ S_virtual_gtk_style_draw_slider(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, asREnum(s_orientation, GTK_TYPE_ORIENTATION));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11601,6 +12354,7 @@ S_virtual_gtk_style_draw_handle(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 13));
   tmp = e;
@@ -11633,7 +12387,9 @@ S_virtual_gtk_style_draw_handle(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, asREnum(s_orientation, GTK_TYPE_ORIENTATION));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11644,6 +12400,7 @@ S_virtual_gtk_style_draw_expander(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 10));
   tmp = e;
@@ -11670,7 +12427,9 @@ S_virtual_gtk_style_draw_expander(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   SETCAR(tmp, asREnum(s_expander_style, GTK_TYPE_EXPANDER_STYLE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11681,6 +12440,7 @@ S_virtual_gtk_style_draw_layout(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 11));
   tmp = e;
@@ -11709,7 +12469,9 @@ S_virtual_gtk_style_draw_layout(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   SETCAR(tmp, toRPointerWithRef(s_layout, "PangoLayout"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -11720,6 +12482,7 @@ S_virtual_gtk_style_draw_resize_grip(GtkStyle* s_object, GdkWindow* s_window, Gt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 12));
   tmp = e;
@@ -11750,7 +12513,9 @@ S_virtual_gtk_style_draw_resize_grip(GtkStyle* s_object, GdkWindow* s_window, Gt
   SETCAR(tmp, asRInteger(s_height));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12475,6 +13240,7 @@ S_virtual_gtk_text_buffer_insert_text(GtkTextBuffer* s_object, GtkTextIter* s_po
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -12491,7 +13257,9 @@ S_virtual_gtk_text_buffer_insert_text(GtkTextBuffer* s_object, GtkTextIter* s_po
   SETCAR(tmp, asRInteger(s_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12502,6 +13270,7 @@ S_virtual_gtk_text_buffer_insert_pixbuf(GtkTextBuffer* s_object, GtkTextIter* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -12516,7 +13285,9 @@ S_virtual_gtk_text_buffer_insert_pixbuf(GtkTextBuffer* s_object, GtkTextIter* s_
   SETCAR(tmp, toRPointerWithRef(s_pixbuf, "GdkPixbuf"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12527,6 +13298,7 @@ S_virtual_gtk_text_buffer_insert_child_anchor(GtkTextBuffer* s_object, GtkTextIt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -12541,7 +13313,9 @@ S_virtual_gtk_text_buffer_insert_child_anchor(GtkTextBuffer* s_object, GtkTextIt
   SETCAR(tmp, toRPointerWithRef(s_anchor, "GtkTextChildAnchor"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12552,6 +13326,7 @@ S_virtual_gtk_text_buffer_delete_range(GtkTextBuffer* s_object, GtkTextIter* s_s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -12566,7 +13341,9 @@ S_virtual_gtk_text_buffer_delete_range(GtkTextBuffer* s_object, GtkTextIter* s_s
   SETCAR(tmp, toRPointerWithFinalizer(s_end ? gtk_text_iter_copy(s_end) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12577,6 +13354,7 @@ S_virtual_gtk_text_buffer_changed(GtkTextBuffer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -12587,7 +13365,9 @@ S_virtual_gtk_text_buffer_changed(GtkTextBuffer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTextBuffer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12598,6 +13378,7 @@ S_virtual_gtk_text_buffer_modified_changed(GtkTextBuffer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -12608,7 +13389,9 @@ S_virtual_gtk_text_buffer_modified_changed(GtkTextBuffer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTextBuffer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12619,6 +13402,7 @@ S_virtual_gtk_text_buffer_mark_set(GtkTextBuffer* s_object, const GtkTextIter* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -12633,7 +13417,9 @@ S_virtual_gtk_text_buffer_mark_set(GtkTextBuffer* s_object, const GtkTextIter* s
   SETCAR(tmp, toRPointerWithRef(s_mark, "GtkTextMark"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12644,6 +13430,7 @@ S_virtual_gtk_text_buffer_mark_deleted(GtkTextBuffer* s_object, GtkTextMark* s_m
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -12656,7 +13443,9 @@ S_virtual_gtk_text_buffer_mark_deleted(GtkTextBuffer* s_object, GtkTextMark* s_m
   SETCAR(tmp, toRPointerWithRef(s_mark, "GtkTextMark"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12667,6 +13456,7 @@ S_virtual_gtk_text_buffer_apply_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -12683,7 +13473,9 @@ S_virtual_gtk_text_buffer_apply_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag, 
   SETCAR(tmp, toRPointerWithFinalizer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12694,6 +13486,7 @@ S_virtual_gtk_text_buffer_remove_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -12710,7 +13503,9 @@ S_virtual_gtk_text_buffer_remove_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag,
   SETCAR(tmp, toRPointerWithFinalizer(s_end_char ? gtk_text_iter_copy(s_end_char) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12721,6 +13516,7 @@ S_virtual_gtk_text_buffer_begin_user_action(GtkTextBuffer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -12731,7 +13527,9 @@ S_virtual_gtk_text_buffer_begin_user_action(GtkTextBuffer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTextBuffer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -12742,6 +13540,7 @@ S_virtual_gtk_text_buffer_end_user_action(GtkTextBuffer* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -12752,7 +13551,9 @@ S_virtual_gtk_text_buffer_end_user_action(GtkTextBuffer* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTextBuffer")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13015,6 +13816,7 @@ S_virtual_gtk_text_tag_event(GtkTextTag* s_object, GObject* s_event_object, GdkE
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -13031,7 +13833,9 @@ S_virtual_gtk_text_tag_event(GtkTextTag* s_object, GObject* s_event_object, GdkE
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_text_iter_copy(s_iter) : NULL, "GtkTextIter", (RPointerFinalizer) gtk_text_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -13078,6 +13882,7 @@ S_virtual_gtk_text_tag_table_tag_changed(GtkTextTagTable* s_object, GtkTextTag* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -13092,7 +13897,9 @@ S_virtual_gtk_text_tag_table_tag_changed(GtkTextTagTable* s_object, GtkTextTag* 
   SETCAR(tmp, asRLogical(s_size_changed));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13103,6 +13910,7 @@ S_virtual_gtk_text_tag_table_tag_added(GtkTextTagTable* s_object, GtkTextTag* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -13115,7 +13923,9 @@ S_virtual_gtk_text_tag_table_tag_added(GtkTextTagTable* s_object, GtkTextTag* s_
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13126,6 +13936,7 @@ S_virtual_gtk_text_tag_table_tag_removed(GtkTextTagTable* s_object, GtkTextTag* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -13138,7 +13949,9 @@ S_virtual_gtk_text_tag_table_tag_removed(GtkTextTagTable* s_object, GtkTextTag* 
   SETCAR(tmp, toRPointerWithRef(s_tag, "GtkTextTag"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13215,6 +14028,7 @@ S_virtual_gtk_text_view_set_scroll_adjustments(GtkTextView* s_object, GtkAdjustm
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -13229,7 +14043,9 @@ S_virtual_gtk_text_view_set_scroll_adjustments(GtkTextView* s_object, GtkAdjustm
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13240,6 +14056,7 @@ S_virtual_gtk_text_view_populate_popup(GtkTextView* s_object, GtkMenu* s_menu)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -13252,7 +14069,9 @@ S_virtual_gtk_text_view_populate_popup(GtkTextView* s_object, GtkMenu* s_menu)
   SETCAR(tmp, toRPointerWithSink(s_menu, "GtkMenu"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13263,6 +14082,7 @@ S_virtual_gtk_text_view_move_cursor(GtkTextView* s_object, GtkMovementStep s_ste
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -13279,7 +14099,9 @@ S_virtual_gtk_text_view_move_cursor(GtkTextView* s_object, GtkMovementStep s_ste
   SETCAR(tmp, asRLogical(s_extend_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13290,6 +14112,7 @@ S_virtual_gtk_text_view_page_horizontally(GtkTextView* s_object, gint s_count, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -13304,7 +14127,9 @@ S_virtual_gtk_text_view_page_horizontally(GtkTextView* s_object, gint s_count, g
   SETCAR(tmp, asRLogical(s_extend_selection));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13315,6 +14140,7 @@ S_virtual_gtk_text_view_set_anchor(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13325,7 +14151,9 @@ S_virtual_gtk_text_view_set_anchor(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13336,6 +14164,7 @@ S_virtual_gtk_text_view_insert_at_cursor(GtkTextView* s_object, const gchar* s_s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -13348,7 +14177,9 @@ S_virtual_gtk_text_view_insert_at_cursor(GtkTextView* s_object, const gchar* s_s
   SETCAR(tmp, asRString(s_str));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13359,6 +14190,7 @@ S_virtual_gtk_text_view_delete_from_cursor(GtkTextView* s_object, GtkDeleteType 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -13373,7 +14205,9 @@ S_virtual_gtk_text_view_delete_from_cursor(GtkTextView* s_object, GtkDeleteType 
   SETCAR(tmp, asRInteger(s_count));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13384,6 +14218,7 @@ S_virtual_gtk_text_view_backspace(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13394,7 +14229,9 @@ S_virtual_gtk_text_view_backspace(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13405,6 +14242,7 @@ S_virtual_gtk_text_view_cut_clipboard(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13415,7 +14253,9 @@ S_virtual_gtk_text_view_cut_clipboard(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13426,6 +14266,7 @@ S_virtual_gtk_text_view_copy_clipboard(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13436,7 +14277,9 @@ S_virtual_gtk_text_view_copy_clipboard(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13447,6 +14290,7 @@ S_virtual_gtk_text_view_paste_clipboard(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13457,7 +14301,9 @@ S_virtual_gtk_text_view_paste_clipboard(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13468,6 +14314,7 @@ S_virtual_gtk_text_view_toggle_overwrite(GtkTextView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13478,7 +14325,9 @@ S_virtual_gtk_text_view_toggle_overwrite(GtkTextView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTextView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13489,6 +14338,7 @@ S_virtual_gtk_text_view_move_focus(GtkTextView* s_object, GtkDirectionType s_dir
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -13501,7 +14351,9 @@ S_virtual_gtk_text_view_move_focus(GtkTextView* s_object, GtkDirectionType s_dir
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13746,6 +14598,7 @@ S_virtual_gtk_tips_query_start_query(GtkTipsQuery* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13756,7 +14609,9 @@ S_virtual_gtk_tips_query_start_query(GtkTipsQuery* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTipsQuery")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13767,6 +14622,7 @@ S_virtual_gtk_tips_query_stop_query(GtkTipsQuery* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13777,7 +14633,9 @@ S_virtual_gtk_tips_query_stop_query(GtkTipsQuery* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTipsQuery")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13788,6 +14646,7 @@ S_virtual_gtk_tips_query_widget_entered(GtkTipsQuery* s_object, GtkWidget* s_wid
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -13804,7 +14663,9 @@ S_virtual_gtk_tips_query_widget_entered(GtkTipsQuery* s_object, GtkWidget* s_wid
   SETCAR(tmp, asRString(s_tip_private));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13815,6 +14676,7 @@ S_virtual_gtk_tips_query_widget_selected(GtkTipsQuery* s_object, GtkWidget* s_wi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -13833,7 +14695,9 @@ S_virtual_gtk_tips_query_widget_selected(GtkTipsQuery* s_object, GtkWidget* s_wi
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -13932,6 +14796,7 @@ S_virtual_gtk_toggle_action_toggled(GtkToggleAction* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13942,7 +14807,9 @@ S_virtual_gtk_toggle_action_toggled(GtkToggleAction* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkToggleAction")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -13983,6 +14850,7 @@ S_virtual_gtk_toggle_button_toggled(GtkToggleButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -13993,7 +14861,9 @@ S_virtual_gtk_toggle_button_toggled(GtkToggleButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkToggleButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14034,6 +14904,7 @@ S_virtual_gtk_toggle_tool_button_toggled(GtkToggleToolButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14044,7 +14915,9 @@ S_virtual_gtk_toggle_tool_button_toggled(GtkToggleToolButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkToggleToolButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14085,6 +14958,7 @@ S_virtual_gtk_toolbar_orientation_changed(GtkToolbar* s_object, GtkOrientation s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -14097,7 +14971,9 @@ S_virtual_gtk_toolbar_orientation_changed(GtkToolbar* s_object, GtkOrientation s
   SETCAR(tmp, asREnum(s_orientation, GTK_TYPE_ORIENTATION));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14108,6 +14984,7 @@ S_virtual_gtk_toolbar_style_changed(GtkToolbar* s_object, GtkToolbarStyle s_styl
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -14120,7 +14997,9 @@ S_virtual_gtk_toolbar_style_changed(GtkToolbar* s_object, GtkToolbarStyle s_styl
   SETCAR(tmp, asREnum(s_style, GTK_TYPE_TOOLBAR_STYLE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14131,6 +15010,7 @@ S_virtual_gtk_toolbar_popup_context_menu(GtkToolbar* s_object, gint s_x, gint s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -14147,7 +15027,9 @@ S_virtual_gtk_toolbar_popup_context_menu(GtkToolbar* s_object, gint s_x, gint s_
   SETCAR(tmp, asRInteger(s_button_number));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14228,6 +15110,7 @@ S_virtual_gtk_tool_button_clicked(GtkToolButton* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14238,7 +15121,9 @@ S_virtual_gtk_tool_button_clicked(GtkToolButton* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkToolButton")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14279,6 +15164,7 @@ S_virtual_gtk_tool_item_create_menu_proxy(GtkToolItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14289,7 +15175,9 @@ S_virtual_gtk_tool_item_create_menu_proxy(GtkToolItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkToolItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14301,6 +15189,7 @@ S_virtual_gtk_tool_item_toolbar_reconfigured(GtkToolItem* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14311,7 +15200,9 @@ S_virtual_gtk_tool_item_toolbar_reconfigured(GtkToolItem* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkToolItem")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14322,6 +15213,7 @@ S_virtual_gtk_tool_item_set_tooltip(GtkToolItem* s_object, GtkTooltips* s_toolti
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -14338,7 +15230,9 @@ S_virtual_gtk_tool_item_set_tooltip(GtkToolItem* s_object, GtkTooltips* s_toolti
   SETCAR(tmp, asRString(s_tip_private));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14461,6 +15355,7 @@ S_virtual_gtk_tree_selection_changed(GtkTreeSelection* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14471,7 +15366,9 @@ S_virtual_gtk_tree_selection_changed(GtkTreeSelection* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeSelection")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14526,6 +15423,7 @@ S_virtual_gtk_tree_view_set_scroll_adjustments(GtkTreeView* s_object, GtkAdjustm
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14540,7 +15438,9 @@ S_virtual_gtk_tree_view_set_scroll_adjustments(GtkTreeView* s_object, GtkAdjustm
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14551,6 +15451,7 @@ S_virtual_gtk_tree_view_row_activated(GtkTreeView* s_object, GtkTreePath* s_path
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14565,7 +15466,9 @@ S_virtual_gtk_tree_view_row_activated(GtkTreeView* s_object, GtkTreePath* s_path
   SETCAR(tmp, toRPointerWithSink(s_column, "GtkTreeViewColumn"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14576,6 +15479,7 @@ S_virtual_gtk_tree_view_test_expand_row(GtkTreeView* s_object, GtkTreeIter* s_it
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14590,7 +15494,9 @@ S_virtual_gtk_tree_view_test_expand_row(GtkTreeView* s_object, GtkTreeIter* s_it
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14602,6 +15508,7 @@ S_virtual_gtk_tree_view_test_collapse_row(GtkTreeView* s_object, GtkTreeIter* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14616,7 +15523,9 @@ S_virtual_gtk_tree_view_test_collapse_row(GtkTreeView* s_object, GtkTreeIter* s_
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14628,6 +15537,7 @@ S_virtual_gtk_tree_view_row_expanded(GtkTreeView* s_object, GtkTreeIter* s_iter,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14642,7 +15552,9 @@ S_virtual_gtk_tree_view_row_expanded(GtkTreeView* s_object, GtkTreeIter* s_iter,
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14653,6 +15565,7 @@ S_virtual_gtk_tree_view_row_collapsed(GtkTreeView* s_object, GtkTreeIter* s_iter
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14667,7 +15580,9 @@ S_virtual_gtk_tree_view_row_collapsed(GtkTreeView* s_object, GtkTreeIter* s_iter
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14678,6 +15593,7 @@ S_virtual_gtk_tree_view_columns_changed(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14688,7 +15604,9 @@ S_virtual_gtk_tree_view_columns_changed(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14699,6 +15617,7 @@ S_virtual_gtk_tree_view_cursor_changed(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14709,7 +15628,9 @@ S_virtual_gtk_tree_view_cursor_changed(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -14720,6 +15641,7 @@ S_virtual_gtk_tree_view_move_cursor(GtkTreeView* s_object, GtkMovementStep s_ste
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -14734,7 +15656,9 @@ S_virtual_gtk_tree_view_move_cursor(GtkTreeView* s_object, GtkMovementStep s_ste
   SETCAR(tmp, asRInteger(s_count));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14746,6 +15670,7 @@ S_virtual_gtk_tree_view_select_all(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14756,7 +15681,9 @@ S_virtual_gtk_tree_view_select_all(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14768,6 +15695,7 @@ S_virtual_gtk_tree_view_unselect_all(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14778,7 +15706,9 @@ S_virtual_gtk_tree_view_unselect_all(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14790,6 +15720,7 @@ S_virtual_gtk_tree_view_select_cursor_row(GtkTreeView* s_object, gboolean s_star
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -14802,7 +15733,9 @@ S_virtual_gtk_tree_view_select_cursor_row(GtkTreeView* s_object, gboolean s_star
   SETCAR(tmp, asRLogical(s_start_editing));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14814,6 +15747,7 @@ S_virtual_gtk_tree_view_toggle_cursor_row(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14824,7 +15758,9 @@ S_virtual_gtk_tree_view_toggle_cursor_row(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14836,6 +15772,7 @@ S_virtual_gtk_tree_view_expand_collapse_cursor_row(GtkTreeView* s_object, gboole
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -14852,7 +15789,9 @@ S_virtual_gtk_tree_view_expand_collapse_cursor_row(GtkTreeView* s_object, gboole
   SETCAR(tmp, asRLogical(s_open_all));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14864,6 +15803,7 @@ S_virtual_gtk_tree_view_select_cursor_parent(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14874,7 +15814,9 @@ S_virtual_gtk_tree_view_select_cursor_parent(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -14886,6 +15828,7 @@ S_virtual_gtk_tree_view_start_interactive_search(GtkTreeView* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -14896,7 +15839,9 @@ S_virtual_gtk_tree_view_start_interactive_search(GtkTreeView* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeView")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -15216,6 +16161,7 @@ S_virtual_gtk_tree_view_column_clicked(GtkTreeViewColumn* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15226,7 +16172,9 @@ S_virtual_gtk_tree_view_column_clicked(GtkTreeViewColumn* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkTreeViewColumn")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15267,6 +16215,7 @@ S_virtual_gtk_uimanager_add_widget(GtkUIManager* s_object, GtkWidget* s_widget)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15279,7 +16228,9 @@ S_virtual_gtk_uimanager_add_widget(GtkUIManager* s_object, GtkWidget* s_widget)
   SETCAR(tmp, toRPointerWithSink(s_widget, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15290,6 +16241,7 @@ S_virtual_gtk_uimanager_actions_changed(GtkUIManager* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15300,7 +16252,9 @@ S_virtual_gtk_uimanager_actions_changed(GtkUIManager* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkUIManager")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15311,6 +16265,7 @@ S_virtual_gtk_uimanager_connect_proxy(GtkUIManager* s_object, GtkAction* s_actio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -15325,7 +16280,9 @@ S_virtual_gtk_uimanager_connect_proxy(GtkUIManager* s_object, GtkAction* s_actio
   SETCAR(tmp, toRPointerWithSink(s_proxy, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15336,6 +16293,7 @@ S_virtual_gtk_uimanager_disconnect_proxy(GtkUIManager* s_object, GtkAction* s_ac
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -15350,7 +16308,9 @@ S_virtual_gtk_uimanager_disconnect_proxy(GtkUIManager* s_object, GtkAction* s_ac
   SETCAR(tmp, toRPointerWithSink(s_proxy, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15361,6 +16321,7 @@ S_virtual_gtk_uimanager_pre_activate(GtkUIManager* s_object, GtkAction* s_action
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15373,7 +16334,9 @@ S_virtual_gtk_uimanager_pre_activate(GtkUIManager* s_object, GtkAction* s_action
   SETCAR(tmp, toRPointerWithRef(s_action, "GtkAction"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15384,6 +16347,7 @@ S_virtual_gtk_uimanager_post_activate(GtkUIManager* s_object, GtkAction* s_actio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15396,7 +16360,9 @@ S_virtual_gtk_uimanager_post_activate(GtkUIManager* s_object, GtkAction* s_actio
   SETCAR(tmp, toRPointerWithRef(s_action, "GtkAction"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15407,6 +16373,7 @@ S_virtual_gtk_uimanager_get_widget(GtkUIManager* s_object, const gchar* s_path)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15419,7 +16386,9 @@ S_virtual_gtk_uimanager_get_widget(GtkUIManager* s_object, const gchar* s_path)
   SETCAR(tmp, asRString(s_path));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkWidget*)0));
 
   UNPROTECT(1);
   return(GTK_WIDGET(getPtrValue(s_ans)));
@@ -15431,6 +16400,7 @@ S_virtual_gtk_uimanager_get_action(GtkUIManager* s_object, const gchar* s_path)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15443,7 +16413,9 @@ S_virtual_gtk_uimanager_get_action(GtkUIManager* s_object, const gchar* s_path)
   SETCAR(tmp, asRString(s_path));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkAction*)0));
 
   UNPROTECT(1);
   return(GTK_ACTION(getPtrValue(s_ans)));
@@ -15638,6 +16610,7 @@ S_virtual_gtk_viewport_set_scroll_adjustments(GtkViewport* s_object, GtkAdjustme
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -15652,7 +16625,9 @@ S_virtual_gtk_viewport_set_scroll_adjustments(GtkViewport* s_object, GtkAdjustme
   SETCAR(tmp, toRPointerWithSink(s_vadjustment, "GtkAdjustment"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15765,6 +16740,7 @@ S_virtual_gtk_widget_dispatch_child_properties_changed(GtkWidget* s_object, guin
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -15779,7 +16755,9 @@ S_virtual_gtk_widget_dispatch_child_properties_changed(GtkWidget* s_object, guin
   SETCAR(tmp, asRArrayWithSize(s_pspecs, asRGParamSpec, s_n_pspecs));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15790,6 +16768,7 @@ S_virtual_gtk_widget_show(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15800,7 +16779,9 @@ S_virtual_gtk_widget_show(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15811,6 +16792,7 @@ S_virtual_gtk_widget_show_all(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15821,7 +16803,9 @@ S_virtual_gtk_widget_show_all(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15832,6 +16816,7 @@ S_virtual_gtk_widget_hide(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15842,7 +16827,9 @@ S_virtual_gtk_widget_hide(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15853,6 +16840,7 @@ S_virtual_gtk_widget_hide_all(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15863,7 +16851,9 @@ S_virtual_gtk_widget_hide_all(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15874,6 +16864,7 @@ S_virtual_gtk_widget_map(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15884,7 +16875,9 @@ S_virtual_gtk_widget_map(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15895,6 +16888,7 @@ S_virtual_gtk_widget_unmap(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15905,7 +16899,9 @@ S_virtual_gtk_widget_unmap(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15916,6 +16912,7 @@ S_virtual_gtk_widget_realize(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15926,7 +16923,9 @@ S_virtual_gtk_widget_realize(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15937,6 +16936,7 @@ S_virtual_gtk_widget_unrealize(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -15947,7 +16947,9 @@ S_virtual_gtk_widget_unrealize(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15958,6 +16960,7 @@ S_virtual_gtk_widget_size_request(GtkWidget* s_object, GtkRequisition* s_requisi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15970,7 +16973,9 @@ S_virtual_gtk_widget_size_request(GtkWidget* s_object, GtkRequisition* s_requisi
   SETCAR(tmp, toRPointer(s_requisition ? (s_requisition) : NULL, "GtkRequisition"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -15981,6 +16986,7 @@ S_virtual_gtk_widget_size_allocate(GtkWidget* s_object, GtkAllocation* s_allocat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -15993,7 +16999,9 @@ S_virtual_gtk_widget_size_allocate(GtkWidget* s_object, GtkAllocation* s_allocat
   SETCAR(tmp, asRGtkAllocation(s_allocation));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16004,6 +17012,7 @@ S_virtual_gtk_widget_state_changed(GtkWidget* s_object, GtkStateType s_previous_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16016,7 +17025,9 @@ S_virtual_gtk_widget_state_changed(GtkWidget* s_object, GtkStateType s_previous_
   SETCAR(tmp, asREnum(s_previous_state, GTK_TYPE_STATE_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16027,6 +17038,7 @@ S_virtual_gtk_widget_parent_set(GtkWidget* s_object, GtkWidget* s_previous_paren
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16039,7 +17051,9 @@ S_virtual_gtk_widget_parent_set(GtkWidget* s_object, GtkWidget* s_previous_paren
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_previous_parent, toRPointerWithSink(s_previous_parent, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16050,6 +17064,7 @@ S_virtual_gtk_widget_hierarchy_changed(GtkWidget* s_object, GtkWidget* s_previou
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16062,7 +17077,9 @@ S_virtual_gtk_widget_hierarchy_changed(GtkWidget* s_object, GtkWidget* s_previou
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_previous_toplevel, toRPointerWithSink(s_previous_toplevel, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16073,6 +17090,7 @@ S_virtual_gtk_widget_style_set(GtkWidget* s_object, GtkStyle* s_previous_style)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16085,7 +17103,9 @@ S_virtual_gtk_widget_style_set(GtkWidget* s_object, GtkStyle* s_previous_style)
   SETCAR(tmp, toRPointerWithRef(s_previous_style, "GtkStyle"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16096,6 +17116,7 @@ S_virtual_gtk_widget_direction_changed(GtkWidget* s_object, GtkTextDirection s_p
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16108,7 +17129,9 @@ S_virtual_gtk_widget_direction_changed(GtkWidget* s_object, GtkTextDirection s_p
   SETCAR(tmp, asREnum(s_previous_direction, GTK_TYPE_TEXT_DIRECTION));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16119,6 +17142,7 @@ S_virtual_gtk_widget_grab_notify(GtkWidget* s_object, gboolean s_was_grabbed)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16131,7 +17155,9 @@ S_virtual_gtk_widget_grab_notify(GtkWidget* s_object, gboolean s_was_grabbed)
   SETCAR(tmp, asRLogical(s_was_grabbed));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16142,6 +17168,7 @@ S_virtual_gtk_widget_child_notify(GtkWidget* s_object, GParamSpec* s_pspec)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16154,7 +17181,9 @@ S_virtual_gtk_widget_child_notify(GtkWidget* s_object, GParamSpec* s_pspec)
   SETCAR(tmp, asRGParamSpec(s_pspec));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16165,6 +17194,7 @@ S_virtual_gtk_widget_mnemonic_activate(GtkWidget* s_object, gboolean s_group_cyc
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16177,7 +17207,9 @@ S_virtual_gtk_widget_mnemonic_activate(GtkWidget* s_object, gboolean s_group_cyc
   SETCAR(tmp, asRLogical(s_group_cycling));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16189,6 +17221,7 @@ S_virtual_gtk_widget_grab_focus(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -16199,7 +17232,9 @@ S_virtual_gtk_widget_grab_focus(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16210,6 +17245,7 @@ S_virtual_gtk_widget_focus(GtkWidget* s_object, GtkDirectionType s_direction)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16222,7 +17258,9 @@ S_virtual_gtk_widget_focus(GtkWidget* s_object, GtkDirectionType s_direction)
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16234,6 +17272,7 @@ S_virtual_gtk_widget_event(GtkWidget* s_object, GdkEvent* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16246,7 +17285,9 @@ S_virtual_gtk_widget_event(GtkWidget* s_object, GdkEvent* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16258,6 +17299,7 @@ S_virtual_gtk_widget_button_press_event(GtkWidget* s_object, GdkEventButton* s_e
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16270,7 +17312,9 @@ S_virtual_gtk_widget_button_press_event(GtkWidget* s_object, GdkEventButton* s_e
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16282,6 +17326,7 @@ S_virtual_gtk_widget_button_release_event(GtkWidget* s_object, GdkEventButton* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16294,7 +17339,9 @@ S_virtual_gtk_widget_button_release_event(GtkWidget* s_object, GdkEventButton* s
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16306,6 +17353,7 @@ S_virtual_gtk_widget_scroll_event(GtkWidget* s_object, GdkEventScroll* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16318,7 +17366,9 @@ S_virtual_gtk_widget_scroll_event(GtkWidget* s_object, GdkEventScroll* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16330,6 +17380,7 @@ S_virtual_gtk_widget_motion_notify_event(GtkWidget* s_object, GdkEventMotion* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16342,7 +17393,9 @@ S_virtual_gtk_widget_motion_notify_event(GtkWidget* s_object, GdkEventMotion* s_
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16354,6 +17407,7 @@ S_virtual_gtk_widget_delete_event(GtkWidget* s_object, GdkEventAny* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16366,7 +17420,9 @@ S_virtual_gtk_widget_delete_event(GtkWidget* s_object, GdkEventAny* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16378,6 +17434,7 @@ S_virtual_gtk_widget_destroy_event(GtkWidget* s_object, GdkEventAny* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16390,7 +17447,9 @@ S_virtual_gtk_widget_destroy_event(GtkWidget* s_object, GdkEventAny* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16402,6 +17461,7 @@ S_virtual_gtk_widget_expose_event(GtkWidget* s_object, GdkEventExpose* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16414,7 +17474,9 @@ S_virtual_gtk_widget_expose_event(GtkWidget* s_object, GdkEventExpose* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16426,6 +17488,7 @@ S_virtual_gtk_widget_key_press_event(GtkWidget* s_object, GdkEventKey* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16438,7 +17501,9 @@ S_virtual_gtk_widget_key_press_event(GtkWidget* s_object, GdkEventKey* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16450,6 +17515,7 @@ S_virtual_gtk_widget_key_release_event(GtkWidget* s_object, GdkEventKey* s_event
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16462,7 +17528,9 @@ S_virtual_gtk_widget_key_release_event(GtkWidget* s_object, GdkEventKey* s_event
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16474,6 +17542,7 @@ S_virtual_gtk_widget_enter_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16486,7 +17555,9 @@ S_virtual_gtk_widget_enter_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16498,6 +17569,7 @@ S_virtual_gtk_widget_leave_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16510,7 +17582,9 @@ S_virtual_gtk_widget_leave_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16522,6 +17596,7 @@ S_virtual_gtk_widget_configure_event(GtkWidget* s_object, GdkEventConfigure* s_e
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16534,7 +17609,9 @@ S_virtual_gtk_widget_configure_event(GtkWidget* s_object, GdkEventConfigure* s_e
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16546,6 +17623,7 @@ S_virtual_gtk_widget_focus_in_event(GtkWidget* s_object, GdkEventFocus* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16558,7 +17636,9 @@ S_virtual_gtk_widget_focus_in_event(GtkWidget* s_object, GdkEventFocus* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16570,6 +17650,7 @@ S_virtual_gtk_widget_focus_out_event(GtkWidget* s_object, GdkEventFocus* s_event
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16582,7 +17663,9 @@ S_virtual_gtk_widget_focus_out_event(GtkWidget* s_object, GdkEventFocus* s_event
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16594,6 +17677,7 @@ S_virtual_gtk_widget_map_event(GtkWidget* s_object, GdkEventAny* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16606,7 +17690,9 @@ S_virtual_gtk_widget_map_event(GtkWidget* s_object, GdkEventAny* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16618,6 +17704,7 @@ S_virtual_gtk_widget_unmap_event(GtkWidget* s_object, GdkEventAny* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16630,7 +17717,9 @@ S_virtual_gtk_widget_unmap_event(GtkWidget* s_object, GdkEventAny* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16642,6 +17731,7 @@ S_virtual_gtk_widget_property_notify_event(GtkWidget* s_object, GdkEventProperty
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16654,7 +17744,9 @@ S_virtual_gtk_widget_property_notify_event(GtkWidget* s_object, GdkEventProperty
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16666,6 +17758,7 @@ S_virtual_gtk_widget_selection_clear_event(GtkWidget* s_object, GdkEventSelectio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16678,7 +17771,9 @@ S_virtual_gtk_widget_selection_clear_event(GtkWidget* s_object, GdkEventSelectio
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16690,6 +17785,7 @@ S_virtual_gtk_widget_selection_request_event(GtkWidget* s_object, GdkEventSelect
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16702,7 +17798,9 @@ S_virtual_gtk_widget_selection_request_event(GtkWidget* s_object, GdkEventSelect
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16714,6 +17812,7 @@ S_virtual_gtk_widget_selection_notify_event(GtkWidget* s_object, GdkEventSelecti
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16726,7 +17825,9 @@ S_virtual_gtk_widget_selection_notify_event(GtkWidget* s_object, GdkEventSelecti
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16738,6 +17839,7 @@ S_virtual_gtk_widget_proximity_in_event(GtkWidget* s_object, GdkEventProximity* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16750,7 +17852,9 @@ S_virtual_gtk_widget_proximity_in_event(GtkWidget* s_object, GdkEventProximity* 
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16762,6 +17866,7 @@ S_virtual_gtk_widget_proximity_out_event(GtkWidget* s_object, GdkEventProximity*
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16774,7 +17879,9 @@ S_virtual_gtk_widget_proximity_out_event(GtkWidget* s_object, GdkEventProximity*
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16786,6 +17893,7 @@ S_virtual_gtk_widget_visibility_notify_event(GtkWidget* s_object, GdkEventVisibi
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16798,7 +17906,9 @@ S_virtual_gtk_widget_visibility_notify_event(GtkWidget* s_object, GdkEventVisibi
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16810,6 +17920,7 @@ S_virtual_gtk_widget_client_event(GtkWidget* s_object, GdkEventClient* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16822,7 +17933,9 @@ S_virtual_gtk_widget_client_event(GtkWidget* s_object, GdkEventClient* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16834,6 +17947,7 @@ S_virtual_gtk_widget_no_expose_event(GtkWidget* s_object, GdkEventAny* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16846,7 +17960,9 @@ S_virtual_gtk_widget_no_expose_event(GtkWidget* s_object, GdkEventAny* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16858,6 +17974,7 @@ S_virtual_gtk_widget_window_state_event(GtkWidget* s_object, GdkEventWindowState
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16870,7 +17987,9 @@ S_virtual_gtk_widget_window_state_event(GtkWidget* s_object, GdkEventWindowState
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -16882,6 +18001,7 @@ S_virtual_gtk_widget_selection_get(GtkWidget* s_object, GtkSelectionData* s_sele
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -16898,7 +18018,9 @@ S_virtual_gtk_widget_selection_get(GtkWidget* s_object, GtkSelectionData* s_sele
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16909,6 +18031,7 @@ S_virtual_gtk_widget_selection_received(GtkWidget* s_object, GtkSelectionData* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -16923,7 +18046,9 @@ S_virtual_gtk_widget_selection_received(GtkWidget* s_object, GtkSelectionData* s
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16934,6 +18059,7 @@ S_virtual_gtk_widget_drag_begin(GtkWidget* s_object, GdkDragContext* s_context)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16946,7 +18072,9 @@ S_virtual_gtk_widget_drag_begin(GtkWidget* s_object, GdkDragContext* s_context)
   SETCAR(tmp, toRPointerWithRef(s_context, "GdkDragContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16957,6 +18085,7 @@ S_virtual_gtk_widget_drag_end(GtkWidget* s_object, GdkDragContext* s_context)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -16969,7 +18098,9 @@ S_virtual_gtk_widget_drag_end(GtkWidget* s_object, GdkDragContext* s_context)
   SETCAR(tmp, toRPointerWithRef(s_context, "GdkDragContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -16980,6 +18111,7 @@ S_virtual_gtk_widget_drag_data_get(GtkWidget* s_object, GdkDragContext* s_contex
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -16998,7 +18130,9 @@ S_virtual_gtk_widget_drag_data_get(GtkWidget* s_object, GdkDragContext* s_contex
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -17009,6 +18143,7 @@ S_virtual_gtk_widget_drag_data_delete(GtkWidget* s_object, GdkDragContext* s_con
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -17021,7 +18156,9 @@ S_virtual_gtk_widget_drag_data_delete(GtkWidget* s_object, GdkDragContext* s_con
   SETCAR(tmp, toRPointerWithRef(s_context, "GdkDragContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -17032,6 +18169,7 @@ S_virtual_gtk_widget_drag_leave(GtkWidget* s_object, GdkDragContext* s_context, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -17046,7 +18184,9 @@ S_virtual_gtk_widget_drag_leave(GtkWidget* s_object, GdkDragContext* s_context, 
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -17057,6 +18197,7 @@ S_virtual_gtk_widget_drag_motion(GtkWidget* s_object, GdkDragContext* s_context,
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -17075,7 +18216,9 @@ S_virtual_gtk_widget_drag_motion(GtkWidget* s_object, GdkDragContext* s_context,
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17087,6 +18230,7 @@ S_virtual_gtk_widget_drag_drop(GtkWidget* s_object, GdkDragContext* s_context, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -17105,7 +18249,9 @@ S_virtual_gtk_widget_drag_drop(GtkWidget* s_object, GdkDragContext* s_context, g
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17117,6 +18263,7 @@ S_virtual_gtk_widget_drag_data_received(GtkWidget* s_object, GdkDragContext* s_c
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 8));
   tmp = e;
@@ -17139,7 +18286,9 @@ S_virtual_gtk_widget_drag_data_received(GtkWidget* s_object, GdkDragContext* s_c
   SETCAR(tmp, asRNumeric(s_time_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -17150,6 +18299,7 @@ S_virtual_gtk_widget_popup_menu(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -17160,7 +18310,9 @@ S_virtual_gtk_widget_popup_menu(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17172,6 +18324,7 @@ S_virtual_gtk_widget_show_help(GtkWidget* s_object, GtkWidgetHelpType s_help_typ
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -17184,7 +18337,9 @@ S_virtual_gtk_widget_show_help(GtkWidget* s_object, GtkWidgetHelpType s_help_typ
   SETCAR(tmp, asREnum(s_help_type, GTK_TYPE_WIDGET_HELP_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17196,6 +18351,7 @@ S_virtual_gtk_widget_get_accessible(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -17206,7 +18362,9 @@ S_virtual_gtk_widget_get_accessible(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((AtkObject*)0));
 
   UNPROTECT(1);
   return(ATK_OBJECT(getPtrValue(s_ans)));
@@ -17218,6 +18376,7 @@ S_virtual_gtk_widget_screen_changed(GtkWidget* s_object, GdkScreen* s_previous_s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -17230,7 +18389,9 @@ S_virtual_gtk_widget_screen_changed(GtkWidget* s_object, GdkScreen* s_previous_s
   SETCAR(tmp, toRPointerWithRef(s_previous_screen, "GdkScreen"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -17241,6 +18402,7 @@ S_virtual_gtk_widget_can_activate_accel(GtkWidget* s_object, guint s_signal_id)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -17253,7 +18415,9 @@ S_virtual_gtk_widget_can_activate_accel(GtkWidget* s_object, guint s_signal_id)
   SETCAR(tmp, asRNumeric(s_signal_id));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17265,6 +18429,7 @@ S_virtual_gtk_widget_grab_broken_event(GtkWidget* s_object, GdkEventGrabBroken* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -17277,7 +18442,9 @@ S_virtual_gtk_widget_grab_broken_event(GtkWidget* s_object, GdkEventGrabBroken* 
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -17289,6 +18456,7 @@ S_virtual_gtk_widget_composited_changed(GtkWidget* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -17299,7 +18467,9 @@ S_virtual_gtk_widget_composited_changed(GtkWidget* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWidget")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18509,6 +19679,7 @@ S_virtual_gtk_window_set_focus(GtkWindow* s_object, GtkWidget* s_focus)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18521,7 +19692,9 @@ S_virtual_gtk_window_set_focus(GtkWindow* s_object, GtkWidget* s_focus)
   SETCAR(tmp, toRPointerWithSink(s_focus, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18532,6 +19705,7 @@ S_virtual_gtk_window_frame_event(GtkWindow* s_object, GdkEvent* s_event)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18544,7 +19718,9 @@ S_virtual_gtk_window_frame_event(GtkWindow* s_object, GdkEvent* s_event)
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -18556,6 +19732,7 @@ S_virtual_gtk_window_activate_focus(GtkWindow* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -18566,7 +19743,9 @@ S_virtual_gtk_window_activate_focus(GtkWindow* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWindow")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18577,6 +19756,7 @@ S_virtual_gtk_window_activate_default(GtkWindow* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -18587,7 +19767,9 @@ S_virtual_gtk_window_activate_default(GtkWindow* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWindow")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18598,6 +19780,7 @@ S_virtual_gtk_window_move_focus(GtkWindow* s_object, GtkDirectionType s_directio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18610,7 +19793,9 @@ S_virtual_gtk_window_move_focus(GtkWindow* s_object, GtkDirectionType s_directio
   SETCAR(tmp, asREnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18621,6 +19806,7 @@ S_virtual_gtk_window_keys_changed(GtkWindow* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -18631,7 +19817,9 @@ S_virtual_gtk_window_keys_changed(GtkWindow* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkWindow")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18771,6 +19959,7 @@ S_virtual_gtk_cell_renderer_accel_accel_edited(GtkCellRendererAccel* s_object, c
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -18789,7 +19978,9 @@ S_virtual_gtk_cell_renderer_accel_accel_edited(GtkCellRendererAccel* s_object, c
   SETCAR(tmp, asRNumeric(s_hardware_keycode));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18800,6 +19991,7 @@ S_virtual_gtk_cell_renderer_accel_accel_cleared(GtkCellRendererAccel* s_object, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18812,7 +20004,9 @@ S_virtual_gtk_cell_renderer_accel_accel_cleared(GtkCellRendererAccel* s_object, 
   SETCAR(tmp, asRString(s_path_string));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18888,6 +20082,7 @@ S_virtual_gtk_print_operation_done(GtkPrintOperation* s_object, GtkPrintOperatio
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18900,7 +20095,9 @@ S_virtual_gtk_print_operation_done(GtkPrintOperation* s_object, GtkPrintOperatio
   SETCAR(tmp, asREnum(s_result, GTK_TYPE_PRINT_OPERATION_RESULT));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18911,6 +20108,7 @@ S_virtual_gtk_print_operation_begin_print(GtkPrintOperation* s_object, GtkPrintC
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18923,7 +20121,9 @@ S_virtual_gtk_print_operation_begin_print(GtkPrintOperation* s_object, GtkPrintC
   SETCAR(tmp, toRPointerWithRef(s_context, "GtkPrintContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18934,6 +20134,7 @@ S_virtual_gtk_print_operation_paginate(GtkPrintOperation* s_object, GtkPrintCont
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -18946,7 +20147,9 @@ S_virtual_gtk_print_operation_paginate(GtkPrintOperation* s_object, GtkPrintCont
   SETCAR(tmp, toRPointerWithRef(s_context, "GtkPrintContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -18958,6 +20161,7 @@ S_virtual_gtk_print_operation_request_page_setup(GtkPrintOperation* s_object, Gt
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -18974,7 +20178,9 @@ S_virtual_gtk_print_operation_request_page_setup(GtkPrintOperation* s_object, Gt
   SETCAR(tmp, toRPointerWithRef(s_setup, "GtkPageSetup"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -18985,6 +20191,7 @@ S_virtual_gtk_print_operation_draw_page(GtkPrintOperation* s_object, GtkPrintCon
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -18999,7 +20206,9 @@ S_virtual_gtk_print_operation_draw_page(GtkPrintOperation* s_object, GtkPrintCon
   SETCAR(tmp, asRInteger(s_page_nr));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19010,6 +20219,7 @@ S_virtual_gtk_print_operation_end_print(GtkPrintOperation* s_object, GtkPrintCon
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19022,7 +20232,9 @@ S_virtual_gtk_print_operation_end_print(GtkPrintOperation* s_object, GtkPrintCon
   SETCAR(tmp, toRPointerWithRef(s_context, "GtkPrintContext"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19033,6 +20245,7 @@ S_virtual_gtk_print_operation_status_changed(GtkPrintOperation* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19043,7 +20256,9 @@ S_virtual_gtk_print_operation_status_changed(GtkPrintOperation* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkPrintOperation")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19054,6 +20269,7 @@ S_virtual_gtk_print_operation_create_custom_widget(GtkPrintOperation* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19064,7 +20280,9 @@ S_virtual_gtk_print_operation_create_custom_widget(GtkPrintOperation* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkPrintOperation")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkWidget*)0));
 
   UNPROTECT(1);
   return(GTK_WIDGET(getPtrValue(s_ans)));
@@ -19076,6 +20294,7 @@ S_virtual_gtk_print_operation_custom_widget_apply(GtkPrintOperation* s_object, G
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19088,7 +20307,9 @@ S_virtual_gtk_print_operation_custom_widget_apply(GtkPrintOperation* s_object, G
   SETCAR(tmp, toRPointerWithSink(s_widget, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19099,6 +20320,7 @@ S_virtual_gtk_print_operation_preview(GtkPrintOperation* s_object, GtkPrintOpera
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -19115,7 +20337,9 @@ S_virtual_gtk_print_operation_preview(GtkPrintOperation* s_object, GtkPrintOpera
   SETCAR(tmp, toRPointerWithSink(s_parent, "GtkWindow"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -19320,6 +20544,7 @@ S_virtual_gtk_recent_manager_changed(GtkRecentManager* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19330,7 +20555,9 @@ S_virtual_gtk_recent_manager_changed(GtkRecentManager* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkRecentManager")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19371,6 +20598,7 @@ S_virtual_gtk_status_icon_activate(GtkStatusIcon* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19381,7 +20609,9 @@ S_virtual_gtk_status_icon_activate(GtkStatusIcon* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkStatusIcon")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19392,6 +20622,7 @@ S_virtual_gtk_status_icon_popup_menu(GtkStatusIcon* s_object, guint s_button, gu
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -19406,7 +20637,9 @@ S_virtual_gtk_status_icon_popup_menu(GtkStatusIcon* s_object, guint s_button, gu
   SETCAR(tmp, asRNumeric(s_activate_time));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19417,6 +20650,7 @@ S_virtual_gtk_status_icon_size_changed(GtkStatusIcon* s_object, gint s_size)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19429,7 +20663,9 @@ S_virtual_gtk_status_icon_size_changed(GtkStatusIcon* s_object, gint s_size)
   SETCAR(tmp, asRInteger(s_size));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -19564,6 +20800,7 @@ S_virtual_gtk_assistant_prepare(GtkAssistant* s_object, GtkWidget* s_page)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19576,7 +20813,9 @@ S_virtual_gtk_assistant_prepare(GtkAssistant* s_object, GtkWidget* s_page)
   SETCAR(tmp, toRPointerWithSink(s_page, "GtkWidget"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19587,6 +20826,7 @@ S_virtual_gtk_assistant_apply(GtkAssistant* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19597,7 +20837,9 @@ S_virtual_gtk_assistant_apply(GtkAssistant* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkAssistant")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19608,6 +20850,7 @@ S_virtual_gtk_assistant_close(GtkAssistant* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19618,7 +20861,9 @@ S_virtual_gtk_assistant_close(GtkAssistant* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkAssistant")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19629,6 +20874,7 @@ S_virtual_gtk_assistant_cancel(GtkAssistant* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19639,7 +20885,9 @@ S_virtual_gtk_assistant_cancel(GtkAssistant* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithSink(s_object, "GtkAssistant")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19729,6 +20977,7 @@ S_virtual_gtk_cell_editable_editing_done(GtkCellEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19739,7 +20988,9 @@ S_virtual_gtk_cell_editable_editing_done(GtkCellEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkCellEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19750,6 +21001,7 @@ S_virtual_gtk_cell_editable_remove_widget(GtkCellEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19760,7 +21012,9 @@ S_virtual_gtk_cell_editable_remove_widget(GtkCellEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkCellEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19771,6 +21025,7 @@ S_virtual_gtk_cell_editable_start_editing(GtkCellEditable* s_object, GdkEvent* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19783,7 +21038,9 @@ S_virtual_gtk_cell_editable_start_editing(GtkCellEditable* s_object, GdkEvent* s
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19855,6 +21112,7 @@ S_virtual_gtk_cell_layout_pack_start(GtkCellLayout* s_object, GtkCellRenderer* s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -19869,7 +21127,9 @@ S_virtual_gtk_cell_layout_pack_start(GtkCellLayout* s_object, GtkCellRenderer* s
   SETCAR(tmp, asRLogical(s_expand));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19880,6 +21140,7 @@ S_virtual_gtk_cell_layout_pack_end(GtkCellLayout* s_object, GtkCellRenderer* s_c
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -19894,7 +21155,9 @@ S_virtual_gtk_cell_layout_pack_end(GtkCellLayout* s_object, GtkCellRenderer* s_c
   SETCAR(tmp, asRLogical(s_expand));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19905,6 +21168,7 @@ S_virtual_gtk_cell_layout_clear(GtkCellLayout* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -19915,7 +21179,9 @@ S_virtual_gtk_cell_layout_clear(GtkCellLayout* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkCellLayout")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19926,6 +21192,7 @@ S_virtual_gtk_cell_layout_add_attribute(GtkCellLayout* s_object, GtkCellRenderer
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -19942,7 +21209,9 @@ S_virtual_gtk_cell_layout_add_attribute(GtkCellLayout* s_object, GtkCellRenderer
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19953,6 +21222,7 @@ S_virtual_gtk_cell_layout_set_cell_data_func(GtkCellLayout* s_object, GtkCellRen
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -19971,7 +21241,9 @@ S_virtual_gtk_cell_layout_set_cell_data_func(GtkCellLayout* s_object, GtkCellRen
   SETCAR(tmp, toRPointer(s_destroy, "GDestroyNotify"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -19982,6 +21254,7 @@ S_virtual_gtk_cell_layout_clear_attributes(GtkCellLayout* s_object, GtkCellRende
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -19994,7 +21267,9 @@ S_virtual_gtk_cell_layout_clear_attributes(GtkCellLayout* s_object, GtkCellRende
   SETCAR(tmp, toRPointerWithSink(s_cell, "GtkCellRenderer"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20005,6 +21280,7 @@ S_virtual_gtk_cell_layout_reorder(GtkCellLayout* s_object, GtkCellRenderer* s_ce
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20019,7 +21295,9 @@ S_virtual_gtk_cell_layout_reorder(GtkCellLayout* s_object, GtkCellRenderer* s_ce
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20168,6 +21446,7 @@ S_virtual_gtk_editable_insert_text(GtkEditable* s_object, const gchar* s_text, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -20184,7 +21463,9 @@ S_virtual_gtk_editable_insert_text(GtkEditable* s_object, const gchar* s_text, g
   SETCAR(tmp, asRIntegerArrayWithSize(s_position, s_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20195,6 +21476,7 @@ S_virtual_gtk_editable_delete_text(GtkEditable* s_object, gint s_start_pos, gint
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20209,7 +21491,9 @@ S_virtual_gtk_editable_delete_text(GtkEditable* s_object, gint s_start_pos, gint
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20220,6 +21504,7 @@ S_virtual_gtk_editable_changed(GtkEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -20230,7 +21515,9 @@ S_virtual_gtk_editable_changed(GtkEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20241,6 +21528,7 @@ S_virtual_gtk_editable_do_insert_text(GtkEditable* s_object, const gchar* s_text
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -20257,7 +21545,9 @@ S_virtual_gtk_editable_do_insert_text(GtkEditable* s_object, const gchar* s_text
   SETCAR(tmp, asRIntegerArrayWithSize(s_position, s_length));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20268,6 +21558,7 @@ S_virtual_gtk_editable_do_delete_text(GtkEditable* s_object, gint s_start_pos, g
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20282,7 +21573,9 @@ S_virtual_gtk_editable_do_delete_text(GtkEditable* s_object, gint s_start_pos, g
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20293,6 +21586,7 @@ S_virtual_gtk_editable_get_chars(GtkEditable* s_object, gint s_start_pos, gint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20307,7 +21601,9 @@ S_virtual_gtk_editable_get_chars(GtkEditable* s_object, gint s_start_pos, gint s
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gchar*)0));
 
   UNPROTECT(1);
   return(((gchar*)g_strdup(asCString(s_ans))));
@@ -20319,6 +21615,7 @@ S_virtual_gtk_editable_set_selection_bounds(GtkEditable* s_object, gint s_start_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20333,7 +21630,9 @@ S_virtual_gtk_editable_set_selection_bounds(GtkEditable* s_object, gint s_start_
   SETCAR(tmp, asRInteger(s_end_pos));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20344,6 +21643,7 @@ S_virtual_gtk_editable_get_selection_bounds(GtkEditable* s_object, gint* s_start
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -20354,7 +21654,9 @@ S_virtual_gtk_editable_get_selection_bounds(GtkEditable* s_object, gint* s_start
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   *s_start_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -20368,6 +21670,7 @@ S_virtual_gtk_editable_set_position(GtkEditable* s_object, gint s_position)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -20380,7 +21683,9 @@ S_virtual_gtk_editable_set_position(GtkEditable* s_object, gint s_position)
   SETCAR(tmp, asRInteger(s_position));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20391,6 +21696,7 @@ S_virtual_gtk_editable_get_position(GtkEditable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -20401,7 +21707,9 @@ S_virtual_gtk_editable_get_position(GtkEditable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkEditable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -20611,6 +21919,7 @@ S_virtual_gtk_tree_drag_dest_drag_data_received(GtkTreeDragDest* s_object, GtkTr
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20625,7 +21934,9 @@ S_virtual_gtk_tree_drag_dest_drag_data_received(GtkTreeDragDest* s_object, GtkTr
   SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -20637,6 +21948,7 @@ S_virtual_gtk_tree_drag_dest_row_drop_possible(GtkTreeDragDest* s_object, GtkTre
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20651,7 +21963,9 @@ S_virtual_gtk_tree_drag_dest_row_drop_possible(GtkTreeDragDest* s_object, GtkTre
   SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -20715,6 +22029,7 @@ S_virtual_gtk_tree_drag_source_row_draggable(GtkTreeDragSource* s_object, GtkTre
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -20727,7 +22042,9 @@ S_virtual_gtk_tree_drag_source_row_draggable(GtkTreeDragSource* s_object, GtkTre
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -20739,6 +22056,7 @@ S_virtual_gtk_tree_drag_source_drag_data_get(GtkTreeDragSource* s_object, GtkTre
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20753,7 +22071,9 @@ S_virtual_gtk_tree_drag_source_drag_data_get(GtkTreeDragSource* s_object, GtkTre
   SETCAR(tmp, toRPointerWithFinalizer(s_selection_data ? gtk_selection_data_copy(s_selection_data) : NULL, "GtkSelectionData", (RPointerFinalizer) gtk_selection_data_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -20765,6 +22085,7 @@ S_virtual_gtk_tree_drag_source_drag_data_delete(GtkTreeDragSource* s_object, Gtk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -20777,7 +22098,9 @@ S_virtual_gtk_tree_drag_source_drag_data_delete(GtkTreeDragSource* s_object, Gtk
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -20859,6 +22182,7 @@ S_virtual_gtk_tree_model_row_changed(GtkTreeModel* s_object, GtkTreePath* s_path
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20873,7 +22197,9 @@ S_virtual_gtk_tree_model_row_changed(GtkTreeModel* s_object, GtkTreePath* s_path
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20884,6 +22210,7 @@ S_virtual_gtk_tree_model_row_inserted(GtkTreeModel* s_object, GtkTreePath* s_pat
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20898,7 +22225,9 @@ S_virtual_gtk_tree_model_row_inserted(GtkTreeModel* s_object, GtkTreePath* s_pat
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20909,6 +22238,7 @@ S_virtual_gtk_tree_model_row_has_child_toggled(GtkTreeModel* s_object, GtkTreePa
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -20923,7 +22253,9 @@ S_virtual_gtk_tree_model_row_has_child_toggled(GtkTreeModel* s_object, GtkTreePa
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20934,6 +22266,7 @@ S_virtual_gtk_tree_model_row_deleted(GtkTreeModel* s_object, GtkTreePath* s_path
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -20946,7 +22279,9 @@ S_virtual_gtk_tree_model_row_deleted(GtkTreeModel* s_object, GtkTreePath* s_path
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20957,6 +22292,7 @@ S_virtual_gtk_tree_model_rows_reordered(GtkTreeModel* s_object, GtkTreePath* s_p
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -20973,7 +22309,9 @@ S_virtual_gtk_tree_model_rows_reordered(GtkTreeModel* s_object, GtkTreePath* s_p
   SETCAR(tmp, asRIntegerArray(s_new_order));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -20984,6 +22322,7 @@ S_virtual_gtk_tree_model_get_flags(GtkTreeModel* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -20994,7 +22333,9 @@ S_virtual_gtk_tree_model_get_flags(GtkTreeModel* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkTreeModelFlags)0));
 
   UNPROTECT(1);
   return(((GtkTreeModelFlags)asCFlag(s_ans, GTK_TYPE_TREE_MODEL_FLAGS)));
@@ -21006,6 +22347,7 @@ S_virtual_gtk_tree_model_get_n_columns(GtkTreeModel* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -21016,7 +22358,9 @@ S_virtual_gtk_tree_model_get_n_columns(GtkTreeModel* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -21028,6 +22372,7 @@ S_virtual_gtk_tree_model_get_column_type(GtkTreeModel* s_object, gint s_index_)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21040,7 +22385,9 @@ S_virtual_gtk_tree_model_get_column_type(GtkTreeModel* s_object, gint s_index_)
   SETCAR(tmp, asRInteger(s_index_));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GType)0));
 
   UNPROTECT(1);
   return(((GType)asCNumeric(s_ans)));
@@ -21052,6 +22399,7 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -21066,7 +22414,9 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21078,6 +22428,7 @@ S_virtual_gtk_tree_model_get_path(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21090,7 +22441,9 @@ S_virtual_gtk_tree_model_get_path(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((GtkTreePath*)0));
 
   UNPROTECT(1);
   return(((GtkTreePath*)gtk_tree_path_copy(getPtrValue(s_ans))));
@@ -21102,6 +22455,7 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -21118,7 +22472,9 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   SETCAR(tmp, asRGValue(s_value));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21129,6 +22485,7 @@ S_virtual_gtk_tree_model_iter_next(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21141,7 +22498,9 @@ S_virtual_gtk_tree_model_iter_next(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21153,6 +22512,7 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -21167,7 +22527,9 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
   SETCAR(tmp, toRPointerWithFinalizer(s_parent ? gtk_tree_iter_copy(s_parent) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21179,6 +22541,7 @@ S_virtual_gtk_tree_model_iter_has_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21191,7 +22554,9 @@ S_virtual_gtk_tree_model_iter_has_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21203,6 +22568,7 @@ S_virtual_gtk_tree_model_iter_n_children(GtkTreeModel* s_object, GtkTreeIter* s_
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21215,7 +22581,9 @@ S_virtual_gtk_tree_model_iter_n_children(GtkTreeModel* s_object, GtkTreeIter* s_
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gint)0));
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
@@ -21227,6 +22595,7 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -21243,7 +22612,9 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   SETCAR(tmp, asRInteger(s_n));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21255,6 +22626,7 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -21269,7 +22641,9 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
   SETCAR(tmp, toRPointerWithFinalizer(s_child ? gtk_tree_iter_copy(s_child) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
@@ -21281,6 +22655,7 @@ S_virtual_gtk_tree_model_ref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21293,7 +22668,9 @@ S_virtual_gtk_tree_model_ref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21304,6 +22681,7 @@ S_virtual_gtk_tree_model_unref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
@@ -21316,7 +22694,9 @@ S_virtual_gtk_tree_model_unref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21696,6 +23076,7 @@ S_virtual_gtk_tree_sortable_sort_column_changed(GtkTreeSortable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -21706,7 +23087,9 @@ S_virtual_gtk_tree_sortable_sort_column_changed(GtkTreeSortable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeSortable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21717,6 +23100,7 @@ S_virtual_gtk_tree_sortable_get_sort_column_id(GtkTreeSortable* s_object, gint* 
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -21727,7 +23111,9 @@ S_virtual_gtk_tree_sortable_get_sort_column_id(GtkTreeSortable* s_object, gint* 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeSortable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   *s_sort_column_id = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
@@ -21741,6 +23127,7 @@ S_virtual_gtk_tree_sortable_set_sort_column_id(GtkTreeSortable* s_object, gint s
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
@@ -21755,7 +23142,9 @@ S_virtual_gtk_tree_sortable_set_sort_column_id(GtkTreeSortable* s_object, gint s
   SETCAR(tmp, asREnum(s_order, GTK_TYPE_SORT_TYPE));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21766,6 +23155,7 @@ S_virtual_gtk_tree_sortable_set_sort_func(GtkTreeSortable* s_object, gint s_sort
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
@@ -21784,7 +23174,9 @@ S_virtual_gtk_tree_sortable_set_sort_func(GtkTreeSortable* s_object, gint s_sort
   SETCAR(tmp, toRPointer(s_destroy, "GtkDestroyNotify"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21795,6 +23187,7 @@ S_virtual_gtk_tree_sortable_set_default_sort_func(GtkTreeSortable* s_object, Gtk
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
@@ -21811,7 +23204,9 @@ S_virtual_gtk_tree_sortable_set_default_sort_func(GtkTreeSortable* s_object, Gtk
   SETCAR(tmp, toRPointer(s_destroy, "GtkDestroyNotify"));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return;
 
   UNPROTECT(1);
 }
@@ -21822,6 +23217,7 @@ S_virtual_gtk_tree_sortable_has_default_sort_func(GtkTreeSortable* s_object)
   USER_OBJECT_ e;
   USER_OBJECT_ tmp;
   USER_OBJECT_ s_ans;
+  gint err;
 
   PROTECT(e = allocVector(LANGSXP, 2));
   tmp = e;
@@ -21832,7 +23228,9 @@ S_virtual_gtk_tree_sortable_has_default_sort_func(GtkTreeSortable* s_object)
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeSortable")));
   tmp = CDR(tmp);
 
-  s_ans = eval(e, R_GlobalEnv);
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+  if(err)
+    return(((gboolean)0));
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));

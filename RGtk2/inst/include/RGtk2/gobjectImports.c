@@ -29,6 +29,14 @@ asCCharacter(USER_OBJECT_ s_char)
 } 
 
 USER_OBJECT_
+asRUnsigned(guint num)
+{
+  static USER_OBJECT_ (*fun)(guint) = NULL;
+  if(!fun) fun = ((USER_OBJECT_ (*)(guint))R_GetCCallable("RGtk2", "asRUnsigned"));
+  return(fun(num));
+} 
+
+USER_OBJECT_
 asRCharacter(gchar c)
 {
   static USER_OBJECT_ (*fun)(gchar) = NULL;
