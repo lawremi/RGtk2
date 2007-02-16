@@ -23,9 +23,10 @@ Practically, it allows convenience operators to be specified for any external ob
 A context-dependent value resulting from the specified API call.
 }
 \details{
-The operators \code{[[} and \code{$} both expand to an RGtk function that accesses
-external objects. The \code{[[} operator retrieves a field value from an external structure 
-by expanding \code{objectOfClassName[[fieldName]]} to \code{classNameGetFieldName()}. 
+The functions \code{[[.RGtkObject} and \code{$.RGtkObject} both expand to an 
+RGtk function that accesses external objects. The \code{[[} operator
+looks for a field from an external C structure
+by expanding \code{objectOfClassName[[fieldName]]} to \code{classNameGetFieldName()}.
 External "methods" are expanded by the \code{$} operator to form 
 \code{classNameMethodName(objectOfClassName, ...)} from the Java-like 
 \code{objectOfClassName$methodName(...)}. The long and short mechanisms give 

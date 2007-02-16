@@ -1,6 +1,7 @@
 \name{GType}
 \alias{GType}
 \alias{gTypeGetAncestors}
+\alias{gTypeGetInterfaces}
 \alias{gTypeFromName}
 \alias{gTypeGetClass}
 \alias{gTypeGetSignals}
@@ -12,6 +13,7 @@ object and interface types." - GObject documentation
 }
 \usage{
 gTypeGetAncestors(type)
+gTypeGetInterfaces(type)
 gTypeFromName(name)
 gTypeGetClass(type)
 }
@@ -20,7 +22,8 @@ gTypeGetClass(type)
 \item{name}{The name of a \code{GType}}
 }
 \value{
-\code{gTypeGetAncestors} returns a vector of type names from which \code{type} inherits. 
+\code{gTypeGetAncestors} returns a vector of type names from which \code{type} inherits.
+\code{gTypeGetInterfaces} names the interfaces implemented by \code{type}.
 \code{gTypeFromName} retrieves the numeric value of a type from its name.
 \code{gTypeGetClass} returns the class instance for the type, for example \code{\link{GtkWidgetClass}}.
 }
@@ -40,8 +43,8 @@ but this is automatically taken care of for you, so you can use R type names (ie
 All R objects representing external RGtk2 objects have their hierarchy stored in the 
 \code{class} attribute. Everything descends from "RGtkObject", then, for example, "GObject", 
 etc. The types do not necessarily correspond to \code{GType}s, but they do for all 
-\code{GObject}s and others. Thus, \code{gTypeGetAncestors} is also of little use unless one 
-is working with pure \code{GType}s.
+\code{GObject}s and others. Thus, \code{gTypeGetAncestors} is also of little use 
+unless one is working with pure \code{GType}s.
 }
 \seealso{\code{\link{GObject}}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gobject/gobject-Type-Information.html}}

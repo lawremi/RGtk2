@@ -390,36 +390,6 @@ function(obj, key)
 
 # Methods
 
-"$.<invalid>" <-
-function(obj, name)
-{
-	stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
-}
-
-"$<-.GObject" <-
-function(x, member, value)
-{ 
-  x[[member]] <- value
-  x
-}
-
-"[[<-.GObject" <-
-function(x, member, value)
-{ # first try for prop, then fall back to private env
-  # this encourages the setting of properties, rather than using the back door
-  result <- try(x[member] <- value, T)
-  if (inherits(result, "try-error")) {
-    env <- attr(x, ".private")
-    if (is.null(env))
-      stop("Cannot find '", member, "' to set in ", paste(class(x),collapse=", "))
-    protected_env <- parent.env(env)
-    if (exists(member, protected_env))
-      env <- protected_env
-    assign(member, value, env)
-  }
-  x
-}
-
 parentHandler <-
 function(method, obj = NULL, ...)
 {
@@ -462,7 +432,13 @@ function(method, obj = NULL, ...)
   #}
 }
 
-"$.RGtkObject" <-
+"$.<invalid>" <-
+function(obj, name)
+{
+	stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
+}
+
+"$.GObject" <- "$.RGtkObject" <-
 function(x, method)
 { # try for a declared method first, else fall back to member
  result <- try(.getAutoMethodByName(x, method), T)
@@ -520,26 +496,51 @@ function(x, y) {
 
 # Fields
 
+"$<-.GObject" <- "[[<-.GObject" <-
+function(obj, member, value)
+{ # first try for prop, then fall back to private env
+  # this encourages the setting of properties, rather than using the back door
+  result <- try(obj[member] <- value, T)
+  if (inherits(result, "try-error")) {
+    env <- attr(obj, ".private")
+    if (is.null(env))
+      stop("Cannot find '", member, "' to set in ", paste(class(obj),collapse=", "))
+    protected_env <- parent.env(env)
+    if (exists(member, protected_env))
+      env <- protected_env
+    assign(member, value, env)
+  }
+  obj
+}
+
+"[[.GObject" <-
+function(obj, member)
+{
+  # check SGObject environments first, then fall back to field/property
+  val <- try(.getAutoMemberByName(obj, member), T)
+  if (inherits(val, "try-error"))
+    val <- try(NextMethod("[["), T)
+  if (inherits(val, "try-error"))
+    val <- try(obj$get(member)[[1]], T)
+  if (inherits(val, "try-error"))
+    stop("Cannot find '", member, "' for classes ", paste(class(obj), collapse=", "))
+  val
+}
+
 "[[.RGtkObject" <-
   #
   #
   #
 function(x, field)
 {
-  # check SGObject environments (fast), then C field (fast), then GObject prop
-  val <- try(.getAutoMemberByName(x, field), T)
-  if (inherits(val, "try-error")) {
-    sym <- try(.getAutoElementByName(x, field, error = FALSE), T)
-    if (!inherits(sym, "try-error"))
-      val <- eval(substitute(sym(x), list(sym=sym)))
-    else if (inherits(x, "GObject")) {
-     val <- try(x$get(field)[[1]], T)
-    } else val <- sym
-  }
-  if (inherits(val, "try-error"))
-   stop("Cannot find '", field, "' for classes ", paste(class(x), collapse=", "))
+  # check for C field (fast), then GObject prop
+  sym <- try(.getAutoElementByName(x, field, error = FALSE), T)
+  if (!inherits(sym, "try-error"))
+    val <- eval(substitute(sym(x), list(sym=sym)))
+  else stop("Cannot find '", field, "' for classes ", paste(class(x), collapse=", "))
   return(val)
 }
+# C field setting is not allowed
 if (FALSE) {
 "[[<-.RGtkObject" <-
   #

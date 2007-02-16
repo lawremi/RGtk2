@@ -1,15 +1,26 @@
 \alias{gClass}
+\alias{parentHandler}
+\alias{registerVirtuals}
+\alias{unregisterVirtuals}
 \name{classes}
 \title{Custom GObject classes}
 \description{Highly experimental support for constructing new \code{GObject}
 classes entirely from with R.}
 \usage{
   gClass(name, parent = "GObject", class_def = NULL)
+  parentHandler(method, obj = NULL, ...)
+  registerVirtuals(virtuals)
+  unregisterVirtuals(virtuals)
 }
 \arguments{
   \item{name}{The name of the new class}
   \item{parent}{The name of the parent class}
   \item{class_def}{A list that defines the new class - please see the details section}
+  \item{method}{The name of the method to invoke in the parent}
+  \item{obj}{The object on which the parent method is invoked}
+  \item{...}{The additional arguments to the parent method}
+  \item{virtuals}{An environment containing lists where each list contains
+  the names of the virtual methods for the class matching the name of the list}.
 }
 \details{
   The bulk of the class definition (everything except the name and the parent) 
@@ -30,16 +41,28 @@ classes entirely from with R.}
     The list is named \code{.props} in the \code{class_def} list. The property values
     are stored in a private environment. To override that behavior or to be notified
     (first) upon property changes, simply override the \code{set_property} and 
-    \code{get_property} virtuals in the \code{GObject} class.}
+    \code{get_property} virtuals in the \code{GObject} class. To override
+    the implementation of properties defined by an ancestor class, specify their
+    names in a separate vector named \code{.prop_overrides}.}
     \item{Initializer}{Upon instance creation, the function named
     \code{.initialize} (in \code{class_def}) will be called with the instance
     as the only argument.}
+    \item{New members}{It is possible to define new public, protected, and
+    private fields and methods inside an R class, using the \code{.public},
+    \code{.protected}, and \code{.private} keys, respectively. The encapsulation
+    works much the same as Java. Any protected and public functions may be
+    overriden in a class derived from the defining class. All public fields
+    are immutable. All function bindings are locked except for private ones. This
+    means private functions can be replaced.}
   }
-  The above may seem complicated, and it is. Please see the alphaSliderClass and
-  sexyUrlLabel demos for examples of use. Also note that the \code{local} function
-  is convenient for defining class-specific namespaces on the fly. For calling
-  parent virtuals, use \code{\link{gObjectParentClass}} to conveniently obtain
-  a reference to the parent class.
+  The above may seem complicated, and it is. Please see the alphaSliderClass 
+  for an example. Also note that the \code{local} function
+  is convenient for defining static namespaces on the fly. For calling
+  parent virtuals, use \code{parentHandler}.
+  
+  \code{registerVirtuals} and \code{unregisterVirtuals} are meant for use by 
+  packages that bind C GObject classes to R using the RGtk2 system. An example
+  of such a package is rggobi.
 }
 \note{
   This functionality is not for casual users. If you don't know what you're doing
