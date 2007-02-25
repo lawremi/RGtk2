@@ -1,7 +1,5 @@
 #ifndef S_ATK_IMPORTS_C
 #define S_ATK_IMPORTS_C
-#include <R_ext/Rdynload.h>
-
 #include <RGtk2/atk.h>
 
 #include <RGtk2/gobjectImports.c>

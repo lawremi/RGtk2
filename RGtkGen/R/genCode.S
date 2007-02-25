@@ -316,7 +316,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
     # Note the name to get this to be the final name so it is sourced() last
     # if the S files are listed by named.
 
-	#tmp = outputConstructors(defs, getFileName("zConstructors.R"))
+	tmp = outputConstructors(defs, getFileName("zConstructors.R"))
 	definedRFuncs = c(definedRFuncs, sapply(names(defs$objects), changeCapitalization, FALSE))
 
   list(varargs = varargs, definedRFuncs = definedRFuncs)

@@ -41,9 +41,9 @@ doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
 
 # exporting/importing routines for each API
-deps <- list(gobject = NULL, atk = "gobject", cairo = "gobject", pango = "cairo", 
-  gtk = c("pango", "atk"), libglade = "gtk")
-sapply(c("gobject", "atk", "cairo", "pango", "gtk", "libglade"), function(api) {
+deps <- list(atk = "gobject", cairo = "gobject", pango = "cairo", 
+  gdk = "pango", gtk = c("gdk", "atk"), libglade = "gtk")
+sapply(c("atk", "cairo", "pango", "gdk", "gtk", "libglade"), function(api) {
   genExports(api, file.path(path, "gen"), file.path(defspath, "exports"), 
     file.path("RGtk2", deps[[api]]))
 })

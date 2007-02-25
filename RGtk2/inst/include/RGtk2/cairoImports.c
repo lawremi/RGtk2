@@ -1,7 +1,5 @@
 #ifndef S_CAIRO_IMPORTS_C
 #define S_CAIRO_IMPORTS_C
-#include <R_ext/Rdynload.h>
-
 #include <RGtk2/cairo.h>
 
 #include <RGtk2/gobjectImports.c>

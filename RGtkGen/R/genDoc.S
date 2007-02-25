@@ -2,8 +2,8 @@ require(XML)
 
 genDocs <- function(files, defs, output, descriptions, verbose = F) {
 	if(!file.exists(output)) {
-		cat("Creating ", d, "\n")
-        dir.create(d)
+		cat("Creating ", output, "\n")
+        dir.create(output)
     }
 	
 	# instead of sending defs all the way down the stack, just assign it in
@@ -16,7 +16,7 @@ genDocs <- function(files, defs, output, descriptions, verbose = F) {
 	assign("classes", classes, envir=env)
 	assign("types", c(names(defs$objects), names(defs$interfaces), names(defs$boxes), 
 		names(defs$enums), names(defs$flags), names(defs$pointers), names(defs$userfunctions)), envir=env)
-	assign("memFuncs", memFuncs, envir=env)
+  assign("memFuncs", memFuncs, envir=env)
 	environment(linkend_to_func) <<- env
 	environment(tolink) <<- env
 	environment(toDescs) <<- env

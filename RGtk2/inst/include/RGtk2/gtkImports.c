@@ -1,10 +1,8 @@
 #ifndef S_GTK_IMPORTS_C
 #define S_GTK_IMPORTS_C
-#include <R_ext/Rdynload.h>
-
 #include <RGtk2/gtk.h>
 
-#include <RGtk2/pangoImports.c>
+#include <RGtk2/gdkImports.c>
 
 #include <RGtk2/atkImports.c>
 

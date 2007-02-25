@@ -1,7 +1,5 @@
 #ifndef S_PANGO_IMPORTS_C
 #define S_PANGO_IMPORTS_C
-#include <R_ext/Rdynload.h>
-
 #include <RGtk2/pango.h>
 
 #include <RGtk2/cairoImports.c>
