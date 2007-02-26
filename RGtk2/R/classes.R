@@ -21,7 +21,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   name <- as.character(name)
   if (!length(name) || nchar(name) < 3)
     stop("Type name must be coerceable to a string and be at least 3 characters long")
-  invalid_chars <- sub("^[a-zA-Z_][a-zA-Z+-_0-9]*", "", name)
+  invalid_chars <- sub("^[a-zA-Z_][a-zA-Z+\\-_0-9]*", "", name)
   if (nchar(invalid_chars))
     stop("The characters \"", invalid_chars, "\" are invalid. Names must start with",
     " a letter or '_' and contain only letters, numbers, or any of '+-_'")
