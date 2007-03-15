@@ -97,6 +97,8 @@ If the function returns \code{NULL}, the drag will be cancelled.
 \item{\code{data}}{[R object] user data}
 }
 
+\emph{Returns:} [\code{\link{GtkNotebook}}] The created \code{\link{GtkNotebook}} where the tab will be attached, or NULL to cancel the drag
+
 }}}
 \section{Signals}{\describe{
 \item{\code{change-current-page(notebook, arg1, user.data)}}{
@@ -109,6 +111,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{focus-tab(notebook, arg1, user.data)}}{
 \emph{undocumented
@@ -120,6 +123,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-focus-out(notebook, arg1, user.data)}}{
 \emph{undocumented
@@ -130,6 +134,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{page-added(notebook, child, page.num, user.data)}}{
@@ -145,6 +150,7 @@ right after a page is added to the notebook.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{page-removed(notebook, child, page.num, user.data)}}{
 the ::page-removed signal is emitted in the notebook
@@ -158,6 +164,7 @@ right after a page is removed from the notebook.
 \item{\code{page.num}}{[numeric]  the \code{child} page number}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{page-reordered(notebook, child, page.num, user.data)}}{
@@ -173,6 +180,7 @@ right after a page has been reordered.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{reorder-tab(notebook, arg1, Param3, user.data)}}{
 \emph{undocumented
@@ -185,6 +193,7 @@ right after a page has been reordered.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-page(notebook, arg1, user.data)}}{
 \emph{undocumented
@@ -196,6 +205,7 @@ right after a page has been reordered.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{switch-page(notebook, page, page.num, user.data)}}{
 Emitted when the user or a function changes the current page.
@@ -206,6 +216,7 @@ Emitted when the user or a function changes the current page.
 \item{\code{page.num}}{[numeric] the index of the page}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

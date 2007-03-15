@@ -47,6 +47,7 @@ a component changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkComponent.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

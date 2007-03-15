@@ -164,6 +164,7 @@ contents.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{filename} [character : Read / Write / Construct Only]}{

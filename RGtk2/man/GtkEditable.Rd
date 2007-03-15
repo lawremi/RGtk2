@@ -65,6 +65,7 @@ of the widget.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{delete-text(editable, start.pos, end.pos, user.data)}}{
 This signal is emitted when text is deleted from
@@ -83,6 +84,7 @@ and \code{end.pos} parameters are interpreted as for
 \item{\code{end.pos}}{[integer] the end position.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{insert-text(editable, new.text, new.text.length, position, user.data)}}{
@@ -105,6 +107,7 @@ it from being inserted entirely.
            point after the newly inserted text.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

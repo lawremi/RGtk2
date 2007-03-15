@@ -49,6 +49,7 @@ Gets emitted when the user has removed the accelerator.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{accel-edited(accel, path.string, accel.key, accel.mods, hardware.keycode, user.data)}}{
 Gets emitted when the user has selected a new accelerator.  
@@ -63,6 +64,7 @@ Gets emitted when the user has selected a new accelerator.
 \item{\code{hardware.keycode}}{[numeric]  the keycode of the new accelerator}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

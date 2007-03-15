@@ -55,6 +55,7 @@ Emitted when the item is activated.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{activate-item(menuitem, user.data)}}{
 Emitted when the item is activated, but also if the menu item has a
@@ -64,6 +65,7 @@ submenu. For normal applications, the relevant signal is "activate".
 \item{\code{menuitem}}{[\code{\link{GtkMenuItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{toggle-size-allocate(menuitem, arg1, user.data)}}{
@@ -76,6 +78,7 @@ submenu. For normal applications, the relevant signal is "activate".
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-size-request(menuitem, arg1, user.data)}}{
 \emph{undocumented
@@ -86,6 +89,7 @@ submenu. For normal applications, the relevant signal is "activate".
 \item{\code{arg1}}{[R object] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

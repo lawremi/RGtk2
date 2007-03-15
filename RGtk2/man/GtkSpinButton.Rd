@@ -45,10 +45,10 @@ attribute. Rather than having to directly type a number into a \code{\link{GtkEn
 \code{\link{GtkSpinButton}} allows the user to click on one of two arrows to increment or 
 decrement the displayed value. A value can still be typed in, with the bonus 
 that it can be checked to ensure it is in a given range.
-  \code{\link{GtkSpinButton}}  \code{GtkSpinButton}  \code{\link{GtkEntry}}  \code{GtkEntry}  \code{\link{GtkSpinButton}}  \code{GtkSpinButton}  
+  
 The main properties of a \code{\link{GtkSpinButton}} are through a \code{\link{GtkAdjustment}}. See the 
 \code{\link{GtkAdjustment}} section for more details about an adjustment's properties.
-  \code{\link{GtkSpinButton}}  \code{GtkSpinButton}  \code{\link{GtkAdjustment}}  \code{GtkAdjustment}  \code{\link{GtkAdjustment}}  \code{GtkAdjustment}  
+  
 \preformatted{
 # Provides a function to retrieve an integer value from a GtkSpinButton
 # and creates a spin button to model percentage values.
@@ -71,53 +71,7 @@ create_integer_spin_button <- function() {
    window$showAll()
 }
 }
-  \preformatted{
-# Provides a function to retrieve an integer value from a GtkSpinButton
-# and creates a spin button to model percentage values.
-
-grab_int_value <- function(a_spinner, user_data) {
-   return(a_spinner$getValueAsInt())
-}
-
-create_integer_spin_button <- function() {
-
-   spinner_adj <- gtkAdjustment(50.0, 0.0, 100.0, 1.0, 5.0, 5.0)
-   
-   window <- gtkWindow("toplevel", show = F)
-   window$setBorderWidth(5)
-   
-   # creates the spinner, with no decimal places
-   spinner <- gtkSpinner(spinner_adj, 1.0, 0)
-   window$add(spinner)
-   
-   window$showAll()
-}
-}  \code{GtkSpinButton}  \preformatted{/* Provides a function to retrieve an integer value from a GtkSpinButton
- * and creates a spin button to model percentage values.
- */
-
-gint grab_int_value (GtkSpinButton *a_spinner, gpointer user_data) {
-   return gtk_spin_button_get_value_as_int (a_spinner);
-}
-
-void create_integer_spin_button (void) {
-
-   GtkWidget *window, *spinner;
-   GtkAdjustment *spinner_adj;
-
-   spinner_adj = (GtkAdjustment *) gtk_adjustment_new (50.0, 0.0, 100.0, 1.0, 5.0, 5.0);
-   
-   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-   gtk_container_set_border_width (GTK_CONTAINER (window), 5);
-   
-   /* creates the spinner, with no decimal places */
-   spinner = gtk_spin_button_new (spinner_adj, 1.0, 0);
-   gtk_container_add (GTK_CONTAINER (window), spinner);
-   
-   gtk_widget_show_all (window);
-   return;
-}
-}  
+  
 \preformatted{
 # Provides a function to retrieve a floating point value from a
 # GtkSpinButton, and creates a high precision spin button.
@@ -138,53 +92,6 @@ create_floating_spin_button <- function() {
    window$add(spinner)
    
    window$showAll()
-}
-}
-  \preformatted{
-# Provides a function to retrieve a floating point value from a
-# GtkSpinButton, and creates a high precision spin button.
-
-grab_value <- function(a_spinner, user_data) {
-   return(a_spinner$getValue())
-}
-
-create_floating_spin_button <- function() {
-
-   spinner_adj <- gtkAdjustment(2.500, 0.0, 5.0, 0.001, 0.1, 0.1)
-   
-   window <- gtkWindow("toplevel", show = F)
-   window$setBorderWidth(5)
-   
-   # creates the spinner, with three decimal places
-   spinner <- gtkSpinner(spinner_adj, 0.001, 3)
-   window$add(spinner)
-   
-   window$showAll()
-}
-}  \code{GtkSpinButton}  \preformatted{/* Provides a function to retrieve a floating point value from a
- * GtkSpinButton, and creates a high precision spin button.
- */
-
-gfloat grab_int_value (GtkSpinButton *a_spinner, gpointer user_data) {
-   return gtk_spin_button_get_value (a_spinner);
-}
-
-void create_floating_spin_button (void) {
-
-   GtkWidget *window, *spinner;
-   GtkAdjustment *spinner_adj;
-
-   spinner_adj = (GtkAdjustment *) gtk_adjustment_new (2.500, 0.0, 5.0, 0.001, 0.1, 0.1);
-   
-   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-   gtk_container_set_border_width (GTK_CONTAINER (window), 5);
-   
-   /* creates the spinner, with three decimal places */
-   spinner = gtk_spin_button_new (spinner_adj, 0.001, 3);
-   gtk_container_add (GTK_CONTAINER (window), spinner);
-   
-   gtk_widget_show_all (window);
-   return;
 }
 }}
 \section{Structures}{\describe{\item{\code{GtkSpinButton}}{
@@ -226,6 +133,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{input(spinbutton, arg1, user.data)}}{
 \emph{undocumented
@@ -237,6 +145,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{output(spinbutton, user.data)}}{
 \emph{undocumented
@@ -247,6 +156,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{value-changed(spinbutton, user.data)}}{
 \emph{undocumented
@@ -256,6 +166,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 \item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{wrapped(spinbutton, user.data)}}{
@@ -268,6 +179,7 @@ from its maximum to minimum value or vice-versa.
 \item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

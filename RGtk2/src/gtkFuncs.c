@@ -18814,7 +18814,7 @@ S_gtk_menu_new(void)
 USER_OBJECT_
 S_gtk_menu_popup(USER_OBJECT_ s_object, USER_OBJECT_ s_parent_menu_shell, USER_OBJECT_ s_parent_menu_item, USER_OBJECT_ s_func, USER_OBJECT_ s_data, USER_OBJECT_ s_button, USER_OBJECT_ s_activate_time)
 {
-  GtkMenuPositionFunc func = ((GtkMenuPositionFunc)S_GtkMenuPositionFunc);
+  GtkMenuPositionFunc func = GET_LENGTH(s_func) == 0 ? NULL : ((GtkMenuPositionFunc)S_GtkMenuPositionFunc);
   R_CallbackData* data = R_createCBData(s_func, s_data);
   GtkMenu* object = GTK_MENU(getPtrValue(s_object));
   GtkWidget* parent_menu_shell = GET_LENGTH(s_parent_menu_shell) == 0 ? NULL : GTK_WIDGET(getPtrValue(s_parent_menu_shell));

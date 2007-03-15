@@ -78,6 +78,8 @@ to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_complet
 \item{\code{user.data}}{[R object] user data given to \code{\link{gtkEntryCompletionSetMatchFunc}}}
 }
 
+\emph{Returns:} [logical] \code{TRUE} if \code{iter} should be displayed as a possible completion for \code{key}
+
 }}}
 \section{Signals}{\describe{
 \item{\code{action-activated(widget, index, user.data)}}{
@@ -90,6 +92,7 @@ Gets emitted when an action is activated.
 \item{\code{index}}{[integer]  the index of the activated action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{insert-prefix(widget, prefix, user.data)}}{
@@ -110,6 +113,8 @@ next '/'.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
+
 }
 \item{\code{match-selected(widget, model, iter, user.data)}}{
 Gets emitted when a match from the list is selected. 
@@ -125,6 +130,8 @@ pointed to by \code{iter}.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a \code{\link{GtkTreeIter}} positioned at the selected match}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
 
 }
 }}

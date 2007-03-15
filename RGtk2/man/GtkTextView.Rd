@@ -135,6 +135,7 @@ multiple views.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{copy-clipboard(textview, user.data)}}{
 \emph{undocumented
@@ -145,6 +146,7 @@ multiple views.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cut-clipboard(textview, user.data)}}{
 \emph{undocumented
@@ -154,6 +156,7 @@ multiple views.
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{delete-from-cursor(textview, arg1, arg2, user.data)}}{
@@ -167,6 +170,7 @@ multiple views.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{insert-at-cursor(textview, arg1, user.data)}}{
 \emph{undocumented
@@ -177,6 +181,7 @@ multiple views.
 \item{\code{arg1}}{[character] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-cursor(widget, step, count, extend.selection, user.data)}}{
@@ -195,6 +200,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-focus(textview, arg1, user.data)}}{
 \emph{undocumented
@@ -205,6 +211,7 @@ programmatically.
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-viewport(textview, arg1, arg2, user.data)}}{
@@ -218,6 +225,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{page-horizontally(textview, arg1, arg2, user.data)}}{
 \emph{undocumented
@@ -230,6 +238,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{paste-clipboard(textview, user.data)}}{
 \emph{undocumented
@@ -239,6 +248,7 @@ programmatically.
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{populate-popup(textview, arg1, user.data)}}{
@@ -251,6 +261,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-all(textview, arg1, user.data)}}{
 \emph{undocumented
@@ -262,6 +273,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{set-anchor(textview, user.data)}}{
 \emph{undocumented
@@ -271,6 +283,7 @@ programmatically.
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{set-scroll-adjustments(textview, arg1, arg2, user.data)}}{
@@ -284,6 +297,7 @@ programmatically.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-overwrite(textview, user.data)}}{
 \emph{undocumented
@@ -293,6 +307,7 @@ programmatically.
 \item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

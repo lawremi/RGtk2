@@ -74,6 +74,8 @@ menu.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
+
 }
 \item{\code{set-tooltip(toolitem, tooltips, tip.text, tip.private, user.data)}}{
 This signal is emitted when the toolitem's tooltip changes.
@@ -87,6 +89,8 @@ set the item's tooltip.
 \item{\code{tip.private}}{[character]  the tooltip private text}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
 \item{\code{toolbar-reconfigured(toolitem, user.data)}}{
@@ -106,6 +110,7 @@ themselves accordingly.
 \item{\code{toolitem}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

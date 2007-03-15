@@ -185,6 +185,7 @@ also serves as destroy notify for \code{data}.
        \code{\link{gtkPrintRunPageSetupDialogAsync}}.}
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{begin-print(operation, context, user.data)}}{
@@ -202,6 +203,7 @@ set the number of pages with \code{\link{gtkPrintOperationSetNPages}}.
 \item{\code{context}}{[\code{\link{GtkPrintContext}}]  the \code{\link{GtkPrintContext}} for the current operation}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{create-custom-widget(operation, user.data)}}{
@@ -223,6 +225,9 @@ from the widgets.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [\code{\link{GObject}}]  A custom widget that gets embedded in the print dialog,
+         or \code{NULL}
+
 }
 \item{\code{custom-widget-apply(operation, widget, user.data)}}{
 Emitted right before begin-print if you added
@@ -237,6 +242,7 @@ as the widgets are not guaraneed to be around at a later time.
 \item{\code{widget}}{[\code{\link{GtkWidget}}]  the custom widget added in create-custom-widget}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{done(operation, result, user.data)}}{
@@ -257,6 +263,7 @@ after this was emitted.
 \item{\code{result}}{[\code{\link{GtkPrintOperationResult}}]  the result of the print operation}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{draw-page(operation, context, page.nr, user.data)}}{
@@ -306,6 +313,7 @@ needs.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{end-print(operation, context, user.data)}}{
 Emitted after all pages have been rendered. 
@@ -319,6 +327,7 @@ been allocated in the ::begin-print handler.
 \item{\code{context}}{[\code{\link{GtkPrintContext}}]  the \code{\link{GtkPrintContext}} for the current operation}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{paginate(operation, context, user.data)}}{
@@ -342,6 +351,8 @@ from there.
 \item{\code{context}}{[\code{\link{GtkPrintContext}}]  the \code{\link{GtkPrintContext}} for the current operation}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical]  \code{TRUE} if pagination is complete
 
 }
 \item{\code{preview(operation, preview, context, parent, user.data)}}{
@@ -372,6 +383,8 @@ finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} if the listener wants to take over control of the preview
+
 }
 \item{\code{request-page-setup(operation, context, page.nr, setup, user.data)}}{
 Emitted once for every page that is printed, to give
@@ -388,6 +401,7 @@ done to \code{setup} will be in force only for printing this page.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{status-changed(operation, user.data)}}{
 Emitted at between the various phases of the print operation.
@@ -401,6 +415,7 @@ status.
 \item{\code{operation}}{[\code{\link{GtkPrintOperation}}]  the \code{\link{GtkPrintOperation}} on which the signal was emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -28,6 +28,7 @@ to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{remove-widget(celleditable, user.data)}}{
 \emph{undocumented
@@ -37,6 +38,7 @@ to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
 \item{\code{celleditable}}{[\code{\link{GtkCellEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

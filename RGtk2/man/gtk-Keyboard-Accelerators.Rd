@@ -77,6 +77,7 @@ An object representing and maintaining a group of accelerators.
 \item{\code{modifier}}{[\code{\link{GdkModifierType}}] }
 }
 
+
 }
 \item{\code{GtkAccelGroupFindFunc(key, closure, data)}}{
   Since 2.2
@@ -86,6 +87,7 @@ An object representing and maintaining a group of accelerators.
 \item{\code{closure}}{[\code{\link{GClosure}}] }
 \item{\code{data}}{[R object] }
 }
+
 
 }
 }}
@@ -101,6 +103,8 @@ The accel-activate signal is an implementation detail of
 \item{\code{modifier}}{[\code{\link{GdkModifierType}}]  the modifier combination of the accelerator}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical]  \code{TRUE} if the accelerator was activated
 
 }
 \item{\code{accel-changed(accel.group, keyval, modifier, accel.closure, user.data)}}{
@@ -118,6 +122,7 @@ their visual representation if the \code{accel.closure} is theirs.
 \item{\code{accel.closure}}{[\code{\link{GClosure}}]  the \code{\link{GClosure}} of the accelerator}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

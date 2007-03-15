@@ -54,6 +54,7 @@ as well, use the notify::font-name signal.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{font-name} [character : Read / Write]}{

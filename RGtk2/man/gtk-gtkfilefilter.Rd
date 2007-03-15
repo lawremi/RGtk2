@@ -86,6 +86,8 @@ see \code{\link{gtkFileFilterAddCustom}}.
 \item{\code{data}}{[R object] user data passed to \code{\link{gtkFileFilterAddCustom}}}
 }
 
+\emph{Returns:} [logical] \code{TRUE} if the file should be displayed
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-gtkfilefilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

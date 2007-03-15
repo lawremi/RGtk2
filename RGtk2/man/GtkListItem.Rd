@@ -21,10 +21,9 @@
 \section{Interfaces}{GtkListItem implements
  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
-  \code{\link{GtkListItem}}  \code{GtkListItem}  \code{\link{GtkList}}  \code{GtkList}  
+  
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.
-  \code{\link{GtkTreeView}}  \code{GtkTreeView}}
+in newly written code. Use \code{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{\item{\code{GtkListItem}}{
 \strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkListItem}} struct contains private data only, and should
@@ -42,6 +41,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{extend-selection(listitem, scroll.type, position, auto.start.selection, user.data)}}{
 \emph{undocumented
@@ -55,6 +55,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{scroll-horizontal(listitem, scroll.type, position, user.data)}}{
 \emph{undocumented
@@ -66,6 +67,7 @@ only be accessed using the functions below.
 \item{\code{position}}{[numeric] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{scroll-vertical(listitem, scroll.type, position, user.data)}}{
@@ -79,6 +81,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-all(listitem, user.data)}}{
 \emph{undocumented
@@ -88,6 +91,7 @@ only be accessed using the functions below.
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{start-selection(listitem, user.data)}}{
@@ -99,6 +103,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-add-mode(listitem, user.data)}}{
 \emph{undocumented
@@ -108,6 +113,7 @@ only be accessed using the functions below.
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{toggle-focus-row(listitem, user.data)}}{
@@ -119,6 +125,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{undo-selection(listitem, user.data)}}{
 \emph{undocumented
@@ -129,6 +136,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{unselect-all(listitem, user.data)}}{
 \emph{undocumented
@@ -138,6 +146,7 @@ only be accessed using the functions below.
 \item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

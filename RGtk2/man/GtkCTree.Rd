@@ -218,6 +218,7 @@ A generic callback type to do something with a particular node.
 \item{\code{data}}{[R object] The user data associated with the node.}
 }
 
+
 }
 \item{\code{GtkCTreeGNodeFunc(ctree, depth, gnode, cnode, data)}}{
 FIXME
@@ -230,6 +231,7 @@ FIXME
 \item{\code{data}}{[R object] }
 }
 
+
 }
 \item{\code{GtkCTreeCompareDragFunc(ctree, source.node, new.parent, new.sibling)}}{
 FIXME
@@ -240,6 +242,7 @@ FIXME
 \item{\code{new.parent}}{[\code{\link{GtkCTreeNode}}] }
 \item{\code{new.sibling}}{[\code{\link{GtkCTreeNode}}] }
 }
+
 
 }
 }}
@@ -254,6 +257,7 @@ or toggled.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{tree-collapse(ctree, node, user.data)}}{
 Emitted when a node is collapsed.
@@ -264,6 +268,7 @@ Emitted when a node is collapsed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{tree-expand(ctree, node, user.data)}}{
 Emitted when a node is expanded.
@@ -273,6 +278,7 @@ Emitted when a node is expanded.
 \item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{tree-move(ctree, node, new.parent, new.sibling, user.data)}}{
@@ -286,6 +292,7 @@ Emitted when a node is moved.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{tree-select-row(ctree, node, column, user.data)}}{
 Emitted when a row is selected.
@@ -297,6 +304,7 @@ Emitted when a row is selected.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{tree-unselect-row(ctree, node, column, user.data)}}{
 Emitted when a node is unselected.
@@ -307,6 +315,7 @@ Emitted when a node is unselected.
 \item{\code{column}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -35,7 +35,7 @@
     sprite and instructions for moving the sprite around a background. To display 
     an animation you don't need to understand its representation, however; you just
     ask \command{gdk-pixbuf} what should be displayed at a given point in time. 
-    \command{gdk-pixbuf}  \command{gdk-pixbuf}}
+  }
 \section{Structures}{\describe{
 \item{\code{GdkPixbufAnimation}}{
 And opaque struct representing an animation.

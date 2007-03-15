@@ -51,6 +51,7 @@ as well, use the notify::color signal.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{alpha} [numeric : Read / Write]}{

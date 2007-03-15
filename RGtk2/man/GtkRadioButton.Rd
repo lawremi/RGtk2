@@ -101,6 +101,7 @@ of the group that a button belongs to changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{\item{\code{group} [\code{\link{GtkRadioButton}} : Write]}{
 

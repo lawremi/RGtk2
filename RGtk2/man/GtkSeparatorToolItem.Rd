@@ -41,8 +41,4 @@ Whether the separator is drawn, or just blank.  Default value: TRUE
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSeparatorToolItem.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{
-\code{\link{GtkToolbar}}
-\code{\link{GtkRadioToolButton}}
-}
 \keyword{internal}

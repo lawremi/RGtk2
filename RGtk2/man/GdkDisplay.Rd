@@ -76,6 +76,7 @@ system for \code{display} is closed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/GdkDisplay.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

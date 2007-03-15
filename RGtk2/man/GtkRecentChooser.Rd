@@ -92,6 +92,7 @@ used resource list.
 \item{\code{user.data}}{[R object] }
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{item-activated(chooser, user.data)}}{
@@ -107,6 +108,7 @@ in the recently used resources list, or by pressing
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{selection-changed(chooser, user.data)}}{
 This signal is emitted when there is a change in the set of
@@ -120,6 +122,7 @@ explicitely calling functions to change the selection.
 \item{\code{chooser}}{[\code{\link{GtkRecentChooser}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -60,6 +60,7 @@ and should be accessed using the functions below.
 \item{\code{n.colors}}{[integer] }
 }
 
+
 }
 \item{\code{GtkColorSelectionChangePaletteWithScreenFunc(screen, colors, n.colors)}}{
   Since 2.2
@@ -69,6 +70,7 @@ and should be accessed using the functions below.
 \item{\code{colors}}{[\code{\link{GdkColor}}] }
 \item{\code{n.colors}}{[integer] }
 }
+
 
 }
 }}
@@ -80,6 +82,7 @@ according to its update policy.
 \item{\code{colorselection}}{[\code{\link{GtkColorSelection}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \section{Properties}{\describe{

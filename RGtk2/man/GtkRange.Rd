@@ -57,6 +57,7 @@ at the end of range widgets.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{change-value(range, scroll, value, returns, user.data)}}{
 The ::change-value signal is emitted when a scroll action is
@@ -86,6 +87,7 @@ signal.  \code{FALSE} to propagate the signal further.}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-slider(range, arg1, user.data)}}{
 Virtual function that moves the slider. Used for keybindings.
@@ -96,6 +98,7 @@ Virtual function that moves the slider. Used for keybindings.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{value-changed(range, user.data)}}{
 Emitted when the range value changes.
@@ -104,6 +107,7 @@ Emitted when the range value changes.
 \item{\code{range}}{[\code{\link{GtkRange}}] the \code{\link{GtkRange}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

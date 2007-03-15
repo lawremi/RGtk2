@@ -81,6 +81,7 @@ Emitted when the user selects a day.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{day-selected-double-click(calendar, user.data)}}{
 \emph{undocumented
@@ -90,6 +91,7 @@ Emitted when the user selects a day.
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{month-changed(calendar, user.data)}}{
@@ -101,6 +103,7 @@ calendar.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{next-month(calendar, user.data)}}{
 \emph{undocumented
@@ -110,6 +113,7 @@ calendar.
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{next-year(calendar, user.data)}}{
@@ -121,6 +125,7 @@ calendar.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{prev-month(calendar, user.data)}}{
 \emph{undocumented
@@ -131,6 +136,7 @@ calendar.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{prev-year(calendar, user.data)}}{
 \emph{undocumented
@@ -140,6 +146,7 @@ calendar.
 \item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

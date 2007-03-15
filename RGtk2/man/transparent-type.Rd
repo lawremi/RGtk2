@@ -1,5 +1,6 @@
 \name{transparent-type}
 \alias{transparent-type}
+\alias{as.struct}
 \title{Transparent types in RGtk2}
 \description{
 A \emph{transparent type} in RGtk2 is a non-primitive type passed between 
@@ -13,10 +14,9 @@ the analagous structure in R. \emph{Transparent types} are usually simple types
 that would be created inline in C code for convenience, instead of 
 invoking a function with a large number of arguments. RGtk2 emulates this in R.
 
-Usually these structures are constructed as R lists, with the order of elements 
-corresponding to that in the documentation. It is also possible to specify fields 
-in an arbitrary order, as long as they are named. Unspecified fields are assumed to 
-be \code{NULL}.
+Usually these structures are constructed as R lists, with optionally named elements.
+The lists elements are matched up to structure fields according to the same
+logic as function calls to function definitions (see \code{\link{match.call}}).
 }
 \author{Michael Lawrence}
 \seealso{

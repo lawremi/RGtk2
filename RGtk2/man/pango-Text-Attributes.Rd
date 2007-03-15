@@ -260,6 +260,8 @@ user data.
 
 \describe{\item{\code{data}}{[R object] the user data}}
 
+\emph{Returns:} [R object] a new copy of \code{data}.
+
 }
 \item{\code{PangoAttrFilterFunc(attribute, data)}}{
 A predicate function used by \code{\link{pangoAttrListFilter}}
@@ -269,6 +271,8 @@ to filter out a subset of attributes for a list.
 \item{\code{attribute}}{[\code{\link{PangoAttribute}}] a \code{\link{PangoAttribute}}}
 \item{\code{data}}{[R object] callback data passed to \code{\link{pangoAttrListFilter}}}
 }
+
+\emph{Returns:} [logical] \code{TRUE} if the attribute should be filtered out
 
 }
 }}

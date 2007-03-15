@@ -36,7 +36,7 @@ S_virtual_gobject_set_property(GObject *object, guint id, const GValue *value, G
     SETCAR(tmp, s_fun);
     tmp = CDR(tmp);
   
-    SETCAR(tmp, toRPointerWithRef(object, "GObject"));
+    SETCAR(tmp, S_G_OBJECT_ADD_ENV(object, toRPointerWithRef(object, "GObject")));
     tmp = CDR(tmp);
     SETCAR(tmp, asRInteger(id));
     tmp = CDR(tmp);
@@ -79,7 +79,7 @@ S_virtual_gobject_get_property(GObject *object, guint id, GValue *value, GParamS
     SETCAR(tmp, s_fun);
     tmp = CDR(tmp);
   
-    SETCAR(tmp, toRPointerWithRef(object, "GObject"));
+    SETCAR(tmp, S_G_OBJECT_ADD_ENV(object, toRPointerWithRef(object, "GObject")));
     tmp = CDR(tmp);
     SETCAR(tmp, asRInteger(id));
     tmp = CDR(tmp);
@@ -176,7 +176,7 @@ S_gobject_instance_init(GObject *object, GObjectClass *class)
   SETCAR(tmp, s_fun);
   tmp = CDR(tmp);
 
-  SETCAR(tmp, toRPointerWithRef(object, "GObject"));
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(object, toRPointerWithRef(object, "GObject")));
   
   eval(e, R_GlobalEnv);
   

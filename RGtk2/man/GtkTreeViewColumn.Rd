@@ -105,6 +105,7 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 \item{\code{data}}{[R object] user data}
 }
 
+
 }}}
 \section{Signals}{\describe{\item{\code{clicked(treeviewcolumn, user.data)}}{
 \emph{undocumented
@@ -114,6 +115,7 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 \item{\code{treeviewcolumn}}{[\code{\link{GtkTreeViewColumn}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \section{Properties}{\describe{

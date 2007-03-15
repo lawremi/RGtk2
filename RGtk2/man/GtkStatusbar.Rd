@@ -62,6 +62,7 @@ Is emitted whenever a new message is popped off a statusbar's stack.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{text-pushed(statusbar, context.id, text, user.data)}}{
 Is emitted whenever a new message gets pushed onto a statusbar's stack.
@@ -72,6 +73,7 @@ Is emitted whenever a new message gets pushed onto a statusbar's stack.
 \item{\code{text}}{[character] the message that was pushed.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

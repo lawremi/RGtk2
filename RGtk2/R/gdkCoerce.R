@@ -7,16 +7,20 @@ function(x)
     x
 }
 
-# the first field ('pixel') is not always necessary
+# either 'pixel' or ('red', 'green', 'blue') must exist (may be combined) 
 as.GdkColor <-
 function(x)
 {
 	if (is.character(x))
 		return(gdkColorParse(x)$color)
-		
+	
+  if (length(x) == 1) # only one field, must be 'pixel'
+    fields <- "pixel"
+  else { # otherwise, must have 'rgb' and possibly 'pixel'
     fields <- c("red", "green", "blue")
-	if (length(x) > 3)
-		fields <- c("pixel", fields)
+    if (length(x) > 3)
+      fields <- c("pixel", fields)
+  }
 	
 	x <- as.struct(x, "GdkColor", fields)
     

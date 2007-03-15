@@ -5,7 +5,7 @@
 specified by \code{left.attach}, \code{right.attach}, \code{top.attach} and \code{bottom.attach}.
 These each represent the leftmost, rightmost, uppermost and lowest column
 and row numbers of the table. (Columns and rows are indexed from zero).}
-\usage{gtkTableAttach(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = "GTK_EXPAND|GTK_FILL", yoptions = "GTK_EXPAND|GTK_FILL", xpadding = 0, ypadding = 0)}
+\usage{gtkTableAttach(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = 5, yoptions = 5, xpadding = 0, ypadding = 0)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTable}}] The \code{\link{GtkTable}} to add a new widget to.}
 \item{\code{child}}{[\code{\link{GtkWidget}}] The widget to add.}

@@ -58,6 +58,7 @@ to \code{GDK_MODE_ENABLED}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{enable-device(inputdialog, deviceid, user.data)}}{
 This signal is emitted when the user changes the 
@@ -69,6 +70,7 @@ mode of a device from \code{GDK_MODE_DISABLED} to a
 \item{\code{deviceid}}{[\code{\link{GdkDevice}}] The ID of the newly enabled device.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

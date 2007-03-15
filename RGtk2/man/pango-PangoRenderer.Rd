@@ -25,8 +25,7 @@
 rendering a PangoLayout or PangoLayoutLine. By subclassing
 PangoRenderer and overriding operations such as \code{draw.glyphs} and
 \code{draw.rectangle}, renderers for particular font backends and
-destinations can be created.
-  \code{\link{PangoRenderer}}  \code{PangoRenderer}  \code{draw.glyphs}  \code{draw.rectangle}}
+destinations can be created.}
 \section{Structures}{\describe{\item{\code{PangoRenderer}}{
 \code{\link{PangoRenderer}} is a base class for objects that are used to
 render Pango objects such as \code{\link{PangoGlyphString}} and

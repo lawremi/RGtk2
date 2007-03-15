@@ -69,6 +69,7 @@ Applications should never connect to this signal, but use the
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{clicked(button, user.data)}}{
 Emitted when the button has been activated (pressed and released).  
@@ -77,6 +78,7 @@ Emitted when the button has been activated (pressed and released).
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{enter(button, user.data)}}{
@@ -89,6 +91,7 @@ Emitted when the pointer enters the button.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{leave(button, user.data)}}{
 Emitted when the pointer leaves the button.
@@ -99,6 +102,7 @@ Emitted when the pointer leaves the button.
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{pressed(button, user.data)}}{
@@ -111,6 +115,7 @@ Emitted when the button is pressed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{released(button, user.data)}}{
 Emitted when the button is released.
@@ -121,6 +126,7 @@ Emitted when the button is released.
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

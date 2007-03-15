@@ -195,6 +195,7 @@ changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{add-widget(merge, widget, user.data)}}{
 The add\_widget signal is emitted for each generated menubar and toolbar.
@@ -208,6 +209,7 @@ It is not emitted for generated popup menus, which can be obtained by
 \item{\code{widget}}{[\code{\link{GtkWidget}}]  the added widget}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
@@ -227,6 +229,7 @@ statusbar.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
@@ -240,6 +243,7 @@ from an action in the group.
 \item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{post-activate(uimanager, action, user.data)}}{
@@ -257,6 +261,7 @@ just after any action is activated.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{pre-activate(uimanager, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action}
@@ -272,6 +277,7 @@ just before any action is activated.
 \item{\code{action}}{[\code{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

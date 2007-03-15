@@ -32,13 +32,13 @@
 particular kind of container, one that organizes a variable number of
 widgets into a rectangular area.  GtkBox currently has two derived
 classes, \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
-  \code{\link{GtkHBox}}  \code{GtkHBox}  \code{\link{GtkVBox}}  \code{GtkVBox}  
+  
 The rectangular area of a GtkBox is organized into either a single row
 or a single column of child widgets depending upon whether the box is
 of type \code{\link{GtkHBox}} or \code{\link{GtkVBox}}, respectively.  Thus, all children of a
 GtkBox are allocated one dimension in common, which is the height of a
 row, or the width of a column.
-  \code{\link{GtkHBox}}  \code{GtkHBox}  \code{\link{GtkVBox}}  \code{GtkVBox}  
+  
 GtkBox uses a notion of \emph{packing}.  Packing refers to
 adding widgets with reference to a particular position in a
 \code{\link{GtkContainer}}.  For a GtkBox, there are two reference positions: the
@@ -46,37 +46,36 @@ adding widgets with reference to a particular position in a
 \code{\link{GtkVBox}}, the start is defined as the top of the box and the end is
 defined as the bottom.  For a \code{\link{GtkHBox}} the start is defined as the
 left side and the end is defined as the right side.
-  \emph{packing}  \code{\link{GtkContainer}}  \code{GtkContainer}  \emph{start}  \emph{end}  \code{\link{GtkVBox}}  \code{GtkVBox}  \code{\link{GtkHBox}}  \code{GtkHBox}  
+  
 Use repeated calls to \code{\link{gtkBoxPackStart}} to pack widgets into a
 GtkBox from start to end.  Use \code{\link{gtkBoxPackEnd}} to add widgets from
 end to start.  You may intersperse these calls and add widgets from
 both ends of the same GtkBox.
-  \code{\link{gtkBoxPackStart}}  \code{gtkBoxPackStart()}  \code{\link{gtkBoxPackEnd}}  \code{gtkBoxPackEnd()}  
+  
 Use \code{\link{gtkBoxPackStartDefaults}} or \code{\link{gtkBoxPackEndDefaults}}
 to pack widgets into a GtkBox if you do not need to specify the
 \code{expand}, \code{fill}, or
 \code{padding} attributes of the child to be
 added.
-  \code{\link{gtkBoxPackStartDefaults}}  \code{gtkBoxPackStartDefaults()}  \code{\link{gtkBoxPackEndDefaults}}  \code{gtkBoxPackEndDefaults()}  \code{expand}  \code{fill}  \code{padding}  
+  
 Because GtkBox is a \code{\link{GtkContainer}}, you may also use
 \code{\link{gtkContainerAdd}} to insert widgets into the box, and they will be
 packed as if with \code{\link{gtkBoxPackStartDefaults}}.  Use
 \code{\link{gtkContainerRemove}} to remove widgets from the GtkBox.
-  \code{\link{GtkContainer}}  \code{GtkContainer}  \code{\link{gtkContainerAdd}}  \code{gtkContainerAdd()}  \code{\link{gtkBoxPackStartDefaults}}  \code{gtkBoxPackStartDefaults()}  \code{\link{gtkContainerRemove}}  \code{gtkContainerRemove()}  
+  
 Use \code{\link{gtkBoxSetHomogeneous}} to specify whether or not all children
 of the GtkBox are forced to get the same amount of space.
-  \code{\link{gtkBoxSetHomogeneous}}  \code{gtkBoxSetHomogeneous()}  
+  
 Use \code{\link{gtkBoxSetSpacing}} to determine how much space will be
 minimally placed between all children in the GtkBox.
-  \code{\link{gtkBoxSetSpacing}}  \code{gtkBoxSetSpacing()}  
+  
 Use \code{\link{gtkBoxReorderChild}} to move a GtkBox child to a different
 place in the box.
-  \code{\link{gtkBoxReorderChild}}  \code{gtkBoxReorderChild()}  
+  
 Use \code{\link{gtkBoxSetChildPacking}} to reset the
 \code{expand}, \code{fill},
 and \code{padding} attributes of any GtkBox child.
-Use \code{\link{gtkBoxQueryChildPacking}} to query these fields.
-  \code{\link{gtkBoxSetChildPacking}}  \code{gtkBoxSetChildPacking()}  \code{expand}  \code{fill}  \code{padding}  \code{\link{gtkBoxQueryChildPacking}}  \code{gtkBoxQueryChildPacking()}}
+Use \code{\link{gtkBoxQueryChildPacking}} to query these fields.}
 \section{Structures}{\describe{
 \item{\code{GtkBox}}{
 The \code{\link{GtkBox}} describes an instance of GtkBox and contains the following fields.

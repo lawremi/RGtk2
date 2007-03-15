@@ -65,6 +65,7 @@ or activated with the keyboard.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{icon-name} [character : Read / Write]}{

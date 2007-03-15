@@ -91,6 +91,7 @@ only be accessed using the functions below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{scroll-child(scrolledwindow, arg1, arg2, user.data)}}{
 \emph{undocumented
@@ -102,6 +103,7 @@ only be accessed using the functions below.
 \item{\code{arg2}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

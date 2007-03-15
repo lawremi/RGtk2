@@ -68,6 +68,7 @@ If and how status icons can activated is platform-dependent.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{popup-menu(status.icon, button, activate.time, user.data)}}{
 Gets emitted when the user brings up the context menu
@@ -88,6 +89,7 @@ passed as the last to arguments to \code{\link{gtkMenuPopup}}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{size-changed(status.icon, size, user.data)}}{
 Gets emitted when the size available for the image
@@ -100,6 +102,9 @@ changes, e.g. because the notification area got resized.
 \item{\code{size}}{[integer]  the new size}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical]  \code{TRUE} if the icon was updated for the new
+size. Otherwise, GTK+ will scale the icon as necessary.
 
 }
 }}

@@ -118,6 +118,7 @@
 \item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestContents}}.}
 }
 
+
 }
 \item{\code{GtkClipboardTextReceivedFunc(clipboard, text, data)}}{
     A function to be called when the results of \code{\link{gtkClipboardRequestText}}
@@ -130,6 +131,7 @@
 \item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestText}}.}
 }
 
+
 }
 \item{\code{GtkClipboardImageReceivedFunc(clipboard, pixbuf, data)}}{
     A function to be called when the results of \code{\link{gtkClipboardRequestImage}}
@@ -141,6 +143,7 @@
 \item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}] the received image}
 \item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestImage}}.}
 }
+
 
 }
 \item{\code{GtkClipboardTargetsReceivedFunc(clipboard, atoms, n.atoms, data)}}{
@@ -156,6 +159,7 @@
 \item{\code{data}}{[R object] the \code{user.data} supplied to \code{\link{gtkClipboardRequestTargets}}.}
 }
 
+
 }
 \item{\code{GtkClipboardRichTextReceivedFunc(clipboard, format, text, length, data)}}{
 \emph{undocumented
@@ -168,6 +172,7 @@
 \item{\code{length}}{[numeric] }
 \item{\code{data}}{[R object] }
 }
+
 
 }
 \item{\code{GtkClipboardGetFunc(clipboard, selection.data, info, user.data.or.owner)}}{
@@ -191,6 +196,7 @@ will be informed that the attempt to get the data failed.
                      the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
+
 }
 \item{\code{GtkClipboardClearFunc(clipboard, user.data.or.owner)}}{
 A function that will be called when the contents of the clipboard are changed
@@ -203,6 +209,7 @@ will not be used again.
                      the \code{owner} argument passed to \code{\link{gtkClipboardSetWithOwner}}}
 }
 
+
 }
 }}
 \section{Signals}{\describe{\item{\code{owner-change(clipboard, event, user.data)}}{
@@ -214,6 +221,7 @@ will not be used again.
 \item{\code{event}}{[\code{\link{GdkEvent}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Clipboards.html}}

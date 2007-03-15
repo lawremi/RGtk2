@@ -71,6 +71,8 @@ that it is okay to change the selection.
 \item{\code{data}}{[R object] user data}
 }
 
+\emph{Returns:} [logical] \code{TRUE}, if the selection state of the row can be toggled
+
 }
 \item{\code{GtkTreeSelectionForeachFunc(model, path, iter, data)}}{
 A function used by \code{\link{gtkTreeSelectionSelectedForeach}} to map all
@@ -82,6 +84,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}] A \code{\link{GtkTreeIter}} pointing to a selected row}
 \item{\code{data}}{[R object] user data}
 }
+
 
 }
 }}
@@ -95,6 +98,7 @@ has happened.
 \item{\code{treeselection}}{[\code{\link{GtkTreeSelection}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeSelection.html}}

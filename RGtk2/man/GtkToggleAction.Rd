@@ -17,8 +17,7 @@
          +----GtkToggleAction
                +----\link{GtkRadioAction}}}
 \section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
-"active" state specifying whether the action has been checked or not.
-  \code{\link{GtkToggleAction}}  \code{GtkToggleAction}  \code{\link{GtkCheckMenuItem}}  \code{GtkCheckMenuItem}}
+"active" state specifying whether the action has been checked or not.}
 \section{Structures}{\describe{\item{\code{GtkToggleAction}}{
 The \code{GtkToggleAction} struct contains only 
 private members and should not be accessed directly.
@@ -33,6 +32,7 @@ private members and should not be accessed directly.
 \item{\code{toggleaction}}{[\code{\link{GtkToggleAction}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \section{Properties}{\describe{

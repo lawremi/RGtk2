@@ -58,6 +58,7 @@ other than the value field.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{value-changed(adjustment, user.data)}}{
 Emitted when the \code{\link{GtkAdjustment}} value field has been changed.
@@ -66,6 +67,7 @@ Emitted when the \code{\link{GtkAdjustment}} value field has been changed.
 \item{\code{adjustment}}{[\code{\link{GtkAdjustment}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

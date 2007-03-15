@@ -24,4 +24,3 @@ printing Demonstrates rendering a document and printing it via a dialog
 assistant A three-page demonstration of the wizard-like GtkAssistant
 alphaSlider	An R plot of microarray data with the alpha controlled by a slider
 alphaSliderClass	The alphaSlider demo based on a subclass of the GtkHScale widget
-sexyUrlLabel	A port of the libsexy URL label widget to R

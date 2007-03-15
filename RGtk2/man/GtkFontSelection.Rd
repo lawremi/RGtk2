@@ -26,15 +26,14 @@
 allowing the user to select a font.
 It is used in the \code{\link{GtkFontSelectionDialog}} widget to provide a dialog box for
 selecting fonts.
-  \code{\link{GtkFontSelection}}  \code{GtkFontSelection}  \code{\link{GtkFontSelectionDialog}}  \code{GtkFontSelectionDialog}  
+  
 To set the font which is initially selected, use
 \code{\link{gtkFontSelectionSetFontName}}.
-  \code{\link{gtkFontSelectionSetFontName}}  \code{gtkFontSelectionSetFontName()}  
+  
 To get the selected font use \code{\link{gtkFontSelectionGetFontName}}.
-  \code{\link{gtkFontSelectionGetFontName}}  \code{gtkFontSelectionGetFontName()}  
+  
 To change the text which is shown in the preview area, use
-\code{\link{gtkFontSelectionSetPreviewText}}.
-  \code{\link{gtkFontSelectionSetPreviewText}}  \code{gtkFontSelectionSetPreviewText()}}
+\code{\link{gtkFontSelectionSetPreviewText}}.}
 \section{Structures}{\describe{\item{\code{GtkFontSelection}}{
 The \code{\link{GtkFontSelection}} struct contains private data only, and should
 only be accessed using the functions below.

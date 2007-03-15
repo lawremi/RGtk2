@@ -77,6 +77,7 @@ the partially-loaded pixbuf.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{area-updated(loader, x, y, width, height, user.data)}}{
 This signal is emitted when a significant area of the image being
@@ -95,6 +96,7 @@ areas of an image that is being loaded.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{closed(loader, user.data)}}{
 This signal is emitted when \code{\link{gdkPixbufLoaderClose}} is called.
@@ -107,6 +109,7 @@ drives it.
 \item{\code{loader}}{[\code{\link{GdkPixbufLoader}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{size-prepared(loader, width, height, user.data)}}{
@@ -123,6 +126,7 @@ the desired size to which the image should be scaled.
 \item{\code{height}}{[integer]  the original height of the image}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

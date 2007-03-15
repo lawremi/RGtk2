@@ -40,7 +40,7 @@ various aspects of the operation of a GTK+ program
 at runtime.}
 \section{Default files}{An application can cause GTK+ to parse a specific RC
 file by calling \code{\link{gtkRcParse}}. In addition to this,
-certain files will be read at the end of \code{gtkInit()}.
+certain files will be read at the end of \code{\link{gtkInit}}.
 Unless modified, the files looked for will be 
 \file{<SYSCONFDIR>/gtk-2.0/gtkrc} 
 and \file{.gtkrc-2.0} in the users home directory.

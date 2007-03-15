@@ -650,131 +650,203 @@ asCGParamSpec(USER_OBJECT_ s_spec)
 USER_OBJECT_
 asRGParamSpec(GParamSpec* spec)
 {
-    USER_OBJECT_ s_spec;
+    USER_OBJECT_ s_spec, s_names;
     GType type = G_PARAM_SPEC_TYPE(spec);
-    const gchar* const classes[] = { G_PARAM_SPEC_TYPE_NAME(spec), "GParamSpec", "RGtkObject" };
+    const gchar* const classes[] = { G_PARAM_SPEC_TYPE_NAME(spec), "GParamSpec" };
     
     if (type == G_TYPE_PARAM_BOOLEAN) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
       SET_VECTOR_ELT(s_spec, 4, asRLogical(G_PARAM_SPEC_BOOLEAN(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_CHAR) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRRaw(G_PARAM_SPEC_CHAR(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRRaw(G_PARAM_SPEC_CHAR(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRRaw(G_PARAM_SPEC_CHAR(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_UCHAR) {
-      PROTECT(s_spec = NEW_LIST(8));
+      PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRRaw(G_PARAM_SPEC_UCHAR(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRRaw(G_PARAM_SPEC_UCHAR(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRRaw(G_PARAM_SPEC_UCHAR(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_INT) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRInteger(G_PARAM_SPEC_INT(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRInteger(G_PARAM_SPEC_INT(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRInteger(G_PARAM_SPEC_INT(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_UINT) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_UINT(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_UINT(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_UINT(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_LONG) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_LONG(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_LONG(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_LONG(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_ULONG) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_ULONG(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_ULONG(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_ULONG(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_INT64) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_INT64(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_INT64(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_INT64(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_UINT64) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_UINT64(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_UINT64(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_UINT64(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_FLOAT) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_FLOAT(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_DOUBLE) {
       PROTECT(s_spec = NEW_LIST(7));
+      PROTECT(s_names = NEW_CHARACTER(7));
+      SET_STRING_ELT(s_names, 4, asRString("minimum"));
+      SET_STRING_ELT(s_names, 5, asRString("maximum"));
+      SET_STRING_ELT(s_names, 6, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->minimum));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->maximum));
       SET_VECTOR_ELT(s_spec, 6, asRNumeric(G_PARAM_SPEC_DOUBLE(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_ENUM) {
       PROTECT(s_spec = NEW_LIST(6));
+      PROTECT(s_names = NEW_CHARACTER(6));
+      SET_STRING_ELT(s_names, 4, asRString("enumClass"));
+      SET_STRING_ELT(s_names, 5, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_ENUM_CLASS_TYPE(G_PARAM_SPEC_ENUM(spec)->enum_class)));
       SET_VECTOR_ELT(s_spec, 5, asRInteger(G_PARAM_SPEC_ENUM(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_FLAGS) {
       PROTECT(s_spec = NEW_LIST(6));
+      PROTECT(s_names = NEW_CHARACTER(6));
+      SET_STRING_ELT(s_names, 4, asRString("flagClass"));
+      SET_STRING_ELT(s_names, 5, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_FLAGS_CLASS_TYPE(G_PARAM_SPEC_FLAGS(spec)->flags_class)));
       SET_VECTOR_ELT(s_spec, 5, asRNumeric(G_PARAM_SPEC_FLAGS(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_STRING) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRString(G_PARAM_SPEC_STRING(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_PARAM) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("valueType"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
     }
     else if (type == G_TYPE_PARAM_BOXED) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("valueType"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
     }
     else if (type == G_TYPE_PARAM_POINTER) {
       PROTECT(s_spec = NEW_LIST(4));
+      PROTECT(s_names = NEW_CHARACTER(4));
     }
     else if (type == G_TYPE_PARAM_OBJECT) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("valueType"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_VALUE_TYPE(spec)));
     }
     else if (type == G_TYPE_PARAM_UNICHAR) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRInteger(G_PARAM_SPEC_UNICHAR(spec)->default_value));
     }
     else if (type == G_TYPE_PARAM_VALUE_ARRAY) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("elementSpec"));
       SET_VECTOR_ELT(s_spec, 4, asRGParamSpec(G_PARAM_SPEC_VALUE_ARRAY(spec)->element_spec));
     }
     else if (type == G_TYPE_PARAM_GTYPE) {
       PROTECT(s_spec = NEW_LIST(5));
+      PROTECT(s_names = NEW_CHARACTER(5));
+      SET_STRING_ELT(s_names, 4, asRString("isAType"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_GTYPE(spec)->is_a_type));
     }
     else if (type == R_GTK_TYPE_PARAM_SEXP) {
       PROTECT(s_spec = NEW_LIST(6));
+      PROTECT(s_names = NEW_CHARACTER(6));
+      SET_STRING_ELT(s_names, 4, asRString("sType"));
+      SET_STRING_ELT(s_names, 5, asRString("defaultValue"));
       SET_VECTOR_ELT(s_spec, 4, asRNumeric(((RGtkParamSpecSexp *)spec)->s_type));
       SET_VECTOR_ELT(s_spec, 5, ((RGtkParamSpecSexp *)spec)->default_value);
     } else {
       PROTECT(s_spec = NEW_LIST(4));
+      PROTECT(s_names = NEW_CHARACTER(4));
     }
 
+    SET_STRING_ELT(s_names, 0, asRString("name"));
+    SET_STRING_ELT(s_names, 1, asRString("nick"));
+    SET_STRING_ELT(s_names, 2, asRString("blurb"));
+    SET_STRING_ELT(s_names, 3, asRString("flags"));
+    
     SET_VECTOR_ELT(s_spec, 0, asRString(g_param_spec_get_name(spec)));
     SET_VECTOR_ELT(s_spec, 1, asRString(g_param_spec_get_nick(spec)));
     SET_VECTOR_ELT(s_spec, 2, asRString(g_param_spec_get_blurb(spec)));
     SET_VECTOR_ELT(s_spec, 3, asRFlag(spec->flags, G_TYPE_PARAM_FLAGS));
 
+    SET_NAMES(s_spec, s_names);
     SET_CLASS(s_spec, asRStringArrayWithSize(classes, 3));
     
-    UNPROTECT(1);
+    UNPROTECT(2);
 
     return(s_spec);
 }

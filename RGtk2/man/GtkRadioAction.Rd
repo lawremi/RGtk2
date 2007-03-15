@@ -37,6 +37,7 @@ for the previous and current active members.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{current-value} [integer : Read / Write]}{

@@ -101,6 +101,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{data}}{[R object] user data}
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{activate-cursor-item(iconview, user.data)}}{
@@ -112,6 +113,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{item-activated(iconview, arg1, user.data)}}{
 \emph{undocumented
@@ -122,6 +124,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{arg1}}{[\code{\link{GtkTreePath}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-cursor(iconview, arg1, arg2, user.data)}}{
@@ -135,6 +138,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-all(iconview, user.data)}}{
 \emph{undocumented
@@ -144,6 +148,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{select-cursor-item(iconview, user.data)}}{
@@ -155,6 +160,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{selection-changed(iconview, user.data)}}{
 \emph{undocumented
@@ -164,6 +170,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{set-scroll-adjustments(iconview, arg1, arg2, user.data)}}{
@@ -177,6 +184,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-cursor-item(iconview, user.data)}}{
 \emph{undocumented
@@ -187,6 +195,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{unselect-all(iconview, user.data)}}{
 \emph{undocumented
@@ -196,6 +205,7 @@ selected rows.  It will be called on every selected row in the view.
 \item{\code{iconview}}{[\code{\link{GtkIconView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

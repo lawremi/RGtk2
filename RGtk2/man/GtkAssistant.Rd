@@ -76,6 +76,8 @@ the behavior of the "last" button.
 \item{\code{data}}{[R object] user data.}
 }
 
+\emph{Returns:} [integer] The next page number.
+
 }}}
 \section{Signals}{\describe{
 \item{\code{apply(assistant, user.data)}}{
@@ -96,6 +98,7 @@ the progress page.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cancel(assistant, user.data)}}{
 The ::cancel signal is emitted when then the cancel button is clicked.  
@@ -106,6 +109,7 @@ The ::cancel signal is emitted when then the cancel button is clicked.
 \item{\code{assistant}}{[\code{\link{GtkAssistant}}]  the \code{\link{GtkAssistant}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{close(assistant, user.data)}}{
@@ -120,6 +124,7 @@ page in the flow (of type GTK\_ASSISTANT\_PAGE\_CONFIRM) is clicked.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{prepare(assistant, page, user.data)}}{
 The ::prepared signal is emitted when a new page is set as the assistant's 
@@ -133,6 +138,7 @@ can do any preparation which are necessary before showing \code{page}.
 \item{\code{page}}{[\code{\link{GtkWidget}}]  the current page}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

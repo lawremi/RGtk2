@@ -71,6 +71,7 @@ AtkTable interface when a column is deleted.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{column-inserted(atktable, arg1, arg2, user.data)}}{
 The "column-inserted" signal is emitted by an object which implements the 
@@ -83,6 +84,7 @@ AtkTable interface when a column is inserted.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{column-reordered(atktable, user.data)}}{
 The "column-reordered" signal is emitted by an object which implements the 
@@ -93,6 +95,7 @@ AtkTable interface when the columns are reordered.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{model-changed(atktable, user.data)}}{
 The "model-changed" signal is emitted by an object which implements the 
@@ -102,6 +105,7 @@ AtkTable interface when the model displayed by the table changes.
 \item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{row-deleted(atktable, arg1, arg2, user.data)}}{
@@ -115,6 +119,7 @@ AtkTable interface when a column is inserted.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{row-inserted(atktable, arg1, arg2, user.data)}}{
 The "row-inserted" signal is emitted by an object which implements the 
@@ -127,6 +132,7 @@ AtkTable interface when a column is inserted.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{row-reordered(atktable, user.data)}}{
 The "row-reordered" signal is emitted by an object which implements the 
@@ -136,6 +142,7 @@ AtkTable interface when the columns are reordered.
 \item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -145,6 +145,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{check-resize(container, user.data)}}{
 \emph{undocumented
@@ -154,6 +155,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 \item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{remove(container, widget, user.data)}}{
@@ -166,6 +168,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{set-focus-child(container, widget, user.data)}}{
 \emph{undocumented
@@ -176,6 +179,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 \item{\code{widget}}{[\code{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

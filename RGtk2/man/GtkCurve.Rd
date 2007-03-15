@@ -56,6 +56,7 @@ calling \code{\link{gtkCurveReset}} or \code{\link{gtkCurveSetGamma}}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{curve-type} [\code{\link{GtkCurveType}} : Read / Write]}{

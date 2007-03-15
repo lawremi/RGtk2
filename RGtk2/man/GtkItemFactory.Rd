@@ -66,6 +66,7 @@
 \item{\code{str}}{[character] }
 }
 
+
 }
 \item{\code{GtkTranslateFunc(path, func.data)}}{
 The function used to translate messages in e.g. \code{\link{GtkIconFactory}}
@@ -78,10 +79,13 @@ and \code{\link{GtkActionGroup}}.
 \item{\code{func.data}}{[R object] user data passed in when registering the function}
 }
 
+\emph{Returns:} [character] the translated message
+
 }
 \item{\code{GtkItemFactoryCallback()}}{
 \emph{undocumented
 }
+
 
 
 
@@ -96,6 +100,7 @@ and \code{\link{GtkActionGroup}}.
 \item{\code{widget}}{[\code{\link{GtkWidget}}] }
 }
 
+
 }
 \item{\code{GtkItemFactoryCallback2(widget, callback.data, callback.action)}}{
 \emph{undocumented
@@ -106,6 +111,7 @@ and \code{\link{GtkActionGroup}}.
 \item{\code{callback.data}}{[R object] }
 \item{\code{callback.action}}{[numeric] }
 }
+
 
 }
 }}

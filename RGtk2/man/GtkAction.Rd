@@ -78,6 +78,7 @@ The "activate" signal is emitted when the action is activated.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{action-group} [\code{\link{GtkActionGroup}} : Read / Write]}{

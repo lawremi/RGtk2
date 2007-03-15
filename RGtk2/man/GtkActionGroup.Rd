@@ -138,6 +138,7 @@ convenient to use.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
@@ -156,6 +157,7 @@ convenient to use.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{post-activate(action.group, action, user.data)}}{
 The post\_activate signal is emitted just after the \code{action} in the
@@ -172,6 +174,7 @@ notification just after any action is activated.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{pre-activate(action.group, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action} in the
@@ -187,6 +190,7 @@ notification just before any action is activated.
 \item{\code{action}}{[\code{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

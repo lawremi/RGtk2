@@ -95,6 +95,7 @@ Defines the type of the function used to set the vtable of a
 
 \describe{\item{\code{module}}{[GdkPixbufModule] a \code{GdkPixbufModule}.}}
 
+
 }
 \item{\code{GdkPixbufModuleFillInfoFunc(info)}}{
 Defines the type of the function used to fill a 
@@ -102,6 +103,7 @@ Defines the type of the function used to fill a
   Since 2.2
 
 \describe{\item{\code{info}}{[\code{\link{GdkPixbufFormat}}] a \code{\link{GdkPixbufFormat}}.}}
+
 
 }
 \item{\code{GdkPixbufModuleSizeFunc(width, height, user.data)}}{
@@ -126,6 +128,7 @@ efficiently.
 \item{\code{user.data}}{[R object] the loader.}
 }
 
+
 }
 \item{\code{GdkPixbufModulePreparedFunc(pixbuf, anim, user.data)}}{
 Defines the type of the function that gets called once the initial 
@@ -141,6 +144,7 @@ signal.
 \item{\code{anim}}{[\code{\link{GdkPixbufAnimation}}] if an animation is being loaded, the \code{\link{GdkPixbufAnimation}}, else \code{NULL}.}
 \item{\code{user.data}}{[R object] the loader.}
 }
+
 
 }
 \item{\code{GdkPixbufModuleUpdatedFunc(pixbuf, x, y, width, height, user.data)}}{
@@ -160,6 +164,7 @@ signal.
 \item{\code{height}}{[integer] the height of the updated area.}
 \item{\code{user.data}}{[R object] the loader.}
 }
+
 
 }
 }}

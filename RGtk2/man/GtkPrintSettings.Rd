@@ -193,6 +193,7 @@ Printing support was added in GTK+ 2.10.}
 \item{\code{user.data}}{[R object] }
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPrintSettings.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

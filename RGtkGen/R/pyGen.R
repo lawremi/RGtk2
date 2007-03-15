@@ -1061,7 +1061,7 @@ function(param, name, defs)
      call <- invoke(fn, args)
      if (!is.null(var))
          call <- rassign(var, call)
-	 if (param$nullok && isRef(param$type))
+	 if (param$nullok && (isRef(param$type) || isUserFunction(param$type, defs)))
 		 call <- paste("if (!is.null(", name, "))", call)
  }
  
@@ -1458,7 +1458,10 @@ function(name, params, defs)
 	declaration <- decl("R_CallbackData*", data)
 	if (length(found) == 0) # import global symbol with 'extern'
 		declaration <- extern(declaration)
-  coercion <- statement(c(cassign(decl(type, name), cast(type, nameToC(type))),
+  s_func <- cast(type, nameToC(type))
+  if (params[[func]]$nullok)
+    s_func <- paste(invoke("GET_LENGTH", nameToSArg(name)), "== 0 ? NULL :", s_func)
+  coercion <- statement(c(cassign(decl(type, name), s_func),
     cassign(declaration, invoke("R_createCBData", c(nameToSArg(name), sdata)))))
   list(coercion = coercion, data = data, freeData = freeData)
 }

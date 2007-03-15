@@ -1,5 +1,5 @@
 Package: RGtk2
-Version: 2.10.5
+Version: 2.10.6
 Date:    2007/2/24
 Title: R bindings for Gtk 2.0
 Author:  Duncan Temple Lang <duncan@wald.ucdavis.edu> and Michael Lawrence <lawremi@iastate.edu>

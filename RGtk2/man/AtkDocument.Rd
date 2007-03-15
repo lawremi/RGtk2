@@ -39,6 +39,7 @@ be exposed via other signals.)
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{load-stopped(atkdocument, user.data)}}{
 The 'load-stopped' signal is emitted when a pending load of document contents
@@ -52,6 +53,7 @@ network read) unless a user-significant timeout has occurred.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{reload(atkdocument, user.data)}}{
 The 'reload' signal is emitted when the contents of a document is refreshed
@@ -63,6 +65,7 @@ interrogating ATK for the latest document content.
 \item{\code{atkdocument}}{[\code{\link{AtkDocument}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

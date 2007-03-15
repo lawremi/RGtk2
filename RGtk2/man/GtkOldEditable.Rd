@@ -33,6 +33,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{time.}}{[numeric] }
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{activate(oldeditable, user.data)}}{
@@ -44,6 +45,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{copy-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
@@ -54,6 +56,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cut-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
@@ -63,6 +66,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{kill-char(oldeditable, arg1, user.data)}}{
@@ -75,6 +79,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{kill-line(oldeditable, arg1, user.data)}}{
 \emph{undocumented
@@ -86,6 +91,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{kill-word(oldeditable, arg1, user.data)}}{
 \emph{undocumented
@@ -96,6 +102,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-cursor(oldeditable, arg1, arg2, user.data)}}{
@@ -109,6 +116,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-page(oldeditable, arg1, arg2, user.data)}}{
 \emph{undocumented
@@ -121,6 +129,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-to-column(oldeditable, arg1, user.data)}}{
 \emph{undocumented
@@ -131,6 +140,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-to-row(oldeditable, arg1, user.data)}}{
@@ -143,6 +153,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-word(oldeditable, arg1, user.data)}}{
 \emph{undocumented
@@ -154,6 +165,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{paste-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
@@ -163,6 +175,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{set-editable(oldeditable, arg1, user.data)}}{
@@ -174,6 +187,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

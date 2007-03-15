@@ -55,6 +55,7 @@ Emitted when the query is started.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{stop-query(tipsquery, user.data)}}{
 Emitted when the query is stopped.
@@ -63,6 +64,7 @@ Emitted when the query is stopped.
 \item{\code{tipsquery}}{[\code{\link{GtkTipsQuery}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{widget-entered(tipsquery, widget, tip.text, tip.private, user.data)}}{
@@ -76,6 +78,7 @@ Emitted when a widget is entered by the pointer while the query is in effect.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{widget-selected(tipsquery, widget, tip.text, tip.private, event, user.data)}}{
 Emitted when a widget is selected during a query.
@@ -88,6 +91,8 @@ Emitted when a widget is selected during a query.
 \item{\code{event}}{[\code{\link{GdkEventButton}}] the button press or button release event.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
+\emph{Returns:} [logical] \code{TRUE} if the query should be stopped.
 
 }
 }}

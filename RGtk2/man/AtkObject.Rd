@@ -184,6 +184,8 @@ to class and interface structures to allow for expansion in the future.
 
 \describe{\item{\code{data}}{[R object] a gpointer to parameter data.}}
 
+\emph{Returns:} [logical] Nothing useful, this is only a dummy prototype.
+
 }
 \item{\code{AtkPropertyChangeHandler(Param1, Param2)}}{
 An AtkPropertyChangeHandler is a function which is executed when an AtkObject's property changes value. It is specified in a call to 
@@ -193,6 +195,7 @@ An AtkPropertyChangeHandler is a function which is executed when an AtkObject's 
 \item{\code{Param1}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}
 \item{\code{Param2}}{[AtkPropertyValues]  an \code{AtkPropertyValues}}
 }
+
 
 }
 }}
@@ -209,6 +212,7 @@ in the table which has focus changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{children-changed(atkobject, arg1, arg2, user.data)}}{
 The signal "children-changed" is emitted when a child is added or
@@ -221,6 +225,7 @@ removed form an object. It supports two details: "add" and "remove"
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{focus-event(atkobject, arg1, user.data)}}{
 The signal "focus-event" is emitted when an object gains or loses focus.
@@ -230,6 +235,7 @@ The signal "focus-event" is emitted when an object gains or loses focus.
 \item{\code{arg1}}{[logical] A boolean value which indicates whether the object gained or lost focus.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{property-change(atkobject, arg1, user.data)}}{
@@ -243,6 +249,7 @@ value has changed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{state-change(atkobject, arg1, arg2, user.data)}}{
 The "state-change" signal is emitted  when an object's state changes.
@@ -255,6 +262,7 @@ The detail value identifies the state type which has changed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{visible-data-changed(atkobject, user.data)}}{
 The "visible-data-changed" signal is emitted when the visual appearance of 
@@ -264,6 +272,7 @@ the object changed.
 \item{\code{atkobject}}{[\code{\link{AtkObject}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

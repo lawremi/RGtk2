@@ -8,7 +8,7 @@
 \section{Methods and Functions}{
 \code{\link{gtkTableNew}(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}\cr
 \code{\link{gtkTableResize}(object, rows, columns)}\cr
-\code{\link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = "GTK_EXPAND|GTK_FILL", yoptions = "GTK_EXPAND|GTK_FILL", xpadding = 0, ypadding = 0)}\cr
+\code{\link{gtkTableAttach}(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = 5, yoptions = 5, xpadding = 0, ypadding = 0)}\cr
 \code{\link{gtkTableAttachDefaults}(object, widget, left.attach, right.attach, top.attach, bottom.attach)}\cr
 \code{\link{gtkTableSetRowSpacing}(object, row, spacing)}\cr
 \code{\link{gtkTableSetColSpacing}(object, column, spacing)}\cr

@@ -34,7 +34,6 @@
 \alias{as.GtkPageRange}
 \alias{as.GtkRecentData}
 \alias{as.GtkRecentFilterInfo}
-\alias{as.struct}
 \name{coercion}
 \title{Coercion of R lists to C structures}
 \description{This function coerces an R list to the named C type. This helps form the basis

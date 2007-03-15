@@ -94,6 +94,7 @@ attach signal handlers for the various ATK signals instead.
 \describe{\item{\code{obj}}{[\code{\link{AtkObject}}]  An \code{\link{AtkObject}} instance for whom the callback will be called when
 the specified event (e.g. 'focus:') takes place.}}
 
+
 }
 \item{\code{AtkEventListenerInit()}}{
 An \code{AtkEventListenerInit} function is a special function that is
@@ -101,6 +102,7 @@ called in order to initialize the per-object event registration system
 used by \code{AtkEventListener}, if any preparation is required.  
   
 \code{see}: atk\_focus\_tracker\_init.  
+
 
 
 
@@ -115,6 +117,12 @@ interception of key events via the return code as described below.
 notification is being given.}
 \item{\code{func.data}}{[R object]  a block of data which will be passed to the event listener, on notification.}
 }
+
+\emph{Returns:} [integer]  TRUE (nonzero) if the event emission should be stopped and the event 
+discarded without being passed to the normal GUI recipient; FALSE (zero) if the 
+event dispatch to the client application should proceed as normal.
+
+\code{see}: atk\_add\_key\_event\_listener.
 
 }
 }}

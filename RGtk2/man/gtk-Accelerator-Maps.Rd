@@ -40,6 +40,7 @@
 \item{\code{changed}}{[logical] }
 }
 
+
 }}}
 \section{Signals}{\describe{\item{\code{changed(object, accel.path, accel.key, accel.mods, user.data)}}{
 Notifies of a change in the global accelerator map.
@@ -56,6 +57,7 @@ changed::\\var{accel\_path}.
 \item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]  the modifier mask for the new accelerator}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-Accelerator-Maps.html}}

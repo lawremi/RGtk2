@@ -65,6 +65,8 @@ format_value_callback <- function(scale, value)
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [character] allocated string representing \code{value}
+
 }}}
 \section{Properties}{\describe{
 \item{\code{digits} [integer : Read / Write]}{

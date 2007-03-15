@@ -57,6 +57,7 @@ connection process.
 \item{\code{user.data}}{[R object]  the user data argument.}
 }
 
+
 }
 \item{\code{GladeXMLCustomWidgetHandler(xml, func.name, name, string1, string2, int1, int2, user.data)}}{
 This prototype is for a function that creates custom widgets.  
@@ -71,6 +72,8 @@ This prototype is for a function that creates custom widgets.
 \item{\code{int2}}{[integer]  the int2 property.}
 \item{\code{user.data}}{[R object]  the data passed to \code{\link{gladeSetCustomHandler}}}
 }
+
+\emph{Returns:} [\code{\link{GtkWidget}}]  the GtkWidget.
 
 }
 }}

@@ -87,6 +87,7 @@ link is activated.
   \code{\link{gtkAboutDialogSetUrlHook}}}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{artists} [character list : Read / Write]}{

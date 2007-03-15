@@ -120,6 +120,7 @@ This defines the type of the function passed to
 \item{\code{data}}{[R object] the user data passed to \code{\link{gdkRegionSpansIntersectForeach}}.}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Points-Rectangles-and-Regions.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

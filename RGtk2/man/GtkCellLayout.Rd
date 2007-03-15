@@ -47,6 +47,7 @@ as appropriate.
 \item{\code{data}}{[R object] user data passed to \code{\link{gtkCellLayoutSetCellDataFunc}}}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellLayout.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

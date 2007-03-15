@@ -96,6 +96,8 @@ see \code{\link{gtkRecentFilterAddCustom}}.
 \item{\code{user.data}}{[R object] user data passed to \code{\link{gtkRecentFilterAddCustom}}}
 }
 
+\emph{Returns:} [logical] \code{TRUE} if the file should be displayed
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentFilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

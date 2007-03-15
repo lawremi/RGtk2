@@ -36,6 +36,7 @@ Emitted when the item is deselected.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select(item, user.data)}}{
 Emitted when the item is selected.
@@ -45,6 +46,7 @@ Emitted when the item is selected.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle(item, user.data)}}{
 Emitted when the item is toggled.
@@ -53,6 +55,7 @@ Emitted when the item is toggled.
 \item{\code{item}}{[\code{\link{GtkItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

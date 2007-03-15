@@ -43,6 +43,7 @@ for the "price" column could be one which returns
 \code{\link{gtkTreeSortableSetSortFunc}}}
 }
 
+
 }}}
 \section{Signals}{\describe{\item{\code{sort-column-changed(treesortable, user.data)}}{
 \emph{undocumented
@@ -52,6 +53,7 @@ for the "price" column could be one which returns
 \item{\code{treesortable}}{[\code{\link{GtkTreeSortable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeSortable.html}}

@@ -1398,7 +1398,7 @@ function(object, entries, value, on.change = NULL, user.data = NULL)
   checkPtrType(object, "GtkActionGroup")
   entries <- lapply(entries, function(x) { x <- as.GtkRadioActionEntry(x); x })
   value <- as.integer(value)
-  on.change <- as.function(on.change)
+  if (!is.null( on.change )) on.change <- as.function(on.change)
   
 
   w <- .RGtkCall("S_gtk_action_group_add_radio_actions", object, entries, value, on.change, user.data, PACKAGE = "RGtk2")
@@ -1439,7 +1439,7 @@ function(object, entries, value, on.change = NULL, user.data = NULL)
   checkPtrType(object, "GtkActionGroup")
   entries <- lapply(entries, function(x) { x <- as.GtkRadioActionEntry(x); x })
   value <- as.integer(value)
-  on.change <- as.function(on.change)
+  if (!is.null( on.change )) on.change <- as.function(on.change)
   
 
   w <- .RGtkCall("S_gtk_action_group_add_radio_actions_full", object, entries, value, on.change, user.data, PACKAGE = "RGtk2")
@@ -14369,7 +14369,7 @@ function(object, parent.menu.shell = NULL, parent.menu.item = NULL, func = NULL,
   checkPtrType(object, "GtkMenu")
   if (!is.null( parent.menu.shell )) checkPtrType(parent.menu.shell, "GtkWidget")
   if (!is.null( parent.menu.item )) checkPtrType(parent.menu.item, "GtkWidget")
-  func <- as.function(func)
+  if (!is.null( func )) func <- as.function(func)
   
   button <- as.numeric(button)
   activate.time <- as.numeric(activate.time)
@@ -19990,7 +19990,7 @@ function(object, rows, columns)
 
 
 gtkTableAttach <-
-function(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = "GTK_EXPAND|GTK_FILL", yoptions = "GTK_EXPAND|GTK_FILL", xpadding = 0, ypadding = 0)
+function(object, child, left.attach, right.attach, top.attach, bottom.attach, xoptions = 5, yoptions = 5, xpadding = 0, ypadding = 0)
 {
   checkPtrType(object, "GtkTable")
   checkPtrType(child, "GtkWidget")

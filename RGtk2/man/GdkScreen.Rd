@@ -67,6 +67,7 @@ status of the screen changes
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{size-changed(screen, user.data)}}{
 The ::size\_changed signal is emitted when the pixel width or 
@@ -78,6 +79,7 @@ height of a screen changes.
 \item{\code{screen}}{[\code{\link{GdkScreen}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

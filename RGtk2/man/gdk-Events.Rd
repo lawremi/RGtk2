@@ -144,6 +144,7 @@ all GDK events.
 \code{\link{gdkEventHandlerSet}}.}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Events.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -29,7 +29,7 @@
 message (Error, Question, etc.) alongside some message text. It's simply a 
 convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}} 
 from \code{\link{GtkDialog}} without too much effort, but \code{\link{GtkMessageDialog}} saves typing.
-  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \code{\link{GtkDialog}}  \code{GtkDialog}  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  
+  
 The easiest way to do a modal message dialog is to use \code{\link{gtkDialogRun}}, though
 you can also pass in the \code{GTK_DIALOG_MODAL} flag, \code{\link{gtkDialogRun}} automatically
 makes the dialog modal and waits for the user to respond to it. \code{\link{gtkDialogRun}}
@@ -43,23 +43,7 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 dialog$run()
 dialog$destroy()
 }
-  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \code{GTK_DIALOG_MODAL}  \code{GTK_DIALOG_MODAL}  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \code{\link{gtkDialogRun}}  \code{gtkDialogRun()}  \preformatted{
-# A Modal dialog
-dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-                                  "error", "close",
-                                  "Error loading file '", filename, "': ", message)
-
-dialog$run()
-dialog$destroy()
-}  \preformatted{ dialog = gtk_message_dialog_new (main_application_window,
-                                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  GTK_MESSAGE_ERROR,
-                                  GTK_BUTTONS_CLOSE,
-                                  "Error loading file '%s': %s",
-                                  filename, g_strerror (errno));
- gtk_dialog_run (GTK_DIALOG (dialog));
- gtk_widget_destroy (dialog);
-}  
+  
 You might do a non-modal \code{\link{GtkMessageDialog}} as follows:
 \preformatted{
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
@@ -68,25 +52,6 @@ dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
 
  # Destroy the dialog when the user responds to it (e.g. clicks a button)
  gSignalConnect(dialog, "response", gtkWidgetDestroy)
-}
-  \code{\link{GtkMessageDialog}}  \code{GtkMessageDialog}  \preformatted{
-dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-                                  "error", "close",
-                                  "Error loading file '", filename, "': ", message)
-
- # Destroy the dialog when the user responds to it (e.g. clicks a button)
- gSignalConnect(dialog, "response", gtkWidgetDestroy)
-}  \preformatted{ dialog = gtk_message_dialog_new (main_application_window,
-                                  GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  GTK_MESSAGE_ERROR,
-                                  GTK_BUTTONS_CLOSE,
-                                  "Error loading file '%s': %s",
-                                  filename, g_strerror (errno));
-
- /* Destroy the dialog when the user responds to it (e.g. clicks a button) */
- g_signal_connect_swapped (dialog, "response",
-                           G_CALLBACK (gtk_widget_destroy),
-                           dialog);
 }}
 \section{Structures}{\describe{\item{\code{GtkMessageDialog}}{
 \emph{undocumented

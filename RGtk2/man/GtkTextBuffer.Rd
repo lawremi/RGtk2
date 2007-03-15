@@ -125,6 +125,7 @@ types related to the text widget and how they work together.
 \item{\code{error}}{[\code{\link{GError}}] }
 }
 
+
 }
 \item{\code{GtkTextBufferSerializeFunc(register.buffer, content.buffer, start, end, length, user.data)}}{
 \emph{undocumented
@@ -138,6 +139,7 @@ types related to the text widget and how they work together.
 \item{\code{length}}{[numeric] }
 \item{\code{user.data}}{[R object] }
 }
+
 
 }
 }}
@@ -154,6 +156,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{begin-user-action(textbuffer, user.data)}}{
 \emph{undocumented
@@ -164,6 +167,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{changed(textbuffer, user.data)}}{
 \emph{undocumented
@@ -173,6 +177,7 @@ types related to the text widget and how they work together.
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{delete-range(textbuffer, arg1, arg2, user.data)}}{
@@ -186,6 +191,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{end-user-action(textbuffer, user.data)}}{
 \emph{undocumented
@@ -195,6 +201,7 @@ types related to the text widget and how they work together.
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{insert-child-anchor(textbuffer, arg1, arg2, user.data)}}{
@@ -208,6 +215,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{insert-pixbuf(textbuffer, arg1, arg2, user.data)}}{
 \emph{undocumented
@@ -219,6 +227,7 @@ types related to the text widget and how they work together.
 \item{\code{arg2}}{[\code{\link{GdkPixbuf}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{insert-text(textbuffer, arg1, arg2, arg3, user.data)}}{
@@ -233,6 +242,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{mark-deleted(textbuffer, arg1, user.data)}}{
 \emph{undocumented
@@ -243,6 +253,7 @@ types related to the text widget and how they work together.
 \item{\code{arg1}}{[\code{\link{GtkTextMark}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{mark-set(textbuffer, arg1, arg2, user.data)}}{
@@ -256,6 +267,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{modified-changed(textbuffer, user.data)}}{
 \emph{undocumented
@@ -265,6 +277,7 @@ types related to the text widget and how they work together.
 \item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{remove-tag(textbuffer, arg1, arg2, arg3, user.data)}}{
@@ -278,6 +291,7 @@ types related to the text widget and how they work together.
 \item{\code{arg3}}{[\code{\link{GtkTextIter}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -115,6 +115,7 @@
 \item{\code{property.value}}{[R object] }
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{realize(style, user.data)}}{
@@ -130,6 +131,7 @@ deal with styles that have been already realized.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{unrealize(style, user.data)}}{
 Emitted when the aspects of the style specific to a particular colormap
@@ -143,6 +145,7 @@ This signal provides a convenient place to free such cached objects.
 \item{\code{style}}{[\code{\link{GtkStyle}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

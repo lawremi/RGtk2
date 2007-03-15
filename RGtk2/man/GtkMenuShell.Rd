@@ -64,6 +64,7 @@ shell.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cancel(menushell, user.data)}}{
 An action signal which cancels the selection within the menu shell.
@@ -73,6 +74,7 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 \item{\code{menushell}}{[\code{\link{GtkMenuShell}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{cycle-focus(menushell, arg1, user.data)}}{
@@ -85,6 +87,7 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{deactivate(menushell, user.data)}}{
 This signal is emitted when a menu shell is deactivated.
@@ -93,6 +96,7 @@ This signal is emitted when a menu shell is deactivated.
 \item{\code{menushell}}{[\code{\link{GtkMenuShell}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-current(menushell, direction, user.data)}}{
@@ -105,6 +109,7 @@ specified by \code{direction}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{selection-done(menushell, user.data)}}{
 This signal is emitted when a selection has been completed within a menu
@@ -114,6 +119,7 @@ shell.
 \item{\code{menushell}}{[\code{\link{GtkMenuShell}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

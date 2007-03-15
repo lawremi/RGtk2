@@ -87,6 +87,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cancel-position(paned, user.data)}}{
 \emph{undocumented
@@ -96,6 +97,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{cycle-child-focus(paned, arg1, user.data)}}{
@@ -108,6 +110,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cycle-handle-focus(paned, arg1, user.data)}}{
 \emph{undocumented
@@ -118,6 +121,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-handle(paned, arg1, user.data)}}{
@@ -130,6 +134,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-handle-focus(paned, user.data)}}{
 \emph{undocumented
@@ -139,6 +144,7 @@ frame2$setSizeRequest(50, -1)
 \item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

@@ -246,6 +246,7 @@ section.
 \item{\code{data}}{[R object] }
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{row-changed(tree.model, path, iter, user.data)}}{
@@ -257,6 +258,7 @@ This signal is emitted when a row in the model has changed.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the changed row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{row-deleted(tree.model, path, user.data)}}{
@@ -278,6 +280,7 @@ row-deleted handler.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{row-has-child-toggled(tree.model, path, iter, user.data)}}{
 This signal is emitted when a row has gotten the first child row or lost
@@ -289,6 +292,7 @@ its last child row.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{row-inserted(tree.model, path, iter, user.data)}}{
@@ -304,6 +308,7 @@ then fill it with the desired values.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the new row}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{rows-reordered(tree.model, path, iter, user.data)}}{
@@ -321,6 +326,7 @@ by removing and then reinserting the row.
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a valid \code{\link{GtkTreeIter}} pointing to the node whose }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

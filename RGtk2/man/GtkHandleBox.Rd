@@ -74,6 +74,7 @@ handlebox are reattached to the main window.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{child-detached(handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the
@@ -86,6 +87,7 @@ handlebox are detached from the main window.
           and is here only for backwards-compatibility)}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

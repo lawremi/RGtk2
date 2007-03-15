@@ -486,6 +486,13 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [\code{\link{GtkFileChooserConfirmation}}] \code{\link{GtkFileChooserConfirmation}} value that indicates which
+    action to take after emitting the signal.
+
+    
+      Since 2.8
+    
+
 }
 \item{\code{current-folder-changed(chooser, user.data)}}{
 This signal is emitted when the current folder in a \code{\link{GtkFileChooser}}
@@ -507,6 +514,7 @@ See also:  \code{\link{gtkFileChooserSetCurrentFolder}},
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{file-activated(chooser, user.data)}}{
 This signal is emitted when the user "activates" a file in the file
@@ -525,6 +533,7 @@ See also: \code{\link{gtkFileChooserGetFilename}},
 \item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{selection-changed(chooser, user.data)}}{
@@ -547,6 +556,7 @@ See also: \code{\link{gtkFileChooserSelectFilename}},
 \item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{update-preview(chooser, user.data)}}{
@@ -576,6 +586,7 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 \item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

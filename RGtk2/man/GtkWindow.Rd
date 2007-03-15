@@ -164,6 +164,7 @@
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{activate-focus(window, user.data)}}{
 \emph{undocumented
@@ -173,6 +174,7 @@
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{frame-event(window, event, user.data)}}{
@@ -185,6 +187,7 @@
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{keys-changed(window, user.data)}}{
 \emph{undocumented
@@ -194,6 +197,7 @@
 \item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-focus(window, arg1, user.data)}}{
@@ -206,6 +210,7 @@
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{set-focus(window, widget, user.data)}}{
 \emph{undocumented
@@ -216,6 +221,7 @@
 \item{\code{widget}}{[\code{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

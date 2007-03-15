@@ -110,6 +110,8 @@ be used in application code
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
+
 }
 \item{\code{move-focus(toolbar, dir, user.data)}}{
 A keybinding signal used internally by GTK+. This signal can't
@@ -121,6 +123,8 @@ be used in application code.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
+
 }
 \item{\code{orientation-changed(toolbar, orientation, user.data)}}{
 Emitted when the orientation of the toolbar changes.  
@@ -130,6 +134,7 @@ Emitted when the orientation of the toolbar changes.
 \item{\code{orientation}}{[\code{\link{GtkOrientation}}]  the new \code{\link{GtkOrientation}} of the toolbar}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{popup-context-menu(toolbar, x, y, button, user.data)}}{
@@ -150,6 +155,8 @@ up using the keybaord, \code{button} is -1.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  return \code{TRUE} if the signal was handled, \code{FALSE} if not
+
 }
 \item{\code{style-changed(toolbar, style, user.data)}}{
 Emitted when the style of the toolbar changes.  
@@ -159,6 +166,7 @@ Emitted when the style of the toolbar changes.
 \item{\code{style}}{[\code{\link{GtkToolbarStyle}}]  the new \code{\link{GtkToolbarStyle}} of the toolbar}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

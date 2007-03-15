@@ -106,6 +106,7 @@ menu shall be drawn.  This is an output parameter.}
 parameter.}
 }
 
+
 }
 \item{\code{GtkMenuDetachFunc(attach.widget, menu)}}{
 A user function supplied when calling \code{\link{gtkMenuAttachToWidget}} which 
@@ -115,6 +116,7 @@ will be called when the menu is later detached from the widget.
 \item{\code{attach.widget}}{[\code{\link{GtkWidget}}] the \code{\link{GtkWidget}} that the menu is being detached from.}
 \item{\code{menu}}{[\code{\link{GtkMenu}}] the \code{\link{GtkMenu}} being detached.}
 }
+
 
 }
 }}
@@ -127,6 +129,7 @@ will be called when the menu is later detached from the widget.
 \item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }}}
 \section{Properties}{\describe{

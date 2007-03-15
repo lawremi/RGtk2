@@ -52,6 +52,8 @@ A function which decides whether the row indicated by \code{iter} is visible.
 \item{\code{data}}{[R object] user data given to \code{\link{gtkTreeModelFilterSetVisibleFunc}}}
 }
 
+\emph{Returns:} [logical] Whether the row indicated by \code{iter} is visible.
+
 }
 \item{\code{GtkTreeModelFilterModifyFunc(model, iter, value, column, data)}}{
 A function which calculates display values from raw values in the model.
@@ -69,6 +71,7 @@ particularly efficient operation.
 \item{\code{column}}{[integer] the column whose display value is determined}
 \item{\code{data}}{[R object] user data given to \code{\link{gtkTreeModelFilterSetModifyFunc}}}
 }
+
 
 }
 }}

@@ -126,6 +126,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] }
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-GtkTextIter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

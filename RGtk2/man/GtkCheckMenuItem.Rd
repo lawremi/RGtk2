@@ -56,6 +56,7 @@ field of the \code{\link{GtkCheckMenuItem}} struct to discover the new state.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{
 \item{\code{active} [logical : Read / Write]}{

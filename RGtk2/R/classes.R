@@ -109,8 +109,6 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
     if (is.null(signal[[3]]))
       signal[[3]] <- "void"
     signal[[3]] <- as.GType(signal[[3]])
-    if (is.null(signal[[2]]))
-      signal[[2]] <- "void"
     signal[[2]] <- lapply(signal[[2]], as.GType)
     signal
   })
@@ -150,8 +148,12 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   # check for conflicts with ancestors
   
-  ancestor_syms <- unlist(c(mget(names(types), .virtuals), 
-    mget(names(types), .fields, ifnotfound = vector("list", length(types)))))
+  # just returns NULL when it can't find something
+  mget_null <- function(x, envir) 
+    mget(x, envir, ifnotfound = vector("list", length(x)))
+    
+  ancestor_syms <- unlist(c(mget_null(names(types), .virtuals), 
+    mget_null(names(types), .fields)))
   ancestor_conflicts <- ancestor_syms %in% syms
   if (any(ancestor_conflicts))
     stop("Declared symbols already declared in parent: ", 
@@ -215,11 +217,20 @@ unregisterVirtuals <- function(virtuals)
   .mrm(fields, .fields)
 }
 
-# useful for chaining up
-# obj$parentClass()$doSomething(obj, ...)
 gObjectParentClass <- function(obj)
 {
   gTypeGetClass(class(obj)[2])
+}
+
+assignProp <- function(obj, pspec, value)
+{
+  stopifnot(implements(obj, "SGObject"))
+  assign(pspec$name, value, attr(obj, ".private"))
+}
+getProp <- function(obj, pspec)
+{
+  stopifnot(implements(obj, "SGObject"))
+  get(pspec$name, attr(obj, ".private"))
 }
 
 # takes vector of class env's starting from root, clones the protected env's,

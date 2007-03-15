@@ -166,6 +166,7 @@ application-defined response ids.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{response(dialog, arg1, user.data)}}{
 Emitted when an action widget is clicked, the dialog receives a delete event, or
@@ -178,6 +179,7 @@ was clicked.
 \item{\code{arg1}}{[integer] the response ID}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

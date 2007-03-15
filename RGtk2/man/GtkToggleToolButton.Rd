@@ -42,6 +42,7 @@ Emitted whenever the toggle tool button changes state.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{\item{\code{active} [logical : Read / Write]}{
 

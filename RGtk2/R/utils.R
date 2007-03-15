@@ -20,7 +20,7 @@ function(w, klass = "GtkWidget", nullOk = FALSE, critical = TRUE)
    if(is.character(critical))
      stop(critical)
    else if(is.logical(critical) && critical)
-     stop(paste("object of class", class(w), "isn't a",klass))
+     stop(paste("object of class", paste(class(w), collapse = ", "), "isn't a", klass))
  }
 
  return(TRUE)

@@ -164,6 +164,8 @@ spot to the user.
 \item{\code{data}}{[R object] user data}
 }
 
+\emph{Returns:} [logical] \code{TRUE}, if \code{column} can be dropped in this spot
+
 }
 \item{\code{GtkTreeViewMappingFunc(tree.view, path, user.data)}}{
 Function used for \code{\link{gtkTreeViewMapExpandedRows}}.
@@ -173,6 +175,7 @@ Function used for \code{\link{gtkTreeViewMapExpandedRows}}.
 \item{\code{path}}{[\code{\link{GtkTreePath}}] The path that's expanded}
 \item{\code{user.data}}{[R object] user data}
 }
+
 
 }
 \item{\code{GtkTreeViewSearchEqualFunc(model, column, key, iter, search.data)}}{
@@ -190,6 +193,8 @@ has some similarity to \code{strcmp()} returning 0 for equal strings.
 \item{\code{search.data}}{[R object] user data from \code{\link{gtkTreeViewSetSearchEqualFunc}}}
 }
 
+\emph{Returns:} [logical] \code{FALSE} if the row matches, \code{TRUE} otherwise.
+
 }
 \item{\code{GtkTreeViewSearchPositionFunc(tree.view, search.dialog, user.data)}}{
 \emph{undocumented
@@ -200,6 +205,7 @@ has some similarity to \code{strcmp()} returning 0 for equal strings.
 \item{\code{search.dialog}}{[\code{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] }
 }
+
 
 }
 \item{\code{GtkTreeDestroyCountFunc(tree.view, path, children, user.data)}}{
@@ -212,6 +218,7 @@ has some similarity to \code{strcmp()} returning 0 for equal strings.
 \item{\code{children}}{[integer] }
 \item{\code{user.data}}{[R object] }
 }
+
 
 }
 \item{\code{GtkTreeViewRowSeparatorFunc(model, iter, data)}}{
@@ -226,6 +233,8 @@ returns.
 \item{\code{data}}{[R object] user data}
 }
 
+\emph{Returns:} [logical] \code{TRUE} if the row is a separator
+
 }
 }}
 \section{Signals}{\describe{
@@ -237,6 +246,7 @@ The number of columns of the treeview has changed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cursor-changed(tree.view, user.data)}}{
 The position of the cursor (focused cell) has changed.  
@@ -245,6 +255,7 @@ The position of the cursor (focused cell) has changed.
 \item{\code{tree.view}}{[\code{\link{GtkTreeView}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{expand-collapse-cursor-row(treeview, arg1, arg2, arg3, user.data)}}{
@@ -259,6 +270,7 @@ The position of the cursor (focused cell) has changed.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-cursor(treeview, arg1, arg2, user.data)}}{
 \emph{undocumented
@@ -270,6 +282,7 @@ The position of the cursor (focused cell) has changed.
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{row-activated(tree.view, path, column, user.data)}}{
@@ -289,6 +302,7 @@ widget conceptual overview as well as \code{\link{GtkTreeSelection}}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{row-collapsed(tree.view, iter, path, user.data)}}{
 The given row has been collapsed (child nodes are hidden).  
@@ -299,6 +313,7 @@ The given row has been collapsed (child nodes are hidden).
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  a tree path that points to the row }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{row-expanded(tree.view, iter, path, user.data)}}{
@@ -311,6 +326,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-all(treeview, user.data)}}{
 \emph{undocumented
@@ -320,6 +336,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{select-cursor-parent(treeview, user.data)}}{
@@ -331,6 +348,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{select-cursor-row(treeview, arg1, user.data)}}{
 \emph{undocumented
@@ -341,6 +359,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{set-scroll-adjustments(treeview, arg1, arg2, user.data)}}{
@@ -354,6 +373,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{start-interactive-search(treeview, user.data)}}{
 \emph{undocumented
@@ -363,6 +383,7 @@ The given row has been expanded (child nodes are shown).
 \item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{test-collapse-row(tree.view, iter, path, user.data)}}{
@@ -376,6 +397,8 @@ signal if you need to control the collapsibility of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} to allow expansion, \code{FALSE} to reject
+
 }
 \item{\code{test-expand-row(tree.view, iter, path, user.data)}}{
 The given row is about to be expanded (show its children nodes). Use this
@@ -388,6 +411,8 @@ signal if you need to control the expandability of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} to allow expansion, \code{FALSE} to reject
+
 }
 \item{\code{toggle-cursor-row(treeview, user.data)}}{
 \emph{undocumented
@@ -398,6 +423,7 @@ signal if you need to control the expandability of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{unselect-all(treeview, user.data)}}{
 \emph{undocumented
@@ -407,6 +433,7 @@ signal if you need to control the expandability of individual rows.
 \item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

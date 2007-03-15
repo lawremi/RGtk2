@@ -32,6 +32,8 @@ will fail with the same error.
 \item{\code{data}}{[R object] user data passed to \code{\link{gdkPixbufSaveToCallback}}.}
 }
 
+\emph{Returns:} [logical] \code{TRUE} if successful, \code{FALSE} (with \code{error} set) if failed.
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-file-saving.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

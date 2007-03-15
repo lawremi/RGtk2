@@ -63,6 +63,7 @@ The child \code{widget} has just been selected.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{selection-changed(list, user.data)}}{
 The selection of the widget has just changed.
@@ -71,6 +72,7 @@ The selection of the widget has just changed.
 \item{\code{list}}{[\code{\link{GtkList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{unselect-child(list, widget, user.data)}}{
@@ -81,6 +83,7 @@ The child \code{widget} has just been unselected.
 \item{\code{widget}}{[\code{\link{GtkWidget}}] the newly unselected child.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

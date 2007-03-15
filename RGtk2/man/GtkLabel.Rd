@@ -154,6 +154,7 @@ described below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{move-cursor(label, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
@@ -167,6 +168,7 @@ described below.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{populate-popup(label, arg1, user.data)}}{
 \emph{undocumented
@@ -177,6 +179,7 @@ described below.
 \item{\code{arg1}}{[\code{\link{GtkMenu}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

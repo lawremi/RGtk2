@@ -854,13 +854,14 @@ function(object.class, object, event)
 }
 
 gtkCListClassSelectionFind <-
-function(object.class, object, row.list.element)
+function(object.class, object, row.number, row.list.element)
 {
   checkPtrType(object.class, "GtkCListClass")
   checkPtrType(object, "GtkCList")
+  row.number <- as.integer(row.number)
   row.list.element <- lapply(row.list.element, function(x) { x <- as.GList(x); x })
 
-  w <- .RGtkCall("S_gtk_clist_class_selection_find", object.class, object, row.list.element, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_clist_class_selection_find", object.class, object, row.number, row.list.element, PACKAGE = "RGtk2")
 
   return(w)
 }
@@ -2342,7 +2343,7 @@ function(object.class, object, offset)
 
   w <- .RGtkCall("S_gtk_notebook_class_change_current_page", object.class, object, offset, PACKAGE = "RGtk2")
 
-  return(invisible(w))
+  return(w)
 }
 
 gtkNotebookClassMoveFocusOut <-
@@ -2893,7 +2894,7 @@ function(object.class, object, scroll, horizontal)
 
   w <- .RGtkCall("S_gtk_scrolled_window_class_scroll_child", object.class, object, scroll, horizontal, PACKAGE = "RGtk2")
 
-  return(invisible(w))
+  return(w)
 }
 
 gtkScrolledWindowClassMoveFocusOut <-
@@ -5750,7 +5751,7 @@ function(object.class, object, direction, move.to.last)
 
   w <- .RGtkCall("S_gtk_notebook_class_reorder_tab", object.class, object, direction, move.to.last, PACKAGE = "RGtk2")
 
-  return(invisible(w))
+  return(w)
 }
 
 gtkNotebookClassInsertPage <-

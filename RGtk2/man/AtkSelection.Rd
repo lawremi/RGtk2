@@ -38,6 +38,7 @@ AtkSelection interface when the selection changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

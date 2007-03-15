@@ -125,6 +125,7 @@ the keymap changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{keys-changed(keymap, user.data)}}{
 The ::keys\_changed signal is emitted when the mapping represented by
@@ -136,6 +137,7 @@ The ::keys\_changed signal is emitted when the mapping represented by
 \item{\code{keymap}}{[\code{\link{GdkKeymap}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

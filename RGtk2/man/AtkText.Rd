@@ -174,6 +174,7 @@ the text of an object which implements AtkText changes.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{text-caret-moved(atktext, arg1, user.data)}}{
 The "text-caret-moved" signal is emitted when the caret position of 
@@ -184,6 +185,7 @@ the text of an object which implements AtkText changes.
 \item{\code{arg1}}{[integer] The new position of the text caret.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{text-changed(atktext, arg1, arg2, user.data)}}{
@@ -199,6 +201,7 @@ change was an insertion or a deletion
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{text-selection-changed(atktext, user.data)}}{
 The "text-selection-changed" signal is emitted when the selected text of 
@@ -208,6 +211,7 @@ an object which implements AtkText changes.
 \item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

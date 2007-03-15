@@ -32,6 +32,7 @@ The ::display\_opened signal is emitted when a display is opened.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }}}
 \section{Properties}{\describe{\item{\code{default-display} [\code{\link{GdkDisplay}} : Read / Write]}{
 

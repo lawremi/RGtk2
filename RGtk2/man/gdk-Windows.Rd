@@ -460,6 +460,8 @@ continue, it should return \code{GDK_FILTER_TRANSLATE}.
 \item{\code{data}}{[R object] user data set when the filter was installed.}
 }
 
+\emph{Returns:} [\code{\link{GdkFilterReturn}}] a \code{\link{GdkFilterReturn}} value.
+
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Windows.html}}
 \author{Derived by RGtkGen from GTK+ documentation}

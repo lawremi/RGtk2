@@ -34,6 +34,7 @@ types related to the text widget and how they work together.
 \item{\code{data}}{[R object] }
 }
 
+
 }}}
 \section{Signals}{\describe{
 \item{\code{tag-added(texttagtable, arg1, user.data)}}{
@@ -45,6 +46,7 @@ types related to the text widget and how they work together.
 \item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{tag-changed(texttagtable, arg1, arg2, user.data)}}{
@@ -58,6 +60,7 @@ types related to the text widget and how they work together.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{tag-removed(texttagtable, arg1, user.data)}}{
 \emph{undocumented
@@ -68,6 +71,7 @@ types related to the text widget and how they work together.
 \item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

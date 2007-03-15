@@ -49,8 +49,7 @@
 widget. A fairly large set of key bindings are supported
 by default. If the entered text is longer than the allocation
 of the widget, the widget will scroll so that the cursor
-position is visible. 
-  \code{\link{GtkEntry}}  \code{GtkEntry}}
+position is visible. }
 \section{Structures}{\describe{\item{\code{GtkEntry}}{
 The \code{\link{GtkEntry}} struct contains only private data.
 
@@ -66,6 +65,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{backspace(entry, user.data)}}{
 \emph{undocumented
@@ -75,6 +75,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{copy-clipboard(entry, user.data)}}{
@@ -86,6 +87,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{cut-clipboard(entry, user.data)}}{
 \emph{undocumented
@@ -95,6 +97,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{delete-from-cursor(entry, arg1, arg2, user.data)}}{
@@ -108,6 +111,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{insert-at-cursor(entry, arg1, user.data)}}{
 \emph{undocumented
@@ -118,6 +122,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{arg1}}{[character] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{move-cursor(entry, arg1, arg2, arg3, user.data)}}{
@@ -132,6 +137,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{paste-clipboard(entry, user.data)}}{
 \emph{undocumented
@@ -141,6 +147,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 \item{\code{populate-popup(entry, arg1, user.data)}}{
@@ -153,6 +160,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
 }
 \item{\code{toggle-overwrite(entry, user.data)}}{
 \emph{undocumented
@@ -162,6 +170,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 \item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
+
 
 }
 }}

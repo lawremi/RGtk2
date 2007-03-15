@@ -3,7 +3,7 @@ gdkBitmapCreateFromData <-
 function(drawable = NULL, data, width, height)
 {
 	if (!is.null( drawable )) checkPtrType(drawable, "GdkDrawable")
-	data <- as.list(as.integer(data))
+	data <- as.list(as.raw(data))
 	height <- as.integer(height)
 	width <- as.integer(width)
 	
