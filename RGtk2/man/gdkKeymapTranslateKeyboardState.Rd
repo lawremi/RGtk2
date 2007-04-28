@@ -29,10 +29,9 @@ be masked out.
 all_accels_mask <- GdkModifierType["control-mask"] | 
 	GdkModifierType["shift-mask"] | GdkModifierType["mod1-mask"]
 state <- gdkKeymapTranslateKeyboardState(keymap, event[["hardware_keycode"]],
-                                     event[["state"]], event[["group"]])
-if (state$keyval == .gdkPlus &&
-  as.flag(event[["state"]]) & !as.flag(state$consumed) & 
-  all_accels_mask == GdkModifierType["control-mask"])
+  event[["state"]], event[["group"]])
+unconsumed <- all_accels_mask & event[["state"]] & !as.flag(state$consumed) 
+if (state$keyval == .gdkPlus && unconsumed == GdkModifierType["control-mask"])
 	print("Control was pressed")
 }  
   
@@ -42,9 +41,8 @@ this allowed accelerators to be stored with irrelevant consumed
 modifiers, by doing:  
   \preformatted{
 # XXX Don't do this XXX
-if (state$keyval == accel_keyval &&
- (as.flag(event[["state"]]) & !as.flag(state$consumed) & all_accel_mask) == 
-  accel_mods & !as.flag(state$consumed))
+unconsumed <- all_accel_mask & event[["state"]] & !as.flag(state$consumed)
+if (state$keyval == accel_keyval && unconsumed == accel_mods & !as.flag(state$consumed))
  	print("Accellerator was pressed")
 }  
   

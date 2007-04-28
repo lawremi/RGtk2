@@ -107,5 +107,5 @@ PangoFontMask<-c("family" = 1,
 	"stretch" = 16,
 	"size" = 32)
 storage.mode(PangoFontMask) <- 'numeric'
-class(PangoFontMask) <- 'enums' 
+class(PangoFontMask) <- 'flags' 
 

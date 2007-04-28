@@ -51,10 +51,13 @@ function(name, ..., PACKAGE = "RGtk2")
     val
 }
 
+
+######## BIT FLAG HANDLING ##########
+
 # Coerce something to a "flag" that can be operated on bitwise
 as.flag <- function(x) {
-	if (!is.numeric(x) && mode(x) != "raw")
-		stop("Flags must be numeric or raw")
+	if (!is.numeric(x))
+		stop("Flags must be numeric")
 	class(x) <- "flag"
 	x
 }
@@ -92,45 +95,24 @@ function(x)
 	class(x) <- "raw"
 	x
 }
-
-"==.flag" <-
-function(x, y) {
-	if (!.flagCompare(x, y))
-		.flagCompare(y, x)
-	else TRUE
-}
-
-.flagCompare <- function(x, y) {
-	if (is.character(y) && class(x)[1] != "flag") {
-		flags <- get(class(x)[1])
-		names(flags)[match(x, flags)] == y
-	} else if (is.logical(y)) {
-		x <- as.logical(x)
-		if (y) any(x)
-		else !any(x)
-	} else {
-		x <- .toBits(x)
-		y <- .toBits(y)
-		all(as.logical(sapply(1:length(x), function(i) x[i] == y[i])))
-	}
+.fromBits <- function(x)
+{
+  sum(as.integer(x) * c(2 ^ (0:30), -2^31)) 
 }
 
 # these actually perform the bit ops, after coercing args to bits
 .bitAnd <- function(x, y)
 {
-	x <- .toBits(x)
-	y <- .toBits(y)
-  x & y
+  .fromBits(.toBits(x) & .toBits(y))
 }
 .bitOr <- function(x, y)
 {
-  x <- .toBits(x)
-	y <- .toBits(y)
-  x | y
+  .fromBits(.toBits(x) | .toBits(y))
 }
 .bitNot <- function(x) {
-	x <- .toBits(x)
-	rawToBits(!x)[seq(1, 256, by=8)]
+  -1 - x
+  #x <- .toBits(x)
+	#.fromBits(rawToBits(!x)[seq(1, 256, by=8)])
 }
 
 "==.enum" <-

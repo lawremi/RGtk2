@@ -37,9 +37,11 @@ R_gtkInit(long *rargc, char **rargv)
 
   argc = (int) *rargc;
   
-  gtk_disable_setlocale();
-  if (!gtk_init_check(&argc, &rargv))
-    return FALSE;
+  if (!gdk_display_get_default()) {
+    gtk_disable_setlocale();
+    if (!gtk_init_check(&argc, &rargv))
+      return FALSE;
+  }
 
 #ifndef G_OS_WIN32
   {

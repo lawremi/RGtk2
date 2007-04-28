@@ -4,6 +4,7 @@ Date:    2007/2/24
 Title: R bindings for Gtk 2.0
 Author:  Duncan Temple Lang <duncan@wald.ucdavis.edu> and Michael Lawrence <lawremi@iastate.edu>
 Depends: R (>= 2.4.0)
+SystemRequirements: Cairo (>= 1.2.0), ATK (>= 1.12.1), Pango (>= 1.13.3), GTK+ (>= 2.10.7), Libglade (>= 2.0)
 Maintainer: Michael Lawrence <lawremi@iastate.edu>
 Description: Facilities in the R language for programming
   graphical interfaces using Gtk, the Gimp Tool Kit.

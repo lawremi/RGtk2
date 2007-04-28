@@ -689,20 +689,20 @@ GtkAccelFlags<-c("visible" = 1,
 	"locked" = 2,
 	"mask" = 4)
 storage.mode(GtkAccelFlags) <- 'numeric'
-class(GtkAccelFlags) <- 'enums' 
+class(GtkAccelFlags) <- 'flags' 
 
 GtkAttachOptions<-c("expand" = 1,
 	"shrink" = 2,
 	"fill" = 4)
 storage.mode(GtkAttachOptions) <- 'numeric'
-class(GtkAttachOptions) <- 'enums' 
+class(GtkAttachOptions) <- 'flags' 
 
 GtkButtonAction<-c("ignored" = 1,
 	"selects" = 2,
 	"drags" = 4,
 	"expands" = 8)
 storage.mode(GtkButtonAction) <- 'numeric'
-class(GtkButtonAction) <- 'enums' 
+class(GtkButtonAction) <- 'flags' 
 
 GtkCalendarDisplayOptions<-c("show-heading" = 1,
 	"show-day-names" = 2,
@@ -710,7 +710,7 @@ GtkCalendarDisplayOptions<-c("show-heading" = 1,
 	"show-week-numbers" = 8,
 	"week-start-monday" = 16)
 storage.mode(GtkCalendarDisplayOptions) <- 'numeric'
-class(GtkCalendarDisplayOptions) <- 'enums' 
+class(GtkCalendarDisplayOptions) <- 'flags' 
 
 GtkCellRendererState<-c("selected" = 1,
 	"prelit" = 2,
@@ -718,55 +718,55 @@ GtkCellRendererState<-c("selected" = 1,
 	"sorted" = 8,
 	"focused" = 16)
 storage.mode(GtkCellRendererState) <- 'numeric'
-class(GtkCellRendererState) <- 'enums' 
+class(GtkCellRendererState) <- 'flags' 
 
 GtkDestDefaults<-c("motion" = 1,
 	"highlight" = 2,
 	"drop" = 4,
 	"all" = 8)
 storage.mode(GtkDestDefaults) <- 'numeric'
-class(GtkDestDefaults) <- 'enums' 
+class(GtkDestDefaults) <- 'flags' 
 
 GtkDialogFlags<-c("modal" = 1,
 	"destroy-with-parent" = 2,
 	"no-separator" = 4)
 storage.mode(GtkDialogFlags) <- 'numeric'
-class(GtkDialogFlags) <- 'enums' 
+class(GtkDialogFlags) <- 'flags' 
 
 GtkFileFilterFlags<-c("filename" = 1,
 	"uri" = 2,
 	"display-name" = 4,
 	"mime-type" = 8)
 storage.mode(GtkFileFilterFlags) <- 'numeric'
-class(GtkFileFilterFlags) <- 'enums' 
+class(GtkFileFilterFlags) <- 'flags' 
 
 GtkIconLookupFlags<-c("no-svg" = 1,
 	"force-svg" = 2,
 	"use-builtin" = 4)
 storage.mode(GtkIconLookupFlags) <- 'numeric'
-class(GtkIconLookupFlags) <- 'enums' 
+class(GtkIconLookupFlags) <- 'flags' 
 
 GtkRcFlags<-c("fg" = 1,
 	"bg" = 2,
 	"text" = 4,
 	"base" = 8)
 storage.mode(GtkRcFlags) <- 'numeric'
-class(GtkRcFlags) <- 'enums' 
+class(GtkRcFlags) <- 'flags' 
 
 GtkTargetFlags<-c("app" = 1,
 	"widget" = 2)
 storage.mode(GtkTargetFlags) <- 'numeric'
-class(GtkTargetFlags) <- 'enums' 
+class(GtkTargetFlags) <- 'flags' 
 
 GtkTextSearchFlags<-c("visible-only" = 1,
 	"text-only" = 2)
 storage.mode(GtkTextSearchFlags) <- 'numeric'
-class(GtkTextSearchFlags) <- 'enums' 
+class(GtkTextSearchFlags) <- 'flags' 
 
 GtkTreeModelFlags<-c("iters-persist" = 1,
 	"list-only" = 2)
 storage.mode(GtkTreeModelFlags) <- 'numeric'
-class(GtkTreeModelFlags) <- 'enums' 
+class(GtkTreeModelFlags) <- 'flags' 
 
 GtkUIManagerItemType<-c("auto" = 1,
 	"menubar" = 2,
@@ -779,7 +779,7 @@ GtkUIManagerItemType<-c("auto" = 1,
 	"separator" = 256,
 	"accelerator" = 512)
 storage.mode(GtkUIManagerItemType) <- 'numeric'
-class(GtkUIManagerItemType) <- 'enums' 
+class(GtkUIManagerItemType) <- 'flags' 
 
 GtkWidgetFlags<-c("toplevel" = 16,
 	"no-window" = 32,
@@ -801,7 +801,7 @@ GtkWidgetFlags<-c("toplevel" = 16,
 	"double-buffered" = 2097152,
 	"no-show-all" = 4194304)
 storage.mode(GtkWidgetFlags) <- 'numeric'
-class(GtkWidgetFlags) <- 'enums' 
+class(GtkWidgetFlags) <- 'flags' 
 
 GtkRecentFilterFlags<-c("uri" = 1,
 	"display-name" = 2,
@@ -810,5 +810,5 @@ GtkRecentFilterFlags<-c("uri" = 1,
 	"group" = 16,
 	"age" = 32)
 storage.mode(GtkRecentFilterFlags) <- 'numeric'
-class(GtkRecentFilterFlags) <- 'enums' 
+class(GtkRecentFilterFlags) <- 'flags' 
 

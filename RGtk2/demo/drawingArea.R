@@ -80,7 +80,7 @@ scribble.motion.notify.event <- function(widget, event, data)
   pointer <- gdkWindowGetPointer(event[["window"]])
 
   # if button1 held down, draw
-  if ((as.flag(pointer$mask) & GdkModifierType["button1-mask"]) == T)
+  if (as.flag(pointer$mask) & GdkModifierType["button1-mask"])
     draw.brush(widget, pointer$x, pointer$y)
 
   # We've handled it, stop processing

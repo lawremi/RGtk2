@@ -20,11 +20,11 @@ To reliably find the toplevel \code{\link{GtkWindow}}, use
 \code{\link{gtkWidgetGetToplevel}} and check if the \code{TOPLEVEL} flags
 is set on the result.
 \preformatted{
- toplevel <- widget$getToplevel()
- if (toplevel$flags() & GtkWidgetFlags["toplevel"] == T)
-   {
-     # Perform action on toplevel.
-   }
+toplevel <- widget$getToplevel()
+if (toplevel$flags() & GtkWidgetFlags["toplevel"])
+{
+  # Perform action on toplevel.
+}
 }  }
 \value{[\code{\link{GtkWidget}}]  the topmost ancestor of \code{widget}, or \code{widget} itself if there's no ancestor.}
 \author{Derived by RGtkGen from GTK+ documentation}

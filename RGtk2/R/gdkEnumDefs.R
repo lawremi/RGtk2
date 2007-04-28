@@ -403,7 +403,7 @@ GdkDragAction<-c("default" = 1,
 	"private" = 16,
 	"ask" = 32)
 storage.mode(GdkDragAction) <- 'numeric'
-class(GdkDragAction) <- 'enums' 
+class(GdkDragAction) <- 'flags' 
 
 GdkEventMask<-c("exposure-mask" = 2,
 	"pointer-motion-mask" = 4,
@@ -428,7 +428,7 @@ GdkEventMask<-c("exposure-mask" = 2,
 	"scroll-mask" = 2097152,
 	"all-events-mask" = 4194302)
 storage.mode(GdkEventMask) <- 'numeric'
-class(GdkEventMask) <- 'enums' 
+class(GdkEventMask) <- 'flags' 
 
 GdkWindowState<-c("withdrawn" = 1,
 	"iconified" = 2,
@@ -438,7 +438,7 @@ GdkWindowState<-c("withdrawn" = 1,
 	"above" = 32,
 	"below" = 64)
 storage.mode(GdkWindowState) <- 'numeric'
-class(GdkWindowState) <- 'enums' 
+class(GdkWindowState) <- 'flags' 
 
 GdkModifierType<-c("shift-mask" = 1,
 	"lock-mask" = 2,
@@ -456,7 +456,7 @@ GdkModifierType<-c("shift-mask" = 1,
 	"release-mask" = 8192,
 	"modifier-mask" = 16384)
 storage.mode(GdkModifierType) <- 'numeric'
-class(GdkModifierType) <- 'enums' 
+class(GdkModifierType) <- 'flags' 
 
 GdkWindowAttributesType<-c("title" = 1,
 	"x" = 2,
@@ -467,7 +467,7 @@ GdkWindowAttributesType<-c("title" = 1,
 	"wmclass" = 64,
 	"noredir" = 128)
 storage.mode(GdkWindowAttributesType) <- 'numeric'
-class(GdkWindowAttributesType) <- 'enums' 
+class(GdkWindowAttributesType) <- 'flags' 
 
 GdkWindowHints<-c("pos" = 1,
 	"min-size" = 2,
@@ -479,7 +479,7 @@ GdkWindowHints<-c("pos" = 1,
 	"user-pos" = 128,
 	"user-size" = 256)
 storage.mode(GdkWindowHints) <- 'numeric'
-class(GdkWindowHints) <- 'enums' 
+class(GdkWindowHints) <- 'flags' 
 
 GdkWMDecoration<-c("all" = 1,
 	"border" = 2,
@@ -489,7 +489,7 @@ GdkWMDecoration<-c("all" = 1,
 	"minimize" = 32,
 	"maximize" = 64)
 storage.mode(GdkWMDecoration) <- 'numeric'
-class(GdkWMDecoration) <- 'enums' 
+class(GdkWMDecoration) <- 'flags' 
 
 GdkWMFunction<-c("all" = 1,
 	"resize" = 2,
@@ -498,5 +498,5 @@ GdkWMFunction<-c("all" = 1,
 	"maximize" = 16,
 	"close" = 32)
 storage.mode(GdkWMFunction) <- 'numeric'
-class(GdkWMFunction) <- 'enums' 
+class(GdkWMFunction) <- 'flags' 
 

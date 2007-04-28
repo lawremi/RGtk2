@@ -1,5 +1,5 @@
- toplevel <- widget$getToplevel()
- if (toplevel$flags() & GtkWidgetFlags["toplevel"] == T)
-   {
-     # Perform action on toplevel.
-   }
+toplevel <- widget$getToplevel()
+if (toplevel$flags() & GtkWidgetFlags["toplevel"])
+{
+  # Perform action on toplevel.
+}
