@@ -2117,7 +2117,7 @@ function(enum, name, defs = NULL, local = T, isEnum = T)
  className <- "enums"
  if (inherits(enum, "FlagDef")) {
 	 storageMode <- "numeric"
- 	 classname <- "flags"
+ 	 className <- "flags"
  }
  
  localVals <- paste(paste("\"", names(enum$values), "\"", sep=""), enum$values, sep=" = ")
