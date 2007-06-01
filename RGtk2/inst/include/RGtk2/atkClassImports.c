@@ -182,11 +182,13 @@ S_atk_document_class_init(AtkDocumentIface * c, SEXP e)
   return(fun(c, e));
 } 
 
+#if ATK_CHECK_VERSION(1, 12, 1)
 void
 S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e)
 {
   static void (*fun)(AtkHyperlinkImplIface *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(AtkHyperlinkImplIface *, SEXP))R_GetCCallable("RGtk2", "S_atk_hyperlink_impl_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 

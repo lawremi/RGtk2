@@ -6,9 +6,9 @@
 \description{Base class for fonts}
 \section{Methods and Functions}{
 \code{\link{cairoFontFaceStatus}(font.face)}\cr
-\code{\link{cairoFontFaceGetUserData}(font.face, key)}\cr
-\code{\link{cairoFontFaceSetUserData}(font.face, key, user.data)}\cr
 \code{\link{cairoFontFaceGetType}(font.face)}\cr
+\code{\link{cairoFontFaceSetUserData}(font.face, key, user.data)}\cr
+\code{\link{cairoFontFaceGetUserData}(font.face, key)}\cr
 
 }
 \section{Structures}{\describe{\item{\code{CairoFontFace}}{
@@ -17,7 +17,14 @@ than the size or font matrix (a font matrix is used to distort
 a font by sheering it or scaling it unequally in the two
 directions) . A font face can be set on a \code{\link{Cairo}} by using
 \code{\link{cairoSetFontFace}}; the size and font matrix are set with
-\code{\link{cairoSetFontSize}} and \code{\link{cairoSetFontMatrix}}.  
+\code{\link{cairoSetFontSize}} and \code{\link{cairoSetFontMatrix}}.
+  
+There are various types of font faces, depending on the
+\dfn{font backend} they use. The type of a
+font face can be queried using \code{\link{cairoFontFaceGetType}}.
+  
+Memory management of \code{\link{CairoFontFace}} is done with
+\code{cairoFontFaceReference()} and \code{cairoFontFaceDestroy()}.  
 
 }}}
 \section{Enums and Flags}{\describe{\item{\code{CairoFontType}}{

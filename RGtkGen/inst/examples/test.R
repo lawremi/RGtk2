@@ -1,6 +1,6 @@
 version <- "2.10"
 
-Sys.putenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"),"/home/larman/research/RGtk2/RGtkGen/inst/pygtk",sep=":"))
+Sys.setenv(PYTHONPATH=paste(Sys.getenv("PYTHONPATH"),"/home/larman/research/RGtk2/RGtkGen/inst/pygtk",sep=":"))
 library(RSPython)
 library(rpart)
 source("pyGen.R")
@@ -26,9 +26,9 @@ for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 # generating the documentation
 source("genDoc.S")
 src_dir <- "/home/larman/research/src"
-subs <- c("atk-1.12.3/docs", "pango-1.14.7/docs",
+subs <- c("atk-1.12.3/docs", "pango-1.16.3/docs",
     file.path("gtk+-2.10.6/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
-	"cairo-1.2.6/doc/public", "libglade-2.5.1/doc")
+	"cairo-1.4.6/doc/public", "libglade-2.5.1/doc")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 

@@ -7,11 +7,17 @@
 #include <RGtk2/gobject.h>
 
 #include <cairo.h>
+
+#define CAIRO_CHECK_VERSION(major, minor, micro) \
+  (CAIRO_VERSION >= CAIRO_VERSION_ENCODE(major, minor, micro))
+
 /* for cairo 1.2, ps/pdf backend is required for GTK, svg comes 'free',
    so we can safely depend on these */
+#if CAIRO_CHECK_VERSION(1,2,0)
 #include <cairo-ps.h>
 #include <cairo-pdf.h>
 #include <cairo-svg.h>
+#endif
 
 /* custom GEnum wrappers so that we can use the same routines for cairo */
 #include <RGtk2/cairo-enums.h>
@@ -25,6 +31,7 @@ cairo_status_t S_cairo_read_func_t(gpointer s_closure, guchar* s_data, guint s_l
 /****** Conversion ******/
 
 #define toRPointerWithCairoRef(ptr, name, type) \
+__extension__ \
 ({ \
 	type ## _reference(ptr); \
 	toRPointerWithFinalizer(ptr, name, (RPointerFinalizer) type ## _destroy); \
@@ -33,5 +40,9 @@ cairo_status_t S_cairo_read_func_t(gpointer s_closure, guchar* s_data, guint s_l
 USER_OBJECT_ asRCairoPath(cairo_path_t *path);
 cairo_path_t * asCCairoPath(USER_OBJECT_ s_path);
 cairo_glyph_t * asCCairoGlyph(USER_OBJECT_ s_glyph);
+#if CAIRO_CHECK_VERSION(1,4,0)
+USER_OBJECT_ asRCairoRectangle(cairo_rectangle_t *rect);
+USER_OBJECT_ asRCairoRectangleList(cairo_rectangle_list_t *list);
+#endif
 
 #endif

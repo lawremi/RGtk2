@@ -12,12 +12,13 @@
 \code{\link{cairoGetFontMatrix}(cr, matrix)}\cr
 \code{\link{cairoSetFontOptions}(cr, options)}\cr
 \code{\link{cairoGetFontOptions}(cr)}\cr
+\code{\link{cairoSetFontFace}(cr, font.face)}\cr
+\code{\link{cairoGetFontFace}(cr)}\cr
+\code{\link{cairoSetScaledFont}(cr, scaled.font)}\cr
+\code{\link{cairoGetScaledFont}(cr)}\cr
 \code{\link{cairoShowText}(cr, utf8)}\cr
 \code{\link{cairoShowGlyphs}(cr, glyphs, num.glyphs)}\cr
-\code{\link{cairoGetFontFace}(cr)}\cr
 \code{\link{cairoFontExtents}(cr)}\cr
-\code{\link{cairoSetFontFace}(cr, font.face)}\cr
-\code{\link{cairoSetScaledFont}(cr, scaled.font)}\cr
 \code{\link{cairoTextExtents}(cr, utf8)}\cr
 \code{\link{cairoGlyphExtents}(cr, glyphs)}\cr
 }
@@ -39,39 +40,31 @@ with respect to the overall origin
 \strong{\code{CairoGlyph} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{index}}{[numeric]  glyph index in the font. The exact interpretation of the
-     glyph index depends on the font technology being used.}
-\item{\code{x}}{[numeric]  the offset in the X direction between the origin used for
+\item{\code{index}}{[numeric]  the offset in the X direction between the origin used for
     drawing or measuring the string and the origin of this glyph.}
-\item{\code{y}}{[numeric]  the offset in the Y direction between the origin used for
+\item{\code{x}}{[numeric]  the offset in the Y direction between the origin used for
     drawing or measuring the string and the origin of this glyph.}
+\item{\code{y}}{[numeric] }
 }
 
 }}}
 \section{Enums and Flags}{\describe{
 \item{\code{CairoFontSlant}}{
-\emph{undocumented
-}
+Specifies variants of a font face based on their slant.  
 
 \describe{
-\item{\code{normal}}{\emph{undocumented
-}}
-\item{\code{italic}}{\emph{undocumented
-}}
-\item{\code{oblique}}{\emph{undocumented
-}}
+\item{\code{normal}}{ Upright font style}
+\item{\code{italic}}{ Italic font style}
+\item{\code{oblique}}{ Oblique font style}
 }
 
 }
 \item{\code{CairoFontWeight}}{
-\emph{undocumented
-}
+Specifies variants of a font face based on their weight.  
 
 \describe{
-\item{\code{normal}}{\emph{undocumented
-}}
-\item{\code{bold}}{\emph{undocumented
-}}
+\item{\code{normal}}{ Normal font weight}
+\item{\code{bold}}{ Bold font weight}
 }
 
 }

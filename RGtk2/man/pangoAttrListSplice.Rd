@@ -18,6 +18,6 @@ and then calling \code{\link{pangoAttrListChange}} with a copy
 of each attribute in \code{other} in sequence (offset in position by \code{pos}).
   
 This operation proves useful for, for instance, inserting
-a preedit string in the middle of an edit buffer.  }
+a pre-edit string in the middle of an edit buffer.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

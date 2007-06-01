@@ -131,3 +131,50 @@ asCCairoGlyph(USER_OBJECT_ s_glyph)
 	
 	return(glyph);
 }
+
+#if CAIRO_CHECK_VERSION(1,4,0)
+USER_OBJECT_
+asRCairoRectangle(cairo_rectangle_t * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "x", "y", "width", "height", NULL };
+
+  PROTECT(s_obj = allocVector(VECSXP, 4));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->x));
+  SET_VECTOR_ELT(s_obj, 1, asRNumeric(obj->y));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->width));
+  SET_VECTOR_ELT(s_obj, 3, asRNumeric(obj->height));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("cairo_rectangle_t"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+
+USER_OBJECT_
+asRCairoRectangleList(cairo_rectangle_list_t *list)
+{
+  static gchar *listNames[] = { "status", "rectangles", NULL };
+  guint i;
+  USER_OBJECT_ s_list, s_rects;
+  
+  PROTECT(s_list = NEW_LIST(2));
+  
+  SET_VECTOR_ELT(s_list, 0, asREnum(list->status, CAIRO_TYPE_STATUS));
+  
+  PROTECT(s_rects = NEW_LIST(list->num_rectangles));
+  for (i = 0; i < list->num_rectangles; i++)
+    SET_VECTOR_ELT(s_rects, i, asRCairoRectangle(list->rectangles+i));
+  
+  SET_VECTOR_ELT(s_list, 1, s_rects);
+  
+  SET_NAMES(s_list, asRStringArray(listNames));
+  SET_CLASS(s_list, asRString("cairo_rectangle_list_t"));
+  
+  UNPROTECT(2);
+  return(s_list);
+}
+#endif

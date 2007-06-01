@@ -599,4 +599,55 @@ S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions);
   USER_OBJECT_
 S_cairo_svg_version_to_string(USER_OBJECT_ s_version); 
 
+  USER_OBJECT_
+S_cairo_clip_extents(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_copy_clip_rectangle_list(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_get_dash_count(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_get_dash(USER_OBJECT_ s_cr, USER_OBJECT_ s_dashes); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_rgba(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_surface(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_color_stop_rgba(USER_OBJECT_ s_pattern, USER_OBJECT_ s_index); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_color_stop_count(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_linear_points(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_radial_circles(USER_OBJECT_ s_pattern); 
+
+  USER_OBJECT_
+S_cairo_get_scaled_font(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_set_user_data(USER_OBJECT_ s_cr, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_cairo_get_user_data(USER_OBJECT_ s_cr, USER_OBJECT_ s_key); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_get_user_data(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_key); 
+
+  USER_OBJECT_
+S_cairo_scaled_font_set_user_data(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_cairo_pattern_get_user_data(USER_OBJECT_ s_pattern, USER_OBJECT_ s_key); 
+
+  USER_OBJECT_
+S_cairo_pattern_set_user_data(USER_OBJECT_ s_pattern, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
+
 #endif

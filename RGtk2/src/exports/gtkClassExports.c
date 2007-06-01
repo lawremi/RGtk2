@@ -143,16 +143,36 @@ R_RegisterCCallable("RGtk2", "S_gtk_vseparator_class_init", ((DL_FUNC)S_gtk_vsep
 R_RegisterCCallable("RGtk2", "S_gtk_widget_class_init", ((DL_FUNC)S_gtk_widget_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_window_class_init", ((DL_FUNC)S_gtk_window_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_window_group_class_init", ((DL_FUNC)S_gtk_window_group_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_cell_renderer_accel_class_init", ((DL_FUNC)S_gtk_cell_renderer_accel_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_cell_renderer_spin_class_init", ((DL_FUNC)S_gtk_cell_renderer_spin_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_print_operation_class_init", ((DL_FUNC)S_gtk_print_operation_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_recent_manager_class_init", ((DL_FUNC)S_gtk_recent_manager_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_status_icon_class_init", ((DL_FUNC)S_gtk_status_icon_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_menu_class_init", ((DL_FUNC)S_gtk_recent_chooser_menu_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_link_button_class_init", ((DL_FUNC)S_gtk_link_button_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_widget_class_init", ((DL_FUNC)S_gtk_recent_chooser_widget_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_dialog_class_init", ((DL_FUNC)S_gtk_recent_chooser_dialog_class_init)); 
-R_RegisterCCallable("RGtk2", "S_gtk_assistant_class_init", ((DL_FUNC)S_gtk_assistant_class_init)); 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_cell_renderer_accel_class_init", ((DL_FUNC)S_gtk_cell_renderer_accel_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_cell_renderer_spin_class_init", ((DL_FUNC)S_gtk_cell_renderer_spin_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_print_operation_class_init", ((DL_FUNC)S_gtk_print_operation_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_recent_manager_class_init", ((DL_FUNC)S_gtk_recent_manager_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_status_icon_class_init", ((DL_FUNC)S_gtk_status_icon_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_menu_class_init", ((DL_FUNC)S_gtk_recent_chooser_menu_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_link_button_class_init", ((DL_FUNC)S_gtk_link_button_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_widget_class_init", ((DL_FUNC)S_gtk_recent_chooser_widget_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_dialog_class_init", ((DL_FUNC)S_gtk_recent_chooser_dialog_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_assistant_class_init", ((DL_FUNC)S_gtk_assistant_class_init));
+#endif 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_editable_class_init", ((DL_FUNC)S_gtk_cell_editable_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_layout_class_init", ((DL_FUNC)S_gtk_cell_layout_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_editable_class_init", ((DL_FUNC)S_gtk_editable_class_init)); 

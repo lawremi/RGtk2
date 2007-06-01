@@ -1,7 +1,9 @@
 \alias{pangoContextSetLanguage}
 \name{pangoContextSetLanguage}
 \title{pangoContextSetLanguage}
-\description{Sets the global language tag for the context.}
+\description{Sets the global language tag for the context.  The default language
+for the locale of the running process can be found using
+\code{pangoLanguageGetDefault()}.}
 \usage{pangoContextSetLanguage(object, language)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}

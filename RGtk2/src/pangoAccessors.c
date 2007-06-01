@@ -4,7 +4,7 @@
 USER_OBJECT_
 S_PangoColorGetRed (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoColor *obj;
    guint16 val;
@@ -18,7 +18,7 @@ S_PangoColorGetRed (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoColorGetGreen (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoColor *obj;
    guint16 val;
@@ -32,7 +32,7 @@ S_PangoColorGetGreen (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoColorGetBlue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoColor *obj;
    guint16 val;
@@ -46,7 +46,7 @@ S_PangoColorGetBlue (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphStringGetNumGlyphs (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphString *obj;
    gint val;
@@ -60,7 +60,7 @@ S_PangoGlyphStringGetNumGlyphs (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphStringGetGlyphs (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphString *obj;
    PangoGlyphInfo* val;
@@ -74,7 +74,7 @@ S_PangoGlyphStringGetGlyphs (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphStringGetLogClusters (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphString *obj;
    gint* val;
@@ -88,7 +88,7 @@ S_PangoGlyphStringGetLogClusters (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoItemGetOffset (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoItem *obj;
    gint val;
@@ -102,7 +102,7 @@ S_PangoItemGetOffset (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoItemGetLength (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoItem *obj;
    gint val;
@@ -116,7 +116,7 @@ S_PangoItemGetLength (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoItemGetNumChars (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoItem *obj;
    gint val;
@@ -130,7 +130,7 @@ S_PangoItemGetNumChars (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoItemGetAnalysis (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoItem *obj;
    PangoAnalysis val;
@@ -144,7 +144,7 @@ S_PangoItemGetAnalysis (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetLayout (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    PangoLayout* val;
@@ -158,7 +158,7 @@ S_PangoLayoutLineGetLayout (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetStartIndex (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    gint val;
@@ -172,7 +172,7 @@ S_PangoLayoutLineGetStartIndex (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetLength (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    gint val;
@@ -186,7 +186,7 @@ S_PangoLayoutLineGetLength (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetRuns (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    GSList* val;
@@ -200,7 +200,7 @@ S_PangoLayoutLineGetRuns (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetIsParagraphStart (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    guint val;
@@ -214,7 +214,7 @@ S_PangoLayoutLineGetIsParagraphStart (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLayoutLineGetResolvedDir (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLayoutLine *obj;
    guint val;
@@ -228,7 +228,7 @@ S_PangoLayoutLineGetResolvedDir (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAnalysisGetFont (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAnalysis *obj;
    PangoFont* val;
@@ -242,7 +242,7 @@ S_PangoAnalysisGetFont (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAnalysisGetLevel (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAnalysis *obj;
    guint8 val;
@@ -256,21 +256,21 @@ S_PangoAnalysisGetLevel (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAnalysisGetLanguage (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAnalysis *obj;
    PangoLanguage* val;
 
    obj = ((PangoAnalysis*)getPtrValue(s_obj)) ;
    val = obj->language;
-   _result = toRPointer(val, "PangoLanguage");
+   _result = toRPointer(val ? (val) : NULL, "PangoLanguage");
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoAnalysisGetExtraAttrs (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAnalysis *obj;
    GSList* val;
@@ -284,7 +284,7 @@ S_PangoAnalysisGetExtraAttrs (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsLineBreak (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -298,7 +298,7 @@ S_PangoLogAttrGetIsLineBreak (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsMandatoryBreak (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -312,7 +312,7 @@ S_PangoLogAttrGetIsMandatoryBreak (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsCharBreak (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -326,7 +326,7 @@ S_PangoLogAttrGetIsCharBreak (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsWhite (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -340,7 +340,7 @@ S_PangoLogAttrGetIsWhite (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsCursorPosition (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -354,7 +354,7 @@ S_PangoLogAttrGetIsCursorPosition (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsWordStart (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -368,7 +368,7 @@ S_PangoLogAttrGetIsWordStart (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsWordEnd (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -382,7 +382,7 @@ S_PangoLogAttrGetIsWordEnd (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsSentenceBoundary (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -396,7 +396,7 @@ S_PangoLogAttrGetIsSentenceBoundary (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsSentenceStart (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -410,7 +410,7 @@ S_PangoLogAttrGetIsSentenceStart (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetIsSentenceEnd (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -424,7 +424,7 @@ S_PangoLogAttrGetIsSentenceEnd (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoLogAttrGetBackspaceDeletesCharacter (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoLogAttr *obj;
    guint val;
@@ -438,7 +438,7 @@ S_PangoLogAttrGetBackspaceDeletesCharacter (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttributeGetKlass (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttribute *obj;
    const PangoAttrClass* val;
@@ -452,7 +452,7 @@ S_PangoAttributeGetKlass (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttributeGetStartIndex (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttribute *obj;
    guint val;
@@ -466,7 +466,7 @@ S_PangoAttributeGetStartIndex (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttributeGetEndIndex (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttribute *obj;
    guint val;
@@ -480,7 +480,7 @@ S_PangoAttributeGetEndIndex (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrClassGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrClass *obj;
    PangoAttrType val;
@@ -494,35 +494,35 @@ S_PangoAttrClassGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphItemGetItem (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphItem *obj;
    PangoItem* val;
 
    obj = ((PangoGlyphItem*)getPtrValue(s_obj)) ;
    val = obj->item;
-   _result = toRPointer(val, "PangoItem");
+   _result = toRPointerWithFinalizer(val, "PangoItem", (RPointerFinalizer) pango_item_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoGlyphItemGetGlyphs (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphItem *obj;
    PangoGlyphString* val;
 
    obj = ((PangoGlyphItem*)getPtrValue(s_obj)) ;
    val = obj->glyphs;
-   _result = toRPointer(val, "PangoGlyphString");
+   _result = toRPointerWithFinalizer(val ? pango_glyph_string_copy(val) : NULL, "PangoGlyphString", (RPointerFinalizer) pango_glyph_string_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoGlyphInfoGetGlyph (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphInfo *obj;
    PangoGlyph val;
@@ -536,7 +536,7 @@ S_PangoGlyphInfoGetGlyph (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphInfoGetGeometry (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphInfo *obj;
    PangoGlyphGeometry val;
@@ -550,7 +550,7 @@ S_PangoGlyphInfoGetGeometry (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphInfoGetAttr (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphInfo *obj;
    PangoGlyphVisAttr val;
@@ -564,7 +564,7 @@ S_PangoGlyphInfoGetAttr (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphGeometryGetWidth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphGeometry *obj;
    PangoGlyphUnit val;
@@ -578,7 +578,7 @@ S_PangoGlyphGeometryGetWidth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphGeometryGetXOffset (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphGeometry *obj;
    PangoGlyphUnit val;
@@ -592,7 +592,7 @@ S_PangoGlyphGeometryGetXOffset (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphGeometryGetYOffset (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphGeometry *obj;
    PangoGlyphUnit val;
@@ -606,7 +606,7 @@ S_PangoGlyphGeometryGetYOffset (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoGlyphVisAttrGetIsClusterStart (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoGlyphVisAttr *obj;
    guint val;
@@ -620,7 +620,7 @@ S_PangoGlyphVisAttrGetIsClusterStart (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrStringGetValue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrString *obj;
    char* val;
@@ -634,35 +634,35 @@ S_PangoAttrStringGetValue (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrLanguageGetValue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrLanguage *obj;
    PangoLanguage* val;
 
    obj = ((PangoAttrLanguage*)getPtrValue(s_obj)) ;
    val = obj->value;
-   _result = toRPointer(val, "PangoLanguage");
+   _result = toRPointer(val ? (val) : NULL, "PangoLanguage");
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoAttrColorGetColor (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrColor *obj;
    PangoColor val;
 
    obj = ((PangoAttrColor*)getPtrValue(s_obj)) ;
    val = obj->color;
-   _result = toRPointer(&val, "PangoColor");
+   _result = toRPointerWithFinalizer(&val ? pango_color_copy(&val) : NULL, "PangoColor", (RPointerFinalizer) pango_color_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoAttrIntGetValue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrInt *obj;
    int val;
@@ -676,7 +676,7 @@ S_PangoAttrIntGetValue (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrFloatGetValue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrFloat *obj;
    float val;
@@ -690,21 +690,21 @@ S_PangoAttrFloatGetValue (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrFontDescGetDesc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrFontDesc *obj;
    PangoFontDescription* val;
 
    obj = ((PangoAttrFontDesc*)getPtrValue(s_obj)) ;
    val = obj->desc;
-   _result = toRPointer(val, "PangoFontDescription");
+   _result = toRPointerWithFinalizer(val ? pango_font_description_copy(val) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_PangoAttrShapeGetInkRect (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrShape *obj;
    PangoRectangle val;
@@ -718,7 +718,7 @@ S_PangoAttrShapeGetInkRect (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrShapeGetLogicalRect (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrShape *obj;
    PangoRectangle val;
@@ -732,7 +732,7 @@ S_PangoAttrShapeGetLogicalRect (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrSizeGetSize (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrSize *obj;
    int val;
@@ -746,7 +746,7 @@ S_PangoAttrSizeGetSize (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_PangoAttrSizeGetAbsolute (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    PangoAttrSize *obj;
    guint val;

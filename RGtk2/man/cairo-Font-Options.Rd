@@ -24,8 +24,22 @@
 \code{cairoFontOptions()}
 }
 \section{Structures}{\describe{\item{\code{CairoFontOptions}}{
-\emph{undocumented
-}
+An opaque structure holding all options that are used when
+rendering fonts.
+  
+Individual features of a \code{\link{CairoFontOptions}} can be set or
+accessed using functions named
+cairo\_font\_options\_set\_\emph{feature\_name} and
+cairo\_font\_options\_get\_\emph{feature\_name}, like
+\code{\link{cairoFontOptionsSetAntialias}} and
+\code{\link{cairoFontOptionsGetAntialias}}.
+  
+New features may be added to a \code{\link{CairoFontOptions}} in the
+future.  For this reason, \code{\link{cairoFontOptionsCopy}},
+\code{\link{cairoFontOptionsEqual}}, \code{\link{cairoFontOptionsMerge}}, and
+\code{cairoFontOptionsHash()} should be used to copy, check
+for equality, merge, or compute a hash value of
+\code{\link{CairoFontOptions}} objects.  
 
 }}}
 \section{Convenient Construction}{\code{cairoFontOptions} is the equivalent of \code{\link{cairoFontOptionsCreate}}.}

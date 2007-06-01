@@ -19,7 +19,12 @@
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether an error was set}
+\item{\code{user.data}}{[R object]  user data to pass to the save function.}
+\item{\code{type}}{[char]  name of file format.}
+\item{\code{option.keys}}{[char]  name of options to set, \code{NULL}-terminated}
+\item{\code{option.values}}{[char]  values for named options}
 \item{\code{error}}{[\code{\link{GError}}]  return location for error, or \code{NULL}}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2268,3 +2268,201 @@ function(version)
   return(w)
 } 
 
+
+cairoClipExtents <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_clip_extents", cr, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoCopyClipRectangleList <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_copy_clip_rectangle_list", cr, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoGetDashCount <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_get_dash_count", cr, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoGetDash <-
+function(cr, dashes)
+{
+  checkPtrType(cr, "Cairo")
+  dashes <- as.list(as.numeric(dashes))
+
+  w <- .RGtkCall("S_cairo_get_dash", cr, dashes, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoPatternGetRgba <-
+function(pattern)
+{
+  checkPtrType(pattern, "CairoPattern")
+
+  w <- .RGtkCall("S_cairo_pattern_get_rgba", pattern, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetSurface <-
+function(pattern)
+{
+  checkPtrType(pattern, "CairoPattern")
+
+  w <- .RGtkCall("S_cairo_pattern_get_surface", pattern, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetColorStopRgba <-
+function(pattern, index)
+{
+  checkPtrType(pattern, "CairoPattern")
+  index <- as.integer(index)
+
+  w <- .RGtkCall("S_cairo_pattern_get_color_stop_rgba", pattern, index, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetColorStopCount <-
+function(pattern)
+{
+  checkPtrType(pattern, "CairoPattern")
+
+  w <- .RGtkCall("S_cairo_pattern_get_color_stop_count", pattern, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetLinearPoints <-
+function(pattern)
+{
+  checkPtrType(pattern, "CairoPattern")
+
+  w <- .RGtkCall("S_cairo_pattern_get_linear_points", pattern, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetRadialCircles <-
+function(pattern)
+{
+  checkPtrType(pattern, "CairoPattern")
+
+  w <- .RGtkCall("S_cairo_pattern_get_radial_circles", pattern, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoGetScaledFont <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_get_scaled_font", cr, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoSetUserData <-
+function(cr, key, user.data)
+{
+  checkPtrType(cr, "Cairo")
+  checkPtrType(key, "CairoUserDataKey")
+  
+
+  w <- .RGtkCall("S_cairo_set_user_data", cr, key, user.data, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoGetUserData <-
+function(cr, key)
+{
+  checkPtrType(cr, "Cairo")
+  checkPtrType(key, "CairoUserDataKey")
+
+  w <- .RGtkCall("S_cairo_get_user_data", cr, key, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoScaledFontGetUserData <-
+function(scaled.font, key)
+{
+  checkPtrType(scaled.font, "CairoScaledFont")
+  checkPtrType(key, "CairoUserDataKey")
+
+  w <- .RGtkCall("S_cairo_scaled_font_get_user_data", scaled.font, key, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoScaledFontSetUserData <-
+function(scaled.font, key, user.data)
+{
+  checkPtrType(scaled.font, "CairoScaledFont")
+  checkPtrType(key, "CairoUserDataKey")
+  
+
+  w <- .RGtkCall("S_cairo_scaled_font_set_user_data", scaled.font, key, user.data, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternGetUserData <-
+function(pattern, key)
+{
+  checkPtrType(pattern, "CairoPattern")
+  checkPtrType(key, "CairoUserDataKey")
+
+  w <- .RGtkCall("S_cairo_pattern_get_user_data", pattern, key, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPatternSetUserData <-
+function(pattern, key, user.data)
+{
+  checkPtrType(pattern, "CairoPattern")
+  checkPtrType(key, "CairoUserDataKey")
+  
+
+  w <- .RGtkCall("S_cairo_pattern_set_user_data", pattern, key, user.data, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+

@@ -293,26 +293,46 @@ void
 S_gtk_window_class_init(GtkWindowClass * c, SEXP e); 
 void
 S_gtk_window_group_class_init(GtkWindowGroupClass * c, SEXP e); 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e); 
+S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_cell_renderer_spin_class_init(GtkCellRendererSpinClass * c, SEXP e); 
+S_gtk_cell_renderer_spin_class_init(GtkCellRendererSpinClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e); 
+S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e); 
+S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e); 
+S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_recent_chooser_menu_class_init(GtkRecentChooserMenuClass * c, SEXP e); 
+S_gtk_recent_chooser_menu_class_init(GtkRecentChooserMenuClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_link_button_class_init(GtkLinkButtonClass * c, SEXP e); 
+S_gtk_link_button_class_init(GtkLinkButtonClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_recent_chooser_widget_class_init(GtkRecentChooserWidgetClass * c, SEXP e); 
+S_gtk_recent_chooser_widget_class_init(GtkRecentChooserWidgetClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e); 
+S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
-S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e); 
+S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e);
+#endif 
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e); 
 void

@@ -7,10 +7,7 @@ installed. The list of all writable formats can be determined in the
 following way:}
 \usage{gdkPixbufSave(object, filename, type, ..., .errwarn = TRUE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}.}
-\item{\code{filename}}{[char]  name of file to save.}
-\item{\code{type}}{[char]  name of file format.}
-\item{\code{...}}{ list of key-value save options}
+\item{\code{...}}{[char]  name of file to save.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{\preformatted{
@@ -44,7 +41,7 @@ it produces a CUR instead of an ICO.  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether an error was set}
-\item{\code{error}}{[\code{\link{GError}}]  return location for error, or \code{NULL}}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

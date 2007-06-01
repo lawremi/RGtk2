@@ -15,9 +15,10 @@ Stuff that can wait for introspection
 -------------------------------------
 - these functions SHOULD free a string parameter by ref: (but they don't)
 	pango_parse_markup, gtk_im_context_get_(preedit_string/surrounding), gtk_widget_(class)_path
+- gtk_image_get_icon_set doesn't own the icon set but thinks it does
 - PangoGlyphString: can only get first glyph from 'glyphs' array
-- perhaps we should make sure we 'own' stuff in signal callbacks and accessors
---- the only 'stuff' we don't own is boxed types (and pointers)
+- perhaps we should make sure we 'own' boxed types in signal callbacks
+- pango likes to add fields to structures - would require versioning on fields
 - field setting
 
 Low Priority Issues

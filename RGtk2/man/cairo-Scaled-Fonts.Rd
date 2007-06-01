@@ -17,6 +17,8 @@
 \code{\link{cairoScaledFontGetFontMatrix}(scaled.font)}\cr
 \code{\link{cairoScaledFontGetCtm}(scaled.font)}\cr
 \code{\link{cairoScaledFontGetType}(scaled.font)}\cr
+\code{\link{cairoScaledFontSetUserData}(scaled.font, key, user.data)}\cr
+\code{\link{cairoScaledFontGetUserData}(scaled.font, key)}\cr
 \code{cairoScaledFont(font.face, font.matrix, ctm, option)}
 }
 \section{Structures}{\describe{
@@ -24,7 +26,14 @@
 A \code{\link{CairoScaledFont}} is a font scaled to a particular size and device
 resolution. A cairo\_scaled\_font\_t is most useful for low-level font
 usage where a library or application wants to cache a reference
-to a scaled font to speed up the computation of metrics.  
+to a scaled font to speed up the computation of metrics.
+  
+There are various types of scaled fonts, depending on the
+\dfn{font backend} they use. The type of a
+scaled font can be queried using \code{\link{cairoScaledFontGetType}}.
+  
+Memory management of \code{\link{CairoScaledFont}} is done with
+\code{cairoScaledFontReference()} and \code{cairoScaledFontDestroy()}.  
 
 }
 \item{\code{CairoFontExtents}}{

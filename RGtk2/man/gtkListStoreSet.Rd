@@ -8,10 +8,6 @@ The list is terminated by a -1. For example, to set column 0 with type
 \code{G_TYPE_STRING} to "Foo", you would write \code{gtk_list_store_set (store, iter,
 0, "Foo", -1)}.}
 \usage{gtkListStoreSet(object, iter, ...)}
-\arguments{
-\item{\code{object}}{[\code{\link{GtkListStore}}]  a \code{\link{GtkListStore}}}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  row iterator}
-\item{\code{...}}{ pairs of column number and value, terminated with -1}
-}
+\arguments{\item{\code{...}}{[\code{\link{GtkTreeIter}}]  row iterator}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

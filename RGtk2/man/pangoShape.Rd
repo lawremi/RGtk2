@@ -1,7 +1,7 @@
 \alias{pangoShape}
 \name{pangoShape}
 \title{pangoShape}
-\description{Given a segment of text and the corresponding 
+\description{Given a segment of text and the corresponding
 \code{\link{PangoAnalysis}} structure returned from \code{\link{pangoItemize}},
 convert the characters into glyphs. You may also pass
 in only a substring of the item from \code{\link{pangoItemize}}.}

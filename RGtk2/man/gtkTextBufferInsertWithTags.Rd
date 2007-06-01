@@ -7,11 +7,6 @@ terminate the list. Equivalent to calling \code{\link{gtkTextBufferInsert}},
 then \code{\link{gtkTextBufferApplyTag}} on the inserted text;
 \code{\link{gtkTextBufferInsertWithTags}} is just a convenience function.}
 \usage{gtkTextBufferInsertWithTags(object, iter, text, ...)}
-\arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  an iterator in \code{buffer}}
-\item{\code{text}}{[character]  UTF-8 text}
-\item{\code{...}}{ list of tags to apply}
-}
+\arguments{\item{\code{...}}{[\code{\link{GtkTextIter}}]  an iterator in \code{buffer}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

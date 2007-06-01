@@ -13,7 +13,7 @@ and be merged with any adjoining attributes that are identical.}
 \details{This function is slower than \code{\link{pangoAttrListInsert}} for
 creating a attribute list in order (potentially much slower
 for large lists). However, \code{\link{pangoAttrListInsert}} is not
-suitable for continually changing a set of attributes 
+suitable for continually changing a set of attributes
 since it never removes or combines existing attributes.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

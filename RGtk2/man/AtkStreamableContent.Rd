@@ -6,7 +6,6 @@
 \code{\link{atkStreamableContentGetNMimeTypes}(object)}\cr
 \code{\link{atkStreamableContentGetMimeType}(object, i)}\cr
 \code{\link{atkStreamableContentGetStream}(object, mime.type)}\cr
-\code{\link{atkStreamableContentGetUri}(object, mime.type)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkStreamableContent}}

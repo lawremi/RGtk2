@@ -29,7 +29,7 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
    getFileName <- dir
  else
    getFileName <- function(type) {
-                   d <- ifelse(length(grep("\\\.[SR]$", type)), dir["S"], dir["C"])
+                   d <- ifelse(length(grep("\\.[SR]$", type)), dir["S"], dir["C"])
 
                     # Should check it is a directory also. Is file.info() portable.
                    if(!file.exists(d)) {
@@ -363,8 +363,8 @@ function(api, out_dir, defs_dir, deps, package = "RGtk2")
     param_types <- getParamTypes(fun$parameters)
     param_names <- names(fun$parameters)
     ret_type <- toValidType(fun$return)
-    export <- exportFunc(fun$name, param_types, param_names, package)
-    import <- importFunc(fun$name, ret_type, param_types, param_names, package)
+    export <- exportFunc(fun, fun$name, param_types, param_names, package)
+    import <- importFunc(fun, fun$name, ret_type, param_types, param_names, package)
     cat(import, "\n\n", file = importFile)
     cat(export, "\n", file = exportFile)
   })
@@ -419,7 +419,7 @@ function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
 
                         x
                      })
-  defNames <- sapply(defNames, function(x) gsub("\\\.defs", "", basename(x)))
+  defNames <- sapply(defNames, function(x) gsub("\\.defs", "", basename(x)))
 
 #  defFileNames <- paste(defNames, "defs", sep=".")
   if(is.null(classNames))

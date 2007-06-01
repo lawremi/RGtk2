@@ -12,7 +12,6 @@ given parameters.}
 \item{\code{unit}}{[\code{\link{GtkUnit}}]  the unit for \code{width} and \code{height}}
 }
 \details{  Since  2.10}
-\value{[\code{\link{GtkPaperSize}}]  a new \code{\link{GtkPaperSize}} object, use \code{\link{gtkPaperSizeFree}}
-to free it}
+\value{[\code{\link{GtkPaperSize}}]  a new \code{\link{GtkPaperSize}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

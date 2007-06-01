@@ -2,21 +2,25 @@
 (include "gdk-userfuncs.defs")
 
 (define-function notify_startup_complete
+  (in-module "Gdk")
   (c-name "gdk_notify_startup_complete")
   (return-type "none")
 )
 
 (define-function get_display_arg_name
+  (in-module "Gdk")
   (c-name "gdk_get_display_arg_name")
   (return-type "const-gchar*")
 )
 
 (define-function get_program_class
+  (in-module "Gdk")
   (c-name "gdk_get_program_class")
   (return-type "const-gchar*")
 )
 
 (define-function set_program_class
+  (in-module "Gdk")
   (c-name "gdk_set_program_class")
   (parameters
     '("const-gchar*" "program_class" (in))
@@ -25,11 +29,13 @@
 )
 
 (define-function get_display
+  (in-module "Gdk")
   (c-name "gdk_get_display")
   (return-type "const-gchar*")
 )
 
 (define-function pointer_grab
+  (in-module "Gdk")
   (c-name "gdk_pointer_grab")
   (return-type "GdkGrabStatus")
   (parameters
@@ -43,6 +49,7 @@
 )
 
 (define-function pointer_ungrab
+  (in-module "Gdk")
   (c-name "gdk_pointer_ungrab")
   (return-type "none")
   (parameters
@@ -51,6 +58,7 @@
 )
 
 (define-function keyboard_grab
+  (in-module "Gdk")
   (c-name "gdk_keyboard_grab")
   (return-type "GdkGrabStatus")
   (parameters
@@ -61,6 +69,7 @@
 )
 
 (define-function keyboard_ungrab
+  (in-module "Gdk")
   (c-name "gdk_keyboard_ungrab")
   (return-type "none")
   (parameters
@@ -69,41 +78,49 @@
 )
 
 (define-function pointer_is_grabbed
+  (in-module "Gdk")
   (c-name "gdk_pointer_is_grabbed")
   (return-type "gboolean")
 )
 
 (define-function screen_width
+  (in-module "Gdk")
   (c-name "gdk_screen_width")
   (return-type "gint")
 )
 
 (define-function screen_height
+  (in-module "Gdk")
   (c-name "gdk_screen_height")
   (return-type "gint")
 )
 
 (define-function screen_width_mm
+  (in-module "Gdk")
   (c-name "gdk_screen_width_mm")
   (return-type "gint")
 )
 
 (define-function screen_height_mm
+  (in-module "Gdk")
   (c-name "gdk_screen_height_mm")
   (return-type "gint")
 )
 
 (define-function flush
+  (in-module "Gdk")
   (c-name "gdk_flush")
   (return-type "none")
 )
 
 (define-function beep
+  (in-module "Gdk")
   (c-name "gdk_beep")
   (return-type "none")
 )
 
 (define-function set_double_click_time
+  (in-module "Gdk")
   (c-name "gdk_set_double_click_time")
   (return-type "none")
   (parameters
@@ -114,6 +131,7 @@
 ;; cairo stuff
 
 (define-function gdk_cairo_create
+  (in-module "Gdk")
   (c-name "gdk_cairo_create")
   (return-type "cairo_t*")
   (parameters
@@ -122,6 +140,7 @@
 )
 
 (define-function gdk_cairo_set_source_color
+  (in-module "Gdk")
   (c-name "gdk_cairo_set_source_color")
   (return-type "none")
   (parameters
@@ -131,6 +150,7 @@
 )
 
 (define-function gdk_cairo_set_source_pixbuf
+  (in-module "Gdk")
   (c-name "gdk_cairo_set_source_pixbuf")
   (return-type "none")
   (parameters
@@ -142,6 +162,7 @@
 )
 
 (define-function gdk_cairo_rectangle
+  (in-module "Gdk")
   (c-name "gdk_cairo_rectangle")
   (return-type "none")
   (parameters
@@ -151,6 +172,7 @@
 )
 
 (define-function gdk_cairo_region
+  (in-module "Gdk")
   (c-name "gdk_cairo_region")
   (return-type "none")
   (parameters
@@ -162,11 +184,13 @@
 ;; end cairo stuff
 
 (define-function gdk_colormap_get_type
+  (in-module "Gdk")
   (c-name "gdk_colormap_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_colormap_new
+  (in-module "Gdk")
   (is-constructor-of "GdkColormap")
   (c-name "gdk_colormap_new")
   (caller-owns-return #t)
@@ -178,11 +202,13 @@
 )
 
 (define-function colormap_get_system
+  (in-module "Gdk")
   (c-name "gdk_colormap_get_system")
   (return-type "GdkColormap*")
 )
 
 (define-function colormap_get_system_size
+  (in-module "Gdk")
   (c-name "gdk_colormap_get_system_size")
   (return-type "gint")
   (deprecated "nothing")
@@ -220,6 +246,7 @@
 	)
 )
 (define-function colors_store
+  (in-module "Gdk")
 	(c-name "gdk_colors_store")
 	(return-type "none")
 	(parameters
@@ -251,6 +278,7 @@
 )
 
 (define-function color_parse
+  (in-module "Gdk")
   (c-name "gdk_color_parse")
   (return-type "gint")
   (parameters
@@ -300,6 +328,7 @@
 )
 
 (define-function cursor_new
+  (in-module "Gdk")
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new")
   (caller-owns-return #t)
@@ -310,6 +339,7 @@
 )
 
 (define-function cursor_new_from_name
+  (in-module "Gdk")
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new_from_name")
   (caller-owns-return #t)
@@ -321,6 +351,7 @@
 )
 
 (define-function cursor_new_for_display
+  (in-module "Gdk")
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new_for_display")
   (caller-owns-return #t)
@@ -332,6 +363,7 @@
 )
 
 (define-function cursor_new_from_pixmap
+  (in-module "Gdk")
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new_from_pixmap")
   (caller-owns-return #t)
@@ -347,6 +379,7 @@
 )
 
 (define-function cursor_new_from_pixbuf
+  (in-module "Gdk")
   (is-constructor-of "GdkCursor")
   (c-name "gdk_cursor_new_from_pixbuf")
   (caller-owns-return #t)
@@ -372,11 +405,13 @@
 )
 
 (define-function gdk_display_get_type
+  (in-module "Gdk")
   (c-name "gdk_display_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_display_open
+  (in-module "Gdk")
   (is-constructor-of "GdkDisplay")
   (c-name "gdk_display_open")
   (caller-owns-return #t)
@@ -506,6 +541,7 @@
 )
 
 (define-function display_get_default
+  (in-module "Gdk")
   (c-name "gdk_display_get_default")
   (return-type "GdkDisplay*")
 )
@@ -560,6 +596,7 @@
 
 ; undocumented
 ;(define-function display_open_default_libgtk_only
+  (in-module "Gdk")
 ;  (c-name "gdk_display_open_default_libgtk_only")
 ;  (return-type "GdkDisplay*")
 ;)
@@ -598,11 +635,13 @@
 )
 
 (define-function gdk_display_manager_get_type
+  (in-module "Gdk")
   (c-name "gdk_display_manager_get_type")
   (return-type "GType")
 )
 
 (define-function display_manager_get
+  (in-module "Gdk")
   (c-name "gdk_display_manager_get")
   (return-type "GdkDisplayManager*")
 )
@@ -679,11 +718,13 @@
 )
 
 (define-function drag_context_get_type
+  (in-module "Gdk")
   (c-name "gdk_drag_context_get_type")
   (return-type "GType")
 )
 
 (define-function drag_context_new
+  (in-module "Gdk")
   (is-constructor-of "GdkDragContext")
   (c-name "gdk_drag_context_new")
   (caller-owns-return #t)
@@ -748,6 +789,7 @@
 )
 
 (define-function drag_get_protocol
+  (in-module "Gdk")
   (c-name "gdk_drag_get_protocol")
   (return-type "guint32")
   (parameters
@@ -770,6 +812,7 @@
 )
 
 (define-function drag_get_protocol_for_display
+  (in-module "Gdk")
   (c-name "gdk_drag_get_protocol_for_display")
   (return-type "guint32")
   (parameters
@@ -833,6 +876,7 @@
 )
 
 (define-function gdk_drawable_get_type
+  (in-module "Gdk")
   (c-name "gdk_drawable_get_type")
   (return-type "GType")
 )
@@ -1150,6 +1194,7 @@
 )
 
 (define-function gdk_draw_layout_line_with_colors
+  (in-module "Gdk")
   (c-name "gdk_draw_layout_line_with_colors")
   (return-type "none")
   (parameters
@@ -1164,6 +1209,7 @@
 )
 
 (define-function gdk_draw_layout_with_colors
+  (in-module "Gdk")
   (c-name "gdk_draw_layout_with_colors")
   (return-type "none")
   (deprecated "gdkDrawableDrawLayout")
@@ -1179,6 +1225,7 @@
 )
 
 (define-function gdk_draw_glyphs_transformed
+  (in-module "Gdk")
   (c-name "gdk_draw_glyphs_transformed")
   (return-type "none")
   (parameters
@@ -1193,6 +1240,7 @@
 )
 
 (define-function gdk_draw_trapezoids
+  (in-module "Gdk")
   (c-name "gdk_draw_trapezoids")
   (return-type "none")
   (parameters
@@ -1246,28 +1294,33 @@
 )
 
 (define-function gdk_event_get_type
+  (in-module "Gdk")
   (c-name "gdk_event_get_type")
   (return-type "GType")
 )
 
 (define-function events_pending
+  (in-module "Gdk")
   (c-name "gdk_events_pending")
   (return-type "gboolean")
 )
 
 (define-function event_get
+  (in-module "Gdk")
   (c-name "gdk_event_get")
   (caller-owns-return #t)
   (return-type "GdkEvent*")
 )
 
 (define-function event_peek
+  (in-module "Gdk")
   (c-name "gdk_event_peek")
   (caller-owns-return #t)
   (return-type "GdkEvent*")
 )
 
 (define-function event_get_graphics_expose
+  (in-module "Gdk")
   (c-name "gdk_event_get_graphics_expose")
   (caller-owns-return #t)
   (return-type "GdkEvent*")
@@ -1283,6 +1336,7 @@
 )
 
 (define-function event_new
+  (in-module "Gdk")
   (is-constructor-of "GdkEvent")
   (c-name "gdk_event_new")
   (caller-owns-return #t)
@@ -1351,6 +1405,7 @@
 )
 
 (define-function gdk_event_handler_set
+  (in-module "Gdk")
   (c-name "gdk_event_handler_set")
   (return-type "none")
   (parameters
@@ -1376,6 +1431,7 @@
 )
 
 (define-function set_show_events
+  (in-module "Gdk")
   (c-name "gdk_set_show_events")
   (return-type "none")
   (parameters
@@ -1384,11 +1440,13 @@
 )
 
 (define-function get_show_events
+  (in-module "Gdk")
   (c-name "gdk_get_show_events")
   (return-type "gboolean")
 )
 
 (define-function gdk_add_client_message_filter
+  (in-module "Gdk")
   (c-name "gdk_add_client_message_filter")
   (return-type "none")
   (parameters
@@ -1399,6 +1457,7 @@
 )
 
 (define-function setting_get
+  (in-module "Gdk")
   (c-name "gdk_setting_get")
   (return-type "gboolean")
   (parameters
@@ -1414,6 +1473,7 @@
 )
 
 (define-function font_load_for_display
+  (in-module "Gdk")
   (c-name "gdk_font_load_for_display")
   (caller-owns-return #t)
   (return-type "GdkFont*")
@@ -1424,6 +1484,7 @@
 )
 
 (define-function fontset_load_for_display
+  (in-module "Gdk")
   (c-name "gdk_fontset_load_for_display")
   (return-type "GdkFont*")
   (parameters
@@ -1433,6 +1494,7 @@
 )
 
 (define-function font_from_description_for_display
+  (in-module "Gdk")
   (c-name "gdk_font_from_description_for_display")
   (caller-owns-return #t)
   (return-type "GdkFont*")
@@ -1443,6 +1505,7 @@
 )
 
 (define-function font_load
+  (in-module "Gdk")
   (is-constructor-of "GdkFont")
   (c-name "gdk_font_load")
   (caller-owns-return #t)
@@ -1453,6 +1516,7 @@
 )
 
 (define-function fontset_load
+  (in-module "Gdk")
   (c-name "gdk_fontset_load")
   (return-type "GdkFont*")
   (parameters
@@ -1461,6 +1525,7 @@
 )
 
 (define-function font_from_description
+  (in-module "Gdk")
   (c-name "gdk_font_from_description")
   (caller-owns-return #t)
   (return-type "GdkFont*")
@@ -1623,11 +1688,13 @@
 )
 
 (define-function gdk_gc_get_type
+  (in-module "Gdk")
   (c-name "gdk_gc_get_type")
   (return-type "GType")
 )
 
 (define-function gc_new
+  (in-module "Gdk")
   (is-constructor-of "GdkGC")
   (c-name "gdk_gc_new")
   (caller-owns-return #t)
@@ -1877,11 +1944,13 @@
 )
 
 (define-function gdk_image_get_type
+  (in-module "Gdk")
   (c-name "gdk_image_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_image_new
+  (in-module "Gdk")
   (is-constructor-of "GdkImage")
   (c-name "gdk_image_new")
   (caller-owns-return #t)
@@ -1945,11 +2014,13 @@
 )
 
 (define-function device_get_type
+  (in-module "Gdk")
   (c-name "gdk_device_get_type")
   (return-type "GType")
 )
 
 (define-function devices_list
+  (in-module "Gdk")
   (c-name "gdk_devices_list")
   (return-type "GList[GdkDevice]")
 )
@@ -2018,6 +2089,7 @@
 )
 
 (define-function device_free_history
+  (in-module "Gdk")
   (c-name "gdk_device_free_history")
   (return-type "none")
   (parameters
@@ -2048,21 +2120,25 @@
 )
 
 (define-function device_get_core_pointer
+  (in-module "Gdk")
   (c-name "gdk_device_get_core_pointer")
   (return-type "GdkDevice*")
 )
 
 (define-function gdk_keymap_get_type
+  (in-module "Gdk")
   (c-name "gdk_keymap_get_type")
   (return-type "GType")
 )
 
 (define-function keymap_get_default
+  (in-module "Gdk")
   (c-name "gdk_keymap_get_default")
   (return-type "GdkKeymap*")
 )
 
 (define-function keymap_get_for_display
+  (in-module "Gdk")
   (c-name "gdk_keymap_get_for_display")
   (return-type "GdkKeymap*")
   (parameters
@@ -2124,6 +2200,7 @@
 )
 
 (define-function keyval_name
+  (in-module "Gdk")
   (c-name "gdk_keyval_name")
   (return-type "gchar*")
   (parameters
@@ -2132,6 +2209,7 @@
 )
 
 (define-function keyval_from_name
+  (in-module "Gdk")
   (c-name "gdk_keyval_from_name")
   (return-type "guint")
   (parameters
@@ -2140,6 +2218,7 @@
 )
 
 (define-function keyval_convert_case
+  (in-module "Gdk")
   (c-name "gdk_keyval_convert_case")
   (return-type "none")
   (parameters
@@ -2150,6 +2229,7 @@
 )
 
 (define-function keyval_to_upper
+  (in-module "Gdk")
   (c-name "gdk_keyval_to_upper")
   (return-type "guint")
   (parameters
@@ -2158,6 +2238,7 @@
 )
 
 (define-function keyval_to_lower
+  (in-module "Gdk")
   (c-name "gdk_keyval_to_lower")
   (return-type "guint")
   (parameters
@@ -2166,6 +2247,7 @@
 )
 
 (define-function keyval_is_upper
+  (in-module "Gdk")
   (c-name "gdk_keyval_is_upper")
   (return-type "gboolean")
   (parameters
@@ -2174,6 +2256,7 @@
 )
 
 (define-function keyval_is_lower
+  (in-module "Gdk")
   (c-name "gdk_keyval_is_lower")
   (return-type "gboolean")
   (parameters
@@ -2182,6 +2265,7 @@
 )
 
 (define-function keyval_to_unicode
+  (in-module "Gdk")
   (c-name "gdk_keyval_to_unicode")
   (return-type "guint32")
   (parameters
@@ -2190,6 +2274,7 @@
 )
 
 (define-function unicode_to_keyval
+  (in-module "Gdk")
   (c-name "gdk_unicode_to_keyval")
   (return-type "guint")
   (parameters
@@ -2198,11 +2283,13 @@
 )
 
 (define-function gdk_pango_renderer_get_type
+  (in-module "Gdk")
   (c-name "gdk_pango_renderer_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_pango_renderer_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPangoRenderer")
   (c-name "gdk_pango_renderer_new")
   (caller-owns-return #t)
@@ -2213,6 +2300,7 @@
 )
 
 (define-function gdk_pango_renderer_get_default
+  (in-module "Gdk")
   (c-name "gdk_pango_renderer_get_default")
   (return-type "PangoRenderer*")
   (parameters
@@ -2259,6 +2347,7 @@
 )
 
 (define-function gdk_pango_context_get_for_screen
+  (in-module "Gdk")
   (c-name "gdk_pango_context_get_for_screen")
   (return-type "PangoContext*")
   (parameters
@@ -2267,11 +2356,13 @@
 )
 
 (define-function gdk_pango_context_get
+  (in-module "Gdk")
   (c-name "gdk_pango_context_get")
   (return-type "PangoContext*")
 )
 
 (define-function gdk_pango_context_set_colormap
+  (in-module "Gdk")
   (c-name "gdk_pango_context_set_colormap")
   (return-type "none")
   (parameters
@@ -2281,6 +2372,7 @@
 )
 
 (define-function gdk_pango_layout_line_get_clip_region
+  (in-module "Gdk")
   (c-name "gdk_pango_layout_line_get_clip_region")
   (caller-owns-return #t)
   (return-type "GdkRegion*")
@@ -2294,6 +2386,7 @@
 )
 
 (define-function gdk_pango_layout_get_clip_region
+  (in-module "Gdk")
   (c-name "gdk_pango_layout_get_clip_region")
   (caller-owns-return #t)
   (return-type "GdkRegion*")
@@ -2307,6 +2400,7 @@
 )
 
 (define-function gdk_pango_attr_stipple_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPangoAttrStipple")
   (c-name "gdk_pango_attr_stipple_new")
   (caller-owns-return #t)
@@ -2317,6 +2411,7 @@
 )
 
 (define-function gdk_pango_attr_embossed_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPangoAttrEmbossed")
   (c-name "gdk_pango_attr_embossed_new")
   (caller-owns-return #t)
@@ -2407,6 +2502,7 @@
 )
 
 (define-function pixbuf_get_from_drawable
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_get_from_drawable")
   (return-type "GdkPixbuf*")
   (caller-owns-return #t)
@@ -2424,6 +2520,7 @@
 )
 
 (define-function pixbuf_get_from_image
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_get_from_image")
   (caller-owns-return #t)
   (return-type "GdkPixbuf*")
@@ -2441,11 +2538,13 @@
 )
 
 (define-function gdk_pixmap_get_type
+  (in-module "Gdk")
   (c-name "gdk_pixmap_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_pixmap_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_new")
   (caller-owns-return #t)
@@ -2459,6 +2558,7 @@
 )
 
 (define-function bitmap_create_from_data
+  (in-module "Gdk")
   (c-name "gdk_bitmap_create_from_data")
   (is-constructor-of "GdkPixmap")
   (caller-owns-return #t)
@@ -2472,6 +2572,7 @@
 )
 
 (define-function pixmap_create_from_data
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_data")
   (caller-owns-return #t)
@@ -2488,6 +2589,7 @@
 )
 
 (define-function pixmap_create_from_xpm
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_xpm")
   (caller-owns-return #t)
@@ -2501,6 +2603,7 @@
 )
 
 (define-function pixmap_colormap_create_from_xpm
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_colormap_create_from_xpm")
   (caller-owns-return #t)
@@ -2515,6 +2618,7 @@
 )
 
 (define-function pixmap_create_from_xpm_d
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_create_from_xpm_d")
   (caller-owns-return #t)
@@ -2528,6 +2632,7 @@
 )
 
 (define-function pixmap_colormap_create_from_xpm_d
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_colormap_create_from_xpm_d")
   (caller-owns-return #t)
@@ -2542,6 +2647,7 @@
 )
 
 (define-function pixmap_foreign_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_foreign_new")
   (caller-owns-return #t)
@@ -2552,6 +2658,7 @@
 )
 
 (define-function pixmap_lookup
+  (in-module "Gdk")
   (c-name "gdk_pixmap_lookup")
   (return-type "GdkPixmap*")
   (parameters
@@ -2560,6 +2667,7 @@
 )
 
 (define-function pixmap_foreign_new_for_display
+  (in-module "Gdk")
   (is-constructor-of "GdkPixmap")
   (c-name "gdk_pixmap_foreign_new_for_display")
   (caller-owns-return #t)
@@ -2571,6 +2679,7 @@
 )
 
 (define-function pixmap_lookup_for_display
+  (in-module "Gdk")
   (c-name "gdk_pixmap_lookup_for_display")
   (return-type "GdkPixmap*")
   (parameters
@@ -2580,6 +2689,7 @@
 )
 
 (define-function name
+  (in-module "Gdk")
   (c-name "gdk_atom_name")
   (caller-owns-return #t)
   (return-type "gchar*")
@@ -2589,6 +2699,7 @@
 )
 
 (define-function atom_intern
+  (in-module "Gdk")
   (c-name "gdk_atom_intern")
   (return-type "GdkAtom")
   (parameters
@@ -2638,6 +2749,7 @@
 )
 
 (define-function rgb_xpixel_from_rgb
+  (in-module "Gdk")
   (c-name "gdk_rgb_xpixel_from_rgb")
   (return-type "gulong")
   (parameters
@@ -2646,6 +2758,7 @@
 )
 
 (define-function rgb_gc_set_foreground
+  (in-module "Gdk")
   (c-name "gdk_rgb_gc_set_foreground")
   (return-type "none")
   (parameters
@@ -2655,6 +2768,7 @@
 )
 
 (define-function rgb_gc_set_background
+  (in-module "Gdk")
   (c-name "gdk_rgb_gc_set_background")
   (return-type "none")
   (parameters
@@ -2732,6 +2846,7 @@
 )
 
 (define-function rgb_find_color
+  (in-module "Gdk")
 	(c-name "gdk_rgb_find_color")
 	(return-type "none")
 	(parameters
@@ -2741,6 +2856,7 @@
 )
 
 (define-function rgb_colormap_ditherable
+  (in-module "Gdk")
 	(c-name "gdk_rgb_colormap_ditherable")
 	(return-type "gboolean")
 	(parameters
@@ -2765,6 +2881,7 @@
 )
 
 (define-function rgb_cmap_new
+  (in-module "Gdk")
   (c-name "gdk_rgb_cmap_new")
   (caller-owns-return #t)
   (return-type "GdkRgbCmap*")
@@ -2792,11 +2909,13 @@
 )
 
 (define-function rgb_ditherable
+  (in-module "Gdk")
   (c-name "gdk_rgb_ditherable")
   (return-type "gboolean")
 )
 
 (define-function rgb_set_verbose
+  (in-module "Gdk")
   (c-name "gdk_rgb_set_verbose")
   (return-type "none")
   (parameters
@@ -2805,6 +2924,7 @@
 )
 
 (define-function rgb_set_install
+  (in-module "Gdk")
   (c-name "gdk_rgb_set_install")
   (return-type "none")
   (parameters
@@ -2813,6 +2933,7 @@
 )
 
 (define-function rgb_set_min_colors
+  (in-module "Gdk")
   (c-name "gdk_rgb_set_min_colors")
   (return-type "none")
   (parameters
@@ -2821,22 +2942,26 @@
 )
 
 (define-function rgb_get_colormap
+  (in-module "Gdk")
   (c-name "gdk_rgb_get_colormap")
   (return-type "GdkColormap*")
 )
 
 (define-function rgb_get_cmap
+  (in-module "Gdk")
   (c-name "gdk_rgb_get_cmap")
   (return-type "GdkColormap*")
   (deprecated "gdkRgbGetColormap")
 )
 
 (define-function rgb_get_visual
+  (in-module "Gdk")
   (c-name "gdk_rgb_get_visual")
   (return-type "GdkVisual*")
 )
 
 (define-function gdk_screen_get_type
+  (in-module "Gdk")
   (c-name "gdk_screen_get_type")
   (return-type "GType")
 )
@@ -3000,6 +3125,7 @@
 )
 
 (define-function screen_get_default
+  (in-module "Gdk")
   (c-name "gdk_screen_get_default")
   (return-type "GdkScreen*")
 )
@@ -3015,6 +3141,7 @@
 )
 
 ;(define-function spawn_on_screen
+  (in-module "Gdk")
 ;  (c-name "gdk_spawn_on_screen")
 ;  (return-type "gboolean")
 ;  (parameters
@@ -3031,6 +3158,7 @@
 ;)
 
 (define-function spawn_command_line_on_screen
+  (in-module "Gdk")
   (c-name "gdk_spawn_command_line_on_screen")
   (return-type "gboolean")
   (parameters
@@ -3047,6 +3175,7 @@
 )
 
 (define-function selection_owner_get
+  (in-module "Gdk")
   (c-name "gdk_selection_owner_get")
   (return-type "GdkWindow*")
   (parameters
@@ -3055,6 +3184,7 @@
 )
 
 (define-function selection_owner_get_for_display
+  (in-module "Gdk")
   (c-name "gdk_selection_owner_get_for_display")
   (return-type "GdkWindow*")
   (parameters
@@ -3075,26 +3205,31 @@
 )
 
 (define-function visual_get_best_depth
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best_depth")
   (return-type "gint")
 )
 
 (define-function visual_get_best_type
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best_type")
   (return-type "GdkVisualType")
 )
 
 (define-function visual_get_system
+  (in-module "Gdk")
   (c-name "gdk_visual_get_system")
   (return-type "GdkVisual*")
 )
 
 (define-function visual_get_best
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best")
   (return-type "GdkVisual*")
 )
 
 (define-function visual_get_best_with_depth
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best_with_depth")
   (return-type "GdkVisual*")
   (parameters
@@ -3103,6 +3238,7 @@
 )
 
 (define-function visual_get_best_with_type
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best_with_type")
   (return-type "GdkVisual*")
   (parameters
@@ -3111,6 +3247,7 @@
 )
 
 (define-function visual_get_best_with_both
+  (in-module "Gdk")
   (c-name "gdk_visual_get_best_with_both")
   (return-type "GdkVisual*")
   (parameters
@@ -3120,6 +3257,7 @@
 )
 
 (define-function query_depths
+  (in-module "Gdk")
   (c-name "gdk_query_depths")
   (return-type "none")
   (parameters
@@ -3129,6 +3267,7 @@
 )
 
 (define-function query_visual_types
+  (in-module "Gdk")
   (c-name "gdk_query_visual_types")
   (return-type "none")
   (parameters
@@ -3138,6 +3277,7 @@
 )
 
 (define-function list_visuals
+  (in-module "Gdk")
   (c-name "gdk_list_visuals")
   (caller-owns-return #t)
   (return-type "GList[GdkVisual]")
@@ -3150,11 +3290,13 @@
 )
 
 (define-function gdk_window_object_get_type
+  (in-module "Gdk")
   (c-name "gdk_window_object_get_type")
   (return-type "GType")
 )
 
 (define-function new
+  (in-module "Gdk")
   (is-constructor-of "GdkWindow")
   (c-name "gdk_window_new")
   (caller-owns-return #t)
@@ -3197,6 +3339,7 @@
 )
 
 (define-function window_at_pointer
+  (in-module "Gdk")
   (c-name "gdk_window_at_pointer")
   (return-type "GdkWindow*")
   (parameters
@@ -3525,6 +3668,7 @@
 )
 
 (define-function set_sm_client_id
+  (in-module "Gdk")
   (c-name "gdk_set_sm_client_id")
   (return-type "none")
   (parameters
@@ -3797,6 +3941,7 @@
 )
 
 (define-function window_get_toplevels
+  (in-module "Gdk")
   (c-name "gdk_window_get_toplevels")
   (caller-owns-return #t)
   (return-type "GList[GdkWindow]")
@@ -3932,6 +4077,7 @@
 )
 
 (define-function window_process_all_updates
+  (in-module "Gdk")
   (c-name "gdk_window_process_all_updates")
   (return-type "none")
 )
@@ -3946,6 +4092,7 @@
 )
 
 (define-function gdk_window_set_debug_updates
+  (in-module "Gdk")
   (c-name "gdk_window_set_debug_updates")
   (return-type "none")
   (parameters
@@ -3954,6 +4101,7 @@
 )
 
 (define-function gdk_window_constrain_size
+  (in-module "Gdk")
   (c-name "gdk_window_constrain_size")
   (return-type "none")
   (parameters
@@ -3978,6 +4126,7 @@
 )
 
 (define-function gdk_set_pointer_hooks
+  (in-module "Gdk")
   (c-name "gdk_set_pointer_hooks")
   (return-type "GdkPointerHooks*")
   (parameters
@@ -3986,6 +4135,7 @@
 )
 
 (define-function get_default_root_window
+  (in-module "Gdk")
   (c-name "gdk_get_default_root_window")
   (return-type "GdkWindow*")
 )
@@ -4143,6 +4293,7 @@
 )
 
 (define-function gdk_pixbuf_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new")
   (caller-owns-return #t)
@@ -4164,6 +4315,7 @@
 )
 
 (define-function pixbuf_new_from_file
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_file")
   (caller-owns-return #t)
@@ -4175,6 +4327,7 @@
 )
 
 (define-function pixbuf_new_from_file_at_size
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_file_at_size")
   (caller-owns-return #t)
@@ -4188,6 +4341,7 @@
 )
 
 (define-function pixbuf_new_from_file_at_scale
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_file_at_scale")
   (caller-owns-return #t)
@@ -4202,6 +4356,7 @@
 )
 
 (define-function pixbuf_new_from_data
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_data")
   (caller-owns-return #t)
@@ -4220,6 +4375,7 @@
 )
 
 (define-function pixbuf_new_from_xpm_data
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_xpm_data")
   (caller-owns-return #t)
@@ -4230,6 +4386,7 @@
 )
 
 (define-function pixbuf_new_from_inline
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbuf")
   (c-name "gdk_pixbuf_new_from_inline")
   (caller-owns-return #t)
@@ -4492,11 +4649,13 @@
 )
 
 (define-function gdk_pixbuf_animation_get_type
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_animation_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_pixbuf_animation_new_from_file
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbufAnimation")
   (c-name "gdk_pixbuf_animation_new_from_file")
   (caller-owns-return #t)
@@ -4541,6 +4700,7 @@
 )
 
 (define-function pixbuf_animation_iter_get_type
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_animation_iter_get_type")
   (return-type "GType")
 )
@@ -4573,6 +4733,7 @@
 )
 
 (define-function gdk_pixbuf_simple_anim_new
+  (in-module "Gdk")
 	(is-constructor-of "GdkPixbufSimpleAnim")
 	(return-type "GdkPixbufSimpleAnim*")
 	(c-name "gdk_pixbuf_simple_anim_new")
@@ -4611,12 +4772,14 @@
 )
 
 (define-function pixbuf_get_formats
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_get_formats")
   (caller-owns-return #t)
   (return-type "GSList[GdkPixbufFormat]")
 )
 
 (define-function pixbuf_get_file_info
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_get_file_info")
   (return-type "GdkPixbufFormat*")
   (parameters
@@ -4689,11 +4852,13 @@
 )
 
 (define-function gdk_pixbuf_loader_get_type
+  (in-module "Gdk")
   (c-name "gdk_pixbuf_loader_get_type")
   (return-type "GType")
 )
 
 (define-function gdk_pixbuf_loader_new
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbufLoader")
   (c-name "gdk_pixbuf_loader_new")
   (caller-owns-return #t)
@@ -4701,6 +4866,7 @@
 )
 
 (define-function gdk_pixbuf_loader_new_with_type
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbufLoader")
   (c-name "gdk_pixbuf_loader_new_with_type")
   (caller-owns-return #t)
@@ -4712,6 +4878,7 @@
 )
 
 (define-function pixbuf_loader_new_with_mime_type
+  (in-module "Gdk")
   (is-constructor-of "GdkPixbufLoader")
   (c-name "gdk_pixbuf_loader_new_with_mime_type")
   (caller-owns-return #t)
@@ -4771,6 +4938,7 @@
 )
 
 (define-function intersect
+  (in-module "Gdk")
   (c-name "gdk_rectangle_intersect")
   (return-type "gboolean")
   (parameters
@@ -4781,6 +4949,7 @@
 )
 
 (define-function union
+  (in-module "Gdk")
   (c-name "gdk_rectangle_union")
   (return-type "none")
   (parameters
@@ -4793,12 +4962,14 @@
 ;; From /home/larman/research/src/gtk+-2.8.8/gdk/gdkregion.h
 
 (define-function gdk_region_new
+  (in-module "Gdk")
   (c-name "gdk_region_new")
   (is-constructor-of "GdkRegion")
   (return-type "GdkRegion*")
 )
 
 (define-function gdk_region_polygon
+  (in-module "Gdk")
   (c-name "gdk_region_polygon")
   (return-type "GdkRegion*")
   (parameters
@@ -4816,6 +4987,7 @@
 )
 
 (define-function gdk_region_rectangle
+  (in-module "Gdk")
   (c-name "gdk_region_rectangle")
   (is-constructor-of "GdkRegion")
   (return-type "GdkRegion*")

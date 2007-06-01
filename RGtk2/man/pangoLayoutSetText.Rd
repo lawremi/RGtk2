@@ -9,7 +9,7 @@
 \item{\code{length}}{[integer]  maximum length of \code{text}, in bytes. -1 indicates that
          the string is and the length should be
          calculated.  The text will also be truncated on
-         encountaring a nul-termination even when \code{length} is
+         encountering a nul-termination even when \code{length} is
          positive.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

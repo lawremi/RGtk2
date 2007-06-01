@@ -4,7 +4,7 @@
 \description{Sets the transformation matrix that will be applied when rendering
 with this context. Note that reported metrics are in the user space
 coordinates before the application of the matrix, not device-space
-coordiantes after the application of the matrix. So, they don't scale
+coordinates after the application of the matrix. So, they don't scale
 with the matrix, though they may change slightly for different
 matrices, depending on how the text is fit to the pixel grid.}
 \usage{pangoContextSetMatrix(object, matrix)}

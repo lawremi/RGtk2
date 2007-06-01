@@ -8,7 +8,6 @@ select a value from a bounded range of values.}
 \code{\link{atkValueGetMaximumValue}(object)}\cr
 \code{\link{atkValueGetMinimumValue}(object)}\cr
 \code{\link{atkValueSetCurrentValue}(object, value)}\cr
-\code{\link{atkValueGetMinimumIncrement}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{  GInterface
    +----AtkValue}}

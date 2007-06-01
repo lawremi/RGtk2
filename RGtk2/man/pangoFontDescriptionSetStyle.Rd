@@ -6,7 +6,7 @@
 the manner in which it is slanted; it can be either
 \code{PANGO_STYLE_NORMAL}, \code{PANGO_STYLE_ITALIC}, or \code{PANGO_STYLE_OBLIQUE}.
 Most fonts will either have a italic style or an oblique
-style, but not both, and font matching in Pango will 
+style, but not both, and font matching in Pango will
 match italic specifications with oblique fonts and vice-versa
 if an exact match is not found.}
 \usage{pangoFontDescriptionSetStyle(object, style)}

@@ -10,6 +10,6 @@ See \code{\link{pangoFontDescriptionSetSize}}.}
   to find out which is the case. Returns 0 if the size field has not
   previously been set or it has been set to 0 explicitly.
   Use \code{\link{pangoFontDescriptionGetSetFields}} to
-  find out if the field was explicitely set or not.}
+  find out if the field was explicitly set or not.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

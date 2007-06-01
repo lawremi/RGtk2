@@ -6,6 +6,7 @@
 ;; From ../../../RGtk2/inst/include/RGtk2/gtk.h
 
 (define-function S_GtkClipboardClearFunc
+  (in-module "Gtk")
   (c-name "S_GtkClipboardClearFunc")
   (return-type "none")
   (parameters
@@ -15,6 +16,7 @@
 )
 
 (define-function S_GtkSignalFunc
+  (in-module "Gtk")
   (c-name "S_GtkSignalFunc")
   (return-type "none")
   (parameters
@@ -24,6 +26,7 @@
 )
 
 (define-function S_GtkTextBufferSerializeFunc
+  (in-module "Gtk")
   (c-name "S_GtkTextBufferSerializeFunc")
   (return-type "guint8*")
   (parameters
@@ -37,6 +40,7 @@
 )
 
 (define-function S_GtkMenuPositionFunc
+  (in-module "Gtk")
   (c-name "S_GtkMenuPositionFunc")
   (return-type "gint")
   (parameters
@@ -49,6 +53,7 @@
 )
 
 (define-function asRGdkAtom
+  (in-module "Gtk")
   (c-name "asRGdkAtom")
   (return-type "USER_OBJECT_")
   (parameters
@@ -57,6 +62,7 @@
 )
 
 (define-function asCGdkAtom
+  (in-module "Gtk")
   (c-name "asCGdkAtom")
   (return-type "GdkAtom")
   (parameters
@@ -65,6 +71,7 @@
 )
 
 (define-function asCGdkAtomArray
+  (in-module "Gtk")
   (c-name "asCGdkAtomArray")
   (return-type "GdkAtom*")
   (parameters
@@ -73,6 +80,7 @@
 )
 
 (define-function asCGdkGeometry
+  (in-module "Gtk")
   (c-name "asCGdkGeometry")
   (return-type "GdkGeometry*")
   (parameters
@@ -82,6 +90,7 @@
 )
 
 (define-function asCGdkGCValues
+  (in-module "Gtk")
   (c-name "asCGdkGCValues")
   (return-type "GdkGCValues*")
   (parameters
@@ -90,6 +99,7 @@
 )
 
 (define-function asCGdkGCValuesWithMask
+  (in-module "Gtk")
   (c-name "asCGdkGCValuesWithMask")
   (return-type "GdkGCValues*")
   (parameters
@@ -99,6 +109,7 @@
 )
 
 (define-function asCGdkWindowAttr
+  (in-module "Gtk")
   (c-name "asCGdkWindowAttr")
   (return-type "GdkWindowAttr*")
   (parameters
@@ -108,6 +119,7 @@
 )
 
 (define-function asRGdkTimeCoord
+  (in-module "Gtk")
   (c-name "asRGdkTimeCoord")
   (return-type "USER_OBJECT_")
   (parameters
@@ -117,6 +129,7 @@
 )
 
 (define-function asCGdkRectangle
+  (in-module "Gtk")
   (c-name "asCGdkRectangle")
   (return-type "GdkRectangle*")
   (parameters
@@ -125,6 +138,7 @@
 )
 
 (define-function asRGdkRectangle
+  (in-module "Gtk")
   (c-name "asRGdkRectangle")
   (return-type "USER_OBJECT_")
   (parameters
@@ -133,6 +147,7 @@
 )
 
 (define-function asCGdkRgbCmap
+  (in-module "Gtk")
   (c-name "asCGdkRgbCmap")
   (return-type "GdkRgbCmap*")
   (parameters
@@ -141,6 +156,7 @@
 )
 
 (define-function asRGdkRgbCmap
+  (in-module "Gtk")
   (c-name "asRGdkRgbCmap")
   (return-type "USER_OBJECT_")
   (parameters
@@ -149,6 +165,7 @@
 )
 
 (define-function asCGdkKeymapKey
+  (in-module "Gtk")
   (c-name "asCGdkKeymapKey")
   (return-type "GdkKeymapKey*")
   (parameters
@@ -157,6 +174,7 @@
 )
 
 (define-function asRGdkKeymapKey
+  (in-module "Gtk")
   (c-name "asRGdkKeymapKey")
   (return-type "USER_OBJECT_")
   (parameters
@@ -165,6 +183,7 @@
 )
 
 (define-function asCGdkPoint
+  (in-module "Gtk")
   (c-name "asCGdkPoint")
   (return-type "GdkPoint*")
   (parameters
@@ -173,6 +192,7 @@
 )
 
 (define-function asRGdkPoint
+  (in-module "Gtk")
   (c-name "asRGdkPoint")
   (return-type "USER_OBJECT_")
   (parameters
@@ -181,6 +201,7 @@
 )
 
 (define-function asCGdkSegment
+  (in-module "Gtk")
   (c-name "asCGdkSegment")
   (return-type "GdkSegment*")
   (parameters
@@ -189,6 +210,7 @@
 )
 
 (define-function asRGdkSegment
+  (in-module "Gtk")
   (c-name "asRGdkSegment")
   (return-type "USER_OBJECT_")
   (parameters
@@ -197,6 +219,7 @@
 )
 
 (define-function asCGdkColor
+  (in-module "Gtk")
   (c-name "asCGdkColor")
   (return-type "GdkColor*")
   (parameters
@@ -205,6 +228,7 @@
 )
 
 (define-function asRGdkColor
+  (in-module "Gtk")
   (c-name "asRGdkColor")
   (return-type "USER_OBJECT_")
   (parameters
@@ -213,6 +237,7 @@
 )
 
 (define-function asRGdkNativeWindow
+  (in-module "Gtk")
   (c-name "asRGdkNativeWindow")
   (return-type "USER_OBJECT_")
   (parameters
@@ -221,6 +246,7 @@
 )
 
 (define-function asCGdkNativeWindow
+  (in-module "Gtk")
   (c-name "asCGdkNativeWindow")
   (return-type "GdkNativeWindow")
   (parameters
@@ -229,6 +255,7 @@
 )
 
 (define-function asRGdkEvent
+  (in-module "Gtk")
   (c-name "asRGdkEvent")
   (return-type "USER_OBJECT_")
   (parameters
@@ -237,6 +264,7 @@
 )
 
 (define-function toRGdkEvent
+  (in-module "Gtk")
   (c-name "toRGdkEvent")
   (return-type "USER_OBJECT_")
   (parameters
@@ -246,6 +274,7 @@
 )
 
 (define-function toRGdkFont
+  (in-module "Gtk")
   (c-name "toRGdkFont")
   (return-type "USER_OBJECT_")
   (parameters
@@ -254,6 +283,7 @@
 )
 
 (define-function asCGdkTrapezoid
+  (in-module "Gtk")
   (c-name "asCGdkTrapezoid")
   (return-type "GdkTrapezoid*")
   (parameters
@@ -262,6 +292,7 @@
 )
 
 (define-function asRGdkTrapezoid
+  (in-module "Gtk")
   (c-name "asRGdkTrapezoid")
   (return-type "USER_OBJECT_")
   (parameters
@@ -270,6 +301,7 @@
 )
 
 (define-function asRGdkGCValues
+  (in-module "Gtk")
   (c-name "asRGdkGCValues")
   (return-type "USER_OBJECT_")
   (parameters
@@ -278,6 +310,7 @@
 )
 
 (define-function asCGdkSpan
+  (in-module "Gtk")
   (c-name "asCGdkSpan")
   (return-type "GdkSpan*")
   (parameters
@@ -286,6 +319,7 @@
 )
 
 (define-function asRGdkSpan
+  (in-module "Gtk")
   (c-name "asRGdkSpan")
   (return-type "USER_OBJECT_")
   (parameters
@@ -294,6 +328,7 @@
 )
 
 (define-function asCGtkTargetEntry
+  (in-module "Gtk")
   (c-name "asCGtkTargetEntry")
   (return-type "GtkTargetEntry*")
   (parameters
@@ -302,6 +337,7 @@
 )
 
 (define-function asRGtkTargetEntry
+  (in-module "Gtk")
   (c-name "asRGtkTargetEntry")
   (return-type "USER_OBJECT_")
   (parameters
@@ -310,6 +346,7 @@
 )
 
 (define-function asCGtkFileFilterInfo
+  (in-module "Gtk")
   (c-name "asCGtkFileFilterInfo")
   (return-type "GtkFileFilterInfo*")
   (parameters
@@ -318,6 +355,7 @@
 )
 
 (define-function asRGtkFileFilterInfo
+  (in-module "Gtk")
   (c-name "asRGtkFileFilterInfo")
   (return-type "USER_OBJECT_")
   (parameters
@@ -326,6 +364,7 @@
 )
 
 (define-function asCGtkSettingsValue
+  (in-module "Gtk")
   (c-name "asCGtkSettingsValue")
   (return-type "GtkSettingsValue*")
   (parameters
@@ -334,6 +373,7 @@
 )
 
 (define-function asCGtkStockItem
+  (in-module "Gtk")
   (c-name "asCGtkStockItem")
   (return-type "GtkStockItem*")
   (parameters
@@ -342,6 +382,7 @@
 )
 
 (define-function asRGtkStockItem
+  (in-module "Gtk")
   (c-name "asRGtkStockItem")
   (return-type "USER_OBJECT_")
   (parameters
@@ -350,6 +391,7 @@
 )
 
 (define-function asCGtkItemFactoryEntry
+  (in-module "Gtk")
   (c-name "asCGtkItemFactoryEntry")
   (return-type "GtkItemFactoryEntry*")
   (parameters
@@ -358,6 +400,7 @@
 )
 
 (define-function asCGtkItemFactoryEntry2
+  (in-module "Gtk")
   (c-name "asCGtkItemFactoryEntry2")
   (return-type "GtkItemFactoryEntry*")
   (parameters
@@ -366,6 +409,7 @@
 )
 
 (define-function R_createGtkItemFactoryEntry
+  (in-module "Gtk")
   (c-name "R_createGtkItemFactoryEntry")
   (return-type "GtkItemFactoryEntry*")
   (parameters
@@ -375,6 +419,7 @@
 )
 
 (define-function asCGtkAllocation
+  (in-module "Gtk")
   (c-name "asCGtkAllocation")
   (return-type "GtkAllocation*")
   (parameters
@@ -383,6 +428,7 @@
 )
 
 (define-function asRGtkAllocation
+  (in-module "Gtk")
   (c-name "asRGtkAllocation")
   (return-type "USER_OBJECT_")
   (parameters
@@ -391,46 +437,57 @@
 )
 
 (define-function asCGtkRecentFilterInfo
+  (in-module "Gtk")
   (c-name "asCGtkRecentFilterInfo")
   (return-type "GtkRecentFilterInfo*")
   (parameters
     '("USER_OBJECT_" "s_obj")
   )
+  (since "2.10.0")
 )
 
 (define-function asRGtkRecentFilterInfo
+  (in-module "Gtk")
   (c-name "asRGtkRecentFilterInfo")
   (return-type "USER_OBJECT_")
   (parameters
     '("const-GtkRecentFilterInfo*" "obj")
   )
+  (since "2.10.0")
 )
 
 (define-function asCGtkRecentData
+  (in-module "Gtk")
   (c-name "asCGtkRecentData")
   (return-type "GtkRecentData*")
   (parameters
     '("USER_OBJECT_" "s_obj")
   )
+  (since "2.10.0")
 )
 
 (define-function asRGtkPageRange
+  (in-module "Gtk")
   (c-name "asRGtkPageRange")
   (return-type "USER_OBJECT_")
   (parameters
     '("GtkPageRange*" "obj")
   )
+  (since "2.10.0")
 )
 
 (define-function asCGtkPageRange
+  (in-module "Gtk")
   (c-name "asCGtkPageRange")
   (return-type "GtkPageRange*")
   (parameters
     '("USER_OBJECT_" "s_obj")
   )
+  (since "2.10.0")
 )
 
 (define-function asRGtkAccelKey
+  (in-module "Gtk")
   (c-name "asRGtkAccelKey")
   (return-type "USER_OBJECT_")
   (parameters

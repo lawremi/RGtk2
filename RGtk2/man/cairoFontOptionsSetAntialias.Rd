@@ -1,7 +1,7 @@
 \alias{cairoFontOptionsSetAntialias}
 \name{cairoFontOptionsSetAntialias}
 \title{cairoFontOptionsSetAntialias}
-\description{Sets the antiliasing mode for the font options object. This
+\description{Sets the antialiasing mode for the font options object. This
 specifies the type of antialiasing to do when rendering text.}
 \usage{cairoFontOptionsSetAntialias(options, antialias)}
 \arguments{

@@ -13,7 +13,14 @@ PangoAttrType<-c("invalid" = 0,
 	"strikethrough" = 12,
 	"rise" = 13,
 	"shape" = 14,
-	"scale" = 15)
+	"scale" = 15,
+	"fallback" = 16,
+	"letter-spacing" = 17,
+	"underline-color" = 18,
+	"strikethrough-color" = 19,
+	"absolute-size" = 20,
+	"gravity" = 21,
+	"gravity-hint" = 22)
 storage.mode(PangoAttrType) <- 'integer'
 class(PangoAttrType) <- 'enums' 
 
@@ -37,6 +44,77 @@ PangoRenderPart<-c("foreground" = 0,
 	"strikethrough" = 3)
 storage.mode(PangoRenderPart) <- 'integer'
 class(PangoRenderPart) <- 'enums' 
+
+PangoScript<-c("invalid-code" = 0,
+	"common" = 1,
+	"inherited" = 2,
+	"arabic" = 3,
+	"armenian" = 4,
+	"bengali" = 5,
+	"bopomofo" = 6,
+	"cherokee" = 7,
+	"coptic" = 8,
+	"cyrillic" = 9,
+	"deseret" = 10,
+	"devanagari" = 11,
+	"ethiopic" = 12,
+	"georgian" = 13,
+	"gothic" = 14,
+	"greek" = 15,
+	"gujarati" = 16,
+	"gurmukhi" = 17,
+	"han" = 18,
+	"hangul" = 19,
+	"hebrew" = 20,
+	"hiragana" = 21,
+	"kannada" = 22,
+	"katakana" = 23,
+	"khmer" = 24,
+	"lao" = 25,
+	"latin" = 26,
+	"malayalam" = 27,
+	"mongolian" = 28,
+	"myanmar" = 29,
+	"ogham" = 30,
+	"old-italic" = 31,
+	"oriya" = 32,
+	"runic" = 33,
+	"sinhala" = 34,
+	"syriac" = 35,
+	"tamil" = 36,
+	"telugu" = 37,
+	"thaana" = 38,
+	"thai" = 39,
+	"tibetan" = 40,
+	"canadian-aboriginal" = 41,
+	"yi" = 42,
+	"tagalog" = 43,
+	"hanunoo" = 44,
+	"buhid" = 45,
+	"tagbanwa" = 46,
+	"braille" = 47,
+	"cypriot" = 48,
+	"limbu" = 49,
+	"osmanya" = 50,
+	"shavian" = 51,
+	"linear-b" = 52,
+	"tai-le" = 53,
+	"ugaritic" = 54,
+	"new-tai-lue" = 55,
+	"buginese" = 56,
+	"glagolitic" = 57,
+	"tifinagh" = 58,
+	"syloti-nagri" = 59,
+	"old-persian" = 60,
+	"kharoshthi" = 61,
+	"unknown" = 62,
+	"balinese" = 63,
+	"cuneiform" = 64,
+	"phoenician" = 65,
+	"phags-pa" = 66,
+	"nko" = 67)
+storage.mode(PangoScript) <- 'integer'
+class(PangoScript) <- 'enums' 
 
 PangoStyle<-c("normal" = 0,
 	"oblique" = 1,
@@ -99,6 +177,20 @@ PangoEllipsizeMode<-c("none" = 0,
 	"end" = 3)
 storage.mode(PangoEllipsizeMode) <- 'integer'
 class(PangoEllipsizeMode) <- 'enums' 
+
+PangoGravity<-c("south" = 0,
+	"east" = 1,
+	"north" = 2,
+	"west" = 3,
+	"auto" = 4)
+storage.mode(PangoGravity) <- 'integer'
+class(PangoGravity) <- 'enums' 
+
+PangoGravityHint<-c("natural" = 0,
+	"strong" = 1,
+	"line" = 2)
+storage.mode(PangoGravityHint) <- 'integer'
+class(PangoGravityHint) <- 'enums' 
 
 PangoFontMask<-c("family" = 1,
 	"style" = 2,

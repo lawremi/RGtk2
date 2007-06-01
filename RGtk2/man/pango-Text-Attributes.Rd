@@ -43,12 +43,15 @@
 \code{\link{pangoAttrShapeNew}(ink.rect, logical.rect)}\cr
 \code{\link{pangoAttrShapeNewWithData}(ink.rect, logical.rect, data)}\cr
 \code{\link{pangoAttrScaleNew}(scale.factor)}\cr
-\code{\link{pangoAttrFallbackNew}(fallback)}\cr
 \code{\link{pangoAttrRiseNew}(rise)}\cr
 \code{\link{pangoAttrLetterSpacingNew}(letter.spacing)}\cr
-\code{\link{pangoColorFree}(object)}\cr
+\code{\link{pangoAttrFallbackNew}(fallback)}\cr
+\code{\link{pangoAttrGravityNew}(gravity)}\cr
+\code{\link{pangoAttrGravityHintNew}(hint)}\cr
 \code{\link{pangoColorParse}(spec)}\cr
 \code{\link{pangoColorCopy}(object)}\cr
+\code{\link{pangoColorFree}(object)}\cr
+\code{\link{pangoColorToString}(object)}\cr
 \code{\link{pangoLanguageFromString}(language)}\cr
 \code{\link{pangoLanguageMatches}(object, range.list)}\cr
 \code{\link{pangoAttrListNew}()}\cr
@@ -161,7 +164,7 @@ set font size.
 }
 \item{\code{PangoColor}}{
 The \code{\link{PangoColor}} structure is used to
-represent a color in an uncalibrated RGB colorspace.
+represent a color in an uncalibrated RGB color-space.
 
 \describe{
 \item{\code{red}}{[integer] The red component of the color. This is a value between 0 and 65535, 
@@ -231,6 +234,13 @@ attribute is listed in parentheses after the description.
 \item{\code{rise}}{baseline displacement (\code{\link{PangoAttrInt}})}
 \item{\code{shape}}{shape (\code{\link{PangoAttrShape}})}
 \item{\code{scale}}{font size scale factor (\code{\link{PangoAttrFloat}})}
+\item{\code{fallback}}{whether fallback is enabled (\code{\link{PangoAttrInt}})}
+\item{\code{letter-spacing}}{letter spacing (\code{\link{PangoAttrInt}})}
+\item{\code{underline-color}}{underline color (\code{\link{PangoAttrColor}})}
+\item{\code{strikethrough-color}}{strikethrough color (\code{\link{PangoAttrColor}})}
+\item{\code{absolute-size}}{font size in pixels scaled by \code{PANGO_SCALE} (\code{\link{PangoAttrInt}})}
+\item{\code{gravity}}{base text gravity (\code{\link{PangoAttrInt}})}
+\item{\code{gravity-hint}}{gravity hint (\code{\link{PangoAttrInt}})}
 }
 
 }

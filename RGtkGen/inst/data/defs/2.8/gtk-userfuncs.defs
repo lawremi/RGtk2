@@ -1,4 +1,5 @@
 (define-user-function AboutDialogActivateLinkFunc
+  (in-module "Gtk")
   (c-name "GtkAboutDialogActivateLinkFunc")
   (return-type "none")
   (parameters
@@ -8,6 +9,7 @@
   )
 )
 (define-user-function CellLayoutDataFunc
+  (in-module "Gtk")
   (c-name "GtkCellLayoutDataFunc")
   (return-type "none")
   (parameters
@@ -19,6 +21,7 @@
   )
 )
 (define-user-function ClipboardGetFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardGetFunc")
   (return-type "none")
   (parameters
@@ -29,6 +32,7 @@
   )
 )
 (define-user-function ClipboardReceivedFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardReceivedFunc")
   (return-type "none")
   (parameters
@@ -38,6 +42,7 @@
   )
 )
 (define-user-function ClipboardImageReceivedFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardImageReceivedFunc")
   (return-type "none")
   (parameters
@@ -47,6 +52,7 @@
   )
 )
 (define-user-function ClipboardTextReceivedFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardTextReceivedFunc")
   (return-type "none")
   (parameters
@@ -56,6 +62,7 @@
   )
 )
 (define-user-function ClipboardTargetsReceivedFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardTargetsReceivedFunc")
   (return-type "none")
   (parameters
@@ -67,6 +74,7 @@
 )
 ;; global func
 (define-user-function ColorSelectionChangePaletteFunc
+  (in-module "Gtk")
   (c-name "GtkColorSelectionChangePaletteFunc")
   (return-type "none")
   (parameters
@@ -75,6 +83,7 @@
   )
 )
 (define-user-function ColorSelectionChangePaletteWithScreenFunc
+  (in-module "Gtk")
   (c-name "GtkColorSelectionChangePaletteWithScreenFunc")
   (return-type "none")
   (parameters
@@ -84,6 +93,7 @@
   )
 )
 (define-user-function CTreeGNodeFunc
+  (in-module "Gtk")
   (c-name "GtkCTreeGNodeFunc")
   (return-type "gboolean")
   (parameters
@@ -96,6 +106,7 @@
   (deprecated "use GtkTreeView")
 )
 (define-user-function CTreeFunc
+  (in-module "Gtk")
   (c-name "GtkCTreeFunc")
   (return-type "none")
   (parameters
@@ -106,6 +117,7 @@
   (deprecated "use GtkTreeView")
 )
 (define-user-function EntryCompletionMatchFunc
+  (in-module "Gtk")
   (c-name "GtkEntryCompletionMatchFunc")
   (return-type "gboolean")
   (parameters
@@ -116,6 +128,7 @@
   )
 )
 (define-user-function FileFilterFunc
+  (in-module "Gtk")
   (c-name "GtkFileFilterFunc")
   (return-type "gboolean")
   (parameters
@@ -124,6 +137,7 @@
   )
 )
 (define-user-function IconViewForeachFunc
+  (in-module "Gtk")
   (c-name "GtkIconViewForeachFunc")
   (return-type "none")
   (parameters
@@ -133,6 +147,7 @@
   )
 )
 (define-user-function TranslateFunc
+  (in-module "Gtk")
   (c-name "GtkTranslateFunc")
   (return-type "none")
   (parameters
@@ -141,6 +156,7 @@
   )
 )
 (define-user-function Function
+  (in-module "Gtk")
   (c-name "GtkFunction")
   (return-type "gboolean")
   (parameters
@@ -148,6 +164,7 @@
   )
 )
 (define-user-function KeySnoopFunc
+  (in-module "Gtk")
   (c-name "GtkKeySnoopFunc")
   (return-type "gint")
   (parameters
@@ -157,6 +174,7 @@
   )
 )
 ;(define-user-function MenuPositionFunc
+  (in-module "Gtk")
 ;  (c-name "GtkMenuPositionFunc")
 ;  (return-type "gint")
 ;  (parameters
@@ -168,6 +186,7 @@
 ;  )
 ;)
 (define-user-function TreeModelForeachFunc
+  (in-module "Gtk")
   (c-name "GtkTreeModelForeachFunc")
   (return-type "gint")
   (parameters
@@ -178,6 +197,7 @@
   )
 )
 (define-user-function TreeModelFilterVisibleFunc
+  (in-module "Gtk")
   (c-name "GtkTreeModelFilterVisibleFunc")
   (return-type "gint")
   (parameters
@@ -187,6 +207,7 @@
   )
 )
 (define-user-function TreeModelFilterModifyFunc
+  (in-module "Gtk")
   (c-name "GtkTreeModelFilterModifyFunc")
   (return-type "gint")
   (parameters
@@ -198,6 +219,7 @@
   )
 )
 (define-user-function TreeSelectionFunc
+  (in-module "Gtk")
   (c-name "GtkTreeSelectionFunc")
   (return-type "gboolean")
   (parameters
@@ -209,6 +231,7 @@
   )
 )
 (define-user-function TreeSelectionForeachFunc
+  (in-module "Gtk")
   (c-name "GtkTreeSelectionForeachFunc")
   (return-type "none")
   (parameters
@@ -219,6 +242,7 @@
   )
 )
 (define-user-function TreeIterCompareFunc
+  (in-module "Gtk")
   (c-name "GtkTreeIterCompareFunc")
   (return-type "gint")
   (parameters
@@ -229,6 +253,7 @@
   )
 )
 (define-user-function TreeCellDataFunc
+  (in-module "Gtk")
   (c-name "GtkTreeCellDataFunc")
   (return-type "none")
   (parameters
@@ -240,6 +265,7 @@
   )
 )
 (define-user-function TreeViewColumnDropFunc
+  (in-module "Gtk")
   (c-name "GtkTreeViewColumnDropFunc")
   (return-type "gboolean")
   (parameters
@@ -251,6 +277,7 @@
   )
 )
 (define-user-function TreeViewMappingFunc
+  (in-module "Gtk")
   (c-name "GtkTreeViewMappingFunc")
   (return-type "none")
   (parameters
@@ -260,6 +287,7 @@
   )
 )
 (define-user-function TreeViewSearchEqualFunc
+  (in-module "Gtk")
   (c-name "GtkTreeViewSearchEqualFunc")
   (return-type "gboolean")
   (parameters
@@ -271,6 +299,7 @@
   )
 )
 (define-user-function TreeDestroyCountFunc
+  (in-module "Gtk")
   (c-name "GtkTreeDestroyCountFunc")
   (return-type "none")
   (parameters
@@ -281,6 +310,7 @@
   )
 )
 (define-user-function TreeViewRowSeparatorFunc
+  (in-module "Gtk")
   (c-name "GtkTreeViewRowSeparatorFunc")
   (return-type "gboolean")
   (parameters
@@ -290,6 +320,7 @@
   )
 )
 (define-user-function Callback
+  (in-module "Gtk")
   (c-name "GtkCallback")
   (return-type "none")
   (parameters
@@ -298,6 +329,7 @@
   )
 )
 (define-user-function AccelMapForeach
+  (in-module "Gtk")
   (c-name "GtkAccelMapForeach")
   (return-type "none")
   (parameters
@@ -309,6 +341,7 @@
   )
 )
 (define-user-function FindFunc
+  (in-module "Gtk")
   (c-name "GtkAccelGroupFindFunc")
   (return-type "gboolean")
   (parameters
@@ -318,6 +351,7 @@
   )
 )
 (define-user-function Activate
+  (in-module "Gtk")
   (c-name "GtkAccelGroupActivate")
   (return-type "gboolean")
   (parameters
@@ -328,6 +362,7 @@
   )
 )
 (define-user-function TextTagTableForeach
+  (in-module "Gtk")
   (c-name "GtkTextTagTableForeach")
   (return-type "none")
   (parameters
@@ -336,6 +371,7 @@
   )
 )
 (define-user-function TextCharPredicate
+  (in-module "Gtk")
   (c-name "GtkTextCharPredicate")
   (return-type "gboolean")
   (parameters
@@ -344,6 +380,7 @@
   )
 )
 (define-user-function ItemFactoryCallback1
+  (in-module "Gtk")
   (c-name "GtkItemFactoryCallback1")
   (return-type "none")
   (parameters
@@ -353,6 +390,7 @@
   )
 )
 (define-user-function ItemFactoryCallback2
+  (in-module "Gtk")
   (c-name "GtkItemFactoryCallback2")
   (return-type "none")
   (parameters

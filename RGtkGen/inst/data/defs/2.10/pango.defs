@@ -4,6 +4,7 @@
 
 ; cairo rendering
 (define-function pango_cairo_show_error_underline
+  (in-module "Pango")
   (c-name "pango_cairo_show_error_underline")
   (return-type "none")
   (parameters
@@ -13,8 +14,10 @@
     '("double" "width")
     '("double" "height")
   )
+  (since "1.14.0")
 )
 (define-function pango_cairo_error_underline_path
+  (in-module "Pango")
   (c-name "pango_cairo_error_underline_path")
   (return-type "none")
   (parameters
@@ -24,6 +27,7 @@
     '("double" "width")
     '("double" "height")
   )
+  (since "1.14.0")
 )
 
 ; fonts
@@ -31,6 +35,8 @@
   (of-object "PangoFont")
   (c-name "pango_font_describe_with_absolute_size")
   (return-type "PangoFontDescription*")
+  (caller-owns-return #t)
+  (since "1.14.0")
 )
 
 ; glyph string
@@ -38,6 +44,7 @@
   (of-object "PangoGlyphString")
   (c-name "pango_glyph_string_get_width")
   (return-type "int")
+  (since "1.14.0")
 )
 
 ; matrix
@@ -45,6 +52,7 @@
   (of-object "PangoMatrix")
   (c-name "pango_matrix_get_font_scale_factor")
   (return-type "double")
+  (since "1.12.0")
 )
 
 ; layout
@@ -58,5 +66,309 @@
     '("int*" "line" (out))
     '("int*" "x_pos" (out))
   )
+  (since "1.14.0")
+)
+
+; gravity
+
+(define-enum Gravity
+  (in-module "Pango")
+  (c-name "PangoGravity")
+  (gtype-id "PANGO_TYPE_GRAVITY")
+  (values
+    '("south" "PANGO_GRAVITY_SOUTH")
+    '("east" "PANGO_GRAVITY_EAST")
+    '("north" "PANGO_GRAVITY_NORTH")
+    '("west" "PANGO_GRAVITY_WEST")
+    '("auto" "PANGO_GRAVITY_AUTO")
+  )
+  (since "1.16.0")
+)
+
+(define-enum GravityHint
+  (in-module "Pango")
+  (c-name "PangoGravityHint")
+  (gtype-id "PANGO_TYPE_GRAVITY_HINT")
+  (values
+    '("natural" "PANGO_GRAVITY_HINT_NATURAL")
+    '("strong" "PANGO_GRAVITY_HINT_STRONG")
+    '("line" "PANGO_GRAVITY_HINT_LINE")
+  )
+  (since "1.16.0")
+)
+
+
+;; From /usr/include/pango-1.0/pango/pango-gravity.h
+
+(define-function to_rotation
+  (in-module "Pango")
+  (c-name "pango_gravity_to_rotation")
+  (return-type "double")
+  (parameters
+    '("PangoGravity" "base_gravity")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_gravity_get_for_matrix
+  (in-module "Pango")
+  (c-name "pango_gravity_get_for_matrix")
+  (return-type "PangoGravity")
+  (parameters
+    '("const-PangoMatrix*" "matrix")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_gravity_get_for_script
+  (in-module "Pango")
+  (c-name "pango_gravity_get_for_script")
+  (return-type "PangoGravity")
+  (parameters
+    '("PangoScript" "script")
+    '("PangoGravity" "base_gravity")
+    '("PangoGravityHint" "hint")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_attr_gravity_new
+  (in-module "Pango")
+  (c-name "pango_attr_gravity_new")
+  (is-constructor-of "PangoAttrGravity")
+  (return-type "PangoAttribute*")
+  (parameters
+    '("PangoGravity" "gravity")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_attr_gravity_hint_new
+  (in-module "Pango")
+  (c-name "pango_attr_gravity_hint_new")
+  (is-constructor-of "PangoAttrGravityHint")
+  (return-type "PangoAttribute*")
+  (parameters
+    '("PangoGravityHint" "hint")
+  )
+  (since "1.16.0")
+)
+
+(define-method set_base_gravity
+  (of-object "PangoContext")
+  (c-name "pango_context_set_base_gravity")
+  (return-type "none")
+  (parameters
+    '("PangoGravity" "gravity")
+  )
+  (since "1.16.0")
+)
+
+(define-method get_base_gravity
+  (of-object "PangoContext")
+  (c-name "pango_context_get_base_gravity")
+  (return-type "PangoGravity")
+  (since "1.16.0")
+)
+
+(define-method get_gravity
+  (of-object "PangoContext")
+  (c-name "pango_context_get_gravity")
+  (return-type "PangoGravity")
+  (since "1.16.0")
+)
+
+(define-method set_gravity_hint
+  (of-object "PangoContext")
+  (c-name "pango_context_set_gravity_hint")
+  (return-type "none")
+  (parameters
+    '("PangoGravityHint" "hint")
+  )
+  (since "1.16.0")
+)
+
+(define-method get_gravity_hint
+  (of-object "PangoContext")
+  (c-name "pango_context_get_gravity_hint")
+  (return-type "PangoGravityHint")
+  (since "1.16.0")
+)
+(define-method set_gravity
+  (of-object "PangoFontDescription")
+  (c-name "pango_font_description_set_gravity")
+  (return-type "none")
+  (parameters
+    '("PangoGravity" "gravity")
+  )
+  (since "1.16.0")
+)
+
+(define-method get_gravity
+  (of-object "PangoFontDescription")
+  (c-name "pango_font_description_get_gravity")
+  (return-type "PangoGravity")
+  (since "1.16.0")
+)
+
+; read-only stuff
+
+(define-method get_line_readonly
+  (of-object "PangoLayout")
+  (c-name "pango_layout_get_line_readonly")
+  (return-type "PangoLayoutLine*")
+  (parameters
+    '("int" "line")
+  )
+  (since "1.16.0")
+)
+(define-method get_lines_readonly
+  (of-object "PangoLayout")
+  (c-name "pango_layout_get_lines_readonly")
+  (return-type "GSList[PangoLayoutLine]")
+  (since "1.16.0")
+)
+
+(define-method get_line_readonly
+  (of-object "PangoLayoutIter")
+  (c-name "pango_layout_iter_get_line_readonly")
+  (return-type "PangoLayoutLine*")
+  (since "1.16.0")
+)
+
+(define-method get_run_readonly
+  (of-object "PangoLayoutIter")
+  (c-name "pango_layout_iter_get_run_readonly")
+  (return-type "PangoLayoutRun*")
+  (since "1.16.0")
+)
+
+(define-method to_string
+  (of-object "PangoColor")
+  (c-name "pango_color_to_string")
+  (return-type "gchar*")
+  (since "1.16.0")
+)
+
+; matrix transformation
+
+(define-method transform_point
+  (of-object "PangoMatrix")
+  (c-name "pango_matrix_transform_point")
+  (return-type "none")
+  (parameters
+    '("gdouble[2]" "x")
+    '("gdouble[2]" "y")
+  )
+  (since "1.16.0")
+)
+
+(define-method transform_distance
+  (of-object "PangoMatrix")
+  (c-name "pango_matrix_transform_distance")
+  (return-type "none")
+  (parameters
+    '("gdouble[2]" "dx")
+    '("gdouble[2]" "dy")
+  )
+  (since "1.16.0")
+)
+
+(define-method transform_rectangle
+  (of-object "PangoMatrix")
+  (c-name "pango_matrix_transform_rectangle")
+  (return-type "none")
+  (parameters
+    '("PangoRectangle*" "rect")
+  )
+  (since "1.16.0")
+)
+
+(define-method transform_pixel_rectangle
+  (of-object "PangoMatrix")
+  (c-name "pango_matrix_transform_pixel_rectangle")
+  (return-type "none")
+  (parameters
+    '("PangoRectangle*" "rect")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_units_from_double
+  (in-module "Pango")
+  (c-name "pango_units_from_double")
+  (return-type "int")
+  (parameters
+    '("double" "d")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_units_to_double
+  (in-module "Pango")
+  (c-name "pango_units_to_double")
+  (return-type "double")
+  (parameters
+    '("int" "i")
+  )
+  (since "1.16.0")
+)
+
+(define-function pango_extents_to_pixels
+  (in-module "Pango")
+  (c-name "pango_extents_to_pixels")
+  (return-type "none")
+  (parameters
+    '("PangoRectangle*" "ink_rect")
+    '("PangoRectangle*" "logical_rect")
+  )
+  (since "1.16.0")
+)
+
+(define-method is_wrapped
+  (of-object "PangoLayout")
+  (c-name "pango_layout_is_wrapped")
+  (return-type "gboolean")
+  (since "1.16.0")
+)
+
+(define-method is_ellipsized
+  (of-object "PangoLayout")
+  (c-name "pango_layout_is_ellipsized")
+  (return-type "gboolean")
+  (since "1.16.0")
+)
+(define-method get_unknown_glyphs_count
+  (of-object "PangoLayout")
+  (c-name "pango_layout_get_unknown_glyphs_count")
+  (return-type "int")
+  (since "1.16.0")
+)
+
+; versioning
+(define-function pango_version
+  (in-module "Pango")
+  (c-name "pango_version")
+  (return-type "int")
+  (since "1.16.0")
+)
+
+(define-function pango_version_string
+  (in-module "Pango")
+  (c-name "pango_version_string")
+  (return-type "const-char*")
+  (since "1.16.0")
+)
+
+(define-function pango_version_check
+  (in-module "Pango")
+  (c-name "pango_version_check")
+  (return-type "const-char*")
+  (parameters
+    '("int" "required_major")
+    '("int" "required_minor")
+    '("int" "required_micro")
+  )
+  (since "1.16.0")
 )
 

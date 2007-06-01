@@ -152,6 +152,27 @@ asRGtkAllocation(GtkAllocation* alloc)
     return(s_alloc);
 }
 
+USER_OBJECT_
+asRGtkAccelKey(GtkAccelKey * obj)
+{
+  USER_OBJECT_ s_obj;
+  static gchar * names[] = { "accel_key", "accel_mods", "accel_flags", NULL };
+
+  PROTECT(s_obj = NEW_LIST(3));
+
+  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->accel_key));
+  SET_VECTOR_ELT(s_obj, 1, asRFlag(obj->accel_mods, GDK_TYPE_MODIFIER_TYPE));
+  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->accel_flags));
+
+  SET_NAMES(s_obj, asRStringArray(names));
+  SET_CLASS(s_obj, asRString("GtkAccelKey"));
+
+  UNPROTECT(1);
+
+  return(s_obj);
+}
+
+#if GTK_CHECK_VERSION(2,10,0)
 GtkRecentFilterInfo *
 asCGtkRecentFilterInfo(USER_OBJECT_ s_obj)
 {
@@ -239,22 +260,4 @@ asRGtkPageRange(GtkPageRange * obj)
 
   return(s_obj);
 }
-USER_OBJECT_
-asRGtkAccelKey(GtkAccelKey * obj)
-{
-  USER_OBJECT_ s_obj;
-  static gchar * names[] = { "accel_key", "accel_mods", "accel_flags", NULL };
-
-  PROTECT(s_obj = NEW_LIST(3));
-
-  SET_VECTOR_ELT(s_obj, 0, asRNumeric(obj->accel_key));
-  SET_VECTOR_ELT(s_obj, 1, asRFlag(obj->accel_mods, GDK_TYPE_MODIFIER_TYPE));
-  SET_VECTOR_ELT(s_obj, 2, asRNumeric(obj->accel_flags));
-
-  SET_NAMES(s_obj, asRStringArray(names));
-  SET_CLASS(s_obj, asRString("GtkAccelKey"));
-
-  UNPROTECT(1);
-
-  return(s_obj);
-}
+#endif

@@ -5,8 +5,8 @@
 # currently just converts type name to GType object, if x isn't one already
 as.GType <- function(x)
 {
-	mapping <- c("integer" = "gint", "character" = "gchararray", "logical" = "gboolean",
-		"numeric" = "gdouble", "raw" = "guchar", "externalptr" = "gpointer") 
+  mapping <- c("integer" = "gint", "character" = "gchararray", "logical" = "gboolean",
+    "numeric" = "gdouble", "raw" = "guchar", "externalptr" = "gpointer") 
   type <- x
   if (is.character(type)) {
     if (type %in% names(mapping))
@@ -18,9 +18,9 @@ as.GType <- function(x)
         type <- do.call(func, list())
       }
   }
-	if (!inherits(type, "GType"))
-		stop("Cannot convert ", x, " to GType")
-	type
+  if (!inherits(type, "GType"))
+    stop("Cannot convert ", x, " to GType")
+  type
 }
 
 interface.GObject <-
@@ -46,9 +46,9 @@ function(type)
 gTypeGetClass <-
 function(type)
 {
-	type <- as.GType(type)
+  type <- as.GType(type)
   ancestors <- gTypeGetAncestors(type)
-	class_ptr <- .Call("R_getGTypeClass", type, PACKAGE = "RGtk2")
+  class_ptr <- .Call("R_getGTypeClass", type, PACKAGE = "RGtk2")
   class(class_ptr) <- c(paste(ancestors, "Class", sep=""), class(class_ptr))
   class_ptr
 }
@@ -62,13 +62,13 @@ function(name)
 # GSignal support
 
 GSignalFlags <- c(
-  "run-first"	= 1,
-  "run-last"	= 2,
-  "run-cleanup"	= 4,
-  "no-recurse"	= 8,
-  "detailed"	= 16,
-  "action"	= 32,
-  "no-hooks"	= 64
+  "run-first"  = 1,
+  "run-last"  = 2,
+  "run-cleanup"  = 4,
+  "no-recurse"  = 8,
+  "detailed"  = 16,
+  "action"  = 32,
+  "no-hooks"  = 64
 )
 
 connectSignal <- gSignalConnect <-
@@ -89,7 +89,7 @@ function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
   }
 
   .Call("R_connectGSignalHandler", obj, f, as.character(signal), data, useData, 
-  	as.logical(after), as.logical(user.data.first), PACKAGE = "RGtk2")
+    as.logical(after), as.logical(user.data.first), PACKAGE = "RGtk2")
 }
 
 gSignalHandlerDisconnect <-
@@ -116,9 +116,9 @@ function(obj, id)
 gSignalStopEmission <-
 function(obj, signal, detail = NULL)
 {
-	if (!is.null(detail))
-		signal <- paste(signal, detail, sep="::")
-	.Call("R_gSignalStopEmission", obj, signal, PACKAGE = "RGtk2")
+  if (!is.null(detail))
+    signal <- paste(signal, detail, sep="::")
+  .Call("R_gSignalStopEmission", obj, signal, PACKAGE = "RGtk2")
 }
 
 gObjectGetSignals <-
@@ -159,7 +159,7 @@ function(obj, signal, ..., detail = NULL)
   args <- list(...)
   signal <- as.character(signal)
   if (!is.null(detail))
-		signal <- paste(signal, detail, sep="::")
+    signal <- paste(signal, detail, sep="::")
   .RGtkCall("R_gSignalEmit", obj, signal, args, PACKAGE = "RGtk2")
 }
 
@@ -239,10 +239,10 @@ function(obj, ...)
 "[<-.GObject" <-
 function(obj, propNames, value)
 {
-	value <- list(value)
-	names(value) <- propNames
-	.RGtkCall("R_setGObjectProps", obj, value, PACKAGE = "RGtk2")
-	obj
+  value <- list(value)
+  names(value) <- propNames
+  .RGtkCall("R_setGObjectProps", obj, value, PACKAGE = "RGtk2")
+  obj
 }
 
 gObject <- gObjectNew <-
@@ -251,7 +251,7 @@ function(type, ...)
   args <- list(...)
   type <- as.GType(type)
   if (!("GObject" %in% gTypeGetAncestors(type)))
-	  stop("GType must inherit from GObject")
+    stop("GType must inherit from GObject")
   if(any(names(args) == ""))
     stop("All values must have a name")
 
@@ -319,11 +319,11 @@ function(x)
   else if (type == "Sexp")
     fields <- c("s.type", "default.value")
   
-	x <- as.struct(x, c(class(x)[1], "GParamSpec"), c(common_fields, fields))
+  x <- as.struct(x, c(class(x)[1], "GParamSpec"), c(common_fields, fields))
 
-	x[[1]] <- as.character(x[[1]])
-	x[[2]] <- as.character(x[[2]])
-	x[[3]] <- as.character(x[[3]])
+  x[[1]] <- as.character(x[[1]])
+  x[[2]] <- as.character(x[[2]])
+  x[[3]] <- as.character(x[[3]])
   
   if (is.null(x[[4]]))
     x[[4]] <- sum(GParamFlags[c("readable", "writable", "construct")])
@@ -362,10 +362,10 @@ function(x)
     if (!is.numeric(x[[5]]))
       x[[5]] <- .RGtkCall("getNumericType", x[[6]])
   }
-	
-	return(x)
+  
+  return(x)
 }
-	
+  
 
 gObjectSetData <-
 function(obj, key, data = NULL)
@@ -435,15 +435,15 @@ function(method, obj = NULL, ...)
 "$.<invalid>" <-
 function(obj, name)
 {
-	stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
+  stop("attempt to call '", name, "' on invalid reference '", deparse(substitute(obj)), "'", call.=FALSE)
 }
 
 "$.GObject" <- "$.RGtkObject" <-
-function(x, method)
+function(x, member)
 { # try for a declared method first, else fall back to member
- result <- try(.getAutoMethodByName(x, method), T)
+ result <- try(.getAutoMethodByName(x, member), T)
  if (inherits(result, "try-error"))
-   result <- x[[method]]
+   result <- x[[member]]
  result
 }
 
@@ -491,7 +491,7 @@ function(obj, name)
 
 "==.RGtkObject" <-
 function(x, y) {
-	.ptrToNumeric(x) == .ptrToNumeric(y)
+  .ptrToNumeric(x) == .ptrToNumeric(y)
 }
 
 # Fields
@@ -550,7 +550,7 @@ function(x, name, value)
 {
   sym <- try(.getAutoElementByName(x, name, op = "Set", error = FALSE))
   if (!inherits(sym, "try-error"))
-	  val <- eval(substitute(sym(x, value), list(sym=sym)))
+    val <- eval(substitute(sym(x, value), list(sym=sym)))
   else if(inherits(x, "GObject"))
    val <- x$set(name)
   else val <- sym
@@ -566,7 +566,7 @@ function(obj, name, op = "Get", error = TRUE)
  which <- sapply(sym, exists)
 
  if(!any(which)) {
-	 message <- paste("Could not", op, "field", name,"for classes", paste(class(obj), collapse=", "))
+   message <- paste("Could not", op, "field", name,"for classes", paste(class(obj), collapse=", "))
    if(error)
      stop(message)
    else {
@@ -585,11 +585,11 @@ function(obj, name, op = "Get", error = TRUE)
 as.GClosure <- 
 function(x)
 {
-	if (inherits(x, "GClosure"))
-		x <- toRGClosure(x)
-	else x <- as.function(x)
-	class(x) <- "RGClosure"
-	x
+  if (inherits(x, "GClosure"))
+    x <- toRGClosure(x)
+  else x <- as.function(x)
+  class(x) <- "RGClosure"
+  x
 }
 
 # This attempts to convert a C GClosure to an R closure 
@@ -597,12 +597,12 @@ function(x)
 toRGClosure <-
 function(c_closure)
 {
-	checkPtrType(c_closure, "GClosure")
-	closure <- function(...) {
-		.RGtkCall("R_g_closure_invoke", c_closure, c(...), PACKAGE = "RGtk2")
-	}
-	attr(closure, "ref") <- c_closure
-	closure
+  checkPtrType(c_closure, "GClosure")
+  closure <- function(...) {
+    .RGtkCall("R_g_closure_invoke", c_closure, c(...), PACKAGE = "RGtk2")
+  }
+  attr(closure, "ref") <- c_closure
+  closure
 }
 
 # virtuals for GObject

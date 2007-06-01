@@ -6,6 +6,7 @@
 ;; From ../../../RGtk2/inst/include/RGtk2/pango.h
 
 (define-function asCPangoRectangle
+  (in-module "Pango")
   (c-name "asCPangoRectangle")
   (return-type "PangoRectangle*")
   (parameters
@@ -14,6 +15,7 @@
 )
 
 (define-function asRPangoRectangle
+  (in-module "Pango")
   (c-name "asRPangoRectangle")
   (return-type "USER_OBJECT_")
   (parameters
@@ -22,6 +24,7 @@
 )
 
 (define-function asRPangoAttribute
+  (in-module "Pango")
   (c-name "asRPangoAttribute")
   (return-type "USER_OBJECT_")
   (parameters
@@ -30,6 +33,7 @@
 )
 
 (define-function asRPangoAttributeCopy
+  (in-module "Pango")
   (c-name "asRPangoAttributeCopy")
   (return-type "USER_OBJECT_")
   (parameters
@@ -38,6 +42,7 @@
 )
 
 (define-function toRPangoAttribute
+  (in-module "Pango")
   (c-name "toRPangoAttribute")
   (return-type "USER_OBJECT_")
   (parameters

@@ -263,7 +263,7 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   /* create type */
   
   type_info.class_size = query.class_size + sizeof(SEXP);
-  type_info.class_init = getPtrValue(s_class_init_sym);
+  type_info.class_init = (GClassInitFunc)getPtrValue(s_class_init_sym);
   type_info.class_data = s_def;
   type_info.instance_size = query.instance_size + sizeof(SEXP);
   type_info.instance_init = (GInstanceInitFunc)S_gobject_instance_init;
@@ -274,7 +274,8 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   
   interface_info.interface_data = s_def;
   for (i = 0; i < GET_LENGTH(s_interfaces); i++) {
-    interface_info.interface_init = getPtrValue(VECTOR_ELT(s_interface_init_syms, i));
+    interface_info.interface_init = 
+      (GInterfaceInitFunc)getPtrValue(VECTOR_ELT(s_interface_init_syms, i));
     g_type_add_interface_static(new_type, 
       g_type_from_name(asCString(STRING_ELT(s_interfaces, i))), &interface_info);
   }
@@ -317,8 +318,20 @@ GType
 s_g_object_get_type(void)
 {
   static GType object_type = 0;
-  if (!object_type)
-    object_type = g_type_register_static_simple(G_TYPE_INTERFACE, "SGObject", 
-      sizeof(SGObjectIface), NULL, 0, NULL, 0);
+  if (!object_type) {
+    GTypeInfo info = {
+      sizeof(SGObjectIface),
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      NULL,
+      0,
+      0,
+      NULL,
+      NULL
+    };
+    object_type = g_type_register_static(G_TYPE_INTERFACE, "SGObject", &info, 0);
+  }
   return object_type;
 }

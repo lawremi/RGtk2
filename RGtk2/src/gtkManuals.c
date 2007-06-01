@@ -306,6 +306,7 @@ USER_OBJECT_
 		
         return(_result);
 }
+#if GTK_CHECK_VERSION(2,10,0)
 USER_OBJECT_
  S_gtk_tree_store_insert_with_valuesv ( USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USER_OBJECT_ s_position, USER_OBJECT_ s_columns, USER_OBJECT_ s_values )
 {
@@ -334,6 +335,7 @@ USER_OBJECT_
 		
  return(_result);
 }
+#endif
 
 /* reason: need to set mask on the fly - also, handle object pool */
 USER_OBJECT_
@@ -458,6 +460,7 @@ S_gtk_file_chooser_dialog_new_with_backend(USER_OBJECT_ s_title, USER_OBJECT_ s_
 
   return(_result);
 }
+#if GTK_CHECK_VERSION(2,10,0)
 USER_OBJECT_
 S_gtk_recent_chooser_dialog_new_for_manager(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_OBJECT_ s_manager, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)
 {
@@ -478,7 +481,7 @@ S_gtk_recent_chooser_dialog_new_for_manager(USER_OBJECT_ s_title, USER_OBJECT_ s
 
   return(_result);
 }
-
+#endif
 /* reason: var args, receive two vectors from R */
 USER_OBJECT_
 S_gtk_file_chooser_dialog_new(USER_OBJECT_ s_title, USER_OBJECT_ s_parent, USER_OBJECT_ s_action, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)

@@ -1,6 +1,6 @@
-\alias{cairo-Error-handling}
+\alias{cairo-Error-Handling}
 \alias{CairoStatus}
-\name{cairo-Error-handling}
+\name{cairo-Error-Handling}
 \title{Error handling}
 \description{Decoding cairo's status}
 \section{Methods and Functions}{\code{\link{cairoStatusToString}(status)}\cr}
@@ -35,9 +35,11 @@ to get a human-readable representation of an error message.
 \item{\code{file-not-found}}{ file not found}
 \item{\code{invalid-dash}}{ invalid value for a dash setting}
 \item{\code{invalid-dsc-comment}}{ invalid value for a DSC comment (Since 1.2)}
+\item{\code{invalid-index}}{ invalid index passed to getter (Since 1.4)}
+\item{\code{clip-not-representable}}{ clip region not representable in desired format (Since 1.4)}
 }
 
 }}}
-\references{\url{http://www.cairographics.org/manual/cairo-Error-handling.html}}
+\references{\url{http://www.cairographics.org/manual/cairo-Error-Handling.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

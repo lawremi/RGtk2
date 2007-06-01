@@ -41,7 +41,11 @@ toRPangoAttribute(PangoAttribute *attr, gboolean owns)
 		 case PANGO_ATTR_STRIKETHROUGH:
 		 case PANGO_ATTR_RISE:
 		 case PANGO_ATTR_FALLBACK:
-         case PANGO_ATTR_LETTER_SPACING:
+     case PANGO_ATTR_LETTER_SPACING:
+     #if PANGO_CHECK_VERSION(1,16,0)
+     case PANGO_ATTR_GRAVITY:
+     case PANGO_ATTR_GRAVITY_HINT:
+     #endif
          	type = "PangoAttrInt";
          break;
 		 case PANGO_ATTR_SIZE:

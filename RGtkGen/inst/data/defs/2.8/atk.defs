@@ -7,6 +7,7 @@
 ;; From /usr/include/atk-1.0/atk/atkaction.h
 
 (define-function atk_action_get_type
+  (in-module "Atk")
   (c-name "atk_action_get_type")
   (return-type "GType")
   (parameters
@@ -77,6 +78,7 @@
 ;; From /usr/include/atk-1.0/atk/atkcomponent.h
 
 (define-function atk_component_get_type
+  (in-module "Atk")
   (c-name "atk_component_get_type")
   (return-type "GType")
   (parameters
@@ -213,6 +215,7 @@
 ;; From /usr/include/atk-1.0/atk/atkdocument.h
 
 (define-function atk_document_get_type
+  (in-module "Atk")
   (c-name "atk_document_get_type")
   (return-type "GType")
 )
@@ -234,6 +237,7 @@
 ;; From /usr/include/atk-1.0/atk/atkeditabletext.h
 
 (define-function atk_editable_text_get_type
+  (in-module "Atk")
   (c-name "atk_editable_text_get_type")
   (return-type "GType")
 )
@@ -316,11 +320,13 @@
 ;; AtkGObjectAccessible
 
 (define-function atk_gobject_accessible_get_type
+  (in-module "Atk")
    (c-name "atk_gobject_accessible_get_type")
    (return-type "GType")
 )
  
 (define-function atk_gobject_accessible_for_object
+  (in-module "Atk")
    (c-name "atk_gobject_accessible_for_object")
    (return-type "AtkObject*")
    (parameters
@@ -338,6 +344,7 @@
 ;; From /usr/include/atk-1.0/atk/atkhyperlink.h
 
 (define-function atk_hyperlink_get_type
+  (in-module "Atk")
   (c-name "atk_hyperlink_get_type")
   (return-type "GType")
 )
@@ -401,6 +408,7 @@
 ;; From /usr/include/atk-1.0/atk/atkhypertext.h
 
 (define-function atk_hypertext_get_type
+  (in-module "Atk")
   (c-name "atk_hypertext_get_type")
   (return-type "GType")
 )
@@ -434,6 +442,7 @@
 ;; From /usr/include/atk-1.0/atk/atkimage.h
 
 (define-function atk_image_get_type
+  (in-module "Atk")
   (c-name "atk_image_get_type")
   (return-type "GType")
 )
@@ -479,6 +488,7 @@
 ;; From /usr/include/atk-1.0/atk/atknoopobjectfactory.h
 
 (define-function atk_no_op_object_factory_get_type
+  (in-module "Atk")
   (c-name "atk_no_op_object_factory_get_type")
   (return-type "GType")
   (parameters
@@ -486,6 +496,7 @@
 )
 
 (define-function atk_no_op_object_factory_new
+  (in-module "Atk")
   (c-name "atk_no_op_object_factory_new")
   (return-type "AtkObjectFactory*")
   (is-constructor-of "AtkNoOpObjectFactory")
@@ -498,11 +509,13 @@
 ;; From /usr/include/atk-1.0/atk/atknoopobject.h
 
 (define-function atk_no_op_object_get_type
+  (in-module "Atk")
   (c-name "atk_no_op_object_get_type")
   (return-type "GType")
 )
 
 (define-function atk_no_op_object_new
+  (in-module "Atk")
   (c-name "atk_no_op_object_new")
   (return-type "AtkObject*")
   (is-constructor-of "AtkNoOpObject")
@@ -516,6 +529,7 @@
 ;; From /usr/include/atk-1.0/atk/atkobjectfactory.h
 
 (define-function atk_object_factory_get_type
+  (in-module "Atk")
   (c-name "atk_object_factory_get_type")
   (return-type "GType")
   (parameters
@@ -546,11 +560,13 @@
 ;; From /usr/include/atk-1.0/atk/atkobject.h
 
 (define-function atk_object_get_type
+  (in-module "Atk")
   (c-name "atk_object_get_type")
   (return-type "GType")
 )
 
 (define-function atk_implementor_get_type
+  (in-module "Atk")
   (c-name "atk_implementor_get_type")
   (return-type "GType")
 )
@@ -699,6 +715,7 @@
 ;; From /usr/include/atk-1.0/atk/atkregistry.h
 
 (define-function atk_registry_get_type
+  (in-module "Atk")
   (c-name "atk_registry_get_type")
   (return-type "GType")
 )
@@ -732,6 +749,7 @@
 )
 
 (define-function get_default_registry
+  (in-module "Atk")
   (c-name "atk_get_default_registry")
   (return-type "AtkRegistry*")
   (parameters
@@ -743,11 +761,13 @@
 ;; From /usr/include/atk-1.0/atk/atkrelation.h
 
 (define-function atk_relation_get_type
+  (in-module "Atk")
   (c-name "atk_relation_get_type")
   (return-type "GType")
 )
 
 (define-function relation_type_register
+  (in-module "Atk")
   (c-name "atk_relation_type_register")
   (return-type "AtkRelationType")
   (parameters
@@ -756,6 +776,7 @@
 )
 
 (define-function get_name
+  (in-module "Atk")
   (c-name "atk_relation_type_get_name")
   (return-type "const-gchar*")
   (parameters
@@ -764,6 +785,7 @@
 )
 
 (define-function relation_type_for_name
+  (in-module "Atk")
   (c-name "atk_relation_type_for_name")
   (return-type "AtkRelationType")
   (parameters
@@ -772,6 +794,7 @@
 )
 
 (define-function relation_new
+  (in-module "Atk")
   (c-name "atk_relation_new")
   (return-type "AtkRelation*")
   (is-constructor-of "AtkRelation")
@@ -807,11 +830,13 @@
 ;; From /usr/include/atk-1.0/atk/atkrelationset.h
 
 (define-function atk_relation_set_get_type
+  (in-module "Atk")
   (c-name "atk_relation_set_get_type")
   (return-type "GType")
 )
 
 (define-function relation_set_new
+  (in-module "Atk")
   (c-name "atk_relation_set_new")
   (is-constructor-of "AtkRelationSet")
   (return-type "AtkRelationSet*")
@@ -881,6 +906,7 @@
 ;; From /usr/include/atk-1.0/atk/atkselection.h
 
 (define-function atk_selection_get_type
+  (in-module "Atk")
   (c-name "atk_selection_get_type")
   (return-type "GType")
   (parameters
@@ -946,6 +972,7 @@
 ;; From /usr/include/atk-1.0/atk/atkstate.h
 
 (define-function atk_state_type_register
+  (in-module "Atk")
   (c-name "atk_state_type_register")
   (return-type "AtkStateType")
   (parameters
@@ -954,6 +981,7 @@
 )
 
 (define-function get_name
+  (in-module "Atk")
   (c-name "atk_state_type_get_name")
   (return-type "const-gchar*")
   (parameters
@@ -962,6 +990,7 @@
 )
 
 (define-function state_type_for_name
+  (in-module "Atk")
   (c-name "atk_state_type_for_name")
   (return-type "AtkStateType")
   (parameters
@@ -974,11 +1003,13 @@
 ;; From /usr/include/atk-1.0/atk/atkstateset.h
 
 (define-function atk_state_set_get_type
+  (in-module "Atk")
   (c-name "atk_state_set_get_type")
   (return-type "GType")
 )
 
 (define-function atk_state_set_new
+  (in-module "Atk")
   (c-name "atk_state_set_new")
   (return-type "AtkStateSet*")
   (is-constructor-of "AtkStateSet")
@@ -1078,6 +1109,7 @@
 ;; From /usr/include/atk-1.0/atk/atkstreamablecontent.h
 
 (define-function atk_streamable_content_get_type
+  (in-module "Atk")
   (c-name "atk_streamable_content_get_type")
   (return-type "GType")
 )
@@ -1111,6 +1143,7 @@
 ;; From /usr/include/atk-1.0/atk/atktable.h
 
 (define-function atk_table_get_type
+  (in-module "Atk")
   (c-name "atk_table_get_type")
   (return-type "GType")
   (parameters
@@ -1380,6 +1413,7 @@
 ;; From /usr/include/atk-1.0/atk/atktext.h
 
 (define-function atk_text_get_type
+  (in-module "Atk")
   (c-name "atk_text_get_type")
   (return-type "GType")
 )
@@ -1587,6 +1621,7 @@
 )
 
 (define-function atk_text_attribute_register
+  (in-module "Atk")
    (c-name "atk_text_attribute_register")
    (return-type "AtkTextAttribute")
    (parameters
@@ -1595,6 +1630,7 @@
 )
 
 (define-function text_attribute_get_name
+  (in-module "Atk")
   (c-name "atk_text_attribute_get_name")
   (return-type "const-gchar*")
   (parameters
@@ -1603,6 +1639,7 @@
 )
 
 (define-function text_attribute_for_name
+  (in-module "Atk")
 	(c-name "atk_text_attribute_for_name")
 	(return-type "AtkTextAttribute")
 	(parameters
@@ -1610,6 +1647,7 @@
 	)
 )
 (define-function text_attribute_get_value
+  (in-module "Atk")
   (c-name "atk_text_attribute_get_value")
   (return-type "const-gchar*")
   (parameters
@@ -1623,11 +1661,13 @@
 ;; From /usr/include/atk-1.0/atk/atkutil.h
 
 (define-function atk_util_get_type
+  (in-module "Atk")
   (c-name "atk_util_get_type")
   (return-type "GType")
 )
 
 (define-function add_focus_tracker
+  (in-module "Atk")
   (c-name "atk_add_focus_tracker")
   (return-type "guint")
   (parameters
@@ -1636,6 +1676,7 @@
 )
 
 (define-function remove_focus_tracker
+  (in-module "Atk")
   (c-name "atk_remove_focus_tracker")
   (return-type "none")
   (parameters
@@ -1644,6 +1685,7 @@
 )
 
 (define-function focus_tracker_init
+  (in-module "Atk")
   (c-name "atk_focus_tracker_init")
   (return-type "none")
   (parameters
@@ -1652,6 +1694,7 @@
 )
 
 (define-function focus_tracker_notify
+  (in-module "Atk")
   (c-name "atk_focus_tracker_notify")
   (return-type "none")
   (parameters
@@ -1660,6 +1703,7 @@
 )
 
 (define-function add_global_event_listener
+  (in-module "Atk")
   (c-name "atk_add_global_event_listener")
   (return-type "guint")
   (parameters
@@ -1669,6 +1713,7 @@
 )
 
 (define-function remove_global_event_listener
+  (in-module "Atk")
   (c-name "atk_remove_global_event_listener")
   (return-type "none")
   (parameters
@@ -1677,6 +1722,7 @@
 )
 
 (define-function add_key_event_listener
+  (in-module "Atk")
   (c-name "atk_add_key_event_listener")
   (return-type "guint")
   (parameters
@@ -1686,6 +1732,7 @@
 )
 
 (define-function remove_key_event_listener
+  (in-module "Atk")
   (c-name "atk_remove_key_event_listener")
   (return-type "none")
   (parameters
@@ -1694,21 +1741,25 @@
 )
 
 (define-function get_root
+  (in-module "Atk")
   (c-name "atk_get_root")
   (return-type "AtkObject*")
 )
 
 (define-function atk_get_focus_object
+  (in-module "Atk")
    (c-name "atk_get_focus_object")
    (return-type "AtkObject*")
 )
 
 (define-function get_toolkit_name
+  (in-module "Atk")
   (c-name "atk_get_toolkit_name")
   (return-type "const-gchar*")
 )
 
 (define-function get_toolkit_version
+  (in-module "Atk")
   (c-name "atk_get_toolkit_version")
   (return-type "const-gchar*")
 )
@@ -1718,6 +1769,7 @@
 ;; From /usr/include/atk-1.0/atk/atkvalue.h
 
 (define-function atk_value_get_type
+  (in-module "Atk")
   (c-name "atk_value_get_type")
   (return-type "GType")
 )
@@ -1759,6 +1811,7 @@
 )
 
 (define-function get_name
+  (in-module "Atk")
   (c-name "atk_role_get_name")
   (return-type "const-gchar*")
   (parameters
@@ -1767,6 +1820,7 @@
 )
 
 (define-function role_for_name
+  (in-module "Atk")
   (c-name "atk_role_for_name")
   (return-type "AtkRole")
   (parameters
@@ -1775,6 +1829,7 @@
 )
 
 (define-function atk_role_register
+  (in-module "Atk")
    (c-name "atk_role_register")
    (return-type "AtkRole")
    (parameters
@@ -1811,6 +1866,7 @@
 )
 
 (define-function get_localized_name
+  (in-module "Atk")
    (c-name "atk_role_get_localized_name")
    (return-type "const-gchar*")
    (parameters

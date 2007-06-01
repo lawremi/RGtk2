@@ -11,10 +11,6 @@ where \code{place_string_here} is a \code{character} to be
 filled with the string.
 If appropriate.}
 \usage{gtkTreeModelGet(object, iter, ...)}
-\arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  a \code{\link{GtkTreeModel}}}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a row in \code{tree.model}}
-\item{\code{...}}{ pairs of column number and value return locations, terminated by -1}
-}
+\arguments{\item{\code{...}}{[\code{\link{GtkTreeIter}}]  a row in \code{tree.model}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

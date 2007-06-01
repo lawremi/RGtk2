@@ -8,29 +8,33 @@
 \description{Base class for surfaces}
 \section{Methods and Functions}{
 \code{\link{cairoSurfaceCreateSimilar}(other, content, width, height)}\cr
+\code{\link{cairoSurfaceReference}(surface)}\cr
 \code{\link{cairoSurfaceDestroy}(surface)}\cr
+\code{\link{cairoSurfaceStatus}(surface)}\cr
 \code{\link{cairoSurfaceFinish}(surface)}\cr
 \code{\link{cairoSurfaceFlush}(surface)}\cr
 \code{\link{cairoSurfaceGetFontOptions}(surface)}\cr
 \code{\link{cairoSurfaceGetContent}(surface)}\cr
-\code{\link{cairoSurfaceSetUserData}(surface, key, user.data)}\cr
-\code{\link{cairoSurfaceGetUserData}(surface, key)}\cr
 \code{\link{cairoSurfaceMarkDirty}(surface)}\cr
 \code{\link{cairoSurfaceMarkDirtyRectangle}(surface, x, y, width, height)}\cr
-\code{\link{cairoSurfaceReference}(surface)}\cr
 \code{\link{cairoSurfaceSetDeviceOffset}(surface, x.offset, y.offset)}\cr
 \code{\link{cairoSurfaceGetDeviceOffset}(surface)}\cr
 \code{\link{cairoSurfaceSetFallbackResolution}(surface, x.pixels.per.inch, y.pixels.per.inch)}\cr
-\code{\link{cairoSurfaceStatus}(surface)}\cr
 \code{\link{cairoSurfaceGetType}(surface)}\cr
+\code{\link{cairoSurfaceSetUserData}(surface, key, user.data)}\cr
+\code{\link{cairoSurfaceGetUserData}(surface, key)}\cr
 \code{cairoSurface(width, height, format, other, content, data, stride, filename, con)}
 }
 \section{Structures}{\describe{\item{\code{CairoSurface}}{
 A \code{\link{CairoSurface}} represents an image, either as the destination
 of a drawing operation or as source when drawing onto another
-surface. There are different subtypes of cairo\_surface\_t for
+surface.  To draw to a \code{\link{CairoSurface}}, create a cairo context
+with the surface as the target, using \code{\link{cairoCreate}}.
+  
+There are different subtypes of \code{\link{CairoSurface}} for
 different drawing backends; for example, \code{\link{cairoImageSurfaceCreate}}
 creates a bitmap image in memory.
+The type of a surface can be queried with \code{\link{cairoSurfaceGetType}}.
   
 Memory management of \code{\link{CairoSurface}} is done with
 \code{\link{cairoSurfaceReference}} and \code{\link{cairoSurfaceDestroy}}.  

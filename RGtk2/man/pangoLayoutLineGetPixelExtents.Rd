@@ -1,11 +1,9 @@
 \alias{pangoLayoutLineGetPixelExtents}
 \name{pangoLayoutLineGetPixelExtents}
 \title{pangoLayoutLineGetPixelExtents}
-\description{Computes the logical and ink extents of a layout line. See
-\code{\link{pangoFontGetGlyphExtents}} for details about the interpretation
-of the rectangles. The returned rectangles are in device units, as
-opposed to \code{\link{pangoLayoutLineGetExtents}}, which returns the extents in
-\code{integer}.}
+\description{Computes the logical and ink extents of \code{layout.line} in device units.
+This function just calls \code{\link{pangoLayoutLineGetExtents}} followed by
+\code{\link{pangoExtentsToPixels}}.}
 \usage{pangoLayoutLineGetPixelExtents(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayoutLine}}]  a \code{\link{PangoLayoutLine}}}}
 \value{

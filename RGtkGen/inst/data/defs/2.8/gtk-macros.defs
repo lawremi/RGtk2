@@ -1,4 +1,5 @@
 ;(define-function GTK_OBJECT_TYPE
+  (in-module "Gtk")
 ;  (c-name "GTK_OBJECT_TYPE")
 ;  (return-type "guint")
 ;  (parameters
@@ -6,6 +7,7 @@
 ;  )
 ;)
 ;(define-function GTK_CHECK_TYPE
+  (in-module "Gtk")
 ;  (c-name "GTK_CHECK_TYPE")
 ;  (return-type "gboolean")
 ;  (parameters
@@ -14,6 +16,7 @@
 ;  )
 ;)
 (define-function GTK_OBJECT_FLAGS
+  (in-module "Gtk")
   (c-name "GTK_OBJECT_FLAGS")
   (return-type "GtkWidgetFlags")
   (parameters
@@ -21,6 +24,7 @@
   )
 )
 (define-function GTK_WIDGET_SET_FLAGS
+  (in-module "Gtk")
   (c-name "GTK_WIDGET_SET_FLAGS")
   (return-type "none")
   (parameters
@@ -29,6 +33,7 @@
   )
 )
 (define-function GTK_WIDGET_UNSET_FLAGS
+  (in-module "Gtk")
   (c-name "GTK_WIDGET_UNSET_FLAGS")
   (return-type "none")
   (parameters
@@ -37,6 +42,7 @@
   )
 )
 (define-function GTK_WIDGET_IS_SENSITIVE
+  (in-module "Gtk")
   (c-name "GTK_WIDGET_IS_SENSITIVE")
   (return-type "gboolean")
   (parameters
@@ -44,6 +50,7 @@
   )
 )
 (define-function GTK_WIDGET_STATE
+  (in-module "Gtk")
   (c-name "GTK_WIDGET_STATE")
   (return-type "GtkStateType")
   (parameters
@@ -51,6 +58,7 @@
   )
 )
 (define-function GTK_WIDGET_SAVED_STATE
+  (in-module "Gtk")
   (c-name "GTK_WIDGET_SAVED_STATE")
   (return-type "GtkStateType")
   (parameters
@@ -58,6 +66,7 @@
   )
 )
 (define-function GTK_CTREE_ROW
+  (in-module "Gtk")
   (c-name "GTK_CTREE_ROW")
   (return-type "GtkCTreeRow*")
   (parameters

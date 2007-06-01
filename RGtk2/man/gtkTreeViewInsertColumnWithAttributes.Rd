@@ -7,13 +7,7 @@ the end.  The column is initialized with the attributes given. If \code{tree.vie
 has "fixed\_height" mode enabled, then the new column will have its sizing
 property set to be GTK\_TREE\_VIEW\_COLUMN\_FIXED.}
 \usage{gtkTreeViewInsertColumnWithAttributes(object, position, title, cell, ...)}
-\arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{position}}{[integer]  The position to insert the new column in.}
-\item{\code{title}}{[character]  The title to set the header to.}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  The \code{\link{GtkCellRenderer}}.}
-\item{\code{...}}{ A list of attributes.}
-}
+\arguments{\item{\code{...}}{[integer]  The position to insert the new column in.}}
 \value{[integer]  The number of columns in \code{tree.view} after insertion.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

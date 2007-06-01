@@ -48,9 +48,19 @@ R_RegisterCCallable("RGtk2", "asCGtkItemFactoryEntry2", ((DL_FUNC)asCGtkItemFact
 R_RegisterCCallable("RGtk2", "R_createGtkItemFactoryEntry", ((DL_FUNC)R_createGtkItemFactoryEntry)); 
 R_RegisterCCallable("RGtk2", "asCGtkAllocation", ((DL_FUNC)asCGtkAllocation)); 
 R_RegisterCCallable("RGtk2", "asRGtkAllocation", ((DL_FUNC)asRGtkAllocation)); 
-R_RegisterCCallable("RGtk2", "asCGtkRecentFilterInfo", ((DL_FUNC)asCGtkRecentFilterInfo)); 
-R_RegisterCCallable("RGtk2", "asRGtkRecentFilterInfo", ((DL_FUNC)asRGtkRecentFilterInfo)); 
-R_RegisterCCallable("RGtk2", "asCGtkRecentData", ((DL_FUNC)asCGtkRecentData)); 
-R_RegisterCCallable("RGtk2", "asRGtkPageRange", ((DL_FUNC)asRGtkPageRange)); 
-R_RegisterCCallable("RGtk2", "asCGtkPageRange", ((DL_FUNC)asCGtkPageRange)); 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "asCGtkRecentFilterInfo", ((DL_FUNC)asCGtkRecentFilterInfo));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "asRGtkRecentFilterInfo", ((DL_FUNC)asRGtkRecentFilterInfo));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "asCGtkRecentData", ((DL_FUNC)asCGtkRecentData));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "asRGtkPageRange", ((DL_FUNC)asRGtkPageRange));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "asCGtkPageRange", ((DL_FUNC)asCGtkPageRange));
+#endif 
 R_RegisterCCallable("RGtk2", "asRGtkAccelKey", ((DL_FUNC)asRGtkAccelKey)); 

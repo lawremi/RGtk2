@@ -2,8 +2,9 @@
 \name{cairoInStroke}
 \title{cairoInStroke}
 \description{Tests whether the given point is inside the area that would be
-stroked by doing a \code{\link{cairoStroke}} operation on \code{cr} given the
-current path and stroking parameters.}
+affected by a \code{\link{cairoStroke}} operation given the current path and
+stroking parameters. Surface dimensions and clipping are not taken
+into account.}
 \usage{cairoInStroke(cr, x, y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}

@@ -14,8 +14,6 @@ the screen.}
 \item{\link{AtkGObjectAccessible}}{This object class is derived from AtkObject and can be used as a basis 
 implementing accessible objects.}
 \item{\link{AtkHyperlink}}{An ATK object which encapsulates a link or set of links in a hypertext document.}
-\item{\link{atk-AtkHyperlinkImpl}}{An interface from which the AtkHyperlink associated with an
-AtkObject may be obtained.}
 \item{\link{AtkHypertext}}{The ATK interface which provides standard mechanism for manipulating hyperlinks.}
 \item{\link{AtkImage}}{The ATK Interface implemented by components which expose image or pixmap
 content on-screen.}

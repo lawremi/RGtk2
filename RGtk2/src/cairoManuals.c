@@ -74,3 +74,26 @@ S_cairo_read_func_t(gpointer s_closure, guchar* s_data, guint s_length)
   UNPROTECT(1);
   return(((cairo_status_t)asCEnum(VECTOR_ELT(s_ans, 0), CAIRO_TYPE_STATUS)));
 }
+
+/* dash array needs to be pre-allocated */
+USER_OBJECT_
+S_cairo_get_dash(USER_OBJECT_ s_cr)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 4, 0)
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+  int count = cairo_get_dash_count(cr);
+  
+  double dashes[count];
+  double offset;
+
+  cairo_get_dash(cr, dashes, &offset);
+
+
+  _result = retByVal(_result, "dashes", asRArrayWithSize(dashes, asRNumeric, count), "offset", asRNumeric(offset), NULL);
+#else
+  error("cairo_get_dash exists only in cairo >= 1.4.0");
+#endif
+
+  return(_result);
+}

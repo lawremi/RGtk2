@@ -8,12 +8,12 @@
 }
 \section{Detailed Description}{Cairo has a three-part version number scheme. In this scheme, we use
 even vs. odd numbers to distinguish fixed points in the software
-vs. in-progress development, (such as from CVS instead of a tar file,
+vs. in-progress development, (such as from git instead of a tar file,
 or as a "snapshot" tar file as opposed to a "release" tar file).
   
 \preformatted{ _____ Major. Always 1, until we invent a new scheme.
-/  ___ Minor. Even/Odd = Release/Snapshot (tar files) or Branch/Head (CVS)
-| /  _ Micro. Even/Odd = Tar-file/CVS
+/  ___ Minor. Even/Odd = Release/Snapshot (tar files) or Branch/Head (git)
+| /  _ Micro. Even/Odd = Tar-file/git
 | | /
 1.0.0
 }
@@ -29,7 +29,7 @@ Snapshots
 ---------
 1.1.2 - A snapshot (working toward the 1.2.0 release)
 
-In-progress development (eg. from CVS)
+In-progress development (eg. from git)
 --------------------------------------
 1.0.1 - Development on a maintenance branch (toward 1.0.2 release)
 1.1.1 - Development on head (toward 1.1.2 snapshot and 1.2.0 release)

@@ -31356,17 +31356,6 @@ function(object)
 } 
 
 
-gtkPaperSizeFree <-
-function(object)
-{
-  checkPtrType(object, "GtkPaperSize")
-
-  w <- .RGtkCall("S_gtk_paper_size_free", object, PACKAGE = "RGtk2")
-
-  return(invisible(w))
-} 
-
-
 gtkPaperSizeIsEqual <-
 function(object, size2)
 {

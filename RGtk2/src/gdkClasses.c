@@ -181,11 +181,11 @@ S_gdk_display_class_init(GdkDisplayClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_display_class_get_display_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayClass* object_class = ((GdkDisplayClass*)getPtrValue(s_object_class));
   GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_display_name(object);
 
@@ -197,11 +197,11 @@ S_gdk_display_class_get_display_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_gdk_display_class_get_n_screens(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayClass* object_class = ((GdkDisplayClass*)getPtrValue(s_object_class));
   GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_screens(object);
 
@@ -213,12 +213,12 @@ S_gdk_display_class_get_n_screens(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_gdk_display_class_get_screen(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_screen_num)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayClass* object_class = ((GdkDisplayClass*)getPtrValue(s_object_class));
   GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
   gint screen_num = ((gint)asCInteger(s_screen_num));
 
   GdkScreen* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_screen(object, screen_num);
 
@@ -230,11 +230,11 @@ S_gdk_display_class_get_screen(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_gdk_display_class_get_default_screen(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayClass* object_class = ((GdkDisplayClass*)getPtrValue(s_object_class));
   GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
 
   GdkScreen* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_default_screen(object);
 
@@ -246,11 +246,11 @@ S_gdk_display_class_get_default_screen(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_gdk_display_class_closed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_is_error)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayClass* object_class = ((GdkDisplayClass*)getPtrValue(s_object_class));
   GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
   gboolean is_error = ((gboolean)asCLogical(s_is_error));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->closed(object, is_error);
 
@@ -303,11 +303,11 @@ S_gdk_display_manager_class_init(GdkDisplayManagerClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_display_manager_class_display_opened(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_display)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplayManagerClass* object_class = ((GdkDisplayManagerClass*)getPtrValue(s_object_class));
   GdkDisplayManager* object = GDK_DISPLAY_MANAGER(getPtrValue(s_object));
   GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->display_opened(object, display);
 
@@ -1218,6 +1218,7 @@ S_gdk_drawable_class_init(GdkDrawableClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_drawable_class_draw_rectangle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_filled, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1227,7 +1228,6 @@ S_gdk_drawable_class_draw_rectangle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   gint width = ((gint)asCInteger(s_width));
   gint height = ((gint)asCInteger(s_height));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_rectangle(object, gc, filled, x, y, width, height);
 
@@ -1238,6 +1238,7 @@ S_gdk_drawable_class_draw_rectangle(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_gdk_drawable_class_draw_arc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_filled, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_angle1, USER_OBJECT_ s_angle2)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1249,7 +1250,6 @@ S_gdk_drawable_class_draw_arc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
   gint angle1 = ((gint)asCInteger(s_angle1));
   gint angle2 = ((gint)asCInteger(s_angle2));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_arc(object, gc, filled, x, y, width, height, angle1, angle2);
 
@@ -1260,6 +1260,7 @@ S_gdk_drawable_class_draw_arc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_gdk_drawable_class_draw_polygon(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_filled, USER_OBJECT_ s_points, USER_OBJECT_ s_npoints)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1267,7 +1268,6 @@ S_gdk_drawable_class_draw_polygon(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
   GdkPoint* points = asCGdkPoint(s_points);
   gint npoints = ((gint)asCInteger(s_npoints));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_polygon(object, gc, filled, points, npoints);
 
@@ -1278,6 +1278,7 @@ S_gdk_drawable_class_draw_polygon(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_gdk_drawable_class_draw_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_text, USER_OBJECT_ s_text_length)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkFont* font = ((GdkFont*)getPtrValue(s_font));
@@ -1287,7 +1288,6 @@ S_gdk_drawable_class_draw_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   const gchar* text = ((const gchar*)asCString(s_text));
   gint text_length = ((gint)asCInteger(s_text_length));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_text(object, font, gc, x, y, text, text_length);
 
@@ -1298,6 +1298,7 @@ S_gdk_drawable_class_draw_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_gdk_drawable_class_draw_text_wc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_font, USER_OBJECT_ s_gc, USER_OBJECT_ s_x, USER_OBJECT_ s_text)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkFont* font = ((GdkFont*)getPtrValue(s_font));
@@ -1307,7 +1308,6 @@ S_gdk_drawable_class_draw_text_wc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
   const GdkWChar* text = ((const GdkWChar*)asCArray(s_text, GdkWChar, asCNumeric));
   gint text_length = ((gint)GET_LENGTH(s_text));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_text_wc(object, font, gc, x, y, text, text_length);
 
@@ -1318,6 +1318,7 @@ S_gdk_drawable_class_draw_text_wc(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_gdk_drawable_class_draw_drawable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_src, USER_OBJECT_ s_xsrc, USER_OBJECT_ s_ysrc, USER_OBJECT_ s_xdest, USER_OBJECT_ s_ydest, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1329,7 +1330,6 @@ S_gdk_drawable_class_draw_drawable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   gint width = ((gint)asCInteger(s_width));
   gint height = ((gint)asCInteger(s_height));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_drawable(object, gc, src, xsrc, ysrc, xdest, ydest, width, height);
 
@@ -1340,13 +1340,13 @@ S_gdk_drawable_class_draw_drawable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_gdk_drawable_class_draw_points(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_points)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
   GdkPoint* points = ((GdkPoint*)asCArrayRef(s_points, GdkPoint, asCGdkPoint));
   gint npoints = ((gint)GET_LENGTH(s_points));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_points(object, gc, points, npoints);
 
@@ -1357,13 +1357,13 @@ S_gdk_drawable_class_draw_points(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_gdk_drawable_class_draw_segments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_segs)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
   GdkSegment* segs = ((GdkSegment*)asCArrayRef(s_segs, GdkSegment, asCGdkSegment));
   gint nsegs = ((gint)GET_LENGTH(s_segs));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_segments(object, gc, segs, nsegs);
 
@@ -1374,13 +1374,13 @@ S_gdk_drawable_class_draw_segments(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_gdk_drawable_class_draw_lines(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_points)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
   GdkPoint* points = ((GdkPoint*)asCArrayRef(s_points, GdkPoint, asCGdkPoint));
   gint npoints = ((gint)GET_LENGTH(s_points));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_lines(object, gc, points, npoints);
 
@@ -1391,6 +1391,7 @@ S_gdk_drawable_class_draw_lines(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_drawable_class_draw_glyphs(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_font, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_glyphs)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1399,7 +1400,6 @@ S_gdk_drawable_class_draw_glyphs(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   gint y = ((gint)asCInteger(s_y));
   PangoGlyphString* glyphs = ((PangoGlyphString*)getPtrValue(s_glyphs));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_glyphs(object, gc, font, x, y, glyphs);
 
@@ -1410,6 +1410,7 @@ S_gdk_drawable_class_draw_glyphs(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_gdk_drawable_class_draw_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_image, USER_OBJECT_ s_xsrc, USER_OBJECT_ s_ysrc, USER_OBJECT_ s_xdest, USER_OBJECT_ s_ydest, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1421,7 +1422,6 @@ S_gdk_drawable_class_draw_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
   gint width = ((gint)asCInteger(s_width));
   gint height = ((gint)asCInteger(s_height));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_image(object, gc, image, xsrc, ysrc, xdest, ydest, width, height);
 
@@ -1432,11 +1432,11 @@ S_gdk_drawable_class_draw_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_drawable_class_get_depth(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_depth(object);
 
@@ -1448,10 +1448,10 @@ S_gdk_drawable_class_get_depth(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_gdk_drawable_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint width;
   gint height;
 
@@ -1466,11 +1466,11 @@ S_gdk_drawable_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_gdk_drawable_class_set_colormap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_cmap)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkColormap* cmap = GDK_COLORMAP(getPtrValue(s_cmap));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_colormap(object, cmap);
 
@@ -1481,11 +1481,11 @@ S_gdk_drawable_class_set_colormap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_gdk_drawable_class_get_colormap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   GdkColormap* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_colormap(object);
 
@@ -1497,11 +1497,11 @@ S_gdk_drawable_class_get_colormap(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_gdk_drawable_class_get_visual(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   GdkVisual* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_visual(object);
 
@@ -1513,11 +1513,11 @@ S_gdk_drawable_class_get_visual(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_drawable_class_get_screen(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   GdkScreen* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_screen(object);
 
@@ -1529,6 +1529,7 @@ S_gdk_drawable_class_get_screen(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_drawable_class_get_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -1537,7 +1538,6 @@ S_gdk_drawable_class_get_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   gint height = ((gint)asCInteger(s_height));
 
   GdkImage* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_image(object, x, y, width, height);
 
@@ -1549,11 +1549,11 @@ S_gdk_drawable_class_get_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_gdk_drawable_class_get_clip_region(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   GdkRegion* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_clip_region(object);
 
@@ -1565,11 +1565,11 @@ S_gdk_drawable_class_get_clip_region(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_gdk_drawable_class_get_visible_region(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   GdkRegion* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_visible_region(object);
 
@@ -1581,6 +1581,7 @@ S_gdk_drawable_class_get_visible_region(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_gdk_drawable_class_get_composite_drawable(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -1589,7 +1590,6 @@ S_gdk_drawable_class_get_composite_drawable(USER_OBJECT_ s_object_class, USER_OB
   gint height = ((gint)asCInteger(s_height));
 
   GdkDrawable* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint composite_x_offset;
   gint composite_y_offset;
 
@@ -1605,6 +1605,7 @@ S_gdk_drawable_class_get_composite_drawable(USER_OBJECT_ s_object_class, USER_OB
 USER_OBJECT_
 S_gdk_drawable_class_draw_pixbuf(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_pixbuf, USER_OBJECT_ s_src_x, USER_OBJECT_ s_src_y, USER_OBJECT_ s_dest_x, USER_OBJECT_ s_dest_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_dither, USER_OBJECT_ s_x_dither, USER_OBJECT_ s_y_dither)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1619,7 +1620,6 @@ S_gdk_drawable_class_draw_pixbuf(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   gint x_dither = ((gint)asCInteger(s_x_dither));
   gint y_dither = ((gint)asCInteger(s_y_dither));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_pixbuf(object, gc, pixbuf, src_x, src_y, dest_x, dest_y, width, height, dither, x_dither, y_dither);
 
@@ -1630,6 +1630,7 @@ S_gdk_drawable_class_draw_pixbuf(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_gdk_drawable_class_draw_glyphs_transformed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_matrix, USER_OBJECT_ s_font, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_glyphs)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
@@ -1639,7 +1640,6 @@ S_gdk_drawable_class_draw_glyphs_transformed(USER_OBJECT_ s_object_class, USER_O
   gint y = ((gint)asCInteger(s_y));
   PangoGlyphString* glyphs = ((PangoGlyphString*)getPtrValue(s_glyphs));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_glyphs_transformed(object, gc, matrix, font, x, y, glyphs);
 
@@ -1650,13 +1650,13 @@ S_gdk_drawable_class_draw_glyphs_transformed(USER_OBJECT_ s_object_class, USER_O
 USER_OBJECT_
 S_gdk_drawable_class_draw_trapezoids(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_gc, USER_OBJECT_ s_trapezoids)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
   GdkGC* gc = GDK_GC(getPtrValue(s_gc));
   GdkTrapezoid* trapezoids = ((GdkTrapezoid*)asCArrayRef(s_trapezoids, GdkTrapezoid, asCGdkTrapezoid));
   gint n_trapezoids = ((gint)GET_LENGTH(s_trapezoids));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->draw_trapezoids(object, gc, trapezoids, n_trapezoids);
 
@@ -1667,11 +1667,11 @@ S_gdk_drawable_class_draw_trapezoids(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_gdk_drawable_class_ref_cairo_surface(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDrawableClass* object_class = ((GdkDrawableClass*)getPtrValue(s_object_class));
   GdkDrawable* object = GDK_DRAWABLE(getPtrValue(s_object));
 
   cairo_surface_t* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_cairo_surface(object);
 
@@ -1814,10 +1814,10 @@ S_gdk_gc_class_init(GdkGCClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_gcclass_get_values(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkGCClass* object_class = ((GdkGCClass*)getPtrValue(s_object_class));
   GdkGC* object = GDK_GC(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkGCValues* values = ((GdkGCValues *)g_new0(GdkGCValues, 1));
 
   object_class->get_values(object, values);
@@ -1832,13 +1832,13 @@ S_gdk_gcclass_get_values(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 USER_OBJECT_
 S_gdk_gcclass_set_dashes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_dash_list)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkGCClass* object_class = ((GdkGCClass*)getPtrValue(s_object_class));
   GdkGC* object = GDK_GC(getPtrValue(s_object));
   gint dash_offset = ((gint)GET_LENGTH(s_dash_list));
   gint8* dash_list = ((gint8*)asCArray(s_dash_list, gint8, asCRaw));
   gint n = ((gint)GET_LENGTH(s_dash_list));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_dashes(object, dash_offset, dash_list, n);
 
@@ -1929,10 +1929,10 @@ S_gdk_keymap_class_init(GdkKeymapClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_keymap_class_direction_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkKeymapClass* object_class = ((GdkKeymapClass*)getPtrValue(s_object_class));
   GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->direction_changed(object);
 
@@ -1943,10 +1943,10 @@ S_gdk_keymap_class_direction_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_gdk_keymap_class_keys_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkKeymapClass* object_class = ((GdkKeymapClass*)getPtrValue(s_object_class));
   GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->keys_changed(object);
 
@@ -2082,11 +2082,11 @@ S_gdk_pixbuf_animation_class_init(GdkPixbufAnimationClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_pixbuf_animation_class_is_static_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationClass* object_class = ((GdkPixbufAnimationClass*)getPtrValue(s_object_class));
   GdkPixbufAnimation* object = GDK_PIXBUF_ANIMATION(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_static_image(object);
 
@@ -2098,11 +2098,11 @@ S_gdk_pixbuf_animation_class_is_static_image(USER_OBJECT_ s_object_class, USER_O
 USER_OBJECT_
 S_gdk_pixbuf_animation_class_get_static_image(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationClass* object_class = ((GdkPixbufAnimationClass*)getPtrValue(s_object_class));
   GdkPixbufAnimation* object = GDK_PIXBUF_ANIMATION(getPtrValue(s_object));
 
   GdkPixbuf* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_static_image(object);
 
@@ -2114,10 +2114,10 @@ S_gdk_pixbuf_animation_class_get_static_image(USER_OBJECT_ s_object_class, USER_
 USER_OBJECT_
 S_gdk_pixbuf_animation_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationClass* object_class = ((GdkPixbufAnimationClass*)getPtrValue(s_object_class));
   GdkPixbufAnimation* object = GDK_PIXBUF_ANIMATION(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   int width;
   int height;
 
@@ -2132,12 +2132,12 @@ S_gdk_pixbuf_animation_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_gdk_pixbuf_animation_class_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_time)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationClass* object_class = ((GdkPixbufAnimationClass*)getPtrValue(s_object_class));
   GdkPixbufAnimation* object = GDK_PIXBUF_ANIMATION(getPtrValue(s_object));
   const GTimeVal* start_time = asCGTimeVal(s_start_time);
 
   GdkPixbufAnimationIter* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_iter(object, start_time);
 
@@ -2273,11 +2273,11 @@ S_gdk_pixbuf_animation_iter_class_init(GdkPixbufAnimationIterClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_pixbuf_animation_iter_class_get_delay_time(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationIterClass* object_class = ((GdkPixbufAnimationIterClass*)getPtrValue(s_object_class));
   GdkPixbufAnimationIter* object = GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_object));
 
   int ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_delay_time(object);
 
@@ -2289,11 +2289,11 @@ S_gdk_pixbuf_animation_iter_class_get_delay_time(USER_OBJECT_ s_object_class, US
 USER_OBJECT_
 S_gdk_pixbuf_animation_iter_class_get_pixbuf(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationIterClass* object_class = ((GdkPixbufAnimationIterClass*)getPtrValue(s_object_class));
   GdkPixbufAnimationIter* object = GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_object));
 
   GdkPixbuf* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_pixbuf(object);
 
@@ -2305,11 +2305,11 @@ S_gdk_pixbuf_animation_iter_class_get_pixbuf(USER_OBJECT_ s_object_class, USER_O
 USER_OBJECT_
 S_gdk_pixbuf_animation_iter_class_on_currently_loading_frame(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationIterClass* object_class = ((GdkPixbufAnimationIterClass*)getPtrValue(s_object_class));
   GdkPixbufAnimationIter* object = GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->on_currently_loading_frame(object);
 
@@ -2321,12 +2321,12 @@ S_gdk_pixbuf_animation_iter_class_on_currently_loading_frame(USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_pixbuf_animation_iter_class_advance(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_current_time)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufAnimationIterClass* object_class = ((GdkPixbufAnimationIterClass*)getPtrValue(s_object_class));
   GdkPixbufAnimationIter* object = GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_object));
   const GTimeVal* current_time = asCGTimeVal(s_current_time);
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->advance(object, current_time);
 
@@ -2468,12 +2468,12 @@ S_gdk_pixbuf_loader_class_init(GdkPixbufLoaderClass * c, SEXP e)
 USER_OBJECT_
 S_gdk_pixbuf_loader_class_size_prepared(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufLoaderClass* object_class = ((GdkPixbufLoaderClass*)getPtrValue(s_object_class));
   GdkPixbufLoader* object = GDK_PIXBUF_LOADER(getPtrValue(s_object));
   int width = ((int)asCInteger(s_width));
   int height = ((int)asCInteger(s_height));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->size_prepared(object, width, height);
 
@@ -2484,10 +2484,10 @@ S_gdk_pixbuf_loader_class_size_prepared(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_gdk_pixbuf_loader_class_area_prepared(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufLoaderClass* object_class = ((GdkPixbufLoaderClass*)getPtrValue(s_object_class));
   GdkPixbufLoader* object = GDK_PIXBUF_LOADER(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->area_prepared(object);
 
@@ -2498,6 +2498,7 @@ S_gdk_pixbuf_loader_class_area_prepared(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_gdk_pixbuf_loader_class_area_updated(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufLoaderClass* object_class = ((GdkPixbufLoaderClass*)getPtrValue(s_object_class));
   GdkPixbufLoader* object = GDK_PIXBUF_LOADER(getPtrValue(s_object));
   int x = ((int)asCInteger(s_x));
@@ -2505,7 +2506,6 @@ S_gdk_pixbuf_loader_class_area_updated(USER_OBJECT_ s_object_class, USER_OBJECT_
   int width = ((int)asCInteger(s_width));
   int height = ((int)asCInteger(s_height));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->area_updated(object, x, y, width, height);
 
@@ -2516,10 +2516,10 @@ S_gdk_pixbuf_loader_class_area_updated(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_gdk_pixbuf_loader_class_closed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkPixbufLoaderClass* object_class = ((GdkPixbufLoaderClass*)getPtrValue(s_object_class));
   GdkPixbufLoader* object = GDK_PIXBUF_LOADER(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->closed(object);
 
@@ -2604,16 +2604,18 @@ S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)
 
   if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
     c->size_changed = S_virtual_gdk_screen_size_changed;
+#if GDK_CHECK_VERSION(2, 10, 0)
   if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
     c->composited_changed = S_virtual_gdk_screen_composited_changed;
+#endif
 }
 USER_OBJECT_
 S_gdk_screen_class_size_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkScreenClass* object_class = ((GdkScreenClass*)getPtrValue(s_object_class));
   GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->size_changed(object);
 
@@ -2624,13 +2626,17 @@ S_gdk_screen_class_size_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_gdk_screen_class_composited_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 10, 0)
   GdkScreenClass* object_class = ((GdkScreenClass*)getPtrValue(s_object_class));
   GdkScreen* object = GDK_SCREEN(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->composited_changed(object);
 
+#else
+  error("gdk_screen_composited_changed exists only in Gdk >= 2.10.0");
+#endif
 
   return(_result);
 }

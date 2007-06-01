@@ -6,6 +6,7 @@
 ;; From ../../../RGtk2/inst/include/RGtk2/cairo.h
 
 (define-function S_cairo_read_func_t
+  (in-module "cairo")
   (c-name "S_cairo_read_func_t")
   (return-type "cairo_status_t")
   (parameters
@@ -16,6 +17,7 @@
 )
 
 (define-function asRCairoPath
+  (in-module "cairo")
   (c-name "asRCairoPath")
   (return-type "USER_OBJECT_")
   (parameters
@@ -24,6 +26,7 @@
 )
 
 (define-function asCCairoPath
+  (in-module "cairo")
   (c-name "asCCairoPath")
   (return-type "cairo_path_t*")
   (parameters
@@ -32,6 +35,7 @@
 )
 
 (define-function asCCairoGlyph
+  (in-module "cairo")
   (c-name "asCCairoGlyph")
   (return-type "cairo_glyph_t*")
   (parameters
@@ -39,4 +43,21 @@
   )
 )
 
-
+(define-function asRCairoRectangle
+  (in-module "cairo")
+  (c-name "asRCairoRectangle")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("cairo_rectangle_t*" "path")
+  )
+  (since "1.4.0")
+)
+(define-function asRCairoRectangleList
+  (in-module "cairo")
+  (c-name "asRCairoRectangleList")
+  (return-type "USER_OBJECT_")
+  (parameters
+    '("cairo_rectangle_list_t*" "list")
+  )
+  (since "1.4.0")
+)

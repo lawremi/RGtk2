@@ -10,13 +10,13 @@ Practically, it allows convenience operators to be specified for any external ob
 }
 \usage{
 "[[.RGtkObject"(x, field)
-"$.RGtkObject"(x, method)
+"$.RGtkObject"(x, member)
 "==.RGtkObject"(x, y)
 }
 \arguments{
 \item{x}{The \code{RGtkObject} to which the method or field belongs or the left hand of a comparison}
 \item{field}{The name of the field whose value will be retrieved}
-\item{method}{The name of the method that will be expanded to a function}
+\item{member}{The name of the member (eg method) that will be retrieved}
 \item{y}{The right hand operand of a comparison}
 }
 \value{
@@ -30,7 +30,9 @@ by expanding \code{objectOfClassName[[fieldName]]} to \code{classNameGetFieldNam
 External "methods" are expanded by the \code{$} operator to form 
 \code{classNameMethodName(objectOfClassName, ...)} from the Java-like 
 \code{objectOfClassName$methodName(...)}. The long and short mechanisms give 
-the same result, but the shortcut is obviously more convenient.
+the same result, but the shortcut is obviously more convenient. If the method
+does not exist, \code{$} will fall back to other types of members, like
+properties (for \code{\link{GObject}}s) and fields.
 
 The \code{==} operator compares two \code{RGtkObject}s on the basis of their internal pointer value.
 This should rarely be useful for users.

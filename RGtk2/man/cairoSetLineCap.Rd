@@ -6,8 +6,8 @@
 styles are drawn.}
 \usage{cairoSetLineCap(cr, line.cap)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context, as a \code{\link{Cairo}}}
-\item{\code{line.cap}}{[\code{\link{CairoLineCap}}]  a line cap style, as a \code{\link{CairoLineCap}}}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\code{line.cap}}{[\code{\link{CairoLineCap}}]  a line cap style}
 }
 \details{As with the other stroke parameters, the current line cap style is
 examined by \code{\link{cairoStroke}}, \code{\link{cairoStrokeExtents}}, and

@@ -23,8 +23,8 @@ logical string with multiple calls to \code{\link{cairoShowText}}.
   
 NOTE: The \code{\link{cairoShowText}} function call is part of what the cairo
 designers call the "toy" text API. It is convenient for short demos
-and simple programs, but it is not expected to be adequate for the
-most serious of text-using applications. See \code{\link{cairoShowGlyphs}}
-for the "real" text display API in cairo.  }
+and simple programs, but it is not expected to be adequate for
+serious text-using applications. See \code{\link{cairoShowGlyphs}} for the
+"real" text display API in cairo.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,9 @@ See \code{\link{pangoLayoutSetEllipsize}}}
 \usage{pangoLayoutGetEllipsize(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
 \details{  Since  1.6}
-\value{[\code{\link{PangoEllipsizeMode}}]  the current ellipsization mode for \code{layout}.}
+\value{[\code{\link{PangoEllipsizeMode}}]  the current ellipsization mode for \code{layout}.
+
+Use \code{\link{pangoLayoutIsEllipsized}} to query whether any paragraphs
+were actually ellipsized.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

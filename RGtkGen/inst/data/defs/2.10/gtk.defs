@@ -35,6 +35,7 @@
   (of-object "GtkWidget")
   (c-name "gtk_widget_get_action")
   (return-type "GtkAction*")
+  (since "2.10.0")
 )
 
 ;; From gtkadjustment.h
@@ -56,20 +57,25 @@
 ;; From gtkassistant.h
 
 (define-function assistant_get_type
+  (in-module "Gtk")
   (c-name "gtk_assistant_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function assistant_new
+  (in-module "Gtk")
   (c-name "gtk_assistant_new")
   (is-constructor-of "GtkAssistant")
   (return-type "GtkWidget*")
+  (since "2.10.0")
 )
 
 (define-method get_current_page
   (of-object "GtkAssistant")
   (c-name "gtk_assistant_get_current_page")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_current_page
@@ -79,12 +85,14 @@
   (parameters
     '("gint" "page_num")
   )
+  (since "2.10.0")
 )
 
 (define-method get_n_pages
   (of-object "GtkAssistant")
   (c-name "gtk_assistant_get_n_pages")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method get_nth_page
@@ -94,6 +102,7 @@
   (parameters
     '("gint" "page_num")
   )
+  (since "2.10.0")
 )
 
 (define-method prepend_page
@@ -103,6 +112,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method append_page
@@ -112,6 +122,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method insert_page
@@ -122,6 +133,7 @@
     '("GtkWidget*" "page")
     '("gint" "position")
   )
+  (since "2.10.0")
 )
 
 (define-method set_forward_page_func
@@ -133,6 +145,7 @@
     '("gpointer" "data")
     '("GDestroyNotify" "destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_type
@@ -143,6 +156,7 @@
     '("GtkWidget*" "page")
     '("GtkAssistantPageType" "type")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_type
@@ -152,6 +166,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_title
@@ -162,6 +177,7 @@
     '("GtkWidget*" "page")
     '("const-gchar*" "title")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_title
@@ -171,6 +187,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_header_image
@@ -181,6 +198,7 @@
     '("GtkWidget*" "page")
     '("GdkPixbuf*" "pixbuf" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_header_image
@@ -190,6 +208,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_side_image
@@ -200,6 +219,7 @@
     '("GtkWidget*" "page")
     '("GdkPixbuf*" "pixbuf" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_side_image
@@ -209,6 +229,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_complete
@@ -219,6 +240,7 @@
     '("GtkWidget*" "page")
     '("gboolean" "complete")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_complete
@@ -228,6 +250,7 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-method add_action_widget
@@ -237,6 +260,7 @@
   (parameters
     '("GtkWidget*" "child")
   )
+  (since "2.10.0")
 )
 
 (define-method remove_action_widget
@@ -246,12 +270,14 @@
   (parameters
     '("GtkWidget*" "child")
   )
+  (since "2.10.0")
 )
 
 (define-method update_buttons_state
   (of-object "GtkAssistant")
   (c-name "gtk_assistant_update_buttons_state")
   (return-type "none")
+  (since "2.10.0")
 )
 
 
@@ -281,12 +307,14 @@
   (parameters
     '("GtkPositionType" "position")
   )
+  (since "2.10.0")
 )
 
 (define-method get_image_position
   (of-object "GtkButton")
   (c-name "gtk_button_get_image_position")
   (return-type "GtkPositionType")
+  (since "2.10.0")
 )
 
 
@@ -305,14 +333,18 @@
 ;; From gtkcellrendereraccel.h
 
 (define-function cell_renderer_accel_get_type
+  (in-module "Gtk")
   (c-name "gtk_cell_renderer_accel_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function cell_renderer_accel_new
+  (in-module "Gtk")
   (c-name "gtk_cell_renderer_accel_new")
   (is-constructor-of "GtkCellRendererAccel")
   (return-type "GtkCellRenderer*")
+  (since "2.10.0")
 )
 
 
@@ -336,14 +368,18 @@
 ;; From gtkcellrendererspin.h
 
 (define-function cell_renderer_spin_get_type
+  (in-module "Gtk")
   (c-name "gtk_cell_renderer_spin_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function cell_renderer_spin_new
+  (in-module "Gtk")
   (c-name "gtk_cell_renderer_spin_new")
   (is-constructor-of "GtkCellRendererSpin")
   (return-type "GtkCellRenderer*")
+  (since "2.10.0")
 )
 
 
@@ -379,6 +415,7 @@
     '("GtkClipboardRichTextReceivedFunc" "callback")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 (define-method wait_for_rich_text
@@ -390,6 +427,7 @@
     '("GdkAtom*" "format" (out))
     '("gsize*" "length" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method wait_is_rich_text_available
@@ -399,6 +437,7 @@
   (parameters
     '("GtkTextBuffer*" "buffer")
   )
+  (since "2.10.0")
 )
 
 
@@ -429,6 +468,7 @@
   (of-object "GtkComboBox")
   (c-name "gtk_combo_box_get_title")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_title
@@ -438,6 +478,7 @@
   (parameters
     '("const-gchar*" "title")
   )
+  (since "2.10.0")
 )
 
 
@@ -475,12 +516,14 @@
   (parameters
     '("gboolean" "track_motion")
   )
+  (since "2.10.0")
 )
 
 (define-method drag_dest_get_track_motion
   (of-object "GtkWidget")
   (c-name "gtk_drag_dest_get_track_motion")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 
@@ -506,12 +549,14 @@
   (parameters
     '("const-GtkBorder*" "border" (null-ok))
   )
+  (since "2.10.0")
 )
 
 (define-method get_inner_border
   (of-object "GtkEntry")
   (c-name "gtk_entry_get_inner_border")
   (return-type "GtkBorder*")
+  (since "2.10.0")
 )
 
 
@@ -534,6 +579,7 @@
   (of-object "GtkFileChooserButton")
   (c-name "gtk_file_chooser_button_get_focus_on_click")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_focus_on_click
@@ -543,6 +589,7 @@
   (parameters
     '("gboolean" "focus_on_click")
   )
+  (since "2.10.0")
 )
 
 
@@ -689,6 +736,7 @@
   (c-name "gtk_label_get_line_wrap_mode")
   (of-object "GtkLabel")
   (return-type "PangoWrapMode")
+  (since "2.10.0")
 )
 (define-method set_line_wrap_mode
   (c-name "gtk_label_set_line_wrap_mode")
@@ -697,6 +745,7 @@
   (parameters
     '("PangoWrapMode" "wrap_mode")
   )
+  (since "2.10.0")
 )
 
 ;; From gtklayout.h
@@ -706,19 +755,24 @@
 ;; From gtklinkbutton.h
 
 (define-function link_button_get_type
+  (in-module "Gtk")
   (c-name "gtk_link_button_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function link_button_new
+  (in-module "Gtk")
   (c-name "gtk_link_button_new")
   (return-type "GtkWidget*")
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 
 (define-function link_button_new_with_label
+  (in-module "Gtk")
   (c-name "gtk_link_button_new_with_label")
   (is-constructor-of "GtkLinkButton")
   (return-type "GtkWidget*")
@@ -726,12 +780,14 @@
     '("gchar*" "uri")
     '("gchar*" "label" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_uri
   (of-object "GtkLinkButton")
   (c-name "gtk_link_button_get_uri")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_uri
@@ -741,9 +797,11 @@
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 
 (define-function link_button_set_uri_hook
+  (in-module "Gtk")
   (c-name "gtk_link_button_set_uri_hook")
   (return-type "GtkLinkButtonUriFunc")
   (parameters
@@ -751,6 +809,7 @@
     '("gpointer" "data")
     '("GDestroyNotify" "destroy")
   )
+  (since "2.10.0")
 )
 
 
@@ -804,6 +863,7 @@
   (parameters
     '("GtkWidget*" "image")
   )
+  (since "2.10.0")
 )
 
 
@@ -818,6 +878,7 @@
 ;; From gtknotebook.h
 
 (define-function notebook_set_window_creation_hook
+  (in-module "Gtk")
   (c-name "gtk_notebook_set_window_creation_hook")
   (return-type "none")
   (parameters
@@ -825,6 +886,7 @@
     '("gpointer" "data")
     '("GDestroyNotify" "destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method set_group_id
@@ -834,12 +896,14 @@
   (parameters
     '("gint" "group_id")
   )
+  (since "2.10.0")
 )
 
 (define-method get_group_id
   (of-object "GtkNotebook")
   (c-name "gtk_notebook_get_group_id")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method get_tab_reorderable
@@ -849,6 +913,7 @@
   (parameters
     '("GtkWidget*" "child")
   )
+  (since "2.10.0")
 )
 
 (define-method set_tab_reorderable
@@ -859,6 +924,7 @@
     '("GtkWidget*" "child")
     '("gboolean" "reorderable")
   )
+  (since "2.10.0")
 )
 
 (define-method get_tab_detachable
@@ -868,6 +934,7 @@
   (parameters
     '("GtkWidget*" "child")
   )
+  (since "2.10.0")
 )
 
 (define-method set_tab_detachable
@@ -878,6 +945,7 @@
     '("GtkWidget*" "child")
     '("gboolean" "detachable")
   )
+  (since "2.10.0")
 )
 
 
@@ -897,26 +965,32 @@
 ;; From gtkpagesetup.h
 
 (define-function page_setup_get_type
+  (in-module "Gtk")
   (c-name "gtk_page_setup_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function page_setup_new
+  (in-module "Gtk")
   (c-name "gtk_page_setup_new")
   (is-constructor-of "GtkPageSetup")
   (return-type "GtkPageSetup*")
+  (since "2.10.0")
 )
 
 (define-method copy
   (of-object "GtkPageSetup")
   (c-name "gtk_page_setup_copy")
   (return-type "GtkPageSetup*")
+  (since "2.10.0")
 )
 
 (define-method get_orientation
   (of-object "GtkPageSetup")
   (c-name "gtk_page_setup_get_orientation")
   (return-type "GtkPageOrientation")
+  (since "2.10.0")
 )
 
 (define-method set_orientation
@@ -926,12 +1000,14 @@
   (parameters
     '("GtkPageOrientation" "orientation")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_size
   (of-object "GtkPageSetup")
   (c-name "gtk_page_setup_get_paper_size")
   (return-type "GtkPaperSize*")
+  (since "2.10.0")
 )
 
 (define-method set_paper_size
@@ -941,6 +1017,7 @@
   (parameters
     '("GtkPaperSize*" "size")
   )
+  (since "2.10.0")
 )
 
 (define-method get_top_margin
@@ -950,6 +1027,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_top_margin
@@ -960,6 +1038,7 @@
     '("gdouble" "margin")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_bottom_margin
@@ -969,6 +1048,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_bottom_margin
@@ -979,6 +1059,7 @@
     '("gdouble" "margin")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_left_margin
@@ -988,6 +1069,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_left_margin
@@ -998,6 +1080,7 @@
     '("gdouble" "margin")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_right_margin
@@ -1007,6 +1090,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_right_margin
@@ -1017,6 +1101,7 @@
     '("gdouble" "margin")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_paper_size_and_default_margins
@@ -1026,6 +1111,7 @@
   (parameters
     '("GtkPaperSize*" "size")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_width
@@ -1035,6 +1121,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_height
@@ -1044,6 +1131,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_width
@@ -1053,6 +1141,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_height
@@ -1062,6 +1151,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 
@@ -1073,21 +1163,27 @@
 ;; From gtkpapersize.h
 
 (define-function paper_size_get_type
+  (in-module "Gtk")
   (c-name "gtk_paper_size_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function paper_size_new
+  (in-module "Gtk")
   (c-name "gtk_paper_size_new")
-  (is-constructor-of "GtkPaperSize")
+  (caller-owns-return #t)
   (return-type "GtkPaperSize*")
   (parameters
     '("const-gchar*" "name" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-function paper_size_new_from_ppd
+  (in-module "Gtk")
   (c-name "gtk_paper_size_new_from_ppd")
+  (caller-owns-return #t)
   (return-type "GtkPaperSize*")
   (parameters
     '("const-gchar*" "ppd_name")
@@ -1095,10 +1191,13 @@
     '("gdouble" "width")
     '("gdouble" "height")
   )
+  (since "2.10.0")
 )
 
 (define-function paper_size_new_custom
+  (in-module "Gtk")
   (c-name "gtk_paper_size_new_custom")
+  (caller-owns-return #t)
   (return-type "GtkPaperSize*")
   (parameters
     '("const-gchar*" "name")
@@ -1107,18 +1206,22 @@
     '("gdouble" "height")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method copy
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_copy")
+  (caller-owns-return #t)
   (return-type "GtkPaperSize*")
+  (since "2.10.0")
 )
 
 (define-method free
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_free")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method is_equal
@@ -1128,24 +1231,28 @@
   (parameters
     '("GtkPaperSize*" "size2")
   )
+  (since "2.10.0")
 )
 
 (define-method get_name
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_get_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_display_name
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_get_display_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_ppd_name
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_get_ppd_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_width
@@ -1155,6 +1262,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_height
@@ -1164,12 +1272,14 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method is_custom
   (of-object "GtkPaperSize")
   (c-name "gtk_paper_size_is_custom")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_size
@@ -1181,6 +1291,7 @@
     '("gdouble" "height")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_top_margin
@@ -1190,6 +1301,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_bottom_margin
@@ -1199,6 +1311,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_left_margin
@@ -1208,6 +1321,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_right_margin
@@ -1217,11 +1331,14 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-function paper_size_get_default
+  (in-module "Gtk")
   (c-name "gtk_paper_size_get_default")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 
@@ -1241,62 +1358,73 @@
 ;; From gtkprintcontext.h
 
 (define-function print_context_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_context_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-method get_cairo_context
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_cairo_context")
   (return-type "cairo_t*")
+  (since "2.10.0")
 )
 
 (define-method get_page_setup
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_page_setup")
   (return-type "GtkPageSetup*")
+  (since "2.10.0")
 )
 
 (define-method get_width
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_width")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method get_height
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_height")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method get_dpi_x
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_dpi_x")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method get_dpi_y
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_dpi_y")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method get_pango_fontmap
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_get_pango_fontmap")
   (return-type "PangoFontMap*")
+  (since "2.10.0")
 )
 
 (define-method create_pango_context
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_create_pango_context")
   (return-type "PangoContext*")
+  (since "2.10.0")
 )
 
 (define-method create_pango_layout
   (of-object "GtkPrintContext")
   (c-name "gtk_print_context_create_pango_layout")
   (return-type "PangoLayout*")
+  (since "2.10.0")
 )
 
 (define-method set_cairo_context
@@ -1308,6 +1436,7 @@
     '("double" "dpi_x")
     '("double" "dpi_y")
   )
+  (since "2.10.0")
 )
 
 
@@ -1315,19 +1444,25 @@
 ;; From gtkprintoperation.h
 
 (define-function print_error_quark
+  (in-module "Gtk")
   (c-name "gtk_print_error_quark")
   (return-type "GQuark")
+  (since "2.10.0")
 )
 
 (define-function print_operation_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_operation_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_operation_new
+  (in-module "Gtk")
   (c-name "gtk_print_operation_new")
   (is-constructor-of "GtkPrintOperation")
   (return-type "GtkPrintOperation*")
+  (since "2.10.0")
 )
 
 (define-method set_default_page_setup
@@ -1337,12 +1472,14 @@
   (parameters
     '("GtkPageSetup*" "default_page_setup" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_page_setup
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_default_page_setup")
   (return-type "GtkPageSetup*")
+  (since "2.10.0")
 )
 
 (define-method set_print_settings
@@ -1352,12 +1489,14 @@
   (parameters
     '("GtkPrintSettings*" "print_settings" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_print_settings
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_print_settings")
   (return-type "GtkPrintSettings*")
+  (since "2.10.0")
 )
 
 (define-method set_job_name
@@ -1367,6 +1506,7 @@
   (parameters
     '("const-gchar*" "job_name")
   )
+  (since "2.10.0")
 )
 
 (define-method set_n_pages
@@ -1376,6 +1516,7 @@
   (parameters
     '("gint" "n_pages")
   )
+  (since "2.10.0")
 )
 
 (define-method set_current_page
@@ -1385,6 +1526,7 @@
   (parameters
     '("gint" "current_page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_use_full_page
@@ -1394,6 +1536,7 @@
   (parameters
     '("gboolean" "full_page")
   )
+  (since "2.10.0")
 )
 
 (define-method set_unit
@@ -1403,6 +1546,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_export_filename
@@ -1412,6 +1556,7 @@
   (parameters
     '("const-gchar*" "filename")
   )
+  (since "2.10.0")
 )
 
 (define-method set_track_print_status
@@ -1421,6 +1566,7 @@
   (parameters
     '("gboolean" "track_status")
   )
+  (since "2.10.0")
 )
 
 (define-method set_show_progress
@@ -1430,6 +1576,7 @@
   (parameters
     '("gboolean" "show_progress")
   )
+  (since "2.10.0")
 )
 
 (define-method set_allow_async
@@ -1439,6 +1586,7 @@
   (parameters
     '("gboolean" "allow_async")
   )
+  (since "2.10.0")
 )
 
 (define-method set_custom_tab_label
@@ -1448,6 +1596,7 @@
   (parameters
     '("const-gchar*" "label")
   )
+  (since "2.10.0")
 )
 
 (define-method run
@@ -1459,6 +1608,7 @@
     '("GtkWindow*" "parent" (null-ok) (default "NULL"))
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method get_error
@@ -1468,33 +1618,39 @@
   (parameters
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method get_status
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_status")
   (return-type "GtkPrintStatus")
+  (since "2.10.0")
 )
 
 (define-method get_status_string
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_get_status_string")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method is_finished
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_is_finished")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method cancel
   (of-object "GtkPrintOperation")
   (c-name "gtk_print_operation_cancel")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-function print_run_page_setup_dialog
+  (in-module "Gtk")
   (c-name "gtk_print_run_page_setup_dialog")
   (return-type "GtkPageSetup*")
   (parameters
@@ -1502,9 +1658,11 @@
     '("GtkPageSetup*" "page_setup" (null-ok))
     '("GtkPrintSettings*" "settings")
   )
+  (since "2.10.0")
 )
 
 (define-function print_run_page_setup_dialog_async
+  (in-module "Gtk")
   (c-name "gtk_print_run_page_setup_dialog_async")
   (return-type "none")
   (parameters
@@ -1514,6 +1672,7 @@
     '("GtkPageSetupDoneFunc" "done_cb")
     '("gpointer" "data")
   )
+  (since "2.10.0")
 )
 
 
@@ -1521,8 +1680,10 @@
 ;; From gtkprintoperationpreview.h
 
 (define-function print_operation_preview_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_operation_preview_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-method render_page
@@ -1532,12 +1693,14 @@
   (parameters
     '("gint" "page_nr")
   )
+  (since "2.10.0")
 )
 
 (define-method end_preview
   (of-object "GtkPrintOperationPreview")
   (c-name "gtk_print_operation_preview_end_preview")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method is_selected
@@ -1547,6 +1710,7 @@
   (parameters
     '("gint" "page_nr")
   )
+  (since "2.10.0")
 )
 
 
@@ -1554,20 +1718,25 @@
 ;; From gtkprintsettings.h
 
 (define-function print_settings_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_settings_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_settings_new
+  (in-module "Gtk")
   (c-name "gtk_print_settings_new")
   (is-constructor-of "GtkPrintSettings")
   (return-type "GtkPrintSettings*")
+  (since "2.10.0")
 )
 
 (define-method copy
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_copy")
   (return-type "GtkPrintSettings*")
+  (since "2.10.0")
 )
 
 (define-method has_key
@@ -1577,6 +1746,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method get
@@ -1586,6 +1756,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method set
@@ -1596,6 +1767,7 @@
     '("const-gchar*" "key")
     '("const-gchar*" "value")
   )
+  (since "2.10.0")
 )
 
 (define-method unset
@@ -1605,6 +1777,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method foreach
@@ -1615,6 +1788,7 @@
     '("GtkPrintSettingsFunc" "func")
     '("gpointer" "user_data" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_bool
@@ -1624,6 +1798,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method set_bool
@@ -1634,6 +1809,7 @@
     '("const-gchar*" "key")
     '("gboolean" "value")
   )
+  (since "2.10.0")
 )
 
 (define-method get_double
@@ -1643,6 +1819,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method get_double_with_default
@@ -1653,6 +1830,7 @@
     '("const-gchar*" "key")
     '("gdouble" "def")
   )
+  (since "2.10.0")
 )
 
 (define-method set_double
@@ -1663,6 +1841,7 @@
     '("const-gchar*" "key")
     '("gdouble" "value")
   )
+  (since "2.10.0")
 )
 
 (define-method get_length
@@ -1673,6 +1852,7 @@
     '("const-gchar*" "key")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_length
@@ -1684,6 +1864,7 @@
     '("gdouble" "value")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_int
@@ -1693,6 +1874,7 @@
   (parameters
     '("const-gchar*" "key")
   )
+  (since "2.10.0")
 )
 
 (define-method get_int_with_default
@@ -1703,6 +1885,7 @@
     '("const-gchar*" "key")
     '("gint" "def")
   )
+  (since "2.10.0")
 )
 
 (define-method set_int
@@ -1713,12 +1896,14 @@
     '("const-gchar*" "key")
     '("gint" "value")
   )
+  (since "2.10.0")
 )
 
 (define-method get_printer
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_printer")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_printer
@@ -1728,12 +1913,14 @@
   (parameters
     '("const-gchar*" "printer")
   )
+  (since "2.10.0")
 )
 
 (define-method get_orientation
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_orientation")
   (return-type "GtkPageOrientation")
+  (since "2.10.0")
 )
 
 (define-method set_orientation
@@ -1743,12 +1930,14 @@
   (parameters
     '("GtkPageOrientation" "orientation")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_size
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_paper_size")
   (return-type "GtkPaperSize*")
+  (since "2.10.0")
 )
 
 (define-method set_paper_size
@@ -1758,6 +1947,7 @@
   (parameters
     '("GtkPaperSize*" "paper_size")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_width
@@ -1767,6 +1957,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_paper_width
@@ -1777,6 +1968,7 @@
     '("gdouble" "width")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_paper_height
@@ -1786,6 +1978,7 @@
   (parameters
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method set_paper_height
@@ -1796,12 +1989,14 @@
     '("gdouble" "height")
     '("GtkUnit" "unit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_use_color
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_use_color")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_use_color
@@ -1811,12 +2006,14 @@
   (parameters
     '("gboolean" "use_color")
   )
+  (since "2.10.0")
 )
 
 (define-method get_collate
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_collate")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_collate
@@ -1826,12 +2023,14 @@
   (parameters
     '("gboolean" "collate")
   )
+  (since "2.10.0")
 )
 
 (define-method get_reverse
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_reverse")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_reverse
@@ -1841,12 +2040,14 @@
   (parameters
     '("gboolean" "reverse")
   )
+  (since "2.10.0")
 )
 
 (define-method get_duplex
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_duplex")
   (return-type "GtkPrintDuplex")
+  (since "2.10.0")
 )
 
 (define-method set_duplex
@@ -1856,12 +2057,14 @@
   (parameters
     '("GtkPrintDuplex" "duplex")
   )
+  (since "2.10.0")
 )
 
 (define-method get_quality
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_quality")
   (return-type "GtkPrintQuality")
+  (since "2.10.0")
 )
 
 (define-method set_quality
@@ -1871,12 +2074,14 @@
   (parameters
     '("GtkPrintQuality" "quality")
   )
+  (since "2.10.0")
 )
 
 (define-method get_n_copies
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_n_copies")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_n_copies
@@ -1886,12 +2091,14 @@
   (parameters
     '("gint" "num_copies")
   )
+  (since "2.10.0")
 )
 
 (define-method get_number_up
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_number_up")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_number_up
@@ -1901,12 +2108,14 @@
   (parameters
     '("gint" "number_up")
   )
+  (since "2.10.0")
 )
 
 (define-method get_resolution
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_resolution")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_resolution
@@ -1916,12 +2125,14 @@
   (parameters
     '("gint" "resolution")
   )
+  (since "2.10.0")
 )
 
 (define-method get_scale
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_scale")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method set_scale
@@ -1931,12 +2142,14 @@
   (parameters
     '("gdouble" "scale")
   )
+  (since "2.10.0")
 )
 
 (define-method get_print_pages
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_print_pages")
   (return-type "GtkPrintPages")
+  (since "2.10.0")
 )
 
 (define-method set_print_pages
@@ -1946,6 +2159,7 @@
   (parameters
     '("GtkPrintPages" "pages")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_ranges
@@ -1955,6 +2169,7 @@
   (parameters
     '("gint*" "num_ranges")
   )
+  (since "2.10.0")
 )
 
 (define-method set_page_ranges
@@ -1965,12 +2180,14 @@
     '("GtkPageRange*" "page_ranges")
     '("gint" "num_ranges")
   )
+  (since "2.10.0")
 )
 
 (define-method get_page_set
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_page_set")
   (return-type "GtkPageSet")
+  (since "2.10.0")
 )
 
 (define-method set_page_set
@@ -1980,12 +2197,14 @@
   (parameters
     '("GtkPageSet" "page_set")
   )
+  (since "2.10.0")
 )
 
 (define-method get_default_source
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_default_source")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_default_source
@@ -1995,12 +2214,14 @@
   (parameters
     '("const-gchar*" "default_source")
   )
+  (since "2.10.0")
 )
 
 (define-method get_media_type
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_media_type")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_media_type
@@ -2010,12 +2231,14 @@
   (parameters
     '("const-gchar*" "media_type")
   )
+  (since "2.10.0")
 )
 
 (define-method get_dither
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_dither")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_dither
@@ -2025,12 +2248,14 @@
   (parameters
     '("const-gchar*" "dither")
   )
+  (since "2.10.0")
 )
 
 (define-method get_finishings
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_finishings")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_finishings
@@ -2040,12 +2265,14 @@
   (parameters
     '("const-gchar*" "finishings")
   )
+  (since "2.10.0")
 )
 
 (define-method get_output_bin
   (of-object "GtkPrintSettings")
   (c-name "gtk_print_settings_get_output_bin")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method set_output_bin
@@ -2055,6 +2282,7 @@
   (parameters
     '("const-gchar*" "output_bin")
   )
+  (since "2.10.0")
 )
 
 
@@ -2080,6 +2308,7 @@
   (parameters
     '("gint" "current_value")
   )
+  (since "2.10.0")
 )
 
 
@@ -2105,12 +2334,14 @@
   (parameters
     '("GtkSensitivityType" "sensitivity")
   )
+  (since "2.10.0")
 )
 
 (define-method get_lower_stepper_sensitivity
   (of-object "GtkRange")
   (c-name "gtk_range_get_lower_stepper_sensitivity")
   (return-type "GtkSensitivityType")
+  (since "2.10.0")
 )
 
 (define-method set_upper_stepper_sensitivity
@@ -2120,12 +2351,14 @@
   (parameters
     '("GtkSensitivityType" "sensitivity")
   )
+  (since "2.10.0")
 )
 
 (define-method get_upper_stepper_sensitivity
   (of-object "GtkRange")
   (c-name "gtk_range_get_upper_stepper_sensitivity")
   (return-type "GtkSensitivityType")
+  (since "2.10.0")
 )
 
 
@@ -2137,11 +2370,14 @@
 ;; From gtkrecentchooserdialog.h
 
 (define-function recent_chooser_dialog_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_dialog_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_dialog_new
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_dialog_new")
   (is-constructor-of "GtkRecentChooserDialog")
   (return-type "GtkWidget*")
@@ -2151,9 +2387,11 @@
     '("const-gchar*" "first_button_text")
   )
   (varargs #t)
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_dialog_new_for_manager
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_dialog_new_for_manager")
   (return-type "GtkWidget*")
   (parameters
@@ -2163,6 +2401,7 @@
     '("const-gchar*" "first_button_text")
   )
   (varargs #t)
+  (since "2.10.0")
 )
 
 
@@ -2170,13 +2409,17 @@
 ;; From gtkrecentchooser.h
 
 (define-function recent_chooser_error_quark
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_error_quark")
   (return-type "GQuark")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-method set_show_private
@@ -2186,12 +2429,14 @@
   (parameters
     '("gboolean" "show_private")
   )
+  (since "2.10.0")
 )
 
 (define-method get_show_private
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_show_private")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_show_not_found
@@ -2201,12 +2446,14 @@
   (parameters
     '("gboolean" "show_not_found")
   )
+  (since "2.10.0")
 )
 
 (define-method get_show_not_found
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_show_not_found")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_select_multiple
@@ -2216,12 +2463,14 @@
   (parameters
     '("gboolean" "select_multiple")
   )
+  (since "2.10.0")
 )
 
 (define-method get_select_multiple
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_select_multiple")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_limit
@@ -2231,12 +2480,14 @@
   (parameters
     '("gint" "limit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_limit
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_limit")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_local_only
@@ -2246,12 +2497,14 @@
   (parameters
     '("gboolean" "local_only")
   )
+  (since "2.10.0")
 )
 
 (define-method get_local_only
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_local_only")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_show_tips
@@ -2261,12 +2514,14 @@
   (parameters
     '("gboolean" "show_tips")
   )
+  (since "2.10.0")
 )
 
 (define-method get_show_tips
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_show_tips")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_show_icons
@@ -2276,12 +2531,14 @@
   (parameters
     '("gboolean" "show_icons")
   )
+  (since "2.10.0")
 )
 
 (define-method get_show_icons
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_show_icons")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_sort_type
@@ -2291,12 +2548,14 @@
   (parameters
     '("GtkRecentSortType" "sort_type")
   )
+  (since "2.10.0")
 )
 
 (define-method get_sort_type
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_sort_type")
   (return-type "GtkRecentSortType")
+  (since "2.10.0")
 )
 
 (define-method set_sort_func
@@ -2308,6 +2567,7 @@
     '("gpointer" "sort_data")
     '("GDestroyNotify" "data_destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method set_current_uri
@@ -2318,18 +2578,21 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method get_current_uri
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_current_uri")
   (return-type "gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_current_item
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_current_item")
   (return-type "GtkRecentInfo*")
+  (since "2.10.0")
 )
 
 (define-method select_uri
@@ -2340,6 +2603,7 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method unselect_uri
@@ -2349,18 +2613,21 @@
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 
 (define-method select_all
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_select_all")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method unselect_all
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_unselect_all")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method get_items
@@ -2368,6 +2635,7 @@
   (caller-owns-return #t)
   (c-name "gtk_recent_chooser_get_items")
   (return-type "GList[GtkRecentInfo]")
+  (since "2.10.0")
 )
 
 (define-method get_uris
@@ -2377,6 +2645,7 @@
   (parameters
     '("gsize*" "length" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method add_filter
@@ -2386,6 +2655,7 @@
   (parameters
     '("GtkRecentFilter*" "filter")
   )
+  (since "2.10.0")
 )
 
 (define-method remove_filter
@@ -2395,12 +2665,14 @@
   (parameters
     '("GtkRecentFilter*" "filter")
   )
+  (since "2.10.0")
 )
 
 (define-method list_filters
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_list_filters")
   (return-type "GSList[GtkRecentFilter]")
+  (since "2.10.0")
 )
 
 (define-method set_filter
@@ -2410,12 +2682,14 @@
   (parameters
     '("GtkRecentFilter*" "filter")
   )
+  (since "2.10.0")
 )
 
 (define-method get_filter
   (of-object "GtkRecentChooser")
   (c-name "gtk_recent_chooser_get_filter")
   (return-type "GtkRecentFilter*")
+  (since "2.10.0")
 )
 
 
@@ -2423,28 +2697,35 @@
 ;; From gtkrecentchoosermenu.h
 
 (define-function recent_chooser_menu_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_menu_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_menu_new
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_menu_new")
   (return-type "GtkWidget*")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_menu_new_for_manager
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_menu_new_for_manager")
   (is-constructor-of "GtkRecentChooserMenu")
   (return-type "GtkWidget*")
   (properties
     '("recent-manager" (argname "manager") (optional))
   )
+  (since "2.10.0")
 )
 
 (define-method get_show_numbers
   (of-object "GtkRecentChooserMenu")
   (c-name "gtk_recent_chooser_menu_get_show_numbers")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_show_numbers
@@ -2454,6 +2735,7 @@
   (parameters
     '("gboolean" "show_numbers")
   )
+  (since "2.10.0")
 )
 
 
@@ -2461,22 +2743,28 @@
 ;; From gtkrecentchooserwidget.h
 
 (define-function recent_chooser_widget_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_widget_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_widget_new
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_widget_new")
   (return-type "GtkWidget*")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_widget_new_for_manager
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_widget_new_for_manager")
   (is-constructor-of "GtkRecentChooserWidget")
   (return-type "GtkWidget*")
   (properties
     '("recent-manager" (argname "manager") (optional))
   )
+  (since "2.10.0")
 )
 
 
@@ -2484,14 +2772,18 @@
 ;; From gtkrecentfilter.h
 
 (define-function recent_filter_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_filter_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_filter_new
+  (in-module "Gtk")
   (c-name "gtk_recent_filter_new")
   (is-constructor-of "GtkRecentFilter")
   (return-type "GtkRecentFilter*")
+  (since "2.10.0")
 )
 
 (define-method set_name
@@ -2501,12 +2793,14 @@
   (parameters
     '("const-gchar*" "name")
   )
+  (since "2.10.0")
 )
 
 (define-method get_name
   (of-object "GtkRecentFilter")
   (c-name "gtk_recent_filter_get_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method add_mime_type
@@ -2516,6 +2810,7 @@
   (parameters
     '("const-gchar*" "mime_type")
   )
+  (since "2.10.0")
 )
 
 (define-method add_pattern
@@ -2525,12 +2820,14 @@
   (parameters
     '("const-gchar*" "pattern")
   )
+  (since "2.10.0")
 )
 
 (define-method add_pixbuf_formats
   (of-object "GtkRecentFilter")
   (c-name "gtk_recent_filter_add_pixbuf_formats")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method add_application
@@ -2540,6 +2837,7 @@
   (parameters
     '("const-gchar*" "application")
   )
+  (since "2.10.0")
 )
 
 (define-method add_group
@@ -2549,6 +2847,7 @@
   (parameters
     '("const-gchar*" "group")
   )
+  (since "2.10.0")
 )
 
 (define-method add_age
@@ -2558,6 +2857,7 @@
   (parameters
     '("gint" "days")
   )
+  (since "2.10.0")
 )
 
 (define-method add_custom
@@ -2570,12 +2870,14 @@
     '("gpointer" "data")
     '("GDestroyNotify" "data_destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method get_needed
   (of-object "GtkRecentFilter")
   (c-name "gtk_recent_filter_get_needed")
   (return-type "GtkRecentFilterFlags")
+  (since "2.10.0")
 )
 
 (define-method filter
@@ -2585,6 +2887,7 @@
   (parameters
     '("const-GtkRecentFilterInfo*" "filter_info")
   )
+  (since "2.10.0")
 )
 
 
@@ -2592,32 +2895,42 @@
 ;; From gtkrecentmanager.h
 
 (define-function recent_manager_error_quark
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_error_quark")
   (return-type "GQuark")
+  (since "2.10.0")
 )
 
 (define-function recent_manager_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_manager_new
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_new")
   (is-constructor-of "GtkRecentManager")
   (return-type "GtkRecentManager*")
+  (since "2.10.0")
 )
 
 (define-function recent_manager_get_default
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_get_default")
   (return-type "GtkRecentManager*")
+  (since "2.10.0")
 )
 
 (define-function recent_manager_get_for_screen
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_get_for_screen")
   (return-type "GtkRecentManager*")
   (parameters
     '("GdkScreen*" "screen")
   )
+  (since "2.10.0")
 )
 
 (define-method set_screen
@@ -2627,6 +2940,7 @@
   (parameters
     '("GdkScreen*" "screen")
   )
+  (since "2.10.0")
 )
 
 (define-method add_item
@@ -2636,6 +2950,7 @@
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 
 (define-method add_full
@@ -2646,6 +2961,7 @@
     '("const-gchar*" "uri")
     '("const-GtkRecentData*" "recent_data")
   )
+  (since "2.10.0")
 )
 
 (define-method remove_item
@@ -2656,6 +2972,7 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method lookup_item
@@ -2666,6 +2983,7 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method has_item
@@ -2675,6 +2993,7 @@
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 
 (define-method move_item
@@ -2686,6 +3005,7 @@
     '("const-gchar*" "new_uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method set_limit
@@ -2695,12 +3015,14 @@
   (parameters
     '("gint" "limit")
   )
+  (since "2.10.0")
 )
 
 (define-method get_limit
   (of-object "GtkRecentManager")
   (c-name "gtk_recent_manager_get_limit")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method get_items
@@ -2708,6 +3030,7 @@
   (caller-owns-return #t)
   (c-name "gtk_recent_manager_get_items")
   (return-type "GList[GtkRecentInfo]")
+  (since "2.10.0")
 )
 
 (define-method purge_items
@@ -2717,71 +3040,84 @@
   (parameters
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-function recent_info_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_info_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-method ref
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_ref")
   (return-type "GtkRecentInfo*")
+  (since "2.10.0")
 )
 
 (define-method unref
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_unref")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method get_uri
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_uri")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_display_name
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_display_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_description
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_description")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_mime_type
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_mime_type")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_added
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_added")
   (return-type "time_t")
+  (since "2.10.0")
 )
 
 (define-method get_modified
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_modified")
   (return-type "time_t")
+  (since "2.10.0")
 )
 
 (define-method get_visited
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_visited")
   (return-type "time_t")
+  (since "2.10.0")
 )
 
 (define-method get_private_hint
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_private_hint")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method get_application_info
@@ -2794,6 +3130,7 @@
     '("guint*" "count" (out))
     '("time_t*" "time_" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method get_applications
@@ -2803,12 +3140,14 @@
   (parameters
     '("gsize*" "length")
   )
+  (since "2.10.0")
 )
 
 (define-method last_application
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_last_application")
   (return-type "gchar*")
+  (since "2.10.0")
 )
 
 (define-method has_application
@@ -2818,6 +3157,7 @@
   (parameters
     '("const-gchar*" "app_name")
   )
+  (since "2.10.0")
 )
 
 (define-method get_groups
@@ -2827,6 +3167,7 @@
   (parameters
     '("gsize*" "length" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method has_group
@@ -2836,6 +3177,7 @@
   (parameters
     '("const-gchar*" "group_name")
   )
+  (since "2.10.0")
 )
 
 (define-method get_icon
@@ -2845,36 +3187,42 @@
   (parameters
     '("gint" "size")
   )
+  (since "2.10.0")
 )
 
 (define-method get_short_name
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_short_name")
   (return-type "gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_uri_display
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_uri_display")
   (return-type "gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_age
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_get_age")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method is_local
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_is_local")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method exists
   (of-object "GtkRecentInfo")
   (c-name "gtk_recent_info_exists")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method match
@@ -2884,6 +3232,7 @@
   (parameters
     '("GtkRecentInfo*" "info_b")
   )
+  (since "2.10.0")
 )
 
 
@@ -2906,6 +3255,7 @@
   (of-object "GtkScrolledWindow")
   (c-name "gtk_scrolled_window_unset_placement")
   (return-type "none")
+  (since "2.10.0")
 )
 
 
@@ -2913,6 +3263,7 @@
 ;; From gtkselection.h
 
 (define-function target_list_add_rich_text_targets
+  (in-module "Gtk")
   (c-name "gtk_target_list_add_rich_text_targets")
   (return-type "none")
   (parameters
@@ -2921,15 +3272,18 @@
     '("gboolean" "deserializable")
     '("GtkTextBuffer*" "buffer")
   )
+  (since "2.10.0")
 )
 
 (define-function target_table_new_from_list
+  (in-module "Gtk")
   (c-name "gtk_target_table_new_from_list")
   (return-type "GtkTargetEntry[]")
   (parameters
     '("GtkTargetList*" "list")
     '("gint*" "n_targets" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method targets_include_rich_text
@@ -2939,24 +3293,29 @@
   (parameters
     '("GtkTextBuffer*" "buffer")
   )
+  (since "2.10.0")
 )
 
 (define-method targets_include_uri
   (of-object "GtkSelectionData")
   (c-name "gtk_selection_data_targets_include_uri")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-function targets_include_text
+  (in-module "Gtk")
   (c-name "gtk_targets_include_text")
   (return-type "gboolean")
   (parameters
     '("GdkAtom[]" "targets")
     '("gint" "n_targets")
   )
+  (since "2.10.0")
 )
 
 (define-function targets_include_rich_text
+  (in-module "Gtk")
   (c-name "gtk_targets_include_rich_text")
   (return-type "gboolean")
   (parameters
@@ -2964,9 +3323,11 @@
     '("gint" "n_targets")
     '("GtkTextBuffer*" "buffer")
   )
+  (since "2.10.0")
 )
 
 (define-function targets_include_image
+  (in-module "Gtk")
   (c-name "gtk_targets_include_image")
   (return-type "gboolean")
   (parameters
@@ -2974,20 +3335,25 @@
     '("gint" "n_targets")
     '("gboolean" "writable")
   )
+  (since "2.10.0")
 )
 
 (define-function targets_include_uri
+  (in-module "Gtk")
   (c-name "gtk_targets_include_uri")
   (return-type "gboolean")
   (parameters
     '("GdkAtom[]" "targets")
     '("gint" "n_targets")
   )
+  (since "2.10.0")
 )
 
 (define-function target_list_get_type
+  (in-module "Gtk")
   (c-name "gtk_target_list_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 
@@ -3018,6 +3384,7 @@
   (of-object "GtkSizeGroup")
   (c-name "gtk_size_group_get_widgets")
   (return-type "GSList[GtkWidget]")
+  (since "2.10.0")
 )
 
 
@@ -3037,46 +3404,58 @@
 ;; From gtkstatusicon.h
 
 (define-function status_icon_get_type
+  (in-module "Gtk")
   (c-name "gtk_status_icon_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function status_icon_new
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new")
   (is-constructor-of "GtkStatusIcon")
   (return-type "GtkStatusIcon*")
+  (since "2.10.0")
 )
 
 (define-function status_icon_new_from_pixbuf
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_pixbuf")
   (return-type "GtkStatusIcon*")
   (parameters
     '("GdkPixbuf*" "pixbuf")
   )
+  (since "2.10.0")
 )
 
 (define-function status_icon_new_from_file
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_file")
   (return-type "GtkStatusIcon*")
   (parameters
     '("const-gchar*" "filename")
   )
+  (since "2.10.0")
 )
 
 (define-function status_icon_new_from_stock
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_stock")
   (return-type "GtkStatusIcon*")
   (parameters
     '("const-gchar*" "stock_id")
   )
+  (since "2.10.0")
 )
 
 (define-function status_icon_new_from_icon_name
+  (in-module "Gtk")
   (c-name "gtk_status_icon_new_from_icon_name")
   (return-type "GtkStatusIcon*")
   (parameters
     '("const-gchar*" "icon_name")
   )
+  (since "2.10.0")
 )
 
 (define-method set_from_pixbuf
@@ -3086,6 +3465,7 @@
   (parameters
     '("GdkPixbuf*" "pixbuf")
   )
+  (since "2.10.0")
 )
 
 (define-method set_from_file
@@ -3095,6 +3475,7 @@
   (parameters
     '("const-gchar*" "filename")
   )
+  (since "2.10.0")
 )
 
 (define-method set_from_stock
@@ -3104,6 +3485,7 @@
   (parameters
     '("const-gchar*" "stock_id")
   )
+  (since "2.10.0")
 )
 
 (define-method set_from_icon_name
@@ -3113,36 +3495,42 @@
   (parameters
     '("const-gchar*" "icon_name")
   )
+  (since "2.10.0")
 )
 
 (define-method get_storage_type
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_storage_type")
   (return-type "GtkImageType")
+  (since "2.10.0")
 )
 
 (define-method get_pixbuf
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_pixbuf")
   (return-type "GdkPixbuf*")
+  (since "2.10.0")
 )
 
 (define-method get_stock
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_stock")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_icon_name
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_icon_name")
   (return-type "const-gchar*")
+  (since "2.10.0")
 )
 
 (define-method get_size
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_size")
   (return-type "gint")
+  (since "2.10.0")
 )
 
 (define-method set_tooltip
@@ -3152,6 +3540,7 @@
   (parameters
     '("const-gchar*" "tooltip_text")
   )
+  (since "2.10.0")
 )
 
 (define-method set_visible
@@ -3161,12 +3550,14 @@
   (parameters
     '("gboolean" "visible")
   )
+  (since "2.10.0")
 )
 
 (define-method get_visible
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_visible")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_blinking
@@ -3176,21 +3567,25 @@
   (parameters
     '("gboolean" "blinking")
   )
+  (since "2.10.0")
 )
 
 (define-method get_blinking
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_get_blinking")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method is_embedded
   (of-object "GtkStatusIcon")
   (c-name "gtk_status_icon_is_embedded")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-function status_icon_position_menu
+  (in-module "Gtk")
   (c-name "gtk_status_icon_position_menu")
   (return-type "none")
   (parameters
@@ -3200,6 +3595,7 @@
     '("gboolean*" "push_in" (out))
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 (define-method get_geometry
@@ -3211,6 +3607,7 @@
     '("GdkRectangle*" "area" (out))
     '("GtkOrientation*" "orientation" (out))
   )
+  (since "2.10.0")
 )
 
 
@@ -3229,6 +3626,7 @@
     '("const-gchar*" "color_name")
     '("GdkColor*" "color" (out))
   )
+  (since "2.10.0")
 )
 
 
@@ -3247,18 +3645,21 @@
   (of-object "GtkTextBuffer")
   (c-name "gtk_text_buffer_get_has_selection")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method get_copy_target_list
   (of-object "GtkTextBuffer")
   (c-name "gtk_text_buffer_get_copy_target_list")
   (return-type "GtkTargetList*")
+  (since "2.10.0")
 )
 
 (define-method get_paste_target_list
   (of-object "GtkTextBuffer")
   (c-name "gtk_text_buffer_get_paste_target_list")
   (return-type "GtkTargetList*")
+  (since "2.10.0")
 )
 
 
@@ -3275,6 +3676,7 @@
     '("gpointer" "user_data")
     '("GDestroyNotify" "user_data_destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method register_serialize_tagset
@@ -3284,6 +3686,7 @@
   (parameters
     '("const-gchar*" "tagset_name" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method register_deserialize_format
@@ -3296,6 +3699,7 @@
     '("gpointer" "user_data")
     '("GDestroyNotify" "user_data_destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method register_deserialize_tagset
@@ -3305,6 +3709,7 @@
   (parameters
     '("const-gchar*" "tagset_name" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method unregister_serialize_format
@@ -3314,6 +3719,7 @@
   (parameters
     '("GdkAtom" "format")
   )
+  (since "2.10.0")
 )
 
 (define-method unregister_deserialize_format
@@ -3323,6 +3729,7 @@
   (parameters
     '("GdkAtom" "format")
   )
+  (since "2.10.0")
 )
 
 (define-method deserialize_set_can_create_tags
@@ -3333,6 +3740,7 @@
     '("GdkAtom" "format")
     '("gboolean" "can_create_tags")
   )
+  (since "2.10.0")
 )
 
 (define-method deserialize_get_can_create_tags
@@ -3342,6 +3750,7 @@
   (parameters
     '("GdkAtom" "format")
   )
+  (since "2.10.0")
 )
 
 (define-method get_serialize_formats
@@ -3351,6 +3760,7 @@
   (parameters
     '("gint*" "n_formats" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method get_deserialize_formats
@@ -3360,6 +3770,7 @@
   (parameters
     '("gint*" "n_formats" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method serialize
@@ -3373,6 +3784,7 @@
     '("const-GtkTextIter*" "end")
     '("gsize*" "length" (out))
   )
+  (since "2.10.0")
 )
 
 (define-method deserialize
@@ -3387,6 +3799,7 @@
     '("gsize" "length")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 
@@ -3503,6 +3916,7 @@
     '("gint" "position")
   )
   (varargs #t)
+  (since "2.10.0")
 )
 
 (define-method insert_with_valuesv
@@ -3517,6 +3931,7 @@
     '("GValue[]" "values")
     '("gint" "n_values")
   )
+  (since "2.10.0")
 )
 
 
@@ -3531,12 +3946,14 @@
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_headers_clickable")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method get_search_entry
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_search_entry")
   (return-type "GtkEntry*")
+  (since "2.10.0")
 )
 
 (define-method set_search_entry
@@ -3546,12 +3963,14 @@
   (parameters
     '("GtkEntry*" "entry" (null-ok) (default "NULL"))
   )
+  (since "2.10.0")
 )
 
 (define-method get_search_position_func
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_search_position_func")
   (return-type "GtkTreeViewSearchPositionFunc")
+  (since "2.10.0")
 )
 
 (define-method set_search_position_func
@@ -3563,6 +3982,7 @@
     '("gpointer" "data")
     '("GDestroyNotify" "destroy")
   )
+  (since "2.10.0")
 )
 
 (define-method set_rubber_banding
@@ -3572,18 +3992,21 @@
   (parameters
     '("gboolean" "enable")
   )
+  (since "2.10.0")
 )
 
 (define-method get_rubber_banding
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_rubber_banding")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method get_grid_lines
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_grid_lines")
   (return-type "GtkTreeViewGridLines")
+  (since "2.10.0")
 )
 
 (define-method set_grid_lines
@@ -3593,12 +4016,14 @@
   (parameters
     '("GtkTreeViewGridLines" "grid_lines")
   )
+  (since "2.10.0")
 )
 
 (define-method get_enable_tree_lines
   (of-object "GtkTreeView")
   (c-name "gtk_tree_view_get_enable_tree_lines")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_enable_tree_lines
@@ -3608,6 +4033,7 @@
   (parameters
     '("gboolean" "enabled")
   )
+  (since "2.10.0")
 )
 
 
@@ -3615,83 +4041,115 @@
 ;; From gtktypebuiltins.h
 
 (define-function assistant_page_type_get_type
+  (in-module "Gtk")
   (c-name "gtk_assistant_page_type_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function cell_renderer_accel_mode_get_type
+  (in-module "Gtk")
   (c-name "gtk_cell_renderer_accel_mode_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function sensitivity_type_get_type
+  (in-module "Gtk")
   (c-name "gtk_sensitivity_type_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_pages_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_pages_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function page_set_get_type
+  (in-module "Gtk")
   (c-name "gtk_page_set_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function page_orientation_get_type
+  (in-module "Gtk")
   (c-name "gtk_page_orientation_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_quality_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_quality_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_duplex_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_duplex_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function unit_get_type
+  (in-module "Gtk")
   (c-name "gtk_unit_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function tree_view_grid_lines_get_type
+  (in-module "Gtk")
   (c-name "gtk_tree_view_grid_lines_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function print_operation_action_get_type
+  (in-module "Gtk")
   (c-name "gtk_print_operation_action_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_sort_type_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_sort_type_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_chooser_error_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_chooser_error_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_filter_flags_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_filter_flags_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function recent_manager_error_get_type
+  (in-module "Gtk")
   (c-name "gtk_recent_manager_error_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 (define-function text_buffer_target_info_get_type
+  (in-module "Gtk")
   (c-name "gtk_text_buffer_target_info_get_type")
   (return-type "GType")
+  (since "2.10.0")
 )
 
 
@@ -3746,6 +4204,7 @@
   (of-object "GtkWidget")
   (c-name "gtk_widget_is_composited")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method input_shape_combine_mask
@@ -3757,6 +4216,7 @@
     '("gint" "offset_x")
     '("gint" "offset_y")
   )
+  (since "2.10.0")
 )
 
 
@@ -3770,18 +4230,21 @@
   (parameters
     '("gboolean" "setting")
   )
+  (since "2.10.0")
 )
 
 (define-method get_deletable
   (of-object "GtkWindow")
   (c-name "gtk_window_get_deletable")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method get_group
   (of-object "GtkWindow")
   (c-name "gtk_window_get_group")
   (return-type "GtkWindowGroup*")
+  (since "2.10.0")
 )
 
 ;; virtuals
@@ -3792,21 +4255,25 @@
   (parameters
     '("GtkWidget*" "page")
   )
+  (since "2.10.0")
 )
 
 (define-virtual apply
   (of-object "GtkAssistant")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual close
   (of-object "GtkAssistant")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual cancel
   (of-object "GtkAssistant")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual accel_edited
@@ -3818,6 +4285,7 @@
     '("GdkModifierType" "accel_mods")
     '("guint" "hardware_keycode")
   )
+  (since "2.10.0")
 )
 
 (define-virtual accel_cleared
@@ -3826,6 +4294,7 @@
   (parameters
     '("const-gchar*" "path_string")
   )
+  (since "2.10.0")
 )
 
 (define-virtual reorder_tab
@@ -3835,6 +4304,7 @@
     '("GtkDirectionType" "direction")
     '("gboolean" "move_to_last")
   )
+  (since "2.10.0")
 )
 
 (define-virtual insert_page
@@ -3846,6 +4316,7 @@
     '("GtkWidget*" "menu_label")
     '("gint" "position")
   )
+  (since "2.10.0")
 )
 
 (define-virtual done
@@ -3854,6 +4325,7 @@
   (parameters
     '("GtkPrintOperationResult" "result")
   )
+  (since "2.10.0")
 )
 
 (define-virtual begin_print
@@ -3862,6 +4334,7 @@
   (parameters
     '("GtkPrintContext*" "context")
   )
+  (since "2.10.0")
 )
 
 (define-virtual paginate
@@ -3870,6 +4343,7 @@
   (parameters
     '("GtkPrintContext*" "context")
   )
+  (since "2.10.0")
 )
 
 (define-virtual request_page_setup
@@ -3880,6 +4354,7 @@
     '("gint" "page_nr")
     '("GtkPageSetup*" "setup")
   )
+  (since "2.10.0")
 )
 
 (define-virtual draw_page
@@ -3889,6 +4364,7 @@
     '("GtkPrintContext*" "context")
     '("gint" "page_nr")
   )
+  (since "2.10.0")
 )
 
 (define-virtual end_print
@@ -3897,16 +4373,19 @@
   (parameters
     '("GtkPrintContext*" "context")
   )
+  (since "2.10.0")
 )
 
 (define-virtual status_changed
   (of-object "GtkPrintOperation")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual create_custom_widget
   (of-object "GtkPrintOperation")
   (return-type "GtkWidget*")
+  (since "2.10.0")
 )
 
 (define-virtual custom_widget_apply
@@ -3915,6 +4394,7 @@
   (parameters
     '("GtkWidget*" "widget")
   )
+  (since "2.10.0")
 )
 
 (define-virtual preview
@@ -3925,6 +4405,7 @@
     '("GtkPrintContext*" "context")
     '("GtkWindow*" "parent")
   )
+  (since "2.10.0")
 )
 
 (define-virtual ready
@@ -3933,6 +4414,7 @@
   (parameters
     '("GtkPrintContext*" "context")
   )
+  (since "2.10.0")
 )
 (define-virtual got_page_size
   (of-object "GtkPrintOperationPreview")
@@ -3941,6 +4423,7 @@
     '("GtkPrintContext*" "context")
     '("GtkPageSetup*" "page_setup")
   )
+  (since "2.10.0")
 )
 (define-virtual render_page
   (of-object "GtkPrintOperationPreview")
@@ -3948,6 +4431,7 @@
   (parameters
     '("gint" "page_nr")
   )
+  (since "2.10.0")
 )
 (define-virtual is_selected
   (of-object "GtkPrintOperationPreview")
@@ -3955,10 +4439,12 @@
   (parameters
     '("gint" "page_nr")
   )
+  (since "2.10.0")
 )
 (define-virtual end_preview
   (of-object "GtkPrintOperationPreview")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual set_current_uri
@@ -3968,10 +4454,12 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 (define-virtual get_current_uri
   (of-object "GtkRecentChooser")
   (return-type "gchar*")
+  (since "2.10.0")
 )
 (define-virtual select_uri
   (of-object "GtkRecentChooser")
@@ -3980,6 +4468,7 @@
     '("const-gchar*" "uri")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 (define-virtual unselect_uri
   (of-object "GtkRecentChooser")
@@ -3987,22 +4476,27 @@
   (parameters
     '("const-gchar*" "uri")
   )
+  (since "2.10.0")
 )
 (define-virtual select_all
   (of-object "GtkRecentChooser")
   (return-type "none")
+  (since "2.10.0")
 )
 (define-virtual unselect_all
   (of-object "GtkRecentChooser")
   (return-type "none")
+  (since "2.10.0")
 )
 (define-virtual get_items
   (of-object "GtkRecentChooser")
   (return-type "GList*")
+  (since "2.10.0")
 )
 (define-virtual get_recent_manager
   (of-object "GtkRecentChooser")
   (return-type "GtkRecentManager*")
+  (since "2.10.0")
 )
 (define-virtual add_filter
   (of-object "GtkRecentChooser")
@@ -4010,6 +4504,7 @@
   (parameters
     '("GtkRecentFilter*" "filter")
   )
+  (since "2.10.0")
 )
 (define-virtual remove_filter
   (of-object "GtkRecentChooser")
@@ -4017,10 +4512,12 @@
   (parameters
     '("GtkRecentFilter*" "filter")
   )
+  (since "2.10.0")
 )
 (define-virtual list_filters
   (of-object "GtkRecentChooser")
   (return-type "GSList*")
+  (since "2.10.0")
 )
 (define-virtual set_sort_func
   (of-object "GtkRecentChooser")
@@ -4030,29 +4527,35 @@
     '("gpointer" "data")
     '("GDestroyNotify" "destroy")
   )
+  (since "2.10.0")
 )
 (define-virtual item_activated
   (of-object "GtkRecentChooser")
   (return-type "none")
+  (since "2.10.0")
 )
 (define-virtual selection_changed
   (of-object "GtkRecentChooser")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual changed
   (of-object "GtkRecentManager")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual wrapped
   (of-object "GtkSpinButton")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual activate
   (of-object "GtkStatusIcon")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-virtual popup_menu
@@ -4062,6 +4565,7 @@
     '("guint" "button")
     '("guint32" "activate_time")
   )
+  (since "2.10.0")
 )
 
 (define-virtual size_changed
@@ -4070,11 +4574,13 @@
   (parameters
     '("gint" "size")
   )
+  (since "2.10.0")
 )
 
 (define-virtual composited_changed
   (of-object "GtkWidget")
   (return-type "none")
+  (since "2.10.0")
 )
 
 

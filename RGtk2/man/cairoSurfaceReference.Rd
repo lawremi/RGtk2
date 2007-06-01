@@ -6,6 +6,7 @@
 \code{\link{cairoSurfaceDestroy}} is made.}
 \usage{cairoSurfaceReference(surface)}
 \arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\details{.  }
 \value{[\code{\link{CairoSurface}}]  the referenced \code{\link{CairoSurface}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -40,7 +40,8 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner", "gtk_
 	"gdk_query_depths", "gdk_query_visual_types", "glade_xml_signal_connect_data", "glade_xml_signal_connect",
   "gtk_radio_action_set_group", "gtk_radio_button_set_group", "gtk_radio_menu_item_set_group",
   "gtk_radio_tool_button_set_group", "gtk_tree_store_insert_with_valuesv",
-  "gdk_drawable_class_create_gc", "gdk_gcclass_set_values")
+  "gdk_drawable_class_create_gc", "gdk_gcclass_set_values", "cairo_rectangle_list_destroy",
+  "cairo_get_dash")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -83,7 +84,8 @@ transparentTypes <- c("GParamSpec", "GtkFileFilterInfo", "GtkTargetEntry", "AtkA
     "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError", "GdkWindowAttr", "GdkTrapezoid",
 	"GtkActionEntry", "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t", "cairo_glyph_t",
 	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord",
-  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", "GtkAccelKey", "AtkRectangle")
+  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", 
+  "GtkAccelKey", "AtkRectangle", "cairo_rectangle_t", "cairo_rectangle_list_t")
 
 # functions for releasing memory
 # objects are automatically assigned g_object_unref and boxed types have release funcs in the defs
@@ -94,12 +96,14 @@ cleanupFuncs <- list("GParamSpec"="g_param_spec_sink", "GValue"=c("g_value_unset
     "GList" = "g_list_free", "GSList"="g_slist_free", "GString"="free_g_string", 
 	"AtkAttributeSet"="atk_attribute_set_free", "cairo_path_t"="cairo_path_destroy",
     "GError" = "g_error_free", "GdkNativeWindow"="", "GtkCTreeNode"="", 
-	"GtkTooltipsData"="", "GtkAccelKey"="", "AtkTextRange[]"="atk_text_free_ranges")
+	"GtkTooltipsData"="", "GtkAccelKey"="", "AtkTextRange[]"="atk_text_free_ranges",
+  "cairo_rectangle_list_t" = "cairo_rectangle_list_destroy")
 # functions for custom finalization
 finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetList"="gtk_target_list_unref",
 	"GdkRegion" = "gdk_region_destroy", "PangoAttrIterator" = "pango_attr_iterator_destroy",
 	"PangoItem" = "pango_item_free", "cairo_font_options_t" = "cairo_font_options_destroy",
-	"PangoGlyphItem" = "pango_glyph_item_free", "PangoCoverage" = "pango_coverage_unref")
+	"PangoGlyphItem" = "pango_glyph_item_free", "PangoCoverage" = "pango_coverage_unref",
+  "PangoScriptIter" = "pango_script_iter_free")
 
 copyFuncs <- c("GdkRegion" = "gdk_region_copy", "PangoCoverage" = "pango_coverage_ref")
 
@@ -192,7 +196,10 @@ mem_funcs <- c("atk_text_free_ranges", "pango_font_description_merge_static",
 "gdk_event_free", "gtk_border_free", "gtk_icon_info_free", "gtk_icon_source_free", 
 "gtk_requisition_free", "gtk_selection_data_free", "gtk_stock_item_free", "gtk_text_iter_free",
 "gtk_tree_iter_free", "gtk_tree_path_free", "pango_font_description_free", "pango_glyph_string_free",
-"pango_layout_iter_free", "pango_tab_array_free", "gtk_target_table_free")
+"pango_layout_iter_free", "pango_tab_array_free", "gtk_target_table_free", "gtk_paper_size_free",
+"pango_script_iter_free", "cairo_rectangle_list_destroy", "cairo_get_reference_count",
+"cairo_surface_get_reference_count", "cairo_pattern_get_reference_count",
+"cairo_font_face_get_reference_count", "cairo_scaled_font_get_reference_count")
 
 cleanups <- unlist(cleanupFuncs)[sapply(unlist(cleanupFuncs), function(func) nchar(func) > 0)]
 mem_funcs <- unique(c(mem_funcs, cleanups, finalizerFuncs, "g_object_unref", "g_object_ref", "g_strfreev"))
@@ -202,7 +209,7 @@ badRFuncs <- unique(c(badRFuncs, undocumentedFuncs))
 
 # entire concepts we're not documenting (ie, low-level functionality)
 undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
-"pango-engine-lang", "pango-engine-shape", "pangofc-decoder", "pangofc-font", "pangofc-fontmap", "scripts",
+"pango-engine-lang", "pango-engine-shape", "pangofc-decoder", "pangofc-font", "pangofc-fontmap",
 "win32-fonts", "x-fonts", "xft-fonts", "input", "threads", "x_interaction", "glossary", "gtkbindings",
 "gtkfeatures", "gtkobject", "gtksignal", "gtktext", "gtkthemes", "gtktree", "gtktreeitem", "gtktypeutils",
 "selections", "gdk-pixbuf-xlib-from-drawables", "gdk-pixbuf-xlib-rgb", "gdk-pixbuf-xlib-init", 
@@ -210,7 +217,7 @@ undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
 "cairo-quartz", "cairo-win32", "cairo-win32-fonts", "cairo-xcb-xrender", "cairo-xcb", "cairo-xlib-xrender",
 "cairo-xlib", "glade-build", "glade-parser", "glade-init", "gtkmain", "atsui-fonts", "utils",
 "gtkpagesetupunixdialog", "gtkprinter", "gtkprintjob", "gtkprintunixdialog",
-"cairo-beos")
+"cairo-beos", "pango-vertical")
 
 # some sections are not appropriate for the R documentation
 omittedSections <- c("image-data", "Pathnames and patterns", "Toplevel declarations", 
@@ -218,7 +225,7 @@ omittedSections <- c("image-data", "Pathnames and patterns", "Toplevel declarati
 
 libraryDescriptions <-
 c("ATK" = "ATK is the Accessibility Toolkit. It provides a set of generic interfaces allowing accessibility technologies to interact with a graphical user interface. For example, a screen reader uses ATK to discover the text in an interface and read it to blind users. GTK+ widgets have built-in support for accessibility using the ATK framework.",
-  "Pango" = "Pango is a library for internationalized text handling. It centers around the \code{\link{PangoLayout}} object, representing a paragraph of text. Pango provides the engine for \\code{\\link{GtkTextView}}, \\code{\\link{GtkLabel}}, \\code{\\link{GtkEntry}}, and other widgets that display text.",
+  "Pango" = "Pango is a library for internationalized text handling. It centers around the \\code{\\link{PangoLayout}} object, representing a paragraph of text. Pango provides the engine for \\code{\\link{GtkTextView}}, \\code{\\link{GtkLabel}}, \\code{\\link{GtkEntry}}, and other widgets that display text.",
   "GDK" = "GDK is the abstraction layer that allows GTK+ to support multiple windowing systems. GDK provides drawing and window system facilities on X11, Windows, and the Linux framebuffer device.",
   "GTK" = "The GTK+ library itself contains widgets, that is, GUI components such as \\code{\\link{GtkButton}} or \\code{\\link{GtkTextView}}.",
   "GDK-Pixbuf" = "This is a small library which allows you to create GdkPixbuf ('pixel buffer') objects from image data or image files. Use a \\code{\\link{GdkPixbuf}} in combination with \\code{\\link{GtkImage}} to display images.",
@@ -233,7 +240,7 @@ urlPrefices[["cairo"]] <- "http://www.cairographics.org/manual"
 
 customNotes <- c(
 "gtk-Stock-Items" = "Please see the reference for a detailed list of the stock items",
-"gdk-Keyboard-Handling" = "The keyval constants exist in RGtk2 as .gdkKeyvalName, so \\code{.gdkPlus} for \kbd{plus}.",
+"gdk-Keyboard-Handling" = "The keyval constants exist in RGtk2 as .gdkKeyvalName, so \\code{.gdkPlus} for \\kbd{plus}.",
 "gtk_widget_get_pango_context" = paste(
 	"Unlike the context returned by \\code{\\link{gtkWidgetCreatePangoContext}},",
 	"this context is owned by the widget (it can be used until the screen for",
@@ -241,3 +248,12 @@ customNotes <- c(
 	"be updated to match any changes to the widget's attributes.", sep=" \n"),
 "gtk_menu_attach_to_widget" = "This does not yet support the callback function, sorry."
 )
+
+# functions that are not exported from the win32 DLL
+# this is just a temporary hack
+badTypes <- c(badTypes, "AtkHyperlinkImpl")
+badDLLFuncs <- c("atk_streamable_content_get_uri", "atk_value_get_minimum_increment")
+badRFuncs <- c(badRFuncs, badDLLFuncs)
+badCFuncs <- c(badCFuncs, badDLLFuncs)
+undocumentedFuncs <- c(undocumentedFuncs, badDLLFuncs)
+undocumentedConcepts <- c(undocumentedConcepts, "atkhyperlinkimpl")

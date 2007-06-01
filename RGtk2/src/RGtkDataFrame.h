@@ -23,6 +23,8 @@ struct _RGtkDataFrame
   
   gint            sort_id;
   GtkSortType     sort_order;
+  
+  gint nrows;
 };
 
 struct _RGtkDataFrameClass

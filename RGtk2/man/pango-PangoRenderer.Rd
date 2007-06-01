@@ -22,8 +22,8 @@
 
 }
 \section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
-rendering a PangoLayout or PangoLayoutLine. By subclassing
-PangoRenderer and overriding operations such as \code{draw.glyphs} and
+rendering a \code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}}. By subclassing
+\code{\link{PangoRenderer}} and overriding operations such as \code{draw.glyphs} and
 \code{draw.rectangle}, renderers for particular font backends and
 destinations can be created.}
 \section{Structures}{\describe{\item{\code{PangoRenderer}}{

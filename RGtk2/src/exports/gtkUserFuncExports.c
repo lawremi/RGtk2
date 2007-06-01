@@ -35,13 +35,33 @@ R_RegisterCCallable("RGtk2", "S_GtkTextTagTableForeach", ((DL_FUNC)S_GtkTextTagT
 R_RegisterCCallable("RGtk2", "S_GtkTextCharPredicate", ((DL_FUNC)S_GtkTextCharPredicate)); 
 R_RegisterCCallable("RGtk2", "S_GtkItemFactoryCallback1", ((DL_FUNC)S_GtkItemFactoryCallback1)); 
 R_RegisterCCallable("RGtk2", "S_GtkItemFactoryCallback2", ((DL_FUNC)S_GtkItemFactoryCallback2)); 
-R_RegisterCCallable("RGtk2", "S_GtkAssistantPageFunc", ((DL_FUNC)S_GtkAssistantPageFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkClipboardRichTextReceivedFunc", ((DL_FUNC)S_GtkClipboardRichTextReceivedFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkLinkButtonUriFunc", ((DL_FUNC)S_GtkLinkButtonUriFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkNotebookWindowCreationFunc", ((DL_FUNC)S_GtkNotebookWindowCreationFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkPageSetupDoneFunc", ((DL_FUNC)S_GtkPageSetupDoneFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkPrintSettingsFunc", ((DL_FUNC)S_GtkPrintSettingsFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkRecentSortFunc", ((DL_FUNC)S_GtkRecentSortFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkRecentFilterFunc", ((DL_FUNC)S_GtkRecentFilterFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkTextBufferDeserializeFunc", ((DL_FUNC)S_GtkTextBufferDeserializeFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc", ((DL_FUNC)S_GtkTreeViewSearchPositionFunc)); 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkAssistantPageFunc", ((DL_FUNC)S_GtkAssistantPageFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkClipboardRichTextReceivedFunc", ((DL_FUNC)S_GtkClipboardRichTextReceivedFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkLinkButtonUriFunc", ((DL_FUNC)S_GtkLinkButtonUriFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkNotebookWindowCreationFunc", ((DL_FUNC)S_GtkNotebookWindowCreationFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkPageSetupDoneFunc", ((DL_FUNC)S_GtkPageSetupDoneFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkPrintSettingsFunc", ((DL_FUNC)S_GtkPrintSettingsFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkRecentSortFunc", ((DL_FUNC)S_GtkRecentSortFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkRecentFilterFunc", ((DL_FUNC)S_GtkRecentFilterFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkTextBufferDeserializeFunc", ((DL_FUNC)S_GtkTextBufferDeserializeFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 10, 0)
+R_RegisterCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc", ((DL_FUNC)S_GtkTreeViewSearchPositionFunc));
+#endif 

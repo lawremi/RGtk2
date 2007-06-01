@@ -38,4 +38,24 @@ asCCairoGlyph(USER_OBJECT_ s_glyph)
   return(fun(s_glyph));
 } 
 
+#if CAIRO_CHECK_VERSION(1, 4, 0)
+USER_OBJECT_
+asRCairoRectangle(cairo_rectangle_t* path)
+{
+  static USER_OBJECT_ (*fun)(cairo_rectangle_t*) = NULL;
+  if(!fun) fun = ((USER_OBJECT_ (*)(cairo_rectangle_t*))R_GetCCallable("RGtk2", "asRCairoRectangle"));
+  return(fun(path));
+}
+#endif 
+
+#if CAIRO_CHECK_VERSION(1, 4, 0)
+USER_OBJECT_
+asRCairoRectangleList(cairo_rectangle_list_t* list)
+{
+  static USER_OBJECT_ (*fun)(cairo_rectangle_list_t*) = NULL;
+  if(!fun) fun = ((USER_OBJECT_ (*)(cairo_rectangle_list_t*))R_GetCCallable("RGtk2", "asRCairoRectangleList"));
+  return(fun(list));
+}
+#endif 
+
 #endif

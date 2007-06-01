@@ -2,9 +2,9 @@
 \name{pangoAttrShapeNew}
 \title{pangoAttrShapeNew}
 \description{Create a new shape attribute. A shape is used to impose a
-particular ink and logical rect on the result of shaping a
+particular ink and logical rectangle on the result of shaping a
 particular glyph. This might be used, for instance, for
-embedding a picture or a widget inside a PangoLayout.}
+embedding a picture or a widget inside a \code{\link{PangoLayout}}.}
 \usage{pangoAttrShapeNew(ink.rect, logical.rect)}
 \arguments{
 \item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]      ink rectangle to assign to each character}

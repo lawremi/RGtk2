@@ -378,45 +378,55 @@ asRGtkAllocation(GtkAllocation* alloc)
   return(fun(alloc));
 } 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 GtkRecentFilterInfo*
 asCGtkRecentFilterInfo(USER_OBJECT_ s_obj)
 {
   static GtkRecentFilterInfo* (*fun)(USER_OBJECT_) = NULL;
   if(!fun) fun = ((GtkRecentFilterInfo* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCGtkRecentFilterInfo"));
   return(fun(s_obj));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 USER_OBJECT_
 asRGtkRecentFilterInfo(const GtkRecentFilterInfo* obj)
 {
   static USER_OBJECT_ (*fun)(const GtkRecentFilterInfo*) = NULL;
   if(!fun) fun = ((USER_OBJECT_ (*)(const GtkRecentFilterInfo*))R_GetCCallable("RGtk2", "asRGtkRecentFilterInfo"));
   return(fun(obj));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 GtkRecentData*
 asCGtkRecentData(USER_OBJECT_ s_obj)
 {
   static GtkRecentData* (*fun)(USER_OBJECT_) = NULL;
   if(!fun) fun = ((GtkRecentData* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCGtkRecentData"));
   return(fun(s_obj));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 USER_OBJECT_
 asRGtkPageRange(GtkPageRange* obj)
 {
   static USER_OBJECT_ (*fun)(GtkPageRange*) = NULL;
   if(!fun) fun = ((USER_OBJECT_ (*)(GtkPageRange*))R_GetCCallable("RGtk2", "asRGtkPageRange"));
   return(fun(obj));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 GtkPageRange*
 asCGtkPageRange(USER_OBJECT_ s_obj)
 {
   static GtkPageRange* (*fun)(USER_OBJECT_) = NULL;
   if(!fun) fun = ((GtkPageRange* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCGtkPageRange"));
   return(fun(s_obj));
-} 
+}
+#endif 
 
 USER_OBJECT_
 asRGtkAccelKey(GtkAccelKey* obj)

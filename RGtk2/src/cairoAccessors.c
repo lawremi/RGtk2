@@ -4,7 +4,7 @@
 USER_OBJECT_
 S_CairoMatrixGetXx (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -18,7 +18,7 @@ S_CairoMatrixGetXx (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoMatrixGetYx (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -32,7 +32,7 @@ S_CairoMatrixGetYx (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoMatrixGetXy (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -46,7 +46,7 @@ S_CairoMatrixGetXy (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoMatrixGetYy (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -60,7 +60,7 @@ S_CairoMatrixGetYy (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoMatrixGetX0 (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -74,7 +74,7 @@ S_CairoMatrixGetX0 (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoMatrixGetY0 (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_matrix_t *obj;
    double val;
@@ -88,7 +88,7 @@ S_CairoMatrixGetY0 (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetXBearing (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -102,7 +102,7 @@ S_CairoTextExtentsGetXBearing (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetYBearing (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -116,7 +116,7 @@ S_CairoTextExtentsGetYBearing (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetWidth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -130,7 +130,7 @@ S_CairoTextExtentsGetWidth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetHeight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -144,7 +144,7 @@ S_CairoTextExtentsGetHeight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetXAdvance (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -158,7 +158,7 @@ S_CairoTextExtentsGetXAdvance (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoTextExtentsGetYAdvance (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_text_extents_t *obj;
    double val;
@@ -172,7 +172,7 @@ S_CairoTextExtentsGetYAdvance (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoFontExtentsGetAscent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_font_extents_t *obj;
    double val;
@@ -186,7 +186,7 @@ S_CairoFontExtentsGetAscent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoFontExtentsGetDescent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_font_extents_t *obj;
    double val;
@@ -200,7 +200,7 @@ S_CairoFontExtentsGetDescent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoFontExtentsGetHeight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_font_extents_t *obj;
    double val;
@@ -214,7 +214,7 @@ S_CairoFontExtentsGetHeight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoFontExtentsGetMaxXAdvance (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_font_extents_t *obj;
    double val;
@@ -228,7 +228,7 @@ S_CairoFontExtentsGetMaxXAdvance (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_CairoFontExtentsGetMaxYAdvance (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    cairo_font_extents_t *obj;
    double val;

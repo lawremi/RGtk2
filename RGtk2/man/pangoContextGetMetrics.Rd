@@ -12,7 +12,7 @@ used by that language.}
 \item{\code{desc}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}} structure}
 \item{\code{language}}{[\code{\link{PangoLanguage}}]  language tag used to determine which script to get the metrics
            for. \code{NULL} means that the language tag from the context will
-           be used. If no language tag is set on the ccontext, metrics
+           be used. If no language tag is set on the context, metrics
            large enough to cover a range of languages will be returned.
            The process of determining such metrics is slow, so it is best
            to always make sure some real language tag will be used.}

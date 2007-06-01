@@ -7,6 +7,7 @@
 ;; From gdkcairo.h
 
 (define-function cairo_set_source_pixmap
+  (in-module "Gdk")
   (c-name "gdk_cairo_set_source_pixmap")
   (return-type "none")
   (parameters
@@ -15,6 +16,7 @@
     '("double" "pixmap_x")
     '("double" "pixmap_y")
   )
+  (since "2.10.0")
 )
 
 
@@ -33,12 +35,14 @@
   (of-object "GdkDisplay")
   (c-name "gdk_display_supports_shapes")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method supports_input_shapes
   (of-object "GdkDisplay")
   (c-name "gdk_display_supports_input_shapes")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 
@@ -106,6 +110,7 @@
 ;; From gdkpixmap.h
 
 (define-function pixmap_foreign_new_for_screen
+  (in-module "Gdk")
   (c-name "gdk_pixmap_foreign_new_for_screen")
   (return-type "GdkPixmap*")
   (parameters
@@ -115,6 +120,7 @@
     '("gint" "height")
     '("gint" "depth")
   )
+  (since "2.10.0")
 )
 
 
@@ -126,11 +132,13 @@
 ;; From gdkproperty.h
 
 (define-function atom_intern_static_string
+  (in-module "Gdk")
   (c-name "gdk_atom_intern_static_string")
   (return-type "GdkAtom")
   (parameters
     '("const-gchar*" "atom_name")
   )
+  (since "2.10.0")
 )
 
 
@@ -149,6 +157,7 @@
   (of-object "GdkScreen")
   (c-name "gdk_screen_is_composited")
   (return-type "gboolean")
+  (since "2.10.0")
 )
 
 (define-method set_font_options
@@ -158,12 +167,14 @@
   (parameters
     '("const-cairo_font_options_t*" "options")
   )
+  (since "2.10.0")
 )
 
 (define-method get_font_options
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_font_options")
   (return-type "const-cairo_font_options_t*")
+  (since "2.10.0")
 )
 
 (define-method set_resolution
@@ -173,24 +184,28 @@
   (parameters
     '("gdouble" "dpi")
   )
+  (since "2.10.0")
 )
 
 (define-method get_resolution
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_resolution")
   (return-type "gdouble")
+  (since "2.10.0")
 )
 
 (define-method get_active_window
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_active_window")
   (return-type "GdkWindow*")
+  (since "2.10.0")
 )
 
 (define-method get_window_stack
   (of-object "GdkScreen")
   (c-name "gdk_screen_get_window_stack")
   (return-type "GList[GdkWindow]")
+  (since "2.10.0")
 )
 
 
@@ -222,6 +237,7 @@
     '("gint" "x")
     '("gint" "y")
   )
+  (since "2.10.0")
 )
 
 (define-method input_shape_combine_region
@@ -233,24 +249,28 @@
     '("gint" "offset_x")
     '("gint" "offset_y")
   )
+  (since "2.10.0")
 )
 
 (define-method set_child_input_shapes
   (of-object "GdkWindow")
   (c-name "gdk_window_set_child_input_shapes")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method merge_child_input_shapes
   (of-object "GdkWindow")
   (c-name "gdk_window_merge_child_input_shapes")
   (return-type "none")
+  (since "2.10.0")
 )
 
 (define-method get_type_hint
   (of-object "GdkWindow")
   (c-name "gdk_window_get_type_hint")
   (return-type "GdkWindowTypeHint")
+  (since "2.10.0")
 )
 
 ;; virtuals
@@ -258,5 +278,6 @@
 (define-virtual composited_changed
   (of-object "GdkScreen")
   (return-type "none")
+  (since "2.10.0")
 )
 

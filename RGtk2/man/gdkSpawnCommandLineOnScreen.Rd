@@ -19,6 +19,7 @@ on a specific screen.
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} on success, \code{FALSE} if error is set.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for errors}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

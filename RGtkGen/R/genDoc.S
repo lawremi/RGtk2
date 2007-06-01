@@ -31,10 +31,10 @@ genDocs <- function(files, defs, output, descriptions, verbose = F) {
 
 genDoc <- function(file, defs, output, verbose)
 {
-	if (sub("\.[^.]*$", "", basename(file)) %in% undocumentedConcepts)
+	if (sub("\\.[^.]*$", "", basename(file)) %in% undocumentedConcepts)
 		return(NA)
 	
-	entities <- c("num" = "\#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\%",
+	entities <- c("num" = "\\#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\\%",
 		"gdk-pixbuf" = "<application>gdk-pixbuf</application>")
 	text <- paste(readLines(file), collapse="\n")
 	sapply(names(entities), function(entity) 
@@ -177,12 +177,12 @@ parseFunction <- function(node, defs, verbose) {
 	if (isMethod(fun))
 		params <- c(object=makeObjectParam(fun$ofobject), params)
 	if (fun$varargs == '1')
-		params <- c(params, "..."=list(c(name = "...")))
+		params <- list(params, "..."=list(name = "..."))
 	names(params) <- nameToS(names(params))
 	param_items <- toParameterItems(node, paramNames=names(params))
 	names(param_items) <- names(params)
 	if (".errwarn" %in% names(f)) {
-		params <- c(params, ".errwarn"=list(c(name = ".errwarn")))
+		params <- list(params, ".errwarn"=list(name = ".errwarn"))
 		param_items <- c(param_items, .errwarn = rd("item", ".errwarn", 
 			"Whether to issue a warning on error or fail silently"))
 	}
@@ -638,7 +638,7 @@ toItems <- function(node, name_path, text_path, type_path = NULL, item_info=NULL
 		if (inherits(names[[i]], "XMLInternalNode"))
 			name <- markup(names[i])
 		else name <- rd("code", names[i])
-		if (length(node) > 0)
+		if (length(node) > 0 && length(text) >= i)
 			text <- markup(text[i])
 		else text <- ""
 		if (!is.null(type_path) && name != "..." && length(types) >= i) {
@@ -697,7 +697,7 @@ rd <- function(tag, ...) {
 }
 
 rd_table_row <- function(cols) {
-	paste(paste(cols, collapse = " \tab "), "\cr", sep = "")
+	paste(paste(cols, collapse = " \tab "), "\\cr", sep = "")
 }
 rd_table <- function(rows, columns = rep("l", length(rows))) {
 	rd("table", columns, sapply(rows, rd_table_row))

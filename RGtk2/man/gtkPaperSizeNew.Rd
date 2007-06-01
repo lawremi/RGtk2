@@ -10,7 +10,6 @@ paper name. }
 see \code{\link{gtkPaperSizeGetDefault}}.  
 
   Since  2.10}
-\value{[\code{\link{GtkPaperSize}}]  a new \code{\link{GtkPaperSize}}, use \code{\link{gtkPaperSizeFree}}
-to free it}
+\value{[\code{\link{GtkPaperSize}}]  a new \code{\link{GtkPaperSize}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

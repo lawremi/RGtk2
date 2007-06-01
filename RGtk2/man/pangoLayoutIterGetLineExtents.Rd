@@ -2,7 +2,7 @@
 \name{pangoLayoutIterGetLineExtents}
 \title{pangoLayoutIterGetLineExtents}
 \description{Obtains the extents of the current line. \code{ink.rect} or \code{logical.rect}
-can be NULL if you aren't interested in them. Extents are in layout
+can be \code{NULL} if you aren't interested in them. Extents are in layout
 coordinates (origin is the top-left corner of the entire
 \code{\link{PangoLayout}}).  Thus the extents returned by this function will be
 the same width/height but not at the same x/y as the extents

@@ -10,11 +10,18 @@
 \title{Glyph Storage}
 \description{Structures for storing information about glyphs}
 \section{Methods and Functions}{
+\code{\link{pangoUnitsToDouble}(i)}\cr
+\code{\link{pangoUnitsFromDouble}(d)}\cr
+\code{\link{pangoExtentsToPixels}(ink.rect, logical.rect)}\cr
 \code{\link{pangoMatrixCopy}(object)}\cr
 \code{\link{pangoMatrixTranslate}(object, tx, ty)}\cr
 \code{\link{pangoMatrixScale}(object, scale.x, scale.y)}\cr
 \code{\link{pangoMatrixRotate}(object, degrees)}\cr
 \code{\link{pangoMatrixConcat}(object, new.matrix)}\cr
+\code{\link{pangoMatrixTransformPoint}(object, x, y)}\cr
+\code{\link{pangoMatrixTransformDistance}(object, dx, dy)}\cr
+\code{\link{pangoMatrixTransformRectangle}(object, rect)}\cr
+\code{\link{pangoMatrixTransformPixelRectangle}(object, rect)}\cr
 \code{\link{pangoMatrixGetFontScaleFactor}(object)}\cr
 \code{\link{pangoGlyphStringNew}()}\cr
 \code{\link{pangoGlyphStringCopy}(object)}\cr
@@ -27,7 +34,7 @@
 \code{\link{pangoGlyphStringGetLogicalWidths}(object, text, embedding.level)}\cr
 \code{\link{pangoGlyphItemSplit}(orig, text, split.index)}\cr
 \code{\link{pangoGlyphItemApplyAttrs}(glyph.item, text, list)}\cr
-\code{\link{pangoGlyphItemLetterSpace}(glyph.item, text, log.attrs, letter.spacing)}\cr
+\code{\link{pangoGlyphItemLetterSpace}(glyph.item, text, log.attrs)}\cr
 }
 \section{Detailed Description}{\code{\link{pangoShape}} produces a string of glyphs which
 can be measured or drawn to the screen. The following

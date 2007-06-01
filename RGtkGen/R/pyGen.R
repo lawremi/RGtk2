@@ -51,7 +51,8 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
       list(name=name)
   }
   convertType <- function(type) {
-      c(convertDef(type), typecode=type[["typecode"]], module=type[["module"]])
+    c(convertDef(type), typecode=type[["typecode"]], module=type[["module"]],
+       since = list(package_version(type[["since"]])))
   }
   convertFields <- function(fields) {
       f <- NULL
@@ -124,7 +125,8 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   }
   convertFunction <- function(func) {
       if (!is.null(func[["of_object"]])) {
-          f <- (c(convertCall(func), ofobject = func[["of_object"]]))
+          f <- c(convertCall(func), ofobject = func[["of_object"]],
+            module = modules[func[["of_object"]]])
           class(f) <- "MethodDef"
       } else {
           f <- c(convertCall(func), constructorof = func[["is_constructor_of"]])
@@ -133,7 +135,8 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
       f
   }
   convertVirtual <- function(virtual) {
-    f <- c(convertCall(virtual), ofobject = virtual[["of_object"]])
+    f <- c(convertCall(virtual), ofobject = virtual[["of_object"]],
+      module = modules[virtual[["of_object"]]])
     f$vname <- f$name
     f$name <-  paste(collapseClassName(f$ofobject), "_", f$name, sep="")
     class(f) <- "VirtualDef"
@@ -183,6 +186,10 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
   defs$pointers <- lapply(raw[["pointers"]], convertPointer)
   names(defs$pointers) <- getNames(defs$pointers)
 
+  # make a vector mapping types to their modules, for resolving methods
+  modules <- sapply(c(defs$objects, defs$interfaces, defs$boxes, defs$pointers),
+                function(x) { x$module })
+                
   # Functions (and Methods) - should these be separated?
 
   defs$functions <- lapply(raw[["functions"]], convertFunction)
@@ -197,10 +204,10 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
 
   defs$userfunctions <- lapply(raw[["user_functions"]], convertFunction)
   names(defs$userfunctions) <- getNames(defs$userfunctions)
-
+                
   # define mapping between type name and code, could be done at run-time but this is more efficient
-  typecodes <- sapply(c(defs$objects, defs$interfaces, defs$boxes, defs$enums, defs$flags, defs$pointers),
-                function(x) { x$typecode })
+  typecodes <- sapply(c(defs$objects, defs$interfaces, defs$boxes, defs$enums, 
+    defs$flags, defs$pointers), function(x) { x$typecode })
   
   typecodes <- c(CPrimitiveToGType, typecodes)
   typecodes[["GObject"]] <- "G_TYPE_OBJECT" # not included in defs
@@ -1245,8 +1252,10 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, 
      }  else if (isPrimitiveType(vtype) && getGenericType(vtype) == "string")
          fun <- "asCStringArray"
      else {
-         if (vtype %in% transparentTypes && !isPrimitiveType(vtype))
-             fun <- "asCArrayRef"
+         if (!isRef(vtype) && !isPrimitiveType(vtype))
+           fun <- "asCArrayRef"
+         #if (vtype %in% transparentTypes && !isPrimitiveType(vtype))
+         #  fun <- "asCArrayRef"
          else if (owns)
            fun <- "asCArrayDup"
          else fun <- "asCArray"
@@ -1391,15 +1400,18 @@ function(var, ptype, fun = NULL, defs)
       args <- c(args, lit(asRTypeName(type)))
       postfix <- NULL
       finalizer <- NULL
-      if (!is.null(fun) && !inheritsClass(type, defs$objects, "GtkObject")) {
+      if ((!is.null(fun) || isBoxed(type, defs)) && 
+          !inheritsClass(type, defs$objects, "GtkObject")) {
         # we're in a function (not accessor) should probably set finalizer
+        # exception: boxed types need to be copied / finalized
         if (type %in% names(cleanupFuncs))
           finalizer <- cleanupFuncs[[type]]
         else if (type %in% names(finalizerFuncs))
           finalizer <- finalizerFuncs[[type]]
         else if (isBoxed(type, defs)) { # boxed type -> release func as finalizer
           # but we must own memory before freeing it (gotta check for NULL though)
-          args[1] <- paste(args[1], "?", invoke(defs$boxes[[type]]$copy, args[1]), ": NULL")
+          if (is.null(fun) || (fun$owns == 0 && !out))
+            args[1] <- paste(args[1], "?", invoke(defs$boxes[[type]]$copy, args[1]), ": NULL")
           finalizer <- defs$boxes[[type]]$release
         } else if (isPointer(type, defs) && (fun$owns == 1 || out)) {
           finalizer <- "g_free"
@@ -1464,6 +1476,25 @@ function(name, params, defs)
   coercion <- statement(c(cassign(decl(type, name), s_func),
     cassign(declaration, invoke("R_createCBData", c(nameToSArg(name), sdata)))))
   list(coercion = coercion, data = data, freeData = freeData)
+}
+
+since <- function(def, ..., .error = TRUE)
+{
+  if (!length(def$since))
+    return(c(...))
+  check <- invoke(paste(toupper(def$module), "CHECK_VERSION", sep="_"), 
+    unlist(def$since))
+  error <- invoke("error", lit(paste(def$name, "exists only in", def$module, 
+    ">=", as.character(def$since))))
+  c(
+    paste("#if", check), 
+    ...,
+    if (.error) c(
+    "#else",
+    statement(error)
+    ),
+    "#endif"
+  )
 }
 
 genCCode <-
@@ -1621,20 +1652,21 @@ function(fun, defs, name)
  declaration <- declareFunction("USER_OBJECT_", name, "USER_OBJECT_", args)
  txt <- c(
   declaration,
- "{",
-  declCode,
-  "",
-  ansDecl,
-  statement(cassign(decl("USER_OBJECT_", "_result"), "NULL_USER_OBJECT")),
-  outDecl,
-  "",
-  invocation,
-  "",
-  cvtResult,
-  outRet,
-  cleanup,
-  "",
-  statement(returnValue()),
+  "{", 
+    statement(cassign(decl("USER_OBJECT_", "_result"), "NULL_USER_OBJECT")),
+    since(fun, 
+      declCode,
+      "",
+      ansDecl,
+      outDecl,
+      "",
+      invocation,
+      "",
+      cvtResult,
+      outRet,
+      cleanup
+    ), "",
+    statement(returnValue()),
   "}",
   "")
 
@@ -1853,8 +1885,8 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   header <- declareFunction(ret_type, name, param_types, param_names)
   declaration <- header
   
-  export_code <- exportFunc(nameToC(name), param_types, param_names, package)
-  import_code <- importFunc(nameToC(name), ret_type, param_types, param_names, package)
+  export_code <- exportFunc(fun, nameToC(name), param_types, param_names, package)
+  import_code <- importFunc(fun, nameToC(name), ret_type, param_types, param_names, package)
   
   if (!virtual) { # user function needs user-data
     dataInd <- which(getParamTypes(params) == "gpointer")
@@ -1950,7 +1982,12 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
   code <- c(code,
   "}")
   
-  list(code=paste(code,collapse="\n"), decl=statement(declaration),
+  if (!virtual) # virtuals are conditioned differently
+    code <- since(fun, code, .error = FALSE)
+  
+  decl <- since(fun, statement(declaration), .error = FALSE)
+  
+  list(code=paste(code,collapse="\n"), decl = paste(decl, collapse="\n"),
     import = import_code, export = export_code)
 }
 
@@ -2033,9 +2070,11 @@ function(struct, defs)
 # exporting and importing using [register/get]CCallable()
 
 exportFunc <- 
-function(name, arg_types, arg_names, package)
+function(def, name, arg_types, arg_names, package)
 {
-  statement(invokev("R_RegisterCCallable", lit(package), lit(name), cast("DL_FUNC", name)), 0)
+  paste(since(def,
+    statement(invokev("R_RegisterCCallable", lit(package), lit(name), cast("DL_FUNC", name)), 0),
+  .error = FALSE), collapse = "\n")
 }
 
 declareFunctionVar <- function(ret_type, name, arg_types)
@@ -2044,7 +2083,7 @@ declareFunctionVar <- function(ret_type, name, arg_types)
 }
 
 importFunc <- 
-function(name, ret_type, arg_types, arg_names, package)
+function(def, name, ret_type, arg_types, arg_names, package)
 {
   if (ret_type == "none")
     ret_type <- "void"
@@ -2057,7 +2096,7 @@ function(name, ret_type, arg_types, arg_names, package)
       cassign("fun", cast(func_type, invokev("R_GetCCallable", lit(package), lit(name)))))),
     statement(if (ret_type != "none") returnValue(invocation) else invocation),
   "}")
-  paste(code, collapse = "\n")
+  paste(since(def, code, .error=FALSE), collapse = "\n")
 }
 
 #############################
@@ -2186,7 +2225,7 @@ function(types, defs, package = "RGtk2")
        #  Check there isn't already an explicitly registered function for doing this.
        #  if(is.na(match(paste( classname to gtk_class format, get, i,sep="_") , names(defs$functions)))
 
-      tmp[[f]] <-  genFieldAccessor(f, type$fields[[f]], i, defs, package)
+      tmp[[f]] <-  genFieldAccessor(f, type$fields[[f]], i, type$module, type$since, defs, package)
      }
      code[[i]] <- tmp
     }
@@ -2221,7 +2260,7 @@ genFieldAccessor <-
   #         toRPointer(w, "GtkWidget")
   #  }
   #
-function(name, type, className, defs, package = "RGtk2")
+function(name, type, className, module, since, defs, package = "RGtk2")
 {
 
  sName <- asRTypeName(className)
@@ -2233,7 +2272,7 @@ function(name, type, className, defs, package = "RGtk2")
 
  rcode <- genFieldAccessorRCode(sFuncName, sName, croutine, type, defs, package)
 
- ccode <- genFieldAccessorCCode(name, className, croutine, type, defs)
+ ccode <- genFieldAccessorCCode(name, className, croutine, type, module, since, defs)
 
  list(rcode = paste(rcode, collapse="\n", sep=""),
       ccode = paste(ccode, collapse="\n", sep=""),
@@ -2242,7 +2281,7 @@ function(name, type, className, defs, package = "RGtk2")
 
 
 genFieldAccessorCCode <-
-function(name, className, croutine, type, defs)
+function(name, className, croutine, type, module, since, defs)
 {
     val <- "val"
     # sometimes need to force pointer type
@@ -2254,14 +2293,15 @@ function(name, className, croutine, type, defs)
   c("USER_OBJECT_",
     paste(croutine, "(USER_OBJECT_ s_obj)"),
     "{",
-    "   USER_OBJECT_ _result;",
+    "   USER_OBJECT_ _result = NULL_USER_OBJECT;",
     "",
+    since(list(name = name, module = module, since = since),
     paste("  ", className, "*obj;"),
     paste("  ", toValidType(type), "val;"),
     "",
     paste("  ", "obj =", convertToCType("obj", paste(className, "*", sep=""), defs)$code, ";"),
     paste("   val = obj->", name, ";", sep=""),
-    paste("   _result = ", convertToR(val, type, defs=defs)$code, ";", sep=""),
+    paste("   _result = ", convertToR(val, type, defs=defs)$code, ";", sep="")),
     "",
     "   return(_result);",
     "}"

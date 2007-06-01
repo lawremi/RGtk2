@@ -2417,17 +2417,6 @@ function(role)
 } 
 
 
-atkHyperlinkImplGetHyperlink <-
-function(object)
-{
-  checkPtrType(object, "AtkHyperlinkImpl")
-
-  w <- .RGtkCall("S_atk_hyperlink_impl_get_hyperlink", object, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
 atkDocumentGetLocale <-
 function(object)
 {
@@ -2503,29 +2492,6 @@ function(object)
   checkPtrType(object, "AtkObject")
 
   w <- .RGtkCall("S_atk_object_get_attributes", object, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-atkStreamableContentGetUri <-
-function(object, mime.type)
-{
-  checkPtrType(object, "AtkStreamableContent")
-  mime.type <- as.character(mime.type)
-
-  w <- .RGtkCall("S_atk_streamable_content_get_uri", object, mime.type, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-atkValueGetMinimumIncrement <-
-function(object)
-{
-  checkPtrType(object, "AtkValue")
-
-  w <- .RGtkCall("S_atk_value_get_minimum_increment", object, PACKAGE = "RGtk2")
 
   return(w)
 } 

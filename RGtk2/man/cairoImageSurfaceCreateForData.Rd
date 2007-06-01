@@ -4,8 +4,8 @@
 \description{Creates an image surface for the provided pixel data. The output
 buffer must be kept around until the \code{\link{CairoSurface}} is destroyed
 or \code{\link{cairoSurfaceFinish}} is called on the surface.  The initial
-contents of \code{buffer} will be used as the inital image contents; you
-must explicitely clear the buffer, using, for example,
+contents of \code{buffer} will be used as the initial image contents; you
+must explicitly clear the buffer, using, for example,
 \code{\link{cairoRectangle}} and \code{\link{cairoFill}} if you want it cleared.}
 \usage{cairoImageSurfaceCreateForData(data, format, width, height, stride)}
 \arguments{

@@ -7,7 +7,7 @@ a new list.}
 \usage{pangoAttrListFilter(object, func, data)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoAttrList}}]  a \code{\link{PangoAttrList}}}
-\item{\code{func}}{[\code{\link{PangoAttrFilterFunc}}]  callback function; returns \code{TRUE} if an atttribute
+\item{\code{func}}{[\code{\link{PangoAttrFilterFunc}}]  callback function; returns \code{TRUE} if an attribute
        should be filtered out.}
 \item{\code{data}}{[R object]  Data to be passed to \code{func}}
 }

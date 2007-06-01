@@ -5,6 +5,7 @@
   (parent "GtkCellRendererText")
   (c-name "GtkCellRendererAccel")
   (gtype-id "GTK_TYPE_CELL_RENDERER_ACCEL")
+  (since "2.10.0")
 )
 
 (define-object CellRendererSpin
@@ -12,6 +13,7 @@
   (parent "GtkCellRendererText")
   (c-name "GtkCellRendererSpin")
   (gtype-id "GTK_TYPE_CELL_RENDERER_SPIN")
+  (since "2.10.0")
 )
 
 (define-object PageSetup
@@ -19,6 +21,7 @@
   (parent "GObject")
   (c-name "GtkPageSetup")
   (gtype-id "GTK_TYPE_PAGE_SETUP")
+  (since "2.10.0")
 )
 
 (define-object PrintContext
@@ -26,6 +29,7 @@
   (parent "GObject")
   (c-name "GtkPrintContext")
   (gtype-id "GTK_TYPE_PRINT_CONTEXT")
+  (since "2.10.0")
 )
 
 (define-object PrintOperation
@@ -33,12 +37,14 @@
   (parent "GObject")
   (c-name "GtkPrintOperation")
   (gtype-id "GTK_TYPE_PRINT_OPERATION")
+  (since "2.10.0")
 )
 
 (define-object PrintOperationPreview
   (in-module "Gtk")
   (c-name "GtkPrintOperationPreview")
   (gtype-id "GTK_TYPE_PRINT_OPERATION_PREVIEW")
+  (since "2.10.0")
 )
 
 (define-object PrintSettings
@@ -46,12 +52,14 @@
   (parent "GObject")
   (c-name "GtkPrintSettings")
   (gtype-id "GTK_TYPE_PRINT_SETTINGS")
+  (since "2.10.0")
 )
 
 (define-object RecentChooser
   (in-module "Gtk")
   (c-name "GtkRecentChooser")
   (gtype-id "GTK_TYPE_RECENT_CHOOSER")
+  (since "2.10.0")
 )
 
 (define-object RecentFilter
@@ -59,6 +67,7 @@
   (parent "GtkObject")
   (c-name "GtkRecentFilter")
   (gtype-id "GTK_TYPE_RECENT_FILTER")
+  (since "2.10.0")
 )
 
 (define-object RecentManager
@@ -66,6 +75,7 @@
   (parent "GObject")
   (c-name "GtkRecentManager")
   (gtype-id "GTK_TYPE_RECENT_MANAGER")
+  (since "2.10.0")
 )
 
 (define-object StatusIcon
@@ -73,6 +83,7 @@
   (parent "GObject")
   (c-name "GtkStatusIcon")
   (gtype-id "GTK_TYPE_STATUS_ICON")
+  (since "2.10.0")
 )
 
 (define-object RecentChooserMenu
@@ -80,6 +91,7 @@
   (parent "GtkMenu")
   (c-name "GtkRecentChooserMenu")
   (gtype-id "GTK_TYPE_RECENT_CHOOSER_MENU")
+  (since "2.10.0")
 )
 
 (define-object LinkButton
@@ -87,6 +99,7 @@
   (parent "GtkButton")
   (c-name "GtkLinkButton")
   (gtype-id "GTK_TYPE_LINK_BUTTON")
+  (since "2.10.0")
 )
 
 (define-object RecentChooserWidget
@@ -94,6 +107,7 @@
   (parent "GtkVBox")
   (c-name "GtkRecentChooserWidget")
   (gtype-id "GTK_TYPE_RECENT_CHOOSER_WIDGET")
+  (since "2.10.0")
 )
 
 (define-object RecentChooserDialog
@@ -101,6 +115,7 @@
   (parent "GtkDialog")
   (c-name "GtkRecentChooserDialog")
   (gtype-id "GTK_TYPE_RECENT_CHOOSER_DIALOG")
+  (since "2.10.0")
 )
 
 (define-object Assistant
@@ -108,6 +123,7 @@
   (parent "GtkWindow")
   (c-name "GtkAssistant")
   (gtype-id "GTK_TYPE_ASSISTANT")
+  (since "2.10.0")
 )
 
 (define-boxed PaperSize
@@ -116,6 +132,7 @@
   (gtype-id "GTK_TYPE_PAPER_SIZE")
   (copy-func "gtk_paper_size_copy")
   (release-func "gtk_paper_size_free")
+  (since "2.10.0")
 )
 
 (define-boxed RecentInfo
@@ -124,6 +141,7 @@
   (gtype-id "GTK_TYPE_RECENT_INFO")
   (copy-func "gtk_recent_info_ref")
   (release-func "gtk_recent_info_unref")
+  (since "2.10.0")
 )
 
 ;; Enumerations and flags ...
@@ -139,6 +157,7 @@
     '("summary" "GTK_ASSISTANT_PAGE_SUMMARY")
     '("progress" "GTK_ASSISTANT_PAGE_PROGRESS")
   )
+  (since "2.10.0")
 )
 
 (define-enum CellRendererAccelMode
@@ -149,6 +168,7 @@
     '("gtk" "GTK_CELL_RENDERER_ACCEL_MODE_GTK")
     '("other" "GTK_CELL_RENDERER_ACCEL_MODE_OTHER")
   )
+  (since "2.10.0")
 )
 
 (define-enum SensitivityType
@@ -160,6 +180,7 @@
     '("on" "GTK_SENSITIVITY_ON")
     '("off" "GTK_SENSITIVITY_OFF")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintPages
@@ -171,6 +192,7 @@
     '("current" "GTK_PRINT_PAGES_CURRENT")
     '("ranges" "GTK_PRINT_PAGES_RANGES")
   )
+  (since "2.10.0")
 )
 
 (define-enum PageSet
@@ -182,6 +204,7 @@
     '("even" "GTK_PAGE_SET_EVEN")
     '("odd" "GTK_PAGE_SET_ODD")
   )
+  (since "2.10.0")
 )
 
 (define-enum PageOrientation
@@ -194,6 +217,7 @@
     '("reverse-portrait" "GTK_PAGE_ORIENTATION_REVERSE_PORTRAIT")
     '("reverse-landscape" "GTK_PAGE_ORIENTATION_REVERSE_LANDSCAPE")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintQuality
@@ -206,6 +230,7 @@
     '("high" "GTK_PRINT_QUALITY_HIGH")
     '("draft" "GTK_PRINT_QUALITY_DRAFT")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintDuplex
@@ -217,6 +242,7 @@
     '("horizontal" "GTK_PRINT_DUPLEX_HORIZONTAL")
     '("vertical" "GTK_PRINT_DUPLEX_VERTICAL")
   )
+  (since "2.10.0")
 )
 
 (define-enum Unit
@@ -229,6 +255,7 @@
     '("inch" "GTK_UNIT_INCH")
     '("mm" "GTK_UNIT_MM")
   )
+  (since "2.10.0")
 )
 
 (define-enum TreeViewGridLines
@@ -241,6 +268,7 @@
     '("vertical" "GTK_TREE_VIEW_GRID_LINES_VERTICAL")
     '("both" "GTK_TREE_VIEW_GRID_LINES_BOTH")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintStatus
@@ -258,6 +286,7 @@
     '("finished" "GTK_PRINT_STATUS_FINISHED")
     '("finished-aborted" "GTK_PRINT_STATUS_FINISHED_ABORTED")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintOperationResult
@@ -270,6 +299,7 @@
     '("cancel" "GTK_PRINT_OPERATION_RESULT_CANCEL")
     '("in-progress" "GTK_PRINT_OPERATION_RESULT_IN_PROGRESS")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintOperationAction
@@ -282,6 +312,7 @@
     '("preview" "GTK_PRINT_OPERATION_ACTION_PREVIEW")
     '("export" "GTK_PRINT_OPERATION_ACTION_EXPORT")
   )
+  (since "2.10.0")
 )
 
 (define-enum PrintError
@@ -293,6 +324,7 @@
     '("internal-error" "GTK_PRINT_ERROR_INTERNAL_ERROR")
     '("nomem" "GTK_PRINT_ERROR_NOMEM")
   )
+  (since "2.10.0")
 )
 
 (define-enum RecentSortType
@@ -305,6 +337,7 @@
     '("lru" "GTK_RECENT_SORT_LRU")
     '("custom" "GTK_RECENT_SORT_CUSTOM")
   )
+  (since "2.10.0")
 )
 
 (define-enum RecentChooserError
@@ -315,6 +348,7 @@
     '("not-found" "GTK_RECENT_CHOOSER_ERROR_NOT_FOUND")
     '("invalid-uri" "GTK_RECENT_CHOOSER_ERROR_INVALID_URI")
   )
+  (since "2.10.0")
 )
 
 (define-flags RecentFilterFlags
@@ -329,6 +363,7 @@
     '("group" "GTK_RECENT_FILTER_GROUP")
     '("age" "GTK_RECENT_FILTER_AGE")
   )
+  (since "2.10.0")
 )
 
 (define-enum RecentManagerError
@@ -344,6 +379,7 @@
     '("write" "GTK_RECENT_MANAGER_ERROR_WRITE")
     '("unknown" "GTK_RECENT_MANAGER_ERROR_UNKNOWN")
   )
+  (since "2.10.0")
 )
 
 (define-enum TextBufferTargetInfo
@@ -355,20 +391,24 @@
     '("rich-text" "GTK_TEXT_BUFFER_TARGET_INFO_RICH_TEXT")
     '("text" "GTK_TEXT_BUFFER_TARGET_INFO_TEXT")
   )
+  (since "2.10.0")
 )
 
 ; user functions
 
 (define-user-function AssistantPageFunc
+  (in-module "Gtk")
   (c-name "GtkAssistantPageFunc")
   (return-type "gint")
   (parameters
     '("gint" "current_page")
     '("gpointer" "data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function ClipboardRichTextReceivedFunc
+  (in-module "Gtk")
   (c-name "GtkClipboardRichTextReceivedFunc")
   (return-type "none")
   (parameters
@@ -378,9 +418,11 @@
     '("gsize" "length")
     '("gpointer" "data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function LinkButtonUriFunc
+  (in-module "Gtk")
   (c-name "GtkLinkButtonUriFunc")
   (return-type "none")
   (parameters
@@ -388,9 +430,11 @@
     '("const-gchar*" "link")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function NotebookWindowCreationFunc
+  (in-module "Gtk")
   (c-name "GtkNotebookWindowCreationFunc")
   (return-type "GtkNotebook*")
   (parameters
@@ -400,18 +444,22 @@
     '("gint" "y")
     '("gpointer" "data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function PageSetupDoneFunc
+  (in-module "Gtk")
   (c-name "GtkPageSetupDoneFunc")
   (return-type "none")
   (parameters
     '("GtkPageSetup*" "page_setup")
     '("gpointer" "data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function PrintSettingsFunc
+  (in-module "Gtk")
   (c-name "GtkPrintSettingsFunc")
   (return-type "none")
   (parameters
@@ -419,9 +467,11 @@
     '("const-gchar*" "value")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function RecentSortFunc
+  (in-module "Gtk")
   (c-name "GtkRecentSortFunc")
   (return-type "gint")
   (parameters
@@ -429,19 +479,23 @@
     '("GtkRecentInfo*" "b")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 (define-user-function RecentFilterFunc
+  (in-module "Gtk")
   (c-name "GtkRecentFilterFunc")
   (return-type "gboolean")
   (parameters
     '("const-GtkRecentFilterInfo*" "filter_info")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 ; must be done manually (to return the size)
 ;(define-user-function TextBufferSerializeFunc
+  (in-module "Gtk")
 ;  (c-name "GtkTextBufferSerializeFunc")
 ;  (return-type "guint8*")
 ;  (parameters
@@ -456,6 +510,7 @@
 
 ; no way to return error, probably ok
 (define-user-function TextBufferDeserializeFunc
+  (in-module "Gtk")
   (c-name "GtkTextBufferDeserializeFunc")
   (return-type "gboolean")
   (parameters
@@ -468,9 +523,11 @@
     '("gpointer" "user_data")
     '("GError**" "error" (out))
   )
+  (since "2.10.0")
 )
 
 (define-user-function TreeViewSearchPositionFunc
+  (in-module "Gtk")
   (c-name "GtkTreeViewSearchPositionFunc")
   (return-type "none")
   (parameters
@@ -478,6 +535,7 @@
     '("GtkWidget*" "search_dialog")
     '("gpointer" "user_data")
   )
+  (since "2.10.0")
 )
 
 ;; plain structures
@@ -494,6 +552,7 @@
     '("gchar**" "groups")
     '("gboolean" "is_private")
 	)
+  (since "2.10.0")
 )
 (define-pointer RecentFilterInfo
 	(in-module "Gtk")
@@ -508,6 +567,7 @@
     '("const-gchar**" "groups")
     '("gint" "age")
 	)
+  (since "2.10.0")
 )
 (define-pointer PageRange
 	(in-module "Gtk")
@@ -517,6 +577,7 @@
 		'("gint" "start")
     '("gint" "end")
 	)
+  (since "2.10.0")
 )
 (define-pointer TargetEntry
 	(in-module "Gtk")
@@ -527,6 +588,7 @@
     '("guint" "flags")
     '("gint" "info")
 	)
+  (since "2.10.0")
 )
 (define-pointer FileFilterInfo
 	(in-module "Gtk")
@@ -539,4 +601,5 @@
     '("const-gchar*" "display_name")
     '("const-gchar*" "mime_type")
 	)
+  (since "2.10.0")
 )

@@ -4,7 +4,7 @@
 USER_OBJECT_
 S_GdkDeviceGetName (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    gchar* val;
@@ -18,7 +18,7 @@ S_GdkDeviceGetName (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetSource (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    GdkInputSource val;
@@ -32,7 +32,7 @@ S_GdkDeviceGetSource (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetMode (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    GdkInputMode val;
@@ -46,7 +46,7 @@ S_GdkDeviceGetMode (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetHasCursor (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    gboolean val;
@@ -60,7 +60,7 @@ S_GdkDeviceGetHasCursor (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetNumAxes (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    gint val;
@@ -74,7 +74,7 @@ S_GdkDeviceGetNumAxes (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetAxes (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    GdkDeviceAxis* val;
@@ -88,7 +88,7 @@ S_GdkDeviceGetAxes (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetNumKeys (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    gint val;
@@ -102,7 +102,7 @@ S_GdkDeviceGetNumKeys (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceGetKeys (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDevice *obj;
    GdkDeviceKey* val;
@@ -116,7 +116,7 @@ S_GdkDeviceGetKeys (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetProtocol (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkDragProtocol val;
@@ -130,7 +130,7 @@ S_GdkDragContextGetProtocol (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetIsSource (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    gboolean val;
@@ -144,7 +144,7 @@ S_GdkDragContextGetIsSource (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetSourceWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkWindow* val;
@@ -158,7 +158,7 @@ S_GdkDragContextGetSourceWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetDestWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkWindow* val;
@@ -172,7 +172,7 @@ S_GdkDragContextGetDestWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetTargets (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GList* val;
@@ -186,7 +186,7 @@ S_GdkDragContextGetTargets (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetActions (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkDragAction val;
@@ -200,7 +200,7 @@ S_GdkDragContextGetActions (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetSuggestedAction (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkDragAction val;
@@ -214,7 +214,7 @@ S_GdkDragContextGetSuggestedAction (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetAction (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    GdkDragAction val;
@@ -228,7 +228,7 @@ S_GdkDragContextGetAction (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDragContextGetStartTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDragContext *obj;
    guint32 val;
@@ -242,7 +242,7 @@ S_GdkDragContextGetStartTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    GdkVisualType val;
@@ -256,7 +256,7 @@ S_GdkVisualGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetDepth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -270,7 +270,7 @@ S_GdkVisualGetDepth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetByteOrder (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    GdkByteOrder val;
@@ -284,7 +284,7 @@ S_GdkVisualGetByteOrder (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetColormapSize (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -298,7 +298,7 @@ S_GdkVisualGetColormapSize (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetBitsPerRgb (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -312,7 +312,7 @@ S_GdkVisualGetBitsPerRgb (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetRedMask (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    guint32 val;
@@ -326,7 +326,7 @@ S_GdkVisualGetRedMask (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetRedShift (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -340,7 +340,7 @@ S_GdkVisualGetRedShift (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetRedPrec (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -354,7 +354,7 @@ S_GdkVisualGetRedPrec (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetGreenMask (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    guint32 val;
@@ -368,7 +368,7 @@ S_GdkVisualGetGreenMask (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetGreenShift (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -382,7 +382,7 @@ S_GdkVisualGetGreenShift (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetGreenPrec (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -396,7 +396,7 @@ S_GdkVisualGetGreenPrec (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetBlueMask (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    guint32 val;
@@ -410,7 +410,7 @@ S_GdkVisualGetBlueMask (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetBlueShift (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -424,7 +424,7 @@ S_GdkVisualGetBlueShift (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkVisualGetBluePrec (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkVisual *obj;
    gint val;
@@ -438,7 +438,7 @@ S_GdkVisualGetBluePrec (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkFontGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkFont *obj;
    GdkFontType val;
@@ -452,7 +452,7 @@ S_GdkFontGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkFontGetAscent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkFont *obj;
    gint val;
@@ -466,7 +466,7 @@ S_GdkFontGetAscent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkFontGetDescent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkFont *obj;
    gint val;
@@ -480,7 +480,7 @@ S_GdkFontGetDescent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkCursorGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkCursor *obj;
    GdkCursorType val;
@@ -494,7 +494,7 @@ S_GdkCursorGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventAnyGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventAny *obj;
    GdkEventType val;
@@ -508,7 +508,7 @@ S_GdkEventAnyGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventAnyGetWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventAny *obj;
    GdkWindow* val;
@@ -522,7 +522,7 @@ S_GdkEventAnyGetWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventAnyGetSendEvent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventAny *obj;
    gint8 val;
@@ -536,7 +536,7 @@ S_GdkEventAnyGetSendEvent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    guint32 val;
@@ -550,7 +550,7 @@ S_GdkEventKeyGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    guint val;
@@ -564,7 +564,7 @@ S_GdkEventKeyGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetKeyval (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    guint val;
@@ -578,7 +578,7 @@ S_GdkEventKeyGetKeyval (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetLength (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    gint val;
@@ -592,7 +592,7 @@ S_GdkEventKeyGetLength (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetString (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    gchar* val;
@@ -606,7 +606,7 @@ S_GdkEventKeyGetString (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetHardwareKeycode (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    guint16 val;
@@ -620,7 +620,7 @@ S_GdkEventKeyGetHardwareKeycode (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventKeyGetGroup (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventKey *obj;
    guint8 val;
@@ -634,7 +634,7 @@ S_GdkEventKeyGetGroup (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSelectionGetSelection (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSelection *obj;
    GdkAtom val;
@@ -648,7 +648,7 @@ S_GdkEventSelectionGetSelection (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSelectionGetTarget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSelection *obj;
    GdkAtom val;
@@ -662,7 +662,7 @@ S_GdkEventSelectionGetTarget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSelectionGetProperty (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSelection *obj;
    GdkAtom val;
@@ -676,7 +676,7 @@ S_GdkEventSelectionGetProperty (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSelectionGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSelection *obj;
    guint32 val;
@@ -690,7 +690,7 @@ S_GdkEventSelectionGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSelectionGetRequestor (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSelection *obj;
    GdkNativeWindow val;
@@ -704,7 +704,7 @@ S_GdkEventSelectionGetRequestor (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventDNDGetContext (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventDND *obj;
    GdkDragContext* val;
@@ -718,7 +718,7 @@ S_GdkEventDNDGetContext (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventDNDGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventDND *obj;
    guint32 val;
@@ -732,7 +732,7 @@ S_GdkEventDNDGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventDNDGetXRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventDND *obj;
    gshort val;
@@ -746,7 +746,7 @@ S_GdkEventDNDGetXRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventDNDGetYRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventDND *obj;
    gshort val;
@@ -760,7 +760,7 @@ S_GdkEventDNDGetYRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventExposeGetArea (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventExpose *obj;
    GdkRectangle val;
@@ -774,7 +774,7 @@ S_GdkEventExposeGetArea (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventExposeGetRegion (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventExpose *obj;
    GdkRegion* val;
@@ -788,7 +788,7 @@ S_GdkEventExposeGetRegion (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventExposeGetCount (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventExpose *obj;
    gint val;
@@ -802,7 +802,7 @@ S_GdkEventExposeGetCount (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    guint32 val;
@@ -816,7 +816,7 @@ S_GdkEventButtonGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    gdouble val;
@@ -830,7 +830,7 @@ S_GdkEventButtonGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    gdouble val;
@@ -844,7 +844,7 @@ S_GdkEventButtonGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetAxes (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    gdouble* val;
@@ -858,7 +858,7 @@ S_GdkEventButtonGetAxes (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    guint val;
@@ -872,7 +872,7 @@ S_GdkEventButtonGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    guint val;
@@ -886,7 +886,7 @@ S_GdkEventButtonGetButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetDevice (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    GdkDevice* val;
@@ -900,7 +900,7 @@ S_GdkEventButtonGetDevice (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetXRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    gdouble val;
@@ -914,7 +914,7 @@ S_GdkEventButtonGetXRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventButtonGetYRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventButton *obj;
    gdouble val;
@@ -928,7 +928,7 @@ S_GdkEventButtonGetYRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    guint32 val;
@@ -942,7 +942,7 @@ S_GdkEventScrollGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    gdouble val;
@@ -956,7 +956,7 @@ S_GdkEventScrollGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    gdouble val;
@@ -970,7 +970,7 @@ S_GdkEventScrollGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    guint val;
@@ -984,7 +984,7 @@ S_GdkEventScrollGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetDirection (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    GdkScrollDirection val;
@@ -998,7 +998,7 @@ S_GdkEventScrollGetDirection (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetDevice (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    GdkDevice* val;
@@ -1012,7 +1012,7 @@ S_GdkEventScrollGetDevice (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetXRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    gdouble val;
@@ -1026,7 +1026,7 @@ S_GdkEventScrollGetXRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventScrollGetYRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventScroll *obj;
    gdouble val;
@@ -1040,7 +1040,7 @@ S_GdkEventScrollGetYRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    guint32 val;
@@ -1054,7 +1054,7 @@ S_GdkEventMotionGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gdouble val;
@@ -1068,7 +1068,7 @@ S_GdkEventMotionGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gdouble val;
@@ -1082,7 +1082,7 @@ S_GdkEventMotionGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetAxes (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gdouble* val;
@@ -1096,7 +1096,7 @@ S_GdkEventMotionGetAxes (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    guint val;
@@ -1110,7 +1110,7 @@ S_GdkEventMotionGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetIsHint (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gint16 val;
@@ -1124,7 +1124,7 @@ S_GdkEventMotionGetIsHint (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetDevice (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    GdkDevice* val;
@@ -1138,7 +1138,7 @@ S_GdkEventMotionGetDevice (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetXRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gdouble val;
@@ -1152,7 +1152,7 @@ S_GdkEventMotionGetXRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventMotionGetYRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventMotion *obj;
    gdouble val;
@@ -1166,7 +1166,7 @@ S_GdkEventMotionGetYRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventVisibilityGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventVisibility *obj;
    GdkVisibilityState val;
@@ -1180,7 +1180,7 @@ S_GdkEventVisibilityGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    guint32 val;
@@ -1194,7 +1194,7 @@ S_GdkEventCrossingGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    gdouble val;
@@ -1208,7 +1208,7 @@ S_GdkEventCrossingGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    gdouble val;
@@ -1222,7 +1222,7 @@ S_GdkEventCrossingGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetXRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    gdouble val;
@@ -1236,7 +1236,7 @@ S_GdkEventCrossingGetXRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetYRoot (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    gdouble val;
@@ -1250,7 +1250,7 @@ S_GdkEventCrossingGetYRoot (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetMode (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    GdkCrossingMode val;
@@ -1264,7 +1264,7 @@ S_GdkEventCrossingGetMode (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetDetail (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    GdkNotifyType val;
@@ -1278,7 +1278,7 @@ S_GdkEventCrossingGetDetail (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetFocus (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    gboolean val;
@@ -1292,7 +1292,7 @@ S_GdkEventCrossingGetFocus (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventCrossingGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventCrossing *obj;
    guint val;
@@ -1306,7 +1306,7 @@ S_GdkEventCrossingGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventFocusGetIn (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventFocus *obj;
    gint16 val;
@@ -1320,7 +1320,7 @@ S_GdkEventFocusGetIn (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventConfigureGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventConfigure *obj;
    gint val;
@@ -1334,7 +1334,7 @@ S_GdkEventConfigureGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventConfigureGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventConfigure *obj;
    gint val;
@@ -1348,7 +1348,7 @@ S_GdkEventConfigureGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventConfigureGetWidth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventConfigure *obj;
    gint val;
@@ -1362,7 +1362,7 @@ S_GdkEventConfigureGetWidth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventConfigureGetHeight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventConfigure *obj;
    gint val;
@@ -1376,7 +1376,7 @@ S_GdkEventConfigureGetHeight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventPropertyGetAtom (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventProperty *obj;
    GdkAtom val;
@@ -1390,7 +1390,7 @@ S_GdkEventPropertyGetAtom (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventPropertyGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventProperty *obj;
    guint32 val;
@@ -1404,7 +1404,7 @@ S_GdkEventPropertyGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventPropertyGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventProperty *obj;
    guint val;
@@ -1418,7 +1418,7 @@ S_GdkEventPropertyGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventProximityGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventProximity *obj;
    guint32 val;
@@ -1432,7 +1432,7 @@ S_GdkEventProximityGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventProximityGetDevice (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventProximity *obj;
    GdkDevice* val;
@@ -1446,7 +1446,7 @@ S_GdkEventProximityGetDevice (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventWindowStateGetChangedMask (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventWindowState *obj;
    GdkWindowState val;
@@ -1460,7 +1460,7 @@ S_GdkEventWindowStateGetChangedMask (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventWindowStateGetNewWindowState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventWindowState *obj;
    GdkWindowState val;
@@ -1474,7 +1474,7 @@ S_GdkEventWindowStateGetNewWindowState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSettingGetAction (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSetting *obj;
    GdkSettingAction val;
@@ -1488,7 +1488,7 @@ S_GdkEventSettingGetAction (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventSettingGetName (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventSetting *obj;
    char* val;
@@ -1502,7 +1502,7 @@ S_GdkEventSettingGetName (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventOwnerChangeGetOwner (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventOwnerChange *obj;
    GdkNativeWindow val;
@@ -1516,7 +1516,7 @@ S_GdkEventOwnerChangeGetOwner (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventOwnerChangeGetReason (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventOwnerChange *obj;
    GdkOwnerChange val;
@@ -1530,7 +1530,7 @@ S_GdkEventOwnerChangeGetReason (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventOwnerChangeGetSelection (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventOwnerChange *obj;
    GdkAtom val;
@@ -1544,7 +1544,7 @@ S_GdkEventOwnerChangeGetSelection (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventOwnerChangeGetTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventOwnerChange *obj;
    guint32 val;
@@ -1558,7 +1558,7 @@ S_GdkEventOwnerChangeGetTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventOwnerChangeGetSelectionTime (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventOwnerChange *obj;
    guint32 val;
@@ -1572,7 +1572,7 @@ S_GdkEventOwnerChangeGetSelectionTime (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventClientGetMessageType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventClient *obj;
    GdkAtom val;
@@ -1586,7 +1586,7 @@ S_GdkEventClientGetMessageType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventGrabBrokenGetKeyboard (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventGrabBroken *obj;
    gboolean val;
@@ -1600,7 +1600,7 @@ S_GdkEventGrabBrokenGetKeyboard (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventGrabBrokenGetImplicit (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventGrabBroken *obj;
    gboolean val;
@@ -1614,7 +1614,7 @@ S_GdkEventGrabBrokenGetImplicit (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkEventGrabBrokenGetGrabWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkEventGrabBroken *obj;
    GdkWindow* val;
@@ -1628,7 +1628,7 @@ S_GdkEventGrabBrokenGetGrabWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceKeyGetKeyval (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDeviceKey *obj;
    guint val;
@@ -1642,7 +1642,7 @@ S_GdkDeviceKeyGetKeyval (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceKeyGetModifiers (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDeviceKey *obj;
    GdkModifierType val;
@@ -1656,7 +1656,7 @@ S_GdkDeviceKeyGetModifiers (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceAxisGetUse (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDeviceAxis *obj;
    GdkAxisUse val;
@@ -1670,7 +1670,7 @@ S_GdkDeviceAxisGetUse (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceAxisGetMin (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDeviceAxis *obj;
    gdouble val;
@@ -1684,7 +1684,7 @@ S_GdkDeviceAxisGetMin (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkDeviceAxisGetMax (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkDeviceAxis *obj;
    gdouble val;
@@ -1698,7 +1698,7 @@ S_GdkDeviceAxisGetMax (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkPangoAttrEmbossedGetEmbossed (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkPangoAttrEmbossed *obj;
    gboolean val;
@@ -1712,7 +1712,7 @@ S_GdkPangoAttrEmbossedGetEmbossed (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GdkPangoAttrStippleGetStipple (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GdkPangoAttrStipple *obj;
    GdkBitmap* val;

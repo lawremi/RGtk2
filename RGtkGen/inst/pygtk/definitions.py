@@ -44,7 +44,10 @@ class Definition:
     def __init__(self, *args):
 	"""Create a new defs object of this type.  The arguments are the
 	components of the definition"""
-	raise RuntimeError, "this is an abstract class"
+	self.since = None
+	for arg in get_valid_scheme_definitions(args):
+	    if arg[0] == 'since':
+	          self.since = arg[1]
     def merge(self, old):
 	"""Merge in customisations from older version of definition"""
 	raise RuntimeError, "this is an abstract class"
@@ -64,6 +67,7 @@ class Definition:
 
 class ObjectDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
 	self.name = name
 	self.module = None
 	self.parent = None
@@ -113,6 +117,7 @@ class ObjectDef(Definition):
 
 class InterfaceDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
 	self.name = name
 	self.module = None
 	self.c_name = None
@@ -143,15 +148,16 @@ class InterfaceDef(Definition):
 
 class EnumDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
 	self.deftype = 'enum'
 	self.name = name
-	self.in_module = None
+	self.module = None
 	self.c_name = None
         self.typecode = None
 	self.values = []
 	for arg in get_valid_scheme_definitions(args):
 	    if arg[0] == 'in-module':
-		self.in_module = arg[1]
+		self.module = arg[1]
 	    elif arg[0] == 'c-name':
 		self.c_name = arg[1]
 	    elif arg[0] == 'gtype-id':
@@ -163,8 +169,8 @@ class EnumDef(Definition):
 	pass
     def write_defs(self, fp=sys.stdout):
 	fp.write('(define-' + self.deftype + ' ' + self.name + '\n')
-	if self.in_module:
-	    fp.write('  (in-module "' + self.in_module + '")\n')
+	if self.module:
+	    fp.write('  (in-module "' + self.module + '")\n')
 	fp.write('  (c-name "' + self.c_name + '")\n')
 	fp.write('  (gtype-id "' + self.typecode + '")\n')
         if self.values:
@@ -181,6 +187,7 @@ class FlagsDef(EnumDef):
 
 class BoxedDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
 	self.name = name
 	self.module = None
 	self.c_name = None
@@ -228,6 +235,7 @@ class BoxedDef(Definition):
 
 class PointerDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
 	self.name = name
 	self.module = None
 	self.c_name = None
@@ -265,6 +273,7 @@ class PointerDef(Definition):
 
 class MethodDefBase(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
         dump = 0
 	self.name = name
 	self.ret = None
@@ -308,10 +317,10 @@ class MethodDefBase(Definition):
                 self.varargs = arg[1] in ('t', '#t')
             elif arg[0] == 'deprecated':
                 self.deprecated = arg[1]
-            else:
-                sys.stderr.write("Warning: %s argument unsupported.\n" 
-                                 % (arg[0]))
-                dump = 1
+            #else:
+            #    sys.stderr.write("Warning: %s argument unsupported.\n" 
+            #                     % (arg[0]))
+            #    dump = 1
         if dump:
             self.write_defs(sys.stderr)
 
@@ -378,9 +387,10 @@ class VirtualDef(MethodDefBase):
 
 class FunctionDef(Definition):
     def __init__(self, name, *args):
+        Definition.__init__(self, name, *args)
         dump = 0
 	self.name = name
-	self.in_module = None
+	self.module = None
 	self.is_constructor_of = None
 	self.ret = None
         self.caller_owns_return = None
@@ -391,7 +401,7 @@ class FunctionDef(Definition):
         self.deprecated = None
 	for arg in get_valid_scheme_definitions(args):
 	    if arg[0] == 'in-module':
-		self.in_module = arg[1]
+		self.module = arg[1]
 	    elif arg[0] == 'is-constructor-of':
 		self.is_constructor_of = arg[1]
 	    elif arg[0] == 'c-name':
@@ -437,10 +447,10 @@ class FunctionDef(Definition):
                 self.varargs = arg[1] in ('t', '#t')
             elif arg[0] == 'deprecated':
                 self.deprecated = arg[1]
-            else:
-                sys.stderr.write("Warning: %s argument unsupported\n"
-                                 % (arg[0],))
-                dump = 1
+            #else:
+            #    sys.stderr.write("Warning: %s argument unsupported\n"
+            #                     % (arg[0],))
+            #    dump = 1
         if dump:
             self.write_defs(sys.stderr)
 
@@ -494,8 +504,8 @@ class FunctionDef(Definition):
 	    del self.params[0]
     def write_defs(self, fp=sys.stdout):
 	fp.write('(define-function ' + self.name + '\n')
-	if self.in_module:
-	    fp.write('  (in-module "' + self.in_module + '")\n')
+	if self.module:
+	    fp.write('  (in-module "' + self.module + '")\n')
 	if self.is_constructor_of:
 	    fp.write('  (is-constructor-of "' + self.is_constructor_of +'")\n')
 	if self.c_name:

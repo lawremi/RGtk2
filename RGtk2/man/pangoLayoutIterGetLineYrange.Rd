@@ -12,7 +12,7 @@ entire layout).}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}
 \value{
 A list containing the following elements:
-\item{\code{y0}}{[integer]  start of line }
+\item{\code{y0}}{[integer]  start of line}
 \item{\code{y1}}{[integer]  end of line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

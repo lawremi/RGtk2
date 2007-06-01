@@ -6,6 +6,7 @@
 ;; From ../../../RGtk2/inst/include/RGtk2/atk.h
 
 (define-function asCAtkAttributeSet
+  (in-module "Atk")
   (c-name "asCAtkAttributeSet")
   (return-type "AtkAttributeSet*")
   (parameters
@@ -14,6 +15,7 @@
 )
 
 (define-function asCAtkAttribute
+  (in-module "Atk")
   (c-name "asCAtkAttribute")
   (return-type "AtkAttribute*")
   (parameters
@@ -22,6 +24,7 @@
 )
 
 (define-function asRAtkAttributeSet
+  (in-module "Atk")
   (c-name "asRAtkAttributeSet")
   (return-type "USER_OBJECT_")
   (parameters
@@ -30,6 +33,7 @@
 )
 
 (define-function asRAtkAttribute
+  (in-module "Atk")
   (c-name "asRAtkAttribute")
   (return-type "USER_OBJECT_")
   (parameters
@@ -38,6 +42,7 @@
 )
 
 (define-function asCAtkTextRectangle
+  (in-module "Atk")
   (c-name "asCAtkTextRectangle")
   (return-type "AtkTextRectangle*")
   (parameters
@@ -46,6 +51,7 @@
 )
 
 (define-function asRAtkTextRectangle
+  (in-module "Atk")
   (c-name "asRAtkTextRectangle")
   (return-type "USER_OBJECT_")
   (parameters
@@ -54,6 +60,7 @@
 )
 
 (define-function asRAtkTextRange
+  (in-module "Atk")
   (c-name "asRAtkTextRange")
   (return-type "USER_OBJECT_")
   (parameters
@@ -62,6 +69,7 @@
 )
 
 (define-function asCAtkTextRange
+  (in-module "Atk")
   (c-name "asCAtkTextRange")
   (return-type "AtkTextRange*")
   (parameters
@@ -70,6 +78,7 @@
 )
 
 (define-function asRAtkKeyEventStruct
+  (in-module "Atk")
   (c-name "asRAtkKeyEventStruct")
   (return-type "USER_OBJECT_")
   (parameters
@@ -78,6 +87,7 @@
 )
 
 (define-function asCAtkRectangle
+  (in-module "Atk")
   (c-name "asCAtkRectangle")
   (return-type "AtkRectangle*")
   (parameters
@@ -86,6 +96,7 @@
 )
 
 (define-function asRAtkRectangle
+  (in-module "Atk")
   (c-name "asRAtkRectangle")
   (return-type "USER_OBJECT_")
   (parameters

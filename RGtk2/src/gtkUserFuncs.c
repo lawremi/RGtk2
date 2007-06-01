@@ -1130,6 +1130,7 @@ S_GtkItemFactoryCallback2(GtkWidget* s_widget, gpointer s_callback_data, guint s
   UNPROTECT(1);
 } 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 gint
 S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data)
@@ -1156,8 +1157,10 @@ S_GtkAssistantPageFunc(gint s_current_page, gpointer s_data)
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 void
 S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, const guint8* s_text, gsize s_length, gpointer s_data)
@@ -1189,8 +1192,10 @@ S_GtkClipboardRichTextReceivedFunc(GtkClipboard* s_clipboard, GdkAtom s_format, 
     return;
 
   UNPROTECT(1);
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 void
 S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_user_data)
@@ -1218,8 +1223,10 @@ S_GtkLinkButtonUriFunc(GtkLinkButton* s_button, const gchar* s_link, gpointer s_
     return;
 
   UNPROTECT(1);
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 GtkNotebook*
 S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s_x, gint s_y, gpointer s_data)
@@ -1252,8 +1259,10 @@ S_GtkNotebookWindowCreationFunc(GtkNotebook* s_source, GtkWidget* s_page, gint s
 
   UNPROTECT(1);
   return(GTK_NOTEBOOK(getPtrValue(s_ans)));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 void
 S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data)
@@ -1279,8 +1288,10 @@ S_GtkPageSetupDoneFunc(GtkPageSetup* s_page_setup, gpointer s_data)
     return;
 
   UNPROTECT(1);
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 void
 S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user_data)
@@ -1308,8 +1319,10 @@ S_GtkPrintSettingsFunc(const gchar* s_key, const gchar* s_value, gpointer s_user
     return;
 
   UNPROTECT(1);
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 gint
 S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data)
@@ -1338,8 +1351,10 @@ S_GtkRecentSortFunc(GtkRecentInfo* s_a, GtkRecentInfo* s_b, gpointer s_user_data
 
   UNPROTECT(1);
   return(((gint)asCInteger(s_ans)));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 gboolean
 S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_data)
@@ -1366,8 +1381,10 @@ S_GtkRecentFilterFunc(const GtkRecentFilterInfo* s_filter_info, gpointer s_user_
 
   UNPROTECT(1);
   return(((gboolean)asCLogical(s_ans)));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 gboolean
 S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_content_buffer, GtkTextIter* s_iter, const guint8* s_data, gsize s_length, gboolean s_create_tags, gpointer s_user_data, GError** s_error)
@@ -1405,8 +1422,10 @@ S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* 
   UNPROTECT(1);
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 
 void
 S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_dialog, gpointer s_user_data)
@@ -1434,5 +1453,6 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_di
     return;
 
   UNPROTECT(1);
-} 
+}
+#endif 
 

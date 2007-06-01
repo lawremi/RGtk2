@@ -22,6 +22,11 @@
 \code{\link{pangoContextSetLanguage}(object, language)}\cr
 \code{\link{pangoContextGetBaseDir}(object)}\cr
 \code{\link{pangoContextSetBaseDir}(object, direction)}\cr
+\code{\link{pangoContextGetBaseGravity}(object)}\cr
+\code{\link{pangoContextSetBaseGravity}(object, gravity)}\cr
+\code{\link{pangoContextGetGravity}(object)}\cr
+\code{\link{pangoContextGetGravityHint}(object)}\cr
+\code{\link{pangoContextSetGravityHint}(object, hint)}\cr
 \code{\link{pangoContextGetMatrix}(object)}\cr
 \code{\link{pangoContextSetMatrix}(object, matrix)}\cr
 \code{\link{pangoContextLoadFont}(object, desc)}\cr
@@ -31,6 +36,7 @@
 \code{\link{pangoGetMirrorChar}(ch)}\cr
 \code{\link{pangoUnicharDirection}(ch)}\cr
 \code{\link{pangoFindBaseDir}(text, length = -1)}\cr
+\code{\link{pangoGravityToRotation}(base.gravity)}\cr
 \code{\link{pangoBreak}(text, analysis)}\cr
 \code{\link{pangoGetLogAttrs}(text, level, language)}\cr
 \code{\link{pangoFindParagraphBoundary}(text, length = -1)}\cr
@@ -71,7 +77,7 @@ fields:
 \item{\code{font}}{[\code{\link{PangoFont}}] the engine for doing rendering-system-dependent processing.}
 \item{\code{level}}{[raw] the engine for doing rendering-system-independent processing.}
 \item{\code{language}}{[\code{\link{PangoLanguage}}] the font for this segment.}
-\item{\code{extraAttrs}}{[list] the bidrectional level for this segment.}
+\item{\code{extraAttrs}}{[list] the bidirectional level for this segment.}
 }
 
 }
@@ -93,7 +99,7 @@ about the attributes of a single character.
 	and \code{is.word.end} set for some character.}
 \item{\code{isSentenceBoundary}}{[numeric] is a sentence boundary.
         There are two ways to divide sentences. The first assigns all
-	intersentence whitespace/control/format chars to some sentence,
+	inter-sentence whitespace/control/format chars to some sentence,
 	so all chars are in some sentence; \code{is.sentence.boundary} denotes
 	the boundaries there. The second way doesn't assign
 	between-sentence spaces, etc. to any sentence, so
@@ -134,11 +140,8 @@ to \code{\link{pangoItemizeWithBaseDir}}.
 The \code{PANGO_DIRECTION_TTB_LTR}, \code{PANGO_DIRECTION_TTB_RTL}
 values come from an earlier interpretation of this
 enumeration as the writing direction of a block of
-text and are no longer used; See the Text module of the
-CSS3 spec for how vertical text is planned to be handled
-in a future version of Pango. The explanation of why
-\code{PANGO_DIRECTION_TTB_LTR} is treated as \code{PANGO_DIRECTION_RTL}
-can be found there as well.  
+text and are no longer used; See \code{\link{PangoGravity}} for how
+vertical text is handled in Pango.  
 
 \describe{
 \item{\code{ltr}}{ A strong left-to-right direction}

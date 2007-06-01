@@ -294,83 +294,103 @@ S_GtkItemFactoryCallback2(GtkWidget* widget, gpointer callback_data, guint callb
   return(fun(widget, callback_data, callback_action));
 } 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 gint
 S_GtkAssistantPageFunc(gint current_page, gpointer data)
 {
   static gint (*fun)(gint, gpointer) = NULL;
   if(!fun) fun = ((gint (*)(gint, gpointer))R_GetCCallable("RGtk2", "S_GtkAssistantPageFunc"));
   return(fun(current_page, data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_GtkClipboardRichTextReceivedFunc(GtkClipboard* clipboard, GdkAtom format, const guint8* text, gsize length, gpointer data)
 {
   static void (*fun)(GtkClipboard*, GdkAtom, const guint8*, gsize, gpointer) = NULL;
   if(!fun) fun = ((void (*)(GtkClipboard*, GdkAtom, const guint8*, gsize, gpointer))R_GetCCallable("RGtk2", "S_GtkClipboardRichTextReceivedFunc"));
   return(fun(clipboard, format, text, length, data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_GtkLinkButtonUriFunc(GtkLinkButton* button, const gchar* link, gpointer user_data)
 {
   static void (*fun)(GtkLinkButton*, const gchar*, gpointer) = NULL;
   if(!fun) fun = ((void (*)(GtkLinkButton*, const gchar*, gpointer))R_GetCCallable("RGtk2", "S_GtkLinkButtonUriFunc"));
   return(fun(button, link, user_data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 GtkNotebook*
 S_GtkNotebookWindowCreationFunc(GtkNotebook* source, GtkWidget* page, gint x, gint y, gpointer data)
 {
   static GtkNotebook* (*fun)(GtkNotebook*, GtkWidget*, gint, gint, gpointer) = NULL;
   if(!fun) fun = ((GtkNotebook* (*)(GtkNotebook*, GtkWidget*, gint, gint, gpointer))R_GetCCallable("RGtk2", "S_GtkNotebookWindowCreationFunc"));
   return(fun(source, page, x, y, data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_GtkPageSetupDoneFunc(GtkPageSetup* page_setup, gpointer data)
 {
   static void (*fun)(GtkPageSetup*, gpointer) = NULL;
   if(!fun) fun = ((void (*)(GtkPageSetup*, gpointer))R_GetCCallable("RGtk2", "S_GtkPageSetupDoneFunc"));
   return(fun(page_setup, data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_GtkPrintSettingsFunc(const gchar* key, const gchar* value, gpointer user_data)
 {
   static void (*fun)(const gchar*, const gchar*, gpointer) = NULL;
   if(!fun) fun = ((void (*)(const gchar*, const gchar*, gpointer))R_GetCCallable("RGtk2", "S_GtkPrintSettingsFunc"));
   return(fun(key, value, user_data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 gint
 S_GtkRecentSortFunc(GtkRecentInfo* a, GtkRecentInfo* b, gpointer user_data)
 {
   static gint (*fun)(GtkRecentInfo*, GtkRecentInfo*, gpointer) = NULL;
   if(!fun) fun = ((gint (*)(GtkRecentInfo*, GtkRecentInfo*, gpointer))R_GetCCallable("RGtk2", "S_GtkRecentSortFunc"));
   return(fun(a, b, user_data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 gboolean
 S_GtkRecentFilterFunc(const GtkRecentFilterInfo* filter_info, gpointer user_data)
 {
   static gboolean (*fun)(const GtkRecentFilterInfo*, gpointer) = NULL;
   if(!fun) fun = ((gboolean (*)(const GtkRecentFilterInfo*, gpointer))R_GetCCallable("RGtk2", "S_GtkRecentFilterFunc"));
   return(fun(filter_info, user_data));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 gboolean
 S_GtkTextBufferDeserializeFunc(GtkTextBuffer* register_buffer, GtkTextBuffer* content_buffer, GtkTextIter* iter, const guint8* data, gsize length, gboolean create_tags, gpointer user_data, GError** error)
 {
   static gboolean (*fun)(GtkTextBuffer*, GtkTextBuffer*, GtkTextIter*, const guint8*, gsize, gboolean, gpointer, GError**) = NULL;
   if(!fun) fun = ((gboolean (*)(GtkTextBuffer*, GtkTextBuffer*, GtkTextIter*, const guint8*, gsize, gboolean, gpointer, GError**))R_GetCCallable("RGtk2", "S_GtkTextBufferDeserializeFunc"));
   return(fun(register_buffer, content_buffer, iter, data, length, create_tags, user_data, error));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_GtkTreeViewSearchPositionFunc(GtkTreeView* tree_view, GtkWidget* search_dialog, gpointer user_data)
 {
   static void (*fun)(GtkTreeView*, GtkWidget*, gpointer) = NULL;
   if(!fun) fun = ((void (*)(GtkTreeView*, GtkWidget*, gpointer))R_GetCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc"));
   return(fun(tree_view, search_dialog, user_data));
-} 
+}
+#endif 
 

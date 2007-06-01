@@ -23,7 +23,7 @@ structs returned by \code{\link{gdkPixbufGetFormats}}.
 \value{
 A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbufLoader}}]  A newly-created pixbuf loader.}
-\item{\code{error}}{[\code{\link{GError}}]  return location for an allocated \code{\link{GError}}, or \code{NULL} to ignore errors}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

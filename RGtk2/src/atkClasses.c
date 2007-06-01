@@ -261,12 +261,12 @@ S_atk_hyperlink_class_init(AtkHyperlinkClass * c, SEXP e)
 USER_OBJECT_
 S_atk_hyperlink_class_get_uri(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_uri(object, i);
 
@@ -279,12 +279,12 @@ S_atk_hyperlink_class_get_uri(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_hyperlink_class_get_object(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_object(object, i);
 
@@ -296,11 +296,11 @@ S_atk_hyperlink_class_get_object(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_hyperlink_class_get_end_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_end_index(object);
 
@@ -312,11 +312,11 @@ S_atk_hyperlink_class_get_end_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_hyperlink_class_get_start_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_start_index(object);
 
@@ -328,11 +328,11 @@ S_atk_hyperlink_class_get_start_index(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_hyperlink_class_is_valid(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_valid(object);
 
@@ -344,11 +344,11 @@ S_atk_hyperlink_class_is_valid(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_hyperlink_class_get_n_anchors(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_anchors(object);
 
@@ -360,11 +360,11 @@ S_atk_hyperlink_class_get_n_anchors(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_hyperlink_class_link_state(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   guint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->link_state(object);
 
@@ -376,11 +376,11 @@ S_atk_hyperlink_class_link_state(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_hyperlink_class_is_selected_link(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_selected_link(object);
 
@@ -392,10 +392,10 @@ S_atk_hyperlink_class_is_selected_link(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_hyperlink_class_link_activated(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHyperlinkClass* object_class = ((AtkHyperlinkClass*)getPtrValue(s_object_class));
   AtkHyperlink* object = ATK_HYPERLINK(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->link_activated(object);
 
@@ -1029,11 +1029,11 @@ S_atk_object_class_init(AtkObjectClass * c, SEXP e)
 USER_OBJECT_
 S_atk_object_class_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_name(object);
 
@@ -1045,11 +1045,11 @@ S_atk_object_class_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_object_class_get_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_description(object);
 
@@ -1061,11 +1061,11 @@ S_atk_object_class_get_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_object_class_get_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_parent(object);
 
@@ -1077,11 +1077,11 @@ S_atk_object_class_get_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_object_class_get_n_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_children(object);
 
@@ -1093,12 +1093,12 @@ S_atk_object_class_get_n_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_object_class_ref_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_child(object, i);
 
@@ -1110,11 +1110,11 @@ S_atk_object_class_ref_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 USER_OBJECT_
 S_atk_object_class_get_index_in_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_index_in_parent(object);
 
@@ -1126,11 +1126,11 @@ S_atk_object_class_get_index_in_parent(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_object_class_ref_relation_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   AtkRelationSet* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_relation_set(object);
 
@@ -1142,11 +1142,11 @@ S_atk_object_class_ref_relation_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_object_class_get_role(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   AtkRole ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_role(object);
 
@@ -1158,11 +1158,11 @@ S_atk_object_class_get_role(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_object_class_get_layer(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   AtkLayer ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_layer(object);
 
@@ -1174,11 +1174,11 @@ S_atk_object_class_get_layer(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_object_class_get_mdi_zorder(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_mdi_zorder(object);
 
@@ -1190,11 +1190,11 @@ S_atk_object_class_get_mdi_zorder(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_object_class_ref_state_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
   AtkStateSet* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_state_set(object);
 
@@ -1206,11 +1206,11 @@ S_atk_object_class_ref_state_set(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_object_class_set_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_name)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   const gchar* name = ((const gchar*)asCString(s_name));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_name(object, name);
 
@@ -1221,11 +1221,11 @@ S_atk_object_class_set_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 USER_OBJECT_
 S_atk_object_class_set_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_description)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   const gchar* description = ((const gchar*)asCString(s_description));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_description(object, description);
 
@@ -1236,11 +1236,11 @@ S_atk_object_class_set_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_object_class_set_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_parent)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   AtkObject* parent = ATK_OBJECT(getPtrValue(s_parent));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_parent(object, parent);
 
@@ -1251,11 +1251,11 @@ S_atk_object_class_set_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_object_class_set_role(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_role)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   AtkRole role = ((AtkRole)asCEnum(s_role, ATK_TYPE_ROLE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_role(object, role);
 
@@ -1266,11 +1266,11 @@ S_atk_object_class_set_role(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 USER_OBJECT_
 S_atk_object_class_remove_property_change_handler(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_handler_id)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   guint handler_id = ((guint)asCNumeric(s_handler_id));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->remove_property_change_handler(object, handler_id);
 
@@ -1281,11 +1281,11 @@ S_atk_object_class_remove_property_change_handler(USER_OBJECT_ s_object_class, U
 USER_OBJECT_
 S_atk_object_class_initialize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_data)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   gpointer data = ((gpointer)asCGenericData(s_data));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->initialize(object, data);
 
@@ -1296,12 +1296,12 @@ S_atk_object_class_initialize(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_object_class_children_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_change_index, USER_OBJECT_ s_changed_child)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   guint change_index = ((guint)asCNumeric(s_change_index));
   AtkObject* changed_child = ATK_OBJECT(getPtrValue(s_changed_child));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->children_changed(object, change_index, changed_child);
 
@@ -1312,11 +1312,11 @@ S_atk_object_class_children_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_object_class_focus_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_focus_in)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   gboolean focus_in = ((gboolean)asCLogical(s_focus_in));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->focus_event(object, focus_in);
 
@@ -1327,12 +1327,12 @@ S_atk_object_class_focus_event(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_object_class_state_change(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_name, USER_OBJECT_ s_state_set)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   const gchar* name = ((const gchar*)asCString(s_name));
   gboolean state_set = ((gboolean)asCLogical(s_state_set));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->state_change(object, name, state_set);
 
@@ -1343,10 +1343,10 @@ S_atk_object_class_state_change(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_atk_object_class_visible_data_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->visible_data_changed(object);
 
@@ -1357,11 +1357,11 @@ S_atk_object_class_visible_data_changed(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_object_class_active_descendant_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectClass* object_class = ((AtkObjectClass*)getPtrValue(s_object_class));
   AtkObject* object = ATK_OBJECT(getPtrValue(s_object));
   AtkObject* child = ATK_OBJECT(getPtrValue(s_child));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->active_descendant_changed(object, child);
 
@@ -1440,10 +1440,10 @@ S_atk_object_factory_class_init(AtkObjectFactoryClass * c, SEXP e)
 USER_OBJECT_
 S_atk_object_factory_class_invalidate(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkObjectFactoryClass* object_class = ((AtkObjectFactoryClass*)getPtrValue(s_object_class));
   AtkObjectFactory* object = ATK_OBJECT_FACTORY(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->invalidate(object);
 
@@ -2591,13 +2591,13 @@ S_atk_table_class_init(AtkTableIface * c, SEXP e)
 USER_OBJECT_
 S_atk_table_iface_ref_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint column = ((gint)asCInteger(s_column));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_at(object, row, column);
 
@@ -2609,13 +2609,13 @@ S_atk_table_iface_ref_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USE
 USER_OBJECT_
 S_atk_table_iface_get_index_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint column = ((gint)asCInteger(s_column));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_index_at(object, row, column);
 
@@ -2627,12 +2627,12 @@ S_atk_table_iface_get_index_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_table_iface_get_column_at_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint index = ((gint)asCInteger(s_index));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_column_at_index(object, index);
 
@@ -2644,12 +2644,12 @@ S_atk_table_iface_get_column_at_index(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_table_iface_get_row_at_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint index = ((gint)asCInteger(s_index));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_row_at_index(object, index);
 
@@ -2661,11 +2661,11 @@ S_atk_table_iface_get_row_at_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_table_iface_get_n_columns(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_columns(object);
 
@@ -2677,11 +2677,11 @@ S_atk_table_iface_get_n_columns(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_atk_table_iface_get_n_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_rows(object);
 
@@ -2693,13 +2693,13 @@ S_atk_table_iface_get_n_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 USER_OBJECT_
 S_atk_table_iface_get_column_extent_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint column = ((gint)asCInteger(s_column));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_column_extent_at(object, row, column);
 
@@ -2711,13 +2711,13 @@ S_atk_table_iface_get_column_extent_at(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_table_iface_get_row_extent_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint column = ((gint)asCInteger(s_column));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_row_extent_at(object, row, column);
 
@@ -2729,11 +2729,11 @@ S_atk_table_iface_get_row_extent_at(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_table_iface_get_caption(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_caption(object);
 
@@ -2745,12 +2745,12 @@ S_atk_table_iface_get_caption(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_get_column_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_column_description(object, column);
 
@@ -2762,12 +2762,12 @@ S_atk_table_iface_get_column_description(USER_OBJECT_ s_object_class, USER_OBJEC
 USER_OBJECT_
 S_atk_table_iface_get_column_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_column_header(object, column);
 
@@ -2779,12 +2779,12 @@ S_atk_table_iface_get_column_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_table_iface_get_row_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_row_description(object, row);
 
@@ -2796,12 +2796,12 @@ S_atk_table_iface_get_row_description(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_table_iface_get_row_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_row_header(object, row);
 
@@ -2813,11 +2813,11 @@ S_atk_table_iface_get_row_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_table_iface_get_summary(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_summary(object);
 
@@ -2829,11 +2829,11 @@ S_atk_table_iface_get_summary(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_set_caption(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_caption)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   AtkObject* caption = ATK_OBJECT(getPtrValue(s_caption));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_caption(object, caption);
 
@@ -2844,12 +2844,12 @@ S_atk_table_iface_set_caption(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_set_column_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_description)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
   const gchar* description = ((const gchar*)asCString(s_description));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_column_description(object, column, description);
 
@@ -2860,12 +2860,12 @@ S_atk_table_iface_set_column_description(USER_OBJECT_ s_object_class, USER_OBJEC
 USER_OBJECT_
 S_atk_table_iface_set_column_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_header)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
   AtkObject* header = ATK_OBJECT(getPtrValue(s_header));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_column_header(object, column, header);
 
@@ -2876,12 +2876,12 @@ S_atk_table_iface_set_column_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_table_iface_set_row_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_description)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   const gchar* description = ((const gchar*)asCString(s_description));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_row_description(object, row, description);
 
@@ -2892,12 +2892,12 @@ S_atk_table_iface_set_row_description(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_table_iface_set_row_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_header)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   AtkObject* header = ATK_OBJECT(getPtrValue(s_header));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_row_header(object, row, header);
 
@@ -2908,11 +2908,11 @@ S_atk_table_iface_set_row_header(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_table_iface_set_summary(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_accessible)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   AtkObject* accessible = ATK_OBJECT(getPtrValue(s_accessible));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_summary(object, accessible);
 
@@ -2923,11 +2923,11 @@ S_atk_table_iface_set_summary(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_get_selected_columns(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint* selected = NULL;
 
   ans = object_class->get_selected_columns(object, &selected);
@@ -2943,11 +2943,11 @@ S_atk_table_iface_get_selected_columns(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_table_iface_get_selected_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint* selected = NULL;
 
   ans = object_class->get_selected_rows(object, &selected);
@@ -2963,12 +2963,12 @@ S_atk_table_iface_get_selected_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_table_iface_is_column_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_column_selected(object, column);
 
@@ -2980,12 +2980,12 @@ S_atk_table_iface_is_column_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_table_iface_is_row_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_row_selected(object, row);
 
@@ -2997,13 +2997,13 @@ S_atk_table_iface_is_row_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_table_iface_is_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint column = ((gint)asCInteger(s_column));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_selected(object, row, column);
 
@@ -3015,12 +3015,12 @@ S_atk_table_iface_is_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_add_row_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->add_row_selection(object, row);
 
@@ -3032,12 +3032,12 @@ S_atk_table_iface_add_row_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_table_iface_remove_row_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->remove_row_selection(object, row);
 
@@ -3049,12 +3049,12 @@ S_atk_table_iface_remove_row_selection(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_table_iface_add_column_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->add_column_selection(object, column);
 
@@ -3066,12 +3066,12 @@ S_atk_table_iface_add_column_selection(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_table_iface_remove_column_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->remove_column_selection(object, column);
 
@@ -3083,12 +3083,12 @@ S_atk_table_iface_remove_column_selection(USER_OBJECT_ s_object_class, USER_OBJE
 USER_OBJECT_
 S_atk_table_iface_row_inserted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_num_inserted)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint num_inserted = ((gint)asCInteger(s_num_inserted));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->row_inserted(object, row, num_inserted);
 
@@ -3099,12 +3099,12 @@ S_atk_table_iface_row_inserted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_table_iface_column_inserted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_num_inserted)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
   gint num_inserted = ((gint)asCInteger(s_num_inserted));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->column_inserted(object, column, num_inserted);
 
@@ -3115,12 +3115,12 @@ S_atk_table_iface_column_inserted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_table_iface_row_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_row, USER_OBJECT_ s_num_deleted)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint row = ((gint)asCInteger(s_row));
   gint num_deleted = ((gint)asCInteger(s_num_deleted));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->row_deleted(object, row, num_deleted);
 
@@ -3131,12 +3131,12 @@ S_atk_table_iface_row_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_table_iface_column_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_column, USER_OBJECT_ s_num_deleted)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
   gint column = ((gint)asCInteger(s_column));
   gint num_deleted = ((gint)asCInteger(s_num_deleted));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->column_deleted(object, column, num_deleted);
 
@@ -3147,10 +3147,10 @@ S_atk_table_iface_column_deleted(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_table_iface_row_reordered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->row_reordered(object);
 
@@ -3161,10 +3161,10 @@ S_atk_table_iface_row_reordered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_atk_table_iface_column_reordered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->column_reordered(object);
 
@@ -3175,10 +3175,10 @@ S_atk_table_iface_column_reordered(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_table_iface_model_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTableIface* object_class = ((AtkTableIface*)getPtrValue(s_object_class));
   AtkTable* object = ATK_TABLE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->model_changed(object);
 
@@ -3257,11 +3257,11 @@ S_atk_streamable_content_class_init(AtkStreamableContentIface * c, SEXP e)
 USER_OBJECT_
 S_atk_streamable_content_iface_get_n_mime_types(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkStreamableContentIface* object_class = ((AtkStreamableContentIface*)getPtrValue(s_object_class));
   AtkStreamableContent* object = ATK_STREAMABLE_CONTENT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_mime_types(object);
 
@@ -3273,12 +3273,12 @@ S_atk_streamable_content_iface_get_n_mime_types(USER_OBJECT_ s_object_class, USE
 USER_OBJECT_
 S_atk_streamable_content_iface_get_mime_type(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkStreamableContentIface* object_class = ((AtkStreamableContentIface*)getPtrValue(s_object_class));
   AtkStreamableContent* object = ATK_STREAMABLE_CONTENT(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_mime_type(object, i);
 
@@ -3525,12 +3525,12 @@ S_atk_selection_class_init(AtkSelectionIface * c, SEXP e)
 USER_OBJECT_
 S_atk_selection_iface_add_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->add_selection(object, i);
 
@@ -3542,11 +3542,11 @@ S_atk_selection_iface_add_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_selection_iface_clear_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->clear_selection(object);
 
@@ -3558,12 +3558,12 @@ S_atk_selection_iface_clear_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_selection_iface_ref_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_selection(object, i);
 
@@ -3575,11 +3575,11 @@ S_atk_selection_iface_ref_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_selection_iface_get_selection_count(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_selection_count(object);
 
@@ -3591,12 +3591,12 @@ S_atk_selection_iface_get_selection_count(USER_OBJECT_ s_object_class, USER_OBJE
 USER_OBJECT_
 S_atk_selection_iface_is_child_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->is_child_selected(object, i);
 
@@ -3608,12 +3608,12 @@ S_atk_selection_iface_is_child_selected(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_selection_iface_remove_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->remove_selection(object, i);
 
@@ -3625,11 +3625,11 @@ S_atk_selection_iface_remove_selection(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_selection_iface_select_all_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->select_all_selection(object);
 
@@ -3641,10 +3641,10 @@ S_atk_selection_iface_select_all_selection(USER_OBJECT_ s_object_class, USER_OBJ
 USER_OBJECT_
 S_atk_selection_iface_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkSelectionIface* object_class = ((AtkSelectionIface*)getPtrValue(s_object_class));
   AtkSelection* object = ATK_SELECTION(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->selection_changed(object);
 
@@ -3694,11 +3694,11 @@ S_atk_implementor_class_init(AtkImplementorIface * c, SEXP e)
 USER_OBJECT_
 S_atk_implementor_iface_ref_accessible(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkImplementorIface* object_class = ((AtkImplementorIface*)getPtrValue(s_object_class));
   AtkImplementor* object = ATK_IMPLEMENTOR(getPtrValue(s_object));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_accessible(object);
 
@@ -3836,11 +3836,11 @@ S_atk_image_class_init(AtkImageIface * c, SEXP e)
 USER_OBJECT_
 S_atk_image_iface_get_image_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkImageIface* object_class = ((AtkImageIface*)getPtrValue(s_object_class));
   AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint x;
   gint y;
 
@@ -3855,11 +3855,11 @@ S_atk_image_iface_get_image_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_image_iface_get_image_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkImageIface* object_class = ((AtkImageIface*)getPtrValue(s_object_class));
   AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_image_description(object);
 
@@ -3871,10 +3871,10 @@ S_atk_image_iface_get_image_description(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_image_iface_get_image_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkImageIface* object_class = ((AtkImageIface*)getPtrValue(s_object_class));
   AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint width;
   gint height;
 
@@ -3889,12 +3889,12 @@ S_atk_image_iface_get_image_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_image_iface_set_image_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_description)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkImageIface* object_class = ((AtkImageIface*)getPtrValue(s_object_class));
   AtkImage* object = ATK_IMAGE(getPtrValue(s_object));
   const gchar* description = ((const gchar*)asCString(s_description));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_image_description(object, description);
 
@@ -4031,12 +4031,12 @@ S_atk_hypertext_class_init(AtkHypertextIface * c, SEXP e)
 USER_OBJECT_
 S_atk_hypertext_iface_get_link(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_link_index)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHypertextIface* object_class = ((AtkHypertextIface*)getPtrValue(s_object_class));
   AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
   gint link_index = ((gint)asCInteger(s_link_index));
 
   AtkHyperlink* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_link(object, link_index);
 
@@ -4048,11 +4048,11 @@ S_atk_hypertext_iface_get_link(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_hypertext_iface_get_n_links(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHypertextIface* object_class = ((AtkHypertextIface*)getPtrValue(s_object_class));
   AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_links(object);
 
@@ -4064,12 +4064,12 @@ S_atk_hypertext_iface_get_n_links(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_hypertext_iface_get_link_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_char_index)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHypertextIface* object_class = ((AtkHypertextIface*)getPtrValue(s_object_class));
   AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
   gint char_index = ((gint)asCInteger(s_char_index));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_link_index(object, char_index);
 
@@ -4081,11 +4081,11 @@ S_atk_hypertext_iface_get_link_index(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_hypertext_iface_link_selected(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_link_index)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkHypertextIface* object_class = ((AtkHypertextIface*)getPtrValue(s_object_class));
   AtkHypertext* object = ATK_HYPERTEXT(getPtrValue(s_object));
   gint link_index = ((gint)asCInteger(s_link_index));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->link_selected(object, link_index);
 
@@ -4319,6 +4319,7 @@ S_atk_editable_text_class_init(AtkEditableTextIface * c, SEXP e)
 USER_OBJECT_
 S_atk_editable_text_iface_set_run_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_attrib_set, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   AtkAttributeSet* attrib_set = asCAtkAttributeSet(s_attrib_set);
@@ -4326,7 +4327,6 @@ S_atk_editable_text_iface_set_run_attributes(USER_OBJECT_ s_object_class, USER_O
   gint end_offset = ((gint)asCInteger(s_end_offset));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_run_attributes(object, attrib_set, start_offset, end_offset);
 
@@ -4339,11 +4339,11 @@ S_atk_editable_text_iface_set_run_attributes(USER_OBJECT_ s_object_class, USER_O
 USER_OBJECT_
 S_atk_editable_text_iface_set_text_contents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_string)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   const gchar* string = ((const gchar*)asCString(s_string));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->set_text_contents(object, string);
 
@@ -4354,13 +4354,13 @@ S_atk_editable_text_iface_set_text_contents(USER_OBJECT_ s_object_class, USER_OB
 USER_OBJECT_
 S_atk_editable_text_iface_insert_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_string, USER_OBJECT_ s_position)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   const gchar* string = ((const gchar*)asCString(s_string));
   gint length = ((gint)GET_LENGTH(s_position));
   gint* position = ((gint*)asCArray(s_position, gint, asCInteger));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->insert_text(object, string, length, position);
 
@@ -4371,12 +4371,12 @@ S_atk_editable_text_iface_insert_text(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_editable_text_iface_copy_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   gint start_pos = ((gint)asCInteger(s_start_pos));
   gint end_pos = ((gint)asCInteger(s_end_pos));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->copy_text(object, start_pos, end_pos);
 
@@ -4387,12 +4387,12 @@ S_atk_editable_text_iface_copy_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_editable_text_iface_cut_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   gint start_pos = ((gint)asCInteger(s_start_pos));
   gint end_pos = ((gint)asCInteger(s_end_pos));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->cut_text(object, start_pos, end_pos);
 
@@ -4403,12 +4403,12 @@ S_atk_editable_text_iface_cut_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_editable_text_iface_delete_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_pos, USER_OBJECT_ s_end_pos)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   gint start_pos = ((gint)asCInteger(s_start_pos));
   gint end_pos = ((gint)asCInteger(s_end_pos));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->delete_text(object, start_pos, end_pos);
 
@@ -4419,11 +4419,11 @@ S_atk_editable_text_iface_delete_text(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 USER_OBJECT_
 S_atk_editable_text_iface_paste_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_position)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkEditableTextIface* object_class = ((AtkEditableTextIface*)getPtrValue(s_object_class));
   AtkEditableText* object = ATK_EDITABLE_TEXT(getPtrValue(s_object));
   gint position = ((gint)asCInteger(s_position));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->paste_text(object, position);
 
@@ -4840,6 +4840,7 @@ S_atk_component_class_init(AtkComponentIface * c, SEXP e)
 USER_OBJECT_
 S_atk_component_iface_contains(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -4847,7 +4848,6 @@ S_atk_component_iface_contains(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->contains(object, x, y, coord_type);
 
@@ -4859,6 +4859,7 @@ S_atk_component_iface_contains(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_component_iface_ref_accessible_at_point(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -4866,7 +4867,6 @@ S_atk_component_iface_ref_accessible_at_point(USER_OBJECT_ s_object_class, USER_
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
   AtkObject* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->ref_accessible_at_point(object, x, y, coord_type);
 
@@ -4878,11 +4878,11 @@ S_atk_component_iface_ref_accessible_at_point(USER_OBJECT_ s_object_class, USER_
 USER_OBJECT_
 S_atk_component_iface_get_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint x;
   gint y;
   gint width;
@@ -4899,11 +4899,11 @@ S_atk_component_iface_get_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_component_iface_get_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint x;
   gint y;
 
@@ -4918,10 +4918,10 @@ S_atk_component_iface_get_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_component_iface_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint width;
   gint height;
 
@@ -4936,11 +4936,11 @@ S_atk_component_iface_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_component_iface_grab_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->grab_focus(object);
 
@@ -4952,11 +4952,11 @@ S_atk_component_iface_grab_focus(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_component_iface_remove_focus_handler(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_handler_id)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   guint handler_id = ((guint)asCNumeric(s_handler_id));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->remove_focus_handler(object, handler_id);
 
@@ -4967,6 +4967,7 @@ S_atk_component_iface_remove_focus_handler(USER_OBJECT_ s_object_class, USER_OBJ
 USER_OBJECT_
 S_atk_component_iface_set_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -4976,7 +4977,6 @@ S_atk_component_iface_set_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_extents(object, x, y, width, height, coord_type);
 
@@ -4988,6 +4988,7 @@ S_atk_component_iface_set_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_component_iface_set_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -4995,7 +4996,6 @@ S_atk_component_iface_set_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_position(object, x, y, coord_type);
 
@@ -5007,13 +5007,13 @@ S_atk_component_iface_set_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_component_iface_set_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_width, USER_OBJECT_ s_height)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   gint width = ((gint)asCInteger(s_width));
   gint height = ((gint)asCInteger(s_height));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_size(object, width, height);
 
@@ -5025,11 +5025,11 @@ S_atk_component_iface_set_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_component_iface_get_layer(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
 
   AtkLayer ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_layer(object);
 
@@ -5041,11 +5041,11 @@ S_atk_component_iface_get_layer(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 USER_OBJECT_
 S_atk_component_iface_get_mdi_zorder(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_mdi_zorder(object);
 
@@ -5057,11 +5057,11 @@ S_atk_component_iface_get_mdi_zorder(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_component_iface_bounds_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_bounds)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkComponentIface* object_class = ((AtkComponentIface*)getPtrValue(s_object_class));
   AtkComponent* object = ATK_COMPONENT(getPtrValue(s_object));
   AtkRectangle* bounds = asCAtkRectangle(s_bounds);
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->bounds_changed(object, bounds);
 
@@ -5287,12 +5287,12 @@ S_atk_action_class_init(AtkActionIface * c, SEXP e)
 USER_OBJECT_
 S_atk_action_iface_do_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->do_action(object, i);
 
@@ -5304,11 +5304,11 @@ S_atk_action_iface_do_action(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object,
 USER_OBJECT_
 S_atk_action_iface_get_n_actions(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_actions(object);
 
@@ -5320,12 +5320,12 @@ S_atk_action_iface_get_n_actions(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 USER_OBJECT_
 S_atk_action_iface_get_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_description(object, i);
 
@@ -5337,12 +5337,12 @@ S_atk_action_iface_get_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_action_iface_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_name(object, i);
 
@@ -5354,12 +5354,12 @@ S_atk_action_iface_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, 
 USER_OBJECT_
 S_atk_action_iface_get_keybinding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_keybinding(object, i);
 
@@ -5371,13 +5371,13 @@ S_atk_action_iface_get_keybinding(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_action_iface_set_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i, USER_OBJECT_ s_desc)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
   const gchar* desc = ((const gchar*)asCString(s_desc));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_description(object, i, desc);
 
@@ -5389,12 +5389,12 @@ S_atk_action_iface_set_description(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_action_iface_get_localized_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_i)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkActionIface* object_class = ((AtkActionIface*)getPtrValue(s_object_class));
   AtkAction* object = ATK_ACTION(getPtrValue(s_object));
   gint i = ((gint)asCInteger(s_i));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_localized_name(object, i);
 
@@ -5549,16 +5549,18 @@ S_atk_value_class_init(AtkValueIface * c, SEXP e)
     c->get_minimum_value = S_virtual_atk_value_get_minimum_value;
   if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
     c->set_current_value = S_virtual_atk_value_set_current_value;
+#if ATK_CHECK_VERSION(1, 11, 0)
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->get_minimum_increment = S_virtual_atk_value_get_minimum_increment;
+#endif
 }
 USER_OBJECT_
 S_atk_value_iface_get_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkValueIface* object_class = ((AtkValueIface*)getPtrValue(s_object_class));
   AtkValue* object = ATK_VALUE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GValue* value = ((GValue *)g_new0(GValue, 1));
 
   object_class->get_current_value(object, value);
@@ -5574,10 +5576,10 @@ S_atk_value_iface_get_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_value_iface_get_maximum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkValueIface* object_class = ((AtkValueIface*)getPtrValue(s_object_class));
   AtkValue* object = ATK_VALUE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GValue* value = ((GValue *)g_new0(GValue, 1));
 
   object_class->get_maximum_value(object, value);
@@ -5593,10 +5595,10 @@ S_atk_value_iface_get_maximum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_value_iface_get_minimum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkValueIface* object_class = ((AtkValueIface*)getPtrValue(s_object_class));
   AtkValue* object = ATK_VALUE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GValue* value = ((GValue *)g_new0(GValue, 1));
 
   object_class->get_minimum_value(object, value);
@@ -5612,12 +5614,12 @@ S_atk_value_iface_get_minimum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_value_iface_set_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_value)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkValueIface* object_class = ((AtkValueIface*)getPtrValue(s_object_class));
   AtkValue* object = ATK_VALUE(getPtrValue(s_object));
   const GValue* value = asCGValue(s_value);
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_current_value(object, value);
 
@@ -5631,10 +5633,11 @@ S_atk_value_iface_set_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_value_iface_get_minimum_increment(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if ATK_CHECK_VERSION(1, 11, 0)
   AtkValueIface* object_class = ((AtkValueIface*)getPtrValue(s_object_class));
   AtkValue* object = ATK_VALUE(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   GValue* value = ((GValue *)g_new0(GValue, 1));
 
   object_class->get_minimum_increment(object, value);
@@ -5643,6 +5646,9 @@ S_atk_value_iface_get_minimum_increment(USER_OBJECT_ s_object_class, USER_OBJECT
   _result = retByVal(_result, "value", asRGValue(value), NULL);
   CLEANUP(g_value_unset, value);
   CLEANUP(g_free, value);
+#else
+  error("atk_value_get_minimum_increment exists only in Atk >= 1.11.0");
+#endif
 
   return(_result);
 }
@@ -6358,13 +6364,13 @@ S_atk_text_class_init(AtkTextIface * c, SEXP e)
 USER_OBJECT_
 S_atk_text_iface_get_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint start_offset = ((gint)asCInteger(s_start_offset));
   gint end_offset = ((gint)asCInteger(s_end_offset));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_text(object, start_offset, end_offset);
 
@@ -6377,13 +6383,13 @@ S_atk_text_iface_get_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
 USER_OBJECT_
 S_atk_text_iface_get_text_after_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
   AtkTextBoundary boundary_type = ((AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint start_offset;
   gint end_offset;
 
@@ -6400,13 +6406,13 @@ S_atk_text_iface_get_text_after_offset(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_text_iface_get_text_at_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
   AtkTextBoundary boundary_type = ((AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint start_offset;
   gint end_offset;
 
@@ -6423,12 +6429,12 @@ S_atk_text_iface_get_text_at_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_text_iface_get_character_at_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
 
   gunichar ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_character_at_offset(object, offset);
 
@@ -6440,13 +6446,13 @@ S_atk_text_iface_get_character_at_offset(USER_OBJECT_ s_object_class, USER_OBJEC
 USER_OBJECT_
 S_atk_text_iface_get_text_before_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_boundary_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
   AtkTextBoundary boundary_type = ((AtkTextBoundary)asCEnum(s_boundary_type, ATK_TYPE_TEXT_BOUNDARY));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint start_offset;
   gint end_offset;
 
@@ -6463,11 +6469,11 @@ S_atk_text_iface_get_text_before_offset(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_text_iface_get_caret_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_caret_offset(object);
 
@@ -6479,12 +6485,12 @@ S_atk_text_iface_get_caret_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_text_iface_get_run_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
 
   AtkAttributeSet* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint start_offset;
   gint end_offset;
 
@@ -6500,11 +6506,11 @@ S_atk_text_iface_get_run_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 USER_OBJECT_
 S_atk_text_iface_get_default_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
   AtkAttributeSet* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_default_attributes(object);
 
@@ -6516,12 +6522,12 @@ S_atk_text_iface_get_default_attributes(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_text_iface_get_character_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER_OBJECT_ s_coords)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
   AtkCoordType coords = ((AtkCoordType)asCEnum(s_coords, ATK_TYPE_COORD_TYPE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint x;
   gint y;
   gint width;
@@ -6538,11 +6544,11 @@ S_atk_text_iface_get_character_extents(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_text_iface_get_character_count(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_character_count(object);
 
@@ -6554,6 +6560,7 @@ S_atk_text_iface_get_character_count(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_text_iface_get_offset_at_point(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_coords)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint x = ((gint)asCInteger(s_x));
@@ -6561,7 +6568,6 @@ S_atk_text_iface_get_offset_at_point(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   AtkCoordType coords = ((AtkCoordType)asCEnum(s_coords, ATK_TYPE_COORD_TYPE));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_offset_at_point(object, x, y, coords);
 
@@ -6573,11 +6579,11 @@ S_atk_text_iface_get_offset_at_point(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 USER_OBJECT_
 S_atk_text_iface_get_n_selections(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
   gint ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_n_selections(object);
 
@@ -6589,12 +6595,12 @@ S_atk_text_iface_get_n_selections(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_text_iface_get_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint selection_num = ((gint)asCInteger(s_selection_num));
 
   gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   gint start_offset;
   gint end_offset;
 
@@ -6611,13 +6617,13 @@ S_atk_text_iface_get_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_text_iface_add_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint start_offset = ((gint)asCInteger(s_start_offset));
   gint end_offset = ((gint)asCInteger(s_end_offset));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->add_selection(object, start_offset, end_offset);
 
@@ -6629,12 +6635,12 @@ S_atk_text_iface_add_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_text_iface_remove_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint selection_num = ((gint)asCInteger(s_selection_num));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->remove_selection(object, selection_num);
 
@@ -6646,6 +6652,7 @@ S_atk_text_iface_remove_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_text_iface_set_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint selection_num = ((gint)asCInteger(s_selection_num));
@@ -6653,7 +6660,6 @@ S_atk_text_iface_set_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   gint end_offset = ((gint)asCInteger(s_end_offset));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_selection(object, selection_num, start_offset, end_offset);
 
@@ -6665,12 +6671,12 @@ S_atk_text_iface_set_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 USER_OBJECT_
 S_atk_text_iface_set_caret_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint offset = ((gint)asCInteger(s_offset));
 
   gboolean ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->set_caret_offset(object, offset);
 
@@ -6682,12 +6688,12 @@ S_atk_text_iface_set_caret_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_text_iface_text_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_position, USER_OBJECT_ s_length)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint position = ((gint)asCInteger(s_position));
   gint length = ((gint)asCInteger(s_length));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->text_changed(object, position, length);
 
@@ -6698,11 +6704,11 @@ S_atk_text_iface_text_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 USER_OBJECT_
 S_atk_text_iface_text_caret_moved(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_location)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint location = ((gint)asCInteger(s_location));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->text_caret_moved(object, location);
 
@@ -6713,10 +6719,10 @@ S_atk_text_iface_text_caret_moved(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 USER_OBJECT_
 S_atk_text_iface_text_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->text_selection_changed(object);
 
@@ -6727,10 +6733,10 @@ S_atk_text_iface_text_selection_changed(USER_OBJECT_ s_object_class, USER_OBJECT
 USER_OBJECT_
 S_atk_text_iface_text_attributes_changed(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   object_class->text_attributes_changed(object);
 
@@ -6741,13 +6747,13 @@ S_atk_text_iface_text_attributes_changed(USER_OBJECT_ s_object_class, USER_OBJEC
 USER_OBJECT_
 S_atk_text_iface_get_range_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJECT_ s_end_offset, USER_OBJECT_ s_coord_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   gint start_offset = ((gint)asCInteger(s_start_offset));
   gint end_offset = ((gint)asCInteger(s_end_offset));
   AtkCoordType coord_type = ((AtkCoordType)asCEnum(s_coord_type, ATK_TYPE_COORD_TYPE));
 
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextRectangle* rect = ((AtkTextRectangle *)g_new0(AtkTextRectangle, 1));
 
   object_class->get_range_extents(object, start_offset, end_offset, coord_type, rect);
@@ -6762,6 +6768,7 @@ S_atk_text_iface_get_range_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 USER_OBJECT_
 S_atk_text_iface_get_bounded_ranges(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_rect, USER_OBJECT_ s_coord_type, USER_OBJECT_ s_x_clip_type, USER_OBJECT_ s_y_clip_type)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkTextIface* object_class = ((AtkTextIface*)getPtrValue(s_object_class));
   AtkText* object = ATK_TEXT(getPtrValue(s_object));
   AtkTextRectangle* rect = asCAtkTextRectangle(s_rect);
@@ -6770,7 +6777,6 @@ S_atk_text_iface_get_bounded_ranges(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   AtkTextClipType y_clip_type = ((AtkTextClipType)asCEnum(s_y_clip_type, ATK_TYPE_TEXT_CLIP_TYPE));
 
   AtkTextRange** ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_bounded_ranges(object, rect, coord_type, x_clip_type, y_clip_type);
 
@@ -6849,11 +6855,11 @@ S_atk_document_class_init(AtkDocumentIface * c, SEXP e)
 USER_OBJECT_
 S_atk_document_iface_get_document_type(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkDocumentIface* object_class = ((AtkDocumentIface*)getPtrValue(s_object_class));
   AtkDocument* object = ATK_DOCUMENT(getPtrValue(s_object));
 
   const gchar* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_document_type(object);
 
@@ -6865,11 +6871,11 @@ S_atk_document_iface_get_document_type(USER_OBJECT_ s_object_class, USER_OBJECT_
 USER_OBJECT_
 S_atk_document_iface_get_document(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 {
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkDocumentIface* object_class = ((AtkDocumentIface*)getPtrValue(s_object_class));
   AtkDocument* object = ATK_DOCUMENT(getPtrValue(s_object));
 
   gpointer ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
 
   ans = object_class->get_document(object);
 
@@ -6879,32 +6885,8 @@ S_atk_document_iface_get_document(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 }
  
 
+#if ATK_CHECK_VERSION(1, 12, 1)
 static SEXP S_AtkHyperlinkImpl_symbol;
-static 
-AtkHyperlink*
-S_virtual_atk_hyperlink_impl_get_hyperlink(AtkHyperlinkImpl* s_object)
-{
-  USER_OBJECT_ e;
-  USER_OBJECT_ tmp;
-  USER_OBJECT_ s_ans;
-  gint err;
-
-  PROTECT(e = allocVector(LANGSXP, 2));
-  tmp = e;
-
-  SETCAR(tmp, VECTOR_ELT(findVar(S_AtkHyperlinkImpl_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
-  tmp = CDR(tmp);
-
-  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "AtkHyperlinkImpl")));
-  tmp = CDR(tmp);
-
-  s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkHyperlink*)0));
-
-  UNPROTECT(1);
-  return(ATK_HYPERLINK(getPtrValue(s_ans)));
-}
 void
 S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e)
 {
@@ -6914,23 +6896,6 @@ S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e)
   s = findVar(S_AtkHyperlinkImpl_symbol, e);
   G_STRUCT_MEMBER(SEXP, c, sizeof(AtkHyperlinkImplIface)) = e;
 
-  if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
-    c->get_hyperlink = S_virtual_atk_hyperlink_impl_get_hyperlink;
 }
-USER_OBJECT_
-S_atk_hyperlink_impl_iface_get_hyperlink(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
-{
-  AtkHyperlinkImplIface* object_class = ((AtkHyperlinkImplIface*)getPtrValue(s_object_class));
-  AtkHyperlinkImpl* object = ATK_HYPERLINK_IMPL(getPtrValue(s_object));
-
-  AtkHyperlink* ans;
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-
-  ans = object_class->get_hyperlink(object);
-
-  _result = toRPointerWithRef(ans, "AtkHyperlink");
-
-  return(_result);
-}
- 
+#endif 
 

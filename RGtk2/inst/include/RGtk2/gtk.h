@@ -13,6 +13,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gtk/gtk.h>
 
+#define GDK_CHECK_VERSION GTK_CHECK_VERSION
+
 #include <RGtk2/gdkClasses.h>
 #include <RGtk2/gdkUserFuncs.h>
 #include <RGtk2/gtkClasses.h>
@@ -76,11 +78,13 @@ GtkItemFactoryEntry* asCGtkItemFactoryEntry2(USER_OBJECT_ s_entry);
 GtkItemFactoryEntry* R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype);
 GtkAllocation* asCGtkAllocation(USER_OBJECT_ s_alloc);
 USER_OBJECT_ asRGtkAllocation(GtkAllocation* alloc);
+#if GTK_CHECK_VERSION(2,10,0)
 GtkRecentFilterInfo * asCGtkRecentFilterInfo(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRGtkRecentFilterInfo(const GtkRecentFilterInfo * obj);
 GtkRecentData * asCGtkRecentData(USER_OBJECT_ s_obj);
 USER_OBJECT_ asRGtkPageRange(GtkPageRange * obj);
 GtkPageRange * asCGtkPageRange(USER_OBJECT_ s_obj);
+#endif
 USER_OBJECT_ asRGtkAccelKey(GtkAccelKey * obj);
 
 /* For some systems, e.g. Irix, gtkFuncs has a time_t that is not defined

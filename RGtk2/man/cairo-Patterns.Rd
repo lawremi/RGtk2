@@ -10,11 +10,17 @@
 \section{Methods and Functions}{
 \code{\link{cairoPatternAddColorStopRgb}(pattern, offset, red, green, blue)}\cr
 \code{\link{cairoPatternAddColorStopRgba}(pattern, offset, red, green, blue, alpha)}\cr
+\code{\link{cairoPatternGetColorStopCount}(pattern)}\cr
+\code{\link{cairoPatternGetColorStopRgba}(pattern, index)}\cr
 \code{\link{cairoPatternCreateRgb}(red, green, blue)}\cr
 \code{\link{cairoPatternCreateRgba}(red, green, blue, alpha)}\cr
+\code{\link{cairoPatternGetRgba}(pattern)}\cr
 \code{\link{cairoPatternCreateForSurface}(surface)}\cr
+\code{\link{cairoPatternGetSurface}(pattern)}\cr
 \code{\link{cairoPatternCreateLinear}(x0, y0, x1, y1)}\cr
+\code{\link{cairoPatternGetLinearPoints}(pattern)}\cr
 \code{\link{cairoPatternCreateRadial}(cx0, cy0, radius0, cx1, cy1, radius1)}\cr
+\code{\link{cairoPatternGetRadialCircles}(pattern)}\cr
 \code{\link{cairoPatternStatus}(pattern)}\cr
 \code{\link{cairoPatternSetExtend}(pattern, extend)}\cr
 \code{\link{cairoPatternGetExtend}(pattern)}\cr
@@ -23,11 +29,26 @@
 \code{\link{cairoPatternSetMatrix}(pattern, matrix)}\cr
 \code{\link{cairoPatternGetMatrix}(pattern, matrix)}\cr
 \code{\link{cairoPatternGetType}(pattern)}\cr
+\code{\link{cairoPatternSetUserData}(pattern, key, user.data)}\cr
+\code{\link{cairoPatternGetUserData}(pattern, key)}\cr
 \code{cairoPattern(red, green, blue, alpha, surface, x0, y0, x1, y1, cx0, cy0, radius0, cx1, cy1, radius1)}
 }
 \section{Structures}{\describe{\item{\code{CairoPattern}}{
-\emph{undocumented
-}
+A \code{\link{CairoPattern}} represents a source when drawing onto a
+surface. There are different subtypes of \code{\link{CairoPattern}},
+for different types of sources; for example,
+\code{\link{cairoPatternCreateRgb}} creates a pattern for a solid
+opaque color.
+  
+Other than various cairo\_pattern\_create\_\emph{type}
+functions, some of the pattern types can be implicitly created
+using vairous cairo\_set\_source\_\emph{type} functions;
+for example \code{\link{cairoSetSourceRgb}}.
+  
+The type of a pattern can be queried with \code{\link{cairoPatternGetType}}.
+  
+Memory management of \code{\link{CairoPattern}} is done with
+\code{cairoPatternReference()} and \code{cairoPatternDestroy()}.  
 
 }}}
 \section{Convenient Construction}{\code{cairoPattern} is the result of collapsing the constructors of \code{cairo_pattern_t} (\code{\link{cairoPatternCreateRgb}}, \code{\link{cairoPatternCreateRgba}}, \code{\link{cairoPatternCreateForSurface}}, \code{\link{cairoPatternCreateLinear}}, \code{\link{cairoPatternCreateRadial}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}

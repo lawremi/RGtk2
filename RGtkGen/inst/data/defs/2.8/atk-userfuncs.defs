@@ -1,4 +1,5 @@
 (define-user-function KeySnoopFunc
+  (in-module "Atk")
   (c-name "AtkKeySnoopFunc")
   (return-type "gint")
   (parameters

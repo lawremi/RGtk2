@@ -14,7 +14,6 @@ assign("AtkStreamableContent", c("get_n_mime_types", "get_mime_type"), .virtuals
 assign("AtkTable", c("ref_at", "get_index_at", "get_column_at_index", "get_row_at_index", "get_n_columns", "get_n_rows", "get_column_extent_at", "get_row_extent_at", "get_caption", "get_column_description", "get_column_header", "get_row_description", "get_row_header", "get_summary", "set_caption", "set_column_description", "set_column_header", "set_row_description", "set_row_header", "set_summary", "get_selected_columns", "get_selected_rows", "is_column_selected", "is_row_selected", "is_selected", "add_row_selection", "remove_row_selection", "add_column_selection", "remove_column_selection", "row_inserted", "column_inserted", "row_deleted", "column_deleted", "row_reordered", "column_reordered", "model_changed"), .virtuals)
 assign("AtkText", c("get_text", "get_text_after_offset", "get_text_at_offset", "get_character_at_offset", "get_text_before_offset", "get_caret_offset", "get_run_attributes", "get_default_attributes", "get_character_extents", "get_character_count", "get_offset_at_point", "get_n_selections", "get_selection", "add_selection", "remove_selection", "set_selection", "set_caret_offset", "text_changed", "text_caret_moved", "text_selection_changed", "text_attributes_changed", "get_range_extents", "get_bounded_ranges"), .virtuals)
 assign("AtkValue", c("get_current_value", "get_maximum_value", "get_minimum_value", "set_current_value", "get_minimum_increment"), .virtuals)
-assign("AtkHyperlinkImpl", c("get_hyperlink"), .virtuals)
 
 
 atkActionIfaceDoAction <-
@@ -1738,15 +1737,4 @@ function(object.class, object)
   w <- .RGtkCall("S_atk_value_iface_get_minimum_increment", object.class, object, PACKAGE = "RGtk2")
 
   return(invisible(w))
-}
-
-atkHyperlinkImplIfaceGetHyperlink <-
-function(object.class, object)
-{
-  checkPtrType(object.class, "AtkHyperlinkImplIface")
-  checkPtrType(object, "AtkHyperlinkImpl")
-
-  w <- .RGtkCall("S_atk_hyperlink_impl_iface_get_hyperlink", object.class, object, PACKAGE = "RGtk2")
-
-  return(w)
 }

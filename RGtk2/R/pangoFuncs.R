@@ -1797,16 +1797,15 @@ function(glyph.item, text, list)
 
 
 pangoGlyphItemLetterSpace <-
-function(glyph.item, text, log.attrs, letter.spacing)
+function(glyph.item, text, log.attrs)
 {
   checkPtrType(glyph.item, "PangoGlyphItem")
   text <- as.character(text)
-  checkPtrType(log.attrs, "PangoLogAttr")
-  letter.spacing <- as.integer(letter.spacing)
+  log.attrs <- lapply(log.attrs, function(x) { checkPtrType(x, "PangoLogAttr"); x })
 
-  w <- .RGtkCall("S_pango_glyph_item_letter_space", glyph.item, text, log.attrs, letter.spacing, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_pango_glyph_item_letter_space", glyph.item, text, log.attrs, PACKAGE = "RGtk2")
 
-  return(w)
+  return(invisible(w))
 } 
 
 
@@ -3057,6 +3056,74 @@ function(rect)
 } 
 
 
+pangoScriptForUnichar <-
+function(ch)
+{
+  ch <- as.numeric(ch)
+
+  w <- .RGtkCall("S_pango_script_for_unichar", ch, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoScriptIterNew <-
+function(text, length)
+{
+  text <- as.character(text)
+  length <- as.integer(length)
+
+  w <- .RGtkCall("S_pango_script_iter_new", text, length, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoScriptIterGetRange <-
+function(object)
+{
+  checkPtrType(object, "PangoScriptIter")
+
+  w <- .RGtkCall("S_pango_script_iter_get_range", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoScriptIterNext <-
+function(object)
+{
+  checkPtrType(object, "PangoScriptIter")
+
+  w <- .RGtkCall("S_pango_script_iter_next", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoScriptGetSampleLanguage <-
+function(script)
+{
+  
+
+  w <- .RGtkCall("S_pango_script_get_sample_language", script, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLanguageIncludesScript <-
+function(object, script)
+{
+  checkPtrType(object, "PangoLanguage")
+  
+
+  w <- .RGtkCall("S_pango_language_includes_script", object, script, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
 pangoCairoShowErrorUnderline <-
 function(cr, x, y, width, height)
 {
@@ -3130,5 +3197,350 @@ function(object, index., trailing)
   w <- .RGtkCall("S_pango_layout_index_to_line_x", object, index., trailing, PACKAGE = "RGtk2")
 
   return(invisible(w))
+} 
+
+
+pangoGravityToRotation <-
+function(base.gravity)
+{
+  
+
+  w <- .RGtkCall("S_pango_gravity_to_rotation", base.gravity, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGravityGetForMatrix <-
+function(matrix)
+{
+  checkPtrType(matrix, "PangoMatrix")
+
+  w <- .RGtkCall("S_pango_gravity_get_for_matrix", matrix, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoGravityGetForScript <-
+function(script, base.gravity, hint)
+{
+  
+  
+  
+
+  w <- .RGtkCall("S_pango_gravity_get_for_script", script, base.gravity, hint, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoAttrGravityNew <-
+function(gravity)
+{
+  
+
+  w <- .RGtkCall("S_pango_attr_gravity_new", gravity, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoAttrGravityHintNew <-
+function(hint)
+{
+  
+
+  w <- .RGtkCall("S_pango_attr_gravity_hint_new", hint, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoContextSetBaseGravity <-
+function(object, gravity)
+{
+  checkPtrType(object, "PangoContext")
+  
+
+  w <- .RGtkCall("S_pango_context_set_base_gravity", object, gravity, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoContextGetBaseGravity <-
+function(object)
+{
+  checkPtrType(object, "PangoContext")
+
+  w <- .RGtkCall("S_pango_context_get_base_gravity", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoContextGetGravity <-
+function(object)
+{
+  checkPtrType(object, "PangoContext")
+
+  w <- .RGtkCall("S_pango_context_get_gravity", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoContextSetGravityHint <-
+function(object, hint)
+{
+  checkPtrType(object, "PangoContext")
+  
+
+  w <- .RGtkCall("S_pango_context_set_gravity_hint", object, hint, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoContextGetGravityHint <-
+function(object)
+{
+  checkPtrType(object, "PangoContext")
+
+  w <- .RGtkCall("S_pango_context_get_gravity_hint", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoFontDescriptionSetGravity <-
+function(object, gravity)
+{
+  checkPtrType(object, "PangoFontDescription")
+  
+
+  w <- .RGtkCall("S_pango_font_description_set_gravity", object, gravity, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoFontDescriptionGetGravity <-
+function(object)
+{
+  checkPtrType(object, "PangoFontDescription")
+
+  w <- .RGtkCall("S_pango_font_description_get_gravity", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutGetLineReadonly <-
+function(object, line)
+{
+  checkPtrType(object, "PangoLayout")
+  line <- as.integer(line)
+
+  w <- .RGtkCall("S_pango_layout_get_line_readonly", object, line, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutGetLinesReadonly <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_get_lines_readonly", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutIterGetLineReadonly <-
+function(object)
+{
+  checkPtrType(object, "PangoLayoutIter")
+
+  w <- .RGtkCall("S_pango_layout_iter_get_line_readonly", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutIterGetRunReadonly <-
+function(object)
+{
+  checkPtrType(object, "PangoLayoutIter")
+
+  w <- .RGtkCall("S_pango_layout_iter_get_run_readonly", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoColorToString <-
+function(object)
+{
+  checkPtrType(object, "PangoColor")
+
+  w <- .RGtkCall("S_pango_color_to_string", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoMatrixTransformPoint <-
+function(object, x, y)
+{
+  checkPtrType(object, "PangoMatrix")
+  x <- as.list(as.numeric(x))
+  y <- as.list(as.numeric(y))
+
+  w <- .RGtkCall("S_pango_matrix_transform_point", object, x, y, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoMatrixTransformDistance <-
+function(object, dx, dy)
+{
+  checkPtrType(object, "PangoMatrix")
+  dx <- as.list(as.numeric(dx))
+  dy <- as.list(as.numeric(dy))
+
+  w <- .RGtkCall("S_pango_matrix_transform_distance", object, dx, dy, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoMatrixTransformRectangle <-
+function(object, rect)
+{
+  checkPtrType(object, "PangoMatrix")
+  rect <- as.PangoRectangle(rect)
+
+  w <- .RGtkCall("S_pango_matrix_transform_rectangle", object, rect, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoMatrixTransformPixelRectangle <-
+function(object, rect)
+{
+  checkPtrType(object, "PangoMatrix")
+  rect <- as.PangoRectangle(rect)
+
+  w <- .RGtkCall("S_pango_matrix_transform_pixel_rectangle", object, rect, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoUnitsFromDouble <-
+function(d)
+{
+  d <- as.numeric(d)
+
+  w <- .RGtkCall("S_pango_units_from_double", d, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoUnitsToDouble <-
+function(i)
+{
+  i <- as.integer(i)
+
+  w <- .RGtkCall("S_pango_units_to_double", i, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoExtentsToPixels <-
+function(ink.rect, logical.rect)
+{
+  ink.rect <- as.PangoRectangle(ink.rect)
+  logical.rect <- as.PangoRectangle(logical.rect)
+
+  w <- .RGtkCall("S_pango_extents_to_pixels", ink.rect, logical.rect, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutIsWrapped <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_is_wrapped", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutIsEllipsized <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_is_ellipsized", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutGetUnknownGlyphsCount <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_get_unknown_glyphs_count", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoVersion <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_pango_version", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoVersionString <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_pango_version_string", PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoVersionCheck <-
+function(required.major, required.minor, required.micro)
+{
+  required.major <- as.integer(required.major)
+  required.minor <- as.integer(required.minor)
+  required.micro <- as.integer(required.micro)
+
+  w <- .RGtkCall("S_pango_version_check", required.major, required.minor, required.micro, PACKAGE = "RGtk2")
+
+  return(w)
 } 
 

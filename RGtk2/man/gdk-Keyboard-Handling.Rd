@@ -142,6 +142,6 @@ The ::keys\_changed signal is emitted when the mapping represented by
 }
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Keyboard-Handling.html}}
-\note{The keyval constants exist in RGtk2 as .gdkKeyvalName, so \code{.gdkPlus} for kbd{plus}.}
+\note{The keyval constants exist in RGtk2 as .gdkKeyvalName, so \code{.gdkPlus} for \kbd{plus}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

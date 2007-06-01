@@ -1,7 +1,7 @@
 \alias{pangoCoverageToBytes}
 \name{pangoCoverageToBytes}
 \title{pangoCoverageToBytes}
-\description{Convert a PangoCoverage structure into a flat binary format}
+\description{Convert a \code{\link{PangoCoverage}} structure into a flat binary format}
 \usage{pangoCoverageToBytes(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoCoverage}}]  a \code{\link{PangoCoverage}}}}
 \value{

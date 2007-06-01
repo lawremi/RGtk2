@@ -1,7 +1,7 @@
 \alias{pangoLayoutSetFontDescription}
 \name{pangoLayoutSetFontDescription}
 \title{pangoLayoutSetFontDescription}
-\description{Sets the default font description for the layout. If no font 
+\description{Sets the default font description for the layout. If no font
 description is set on the layout, the font description from
 the layout's context is used.}
 \usage{pangoLayoutSetFontDescription(object, desc = NULL)}

@@ -18,7 +18,9 @@ CairoStatus<-c("success" = 0,
 	"invalid-visual" = 17,
 	"file-not-found" = 18,
 	"invalid-dash" = 19,
-	"invalid-dsc-comment" = 20)
+	"invalid-dsc-comment" = 20,
+	"invalid-index" = 21,
+	"clip-not-representable" = 22)
 storage.mode(CairoStatus) <- 'integer'
 class(CairoStatus) <- 'enums' 
 

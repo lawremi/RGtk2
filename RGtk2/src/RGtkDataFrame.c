@@ -324,8 +324,8 @@ r_gtk_data_frame_get_value (GtkTreeModel *tree_model,
 {
   RGtkDataFrame *data_frame = (RGtkDataFrame*)tree_model;
   
-  if (!VALID_ITER (iter, R_GTK_DATA_FRAME(tree_model)))
-	  g_debug("row: %d", GPOINTER_TO_INT(iter->user_data));
+  /*if (!VALID_ITER (iter, R_GTK_DATA_FRAME(tree_model)))
+	  g_debug("row: %d", GPOINTER_TO_INT(iter->user_data));*/
   g_return_if_fail (R_GTK_IS_DATA_FRAME (tree_model));
   g_return_if_fail (column < GET_LENGTH(R_GTK_DATA_FRAME (tree_model)->frame));
   g_return_if_fail (VALID_ITER (iter, R_GTK_DATA_FRAME(tree_model)));
@@ -487,6 +487,8 @@ r_gtk_data_frame_set (RGtkDataFrame *data_frame,
   }
 	if (data_frame->sort_id != -1 && resort)
 		r_gtk_data_frame_resort(data_frame);
+  
+  data_frame->nrows = frame_nrows;
 }
 
 static void r_gtk_data_frame_set_sort_closure(RGtkDataFrame *frame, USER_OBJECT_ closure)
@@ -525,7 +527,8 @@ r_gtk_data_frame_get_n_rows (RGtkDataFrame *data_frame)
 	gint nrows;
 	if (!data_frame->frame)
 		return(0);
-	nrows = GET_LENGTH(getAttrib(data_frame->frame, install("row.names")));
+	/*nrows = GET_LENGTH(getAttrib(data_frame->frame, install("row.names")));*/
+  nrows = data_frame->nrows;
 	return(nrows);
 }
 

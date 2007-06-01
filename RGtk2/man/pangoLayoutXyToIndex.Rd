@@ -1,7 +1,7 @@
 \alias{pangoLayoutXyToIndex}
 \name{pangoLayoutXyToIndex}
 \title{pangoLayoutXyToIndex}
-\description{Converts from X and Y position within a layout to the byte 
+\description{Converts from X and Y position within a layout to the byte
 index to the character at that logical position. If the
 Y position is not inside the layout, the closest position is chosen
 (the position will be clamped inside the layout). If the

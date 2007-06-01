@@ -9,7 +9,6 @@
 \code{\link{gtkPaperSizeNewFromPpd}(ppd.name, ppd.display.name, width, height)}\cr
 \code{\link{gtkPaperSizeNewCustom}(name, display.name, width, height, unit)}\cr
 \code{\link{gtkPaperSizeCopy}(object)}\cr
-\code{\link{gtkPaperSizeFree}(object)}\cr
 \code{\link{gtkPaperSizeIsEqual}(object, size2)}\cr
 \code{\link{gtkPaperSizeGetName}(object)}\cr
 \code{\link{gtkPaperSizeGetDisplayName}(object)}\cr

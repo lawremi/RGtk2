@@ -4,6 +4,7 @@
 (include "pango-userfuncs.defs")
 
 (define-function pango_color_get_type
+  (in-module "Pango")
   (c-name "pango_color_get_type")
   (return-type "GType")
 )
@@ -22,6 +23,7 @@
 )
 
 (define-function pango_color_parse
+  (in-module "Pango")
   (is-constructor-of "PangoColor")
   (c-name "pango_color_parse")
   (caller-owns-return #t)
@@ -33,6 +35,7 @@
 )
 
 (define-function pango_attr_type_register
+  (in-module "Pango")
   (c-name "pango_attr_type_register")
   (return-type "PangoAttrType")
   (parameters
@@ -63,6 +66,7 @@
 )
 
 (define-function AttrLanguage
+  (in-module "Pango")
   (c-name "pango_attr_language_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -72,6 +76,7 @@
 )
 
 (define-function AttrFamily
+  (in-module "Pango")
   (c-name "pango_attr_family_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -81,6 +86,7 @@
 )
 
 (define-function AttrForeground
+  (in-module "Pango")
   (c-name "pango_attr_foreground_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -92,6 +98,7 @@
 )
 
 (define-function AttrBackground
+  (in-module "Pango")
   (c-name "pango_attr_background_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -102,6 +109,7 @@
   )
 )
 (define-function AttrStrikethrough
+  (in-module "Pango")
   (c-name "pango_attr_strikethrough_color_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -112,6 +120,7 @@
   )
 )
 (define-function AttrUnderline
+  (in-module "Pango")
   (c-name "pango_attr_underline_color_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -123,6 +132,7 @@
 )
 
 (define-function AttrSize
+  (in-module "Pango")
   (c-name "pango_attr_size_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -131,6 +141,7 @@
   )
 )
 (define-function AttrSize
+  (in-module "Pango")
   (c-name "pango_attr_size_new_absolute")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -140,6 +151,7 @@
 )
 
 (define-function AttrStyle
+  (in-module "Pango")
   (c-name "pango_attr_style_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -149,6 +161,7 @@
 )
 
 (define-function AttrWeight
+  (in-module "Pango")
   (c-name "pango_attr_weight_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -158,6 +171,7 @@
 )
 
 (define-function AttrVariant
+  (in-module "Pango")
   (c-name "pango_attr_variant_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -167,6 +181,7 @@
 )
 
 (define-function AttrStretch
+  (in-module "Pango")
   (c-name "pango_attr_stretch_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -176,6 +191,7 @@
 )
 
 (define-function AttrFontDesc
+  (in-module "Pango")
   (c-name "pango_attr_font_desc_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -185,6 +201,7 @@
 )
 
 (define-function AttrUnderline
+  (in-module "Pango")
   (c-name "pango_attr_underline_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -194,6 +211,7 @@
 )
 
 (define-function AttrStrikethrough
+  (in-module "Pango")
   (c-name "pango_attr_strikethrough_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -203,6 +221,7 @@
 )
 
 (define-function AttrRise
+  (in-module "Pango")
   (c-name "pango_attr_rise_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -212,6 +231,7 @@
 )
 
 (define-function AttrShape
+  (in-module "Pango")
   (c-name "pango_attr_shape_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -221,6 +241,7 @@
   )
 )
 (define-function AttrShape
+  (in-module "Pango")
   (c-name "pango_attr_shape_new_with_data")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -234,6 +255,7 @@
 )
 
 (define-function AttrLetterSpacing
+  (in-module "Pango")
   (c-name "pango_attr_letter_spacing_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -243,6 +265,7 @@
 )
 
 (define-function AttrScale
+  (in-module "Pango")
   (c-name "pango_attr_scale_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -252,6 +275,7 @@
 )
 
 (define-function AttrFallback
+  (in-module "Pango")
   (c-name "pango_attr_fallback_new")
   (caller-owns-return #t)
   (return-type "PangoAttribute*")
@@ -261,11 +285,13 @@
 )
 
 (define-function pango_attr_list_get_type
+  (in-module "Pango")
   (c-name "pango_attr_list_get_type")
   (return-type "GType")
 )
 
 (define-function pango_attr_list_new
+  (in-module "Pango")
   (is-constructor-of "PangoAttrList")
   (c-name "pango_attr_list_new")
   (caller-owns-return #t)
@@ -404,6 +430,7 @@
 )
 
 (define-function parse_markup
+  (in-module "Pango")
   (c-name "pango_parse_markup")
   (return-type "gboolean")
   (parameters
@@ -418,6 +445,7 @@
 )
 
 (define-function break
+  (in-module "Pango")
   (c-name "pango_break")
   (return-type "none")
   (parameters
@@ -430,6 +458,7 @@
 )
 
 (define-function find_paragraph_boundary
+  (in-module "Pango")
   (c-name "pango_find_paragraph_boundary")
   (return-type "none")
   (parameters
@@ -441,6 +470,7 @@
 )
 
 (define-function get_log_attrs
+  (in-module "Pango")
   (c-name "pango_get_log_attrs")
   (return-type "none")
   (parameters
@@ -456,17 +486,20 @@
 ;; cairo stuff
 
 (define-function pango_cairo_font_map_get_type
+  (in-module "Pango")
   (c-name "pango_cairo_font_map_get_type")
   (return-type "GType")
 )
 
 (define-function pango_cairo_font_map_new
+  (in-module "Pango")
   (c-name "pango_cairo_font_map_new")
   (is-constructor-of "PangoCairoFontMap")
   (return-type "PangoFontMap*")
 )
 
 (define-function pango_cairo_font_map_get_default
+  (in-module "Pango")
   (c-name "pango_cairo_font_map_get_default")
   (return-type "PangoFontMap*")
 )
@@ -493,6 +526,7 @@
 )
 
 (define-function pango_cairo_update_context
+  (in-module "Pango")
   (c-name "pango_cairo_update_context")
   (return-type "none")
   (parameters
@@ -502,6 +536,7 @@
 )
 
 (define-function pango_cairo_context_set_font_options
+  (in-module "Pango")
   (c-name "pango_cairo_context_set_font_options")
   (return-type "none")
   (parameters
@@ -511,6 +546,7 @@
 )
 
 (define-function pango_cairo_context_get_font_options
+  (in-module "Pango")
   (c-name "pango_cairo_context_get_font_options")
   (return-type "const-cairo_font_options_t*")
   (parameters
@@ -519,6 +555,7 @@
 )
 
 (define-function pango_cairo_context_set_resolution
+  (in-module "Pango")
   (c-name "pango_cairo_context_set_resolution")
   (return-type "none")
   (parameters
@@ -528,6 +565,7 @@
 )
 
 (define-function pango_cairo_context_get_resolution
+  (in-module "Pango")
   (c-name "pango_cairo_context_get_resolution")
   (return-type "double")
   (parameters
@@ -536,6 +574,7 @@
 )
 
 (define-function pango_cairo_create_layout
+  (in-module "Pango")
   (c-name "pango_cairo_create_layout")
   (return-type "PangoLayout*")
   (parameters
@@ -544,6 +583,7 @@
 )
 
 (define-function pango_cairo_update_layout
+  (in-module "Pango")
   (c-name "pango_cairo_update_layout")
   (return-type "none")
   (parameters
@@ -553,6 +593,7 @@
 )
 
 (define-function pango_cairo_show_glyph_string
+  (in-module "Pango")
   (c-name "pango_cairo_show_glyph_string")
   (return-type "none")
   (parameters
@@ -563,6 +604,7 @@
 )
 
 (define-function pango_cairo_show_layout_line
+  (in-module "Pango")
   (c-name "pango_cairo_show_layout_line")
   (return-type "none")
   (parameters
@@ -572,6 +614,7 @@
 )
 
 (define-function pango_cairo_show_layout
+  (in-module "Pango")
   (c-name "pango_cairo_show_layout")
   (return-type "none")
   (parameters
@@ -581,6 +624,7 @@
 )
 
 (define-function pango_cairo_glyph_string_path
+  (in-module "Pango")
   (c-name "pango_cairo_glyph_string_path")
   (return-type "none")
   (parameters
@@ -591,6 +635,7 @@
 )
 
 (define-function pango_cairo_layout_line_path
+  (in-module "Pango")
   (c-name "pango_cairo_layout_line_path")
   (return-type "none")
   (parameters
@@ -600,6 +645,7 @@
 )
 
 (define-function pango_cairo_layout_path
+  (in-module "Pango")
   (c-name "pango_cairo_layout_path")
   (return-type "none")
   (parameters
@@ -611,6 +657,7 @@
 ;; end cairo stuff
 
 (define-function pango_context_new
+  (in-module "Pango")
   (is-constructor-of "PangoContext")
   (c-name "pango_context_new")
   (caller-owns-return #t)
@@ -643,6 +690,7 @@
 )
 
 (define-function get_mirror_char
+  (in-module "Pango")
 	(c-name "pango_get_mirror_char")
 	(return-type "gboolean")
 	(parameters
@@ -653,6 +701,7 @@
 )
 
 (define-function unichar_direction
+  (in-module "Pango")
 	(c-name "pango_unichar_direction")
 	(return-type "PangoDirection")
 	(parameters
@@ -661,6 +710,7 @@
 )
 
 (define-function find_base_dir
+  (in-module "Pango")
 	(c-name "pango_find_base_dir")
 	(return-type "PangoDirection")
 	(parameters
@@ -759,6 +809,7 @@
 )
 
 (define-function itemize
+  (in-module "Pango")
   (c-name "pango_itemize")
   (caller-owns-return #t)
   (return-type "GList[PangoItem]")
@@ -772,6 +823,7 @@
   )
 )
 (define-function itemize_with_base_dir
+  (in-module "Pango")
   (c-name "pango_itemize_with_base_dir")
   (caller-owns-return #t)
   (return-type "GList[PangoItem]")
@@ -787,6 +839,7 @@
 )
 
 (define-function pango_coverage_new
+  (in-module "Pango")
 	(c-name "pango_coverage_new")
 	(is-constructor-of "PangoCoverage")
 	(return-type "PangoCoverage*")
@@ -850,6 +903,7 @@
 )
 
 (define-function coverage_from_bytes
+  (in-module "Pango")
   (is-constructor-of "PangoCoverage")
   (c-name "pango_coverage_from_bytes")
   (caller-owns-return #t)
@@ -861,6 +915,7 @@
 )
 
 (define-function pango_font_description_new
+  (in-module "Pango")
   (is-constructor-of "PangoFontDescription")
   (c-name "pango_font_description_new")
   (caller-owns-return #t)
@@ -903,6 +958,7 @@
 )
 
 (define-function pango_font_descriptions_free
+  (in-module "Pango")
   (c-name "pango_font_descriptions_free")
   (return-type "none")
   (parameters
@@ -1071,6 +1127,7 @@
 )
 
 (define-function pango_font_description_from_string
+  (in-module "Pango")
   (is-constructor-of "PangoFontDescription")
   (c-name "pango_font_description_from_string")
   (caller-owns-return #t)
@@ -1095,6 +1152,7 @@
 )
 
 (define-function pango_font_metrics_get_type
+  (in-module "Pango")
   (c-name "pango_font_metrics_get_type")
   (return-type "GType")
 )
@@ -1160,6 +1218,7 @@
 )
 
 (define-function pango_font_family_get_type
+  (in-module "Pango")
   (c-name "pango_font_family_get_type")
   (return-type "GType")
 )
@@ -1187,6 +1246,7 @@
 )
 
 (define-function pango_font_face_get_type
+  (in-module "Pango")
   (c-name "pango_font_face_get_type")
   (return-type "GType")
 )
@@ -1215,6 +1275,7 @@
 )
 
 (define-function pango_font_get_type
+  (in-module "Pango")
   (c-name "pango_font_get_type")
   (return-type "GType")
 )
@@ -1338,6 +1399,7 @@
 )
 
 (define-function pango_fontset_simple_new
+  (in-module "Pango")
   (is-constructor-of "PangoFontsetSimple")
   (c-name "pango_fontset_simple_new")
   (caller-owns-return #t)
@@ -1363,6 +1425,7 @@
 )
 
 (define-function pango_glyph_string_new
+  (in-module "Pango")
   (is-constructor-of "PangoGlyphString")
   (c-name "pango_glyph_string_new")
   (caller-owns-return #t)
@@ -1379,6 +1442,7 @@
 )
 
 (define-function pango_glyph_string_get_type
+  (in-module "Pango")
   (c-name "pango_glyph_string_get_type")
   (return-type "GType")
 )
@@ -1461,6 +1525,7 @@
 )
 
 (define-function split
+  (in-module "Pango")
 	(c-name "pango_glyph_item_split")
 	(return-type "PangoGlyphItem*")
 	(caller-owns-return "#t")
@@ -1472,6 +1537,7 @@
 )
 
 (define-function apply_attrs
+  (in-module "Pango")
 	(c-name "pango_glyph_item_apply_attrs")
 	(return-type "GSList[PangoGlyphItem]")
 	(caller-owns-return "#t")
@@ -1483,12 +1549,13 @@
 )
 
 (define-function pango_glyph_item_letter_space
+  (in-module "Pango")
 	(c-name "pango_glyph_item_letter_space")
 	(return-type "none")
 	(parameters
 		'("PangoGlyphItem*" "glyph_item")
         '("const-char*" "text")
-        '("PangoLogAttr*" "log_attrs")
+        '("PangoLogAttr[]" "log_attrs")
         '("int" "letter_spacing")
 	)
 )
@@ -1539,6 +1606,7 @@
 )
 
 (define-function shape
+  (in-module "Pango")
   (c-name "pango_shape")
   (return-type "none")
   (parameters
@@ -1550,6 +1618,7 @@
 )
 
 (define-function item_copy
+  (in-module "Pango")
 	(c-name "pango_item_copy")
 	(caller-owns-return #t)
 	(return-type "PangoItem*")
@@ -1558,11 +1627,13 @@
 	)
 )
 (define-function item_new
+  (in-module "Pango")
 	(c-name "pango_item_new")
 	(caller-owns-return #t)
 	(return-type "PangoItem*")
 )
 (define-function item_split
+  (in-module "Pango")
 	(c-name "pango_item_split")
 	(caller-owns-return #t)
 	(return-type "PangoItem*")
@@ -1573,6 +1644,7 @@
 	)
 )
 (define-function reorder_items
+  (in-module "Pango")
   (c-name "pango_reorder_items")
   (caller-owns-return #t)
   (return-type "GList[PangoItem]")
@@ -1582,11 +1654,13 @@
 )
 
 (define-function pango_layout_get_type
+  (in-module "Pango")
   (c-name "pango_layout_get_type")
   (return-type "GType")
 )
 
 (define-function pango_layout_new
+  (in-module "Pango")
   (is-constructor-of "PangoLayout")
   (c-name "pango_layout_new")
   (caller-owns-return #t)
@@ -2009,6 +2083,7 @@
 )
 
 (define-function pango_layout_iter_get_type
+  (in-module "Pango")
   (c-name "pango_layout_iter_get_type")
   (return-type "GType")
 )
@@ -2140,6 +2215,7 @@
 )
 
 (define-function pango_renderer_get_type
+  (in-module "Pango")
   (c-name "pango_renderer_get_type")
   (return-type "GType")
 )
@@ -2286,6 +2362,7 @@
 )
 
 (define-function pango_tab_array_new
+  (in-module "Pango")
   (is-constructor-of "PangoTabArray")
   (c-name "pango_tab_array_new")
   (caller-owns-return #t)
@@ -2297,6 +2374,7 @@
 )
 
 (define-function pango_tab_array_new_with_positions
+  (in-module "Pango")
   (is-constructor-of "PangoTabArray")
   (c-name "pango_tab_array_new_with_positions")
   (caller-owns-return #t)
@@ -2311,6 +2389,7 @@
 )
 
 (define-function pango_tab_array_get_type
+  (in-module "Pango")
   (c-name "pango_tab_array_get_type")
   (return-type "GType")
 )
@@ -2382,6 +2461,7 @@
 )
 
 (define-function pango_language_from_string
+  (in-module "Pango")
   (is-constructor-of "PangoLanguage")
   (c-name "pango_language_from_string")
   (caller-owns-return #t)
@@ -2407,6 +2487,7 @@
 )
 
 (define-function PIXELS
+  (in-module "Pango")
   (c-name "PANGO_PIXELS")
   (return-type "gint")
   (parameters
@@ -2415,6 +2496,7 @@
 )
 
 (define-function ASCENT
+  (in-module "Pango")
   (c-name "PANGO_ASCENT")
   (return-type "gint")
   (parameters
@@ -2423,6 +2505,7 @@
 )
 
 (define-function DESCENT
+  (in-module "Pango")
   (c-name "PANGO_DESCENT")
   (return-type "gint")
   (parameters
@@ -2431,6 +2514,7 @@
 )
 
 (define-function LBEARING
+  (in-module "Pango")
   (c-name "PANGO_LBEARING")
   (return-type "gint")
   (parameters
@@ -2439,6 +2523,7 @@
 )
 
 (define-function RBEARING
+  (in-module "Pango")
   (c-name "PANGO_RBEARING")
   (return-type "gint")
   (parameters
@@ -2740,3 +2825,67 @@
   )
 )
 
+; scripts
+
+;; From /usr/include/pango-1.0/pango/pango-script.h
+
+(define-function pango_script_for_unichar
+  (in-module "Pango")
+  (c-name "pango_script_for_unichar")
+  (return-type "PangoScript")
+  (parameters
+    '("gunichar" "ch")
+  )
+)
+
+(define-function pango_script_iter_new
+  (in-module "Pango")
+  (c-name "pango_script_iter_new")
+  (is-constructor-of "PangoScriptIter")
+  (return-type "PangoScriptIter*")
+  (parameters
+    '("const-char*" "text")
+    '("int" "length")
+  )
+)
+
+(define-method get_range
+  (of-object "PangoScriptIter")
+  (c-name "pango_script_iter_get_range")
+  (return-type "none")
+  (parameters
+    '("const-char**" "start" (out))
+    '("const-char**" "end" (out))
+    '("PangoScript*" "script" (out))
+  )
+)
+
+(define-method next
+  (of-object "PangoScriptIter")
+  (c-name "pango_script_iter_next")
+  (return-type "gboolean")
+)
+
+(define-method free
+  (of-object "PangoScriptIter")
+  (c-name "pango_script_iter_free")
+  (return-type "none")
+)
+
+(define-function get_sample_language
+  (in-module "Pango")
+  (c-name "pango_script_get_sample_language")
+  (return-type "PangoLanguage*")
+  (parameters
+    '("PangoScript" "script")
+  )
+)
+
+(define-method includes_script
+  (of-object "PangoLanguage")
+  (c-name "pango_language_includes_script")
+  (return-type "gboolean")
+  (parameters
+    '("PangoScript" "script")
+  )
+)

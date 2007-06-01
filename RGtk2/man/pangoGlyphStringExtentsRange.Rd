@@ -10,7 +10,7 @@ glyph string).}
 \item{\code{object}}{[\code{\link{PangoGlyphString}}]    a \code{\link{PangoGlyphString}}}
 \item{\code{start}}{[integer]     start index}
 \item{\code{end}}{[integer]       end index (the range is the set of bytes with
-              indices such that start <= index < end)}
+	      indices such that start <= index < end)}
 \item{\code{font}}{[\code{\link{PangoFont}}]      a \code{\link{PangoFont}}}
 }
 \value{

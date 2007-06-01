@@ -1158,85 +1158,105 @@ S_gtk_window_group_class_init(GtkWindowGroupClass * c, SEXP e)
   return(fun(c, e));
 } 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e)
 {
   static void (*fun)(GtkCellRendererAccelClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkCellRendererAccelClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_cell_renderer_accel_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_cell_renderer_spin_class_init(GtkCellRendererSpinClass * c, SEXP e)
 {
   static void (*fun)(GtkCellRendererSpinClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkCellRendererSpinClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_cell_renderer_spin_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_print_operation_class_init(GtkPrintOperationClass * c, SEXP e)
 {
   static void (*fun)(GtkPrintOperationClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkPrintOperationClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_print_operation_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e)
 {
   static void (*fun)(GtkRecentManagerClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkRecentManagerClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_recent_manager_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_status_icon_class_init(GtkStatusIconClass * c, SEXP e)
 {
   static void (*fun)(GtkStatusIconClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkStatusIconClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_status_icon_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_recent_chooser_menu_class_init(GtkRecentChooserMenuClass * c, SEXP e)
 {
   static void (*fun)(GtkRecentChooserMenuClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkRecentChooserMenuClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_recent_chooser_menu_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_link_button_class_init(GtkLinkButtonClass * c, SEXP e)
 {
   static void (*fun)(GtkLinkButtonClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkLinkButtonClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_link_button_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_recent_chooser_widget_class_init(GtkRecentChooserWidgetClass * c, SEXP e)
 {
   static void (*fun)(GtkRecentChooserWidgetClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkRecentChooserWidgetClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_recent_chooser_widget_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e)
 {
   static void (*fun)(GtkRecentChooserDialogClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkRecentChooserDialogClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_recent_chooser_dialog_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
+#if GTK_CHECK_VERSION(2, 10, 0)
 void
 S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
 {
   static void (*fun)(GtkAssistantClass *, SEXP) = NULL;
   if(!fun) fun = ((void (*)(GtkAssistantClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_assistant_class_init"));
   return(fun(c, e));
-} 
+}
+#endif 
 
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)

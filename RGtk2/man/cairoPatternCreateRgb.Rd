@@ -11,7 +11,7 @@ clamped.}
 \item{\code{green}}{[numeric]  green component of the color}
 \item{\code{blue}}{[numeric]  blue component of the color}
 }
-\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if succesful, or
+\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

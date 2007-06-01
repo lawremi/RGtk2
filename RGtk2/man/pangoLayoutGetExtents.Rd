@@ -15,8 +15,8 @@ coordinates begin at the top left corner of the layout.  }
 A list containing the following elements:
 \item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]  rectangle used to store the extents of the layout as drawn
            or \code{NULL} to indicate that the result is not needed.}
-\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  rectangle used to store the logical extents of the layout 
-                 or \code{NULL} to indicate that the result is not needed.}
+\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  rectangle used to store the logical extents of the layout
+		 or \code{NULL} to indicate that the result is not needed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

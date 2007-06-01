@@ -8,7 +8,7 @@
 \alias{PangoAlignment}
 \name{pango-Layout-Objects}
 \title{Layout Objects}
-\description{Highlevel layout driver objects}
+\description{High-level layout driver objects}
 \section{Methods and Functions}{
 \code{\link{pangoLayoutNew}(context)}\cr
 \code{\link{pangoLayoutCopy}(object)}\cr
@@ -26,8 +26,10 @@
 \code{\link{pangoLayoutGetWidth}(object)}\cr
 \code{\link{pangoLayoutSetWrap}(object, wrap)}\cr
 \code{\link{pangoLayoutGetWrap}(object)}\cr
+\code{\link{pangoLayoutIsWrapped}(object)}\cr
 \code{\link{pangoLayoutSetEllipsize}(object, ellipsize)}\cr
 \code{\link{pangoLayoutGetEllipsize}(object)}\cr
+\code{\link{pangoLayoutIsEllipsized}(object)}\cr
 \code{\link{pangoLayoutSetIndent}(object, indent)}\cr
 \code{\link{pangoLayoutGetIndent}(object)}\cr
 \code{\link{pangoLayoutGetSpacing}(object)}\cr
@@ -42,6 +44,7 @@
 \code{\link{pangoLayoutGetTabs}(object)}\cr
 \code{\link{pangoLayoutSetSingleParagraphMode}(object, setting)}\cr
 \code{\link{pangoLayoutGetSingleParagraphMode}(object)}\cr
+\code{\link{pangoLayoutGetUnknownGlyphsCount}(object)}\cr
 \code{\link{pangoLayoutGetLogAttrs}(object)}\cr
 \code{\link{pangoLayoutIndexToPos}(object, index, pos)}\cr
 \code{\link{pangoLayoutIndexToLineX}(object, index., trailing)}\cr
@@ -54,7 +57,9 @@
 \code{\link{pangoLayoutGetPixelSize}(object)}\cr
 \code{\link{pangoLayoutGetLineCount}(object)}\cr
 \code{\link{pangoLayoutGetLine}(object, line)}\cr
+\code{\link{pangoLayoutGetLineReadonly}(object, line)}\cr
 \code{\link{pangoLayoutGetLines}(object)}\cr
+\code{\link{pangoLayoutGetLinesReadonly}(object)}\cr
 \code{\link{pangoLayoutGetIter}(object)}\cr
 \code{\link{pangoLayoutIterNextRun}(object)}\cr
 \code{\link{pangoLayoutIterNextChar}(object)}\cr
@@ -64,7 +69,9 @@
 \code{\link{pangoLayoutIterGetIndex}(object)}\cr
 \code{\link{pangoLayoutIterGetBaseline}(object)}\cr
 \code{\link{pangoLayoutIterGetRun}(object)}\cr
+\code{\link{pangoLayoutIterGetRunReadonly}(object)}\cr
 \code{\link{pangoLayoutIterGetLine}(object)}\cr
+\code{\link{pangoLayoutIterGetLineReadonly}(object)}\cr
 \code{\link{pangoLayoutIterGetCharExtents}(object)}\cr
 \code{\link{pangoLayoutIterGetClusterExtents}(object)}\cr
 \code{\link{pangoLayoutIterGetRunExtents}(object)}\cr
@@ -135,7 +142,7 @@ code specific to each rendering system.
 \section{Convenient Construction}{\code{pangoLayout} is the equivalent of \code{\link{pangoLayoutNew}}.}
 \section{Enums and Flags}{\describe{
 \item{\code{PangoWrapMode}}{
-A PangoWrapMode describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
+A \code{\link{PangoWrapMode}} describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
 
 \describe{
 \item{\code{word}}{wrap lines at word boundaries.}
@@ -159,7 +166,7 @@ with an ellipsis.
 
 }
 \item{\code{PangoAlignment}}{
-A PangoAlignment describes how to align the lines of a \code{\link{PangoLayout}} within the
+A \code{\link{PangoAlignment}} describes how to align the lines of a \code{\link{PangoLayout}} within the
 available space. If the \code{\link{PangoLayout}} is set to justify
 using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial lines.
 

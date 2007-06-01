@@ -2,8 +2,9 @@
 \name{cairoInFill}
 \title{cairoInFill}
 \description{Tests whether the given point is inside the area that would be
-filled by doing a \code{\link{cairoFill}} operation on \code{cr} given the current
-path and filling parameters.}
+affected by a \code{\link{cairoFill}} operation given the current path and
+filling parameters. Surface dimensions and clipping are not taken
+into account.}
 \usage{cairoInFill(cr, x, y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}

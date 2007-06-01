@@ -2,7 +2,7 @@
 \name{pangoLayoutIterGetLayoutExtents}
 \title{pangoLayoutIterGetLayoutExtents}
 \description{Obtains the extents of the \code{\link{PangoLayout}} being iterated
-over. \code{ink.rect} or \code{logical.rect} can be NULL if you
+over. \code{ink.rect} or \code{logical.rect} can be \code{NULL} if you
 aren't interested in them.}
 \usage{pangoLayoutIterGetLayoutExtents(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}

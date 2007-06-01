@@ -6,8 +6,8 @@
 styles are drawn.}
 \usage{cairoSetLineJoin(cr, line.join)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context, as a \code{\link{Cairo}}}
-\item{\code{line.join}}{[\code{\link{CairoLineJoin}}]  a line joint style, as a \code{\link{CairoLineJoin}}}
+\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
+\item{\code{line.join}}{[\code{\link{CairoLineJoin}}]  a line joint style}
 }
 \details{As with the other stroke parameters, the current line join style is
 examined by \code{\link{cairoStroke}}, \code{\link{cairoStrokeExtents}}, and

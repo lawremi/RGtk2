@@ -5,10 +5,8 @@
 \code{printf()}-style), which is marked up with the 
 Pango text markup language.}
 \usage{gtkMessageDialogFormatSecondaryMarkup(object, ...)}
-\arguments{
-\item{\code{object}}{[\code{\link{GtkMessageDialog}}]  a \code{\link{GtkMessageDialog}}}
-\item{\code{...}}{ arguments for \code{message.format}}
-}
+\arguments{\item{\code{...}}{[character]  \code{printf()}-style markup string (see 
+     Pango markup format), or \code{NULL}}}
 \details{Note that setting a secondary text makes the primary text become
 bold, unless you have provided explicit markup.
   

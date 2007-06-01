@@ -7,8 +7,8 @@
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayout}}]     a \code{\link{PangoLayout}}}
 \item{\code{index.}}{[integer]     the byte index of a grapheme within the layout.}
-\item{\code{trailing}}{[logical]   an integer indicating the edge of the grapheme to retrieve the 
-            position of. If 0, the trailing edge of the grapheme, if > 0, 
+\item{\code{trailing}}{[logical]   an integer indicating the edge of the grapheme to retrieve the
+            position of. If 0, the trailing edge of the grapheme, if > 0,
             the leading of the grapheme.}
 }
 \value{

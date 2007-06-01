@@ -1,5 +1,7 @@
 \alias{cairo-cairo-t}
 \alias{Cairo}
+\alias{CairoRectangle}
+\alias{CairoRectangleList}
 \alias{cairo}
 \alias{CairoAntialias}
 \alias{CairoFillRule}
@@ -28,6 +30,8 @@
 \code{\link{cairoSetAntialias}(cr, antialias)}\cr
 \code{\link{cairoGetAntialias}(cr)}\cr
 \code{\link{cairoSetDash}(cr, dashes, offset)}\cr
+\code{\link{cairoGetDashCount}(cr)}\cr
+\code{\link{cairoGetDash}(cr, dashes)}\cr
 \code{\link{cairoSetFillRule}(cr, fill.rule)}\cr
 \code{\link{cairoGetFillRule}(cr)}\cr
 \code{\link{cairoSetLineCap}(cr, line.cap)}\cr
@@ -44,7 +48,9 @@
 \code{\link{cairoGetTolerance}(cr)}\cr
 \code{\link{cairoClip}(cr)}\cr
 \code{\link{cairoClipPreserve}(cr)}\cr
+\code{\link{cairoClipExtents}(cr)}\cr
 \code{\link{cairoResetClip}(cr)}\cr
+\code{\link{cairoCopyClipRectangleList}(cr)}\cr
 \code{\link{cairoFill}(cr)}\cr
 \code{\link{cairoFillPreserve}(cr)}\cr
 \code{\link{cairoFillExtents}(cr)}\cr
@@ -59,6 +65,8 @@
 \code{\link{cairoInStroke}(cr, x, y)}\cr
 \code{\link{cairoCopyPage}(cr)}\cr
 \code{\link{cairoShowPage}(cr)}\cr
+\code{\link{cairoSetUserData}(cr, key, user.data)}\cr
+\code{\link{cairoGetUserData}(cr, key)}\cr
 \code{cairo(target)}
 }
 \section{Detailed Description}{    \code{\link{Cairo}} is the main object used when drawing with cairo. To
@@ -71,11 +79,48 @@
     They may then safely be changed, without loosing the current state.
     Use \code{\link{cairoRestore}} to restore to the saved state.
   }
-\section{Structures}{\describe{\item{\code{Cairo}}{
+\section{Structures}{\describe{
+\item{\code{Cairo}}{
 A \code{\link{Cairo}} contains the current state of the rendering device,
-including coordinates of yet to be drawn shapes.  
+including coordinates of yet to be drawn shapes.
+  
+Cairo contexts, as \code{\link{Cairo}} objects are named, are central to
+cairo and all drawing with cairo is always done to a \code{\link{Cairo}}
+object.
+  
+Memory management of \code{\link{Cairo}} is done with
+\code{cairoReference()} and \code{cairoDestroy()}.  
 
-}}}
+}
+\item{\code{CairoRectangle}}{
+A data structure for holding a rectangle.  
+
+  Since  1.4
+\strong{\code{CairoRectangle} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{x}}{[numeric]  X coordinate of the left side of the rectangle}
+\item{\code{y}}{[numeric]  Y coordinate of the the top side of the rectangle}
+\item{\code{width}}{[numeric]  width of the rectangle}
+\item{\code{height}}{[numeric]  height of the rectangle}
+}
+
+}
+\item{\code{CairoRectangleList}}{
+A data structure for holding a dynamically allocated
+array of rectangles.  
+
+  Since  1.4
+\strong{\code{CairoRectangleList} is a \link{transparent-type}.}
+
+\describe{
+\item{\code{status}}{[\code{\link{CairoStatus}}]  Error status of the rectangle list}
+\item{\code{rectangles}}{[\code{\link{CairoRectangle}}]  list containing the rectangles}
+\item{\code{num_rectangles}}{[integer]  Number of rectangles in this list}
+}
+
+}
+}}
 \section{Convenient Construction}{\code{cairo} is the equivalent of \code{\link{cairoCreate}}.}
 \section{Enums and Flags}{\describe{
 \item{\code{CairoAntialias}}{
@@ -119,7 +164,7 @@ filled.}
 
 }
 \item{\code{CairoLineCap}}{
-enumeration for style of line-endings  
+Specifies how to render the endpoint of a line when stroking.  
 
 \describe{
 \item{\code{butt}}{ start(stop) the line exactly at the start(end) point}
@@ -129,16 +174,15 @@ enumeration for style of line-endings
 
 }
 \item{\code{CairoLineJoin}}{
-\emph{undocumented
-}
+Specifies how to render the junction of two lines when stroking.  
 
 \describe{
-\item{\code{miter}}{\emph{undocumented
-}}
-\item{\code{round}}{\emph{undocumented
-}}
-\item{\code{bevel}}{\emph{undocumented
-}}
+\item{\code{miter}}{ use a sharp (angled) corner, see
+\code{\link{cairoSetMiterLimit}}}
+\item{\code{round}}{ use a rounded join, the center of the circle is the
+joint point}
+\item{\code{bevel}}{ use a cut-off join, the join is cut off at half
+the line width from the joint point}
 }
 
 }

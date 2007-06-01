@@ -37,6 +37,8 @@
 \code{\link{pangoFontDescriptionGetSize}(object)}\cr
 \code{\link{pangoFontDescriptionSetAbsoluteSize}(object, size)}\cr
 \code{\link{pangoFontDescriptionGetSizeIsAbsolute}(object)}\cr
+\code{\link{pangoFontDescriptionSetGravity}(object, gravity)}\cr
+\code{\link{pangoFontDescriptionGetGravity}(object)}\cr
 \code{\link{pangoFontDescriptionGetSetFields}(object)}\cr
 \code{\link{pangoFontDescriptionUnsetFields}(object, to.unset)}\cr
 \code{\link{pangoFontDescriptionMerge}(object, desc.to.merge, replace.existing)}\cr
@@ -95,7 +97,7 @@
 \section{Detailed Description}{Pango supports a flexible architecture where a
 particular rendering architecture can supply an
 implementation of fonts. The \code{\link{PangoFont}} structure
-represents an abstract rendering-system-indepent font.
+represents an abstract rendering-system-independent font.
 Pango provides routines to list available fonts, and
 to load a font of a given description.}
 \section{Structures}{\describe{
@@ -136,9 +138,9 @@ of their meaning.
 The \code{\link{PangoFont}} structure is used to represent
 a font in a rendering-system-independent matter.
 To create an implementation of a \code{\link{PangoFont}},
-the rendering-system specific code should malloc
+the rendering-system specific code should allocate
 a larger structure that contains a nested
-\code{\link{PangoFont}}, fill in the klass member of
+\code{\link{PangoFont}}, fill in the \code{klass} member of
 the nested \code{\link{PangoFont}} with a pointer to
 a appropriate \code{PangoFontClass}, then call
 \code{pangoFontInit()} on the structure.
@@ -163,8 +165,8 @@ The \code{\link{PangoFontMap}} represents the set of fonts available for a
 particular rendering system. This is a virtual object with
 implementations being specific to particular rendering systems.  To
 create an implementation of a \code{\link{PangoFontMap}}, the rendering-system
-specific code should malloc a larger structure that contains a nested
-\code{\link{PangoFontMap}}, fill in the klass member of the nested \code{\link{PangoFontMap}} with a
+specific code should allocate a larger structure that contains a nested
+\code{\link{PangoFontMap}}, fill in the \code{klass} member of the nested \code{\link{PangoFontMap}} with a
 pointer to a appropriate \code{PangoFontMapClass}, then call
 \code{pangoFontMapInit()} on the structure.
   

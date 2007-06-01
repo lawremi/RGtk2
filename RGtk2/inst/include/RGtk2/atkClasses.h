@@ -49,6 +49,8 @@ void
 S_atk_text_class_init(AtkTextIface * c, SEXP e); 
 void
 S_atk_document_class_init(AtkDocumentIface * c, SEXP e); 
+#if ATK_CHECK_VERSION(1, 12, 1)
 void
-S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e); 
+S_atk_hyperlink_impl_class_init(AtkHyperlinkImplIface * c, SEXP e);
+#endif 
 #endif

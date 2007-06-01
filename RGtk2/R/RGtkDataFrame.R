@@ -65,7 +65,7 @@ as.data.frame.RGtkDataFrame <- function(x, ...) .RGtkCall("R_r_gtk_data_frame_ge
 
 rGtkDataFrameAppendRows <- function(x, ...) {
 	frame <- as.data.frame(x)
-	new_frame <- rbind(frame, ...)
+  new_frame <- rbind(frame, ...)
 	new_ind <- (nrow(frame)+1):nrow(new_frame)
 	if (nrow(new_frame) > nrow(frame))
 		.RGtkCall("R_r_gtk_data_frame_set", x, new_frame, as.list(as.integer(new_ind-1)), T)

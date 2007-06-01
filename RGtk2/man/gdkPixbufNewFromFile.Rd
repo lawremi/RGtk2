@@ -15,7 +15,7 @@ A list containing the following elements:
 any of several error conditions occurred:  the file could not be opened,
 there was no loader for the file's format, there was not enough memory to
 allocate the image buffer, or the image file contained invalid data.}
-\item{\code{error}}{[\code{\link{GError}}]  Return location for an error}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

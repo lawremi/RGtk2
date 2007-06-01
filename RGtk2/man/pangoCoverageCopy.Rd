@@ -1,9 +1,8 @@
 \alias{pangoCoverageCopy}
 \name{pangoCoverageCopy}
 \title{pangoCoverageCopy}
-\description{Copy an existing \code{\link{PangoCoverage}}. (This function may now be unecessary 
-since we refcount the structure. Mail otaylor\code{redhat.com} if you
-use it.)}
+\description{Copy an existing \code{\link{PangoCoverage}}. (This function may now be unnecessary
+since we refcount the structure. File a bug if you use it.)}
 \usage{pangoCoverageCopy(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoCoverage}}]  a \code{\link{PangoCoverage}}}}
 \value{[\code{\link{PangoCoverage}}]  the newly allocated \code{\link{PangoCoverage}},

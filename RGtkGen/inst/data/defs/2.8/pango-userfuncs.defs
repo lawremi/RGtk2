@@ -1,4 +1,5 @@
 (define-user-function FontsetForeachFunc
+  (in-module "Pango")
   (c-name "PangoFontsetForeachFunc")
   (return-type "gboolean")
   (parameters
@@ -8,6 +9,7 @@
   )
 )
 (define-user-function AttrFilterFunc
+  (in-module "Pango")
   (c-name "PangoAttrFilterFunc")
   (return-type "gboolean")
   (parameters

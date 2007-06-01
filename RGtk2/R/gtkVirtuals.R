@@ -2343,7 +2343,7 @@ function(object.class, object, offset)
 
   w <- .RGtkCall("S_gtk_notebook_class_change_current_page", object.class, object, offset, PACKAGE = "RGtk2")
 
-  return(w)
+  return(invisible(w))
 }
 
 gtkNotebookClassMoveFocusOut <-
@@ -2894,7 +2894,7 @@ function(object.class, object, scroll, horizontal)
 
   w <- .RGtkCall("S_gtk_scrolled_window_class_scroll_child", object.class, object, scroll, horizontal, PACKAGE = "RGtk2")
 
-  return(w)
+  return(invisible(w))
 }
 
 gtkScrolledWindowClassMoveFocusOut <-

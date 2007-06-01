@@ -4,7 +4,7 @@
 \description{Create a new cairo\_pattern\_t for the given surface.}
 \usage{cairoPatternCreateForSurface(surface)}
 \arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  the surface}}
-\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if succesful, or
+\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

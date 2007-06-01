@@ -3,7 +3,7 @@
 \title{pangoGlyphItemLetterSpace}
 \description{Adds spacing between the graphemes of \code{glyph.item} to
 give the effect of typographic letter spacing.}
-\usage{pangoGlyphItemLetterSpace(glyph.item, text, log.attrs, letter.spacing)}
+\usage{pangoGlyphItemLetterSpace(glyph.item, text, log.attrs)}
 \arguments{
 \item{\code{glyph.item}}{[\code{\link{PangoGlyphItem}}]  a \code{\link{PangoGlyphItem}}}
 \item{\code{text}}{[char]  text that \code{glyph.item} corresponds to
@@ -12,9 +12,6 @@ give the effect of typographic letter spacing.}
 \item{\code{log.attrs}}{[\code{\link{PangoLogAttr}}]  logical attributes for the item (the
   first logical attribute refers to the position
   before the first character in the item)}
-\item{\code{letter.spacing}}{[integer]  amount of letter spacing to add
-  in Pango units. May be negative, though too large
-  negative values will give ugly results.}
 }
 \details{  Since  1.6}
 \author{Derived by RGtkGen from GTK+ documentation}

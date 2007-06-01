@@ -1,7 +1,7 @@
 \alias{pangoFindBaseDir}
 \name{pangoFindBaseDir}
 \title{pangoFindBaseDir}
-\description{Searches a string the first character that has a strong 
+\description{Searches a string the first character that has a strong
 direction, according to the Unicode bidirectional algorithm.}
 \usage{pangoFindBaseDir(text, length = -1)}
 \arguments{

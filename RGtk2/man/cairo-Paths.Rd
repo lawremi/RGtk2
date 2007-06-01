@@ -47,18 +47,15 @@ includes both headers and coordinates for each portion.
 
 }}}
 \section{Enums and Flags}{\describe{\item{\code{CairoPathDataType}}{
-\emph{undocumented
-}
+\code{\link{CairoPathData}} is used to describe the type of one portion
+of a path when represented as a \code{\link{CairoPath}}.
+See \code{\link{CairoPathData}} for details.  
 
 \describe{
-\item{\code{move-to}}{\emph{undocumented
-}}
-\item{\code{line-to}}{\emph{undocumented
-}}
-\item{\code{curve-to}}{\emph{undocumented
-}}
-\item{\code{close-path}}{\emph{undocumented
-}}
+\item{\code{move-to}}{ A move-to operation}
+\item{\code{line-to}}{ A line-to operation}
+\item{\code{curve-to}}{ A curve-to operation}
+\item{\code{close-path}}{ A close-path operation}
 }
 
 }}}

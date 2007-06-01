@@ -39,6 +39,8 @@
 (define-boxed Requisition
   (in-module "Gtk")
   (c-name "GtkRequisition")
+  (copy-func "gtk_requisition_copy")
+  (release-func "gtk_requisition_free")
   (gtype-id "GTK_TYPE_REQUISITION")
   (fields
     '("gint" "width")

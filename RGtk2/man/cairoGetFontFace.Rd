@@ -4,9 +4,15 @@
 \description{Gets the current font face for a \code{\link{Cairo}}.}
 \usage{cairoGetFontFace(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
-\value{[\code{\link{CairoFontFace}}]  the current font object. Can return \code{NULL}
-  on out-of-memory or if the context is already in
-  an error state. To keep
-  a reference to it.}
+\value{[\code{\link{CairoFontFace}}]  the current font face. To keep a reference to it, you must call
+cairo\_font\_face\_reference.
+
+This function never returns \code{NULL}. If memory cannot be allocated, a
+special "nil" \code{\link{CairoFontFace}} object will be returned on which
+\code{\link{cairoFontFaceStatus}} returns \code{CAIRO_STATUS_NO_MEMORY}. Using
+this nil object will cause its error state to propagate to other
+objects it is passed to, (for example, calling
+\code{\link{cairoSetFontFace}} with a nil font will trigger an error that
+will shutdown the cairo\_t object).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,13 +7,13 @@ the current text and attribute list.}
 \usage{pangoLayoutSetMarkupWithAccel(object, markup, accel.marker)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{markup}}{[char]  marked-up text 
+\item{\code{markup}}{[char]  marked-up text
 (see markup format)}
 \item{\code{accel.marker}}{[numeric]  marker for accelerators in the text}
 }
 \details{If \code{accel.marker} is nonzero, the given character will mark the
-character following it as an accelerator. For example, the accel
-marker might be an ampersand or underscore. All characters marked
+character following it as an accelerator. For example, \code{accel.marker}
+might be an ampersand or underscore. All characters marked
 as an accelerator will receive a \code{PANGO_UNDERLINE_LOW} attribute,
 and the first character so marked will be returned in \code{accel.char}.
 Two \code{accel.marker} characters following each other produce a single

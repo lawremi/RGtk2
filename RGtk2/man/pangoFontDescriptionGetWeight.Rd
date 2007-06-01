@@ -7,6 +7,6 @@
 \arguments{\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}}
 \value{[\code{\link{PangoWeight}}]  the weight field for the font description. Use
   \code{\link{pangoFontDescriptionGetSetFields}} to find out if
-  the field was explicitely set or not.}
+  the field was explicitly set or not.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -278,7 +278,7 @@ __extension__ \
 #define asCArrayRef(s, type, converter) \
 __extension__ \
 ({ \
-    asCArray(s, type, * converter); \
+    asCArray(s, type, * (type *)converter); \
 })
 #define asCArray(s_array, type, converter) \
 __extension__ \
@@ -334,7 +334,7 @@ USER_OBJECT_ asRUnsigned(guint num);
 USER_OBJECT_ asRCharacter(gchar c);
 USER_OBJECT_ asRString(const gchar *str);
 
-#define asCGenericData(sval) ({ R_PreserveObject(sval); sval; })
+#define asCGenericData(sval) __extension__ ({ R_PreserveObject(sval); sval; })
 
 USER_OBJECT_ asREnum(int value, GType etype);
 USER_OBJECT_ asRFlag(guint value, GType ftype);

@@ -28,7 +28,10 @@ A list containing the following elements:
 if any of several error conditions occurred:  the file could not be opened,
 there was no loader for the file's format, there was not enough memory to
 allocate the image buffer, or the image file contained invalid data.}
+\item{\code{height}}{[integer]  The height the image should have or -1 to not constrain the height}
+\item{\code{preserve.aspect.ratio}}{[logical]  \code{TRUE} to preserve the image's aspect ratio}
 \item{\code{error}}{[\code{\link{GError}}]  Return location for an error}
+\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

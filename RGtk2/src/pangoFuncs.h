@@ -501,7 +501,7 @@ S_pango_glyph_item_split(USER_OBJECT_ s_orig, USER_OBJECT_ s_text, USER_OBJECT_ 
 S_pango_glyph_item_apply_attrs(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_list); 
 
   USER_OBJECT_
-S_pango_glyph_item_letter_space(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_log_attrs, USER_OBJECT_ s_letter_spacing); 
+S_pango_glyph_item_letter_space(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, USER_OBJECT_ s_log_attrs); 
 
   USER_OBJECT_
 S_pango_matrix_translate(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
@@ -819,6 +819,27 @@ S_pango_language_to_string(USER_OBJECT_ s_object);
 S_PANGO_PIXELS(USER_OBJECT_ s_size); 
 
   USER_OBJECT_
+S_pango_script_for_unichar(USER_OBJECT_ s_ch); 
+
+  USER_OBJECT_
+S_pango_script_iter_new(USER_OBJECT_ s_text, USER_OBJECT_ s_length); 
+
+  USER_OBJECT_
+S_pango_script_iter_get_range(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_script_iter_next(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_script_iter_free(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_script_get_sample_language(USER_OBJECT_ s_script); 
+
+  USER_OBJECT_
+S_pango_language_includes_script(USER_OBJECT_ s_object, USER_OBJECT_ s_script); 
+
+  USER_OBJECT_
 S_pango_cairo_show_error_underline(USER_OBJECT_ s_cr, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_width, USER_OBJECT_ s_height); 
 
   USER_OBJECT_
@@ -835,5 +856,95 @@ S_pango_matrix_get_font_scale_factor(USER_OBJECT_ s_object);
 
   USER_OBJECT_
 S_pango_layout_index_to_line_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index_, USER_OBJECT_ s_trailing); 
+
+  USER_OBJECT_
+S_pango_gravity_to_rotation(USER_OBJECT_ s_base_gravity); 
+
+  USER_OBJECT_
+S_pango_gravity_get_for_matrix(USER_OBJECT_ s_matrix); 
+
+  USER_OBJECT_
+S_pango_gravity_get_for_script(USER_OBJECT_ s_script, USER_OBJECT_ s_base_gravity, USER_OBJECT_ s_hint); 
+
+  USER_OBJECT_
+S_pango_attr_gravity_new(USER_OBJECT_ s_gravity); 
+
+  USER_OBJECT_
+S_pango_attr_gravity_hint_new(USER_OBJECT_ s_hint); 
+
+  USER_OBJECT_
+S_pango_context_set_base_gravity(USER_OBJECT_ s_object, USER_OBJECT_ s_gravity); 
+
+  USER_OBJECT_
+S_pango_context_get_base_gravity(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_context_get_gravity(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_context_set_gravity_hint(USER_OBJECT_ s_object, USER_OBJECT_ s_hint); 
+
+  USER_OBJECT_
+S_pango_context_get_gravity_hint(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_font_description_set_gravity(USER_OBJECT_ s_object, USER_OBJECT_ s_gravity); 
+
+  USER_OBJECT_
+S_pango_font_description_get_gravity(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_get_line_readonly(USER_OBJECT_ s_object, USER_OBJECT_ s_line); 
+
+  USER_OBJECT_
+S_pango_layout_get_lines_readonly(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_iter_get_line_readonly(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_iter_get_run_readonly(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_color_to_string(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_matrix_transform_point(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y); 
+
+  USER_OBJECT_
+S_pango_matrix_transform_distance(USER_OBJECT_ s_object, USER_OBJECT_ s_dx, USER_OBJECT_ s_dy); 
+
+  USER_OBJECT_
+S_pango_matrix_transform_rectangle(USER_OBJECT_ s_object, USER_OBJECT_ s_rect); 
+
+  USER_OBJECT_
+S_pango_matrix_transform_pixel_rectangle(USER_OBJECT_ s_object, USER_OBJECT_ s_rect); 
+
+  USER_OBJECT_
+S_pango_units_from_double(USER_OBJECT_ s_d); 
+
+  USER_OBJECT_
+S_pango_units_to_double(USER_OBJECT_ s_i); 
+
+  USER_OBJECT_
+S_pango_extents_to_pixels(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect); 
+
+  USER_OBJECT_
+S_pango_layout_is_wrapped(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_is_ellipsized(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_get_unknown_glyphs_count(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_version(void); 
+
+  USER_OBJECT_
+S_pango_version_string(void); 
+
+  USER_OBJECT_
+S_pango_version_check(USER_OBJECT_ s_required_major, USER_OBJECT_ s_required_minor, USER_OBJECT_ s_required_micro); 
 
 #endif

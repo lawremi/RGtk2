@@ -1,7 +1,7 @@
 \alias{pangoRendererPartChanged}
 \name{pangoRendererPartChanged}
 \title{pangoRendererPartChanged}
-\description{Informs Pango that the way that the renderering is done
+\description{Informs Pango that the way that the rendering is done
 for \code{part} has changed in a way that would prevent multiple
 pieces being joined together into one drawing call. For
 instance, if a subclass of \code{\link{PangoRenderer}} was to add a stipple

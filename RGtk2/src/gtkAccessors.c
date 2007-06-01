@@ -4,7 +4,7 @@
 USER_OBJECT_
 S_GtkAdjustmentGetValue (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -18,7 +18,7 @@ S_GtkAdjustmentGetValue (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkAdjustmentGetLower (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -32,7 +32,7 @@ S_GtkAdjustmentGetLower (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkAdjustmentGetUpper (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -46,7 +46,7 @@ S_GtkAdjustmentGetUpper (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkAdjustmentGetStepIncrement (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -60,7 +60,7 @@ S_GtkAdjustmentGetStepIncrement (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkAdjustmentGetPageIncrement (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -74,7 +74,7 @@ S_GtkAdjustmentGetPageIncrement (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkAdjustmentGetPageSize (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkAdjustment *obj;
    gfloat val;
@@ -88,7 +88,7 @@ S_GtkAdjustmentGetPageSize (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBinGetChild (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBin *obj;
    GtkWidget* val;
@@ -102,7 +102,7 @@ S_GtkBinGetChild (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxGetSpacing (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBox *obj;
    gint16 val;
@@ -116,7 +116,7 @@ S_GtkBoxGetSpacing (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxGetHomogeneous (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBox *obj;
    guint val;
@@ -130,7 +130,7 @@ S_GtkBoxGetHomogeneous (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCheckMenuItemGetActive (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCheckMenuItem *obj;
    gboolean val;
@@ -144,7 +144,7 @@ S_GtkCheckMenuItemGetActive (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkColorSelectionDialogGetColorsel (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkColorSelectionDialog *obj;
    GtkWidget* val;
@@ -158,7 +158,7 @@ S_GtkColorSelectionDialogGetColorsel (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkColorSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkColorSelectionDialog *obj;
    GtkWidget* val;
@@ -172,7 +172,7 @@ S_GtkColorSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkColorSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkColorSelectionDialog *obj;
    GtkWidget* val;
@@ -186,7 +186,7 @@ S_GtkColorSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkColorSelectionDialogGetHelpButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkColorSelectionDialog *obj;
    GtkWidget* val;
@@ -200,7 +200,7 @@ S_GtkColorSelectionDialogGetHelpButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkComboGetEntry (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCombo *obj;
    GtkWidget* val;
@@ -214,7 +214,7 @@ S_GtkComboGetEntry (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkComboGetList (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCombo *obj;
    GtkWidget* val;
@@ -228,7 +228,7 @@ S_GtkComboGetList (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetFocusChild (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    GtkWidget* val;
@@ -242,7 +242,7 @@ S_GtkContainerGetFocusChild (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetBorderWidth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    guint val;
@@ -256,7 +256,7 @@ S_GtkContainerGetBorderWidth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetNeedResize (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    guint val;
@@ -270,7 +270,7 @@ S_GtkContainerGetNeedResize (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetResizeMode (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    guint val;
@@ -284,7 +284,7 @@ S_GtkContainerGetResizeMode (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetReallocateRedraws (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    guint val;
@@ -298,7 +298,7 @@ S_GtkContainerGetReallocateRedraws (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkContainerGetHasFocusChain (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkContainer *obj;
    guint val;
@@ -312,7 +312,7 @@ S_GtkContainerGetHasFocusChain (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkDialogGetVbox (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkDialog *obj;
    GtkWidget* val;
@@ -326,7 +326,7 @@ S_GtkDialogGetVbox (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkDialogGetActionArea (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkDialog *obj;
    GtkWidget* val;
@@ -340,7 +340,7 @@ S_GtkDialogGetActionArea (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetDirList (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -354,7 +354,7 @@ S_GtkFileSelectionGetDirList (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileList (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -368,7 +368,7 @@ S_GtkFileSelectionGetFileList (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetSelectionEntry (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -382,7 +382,7 @@ S_GtkFileSelectionGetSelectionEntry (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetSelectionText (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -396,7 +396,7 @@ S_GtkFileSelectionGetSelectionText (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetMainVbox (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -410,7 +410,7 @@ S_GtkFileSelectionGetMainVbox (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetOkButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -424,7 +424,7 @@ S_GtkFileSelectionGetOkButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetCancelButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -438,7 +438,7 @@ S_GtkFileSelectionGetCancelButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetHelpButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -452,7 +452,7 @@ S_GtkFileSelectionGetHelpButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetHistoryPulldown (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -466,7 +466,7 @@ S_GtkFileSelectionGetHistoryPulldown (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetHistoryMenu (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -480,7 +480,7 @@ S_GtkFileSelectionGetHistoryMenu (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopDialog (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -494,7 +494,7 @@ S_GtkFileSelectionGetFileopDialog (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopEntry (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -508,7 +508,7 @@ S_GtkFileSelectionGetFileopEntry (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopFile (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    gchar* val;
@@ -522,7 +522,7 @@ S_GtkFileSelectionGetFileopFile (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopCDir (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -536,7 +536,7 @@ S_GtkFileSelectionGetFileopCDir (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopDelFile (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -550,7 +550,7 @@ S_GtkFileSelectionGetFileopDelFile (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetFileopRenFile (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -564,7 +564,7 @@ S_GtkFileSelectionGetFileopRenFile (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetButtonArea (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -578,7 +578,7 @@ S_GtkFileSelectionGetButtonArea (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFileSelectionGetActionArea (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFileSelection *obj;
    GtkWidget* val;
@@ -592,7 +592,7 @@ S_GtkFileSelectionGetActionArea (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFixedGetChildren (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFixed *obj;
    GList* val;
@@ -606,7 +606,7 @@ S_GtkFixedGetChildren (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFontSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFontSelectionDialog *obj;
    GtkWidget* val;
@@ -620,7 +620,7 @@ S_GtkFontSelectionDialogGetOkButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFontSelectionDialogGetApplyButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFontSelectionDialog *obj;
    GtkWidget* val;
@@ -634,7 +634,7 @@ S_GtkFontSelectionDialogGetApplyButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFontSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFontSelectionDialog *obj;
    GtkWidget* val;
@@ -648,7 +648,7 @@ S_GtkFontSelectionDialogGetCancelButton (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkGammaCurveGetTable (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkGammaCurve *obj;
    GtkWidget* val;
@@ -662,7 +662,7 @@ S_GtkGammaCurveGetTable (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkGammaCurveGetCurve (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkGammaCurve *obj;
    GtkWidget* val;
@@ -676,7 +676,7 @@ S_GtkGammaCurveGetCurve (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkGammaCurveGetGamma (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkGammaCurve *obj;
    gfloat val;
@@ -690,7 +690,7 @@ S_GtkGammaCurveGetGamma (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkGammaCurveGetGammaDialog (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkGammaCurve *obj;
    GtkWidget* val;
@@ -704,7 +704,7 @@ S_GtkGammaCurveGetGammaDialog (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkGammaCurveGetGammaText (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkGammaCurve *obj;
    GtkWidget* val;
@@ -718,7 +718,7 @@ S_GtkGammaCurveGetGammaText (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkLayoutGetBinWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkLayout *obj;
    GdkWindow* val;
@@ -732,7 +732,7 @@ S_GtkLayoutGetBinWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkMessageDialogGetImage (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkMessageDialog *obj;
    GtkWidget* val;
@@ -746,7 +746,7 @@ S_GtkMessageDialogGetImage (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkMessageDialogGetLabel (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkMessageDialog *obj;
    GtkWidget* val;
@@ -760,7 +760,7 @@ S_GtkMessageDialogGetLabel (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkNotebookGetTabPos (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkNotebook *obj;
    GtkPositionType val;
@@ -774,7 +774,7 @@ S_GtkNotebookGetTabPos (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetFg (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -788,7 +788,7 @@ S_GtkStyleGetFg (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBg (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -802,7 +802,7 @@ S_GtkStyleGetBg (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetLight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -816,7 +816,7 @@ S_GtkStyleGetLight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetDark (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -830,7 +830,7 @@ S_GtkStyleGetDark (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetMid (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -844,7 +844,7 @@ S_GtkStyleGetMid (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetText (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -858,7 +858,7 @@ S_GtkStyleGetText (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBase (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -872,7 +872,7 @@ S_GtkStyleGetBase (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetTextAa (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor* val;
@@ -886,7 +886,7 @@ S_GtkStyleGetTextAa (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetWhite (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor val;
@@ -900,7 +900,7 @@ S_GtkStyleGetWhite (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBlack (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkColor val;
@@ -914,21 +914,21 @@ S_GtkStyleGetBlack (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetFontDesc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    PangoFontDescription* val;
 
    obj = GTK_STYLE(getPtrValue(s_obj)) ;
    val = obj->font_desc;
-   _result = toRPointer(val, "PangoFontDescription");
+   _result = toRPointerWithFinalizer(val ? pango_font_description_copy(val) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_GtkStyleGetXthickness (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    gint val;
@@ -942,7 +942,7 @@ S_GtkStyleGetXthickness (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetYthickness (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    gint val;
@@ -956,7 +956,7 @@ S_GtkStyleGetYthickness (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetFgGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -970,7 +970,7 @@ S_GtkStyleGetFgGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBgGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -984,7 +984,7 @@ S_GtkStyleGetBgGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetLightGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -998,7 +998,7 @@ S_GtkStyleGetLightGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetDarkGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -1012,7 +1012,7 @@ S_GtkStyleGetDarkGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetMidGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -1026,7 +1026,7 @@ S_GtkStyleGetMidGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetTextGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -1040,7 +1040,7 @@ S_GtkStyleGetTextGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBaseGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -1054,7 +1054,7 @@ S_GtkStyleGetBaseGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetTextAaGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC** val;
@@ -1068,7 +1068,7 @@ S_GtkStyleGetTextAaGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetWhiteGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC* val;
@@ -1082,7 +1082,7 @@ S_GtkStyleGetWhiteGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBlackGc (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkGC* val;
@@ -1096,7 +1096,7 @@ S_GtkStyleGetBlackGc (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkStyleGetBgPixmap (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkStyle *obj;
    GdkPixmap** val;
@@ -1110,7 +1110,7 @@ S_GtkStyleGetBgPixmap (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableGetChildren (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTable *obj;
    GList* val;
@@ -1124,7 +1124,7 @@ S_GtkTableGetChildren (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableGetRows (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTable *obj;
    GtkTableRowCol* val;
@@ -1138,7 +1138,7 @@ S_GtkTableGetRows (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableGetCols (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTable *obj;
    GtkTableRowCol* val;
@@ -1152,7 +1152,7 @@ S_GtkTableGetCols (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableGetNrows (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTable *obj;
    gint16 val;
@@ -1166,7 +1166,7 @@ S_GtkTableGetNrows (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableGetNcols (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTable *obj;
    gint16 val;
@@ -1180,7 +1180,7 @@ S_GtkTableGetNcols (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextBufferGetTagTable (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextBuffer *obj;
    GtkTextTagTable* val;
@@ -1194,7 +1194,7 @@ S_GtkTextBufferGetTagTable (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkToggleButtonGetDrawIndicator (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkToggleButton *obj;
    gboolean val;
@@ -1208,7 +1208,7 @@ S_GtkToggleButtonGetDrawIndicator (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWidgetGetStyle (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWidget *obj;
    GtkStyle* val;
@@ -1222,21 +1222,21 @@ S_GtkWidgetGetStyle (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWidgetGetRequisition (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWidget *obj;
    GtkRequisition val;
 
    obj = GTK_WIDGET(getPtrValue(s_obj)) ;
    val = obj->requisition;
-   _result = toRPointer(&val, "GtkRequisition");
+   _result = toRPointerWithFinalizer(&val ? gtk_requisition_copy(&val) : NULL, "GtkRequisition", (RPointerFinalizer) gtk_requisition_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_GtkWidgetGetAllocation (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWidget *obj;
    GtkAllocation val;
@@ -1250,7 +1250,7 @@ S_GtkWidgetGetAllocation (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWidgetGetWindow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWidget *obj;
    GdkWindow* val;
@@ -1264,7 +1264,7 @@ S_GtkWidgetGetWindow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWidgetGetParent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWidget *obj;
    GtkWidget* val;
@@ -1278,7 +1278,7 @@ S_GtkWidgetGetParent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetTitle (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    gchar* val;
@@ -1292,7 +1292,7 @@ S_GtkWindowGetTitle (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetWmclassName (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    gchar* val;
@@ -1306,7 +1306,7 @@ S_GtkWindowGetWmclassName (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetWmclassClass (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    gchar* val;
@@ -1320,7 +1320,7 @@ S_GtkWindowGetWmclassClass (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetWmRole (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    gchar* val;
@@ -1334,7 +1334,7 @@ S_GtkWindowGetWmRole (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFocusWidget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GtkWidget* val;
@@ -1348,7 +1348,7 @@ S_GtkWindowGetFocusWidget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetDefaultWidget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GtkWidget* val;
@@ -1362,7 +1362,7 @@ S_GtkWindowGetDefaultWidget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetTransientParent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GtkWindow* val;
@@ -1376,7 +1376,7 @@ S_GtkWindowGetTransientParent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFrame (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GdkWindow* val;
@@ -1390,7 +1390,7 @@ S_GtkWindowGetFrame (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetGroup (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GtkWindowGroup* val;
@@ -1404,7 +1404,7 @@ S_GtkWindowGetGroup (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetConfigureRequestCount (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint16 val;
@@ -1418,7 +1418,7 @@ S_GtkWindowGetConfigureRequestCount (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetAllowShrink (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1432,7 +1432,7 @@ S_GtkWindowGetAllowShrink (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetAllowGrow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1446,7 +1446,7 @@ S_GtkWindowGetAllowGrow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetConfigureNotifyReceived (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1460,7 +1460,7 @@ S_GtkWindowGetConfigureNotifyReceived (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetNeedDefaultPosition (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1474,7 +1474,7 @@ S_GtkWindowGetNeedDefaultPosition (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetNeedDefaultSize (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1488,7 +1488,7 @@ S_GtkWindowGetNeedDefaultSize (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetPosition (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1502,7 +1502,7 @@ S_GtkWindowGetPosition (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1516,7 +1516,7 @@ S_GtkWindowGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetHasUserRefCount (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1530,7 +1530,7 @@ S_GtkWindowGetHasUserRefCount (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetHasFocus (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1544,7 +1544,7 @@ S_GtkWindowGetHasFocus (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetModal (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1558,7 +1558,7 @@ S_GtkWindowGetModal (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetDestroyWithParent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1572,7 +1572,7 @@ S_GtkWindowGetDestroyWithParent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetHasFrame (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1586,7 +1586,7 @@ S_GtkWindowGetHasFrame (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetIconifyInitially (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1600,7 +1600,7 @@ S_GtkWindowGetIconifyInitially (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetStickInitially (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1614,7 +1614,7 @@ S_GtkWindowGetStickInitially (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetMaximizeInitially (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1628,7 +1628,7 @@ S_GtkWindowGetMaximizeInitially (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetDecorated (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1642,7 +1642,7 @@ S_GtkWindowGetDecorated (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetTypeHint (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1656,7 +1656,7 @@ S_GtkWindowGetTypeHint (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetGravity (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1670,7 +1670,7 @@ S_GtkWindowGetGravity (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFrameLeft (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1684,7 +1684,7 @@ S_GtkWindowGetFrameLeft (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFrameTop (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1698,7 +1698,7 @@ S_GtkWindowGetFrameTop (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFrameRight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1712,7 +1712,7 @@ S_GtkWindowGetFrameRight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetFrameBottom (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1726,7 +1726,7 @@ S_GtkWindowGetFrameBottom (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetKeysChangedHandler (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    guint val;
@@ -1740,7 +1740,7 @@ S_GtkWindowGetKeysChangedHandler (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkWindowGetMnemonicModifier (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkWindow *obj;
    GdkModifierType val;
@@ -1754,7 +1754,7 @@ S_GtkWindowGetMnemonicModifier (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkRequisitionGetWidth (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkRequisition *obj;
    gint val;
@@ -1768,7 +1768,7 @@ S_GtkRequisitionGetWidth (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkRequisitionGetHeight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkRequisition *obj;
    gint val;
@@ -1782,7 +1782,7 @@ S_GtkRequisitionGetHeight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkSelectionDataGetSelection (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkSelectionData *obj;
    GdkAtom val;
@@ -1796,7 +1796,7 @@ S_GtkSelectionDataGetSelection (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkSelectionDataGetTarget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkSelectionData *obj;
    GdkAtom val;
@@ -1810,7 +1810,7 @@ S_GtkSelectionDataGetTarget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkSelectionDataGetType (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkSelectionData *obj;
    GdkAtom val;
@@ -1824,7 +1824,7 @@ S_GtkSelectionDataGetType (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkSelectionDataGetFormat (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkSelectionData *obj;
    gint val;
@@ -1838,7 +1838,7 @@ S_GtkSelectionDataGetFormat (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkSelectionDataGetData (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkSelectionData *obj;
    guchar* val;
@@ -1852,7 +1852,7 @@ S_GtkSelectionDataGetData (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetAppearance (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    GtkTextAppearance val;
@@ -1866,7 +1866,7 @@ S_GtkTextAttributesGetAppearance (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetJustification (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    GtkJustification val;
@@ -1880,7 +1880,7 @@ S_GtkTextAttributesGetJustification (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetDirection (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    GtkTextDirection val;
@@ -1894,21 +1894,21 @@ S_GtkTextAttributesGetDirection (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetFont (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    PangoFontDescription* val;
 
    obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->font;
-   _result = toRPointer(val, "PangoFontDescription");
+   _result = toRPointerWithFinalizer(val ? pango_font_description_copy(val) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_GtkTextAttributesGetFontScale (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gdouble val;
@@ -1922,7 +1922,7 @@ S_GtkTextAttributesGetFontScale (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetLeftMargin (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -1936,7 +1936,7 @@ S_GtkTextAttributesGetLeftMargin (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetIndent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -1950,7 +1950,7 @@ S_GtkTextAttributesGetIndent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetRightMargin (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -1964,7 +1964,7 @@ S_GtkTextAttributesGetRightMargin (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetPixelsAboveLines (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -1978,7 +1978,7 @@ S_GtkTextAttributesGetPixelsAboveLines (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetPixelsBelowLines (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -1992,7 +1992,7 @@ S_GtkTextAttributesGetPixelsBelowLines (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetPixelsInsideWrap (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    gint val;
@@ -2006,21 +2006,21 @@ S_GtkTextAttributesGetPixelsInsideWrap (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetTabs (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    PangoTabArray* val;
 
    obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->tabs;
-   _result = toRPointer(val, "PangoTabArray");
+   _result = toRPointerWithFinalizer(val ? pango_tab_array_copy(val) : NULL, "PangoTabArray", (RPointerFinalizer) pango_tab_array_free);
 
    return(_result);
 } 
 USER_OBJECT_
 S_GtkTextAttributesGetWrapMode (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    GtkWrapMode val;
@@ -2034,21 +2034,21 @@ S_GtkTextAttributesGetWrapMode (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetLanguage (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    PangoLanguage* val;
 
    obj = ((GtkTextAttributes*)getPtrValue(s_obj)) ;
    val = obj->language;
-   _result = toRPointer(val, "PangoLanguage");
+   _result = toRPointer(val ? (val) : NULL, "PangoLanguage");
 
    return(_result);
 } 
 USER_OBJECT_
 S_GtkTextAttributesGetInvisible (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    guint val;
@@ -2062,7 +2062,7 @@ S_GtkTextAttributesGetInvisible (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetBgFullHeight (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    guint val;
@@ -2076,7 +2076,7 @@ S_GtkTextAttributesGetBgFullHeight (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetEditable (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    guint val;
@@ -2090,7 +2090,7 @@ S_GtkTextAttributesGetEditable (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAttributesGetRealized (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAttributes *obj;
    guint val;
@@ -2104,7 +2104,7 @@ S_GtkTextAttributesGetRealized (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetRow (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GtkCListRow val;
@@ -2118,7 +2118,7 @@ S_GtkCTreeRowGetRow (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetParent (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
@@ -2132,7 +2132,7 @@ S_GtkCTreeRowGetParent (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetSibling (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
@@ -2146,7 +2146,7 @@ S_GtkCTreeRowGetSibling (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetChildren (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GtkCTreeNode* val;
@@ -2160,7 +2160,7 @@ S_GtkCTreeRowGetChildren (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetPixmapClosed (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GdkPixmap* val;
@@ -2174,7 +2174,7 @@ S_GtkCTreeRowGetPixmapClosed (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetMaskClosed (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GdkBitmap* val;
@@ -2188,7 +2188,7 @@ S_GtkCTreeRowGetMaskClosed (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetPixmapOpened (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GdkPixmap* val;
@@ -2202,7 +2202,7 @@ S_GtkCTreeRowGetPixmapOpened (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetMaskOpened (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    GdkBitmap* val;
@@ -2216,7 +2216,7 @@ S_GtkCTreeRowGetMaskOpened (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetLevel (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    guint16 val;
@@ -2230,7 +2230,7 @@ S_GtkCTreeRowGetLevel (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetIsLeaf (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    guint val;
@@ -2244,7 +2244,7 @@ S_GtkCTreeRowGetIsLeaf (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCTreeRowGetExpanded (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCTreeRow *obj;
    guint val;
@@ -2258,7 +2258,7 @@ S_GtkCTreeRowGetExpanded (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetCell (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GtkCell* val;
@@ -2272,7 +2272,7 @@ S_GtkCListRowGetCell (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetState (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GtkStateType val;
@@ -2286,7 +2286,7 @@ S_GtkCListRowGetState (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetForeground (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GdkColor val;
@@ -2300,7 +2300,7 @@ S_GtkCListRowGetForeground (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetBackground (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GdkColor val;
@@ -2314,7 +2314,7 @@ S_GtkCListRowGetBackground (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetStyle (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GtkStyle* val;
@@ -2328,7 +2328,7 @@ S_GtkCListRowGetStyle (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetData (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    gpointer val;
@@ -2342,7 +2342,7 @@ S_GtkCListRowGetData (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetDestroy (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    GtkDestroyNotify val;
@@ -2356,7 +2356,7 @@ S_GtkCListRowGetDestroy (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetFgSet (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    guint val;
@@ -2370,7 +2370,7 @@ S_GtkCListRowGetFgSet (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetBgSet (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    guint val;
@@ -2384,7 +2384,7 @@ S_GtkCListRowGetBgSet (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkCListRowGetSelectable (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkCListRow *obj;
    guint val;
@@ -2398,7 +2398,7 @@ S_GtkCListRowGetSelectable (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetBgColor (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    GdkColor val;
@@ -2412,7 +2412,7 @@ S_GtkTextAppearanceGetBgColor (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetFgColor (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    GdkColor val;
@@ -2426,7 +2426,7 @@ S_GtkTextAppearanceGetFgColor (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetBgStipple (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    GdkBitmap* val;
@@ -2440,7 +2440,7 @@ S_GtkTextAppearanceGetBgStipple (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetFgStipple (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    GdkBitmap* val;
@@ -2454,7 +2454,7 @@ S_GtkTextAppearanceGetFgStipple (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetRise (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    gint val;
@@ -2468,7 +2468,7 @@ S_GtkTextAppearanceGetRise (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetUnderline (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    guint val;
@@ -2482,7 +2482,7 @@ S_GtkTextAppearanceGetUnderline (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetStrikethrough (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    guint val;
@@ -2496,7 +2496,7 @@ S_GtkTextAppearanceGetStrikethrough (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTextAppearanceGetDrawBg (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTextAppearance *obj;
    guint val;
@@ -2510,7 +2510,7 @@ S_GtkTextAppearanceGetDrawBg (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetWidget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    GtkWidget* val;
@@ -2524,7 +2524,7 @@ S_GtkBoxChildGetWidget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetPadding (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    guint16 val;
@@ -2538,7 +2538,7 @@ S_GtkBoxChildGetPadding (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetExpand (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    guint val;
@@ -2552,7 +2552,7 @@ S_GtkBoxChildGetExpand (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetFill (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    guint val;
@@ -2566,7 +2566,7 @@ S_GtkBoxChildGetFill (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetPack (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    guint val;
@@ -2580,7 +2580,7 @@ S_GtkBoxChildGetPack (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkBoxChildGetIsSecondary (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkBoxChild *obj;
    guint val;
@@ -2594,7 +2594,7 @@ S_GtkBoxChildGetIsSecondary (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFixedChildGetWidget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFixedChild *obj;
    GtkWidget* val;
@@ -2608,7 +2608,7 @@ S_GtkFixedChildGetWidget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFixedChildGetX (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFixedChild *obj;
    gint val;
@@ -2622,7 +2622,7 @@ S_GtkFixedChildGetX (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkFixedChildGetY (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkFixedChild *obj;
    gint val;
@@ -2636,7 +2636,7 @@ S_GtkFixedChildGetY (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkPreviewInfoGetLookup (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkPreviewInfo *obj;
    guchar* val;
@@ -2650,7 +2650,7 @@ S_GtkPreviewInfoGetLookup (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkPreviewInfoGetGamma (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkPreviewInfo *obj;
    gdouble val;
@@ -2664,7 +2664,7 @@ S_GtkPreviewInfoGetGamma (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetRequisition (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint16 val;
@@ -2678,7 +2678,7 @@ S_GtkTableRowColGetRequisition (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetAllocation (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint16 val;
@@ -2692,7 +2692,7 @@ S_GtkTableRowColGetAllocation (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetSpacing (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint16 val;
@@ -2706,7 +2706,7 @@ S_GtkTableRowColGetSpacing (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetNeedExpand (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint val;
@@ -2720,7 +2720,7 @@ S_GtkTableRowColGetNeedExpand (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetNeedShrink (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint val;
@@ -2734,7 +2734,7 @@ S_GtkTableRowColGetNeedShrink (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetExpand (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint val;
@@ -2748,7 +2748,7 @@ S_GtkTableRowColGetExpand (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetShrink (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint val;
@@ -2762,7 +2762,7 @@ S_GtkTableRowColGetShrink (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableRowColGetEmpty (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableRowCol *obj;
    guint val;
@@ -2776,7 +2776,7 @@ S_GtkTableRowColGetEmpty (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetWidget (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    GtkWidget* val;
@@ -2790,7 +2790,7 @@ S_GtkTableChildGetWidget (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetLeftAttach (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2804,7 +2804,7 @@ S_GtkTableChildGetLeftAttach (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetRightAttach (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2818,7 +2818,7 @@ S_GtkTableChildGetRightAttach (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetTopAttach (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2832,7 +2832,7 @@ S_GtkTableChildGetTopAttach (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetBottomAttach (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2846,7 +2846,7 @@ S_GtkTableChildGetBottomAttach (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetXpadding (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2860,7 +2860,7 @@ S_GtkTableChildGetXpadding (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetYpadding (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint16 val;
@@ -2874,7 +2874,7 @@ S_GtkTableChildGetYpadding (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetXexpand (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;
@@ -2888,7 +2888,7 @@ S_GtkTableChildGetXexpand (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetYexpand (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;
@@ -2902,7 +2902,7 @@ S_GtkTableChildGetYexpand (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetXshrink (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;
@@ -2916,7 +2916,7 @@ S_GtkTableChildGetXshrink (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetYshrink (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;
@@ -2930,7 +2930,7 @@ S_GtkTableChildGetYshrink (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetXfill (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;
@@ -2944,7 +2944,7 @@ S_GtkTableChildGetXfill (USER_OBJECT_ s_obj)
 USER_OBJECT_
 S_GtkTableChildGetYfill (USER_OBJECT_ s_obj)
 {
-   USER_OBJECT_ _result;
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
    GtkTableChild *obj;
    guint val;

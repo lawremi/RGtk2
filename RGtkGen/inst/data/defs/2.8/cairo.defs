@@ -125,6 +125,8 @@
 		'("file-not-found" "CAIRO_STATUS_FILE_NOT_FOUND")
 		'("invalid-dash" "CAIRO_STATUS_INVALID_DASH")
     '("invalid-dsc-comment" "CAIRO_STATUS_INVALID_DSC_COMMENT")
+    '("invalid-index" "CAIRO_STATUS_INVALID_INDEX")
+    '("clip-not-representable" "CAIRO_STATUS_CLIP_NOT_REPRESENTABLE")
 	)
 )
 
@@ -311,6 +313,7 @@
 ;; user functions
 
 (define-user-function write_func
+  (in-module "cairo")
 	(in-module "cairo")
 	(c-name "cairo_write_func_t")
 	(return-type "cairo_status_t")
@@ -321,6 +324,7 @@
 	)
 )
 ;(define-user-function read_func
+  (in-module "cairo")
 ;	(in-module "cairo")
 ;	(c-name "cairo_read_func_t")
 ;	(return-type "cairo_status_t")
@@ -334,15 +338,18 @@
 ;; From /usr/include/cairo/cairo.h
 
 (define-function cairo_version
+  (in-module "cairo")
   (c-name "cairo_version")
   (return-type "int")
 )
 (define-function cairo_version_string
+  (in-module "cairo")
   (c-name "cairo_version_string")
   (return-type "const-char*")
 )
 
 (define-function cairo_create
+  (in-module "cairo")
   (c-name "cairo_create")
   (is-constructor-of "cairo_t")
   (return-type "cairo_t*")
@@ -352,6 +359,7 @@
 )
 
 (define-function cairo_reference
+  (in-module "cairo")
   (c-name "cairo_reference")
   (return-type "cairo_t*")
   (parameters
@@ -360,6 +368,7 @@
 )
 
 (define-function cairo_destroy
+  (in-module "cairo")
   (c-name "cairo_destroy")
   (return-type "none")
   (parameters
@@ -368,6 +377,7 @@
 )
 
 (define-function cairo_save
+  (in-module "cairo")
   (c-name "cairo_save")
   (return-type "none")
   (parameters
@@ -376,6 +386,7 @@
 )
 
 (define-function cairo_restore
+  (in-module "cairo")
   (c-name "cairo_restore")
   (return-type "none")
   (parameters
@@ -384,6 +395,7 @@
 )
 
 (define-function cairo_set_operator
+  (in-module "cairo")
   (c-name "cairo_set_operator")
   (return-type "none")
   (parameters
@@ -393,6 +405,7 @@
 )
 
 (define-function cairo_set_source
+  (in-module "cairo")
   (c-name "cairo_set_source")
   (return-type "none")
   (parameters
@@ -402,6 +415,7 @@
 )
 
 (define-function cairo_set_source_rgb
+  (in-module "cairo")
   (c-name "cairo_set_source_rgb")
   (return-type "none")
   (parameters
@@ -413,6 +427,7 @@
 )
 
 (define-function cairo_set_source_rgba
+  (in-module "cairo")
   (c-name "cairo_set_source_rgba")
   (return-type "none")
   (parameters
@@ -425,6 +440,7 @@
 )
 
 (define-function cairo_set_source_surface
+  (in-module "cairo")
   (c-name "cairo_set_source_surface")
   (return-type "none")
   (parameters
@@ -436,6 +452,7 @@
 )
 
 (define-function cairo_set_tolerance
+  (in-module "cairo")
   (c-name "cairo_set_tolerance")
   (return-type "none")
   (parameters
@@ -445,6 +462,7 @@
 )
 
 (define-function cairo_set_antialias
+  (in-module "cairo")
   (c-name "cairo_set_antialias")
   (return-type "none")
   (parameters
@@ -454,6 +472,7 @@
 )
 
 (define-function cairo_set_fill_rule
+  (in-module "cairo")
   (c-name "cairo_set_fill_rule")
   (return-type "none")
   (parameters
@@ -463,6 +482,7 @@
 )
 
 (define-function cairo_set_line_width
+  (in-module "cairo")
   (c-name "cairo_set_line_width")
   (return-type "none")
   (parameters
@@ -472,6 +492,7 @@
 )
 
 (define-function cairo_set_line_cap
+  (in-module "cairo")
   (c-name "cairo_set_line_cap")
   (return-type "none")
   (parameters
@@ -481,6 +502,7 @@
 )
 
 (define-function cairo_set_line_join
+  (in-module "cairo")
   (c-name "cairo_set_line_join")
   (return-type "none")
   (parameters
@@ -490,6 +512,7 @@
 )
 
 (define-function cairo_set_dash
+  (in-module "cairo")
   (c-name "cairo_set_dash")
   (return-type "none")
   (parameters
@@ -501,6 +524,7 @@
 )
 
 (define-function cairo_set_miter_limit
+  (in-module "cairo")
   (c-name "cairo_set_miter_limit")
   (return-type "none")
   (parameters
@@ -510,6 +534,7 @@
 )
 
 (define-function cairo_translate
+  (in-module "cairo")
   (c-name "cairo_translate")
   (return-type "none")
   (parameters
@@ -520,6 +545,7 @@
 )
 
 (define-function cairo_scale
+  (in-module "cairo")
   (c-name "cairo_scale")
   (return-type "none")
   (parameters
@@ -530,6 +556,7 @@
 )
 
 (define-function cairo_rotate
+  (in-module "cairo")
   (c-name "cairo_rotate")
   (return-type "none")
   (parameters
@@ -539,6 +566,7 @@
 )
 
 (define-function cairo_transform
+  (in-module "cairo")
   (c-name "cairo_transform")
   (return-type "none")
   (parameters
@@ -548,6 +576,7 @@
 )
 
 (define-function cairo_set_matrix
+  (in-module "cairo")
   (c-name "cairo_set_matrix")
   (return-type "none")
   (parameters
@@ -557,6 +586,7 @@
 )
 
 (define-function cairo_identity_matrix
+  (in-module "cairo")
   (c-name "cairo_identity_matrix")
   (return-type "none")
   (parameters
@@ -565,6 +595,7 @@
 )
 
 (define-function cairo_user_to_device
+  (in-module "cairo")
   (c-name "cairo_user_to_device")
   (return-type "none")
   (parameters
@@ -575,6 +606,7 @@
 )
 
 (define-function cairo_user_to_device_distance
+  (in-module "cairo")
   (c-name "cairo_user_to_device_distance")
   (return-type "none")
   (parameters
@@ -585,6 +617,7 @@
 )
 
 (define-function cairo_device_to_user
+  (in-module "cairo")
   (c-name "cairo_device_to_user")
   (return-type "none")
   (parameters
@@ -595,6 +628,7 @@
 )
 
 (define-function cairo_device_to_user_distance
+  (in-module "cairo")
   (c-name "cairo_device_to_user_distance")
   (return-type "none")
   (parameters
@@ -605,6 +639,7 @@
 )
 
 (define-function cairo_new_path
+  (in-module "cairo")
   (c-name "cairo_new_path")
   (return-type "none")
   (parameters
@@ -613,6 +648,7 @@
 )
 
 (define-function cairo_move_to
+  (in-module "cairo")
   (c-name "cairo_move_to")
   (return-type "none")
   (parameters
@@ -623,6 +659,7 @@
 )
 
 (define-function cairo_line_to
+  (in-module "cairo")
   (c-name "cairo_line_to")
   (return-type "none")
   (parameters
@@ -633,6 +670,7 @@
 )
 
 (define-function cairo_curve_to
+  (in-module "cairo")
   (c-name "cairo_curve_to")
   (return-type "none")
   (parameters
@@ -647,6 +685,7 @@
 )
 
 (define-function cairo_arc
+  (in-module "cairo")
   (c-name "cairo_arc")
   (return-type "none")
   (parameters
@@ -660,6 +699,7 @@
 )
 
 (define-function cairo_arc_negative
+  (in-module "cairo")
   (c-name "cairo_arc_negative")
   (return-type "none")
   (parameters
@@ -673,6 +713,7 @@
 )
 
 (define-function cairo_rel_move_to
+  (in-module "cairo")
   (c-name "cairo_rel_move_to")
   (return-type "none")
   (parameters
@@ -683,6 +724,7 @@
 )
 
 (define-function cairo_rel_line_to
+  (in-module "cairo")
   (c-name "cairo_rel_line_to")
   (return-type "none")
   (parameters
@@ -693,6 +735,7 @@
 )
 
 (define-function cairo_rel_curve_to
+  (in-module "cairo")
   (c-name "cairo_rel_curve_to")
   (return-type "none")
   (parameters
@@ -707,6 +750,7 @@
 )
 
 (define-function cairo_rectangle
+  (in-module "cairo")
   (c-name "cairo_rectangle")
   (return-type "none")
   (parameters
@@ -719,6 +763,7 @@
 )
 
 (define-function cairo_close_path
+  (in-module "cairo")
   (c-name "cairo_close_path")
   (return-type "none")
   (parameters
@@ -727,6 +772,7 @@
 )
 
 (define-function cairo_paint
+  (in-module "cairo")
   (c-name "cairo_paint")
   (return-type "none")
   (parameters
@@ -735,6 +781,7 @@
 )
 
 (define-function cairo_paint_with_alpha
+  (in-module "cairo")
   (c-name "cairo_paint_with_alpha")
   (return-type "none")
   (parameters
@@ -744,6 +791,7 @@
 )
 
 (define-function cairo_mask
+  (in-module "cairo")
   (c-name "cairo_mask")
   (return-type "none")
   (parameters
@@ -753,6 +801,7 @@
 )
 
 (define-function cairo_mask_surface
+  (in-module "cairo")
   (c-name "cairo_mask_surface")
   (return-type "none")
   (parameters
@@ -764,6 +813,7 @@
 )
 
 (define-function cairo_stroke
+  (in-module "cairo")
   (c-name "cairo_stroke")
   (return-type "none")
   (parameters
@@ -772,6 +822,7 @@
 )
 
 (define-function cairo_stroke_preserve
+  (in-module "cairo")
   (c-name "cairo_stroke_preserve")
   (return-type "none")
   (parameters
@@ -780,6 +831,7 @@
 )
 
 (define-function cairo_fill
+  (in-module "cairo")
   (c-name "cairo_fill")
   (return-type "none")
   (parameters
@@ -788,6 +840,7 @@
 )
 
 (define-function cairo_fill_preserve
+  (in-module "cairo")
   (c-name "cairo_fill_preserve")
   (return-type "none")
   (parameters
@@ -796,6 +849,7 @@
 )
 
 (define-function cairo_copy_page
+  (in-module "cairo")
   (c-name "cairo_copy_page")
   (return-type "none")
   (parameters
@@ -804,6 +858,7 @@
 )
 
 (define-function cairo_show_page
+  (in-module "cairo")
   (c-name "cairo_show_page")
   (return-type "none")
   (parameters
@@ -812,6 +867,7 @@
 )
 
 (define-function cairo_in_stroke
+  (in-module "cairo")
   (c-name "cairo_in_stroke")
   (return-type "gboolean")
   (parameters
@@ -822,6 +878,7 @@
 )
 
 (define-function cairo_in_fill
+  (in-module "cairo")
   (c-name "cairo_in_fill")
   (return-type "gboolean")
   (parameters
@@ -832,6 +889,7 @@
 )
 
 (define-function cairo_stroke_extents
+  (in-module "cairo")
   (c-name "cairo_stroke_extents")
   (return-type "none")
   (parameters
@@ -844,6 +902,7 @@
 )
 
 (define-function cairo_fill_extents
+  (in-module "cairo")
   (c-name "cairo_fill_extents")
   (return-type "none")
   (parameters
@@ -856,6 +915,7 @@
 )
 
 (define-function cairo_reset_clip
+  (in-module "cairo")
   (c-name "cairo_reset_clip")
   (return-type "none")
   (parameters
@@ -864,6 +924,7 @@
 )
 
 (define-function cairo_clip
+  (in-module "cairo")
   (c-name "cairo_clip")
   (return-type "none")
   (parameters
@@ -872,6 +933,7 @@
 )
 
 (define-function cairo_clip_preserve
+  (in-module "cairo")
   (c-name "cairo_clip_preserve")
   (return-type "none")
   (parameters
@@ -880,6 +942,7 @@
 )
 
 (define-function cairo_select_font_face
+  (in-module "cairo")
   (c-name "cairo_select_font_face")
   (return-type "none")
   (parameters
@@ -891,6 +954,7 @@
 )
 
 (define-function cairo_set_font_size
+  (in-module "cairo")
   (c-name "cairo_set_font_size")
   (return-type "none")
   (parameters
@@ -900,6 +964,7 @@
 )
 
 (define-function cairo_set_font_matrix
+  (in-module "cairo")
   (c-name "cairo_set_font_matrix")
   (return-type "none")
   (parameters
@@ -909,6 +974,7 @@
 )
 
 (define-function cairo_get_font_matrix
+  (in-module "cairo")
   (c-name "cairo_get_font_matrix")
   (return-type "none")
   (parameters
@@ -918,6 +984,7 @@
 )
 
 (define-function cairo_show_text
+  (in-module "cairo")
   (c-name "cairo_show_text")
   (return-type "none")
   (parameters
@@ -927,6 +994,7 @@
 )
 
 (define-function cairo_show_glyphs
+  (in-module "cairo")
   (c-name "cairo_show_glyphs")
   (return-type "none")
   (parameters
@@ -937,6 +1005,7 @@
 )
 
 (define-function cairo_get_font_face
+  (in-module "cairo")
   (c-name "cairo_get_font_face")
   (return-type "cairo_font_face_t*")
   (parameters
@@ -945,6 +1014,7 @@
 )
 
 (define-function cairo_font_extents
+  (in-module "cairo")
   (c-name "cairo_font_extents")
   (return-type "none")
   (parameters
@@ -954,6 +1024,7 @@
 )
 
 (define-function cairo_set_font_face
+  (in-module "cairo")
   (c-name "cairo_set_font_face")
   (return-type "none")
   (parameters
@@ -963,6 +1034,7 @@
 )
 
 (define-function cairo_text_extents
+  (in-module "cairo")
   (c-name "cairo_text_extents")
   (return-type "none")
   (parameters
@@ -973,6 +1045,7 @@
 )
 
 (define-function cairo_glyph_extents
+  (in-module "cairo")
   (c-name "cairo_glyph_extents")
   (return-type "none")
   (parameters
@@ -984,6 +1057,7 @@
 )
 
 (define-function cairo_text_path
+  (in-module "cairo")
   (c-name "cairo_text_path")
   (return-type "none")
   (parameters
@@ -993,6 +1067,7 @@
 )
 
 (define-function cairo_glyph_path
+  (in-module "cairo")
   (c-name "cairo_glyph_path")
   (return-type "none")
   (parameters
@@ -1003,6 +1078,7 @@
 )
 
 (define-function cairo_set_font_options
+  (in-module "cairo")
    (c-name "cairo_set_font_options")
    (return-type "none")
    (parameters
@@ -1012,6 +1088,7 @@
  )
  
  (define-function cairo_get_font_options
+  (in-module "cairo")
    (c-name "cairo_get_font_options")
    (return-type "none")
    (parameters
@@ -1021,6 +1098,7 @@
  )
  
 (define-function cairo_font_face_reference
+  (in-module "cairo")
   (c-name "cairo_font_face_reference")
   (return-type "cairo_font_face_t*")
   (parameters
@@ -1029,6 +1107,7 @@
 )
 
 (define-function cairo_font_face_destroy
+  (in-module "cairo")
   (c-name "cairo_font_face_destroy")
   (return-type "none")
   (parameters
@@ -1037,6 +1116,7 @@
 )
 
 (define-function cairo_font_face_get_user_data
+  (in-module "cairo")
   (c-name "cairo_font_face_get_user_data")
   (return-type "gpointer")
   (parameters
@@ -1046,6 +1126,7 @@
 )
 
 (define-function cairo_font_face_set_user_data
+  (in-module "cairo")
   (c-name "cairo_font_face_set_user_data")
   (return-type "cairo_status_t")
   (parameters
@@ -1057,6 +1138,7 @@
 )
 
 (define-function cairo_font_face_status
+  (in-module "cairo")
    (c-name "cairo_font_face_status")
    (return-type "cairo_status_t")
    (parameters
@@ -1065,6 +1147,7 @@
 )
 
 (define-function cairo_scaled_font_create
+  (in-module "cairo")
   (c-name "cairo_scaled_font_create")
   (is-constructor-of "cairo_scaled_font_t")
   (return-type "cairo_scaled_font_t*")
@@ -1077,6 +1160,7 @@
 )
 
 (define-function cairo_scaled_font_reference
+  (in-module "cairo")
   (c-name "cairo_scaled_font_reference")
   (return-type "cairo_scaled_font_t*")
   (parameters
@@ -1085,6 +1169,7 @@
 )
 
 (define-function cairo_scaled_font_destroy
+  (in-module "cairo")
   (c-name "cairo_scaled_font_destroy")
   (return-type "none")
   (parameters
@@ -1093,6 +1178,7 @@
 )
 
 (define-function cairo_scaled_font_extents
+  (in-module "cairo")
   (c-name "cairo_scaled_font_extents")
   (return-type "none")
   (parameters
@@ -1102,6 +1188,7 @@
 )
 
 (define-function cairo_scaled_font_glyph_extents
+  (in-module "cairo")
   (c-name "cairo_scaled_font_glyph_extents")
   (return-type "none")
   (parameters
@@ -1113,6 +1200,7 @@
 )
 
 (define-function cairo_scaled_font_status
+  (in-module "cairo")
    (c-name "cairo_scaled_font_status")
    (return-type "cairo_status_t")
    (parameters
@@ -1121,6 +1209,7 @@
 )
 
 (define-function cairo_get_operator
+  (in-module "cairo")
   (c-name "cairo_get_operator")
   (return-type "cairo_operator_t")
   (parameters
@@ -1129,6 +1218,7 @@
 )
 
 (define-function cairo_get_source
+  (in-module "cairo")
   (c-name "cairo_get_source")
   (return-type "cairo_pattern_t*")
   (parameters
@@ -1137,6 +1227,7 @@
 )
 
 (define-function cairo_get_tolerance
+  (in-module "cairo")
   (c-name "cairo_get_tolerance")
   (return-type "double")
   (parameters
@@ -1145,6 +1236,7 @@
 )
 
 (define-function cairo_get_antialias
+  (in-module "cairo")
   (c-name "cairo_get_antialias")
   (return-type "cairo_antialias_t")
   (parameters
@@ -1153,6 +1245,7 @@
 )
 
 (define-function cairo_get_current_point
+  (in-module "cairo")
   (c-name "cairo_get_current_point")
   (return-type "none")
   (parameters
@@ -1163,6 +1256,7 @@
 )
 
 (define-function cairo_get_fill_rule
+  (in-module "cairo")
   (c-name "cairo_get_fill_rule")
   (return-type "cairo_fill_rule_t")
   (parameters
@@ -1171,6 +1265,7 @@
 )
 
 (define-function cairo_get_line_width
+  (in-module "cairo")
   (c-name "cairo_get_line_width")
   (return-type "double")
   (parameters
@@ -1179,6 +1274,7 @@
 )
 
 (define-function cairo_get_line_cap
+  (in-module "cairo")
   (c-name "cairo_get_line_cap")
   (return-type "cairo_line_cap_t")
   (parameters
@@ -1187,6 +1283,7 @@
 )
 
 (define-function cairo_get_line_join
+  (in-module "cairo")
   (c-name "cairo_get_line_join")
   (return-type "cairo_line_join_t")
   (parameters
@@ -1195,6 +1292,7 @@
 )
 
 (define-function cairo_get_miter_limit
+  (in-module "cairo")
   (c-name "cairo_get_miter_limit")
   (return-type "double")
   (parameters
@@ -1203,6 +1301,7 @@
 )
 
 (define-function cairo_get_matrix
+  (in-module "cairo")
   (c-name "cairo_get_matrix")
   (return-type "none")
   (parameters
@@ -1212,6 +1311,7 @@
 )
 
 (define-function cairo_get_target
+  (in-module "cairo")
   (c-name "cairo_get_target")
   (return-type "cairo_surface_t*")
   (parameters
@@ -1220,6 +1320,7 @@
 )
 
 (define-function cairo_copy_path
+  (in-module "cairo")
   (c-name "cairo_copy_path")
   (caller-owns-return #t)
   (return-type "cairo_path_t*")
@@ -1229,6 +1330,7 @@
 )
 
 (define-function cairo_copy_path_flat
+  (in-module "cairo")
   (c-name "cairo_copy_path_flat")
   (caller-owns-return #t)
   (return-type "cairo_path_t*")
@@ -1238,6 +1340,7 @@
 )
 
 (define-function cairo_append_path
+  (in-module "cairo")
   (c-name "cairo_append_path")
   (return-type "none")
   (parameters
@@ -1247,6 +1350,7 @@
 )
 
 (define-function cairo_path_destroy
+  (in-module "cairo")
   (c-name "cairo_path_destroy")
   (return-type "none")
   (parameters
@@ -1255,6 +1359,7 @@
 )
 
 (define-function cairo_status
+  (in-module "cairo")
   (c-name "cairo_status")
   (return-type "cairo_status_t")
   (parameters
@@ -1263,6 +1368,7 @@
 )
 
 (define-function cairo_status_to_string
+  (in-module "cairo")
   (c-name "cairo_status_to_string")
   (return-type "const-char*")
   (parameters
@@ -1271,6 +1377,7 @@
 )
 
 (define-function cairo_surface_create_similar
+  (in-module "cairo")
   (c-name "cairo_surface_create_similar")
   (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
@@ -1283,6 +1390,7 @@
 )
 
 (define-function cairo_surface_reference
+  (in-module "cairo")
   (c-name "cairo_surface_reference")
   (return-type "cairo_surface_t*")
   (parameters
@@ -1291,6 +1399,7 @@
 )
 
 (define-function cairo_surface_destroy
+  (in-module "cairo")
   (c-name "cairo_surface_destroy")
   (return-type "none")
   (parameters
@@ -1299,6 +1408,7 @@
 )
 
 (define-function cairo_surface_finish
+  (in-module "cairo")
   (c-name "cairo_surface_finish")
   (return-type "none")
   (parameters
@@ -1307,6 +1417,7 @@
 )
 
 (define-function cairo_surface_write_to_png
+  (in-module "cairo")
   (c-name "cairo_surface_write_to_png")
   (return-type "cairo_status_t")
   (parameters
@@ -1316,6 +1427,7 @@
 )
 
 (define-function cairo_surface_write_to_png_stream
+  (in-module "cairo")
   (c-name "cairo_surface_write_to_png_stream")
   (return-type "cairo_status_t")
   (parameters
@@ -1326,6 +1438,7 @@
 )
 
 (define-function cairo_surface_get_user_data
+  (in-module "cairo")
   (c-name "cairo_surface_get_user_data")
   (return-type "gpointer")
   (parameters
@@ -1335,6 +1448,7 @@
 )
 
 (define-function cairo_surface_set_user_data
+  (in-module "cairo")
   (c-name "cairo_surface_set_user_data")
   (return-type "cairo_status_t")
   (parameters
@@ -1346,6 +1460,7 @@
 )
 
 (define-function cairo_surface_flush
+  (in-module "cairo")
   (c-name "cairo_surface_flush")
   (return-type "none")
   (parameters
@@ -1354,6 +1469,7 @@
 )
 
 (define-function cairo_surface_mark_dirty
+  (in-module "cairo")
   (c-name "cairo_surface_mark_dirty")
   (return-type "none")
   (parameters
@@ -1362,6 +1478,7 @@
 )
 
 (define-function cairo_surface_mark_dirty_rectangle
+  (in-module "cairo")
   (c-name "cairo_surface_mark_dirty_rectangle")
   (return-type "none")
   (parameters
@@ -1374,6 +1491,7 @@
 )
 
 (define-function cairo_surface_set_device_offset
+  (in-module "cairo")
   (c-name "cairo_surface_set_device_offset")
   (return-type "none")
   (parameters
@@ -1384,6 +1502,7 @@
 )
 
 (define-function cairo_surface_get_font_options
+  (in-module "cairo")
    (c-name "cairo_surface_get_font_options")
    (return-type "none")
    (parameters
@@ -1393,6 +1512,7 @@
  )
 
 (define-function cairo_surface_status
+  (in-module "cairo")
    (c-name "cairo_surface_status")
    (return-type "cairo_status_t")
    (parameters
@@ -1401,6 +1521,7 @@
 )
 
 (define-function cairo_image_surface_create
+  (in-module "cairo")
   (c-name "cairo_image_surface_create")
   (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
@@ -1412,6 +1533,7 @@
 )
 
 (define-function cairo_image_surface_create_for_data
+  (in-module "cairo")
   (c-name "cairo_image_surface_create_for_data")
   (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
@@ -1425,6 +1547,7 @@
 )
 
 (define-function cairo_image_surface_get_width
+  (in-module "cairo")
   (c-name "cairo_image_surface_get_width")
   (return-type "int")
   (parameters
@@ -1433,6 +1556,7 @@
 )
 
 (define-function cairo_image_surface_get_height
+  (in-module "cairo")
   (c-name "cairo_image_surface_get_height")
   (return-type "int")
   (parameters
@@ -1441,6 +1565,7 @@
 )
 
 (define-function cairo_image_surface_create_from_png
+  (in-module "cairo")
   (c-name "cairo_image_surface_create_from_png")
   (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
@@ -1450,6 +1575,7 @@
 )
 
 (define-function cairo_image_surface_create_from_png_stream
+  (in-module "cairo")
   (c-name "cairo_image_surface_create_from_png_stream")
   (is-constructor-of "cairo_surface_t")
   (return-type "cairo_surface_t*")
@@ -1460,6 +1586,7 @@
 )
 
 (define-function cairo_pattern_create_rgb
+  (in-module "cairo")
   (c-name "cairo_pattern_create_rgb")
   (is-constructor-of "cairo_pattern_t")
   (return-type "cairo_pattern_t*")
@@ -1471,6 +1598,7 @@
 )
 
 (define-function cairo_pattern_create_rgba
+  (in-module "cairo")
   (c-name "cairo_pattern_create_rgba")
   (is-constructor-of "cairo_pattern_t")
   (return-type "cairo_pattern_t*")
@@ -1483,6 +1611,7 @@
 )
 
 (define-function cairo_pattern_create_for_surface
+  (in-module "cairo")
   (c-name "cairo_pattern_create_for_surface")
   (is-constructor-of "cairo_pattern_t")
   (return-type "cairo_pattern_t*")
@@ -1492,6 +1621,7 @@
 )
 
 (define-function cairo_pattern_create_linear
+  (in-module "cairo")
   (c-name "cairo_pattern_create_linear")
   (is-constructor-of "cairo_pattern_t")
   (return-type "cairo_pattern_t*")
@@ -1504,6 +1634,7 @@
 )
 
 (define-function cairo_pattern_create_radial
+  (in-module "cairo")
   (c-name "cairo_pattern_create_radial")
   (is-constructor-of "cairo_pattern_t")
   (return-type "cairo_pattern_t*")
@@ -1518,6 +1649,7 @@
 )
 
 (define-function cairo_pattern_reference
+  (in-module "cairo")
   (c-name "cairo_pattern_reference")
   (return-type "cairo_pattern_t*")
   (parameters
@@ -1526,6 +1658,7 @@
 )
 
 (define-function cairo_pattern_destroy
+  (in-module "cairo")
   (c-name "cairo_pattern_destroy")
   (return-type "none")
   (parameters
@@ -1534,6 +1667,7 @@
 )
 
 (define-function cairo_pattern_status
+  (in-module "cairo")
   (c-name "cairo_pattern_status")
   (return-type "cairo_status_t")
   (parameters
@@ -1542,6 +1676,7 @@
 )
 
 (define-function cairo_pattern_add_color_stop_rgb
+  (in-module "cairo")
   (c-name "cairo_pattern_add_color_stop_rgb")
   (return-type "none")
   (parameters
@@ -1554,6 +1689,7 @@
 )
 
 (define-function cairo_pattern_add_color_stop_rgba
+  (in-module "cairo")
   (c-name "cairo_pattern_add_color_stop_rgba")
   (return-type "none")
   (parameters
@@ -1567,6 +1703,7 @@
 )
 
 (define-function cairo_pattern_set_matrix
+  (in-module "cairo")
   (c-name "cairo_pattern_set_matrix")
   (return-type "none")
   (parameters
@@ -1576,6 +1713,7 @@
 )
 
 (define-function cairo_pattern_get_matrix
+  (in-module "cairo")
   (c-name "cairo_pattern_get_matrix")
   (return-type "none")
   (parameters
@@ -1585,6 +1723,7 @@
 )
 
 (define-function cairo_pattern_set_extend
+  (in-module "cairo")
   (c-name "cairo_pattern_set_extend")
   (return-type "none")
   (parameters
@@ -1594,6 +1733,7 @@
 )
 
 (define-function cairo_pattern_get_extend
+  (in-module "cairo")
   (c-name "cairo_pattern_get_extend")
   (return-type "cairo_extend_t")
   (parameters
@@ -1602,6 +1742,7 @@
 )
 
 (define-function cairo_pattern_set_filter
+  (in-module "cairo")
   (c-name "cairo_pattern_set_filter")
   (return-type "none")
   (parameters
@@ -1611,6 +1752,7 @@
 )
 
 (define-function cairo_pattern_get_filter
+  (in-module "cairo")
   (c-name "cairo_pattern_get_filter")
   (return-type "cairo_filter_t")
   (parameters
@@ -1619,6 +1761,7 @@
 )
 
 (define-function cairo_matrix_init
+  (in-module "cairo")
   (c-name "cairo_matrix_init")
   (return-type "none")
   (parameters
@@ -1633,6 +1776,7 @@
 )
 
 (define-function cairo_matrix_init_identity
+  (in-module "cairo")
   (c-name "cairo_matrix_init_identity")
   (return-type "none")
   (parameters
@@ -1641,6 +1785,7 @@
 )
 
 (define-function cairo_matrix_init_translate
+  (in-module "cairo")
   (c-name "cairo_matrix_init_translate")
   (return-type "none")
   (parameters
@@ -1651,6 +1796,7 @@
 )
 
 (define-function cairo_matrix_init_scale
+  (in-module "cairo")
   (c-name "cairo_matrix_init_scale")
   (return-type "none")
   (parameters
@@ -1661,6 +1807,7 @@
 )
 
 (define-function cairo_matrix_init_rotate
+  (in-module "cairo")
   (c-name "cairo_matrix_init_rotate")
   (return-type "none")
   (parameters
@@ -1670,6 +1817,7 @@
 )
 
 (define-function cairo_matrix_translate
+  (in-module "cairo")
   (c-name "cairo_matrix_translate")
   (return-type "none")
   (parameters
@@ -1680,6 +1828,7 @@
 )
 
 (define-function cairo_matrix_scale
+  (in-module "cairo")
   (c-name "cairo_matrix_scale")
   (return-type "none")
   (parameters
@@ -1690,6 +1839,7 @@
 )
 
 (define-function cairo_matrix_rotate
+  (in-module "cairo")
   (c-name "cairo_matrix_rotate")
   (return-type "none")
   (parameters
@@ -1699,6 +1849,7 @@
 )
 
 (define-function cairo_matrix_invert
+  (in-module "cairo")
   (c-name "cairo_matrix_invert")
   (return-type "cairo_status_t")
   (parameters
@@ -1707,6 +1858,7 @@
 )
 
 (define-function cairo_matrix_multiply
+  (in-module "cairo")
   (c-name "cairo_matrix_multiply")
   (return-type "none")
   (parameters
@@ -1717,6 +1869,7 @@
 )
 
 (define-function cairo_matrix_transform_distance
+  (in-module "cairo")
   (c-name "cairo_matrix_transform_distance")
   (return-type "none")
   (parameters
@@ -1727,6 +1880,7 @@
 )
 
 (define-function cairo_matrix_transform_point
+  (in-module "cairo")
   (c-name "cairo_matrix_transform_point")
   (return-type "none")
   (parameters
@@ -1738,12 +1892,14 @@
 
 ;; font options
 (define-function cairo_font_options_create
+  (in-module "cairo")
    (c-name "cairo_font_options_create")
    (is-constructor-of "cairo_font_options_t")
    (return-type "cairo_font_options_t*")
  )
  
  (define-function cairo_font_options_copy
+  (in-module "cairo")
    (c-name "cairo_font_options_copy")
    (caller-owns-return #t)
    (return-type "cairo_font_options_t*")
@@ -1753,6 +1909,7 @@
  )
  
  (define-function cairo_font_options_destroy
+  (in-module "cairo")
    (c-name "cairo_font_options_destroy")
    (return-type "none")
    (parameters
@@ -1761,6 +1918,7 @@
  )
  
  (define-function cairo_font_options_status
+  (in-module "cairo")
    (c-name "cairo_font_options_status")
    (return-type "cairo_status_t")
    (parameters
@@ -1769,6 +1927,7 @@
  )
  
  (define-function cairo_font_options_merge
+  (in-module "cairo")
    (c-name "cairo_font_options_merge")
    (return-type "none")
    (parameters
@@ -1778,6 +1937,7 @@
  )
  
  (define-function cairo_font_options_equal
+  (in-module "cairo")
    (c-name "cairo_font_options_equal")
    (return-type "gboolean")
    (parameters
@@ -1787,6 +1947,7 @@
  )
  
  (define-function cairo_font_options_set_antialias
+  (in-module "cairo")
    (c-name "cairo_font_options_set_antialias")
    (return-type "none")
    (parameters
@@ -1796,6 +1957,7 @@
  )
  
  (define-function cairo_font_options_get_antialias
+  (in-module "cairo")
    (c-name "cairo_font_options_get_antialias")
    (return-type "cairo_antialias_t")
    (parameters
@@ -1804,6 +1966,7 @@
  )
  
  (define-function cairo_font_options_set_subpixel_order
+  (in-module "cairo")
    (c-name "cairo_font_options_set_subpixel_order")
    (return-type "none")
    (parameters
@@ -1813,6 +1976,7 @@
  )
  
  (define-function cairo_font_options_get_subpixel_order
+  (in-module "cairo")
    (c-name "cairo_font_options_get_subpixel_order")
    (return-type "cairo_subpixel_order_t")
    (parameters
@@ -1821,6 +1985,7 @@
  )
  
  (define-function cairo_font_options_set_hint_style
+  (in-module "cairo")
    (c-name "cairo_font_options_set_hint_style")
    (return-type "none")
    (parameters
@@ -1830,6 +1995,7 @@
  )
  
  (define-function cairo_font_options_get_hint_style
+  (in-module "cairo")
    (c-name "cairo_font_options_get_hint_style")
    (return-type "cairo_hint_style_t")
    (parameters
@@ -1838,6 +2004,7 @@
  )
  
  (define-function cairo_font_options_set_hint_metrics
+  (in-module "cairo")
    (c-name "cairo_font_options_set_hint_metrics")
    (return-type "none")
    (parameters
@@ -1847,6 +2014,7 @@
  )
  
  (define-function cairo_font_options_get_hint_metrics
+  (in-module "cairo")
    (c-name "cairo_font_options_get_hint_metrics")
    (return-type "cairo_hint_metrics_t")
    (parameters
