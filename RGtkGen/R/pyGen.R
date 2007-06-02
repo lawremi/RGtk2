@@ -1150,7 +1150,7 @@ function(fun, defs, name, sname, className = NULL, package = "RGtk2")
     if(isDeprecated(fun)) {
         txt <- c(txt,
         ind(c(invoke("if", invoke("getOption", lit("depwarn"))),
-            ind(invokev(".Deprecated", lit(fun$deprecated), package)))),
+            ind(invokev(".Deprecated", lit(fun$deprecated), lit(package))))),
         "")
     }
 

@@ -2303,12 +2303,11 @@ function(cr)
 
 
 cairoGetDash <-
-function(cr, dashes)
+function(cr)
 {
   checkPtrType(cr, "Cairo")
-  dashes <- as.list(as.numeric(dashes))
 
-  w <- .RGtkCall("S_cairo_get_dash", cr, dashes, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_cairo_get_dash", cr, PACKAGE = "RGtk2")
 
   return(invisible(w))
 } 
