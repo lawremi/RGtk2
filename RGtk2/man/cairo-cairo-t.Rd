@@ -31,7 +31,7 @@
 \code{\link{cairoGetAntialias}(cr)}\cr
 \code{\link{cairoSetDash}(cr, dashes, offset)}\cr
 \code{\link{cairoGetDashCount}(cr)}\cr
-\code{\link{cairoGetDash}(cr, dashes)}\cr
+\code{\link{cairoGetDash}(cr)}\cr
 \code{\link{cairoSetFillRule}(cr, fill.rule)}\cr
 \code{\link{cairoGetFillRule}(cr)}\cr
 \code{\link{cairoSetLineCap}(cr, line.cap)}\cr

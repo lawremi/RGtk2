@@ -16,7 +16,6 @@ A list containing the following elements:
   to unmerge the UI with \code{\link{gtkUIManagerRemoveUi}}. If an error occurred,
   the return value is 0.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for an error}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

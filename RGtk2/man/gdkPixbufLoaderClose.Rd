@@ -19,7 +19,7 @@ reasonable.}
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if all image data written so far was successfully
             passed out via the update\_area signal}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
+\item{\code{error}}{[\code{\link{GError}}]  return location for a \code{\link{GError}}, or \code{NULL} to ignore errors}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

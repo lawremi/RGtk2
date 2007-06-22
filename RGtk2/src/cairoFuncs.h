@@ -609,9 +609,6 @@ S_cairo_copy_clip_rectangle_list(USER_OBJECT_ s_cr);
 S_cairo_get_dash_count(USER_OBJECT_ s_cr); 
 
   USER_OBJECT_
-S_cairo_get_dash(USER_OBJECT_ s_cr, USER_OBJECT_ s_dashes); 
-
-  USER_OBJECT_
 S_cairo_pattern_get_rgba(USER_OBJECT_ s_pattern); 
 
   USER_OBJECT_

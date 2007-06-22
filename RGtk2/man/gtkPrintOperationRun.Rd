@@ -53,9 +53,7 @@ A list containing the following elements:
   and store them for reuse with the next print operation. A value of
   \code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} means the operation is running
   asynchronously, and will emit the ::done signal when done.}
-\item{\code{parent}}{[\code{\link{GtkWindow}}]  Transient parent of the dialog, or \code{NULL}}
 \item{\code{error}}{[\code{\link{GError}}]  Return location for errors, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

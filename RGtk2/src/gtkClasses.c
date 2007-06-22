@@ -8482,7 +8482,7 @@ S_gtk_notebook_class_init(GtkNotebookClass * c, SEXP e)
     c->change_current_page = S_virtual_gtk_notebook_change_current_page;
   if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
     c->move_focus_out = S_virtual_gtk_notebook_move_focus_out;
-#if GTK_CHECK_VERSION(2, 10, 0)
+#if GTK_CHECK_VERSION(2, 10, 7)
   if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
     c->reorder_tab = S_virtual_gtk_notebook_reorder_tab;
 #endif
@@ -8575,7 +8575,7 @@ USER_OBJECT_
 S_gtk_notebook_class_reorder_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_direction, USER_OBJECT_ s_move_to_last)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if GTK_CHECK_VERSION(2, 10, 0)
+#if GTK_CHECK_VERSION(2, 10, 7)
   GtkNotebookClass* object_class = ((GtkNotebookClass*)getPtrValue(s_object_class));
   GtkNotebook* object = GTK_NOTEBOOK(getPtrValue(s_object));
   GtkDirectionType direction = ((GtkDirectionType)asCEnum(s_direction, GTK_TYPE_DIRECTION_TYPE));
@@ -8587,7 +8587,7 @@ S_gtk_notebook_class_reorder_tab(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
   _result = asRLogical(ans);
 #else
-  error("gtk_notebook_reorder_tab exists only in Gtk >= 2.10.0");
+  error("gtk_notebook_reorder_tab exists only in Gtk >= 2.10.7");
 #endif
 
   return(_result);

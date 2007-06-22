@@ -10,7 +10,9 @@ If \code{error} is set, \code{FALSE} will be returned and \code{string} will be 
 domain.}
 \usage{gdkPixbufSaveToBuffer(object, type, ..., .errwarn = TRUE)}
 \arguments{
-\item{\code{...}}{[character]  location to receive a pointer to the new buffer.}
+\item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}.}
+\item{\code{type}}{[char]  name of file format.}
+\item{\code{...}}{ list of key-value save options}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{See \code{\link{gdkPixbufSave}} for more details.  
@@ -19,7 +21,9 @@ domain.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether an error was set}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
+\item{\code{buffer}}{[character]  location to receive a pointer to the new buffer.}
+\item{\code{buffer.size}}{[numeric]  location to receive the size of the new buffer.}
+\item{\code{error}}{[\code{\link{GError}}]  return location for error, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

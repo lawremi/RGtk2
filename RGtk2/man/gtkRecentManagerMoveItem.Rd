@@ -17,10 +17,7 @@ by the URIs, but only the URI used in the recently used resources list.
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} on success.}
-\item{\code{new.uri}}{[character]  the new URI of the recently used resource, or \code{NULL} to
-   remove the item pointed by \code{uri} in the list}
 \item{\code{error}}{[\code{\link{GError}}]  a return location for a \code{\link{GError}}, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

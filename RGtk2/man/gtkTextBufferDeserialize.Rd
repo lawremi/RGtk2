@@ -20,12 +20,7 @@ it at \code{iter}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} on success, \code{FALSE} otherwise.}
-\item{\code{format}}{[\code{\link{GdkAtom}}]  the rich text format to use for deserializing}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  insertion point for the deserialized text}
-\item{\code{data}}{[raw]  data to deserialize}
-\item{\code{length}}{[numeric]  length of \code{data}}
 \item{\code{error}}{[\code{\link{GError}}]  return loaction for a \code{\link{GError}}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -17,9 +17,7 @@ A list containing the following elements:
 \item{retval}{[numeric]  The merge id for the merged UI. The merge id can be used
   to unmerge the UI with \code{\link{gtkUIManagerRemoveUi}}. If an error occurred,
   the return value is 0.}
-\item{\code{length}}{[integer]  the length of \code{buffer} (may be -1 if \code{buffer} is nul-terminated)}
 \item{\code{error}}{[\code{\link{GError}}]  return location for an error}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -15,7 +15,6 @@ A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if the item pointed by \code{uri} has been successfully
   removed by the recently used resources list, and \code{FALSE} otherwise.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for a \code{\link{GError}}, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

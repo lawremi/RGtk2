@@ -28,11 +28,7 @@ A list containing the following elements:
 \item{retval}{[\code{\link{GdkPixbuf}}]  the rendered icon; this may be a newly created icon
  or a new reference to an internal icon, so you must not modify
  the icon. \code{NULL} if the icon isn't found.}
-\item{\code{size}}{[integer]  the desired icon size. The resulting icon may not be
-       exactly this size; see \code{\link{gtkIconInfoLoadIcon}}.}
-\item{\code{flags}}{[\code{\link{GtkIconLookupFlags}}]  flags modifying the behavior of the icon lookup}
 \item{\code{error}}{[\code{\link{GError}}]  Location to store error information on failure, or \code{NULL}.}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -410,7 +410,7 @@ function(method, obj = NULL, ...)
   unnamed <- sapply(names(args), nchar) == 0
   names(args)[unnamed] <- missing_names[seq(along=unnamed)]
   missing_names <- missing_names[!(missing_names %in% names(args))]
-  args[missing_args] <- lapply(missing_names, get, parent_frame)
+  args[missing_names] <- lapply(missing_names, get, parent_frame)
   parent <- .Call("S_g_object_parent", obj, PACKAGE = "RGtk2")
   if (!is.null(parent) && is.function(try(parent[[method]], T)))
     fun <- parent[[method]]
@@ -441,7 +441,7 @@ function(obj, name)
 "$.GObject" <- "$.RGtkObject" <-
 function(x, member)
 { # try for a declared method first, else fall back to member
- result <- try(.getAutoMethodByName(x, member), T)
+ result <- try(.getAutoMethodByName(x, member, parent.frame()), T)
  if (inherits(result, "try-error"))
    result <- x[[member]]
  result
@@ -461,30 +461,34 @@ function(obj, name)
   if (is.function(member)) {
     # we need to add private env if it's not there
     if (!has_private)
-      obj <- .Call("S_g_object_private", obj)
+      obj <- .Call("S_g_object_private", obj, PACKAGE="RGtk2")
     function(...) member(obj, ...)
   }
   else member
 }
 
 .getAutoMethodByName <-
-function(obj, name)
+function(obj, name, where)
 {
     classes <- c(attr(obj, "interfaces"), class(obj))
     sym <- paste(tolower(substring(classes, 1, 1)), substring(classes, 2), toupper(substring(name, 1, 1)),
         substring(name,2), sep="")
-    which <- sapply(sym, exists)
+    which <- sapply(sym, exists, where)
 
  if(!any(which))
    stop(paste("No such method", name, "for classes", paste(class(obj), collapse=", ")))
 
- sym <- as.name(sym[which][1])
-
+ method <- get(sym[which][1], where)
+ 
+ function(...) method(obj, ...)
+ 
+ #sym <- as.name(sym[which][1])
+ 
   # evaluate it to turn it into a function
   # and also get the correct environment
- eval(substitute( function(...) {
-                     sym(obj, ...)
-                 }, list(obj=obj,sym=sym)))
+ #eval(substitute( function(...) {
+ #                    sym(obj, ...)
+ #                }, list(obj=obj,sym=sym)))
 }
 
 # Comparing pointers

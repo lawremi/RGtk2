@@ -18,7 +18,6 @@ A list containing the following elements:
   not registered in the recently used resources list.  Free with
   \code{\link{gtkRecentInfoUnref}}.}
 \item{\code{error}}{[\code{\link{GError}}]  a return location for a \code{\link{GError}}, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

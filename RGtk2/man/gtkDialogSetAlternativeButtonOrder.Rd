@@ -5,7 +5,10 @@
 setting is set to \code{TRUE}, the dialog buttons are reordered according to 
 the order of the response ids passed to this function.}
 \usage{gtkDialogSetAlternativeButtonOrder(object, ...)}
-\arguments{\item{\code{...}}{[integer]  a response id used by one \code{dialog}'s buttons}}
+\arguments{
+\item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}
+\item{\code{...}}{ a list of more response ids of \code{dialog}'s buttons, terminated by -1}
+}
 \details{By default, GTK+ dialogs use the button order advocated by the Gnome 
 Human 
 Interface Guidelines (\url{http://developer.gnome.org/projects/gup/hig/2.0/}) with the affirmative button at the far 

@@ -343,7 +343,9 @@ asR <- function(t)
 }
 asCoerce <- function(t)
 {
-    paste("as", t, sep=".")
+  if (isCairoType(t))
+		t <- toCapPhraseName(stripCairoType(t))
+  paste("as", t, sep=".")
 }
 
 ####################
@@ -418,7 +420,7 @@ asRTypeName <-
 function(type) {
 	if (isCairoType(type))
 		type <- toCapPhraseName(stripCairoType(type))
-	changeCapitalization(type, TRUE)
+  changeCapitalization(type, TRUE)
 }
 
 ########################
@@ -1032,7 +1034,7 @@ function(param, name, defs)
  args <- var
  # transparent types are coerced using a function of the form 'as.Type'
  if (type %in% transparentTypes && type != "GValue") {
-     fn <- asCoerce(type)
+     fn <- asCoerce(type, TRUE)
  } else if(isPrimitiveType(type)) { # singleton or vector, treat the same
    fn <- getGenericTypeCoerce(type)
  } else if (isPrimitiveTypeRef(type)) { 
@@ -2037,7 +2039,7 @@ function(struct,defs)
     }),
     "",
     statement(setnames("s_obj", invoke(asR("StringArray"), "names"))),
-    statement(setclass("s_obj", invoke(asR("String"), lit(type)))),
+    statement(setclass("s_obj", invoke(asR("String"), lit(asRTypeName(type))))),
     "",
     statement(unprotect(1)),
     "",
@@ -2051,9 +2053,10 @@ genTransparentCoerce <-
 function(struct, defs)
 {
   type <- struct$name
+  rtype <- asRTypeName(type)
   code <- c(declareRFunction(asCoerce(type), "x"),
   "{",
-  ind(c(rassign("x", invokev("as.struct", lit(type), invoke("c", lit(names(struct$fields))))),
+  ind(c(rassign("x", invokev("as.struct", lit(rtype), invoke("c", lit(names(struct$fields))))),
     sapply(1:length(struct$fields), function(field) {
       param <- list(name = listind("x", field), type = struct$fields[[field]], 
         nullok = 0, access="in")

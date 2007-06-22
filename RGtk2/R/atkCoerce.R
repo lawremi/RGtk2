@@ -20,3 +20,11 @@ function(x)
 	class(x) <- "AtkTextRectangle"
 	x
 }
+
+as.AtkRectangle <-
+function(x)
+{
+	x <- as.GdkRectangle(x)
+	class(x) <- "AtkRectangle"
+	x
+}

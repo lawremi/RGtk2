@@ -12,7 +12,7 @@
 A list containing the following elements:
 \item{retval}{[integer]  the number of items that have been removed from the
   recently used resources list.}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
+\item{\code{error}}{[\code{\link{GError}}]  a return location for a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

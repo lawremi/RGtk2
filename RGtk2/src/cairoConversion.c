@@ -76,7 +76,8 @@ asCCairoPath(USER_OBJECT_ s_path)
 	for (i = 0; i < GET_LENGTH(s_path); i++) {
 		USER_OBJECT_ s_element = VECTOR_ELT(s_path, i);
 		int points = 0, len;
-		cairo_path_data_type_t type = asCInteger(getAttrib(s_element, install("type")));
+		cairo_path_data_type_t type = asCEnum(getAttrib(s_element, install("type")),
+      CAIRO_TYPE_PATH_DATA_TYPE);
 		/* how many points do we need for this type of element? */
 		switch(type) {
 			case CAIRO_PATH_MOVE_TO:
@@ -147,7 +148,7 @@ asRCairoRectangle(cairo_rectangle_t * obj)
   SET_VECTOR_ELT(s_obj, 3, asRNumeric(obj->height));
 
   SET_NAMES(s_obj, asRStringArray(names));
-  SET_CLASS(s_obj, asRString("cairo_rectangle_t"));
+  SET_CLASS(s_obj, asRString("CairoRectangle"));
 
   UNPROTECT(1);
 
@@ -172,7 +173,7 @@ asRCairoRectangleList(cairo_rectangle_list_t *list)
   SET_VECTOR_ELT(s_list, 1, s_rects);
   
   SET_NAMES(s_list, asRStringArray(listNames));
-  SET_CLASS(s_list, asRString("cairo_rectangle_list_t"));
+  SET_CLASS(s_list, asRString("CairoRectangleList"));
   
   UNPROTECT(2);
   return(s_list);

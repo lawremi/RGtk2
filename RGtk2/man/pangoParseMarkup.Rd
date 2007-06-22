@@ -20,12 +20,10 @@ literal \code{accel.marker} character.  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{FALSE} if \code{error} is set, otherwise \code{TRUE}}
-\item{\code{accel.marker}}{[numeric]  character that precedes an accelerator, or 0 for none}
 \item{\code{attr.list}}{[\code{\link{PangoAttrList}}]  return location for a \code{\link{PangoAttrList}}, or \code{NULL}}
 \item{\code{text}}{[char]  return location for text with tags stripped, or \code{NULL}}
 \item{\code{accel.char}}{[numeric]  return location for accelerator char, or \code{NULL}}
 \item{\code{error}}{[\code{\link{GError}}]  return location for errors, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

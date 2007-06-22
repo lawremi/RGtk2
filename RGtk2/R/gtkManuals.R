@@ -502,7 +502,7 @@ gtkTreeStoreInsertWithValues <-
 function(object, parent, position, ...)
 {
   checkPtrType(object, "GtkListStore")
-  checkPtrType(parenet, "GtkTreeIter")
+  checkPtrType(parent, "GtkTreeIter")
   position <- as.integer(position)
 
   args <- list(...)
@@ -550,7 +550,7 @@ function(type, ..., show = TRUE)
 gtkObject <- gtkObjectNew <-
 function(type, ...)
 {
-	if (!("GtkObject" %in% gTypeGetClasses(type)))
+	if (!("GtkObject" %in% gTypeGetAncestors(type)))
 		stop("GType must inherit from GtkObject")
 	gObjectNew(type, ...)
 }

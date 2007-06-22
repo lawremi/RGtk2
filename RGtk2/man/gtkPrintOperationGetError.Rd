@@ -13,7 +13,7 @@ The returned \code{\link{GError}} will contain more details on what went wrong.}
 \details{  Since  2.10}
 \value{
 A list containing the following elements:
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
+\item{\code{error}}{[\code{\link{GError}}]  return location for the error}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

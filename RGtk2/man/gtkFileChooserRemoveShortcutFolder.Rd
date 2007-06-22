@@ -16,7 +16,6 @@ In the latter case, the \code{error} will be set as appropriate.
 
 See also: \code{\link{gtkFileChooserAddShortcutFolder}}}
 \item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

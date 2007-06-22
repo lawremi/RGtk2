@@ -102,7 +102,7 @@ function(object, filename, type, ..., .errwarn = TRUE)
 }
 # reason: collect var-args and send to gdkPixbufSaveToCallbackv
 gdkPixbufSaveToCallback <-
-function(object, save.func, user.data, type, .errwarn = TRUE)
+function(object, save.func, user.data, type, ..., .errwarn = TRUE)
 {
         checkPtrType(object, "GdkPixbuf")
         save.func <- as.function(save.func)

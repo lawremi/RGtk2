@@ -9,7 +9,15 @@ function(libname, pkgname)
 {
  options(depwarn = TRUE, gdkFlush = TRUE)
  
- #library.dynam("RGtk2", pkgname, libname)
+ dll <- try(library.dynam("RGtk2", pkgname, libname))
+ if (is.character(dll)) {
+   error_msg <- paste("Failed to load RGtk2 dynamic library:", dll)
+   if (.Platform$OS.type == "windows")
+     error_msg <- paste(error_msg, 
+      "Please install the latest GTK+ runtime from http://gladewin32.sf.net/ and restart R")
+   stop(error_msg)
+ }
+   
 
  if(is.function(.gtkArgs))
   args <- .gtkArgs()

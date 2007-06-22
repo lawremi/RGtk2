@@ -177,15 +177,17 @@ parseFunction <- function(node, defs, verbose) {
 	if (isMethod(fun))
 		params <- c(object=makeObjectParam(fun$ofobject), params)
 	if (fun$varargs == '1')
-		params <- list(params, "..."=list(name = "..."))
+		params <- c(params, "..."=list(list(name = "...")))
 	names(params) <- nameToS(names(params))
 	param_items <- toParameterItems(node, paramNames=names(params))
 	names(param_items) <- names(params)
 	if (".errwarn" %in% names(f)) {
-		params <- list(params, ".errwarn"=list(name = ".errwarn"))
+		params <- c(params, ".errwarn"=list(list(name = ".errwarn")))
 		param_items <- c(param_items, .errwarn = rd("item", ".errwarn", 
 			"Whether to issue a warning on error or fail silently"))
 	}
+  if (s_name == "gdkPixbufSaveToCallback")
+    browser()
 	in_params <- sapply(params, isInParam)
 	if (any(in_params)) {
 		in_items <- param_items[in_params]

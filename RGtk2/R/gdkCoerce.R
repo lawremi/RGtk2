@@ -45,6 +45,20 @@ function(x)
     return(x)
 }
 
+as.GdkTrapezoid <-
+function(x)
+{
+  x <- as.struct("GdkTrapezoid", c("y1", "x11", "x21", "y2", "x12", "x22"))
+  x[[1]] <- as.numeric(x[[1]])
+  x[[2]] <- as.numeric(x[[2]])
+  x[[3]] <- as.numeric(x[[3]])
+  x[[4]] <- as.numeric(x[[4]])
+  x[[5]] <- as.numeric(x[[5]])
+  x[[6]] <- as.numeric(x[[6]])
+  
+  return(x)
+}
+
 as.GdkSpan <-
 function(x)
 {

@@ -5,7 +5,11 @@
 Equivalent to calling \code{\link{gtkTextTagNew}} and then adding the
 tag to the buffer's tag table, so the ref count will be equal to one.}
 \usage{gtkTextBufferCreateTag(object, tag.name, ...)}
-\arguments{\item{\code{...}}{[character]  name of the new tag, or \code{NULL}}}
+\arguments{
+\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
+\item{\code{tag.name}}{[character]  name of the new tag, or \code{NULL}}
+\item{\code{...}}{ list of property names and values}
+}
 \details{If \code{tag.name} is \code{NULL}, the tag is anonymous.
   
 If \code{tag.name} is non-\code{NULL}, a tag called \code{tag.name} must not already

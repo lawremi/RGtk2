@@ -3428,6 +3428,7 @@ S_cairo_get_dash_count(USER_OBJECT_ s_cr)
 
   return(_result);
 }
+ 
 
 USER_OBJECT_
 S_cairo_pattern_get_rgba(USER_OBJECT_ s_pattern)

@@ -17,7 +17,6 @@ A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if the folder could be added successfully, \code{FALSE}
 otherwise.  In the latter case, the \code{error} will be set as appropriate.}
 \item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}}
-\item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
