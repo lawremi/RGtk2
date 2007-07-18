@@ -14,7 +14,7 @@
 \code{\link{gdkEventNew}(type)}\cr
 \code{\link{gdkEventCopy}(object)}\cr
 \code{\link{gdkEventGetTime}(object)}\cr
-\code{\link{gdkEventGetState}(object, state)}\cr
+\code{\link{gdkEventGetState}(object)}\cr
 \code{\link{gdkEventGetAxis}(object, axis.use)}\cr
 \code{\link{gdkEventGetCoords}(object)}\cr
 \code{\link{gdkEventGetRootCoords}(object)}\cr

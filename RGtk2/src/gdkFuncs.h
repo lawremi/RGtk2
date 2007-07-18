@@ -279,7 +279,7 @@ S_gdk_drag_get_protocol(USER_OBJECT_ s_xid);
 S_gdk_drag_find_window(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_window, USER_OBJECT_ s_x_root, USER_OBJECT_ s_y_root); 
 
   USER_OBJECT_
-S_gdk_drag_get_protocol_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_xid, USER_OBJECT_ s_protocol); 
+S_gdk_drag_get_protocol_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_xid); 
 
   USER_OBJECT_
 S_gdk_drag_find_window_for_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_window, USER_OBJECT_ s_screen, USER_OBJECT_ s_x_root, USER_OBJECT_ s_y_root); 
@@ -435,7 +435,7 @@ S_gdk_event_free(USER_OBJECT_ s_object);
 S_gdk_event_get_time(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
-S_gdk_event_get_state(USER_OBJECT_ s_object, USER_OBJECT_ s_state); 
+S_gdk_event_get_state(USER_OBJECT_ s_object); 
 
   USER_OBJECT_
 S_gdk_event_get_coords(USER_OBJECT_ s_object); 

@@ -851,6 +851,10 @@ S_cairo_stroke_extents(USER_OBJECT_ s_cr)
 
 
   _result = retByVal(_result, "x1", asRNumeric(x1), "y1", asRNumeric(y1), "x2", asRNumeric(x2), "y2", asRNumeric(y2), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -871,6 +875,10 @@ S_cairo_fill_extents(USER_OBJECT_ s_cr)
 
 
   _result = retByVal(_result, "x1", asRNumeric(x1), "y1", asRNumeric(y1), "x2", asRNumeric(x2), "y2", asRNumeric(y2), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -1039,6 +1047,7 @@ S_cairo_font_extents(USER_OBJECT_ s_cr)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoFontExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -1072,6 +1081,7 @@ S_cairo_text_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_utf8)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -1091,6 +1101,7 @@ S_cairo_glyph_extents(USER_OBJECT_ s_cr, USER_OBJECT_ s_glyphs)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -1154,6 +1165,7 @@ S_cairo_get_font_options(USER_OBJECT_ s_cr)
 
 
   _result = retByVal(_result, "options", toRPointerWithFinalizer(options, "CairoFontOptions", (RPointerFinalizer) cairo_font_options_destroy), NULL);
+  ;
 
   return(_result);
 }
@@ -1302,6 +1314,7 @@ S_cairo_scaled_font_extents(USER_OBJECT_ s_scaled_font)
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoFontExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -1321,6 +1334,7 @@ S_cairo_scaled_font_glyph_extents(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_gly
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -1544,7 +1558,7 @@ S_cairo_copy_path(USER_OBJECT_ s_cr)
   ans = cairo_copy_path(cr);
 
   _result = asRCairoPath(ans);
-  CLEANUP(cairo_path_destroy, ans);
+    CLEANUP(cairo_path_destroy, ans);;
 
   return(_result);
 }
@@ -1561,7 +1575,7 @@ S_cairo_copy_path_flat(USER_OBJECT_ s_cr)
   ans = cairo_copy_path_flat(cr);
 
   _result = asRCairoPath(ans);
-  CLEANUP(cairo_path_destroy, ans);
+    CLEANUP(cairo_path_destroy, ans);;
 
   return(_result);
 }
@@ -1576,7 +1590,7 @@ S_cairo_path_destroy(USER_OBJECT_ s_path)
 
   cairo_path_destroy(path);
 
-  CLEANUP(cairo_path_destroy, ((cairo_path_t*)path));
+    CLEANUP(cairo_path_destroy, ((cairo_path_t*)path));;
 
   return(_result);
 }
@@ -1823,6 +1837,7 @@ S_cairo_surface_get_font_options(USER_OBJECT_ s_surface)
 
 
   _result = retByVal(_result, "options", toRPointerWithFinalizer(options, "CairoFontOptions", (RPointerFinalizer) cairo_font_options_destroy), NULL);
+  ;
 
   return(_result);
 }
@@ -2233,6 +2248,7 @@ S_cairo_matrix_init(USER_OBJECT_ s_xx, USER_OBJECT_ s_yx, USER_OBJECT_ s_xy, USE
 
 
   _result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -2249,6 +2265,7 @@ S_cairo_matrix_init_identity(void)
 
 
   _result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -2267,6 +2284,7 @@ S_cairo_matrix_init_translate(USER_OBJECT_ s_tx, USER_OBJECT_ s_ty)
 
 
   _result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -2285,6 +2303,7 @@ S_cairo_matrix_init_scale(USER_OBJECT_ s_sx, USER_OBJECT_ s_sy)
 
 
   _result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -2302,6 +2321,7 @@ S_cairo_matrix_init_rotate(USER_OBJECT_ s_radians)
 
 
   _result = retByVal(_result, "matrix", toRPointerWithFinalizer(matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 
   return(_result);
 }
@@ -2800,6 +2820,7 @@ S_cairo_scaled_font_get_font_matrix(USER_OBJECT_ s_scaled_font)
 
 
   _result = retByVal(_result, "font.matrix", toRPointerWithFinalizer(font_matrix, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 #else
   error("cairo_scaled_font_get_font_matrix exists only in cairo >= 1.2.0");
 #endif
@@ -2821,6 +2842,7 @@ S_cairo_scaled_font_get_ctm(USER_OBJECT_ s_scaled_font)
 
 
   _result = retByVal(_result, "ctm", toRPointerWithFinalizer(ctm, "CairoMatrix", (RPointerFinalizer) g_free), NULL);
+  ;
 #else
   error("cairo_scaled_font_get_ctm exists only in cairo >= 1.2.0");
 #endif
@@ -2842,6 +2864,7 @@ S_cairo_scaled_font_get_font_options(USER_OBJECT_ s_scaled_font)
 
 
   _result = retByVal(_result, "options", toRPointerWithFinalizer(options, "CairoFontOptions", (RPointerFinalizer) cairo_font_options_destroy), NULL);
+  ;
 #else
   error("cairo_scaled_font_get_font_options exists only in cairo >= 1.2.0");
 #endif
@@ -2864,6 +2887,7 @@ S_cairo_scaled_font_text_extents(USER_OBJECT_ s_scaled_font, USER_OBJECT_ s_utf8
 
 
   _result = retByVal(_result, "extents", toRPointerWithFinalizer(extents, "CairoTextExtents", (RPointerFinalizer) g_free), NULL);
+  ;
 #else
   error("cairo_scaled_font_text_extents exists only in cairo >= 1.2.0");
 #endif
@@ -2946,6 +2970,8 @@ S_cairo_surface_get_device_offset(USER_OBJECT_ s_surface)
 
 
   _result = retByVal(_result, "x.offset", asRNumeric(x_offset), "y.offset", asRNumeric(y_offset), NULL);
+  ;
+  ;
 #else
   error("cairo_surface_get_device_offset exists only in cairo >= 1.2.0");
 #endif
@@ -3381,6 +3407,10 @@ S_cairo_clip_extents(USER_OBJECT_ s_cr)
 
 
   _result = retByVal(_result, "x1", asRNumeric(x1), "y1", asRNumeric(y1), "x2", asRNumeric(x2), "y2", asRNumeric(y2), NULL);
+  ;
+  ;
+  ;
+  ;
 #else
   error("cairo_clip_extents exists only in cairo >= 1.4.0");
 #endif
@@ -3401,7 +3431,7 @@ S_cairo_copy_clip_rectangle_list(USER_OBJECT_ s_cr)
   ans = cairo_copy_clip_rectangle_list(cr);
 
   _result = asRCairoRectangleList(ans);
-  CLEANUP(cairo_rectangle_list_destroy, ans);
+    CLEANUP(cairo_rectangle_list_destroy, ans);;
 #else
   error("cairo_copy_clip_rectangle_list exists only in cairo >= 1.4.0");
 #endif
@@ -3448,6 +3478,10 @@ S_cairo_pattern_get_rgba(USER_OBJECT_ s_pattern)
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "red", asRNumeric(red), "green", asRNumeric(green), "blue", asRNumeric(blue), "alpha", asRNumeric(alpha), NULL);
+  ;
+  ;
+  ;
+  ;
 #else
   error("cairo_pattern_get_rgba exists only in cairo >= 1.4.0");
 #endif
@@ -3471,6 +3505,7 @@ S_cairo_pattern_get_surface(USER_OBJECT_ s_pattern)
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "surface", toRPointerWithCairoRef(surface, "CairoSurface", cairo_surface), NULL);
+  ;
 #else
   error("cairo_pattern_get_surface exists only in cairo >= 1.4.0");
 #endif
@@ -3499,6 +3534,11 @@ S_cairo_pattern_get_color_stop_rgba(USER_OBJECT_ s_pattern, USER_OBJECT_ s_index
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "offset", asRNumeric(offset), "red", asRNumeric(red), "green", asRNumeric(green), "blue", asRNumeric(blue), "alpha", asRNumeric(alpha), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
 #else
   error("cairo_pattern_get_color_stop_rgba exists only in cairo >= 1.4.0");
 #endif
@@ -3522,6 +3562,7 @@ S_cairo_pattern_get_color_stop_count(USER_OBJECT_ s_pattern)
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "count", asRInteger(count), NULL);
+  ;
 #else
   error("cairo_pattern_get_color_stop_count exists only in cairo >= 1.4.0");
 #endif
@@ -3548,6 +3589,10 @@ S_cairo_pattern_get_linear_points(USER_OBJECT_ s_pattern)
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "x0", asRNumeric(x0), "y0", asRNumeric(y0), "x1", asRNumeric(x1), "y1", asRNumeric(y1), NULL);
+  ;
+  ;
+  ;
+  ;
 #else
   error("cairo_pattern_get_linear_points exists only in cairo >= 1.4.0");
 #endif
@@ -3576,6 +3621,12 @@ S_cairo_pattern_get_radial_circles(USER_OBJECT_ s_pattern)
   _result = asREnum(ans, CAIRO_TYPE_STATUS);
 
   _result = retByVal(_result, "x0", asRNumeric(x0), "y0", asRNumeric(y0), "r0", asRNumeric(r0), "x1", asRNumeric(x1), "y1", asRNumeric(y1), "r1", asRNumeric(r1), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
+  ;
 #else
   error("cairo_pattern_get_radial_circles exists only in cairo >= 1.4.0");
 #endif

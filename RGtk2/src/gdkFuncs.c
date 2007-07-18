@@ -427,7 +427,7 @@ S_gdk_colormap_query_color(USER_OBJECT_ s_object, USER_OBJECT_ s_pixel)
 
 
   _result = retByVal(_result, "result", asRGdkColor(result), NULL);
-  CLEANUP(g_free, result);
+    CLEANUP(g_free, result);;
 
   return(_result);
 }
@@ -479,7 +479,7 @@ S_gdk_color_parse(USER_OBJECT_ s_spec)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "color", asRGdkColor(color), NULL);
-  CLEANUP(g_free, color);
+    CLEANUP(g_free, color);;
 
   return(_result);
 }
@@ -499,7 +499,7 @@ S_gdk_color_white(USER_OBJECT_ s_object)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "color", asRGdkColor(color), NULL);
-  CLEANUP(g_free, color);
+    CLEANUP(g_free, color);;
 
   return(_result);
 }
@@ -519,7 +519,7 @@ S_gdk_color_black(USER_OBJECT_ s_object)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "color", asRGdkColor(color), NULL);
-  CLEANUP(g_free, color);
+    CLEANUP(g_free, color);;
 
   return(_result);
 }
@@ -876,7 +876,7 @@ S_gdk_display_list_devices(USER_OBJECT_ s_object)
   ans = gdk_display_list_devices(object);
 
   _result = asRGListWithRef(ans, "GdkDevice");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -1008,6 +1008,10 @@ S_gdk_display_get_pointer(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "screen", toRPointerWithRef(screen, "GdkScreen"), "x", asRInteger(x), "y", asRInteger(y), "mask", asRFlag(mask, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -1028,6 +1032,8 @@ S_gdk_display_get_window_at_pointer(USER_OBJECT_ s_object)
   _result = toRPointerWithRef(ans, "GdkWindow");
 
   _result = retByVal(_result, "win.x", asRInteger(win_x), "win.y", asRInteger(win_y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1189,7 +1195,7 @@ S_gdk_display_manager_list_displays(USER_OBJECT_ s_object)
   ans = gdk_display_manager_list_displays(object);
 
   _result = asRGSListWithRef(ans, "GdkDisplay");
-  CLEANUP(g_slist_free, ans);
+    CLEANUP(g_slist_free, ans);;
 
   return(_result);
 }
@@ -1285,6 +1291,8 @@ S_gdk_display_get_maximal_cursor_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRNumeric(width), "height", asRNumeric(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1440,7 +1448,7 @@ S_gdk_drag_begin(USER_OBJECT_ s_object, USER_OBJECT_ s_targets)
   ans = gdk_drag_begin(object, targets);
 
   _result = toRPointerWithRef(ans, "GdkDragContext");
-  CLEANUP(g_list_free, ((GList*)targets));
+    CLEANUP(g_list_free, ((GList*)targets));;
 
   return(_result);
 }
@@ -1460,6 +1468,7 @@ S_gdk_drag_get_protocol(USER_OBJECT_ s_xid)
   _result = asRNumeric(ans);
 
   _result = retByVal(_result, "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  ;
 
   return(_result);
 }
@@ -1481,24 +1490,29 @@ S_gdk_drag_find_window(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_window, USER_O
 
 
   _result = retByVal(_result, "dest.window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  ;
+  ;
 
   return(_result);
 }
  
 
 USER_OBJECT_
-S_gdk_drag_get_protocol_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_xid, USER_OBJECT_ s_protocol)
+S_gdk_drag_get_protocol_for_display(USER_OBJECT_ s_display, USER_OBJECT_ s_xid)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkDisplay* display = GDK_DISPLAY_OBJECT(getPtrValue(s_display));
   guint32 xid = ((guint32)asCNumeric(s_xid));
-  GdkDragProtocol* protocol = ((GdkDragProtocol*)asCEnum(s_protocol, GDK_TYPE_DRAG_PROTOCOL));
 
   guint32 ans;
+  GdkDragProtocol protocol;
 
-  ans = gdk_drag_get_protocol_for_display(display, xid, protocol);
+  ans = gdk_drag_get_protocol_for_display(display, xid, &protocol);
 
   _result = asRNumeric(ans);
+
+  _result = retByVal(_result, "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  ;
 
   return(_result);
 }
@@ -1521,6 +1535,8 @@ S_gdk_drag_find_window_for_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_win
 
 
   _result = retByVal(_result, "dest.window", toRPointerWithRef(dest_window, "GdkWindow"), "protocol", asREnum(protocol, GDK_TYPE_DRAG_PROTOCOL), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1657,6 +1673,8 @@ S_gdk_drawable_get_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -2399,17 +2417,20 @@ S_gdk_event_get_time(USER_OBJECT_ s_object)
  
 
 USER_OBJECT_
-S_gdk_event_get_state(USER_OBJECT_ s_object, USER_OBJECT_ s_state)
+S_gdk_event_get_state(USER_OBJECT_ s_object)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GdkEvent* object = ((GdkEvent*)getPtrValue(s_object));
-  GdkModifierType* state = ((GdkModifierType*)asCFlag(s_state, GDK_TYPE_MODIFIER_TYPE));
 
   gboolean ans;
+  GdkModifierType state;
 
-  ans = gdk_event_get_state(object, state);
+  ans = gdk_event_get_state(object, &state);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "state", asRFlag(state, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
 
   return(_result);
 }
@@ -2430,6 +2451,8 @@ S_gdk_event_get_coords(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "x.win", asRNumeric(x_win), "y.win", asRNumeric(y_win), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -2450,6 +2473,8 @@ S_gdk_event_get_root_coords(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "x.root", asRNumeric(x_root), "y.root", asRNumeric(y_root), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -2470,6 +2495,7 @@ S_gdk_event_get_axis(USER_OBJECT_ s_object, USER_OBJECT_ s_axis_use)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "value", asRNumeric(value), NULL);
+  ;
 
   return(_result);
 }
@@ -2582,8 +2608,8 @@ S_gdk_setting_get(USER_OBJECT_ s_name)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -2913,6 +2939,11 @@ S_gdk_text_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER_OBJECT_ s_te
 
 
   _result = retByVal(_result, "lbearing", asRInteger(lbearing), "rbearing", asRInteger(rbearing), "width", asRInteger(width), "ascent", asRInteger(ascent), "descent", asRInteger(descent), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -2936,6 +2967,11 @@ S_gdk_text_extents_wc(USER_OBJECT_ s_object, USER_OBJECT_ s_text)
 
 
   _result = retByVal(_result, "lbearing", asRInteger(lbearing), "rbearing", asRInteger(rbearing), "width", asRInteger(width), "ascent", asRInteger(ascent), "descent", asRInteger(descent), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -2958,6 +2994,11 @@ S_gdk_string_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_string)
 
 
   _result = retByVal(_result, "lbearing", asRInteger(lbearing), "rbearing", asRInteger(rbearing), "width", asRInteger(width), "ascent", asRInteger(ascent), "descent", asRInteger(descent), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -3022,7 +3063,7 @@ S_gdk_gc_get_values(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "values", asRGdkGCValues(values), NULL);
-  CLEANUP(g_free, values);
+    CLEANUP(g_free, values);;
 
   return(_result);
 }
@@ -3612,6 +3653,8 @@ S_gdk_device_get_state(USER_OBJECT_ s_object, USER_OBJECT_ s_window)
 
 
   _result = retByVal(_result, "axes", asRNumeric(axes), "mask", asRFlag(mask, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3633,6 +3676,7 @@ S_gdk_device_get_axis(USER_OBJECT_ s_object, USER_OBJECT_ s_axes, USER_OBJECT_ s
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "value", asRNumeric(value), NULL);
+  ;
 
   return(_result);
 }
@@ -3752,6 +3796,10 @@ S_gdk_keymap_translate_keyboard_state(USER_OBJECT_ s_object, USER_OBJECT_ s_hard
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "keyval", asRNumeric(keyval), "effective.group", asRInteger(effective_group), "level", asRInteger(level), "consumed.modifiers", asRFlag(consumed_modifiers, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -3773,7 +3821,8 @@ S_gdk_keymap_get_entries_for_keyval(USER_OBJECT_ s_object, USER_OBJECT_ s_keyval
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_keys), "n.keys", asRInteger(n_keys), NULL);
-  CLEANUP(g_free, keys);
+    CLEANUP(g_free, keys);;
+  ;
 
   return(_result);
 }
@@ -3796,8 +3845,9 @@ S_gdk_keymap_get_entries_for_keycode(USER_OBJECT_ s_object, USER_OBJECT_ s_hardw
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "keys", asRArrayRefWithSize(keys, asRGdkKeymapKey, n_entries), "keyvals", asRNumericArrayWithSize(keyvals, n_entries), "n.entries", asRInteger(n_entries), NULL);
-  CLEANUP(g_free, keys);
-  CLEANUP(g_free, keyvals);
+    CLEANUP(g_free, keys);;
+    CLEANUP(g_free, keyvals);;
+  ;
 
   return(_result);
 }
@@ -3830,7 +3880,7 @@ S_gdk_keyval_name(USER_OBJECT_ s_keyval)
   ans = gdk_keyval_name(keyval);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -3865,6 +3915,8 @@ S_gdk_keyval_convert_case(USER_OBJECT_ s_symbol)
 
 
   _result = retByVal(_result, "lower", asRNumeric(lower), "upper", asRNumeric(upper), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -4357,6 +4409,7 @@ S_gdk_pixmap_create_from_xpm(USER_OBJECT_ s_drawable, USER_OBJECT_ s_transparent
   _result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
+  ;
 
   return(_result);
 }
@@ -4379,6 +4432,7 @@ S_gdk_pixmap_colormap_create_from_xpm(USER_OBJECT_ s_drawable, USER_OBJECT_ s_co
   _result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
+  ;
 
   return(_result);
 }
@@ -4400,6 +4454,7 @@ S_gdk_pixmap_create_from_xpm_d(USER_OBJECT_ s_drawable, USER_OBJECT_ s_transpare
   _result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
+  ;
 
   return(_result);
 }
@@ -4422,6 +4477,7 @@ S_gdk_pixmap_colormap_create_from_xpm_d(USER_OBJECT_ s_drawable, USER_OBJECT_ s_
   _result = toRPointerWithFinalizer(ans, "GdkPixmap", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "mask", toRPointerWithFinalizer(mask, "GdkBitmap", (RPointerFinalizer) g_object_unref), NULL);
+  ;
 
   return(_result);
 }
@@ -4504,7 +4560,7 @@ S_gdk_atom_name(USER_OBJECT_ s_atom)
   ans = gdk_atom_name(atom);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -4549,7 +4605,10 @@ S_gdk_property_get(USER_OBJECT_ s_object, USER_OBJECT_ s_property, USER_OBJECT_ 
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "actual.property.type", asRGdkAtom(actual_property_type), "actual.format", asRInteger(actual_format), "actual.length", asRInteger(actual_length), "data", asRRawArrayWithSize(data, actual_format), NULL);
-  CLEANUP(g_free, data);
+  ;
+  ;
+  ;
+    CLEANUP(g_free, data);;
 
   return(_result);
 }
@@ -4756,7 +4815,7 @@ S_gdk_rgb_cmap_new(USER_OBJECT_ s_colors)
   ans = gdk_rgb_cmap_new(colors, n_colors);
 
   _result = asRGdkRgbCmap(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -5152,7 +5211,7 @@ S_gdk_screen_list_visuals(USER_OBJECT_ s_object)
   ans = gdk_screen_list_visuals(object);
 
   _result = asRGListWithRef(ans, "GdkVisual");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -5169,7 +5228,7 @@ S_gdk_screen_get_toplevel_windows(USER_OBJECT_ s_object)
   ans = gdk_screen_get_toplevel_windows(object);
 
   _result = asRGListWithRef(ans, "GdkWindow");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -5186,7 +5245,7 @@ S_gdk_screen_make_display_name(USER_OBJECT_ s_object)
   ans = gdk_screen_make_display_name(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -5221,7 +5280,7 @@ S_gdk_screen_get_monitor_geometry(USER_OBJECT_ s_object, USER_OBJECT_ s_monitor_
 
 
   _result = retByVal(_result, "dest", asRGdkRectangle(dest), NULL);
-  CLEANUP(g_free, dest);
+    CLEANUP(g_free, dest);;
 
   return(_result);
 }
@@ -5307,8 +5366,8 @@ S_gdk_screen_get_setting(USER_OBJECT_ s_object, USER_OBJECT_ s_name)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -5329,7 +5388,7 @@ S_gdk_spawn_command_line_on_screen(USER_OBJECT_ s_screen, USER_OBJECT_ s_command
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -5400,7 +5459,9 @@ S_gdk_selection_property_get(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "data", asRRawArrayWithSize(data, prop_format), "prop.type", asRGdkAtom(prop_type), "prop.format", asRInteger(prop_format), NULL);
-  CLEANUP(g_free, data);
+    CLEANUP(g_free, data);;
+  ;
+  ;
 
   return(_result);
 }
@@ -5525,7 +5586,7 @@ S_gdk_list_visuals(void)
   ans = gdk_list_visuals();
 
   _result = asRGListWithRef(ans, "GdkVisual");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -5636,6 +5697,8 @@ S_gdk_window_at_pointer(void)
   _result = toRPointerWithRef(ans, "GdkWindow");
 
   _result = retByVal(_result, "win.x", asRInteger(win_x), "win.y", asRInteger(win_y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -5901,6 +5964,7 @@ S_gdk_window_get_user_data(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "user.data", toRPointer(user_data, "GtkWidget"), NULL);
+  ;
 
   return(_result);
 }
@@ -6359,6 +6423,11 @@ S_gdk_window_get_geometry(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), "depth", asRInteger(depth), NULL);
+  ;
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -6377,6 +6446,8 @@ S_gdk_window_get_position(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6397,6 +6468,8 @@ S_gdk_window_get_origin(USER_OBJECT_ s_object)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6417,6 +6490,8 @@ S_gdk_window_get_deskrelative_origin(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6435,6 +6510,8 @@ S_gdk_window_get_root_origin(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6452,7 +6529,7 @@ S_gdk_window_get_frame_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "rect", asRGdkRectangle(rect), NULL);
-  CLEANUP(g_free, rect);
+    CLEANUP(g_free, rect);;
 
   return(_result);
 }
@@ -6474,6 +6551,9 @@ S_gdk_window_get_pointer(USER_OBJECT_ s_object)
   _result = toRPointerWithRef(ans, "GdkWindow");
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "mask", asRFlag(mask, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -6522,7 +6602,7 @@ S_gdk_window_get_children(USER_OBJECT_ s_object)
   ans = gdk_window_get_children(object);
 
   _result = asRGListWithRef(ans, "GdkWindow");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -6539,7 +6619,7 @@ S_gdk_window_peek_children(USER_OBJECT_ s_object)
   ans = gdk_window_peek_children(object);
 
   _result = asRGListWithRef(ans, "GdkWindow");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -6586,7 +6666,7 @@ S_gdk_window_set_icon_list(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbufs)
 
   gdk_window_set_icon_list(object, pixbufs);
 
-  CLEANUP(g_list_free, ((GList*)pixbufs));
+    CLEANUP(g_list_free, ((GList*)pixbufs));;
 
   return(_result);
 }
@@ -6684,6 +6764,7 @@ S_gdk_window_get_decorations(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "decorations", asRFlag(decorations, GDK_TYPE_WM_DECORATION), NULL);
+  ;
 
   return(_result);
 }
@@ -6714,7 +6795,7 @@ S_gdk_window_get_toplevels(void)
   ans = gdk_window_get_toplevels();
 
   _result = asRGListWithRef(ans, "GdkWindow");
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -7015,6 +7096,9 @@ S_gdk_window_get_internal_paint_info(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "real.drawable", toRPointerWithRef(real_drawable, "GdkDrawable"), "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), NULL);
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -7373,7 +7457,7 @@ S_gdk_pixbuf_new_from_file(USER_OBJECT_ s_filename)
   _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7395,7 +7479,7 @@ S_gdk_pixbuf_new_from_file_at_size(USER_OBJECT_ s_filename, USER_OBJECT_ s_width
   _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7418,7 +7502,7 @@ S_gdk_pixbuf_new_from_file_at_scale(USER_OBJECT_ s_filename, USER_OBJECT_ s_widt
   _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7456,7 +7540,7 @@ S_gdk_pixbuf_new_from_inline(USER_OBJECT_ s_data, USER_OBJECT_ s_copy_pixels)
   _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7515,7 +7599,7 @@ S_gdk_pixbuf_savev(USER_OBJECT_ s_object, USER_OBJECT_ s_filename, USER_OBJECT_ 
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7539,7 +7623,7 @@ S_gdk_pixbuf_save_to_callbackv(USER_OBJECT_ s_object, USER_OBJECT_ s_save_func, 
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
   R_freeCBData(user_data);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -7787,7 +7871,7 @@ S_gdk_pixbuf_animation_new_from_file(USER_OBJECT_ s_filename)
   _result = toRPointerWithFinalizer(ans, "GdkPixbufAnimation", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -8032,7 +8116,7 @@ S_gdk_pixbuf_get_formats(void)
   ans = gdk_pixbuf_get_formats();
 
   _result = asRGSList(ans, "GdkPixbufFormat");
-  CLEANUP(g_slist_free, ans);
+    CLEANUP(g_slist_free, ans);;
 
   return(_result);
 }
@@ -8053,6 +8137,8 @@ S_gdk_pixbuf_get_file_info(USER_OBJECT_ s_filename)
   _result = toRPointer(ans, "GdkPixbufFormat");
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -8069,7 +8155,7 @@ S_gdk_pixbuf_format_get_name(USER_OBJECT_ s_object)
   ans = gdk_pixbuf_format_get_name(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -8133,7 +8219,7 @@ S_gdk_pixbuf_format_get_license(USER_OBJECT_ s_object)
   ans = gdk_pixbuf_format_get_license(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -8150,7 +8236,7 @@ S_gdk_pixbuf_format_get_description(USER_OBJECT_ s_object)
   ans = gdk_pixbuf_format_get_description(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -8167,7 +8253,7 @@ S_gdk_pixbuf_format_get_mime_types(USER_OBJECT_ s_object)
   ans = gdk_pixbuf_format_get_mime_types(object);
 
   _result = asRStringArray(ans);
-  CLEANUP(g_strfreev, ans);
+    CLEANUP(g_strfreev, ans);;
 
   return(_result);
 }
@@ -8184,7 +8270,7 @@ S_gdk_pixbuf_format_get_extensions(USER_OBJECT_ s_object)
   ans = gdk_pixbuf_format_get_extensions(object);
 
   _result = asRStringArray(ans);
-  CLEANUP(g_strfreev, ans);
+    CLEANUP(g_strfreev, ans);;
 
   return(_result);
 }
@@ -8250,7 +8336,7 @@ S_gdk_pixbuf_loader_new_with_type(USER_OBJECT_ s_image_type)
   _result = toRPointerWithFinalizer(ans, "GdkPixbufLoader", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -8270,7 +8356,7 @@ S_gdk_pixbuf_loader_new_with_mime_type(USER_OBJECT_ s_mime_type)
   _result = toRPointerWithFinalizer(ans, "GdkPixbufLoader", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -8292,7 +8378,7 @@ S_gdk_pixbuf_loader_write(USER_OBJECT_ s_object, USER_OBJECT_ s_buf)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -8344,7 +8430,7 @@ S_gdk_pixbuf_loader_close(USER_OBJECT_ s_object)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -8397,7 +8483,7 @@ S_gdk_rectangle_intersect(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "dest", asRGdkRectangle(dest), NULL);
-  CLEANUP(g_free, dest);
+    CLEANUP(g_free, dest);;
 
   return(_result);
 }
@@ -8416,7 +8502,7 @@ S_gdk_rectangle_union(USER_OBJECT_ s_src1, USER_OBJECT_ s_src2)
 
 
   _result = retByVal(_result, "dest", asRGdkRectangle(dest), NULL);
-  CLEANUP(g_free, dest);
+    CLEANUP(g_free, dest);;
 
   return(_result);
 }
@@ -8499,7 +8585,7 @@ S_gdk_region_get_clipbox(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "rectangle", asRGdkRectangle(rectangle), NULL);
-  CLEANUP(g_free, rectangle);
+    CLEANUP(g_free, rectangle);;
 
   return(_result);
 }
@@ -8518,7 +8604,8 @@ S_gdk_region_get_rectangles(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "rectangles", asRArrayRefWithSize(rectangles, asRGdkRectangle, n_rectangles), "n.rectangles", asRInteger(n_rectangles), NULL);
-  CLEANUP(g_free, rectangles);
+    CLEANUP(g_free, rectangles);;
+  ;
 
   return(_result);
 }

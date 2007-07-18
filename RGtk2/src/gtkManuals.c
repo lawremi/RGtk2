@@ -515,6 +515,9 @@ S_gtk_show_about_dialog(USER_OBJECT_ s_parent, USER_OBJECT_ s_props)
 
         g_signal_connect (dialog, "delete_event", G_CALLBACK (gtk_widget_hide_on_delete), NULL);
 
+        /* Close dialog on user response */
+        g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_hide), NULL);
+        
         PROTECT(s_dialog = toRPointer(dialog, "GtkAboutDialog"));
         R_setGObjectProps (s_dialog, s_props);
         UNPROTECT(1);
@@ -1451,6 +1454,23 @@ S_gtk_tree_model_unload(USER_OBJECT_ s_model, USER_OBJECT_ s_rows, USER_OBJECT_ 
 	return(result);
 }
 
+/* functions for creating and accessing GtkTreeIters */
+/* only to be used when implementing a custom GtkTreeModel */
+
+/* create a new GtkTreeIter */
+USER_OBJECT_
+S_gtk_tree_iter(USER_OBJECT_ id, USER_OBJECT_ stamp)
+{
+  USER_OBJECT_ ans;
+  GtkTreeIter iter;
+  
+  iter.stamp = asCInteger(stamp);
+  iter.user_data = GINT_TO_POINTER(asCInteger(id));
+  
+  return(toRPointerWithFinalizer(gtk_tree_iter_copy(&iter), "GtkTreeIter",
+    (RPointerFinalizer)gtk_tree_iter_free));
+}
+
 /* problem: the user data in the GtkTreeIter must be statically allocated */
 /* there's no way to 'free' a GtkTreeIter, so we will leak memory if
    we PreserveObject() here. unfortunately, we crash otherwise. */
@@ -1461,7 +1481,6 @@ S_gtk_tree_iter_set_id(USER_OBJECT_ s_iter, USER_OBJECT_ s_data)
 {
   GtkTreeIter *iter = getPtrValue(s_iter);
   gint index = asCInteger(s_data);
-  iter->user_data2 = GINT_TO_POINTER(R_GTK_TYPE_SEXP);
   iter->user_data = GINT_TO_POINTER(index);
   return NULL_USER_OBJECT;
 }
@@ -1469,9 +1488,21 @@ USER_OBJECT_
 S_gtk_tree_iter_get_id(USER_OBJECT_ s_iter)
 {
   GtkTreeIter *iter = getPtrValue(s_iter);
-  /* this serves as a flag to try to ensure people don't get data from the
-     wrong iter */
-  if (GPOINTER_TO_INT(iter->user_data2) == R_GTK_TYPE_SEXP)
-    return asRInteger(GPOINTER_TO_INT(iter->user_data));
+  return asRInteger(GPOINTER_TO_INT(iter->user_data));
+}
+
+/* GtkTreeIter stamping */
+/* not to be used unless one is implementing a GtkTreeModel */
+USER_OBJECT_
+S_gtk_tree_iter_set_stamp(USER_OBJECT_ s_iter, USER_OBJECT_ s_stamp)
+{
+  GtkTreeIter *iter = getPtrValue(s_iter);
+  iter->stamp = asCInteger(s_stamp);
   return NULL_USER_OBJECT;
+}
+USER_OBJECT_
+S_gtk_tree_iter_get_stamp(USER_OBJECT_ s_iter)
+{
+  GtkTreeIter *iter = getPtrValue(s_iter);
+  return asRInteger(iter->stamp);
 }

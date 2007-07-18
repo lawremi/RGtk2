@@ -12,7 +12,7 @@
 .reserved <- c(".props", ".prop_overrides", ".initialize", ".signals",
     ".public", ".protected", ".private")
 
-gClass <- function(name, parent = "GObject", class_def = NULL)
+gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
 {
   virtuals <- as.list(.virtuals)
   
@@ -195,7 +195,7 @@ gClass <- function(name, parent = "GObject", class_def = NULL)
   
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
     class_init_sym, interface_init_syms, class_env, props, prop_overrides, 
-    signals)
+    signals, abstract)
 }
 
 registerVirtuals <- function(virtuals)

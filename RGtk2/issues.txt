@@ -7,7 +7,8 @@ Adding support for extending GObjects
 In/Out issues:
 - GtkEditable (insert_text/do_insert_text)
   -- this also affects the insert-text signal, so this is a good way around that
-    
+- GtkTreeModel (iter_next)
+
 Some current issues/bugs with RGtk2
 ----------
 
@@ -26,31 +27,29 @@ Low Priority Issues
 
 - atkStreamableContentGetStream: need to map GIOChannel to R connection - not doable right now
 - support translation of messages
-- should not send code to type cast macros (results in slight slowdown)
 - Returning *Funcs to R
 - GtkRcPropertyParser - can we return the GValue by ref?
 - allow specification of numeric precision on GtkCellRendererText
-- could throw custom signal in response to GError, instead of warning
 - could use new namespaced .Call mechanism (dll$foo) - better if cached
 - GTypeModule support (create bindings and add module arg to gClass)
 - R wrappers for callbacks so that return values are coerced
 
 Introspection?
 ----------------
-`-> Creating explicit bindings at runtime would be impractical
-`-> Cairo would not support introspection 
-	`-> Should cairo be made a separate package? - It has little utility outside of GTK
 `-> Syntax tricks like the '$' and '[' operators could allow us to bind to 
-	methods and fields at runtime
-	`-> What about constructors? There's gObjectNew...
-	`-> What about ordinary functions - relatively few in number, 
-		could be explicitly bound at runtime
-  `-> Could use RObjectTables-like functionality here
+	  methods and fields at runtime
+	  `-> What about constructors? There's gObjectNew...
+	  `-> What about ordinary functions - relatively few in number, 
+		    could be explicitly bound at runtime
 `-> Verdict: compiled bindings will always be faster, so for often used libraries,
     there should be a set of generated bindings. Other libraries can be bound
     on the fly with introspection. Introspection could help even in the compiled
     case. For example, parent handlers for virtuals could be invoked dynamically.
-		
+`-> Introspection could even be useful beyond convenient R<->C bindings - 
+    other languages with GObject bindings could provide new types - no C needed -
+    this means GObject would become a common language runtime.
+    `-> But could this compete with virtual machine runtimes like Java and .NET?
+    
 Unsupported funcs
 -----------------
 Use the following code, with RGtk2 and your favorite "defs" loaded to find undefined

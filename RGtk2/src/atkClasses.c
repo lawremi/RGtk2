@@ -21,10 +21,11 @@ S_virtual_atk_hyperlink_get_uri(AtkHyperlink* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -48,10 +49,11 @@ S_virtual_atk_hyperlink_get_object(AtkHyperlink* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -73,10 +75,11 @@ S_virtual_atk_hyperlink_get_end_index(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -98,10 +101,11 @@ S_virtual_atk_hyperlink_get_start_index(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -123,10 +127,11 @@ S_virtual_atk_hyperlink_is_valid(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -148,10 +153,11 @@ S_virtual_atk_hyperlink_get_n_anchors(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -173,10 +179,11 @@ S_virtual_atk_hyperlink_link_state(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((guint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((guint)0));
   return(((guint)asCNumeric(s_ans)));
 }
 static 
@@ -198,10 +205,11 @@ S_virtual_atk_hyperlink_is_selected_link(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -223,10 +231,11 @@ S_virtual_atk_hyperlink_link_activated(AtkHyperlink* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_hyperlink_class_init(AtkHyperlinkClass * c, SEXP e)
@@ -271,7 +280,7 @@ S_atk_hyperlink_class_get_uri(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
   ans = object_class->get_uri(object, i);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -424,10 +433,11 @@ S_virtual_atk_object_get_name(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -449,10 +459,11 @@ S_virtual_atk_object_get_description(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -474,10 +485,11 @@ S_virtual_atk_object_get_parent(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -499,10 +511,11 @@ S_virtual_atk_object_get_n_children(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -526,10 +539,11 @@ S_virtual_atk_object_ref_child(AtkObject* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -551,10 +565,11 @@ S_virtual_atk_object_get_index_in_parent(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -576,10 +591,11 @@ S_virtual_atk_object_ref_relation_set(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkRelationSet*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkRelationSet*)0));
   return(ATK_RELATION_SET(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -601,10 +617,11 @@ S_virtual_atk_object_get_role(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkRole)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkRole)0));
   return(((AtkRole)asCEnum(s_ans, ATK_TYPE_ROLE)));
 }
 static 
@@ -626,10 +643,11 @@ S_virtual_atk_object_get_layer(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkLayer)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkLayer)0));
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
 }
 static 
@@ -651,10 +669,11 @@ S_virtual_atk_object_get_mdi_zorder(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -676,10 +695,11 @@ S_virtual_atk_object_ref_state_set(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkStateSet*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkStateSet*)0));
   return(ATK_STATE_SET(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -703,10 +723,11 @@ S_virtual_atk_object_set_name(AtkObject* s_object, const gchar* s_name)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -729,10 +750,11 @@ S_virtual_atk_object_set_description(AtkObject* s_object, const gchar* s_descrip
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -755,10 +777,11 @@ S_virtual_atk_object_set_parent(AtkObject* s_object, AtkObject* s_parent)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -781,10 +804,11 @@ S_virtual_atk_object_set_role(AtkObject* s_object, AtkRole s_role)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -807,10 +831,11 @@ S_virtual_atk_object_remove_property_change_handler(AtkObject* s_object, guint s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -833,10 +858,11 @@ S_virtual_atk_object_initialize(AtkObject* s_object, gpointer s_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -861,10 +887,11 @@ S_virtual_atk_object_children_changed(AtkObject* s_object, guint s_change_index,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -887,10 +914,11 @@ S_virtual_atk_object_focus_event(AtkObject* s_object, gboolean s_focus_in)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -915,10 +943,11 @@ S_virtual_atk_object_state_change(AtkObject* s_object, const gchar* s_name, gboo
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -939,10 +968,11 @@ S_virtual_atk_object_visible_data_changed(AtkObject* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -965,10 +995,11 @@ S_virtual_atk_object_active_descendant_changed(AtkObject* s_object, AtkObject* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_object_class_init(AtkObjectClass * c, SEXP e)
@@ -1418,10 +1449,11 @@ S_virtual_atk_object_factory_invalidate(AtkObjectFactory* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_object_factory_class_init(AtkObjectFactoryClass * c, SEXP e)
@@ -1560,10 +1592,11 @@ S_virtual_atk_table_ref_at(AtkTable* s_object, gint s_row, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -1589,10 +1622,11 @@ S_virtual_atk_table_get_index_at(AtkTable* s_object, gint s_row, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1616,10 +1650,11 @@ S_virtual_atk_table_get_column_at_index(AtkTable* s_object, gint s_index)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1643,10 +1678,11 @@ S_virtual_atk_table_get_row_at_index(AtkTable* s_object, gint s_index)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1668,10 +1704,11 @@ S_virtual_atk_table_get_n_columns(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1693,10 +1730,11 @@ S_virtual_atk_table_get_n_rows(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1722,10 +1760,11 @@ S_virtual_atk_table_get_column_extent_at(AtkTable* s_object, gint s_row, gint s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1751,10 +1790,11 @@ S_virtual_atk_table_get_row_extent_at(AtkTable* s_object, gint s_row, gint s_col
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -1776,10 +1816,11 @@ S_virtual_atk_table_get_caption(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -1803,10 +1844,11 @@ S_virtual_atk_table_get_column_description(AtkTable* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -1830,10 +1872,11 @@ S_virtual_atk_table_get_column_header(AtkTable* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -1857,10 +1900,11 @@ S_virtual_atk_table_get_row_description(AtkTable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -1884,10 +1928,11 @@ S_virtual_atk_table_get_row_header(AtkTable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -1909,10 +1954,11 @@ S_virtual_atk_table_get_summary(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -1936,10 +1982,11 @@ S_virtual_atk_table_set_caption(AtkTable* s_object, AtkObject* s_caption)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1964,10 +2011,11 @@ S_virtual_atk_table_set_column_description(AtkTable* s_object, gint s_column, co
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1992,10 +2040,11 @@ S_virtual_atk_table_set_column_header(AtkTable* s_object, gint s_column, AtkObje
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2020,10 +2069,11 @@ S_virtual_atk_table_set_row_description(AtkTable* s_object, gint s_row, const gc
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2048,10 +2098,11 @@ S_virtual_atk_table_set_row_header(AtkTable* s_object, gint s_row, AtkObject* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2074,10 +2125,11 @@ S_virtual_atk_table_set_summary(AtkTable* s_object, AtkObject* s_accessible)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -2098,10 +2150,11 @@ S_virtual_atk_table_get_selected_columns(AtkTable* s_object, gint** s_selected)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
@@ -2124,10 +2177,11 @@ S_virtual_atk_table_get_selected_rows(AtkTable* s_object, gint** s_selected)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   *s_selected = ((gint*)asCArrayDup(VECTOR_ELT(s_ans, 1), gint, asCInteger));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
@@ -2152,10 +2206,11 @@ S_virtual_atk_table_is_column_selected(AtkTable* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2179,10 +2234,11 @@ S_virtual_atk_table_is_row_selected(AtkTable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2208,10 +2264,11 @@ S_virtual_atk_table_is_selected(AtkTable* s_object, gint s_row, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2235,10 +2292,11 @@ S_virtual_atk_table_add_row_selection(AtkTable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2262,10 +2320,11 @@ S_virtual_atk_table_remove_row_selection(AtkTable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2289,10 +2348,11 @@ S_virtual_atk_table_add_column_selection(AtkTable* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2316,10 +2376,11 @@ S_virtual_atk_table_remove_column_selection(AtkTable* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2345,10 +2406,11 @@ S_virtual_atk_table_row_inserted(AtkTable* s_object, gint s_row, gint s_num_inse
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2373,10 +2435,11 @@ S_virtual_atk_table_column_inserted(AtkTable* s_object, gint s_column, gint s_nu
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2401,10 +2464,11 @@ S_virtual_atk_table_row_deleted(AtkTable* s_object, gint s_row, gint s_num_delet
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2429,10 +2493,11 @@ S_virtual_atk_table_column_deleted(AtkTable* s_object, gint s_column, gint s_num
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2453,10 +2518,11 @@ S_virtual_atk_table_row_reordered(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2477,10 +2543,11 @@ S_virtual_atk_table_column_reordered(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2501,10 +2568,11 @@ S_virtual_atk_table_model_changed(AtkTable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_table_class_init(AtkTableIface * c, SEXP e)
@@ -2935,7 +3003,7 @@ S_atk_table_iface_get_selected_columns(USER_OBJECT_ s_object_class, USER_OBJECT_
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
-  CLEANUP(g_free, selected);
+    CLEANUP(g_free, selected);;
 
   return(_result);
 }
@@ -2955,7 +3023,7 @@ S_atk_table_iface_get_selected_rows(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
-  CLEANUP(g_free, selected);
+    CLEANUP(g_free, selected);;
 
   return(_result);
 }
@@ -3207,10 +3275,11 @@ S_virtual_atk_streamable_content_get_n_mime_types(AtkStreamableContent* s_object
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -3234,10 +3303,11 @@ S_virtual_atk_streamable_content_get_mime_type(AtkStreamableContent* s_object, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 void
@@ -3310,10 +3380,11 @@ S_virtual_atk_selection_add_selection(AtkSelection* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -3335,10 +3406,11 @@ S_virtual_atk_selection_clear_selection(AtkSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -3362,10 +3434,11 @@ S_virtual_atk_selection_ref_selection(AtkSelection* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -3387,10 +3460,11 @@ S_virtual_atk_selection_get_selection_count(AtkSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -3414,10 +3488,11 @@ S_virtual_atk_selection_is_child_selected(AtkSelection* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -3441,10 +3516,11 @@ S_virtual_atk_selection_remove_selection(AtkSelection* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -3466,10 +3542,11 @@ S_virtual_atk_selection_select_all_selection(AtkSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -3491,10 +3568,11 @@ S_virtual_atk_selection_selection_changed(AtkSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_selection_class_init(AtkSelectionIface * c, SEXP e)
@@ -3673,10 +3751,11 @@ S_virtual_atk_implementor_ref_accessible(AtkImplementor* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 void
@@ -3730,10 +3809,11 @@ S_virtual_atk_image_get_image_position(AtkImage* s_object, gint* s_x, gint* s_y,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -3756,10 +3836,11 @@ S_virtual_atk_image_get_image_description(AtkImage* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -3781,10 +3862,11 @@ S_virtual_atk_image_get_image_size(AtkImage* s_object, gint* s_width, gint* s_he
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -3809,10 +3891,11 @@ S_virtual_atk_image_set_image_description(AtkImage* s_object, const gchar* s_des
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -3848,6 +3931,8 @@ S_atk_image_iface_get_image_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3882,6 +3967,8 @@ S_atk_image_iface_get_image_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3926,10 +4013,11 @@ S_virtual_atk_hypertext_get_link(AtkHypertext* s_object, gint s_link_index)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkHyperlink*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkHyperlink*)0));
   return(ATK_HYPERLINK(getPtrValue(s_ans)));
 }
 static 
@@ -3951,10 +4039,11 @@ S_virtual_atk_hypertext_get_n_links(AtkHypertext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -3978,10 +4067,11 @@ S_virtual_atk_hypertext_get_link_index(AtkHypertext* s_object, gint s_char_index
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -4005,10 +4095,11 @@ S_virtual_atk_hypertext_link_selected(AtkHypertext* s_object, gint s_link_index)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_hypertext_class_init(AtkHypertextIface * c, SEXP e)
@@ -4120,10 +4211,11 @@ S_virtual_atk_editable_text_set_run_attributes(AtkEditableText* s_object, AtkAtt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4147,10 +4239,11 @@ S_virtual_atk_editable_text_set_text_contents(AtkEditableText* s_object, const g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4177,10 +4270,11 @@ S_virtual_atk_editable_text_insert_text(AtkEditableText* s_object, const gchar* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4205,10 +4299,11 @@ S_virtual_atk_editable_text_copy_text(AtkEditableText* s_object, gint s_start_po
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4233,10 +4328,11 @@ S_virtual_atk_editable_text_cut_text(AtkEditableText* s_object, gint s_start_pos
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4261,10 +4357,11 @@ S_virtual_atk_editable_text_delete_text(AtkEditableText* s_object, gint s_start_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4287,10 +4384,11 @@ S_virtual_atk_editable_text_paste_text(AtkEditableText* s_object, gint s_positio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_editable_text_class_init(AtkEditableTextIface * c, SEXP e)
@@ -4331,7 +4429,7 @@ S_atk_editable_text_iface_set_run_attributes(USER_OBJECT_ s_object_class, USER_O
   ans = object_class->set_run_attributes(object, attrib_set, start_offset, end_offset);
 
   _result = asRLogical(ans);
-  CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)attrib_set));
+    CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)attrib_set));;
 
   return(_result);
 }
@@ -4458,10 +4556,11 @@ S_virtual_atk_component_contains(AtkComponent* s_object, gint s_x, gint s_y, Atk
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4489,10 +4588,11 @@ S_virtual_atk_component_ref_accessible_at_point(AtkComponent* s_object, gint s_x
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -4516,10 +4616,11 @@ S_virtual_atk_component_get_extents(AtkComponent* s_object, gint* s_x, gint* s_y
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
@@ -4546,10 +4647,11 @@ S_virtual_atk_component_get_position(AtkComponent* s_object, gint* s_x, gint* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -4572,10 +4674,11 @@ S_virtual_atk_component_get_size(AtkComponent* s_object, gint* s_width, gint* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -4598,10 +4701,11 @@ S_virtual_atk_component_grab_focus(AtkComponent* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4625,10 +4729,11 @@ S_virtual_atk_component_remove_focus_handler(AtkComponent* s_object, guint s_han
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -4659,10 +4764,11 @@ S_virtual_atk_component_set_extents(AtkComponent* s_object, gint s_x, gint s_y, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4690,10 +4796,11 @@ S_virtual_atk_component_set_position(AtkComponent* s_object, gint s_x, gint s_y,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4719,10 +4826,11 @@ S_virtual_atk_component_set_size(AtkComponent* s_object, gint s_width, gint s_he
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4744,10 +4852,11 @@ S_virtual_atk_component_get_layer(AtkComponent* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkLayer)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkLayer)0));
   return(((AtkLayer)asCEnum(s_ans, ATK_TYPE_LAYER)));
 }
 static 
@@ -4769,10 +4878,11 @@ S_virtual_atk_component_get_mdi_zorder(AtkComponent* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -4796,10 +4906,11 @@ S_virtual_atk_component_bounds_changed(AtkComponent* s_object, AtkRectangle* s_b
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_atk_component_class_init(AtkComponentIface * c, SEXP e)
@@ -4892,6 +5003,10 @@ S_atk_component_iface_get_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_ob
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -4911,6 +5026,8 @@ S_atk_component_iface_get_position(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -4929,6 +5046,8 @@ S_atk_component_iface_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -5092,10 +5211,11 @@ S_virtual_atk_action_do_action(AtkAction* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -5117,10 +5237,11 @@ S_virtual_atk_action_get_n_actions(AtkAction* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -5144,10 +5265,11 @@ S_virtual_atk_action_get_description(AtkAction* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -5171,10 +5293,11 @@ S_virtual_atk_action_get_name(AtkAction* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -5198,10 +5321,11 @@ S_virtual_atk_action_get_keybinding(AtkAction* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -5227,10 +5351,11 @@ S_virtual_atk_action_set_description(AtkAction* s_object, gint s_i, const gchar*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -5254,10 +5379,11 @@ S_virtual_atk_action_get_localized_name(AtkAction* s_object, gint s_i)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 void
@@ -5424,11 +5550,16 @@ S_virtual_atk_value_get_current_value(AtkValue* s_object, GValue* s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  GValue* value = asCGValue(VECTOR_ELT(s_ans, 0));
+  *s_value = *value;
+  g_free(value);
+}
 }
 static 
 void
@@ -5449,11 +5580,16 @@ S_virtual_atk_value_get_maximum_value(AtkValue* s_object, GValue* s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  GValue* value = asCGValue(VECTOR_ELT(s_ans, 0));
+  *s_value = *value;
+  g_free(value);
+}
 }
 static 
 void
@@ -5474,11 +5610,16 @@ S_virtual_atk_value_get_minimum_value(AtkValue* s_object, GValue* s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  GValue* value = asCGValue(VECTOR_ELT(s_ans, 0));
+  *s_value = *value;
+  g_free(value);
+}
 }
 static 
 gboolean
@@ -5501,10 +5642,11 @@ S_virtual_atk_value_set_current_value(AtkValue* s_object, const GValue* s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -5526,11 +5668,16 @@ S_virtual_atk_value_get_minimum_increment(AtkValue* s_object, GValue* s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_value = *asCGValue(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  GValue* value = asCGValue(VECTOR_ELT(s_ans, 0));
+  *s_value = *value;
+  g_free(value);
+}
 }
 void
 S_atk_value_class_init(AtkValueIface * c, SEXP e)
@@ -5567,8 +5714,8 @@ S_atk_value_iface_get_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -5586,8 +5733,8 @@ S_atk_value_iface_get_maximum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -5605,8 +5752,8 @@ S_atk_value_iface_get_minimum_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -5624,8 +5771,8 @@ S_atk_value_iface_set_current_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   ans = object_class->set_current_value(object, value);
 
   _result = asRLogical(ans);
-  CLEANUP(g_value_unset, ((GValue*)value));
-  CLEANUP(g_free, ((GValue*)value));
+    CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));;
 
   return(_result);
 }
@@ -5644,8 +5791,8 @@ S_atk_value_iface_get_minimum_increment(USER_OBJECT_ s_object_class, USER_OBJECT
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 #else
   error("atk_value_get_minimum_increment exists only in Atk >= 1.11.0");
 #endif
@@ -5678,10 +5825,11 @@ S_virtual_atk_text_get_text(AtkText* s_object, gint s_start_offset, gint s_end_o
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -5707,10 +5855,11 @@ S_virtual_atk_text_get_text_after_offset(AtkText* s_object, gint s_offset, AtkTe
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
@@ -5738,10 +5887,11 @@ S_virtual_atk_text_get_text_at_offset(AtkText* s_object, gint s_offset, AtkTextB
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
@@ -5767,10 +5917,11 @@ S_virtual_atk_text_get_character_at_offset(AtkText* s_object, gint s_offset)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gunichar)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gunichar)0));
   return(((gunichar)asCNumeric(s_ans)));
 }
 static 
@@ -5796,10 +5947,11 @@ S_virtual_atk_text_get_text_before_offset(AtkText* s_object, gint s_offset, AtkT
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
@@ -5823,10 +5975,11 @@ S_virtual_atk_text_get_caret_offset(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -5850,10 +6003,11 @@ S_virtual_atk_text_get_run_attributes(AtkText* s_object, gint s_offset, gint* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkAttributeSet*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkAttributeSet*)0));
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(asCAtkAttributeSet(VECTOR_ELT(s_ans, 0)));
@@ -5877,10 +6031,11 @@ S_virtual_atk_text_get_default_attributes(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkAttributeSet*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkAttributeSet*)0));
   return(asCAtkAttributeSet(s_ans));
 }
 static 
@@ -5906,10 +6061,11 @@ S_virtual_atk_text_get_character_extents(AtkText* s_object, gint s_offset, gint*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
@@ -5934,10 +6090,11 @@ S_virtual_atk_text_get_character_count(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -5965,10 +6122,11 @@ S_virtual_atk_text_get_offset_at_point(AtkText* s_object, gint s_x, gint s_y, At
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -5990,10 +6148,11 @@ S_virtual_atk_text_get_n_selections(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -6017,10 +6176,11 @@ S_virtual_atk_text_get_selection(AtkText* s_object, gint s_selection_num, gint* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   *s_start_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0)))));
@@ -6048,10 +6208,11 @@ S_virtual_atk_text_add_selection(AtkText* s_object, gint s_start_offset, gint s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6075,10 +6236,11 @@ S_virtual_atk_text_remove_selection(AtkText* s_object, gint s_selection_num)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6106,10 +6268,11 @@ S_virtual_atk_text_set_selection(AtkText* s_object, gint s_selection_num, gint s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6133,10 +6296,11 @@ S_virtual_atk_text_set_caret_offset(AtkText* s_object, gint s_offset)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6162,10 +6326,11 @@ S_virtual_atk_text_text_changed(AtkText* s_object, gint s_position, gint s_lengt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6188,10 +6353,11 @@ S_virtual_atk_text_text_caret_moved(AtkText* s_object, gint s_location)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6212,10 +6378,11 @@ S_virtual_atk_text_text_selection_changed(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6236,10 +6403,11 @@ S_virtual_atk_text_text_attributes_changed(AtkText* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6266,11 +6434,16 @@ S_virtual_atk_text_get_range_extents(AtkText* s_object, gint s_start_offset, gin
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_rect = *asCAtkTextRectangle(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  AtkTextRectangle* rect = asCAtkTextRectangle(VECTOR_ELT(s_ans, 0));
+  *s_rect = *rect;
+  g_free(rect);
+}
 }
 static 
 AtkTextRange**
@@ -6299,10 +6472,11 @@ S_virtual_atk_text_get_bounded_ranges(AtkText* s_object, AtkTextRectangle* s_rec
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkTextRange**)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkTextRange**)0));
   return(((AtkTextRange**)asCArrayDup(s_ans, AtkTextRange*, asCAtkTextRange)));
 }
 void
@@ -6375,7 +6549,7 @@ S_atk_text_iface_get_text(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, US
   ans = object_class->get_text(object, start_offset, end_offset);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -6398,7 +6572,9 @@ S_atk_text_iface_get_text_after_offset(USER_OBJECT_ s_object_class, USER_OBJECT_
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -6421,7 +6597,9 @@ S_atk_text_iface_get_text_at_offset(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -6461,7 +6639,9 @@ S_atk_text_iface_get_text_before_offset(USER_OBJECT_ s_object_class, USER_OBJECT
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -6499,6 +6679,8 @@ S_atk_text_iface_get_run_attributes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   _result = asRAtkAttributeSet(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6537,6 +6719,10 @@ S_atk_text_iface_get_character_extents(USER_OBJECT_ s_object_class, USER_OBJECT_
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -6609,7 +6795,9 @@ S_atk_text_iface_get_selection(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -6760,7 +6948,7 @@ S_atk_text_iface_get_range_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 
   _result = retByVal(_result, "rect", asRAtkTextRectangle(rect), NULL);
-  CLEANUP(g_free, rect);
+    CLEANUP(g_free, rect);;
 
   return(_result);
 }
@@ -6781,7 +6969,7 @@ S_atk_text_iface_get_bounded_ranges(USER_OBJECT_ s_object_class, USER_OBJECT_ s_
   ans = object_class->get_bounded_ranges(object, rect, coord_type, x_clip_type, y_clip_type);
 
   _result = asRArray(ans, asRAtkTextRange);
-  CLEANUP(atk_text_free_ranges, ans);
+    CLEANUP(atk_text_free_ranges, ans);;
 
   return(_result);
 }
@@ -6807,10 +6995,11 @@ S_virtual_atk_document_get_document_type(AtkDocument* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -6832,10 +7021,11 @@ S_virtual_atk_document_get_document(AtkDocument* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gpointer)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gpointer)0));
   return(((gpointer)asCGenericData(s_ans)));
 }
 void

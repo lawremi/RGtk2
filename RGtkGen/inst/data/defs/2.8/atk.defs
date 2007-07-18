@@ -1060,7 +1060,7 @@
   (c-name "atk_state_set_contains_states")
   (return-type "gboolean")
   (parameters
-    '("AtkStateType*" "types")
+    '("AtkStateType[]" "types")
     '("gint" "n_types")
   )
 )

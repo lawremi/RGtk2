@@ -22,10 +22,11 @@ S_cairo_write_func_t(gpointer s_closure, const guchar* s_data, guint s_length)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((cairo_status_t)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((cairo_status_t)0));
   return(((cairo_status_t)asCEnum(s_ans, CAIRO_TYPE_STATUS)));
 } 
 

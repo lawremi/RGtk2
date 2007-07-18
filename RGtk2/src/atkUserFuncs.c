@@ -20,10 +20,11 @@ S_AtkKeySnoopFunc(AtkKeyEventStruct* s_event, gpointer s_func_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 } 
 

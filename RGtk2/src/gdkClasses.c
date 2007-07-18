@@ -47,10 +47,11 @@ S_virtual_gdk_display_get_display_name(GdkDisplay* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
   return(((const gchar*)asCString(s_ans)));
 }
 static 
@@ -72,10 +73,11 @@ S_virtual_gdk_display_get_n_screens(GdkDisplay* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -99,10 +101,11 @@ S_virtual_gdk_display_get_screen(GdkDisplay* s_object, gint s_screen_num)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkScreen*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
 static 
@@ -124,10 +127,11 @@ S_virtual_gdk_display_get_default_screen(GdkDisplay* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkScreen*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
 static 
@@ -151,10 +155,11 @@ S_virtual_gdk_display_closed(GdkDisplay* s_object, gboolean s_is_error)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_display_class_init(GdkDisplayClass * c, SEXP e)
@@ -281,10 +286,11 @@ S_virtual_gdk_display_manager_display_opened(GdkDisplayManager* s_object, GdkDis
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_display_manager_class_init(GdkDisplayManagerClass * c, SEXP e)
@@ -354,10 +360,11 @@ S_virtual_gdk_drawable_create_gc(GdkDrawable* s_object, GdkGCValues* s_values, G
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkGC*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkGC*)0));
   return(GDK_GC(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -391,10 +398,11 @@ S_virtual_gdk_drawable_draw_rectangle(GdkDrawable* s_object, GdkGC* s_gc, gboole
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -431,10 +439,11 @@ S_virtual_gdk_drawable_draw_arc(GdkDrawable* s_object, GdkGC* s_gc, gboolean s_f
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -463,10 +472,11 @@ S_virtual_gdk_drawable_draw_polygon(GdkDrawable* s_object, GdkGC* s_gc, gboolean
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -499,10 +509,11 @@ S_virtual_gdk_drawable_draw_text(GdkDrawable* s_object, GdkFont* s_font, GdkGC* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -535,10 +546,11 @@ S_virtual_gdk_drawable_draw_text_wc(GdkDrawable* s_object, GdkFont* s_font, GdkG
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -575,10 +587,11 @@ S_virtual_gdk_drawable_draw_drawable(GdkDrawable* s_object, GdkGC* s_gc, GdkDraw
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -605,10 +618,11 @@ S_virtual_gdk_drawable_draw_points(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -635,10 +649,11 @@ S_virtual_gdk_drawable_draw_segments(GdkDrawable* s_object, GdkGC* s_gc, GdkSegm
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -665,10 +680,11 @@ S_virtual_gdk_drawable_draw_lines(GdkDrawable* s_object, GdkGC* s_gc, GdkPoint* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -699,10 +715,11 @@ S_virtual_gdk_drawable_draw_glyphs(GdkDrawable* s_object, GdkGC* s_gc, PangoFont
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -739,10 +756,11 @@ S_virtual_gdk_drawable_draw_image(GdkDrawable* s_object, GdkGC* s_gc, GdkImage* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -763,10 +781,11 @@ S_virtual_gdk_drawable_get_depth(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -788,10 +807,11 @@ S_virtual_gdk_drawable_get_size(GdkDrawable* s_object, gint* s_width, gint* s_he
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -816,10 +836,11 @@ S_virtual_gdk_drawable_set_colormap(GdkDrawable* s_object, GdkColormap* s_cmap)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GdkColormap*
@@ -840,10 +861,11 @@ S_virtual_gdk_drawable_get_colormap(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkColormap*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkColormap*)0));
   return(GDK_COLORMAP(getPtrValue(s_ans)));
 }
 static 
@@ -865,10 +887,11 @@ S_virtual_gdk_drawable_get_visual(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkVisual*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkVisual*)0));
   return(GDK_VISUAL(getPtrValue(s_ans)));
 }
 static 
@@ -890,10 +913,11 @@ S_virtual_gdk_drawable_get_screen(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkScreen*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkScreen*)0));
   return(GDK_SCREEN(getPtrValue(s_ans)));
 }
 static 
@@ -923,10 +947,11 @@ S_virtual_gdk_drawable_get_image(GdkDrawable* s_object, gint s_x, gint s_y, gint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkImage*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkImage*)0));
   return(GDK_IMAGE(getPtrValue(s_ans)));
 }
 static 
@@ -948,10 +973,11 @@ S_virtual_gdk_drawable_get_clip_region(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkRegion*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkRegion*)0));
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
 static 
@@ -973,10 +999,11 @@ S_virtual_gdk_drawable_get_visible_region(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkRegion*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkRegion*)0));
   return(((GdkRegion*)gdk_region_copy(getPtrValue(s_ans))));
 }
 static 
@@ -1006,10 +1033,11 @@ S_virtual_gdk_drawable_get_composite_drawable(GdkDrawable* s_object, gint s_x, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkDrawable*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkDrawable*)0));
   *s_composite_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_composite_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(GDK_DRAWABLE(getPtrValueWithRef(VECTOR_ELT(s_ans, 0))));
@@ -1055,10 +1083,11 @@ S_virtual_gdk_drawable_draw_pixbuf(GdkDrawable* s_object, GdkGC* s_gc, GdkPixbuf
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1091,10 +1120,11 @@ S_virtual_gdk_drawable_draw_glyphs_transformed(GdkDrawable* s_object, GdkGC* s_g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1121,10 +1151,11 @@ S_virtual_gdk_drawable_draw_trapezoids(GdkDrawable* s_object, GdkGC* s_gc, GdkTr
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 cairo_surface_t*
@@ -1145,10 +1176,11 @@ S_virtual_gdk_drawable_ref_cairo_surface(GdkDrawable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((cairo_surface_t*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((cairo_surface_t*)0));
   return(((cairo_surface_t*)getPtrValue(s_ans)));
 }
 void
@@ -1459,6 +1491,8 @@ S_gdk_drawable_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1598,6 +1632,8 @@ S_gdk_drawable_class_get_composite_drawable(USER_OBJECT_ s_object_class, USER_OB
   _result = toRPointerWithFinalizer(ans, "GdkDrawable", (RPointerFinalizer) g_object_unref);
 
   _result = retByVal(_result, "composite.x.offset", asRInteger(composite_x_offset), "composite.y.offset", asRInteger(composite_y_offset), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1729,11 +1765,16 @@ S_virtual_gdk_gc_get_values(GdkGC* s_object, GdkGCValues* s_values)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_values = *asCGdkGCValues(VECTOR_ELT(s_ans, 0));
+
+  if(err)
+    return;
+{
+  GdkGCValues* values = asCGdkGCValues(VECTOR_ELT(s_ans, 0));
+  *s_values = *values;
+  g_free(values);
+}
 }
 static 
 void
@@ -1758,10 +1799,11 @@ S_virtual_gdk_gc_set_values(GdkGC* s_object, GdkGCValues* s_values, GdkGCValuesM
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1788,10 +1830,11 @@ S_virtual_gdk_gc_set_dashes(GdkGC* s_object, gint s_dash_offset, gint8* s_dash_l
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_gc_class_init(GdkGCClass * c, SEXP e)
@@ -1824,7 +1867,7 @@ S_gdk_gcclass_get_values(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "values", asRGdkGCValues(values), NULL);
-  CLEANUP(g_free, values);
+    CLEANUP(g_free, values);;
 
   return(_result);
 }
@@ -1881,10 +1924,11 @@ S_virtual_gdk_keymap_direction_changed(GdkKeymap* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1905,10 +1949,11 @@ S_virtual_gdk_keymap_keys_changed(GdkKeymap* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_keymap_class_init(GdkKeymapClass * c, SEXP e)
@@ -1975,10 +2020,11 @@ S_virtual_gdk_pixbuf_animation_is_static_image(GdkPixbufAnimation* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2000,10 +2046,11 @@ S_virtual_gdk_pixbuf_animation_get_static_image(GdkPixbufAnimation* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkPixbuf*)0));
   return(GDK_PIXBUF(getPtrValue(s_ans)));
 }
 static 
@@ -2025,10 +2072,11 @@ S_virtual_gdk_pixbuf_animation_get_size(GdkPixbufAnimation* s_object, int* s_wid
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_width = ((int)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_height = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -2053,10 +2101,11 @@ S_virtual_gdk_pixbuf_animation_get_iter(GdkPixbufAnimation* s_object, const GTim
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkPixbufAnimationIter*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkPixbufAnimationIter*)0));
   return(GDK_PIXBUF_ANIMATION_ITER(getPtrValue(s_ans)));
 }
 void
@@ -2125,6 +2174,8 @@ S_gdk_pixbuf_animation_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -2167,10 +2218,11 @@ S_virtual_gdk_pixbuf_animation_iter_get_delay_time(GdkPixbufAnimationIter* s_obj
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((int)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((int)0));
   return(((int)asCInteger(s_ans)));
 }
 static 
@@ -2192,10 +2244,11 @@ S_virtual_gdk_pixbuf_animation_iter_get_pixbuf(GdkPixbufAnimationIter* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkPixbuf*)0));
   return(GDK_PIXBUF(getPtrValue(s_ans)));
 }
 static 
@@ -2217,10 +2270,11 @@ S_virtual_gdk_pixbuf_animation_iter_on_currently_loading_frame(GdkPixbufAnimatio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -2244,10 +2298,11 @@ S_virtual_gdk_pixbuf_animation_iter_advance(GdkPixbufAnimationIter* s_object, co
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -2360,10 +2415,11 @@ S_virtual_gdk_pixbuf_loader_size_prepared(GdkPixbufLoader* s_object, int s_width
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2384,10 +2440,11 @@ S_virtual_gdk_pixbuf_loader_area_prepared(GdkPixbufLoader* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2416,10 +2473,11 @@ S_virtual_gdk_pixbuf_loader_area_updated(GdkPixbufLoader* s_object, int s_x, int
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2440,10 +2498,11 @@ S_virtual_gdk_pixbuf_loader_closed(GdkPixbufLoader* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_pixbuf_loader_class_init(GdkPixbufLoaderClass * c, SEXP e)
@@ -2562,10 +2621,11 @@ S_virtual_gdk_screen_size_changed(GdkScreen* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2586,10 +2646,11 @@ S_virtual_gdk_screen_composited_changed(GdkScreen* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gdk_screen_class_init(GdkScreenClass * c, SEXP e)

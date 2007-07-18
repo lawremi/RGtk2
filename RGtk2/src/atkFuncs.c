@@ -207,6 +207,10 @@ S_atk_component_get_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -226,6 +230,8 @@ S_atk_component_get_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -244,6 +250,8 @@ S_atk_component_get_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -446,7 +454,7 @@ S_atk_editable_text_set_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_att
   ans = atk_editable_text_set_run_attributes(object, attrib_set, start_offset, end_offset);
 
   _result = asRLogical(ans);
-  CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)attrib_set));
+    CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)attrib_set));;
 
   return(_result);
 }
@@ -604,7 +612,7 @@ S_atk_hyperlink_get_uri(USER_OBJECT_ s_object, USER_OBJECT_ s_i)
   ans = atk_hyperlink_get_uri(object, i);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -832,6 +840,8 @@ S_atk_image_get_image_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -868,6 +878,8 @@ S_atk_image_get_image_position(USER_OBJECT_ s_object, USER_OBJECT_ s_coord_type)
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1951,12 +1963,12 @@ S_atk_state_set_contains_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type)
  
 
 USER_OBJECT_
-S_atk_state_set_contains_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types, USER_OBJECT_ s_n_types)
+S_atk_state_set_contains_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   AtkStateSet* object = ATK_STATE_SET(getPtrValue(s_object));
-  AtkStateType* types = ((AtkStateType*)asCEnum(s_types, ATK_TYPE_STATE_TYPE));
-  gint n_types = ((gint)asCInteger(s_n_types));
+  AtkStateType* types = ((AtkStateType*)asCEnumArray(s_types, AtkStateType, ATK_TYPE_STATE_TYPE));
+  gint n_types = ((gint)GET_LENGTH(s_types));
 
   gboolean ans;
 
@@ -2462,7 +2474,7 @@ S_atk_table_get_selected_columns(USER_OBJECT_ s_object)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
-  CLEANUP(g_free, selected);
+    CLEANUP(g_free, selected);;
 
   return(_result);
 }
@@ -2482,7 +2494,7 @@ S_atk_table_get_selected_rows(USER_OBJECT_ s_object)
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "selected", asRIntegerArrayWithSize(selected, ans), NULL);
-  CLEANUP(g_free, selected);
+    CLEANUP(g_free, selected);;
 
   return(_result);
 }
@@ -2636,7 +2648,7 @@ S_atk_text_get_text(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset, USER_OBJ
   ans = atk_text_get_text(object, start_offset, end_offset);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -2676,7 +2688,9 @@ S_atk_text_get_text_after_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, U
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -2699,7 +2713,9 @@ S_atk_text_get_text_at_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, USER
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -2722,7 +2738,9 @@ S_atk_text_get_text_before_offset(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, 
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -2759,7 +2777,7 @@ S_atk_text_get_range_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_start_offset,
 
 
   _result = retByVal(_result, "rect", asRAtkTextRectangle(rect), NULL);
-  CLEANUP(g_free, rect);
+    CLEANUP(g_free, rect);;
 
   return(_result);
 }
@@ -2780,7 +2798,7 @@ S_atk_text_get_bounded_ranges(USER_OBJECT_ s_object, USER_OBJECT_ s_rect, USER_O
   ans = atk_text_get_bounded_ranges(object, rect, coord_type, x_clip_type, y_clip_type);
 
   _result = asRArray(ans, asRAtkTextRange);
-  CLEANUP(atk_text_free_ranges, ans);
+    CLEANUP(atk_text_free_ranges, ans);;
 
   return(_result);
 }
@@ -2803,6 +2821,10 @@ S_atk_text_get_character_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_offset, U
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -2824,7 +2846,9 @@ S_atk_text_get_run_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_offset)
   _result = asRAtkAttributeSet(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(atk_attribute_set_free, ans);
+    CLEANUP(atk_attribute_set_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -2841,7 +2865,7 @@ S_atk_text_get_default_attributes(USER_OBJECT_ s_object)
   ans = atk_text_get_default_attributes(object);
 
   _result = asRAtkAttributeSet(ans);
-  CLEANUP(atk_attribute_set_free, ans);
+    CLEANUP(atk_attribute_set_free, ans);;
 
   return(_result);
 }
@@ -2914,7 +2938,9 @@ S_atk_text_get_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_selection_num)
   _result = asRString(ans);
 
   _result = retByVal(_result, "start.offset", asRInteger(start_offset), "end.offset", asRInteger(end_offset), NULL);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
+  ;
+  ;
 
   return(_result);
 }
@@ -3000,7 +3026,7 @@ S_atk_attribute_set_free(USER_OBJECT_ s_object)
 
   atk_attribute_set_free(object);
 
-  CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)object));
+    CLEANUP(atk_attribute_set_free, ((AtkAttributeSet*)object));;
 
   return(_result);
 }
@@ -3247,8 +3273,8 @@ S_atk_value_get_current_value(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -3266,8 +3292,8 @@ S_atk_value_get_maximum_value(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -3285,8 +3311,8 @@ S_atk_value_get_minimum_value(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "value", asRGValue(value), NULL);
-  CLEANUP(g_value_unset, value);
-  CLEANUP(g_free, value);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -3304,8 +3330,8 @@ S_atk_value_set_current_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value)
   ans = atk_value_set_current_value(object, value);
 
   _result = asRLogical(ans);
-  CLEANUP(g_value_unset, ((GValue*)value));
-  CLEANUP(g_free, ((GValue*)value));
+    CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));;
 
   return(_result);
 }

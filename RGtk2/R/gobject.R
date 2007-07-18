@@ -352,15 +352,18 @@ function(x)
     x[[5]] <- as.GParamSpec(x[[5]])
   else if (type == "Sexp") {
     # if there's no type, try to get it from the default value
-    if (is.null(x[[5]]))
+    if (is.null(x[[5]]) && !is.null(x[[6]]))
       x[[5]] <- typeof(x[[6]])
-    # if there's no default value, create one given the type
-    if (is.null(x[[6]]))
-      x[[6]] <- new(as.character(x[[5]]))
+    else if (is.null(x[[5]])) # otherwise, fallback to ANY
+      x[[5]] <- "any"
+    # if there's no default value, create one given the type (ANY->NULL)
+    anysxp <- .RGtkCall("getNumericType", "any")
+    if (is.null(x[[6]]) && x[[5]] != "any" && x[[5]] != anysxp)
+      x[[6]] <- new(x[[5]])
     # if type is numeric, assume it's a type code, otherwise assume it's a type 
-    # name and ask the C side to query the default value for the code
+    # name and ask the C side to query the for the code
     if (!is.numeric(x[[5]]))
-      x[[5]] <- .RGtkCall("getNumericType", x[[6]])
+      x[[5]] <- .RGtkCall("getNumericType", x[[5]])
   }
   
   return(x)

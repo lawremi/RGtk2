@@ -102,7 +102,7 @@ R_gObjectTypeName(USER_OBJECT_ sobj)
 USER_OBJECT_
 R_gTypeFromName(USER_OBJECT_ name)
 {
-    char *val;
+    const gchar *val;
     GType type;
     val = CHAR_DEREF(STRING_ELT(name, 0));
     type = g_type_from_name(val);
@@ -331,8 +331,8 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 	GParameter *params = g_new0(GParameter, n);
 	GObjectClass *class = g_type_class_ref(type);
 	GObject *ans;
-
-	USER_OBJECT_ result = NULL_USER_OBJECT;
+  
+  USER_OBJECT_ result = NULL_USER_OBJECT;
     
     for(i = 0; i < n; i++) {
 		params[i].name = CHAR_DEREF(STRING_ELT(argNames, i));
@@ -341,8 +341,9 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
 
 	ans = g_object_newv(type, n, params);
 	g_free(params);
-  if (g_type_is_a(type, G_TYPE_INITIALLY_UNOWNED))
-    result = toRPointerWithSink(ans, "GInitiallyUnowned");
+  
+  if (g_type_is_a(type, g_type_from_name(UNOWNED_TYPE_NAME)))
+    result = toRPointerWithSink(ans, UNOWNED_TYPE_NAME);
 	else result = toRPointerWithFinalizer(ans, "GObject", g_object_unref);
 	
   g_type_class_unref(class);
@@ -447,8 +448,9 @@ static gboolean
 param_sexp_validate(GParamSpec *pspec, GValue *value)
 {
   USER_OBJECT_ sexp = g_value_get_boxed(value);
+  SEXPTYPE type = ((RGtkParamSpecSexp *)pspec)->s_type;
   /* FIXME: Do we want to allow NULL here? */
-  if (!sexp || (/*sexp != NULL_USER_OBJECT && */TYPEOF(sexp) != ((RGtkParamSpecSexp *)pspec)->s_type)) {
+  if (!sexp || (/*sexp != NULL_USER_OBJECT && */TYPEOF(sexp) != type && type != ANYSXP)) {
     g_value_set_boxed(value, ((RGtkParamSpecSexp *)pspec)->default_value);
     return TRUE;
   }
@@ -633,9 +635,11 @@ asCGParamSpec(USER_OBJECT_ s_spec)
     else if (type == G_TYPE_PARAM_VALUE_ARRAY) {
       spec = g_param_spec_value_array(name, nick, blurb, asCGParamSpec(VECTOR_ELT(s_spec, 4)), flags);
     }
+    #if GLIB_CHECK_VERSION(2,10,0)
     else if (type == G_TYPE_PARAM_GTYPE) {
       spec = g_param_spec_gtype(name, nick, blurb, asCNumeric(VECTOR_ELT(s_spec, 4)), flags);
     }
+    #endif
     else if (type == R_GTK_TYPE_PARAM_SEXP) {
       USER_OBJECT_ default_value = VECTOR_ELT(s_spec, 5);
       R_PreserveObject(default_value);
@@ -815,12 +819,14 @@ asRGParamSpec(GParamSpec* spec)
       SET_STRING_ELT(s_names, 4, COPY_TO_USER_STRING("elementSpec"));
       SET_VECTOR_ELT(s_spec, 4, asRGParamSpec(G_PARAM_SPEC_VALUE_ARRAY(spec)->element_spec));
     }
+    #if GLIB_CHECK_VERSION(2,10,0)
     else if (type == G_TYPE_PARAM_GTYPE) {
       PROTECT(s_spec = NEW_LIST(5));
       PROTECT(s_names = NEW_CHARACTER(5));
       SET_STRING_ELT(s_names, 4, COPY_TO_USER_STRING("isAType"));
       SET_VECTOR_ELT(s_spec, 4, asRGType(G_PARAM_SPEC_GTYPE(spec)->is_a_type));
     }
+    #endif
     else if (type == R_GTK_TYPE_PARAM_SEXP) {
       PROTECT(s_spec = NEW_LIST(6));
       PROTECT(s_names = NEW_CHARACTER(6));
@@ -957,7 +963,7 @@ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
     GQuark detail;
     USER_OBJECT_ ans = NULL_USER_OBJECT;
     guint sigId;
-    char *sigName;
+    const gchar *sigName;
     GSignalQuery query;
 
     obj = G_OBJECT(getPtrValue(sobj));
@@ -1174,7 +1180,9 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
 
     val = R_tryEval(e, envir, &errorOccurred);
 
-    if(errorOccurred || !return_value || G_VALUE_TYPE(return_value) == G_TYPE_NONE) {
+    if(errorOccurred || !return_value || G_VALUE_TYPE(return_value) == G_TYPE_NONE ||
+       G_VALUE_TYPE(return_value) == G_TYPE_INVALID) 
+    {
         UNPROTECT(numProtects);
         return;
     }
@@ -1475,7 +1483,7 @@ asRGValue(const GValue *value)
 
       case G_TYPE_OBJECT:
       case G_TYPE_INTERFACE:
-        if (G_VALUE_HOLDS(value, G_TYPE_INITIALLY_UNOWNED))
+        if (G_VALUE_HOLDS(value, g_type_from_name(UNOWNED_TYPE_NAME)))
           ans = toRPointerWithSink(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
         else ans = toRPointerWithRef(g_value_get_object(value), G_VALUE_TYPE_NAME(value));
       break;
@@ -1625,11 +1633,11 @@ asCGValue(USER_OBJECT_ sval)
 }
 
 void 
-R_g_initially_unowned_destroyed(GInitiallyUnowned *val, USER_OBJECT_ s_val)
+R_g_initially_unowned_destroyed(GObject *val, USER_OBJECT_ s_val)
 {
 	SET_CLASS(s_val, asRString("<invalid>"));
 	R_ClearExternalPtr(s_val);
-	g_object_unref(G_OBJECT(val));
+	g_object_unref(val);
 }
 
 void R_g_initially_unowned_finalizer(USER_OBJECT_ extptr) {
@@ -1642,7 +1650,7 @@ void R_g_initially_unowned_finalizer(USER_OBJECT_ extptr) {
 	}
 }
 
-/* All GInitiallyUnknown need to be sunk, because otherwise memory would leak if
+/* All GInitiallyUnowned need to be sunk, because otherwise memory would leak if
    it got "lost" before being added to a parent. By sinking it, we own it,
    so we have to add the first non-floating reference and then register it
    for finalization. We also need to connect to the "destroy" signal in case
@@ -1654,13 +1662,18 @@ void R_g_initially_unowned_finalizer(USER_OBJECT_ extptr) {
 */
 USER_OBJECT_
 toRPointerWithSink(void *val, const char *type) {
-	USER_OBJECT_ s_val;
-	if (val)
+	USER_OBJECT_ s_val = toRPointer(val, type);
+	if (val) {
+    #if GLIB_CHECK_VERSION(2,10,0)
 		g_object_ref_sink(G_INITIALLY_UNOWNED(val));
-	s_val = toRPointer(val, type);
+    #else
+    g_object_ref(G_OBJECT(val));
+    gtk_object_sink(val);
+    #endif
+    g_signal_connect(G_OBJECT(val), "destroy", 
+      G_CALLBACK(R_g_initially_unowned_destroyed), s_val);
+  }
 	R_RegisterCFinalizer(s_val, R_g_initially_unowned_finalizer);
-	g_signal_connect(G_OBJECT(val), "destroy", 
-    G_CALLBACK(R_g_initially_unowned_destroyed), s_val);
 	return(s_val);
 }
 

@@ -18,7 +18,7 @@
 \code{\link{gdkDragMotion}(object, dest.window, protocol, x.root, y.root, suggested.action, possible.actions, time)}\cr
 \code{\link{gdkDropFinish}(object, success, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gdkDragGetProtocol}(xid)}\cr
-\code{\link{gdkDragGetProtocolForDisplay}(display, xid, protocol)}\cr
+\code{\link{gdkDragGetProtocolForDisplay}(display, xid)}\cr
 \code{\link{gdkDragStatus}(object, action, time = "GDK_CURRENT_TIME")}\cr
 \code{\link{gdkDragDropSucceeded}(object)}\cr
 \code{gdkDragContext()}

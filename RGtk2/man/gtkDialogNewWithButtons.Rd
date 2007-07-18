@@ -30,10 +30,14 @@ so the first button in the list will be the leftmost button in the dialog.}
 \preformatted{
 # Explicit
 dialog <- gtkDialogNewWithButtons("My dialog", main_app_window,
-	c("modal", "destroy-with-parent"), "gtk-ok", "accept", "gtk-cancel", "reject")
+	c("modal", "destroy-with-parent"), 
+  "gtk-ok", GtkResponseType["accept"], 
+  "gtk-cancel", GtkResponseType["reject"])
 # Also via collapsed constructor
 dialog <- gtkDialog("My dialog", main_app_window,
-	c("modal", "destroy-with-parent"), "gtk-ok", "accept", "gtk-cancel", "reject")
+	c("modal", "destroy-with-parent"), 
+  "gtk-ok", GtkResponseType["accept"], 
+  "gtk-cancel", GtkResponseType["reject"])
 
 }  }
 \value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkDialog}}}

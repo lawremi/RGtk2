@@ -39,10 +39,11 @@ S_virtual_gtk_accel_group_accel_changed(GtkAccelGroup* s_object, guint s_keyval,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_accel_group_class_init(GtkAccelGroupClass * c, SEXP e)
@@ -110,10 +111,11 @@ S_virtual_gtk_accessible_connect_widget_destroyed(GtkAccessible* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_accessible_class_init(GtkAccessibleClass * c, SEXP e)
@@ -164,10 +166,11 @@ S_virtual_gtk_action_activate(GtkAction* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -190,10 +193,11 @@ S_virtual_gtk_action_connect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkWidget*
@@ -214,10 +218,11 @@ S_virtual_gtk_action_create_menu_item(GtkAction* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkWidget*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 }
 static 
@@ -239,10 +244,11 @@ S_virtual_gtk_action_create_tool_item(GtkAction* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkWidget*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 }
 static 
@@ -266,10 +272,11 @@ S_virtual_gtk_action_disconnect_proxy(GtkAction* s_object, GtkWidget* s_proxy)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_action_class_init(GtkActionClass * c, SEXP e)
@@ -392,10 +399,11 @@ S_virtual_gtk_action_group_get_action(GtkActionGroup* s_object, const gchar* s_a
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkAction*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkAction*)0));
   return(GTK_ACTION(getPtrValue(s_ans)));
 }
 void
@@ -450,10 +458,11 @@ S_virtual_gtk_adjustment_changed(GtkAdjustment* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -474,10 +483,11 @@ S_virtual_gtk_adjustment_value_changed(GtkAdjustment* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_adjustment_class_init(GtkAdjustmentClass * c, SEXP e)
@@ -614,10 +624,11 @@ S_virtual_gtk_button_pressed(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -638,10 +649,11 @@ S_virtual_gtk_button_released(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -662,10 +674,11 @@ S_virtual_gtk_button_clicked(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -686,10 +699,11 @@ S_virtual_gtk_button_enter(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -710,10 +724,11 @@ S_virtual_gtk_button_leave(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -734,10 +749,11 @@ S_virtual_gtk_button_activate(GtkButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_button_class_init(GtkButtonClass * c, SEXP e)
@@ -882,10 +898,11 @@ S_virtual_gtk_calendar_month_changed(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -906,10 +923,11 @@ S_virtual_gtk_calendar_day_selected(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -930,10 +948,11 @@ S_virtual_gtk_calendar_day_selected_double_click(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -954,10 +973,11 @@ S_virtual_gtk_calendar_prev_month(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -978,10 +998,11 @@ S_virtual_gtk_calendar_next_month(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1002,10 +1023,11 @@ S_virtual_gtk_calendar_prev_year(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1026,10 +1048,11 @@ S_virtual_gtk_calendar_next_year(GtkCalendar* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_calendar_class_init(GtkCalendarClass * c, SEXP e)
@@ -1180,10 +1203,11 @@ S_virtual_gtk_cell_renderer_get_size(GtkCellRenderer* s_object, GtkWidget* s_wid
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y_offset = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_width = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
@@ -1220,10 +1244,11 @@ S_virtual_gtk_cell_renderer_render(GtkCellRenderer* s_object, GdkDrawable* s_win
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -1256,10 +1281,11 @@ S_virtual_gtk_cell_renderer_activate(GtkCellRenderer* s_object, GdkEvent* s_even
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -1281,10 +1307,11 @@ S_virtual_gtk_cell_renderer_editing_canceled(GtkCellRenderer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1309,10 +1336,11 @@ S_virtual_gtk_cell_renderer_editing_started(GtkCellRenderer* s_object, GtkCellEd
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkCellEditable*
@@ -1345,10 +1373,11 @@ S_virtual_gtk_cell_renderer_start_editing(GtkCellRenderer* s_object, GdkEvent* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkCellEditable*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkCellEditable*)0));
   return(GTK_CELL_EDITABLE(getPtrValue(s_ans)));
 }
 void
@@ -1393,6 +1422,10 @@ S_gtk_cell_renderer_class_get_size(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 
   _result = retByVal(_result, "x.offset", asRInteger(x_offset), "y.offset", asRInteger(y_offset), "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -1558,10 +1591,11 @@ S_virtual_gtk_cell_renderer_text_edited(GtkCellRendererText* s_object, const gch
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_cell_renderer_text_class_init(GtkCellRendererTextClass * c, SEXP e)
@@ -1616,10 +1650,11 @@ S_virtual_gtk_cell_renderer_toggle_toggled(GtkCellRendererToggle* s_object, cons
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_cell_renderer_toggle_class_init(GtkCellRendererToggleClass * c, SEXP e)
@@ -1687,10 +1722,11 @@ S_virtual_gtk_check_button_draw_indicator(GtkCheckButton* s_object, GdkRectangle
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_check_button_class_init(GtkCheckButtonClass * c, SEXP e)
@@ -1742,10 +1778,11 @@ S_virtual_gtk_check_menu_item_toggled(GtkCheckMenuItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1768,10 +1805,11 @@ S_virtual_gtk_check_menu_item_draw_indicator(GtkCheckMenuItem* s_object, GdkRect
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_check_menu_item_class_init(GtkCheckMenuItemClass * c, SEXP e)
@@ -1843,10 +1881,11 @@ S_virtual_gtk_clist_set_scroll_adjustments(GtkCList* s_object, GtkAdjustment* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1867,10 +1906,11 @@ S_virtual_gtk_clist_refresh(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1897,10 +1937,11 @@ S_virtual_gtk_clist_select_row(GtkCList* s_object, gint s_row, gint s_column, Gd
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1927,10 +1968,11 @@ S_virtual_gtk_clist_unselect_row(GtkCList* s_object, gint s_row, gint s_column, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1955,10 +1997,11 @@ S_virtual_gtk_clist_row_move(GtkCList* s_object, gint s_source_row, gint s_dest_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1981,10 +2024,11 @@ S_virtual_gtk_clist_click_column(GtkCList* s_object, gint s_column)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2009,10 +2053,11 @@ S_virtual_gtk_clist_resize_column(GtkCList* s_object, gint s_column, gint s_widt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2033,10 +2078,11 @@ S_virtual_gtk_clist_toggle_focus_row(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2057,10 +2103,11 @@ S_virtual_gtk_clist_select_all(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2081,10 +2128,11 @@ S_virtual_gtk_clist_unselect_all(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2105,10 +2153,11 @@ S_virtual_gtk_clist_undo_selection(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2129,10 +2178,11 @@ S_virtual_gtk_clist_start_selection(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2153,10 +2203,11 @@ S_virtual_gtk_clist_end_selection(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2183,10 +2234,11 @@ S_virtual_gtk_clist_extend_selection(GtkCList* s_object, GtkScrollType s_scroll_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2211,10 +2263,11 @@ S_virtual_gtk_clist_scroll_horizontal(GtkCList* s_object, GtkScrollType s_scroll
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2239,10 +2292,11 @@ S_virtual_gtk_clist_scroll_vertical(GtkCList* s_object, GtkScrollType s_scroll_t
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2263,10 +2317,11 @@ S_virtual_gtk_clist_toggle_add_mode(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2287,10 +2342,11 @@ S_virtual_gtk_clist_abort_column_resize(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2313,10 +2369,11 @@ S_virtual_gtk_clist_resync_selection(GtkCList* s_object, GdkEvent* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GList*
@@ -2341,10 +2398,11 @@ S_virtual_gtk_clist_selection_find(GtkCList* s_object, gint s_row_number, GList*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GList*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GList*)0));
   return(((GList*)asCArrayRef(s_ans, GList, asCGList)));
 }
 static 
@@ -2372,10 +2430,11 @@ S_virtual_gtk_clist_draw_row(GtkCList* s_object, GdkRectangle* s_area, gint s_ro
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2402,10 +2461,11 @@ S_virtual_gtk_clist_draw_drag_highlight(GtkCList* s_object, GtkCListRow* s_targe
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2426,10 +2486,11 @@ S_virtual_gtk_clist_clear(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2452,10 +2513,11 @@ S_virtual_gtk_clist_fake_unselect_all(GtkCList* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2476,10 +2538,11 @@ S_virtual_gtk_clist_sort_list(GtkCList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -2504,10 +2567,11 @@ S_virtual_gtk_clist_insert_row(GtkCList* s_object, gint s_row, gchar** s_text)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -2531,10 +2595,11 @@ S_virtual_gtk_clist_remove_row(GtkCList* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2569,10 +2634,11 @@ S_virtual_gtk_clist_set_cell_contents(GtkCList* s_object, GtkCListRow* s_clist_r
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -2599,10 +2665,11 @@ S_virtual_gtk_clist_cell_size_request(GtkCList* s_object, GtkCListRow* s_clist_r
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_clist_class_init(GtkCListClass * c, SEXP e)
@@ -2975,7 +3042,7 @@ S_gtk_clist_class_selection_find(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
   ans = object_class->selection_find(object, row_number, row_list_element);
 
   _result = asRGList(ans, "GtkCListRow");
-  CLEANUP(g_list_free, ((GList*)row_list_element));
+    CLEANUP(g_list_free, ((GList*)row_list_element));;
 
   return(_result);
 }
@@ -3149,10 +3216,11 @@ S_virtual_gtk_color_button_color_set(GtkColorButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_color_button_class_init(GtkColorButtonClass * c, SEXP e)
@@ -3203,10 +3271,11 @@ S_virtual_gtk_color_selection_color_changed(GtkColorSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_color_selection_class_init(GtkColorSelectionClass * c, SEXP e)
@@ -3285,10 +3354,11 @@ S_virtual_gtk_combo_box_changed(GtkComboBox* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 char*
@@ -3309,10 +3379,11 @@ S_virtual_gtk_combo_box_get_active_text(GtkComboBox* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((char*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((char*)0));
   return(((char*)g_strdup(asCString(s_ans))));
 }
 void
@@ -3357,7 +3428,7 @@ S_gtk_combo_box_class_get_active_text(USER_OBJECT_ s_object_class, USER_OBJECT_ 
   ans = object_class->get_active_text(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -3399,10 +3470,11 @@ S_virtual_gtk_container_add(GtkContainer* s_object, GtkWidget* s_widget)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3425,10 +3497,11 @@ S_virtual_gtk_container_remove(GtkContainer* s_object, GtkWidget* s_widget)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3449,10 +3522,11 @@ S_virtual_gtk_container_check_resize(GtkContainer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3479,10 +3553,11 @@ S_virtual_gtk_container_forall(GtkContainer* s_object, gboolean s_include_intern
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3505,10 +3580,11 @@ S_virtual_gtk_container_set_focus_child(GtkContainer* s_object, GtkWidget* s_wid
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GType
@@ -3529,10 +3605,11 @@ S_virtual_gtk_container_child_type(GtkContainer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GType)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GType)0));
   return(((GType)asCNumeric(s_ans)));
 }
 static 
@@ -3556,10 +3633,11 @@ S_virtual_gtk_container_composite_name(GtkContainer* s_object, GtkWidget* s_chil
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -3589,10 +3667,11 @@ S_virtual_gtk_container_set_child_property(GtkContainer* s_object, GtkWidget* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3621,10 +3700,11 @@ S_virtual_gtk_container_get_child_property(GtkContainer* s_object, GtkWidget* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_container_class_init(GtkContainerClass * c, SEXP e)
@@ -3762,7 +3842,7 @@ S_gtk_container_class_composite_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   ans = object_class->composite_name(object, child);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -3781,9 +3861,9 @@ S_gtk_container_class_set_child_property(USER_OBJECT_ s_object_class, USER_OBJEC
 
   object_class->set_child_property(object, child, property_id, value, pspec);
 
-  CLEANUP(g_value_unset, ((GValue*)value));
-  CLEANUP(g_free, ((GValue*)value));
-  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+    CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));;
+    CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));;
 
   return(_result);
 }
@@ -3802,9 +3882,9 @@ S_gtk_container_class_get_child_property(USER_OBJECT_ s_object_class, USER_OBJEC
 
   object_class->get_child_property(object, child, property_id, value, pspec);
 
-  CLEANUP(g_value_unset, ((GValue*)value));
-  CLEANUP(g_free, ((GValue*)value));
-  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+    CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));;
+    CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));;
 
   return(_result);
 }
@@ -3834,10 +3914,11 @@ S_virtual_gtk_ctree_tree_select_row(GtkCTree* s_object, GtkCTreeNode* s_row, gin
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3862,10 +3943,11 @@ S_virtual_gtk_ctree_tree_unselect_row(GtkCTree* s_object, GtkCTreeNode* s_row, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3888,10 +3970,11 @@ S_virtual_gtk_ctree_tree_expand(GtkCTree* s_object, GtkCTreeNode* s_node)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3914,10 +3997,11 @@ S_virtual_gtk_ctree_tree_collapse(GtkCTree* s_object, GtkCTreeNode* s_node)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3944,10 +4028,11 @@ S_virtual_gtk_ctree_tree_move(GtkCTree* s_object, GtkCTreeNode* s_node, GtkCTree
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -3970,10 +4055,11 @@ S_virtual_gtk_ctree_change_focus_row_expansion(GtkCTree* s_object, GtkCTreeExpan
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_ctree_class_init(GtkCTreeClass * c, SEXP e)
@@ -4114,10 +4200,11 @@ S_virtual_gtk_curve_curve_type_changed(GtkCurve* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_curve_class_init(GtkCurveClass * c, SEXP e)
@@ -4170,10 +4257,11 @@ S_virtual_gtk_dialog_response(GtkDialog* s_object, gint s_response_id)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4194,10 +4282,11 @@ S_virtual_gtk_dialog_close(GtkDialog* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_dialog_class_init(GtkDialogClass * c, SEXP e)
@@ -4281,10 +4370,11 @@ S_virtual_gtk_entry_populate_popup(GtkEntry* s_object, GtkMenu* s_menu)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4305,10 +4395,11 @@ S_virtual_gtk_entry_activate(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4335,10 +4426,11 @@ S_virtual_gtk_entry_move_cursor(GtkEntry* s_object, GtkMovementStep s_step, gint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4361,10 +4453,11 @@ S_virtual_gtk_entry_insert_at_cursor(GtkEntry* s_object, const gchar* s_str)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4389,10 +4482,11 @@ S_virtual_gtk_entry_delete_from_cursor(GtkEntry* s_object, GtkDeleteType s_type,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4413,10 +4507,11 @@ S_virtual_gtk_entry_backspace(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4437,10 +4532,11 @@ S_virtual_gtk_entry_cut_clipboard(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4461,10 +4557,11 @@ S_virtual_gtk_entry_copy_clipboard(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4485,10 +4582,11 @@ S_virtual_gtk_entry_paste_clipboard(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -4509,10 +4607,11 @@ S_virtual_gtk_entry_toggle_overwrite(GtkEntry* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_entry_class_init(GtkEntryClass * c, SEXP e)
@@ -4718,10 +4817,11 @@ S_virtual_gtk_entry_completion_match_selected(GtkEntryCompletion* s_object, GtkT
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -4745,10 +4845,11 @@ S_virtual_gtk_entry_completion_action_activated(GtkEntryCompletion* s_object, gi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -4771,10 +4872,11 @@ S_virtual_gtk_entry_completion_insert_prefix(GtkEntryCompletion* s_object, const
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -4880,10 +4982,11 @@ S_virtual_gtk_expander_activate(GtkExpander* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_expander_class_init(GtkExpanderClass * c, SEXP e)
@@ -5004,10 +5107,11 @@ S_virtual_gtk_font_button_font_set(GtkFontButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_font_button_class_init(GtkFontButtonClass * c, SEXP e)
@@ -5088,10 +5192,11 @@ S_virtual_gtk_frame_compute_child_allocation(GtkFrame* s_object, GtkAllocation* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_frame_class_init(GtkFrameClass * c, SEXP e)
@@ -5159,10 +5264,11 @@ S_virtual_gtk_handle_box_child_attached(GtkHandleBox* s_object, GtkWidget* s_chi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5185,10 +5291,11 @@ S_virtual_gtk_handle_box_child_detached(GtkHandleBox* s_object, GtkWidget* s_chi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_handle_box_class_init(GtkHandleBoxClass * c, SEXP e)
@@ -5369,10 +5476,11 @@ S_virtual_gtk_icon_theme_changed(GtkIconTheme* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_icon_theme_class_init(GtkIconThemeClass * c, SEXP e)
@@ -5427,10 +5535,11 @@ S_virtual_gtk_icon_view_set_scroll_adjustments(GtkIconView* s_object, GtkAdjustm
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5453,10 +5562,11 @@ S_virtual_gtk_icon_view_item_activated(GtkIconView* s_object, GtkTreePath* s_pat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5477,10 +5587,11 @@ S_virtual_gtk_icon_view_selection_changed(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5501,10 +5612,11 @@ S_virtual_gtk_icon_view_select_all(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5525,10 +5637,11 @@ S_virtual_gtk_icon_view_unselect_all(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5549,10 +5662,11 @@ S_virtual_gtk_icon_view_select_cursor_item(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5573,10 +5687,11 @@ S_virtual_gtk_icon_view_toggle_cursor_item(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -5601,10 +5716,11 @@ S_virtual_gtk_icon_view_move_cursor(GtkIconView* s_object, GtkMovementStep s_ste
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -5626,10 +5742,11 @@ S_virtual_gtk_icon_view_activate_cursor_item(GtkIconView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -5846,10 +5963,11 @@ S_virtual_gtk_imcontext_preedit_start(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5870,10 +5988,11 @@ S_virtual_gtk_imcontext_preedit_end(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5894,10 +6013,11 @@ S_virtual_gtk_imcontext_preedit_changed(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -5920,10 +6040,11 @@ S_virtual_gtk_imcontext_commit(GtkIMContext* s_object, const gchar* s_str)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -5944,10 +6065,11 @@ S_virtual_gtk_imcontext_retrieve_surrounding(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -5973,10 +6095,11 @@ S_virtual_gtk_imcontext_delete_surrounding(GtkIMContext* s_object, gint s_offset
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6000,10 +6123,11 @@ S_virtual_gtk_imcontext_set_client_window(GtkIMContext* s_object, GdkWindow* s_w
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6024,10 +6148,11 @@ S_virtual_gtk_imcontext_get_preedit_string(GtkIMContext* s_object, gchar** s_str
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_str = ((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 0))));
   *s_attrs = ((PangoAttrList*)pango_attr_list_ref(getPtrValue(VECTOR_ELT(s_ans, 1))));
   *s_cursor_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
@@ -6053,10 +6178,11 @@ S_virtual_gtk_imcontext_filter_keypress(GtkIMContext* s_object, GdkEventKey* s_e
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -6078,10 +6204,11 @@ S_virtual_gtk_imcontext_focus_in(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6102,10 +6229,11 @@ S_virtual_gtk_imcontext_focus_out(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6126,10 +6254,11 @@ S_virtual_gtk_imcontext_reset(GtkIMContext* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6152,10 +6281,11 @@ S_virtual_gtk_imcontext_set_cursor_location(GtkIMContext* s_object, GdkRectangle
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6178,10 +6308,11 @@ S_virtual_gtk_imcontext_set_use_preedit(GtkIMContext* s_object, gboolean s_use_p
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6208,10 +6339,11 @@ S_virtual_gtk_imcontext_set_surrounding(GtkIMContext* s_object, const gchar* s_t
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -6232,10 +6364,11 @@ S_virtual_gtk_imcontext_get_surrounding(GtkIMContext* s_object, gchar** s_text, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   *s_text = ((gchar*)g_strdup(asCString(VECTOR_ELT(s_ans, 1))));
   *s_cursor_index = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
@@ -6405,6 +6538,8 @@ S_gtk_imcontext_class_get_preedit_string(USER_OBJECT_ s_object_class, USER_OBJEC
 
 
   _result = retByVal(_result, "str", asRString(str), "attrs", toRPointerWithFinalizer(attrs, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "cursor.pos", asRInteger(cursor_pos), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -6531,6 +6666,7 @@ S_gtk_imcontext_class_get_surrounding(USER_OBJECT_ s_object_class, USER_OBJECT_ 
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "text", asRString(text), "cursor.index", asRInteger(cursor_index), NULL);
+  ;
 
   return(_result);
 }
@@ -6586,10 +6722,11 @@ S_virtual_gtk_input_dialog_enable_device(GtkInputDialog* s_object, GdkDevice* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6612,10 +6749,11 @@ S_virtual_gtk_input_dialog_disable_device(GtkInputDialog* s_object, GdkDevice* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_input_dialog_class_init(GtkInputDialogClass * c, SEXP e)
@@ -6698,10 +6836,11 @@ S_virtual_gtk_item_select(GtkItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6722,10 +6861,11 @@ S_virtual_gtk_item_deselect(GtkItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6746,10 +6886,11 @@ S_virtual_gtk_item_toggle(GtkItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_item_class_init(GtkItemClass * c, SEXP e)
@@ -6852,10 +6993,11 @@ S_virtual_gtk_label_move_cursor(GtkLabel* s_object, GtkMovementStep s_step, gint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6876,10 +7018,11 @@ S_virtual_gtk_label_copy_clipboard(GtkLabel* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -6902,10 +7045,11 @@ S_virtual_gtk_label_populate_popup(GtkLabel* s_object, GtkMenu* s_menu)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_label_class_init(GtkLabelClass * c, SEXP e)
@@ -6996,10 +7140,11 @@ S_virtual_gtk_layout_set_scroll_adjustments(GtkLayout* s_object, GtkAdjustment* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_layout_class_init(GtkLayoutClass * c, SEXP e)
@@ -7052,10 +7197,11 @@ S_virtual_gtk_list_selection_changed(GtkList* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7078,10 +7224,11 @@ S_virtual_gtk_list_select_child(GtkList* s_object, GtkWidget* s_child)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7104,10 +7251,11 @@ S_virtual_gtk_list_unselect_child(GtkList* s_object, GtkWidget* s_child)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_list_class_init(GtkListClass * c, SEXP e)
@@ -7192,10 +7340,11 @@ S_virtual_gtk_list_item_toggle_focus_row(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7216,10 +7365,11 @@ S_virtual_gtk_list_item_select_all(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7240,10 +7390,11 @@ S_virtual_gtk_list_item_unselect_all(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7264,10 +7415,11 @@ S_virtual_gtk_list_item_undo_selection(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7288,10 +7440,11 @@ S_virtual_gtk_list_item_start_selection(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7312,10 +7465,11 @@ S_virtual_gtk_list_item_end_selection(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7342,10 +7496,11 @@ S_virtual_gtk_list_item_extend_selection(GtkListItem* s_object, GtkScrollType s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7370,10 +7525,11 @@ S_virtual_gtk_list_item_scroll_horizontal(GtkListItem* s_object, GtkScrollType s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7398,10 +7554,11 @@ S_virtual_gtk_list_item_scroll_vertical(GtkListItem* s_object, GtkScrollType s_s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7422,10 +7579,11 @@ S_virtual_gtk_list_item_toggle_add_mode(GtkListItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_list_item_class_init(GtkListItemClass * c, SEXP e)
@@ -7669,10 +7827,11 @@ S_virtual_gtk_menu_item_activate(GtkMenuItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7693,10 +7852,11 @@ S_virtual_gtk_menu_item_activate_item(GtkMenuItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7717,10 +7877,11 @@ S_virtual_gtk_menu_item_toggle_size_request(GtkMenuItem* s_object, gint* s_requi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_requisition = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
 }
 static 
@@ -7744,10 +7905,11 @@ S_virtual_gtk_menu_item_toggle_size_allocate(GtkMenuItem* s_object, gint s_alloc
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_menu_item_class_init(GtkMenuItemClass * c, SEXP e)
@@ -7810,6 +7972,7 @@ S_gtk_menu_item_class_toggle_size_request(USER_OBJECT_ s_object_class, USER_OBJE
 
 
   _result = retByVal(_result, "requisition", asRInteger(requisition), NULL);
+  ;
 
   return(_result);
 }
@@ -7850,10 +8013,11 @@ S_virtual_gtk_menu_shell_deactivate(GtkMenuShell* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7874,10 +8038,11 @@ S_virtual_gtk_menu_shell_selection_done(GtkMenuShell* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7900,10 +8065,11 @@ S_virtual_gtk_menu_shell_move_current(GtkMenuShell* s_object, GtkMenuDirectionTy
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7926,10 +8092,11 @@ S_virtual_gtk_menu_shell_activate_current(GtkMenuShell* s_object, gboolean s_for
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7950,10 +8117,11 @@ S_virtual_gtk_menu_shell_cancel(GtkMenuShell* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -7976,10 +8144,11 @@ S_virtual_gtk_menu_shell_select_item(GtkMenuShell* s_object, GtkWidget* s_menu_i
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8004,10 +8173,11 @@ S_virtual_gtk_menu_shell_insert(GtkMenuShell* s_object, GtkWidget* s_child, gint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -8028,10 +8198,11 @@ S_virtual_gtk_menu_shell_get_popup_delay(GtkMenuShell* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 void
@@ -8202,10 +8373,11 @@ S_virtual_gtk_menu_tool_button_show_menu(GtkMenuToolButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_menu_tool_button_class_init(GtkMenuToolButtonClass * c, SEXP e)
@@ -8288,10 +8460,11 @@ S_virtual_gtk_notebook_switch_page(GtkNotebook* s_object, GtkNotebookPage* s_pag
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -8314,10 +8487,11 @@ S_virtual_gtk_notebook_select_page(GtkNotebook* s_object, gboolean s_move_focus)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -8341,10 +8515,11 @@ S_virtual_gtk_notebook_focus_tab(GtkNotebook* s_object, GtkNotebookTab s_type)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -8368,10 +8543,11 @@ S_virtual_gtk_notebook_change_current_page(GtkNotebook* s_object, gint s_offset)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8394,10 +8570,11 @@ S_virtual_gtk_notebook_move_focus_out(GtkNotebook* s_object, GtkDirectionType s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -8422,10 +8599,11 @@ S_virtual_gtk_notebook_reorder_tab(GtkNotebook* s_object, GtkDirectionType s_dir
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -8455,10 +8633,11 @@ S_virtual_gtk_notebook_insert_page(GtkNotebook* s_object, GtkWidget* s_child, Gt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 void
@@ -8652,10 +8831,11 @@ S_virtual_gtk_old_editable_activate(GtkOldEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8678,10 +8858,11 @@ S_virtual_gtk_old_editable_set_editable(GtkOldEditable* s_object, gboolean s_is_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8706,10 +8887,11 @@ S_virtual_gtk_old_editable_move_cursor(GtkOldEditable* s_object, gint s_x, gint 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8732,10 +8914,11 @@ S_virtual_gtk_old_editable_move_word(GtkOldEditable* s_object, gint s_n)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8760,10 +8943,11 @@ S_virtual_gtk_old_editable_move_page(GtkOldEditable* s_object, gint s_x, gint s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8786,10 +8970,11 @@ S_virtual_gtk_old_editable_move_to_row(GtkOldEditable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8812,10 +8997,11 @@ S_virtual_gtk_old_editable_move_to_column(GtkOldEditable* s_object, gint s_row)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8838,10 +9024,11 @@ S_virtual_gtk_old_editable_kill_char(GtkOldEditable* s_object, gint s_direction)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8864,10 +9051,11 @@ S_virtual_gtk_old_editable_kill_word(GtkOldEditable* s_object, gint s_direction)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8890,10 +9078,11 @@ S_virtual_gtk_old_editable_kill_line(GtkOldEditable* s_object, gint s_direction)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8914,10 +9103,11 @@ S_virtual_gtk_old_editable_cut_clipboard(GtkOldEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8938,10 +9128,11 @@ S_virtual_gtk_old_editable_copy_clipboard(GtkOldEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8962,10 +9153,11 @@ S_virtual_gtk_old_editable_paste_clipboard(GtkOldEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -8990,10 +9182,11 @@ S_virtual_gtk_old_editable_update_text(GtkOldEditable* s_object, gint s_start_po
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gchar*
@@ -9018,10 +9211,11 @@ S_virtual_gtk_old_editable_get_chars(GtkOldEditable* s_object, gint s_start_pos,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -9047,10 +9241,11 @@ S_virtual_gtk_old_editable_set_selection(GtkOldEditable* s_object, gint s_start_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -9073,10 +9268,11 @@ S_virtual_gtk_old_editable_set_position(GtkOldEditable* s_object, gint s_positio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_old_editable_class_init(GtkOldEditableClass * c, SEXP e)
@@ -9347,7 +9543,7 @@ S_gtk_old_editable_class_get_chars(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
   ans = object_class->get_chars(object, start_pos, end_pos);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -9404,10 +9600,11 @@ S_virtual_gtk_option_menu_changed(GtkOptionMenu* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_option_menu_class_init(GtkOptionMenuClass * c, SEXP e)
@@ -9460,10 +9657,11 @@ S_virtual_gtk_paned_cycle_child_focus(GtkPaned* s_object, gboolean s_reverse)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -9485,10 +9683,11 @@ S_virtual_gtk_paned_toggle_handle_focus(GtkPaned* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -9512,10 +9711,11 @@ S_virtual_gtk_paned_move_handle(GtkPaned* s_object, GtkScrollType s_scroll)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -9539,10 +9739,11 @@ S_virtual_gtk_paned_cycle_handle_focus(GtkPaned* s_object, gboolean s_reverse)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -9564,10 +9765,11 @@ S_virtual_gtk_paned_accept_position(GtkPaned* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -9589,10 +9791,11 @@ S_virtual_gtk_paned_cancel_position(GtkPaned* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -9753,10 +9956,11 @@ S_virtual_gtk_plug_embedded(GtkPlug* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_plug_class_init(GtkPlugClass * c, SEXP e)
@@ -9821,10 +10025,11 @@ S_virtual_gtk_progress_paint(GtkProgress* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -9845,10 +10050,11 @@ S_virtual_gtk_progress_update(GtkProgress* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -9869,10 +10075,11 @@ S_virtual_gtk_progress_act_mode_enter(GtkProgress* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_progress_class_init(GtkProgressClass * c, SEXP e)
@@ -9971,10 +10178,11 @@ S_virtual_gtk_radio_action_changed(GtkRadioAction* s_object, GtkRadioAction* s_c
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_radio_action_class_init(GtkRadioActionClass * c, SEXP e)
@@ -10026,10 +10234,11 @@ S_virtual_gtk_radio_button_group_changed(GtkRadioButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_radio_button_class_init(GtkRadioButtonClass * c, SEXP e)
@@ -10080,10 +10289,11 @@ S_virtual_gtk_radio_menu_item_group_changed(GtkRadioMenuItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_radio_menu_item_class_init(GtkRadioMenuItemClass * c, SEXP e)
@@ -10148,10 +10358,11 @@ S_virtual_gtk_range_value_changed(GtkRange* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10174,10 +10385,11 @@ S_virtual_gtk_range_adjust_bounds(GtkRange* s_object, gdouble s_new_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10200,10 +10412,11 @@ S_virtual_gtk_range_move_slider(GtkRange* s_object, GtkScrollType s_scroll)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10226,10 +10439,11 @@ S_virtual_gtk_range_get_range_border(GtkRange* s_object, GtkBorder* s_border_)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -10254,10 +10468,11 @@ S_virtual_gtk_range_change_value(GtkRange* s_object, GtkScrollType s_scroll, gdo
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -10380,10 +10595,11 @@ S_virtual_gtk_rc_style_create_rc_style(GtkRcStyle* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkRcStyle*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkRcStyle*)0));
   return(GTK_RC_STYLE(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -10409,10 +10625,11 @@ S_virtual_gtk_rc_style_parse(GtkRcStyle* s_object, GtkSettings* s_settings, GSca
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((guint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((guint)0));
   return(((guint)asCNumeric(s_ans)));
 }
 static 
@@ -10436,10 +10653,11 @@ S_virtual_gtk_rc_style_merge(GtkRcStyle* s_object, GtkRcStyle* s_src)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkStyle*
@@ -10460,10 +10678,11 @@ S_virtual_gtk_rc_style_create_style(GtkRcStyle* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkStyle*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkStyle*)0));
   return(GTK_STYLE(getPtrValueWithRef(s_ans)));
 }
 void
@@ -10572,10 +10791,11 @@ S_virtual_gtk_ruler_draw_ticks(GtkRuler* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10596,10 +10816,11 @@ S_virtual_gtk_ruler_draw_pos(GtkRuler* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_ruler_class_init(GtkRulerClass * c, SEXP e)
@@ -10668,10 +10889,11 @@ S_virtual_gtk_scale_format_value(GtkScale* s_object, gdouble s_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -10693,10 +10915,11 @@ S_virtual_gtk_scale_draw_value(GtkScale* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10717,10 +10940,11 @@ S_virtual_gtk_scale_get_layout_offsets(GtkScale* s_object, gint* s_x, gint* s_y)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 0)));
   *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -10755,7 +10979,7 @@ S_gtk_scale_class_format_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   ans = object_class->format_value(object, value);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -10788,6 +11012,8 @@ S_gtk_scale_class_get_layout_offsets(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 
   _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -10831,10 +11057,11 @@ S_virtual_gtk_scrolled_window_scroll_child(GtkScrolledWindow* s_object, GtkScrol
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -10857,10 +11084,11 @@ S_virtual_gtk_scrolled_window_move_focus_out(GtkScrolledWindow* s_object, GtkDir
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_scrolled_window_class_init(GtkScrolledWindowClass * c, SEXP e)
@@ -11000,10 +11228,11 @@ S_virtual_gtk_socket_plug_added(GtkSocket* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -11024,10 +11253,11 @@ S_virtual_gtk_socket_plug_removed(GtkSocket* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -11097,10 +11327,11 @@ S_virtual_gtk_spin_button_input(GtkSpinButton* s_object, gdouble* s_new_value)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   *s_new_value = ((gdouble)asCNumeric(VECTOR_ELT(s_ans, 1)));
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
@@ -11123,10 +11354,11 @@ S_virtual_gtk_spin_button_output(GtkSpinButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -11148,10 +11380,11 @@ S_virtual_gtk_spin_button_value_changed(GtkSpinButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11174,10 +11407,11 @@ S_virtual_gtk_spin_button_change_value(GtkSpinButton* s_object, GtkScrollType s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11198,10 +11432,11 @@ S_virtual_gtk_spin_button_wrapped(GtkSpinButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_spin_button_class_init(GtkSpinButtonClass * c, SEXP e)
@@ -11242,6 +11477,7 @@ S_gtk_spin_button_class_input(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object
   _result = asRInteger(ans);
 
   _result = retByVal(_result, "new.value", asRNumeric(new_value), NULL);
+  ;
 
   return(_result);
 }
@@ -11334,10 +11570,11 @@ S_virtual_gtk_statusbar_text_pushed(GtkStatusbar* s_object, guint s_context_id, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11362,10 +11599,11 @@ S_virtual_gtk_statusbar_text_popped(GtkStatusbar* s_object, guint s_context_id, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_statusbar_class_init(GtkStatusbarClass * c, SEXP e)
@@ -11436,10 +11674,11 @@ S_virtual_gtk_style_realize(GtkStyle* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11460,10 +11699,11 @@ S_virtual_gtk_style_unrealize(GtkStyle* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11486,10 +11726,11 @@ S_virtual_gtk_style_copy(GtkStyle* s_object, GtkStyle* s_src)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkStyle*
@@ -11510,10 +11751,11 @@ S_virtual_gtk_style_clone(GtkStyle* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkStyle*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkStyle*)0));
   return(GTK_STYLE(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -11537,10 +11779,11 @@ S_virtual_gtk_style_init_from_rc(GtkStyle* s_object, GtkRcStyle* s_rc_style)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11565,10 +11808,11 @@ S_virtual_gtk_style_set_background(GtkStyle* s_object, GdkWindow* s_window, GtkS
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GdkPixbuf*
@@ -11601,10 +11845,11 @@ S_virtual_gtk_style_render_icon(GtkStyle* s_object, const GtkIconSource* s_sourc
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GdkPixbuf*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GdkPixbuf*)0));
   return(GDK_PIXBUF(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -11642,10 +11887,11 @@ S_virtual_gtk_style_draw_hline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11682,10 +11928,11 @@ S_virtual_gtk_style_draw_vline(GtkStyle* s_object, GdkWindow* s_window, GtkState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11726,10 +11973,11 @@ S_virtual_gtk_style_draw_shadow(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11768,10 +12016,11 @@ S_virtual_gtk_style_draw_polygon(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11816,10 +12065,11 @@ S_virtual_gtk_style_draw_arrow(GtkStyle* s_object, GdkWindow* s_window, GtkState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11860,10 +12110,11 @@ S_virtual_gtk_style_draw_diamond(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11900,10 +12151,11 @@ S_virtual_gtk_style_draw_string(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11944,10 +12196,11 @@ S_virtual_gtk_style_draw_box(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -11988,10 +12241,11 @@ S_virtual_gtk_style_draw_flat_box(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12032,10 +12286,11 @@ S_virtual_gtk_style_draw_check(GtkStyle* s_object, GdkWindow* s_window, GtkState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12076,10 +12331,11 @@ S_virtual_gtk_style_draw_option(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12120,10 +12376,11 @@ S_virtual_gtk_style_draw_tab(GtkStyle* s_object, GdkWindow* s_window, GtkStateTy
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12170,10 +12427,11 @@ S_virtual_gtk_style_draw_shadow_gap(GtkStyle* s_object, GdkWindow* s_window, Gtk
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12220,10 +12478,11 @@ S_virtual_gtk_style_draw_box_gap(GtkStyle* s_object, GdkWindow* s_window, GtkSta
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12266,10 +12525,11 @@ S_virtual_gtk_style_draw_extension(GtkStyle* s_object, GdkWindow* s_window, GtkS
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12308,10 +12568,11 @@ S_virtual_gtk_style_draw_focus(GtkStyle* s_object, GdkWindow* s_window, GtkState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12354,10 +12615,11 @@ S_virtual_gtk_style_draw_slider(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12400,10 +12662,11 @@ S_virtual_gtk_style_draw_handle(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12440,10 +12703,11 @@ S_virtual_gtk_style_draw_expander(GtkStyle* s_object, GdkWindow* s_window, GtkSt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12482,10 +12746,11 @@ S_virtual_gtk_style_draw_layout(GtkStyle* s_object, GdkWindow* s_window, GtkStat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -12526,10 +12791,11 @@ S_virtual_gtk_style_draw_resize_grip(GtkStyle* s_object, GdkWindow* s_window, Gt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_style_class_init(GtkStyleClass * c, SEXP e)
@@ -13270,10 +13536,11 @@ S_virtual_gtk_text_buffer_insert_text(GtkTextBuffer* s_object, GtkTextIter* s_po
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13298,10 +13565,11 @@ S_virtual_gtk_text_buffer_insert_pixbuf(GtkTextBuffer* s_object, GtkTextIter* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13326,10 +13594,11 @@ S_virtual_gtk_text_buffer_insert_child_anchor(GtkTextBuffer* s_object, GtkTextIt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13354,10 +13623,11 @@ S_virtual_gtk_text_buffer_delete_range(GtkTextBuffer* s_object, GtkTextIter* s_s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13378,10 +13648,11 @@ S_virtual_gtk_text_buffer_changed(GtkTextBuffer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13402,10 +13673,11 @@ S_virtual_gtk_text_buffer_modified_changed(GtkTextBuffer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13430,10 +13702,11 @@ S_virtual_gtk_text_buffer_mark_set(GtkTextBuffer* s_object, const GtkTextIter* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13456,10 +13729,11 @@ S_virtual_gtk_text_buffer_mark_deleted(GtkTextBuffer* s_object, GtkTextMark* s_m
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13486,10 +13760,11 @@ S_virtual_gtk_text_buffer_apply_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13516,10 +13791,11 @@ S_virtual_gtk_text_buffer_remove_tag(GtkTextBuffer* s_object, GtkTextTag* s_tag,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13540,10 +13816,11 @@ S_virtual_gtk_text_buffer_begin_user_action(GtkTextBuffer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13564,10 +13841,11 @@ S_virtual_gtk_text_buffer_end_user_action(GtkTextBuffer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_text_buffer_class_init(GtkTextBufferClass * c, SEXP e)
@@ -13846,10 +14124,11 @@ S_virtual_gtk_text_tag_event(GtkTextTag* s_object, GObject* s_event_object, GdkE
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -13910,10 +14189,11 @@ S_virtual_gtk_text_tag_table_tag_changed(GtkTextTagTable* s_object, GtkTextTag* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13936,10 +14216,11 @@ S_virtual_gtk_text_tag_table_tag_added(GtkTextTagTable* s_object, GtkTextTag* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -13962,10 +14243,11 @@ S_virtual_gtk_text_tag_table_tag_removed(GtkTextTagTable* s_object, GtkTextTag* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_text_tag_table_class_init(GtkTextTagTableClass * c, SEXP e)
@@ -14056,10 +14338,11 @@ S_virtual_gtk_text_view_set_scroll_adjustments(GtkTextView* s_object, GtkAdjustm
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14082,10 +14365,11 @@ S_virtual_gtk_text_view_populate_popup(GtkTextView* s_object, GtkMenu* s_menu)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14112,10 +14396,11 @@ S_virtual_gtk_text_view_move_cursor(GtkTextView* s_object, GtkMovementStep s_ste
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14140,10 +14425,11 @@ S_virtual_gtk_text_view_page_horizontally(GtkTextView* s_object, gint s_count, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14164,10 +14450,11 @@ S_virtual_gtk_text_view_set_anchor(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14190,10 +14477,11 @@ S_virtual_gtk_text_view_insert_at_cursor(GtkTextView* s_object, const gchar* s_s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14218,10 +14506,11 @@ S_virtual_gtk_text_view_delete_from_cursor(GtkTextView* s_object, GtkDeleteType 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14242,10 +14531,11 @@ S_virtual_gtk_text_view_backspace(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14266,10 +14556,11 @@ S_virtual_gtk_text_view_cut_clipboard(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14290,10 +14581,11 @@ S_virtual_gtk_text_view_copy_clipboard(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14314,10 +14606,11 @@ S_virtual_gtk_text_view_paste_clipboard(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14338,10 +14631,11 @@ S_virtual_gtk_text_view_toggle_overwrite(GtkTextView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14364,10 +14658,11 @@ S_virtual_gtk_text_view_move_focus(GtkTextView* s_object, GtkDirectionType s_dir
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_text_view_class_init(GtkTextViewClass * c, SEXP e)
@@ -14622,10 +14917,11 @@ S_virtual_gtk_tips_query_start_query(GtkTipsQuery* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14646,10 +14942,11 @@ S_virtual_gtk_tips_query_stop_query(GtkTipsQuery* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -14676,10 +14973,11 @@ S_virtual_gtk_tips_query_widget_entered(GtkTipsQuery* s_object, GtkWidget* s_wid
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -14708,10 +15006,11 @@ S_virtual_gtk_tips_query_widget_selected(GtkTipsQuery* s_object, GtkWidget* s_wi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 void
@@ -14820,10 +15119,11 @@ S_virtual_gtk_toggle_action_toggled(GtkToggleAction* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_toggle_action_class_init(GtkToggleActionClass * c, SEXP e)
@@ -14874,10 +15174,11 @@ S_virtual_gtk_toggle_button_toggled(GtkToggleButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_toggle_button_class_init(GtkToggleButtonClass * c, SEXP e)
@@ -14928,10 +15229,11 @@ S_virtual_gtk_toggle_tool_button_toggled(GtkToggleToolButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_toggle_tool_button_class_init(GtkToggleToolButtonClass * c, SEXP e)
@@ -14984,10 +15286,11 @@ S_virtual_gtk_toolbar_orientation_changed(GtkToolbar* s_object, GtkOrientation s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -15010,10 +15313,11 @@ S_virtual_gtk_toolbar_style_changed(GtkToolbar* s_object, GtkToolbarStyle s_styl
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -15040,10 +15344,11 @@ S_virtual_gtk_toolbar_popup_context_menu(GtkToolbar* s_object, gint s_x, gint s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -15134,10 +15439,11 @@ S_virtual_gtk_tool_button_clicked(GtkToolButton* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_tool_button_class_init(GtkToolButtonClass * c, SEXP e)
@@ -15188,10 +15494,11 @@ S_virtual_gtk_tool_item_create_menu_proxy(GtkToolItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15213,10 +15520,11 @@ S_virtual_gtk_tool_item_toolbar_reconfigured(GtkToolItem* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -15243,10 +15551,11 @@ S_virtual_gtk_tool_item_set_tooltip(GtkToolItem* s_object, GtkTooltips* s_toolti
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -15379,10 +15688,11 @@ S_virtual_gtk_tree_selection_changed(GtkTreeSelection* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_tree_selection_class_init(GtkTreeSelectionClass * c, SEXP e)
@@ -15451,10 +15761,11 @@ S_virtual_gtk_tree_view_set_scroll_adjustments(GtkTreeView* s_object, GtkAdjustm
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -15479,10 +15790,11 @@ S_virtual_gtk_tree_view_row_activated(GtkTreeView* s_object, GtkTreePath* s_path
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -15507,10 +15819,11 @@ S_virtual_gtk_tree_view_test_expand_row(GtkTreeView* s_object, GtkTreeIter* s_it
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15536,10 +15849,11 @@ S_virtual_gtk_tree_view_test_collapse_row(GtkTreeView* s_object, GtkTreeIter* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15565,10 +15879,11 @@ S_virtual_gtk_tree_view_row_expanded(GtkTreeView* s_object, GtkTreeIter* s_iter,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -15593,10 +15908,11 @@ S_virtual_gtk_tree_view_row_collapsed(GtkTreeView* s_object, GtkTreeIter* s_iter
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -15617,10 +15933,11 @@ S_virtual_gtk_tree_view_columns_changed(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -15641,10 +15958,11 @@ S_virtual_gtk_tree_view_cursor_changed(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -15669,10 +15987,11 @@ S_virtual_gtk_tree_view_move_cursor(GtkTreeView* s_object, GtkMovementStep s_ste
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15694,10 +16013,11 @@ S_virtual_gtk_tree_view_select_all(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15719,10 +16039,11 @@ S_virtual_gtk_tree_view_unselect_all(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15746,10 +16067,11 @@ S_virtual_gtk_tree_view_select_cursor_row(GtkTreeView* s_object, gboolean s_star
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15771,10 +16093,11 @@ S_virtual_gtk_tree_view_toggle_cursor_row(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15802,10 +16125,11 @@ S_virtual_gtk_tree_view_expand_collapse_cursor_row(GtkTreeView* s_object, gboole
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15827,10 +16151,11 @@ S_virtual_gtk_tree_view_select_cursor_parent(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -15852,10 +16177,11 @@ S_virtual_gtk_tree_view_start_interactive_search(GtkTreeView* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -16185,10 +16511,11 @@ S_virtual_gtk_tree_view_column_clicked(GtkTreeViewColumn* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_tree_view_column_class_init(GtkTreeViewColumnClass * c, SEXP e)
@@ -16241,10 +16568,11 @@ S_virtual_gtk_uimanager_add_widget(GtkUIManager* s_object, GtkWidget* s_widget)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16265,10 +16593,11 @@ S_virtual_gtk_uimanager_actions_changed(GtkUIManager* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16293,10 +16622,11 @@ S_virtual_gtk_uimanager_connect_proxy(GtkUIManager* s_object, GtkAction* s_actio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16321,10 +16651,11 @@ S_virtual_gtk_uimanager_disconnect_proxy(GtkUIManager* s_object, GtkAction* s_ac
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16347,10 +16678,11 @@ S_virtual_gtk_uimanager_pre_activate(GtkUIManager* s_object, GtkAction* s_action
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16373,10 +16705,11 @@ S_virtual_gtk_uimanager_post_activate(GtkUIManager* s_object, GtkAction* s_actio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkWidget*
@@ -16399,10 +16732,11 @@ S_virtual_gtk_uimanager_get_widget(GtkUIManager* s_object, const gchar* s_path)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkWidget*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 }
 static 
@@ -16426,10 +16760,11 @@ S_virtual_gtk_uimanager_get_action(GtkUIManager* s_object, const gchar* s_path)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkAction*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkAction*)0));
   return(GTK_ACTION(getPtrValue(s_ans)));
 }
 void
@@ -16638,10 +16973,11 @@ S_virtual_gtk_viewport_set_scroll_adjustments(GtkViewport* s_object, GtkAdjustme
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_viewport_class_init(GtkViewportClass * c, SEXP e)
@@ -16768,10 +17104,11 @@ S_virtual_gtk_widget_dispatch_child_properties_changed(GtkWidget* s_object, guin
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16792,10 +17129,11 @@ S_virtual_gtk_widget_show(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16816,10 +17154,11 @@ S_virtual_gtk_widget_show_all(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16840,10 +17179,11 @@ S_virtual_gtk_widget_hide(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16864,10 +17204,11 @@ S_virtual_gtk_widget_hide_all(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16888,10 +17229,11 @@ S_virtual_gtk_widget_map(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16912,10 +17254,11 @@ S_virtual_gtk_widget_unmap(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16936,10 +17279,11 @@ S_virtual_gtk_widget_realize(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16960,10 +17304,11 @@ S_virtual_gtk_widget_unrealize(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -16986,10 +17331,11 @@ S_virtual_gtk_widget_size_request(GtkWidget* s_object, GtkRequisition* s_requisi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17012,10 +17358,11 @@ S_virtual_gtk_widget_size_allocate(GtkWidget* s_object, GtkAllocation* s_allocat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17038,10 +17385,11 @@ S_virtual_gtk_widget_state_changed(GtkWidget* s_object, GtkStateType s_previous_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17064,10 +17412,11 @@ S_virtual_gtk_widget_parent_set(GtkWidget* s_object, GtkWidget* s_previous_paren
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17090,10 +17439,11 @@ S_virtual_gtk_widget_hierarchy_changed(GtkWidget* s_object, GtkWidget* s_previou
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17116,10 +17466,11 @@ S_virtual_gtk_widget_style_set(GtkWidget* s_object, GtkStyle* s_previous_style)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17142,10 +17493,11 @@ S_virtual_gtk_widget_direction_changed(GtkWidget* s_object, GtkTextDirection s_p
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17168,10 +17520,11 @@ S_virtual_gtk_widget_grab_notify(GtkWidget* s_object, gboolean s_was_grabbed)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -17194,10 +17547,11 @@ S_virtual_gtk_widget_child_notify(GtkWidget* s_object, GParamSpec* s_pspec)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -17220,10 +17574,11 @@ S_virtual_gtk_widget_mnemonic_activate(GtkWidget* s_object, gboolean s_group_cyc
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17245,10 +17600,11 @@ S_virtual_gtk_widget_grab_focus(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -17271,10 +17627,11 @@ S_virtual_gtk_widget_focus(GtkWidget* s_object, GtkDirectionType s_direction)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17298,10 +17655,11 @@ S_virtual_gtk_widget_event(GtkWidget* s_object, GdkEvent* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17325,10 +17683,11 @@ S_virtual_gtk_widget_button_press_event(GtkWidget* s_object, GdkEventButton* s_e
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17352,10 +17711,11 @@ S_virtual_gtk_widget_button_release_event(GtkWidget* s_object, GdkEventButton* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17379,10 +17739,11 @@ S_virtual_gtk_widget_scroll_event(GtkWidget* s_object, GdkEventScroll* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17406,10 +17767,11 @@ S_virtual_gtk_widget_motion_notify_event(GtkWidget* s_object, GdkEventMotion* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17433,10 +17795,11 @@ S_virtual_gtk_widget_delete_event(GtkWidget* s_object, GdkEventAny* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17460,10 +17823,11 @@ S_virtual_gtk_widget_destroy_event(GtkWidget* s_object, GdkEventAny* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17487,10 +17851,11 @@ S_virtual_gtk_widget_expose_event(GtkWidget* s_object, GdkEventExpose* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17514,10 +17879,11 @@ S_virtual_gtk_widget_key_press_event(GtkWidget* s_object, GdkEventKey* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17541,10 +17907,11 @@ S_virtual_gtk_widget_key_release_event(GtkWidget* s_object, GdkEventKey* s_event
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17568,10 +17935,11 @@ S_virtual_gtk_widget_enter_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17595,10 +17963,11 @@ S_virtual_gtk_widget_leave_notify_event(GtkWidget* s_object, GdkEventCrossing* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17622,10 +17991,11 @@ S_virtual_gtk_widget_configure_event(GtkWidget* s_object, GdkEventConfigure* s_e
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17649,10 +18019,11 @@ S_virtual_gtk_widget_focus_in_event(GtkWidget* s_object, GdkEventFocus* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17676,10 +18047,11 @@ S_virtual_gtk_widget_focus_out_event(GtkWidget* s_object, GdkEventFocus* s_event
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17703,10 +18075,11 @@ S_virtual_gtk_widget_map_event(GtkWidget* s_object, GdkEventAny* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17730,10 +18103,11 @@ S_virtual_gtk_widget_unmap_event(GtkWidget* s_object, GdkEventAny* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17757,10 +18131,11 @@ S_virtual_gtk_widget_property_notify_event(GtkWidget* s_object, GdkEventProperty
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17784,10 +18159,11 @@ S_virtual_gtk_widget_selection_clear_event(GtkWidget* s_object, GdkEventSelectio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17811,10 +18187,11 @@ S_virtual_gtk_widget_selection_request_event(GtkWidget* s_object, GdkEventSelect
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17838,10 +18215,11 @@ S_virtual_gtk_widget_selection_notify_event(GtkWidget* s_object, GdkEventSelecti
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17865,10 +18243,11 @@ S_virtual_gtk_widget_proximity_in_event(GtkWidget* s_object, GdkEventProximity* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17892,10 +18271,11 @@ S_virtual_gtk_widget_proximity_out_event(GtkWidget* s_object, GdkEventProximity*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17919,10 +18299,11 @@ S_virtual_gtk_widget_visibility_notify_event(GtkWidget* s_object, GdkEventVisibi
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17946,10 +18327,11 @@ S_virtual_gtk_widget_client_event(GtkWidget* s_object, GdkEventClient* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -17973,10 +18355,11 @@ S_virtual_gtk_widget_no_expose_event(GtkWidget* s_object, GdkEventAny* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18000,10 +18383,11 @@ S_virtual_gtk_widget_window_state_event(GtkWidget* s_object, GdkEventWindowState
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18031,10 +18415,11 @@ S_virtual_gtk_widget_selection_get(GtkWidget* s_object, GtkSelectionData* s_sele
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18059,10 +18444,11 @@ S_virtual_gtk_widget_selection_received(GtkWidget* s_object, GtkSelectionData* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18085,10 +18471,11 @@ S_virtual_gtk_widget_drag_begin(GtkWidget* s_object, GdkDragContext* s_context)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18111,10 +18498,11 @@ S_virtual_gtk_widget_drag_end(GtkWidget* s_object, GdkDragContext* s_context)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18143,10 +18531,11 @@ S_virtual_gtk_widget_drag_data_get(GtkWidget* s_object, GdkDragContext* s_contex
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18169,10 +18558,11 @@ S_virtual_gtk_widget_drag_data_delete(GtkWidget* s_object, GdkDragContext* s_con
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -18197,10 +18587,11 @@ S_virtual_gtk_widget_drag_leave(GtkWidget* s_object, GdkDragContext* s_context, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -18229,10 +18620,11 @@ S_virtual_gtk_widget_drag_motion(GtkWidget* s_object, GdkDragContext* s_context,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18262,10 +18654,11 @@ S_virtual_gtk_widget_drag_drop(GtkWidget* s_object, GdkDragContext* s_context, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18299,10 +18692,11 @@ S_virtual_gtk_widget_drag_data_received(GtkWidget* s_object, GdkDragContext* s_c
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -18323,10 +18717,11 @@ S_virtual_gtk_widget_popup_menu(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18350,10 +18745,11 @@ S_virtual_gtk_widget_show_help(GtkWidget* s_object, GtkWidgetHelpType s_help_typ
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18375,10 +18771,11 @@ S_virtual_gtk_widget_get_accessible(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((AtkObject*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((AtkObject*)0));
   return(ATK_OBJECT(getPtrValue(s_ans)));
 }
 static 
@@ -18402,10 +18799,11 @@ S_virtual_gtk_widget_screen_changed(GtkWidget* s_object, GdkScreen* s_previous_s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -18428,10 +18826,11 @@ S_virtual_gtk_widget_can_activate_accel(GtkWidget* s_object, guint s_signal_id)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18455,10 +18854,11 @@ S_virtual_gtk_widget_grab_broken_event(GtkWidget* s_object, GdkEventGrabBroken* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -18480,10 +18880,11 @@ S_virtual_gtk_widget_composited_changed(GtkWidget* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_widget_class_init(GtkWidgetClass * c, SEXP e)
@@ -18888,7 +19289,7 @@ S_gtk_widget_class_child_notify(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 
   object_class->child_notify(object, pspec);
 
-  CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));
+    CLEANUP(g_param_spec_sink, ((GParamSpec*)pspec));;
 
   return(_result);
 }
@@ -19711,10 +20112,11 @@ S_virtual_gtk_window_set_focus(GtkWindow* s_object, GtkWidget* s_focus)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -19737,10 +20139,11 @@ S_virtual_gtk_window_frame_event(GtkWindow* s_object, GdkEvent* s_event)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -19762,10 +20165,11 @@ S_virtual_gtk_window_activate_focus(GtkWindow* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -19786,10 +20190,11 @@ S_virtual_gtk_window_activate_default(GtkWindow* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -19812,10 +20217,11 @@ S_virtual_gtk_window_move_focus(GtkWindow* s_object, GtkDirectionType s_directio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -19836,10 +20242,11 @@ S_virtual_gtk_window_keys_changed(GtkWindow* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_window_class_init(GtkWindowClass * c, SEXP e)
@@ -19998,10 +20405,11 @@ S_virtual_gtk_cell_renderer_accel_accel_edited(GtkCellRendererAccel* s_object, c
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20024,10 +20432,11 @@ S_virtual_gtk_cell_renderer_accel_accel_cleared(GtkCellRendererAccel* s_object, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_cell_renderer_accel_class_init(GtkCellRendererAccelClass * c, SEXP e)
@@ -20131,10 +20540,11 @@ S_virtual_gtk_print_operation_done(GtkPrintOperation* s_object, GtkPrintOperatio
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20157,10 +20567,11 @@ S_virtual_gtk_print_operation_begin_print(GtkPrintOperation* s_object, GtkPrintC
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -20183,10 +20594,11 @@ S_virtual_gtk_print_operation_paginate(GtkPrintOperation* s_object, GtkPrintCont
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -20214,10 +20626,11 @@ S_virtual_gtk_print_operation_request_page_setup(GtkPrintOperation* s_object, Gt
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20242,10 +20655,11 @@ S_virtual_gtk_print_operation_draw_page(GtkPrintOperation* s_object, GtkPrintCon
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20268,10 +20682,11 @@ S_virtual_gtk_print_operation_end_print(GtkPrintOperation* s_object, GtkPrintCon
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20292,10 +20707,11 @@ S_virtual_gtk_print_operation_status_changed(GtkPrintOperation* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkWidget*
@@ -20316,10 +20732,11 @@ S_virtual_gtk_print_operation_create_custom_widget(GtkPrintOperation* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkWidget*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 }
 static 
@@ -20343,10 +20760,11 @@ S_virtual_gtk_print_operation_custom_widget_apply(GtkPrintOperation* s_object, G
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -20373,10 +20791,11 @@ S_virtual_gtk_print_operation_preview(GtkPrintOperation* s_object, GtkPrintOpera
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -20653,10 +21072,11 @@ S_virtual_gtk_recent_manager_changed(GtkRecentManager* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_recent_manager_class_init(GtkRecentManagerClass * c, SEXP e)
@@ -20715,10 +21135,11 @@ S_virtual_gtk_status_icon_activate(GtkStatusIcon* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20743,10 +21164,11 @@ S_virtual_gtk_status_icon_popup_menu(GtkStatusIcon* s_object, guint s_button, gu
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -20769,10 +21191,11 @@ S_virtual_gtk_status_icon_size_changed(GtkStatusIcon* s_object, gint s_size)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -20947,10 +21370,11 @@ S_virtual_gtk_assistant_prepare(GtkAssistant* s_object, GtkWidget* s_page)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20971,10 +21395,11 @@ S_virtual_gtk_assistant_apply(GtkAssistant* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -20995,10 +21420,11 @@ S_virtual_gtk_assistant_close(GtkAssistant* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21019,10 +21445,11 @@ S_virtual_gtk_assistant_cancel(GtkAssistant* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
@@ -21147,10 +21574,11 @@ S_virtual_gtk_cell_editable_editing_done(GtkCellEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21171,10 +21599,11 @@ S_virtual_gtk_cell_editable_remove_widget(GtkCellEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21197,10 +21626,11 @@ S_virtual_gtk_cell_editable_start_editing(GtkCellEditable* s_object, GdkEvent* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)
@@ -21286,10 +21716,11 @@ S_virtual_gtk_cell_layout_pack_start(GtkCellLayout* s_object, GtkCellRenderer* s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21314,10 +21745,11 @@ S_virtual_gtk_cell_layout_pack_end(GtkCellLayout* s_object, GtkCellRenderer* s_c
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21338,10 +21770,11 @@ S_virtual_gtk_cell_layout_clear(GtkCellLayout* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21368,10 +21801,11 @@ S_virtual_gtk_cell_layout_add_attribute(GtkCellLayout* s_object, GtkCellRenderer
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21400,10 +21834,11 @@ S_virtual_gtk_cell_layout_set_cell_data_func(GtkCellLayout* s_object, GtkCellRen
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21426,10 +21861,11 @@ S_virtual_gtk_cell_layout_clear_attributes(GtkCellLayout* s_object, GtkCellRende
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21454,10 +21890,11 @@ S_virtual_gtk_cell_layout_reorder(GtkCellLayout* s_object, GtkCellRenderer* s_ce
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_cell_layout_class_init(GtkCellLayoutIface * c, SEXP e)
@@ -21622,10 +22059,11 @@ S_virtual_gtk_editable_insert_text(GtkEditable* s_object, const gchar* s_text, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21650,10 +22088,11 @@ S_virtual_gtk_editable_delete_text(GtkEditable* s_object, gint s_start_pos, gint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21674,10 +22113,11 @@ S_virtual_gtk_editable_changed(GtkEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21704,10 +22144,11 @@ S_virtual_gtk_editable_do_insert_text(GtkEditable* s_object, const gchar* s_text
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -21732,10 +22173,11 @@ S_virtual_gtk_editable_do_delete_text(GtkEditable* s_object, gint s_start_pos, g
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gchar*
@@ -21760,10 +22202,11 @@ S_virtual_gtk_editable_get_chars(GtkEditable* s_object, gint s_start_pos, gint s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gchar*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gchar*)0));
   return(((gchar*)g_strdup(asCString(s_ans))));
 }
 static 
@@ -21789,10 +22232,11 @@ S_virtual_gtk_editable_set_selection_bounds(GtkEditable* s_object, gint s_start_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -21813,10 +22257,11 @@ S_virtual_gtk_editable_get_selection_bounds(GtkEditable* s_object, gint* s_start
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   *s_start_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_end_pos = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
@@ -21842,10 +22287,11 @@ S_virtual_gtk_editable_set_position(GtkEditable* s_object, gint s_position)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gint
@@ -21866,10 +22312,11 @@ S_virtual_gtk_editable_get_position(GtkEditable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 void
@@ -21996,7 +22443,7 @@ S_gtk_editable_iface_get_chars(USER_OBJECT_ s_object_class, USER_OBJECT_ s_objec
   ans = object_class->get_chars(object, start_pos, end_pos);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -22033,6 +22480,8 @@ S_gtk_editable_iface_get_selection_bounds(USER_OBJECT_ s_object_class, USER_OBJE
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "start.pos", asRInteger(start_pos), "end.pos", asRInteger(end_pos), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -22093,10 +22542,11 @@ S_virtual_gtk_tree_drag_dest_drag_data_received(GtkTreeDragDest* s_object, GtkTr
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -22122,10 +22572,11 @@ S_virtual_gtk_tree_drag_dest_row_drop_possible(GtkTreeDragDest* s_object, GtkTre
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -22201,10 +22652,11 @@ S_virtual_gtk_tree_drag_source_row_draggable(GtkTreeDragSource* s_object, GtkTre
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -22230,10 +22682,11 @@ S_virtual_gtk_tree_drag_source_drag_data_get(GtkTreeDragSource* s_object, GtkTre
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -22257,10 +22710,11 @@ S_virtual_gtk_tree_drag_source_drag_data_delete(GtkTreeDragSource* s_object, Gtk
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -22356,10 +22810,11 @@ S_virtual_gtk_tree_model_row_changed(GtkTreeModel* s_object, GtkTreePath* s_path
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -22384,10 +22839,11 @@ S_virtual_gtk_tree_model_row_inserted(GtkTreeModel* s_object, GtkTreePath* s_pat
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -22412,10 +22868,11 @@ S_virtual_gtk_tree_model_row_has_child_toggled(GtkTreeModel* s_object, GtkTreePa
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -22438,10 +22895,11 @@ S_virtual_gtk_tree_model_row_deleted(GtkTreeModel* s_object, GtkTreePath* s_path
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -22468,10 +22926,11 @@ S_virtual_gtk_tree_model_rows_reordered(GtkTreeModel* s_object, GtkTreePath* s_p
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 GtkTreeModelFlags
@@ -22492,10 +22951,11 @@ S_virtual_gtk_tree_model_get_flags(GtkTreeModel* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkTreeModelFlags)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkTreeModelFlags)0));
   return(((GtkTreeModelFlags)asCFlag(s_ans, GTK_TYPE_TREE_MODEL_FLAGS)));
 }
 static 
@@ -22517,10 +22977,11 @@ S_virtual_gtk_tree_model_get_n_columns(GtkTreeModel* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -22544,10 +23005,11 @@ S_virtual_gtk_tree_model_get_column_type(GtkTreeModel* s_object, gint s_index_)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GType)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GType)0));
   return(((GType)asCNumeric(s_ans)));
 }
 static 
@@ -22559,7 +23021,7 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
@@ -22567,17 +23029,17 @@ S_virtual_gtk_tree_model_get_iter(GtkTreeModel* s_object, GtkTreeIter* s_iter, G
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
-  tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_path ? gtk_tree_path_copy(s_path) : NULL, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free));
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+
+  if(err)
+    return(((gboolean)0));
+  *s_iter = *((GtkTreeIter*)getPtrValue(VECTOR_ELT(s_ans, 1)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 GtkTreePath*
@@ -22600,10 +23062,11 @@ S_virtual_gtk_tree_model_get_path(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkTreePath*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkTreePath*)0));
   return(((GtkTreePath*)gtk_tree_path_copy(getPtrValue(s_ans))));
 }
 static 
@@ -22615,7 +23078,7 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 5));
+  PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 10));
@@ -22627,14 +23090,18 @@ S_virtual_gtk_tree_model_get_value(GtkTreeModel* s_object, GtkTreeIter* s_iter, 
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_column));
   tmp = CDR(tmp);
-  SETCAR(tmp, asRGValue(s_value));
-  tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
+{
+  GValue* value = asCGValue(VECTOR_ELT(s_ans, 0));
+  *s_value = *value;
+  g_free(value);
+}
 }
 static 
 gboolean
@@ -22657,10 +23124,11 @@ S_virtual_gtk_tree_model_iter_next(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -22672,7 +23140,7 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 12));
@@ -22680,17 +23148,17 @@ S_virtual_gtk_tree_model_iter_children(GtkTreeModel* s_object, GtkTreeIter* s_it
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
-  tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_parent ? gtk_tree_iter_copy(s_parent) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+
+  if(err)
+    return(((gboolean)0));
+  *s_iter = *((GtkTreeIter*)getPtrValue(VECTOR_ELT(s_ans, 1)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gboolean
@@ -22713,10 +23181,11 @@ S_virtual_gtk_tree_model_iter_has_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 static 
@@ -22740,10 +23209,11 @@ S_virtual_gtk_tree_model_iter_n_children(GtkTreeModel* s_object, GtkTreeIter* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gint)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
   return(((gint)asCInteger(s_ans)));
 }
 static 
@@ -22755,7 +23225,7 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 5));
+  PROTECT(e = allocVector(LANGSXP, 4));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 15));
@@ -22763,19 +23233,19 @@ S_virtual_gtk_tree_model_iter_nth_child(GtkTreeModel* s_object, GtkTreeIter* s_i
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
-  tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_parent ? gtk_tree_iter_copy(s_parent) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_n));
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+
+  if(err)
+    return(((gboolean)0));
+  *s_iter = *((GtkTreeIter*)getPtrValue(VECTOR_ELT(s_ans, 1)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 gboolean
@@ -22786,7 +23256,7 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkTreeModel_symbol, S_GOBJECT_GET_ENV(s_object)), 16));
@@ -22794,17 +23264,17 @@ S_virtual_gtk_tree_model_iter_parent(GtkTreeModel* s_object, GtkTreeIter* s_iter
 
   SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkTreeModel")));
   tmp = CDR(tmp);
-  SETCAR(tmp, toRPointerWithFinalizer(s_iter ? gtk_tree_iter_copy(s_iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
-  tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithFinalizer(s_child ? gtk_tree_iter_copy(s_child) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free));
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
-  return(((gboolean)asCLogical(s_ans)));
+
+  if(err)
+    return(((gboolean)0));
+  *s_iter = *((GtkTreeIter*)getPtrValue(VECTOR_ELT(s_ans, 1)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void
@@ -22827,10 +23297,11 @@ S_virtual_gtk_tree_model_ref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -22853,10 +23324,11 @@ S_virtual_gtk_tree_model_unref_node(GtkTreeModel* s_object, GtkTreeIter* s_iter)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_gtk_tree_model_class_init(GtkTreeModelIface * c, SEXP e)
@@ -23036,19 +23508,22 @@ S_gtk_tree_model_iface_get_column_type(USER_OBJECT_ s_object_class, USER_OBJECT_
 }
 
 USER_OBJECT_
-S_gtk_tree_model_iface_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_path)
+S_gtk_tree_model_iface_get_iter(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
   GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
-  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
   GtkTreePath* path = ((GtkTreePath*)getPtrValue(s_path));
 
   gboolean ans;
+  GtkTreeIter iter;
 
-  ans = object_class->get_iter(object, iter, path);
+  ans = object_class->get_iter(object, &iter, path);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
 
   return(_result);
 }
@@ -23071,20 +23546,22 @@ S_gtk_tree_model_iface_get_path(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obje
 }
 
 USER_OBJECT_
-S_gtk_tree_model_iface_get_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_column, USER_OBJECT_ s_value)
+S_gtk_tree_model_iface_get_value(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_column)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
   GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
   GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
   gint column = ((gint)asCInteger(s_column));
-  GValue* value = asCGValue(s_value);
 
+  GValue* value = ((GValue *)g_new0(GValue, 1));
 
   object_class->get_value(object, iter, column, value);
 
-  CLEANUP(g_value_unset, ((GValue*)value));
-  CLEANUP(g_free, ((GValue*)value));
+
+  _result = retByVal(_result, "value", asRGValue(value), NULL);
+    CLEANUP(g_value_unset, value);
+  CLEANUP(g_free, value);;
 
   return(_result);
 }
@@ -23107,19 +23584,22 @@ S_gtk_tree_model_iface_iter_next(USER_OBJECT_ s_object_class, USER_OBJECT_ s_obj
 }
 
 USER_OBJECT_
-S_gtk_tree_model_iface_iter_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_parent)
+S_gtk_tree_model_iface_iter_children(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_parent)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
   GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
-  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
   GtkTreeIter* parent = ((GtkTreeIter*)getPtrValue(s_parent));
 
   gboolean ans;
+  GtkTreeIter iter;
 
-  ans = object_class->iter_children(object, iter, parent);
+  ans = object_class->iter_children(object, &iter, parent);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
 
   return(_result);
 }
@@ -23159,38 +23639,44 @@ S_gtk_tree_model_iface_iter_n_children(USER_OBJECT_ s_object_class, USER_OBJECT_
 }
 
 USER_OBJECT_
-S_gtk_tree_model_iface_iter_nth_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_parent, USER_OBJECT_ s_n)
+S_gtk_tree_model_iface_iter_nth_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_parent, USER_OBJECT_ s_n)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
   GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
-  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
   GtkTreeIter* parent = ((GtkTreeIter*)getPtrValue(s_parent));
   gint n = ((gint)asCInteger(s_n));
 
   gboolean ans;
+  GtkTreeIter iter;
 
-  ans = object_class->iter_nth_child(object, iter, parent, n);
+  ans = object_class->iter_nth_child(object, &iter, parent, n);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
 
   return(_result);
 }
 
 USER_OBJECT_
-S_gtk_tree_model_iface_iter_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_child)
+S_gtk_tree_model_iface_iter_parent(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_child)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeModelIface* object_class = ((GtkTreeModelIface*)getPtrValue(s_object_class));
   GtkTreeModel* object = GTK_TREE_MODEL(getPtrValue(s_object));
-  GtkTreeIter* iter = ((GtkTreeIter*)getPtrValue(s_iter));
   GtkTreeIter* child = ((GtkTreeIter*)getPtrValue(s_child));
 
   gboolean ans;
+  GtkTreeIter iter;
 
-  ans = object_class->iter_parent(object, iter, child);
+  ans = object_class->iter_parent(object, &iter, child);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
 
   return(_result);
 }
@@ -23246,10 +23732,11 @@ S_virtual_gtk_tree_sortable_sort_column_changed(GtkTreeSortable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -23270,10 +23757,11 @@ S_virtual_gtk_tree_sortable_get_sort_column_id(GtkTreeSortable* s_object, gint* 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   *s_sort_column_id = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
   *s_order = ((GtkSortType)asCEnum(VECTOR_ELT(s_ans, 2), GTK_TYPE_SORT_TYPE));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
@@ -23301,10 +23789,11 @@ S_virtual_gtk_tree_sortable_set_sort_column_id(GtkTreeSortable* s_object, gint s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -23333,10 +23822,11 @@ S_virtual_gtk_tree_sortable_set_sort_func(GtkTreeSortable* s_object, gint s_sort
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -23363,10 +23853,11 @@ S_virtual_gtk_tree_sortable_set_default_sort_func(GtkTreeSortable* s_object, Gtk
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 gboolean
@@ -23387,10 +23878,11 @@ S_virtual_gtk_tree_sortable_has_default_sort_func(GtkTreeSortable* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -23445,6 +23937,8 @@ S_gtk_tree_sortable_iface_get_sort_column_id(USER_OBJECT_ s_object_class, USER_O
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "sort.column.id", asRInteger(sort_column_id), "order", asREnum(order, GTK_TYPE_SORT_TYPE), NULL);
+  ;
+  ;
 
   return(_result);
 }

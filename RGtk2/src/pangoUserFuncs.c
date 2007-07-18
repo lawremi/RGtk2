@@ -22,10 +22,11 @@ S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 } 
 
@@ -50,10 +51,11 @@ S_PangoAttrFilterFunc(PangoAttribute* s_attribute, gpointer s_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 } 
 

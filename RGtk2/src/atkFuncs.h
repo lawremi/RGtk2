@@ -363,7 +363,7 @@ S_atk_state_set_clear_states(USER_OBJECT_ s_object);
 S_atk_state_set_contains_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 
 
   USER_OBJECT_
-S_atk_state_set_contains_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types, USER_OBJECT_ s_n_types); 
+S_atk_state_set_contains_states(USER_OBJECT_ s_object, USER_OBJECT_ s_types); 
 
   USER_OBJECT_
 S_atk_state_set_remove_state(USER_OBJECT_ s_object, USER_OBJECT_ s_type); 

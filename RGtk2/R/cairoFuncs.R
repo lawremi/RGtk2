@@ -760,7 +760,7 @@ cairoShowGlyphs <-
 function(cr, glyphs, num.glyphs)
 {
   checkPtrType(cr, "Cairo")
-  glyphs <- as.cairo_glyph_t(glyphs)
+  glyphs <- as.CairoGlyph(glyphs)
   num.glyphs <- as.integer(num.glyphs)
 
   w <- .RGtkCall("S_cairo_show_glyphs", cr, glyphs, num.glyphs, PACKAGE = "RGtk2")
@@ -819,7 +819,7 @@ cairoGlyphExtents <-
 function(cr, glyphs)
 {
   checkPtrType(cr, "Cairo")
-  glyphs <- lapply(glyphs, function(x) { x <- as.cairo_glyph_t(x); x })
+  glyphs <- lapply(glyphs, function(x) { x <- as.CairoGlyph(x); x })
 
   w <- .RGtkCall("S_cairo_glyph_extents", cr, glyphs, PACKAGE = "RGtk2")
 
@@ -843,7 +843,7 @@ cairoGlyphPath <-
 function(cr, glyphs)
 {
   checkPtrType(cr, "Cairo")
-  glyphs <- lapply(glyphs, function(x) { x <- as.cairo_glyph_t(x); x })
+  glyphs <- lapply(glyphs, function(x) { x <- as.CairoGlyph(x); x })
 
   w <- .RGtkCall("S_cairo_glyph_path", cr, glyphs, PACKAGE = "RGtk2")
 
@@ -939,7 +939,7 @@ cairoScaledFontGlyphExtents <-
 function(scaled.font, glyphs, num.glyphs)
 {
   checkPtrType(scaled.font, "CairoScaledFont")
-  glyphs <- as.cairo_glyph_t(glyphs)
+  glyphs <- as.CairoGlyph(glyphs)
   num.glyphs <- as.integer(num.glyphs)
 
   w <- .RGtkCall("S_cairo_scaled_font_glyph_extents", scaled.font, glyphs, num.glyphs, PACKAGE = "RGtk2")
@@ -1120,7 +1120,7 @@ cairoAppendPath <-
 function(cr, path)
 {
   checkPtrType(cr, "Cairo")
-  path <- as.cairo_path_t(path)
+  path <- as.CairoPath(path)
 
   w <- .RGtkCall("S_cairo_append_path", cr, path, PACKAGE = "RGtk2")
 

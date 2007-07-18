@@ -32,10 +32,11 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((GtkWidget*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((GtkWidget*)0));
   return(GTK_WIDGET(getPtrValue(s_ans)));
 } 
 
@@ -70,9 +71,10 @@ S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gcha
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 } 
 

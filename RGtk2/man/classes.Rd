@@ -9,7 +9,7 @@
 \description{Highly experimental support for constructing new \code{GObject}
 classes entirely from with R.}
 \usage{
-  gClass(name, parent = "GObject", class_def = NULL)
+  gClass(name, parent = "GObject", class_def = NULL, abstract = FALSE)
   parentHandler(method, obj = NULL, ...)
   assignProp(obj, pspec, value)
   getProp(obj, pspec)
@@ -20,6 +20,7 @@ classes entirely from with R.}
   \item{name}{The name of the new class}
   \item{parent}{The name of the parent class}
   \item{class_def}{A list that defines the new class - please see the details section}
+  \item{abstract}{If \code{TRUE}, the class should not be instantiable.}
   \item{method}{The name of the method to invoke in the parent}
   \item{obj}{A \code{\link{GObject}}}
   \item{...}{The additional arguments to the parent method}

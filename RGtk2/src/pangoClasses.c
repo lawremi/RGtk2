@@ -19,10 +19,11 @@ S_virtual_pango_font_describe(PangoFont* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontDescription*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontDescription*)0));
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
 static 
@@ -46,10 +47,11 @@ S_virtual_pango_font_get_coverage(PangoFont* s_object, PangoLanguage* s_lang)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoCoverage*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoCoverage*)0));
   return(((PangoCoverage*)pango_coverage_ref(getPtrValue(s_ans))));
 }
 static 
@@ -73,12 +75,21 @@ S_virtual_pango_font_get_glyph_extents(PangoFont* s_object, PangoGlyph s_glyph, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
-  *s_ink_rect = *asCPangoRectangle(VECTOR_ELT(s_ans, 0));
-  *s_logical_rect = *asCPangoRectangle(VECTOR_ELT(s_ans, 1));
+
+  if(err)
+    return;
+{
+  PangoRectangle* ink_rect = asCPangoRectangle(VECTOR_ELT(s_ans, 0));
+  *s_ink_rect = *ink_rect;
+  g_free(ink_rect);
+}
+{
+  PangoRectangle* logical_rect = asCPangoRectangle(VECTOR_ELT(s_ans, 1));
+  *s_logical_rect = *logical_rect;
+  g_free(logical_rect);
+}
 }
 static 
 PangoFontMetrics*
@@ -101,10 +112,11 @@ S_virtual_pango_font_get_metrics(PangoFont* s_object, PangoLanguage* s_language)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontMetrics*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontMetrics*)0));
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
 static 
@@ -126,10 +138,11 @@ S_virtual_pango_font_get_font_map(PangoFont* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontMap*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontMap*)0));
   return(PANGO_FONT_MAP(getPtrValue(s_ans)));
 }
 void
@@ -202,8 +215,8 @@ S_pango_font_class_get_glyph_extents(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -262,10 +275,11 @@ S_virtual_pango_font_face_get_face_name(PangoFontFace* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const char*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
 static 
@@ -287,10 +301,11 @@ S_virtual_pango_font_face_describe(PangoFontFace* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontDescription*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontDescription*)0));
   return(((PangoFontDescription*)pango_font_description_copy(getPtrValue(s_ans))));
 }
 static 
@@ -312,10 +327,11 @@ S_virtual_pango_font_face_list_sizes(PangoFontFace* s_object, int** s_sizes, int
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_sizes = ((int*)asCArrayDup(VECTOR_ELT(s_ans, 0), int, asCInteger));
   *s_n_sizes = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -383,7 +399,8 @@ S_pango_font_face_class_list_sizes(USER_OBJECT_ s_object_class, USER_OBJECT_ s_o
 
 
   _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
-  CLEANUP(g_free, sizes);
+    CLEANUP(g_free, sizes);;
+  ;
 
   return(_result);
 }
@@ -409,10 +426,11 @@ S_virtual_pango_font_family_list_faces(PangoFontFamily* s_object, PangoFontFace*
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_faces = ((PangoFontFace**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFace*, getPtrValueWithRef));
   *s_n_faces = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -435,10 +453,11 @@ S_virtual_pango_font_family_get_name(PangoFontFamily* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((const char*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((const char*)0));
   return(((const char*)asCString(s_ans)));
 }
 static 
@@ -460,10 +479,11 @@ S_virtual_pango_font_family_is_monospace(PangoFontFamily* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   return(((gboolean)asCLogical(s_ans)));
 }
 void
@@ -498,7 +518,8 @@ S_pango_font_family_class_list_faces(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 
   _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n.faces", asRInteger(n_faces), NULL);
-  CLEANUP(g_free, faces);
+    CLEANUP(g_free, faces);;
+  ;
 
   return(_result);
 }
@@ -560,10 +581,11 @@ S_virtual_pango_font_map_load_font(PangoFontMap* s_object, PangoContext* s_conte
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFont*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFont*)0));
   return(PANGO_FONT(getPtrValueWithRef(s_ans)));
 }
 static 
@@ -585,10 +607,11 @@ S_virtual_pango_font_map_list_families(PangoFontMap* s_object, PangoFontFamily**
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
   *s_families = ((PangoFontFamily**)asCArrayDup(VECTOR_ELT(s_ans, 0), PangoFontFamily*, getPtrValueWithRef));
   *s_n_families = ((int)asCInteger(VECTOR_ELT(s_ans, 1)));
 }
@@ -617,10 +640,11 @@ S_virtual_pango_font_map_load_fontset(PangoFontMap* s_object, PangoContext* s_co
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontset*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontset*)0));
   return(PANGO_FONTSET(getPtrValueWithRef(s_ans)));
 }
 void
@@ -673,7 +697,8 @@ S_pango_font_map_class_list_families(USER_OBJECT_ s_object_class, USER_OBJECT_ s
 
 
   _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
-  CLEANUP(g_free, families);
+    CLEANUP(g_free, families);;
+  ;
 
   return(_result);
 }
@@ -720,10 +745,11 @@ S_virtual_pango_fontset_get_font(PangoFontset* s_object, guint s_wc)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFont*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFont*)0));
   return(PANGO_FONT(getPtrValue(s_ans)));
 }
 static 
@@ -745,10 +771,11 @@ S_virtual_pango_fontset_get_metrics(PangoFontset* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoFontMetrics*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoFontMetrics*)0));
   return(((PangoFontMetrics*)pango_font_metrics_ref(getPtrValue(s_ans))));
 }
 static 
@@ -770,10 +797,11 @@ S_virtual_pango_fontset_get_language(PangoFontset* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((PangoLanguage*)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((PangoLanguage*)0));
   return(((PangoLanguage*)getPtrValue(s_ans)));
 }
 static 
@@ -799,10 +827,11 @@ S_virtual_pango_fontset_foreach(PangoFontset* s_object, PangoFontsetForeachFunc 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_pango_fontset_class_init(PangoFontsetClass * c, SEXP e)
@@ -919,10 +948,11 @@ S_virtual_pango_renderer_draw_glyphs(PangoRenderer* s_object, PangoFont* s_font,
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -953,10 +983,11 @@ S_virtual_pango_renderer_draw_rectangle(PangoRenderer* s_object, PangoRenderPart
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -985,10 +1016,11 @@ S_virtual_pango_renderer_draw_error_underline(PangoRenderer* s_object, int s_x, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1015,10 +1047,11 @@ S_virtual_pango_renderer_draw_shape(PangoRenderer* s_object, PangoAttrShape* s_a
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1053,10 +1086,11 @@ S_virtual_pango_renderer_draw_trapezoid(PangoRenderer* s_object, PangoRenderPart
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1085,10 +1119,11 @@ S_virtual_pango_renderer_draw_glyph(PangoRenderer* s_object, PangoFont* s_font, 
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1111,10 +1146,11 @@ S_virtual_pango_renderer_part_changed(PangoRenderer* s_object, PangoRenderPart s
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1135,10 +1171,11 @@ S_virtual_pango_renderer_begin(PangoRenderer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1159,10 +1196,11 @@ S_virtual_pango_renderer_end(PangoRenderer* s_object)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 static 
 void
@@ -1185,10 +1223,11 @@ S_virtual_pango_renderer_prepare_run(PangoRenderer* s_object, PangoGlyphItem* s_
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 }
 void
 S_pango_renderer_class_init(PangoRendererClass * c, SEXP e)

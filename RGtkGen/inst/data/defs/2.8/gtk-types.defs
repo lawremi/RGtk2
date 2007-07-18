@@ -2462,7 +2462,7 @@
   (gtype-id "GTK_TYPE_WIDGET")
   (fields
     '("GtkStyle*" "style")
-	'("GtkRequisition" "requisition")
+	  '("GtkRequisition" "requisition")
     '("GtkAllocation" "allocation")
     '("GdkWindow*" "window")
     '("GtkWidget*" "parent")

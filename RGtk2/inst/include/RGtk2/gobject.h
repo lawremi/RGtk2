@@ -43,10 +43,12 @@ __extension__ \
 __extension__ \
 ({ \
     guint n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    _asRPrimArrayWithSize(array, n-1, TYPE); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = _asRPrimArrayWithSize(array, n-1, TYPE); \
+    } \
+    s; \
 })
 
 #define _asRPrimArrayWithSize(array, n, TYPE) \
@@ -69,10 +71,12 @@ __extension__ \
 __extension__ \
 ({ \
     guint n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    _asRArrayWithSize(array, converter, n-1, TYPE, SETTER_TYPE); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = _asRArrayWithSize(array, converter, n-1, TYPE, SETTER_TYPE); \
+    } \
+    s; \
 })
 
 #define _asRArrayWithSize(array, converter, n, TYPE, SETTER_TYPE) \
@@ -174,10 +178,12 @@ __extension__ \
 __extension__ \
 ({ \
     guint n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    asRPointerWithFinalizerArrayWithSize(array, type, finalizer, n-1); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = asRPointerWithFinalizerArrayWithSize(array, type, finalizer, n-1); \
+    } \
+    s; \
 })
 #define toRPointerWithFinalizerArrayWithSize(array, type, finalizer, n) \
 __extension__ \
@@ -200,10 +206,12 @@ __extension__ \
 __extension__ \
 ({ \
     int n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    asRPointerWithRefArrayWithSize(array, type, n-1); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = asRPointerWithRefArrayWithSize(array, type, n-1); \
+    } \
+    s; \
 })
 #define toRPointerWithRefArrayWithSize(array, type, n) \
 __extension__ \
@@ -227,10 +235,12 @@ __extension__ \
 __extension__ \
 ({ \
     guint n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    asRStructArrayWithSize(array, type, n-1); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = asRStructArrayWithSize(array, type, n-1); \
+    } \
+    s; \
 })
 #define asRStructArrayWithSize(array, type, n) \
 __extension__ \
@@ -253,10 +263,12 @@ __extension__ \
 __extension__ \
 ({ \
     int n = 0; \
-	if (!array) \
-		NULL; \
-    while(array[n++]); \
-    asREnumArrayWithSize(array, type, n-1); \
+    USER_OBJECT_ s = R_NilValue; \
+    if (array) { \
+      while(array[n++]); \
+      s = asREnumArrayWithSize(array, type, n-1); \
+    } \
+    s; \
 })
 #define asREnumArrayWithSize(array, type, n) \
 __extension__ \
@@ -408,7 +420,7 @@ GType r_gtk_param_spec_sexp_get_type(void);
 
 typedef struct _RGtkParamSpecSexp {
   GParamSpec parent_instance;
-  guint s_type;
+  SEXPTYPE s_type;
   USER_OBJECT_ default_value;
 } RGtkParamSpecSexp;
 
@@ -486,4 +498,11 @@ USER_OBJECT_ R_getGObjectProps(USER_OBJECT_ sobj, USER_OBJECT_ argNames);
 void GSListFreeStrings(GSList *gslist);
 void GListFreeStrings(GList *glist);
 
+/* do this by name, so that it is resolved at runtime, simplifying header dependencies */
+#if GLIB_CHECK_VERSION(2,10,0)
+#define UNOWNED_TYPE_NAME "GInitiallyUnowned"
+#else
+#define UNOWNED_TYPE_NAME "GtkObject"
+#endif
+  
 #endif

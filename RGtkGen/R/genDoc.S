@@ -186,8 +186,6 @@ parseFunction <- function(node, defs, verbose) {
 		param_items <- c(param_items, .errwarn = rd("item", ".errwarn", 
 			"Whether to issue a warning on error or fail silently"))
 	}
-  if (s_name == "gdkPixbufSaveToCallback")
-    browser()
 	in_params <- sapply(params, isInParam)
 	if (any(in_params)) {
 		in_items <- param_items[in_params]
@@ -711,6 +709,7 @@ writeRd <- function(doc, output) {
 	last <- c("references", "note", "author", "seealso", "examples", "keyword")
 	standard <- c(first, last)
 	doc["author"] <- "Derived by RGtkGen from GTK+ documentation"
+  doc["encoding"] <- "UTF-8"
 	doc <- doc[sapply(doc, length) > 0 & sapply(doc, function(element) any(sapply(element, nchar) > 0))
 			| names(doc) %in% required]
 	common <- standard[standard %in% names(doc)]

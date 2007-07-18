@@ -1405,13 +1405,12 @@ function(object, type)
 
 
 atkStateSetContainsStates <-
-function(object, types, n.types)
+function(object, types)
 {
   checkPtrType(object, "AtkStateSet")
-  
-  n.types <- as.integer(n.types)
+  types <- as.list(types)
 
-  w <- .RGtkCall("S_atk_state_set_contains_states", object, types, n.types, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_atk_state_set_contains_states", object, types, PACKAGE = "RGtk2")
 
   return(w)
 } 

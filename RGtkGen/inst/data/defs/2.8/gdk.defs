@@ -818,7 +818,7 @@
   (parameters
     '("GdkDisplay*" "display" (in))
     '("guint32" "xid" (in))
-    '("GdkDragProtocol*" "protocol" (in))
+    '("GdkDragProtocol*" "protocol" (out))
   )
 )
 
@@ -1370,7 +1370,7 @@
   (c-name "gdk_event_get_state")
   (return-type "gboolean")
   (parameters
-    '("GdkModifierType*" "state" (in))
+    '("GdkModifierType*" "state" (out))
   )
 )
 

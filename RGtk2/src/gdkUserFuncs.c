@@ -22,10 +22,11 @@ S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 } 
 
 
@@ -49,10 +50,11 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 } 
 
 
@@ -78,10 +80,11 @@ S_GdkPixbufSaveFunc(const guchar* s_buf, gsize s_count, GError** s_error, gpoint
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return(((gboolean)0));
 
   UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
   *s_error = asCGError(VECTOR_ELT(s_ans, 1));
   return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 } 
@@ -107,9 +110,10 @@ S_GdkSpanFunc(GdkSpan* s_span, gpointer s_data)
   tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
-  if(err)
-    return;
 
   UNPROTECT(1);
+
+  if(err)
+    return;
 } 
 

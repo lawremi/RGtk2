@@ -18374,7 +18374,7 @@
 
 (define-function tree_model_filter_new
   (in-module "Gtk")
-  (is-constructor-of "GtkTreeModel")
+  (is-constructor-of "GtkTreeModelFilter")
   (c-name "gtk_tree_model_filter_new")
   (return-type "GtkTreeModel*")
   (parameters
@@ -24716,7 +24716,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreePath*" "path")
   )
 )
@@ -24735,7 +24735,7 @@
   (parameters
     '("GtkTreeIter*" "iter")
     '("gint" "column")
-    '("GValue*" "value")
+    '("GValue*" "value" (out))
   )
 )
 (define-virtual iter_next
@@ -24749,7 +24749,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreeIter*" "parent")
   )
 )
@@ -24771,7 +24771,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreeIter*" "parent")
     '("gint" "n")
   )
@@ -24780,7 +24780,7 @@
   (of-object "GtkTreeModel")
   (return-type "gboolean")
   (parameters
-    '("GtkTreeIter*" "iter")
+    '("GtkTreeIter*" "iter" (out))
     '("GtkTreeIter*" "child")
   )
 )

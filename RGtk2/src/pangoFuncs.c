@@ -63,6 +63,7 @@ S_pango_color_parse(USER_OBJECT_ s_spec)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "color", toRPointerWithFinalizer(&color, "PangoColor", (RPointerFinalizer) pango_color_free), NULL);
+  ;
 
   return(_result);
 }
@@ -663,6 +664,8 @@ S_pango_attr_iterator_range(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "start", asRInteger(start), "end", asRInteger(end), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -742,7 +745,7 @@ S_pango_attr_iterator_get_attrs(USER_OBJECT_ s_object)
   ans = pango_attr_iterator_get_attrs(object);
 
   _result = asRGSListConv(ans, ((ElementConverter)asRPangoAttributeCopy));
-  CLEANUP(g_slist_free, ans);
+    CLEANUP(g_slist_free, ans);;
 
   return(_result);
 }
@@ -767,7 +770,9 @@ S_pango_parse_markup(USER_OBJECT_ s_markup_text, USER_OBJECT_ s_length, USER_OBJ
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "attr.list", toRPointerWithFinalizer(attr_list, "PangoAttrList", (RPointerFinalizer) pango_attr_list_unref), "text", asRString(text), "accel.char", asRNumeric(accel_char), "error", asRGError(error), NULL);
-  CLEANUP(g_error_free, error);
+  ;
+  ;
+    CLEANUP(g_error_free, error);;
 
   return(_result);
 }
@@ -787,6 +792,8 @@ S_pango_find_paragraph_boundary(USER_OBJECT_ s_text, USER_OBJECT_ s_length)
 
 
   _result = retByVal(_result, "paragraph.delimiter.index", asRInteger(paragraph_delimiter_index), "next.paragraph.start", asRInteger(next_paragraph_start), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -1128,7 +1135,8 @@ S_pango_context_list_families(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
-  CLEANUP(g_free, families);
+    CLEANUP(g_free, families);;
+  ;
 
   return(_result);
 }
@@ -1148,6 +1156,7 @@ S_pango_get_mirror_char(USER_OBJECT_ s_ch)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "mirrored.ch", asRNumeric(mirrored_ch), NULL);
+  ;
 
   return(_result);
 }
@@ -1379,7 +1388,7 @@ S_pango_itemize(USER_OBJECT_ s_context, USER_OBJECT_ s_text, USER_OBJECT_ s_star
   ans = pango_itemize(context, text, start_index, length, attrs, cached_iter);
 
   _result = asRGListWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -1402,7 +1411,7 @@ S_pango_itemize_with_base_dir(USER_OBJECT_ s_context, USER_OBJECT_ s_base_dir, U
   ans = pango_itemize_with_base_dir(context, base_dir, text, start_index, length, attrs, cached_iter);
 
   _result = asRGListWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
-  CLEANUP(g_list_free, ans);
+    CLEANUP(g_list_free, ans);;
 
   return(_result);
 }
@@ -1530,7 +1539,8 @@ S_pango_coverage_to_bytes(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "bytes", asRRawArrayWithSize(bytes, n_bytes), "n.bytes", asRInteger(n_bytes), NULL);
-  CLEANUP(g_free, bytes);
+    CLEANUP(g_free, bytes);;
+  ;
 
   return(_result);
 }
@@ -1987,7 +1997,7 @@ S_pango_font_description_to_string(USER_OBJECT_ s_object)
   ans = pango_font_description_to_string(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -2004,7 +2014,7 @@ S_pango_font_description_to_filename(USER_OBJECT_ s_object)
   ans = pango_font_description_to_filename(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 
   return(_result);
 }
@@ -2211,7 +2221,8 @@ S_pango_font_family_list_faces(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "faces", toRPointerWithRefArrayWithSize(faces, "PangoFontFace", n_faces), "n.faces", asRInteger(n_faces), NULL);
-  CLEANUP(g_free, faces);
+    CLEANUP(g_free, faces);;
+  ;
 
   return(_result);
 }
@@ -2309,7 +2320,8 @@ S_pango_font_face_list_sizes(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "sizes", asRIntegerArrayWithSize(sizes, n_sizes), "n.sizes", asRInteger(n_sizes), NULL);
-  CLEANUP(g_free, sizes);
+    CLEANUP(g_free, sizes);;
+  ;
 
   return(_result);
 }
@@ -2394,8 +2406,8 @@ S_pango_font_get_glyph_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_glyph)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -2467,7 +2479,8 @@ S_pango_font_map_list_families(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "families", toRPointerWithRefArrayWithSize(families, "PangoFontFamily", n_families), "n.families", asRInteger(n_families), NULL);
-  CLEANUP(g_free, families);
+    CLEANUP(g_free, families);;
+  ;
 
   return(_result);
 }
@@ -2612,8 +2625,8 @@ S_pango_glyph_string_extents(USER_OBJECT_ s_object, USER_OBJECT_ s_font)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -2635,8 +2648,8 @@ S_pango_glyph_string_extents_range(USER_OBJECT_ s_object, USER_OBJECT_ s_start, 
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -2659,6 +2672,7 @@ S_pango_glyph_string_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER
 
 
   _result = retByVal(_result, "x.pos", asRInteger(x_pos), NULL);
+  ;
 
   return(_result);
 }
@@ -2681,6 +2695,8 @@ S_pango_glyph_string_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_text, USER
 
 
   _result = retByVal(_result, "index", asRInteger(index), "trailing", asRInteger(trailing), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -2717,7 +2733,7 @@ S_pango_glyph_item_apply_attrs(USER_OBJECT_ s_glyph_item, USER_OBJECT_ s_text, U
   ans = pango_glyph_item_apply_attrs(glyph_item, text, list);
 
   _result = asRGSListWithFinalizer(ans, "PangoGlyphItem", (RPointerFinalizer) pango_glyph_item_free);
-  CLEANUP(g_slist_free, ans);
+    CLEANUP(g_slist_free, ans);;
 
   return(_result);
 }
@@ -2895,8 +2911,8 @@ S_pango_reorder_items(USER_OBJECT_ s_logical_items)
   ans = pango_reorder_items(logical_items);
 
   _result = asRGListWithFinalizer(ans, "PangoItem", (RPointerFinalizer) pango_item_free);
-  CLEANUP(g_list_free, ans);
-  CLEANUP(g_list_free, ((GList*)logical_items));
+    CLEANUP(g_list_free, ans);;
+    CLEANUP(g_list_free, ((GList*)logical_items));;
 
   return(_result);
 }
@@ -3059,6 +3075,7 @@ S_pango_layout_set_markup_with_accel(USER_OBJECT_ s_object, USER_OBJECT_ s_marku
 
 
   _result = retByVal(_result, "accel.char", asRNumeric(accel_char), NULL);
+  ;
 
   return(_result);
 }
@@ -3432,7 +3449,8 @@ S_pango_layout_get_log_attrs(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "attrs", asRStructArrayWithSize(attrs, "PangoLogAttr", n_attrs), "n.attrs", asRInteger(n_attrs), NULL);
-  CLEANUP(g_free, attrs);
+    CLEANUP(g_free, attrs);;
+  ;
 
   return(_result);
 }
@@ -3468,8 +3486,8 @@ S_pango_layout_get_cursor_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_index)
 
 
   _result = retByVal(_result, "strong.pos", asRPangoRectangle(strong_pos), "weak.pos", asRPangoRectangle(weak_pos), NULL);
-  CLEANUP(g_free, strong_pos);
-  CLEANUP(g_free, weak_pos);
+    CLEANUP(g_free, strong_pos);;
+    CLEANUP(g_free, weak_pos);;
 
   return(_result);
 }
@@ -3492,6 +3510,8 @@ S_pango_layout_move_cursor_visually(USER_OBJECT_ s_object, USER_OBJECT_ s_strong
 
 
   _result = retByVal(_result, "new.index", asRInteger(new_index), "new.trailing", asRInteger(new_trailing), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3514,6 +3534,8 @@ S_pango_layout_xy_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "index", asRInteger(index), "trailing", asRInteger(trailing), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3532,8 +3554,8 @@ S_pango_layout_get_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3552,8 +3574,8 @@ S_pango_layout_get_pixel_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3572,6 +3594,8 @@ S_pango_layout_get_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3590,6 +3614,8 @@ S_pango_layout_get_pixel_size(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "width", asRInteger(width), "height", asRInteger(height), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3644,6 +3670,8 @@ S_pango_layout_line_x_to_index(USER_OBJECT_ s_object, USER_OBJECT_ s_x_pos)
   _result = asRLogical(ans);
 
   _result = retByVal(_result, "index", asRInteger(index), "trailing", asRInteger(trailing), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -3663,6 +3691,7 @@ S_pango_layout_line_index_to_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index, USER
 
 
   _result = retByVal(_result, "x.pos", asRInteger(x_pos), NULL);
+  ;
 
   return(_result);
 }
@@ -3683,7 +3712,8 @@ S_pango_layout_line_get_x_ranges(USER_OBJECT_ s_object, USER_OBJECT_ s_start_ind
 
 
   _result = retByVal(_result, "ranges", asRIntegerArrayWithSize(ranges, n_ranges), "n.ranges", asRInteger(n_ranges), NULL);
-  CLEANUP(g_free, ranges);
+    CLEANUP(g_free, ranges);;
+  ;
 
   return(_result);
 }
@@ -3702,8 +3732,8 @@ S_pango_layout_line_get_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3722,8 +3752,8 @@ S_pango_layout_line_get_pixel_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3914,7 +3944,7 @@ S_pango_layout_iter_get_char_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3933,8 +3963,8 @@ S_pango_layout_iter_get_cluster_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3953,8 +3983,8 @@ S_pango_layout_iter_get_run_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3973,8 +4003,8 @@ S_pango_layout_iter_get_line_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -3993,6 +4023,8 @@ S_pango_layout_iter_get_line_yrange(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "y0", asRInteger(y0), "y1", asRInteger(y1), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -4011,8 +4043,8 @@ S_pango_layout_iter_get_layout_extents(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "ink.rect", asRPangoRectangle(ink_rect), "logical.rect", asRPangoRectangle(logical_rect), NULL);
-  CLEANUP(g_free, ink_rect);
-  CLEANUP(g_free, logical_rect);
+    CLEANUP(g_free, ink_rect);;
+    CLEANUP(g_free, logical_rect);;
 
   return(_result);
 }
@@ -4408,6 +4440,8 @@ S_pango_tab_array_get_tab(USER_OBJECT_ s_object, USER_OBJECT_ s_tab_index)
 
 
   _result = retByVal(_result, "alignment", asREnum(alignment, PANGO_TYPE_TAB_ALIGN), "location", asRInteger(location), NULL);
+  ;
+  ;
 
   return(_result);
 }
@@ -4541,6 +4575,9 @@ S_pango_script_iter_get_range(USER_OBJECT_ s_object)
 
 
   _result = retByVal(_result, "start", asRString(start), "end", asRString(end), "script", asREnum(script, PANGO_TYPE_SCRIPT), NULL);
+  ;
+  ;
+  ;
 
   return(_result);
 }
@@ -4729,6 +4766,8 @@ S_pango_layout_index_to_line_x(USER_OBJECT_ s_object, USER_OBJECT_ s_index_, USE
 
 
   _result = retByVal(_result, "line", asRInteger(line), "x.pos", asRInteger(x_pos), NULL);
+  ;
+  ;
 #else
   error("pango_layout_index_to_line_x exists only in Pango >= 1.14.0");
 #endif
@@ -5069,7 +5108,7 @@ S_pango_color_to_string(USER_OBJECT_ s_object)
   ans = pango_color_to_string(object);
 
   _result = asRString(ans);
-  CLEANUP(g_free, ans);
+    CLEANUP(g_free, ans);;
 #else
   error("pango_color_to_string exists only in Pango >= 1.16.0");
 #endif

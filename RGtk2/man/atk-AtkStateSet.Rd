@@ -9,7 +9,7 @@
 \code{\link{atkStateSetAddStates}(object, types)}\cr
 \code{\link{atkStateSetClearStates}(object)}\cr
 \code{\link{atkStateSetContainsState}(object, type)}\cr
-\code{\link{atkStateSetContainsStates}(object, types, n.types)}\cr
+\code{\link{atkStateSetContainsStates}(object, types)}\cr
 \code{\link{atkStateSetRemoveState}(object, type)}\cr
 \code{\link{atkStateSetAndSets}(object, compare.set)}\cr
 \code{\link{atkStateSetOrSets}(object, compare.set)}\cr

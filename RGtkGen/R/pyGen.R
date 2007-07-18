@@ -1034,7 +1034,7 @@ function(param, name, defs)
  args <- var
  # transparent types are coerced using a function of the form 'as.Type'
  if (type %in% transparentTypes && type != "GValue") {
-     fn <- asCoerce(type, TRUE)
+     fn <- asCoerce(type)
  } else if(isPrimitiveType(type)) { # singleton or vector, treat the same
    fn <- getGenericTypeCoerce(type)
  } else if (isPrimitiveTypeRef(type)) { 
@@ -1230,8 +1230,8 @@ function(paramname, paramtype, defs, params = NULL, nullOk = FALSE, prefix = T, 
     if ((type == "GList" || type == "GSList") && owns)
       fun <- paste(fun, "Dup", sep="")
     cast <- NULL
-    if (out && !isRef(paramtype))
-      fun <- derefName(fun)
+    #if (out && !isRef(paramtype))
+    #  fun <- derefName(fun)
  # if we have a destroy function as a parameter, we need to provide the correct one
  # for user data passed when registering a callback, we just sink the gclosure
  # that encapsulates the R callback
@@ -1516,7 +1516,7 @@ function(fun, defs, name)
    if (fun$owns == 1) {
 	   clean <- getCleanup(fun$return, "ans")
 	   if (!is.null(clean))
-		   cleanup <- c(cleanup, clean)
+		   cleanup <- c(cleanup, statement(clean))
    }
  } else {
    retVal <- character(0)
@@ -1575,7 +1575,7 @@ function(fun, defs, name)
             type <- tmpParams[[name]]$type # we have to cast to non-const for cleanup in this case
             clean <- getCleanup(type, cast(toValidType(dequalify(type)), name), out = F)
             if (!is.null(clean))
-                 cleanup <<- c(cleanup, clean)
+                 cleanup <<- c(cleanup, statement(clean))
             coerceCode <- convertToCType(name, type, defs, inParams, tmpParams[[name]]$nullok == "1")$code
             statement(cassign(decl(type, name), coerceCode))
         }))
@@ -1612,7 +1612,7 @@ function(fun, defs, name)
          type <- dtype
        }
        if (!(isPrimitiveType(dtype) && getGenericType(dtype) == "string")) {
-         clean <- getCleanup(dtype, name) # basically for transparent types
+         clean <- statement(getCleanup(dtype, name)) # basically for transparent types
          if (!is.null(clean)) # we don't free strings returned by ref
            cleanup <<- c(cleanup, clean)
        }
@@ -1675,7 +1675,7 @@ function(fun, defs, name)
  list(code=paste(txt, collapse="\n"),  decl = statement(declaration))
 }
 
-# gets the code for cleaning up a type
+# gets the code for cleaning up a variable of the given 'name' and 'type'
 getCleanup <-
 function(type, name, out = T)
 {
@@ -1698,12 +1698,12 @@ getCleanupFunc <- function(type, name, out)
 	func <- NULL
 	btype <- baseType(type)
 	if (btype %in% names(cleanupFuncs))
-        func <- cleanupFuncs[[btype]] # custom cases
-    else if (out && isPrimitiveTypeRef(type) && getGenericTypeRef(type) == "string")
-        func <- "g_strfreev" # string arrays
-    else if (out && !isConst(type) && ((btype %in% transparentTypes && 
-			!isPrimitiveType(btype) && type != "GdkAtom") || isRef(btype)))
-        func <- "g_free" # basically non-const (remaining) transparents and strings
+    func <- cleanupFuncs[[btype]] # custom cases
+  else if (out && isPrimitiveTypeRef(type) && getGenericTypeRef(type) == "string")
+    func <- "g_strfreev" # string arrays
+  else if (out && !isConst(type) && ((btype %in% transparentTypes && 
+           !isPrimitiveType(btype) && type != "GdkAtom") || isRef(btype)))
+    func <- "g_free" # basically non-const (remaining) transparents and strings
 	func
 }
 getArgCallValues <-
@@ -1960,20 +1960,40 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
       statement(pushvec("tmp", field(dataName, "data"))),
     "",
     statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err"))),
-    ind("if(err)"),
-      statement(returnValue(err_ret), 2),
     "",
-    statement(unprotect(1)))
+    statement(unprotect(1)),
+    "",
+    ind("if(err)"),
+      statement(returnValue(err_ret), 2))
     
     # out parameters
     s_result <- "s_ans"
     if (length(params) > length(in_params)) {
       dummy_out_params <- out_params <- params[!sapply(params, isInParam)]
       names(dummy_out_params) <- vecind("s_ans", (1:length(out_params))+hasReturn)
-      code <- c(code, statement(cassign(derefName(nameToSArg(names(out_params))), 
-        sapply(names(dummy_out_params), function(param_name)
-          convertToCType(param_name, deref(dummy_out_params[[param_name]]$type), 
-            defs, dummy_out_params, prefix=F, owns=T)$code))))
+      code <- c(code, unlist(lapply(names(dummy_out_params), function(param_name) {
+        type <- dummy_out_params[[param_name]]$type
+        btype <- baseType(type)
+        # caller has allocated memory already?
+        allocated <- (!isPrimitiveType(btype) && btype %in% transparentTypes || 
+          isBoxed(btype, defs)) && refCount(type) == 1
+        conv <- convertToCType(param_name, if (allocated) type else deref(type), 
+          defs, dummy_out_params, prefix=F, owns=!allocated)$code
+        out_name <- derefName(nameToSArg(dummy_out_params[[param_name]]$name))
+        if (allocated && btype %in% transparentTypes) {
+          tmp_name <- dummy_out_params[[param_name]]$name
+          c("{",
+            statement(cassign(decl(type, tmp_name), conv)),
+            statement(cassign(out_name, derefName(tmp_name))),
+            statement(invoke("g_free", tmp_name)),
+          "}")
+        } else {
+          if (allocated) # boxed type, copy by value
+            conv <- derefName(conv)
+          statement(cassign(out_name, conv))
+        }
+      })))
+      
       s_result <- vecind("s_ans", 1)
     }
     

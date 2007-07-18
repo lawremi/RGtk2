@@ -1062,13 +1062,12 @@ function(object, drag.window, x.root, y.root)
 
 
 gdkDragGetProtocolForDisplay <-
-function(display, xid, protocol)
+function(display, xid)
 {
   checkPtrType(display, "GdkDisplay")
   xid <- as.numeric(xid)
-  
 
-  w <- .RGtkCall("S_gdk_drag_get_protocol_for_display", display, xid, protocol, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gdk_drag_get_protocol_for_display", display, xid, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -1760,12 +1759,11 @@ function(object)
 
 
 gdkEventGetState <-
-function(object, state)
+function(object)
 {
   checkPtrType(object, "GdkEvent")
-  
 
-  w <- .RGtkCall("S_gdk_event_get_state", object, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gdk_event_get_state", object, PACKAGE = "RGtk2")
 
   return(w)
 } 
