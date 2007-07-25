@@ -13,17 +13,21 @@ University of California - Davis}
 
 \Abstract{
 \pkg{RGtk2} is an \proglang{R} package for creating
-a graphical user interface (GUI). It is a bridge between 
+a graphical user interface (GUI). A GUI is a collection of objects called
+widgets. A widget is a graphical element on a computer display that
+communicates some information to the user and possibly accepts input from the user. 
+\pkg{RGtk2} is a programming interface or set of bindings between 
 \proglang{R}  and \pkg{GTK+} 2.0, an open-source GUI toolkit written in \proglang{C}.
 \pkg{RGtk2} supports the creation and manipulation of \pkg{GTK+} widgets and the
 handling of user events. It also binds several libraries related to 
 \pkg{GTK+}, including \pkg{Pango} (font rendering and text layout), \pkg{Cairo}
 (2D vector graphics), and \pkg{Libglade} (\pkg{GTK+} GUI construction based on 
-XML). The primary goal of \pkg{RGtk2} is complete control over \pkg{GTK+} and 
+XML). The primary goal of \pkg{RGtk2} is programmatic access to \pkg{GTK+} and 
 the other libraries via an interface that is consistent with \proglang{R} conventions.
 From the technical perspective, this requires a complete and consistent
-mapping of \proglang{C} functions and data structures of each API to \proglang{R}.
-\pkg{RGtk2} allows the user to create and extend \pkg{GObject} classes. 
+low-level mapping of \proglang{C} functions and data structures of each API to 
+\proglang{R}. 
+\pkg{RGtk2} allows the user to create and extend \pkg{GObject} classes from \proglang{R}. 
 Basic and advanced examples of constructing 
 GUI's with \pkg{RGtk2} are provided. The package is available from CRAN.
 }
@@ -53,7 +57,7 @@ Combining primitive widgets like labels and icons within containers
 leads to more complex widgets, such as menus, toolbars, and combo
 boxes. 
 
-GUIs have been in common use since the 1970's and are the primary
+GUIs are widely used and are the primary
 means of interacting with modern operating systems like Microsoft
 Windows, Mac OS, and Linux (in conjunction with the X Windows System).
 Although a GUI is often more rigid than a text-based command line
@@ -74,18 +78,17 @@ manipulating and interacting with plots.
 the \pkg{GTK+} cross-platform (Windows, Mac, and Linux) widget library \citep{GTK}.
 The letters \emph{GTK} stand for the \emph{GIMP Tool Kit}, with the
 word \emph{GIMP} recording the origin of the library as part of the
-GNU Image Manipulation Program. \pkg{GTK+} 1.2 was bound to 
-\proglang{R} by \pkg{RGtk} \citep{RGtk}, the predecessor
-to \pkg{RGtk2}. \pkg{GTK+} was later largely refactored, bumping its version from 1.2 to 2.0.
-The new 2.x series of \pkg{GTK+} is often referred to as \pkg{GTK2}, as
-it is in this paper. Among other changes, \pkg{GTK2} brought many new widgets 
-and integrated \pkg{GTK+} with several other libraries: \pkg{Pango} \citep{pango} 
-for internationalized antialiased fonts and text layout, \pkg{Cairo} \citep{cairo}
-for antialiased vector-based drawing, \pkg{ATK} \citep{atk} for accessibility
-and \pkg{GdkPixbuf} \citep{gdkpixbuf} for images. \pkg{RGtk} was subsequently 
-overhauled to become \pkg{RGtk2} to keep pace with \pkg{GTK+}. \pkg{RGtk2} adds 
-bindings to the new features in \pkg{GTK2} and to the supporting libraries 
-listed above. 
+GNU Image Manipulation Program. \pkg{RGtk2} is based on \pkg{RGtk}, which is
+an interface between \proglang{R} and \pkg{GTK+} 1.2. \pkg{RGtk2} interfaces 
+with the later series of \pkg{GTK+}, version 2.0. \pkg{GTK+} 2.0 is 
+integrated with several other libraries: \pkg{Pango} \citep{pango} 
+for fonts and text layout, \pkg{Cairo} \citep{cairo}
+for vector-based drawing, \pkg{ATK} \citep{atk} for accessibility
+and \pkg{GdkPixbuf} \citep{gdkpixbuf} for images. \pkg{RGtk2} binds to these
+supporting libraries in addition to \pkg{GTK+} itself. 
+The \pkg{gtkDevice}
+\citep{gtkDevice} and \pkg{cairoDevice} \citep{cairoDevice} packages allow
+the embedding of \proglang{R} graphics into \pkg{GTK+} interfaces.
 
 Several other GUI toolkits besides \pkg{GTK+} have been linked to \proglang{R}. The
 most widely used is \pkg{tcl/tk} \citep{ousterhout,welch}, bound by the \pkg{tcltk} 
@@ -835,8 +838,10 @@ function. The name of override in that list should match the name of the virtual
 function. The list named \emph{.signals} contains lists that each define
 a signal for the class. The properties are defined by \emph{GParamSpec}
 structures that may be created using the \emph{gParamSpec} function. These
-are stored in a list named \emph{.props}. Finally, the initialization function
-is stored in the class definition list as \emph{.init}. Further details
+are stored in a list named \emph{.props}. Overrides of ancestor properties
+are specified by name in a character vector named \emph{.prop\_overrides}.
+Finally, the initialization function
+is stored in the class definition list as \emph{.initialize}. Further details
 are available in the \proglang{R} help for the \emph{gClass} function.
 
 The example below illustrates the definition of a new \emph{GObject}-derived
@@ -1008,7 +1013,10 @@ package enables this for \pkg{GGobi}, a software tool for multivariate graphics.
 The design goals of \pkg{RGtk2} are two-fold. First, the bindings must be
 complete and consistent with the bound API. Whatever the \proglang{C} programmer
 can do, the \proglang{R} programmer should be able to do, including the ability
-to invent new types of objects. Second, interaction with \pkg{RGtk2} must
+to invent new types of objects. This means that \pkg{RGtk2} is a low-level
+interface to the \proglang{C} libraries, and it is expected that other
+packages will build on \pkg{RGtk2} to provide higher-level interfaces. Second, 
+interaction with \pkg{RGtk2} must
 be simple and familiar to the \proglang{R} programmer. Foreign \proglang{C} concepts such
 as memory management, return-by-reference parameters, and type casting
 must be hidden or adapted to their \proglang{R} equivalent. It should not be
