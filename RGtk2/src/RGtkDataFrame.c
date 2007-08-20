@@ -601,7 +601,7 @@ r_gtk_data_frame_set_default_sort_func (GtkTreeSortable        *sortable,
                                               gpointer                user_data,
                                               GtkDestroyNotify        destroy_func)
 {
-    warning ("gtk_tree_sortable_set_default_sort_func is not supported by the RGtkDataModel model.",);
+    warning("gtk_tree_sortable_set_default_sort_func is not supported by the RGtkDataModel model.");
 }
 
 
