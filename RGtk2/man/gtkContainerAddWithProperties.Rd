@@ -8,7 +8,7 @@ See \code{\link{gtkContainerAdd}} and \code{\link{gtkContainerChildSet}} for mor
 \item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}} }
 \item{\code{widget}}{[\code{\link{GtkWidget}}]  a widget to be placed inside \code{container} }
 \item{\code{...}}{ a list of property names and values, starting
-          with \code{first.prop.name}.}
+          with \code{first.prop.name}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -17,7 +17,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkInputDialog}}
 \section{Interfaces}{GtkInputDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{ NOTE this widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -47,7 +47,7 @@ immediately. }
 }}}
 \section{Convenient Construction}{\code{gtkInputDialog} is the equivalent of \code{\link{gtkInputDialogNew}}.}
 \section{Signals}{\describe{
-\item{\code{disable-device(inputdialog, deviceid, user.data)}}{
+\item{\code{The (inputdialog, deviceid, user.data)}}{
 This signal is emitted when the user changes the 
 mode of a device from a \code{GDK_MODE_SCREEN} or \code{GDK_MODE_WINDOW}
 to \code{GDK_MODE_ENABLED}.
@@ -60,7 +60,7 @@ to \code{GDK_MODE_ENABLED}.
 
 
 }
-\item{\code{enable-device(inputdialog, deviceid, user.data)}}{
+\item{\code{The (inputdialog, deviceid, user.data)}}{
 This signal is emitted when the user changes the 
 mode of a device from \code{GDK_MODE_DISABLED} to a 
 \code{GDK_MODE_SCREEN} or \code{GDK_MODE_WINDOW}.

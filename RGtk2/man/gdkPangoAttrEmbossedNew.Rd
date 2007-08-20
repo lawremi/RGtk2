@@ -1,10 +1,9 @@
 \alias{gdkPangoAttrEmbossedNew}
 \name{gdkPangoAttrEmbossedNew}
 \title{gdkPangoAttrEmbossedNew}
-\description{Creates a new attribute containing a embossed bitmap to be used when
-rendering the text.}
+\description{Creates a new attribute flagging a region as embossed or not.}
 \usage{gdkPangoAttrEmbossedNew(embossed)}
-\arguments{\item{\code{embossed}}{[logical]  a bitmap to be set as embossed}}
+\arguments{\item{\code{embossed}}{[logical]  if the region should be embossed}}
 \value{[\code{\link{PangoAttribute}}]  new \code{\link{PangoAttribute}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -92,7 +92,7 @@ An object representing and maintaining a group of accelerators.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{accel-activate(accel.group, acceleratable, keyval, modifier, user.data)}}{
+\item{\code{The (accel.group, acceleratable, keyval, modifier, user.data)}}{
 The accel-activate signal is an implementation detail of
 \code{\link{GtkAccelGroup}} and not meant to be used by applications.  
 
@@ -107,7 +107,7 @@ The accel-activate signal is an implementation detail of
 \emph{Returns:} [logical]  \code{TRUE} if the accelerator was activated
 
 }
-\item{\code{accel-changed(accel.group, keyval, modifier, accel.closure, user.data)}}{
+\item{\code{The (accel.group, keyval, modifier, accel.closure, user.data)}}{
 The accel-changed signal is emitted when a \code{GtkAccelGroupEntry}
 is added to or removed from the accel group. 
   

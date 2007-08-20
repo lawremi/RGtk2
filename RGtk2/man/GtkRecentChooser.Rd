@@ -4,7 +4,7 @@
 \alias{GtkRecentSortType}
 \name{GtkRecentChooser}
 \title{GtkRecentChooser}
-\description{Interface implemented by GtkRecentChooserWidget, GtkRecentChooserMenu and GtkRecentChooserDialog}
+\description{Interface implemented by widgets displaying recently used files}
 \section{Methods and Functions}{
 \code{\link{gtkRecentChooserSetShowPrivate}(object, show.private)}\cr
 \code{\link{gtkRecentChooserGetShowPrivate}(object)}\cr
@@ -42,7 +42,7 @@
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkRecentChooser}}
 \section{Implementations}{GtkRecentChooser is implemented by
- \code{\link{GtkRecentChooserDialog}},  \code{\link{GtkRecentChooserWidget}} and  \code{\link{GtkRecentChooserMenu}}.}
+ \code{\link{GtkRecentChooserMenu}},  \code{\link{GtkRecentChooserDialog}},  \code{\link{GtkRecentChooserWidget}} and  \code{\link{GtkRecentAction}}.}
 \section{Detailed Description}{\code{\link{GtkRecentChooser}} is an interface that can be implemented by widgets
 displaying the list of recently used files.  In GTK+, the main objects
 that implement this interface are \code{\link{GtkRecentChooserWidget}},
@@ -95,7 +95,7 @@ used resource list.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{item-activated(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when the user "activates" a recent item
 in the recent chooser.  This can happen by double-clicking on an item
 in the recently used resources list, or by pressing
@@ -110,7 +110,7 @@ in the recently used resources list, or by pressing
 
 
 }
-\item{\code{selection-changed(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when there is a change in the set of
 selected recently used resources.  This can happen when a user
 modifies the selection with the mouse or the keyboard, or when
@@ -123,58 +123,6 @@ explicitely calling functions to change the selection.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-
-}
-}}
-\section{Properties}{\describe{
-\item{\code{filter} [\code{\link{GtkRecentFilter}} : Read / Write]}{
-
-The current filter for selecting which resources are displayed.
-
-}
-\item{\code{limit} [integer : Read / Write]}{
-
-The maximum number of items to be displayed.  Allowed values: >= -1  Default value: -1
-
-}
-\item{\code{local-only} [logical : Read / Write]}{
-
-Whether the selected resource(s) should be limited to local file: URIs.  Default value: TRUE
-
-}
-\item{\code{recent-manager} [\code{\link{GtkRecentManager}} : Write / Construct Only]}{
-
-The RecentManager object to use.
-
-}
-\item{\code{select-multiple} [logical : Read / Write]}{
-
-Whether to allow multiple items to be selected.  Default value: FALSE
-
-}
-\item{\code{show-icons} [logical : Read / Write]}{
-
-Whether there should be an icon near the item.  Default value: TRUE
-
-}
-\item{\code{show-not-found} [logical : Read / Write]}{
-
-Whether the items pointing to unavailable resources should be displayed.  Default value: FALSE
-
-}
-\item{\code{show-private} [logical : Read / Write]}{
-
-Whether the private items should be displayed.  Default value: FALSE
-
-}
-\item{\code{show-tips} [logical : Read / Write]}{
-
-Whether there should be a tooltip on the item.  Default value: FALSE
-
-}
-\item{\code{sort-type} [\code{\link{GtkRecentSortType}} : Read / Write]}{
-
-The sorting order of the items displayed.  Default value: GTK\_RECENT\_SORT\_NONE
 
 }
 }}

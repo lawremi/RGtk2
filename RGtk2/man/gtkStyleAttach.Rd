@@ -16,7 +16,7 @@ in the following way:
 \code{style = gtk_style_attach (style, window)}  }
 \value{[\code{\link{GtkStyle}}]  Either \code{style}, or a newly-created \code{\link{GtkStyle}}.
   If the style is newly created, the style parameter
-  will be dereferenced, and the new style will have
+  will be unref'ed, and the new style will have
   a reference count belonging to the caller.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

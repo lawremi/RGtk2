@@ -5,7 +5,7 @@
 \usage{gtkNotebookGetNthPage(object, page.num)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{page.num}}{[integer]  the index of a page in the noteobok, or -1
+\item{\code{page.num}}{[integer]  the index of a page in the notebook, or -1
            to get the last page.}
 }
 \value{[\code{\link{GtkWidget}}]  the child widget, or \code{NULL} if \code{page.num} is

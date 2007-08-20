@@ -1,7 +1,8 @@
 \alias{gtkTreeViewGetDestRowAtPos}
 \name{gtkTreeViewGetDestRowAtPos}
 \title{gtkTreeViewGetDestRowAtPos}
-\description{Determines the destination row for a given position.}
+\description{Determines the destination row for a given position.  \code{drag.x} and
+\code{drag.y} are expected to be in widget coordinates.}
 \usage{gtkTreeViewGetDestRowAtPos(object, drag.x, drag.y)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}

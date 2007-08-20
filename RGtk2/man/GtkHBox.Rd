@@ -18,7 +18,7 @@
                                        +----\link{GtkFileChooserButton}
                                        +----\link{GtkStatusbar}}}
 \section{Interfaces}{GtkHBox implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{GtkHBox is a container that organizes child widgets into a single row.
   
 Use the \code{\link{GtkBox}} packing interface to determine the arrangement,

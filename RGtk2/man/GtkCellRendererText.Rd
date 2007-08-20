@@ -29,23 +29,34 @@ the \code{\link{GtkCellRendererText}} allows to edit its text using an entry.}
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererText} is the equivalent of \code{\link{gtkCellRendererTextNew}}.}
-\section{Signals}{\describe{\item{\code{edited(cellrenderertext, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{The (renderer, path, new.text, user.data)}}{
+This signal is emitted after \code{renderer} has been edited.
+  
+It is the responsibility of the application to update the model
+and store \code{new.text} at the position indicated by \code{path}.  
 
 \describe{
-\item{\code{cellrenderertext}}{[\code{\link{GtkCellRendererText}}] the object which received the signal.}
-\item{\code{arg1}}{[character] }
-\item{\code{arg2}}{[character] }
+\item{\code{renderer}}{[\code{\link{GtkCellRendererText}}]  the object which received the signal}
+\item{\code{path}}{[character]  the path identifying the edited cell}
+\item{\code{new.text}}{[character]  the new text}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
+\item{\code{align-set} [logical : Read / Write]}{
+
+Whether this tag affects the alignment mode.  Default value: FALSE
+
+}
 \item{\code{alignment} [\code{\link{PangoAlignment}} : Read / Write]}{
 
-Specifies how to align the lines of text.  
+Specifies how to align the lines of text with respect to each other. 
+  
+Note that this property describes how to align the lines of text in 
+case there are several of them. The "xalign" property of \code{\link{GtkCellRenderer}}, 
+on the other hand, sets the horizontal alignment of the whole text.  
 
   Default value: PANGO\_ALIGN\_LEFT  Since  2.10
 

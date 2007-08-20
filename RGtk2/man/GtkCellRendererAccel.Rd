@@ -38,7 +38,7 @@ The \code{\link{GtkCellRendererAccel}} cell renderer was added in GTK+ 2.10.}
 
 }}}
 \section{Signals}{\describe{
-\item{\code{accel-cleared(accel, path.string, user.data)}}{
+\item{\code{The (accel, path.string, user.data)}}{
 Gets emitted when the user has removed the accelerator.  
 
   Since  2.10
@@ -51,7 +51,7 @@ Gets emitted when the user has removed the accelerator.
 
 
 }
-\item{\code{accel-edited(accel, path.string, accel.key, accel.mods, hardware.keycode, user.data)}}{
+\item{\code{The (accel, path.string, accel.key, accel.mods, hardware.keycode, user.data)}}{
 Gets emitted when the user has selected a new accelerator.  
 
   Since  2.10

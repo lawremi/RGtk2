@@ -11,6 +11,7 @@
 \alias{gtkPrintErrorQuark}
 \alias{gtkRecentChooserErrorQuark}
 \alias{gtkRecentManagerErrorQuark}
+\alias{gtkBuilderErrorQuark}
 \title{The GError object}
 \description{
 GLib provides a standard method of reporting errors from a called function to the calling code. 

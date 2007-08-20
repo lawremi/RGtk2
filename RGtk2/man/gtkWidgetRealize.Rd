@@ -18,7 +18,7 @@ This function is primarily used in widget implementations, and
 isn't very useful otherwise. Many times when you think you might
 need it, a better approach is to connect to a signal that will be
 called after the widget is realized automatically, such as
-"expose\_event". Or simply \code{gSignalConnectAfter()} to the
-"realize" signal.  }
+GtkWidget::expose-event. Or simply \code{gSignalConnectAfter()} to the
+GtkWidget::realize signal.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

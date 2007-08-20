@@ -20,7 +20,7 @@ it at \code{iter}.}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} on success, \code{FALSE} otherwise.}
-\item{\code{error}}{[\code{\link{GError}}]  return loaction for a \code{\link{GError}}}
+\item{\code{error}}{[\code{\link{GError}}]  return location for a \code{\link{GError}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2,10 +2,10 @@
 \name{gtkTreeViewGetVisibleRect}
 \title{gtkTreeViewGetVisibleRect}
 \description{Fills \code{visible.rect} with the currently-visible region of the
-buffer, in tree coordinates. Convert to widget coordinates with
-\code{\link{gtkTreeViewTreeToWidgetCoords}}. Tree coordinates start at
-0,0 for row 0 of the tree, and cover the entire scrollable area of
-the tree.}
+buffer, in tree coordinates. Convert to bin\_window coordinates with
+\code{\link{gtkTreeViewConvertTreeToBinWindowCoords}}.
+Tree coordinates start at 0,0 for row 0 of the tree, and cover the entire
+scrollable area of the tree.}
 \usage{gtkTreeViewGetVisibleRect(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
 \value{

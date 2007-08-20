@@ -58,52 +58,65 @@
                            +----GtkTree
                            +----\link{GtkTreeView}}}
 \section{Interfaces}{GtkContainer implements
- AtkImplementorIface.}
-\section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. Container widgets are the inner
-nodes in the resulting tree of widgets: they contain other widgets. So, for example, you might have a 
-\code{\link{GtkWindow}} containing a \code{\link{GtkFrame}} containing a GtkLabel. If you wanted an image instead of a textual label 
-inside the frame, you might replace the \code{\link{GtkLabel}} widget with a \code{\link{GtkImage}} widget.
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+\section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. 
+Container widgets are the inner nodes in the resulting tree of widgets: 
+they contain other widgets. So, for example, you might have a \code{\link{GtkWindow}} 
+containing a \code{\link{GtkFrame}} containing a GtkLabel. If you wanted an image instead 
+of a textual label inside the frame, you might replace the \code{\link{GtkLabel}} widget 
+with a \code{\link{GtkImage}} widget.
   
-There are two major kinds of container widgets in GTK+. Both are subclasses of the abstract \code{\link{GtkContainer}} 
-base class.
+There are two major kinds of container widgets in GTK+. Both are subclasses 
+of the abstract \code{\link{GtkContainer}} base class.
   
-The first type of container widget has a single child widget and derives from \code{\link{GtkBin}}. These containers
-are \dfn{decorators}, which add some kind of functionality to the child. For example, 
-a \code{\link{GtkButton}} makes its child into a clickable button; a \code{\link{GtkFrame}} draws a frame around its child and 
-a \code{\link{GtkWindow}} places its child widget inside a top-level window.
+The first type of container widget has a single child widget and derives 
+from \code{\link{GtkBin}}. These containers are \dfn{decorators}, which 
+add some kind of functionality to the child. For example, a \code{\link{GtkButton}} makes 
+its child into a clickable button; a \code{\link{GtkFrame}} draws a frame around its child 
+and a \code{\link{GtkWindow}} places its child widget inside a top-level window.
   
-The second type of container can have more than one child; its purpose is to manage 
-\dfn{layout}. This means that these containers assign sizes and positions to their children. 
-For example, a \code{\link{GtkHBox}} arranges its children in a horizontal row, and a \code{\link{GtkTable}} arranges the widgets it
-contains in a two-dimensional grid. 
+The second type of container can have more than one child; its purpose is to 
+manage \dfn{layout}. This means that these containers assign 
+sizes and positions to their children. For example, a \code{\link{GtkHBox}} arranges its 
+children in a horizontal row, and a \code{\link{GtkTable}} arranges the widgets it contains 
+in a two-dimensional grid. 
   
-To fulfill its task, a layout container must negotiate the size requirements with its parent and its children.
-This negotiation is carried out in two phases, \dfn{size requisition} and 
-\dfn{size allocation}. }
-\section{Size Requisition}{The size requisition of a widget is it's desired width and height. This is represented by a \code{\link{GtkRequisition}}.
+To fulfill its task, a layout container must negotiate the size requirements 
+with its parent and its children. This negotiation is carried out in two 
+phases, \dfn{size requisition} and \dfn{size 
+allocation}. }
+\section{Size Requisition}{The size requisition of a widget is it's desired width and height. 
+This is represented by a \code{\link{GtkRequisition}}.
   
-How a widget determines its desired size depends on the widget. A \code{\link{GtkLabel}}, for example, requests enough space 
-to display all its text. Container widgets generally base their size request on the requisitions of their 
-children.  
+How a widget determines its desired size depends on the widget. 
+A \code{\link{GtkLabel}}, for example, requests enough space to display all its text. 
+Container widgets generally base their size request on the requisitions 
+of their children.  
   
-The size requisition phase of the widget layout process operates top-down. It starts at a top-level widget,
-typically a \code{\link{GtkWindow}}. The top-level widget asks its child for its size requisition by calling
-\code{\link{gtkWidgetSizeRequest}}. To determine its requisition, the child asks its own children for their requisitions 
-and so on. Finally, the top-level widget will get a requisition back from its child. }
-\section{Size Allocation}{When the top-level widget has determined how much space its child would like to have, the second phase of the
-size negotiation, size allocation, begins. Depending on its configuration (see \code{\link{gtkWindowSetResizable}}), the 
-top-level widget may be able to expand in order to satisfy the size request or it may have to ignore the size 
-request and keep its fixed size. It then tells its child widget how much space it gets by calling 
-\code{\link{gtkWidgetSizeAllocate}}. The child widget divides the space among its children and tells each child how much 
-space it got, and so on. Under normal circumstances, a \code{\link{GtkWindow}} will always give its child the amount of space
-the child requested.
+The size requisition phase of the widget layout process operates top-down. 
+It starts at a top-level widget, typically a \code{\link{GtkWindow}}. The top-level widget 
+asks its child for its size requisition by calling \code{\link{gtkWidgetSizeRequest}}. 
+To determine its requisition, the child asks its own children for their 
+requisitions and so on. Finally, the top-level widget will get a requisition 
+back from its child. }
+\section{Size Allocation}{When the top-level widget has determined how much space its child would like 
+to have, the second phase of the size negotiation, size allocation, begins. 
+Depending on its configuration (see \code{\link{gtkWindowSetResizable}}), the top-level 
+widget may be able to expand in order to satisfy the size request or it may 
+have to ignore the size request and keep its fixed size. It then tells its 
+child widget how much space it gets by calling \code{\link{gtkWidgetSizeAllocate}}. 
+The child widget divides the space among its children and tells each child 
+how much space it got, and so on. Under normal circumstances, a \code{\link{GtkWindow}} 
+will always give its child the amount of space the child requested.
   
-A child's size allocation is represented by a \code{\link{GtkAllocation}}. This struct contains not only a width and height, 
-but also a position (i.e. X and Y coordinates), so that containers can tell their children not only how much
-space they have gotten, but also where they are positioned inside the space available to the container. 
+A child's size allocation is represented by a \code{\link{GtkAllocation}}. This struct 
+contains not only a width and height, but also a position (i.e. X and Y 
+coordinates), so that containers can tell their children not only how much
+space they have gotten, but also where they are positioned inside the space 
+available to the container. 
   
-Widgets are required to honor the size allocation they receive; a size request is only a request, and widgets
-must be able to cope with any size.}
+Widgets are required to honor the size allocation they receive; a size 
+request is only a request, and widgets must be able to cope with any size.}
 \section{Child properties}{\code{GtkContainer} introduces \dfn{child 
 properties} - these are object properties that are not specific
 to either the container or the contained widget, but rather to their relation.
@@ -120,6 +133,21 @@ To obtain the value of a child property, use
 \code{\link{gtkContainerChildGetProperty}}, \code{\link{gtkContainerChildGet}} or
 \code{gtkContainerChildGetValist()}. To emit notification about child property 
 changes, use \code{\link{gtkWidgetChildNotify}}.}
+\section{GtkContainer as GtkBuildable}{The GtkContainer implementation of the GtkBuildable interface 
+supports a <packing> element for children, which can
+contain multiple <property> elements that specify
+child properties for the child.
+  
+\emph{Child properties in UI definitions}
+\preformatted{<object class="GtkVBox">
+  <child>
+    <object class="GtkLabel"/>
+    <packing>
+      <property name="pack-type">start</property>
+    </packing>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkContainer}}{
 \emph{undocumented
 }
@@ -135,7 +163,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 }}}
 \section{Signals}{\describe{
-\item{\code{add(container, widget, user.data)}}{
+\item{\code{The (container, widget, user.data)}}{
 \emph{undocumented
 }
 
@@ -147,7 +175,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 
 }
-\item{\code{check-resize(container, user.data)}}{
+\item{\code{The (container, user.data)}}{
 \emph{undocumented
 }
 
@@ -158,7 +186,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 
 }
-\item{\code{remove(container, widget, user.data)}}{
+\item{\code{The (container, widget, user.data)}}{
 \emph{undocumented
 }
 
@@ -170,7 +198,7 @@ changes, use \code{\link{gtkWidgetChildNotify}}.}
 
 
 }
-\item{\code{set-focus-child(container, widget, user.data)}}{
+\item{\code{The (container, widget, user.data)}}{
 \emph{undocumented
 }
 

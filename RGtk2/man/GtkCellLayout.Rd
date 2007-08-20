@@ -6,6 +6,7 @@
 \section{Methods and Functions}{
 \code{\link{gtkCellLayoutPackStart}(object, cell, expand = TRUE)}\cr
 \code{\link{gtkCellLayoutPackEnd}(object, cell, expand = TRUE)}\cr
+\code{\link{gtkCellLayoutGetCells}(object)}\cr
 \code{\link{gtkCellLayoutReorder}(object, cell, position)}\cr
 \code{\link{gtkCellLayoutClear}(object)}\cr
 \code{\link{gtkCellLayoutSetAttributes}(object, cell, ...)}\cr
@@ -16,7 +17,7 @@
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkCellLayout}}
 \section{Implementations}{GtkCellLayout is implemented by
- \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkTreeViewColumn}},  \code{\link{GtkComboBox}},  \code{\link{GtkIconView}} and  \code{\link{GtkComboBoxEntry}}.}
+ \code{\link{GtkTreeViewColumn}},  \code{\link{GtkIconView}},  \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkComboBox}} and  \code{\link{GtkComboBoxEntry}}.}
 \section{Detailed Description}{\code{\link{GtkCellLayout}} is an interface to be implemented by all objects which
 want to provide a \code{GtkTreeViewColumn-like} API for packing cells, setting
 attributes and data funcs. 
@@ -30,6 +31,25 @@ of the attribute can change from cell to cell as they are rendered by the
 cell renderer. Finally, it is possible to specify a function with 
 \code{\link{gtkCellLayoutSetCellDataFunc}} that is called to determine the value 
 of the attribute for each cell that is rendered.}
+\section{GtkCellLayouts as GtkBuildable}{Implementations of GtkCellLayout which also implement the GtkBuildable 
+interface (\code{\link{GtkCellView}}, \code{\link{GtkIconView}}, \code{\link{GtkComboBox}}, \code{\link{GtkComboBoxEntry}}, 
+\code{\link{GtkEntryCompletion}}, \code{\link{GtkTreeViewColumn}}) accept GtkCellRenderer objects
+as <child> elements in UI definitions. They support a custom 
+<attributes> element for their children, which can contain 
+multiple <attribute> elements. Each <attribute> element has 
+a name attribute which specifies a property of the cell renderer; the 
+content of the element is the attribute value.
+  
+\emph{A UI definition fragment specifying attributes}
+\preformatted{<object class="GtkCellView">
+  <child>
+    <object class="GtkCellRendererText"/>
+    <attributes>
+      <attribute name="text">0</attribute>
+    </attributes>
+  </child>"
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkCellLayout}}{
 \emph{undocumented
 }

@@ -25,7 +25,7 @@
                                  +----\link{GtkScrolledWindow}
                                  +----\link{GtkViewport}}}
 \section{Interfaces}{GtkBin implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkBin}} widget is a container with just one child.
 It is not very useful itself, but it is useful for deriving subclasses,
 since it provides common code needed for handling a single child widget.

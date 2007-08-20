@@ -21,6 +21,7 @@
 \code{\link{gtkRcGetDefaultFiles}()}\cr
 \code{\link{gtkRcSetDefaultFiles}(filenames)}\cr
 \code{\link{gtkRcParseColor}(scanner, color)}\cr
+\code{\link{gtkRcParseColorFull}(scanner, style)}\cr
 \code{\link{gtkRcParseState}(scanner, state)}\cr
 \code{\link{gtkRcParsePriority}(scanner, priority)}\cr
 \code{\link{gtkRcFindModuleInPath}(module.file)}\cr

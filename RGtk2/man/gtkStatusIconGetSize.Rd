@@ -8,7 +8,10 @@ storage types, the size-changed signal can be used to
 react to size changes.}
 \usage{gtkStatusIconGetSize(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
-\details{  Since  2.10}
+\details{Note that the returned size is only meaningful while the 
+status icon is embedded (see \code{\link{gtkStatusIconIsEmbedded}}).  
+
+  Since  2.10}
 \value{[integer]  the size that is available for the image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

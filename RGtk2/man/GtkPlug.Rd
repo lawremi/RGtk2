@@ -20,7 +20,7 @@
                                  +----\link{GtkWindow}
                                        +----GtkPlug}}
 \section{Interfaces}{GtkPlug implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
@@ -39,15 +39,22 @@ on all platforms supported by GTK+.
 
 }}}
 \section{Convenient Construction}{\code{gtkPlug} is the equivalent of \code{\link{gtkPlugNew}}.}
-\section{Signals}{\describe{\item{\code{embedded(plug, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{The (plug, user.data)}}{
+Gets emitted when the plug becomes embedded in a socket
+and when the embedding ends.  
 
 \describe{
-\item{\code{plug}}{[\code{\link{GtkPlug}}] the object which received the signal.}
+\item{\code{plug}}{[\code{\link{GtkPlug}}]  the object on which the signal was emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
+}}}
+\section{Properties}{\describe{\item{\code{embedded} [logical : Read]}{
+
+\code{TRUE} if the plug is embedded in a socket.  
+
+  Default value: FALSE  Since  2.12
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkPlug.html}}

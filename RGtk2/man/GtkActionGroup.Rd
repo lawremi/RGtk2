@@ -31,6 +31,8 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkActionGroup}}
+\section{Interfaces}{GtkActionGroup implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Actions are organised into groups.  An action group is essentially a
 map from names to \code{\link{GtkAction}} objects.
   
@@ -49,6 +51,30 @@ accelerator path (which normally has the form
 and a shortcut is associated with this accelerator path. All menuitems and 
 toolitems take on this accelerator path. The GTK+ accelerator map code makes 
 sure that the correct shortcut is displayed next to the menu item.}
+\section{GtkActionGroup as GtkBuildable}{The GtkActionGroup implementation of the GtkBuildable interface accepts
+GtkAction objects as <child> elements in UI definitions.
+  
+Note that it is probably more common to define actions and action groups
+in the code, since they are directly related to what the code can do.
+  
+The GtkActionGroup implementation of the GtkBuildable interface supports a 
+custom <accelerator> element, which has attributes named key and
+modifiers and allows to specify accelerators. This is similar to the 
+<accelerator> element of GtkWidget, the main difference is that 
+it doesn't allow you to specify a signal.
+  
+\emph{A   \code{GtkDialog}   UI definition fragment.}
+\preformatted{<object class="GtkActionGroup" id="actiongroup">
+  <child>
+      <object class="GtkAction" id="About">
+          <property name="name">About</property>
+          <property name="stock_id">gtk-about</property>
+          <signal handler="about_activate" name="activate"/>
+      </object>
+      <accelerator key="F1" modifiers="GDK_CONTROL_MASK | GDK_SHIFT_MASK"/>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{
 \item{\code{GtkActionGroup}}{
 The \code{GtkActionGroup} struct contains only private 
@@ -65,7 +91,8 @@ members and should not be accessed directly.
 \item{\code{stock_id}}{[character] The stock id for the action, or the name of an icon from the icon 
     theme.}
 \item{\code{label}}{[character] The label for the action. This field should typically be marked for 
-    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}.}
+    translation, see \code{\link{gtkActionGroupSetTranslationDomain}}. If \code{label}
+    is \code{NULL}, the label of the stock item with id \code{stock.id} is used.}
 \item{\code{accelerator}}{[character] The accelerator for the action, in the format understood by 
     \code{\link{gtkAcceleratorParse}}.}
 \item{\code{tooltip}}{[character] The tooltip for the action. This field should typically be marked 
@@ -116,7 +143,7 @@ members and should not be accessed directly.
 }}
 \section{Convenient Construction}{\code{gtkActionGroup} is the equivalent of \code{\link{gtkActionGroupNew}}.}
 \section{Signals}{\describe{
-\item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
+\item{\code{The (action.group, action, proxy, user.data)}}{
 The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. Note that the proxy may have been connected 
 to a different action before.
@@ -140,7 +167,7 @@ convenient to use.
 
 
 }
-\item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
+\item{\code{The (action.group, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group. 
   
@@ -159,7 +186,7 @@ convenient to use.
 
 
 }
-\item{\code{post-activate(action.group, action, user.data)}}{
+\item{\code{The (action.group, action, user.data)}}{
 The post\_activate signal is emitted just after the \code{action} in the
 \code{action.group} is activated
   
@@ -176,7 +203,7 @@ notification just after any action is activated.
 
 
 }
-\item{\code{pre-activate(action.group, action, user.data)}}{
+\item{\code{The (action.group, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action} in the
 \code{action.group} is activated
   

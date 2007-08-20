@@ -21,7 +21,7 @@
                            +----\link{GtkBin}
                                  +----GtkHandleBox}}
 \section{Interfaces}{GtkHandleBox implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
 off". It is a bin widget which displays its child and a handle that
 the user can drag to tear off a separate window (the \dfn{float
@@ -62,7 +62,7 @@ child is attached or detached. \cr
 }}}
 \section{Convenient Construction}{\code{gtkHandleBox} is the equivalent of \code{\link{gtkHandleBoxNew}}.}
 \section{Signals}{\describe{
-\item{\code{child-attached(handlebox, widget, user.data)}}{
+\item{\code{The (handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the
 handlebox are reattached to the main window.
 
@@ -76,7 +76,7 @@ handlebox are reattached to the main window.
 
 
 }
-\item{\code{child-detached(handlebox, widget, user.data)}}{
+\item{\code{The (handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the
 handlebox are detached from the main window.
 

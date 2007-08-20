@@ -25,7 +25,7 @@
                                              +----\link{GtkCheckMenuItem}
                                                    +----GtkRadioMenuItem}}
 \section{Interfaces}{GtkRadioMenuItem implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A radio menu item is a check menu item that belongs to a group. At each
 instant exactly one of the radio menu items from a group is selected.
   
@@ -51,7 +51,7 @@ the interface functions.
 
 }}}
 \section{Convenient Construction}{\code{gtkRadioMenuItem} is the result of collapsing the constructors of \code{GtkRadioMenuItem} (\code{\link{gtkRadioMenuItemNew}}, \code{\link{gtkRadioMenuItemNewWithLabel}}, \code{\link{gtkRadioMenuItemNewWithMnemonic}}, \code{\link{gtkRadioMenuItemNewFromWidget}}, \code{\link{gtkRadioMenuItemNewWithMnemonicFromWidget}}, \code{\link{gtkRadioMenuItemNewWithLabelFromWidget}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{group-changed(radiomenuitem, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (radiomenuitem, user.data)}}{
 \emph{undocumented
 }
 

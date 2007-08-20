@@ -1607,4 +1607,37 @@ S_gdk_window_merge_child_input_shapes(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_gdk_window_get_type_hint(USER_OBJECT_ s_object); 
 
+  USER_OBJECT_
+S_gdk_color_to_string(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gdk_display_supports_composite(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gdk_event_request_motions(USER_OBJECT_ s_event); 
+
+  USER_OBJECT_
+S_gdk_keymap_have_bidi_layouts(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gdk_pango_attr_emboss_color_new(USER_OBJECT_ s_color); 
+
+  USER_OBJECT_
+S_gdk_window_set_composited(USER_OBJECT_ s_object, USER_OBJECT_ s_composited); 
+
+  USER_OBJECT_
+S_gdk_window_set_startup_id(USER_OBJECT_ s_object, USER_OBJECT_ s_startup_id); 
+
+  USER_OBJECT_
+S_gdk_window_beep(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gdk_window_set_opacity(USER_OBJECT_ s_object, USER_OBJECT_ s_opacity); 
+
+  USER_OBJECT_
+S_gdk_notify_startup_complete_with_id(USER_OBJECT_ s_id); 
+
+  USER_OBJECT_
+S_gdk_pixbuf_apply_embedded_orientation(USER_OBJECT_ s_object); 
+
 #endif

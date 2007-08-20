@@ -41,7 +41,7 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner", "gtk_
   "gtk_radio_action_set_group", "gtk_radio_button_set_group", "gtk_radio_menu_item_set_group",
   "gtk_radio_tool_button_set_group", "gtk_tree_store_insert_with_valuesv",
   "gdk_drawable_class_create_gc", "gdk_gcclass_set_values", "cairo_rectangle_list_destroy",
-  "cairo_get_dash")
+  "cairo_get_dash", "gtk_builder_connect_signals")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -68,11 +68,12 @@ badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
 
 # User functions that we wrap manually
 manUserFuncs <- c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
-  "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc")
+  "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc",
+  "GSourceFunc", "GtkBuilderConnectFunc")
 
-# this is a list of types that are not defined and probably don't need to be
-# we just let them pass through as opaque external pointers
-opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode")
+# these structures are passed as opaque pointers to R, without any accessors
+# most of these are GLib facilities, and we're not binding GLib (yet anyway).
+opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode", "GMarkupParser", "GKeyFile")
 
 # this is a list of simple types that are easily converted to native R types (like lists)
 # and (in most cases) are not instantiable via the any defined API
@@ -104,7 +105,7 @@ finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetL
 	"PangoItem" = "pango_item_free", "cairo_font_options_t" = "cairo_font_options_destroy",
 	"PangoGlyphItem" = "pango_glyph_item_free", "PangoCoverage" = "pango_coverage_unref",
   "PangoScriptIter" = "pango_script_iter_free")
-
+# copy functions for types without a GType
 copyFuncs <- c("GdkRegion" = "gdk_region_copy", "PangoCoverage" = "pango_coverage_ref")
 
 # type names are now pure C (glib) so we map them to generic types to simplify conversion

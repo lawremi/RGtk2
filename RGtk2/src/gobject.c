@@ -449,7 +449,7 @@ param_sexp_validate(GParamSpec *pspec, GValue *value)
 {
   USER_OBJECT_ sexp = g_value_get_boxed(value);
   SEXPTYPE type = ((RGtkParamSpecSexp *)pspec)->s_type;
-  /* FIXME: Do we want to allow NULL here? */
+  /* FIXME: Need to check inheritance for S4 types */
   if (!sexp || (/*sexp != NULL_USER_OBJECT && */TYPEOF(sexp) != type && type != ANYSXP)) {
     g_value_set_boxed(value, ((RGtkParamSpecSexp *)pspec)->default_value);
     return TRUE;

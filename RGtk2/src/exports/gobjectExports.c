@@ -42,6 +42,7 @@ R_RegisterCCallable("RGtk2", "toRPointerWithSink", ((DL_FUNC)toRPointerWithSink)
 R_RegisterCCallable("RGtk2", "asRGListWithSink", ((DL_FUNC)asRGListWithSink)); 
 R_RegisterCCallable("RGtk2", "asRGSListWithSink", ((DL_FUNC)asRGSListWithSink)); 
 R_RegisterCCallable("RGtk2", "S_GCompareFunc", ((DL_FUNC)S_GCompareFunc)); 
+R_RegisterCCallable("RGtk2", "S_GSourceFunc", ((DL_FUNC)S_GSourceFunc)); 
 R_RegisterCCallable("RGtk2", "R_createGClosure", ((DL_FUNC)R_createGClosure)); 
 R_RegisterCCallable("RGtk2", "r_gtk_sexp_get_type", ((DL_FUNC)r_gtk_sexp_get_type)); 
 R_RegisterCCallable("RGtk2", "r_gtk_param_spec_sexp_get_type", ((DL_FUNC)r_gtk_param_spec_sexp_get_type)); 

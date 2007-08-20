@@ -12,8 +12,7 @@ functions in GTK+ will sometimes call
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
 \item{\code{parent}}{[\code{\link{GtkWindow}}]  parent window}
 }
-\details{On Windows, this function will and put the child window
-on top of the parent, much as the window manager would have
-done on X.  }
+\details{On Windows, this function puts the child window on top of the parent, 
+much as the window manager would have done on X.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

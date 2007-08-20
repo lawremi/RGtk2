@@ -18,7 +18,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkFileChooserDialog}}
 \section{Interfaces}{GtkFileChooserDialog implements
- \code{\link{GtkFileChooser}} and  AtkImplementorIface.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
 \section{Detailed Description}{      \code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
       "File/Open" or "File/Save as" commands.  This widget works by
       putting a \code{\link{GtkFileChooserWidget}} inside a \code{\link{GtkDialog}}.  It exposes

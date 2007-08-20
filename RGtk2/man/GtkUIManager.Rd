@@ -26,11 +26,18 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkUIManager}}
+\section{Interfaces}{GtkUIManager implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkUIManager}} constructs a user interface (menus and toolbars) from
 one or more UI definitions, which reference actions from one or more 
 action groups. }
 \section{UI Definitions}{The UI definitions are specified in an XML format which can be
 roughly described by the following DTD. 
+  
+Do not confuse the GtkUIManager UI Definitions described here with
+the similarly named GtkBuilder UI 
+Definitions. 
+  
 \preformatted{<!ELEMENT ui          (menubar|toolbar|popup|accelerator)* >
 <!ELEMENT menubar     (menuitem|separator|placeholder|menu)* >
 <!ELEMENT menu        (menuitem|separator|placeholder|menu)* >
@@ -159,6 +166,40 @@ impossible to know in advance whether they will end up empty after merging.
 }
 The behaviour is chosen based on the "hide\_if\_empty" property of the action 
 to which the submenu is associated.}
+\section{GtkUIManager as GtkBuildable}{The GtkUIManager implementation of the GtkBuildable interface accepts
+GtkActionGroup objects as <child> elements in UI definitions.
+  
+A GtkUIManager UI definition as described above can be embedded in
+an GtkUIManager <object> element in a GtkBuilder UI definition.
+  
+The widgets that are constructed by a GtkUIManager can be embedded in
+other parts of the constructed user interface with the help of the
+"constructor" attribute. See the example below.
+  
+\emph{An embedded GtkUIManager UI definition}
+\preformatted{<object class="GtkUIManager" id="uiman">
+  <child>
+    <object class="GtkActionGroup">
+      <child>
+        <object class="GtkAction" id="file">
+          <property name="label">_File</property>
+        </object>
+      </child>
+    </object>
+  </child>
+  <ui>
+    <menubar name="menubar1">
+      <menu action="file">
+      </menu>
+    </menubar>
+  </ui>
+</object>
+<object class="GtkWindow" id="main-window">
+  <child>
+    <object class="GtkMenuBar" id="menubar1" constructor="uiman"/>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkUIManager}}{
 The \code{GtkUIManager} struct contains only private
 members and should not be accessed directly.
@@ -184,7 +225,7 @@ what UI element to create.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{actions-changed(merge, user.data)}}{
+\item{\code{The (merge, user.data)}}{
 The "actions-changed" signal is emitted whenever the set of actions
 changes.  
 
@@ -197,7 +238,7 @@ changes.
 
 
 }
-\item{\code{add-widget(merge, widget, user.data)}}{
+\item{\code{The (merge, widget, user.data)}}{
 The add\_widget signal is emitted for each generated menubar and toolbar.
 It is not emitted for generated popup menus, which can be obtained by 
 \code{\link{gtkUIManagerGetWidget}}.  
@@ -212,7 +253,7 @@ It is not emitted for generated popup menus, which can be obtained by
 
 
 }
-\item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
+\item{\code{The (uimanager, action, proxy, user.data)}}{
 The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. 
   
@@ -231,7 +272,7 @@ statusbar.
 
 
 }
-\item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
+\item{\code{The (uimanager, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group.  
 
@@ -246,7 +287,7 @@ from an action in the group.
 
 
 }
-\item{\code{post-activate(uimanager, action, user.data)}}{
+\item{\code{The (uimanager, action, user.data)}}{
 The post\_activate signal is emitted just after the \code{action}
 is activated.
   
@@ -263,7 +304,7 @@ just after any action is activated.
 
 
 }
-\item{\code{pre-activate(uimanager, action, user.data)}}{
+\item{\code{The (uimanager, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action}
 is activated.
   
@@ -301,4 +342,5 @@ An XML string describing the merged UI.  Default value: "<ui>\\n</ui>\\n"
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkUIManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
+\seealso{\code{\link{GtkBuilder}}}
 \keyword{internal}

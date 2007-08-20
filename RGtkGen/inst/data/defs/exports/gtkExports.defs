@@ -39,18 +39,18 @@
   )
 )
 
-(define-function S_GtkMenuPositionFunc
-  (in-module "Gtk")
-  (c-name "S_GtkMenuPositionFunc")
-  (return-type "gint")
-  (parameters
-    '("GtkMenu*" "s_menu")
-    '("gint*" "s_x")
-    '("gint*" "s_y")
-    '("gboolean*" "s_push_in")
-    '("gpointer" "s_user_data")
-  )
-)
+;(define-function S_GtkMenuPositionFunc
+;  (in-module "Gtk")
+;  (c-name "S_GtkMenuPositionFunc")
+;  (return-type "gint")
+;  (parameters
+;    '("GtkMenu*" "s_menu")
+;    '("gint*" "s_x")
+;    '("gint*" "s_y")
+;    '("gboolean*" "s_push_in")
+;    '("gpointer" "s_user_data")
+;  )
+;)
 
 (define-function asRGdkAtom
   (in-module "Gtk")

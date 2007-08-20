@@ -17,6 +17,8 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkSizeGroup}}
+\section{Interfaces}{GtkSizeGroup implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkSizeGroup}} provides a mechanism for grouping a number of widgets
 together so they all request the same amount of space.  This is
 typically useful when you want a column of widgets to have the same
@@ -50,6 +52,22 @@ of type \code{GTK_SIZE_GROUP_HORIZONTAL} or \code{GTK_SIZE_GROUP_BOTH}, and the
 vertical size from the vertical requisition of all widgets that can be
 reached from the widget by a chain of size groups of type
 \code{GTK_SIZE_GROUP_VERTICAL} or \code{GTK_SIZE_GROUP_BOTH}.}
+\section{GtkSizeGroup as GtkBuildable}{Size groups can be specified in a UI definition by placing an
+<object> element with \code{class="GtkSizeGroup"}
+somewhere in the UI definition. The widgets that belong to the
+size group are specified by a <widgets> element that may
+contain multiple <widget> elements, one for each member
+of the size group. The name attribute gives the id of the widget.
+  
+\emph{A UI definition fragment with GtkSizeGroup}
+\preformatted{<object class="GtkSizeGroup">
+  <property name="mode">GTK_SIZE_GROUP_HORIZONTAL</property>
+  <widgets>
+    <widget name="radio1"/>
+    <widget name="radio2"/>
+  </widgets>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkSizeGroup}}{
 \emph{undocumented
 }

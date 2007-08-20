@@ -13,6 +13,7 @@
 \code{\link{gtkTooltipsDataGet}(widget)}\cr
 \code{\link{gtkTooltipsForceWindow}(object)}\cr
 \code{\link{gtkTooltipsGetInfoFromTipWindow}(object)}\cr
+\code{\link{gtkTooltipsGetInfoFromTipWindow}(object)}\cr
 \code{gtkTooltips()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -66,10 +67,12 @@ Information about the tooltip (if any) associated with an arbitrary widget can b
 }}
 \section{Structures}{\describe{
 \item{\code{GtkTooltips}}{
+\strong{WARNING: \code{GtkTooltips} is deprecated and should not be used in newly-written code.}
 Holds information about a group of tooltips. Fields should be changed using the functions provided, rather than directly accessing the struct's members.
 
 }
 \item{\code{GtkTooltipsData}}{
+\strong{WARNING: \code{GtkTooltipsData} has been deprecated since version 2.12 and should not be used in newly-written code. }
 \code{tooltips} is the \code{\link{GtkTooltips}} group that this tooltip belongs to. \code{widget} is the \code{\link{GtkWidget}} that this tooltip data is associated with. \code{tip_text} is a string containing the tooltip message itself.  
 \code{tip_private} is a string that is not shown as the default tooltip. Instead, this message may be more informative and go towards forming a context-sensitive help system for your application. (FIXME: how to actually "switch on" private tips?)
 

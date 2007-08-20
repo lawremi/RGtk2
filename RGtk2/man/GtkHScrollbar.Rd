@@ -15,7 +15,7 @@
                            +----\link{GtkScrollbar}
                                  +----GtkHScrollbar}}
 \section{Interfaces}{GtkHScrollbar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHScrollbar}} widget is a widget arranged horizontally creating a
 scrollbar. See \code{\link{GtkScrollbar}} for details on
 scrollbars. \code{\link{GtkAdjustment}} pointers may be added to handle the

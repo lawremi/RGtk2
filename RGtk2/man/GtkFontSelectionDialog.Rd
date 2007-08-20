@@ -22,7 +22,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkFontSelectionDialog}}
 \section{Interfaces}{GtkFontSelectionDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFontSelectionDialog}} widget is a dialog box for selecting a font.
   
 To set the font which is initially selected, use
@@ -32,6 +32,10 @@ To get the selected font use \code{\link{gtkFontSelectionDialogGetFontName}}.
   
 To change the text which is shown in the preview area, use
 \code{\link{gtkFontSelectionDialogSetPreviewText}}.}
+\section{GtkFontSelectionDialog as GtkBuildable}{The GtkFontSelectionDialog implementation of the GtkBuildable interface
+exposes the embedded \code{\link{GtkFontSelection}} as internal child with the
+name "font\_selection". It also exposes the buttons with the names
+"ok\_button", "cancel\_button" and "apply\_button".}
 \section{Structures}{\describe{\item{\code{GtkFontSelectionDialog}}{
 \emph{undocumented
 }

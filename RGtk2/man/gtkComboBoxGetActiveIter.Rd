@@ -8,7 +8,7 @@
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE}, if \code{iter} was set}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The uninitialized \code{\link{GtkTreeIter}}.}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The uninitialized \code{\link{GtkTreeIter}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

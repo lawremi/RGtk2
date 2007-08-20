@@ -17,10 +17,10 @@ would be items inside a GNOME canvas widget.}
        when matching against class styles, or \code{G_TYPE_NONE}}
 }
 \details{The action of \code{\link{gtkRcGetStyle}} is similar to:
-\preformatted{ gtk_widget_path (widget, NULL, &path, NULL);
- gtk_widget_class_path (widget, NULL, &class_path, NULL);
- gtk_rc_get_style_by_paths (gtk_widget_get_settings (widget), path, class_path,
-                            G_OBJECT_TYPE (widget));
+\preformatted{
+ path <- widget$path()$path
+ class_path <- widget$classPath()$path
+ gtkRcGetStyleByPaths(widget$getSettings(), path, class_path, class(widget)[1])
 }  }
 \value{[\code{\link{GtkStyle}}]  A style created by matching with the supplied paths,
   or \code{NULL} if nothing matching was specified and the default style should

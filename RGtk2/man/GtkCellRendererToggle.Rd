@@ -26,7 +26,7 @@ property. When activated, it emits the toggled signal.}
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererToggle} is the equivalent of \code{\link{gtkCellRendererToggleNew}}.}
-\section{Signals}{\describe{\item{\code{toggled(cell.renderer, path, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (cell.renderer, path, user.data)}}{
 The ::toggled signal is emitted when the cell is toggled.  
 
 \describe{

@@ -37,7 +37,7 @@
                      +----\link{GtkContainer}
                            +----GtkList}}
 \section{Interfaces}{GtkList implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkList}} widget is a container whose children are displayed
 vertically in order, and can be selected.
 
@@ -54,7 +54,7 @@ in newly written code. Use \code{\link{GtkTreeView}} instead.}
 }}}
 \section{Convenient Construction}{\code{gtkList} is the equivalent of \code{\link{gtkListNew}}.}
 \section{Signals}{\describe{
-\item{\code{select-child(list, widget, user.data)}}{
+\item{\code{The (list, widget, user.data)}}{
 The child \code{widget} has just been selected.
 
 \describe{
@@ -65,7 +65,7 @@ The child \code{widget} has just been selected.
 
 
 }
-\item{\code{selection-changed(list, user.data)}}{
+\item{\code{The (list, user.data)}}{
 The selection of the widget has just changed.
 
 \describe{
@@ -75,7 +75,7 @@ The selection of the widget has just changed.
 
 
 }
-\item{\code{unselect-child(list, widget, user.data)}}{
+\item{\code{The (list, widget, user.data)}}{
 The child \code{widget} has just been unselected.
 
 \describe{

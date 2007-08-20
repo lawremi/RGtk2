@@ -3,7 +3,7 @@
 \alias{GtkPackDirection}
 \name{GtkMenuBar}
 \title{GtkMenuBar}
-\description{A subclass widget for    which holds    widgets}
+\description{A subclass widget for GtkMenuShell which holds GtkMenuItem widgets}
 \section{Methods and Functions}{
 \code{\link{gtkMenuBarNew}(show = TRUE)}\cr
 \code{\link{gtkMenuBarSetPackDirection}(object, pack.dir)}\cr
@@ -20,7 +20,7 @@
                            +----\link{GtkMenuShell}
                                  +----GtkMenuBar}}
 \section{Interfaces}{GtkMenuBar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \code{gtk_menu_bar_set_shadow_type} function.}
 \section{Structures}{\describe{\item{\code{GtkMenuBar}}{
 The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)

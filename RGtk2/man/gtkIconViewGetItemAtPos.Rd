@@ -1,9 +1,11 @@
 \alias{gtkIconViewGetItemAtPos}
 \name{gtkIconViewGetItemAtPos}
 \title{gtkIconViewGetItemAtPos}
-\description{Finds the path at the point (\code{x}, \code{y}), relative to widget coordinates.
+\description{Finds the path at the point (\code{x}, \code{y}), relative to bin\_window coordinates.
 In contrast to \code{\link{gtkIconViewGetPathAtPos}}, this function also 
-obtains the cell at the specified position.}
+obtains the cell at the specified position.
+See \code{\link{gtkIconViewConvertWidgetToBinWindowCoords}} for converting
+widget coordinates to bin\_window coordinates.}
 \usage{gtkIconViewGetItemAtPos(object, x, y)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}

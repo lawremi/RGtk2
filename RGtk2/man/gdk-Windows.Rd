@@ -40,6 +40,8 @@
 \code{\link{gdkWindowUnfullscreen}(object)}\cr
 \code{\link{gdkWindowSetKeepAbove}(object, setting)}\cr
 \code{\link{gdkWindowSetKeepBelow}(object, setting)}\cr
+\code{\link{gdkWindowSetOpacity}(object, opacity)}\cr
+\code{\link{gdkWindowSetComposited}(object, composited)}\cr
 \code{\link{gdkWindowMove}(object, x, y)}\cr
 \code{\link{gdkWindowResize}(object, width, height)}\cr
 \code{\link{gdkWindowMoveResize}(object, x, y, width, height)}\cr
@@ -56,6 +58,7 @@
 \code{\link{gdkWindowBeginResizeDrag}(object, edge, button, root.x, root.y, timestamp)}\cr
 \code{\link{gdkWindowBeginMoveDrag}(object, button, root.x, root.y, timestamp)}\cr
 \code{\link{gdkWindowConstrainSize}(geometry, width, height)}\cr
+\code{\link{gdkWindowBeep}(object)}\cr
 \code{\link{gdkWindowBeginPaintRect}(object, rectangle)}\cr
 \code{\link{gdkWindowBeginPaintRegion}(object, region)}\cr
 \code{\link{gdkWindowEndPaint}(object)}\cr
@@ -117,6 +120,7 @@
 \code{\link{gdkWindowSetIconName}(object, name)}\cr
 \code{\link{gdkWindowSetTransientFor}(object, leader)}\cr
 \code{\link{gdkWindowSetRole}(object, role)}\cr
+\code{\link{gdkWindowSetStartupId}(object, startup.id)}\cr
 \code{\link{gdkWindowSetGroup}(object, leader)}\cr
 \code{\link{gdkWindowGetGroup}(object)}\cr
 \code{\link{gdkWindowSetDecorations}(object, decorations)}\cr
@@ -134,7 +138,123 @@
 used to implement high-level objects such as \code{\link{GtkWidget}} and \code{\link{GtkWindow}} on the
 GTK+ level. A \code{\link{GtkWindow}} is a toplevel window, the thing a user might think of 
 as a "window" with a titlebar and so on; a \code{\link{GtkWindow}} may contain many \code{\link{GdkWindow}}. 
-For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.}
+For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.
+  \preformatted{
+# The expose event handler for the event box.
+# 
+# This function simply draws a transparency onto a widget on the area
+# for which it receives expose events.  This is intended to give the
+# event box a "transparent" background.
+# 
+# In order for this to work properly, the widget must have an RGBA
+# colormap.  The widget should also be set as app-paintable since it
+# doesn't make sense for GTK+ to draw a background if we are drawing it
+# (and because GTK+ might actually replace our transparency with its
+# default background color).
+# 
+transparent_expose <- function(widget, event)
+{
+  cr <- gdkCairoCreate(widget$window)
+  cr$setOperator("clear")
+  gdkCairoRegion(cr, event$region)
+  cr$fill()
+
+  return(FALSE)
+}
+
+# The expose event handler for the window.
+# 
+# This function performs the actual compositing of the event box onto
+# the already-existing background of the window at 50\% normal opacity.
+# 
+# In this case we do not want app-paintable to be set on the widget
+# since we want it to draw its own (red) background. Because of this,
+# however, we must ensure that we set after = TRUE when connecting to the signal
+# so that this handler is called after the red has been drawn. If it was
+# called before then GTK would just blindly paint over our work.
+# 
+# Note: if the child window has children, then you need a cairo 1.16
+# feature to make this work correctly.
+# 
+
+window_expose_event <- function(widget, event)
+{
+  # get our child (in this case, the event box) 
+  child <- widget$getChild()
+
+  # create a cairo context to draw to the window 
+  cr <- gdkCairoCreate(widget$window)
+
+  # the source data is the (composited) event box
+  gdkCairoSetSourcePixmap(cr, child$window, child$allocation$x, 
+    child$allocation$y)
+
+  # draw no more than our expose event intersects our child
+  region <- gdkRegionRectangle(child$allocation)
+  region$intersect(event$region)
+  gdkCairoRegion(cr, region)
+  cr$clip()
+
+  # composite, with a 50\% opacity
+  cr$setOperator("over")
+  cr$paintWithAlpha(0.5)
+
+  return(FALSE)
+}
+
+# Make the widgets
+button <- gtkButton("A Button")
+event <- gtkEventBox()
+window <- gtkWindow()
+
+# Put a red background on the window
+red <- gdkColorParse("red")$color
+window$modifyBg("normal", red)
+
+# Set the colormap for the event box.
+# Must be done before the event box is realized.
+#
+screen <- event$getScreen()
+rgba <- screen$getRgbaColormap()
+event$setColormap(rgba)
+
+# Set our event box to have a fully-transparent background
+# drawn on it. Currently there is no way to simply tell GTK+
+# that "transparency" is the background color for a widget.
+#
+event$setAppPaintable(TRUE)
+gSignalConnect(event, "expose-event", transparent_expose)
+
+# Put them inside one another
+window$setBorderWidth(10)
+window$add(event)
+event$add(button)
+
+# Set the event box GdkWindow to be composited.
+# Obviously must be performed after event box is realized.
+#
+event$window$setComposited(TRUE)
+
+# Set up the compositing handler.
+# Note that we do _after_ so that the normal (red) background is drawn
+# by gtk before our compositing occurs.
+#
+gSignalConnect(window, "expose-event", window_expose_event, after = TRUE)
+}  
+In the example , a button is 
+placed inside of an event box inside of a window. The event box is 
+set as composited and therefore is no longer automatically drawn to 
+the screen. 
+  
+When the contents of the event box change, an expose event is
+generated on its parent window (which, in this case, belongs to
+the toplevel \code{\link{GtkWindow}}). The expose handler for this widget is
+responsible for merging the changes back on the screen in the way
+that it wishes.
+  
+In our case, we merge the contents with a 50\% transparency. We
+also set the background colour of the window to red. The effect is
+that the background shows through the button. }
 \section{Structures}{\describe{
 \item{\code{GdkWindow}}{
 An opaque structure representing an onscreen drawable.
@@ -222,6 +342,7 @@ Attributes to use for a newly-created window.
 \item{\code{wmclass_name}}{[character] don't use (see \code{\link{gtkWindowSetWmclass}})}
 \item{\code{wmclass_class}}{[character] don't use (see \code{\link{gtkWindowSetWmclass}})}
 \item{\code{override_redirect}}{[logical] \code{TRUE} to bypass the window manager}
+\item{\code{type_hint}}{[\code{\link{GdkWindowTypeHint}}] a hint of the function of the window}
 }
 
 }
@@ -331,7 +452,8 @@ window types.
 \describe{
 \item{\code{normal}}{Normal toplevel window.}
 \item{\code{dialog}}{Dialog window.}
-\item{\code{menu}}{Window used to implement a menu.}
+\item{\code{menu}}{Window used to implement a menu; GTK+ uses 
+  this hint only for torn-off menus, see \code{\link{GtkTearoffMenuItem}}.}
 \item{\code{toolbar}}{Window used to implement toolbars.}
 \item{\code{splashscreen}}{Window used to display a splash 
   screen during application startup.}

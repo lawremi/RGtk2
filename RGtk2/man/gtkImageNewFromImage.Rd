@@ -3,8 +3,7 @@
 \title{gtkImageNewFromImage}
 \description{Creates a \code{\link{GtkImage}} widget displaying a \code{image} with a \code{mask}.
 A \code{\link{GdkImage}} is a client-side image buffer in the pixel format of the
-current display.
-The \code{\link{GtkImage}} does not assume a reference to the
+current display. The \code{\link{GtkImage}} does not assume a reference to the
 image or mask; you still need to unref them if you own references.
 \code{\link{GtkImage}} will add its own reference rather than adopting yours.}
 \usage{gtkImageNewFromImage(image = NULL, mask = NULL, show = TRUE)}

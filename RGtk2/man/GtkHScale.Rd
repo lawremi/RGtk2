@@ -16,7 +16,7 @@
                            +----\link{GtkScale}
                                  +----GtkHScale}}
 \section{Interfaces}{GtkHScale implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHScale}} widget is used to allow the user to select a value using
 a horizontal slider. To create one, use \code{\link{gtkHScaleNewWithRange}}.
   

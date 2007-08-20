@@ -21,7 +21,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkFontSelection}}
 \section{Interfaces}{GtkFontSelection implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFontSelection}} widget lists the available fonts, styles and sizes,
 allowing the user to select a font.
 It is used in the \code{\link{GtkFontSelectionDialog}} widget to provide a dialog box for

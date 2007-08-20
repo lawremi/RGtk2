@@ -405,6 +405,7 @@ USER_OBJECT_ asRGSListWithSink(GSList *gslist, const gchar* type);
 /********** User Function wrappers ********/
 
 void S_GCompareFunc(gconstpointer s_a, gconstpointer s_b);
+gboolean S_GSourceFunc(gpointer data);
 
 /********** GClosure callbacks ***********/
 

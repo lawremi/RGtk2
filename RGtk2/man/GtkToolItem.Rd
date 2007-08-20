@@ -10,6 +10,9 @@
 \code{\link{gtkToolItemSetExpand}(object, expand)}\cr
 \code{\link{gtkToolItemGetExpand}(object)}\cr
 \code{\link{gtkToolItemSetTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)}\cr
+\code{\link{gtkToolItemSetTooltip}(object, tooltips, tip.text = NULL, tip.private = NULL)}\cr
+\code{\link{gtkToolItemSetTooltipText}(object, text)}\cr
+\code{\link{gtkToolItemSetTooltipMarkup}(object, markup)}\cr
 \code{\link{gtkToolItemSetUseDragWindow}(object, use.drag.window)}\cr
 \code{\link{gtkToolItemGetUseDragWindow}(object)}\cr
 \code{\link{gtkToolItemSetVisibleHorizontal}(object, visible.horizontal)}\cr
@@ -38,7 +41,7 @@
                                        +----\link{GtkToolButton}
                                        +----\link{GtkSeparatorToolItem}}}
 \section{Interfaces}{GtkToolItem implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkToolItem}}s are widgets that can appear on a toolbar. To
 create a toolbar item that contain something else than a button, use
 \code{\link{gtkToolItemNew}}. Use \code{\link{gtkContainerAdd}} to add a child
@@ -54,7 +57,7 @@ accessed through the functions described below.
 }}}
 \section{Convenient Construction}{\code{gtkToolItem} is the equivalent of \code{\link{gtkToolItemNew}}.}
 \section{Signals}{\describe{
-\item{\code{create-menu-proxy(toolitem, user.data)}}{
+\item{\code{The (tool.item, user.data)}}{
 This signal is emitted when the toolbar needs information from \code{tool.item}
 about whether the item should appear in the toolbar overflow menu. In
 response the tool item should either
@@ -70,20 +73,20 @@ to invalidate the cache and ensure that the toolbar rebuilds its overflow
 menu.  
 
 \describe{
-\item{\code{toolitem}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
+\item{\code{tool.item}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 \emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{set-tooltip(toolitem, tooltips, tip.text, tip.private, user.data)}}{
+\item{\code{The (tool.item, tooltips, tip.text, tip.private, user.data)}}{
 This signal is emitted when the toolitem's tooltip changes.
 Application developers can use \code{\link{gtkToolItemSetTooltip}} to
 set the item's tooltip.  
 
 \describe{
-\item{\code{toolitem}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
+\item{\code{tool.item}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
 \item{\code{tooltips}}{[\code{\link{GtkTooltips}}]  the \code{\link{GtkTooltips}}}
 \item{\code{tip.text}}{[character]  the tooltip text}
 \item{\code{tip.private}}{[character]  the tooltip private text}
@@ -93,7 +96,7 @@ set the item's tooltip.
 \emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{toolbar-reconfigured(toolitem, user.data)}}{
+\item{\code{The (tool.item, user.data)}}{
 This signal is emitted when some property of the toolbar that the
 item is a child of changes. For custom subclasses of \code{\link{GtkToolItem}},
 the default handler of this signal use the functions
@@ -107,7 +110,7 @@ to find out what the toolbar should look like and change
 themselves accordingly.  
 
 \describe{
-\item{\code{toolitem}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
+\item{\code{tool.item}}{[\code{\link{GtkToolItem}}]  the object the signal was emitted on}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

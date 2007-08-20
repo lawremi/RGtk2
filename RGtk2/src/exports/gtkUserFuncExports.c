@@ -15,6 +15,7 @@ R_RegisterCCallable("RGtk2", "S_GtkIconViewForeachFunc", ((DL_FUNC)S_GtkIconView
 R_RegisterCCallable("RGtk2", "S_GtkTranslateFunc", ((DL_FUNC)S_GtkTranslateFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkFunction", ((DL_FUNC)S_GtkFunction)); 
 R_RegisterCCallable("RGtk2", "S_GtkKeySnoopFunc", ((DL_FUNC)S_GtkKeySnoopFunc)); 
+R_RegisterCCallable("RGtk2", "S_GtkMenuPositionFunc", ((DL_FUNC)S_GtkMenuPositionFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkTreeModelForeachFunc", ((DL_FUNC)S_GtkTreeModelForeachFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkTreeModelFilterVisibleFunc", ((DL_FUNC)S_GtkTreeModelFilterVisibleFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkTreeModelFilterModifyFunc", ((DL_FUNC)S_GtkTreeModelFilterModifyFunc)); 
@@ -64,4 +65,7 @@ R_RegisterCCallable("RGtk2", "S_GtkTextBufferDeserializeFunc", ((DL_FUNC)S_GtkTe
 #endif 
 #if GTK_CHECK_VERSION(2, 10, 0)
 R_RegisterCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc", ((DL_FUNC)S_GtkTreeViewSearchPositionFunc));
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_GtkBuilderConnectFunc", ((DL_FUNC)S_GtkBuilderConnectFunc));
 #endif 

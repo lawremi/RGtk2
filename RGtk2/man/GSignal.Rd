@@ -9,6 +9,7 @@
 \alias{gSignalStopEmission}
 \alias{gSignalGetInfo}
 \alias{GSignalFlags}
+\alias{GConnectFlags}
 \title{The GSignal API}
 \description{
 The basic concept of the signal system is that of the emission of a signal. 

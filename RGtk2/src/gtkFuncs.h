@@ -8654,4 +8654,379 @@ S_gtk_window_get_deletable(USER_OBJECT_ s_object);
   USER_OBJECT_
 S_gtk_window_get_group(USER_OBJECT_ s_object); 
 
+  USER_OBJECT_
+S_gtk_buildable_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_buildable_set_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_gtk_buildable_get_name(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_buildable_add_child(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_type); 
+
+  USER_OBJECT_
+S_gtk_buildable_set_buildable_property(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_name, USER_OBJECT_ s_value); 
+
+  USER_OBJECT_
+S_gtk_buildable_construct_child(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_gtk_buildable_custom_tag_start(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_parser, USER_OBJECT_ s_data); 
+
+  USER_OBJECT_
+S_gtk_buildable_custom_tag_end(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_data); 
+
+  USER_OBJECT_
+S_gtk_buildable_custom_finished(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_data); 
+
+  USER_OBJECT_
+S_gtk_buildable_parser_finished(USER_OBJECT_ s_object, USER_OBJECT_ s_builder); 
+
+  USER_OBJECT_
+S_gtk_buildable_get_internal_child(USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_childname); 
+
+  USER_OBJECT_
+S_gtk_builder_error_quark(void); 
+
+  USER_OBJECT_
+S_gtk_builder_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_builder_new(void); 
+
+  USER_OBJECT_
+S_gtk_builder_add_from_file(USER_OBJECT_ s_object, USER_OBJECT_ s_filename); 
+
+  USER_OBJECT_
+S_gtk_builder_add_from_string(USER_OBJECT_ s_object, USER_OBJECT_ s_buffer, USER_OBJECT_ s_length); 
+
+  USER_OBJECT_
+S_gtk_builder_get_object(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_gtk_builder_get_objects(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_builder_connect_signals_full(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_user_data); 
+
+  USER_OBJECT_
+S_gtk_builder_set_translation_domain(USER_OBJECT_ s_object, USER_OBJECT_ s_domain); 
+
+  USER_OBJECT_
+S_gtk_builder_get_translation_domain(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_builder_get_type_from_name(USER_OBJECT_ s_object, USER_OBJECT_ s_type_name); 
+
+  USER_OBJECT_
+S_gtk_builder_value_from_string(USER_OBJECT_ s_object, USER_OBJECT_ s_pspec, USER_OBJECT_ s_string); 
+
+  USER_OBJECT_
+S_gtk_builder_value_from_string_type(USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_string); 
+
+  USER_OBJECT_
+S_gtk_about_dialog_get_program_name(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_about_dialog_set_program_name(USER_OBJECT_ s_object, USER_OBJECT_ s_name); 
+
+  USER_OBJECT_
+S_gtk_action_create_menu(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_cell_layout_get_cells(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_entry_completion_get_completion_prefix(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_entry_completion_set_inline_selection(USER_OBJECT_ s_object, USER_OBJECT_ s_inline_selection); 
+
+  USER_OBJECT_
+S_gtk_entry_completion_get_inline_selection(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_entry_set_cursor_hadjustment(USER_OBJECT_ s_object, USER_OBJECT_ s_adjustment); 
+
+  USER_OBJECT_
+S_gtk_entry_get_cursor_hadjustment(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_icon_theme_choose_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_icon_names, USER_OBJECT_ s_size, USER_OBJECT_ s_flags); 
+
+  USER_OBJECT_
+S_gtk_icon_theme_list_contexts(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_icon_view_convert_widget_to_bin_window_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wx, USER_OBJECT_ s_wy); 
+
+  USER_OBJECT_
+S_gtk_icon_view_set_tooltip_item(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_path); 
+
+  USER_OBJECT_
+S_gtk_icon_view_set_tooltip_cell(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_path, USER_OBJECT_ s_cell); 
+
+  USER_OBJECT_
+S_gtk_icon_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip); 
+
+  USER_OBJECT_
+S_gtk_icon_view_set_tooltip_column(USER_OBJECT_ s_object, USER_OBJECT_ s_column); 
+
+  USER_OBJECT_
+S_gtk_icon_view_get_tooltip_column(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_list_store_set_valuesv(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_columns, USER_OBJECT_ s_values); 
+
+  USER_OBJECT_
+S_gtk_menu_tool_button_set_arrow_tooltip_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_gtk_menu_tool_button_set_arrow_tooltip_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_markup); 
+
+  USER_OBJECT_
+S_gtk_notebook_set_group(USER_OBJECT_ s_object, USER_OBJECT_ s_group); 
+
+  USER_OBJECT_
+S_gtk_notebook_get_group(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_page_setup_new_from_file(USER_OBJECT_ s_file_name); 
+
+  USER_OBJECT_
+S_gtk_page_setup_new_from_key_file(USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_page_setup_to_file(USER_OBJECT_ s_object, USER_OBJECT_ s_file_name); 
+
+  USER_OBJECT_
+S_gtk_page_setup_to_key_file(USER_OBJECT_ s_object, USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_paper_size_get_paper_sizes(USER_OBJECT_ s_include_custom); 
+
+  USER_OBJECT_
+S_gtk_paper_size_new_from_key_file(USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_paper_size_to_key_file(USER_OBJECT_ s_object, USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_print_settings_new_from_file(USER_OBJECT_ s_file_name); 
+
+  USER_OBJECT_
+S_gtk_print_settings_to_file(USER_OBJECT_ s_object, USER_OBJECT_ s_file_name); 
+
+  USER_OBJECT_
+S_gtk_print_settings_new_from_key_file(USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_print_settings_to_key_file(USER_OBJECT_ s_object, USER_OBJECT_ s_key_file, USER_OBJECT_ s_group_name); 
+
+  USER_OBJECT_
+S_gtk_range_set_show_fill_level(USER_OBJECT_ s_object, USER_OBJECT_ s_show_fill_level); 
+
+  USER_OBJECT_
+S_gtk_range_get_show_fill_level(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_range_set_restrict_to_fill_level(USER_OBJECT_ s_object, USER_OBJECT_ s_restrict_to_fill_level); 
+
+  USER_OBJECT_
+S_gtk_range_get_restrict_to_fill_level(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_range_set_fill_level(USER_OBJECT_ s_object, USER_OBJECT_ s_fill_level); 
+
+  USER_OBJECT_
+S_gtk_range_get_fill_level(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_rc_parse_color_full(USER_OBJECT_ s_scanner, USER_OBJECT_ s_style); 
+
+  USER_OBJECT_
+S_gtk_recent_action_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_recent_action_new(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id); 
+
+  USER_OBJECT_
+S_gtk_recent_action_new_for_manager(USER_OBJECT_ s_name, USER_OBJECT_ s_label, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_manager); 
+
+  USER_OBJECT_
+S_gtk_recent_action_get_show_numbers(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_recent_action_set_show_numbers(USER_OBJECT_ s_object, USER_OBJECT_ s_show_numbers); 
+
+  USER_OBJECT_
+S_gtk_scale_button_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_scale_button_new(USER_OBJECT_ s_size, USER_OBJECT_ s_min, USER_OBJECT_ s_max, USER_OBJECT_ s_step, USER_OBJECT_ s_icons); 
+
+  USER_OBJECT_
+S_gtk_scale_button_set_icons(USER_OBJECT_ s_object, USER_OBJECT_ s_icons); 
+
+  USER_OBJECT_
+S_gtk_scale_button_get_value(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_scale_button_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_value); 
+
+  USER_OBJECT_
+S_gtk_scale_button_get_adjustment(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_scale_button_set_adjustment(USER_OBJECT_ s_object, USER_OBJECT_ s_adjustment); 
+
+  USER_OBJECT_
+S_gtk_status_icon_set_screen(USER_OBJECT_ s_object, USER_OBJECT_ s_screen); 
+
+  USER_OBJECT_
+S_gtk_status_icon_get_screen(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_text_buffer_add_mark(USER_OBJECT_ s_object, USER_OBJECT_ s_mark, USER_OBJECT_ s_where); 
+
+  USER_OBJECT_
+S_gtk_text_mark_new(USER_OBJECT_ s_name, USER_OBJECT_ s_left_gravity); 
+
+  USER_OBJECT_
+S_gtk_tooltip_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_markup); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_icon(USER_OBJECT_ s_object, USER_OBJECT_ s_pixbuf); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_icon_from_stock(USER_OBJECT_ s_object, USER_OBJECT_ s_stock_id, USER_OBJECT_ s_size); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_custom(USER_OBJECT_ s_object, USER_OBJECT_ s_custom_widget); 
+
+  USER_OBJECT_
+S_gtk_tooltip_trigger_tooltip_query(USER_OBJECT_ s_display); 
+
+  USER_OBJECT_
+S_gtk_tooltip_set_tip_area(USER_OBJECT_ s_object, USER_OBJECT_ s_area); 
+
+  USER_OBJECT_
+S_gtk_tool_item_set_tooltip_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_gtk_tool_item_set_tooltip_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_markup); 
+
+  USER_OBJECT_
+S_gtk_tree_store_set_valuesv(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJECT_ s_columns, USER_OBJECT_ s_values); 
+
+  USER_OBJECT_
+S_gtk_tree_view_column_get_tree_view(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_widget_to_tree_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wx, USER_OBJECT_ s_wy); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_tree_to_widget_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_widget_to_bin_window_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_wx, USER_OBJECT_ s_wy); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_bin_window_to_widget_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_bx, USER_OBJECT_ s_by); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_tree_to_bin_window_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_tx, USER_OBJECT_ s_ty); 
+
+  USER_OBJECT_
+S_gtk_tree_view_convert_bin_window_to_tree_coords(USER_OBJECT_ s_object, USER_OBJECT_ s_bx, USER_OBJECT_ s_by); 
+
+  USER_OBJECT_
+S_gtk_tree_view_set_show_expanders(USER_OBJECT_ s_object, USER_OBJECT_ s_enabled); 
+
+  USER_OBJECT_
+S_gtk_tree_view_get_show_expanders(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_tree_view_set_level_indentation(USER_OBJECT_ s_object, USER_OBJECT_ s_indentation); 
+
+  USER_OBJECT_
+S_gtk_tree_view_get_level_indentation(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_tree_view_is_rubber_banding_active(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_tree_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip); 
+
+  USER_OBJECT_
+S_gtk_tree_view_set_tooltip_column(USER_OBJECT_ s_object, USER_OBJECT_ s_column); 
+
+  USER_OBJECT_
+S_gtk_tree_view_get_tooltip_column(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_tree_view_set_tooltip_row(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_path); 
+
+  USER_OBJECT_
+S_gtk_tree_view_set_tooltip_cell(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltip, USER_OBJECT_ s_path, USER_OBJECT_ s_column, USER_OBJECT_ s_cell); 
+
+  USER_OBJECT_
+S_gtk_volume_button_get_type(void); 
+
+  USER_OBJECT_
+S_gtk_volume_button_new(void); 
+
+  USER_OBJECT_
+S_gtk_widget_keynav_failed(USER_OBJECT_ s_object, USER_OBJECT_ s_direction); 
+
+  USER_OBJECT_
+S_gtk_widget_error_bell(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_set_tooltip_window(USER_OBJECT_ s_object, USER_OBJECT_ s_custom_window); 
+
+  USER_OBJECT_
+S_gtk_widget_get_tooltip_window(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_trigger_tooltip_query(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_set_tooltip_text(USER_OBJECT_ s_object, USER_OBJECT_ s_text); 
+
+  USER_OBJECT_
+S_gtk_widget_get_tooltip_text(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_set_tooltip_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_markup); 
+
+  USER_OBJECT_
+S_gtk_widget_get_tooltip_markup(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_modify_cursor(USER_OBJECT_ s_object, USER_OBJECT_ s_primary, USER_OBJECT_ s_secondary); 
+
+  USER_OBJECT_
+S_gtk_widget_get_has_tooltip(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_widget_set_has_tooltip(USER_OBJECT_ s_object, USER_OBJECT_ s_has_tooltip); 
+
+  USER_OBJECT_
+S_gtk_window_set_opacity(USER_OBJECT_ s_object, USER_OBJECT_ s_opacity); 
+
+  USER_OBJECT_
+S_gtk_window_get_opacity(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_gtk_window_set_startup_id(USER_OBJECT_ s_object, USER_OBJECT_ s_startup_id); 
+
 #endif

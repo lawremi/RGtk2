@@ -25,7 +25,7 @@
                                  +----\link{GtkButton}
                                        +----GtkColorButton}}
 \section{Interfaces}{GtkColorButton implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkColorButton}} is a button which displays the currently selected color 
 an allows to open a color selection dialog to change the color. It is suitable 
 widget for selecting a color in a preference dialog.}
@@ -35,7 +35,7 @@ should not be used directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkColorButton} is the result of collapsing the constructors of \code{GtkColorButton} (\code{\link{gtkColorButtonNew}}, \code{\link{gtkColorButtonNewWithColor}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{color-set(widget, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (widget, user.data)}}{
 The ::color-set signal is emitted when the user selects a color. 
 When handling this signal, use \code{\link{gtkColorButtonGetColor}} and 
 \code{\link{gtkColorButtonGetAlpha}} to find out which color was just selected.

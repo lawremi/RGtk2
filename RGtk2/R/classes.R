@@ -12,6 +12,8 @@
 .reserved <- c(".props", ".prop_overrides", ".initialize", ".signals",
     ".public", ".protected", ".private")
 
+# FIXME: Should we really require that interfaces be specified only within
+# the class definition - no explicit argument?
 gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
 {
   virtuals <- as.list(.virtuals)
@@ -180,8 +182,8 @@ gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
   class_init_sym <- getNativeSymbolInfo(parent_class_init)$address
   interface_init_syms <- NULL
   if (length(interface_names))
-    interface_init_syms <- sapply(getNativeSymbolInfo(get_class_init_funcs(interface_names)),
-      function(symbol) symbol$address)
+    interface_init_syms <- sapply(get_class_init_funcs(interface_names),
+      function(interface_name) getNativeSymbolInfo(interface_name)$address)
   
   class_env <- .as.environment(types)
   assign(".initialize", init, class_env)
@@ -193,9 +195,13 @@ gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
   assign(".protected", protecteds, class_env)
   assign(".private", privates, class_env)
   
+  # put properties in class_env too, so that they can be registered during
+  # class initialization
+  assign(".props", props, class_env)
+  assign(".prop_overrides", prop_overrides, class_env)
+  
   .RGtkCall("S_gobject_class_new", name, parent, interface_names, 
-    class_init_sym, interface_init_syms, class_env, props, prop_overrides, 
-    signals, abstract)
+    class_init_sym, interface_init_syms, class_env, signals, abstract)
 }
 
 registerVirtuals <- function(virtuals)

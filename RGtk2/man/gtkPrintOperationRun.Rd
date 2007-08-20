@@ -2,8 +2,7 @@
 \name{gtkPrintOperationRun}
 \title{gtkPrintOperationRun}
 \description{Runs the print operation, by first letting the user modify
-print settings in the print dialog, and then print the
-document.}
+print settings in the print dialog, and then print the document.}
 \usage{gtkPrintOperationRun(object, action, parent = NULL, .errwarn = TRUE)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}
@@ -12,15 +11,16 @@ document.}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Normally that this function does not return until the rendering of all 
-pages is complete. You can connect to the ::status-changed signal on
-\code{op} to obtain some information about the progress of the print operation. 
+pages is complete. You can connect to the 
+\code{::status-changed} signal on \code{op} to obtain some 
+information about the progress of the print operation. 
 Furthermore, it may use a recursive mainloop to show the print dialog.
   
 If you call \code{\link{gtkPrintOperationSetAllowAsync}} or set the allow-async
 property the operation will run asyncronously if this is supported on the
-platform. The ::done signal will be emitted with the operation results when
-the operation is done (i.e. when the dialog is canceled, or when the print
-succeeds or fails).
+platform. The \code{::done} signal will be emitted with the 
+operation results when the operation is done (i.e. when the dialog is 
+canceled, or when the print succeeds or fails).
   
 \preformatted{
 if (!is.null(settings))
@@ -41,7 +41,10 @@ if (res[[1]] == "error") {
    error_dialog$show()
 } else if (res[[1]] == "apply")
    settings = op$getPrintSettings()
-}  
+}
+  
+Note that \code{\link{gtkPrintOperationRun}} can only be called once on a
+given \code{\link{GtkPrintOperation}}.  
 
   Since  2.10}
 \value{

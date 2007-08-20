@@ -2,7 +2,7 @@
 \alias{gtkHRuler}
 \name{GtkHRuler}
 \title{GtkHRuler}
-\description{A horizontal ruler.}
+\description{A horizontal ruler}
 \section{Methods and Functions}{
 \code{\link{gtkHRulerNew}(show = TRUE)}\cr
 \code{gtkHRuler(show = TRUE)}
@@ -14,7 +14,7 @@
                      +----\link{GtkRuler}
                            +----GtkHRuler}}
 \section{Interfaces}{GtkHRuler implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If

@@ -16,6 +16,7 @@
 \code{\link{gtkActionCreateIcon}(object, icon.size)}\cr
 \code{\link{gtkActionCreateMenuItem}(object)}\cr
 \code{\link{gtkActionCreateToolItem}(object)}\cr
+\code{\link{gtkActionCreateMenu}(object)}\cr
 \code{\link{gtkActionConnectProxy}(object, proxy)}\cr
 \code{\link{gtkActionDisconnectProxy}(object, proxy)}\cr
 \code{\link{gtkActionGetProxies}(object)}\cr
@@ -31,7 +32,10 @@
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkAction
-         +----\link{GtkToggleAction}}}
+         +----\link{GtkToggleAction}
+         +----\link{GtkRecentAction}}}
+\section{Interfaces}{GtkAction implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Actions represent operations that the user can be perform, along with
 some information how it should be presented in the interface. Each action 
 provides methods to create icons, menu items and toolbar items representing 
@@ -68,7 +72,7 @@ and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkAction} is the equivalent of \code{\link{gtkActionNew}}.}
-\section{Signals}{\describe{\item{\code{activate(action, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (action, user.data)}}{
 The "activate" signal is emitted when the action is activated.  
 
   Since  2.4
@@ -108,7 +112,11 @@ Whether the action is considered important. When TRUE, toolitem proxies for this
 }
 \item{\code{label} [character : Read / Write]}{
 
-The label used for menu items and buttons that activate this action.  Default value: NULL
+The label used for menu items and buttons that activate
+this action. If the label is \code{NULL}, GTK+ uses the stock 
+label specified via the stock-id property.  
+
+  Default value: NULL
 
 }
 \item{\code{name} [character : Read / Write / Construct Only]}{

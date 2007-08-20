@@ -22,7 +22,7 @@
                                  +----\link{GtkHPaned}
                                  +----\link{GtkVPaned}}}
 \section{Interfaces}{GtkPaned implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkPaned}} is the base class for widgets with two panes,
 arranged either horizontally (\code{\link{GtkHPaned}}) or
 vertically (\code{\link{GtkVPaned}}). Child widgets are 
@@ -78,7 +78,7 @@ frame2$setSizeRequest(50, -1)
 
 }}}
 \section{Signals}{\describe{
-\item{\code{accept-position(paned, user.data)}}{
+\item{\code{The (paned, user.data)}}{
 \emph{undocumented
 }
 
@@ -89,7 +89,7 @@ frame2$setSizeRequest(50, -1)
 
 
 }
-\item{\code{cancel-position(paned, user.data)}}{
+\item{\code{The (paned, user.data)}}{
 \emph{undocumented
 }
 
@@ -100,19 +100,7 @@ frame2$setSizeRequest(50, -1)
 
 
 }
-\item{\code{cycle-child-focus(paned, arg1, user.data)}}{
-\emph{undocumented
-}
-
-\describe{
-\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
-\item{\code{arg1}}{[logical] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
-}
-
-
-}
-\item{\code{cycle-handle-focus(paned, arg1, user.data)}}{
+\item{\code{The (paned, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -124,7 +112,19 @@ frame2$setSizeRequest(50, -1)
 
 
 }
-\item{\code{move-handle(paned, arg1, user.data)}}{
+\item{\code{The (paned, arg1, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{paned}}{[\code{\link{GtkPaned}}] the object which received the signal.}
+\item{\code{arg1}}{[logical] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{The (paned, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -136,7 +136,7 @@ frame2$setSizeRequest(50, -1)
 
 
 }
-\item{\code{toggle-handle-focus(paned, user.data)}}{
+\item{\code{The (paned, user.data)}}{
 \emph{undocumented
 }
 

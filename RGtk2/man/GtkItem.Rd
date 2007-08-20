@@ -19,7 +19,7 @@
                                        +----\link{GtkListItem}
                                        +----GtkTreeItem}}
 \section{Interfaces}{GtkItem implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
 and \code{GtkTreeItem}.}
 \section{Structures}{\describe{\item{\code{GtkItem}}{
@@ -28,7 +28,7 @@ should be accessed using the functions below.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{deselect(item, user.data)}}{
+\item{\code{The (item, user.data)}}{
 Emitted when the item is deselected.
 
 \describe{
@@ -38,7 +38,7 @@ Emitted when the item is deselected.
 
 
 }
-\item{\code{select(item, user.data)}}{
+\item{\code{The (item, user.data)}}{
 Emitted when the item is selected.
 
 \describe{
@@ -48,7 +48,7 @@ Emitted when the item is selected.
 
 
 }
-\item{\code{toggle(item, user.data)}}{
+\item{\code{The (item, user.data)}}{
 Emitted when the item is toggled.
 
 \describe{

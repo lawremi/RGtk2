@@ -23,6 +23,10 @@
 \code{\link{gtkPageSetupGetPaperHeight}(object, unit)}\cr
 \code{\link{gtkPageSetupGetPageWidth}(object, unit)}\cr
 \code{\link{gtkPageSetupGetPageHeight}(object, unit)}\cr
+\code{\link{gtkPageSetupNewFromFile}(file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPageSetupNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPageSetupToFile}(object, file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPageSetupToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPageSetup()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -43,29 +47,19 @@ margins.
 To obtain a \code{\link{GtkPageSetup}} use \code{\link{gtkPageSetupNew}}
 to get the defaults, or use \code{\link{gtkPrintRunPageSetupDialog}} to show 
 the page setup dialog and receive the resulting page setup.
-  
-\emph{A page setup dialog}
-\preformatted{static GtkPrintSettings *settings = NULL;
-static GtkPageSetup *page_setup = NULL;
-
-static void
-do_page_setup (void)
+  \preformatted{
+do_page_setup <- function()
 {
-  GtkPageSetup *new_page_setup;
+  if (is.null(settings))
+    settings <- gtkPrintSettings()
 
-  if (settings == NULL)
-    settings = gtk_print_settings_new (    );
+  new_page_setup <- gtkPrintRunPageSetupDialog(main_window, page_setup, 
+    settings)
 
-  new_page_setup = gtk_print_run_page_setup_dialog (GTK_WINDOW (main_window),
-                                                    page_setup, settings);
-
-  if (page_setup)
-    g_object_unref (page_setup);
-
-  page_setup = new_page_setup;
+  page_setup <- new_page_setup
 }
-}
-  
+
+}  
 Printing support was added in GTK+ 2.10.}
 \section{Structures}{\describe{\item{\code{GtkPageSetup}}{
 \emph{undocumented

@@ -15,6 +15,8 @@
    +----\link{GtkAction}
          +----\link{GtkToggleAction}
                +----GtkRadioAction}}
+\section{Interfaces}{GtkRadioAction implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkRadioAction}} is similar to \code{\link{GtkRadioMenuItem}}. A number of radio
 actions can be linked together so that only one may be active at any 
 one time.}
@@ -24,7 +26,7 @@ only private members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkRadioAction} is the equivalent of \code{\link{gtkRadioActionNew}}.}
-\section{Signals}{\describe{\item{\code{changed(action, current, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (action, current, user.data)}}{
 The ::changed signal is emitted on every member of a radio group when the
 active member is changed. The signal gets emitted after the ::activate signals
 for the previous and current active members.  

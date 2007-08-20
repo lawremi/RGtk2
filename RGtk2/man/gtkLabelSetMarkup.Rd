@@ -2,7 +2,7 @@
 \name{gtkLabelSetMarkup}
 \title{gtkLabelSetMarkup}
 \description{Parses \code{str} which is marked up with the Pango text markup language, setting the
-label's text and attribute list based on the parse results.  If the \code{str} is
+label's text and attribute list based on the parse results. If the \code{str} is
 external data, you may need to escape it with \code{gMarkupEscapeText()} or
 \code{gMarkupPrintfEscaped()}:
 \preformatted{# RGtk2 does not currently support GMarkup}}

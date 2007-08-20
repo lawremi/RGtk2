@@ -78,7 +78,7 @@ func_names_path <- paste(func_path, func_name_path, sep="")
 parseConcept <- function(doc, defs, verbose) {
 	entry <- getNodeSet(doc, "/refentry")[[1]]
 	concept <- list()
-	concept["title"] <- escape(xmlValue(getNodeSet(entry, title_path)[[1]]))
+	concept["title"] <- escape_text(xmlValue(getNodeSet(entry, title_path)[[1]]))
 	#name <- gsub("-", "_", xmlGetAttr(entry, "id"))
 	#if (name != xmlGetAttr(entry, "id"))
 	#	name <- toCapPhraseName(tolower(name), FALSE)
@@ -311,6 +311,8 @@ toUrlReference <- function(library, name) {
 
 xmlTraverse <- function(node, handlers) {
 	name <- xmlName(node)
+  if (is.na(name))
+    name <- "text"
 	#print(name)
 	val <- NULL
 	recurse <- TRUE
@@ -347,7 +349,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	#markup_parameter <- function(param) rd("var", child_val(param))
 	markup_emphasis <- function(emph) rd("emph", markup(xmlChildren(emph)))
 	markup_ulink <- function(ulink) paste(child_val(ulink), " (", rd("url", xmlGetAttr(ulink, "url")), ")", sep="")
-	markup_filename <- function(filename) rd("file", escape(child_val(filename)))
+	markup_filename <- function(filename) rd("file", escape_text(child_val(filename)))
 	markup_program <- function(program) {
 		if (length(getNodeSet(program, "/parent::informalexample|/parent::example")) == 0)
 			print("---MISSING PROGRAMLISTING---")
@@ -391,10 +393,10 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_varlist <- function(varlist) 
 		rd("describe", toItems(varlist, desc_sub_name_path, 
 			"/varlistentry/listitem/para|/varlistentry/listitem/simpara"))
-	markup_envar <- function(envar) rd("env", escape(child_val(envar)))
+	markup_envar <- function(envar) rd("env", escape_text(child_val(envar)))
 	markup_warning <- function(warning) toWarning(warning)
 	markup_app <- function(app) rd("command", child_val(app))
-	markup_var <- function(var) escape(rd("var", child_val(var)))
+	markup_var <- function(var) escape_text(rd("var", child_val(var)))
 	markup_quote <- function(quote) rd("dQuote", child_val(quote))
 	markup_key <- function(key) rd("kbd", child_val(key))
 	markup_combo <- function(combo) paste(sapply(getNodeSet(combo, "/keycap"), markup_key), collapse="-")
@@ -408,7 +410,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_text <- function(text) {
     val <- xmlValue(text)
     if (!preformat)
-      val <- escape(val)
+      val <- escape_text(val)
     val
   }
 	
@@ -453,11 +455,12 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	)
 	#if (is.null(nodes[[1]]))
 	#	browser()
-	semantics(strip(paste(sapply(nodes, xmlTraverse, handlers), collapse = collapse)))
+	escape_all(semantics(strip(paste(sapply(nodes, xmlTraverse, handlers), collapse = collapse))))
 }
 
-escape <- function(text) {
-	gsub("([_#$\\^])", "\\\\\\1", text)
+escape_all <- function(text) gsub("([%])", "\\\\\\1", text)
+escape_text <- function(text) {
+  gsub("([_#$\\^])", "\\\\\\1", text)
 	#text
 }
 strip <- function(text) {
@@ -709,7 +712,7 @@ writeRd <- function(doc, output) {
 	last <- c("references", "note", "author", "seealso", "examples", "keyword")
 	standard <- c(first, last)
 	doc["author"] <- "Derived by RGtkGen from GTK+ documentation"
-  doc["encoding"] <- "UTF-8"
+  #doc["encoding"] <- "UTF-8"
 	doc <- doc[sapply(doc, length) > 0 & sapply(doc, function(element) any(sapply(element, nchar) > 0))
 			| names(doc) %in% required]
 	common <- standard[standard %in% names(doc)]

@@ -46,7 +46,7 @@
                                  +----GtkComboBox
                                        +----\link{GtkComboBoxEntry}}}
 \section{Interfaces}{GtkComboBox implements
- AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkComboBox}} is a widget that allows the user to choose from a
 list of valid choices.  The \code{\link{GtkComboBox}} displays the selected 
 choice.  When activated, the \code{\link{GtkComboBox}} displays a popup 
@@ -75,7 +75,8 @@ the data in a model. It consists of the functions \code{\link{gtkComboBoxNewText
 
 }}}
 \section{Convenient Construction}{\code{gtkComboBox} is the result of collapsing the constructors of \code{GtkComboBox} (\code{\link{gtkComboBoxNew}}, \code{\link{gtkComboBoxNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{changed(widget, user.data)}}{
+\section{Signals}{\describe{
+\item{\code{The (widget, user.data)}}{
 The changed signal is emitted when the active
 item is changed. The can be due to the user selecting
 a different item from the list, or due to a 
@@ -91,13 +92,49 @@ as well as when selecting an item from the GtkComboBoxEntry's list.
 }
 
 
-}}}
+}
+\item{\code{The (combobox, arg1, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
+\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{The (combobox, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{The (combobox, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}
+}}
 \section{Properties}{\describe{
 \item{\code{active} [integer : Read / Write]}{
 
 The item which is currently active. If the model is a non-flat treemodel,
 and the active item is not an immediate child of the root of the tree,
-this property has the value \code{gtk_tree_path_get_indices (path)[0]},
+this property has the value 
+\code{gtk_tree_path_get_indices (path)[0]},
 where \code{path} is the \code{\link{GtkTreePath}} of the active item.  
 
   Allowed values: >= -1  Default value: -1  Since  2.4
@@ -159,9 +196,9 @@ it allows you to connect to notify::popup-shown.
 If this is set to a non-negative value, it must be the index of a column 
 of type \code{G_TYPE_INT} in the model. 
   
-The values of that column are used to determine how many rows a value 
-in the list will span. Therefore, the values in the model column pointed 
-to by this property must be greater than zero and not larger than wrap-width.  
+The values of that column are used to determine how many rows a value in 
+the list will span. Therefore, the values in the model column pointed to 
+by this property must be greater than zero and not larger than wrap-width.  
 
   Allowed values: >= -1  Default value: -1  Since  2.4
 
@@ -184,11 +221,30 @@ determined by wrap-width.
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{appears-as-list} [logical : Read]}{
+\section{Style Properties}{\describe{
+\item{\code{appears-as-list} [logical : Read]}{
 
 Whether dropdowns should look like lists rather than menus.  Default value: FALSE
 
-}}}
+}
+\item{\code{arrow-size} [integer : Read]}{
+
+Sets the minimum size of the arrow in the combo box.  Note
+that the arrow size is coupled to the font size, so in case
+a larger font is used, the arrow will be larger than set
+by arrow size.  
+
+  Allowed values: >= 0  Default value: 15  Since  2.12
+
+}
+\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
+
+Which kind of shadow to draw around the combo box.  
+
+  Default value: GTK\_SHADOW\_NONE  Since  2.12
+
+}
+}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkComboBox.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{

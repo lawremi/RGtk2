@@ -3,7 +3,7 @@
 \title{gtkWidgetQueueDrawArea}
 \description{Invalidates the rectangular area of \code{widget} defined by \code{x}, \code{y},
 \code{width} and \code{height} by calling \code{\link{gdkWindowInvalidateRect}} on the
-widget's window and all its child windows.  Once the main loop
+widget's window and all its child windows. Once the main loop
 becomes idle (after the current batch of events has been processed,
 roughly), the window will receive expose events for the union of
 all regions that have been invalidated.}

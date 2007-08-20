@@ -61,6 +61,8 @@
 \code{\link{gtkWindowSetUrgencyHint}(object, setting)}\cr
 \code{\link{gtkWindowSetAcceptFocus}(object, setting)}\cr
 \code{\link{gtkWindowSetFocusOnMap}(object, setting)}\cr
+\code{\link{gtkWindowSetStartupId}(object, startup.id)}\cr
+\code{\link{gtkWindowSetRole}(object, role)}\cr
 \code{\link{gtkWindowGetDecorated}(object)}\cr
 \code{\link{gtkWindowGetDeletable}(object)}\cr
 \code{\link{gtkWindowGetDefaultIconList}()}\cr
@@ -97,6 +99,8 @@
 \code{\link{gtkWindowSetIconFromFile}(object, filename, .errwarn = TRUE)}\cr
 \code{\link{gtkWindowSetIconName}(object, name = NULL)}\cr
 \code{\link{gtkWindowSetAutoStartupNotification}(setting)}\cr
+\code{\link{gtkWindowGetOpacity}(object)}\cr
+\code{\link{gtkWindowSetOpacity}(object, opacity)}\cr
 \code{gtkWindow(type = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -110,7 +114,7 @@
                                        +----\link{GtkAssistant}
                                        +----\link{GtkPlug}}}
 \section{Interfaces}{GtkWindow implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Structures}{\describe{\item{\code{GtkWindow}}{
 \emph{undocumented
 }
@@ -155,7 +159,7 @@
 }}}
 \section{Convenient Construction}{\code{gtkWindow} is the equivalent of \code{\link{gtkWindowNew}}.}
 \section{Signals}{\describe{
-\item{\code{activate-default(window, user.data)}}{
+\item{\code{The (window, user.data)}}{
 \emph{undocumented
 }
 
@@ -166,7 +170,7 @@
 
 
 }
-\item{\code{activate-focus(window, user.data)}}{
+\item{\code{The (window, user.data)}}{
 \emph{undocumented
 }
 
@@ -177,7 +181,7 @@
 
 
 }
-\item{\code{frame-event(window, event, user.data)}}{
+\item{\code{The (window, event, user.data)}}{
 \emph{undocumented
 }
 
@@ -189,7 +193,7 @@
 
 
 }
-\item{\code{keys-changed(window, user.data)}}{
+\item{\code{The (window, user.data)}}{
 \emph{undocumented
 }
 
@@ -200,19 +204,7 @@
 
 
 }
-\item{\code{move-focus(window, arg1, user.data)}}{
-\emph{undocumented
-}
-
-\describe{
-\item{\code{window}}{[\code{\link{GtkWindow}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
-}
-
-
-}
-\item{\code{set-focus(window, widget, user.data)}}{
+\item{\code{The (window, widget, user.data)}}{
 \emph{undocumented
 }
 
@@ -238,7 +230,7 @@ If TRUE, users can expand the window beyond its minimum size.  Default value: TR
 }
 \item{\code{allow-shrink} [logical : Read / Write]}{
 
-If TRUE, the window has no mimimum size. Setting this to TRUE is 99% of the time a bad idea.  Default value: FALSE
+If TRUE, the window has no mimimum size. Setting this to TRUE is 99\% of the time a bad idea.  Default value: FALSE
 
 }
 \item{\code{decorated} [logical : Read / Write]}{
@@ -311,6 +303,14 @@ Whether the toplevel is the current active window.  Default value: FALSE
 If TRUE, the window is modal (other windows are not usable while this one is up).  Default value: FALSE
 
 }
+\item{\code{opacity} [numeric : Read / Write]}{
+
+The requested opacity of the window. See \code{\link{gtkWindowSetOpacity}} for
+more details about window opacity.  
+
+  Allowed values: [0,1]  Default value: 1  Since  2.12
+
+}
 \item{\code{resizable} [logical : Read / Write]}{
 
 If TRUE, users can resize the window.  Default value: TRUE
@@ -334,6 +334,15 @@ TRUE if the window should not be in the pager.  Default value: FALSE
 \item{\code{skip-taskbar-hint} [logical : Read / Write]}{
 
 TRUE if the window should not be in the task bar.  Default value: FALSE
+
+}
+\item{\code{startup-id} [character : Write]}{
+
+The :startup-id is a write-only property for setting window's
+startup notification identifier. See \code{\link{gtkWindowSetStartupId}}
+for more details.  
+
+  Default value: NULL  Since  2.12
 
 }
 \item{\code{title} [character : Read / Write]}{

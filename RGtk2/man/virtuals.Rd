@@ -718,6 +718,17 @@
 \alias{gdkGCclassGetValues}
 \alias{gdkGCclassSetDashes}
 \alias{gdkGCclassSetValues}
+\alias{gtkBuildableIfaceAddChild}
+\alias{gtkBuildableIfaceConstructChild}
+\alias{gtkBuildableIfaceCustomFinished}
+\alias{gtkBuildableIfaceCustomTagEnd}
+\alias{gtkBuildableIfaceCustomTagStart}
+\alias{gtkBuildableIfaceGetInternalChild}
+\alias{gtkBuildableIfaceGetName}
+\alias{gtkBuildableIfaceParserFinished}
+\alias{gtkBuildableIfaceSetBuildableProperty}
+\alias{gtkBuildableIfaceSetName}
+\alias{gtkBuilderClassGetTypeFromName}
 \name{virtuals}
 \title{Virtual Methods}
 \description{This function is a wrapper for a virtual method in a \code{GObject} 

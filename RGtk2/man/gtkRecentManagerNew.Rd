@@ -6,9 +6,8 @@ handle the list of recently used resources.  A \code{\link{GtkRecentManager}} ob
 monitors the recently used resources list, and emits the "changed" signal
 each time something inside the list changes.}
 \usage{gtkRecentManagerNew()}
-\details{\code{\link{GtkRecentManager}} objects are expansive: be sure to create them only when
-needed. You should use the \code{gtkRecentManagerNewForScreen()} or the
-\code{\link{gtkRecentManagerGetDefault}} functions instead.  
+\details{\code{\link{GtkRecentManager}} objects are expensive: be sure to create them only when
+needed. You should use \code{\link{gtkRecentManagerGetDefault}} instead.  
 
   Since  2.10}
 \value{[\code{\link{GtkRecentManager}}]  A newly created \code{\link{GtkRecentManager}} object.}

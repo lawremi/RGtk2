@@ -2,8 +2,8 @@
 \name{gtkTextViewAddChildInWindow}
 \title{gtkTextViewAddChildInWindow}
 \description{Adds a child at fixed coordinates in one of the text widget's
-windows.  The window must have nonzero size (see
-\code{\link{gtkTextViewSetBorderWindowSize}}).  Note that the child
+windows. The window must have nonzero size (see
+\code{\link{gtkTextViewSetBorderWindowSize}}). Note that the child
 coordinates are given relative to the \code{\link{GdkWindow}} in question, and
 that these coordinates have no sane relationship to scrolling. When
 placing a child in \code{GTK_TEXT_WINDOW_WIDGET}, scrolling is

@@ -19,7 +19,7 @@
                            +----\link{GtkBin}
                                  +----GtkEventBox}}
 \section{Interfaces}{GtkEventBox implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkEventBox}} widget is a subclass of \code{\link{GtkBin}} which also has its own window.
 It is useful since it allows you to catch events for widgets which do not
 have their own window.}

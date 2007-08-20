@@ -212,13 +212,16 @@ will not be used again.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{owner-change(clipboard, event, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{The (clipboard, event, user.data)}}{
+The ::owner-change signal is emitted when GTK+ receives an
+event that indicates that the ownership of the selection 
+associated with \code{clipboard} has changed.  
+
+  Since  2.6
 
 \describe{
-\item{\code{clipboard}}{[\code{\link{GtkClipboard}}] the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEvent}}] }
+\item{\code{clipboard}}{[\code{\link{GtkClipboard}}]  the \code{\link{GtkClipboard}} on which the signal is emitted}
+\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{GdkEventOwnerChange} event }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

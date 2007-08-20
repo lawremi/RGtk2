@@ -24,12 +24,28 @@
                                  +----GtkFrame
                                        +----\link{GtkAspectFrame}}}
 \section{Interfaces}{GtkFrame implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The frame widget is a Bin that surrounds its child
 with a decorative frame and an optional label.
 If present, the label is drawn in a gap in the
 top side of the frame. The position of the
 label can be controlled with \code{\link{gtkFrameSetLabelAlign}}.}
+\section{GtkFrame as GtkBuildable}{The GtkFrame implementation of the GtkBuildable interface
+supports placing a child in the label position by specifying
+"label" as the "type" attribute of a <child> element.
+A normal content child can be specified without specifying 
+a <child> type attribute.
+  
+\emph{A UI definition fragment with GtkFrame}
+\preformatted{<object class="GtkFrame">
+  <child type="label">
+    <object class="GtkLabel" id="frame-label"/>
+  </child>
+  <child>
+    <object class="GtkEntry" id="frame-content"/>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkFrame}}{
 \emph{undocumented
 }

@@ -21554,6 +21554,139 @@ S_gtk_assistant_class_cancel(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
 }
  
 
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkBuilder_symbol;
+static 
+GType
+S_virtual_gtk_builder_get_type_from_name(GtkBuilder* s_object, const char* s_type_name)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuilder_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuilder")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_type_name));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GType)0));
+  return(((GType)asCNumeric(s_ans)));
+}
+void
+S_gtk_builder_class_init(GtkBuilderClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkBuilder_symbol = install("GtkBuilder");
+  s = findVar(S_GtkBuilder_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBuilderClass)) = e;
+
+  S_gobject_class_init(((GObjectClass *)c), e);
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
+    c->get_type_from_name = S_virtual_gtk_builder_get_type_from_name;
+#endif
+}
+#endif
+USER_OBJECT_
+S_gtk_builder_class_get_type_from_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_type_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuilderClass* object_class = ((GtkBuilderClass*)getPtrValue(s_object_class));
+  GtkBuilder* object = GTK_BUILDER(getPtrValue(s_object));
+  const char* type_name = ((const char*)asCString(s_type_name));
+
+  GType ans;
+
+  ans = object_class->get_type_from_name(object, type_name);
+
+  _result = asRGType(ans);
+#else
+  error("gtk_builder_get_type_from_name exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkRecentAction_symbol;
+void
+S_gtk_recent_action_class_init(GtkRecentActionClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkRecentAction_symbol = install("GtkRecentAction");
+  s = findVar(S_GtkRecentAction_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkRecentActionClass)) = e;
+
+  S_gtk_action_class_init(((GtkActionClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkScaleButton_symbol;
+void
+S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkScaleButton_symbol = install("GtkScaleButton");
+  s = findVar(S_GtkScaleButton_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkScaleButtonClass)) = e;
+
+  S_gtk_button_class_init(((GtkButtonClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkTooltip_symbol;
+void
+S_gtk_tooltip_class_init(GtkTooltipClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkTooltip_symbol = install("GtkTooltip");
+  s = findVar(S_GtkTooltip_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTooltipClass)) = e;
+
+  S_gobject_class_init(((GObjectClass *)c), e);
+
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkVolumeButton_symbol;
+void
+S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkVolumeButton_symbol = install("GtkVolumeButton");
+  s = findVar(S_GtkVolumeButton_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkVolumeButtonClass)) = e;
+
+  S_gtk_scale_button_class_init(((GtkScaleButtonClass *)c), e);
+
+}
+#endif 
+
 static SEXP S_GtkCellEditable_symbol;
 static 
 void
@@ -24006,6 +24139,579 @@ S_gtk_tree_sortable_iface_has_default_sort_func(USER_OBJECT_ s_object_class, USE
   ans = object_class->has_default_sort_func(object);
 
   _result = asRLogical(ans);
+
+  return(_result);
+}
+ 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+static SEXP S_GtkBuildable_symbol;
+static 
+void
+S_virtual_gtk_buildable_set_name(GtkBuildable* s_object, const gchar* s_name)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 0));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_name));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+const gchar*
+S_virtual_gtk_buildable_get_name(GtkBuildable* s_object)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 2));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 1));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((const gchar*)0));
+  return(((const gchar*)asCString(s_ans)));
+}
+static 
+void
+S_virtual_gtk_buildable_add_child(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_type)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 5));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 2));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_child, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_type));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+void
+S_virtual_gtk_buildable_set_buildable_property(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_name, const GValue* s_value)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 5));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 3));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRGValue(s_value));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+GObject*
+S_virtual_gtk_buildable_construct_child(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_name)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 4));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_name));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GObject*)0));
+  return(G_OBJECT(getPtrValue(s_ans)));
+}
+static 
+gboolean
+S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, GMarkupParser* s_parser, gpointer* s_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 7));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_child, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_tagname));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointer(s_parser, "GMarkupParser"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, s_data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((gboolean)0));
+  return(((gboolean)asCLogical(s_ans)));
+}
+static 
+void
+S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, gpointer* s_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 6));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_child, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_tagname));
+  tmp = CDR(tmp);
+  SETCAR(tmp, s_data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+void
+S_virtual_gtk_buildable_custom_finished(GtkBuildable* s_object, GtkBuilder* s_builder, GObject* s_child, const gchar* s_tagname, gpointer s_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 6));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 7));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_child, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_tagname));
+  tmp = CDR(tmp);
+  SETCAR(tmp, s_data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+void
+S_virtual_gtk_buildable_parser_finished(GtkBuildable* s_object, GtkBuilder* s_builder)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 8));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+static 
+GObject*
+S_virtual_gtk_buildable_get_internal_child(GtkBuildable* s_object, GtkBuilder* s_builder, const gchar* s_childname)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 4));
+  tmp = e;
+
+  SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 9));
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, S_G_OBJECT_ADD_ENV(s_object, toRPointerWithRef(s_object, "GtkBuildable")));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_childname));
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((GObject*)0));
+  return(G_OBJECT(getPtrValue(s_ans)));
+}
+void
+S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e)
+{
+  SEXP s;
+
+  S_GtkBuildable_symbol = install("GtkBuildable");
+  s = findVar(S_GtkBuildable_symbol, e);
+  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkBuildableIface)) = e;
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 0) != NULL_USER_OBJECT)
+    c->set_name = S_virtual_gtk_buildable_set_name;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 1) != NULL_USER_OBJECT)
+    c->get_name = S_virtual_gtk_buildable_get_name;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
+    c->add_child = S_virtual_gtk_buildable_add_child;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 3) != NULL_USER_OBJECT)
+    c->set_buildable_property = S_virtual_gtk_buildable_set_buildable_property;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 4) != NULL_USER_OBJECT)
+    c->construct_child = S_virtual_gtk_buildable_construct_child;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 5) != NULL_USER_OBJECT)
+    c->custom_tag_start = S_virtual_gtk_buildable_custom_tag_start;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 6) != NULL_USER_OBJECT)
+    c->custom_tag_end = S_virtual_gtk_buildable_custom_tag_end;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 7) != NULL_USER_OBJECT)
+    c->custom_finished = S_virtual_gtk_buildable_custom_finished;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 8) != NULL_USER_OBJECT)
+    c->parser_finished = S_virtual_gtk_buildable_parser_finished;
+#endif
+#if GTK_CHECK_VERSION(2, 12, 0)
+  if(VECTOR_ELT(s, 9) != NULL_USER_OBJECT)
+    c->get_internal_child = S_virtual_gtk_buildable_get_internal_child;
+#endif
+}
+#endif
+USER_OBJECT_
+S_gtk_buildable_iface_set_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  const gchar* name = ((const gchar*)asCString(s_name));
+
+
+  object_class->set_name(object, name);
+
+#else
+  error("gtk_buildable_set_name exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_get_name(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+
+  const gchar* ans;
+
+  ans = object_class->get_name(object);
+
+  _result = asRString(ans);
+#else
+  error("gtk_buildable_get_name exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_add_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_type)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  GObject* child = G_OBJECT(getPtrValue(s_child));
+  const gchar* type = ((const gchar*)asCString(s_type));
+
+
+  object_class->add_child(object, builder, child, type);
+
+#else
+  error("gtk_buildable_add_child exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_set_buildable_property(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_name, USER_OBJECT_ s_value)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  const gchar* name = ((const gchar*)asCString(s_name));
+  const GValue* value = asCGValue(s_value);
+
+
+  object_class->set_buildable_property(object, builder, name, value);
+
+    CLEANUP(g_value_unset, ((GValue*)value));
+  CLEANUP(g_free, ((GValue*)value));;
+#else
+  error("gtk_buildable_set_buildable_property exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_construct_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_name)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  const gchar* name = ((const gchar*)asCString(s_name));
+
+  GObject* ans;
+
+  ans = object_class->construct_child(object, builder, name);
+
+  _result = toRPointerWithRef(ans, "GObject");
+#else
+  error("gtk_buildable_construct_child exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_parser, USER_OBJECT_ s_data)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  GObject* child = G_OBJECT(getPtrValue(s_child));
+  const gchar* tagname = ((const gchar*)asCString(s_tagname));
+  GMarkupParser* parser = ((GMarkupParser*)getPtrValue(s_parser));
+  gpointer* data = ((gpointer*)asCGenericData(s_data));
+
+  gboolean ans;
+
+  ans = object_class->custom_tag_start(object, builder, child, tagname, parser, data);
+
+  _result = asRLogical(ans);
+#else
+  error("gtk_buildable_custom_tag_start exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_custom_tag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_data)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  GObject* child = G_OBJECT(getPtrValue(s_child));
+  const gchar* tagname = ((const gchar*)asCString(s_tagname));
+  gpointer* data = ((gpointer*)asCGenericData(s_data));
+
+
+  object_class->custom_tag_end(object, builder, child, tagname, data);
+
+#else
+  error("gtk_buildable_custom_tag_end exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_custom_finished(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_data)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  GObject* child = G_OBJECT(getPtrValue(s_child));
+  const gchar* tagname = ((const gchar*)asCString(s_tagname));
+  gpointer data = ((gpointer)asCGenericData(s_data));
+
+
+  object_class->custom_finished(object, builder, child, tagname, data);
+
+#else
+  error("gtk_buildable_custom_finished exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_parser_finished(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+
+
+  object_class->parser_finished(object, builder);
+
+#else
+  error("gtk_buildable_parser_finished exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
+USER_OBJECT_
+S_gtk_buildable_iface_get_internal_child(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_childname)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkBuildableIface* object_class = ((GtkBuildableIface*)getPtrValue(s_object_class));
+  GtkBuildable* object = GTK_BUILDABLE(getPtrValue(s_object));
+  GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
+  const gchar* childname = ((const gchar*)asCString(s_childname));
+
+  GObject* ans;
+
+  ans = object_class->get_internal_child(object, builder, childname);
+
+  _result = toRPointerWithRef(ans, "GObject");
+#else
+  error("gtk_buildable_get_internal_child exists only in Gtk >= 2.12.0");
+#endif
 
   return(_result);
 }

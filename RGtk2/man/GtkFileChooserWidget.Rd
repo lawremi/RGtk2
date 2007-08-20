@@ -17,7 +17,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkFileChooserWidget}}
 \section{Interfaces}{GtkFileChooserWidget implements
- \code{\link{GtkFileChooser}},  AtkImplementorIface and  GtkFileChooserEmbed.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkFileChooser}} and  GtkFileChooserEmbed.}
 \section{Detailed Description}{      \code{\link{GtkFileChooserWidget}} is a widget suitable for selecting files.
       It is the main building block of a \code{\link{GtkFileChooserDialog}}.  Most
       applications will only need to use the latter; you can use

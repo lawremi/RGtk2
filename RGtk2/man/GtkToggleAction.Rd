@@ -16,6 +16,8 @@
    +----\link{GtkAction}
          +----GtkToggleAction
                +----\link{GtkRadioAction}}}
+\section{Interfaces}{GtkToggleAction implements
+ \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
 "active" state specifying whether the action has been checked or not.}
 \section{Structures}{\describe{\item{\code{GtkToggleAction}}{
@@ -24,7 +26,7 @@ private members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleAction} is the equivalent of \code{\link{gtkToggleActionNew}}.}
-\section{Signals}{\describe{\item{\code{toggled(toggleaction, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (toggleaction, user.data)}}{
 \emph{undocumented
 }
 

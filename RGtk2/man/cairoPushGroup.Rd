@@ -30,13 +30,14 @@ As an example, here is how one might fill and stroke a path with
 translucence, but without any portion of the fill being visible
 under the stroke:
   
-\preformatted{cairo_push_group (cr);
-cairo_set_source (cr, fill_pattern);
-cairo_fill_preserve (cr);
-cairo_set_source (cr, stroke_pattern);
-cairo_stroke (cr);
-cairo_pop_group_to_source (cr);
-cairo_paint_with_alpha (cr, alpha);
+\preformatted{
+cr$pushGroup()
+cr$setSource(fill_pattern)
+cr$fillPreserve()
+cr$setSource(stroke_pattern)
+cr$stroke()
+cr$popGroupToSource(cr)
+cr$paintWithAlpha(alpha)
 }  
 
   Since  1.2}

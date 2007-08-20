@@ -2,11 +2,11 @@
 \name{gtkWidgetGetAncestor}
 \title{gtkWidgetGetAncestor}
 \description{Gets the first ancestor of \code{widget} with type \code{widget.type}. For example,
-\code{gtk_widget_get_ancestor (widget, GTK_TYPE_BOX)} gets the 
-first \code{\link{GtkBox}} that's
-an ancestor of \code{widget}. No reference will be added to the returned widget;
-it should not be unreferenced. See note about checking for a toplevel
-\code{\link{GtkWindow}} in the docs for \code{\link{gtkWidgetGetToplevel}}.}
+\code{gtk_widget_get_ancestor (widget, GTK_TYPE_BOX)} gets 
+the first \code{\link{GtkBox}} that's an ancestor of \code{widget}. No reference will be 
+added to the returned widget; it should not be unreferenced. See note 
+about checking for a toplevel \code{\link{GtkWindow}} in the docs for 
+\code{\link{gtkWidgetGetToplevel}}.}
 \usage{gtkWidgetGetAncestor(object, widget.type)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}

@@ -4,7 +4,7 @@
 \alias{GtkTreeViewColumnSizing}
 \name{GtkTreeViewColumn}
 \title{GtkTreeViewColumn}
-\description{A visible column in a    widget}
+\description{A visible column in a GtkTreeView widget}
 \section{Methods and Functions}{
 \code{\link{gtkTreeViewColumnNew}()}\cr
 \code{\link{gtkTreeViewColumnNewWithAttributes}(title, cell, ...)}\cr
@@ -56,6 +56,7 @@
 \code{\link{gtkTreeViewColumnCellIsVisible}(object)}\cr
 \code{\link{gtkTreeViewColumnFocusCell}(object, cell)}\cr
 \code{\link{gtkTreeViewColumnQueueResize}(object)}\cr
+\code{\link{gtkTreeViewColumnGetTreeView}(object)}\cr
 \code{gtkTreeViewColumn(title, cell, ...)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -63,7 +64,7 @@
          +----\link{GtkObject}
                +----GtkTreeViewColumn}}
 \section{Interfaces}{GtkTreeViewColumn implements
- \code{\link{GtkCellLayout}}.}
+ \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{The GtkTreeViewColumn object represents a visible column in a \code{\link{GtkTreeView}} widget.
 It allows to set properties of the column header, and functions as a holding pen for 
 the cell renderers which determine how the data in the column is displayed.
@@ -107,7 +108,7 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 
 
 }}}
-\section{Signals}{\describe{\item{\code{clicked(treeviewcolumn, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (treeviewcolumn, user.data)}}{
 \emph{undocumented
 }
 

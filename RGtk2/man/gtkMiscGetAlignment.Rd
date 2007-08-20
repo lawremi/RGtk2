@@ -1,8 +1,8 @@
 \alias{gtkMiscGetAlignment}
 \name{gtkMiscGetAlignment}
 \title{gtkMiscGetAlignment}
-\description{Gets the X and Y alignment of the widget within its allocation. See
-\code{\link{gtkMiscSetAlignment}}.}
+\description{Gets the X and Y alignment of the widget within its allocation. 
+See \code{\link{gtkMiscSetAlignment}}.}
 \usage{gtkMiscGetAlignment(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkMisc}}]  a \code{\link{GtkMisc}}}}
 \value{

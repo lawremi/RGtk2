@@ -858,7 +858,7 @@ cairo_font_weight_get_type (void)
   return etype;
 }
 GType
-cairo_path_data_get_type (void)
+cairo_path_data_type_get_type (void)
 {
   static GType etype = 0;
   if (etype == 0) {
@@ -869,7 +869,7 @@ cairo_path_data_get_type (void)
       { CAIRO_PATH_CLOSE_PATH, "CAIRO_PATH_CLOSE_PATH", "close-path" },
       { 0, NULL, NULL }
     };
-    etype = g_enum_register_static ("CairoPathData", values);
+    etype = g_enum_register_static ("CairoPathDataType", values);
   }
   return etype;
 }

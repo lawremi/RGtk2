@@ -25,7 +25,7 @@
                      +----GtkProgress
                            +----\link{GtkProgressBar}}}
 \section{Interfaces}{GtkProgress implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
 a \code{\link{GtkProgressBar}} which provides a visual representation of
 the progress of a long running operation.  }
@@ -37,7 +37,7 @@ and should be accessed using the functions below.
 \section{Properties}{\describe{
 \item{\code{activity-mode} [logical : Read / Write]}{
 
-If TRUE, the GtkProgress is in activity mode, meaning that it signals something is happening, but not how much of the activity is finished. This is used when you're doing something that you don't know how long it will take.  Default value: FALSE
+If TRUE, the GtkProgress is in activity mode, meaning that it signals something is happening, but not how much of the activity is finished. This is used when you're doing something but don't know how long it will take.  Default value: FALSE
 
 }
 \item{\code{show-text} [logical : Read / Write]}{
@@ -47,12 +47,12 @@ Whether the progress is shown as text.  Default value: FALSE
 }
 \item{\code{text-xalign} [numeric : Read / Write]}{
 
-A number between 0.0 and 1.0 specifying the horizontal alignment of the text in the progress widget.  Allowed values: [0,1]  Default value: 0.5
+The horizontal text alignment, from 0 (left) to 1 (right). Reversed for RTL layouts.  Allowed values: [0,1]  Default value: 0.5
 
 }
 \item{\code{text-yalign} [numeric : Read / Write]}{
 
-A number between 0.0 and 1.0 specifying the vertical alignment of the text in the progress widget.  Allowed values: [0,1]  Default value: 0.5
+The vertical text alignment, from 0 (top) to 1 (bottom).  Allowed values: [0,1]  Default value: 0.5
 
 }
 }}

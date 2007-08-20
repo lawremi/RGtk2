@@ -3,7 +3,7 @@
 \title{gdkDisplayGetDefault}
 \description{Gets the default \code{\link{GdkDisplay}}. This is a convenience
 function for:
-\preformatted{  gdk_display_manager_get_default_display (  \link{gdkDisplayManagerGet}  )
+\preformatted{  gdk_display_manager_get_default_display (gdk_display_manager_get ())
 }}
 \usage{gdkDisplayGetDefault()}
 \details{  Since  2.2}

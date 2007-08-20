@@ -23,7 +23,7 @@
                                  +----\link{GtkHBox}
                                        +----GtkCombo}}
 \section{Interfaces}{GtkCombo implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
 list. The drop-down list is displayed when the user clicks on a small arrow
 button to the right of the entry field.

@@ -7,7 +7,7 @@ when obtaining the buffer contents as a string, will be represented
 by the Unicode "object replacement character" 0xFFFC. Note that the
 "slice" variants for obtaining portions of the buffer as a string
 include this character for child anchors, but the "text" variants do
-not. e.g. see \code{\link{gtkTextBufferGetSlice}} and
+not. E.g. see \code{\link{gtkTextBufferGetSlice}} and
 \code{\link{gtkTextBufferGetText}}. Consider
 \code{\link{gtkTextBufferCreateChildAnchor}} as a more convenient
 alternative to this function. The buffer will add a reference to

@@ -90,6 +90,8 @@ assign("GtkPrintOperationPreview", c("ready", "got_page_size", "render_page", "i
 assign("GtkRecentChooser", c("set_current_uri", "get_current_uri", "select_uri", "unselect_uri", "select_all", "unselect_all", "get_items", "get_recent_manager", "add_filter", "remove_filter", "list_filters", "set_sort_func", "item_activated", "selection_changed"), .virtuals)
 assign("GtkRecentManager", c("changed"), .virtuals)
 assign("GtkStatusIcon", c("activate", "popup_menu", "size_changed"), .virtuals)
+assign("GtkBuildable", c("set_name", "get_name", "add_child", "set_buildable_property", "construct_child", "custom_tag_start", "custom_tag_end", "custom_finished", "parser_finished", "get_internal_child"), .virtuals)
+assign("GtkBuilder", c("get_type_from_name"), .virtuals)
 
 
 gtkAccelGroupClassAccelChanged <-
@@ -4288,14 +4290,13 @@ function(object.class, object, index.)
 }
 
 gtkTreeModelIfaceGetIter <-
-function(object.class, object, iter, path)
+function(object.class, object, path)
 {
   checkPtrType(object.class, "GtkTreeModelIface")
   checkPtrType(object, "GtkTreeModel")
-  checkPtrType(iter, "GtkTreeIter")
   checkPtrType(path, "GtkTreePath")
 
-  w <- .RGtkCall("S_gtk_tree_model_iface_get_iter", object.class, object, iter, path, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iface_get_iter", object.class, object, path, PACKAGE = "RGtk2")
 
   return(w)
 }
@@ -4313,15 +4314,14 @@ function(object.class, object, iter)
 }
 
 gtkTreeModelIfaceGetValue <-
-function(object.class, object, iter, column, value)
+function(object.class, object, iter, column)
 {
   checkPtrType(object.class, "GtkTreeModelIface")
   checkPtrType(object, "GtkTreeModel")
   checkPtrType(iter, "GtkTreeIter")
   column <- as.integer(column)
-  
 
-  w <- .RGtkCall("S_gtk_tree_model_iface_get_value", object.class, object, iter, column, value, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iface_get_value", object.class, object, iter, column, PACKAGE = "RGtk2")
 
   return(invisible(w))
 }
@@ -4339,14 +4339,13 @@ function(object.class, object, iter)
 }
 
 gtkTreeModelIfaceIterChildren <-
-function(object.class, object, iter, parent)
+function(object.class, object, parent)
 {
   checkPtrType(object.class, "GtkTreeModelIface")
   checkPtrType(object, "GtkTreeModel")
-  checkPtrType(iter, "GtkTreeIter")
   checkPtrType(parent, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iface_iter_children", object.class, object, iter, parent, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iface_iter_children", object.class, object, parent, PACKAGE = "RGtk2")
 
   return(w)
 }
@@ -4376,28 +4375,26 @@ function(object.class, object, iter)
 }
 
 gtkTreeModelIfaceIterNthChild <-
-function(object.class, object, iter, parent, n)
+function(object.class, object, parent, n)
 {
   checkPtrType(object.class, "GtkTreeModelIface")
   checkPtrType(object, "GtkTreeModel")
-  checkPtrType(iter, "GtkTreeIter")
   checkPtrType(parent, "GtkTreeIter")
   n <- as.integer(n)
 
-  w <- .RGtkCall("S_gtk_tree_model_iface_iter_nth_child", object.class, object, iter, parent, n, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iface_iter_nth_child", object.class, object, parent, n, PACKAGE = "RGtk2")
 
   return(w)
 }
 
 gtkTreeModelIfaceIterParent <-
-function(object.class, object, iter, child)
+function(object.class, object, child)
 {
   checkPtrType(object.class, "GtkTreeModelIface")
   checkPtrType(object, "GtkTreeModel")
-  checkPtrType(iter, "GtkTreeIter")
   checkPtrType(child, "GtkTreeIter")
 
-  w <- .RGtkCall("S_gtk_tree_model_iface_iter_parent", object.class, object, iter, child, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_model_iface_iter_parent", object.class, object, child, PACKAGE = "RGtk2")
 
   return(w)
 }
@@ -6186,4 +6183,151 @@ function(object.class, object)
   w <- .RGtkCall("S_gtk_widget_class_composited_changed", object.class, object, PACKAGE = "RGtk2")
 
   return(invisible(w))
+}
+
+gtkBuildableIfaceSetName <-
+function(object.class, object, name)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  name <- as.character(name)
+
+  w <- .RGtkCall("S_gtk_buildable_iface_set_name", object.class, object, name, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceGetName <-
+function(object.class, object)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+
+  w <- .RGtkCall("S_gtk_buildable_iface_get_name", object.class, object, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkBuildableIfaceAddChild <-
+function(object.class, object, builder, child, type)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  checkPtrType(child, "GObject")
+  type <- as.character(type)
+
+  w <- .RGtkCall("S_gtk_buildable_iface_add_child", object.class, object, builder, child, type, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceSetBuildableProperty <-
+function(object.class, object, builder, name, value)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  name <- as.character(name)
+  
+
+  w <- .RGtkCall("S_gtk_buildable_iface_set_buildable_property", object.class, object, builder, name, value, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceConstructChild <-
+function(object.class, object, builder, name)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  name <- as.character(name)
+
+  w <- .RGtkCall("S_gtk_buildable_iface_construct_child", object.class, object, builder, name, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkBuildableIfaceCustomTagStart <-
+function(object.class, object, builder, child, tagname, parser, data)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  checkPtrType(child, "GObject")
+  tagname <- as.character(tagname)
+  checkPtrType(parser, "GMarkupParser")
+  
+
+  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_start", object.class, object, builder, child, tagname, parser, data, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkBuildableIfaceCustomTagEnd <-
+function(object.class, object, builder, child, tagname, data)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  checkPtrType(child, "GObject")
+  tagname <- as.character(tagname)
+  
+
+  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_end", object.class, object, builder, child, tagname, data, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceCustomFinished <-
+function(object.class, object, builder, child, tagname, data)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  checkPtrType(child, "GObject")
+  tagname <- as.character(tagname)
+  
+
+  w <- .RGtkCall("S_gtk_buildable_iface_custom_finished", object.class, object, builder, child, tagname, data, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceParserFinished <-
+function(object.class, object, builder)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+
+  w <- .RGtkCall("S_gtk_buildable_iface_parser_finished", object.class, object, builder, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+}
+
+gtkBuildableIfaceGetInternalChild <-
+function(object.class, object, builder, childname)
+{
+  checkPtrType(object.class, "GtkBuildableIface")
+  checkPtrType(object, "GtkBuildable")
+  checkPtrType(builder, "GtkBuilder")
+  childname <- as.character(childname)
+
+  w <- .RGtkCall("S_gtk_buildable_iface_get_internal_child", object.class, object, builder, childname, PACKAGE = "RGtk2")
+
+  return(w)
+}
+
+gtkBuilderClassGetTypeFromName <-
+function(object.class, object, type.name)
+{
+  checkPtrType(object.class, "GtkBuilderClass")
+  checkPtrType(object, "GtkBuilder")
+  type.name <- as.character(type.name)
+
+  w <- .RGtkCall("S_gtk_builder_class_get_type_from_name", object.class, object, type.name, PACKAGE = "RGtk2")
+
+  return(w)
 }

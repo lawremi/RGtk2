@@ -9,9 +9,9 @@ as the source pattern in the given cairo context.}
 \details{The behavior of this function is equivalent to the sequence of
 operations:
   
-\preformatted{cairo_pattern_t *group = cairo_pop_group (cr);
-cairo_set_source (cr, group);
-cairo_pattern_destroy (group);
+\preformatted{
+group <- cr$popGroup()
+cr$setSource(group)
 }
   
 but is more convenient as their is no need for a variable to store

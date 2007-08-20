@@ -18,7 +18,7 @@
                            +----\link{GtkBin}
                                  +----GtkAlignment}}
 \section{Interfaces}{GtkAlignment implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
   

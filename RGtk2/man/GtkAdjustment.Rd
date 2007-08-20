@@ -49,7 +49,7 @@ In a   \code{\link{GtkScrollbar}}   this is the size of the area which is curren
 }}}
 \section{Convenient Construction}{\code{gtkAdjustment} is the equivalent of \code{\link{gtkAdjustmentNew}}.}
 \section{Signals}{\describe{
-\item{\code{changed(adjustment, user.data)}}{
+\item{\code{The (adjustment, user.data)}}{
 Emitted when one or more of the \code{\link{GtkAdjustment}} fields have been changed,
 other than the value field.
 
@@ -60,7 +60,7 @@ other than the value field.
 
 
 }
-\item{\code{value-changed(adjustment, user.data)}}{
+\item{\code{The (adjustment, user.data)}}{
 Emitted when the \code{\link{GtkAdjustment}} value field has been changed.
 
 \describe{

@@ -1,7 +1,7 @@
 \alias{GtkSeparator}
 \name{GtkSeparator}
 \title{GtkSeparator}
-\description{Base class for    and }
+\description{Base class for GtkHSeparator and GtkVSeparator}
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
@@ -10,7 +10,7 @@
                            +----\link{GtkHSeparator}
                            +----\link{GtkVSeparator}}}
 \section{Interfaces}{GtkSeparator implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkSeparator}} widget is an abstract class, used only for deriving the
 subclasses \code{\link{GtkHSeparator}} and \code{\link{GtkVSeparator}}.}
 \section{Structures}{\describe{\item{\code{GtkSeparator}}{

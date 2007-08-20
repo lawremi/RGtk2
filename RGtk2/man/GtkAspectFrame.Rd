@@ -17,7 +17,7 @@
                                  +----\link{GtkFrame}
                                        +----GtkAspectFrame}}
 \section{Interfaces}{GtkAspectFrame implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAspectFrame}} is useful when you want
 pack a widget so that it can resize but always retains
 the same aspect ratio. For instance, one might be
@@ -39,7 +39,7 @@ Force aspect ratio to match that of the frame's child.  Default value: TRUE
 }
 \item{\code{ratio} [numeric : Read / Write]}{
 
-Aspect ratio if obey\_child is FALSE.  Allowed values: [1e-04,10000]  Default value: 0.5
+Aspect ratio if obey\_child is FALSE.  Allowed values: [0.0001,10000]  Default value: 0.5
 
 }
 \item{\code{xalign} [numeric : Read / Write]}{

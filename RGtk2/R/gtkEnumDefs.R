@@ -685,6 +685,16 @@ GtkTextBufferTargetInfo<-c("buffer-contents" = 0,
 storage.mode(GtkTextBufferTargetInfo) <- 'integer'
 class(GtkTextBufferTargetInfo) <- 'enums' 
 
+GtkBuilderError<-c("invalid-type-function" = 0,
+	"unhandled-tag" = 1,
+	"missing-attribute" = 2,
+	"invalid-attribute" = 3,
+	"invalid-tag" = 4,
+	"missing-property-value" = 5,
+	"invalid-value" = 6)
+storage.mode(GtkBuilderError) <- 'integer'
+class(GtkBuilderError) <- 'enums' 
+
 GtkAccelFlags<-c("visible" = 1,
 	"locked" = 2,
 	"mask" = 4)

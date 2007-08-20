@@ -356,6 +356,14 @@ S_GCompareFunc(gconstpointer s_a, gconstpointer s_b)
   return(fun(s_a, s_b));
 } 
 
+void
+S_GSourceFunc(gpointer data)
+{
+  static void (*fun)(gpointer) = NULL;
+  if(!fun) fun = ((gboolean (*)(gpointer))R_GetCCallable("RGtk2", "S_GSourceFunc"));
+  return(fun(data));
+} 
+
 GClosure*
 R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 {

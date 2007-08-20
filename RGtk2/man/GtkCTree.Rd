@@ -89,7 +89,7 @@
                            +----\link{GtkCList}
                                  +----GtkCTree}}
 \section{Interfaces}{GtkCTree implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree 
 to the user, for example a directory tree.
   
@@ -247,7 +247,7 @@ FIXME
 }
 }}
 \section{Signals}{\describe{
-\item{\code{change-focus-row-expansion(ctree, expansion, user.data)}}{
+\item{\code{The (ctree, expansion, user.data)}}{
 The row which has the focus is either collapsed or expanded
 or toggled.
 
@@ -259,7 +259,7 @@ or toggled.
 
 
 }
-\item{\code{tree-collapse(ctree, node, user.data)}}{
+\item{\code{The (ctree, node, user.data)}}{
 Emitted when a node is collapsed.
 
 \describe{
@@ -270,7 +270,7 @@ Emitted when a node is collapsed.
 
 
 }
-\item{\code{tree-expand(ctree, node, user.data)}}{
+\item{\code{The (ctree, node, user.data)}}{
 Emitted when a node is expanded.
 
 \describe{
@@ -281,7 +281,7 @@ Emitted when a node is expanded.
 
 
 }
-\item{\code{tree-move(ctree, node, new.parent, new.sibling, user.data)}}{
+\item{\code{The (ctree, node, new.parent, new.sibling, user.data)}}{
 Emitted when a node is moved.
 
 \describe{
@@ -294,7 +294,7 @@ Emitted when a node is moved.
 
 
 }
-\item{\code{tree-select-row(ctree, node, column, user.data)}}{
+\item{\code{The (ctree, node, column, user.data)}}{
 Emitted when a row is selected.
 
 \describe{
@@ -306,7 +306,7 @@ Emitted when a row is selected.
 
 
 }
-\item{\code{tree-unselect-row(ctree, node, column, user.data)}}{
+\item{\code{The (ctree, node, column, user.data)}}{
 Emitted when a node is unselected.
 
 \describe{

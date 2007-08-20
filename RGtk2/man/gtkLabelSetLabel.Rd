@@ -3,7 +3,8 @@
 \title{gtkLabelSetLabel}
 \description{Sets the text of the label. The label is interpreted as
 including embedded underlines and/or Pango markup depending
-on the values of label->use\_underline and label->use\_markup.}
+on the values of the \code{:use-underline}" and
+\code{:use-markup} properties.}
 \usage{gtkLabelSetLabel(object, str)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}

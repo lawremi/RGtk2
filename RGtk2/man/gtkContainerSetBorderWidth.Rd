@@ -5,8 +5,8 @@
 \usage{gtkContainerSetBorderWidth(object, border.width)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}}}
-\item{\code{border.width}}{[numeric]  amount of blank space to leave \emph{outside} the container.
-  Valid values are in the range 0-65535 pixels.}
+\item{\code{border.width}}{[numeric]  amount of blank space to leave \emph{outside} 
+  the container. Valid values are in the range 0-65535 pixels.}
 }
 \details{The border width of a container is the amount of space to leave
 around the outside of the container. The only exception to this is

@@ -21,7 +21,7 @@
                                  +----\link{GtkButton}
                                        +----GtkLinkButton}}
 \section{Interfaces}{GtkLinkButton implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkLinkButton}} is a \code{\link{GtkButton}} with a hyperlink, similar to the one
 used by web browsers, which triggers an action when clicked. It is useful
 to show quick links to resources.
@@ -43,14 +43,15 @@ manipulated using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkLinkButton} is the equivalent of \code{\link{gtkLinkButtonNewWithLabel}}.}
-\section{User Functions}{\describe{\item{\code{GtkLinkButtonUriFunc(button, link, user.data)}}{
+\section{User Functions}{\describe{\item{\code{GtkLinkButtonUriFunc(button, link., user.data)}}{
 The type of a function which is called when the \code{\link{GtkLinkButton}} is
 clicked.
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkLinkButton}}] the \code{\link{GtkLinkButton}} which was clicked}
-\item{\code{link}}{[character] the URI to which the clicked \code{\link{GtkLinkButton}} points}
-\item{\code{user.data}}{[R object] }
+\item{\code{link.}}{[character] }
+\item{\code{user.data}}{[R object] user data that was passed when the function was registered
+  with \code{\link{gtkLinkButtonSetUriHook}}}
 }
 
 

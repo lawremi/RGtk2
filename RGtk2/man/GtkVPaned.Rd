@@ -15,7 +15,7 @@
                            +----\link{GtkPaned}
                                  +----GtkVPaned}}
 \section{Interfaces}{GtkVPaned implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The VPaned widget is a container widget with two
 children arranged vertically. The division between
 the two panes is adjustable by the user by dragging

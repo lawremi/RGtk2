@@ -1,8 +1,7 @@
 \alias{gtkCellEditableEditingDone}
 \name{gtkCellEditableEditingDone}
 \title{gtkCellEditableEditingDone}
-\description{Emits the "editing\_done" signal.  This signal is a sign for the cell renderer
-to update its value from the cell.}
+\description{Emits the \code{\link{gtkCellEditableEditingDone}} signal.}
 \usage{gtkCellEditableEditingDone(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkCellEditable}}]  A \code{GtkTreeEditable}}}
 \author{Derived by RGtkGen from GTK+ documentation}

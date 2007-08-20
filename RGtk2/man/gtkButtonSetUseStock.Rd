@@ -1,7 +1,7 @@
 \alias{gtkButtonSetUseStock}
 \name{gtkButtonSetUseStock}
 \title{gtkButtonSetUseStock}
-\description{If true, the label set on the button is used as a
+\description{If \code{TRUE}, the label set on the button is used as a
 stock id to select the stock item for the button.}
 \usage{gtkButtonSetUseStock(object, use.stock)}
 \arguments{

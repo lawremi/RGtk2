@@ -14,7 +14,7 @@
                      +----\link{GtkSeparator}
                            +----GtkVSeparator}}
 \section{Interfaces}{GtkVSeparator implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkVSeparator}} widget is a vertical separator, used to group the
 widgets within a window. It displays a vertical line with a shadow to
 make it appear sunken into the interface.}

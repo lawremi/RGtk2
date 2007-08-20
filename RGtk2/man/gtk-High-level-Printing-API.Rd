@@ -188,11 +188,11 @@ also serves as destroy notify for \code{data}.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{begin-print(operation, context, user.data)}}{
+\item{\code{The (operation, context, user.data)}}{
 Emitted after the user has finished changing print settings
 in the dialog, before the actual rendering starts. 
   
-A typical use for this signal is to use the parameters from the
+A typical use for ::begin-print is to use the parameters from the
 \code{\link{GtkPrintContext}} and paginate the document accordingly, and then
 set the number of pages with \code{\link{gtkPrintOperationSetNPages}}.  
 
@@ -206,7 +206,7 @@ set the number of pages with \code{\link{gtkPrintOperationSetNPages}}.
 
 
 }
-\item{\code{create-custom-widget(operation, user.data)}}{
+\item{\code{The (operation, user.data)}}{
 Emitted when displaying the print dialog. If you return a
 widget in a handler for this signal it will be added to a custom
 tab in the print dialog. You typically return a container widget
@@ -214,9 +214,9 @@ with multiple widgets in it.
   
 The print dialog owns the returned widget, and its lifetime
 isn't controlled by the app. However, the widget is guaranteed
-to stay around until the custom-widget-apply signal is emitted
-on the operation. Then you can read out any information you need
-from the widgets.  
+to stay around until the \code{::custom-widget-apply} 
+signal is emitted on the operation. Then you can read out any 
+information you need from the widgets.  
 
   Since  2.10
 
@@ -229,11 +229,12 @@ from the widgets.
          or \code{NULL}
 
 }
-\item{\code{custom-widget-apply(operation, widget, user.data)}}{
-Emitted right before begin-print if you added
-a custom widget in the create-custom-widget handler. When you get
-this signal you should read the information from the custom widgets,
-as the widgets are not guaraneed to be around at a later time.  
+\item{\code{The (operation, widget, user.data)}}{
+Emitted right before \code{::begin-print} if you added
+a custom widget in the \code{\link{gtkPrintOperation}};create-custom-widget handler. 
+When you get this signal you should read the information from the 
+custom widgets, as the widgets are not guaraneed to be around at a 
+later time.  
 
   Since  2.10
 
@@ -245,7 +246,7 @@ as the widgets are not guaraneed to be around at a later time.
 
 
 }
-\item{\code{done(operation, result, user.data)}}{
+\item{\code{The (operation, result, user.data)}}{
 Emitted when the print operation run has finished doing
 everything required for printing. \code{result} gives you information
 about what happened during the run. If \code{result} is
@@ -254,7 +255,7 @@ about what happened during the run. If \code{result} is
   
 If you enabled print status tracking then 
 \code{\link{gtkPrintOperationIsFinished}} may still return \code{FALSE} 
-after this was emitted.  
+after \code{::done} was emitted.  
 
   Since  2.10
 
@@ -266,7 +267,7 @@ after this was emitted.
 
 
 }
-\item{\code{draw-page(operation, context, page.nr, user.data)}}{
+\item{\code{The (operation, context, page.nr, user.data)}}{
 Emitted for every page that is printed. The signal handler
 must render the \code{page.nr}'s page onto the cairo context obtained
 from \code{context} using \code{\link{gtkPrintContextGetCairoContext}}.
@@ -315,10 +316,10 @@ needs.
 
 
 }
-\item{\code{end-print(operation, context, user.data)}}{
+\item{\code{The (operation, context, user.data)}}{
 Emitted after all pages have been rendered. 
 A handler for this signal can clean up any resources that have
-been allocated in the ::begin-print handler.  
+been allocated in the \code{::begin-print} handler.  
 
   Since  2.10
 
@@ -330,18 +331,19 @@ been allocated in the ::begin-print handler.
 
 
 }
-\item{\code{paginate(operation, context, user.data)}}{
-Emitted after the begin-print signal, but before the actual 
-rendering starts. It keeps getting emitted until it returns \code{FALSE}. 
+\item{\code{The (operation, context, user.data)}}{
+Emitted after the \code{::begin-print} signal, but before 
+the actual rendering starts. It keeps getting emitted until it 
+returns \code{FALSE}. 
   
-This signal is intended to be used for paginating the document
+The ::paginate signal is intended to be used for paginating the document
 in small chunks, to avoid blocking the user interface for a long
 time. The signal handler should update the number of pages using
 \code{\link{gtkPrintOperationSetNPages}}, and return \code{TRUE} if the document
 has been completely paginated.
   
 If you don't need to do pagination in chunks, you can simply do
-it all in the begin-print handler, and set the number of pages
+it all in the ::begin-print handler, and set the number of pages
 from there.  
 
   Since  2.10
@@ -355,7 +357,7 @@ from there.
 \emph{Returns:} [logical]  \code{TRUE} if pagination is complete
 
 }
-\item{\code{preview(operation, preview, context, parent, user.data)}}{
+\item{\code{The (operation, preview, context, parent, user.data)}}{
 Gets emitted when a preview is requested from the native dialog.
   
 The default handler for this signal uses an external viewer 
@@ -386,7 +388,7 @@ finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
 \emph{Returns:} [logical]  \code{TRUE} if the listener wants to take over control of the preview
 
 }
-\item{\code{request-page-setup(operation, context, page.nr, setup, user.data)}}{
+\item{\code{The (operation, context, page.nr, setup, user.data)}}{
 Emitted once for every page that is printed, to give
 the application a chance to modify the page setup. Any changes 
 done to \code{setup} will be in force only for printing this page.  
@@ -403,7 +405,7 @@ done to \code{setup} will be in force only for printing this page.
 
 
 }
-\item{\code{status-changed(operation, user.data)}}{
+\item{\code{The (operation, user.data)}}{
 Emitted at between the various phases of the print operation.
 See \code{\link{GtkPrintStatus}} for the phases that are being discriminated.
 Use \code{\link{gtkPrintOperationGetStatus}} to find out the current
@@ -464,7 +466,7 @@ The \code{\link{GtkPageSetup}} used by default.
   
 This page setup will be used by \code{\link{gtkPrintOperationRun}},
 but it can be overridden on a per-page basis by connecting
-to the ::request-page-setup signal.  
+to the \code{::request-page-setup} signal.  
 
   Since  2.10
 
@@ -501,13 +503,14 @@ by numbering successive print jobs.
 The number of pages in the document. 
   
 This \emph{must} be set to a positive number
-before the rendering starts. It may be set in a ::begin-print 
-signal hander.
+before the rendering starts. It may be set in a 
+\code{::begin-print} signal hander.
   
-Note that the page numbers passed to the ::request-page-setup 
-and ::draw-page signals are 0-based, i.e. if the user chooses 
-to print all pages, the last ::draw-page signal will be for 
-page \code{n.pages} - 1.  
+Note that the page numbers passed to the 
+\code{::request-page-setup} and 
+\code{::draw-page} signals are 0-based, i.e. if 
+the user chooses to print all pages, the last ::draw-page signal 
+will be for page \code{n.pages} - 1.  
 
   Allowed values: >= -1  Default value: -1  Since  2.10
 

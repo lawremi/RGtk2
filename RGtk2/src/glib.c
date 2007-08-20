@@ -255,21 +255,33 @@ asRGError(GError *error)
 
 /* Manual User Funcs */
 void
-S_GCompareFunc(gconstpointer s_a, gconstpointer s_b)
+S_GCompareFunc(gconstpointer s_a, gconstpointer s_data)
 {
-    GValue params[1];
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
 
-    g_value_init(&params[0], G_TYPE_POINTER);
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
 
-    g_value_set_object(&params[0], (gpointer)s_a);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->function);
+  tmp = CDR(tmp);
 
-    g_closure_invoke((gpointer)s_b, NULL, 1, params, NULL);
+  SETCAR(tmp, (USER_OBJECT_)s_a);
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
 }
 
-/* Main Loop */
 gboolean
-R_gTimeoutHandler(R_CallbackData *cbdata)
+S_GSourceFunc(gpointer data)
 {
+    R_CallbackData *cbdata = (R_CallbackData *)data;
     gboolean val = FALSE;
     SEXP e, sval;
     int errorOccurred;
@@ -295,6 +307,8 @@ R_gTimeoutHandler(R_CallbackData *cbdata)
     return(val);
 }
 
+/* Main Loop */
+
 USER_OBJECT_
 R_addGTimeoutHandler(USER_OBJECT_ sinterval, USER_OBJECT_ sfunc, USER_OBJECT_ data, USER_OBJECT_ useData)
 {
@@ -317,7 +331,7 @@ R_addGTimeoutHandler(USER_OBJECT_ sinterval, USER_OBJECT_ sfunc, USER_OBJECT_ da
     }
 
     id = g_timeout_add_full(G_PRIORITY_DEFAULT_IDLE, INTEGER_DATA(sinterval)[0],
-            (GSourceFunc) R_gTimeoutHandler, cbdata, (GDestroyNotify)R_freeCBData);
+            (GSourceFunc) S_GSourceFunc, cbdata, (GDestroyNotify)R_freeCBData);
 
     PROTECT(ans = NEW_INTEGER(1));
     INTEGER_DATA(ans)[0] = id;
@@ -356,7 +370,7 @@ R_addGIdleHandler(USER_OBJECT_ sfunc, USER_OBJECT_ data, USER_OBJECT_ useData)
         cbdata->data = NULL;
     }
 
-    id = g_idle_add_full(G_PRIORITY_DEFAULT_IDLE, (GSourceFunc) R_gTimeoutHandler,
+    id = g_idle_add_full(G_PRIORITY_DEFAULT_IDLE, (GSourceFunc) S_GSourceFunc,
             cbdata, (GDestroyNotify)R_freeCBData);
 
     PROTECT(ans = NEW_INTEGER(1));

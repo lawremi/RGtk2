@@ -12,7 +12,7 @@ the translators tab of the secondary credits dialog.}
 of the language which is currently used in the user interface.
 Using \code{gettext()}, a simple way to achieve that is to mark the
 string for translation:
-\preformatted{# No, the gettext() mechanism is not available from R }
+\preformatted{about$setTranslatorCredits(gettext("translator-credits"))}
 It is a good idea to use the customary msgid "translator-credits" for this
 purpose, since translators will already know the purpose of that msgid, and
 since \code{\link{GtkAboutDialog}} will detect if "translator-credits" is untranslated

@@ -7,7 +7,8 @@ invalidates a rectangular region. See
 \usage{gdkWindowInvalidateRect(object, rect = NULL, invalidate.children)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{rect}}{[\code{\link{GdkRectangle}}]  rectangle to invalidate}
+\item{\code{rect}}{[\code{\link{GdkRectangle}}]  rectangle to invalidate or \code{NULL} to invalidate the whole
+     window}
 \item{\code{invalidate.children}}{[logical]  whether to also invalidate child windows}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

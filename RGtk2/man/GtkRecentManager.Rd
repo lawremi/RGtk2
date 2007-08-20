@@ -10,6 +10,8 @@
 \code{\link{gtkRecentManagerNew}()}\cr
 \code{\link{gtkRecentManagerGetDefault}()}\cr
 \code{\link{gtkRecentManagerGetForScreen}(screen)}\cr
+\code{\link{gtkRecentManagerGetForScreen}(screen)}\cr
+\code{\link{gtkRecentManagerSetScreen}(object, screen)}\cr
 \code{\link{gtkRecentManagerSetScreen}(object, screen)}\cr
 \code{\link{gtkRecentManagerAddItem}(object, uri)}\cr
 \code{\link{gtkRecentManagerAddFull}(object, uri, recent.data)}\cr
@@ -64,33 +66,17 @@ the \code{\link{GdkScreen}} so that informations about the recently used
 files is shared with other people using them.  In case the
 default screen is being used, adding a new recently used
 file is as simple as:
-  
-  \preformatted{GtkRecentManager *manager;
+  \preformatted{
+manager <- gtkRecentManagerGetDefault()
+manager$addItem(file_uri)
 
-manager =   \link{gtkRecentManagerGetDefault}  ;
-gtk_recent_manager_add_item (manager, file_uri);
-  
-}
-  
-  \preformatted{GtkRecentManager *manager;
-GtkRecentInfo *info;
-GError *error = NULL;
-
-manager =   \link{gtkRecentManagerGetDefault}  ;
-info = gtk_recent_manager_lookup_item (manager, file_uri, &error);
-if (error)
-  {
-    g_warning ("Could not find the file: %s", error->message);
-    g_error_free (error);
-  }
-else
-  {
-    /* Use the info object */
-    gtk_recent_info_unref (info);
-  }
-  
-}
-  
+}  \preformatted{
+manager <- gtkRecentManagerGetDefault()
+lookup <- manager$lookupItem(file_uri)
+if (lookup$error)
+  warning("Could not find the file:", lookup$error$message)
+else use_info_object(lookup$retval)
+}  
 Recently used files are supported since GTK+ 2.10.}
 \section{Structures}{\describe{
 \item{\code{GtkRecentManager}}{
@@ -109,10 +95,6 @@ recently used files list.
 \item{\code{GtkRecentData}}{
 Meta-data to be passed to \code{\link{gtkRecentManagerAddFull}} when
 registering a recently used resource.  
-Meta-data passed to \code{\link{gtkRecentManagerAddFull}}.  You should
-use \code{\link{GtkRecentData}} if you want to control the meta-data associated
-to an entry of the recently used files list when you are adding
-a new file to it.
 \strong{\code{GtkRecentData} is a \link{transparent-type}.}
 
 \describe{
@@ -124,8 +106,9 @@ a new file to it.
 \item{\code{appName}}{[character]  the name of the application that is registering this recently
   used resource;}
 \item{\code{appExec}}{[character]  command line used to launch this resource; may contain the
-  "\code{f}" and "\code{u}" escape characters which will be expanded to the resource
-  file path and URI respectively when the command line is retrieved;}
+  "\%f" and "\%u" escape characters which will be expanded 
+  to the resource file path and URI respectively when the command line 
+  is retrieved;}
 \item{\code{groups}}{[character]  a vector of strings containing groups names;}
 \item{\code{isPrivate}}{[logical]  whether this resource should be displayed only by the
   applications that have registered it or not.}
@@ -153,7 +136,7 @@ Error codes for GtkRecentManager operations
 }
 
 }}}
-\section{Signals}{\describe{\item{\code{changed(recent.manager, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (recent.manager, user.data)}}{
 Emitted when the current recently used resources manager changes its
 contents.  
 

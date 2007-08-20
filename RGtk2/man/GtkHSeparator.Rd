@@ -14,7 +14,7 @@
                      +----\link{GtkSeparator}
                            +----GtkHSeparator}}
 \section{Interfaces}{GtkHSeparator implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkHSeparator}} widget is a horizontal separator, used to group the
 widgets within a window. It displays a horizontal line with a shadow to
 make it appear sunken into the interface.

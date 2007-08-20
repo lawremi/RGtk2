@@ -71,6 +71,11 @@ GSignalFlags <- c(
   "no-hooks"  = 64
 )
 
+GConnectFlags <- c(
+  "after" = 1,
+  "swapped" = 2
+)
+
 connectSignal <- gSignalConnect <-
 function(obj, signal, f, data = NULL, after = FALSE, user.data.first = FALSE)
 {
@@ -528,7 +533,7 @@ function(obj, member)
   if (inherits(val, "try-error"))
     val <- try(NextMethod("[["), T)
   if (inherits(val, "try-error"))
-    val <- try(obj$get(member)[[1]], T)
+    val <- try(obj$get(member), T)
   if (inherits(val, "try-error"))
     stop("Cannot find '", member, "' for classes ", paste(class(obj), collapse=", "))
   val

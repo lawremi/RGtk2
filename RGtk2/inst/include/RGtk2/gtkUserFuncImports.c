@@ -135,6 +135,14 @@ S_GtkKeySnoopFunc(GtkWidget* grab_widget, GdkEventKey* event, gpointer func_data
 } 
 
 gint
+S_GtkMenuPositionFunc(GtkMenu* menu, gint* x, gint* y, gboolean* push_in, gpointer user_data)
+{
+  static gint (*fun)(GtkMenu*, gint*, gint*, gboolean*, gpointer) = NULL;
+  if(!fun) fun = ((gint (*)(GtkMenu*, gint*, gint*, gboolean*, gpointer))R_GetCCallable("RGtk2", "S_GtkMenuPositionFunc"));
+  return(fun(menu, x, y, push_in, user_data));
+} 
+
+gint
 S_GtkTreeModelForeachFunc(GtkTreeModel* model, GtkTreePath* path, GtkTreeIter* iter, gpointer data)
 {
   static gint (*fun)(GtkTreeModel*, GtkTreePath*, GtkTreeIter*, gpointer) = NULL;
@@ -391,6 +399,16 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* tree_view, GtkWidget* search_dialog
   static void (*fun)(GtkTreeView*, GtkWidget*, gpointer) = NULL;
   if(!fun) fun = ((void (*)(GtkTreeView*, GtkWidget*, gpointer))R_GetCCallable("RGtk2", "S_GtkTreeViewSearchPositionFunc"));
   return(fun(tree_view, search_dialog, user_data));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_GtkBuilderConnectFunc(GtkBuilder* builder, GObject* object, const gchar* signal_name, const gchar* handler_name, GObject* connect_object, guint flags, gpointer user_data)
+{
+  static void (*fun)(GtkBuilder*, GObject*, const gchar*, const gchar*, GObject*, guint, gpointer) = NULL;
+  if(!fun) fun = ((void (*)(GtkBuilder*, GObject*, const gchar*, const gchar*, GObject*, guint, gpointer))R_GetCCallable("RGtk2", "S_GtkBuilderConnectFunc"));
+  return(fun(builder, object, signal_name, handler_name, connect_object, flags, user_data));
 }
 #endif 
 

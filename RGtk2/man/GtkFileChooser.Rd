@@ -58,7 +58,7 @@
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkFileChooser}}
 \section{Implementations}{GtkFileChooser is implemented by
- \code{\link{GtkFileChooserWidget}},  \code{\link{GtkFileChooserButton}} and  \code{\link{GtkFileChooserDialog}}.}
+ \code{\link{GtkFileChooserButton}},  \code{\link{GtkFileChooserWidget}} and  \code{\link{GtkFileChooserDialog}}.}
 \section{Detailed Description}{      \code{\link{GtkFileChooser}} is an interface that can be implemented by file
       selection widgets.  In GTK+, the main objects that implement this
       interface are \code{\link{GtkFileChooserWidget}}, \code{\link{GtkFileChooserDialog}}, and
@@ -110,7 +110,7 @@
 	get notification about when the preview needs to be updated.
 	To install a preview widget, use
 	\code{\link{gtkFileChooserSetPreviewWidget}}.  Then, connect to the
-	\code{GtkFileChooser::update-preview} signal to get notified when
+	\code{::update-preview} signal to get notified when
 	you need to update the contents of the preview.
         
 	Your callback should use
@@ -454,7 +454,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 }
 }}
 \section{Signals}{\describe{
-\item{\code{confirm-overwrite(filechooser, user.data)}}{
+\item{\code{The (filechooser, user.data)}}{
       This signal gets emitted whenever it is appropriate to present a
       confirmation dialog when the user has selected a file name that
       already exists.  The signal only gets emitted when the file
@@ -494,7 +494,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 }
-\item{\code{current-folder-changed(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when the current folder in a \code{\link{GtkFileChooser}}
 changes.  This can happen due to the user performing some action that
 changes folders, such as selecting a bookmark or visiting a folder on the
@@ -516,7 +516,7 @@ See also:  \code{\link{gtkFileChooserSetCurrentFolder}},
 
 
 }
-\item{\code{file-activated(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when the user "activates" a file in the file
 chooser.  This can happen by double-clicking on a file in the file list, or
 by pressing \kbd{Enter}.
@@ -536,7 +536,7 @@ See also: \code{\link{gtkFileChooserGetFilename}},
 
 
 }
-\item{\code{selection-changed(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when there is a change in the set of selected files
 in a \code{\link{GtkFileChooser}}.  This can happen when the user modifies the selection
 with the mouse or the keyboard, or when explicitly calling functions to
@@ -559,7 +559,7 @@ See also: \code{\link{gtkFileChooserSelectFilename}},
 
 
 }
-\item{\code{update-preview(chooser, user.data)}}{
+\item{\code{The (chooser, user.data)}}{
 This signal is emitted when the preview in a file chooser should be
 regenerated.  For example, this can happen when the currently selected file
 changes.  You should use this signal if you want your file chooser to have
@@ -571,7 +571,7 @@ signal is emitted.  You can use the functions
 \code{\link{gtkFileChooserGetPreviewFilename}} or
 \code{\link{gtkFileChooserGetPreviewUri}} to get the name of the file to preview.
 Your widget may not be able to preview all kinds of files; your callback
-must call \code{gtkFileChooserSetPreviewWigetActive()} to inform the file
+must call \code{\link{gtkFileChooserSetPreviewWidgetActive}} to inform the file
 chooser about whether the preview was generated successfully or not.
   
 Please see the example code in .
@@ -587,67 +587,6 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-
-}
-}}
-\section{Properties}{\describe{
-\item{\code{action} [\code{\link{GtkFileChooserAction}} : Read / Write]}{
-
-The type of operation that the file selector is performing.  Default value: GTK\_FILE\_CHOOSER\_ACTION\_OPEN
-
-}
-\item{\code{do-overwrite-confirmation} [logical : Read / Write]}{
-
-Whether a file chooser in \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode
-will present an overwrite confirmation dialog if the user
-selects a file name that already exists.  
-
-  Default value: FALSE  Since  2.8
-
-}
-\item{\code{extra-widget} [\code{\link{GtkWidget}} : Read / Write]}{
-
-Application supplied widget for extra options.
-
-}
-\item{\code{file-system-backend} [character : Write / Construct Only]}{
-
-Name of file system backend to use.  Default value: NULL
-
-}
-\item{\code{filter} [\code{\link{GtkFileFilter}} : Read / Write]}{
-
-The current filter for selecting which files are displayed.
-
-}
-\item{\code{local-only} [logical : Read / Write]}{
-
-Whether the selected file(s) should be limited to local file: URLs.  Default value: TRUE
-
-}
-\item{\code{preview-widget} [\code{\link{GtkWidget}} : Read / Write]}{
-
-Application supplied widget for custom previews.
-
-}
-\item{\code{preview-widget-active} [logical : Read / Write]}{
-
-Whether the application supplied widget for custom previews should be shown.  Default value: TRUE
-
-}
-\item{\code{select-multiple} [logical : Read / Write]}{
-
-Whether to allow multiple files to be selected.  Default value: FALSE
-
-}
-\item{\code{show-hidden} [logical : Read / Write]}{
-
-Whether the hidden files and folders should be displayed.  Default value: FALSE
-
-}
-\item{\code{use-preview-label} [logical : Read / Write]}{
-
-Whether to display a stock label with the name of the previewed file.  Default value: TRUE
 
 }
 }}

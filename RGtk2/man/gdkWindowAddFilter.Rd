@@ -11,5 +11,7 @@ instead of events for a specific window.}
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
 \item{\code{data}}{[R object]  data to pass to filter callback}
 }
+\details{See \code{\link{gdkDisplayAddClientMessageFilter}} if you are interested
+in X ClientMessage events.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

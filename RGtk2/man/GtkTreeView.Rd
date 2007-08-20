@@ -13,6 +13,10 @@
 \description{A widget for displaying both trees and lists}
 \section{Methods and Functions}{
 \code{\link{gtkTreeViewNew}(show = TRUE)}\cr
+\code{\link{gtkTreeViewGetLevelIndentation}(object)}\cr
+\code{\link{gtkTreeViewGetShowExpanders}(object)}\cr
+\code{\link{gtkTreeViewSetLevelIndentation}(object, indentation)}\cr
+\code{\link{gtkTreeViewSetShowExpanders}(object, enabled)}\cr
 \code{\link{gtkTreeViewNewWithModel}(model = NULL, show = TRUE)}\cr
 \code{\link{gtkTreeViewGetModel}(object)}\cr
 \code{\link{gtkTreeViewSetModel}(object, model = NULL)}\cr
@@ -62,6 +66,12 @@
 \code{\link{gtkTreeViewGetBinWindow}(object)}\cr
 \code{\link{gtkTreeViewWidgetToTreeCoords}(object, wx, wy)}\cr
 \code{\link{gtkTreeViewTreeToWidgetCoords}(object, tx, ty)}\cr
+\code{\link{gtkTreeViewConvertBinWindowToTreeCoords}(object, bx, by)}\cr
+\code{\link{gtkTreeViewConvertBinWindowToWidgetCoords}(object, bx, by)}\cr
+\code{\link{gtkTreeViewConvertTreeToBinWindowCoords}(object, tx, ty)}\cr
+\code{\link{gtkTreeViewConvertTreeToWidgetCoords}(object, tx, ty)}\cr
+\code{\link{gtkTreeViewConvertWidgetToBinWindowCoords}(object, wx, wy)}\cr
+\code{\link{gtkTreeViewConvertWidgetToTreeCoords}(object, wx, wy)}\cr
 \code{\link{gtkTreeViewEnableModelDragDest}(object, targets, actions)}\cr
 \code{\link{gtkTreeViewEnableModelDragSource}(object, start.button.mask, targets, actions)}\cr
 \code{\link{gtkTreeViewUnsetRowsDragSource}(object)}\cr
@@ -91,10 +101,16 @@
 \code{\link{gtkTreeViewSetRowSeparatorFunc}(object, func, data = NULL)}\cr
 \code{\link{gtkTreeViewGetRubberBanding}(object)}\cr
 \code{\link{gtkTreeViewSetRubberBanding}(object, enable)}\cr
+\code{\link{gtkTreeViewIsRubberBandingActive}(object)}\cr
 \code{\link{gtkTreeViewGetEnableTreeLines}(object)}\cr
 \code{\link{gtkTreeViewSetEnableTreeLines}(object, enabled)}\cr
 \code{\link{gtkTreeViewGetGridLines}(object)}\cr
 \code{\link{gtkTreeViewSetGridLines}(object, grid.lines)}\cr
+\code{\link{gtkTreeViewSetTooltipRow}(object, tooltip, path)}\cr
+\code{\link{gtkTreeViewSetTooltipCell}(object, tooltip, path, column, cell)}\cr
+\code{\link{gtkTreeViewGetTooltipContext}(object, x, y, keyboard.tip)}\cr
+\code{\link{gtkTreeViewGetTooltipColumn}(object)}\cr
+\code{\link{gtkTreeViewSetTooltipColumn}(object, column)}\cr
 \code{gtkTreeView(model = NULL, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -104,12 +120,53 @@
                      +----\link{GtkContainer}
                            +----GtkTreeView}}
 \section{Interfaces}{GtkTreeView implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{Widget that displays any object that implements the \code{\link{GtkTreeModel}} interface.
   
-Please refer to the tree widget conceptual overview 
-for an overview of all the objects and data types related to the tree widget and how 
-they work together.}
+Please refer to the tree widget conceptual 
+overview for an overview of all the objects and data types related 
+to the tree widget and how they work together.
+  
+Several different coordinate systems are exposed in the GtkTreeView API.
+These are:
+
+
+
+  \itemize{
+\item Widget coordinates -- coordinates relative to the widget 
+    (usually   \code{widget->window}  .
+\item Bin window coordinates -- coordinates relative to the window 
+    that GtkTreeView renders to.
+\item Tree coordinates -- coordinates relative to the entire scrollable 
+    area of GtkTreeView.  These coordinates start at (0, 0) for row 0 of the 
+    tree.
+}
+  
+Several functions are available for converting between the different
+coordinate systems.  The most common translations are between widget and bin 
+window coordinates and between bin window and tree coordinates.  For the 
+former you can use \code{\link{gtkTreeViewConvertWidgetToBinWindowCoords}}
+(and vice versa), for the latter \code{\link{gtkTreeViewConvertBinWindowToTreeCoords}} 
+(and vice versa).}
+\section{GtkTreeView as GtkBuildable}{The GtkTreeView implementation of the GtkBuildable interface accepts
+GtkTreeViewColumn objects as <child> elements in UI definitions.
+  
+\emph{A UI definition fragment with GtkTreeView}
+\preformatted{<object class="GtkTreeView">
+  <property name="model">liststore1</property>
+  <child>
+    <object class="GtkTreeViewColumn">
+      <property name="title">Test</property>
+      <child>
+        <object class="GtkCellRendererText"/>
+        <attributes>"
+          <attribute name="text">1</attribute>
+        </attributes>
+      </child>
+    </object>
+  </child>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkTreeView}}{
 \emph{undocumented
 }
@@ -238,7 +295,7 @@ returns.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{columns-changed(tree.view, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 The number of columns of the treeview has changed.  
 
 \describe{
@@ -248,7 +305,7 @@ The number of columns of the treeview has changed.
 
 
 }
-\item{\code{cursor-changed(tree.view, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 The position of the cursor (focused cell) has changed.  
 
 \describe{
@@ -258,12 +315,12 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{expand-collapse-cursor-row(treeview, arg1, arg2, arg3, user.data)}}{
+\item{\code{The (tree.view, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] }
 \item{\code{arg2}}{[logical] }
 \item{\code{arg3}}{[logical] }
@@ -272,12 +329,12 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{move-cursor(treeview, arg1, arg2, user.data)}}{
+\item{\code{The (tree.view, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkMovementStep}}] }
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -285,7 +342,7 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{row-activated(tree.view, path, column, user.data)}}{
+\item{\code{The (tree.view, path, column, user.data)}}{
 The "row-activated" signal is emitted when the method
 \code{\link{gtkTreeViewRowActivated}} is called or the user double clicks 
 a treeview row. It is also emitted when a non-editable row is 
@@ -304,7 +361,7 @@ widget conceptual overview as well as \code{\link{GtkTreeSelection}}.
 
 
 }
-\item{\code{row-collapsed(tree.view, iter, path, user.data)}}{
+\item{\code{The (tree.view, iter, path, user.data)}}{
 The given row has been collapsed (child nodes are hidden).  
 
 \describe{
@@ -316,7 +373,7 @@ The given row has been collapsed (child nodes are hidden).
 
 
 }
-\item{\code{row-expanded(tree.view, iter, path, user.data)}}{
+\item{\code{The (tree.view, iter, path, user.data)}}{
 The given row has been expanded (child nodes are shown).  
 
 \describe{
@@ -328,46 +385,46 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{select-all(treeview, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{select-cursor-parent(treeview, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{select-cursor-row(treeview, arg1, user.data)}}{
+\item{\code{The (tree.view, arg1, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{set-scroll-adjustments(treeview, arg1, arg2, user.data)}}{
+\item{\code{The (tree.view, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkAdjustment}}] }
 \item{\code{arg2}}{[\code{\link{GtkAdjustment}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -375,18 +432,18 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{start-interactive-search(treeview, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{test-collapse-row(tree.view, iter, path, user.data)}}{
+\item{\code{The (tree.view, iter, path, user.data)}}{
 The given row is about to be collapsed (hide its children nodes). Use this
 signal if you need to control the collapsibility of individual rows.  
 
@@ -397,10 +454,10 @@ signal if you need to control the collapsibility of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} to allow expansion, \code{FALSE} to reject
+\emph{Returns:} [logical]  \code{FALSE} to allow collapsing, \code{TRUE} to reject
 
 }
-\item{\code{test-expand-row(tree.view, iter, path, user.data)}}{
+\item{\code{The (tree.view, iter, path, user.data)}}{
 The given row is about to be expanded (show its children nodes). Use this
 signal if you need to control the expandability of individual rows.  
 
@@ -411,26 +468,26 @@ signal if you need to control the expandability of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} to allow expansion, \code{FALSE} to reject
+\emph{Returns:} [logical]  \code{FALSE} to allow expansion, \code{TRUE} to reject
 
 }
-\item{\code{toggle-cursor-row(treeview, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{unselect-all(treeview, user.data)}}{
+\item{\code{The (tree.view, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{treeview}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
+\item{\code{tree.view}}{[\code{\link{GtkTreeView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -511,7 +568,9 @@ in \code{\link{GtkComboBox}} or \code{\link{GtkEntryCompletion}}.
 }
 \item{\code{level-indentation} [integer : Read / Write]}{
 
-Extra indentation for each level.  Allowed values: >= 0  Default value: 0
+Extra indentation for each level.  
+
+  Allowed values: >= 0  Default value: 0  Since  2.12
 
 }
 \item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write]}{
@@ -541,7 +600,14 @@ Model column to search through when searching through code.  Allowed values: >= 
 }
 \item{\code{show-expanders} [logical : Read / Write]}{
 
-View has expanders.  Default value: TRUE
+\code{TRUE} if the view has expanders.  
+
+  Default value: TRUE  Since  2.12
+
+}
+\item{\code{tooltip-column} [integer : Read / Write]}{
+
+The column in the model containing the tooltip texts for the rows.  Allowed values: >= -1  Default value: -1
 
 }
 \item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{

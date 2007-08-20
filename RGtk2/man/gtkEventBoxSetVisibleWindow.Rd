@@ -8,7 +8,7 @@ window. The default is to use visible windows.}
 \item{\code{object}}{[\code{\link{GtkEventBox}}]  a \code{\link{GtkEventBox}}}
 \item{\code{visible.window}}{[logical]  boolean value}
 }
-\details{In an invisible window event box, the window that that the
+\details{In an invisible window event box, the window that the
 event box creates is a \code{GDK_INPUT_ONLY} window, which 
 means that it is invisible and only serves to receive
 events.

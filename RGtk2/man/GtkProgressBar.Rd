@@ -33,7 +33,7 @@
                      +----\link{GtkProgress}
                            +----GtkProgressBar}}
 \section{Interfaces}{GtkProgressBar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkProgressBar}} is typically used to display the progress of a long
 running operation.  It provides a visual clue that processing
 is underway.  The \code{\link{GtkProgressBar}} can be used in two different
@@ -154,7 +154,19 @@ The fraction of total progress to move the bouncing block when pulsed.  Allowed 
 }
 \item{\code{text} [character : Read / Write]}{
 
-Text to be displayed in the progress bar.  Default value: "%P %%"
+Text to be displayed in the progress bar.  Default value: "\%P \%\%"
+
+}
+}}
+\section{Style Properties}{\describe{
+\item{\code{xspacing} [integer : Read / Write]}{
+
+Extra spacing applied to the width of a progress bar.  Allowed values: >= 0  Default value: 7
+
+}
+\item{\code{yspacing} [integer : Read / Write]}{
+
+Extra spacing applied to the height of a progress bar.  Allowed values: >= 0  Default value: 7
 
 }
 }}

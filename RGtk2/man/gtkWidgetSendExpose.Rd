@@ -15,6 +15,7 @@ that is normally done using \code{\link{gtkContainerPropagateExpose}}.}
 use \code{\link{gdkWindowInvalidateRect}} or \code{\link{gdkWindowInvalidateRegion}}.
 To cause the redraw to be done immediately, follow that call
 with a call to \code{\link{gdkWindowProcessUpdates}}.  }
-\value{[integer]  return from the event signal emission (\code{TRUE} if the event was handled)}
+\value{[integer]  return from the event signal emission (\code{TRUE} if 
+              the event was handled)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

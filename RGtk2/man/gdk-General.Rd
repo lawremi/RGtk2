@@ -5,6 +5,7 @@
 \description{Library initialization and miscellaneous functions}
 \section{Methods and Functions}{
 \code{\link{gdkNotifyStartupComplete}()}\cr
+\code{\link{gdkNotifyStartupCompleteWithId}(id)}\cr
 \code{\link{gdkGetProgramClass}()}\cr
 \code{\link{gdkSetProgramClass}(program.class)}\cr
 \code{\link{gdkGetDisplay}()}\cr

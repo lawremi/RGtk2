@@ -5,7 +5,6 @@
 R_RegisterCCallable("RGtk2", "S_GtkClipboardClearFunc", ((DL_FUNC)S_GtkClipboardClearFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkSignalFunc", ((DL_FUNC)S_GtkSignalFunc)); 
 R_RegisterCCallable("RGtk2", "S_GtkTextBufferSerializeFunc", ((DL_FUNC)S_GtkTextBufferSerializeFunc)); 
-R_RegisterCCallable("RGtk2", "S_GtkMenuPositionFunc", ((DL_FUNC)S_GtkMenuPositionFunc)); 
 R_RegisterCCallable("RGtk2", "asRGdkAtom", ((DL_FUNC)asRGdkAtom)); 
 R_RegisterCCallable("RGtk2", "asCGdkAtom", ((DL_FUNC)asCGdkAtom)); 
 R_RegisterCCallable("RGtk2", "asCGdkAtomArray", ((DL_FUNC)asCGdkAtomArray)); 

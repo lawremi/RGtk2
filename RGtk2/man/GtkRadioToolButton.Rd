@@ -23,7 +23,7 @@
                                              +----\link{GtkToggleToolButton}
                                                    +----GtkRadioToolButton}}
 \section{Interfaces}{GtkRadioToolButton implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkRadioToolButton}} is a \code{\link{GtkToolItem}} that contains a radio button,
 that is, a button that is part of a group of toggle buttons where only
 one button can be active at a time.

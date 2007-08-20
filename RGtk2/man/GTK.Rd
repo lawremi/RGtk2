@@ -17,14 +17,16 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkArrow}}{Displays an arrow}
 \item{\link{GtkAspectFrame}}{A frame that constrains its child to a particular aspect ratio}
 \item{\link{GtkAssistant}}{A widget used to guide users through multi-step operations}
-\item{\link{GtkButtonBox}}{Base class for    and }
+\item{\link{GtkButtonBox}}{Base class for GtkHButtonBox and GtkVButtonBox}
 \item{\link{GtkBin}}{A container with just one child}
 \item{\link{GtkBox}}{Base class for box containers}
+\item{\link{gtk-gtkbuildable}}{Interface for objects that can be built by GtkBuilder}
+\item{\link{GtkBuilder}}{Build an interface from an XML UI definition}
 \item{\link{GtkButton}}{A widget that creates a signal when clicked on}
 \item{\link{GtkCalendar}}{Displays a calendar and allows the user to select a date}
 \item{\link{GtkCellEditable}}{Interface for widgets which can are used for editing cells}
 \item{\link{GtkCellLayout}}{An interface for packing cells}
-\item{\link{GtkCellRenderer}}{An object for rendering a single cell on a }
+\item{\link{GtkCellRenderer}}{An object for rendering a single cell on a GdkDrawable}
 \item{\link{GtkCellRendererAccel}}{Renders a keyboard accelerator in a cell}
 \item{\link{GtkCellRendererCombo}}{Renders a combobox in a cell}
 \item{\link{GtkCellRendererPixbuf}}{Renders a pixbuf in a cell}
@@ -66,13 +68,13 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkFontSelection}}{A widget for selecting fonts}
 \item{\link{GtkFontSelectionDialog}}{A dialog box for selecting fonts}
 \item{\link{GtkFrame}}{A bin with a decorative frame and optional label}
-\item{\link{GtkGammaCurve}}{a subclass of    for editing gamma curves.}
+\item{\link{GtkGammaCurve}}{A subclass of GtkCurve for editing gamma curves}
 \item{\link{gtk-Graphics-Contexts}}{A shared pool of GdkGC objects}
 \item{\link{GtkHandleBox}}{a widget for detachable window portions}
 \item{\link{GtkHButtonBox}}{A container for arranging buttons horizontally}
 \item{\link{GtkHBox}}{A horizontal container box}
 \item{\link{GtkHPaned}}{A container with two panes arranged horizontally}
-\item{\link{GtkHRuler}}{A horizontal ruler.}
+\item{\link{GtkHRuler}}{A horizontal ruler}
 \item{\link{GtkHScale}}{A horizontal slider widget for selecting a value from a range}
 \item{\link{GtkHScrollbar}}{A horizontal scrollbar}
 \item{\link{GtkHSeparator}}{A horizontal separator}
@@ -93,9 +95,9 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkLinkButton}}{Create buttons bound to a URL}
 \item{\link{GtkList}}{Widget for packing a list of selectable items}
 \item{\link{GtkListItem}}{An item in a GtkList}
-\item{\link{GtkListStore}}{A list-like data structure that can be used with the }
+\item{\link{GtkListStore}}{A list-like data structure that can be used with the GtkTreeView}
 \item{\link{GtkMenu}}{A menu widget}
-\item{\link{GtkMenuBar}}{A subclass widget for    which holds    widgets}
+\item{\link{GtkMenuBar}}{A subclass widget for GtkMenuShell which holds GtkMenuItem widgets}
 \item{\link{GtkMenuItem}}{The widget used for item in menus}
 \item{\link{GtkMenuShell}}{A base class for menu objects}
 \item{\link{GtkMenuToolButton}}{A GtkToolItem containing a button with an additional dropdown menu}
@@ -121,7 +123,8 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkRadioToolButton}}{A toolbar item that contains a radio button}
 \item{\link{GtkRange}}{Base class for widgets which visualize an adjustment}
 \item{\link{gtk-Resource-Files}}{Routines for handling resource files}
-\item{\link{GtkRecentChooser}}{Interface implemented by GtkRecentChooserWidget, GtkRecentChooserMenu and GtkRecentChooserDialog}
+\item{\link{GtkRecentAction}}{An action of which represents a list of recently used files}
+\item{\link{GtkRecentChooser}}{Interface implemented by widgets displaying recently used files}
 \item{\link{GtkRecentChooserDialog}}{Displays recently used files in a dialog}
 \item{\link{GtkRecentChooserMenu}}{Displays recently used files in a menu}
 \item{\link{GtkRecentChooserWidget}}{Displays recently used files}
@@ -129,10 +132,11 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkRecentManager}}{Managing Recently Used Files}
 \item{\link{GtkRuler}}{Base class for horizontal or vertical rulers}
 \item{\link{GtkScale}}{Base class for GtkHScale and GtkVScale}
+\item{\link{GtkScaleButton}}{A button which pops up a scale}
 \item{\link{GtkScrollbar}}{Base class for GtkHScrollbar and GtkVScrollbar}
 \item{\link{GtkScrolledWindow}}{Adds scrollbars to its child widget}
 \item{\link{gtk-Selections}}{Functions for handling inter-process communication via selections}
-\item{\link{GtkSeparator}}{Base class for    and }
+\item{\link{GtkSeparator}}{Base class for GtkHSeparator and GtkVSeparator}
 \item{\link{GtkSeparatorMenuItem}}{A separator used in menus}
 \item{\link{GtkSeparatorToolItem}}{A toolbar item that separates groups of other toolbar items}
 \item{\link{GtkSettings}}{Sharing settings between applications}
@@ -145,12 +149,12 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkStyle}}{Functions for drawing widget parts}
 \item{\link{GtkTable}}{Pack widgets in regular patterns}
 \item{\link{GtkTearoffMenuItem}}{A menu item used to tear off and reattach its menu}
-\item{\link{GtkTextBuffer}}{Stores attributed text for display in a }
+\item{\link{GtkTextBuffer}}{Stores attributed text for display in a GtkTextView}
 \item{\link{gtk-GtkTextIter}}{Text buffer iterator}
 \item{\link{GtkTextMark}}{A position in the buffer preserved across buffer modifications}
-\item{\link{GtkTextTag}}{A tag that can be applied to text in a }
+\item{\link{GtkTextTag}}{A tag that can be applied to text in a GtkTextBuffer}
 \item{\link{GtkTextTagTable}}{Collection of tags that can be used together}
-\item{\link{GtkTextView}}{Widget that displays a }
+\item{\link{GtkTextView}}{Widget that displays a GtkTextBuffer}
 \item{\link{GtkTipsQuery}}{Displays help about widgets in the user interface}
 \item{\link{GtkToggleAction}}{An action which can be toggled between two states}
 \item{\link{GtkToggleButton}}{Create buttons which retain their state}
@@ -158,24 +162,27 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkToolbar}}{Create bars of buttons and other widgets}
 \item{\link{GtkToolButton}}{A GtkToolItem subclass that displays buttons}
 \item{\link{GtkToolItem}}{The base class of widgets that can be added to GtkToolbar}
+\item{\link{GtkTooltip}}{Add tips to your widgets}
 \item{\link{GtkTooltips}}{Add tips to your widgets}
 \item{\link{gtk-GtkTreeView-drag-and-drop}}{Interfaces for drag-and-drop support in GtkTreeView}
-\item{\link{GtkTreeModel}}{The tree interface used by }
+\item{\link{GtkTreeModel}}{The tree interface used by GtkTreeView}
 \item{\link{GtkTreeModelFilter}}{A GtkTreeModel which hides parts of an underlying tree model}
 \item{\link{GtkTreeModelSort}}{A GtkTreeModel which makes an underlying tree model sortable}
-\item{\link{GtkTreeSelection}}{The selection object for }
+\item{\link{GtkTreeSelection}}{The selection object for GtkTreeView}
 \item{\link{GtkTreeSortable}}{The interface for sortable models used by GtkTreeView}
-\item{\link{GtkTreeStore}}{A tree-like data structure that can be used with the }
+\item{\link{GtkTreeStore}}{A tree-like data structure that can be used with the GtkTreeView}
 \item{\link{GtkTreeView}}{A widget for displaying both trees and lists}
-\item{\link{GtkTreeViewColumn}}{A visible column in a    widget}
+\item{\link{GtkTreeViewColumn}}{A visible column in a GtkTreeView widget}
 \item{\link{GtkUIManager}}{Constructing menus and toolbars from an XML description}
 \item{\link{GtkVButtonBox}}{A container for arranging buttons vertically}
 \item{\link{GtkVBox}}{A vertical container box}
 \item{\link{GtkViewport}}{An adapter which makes widgets scrollable}
+\item{\link{GtkVolumeButton}}{A button which pops up a volume control}
 \item{\link{GtkVPaned}}{A container with two panes arranged vertically}
-\item{\link{GtkVRuler}}{A vertical ruler.}
+\item{\link{GtkVRuler}}{A vertical ruler}
 \item{\link{GtkVScale}}{A vertical slider widget for selecting a value from a range}
-\item{\link{GtkVScrollbar}}{A vertical scrollbar}
+\item{\link{GtkVScrollbar}}{\emph{undocumented
+}}
 \item{\link{GtkVSeparator}}{A vertical separator}
 \item{\link{GtkWidget}}{Base class for all widgets}
 \item{\link{GtkWindow}}{Toplevel which can contain other widgets}

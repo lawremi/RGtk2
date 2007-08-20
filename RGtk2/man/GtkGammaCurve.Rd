@@ -2,7 +2,7 @@
 \alias{gtkGammaCurve}
 \name{GtkGammaCurve}
 \title{GtkGammaCurve}
-\description{a subclass of    for editing gamma curves.}
+\description{A subclass of GtkCurve for editing gamma curves}
 \section{Methods and Functions}{
 \code{\link{gtkGammaCurveNew}(show = TRUE)}\cr
 \code{gtkGammaCurve(show = TRUE)}
@@ -16,7 +16,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkGammaCurve}}
 \section{Interfaces}{GtkGammaCurve implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If

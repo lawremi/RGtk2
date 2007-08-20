@@ -333,6 +333,26 @@ S_gtk_recent_chooser_dialog_class_init(GtkRecentChooserDialogClass * c, SEXP e);
 void
 S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e);
 #endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_builder_class_init(GtkBuilderClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_recent_action_class_init(GtkRecentActionClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_tooltip_class_init(GtkTooltipClass * c, SEXP e);
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e);
+#endif 
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e); 
 void
@@ -347,4 +367,8 @@ void
 S_gtk_tree_model_class_init(GtkTreeModelIface * c, SEXP e); 
 void
 S_gtk_tree_sortable_class_init(GtkTreeSortableIface * c, SEXP e); 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e);
+#endif 
 #endif

@@ -16,11 +16,11 @@ to be saved for future use. (See \code{\link{gtkAccelMapSave}}.)}
 \item{\code{accel.group}}{[\code{\link{GtkAccelGroup}}]  a \code{\link{GtkAccelGroup}}.}
 }
 \details{This function is a low level function that would most likely
-be used by a menu creation system like \code{\link{GtkItemFactory}}. If you
-use \code{\link{GtkItemFactory}}, setting up accelerator paths will be done
+be used by a menu creation system like \code{\link{GtkUIManager}}. If you
+use \code{\link{GtkUIManager}}, setting up accelerator paths will be done
 automatically.
   
-Even when you you aren't using \code{\link{GtkItemFactory}}, if you only want to
+Even when you you aren't using \code{\link{GtkUIManager}}, if you only want to
 set up accelerators on menu items \code{\link{gtkMenuItemSetAccelPath}}
 provides a somewhat more convenient interface.  }
 \author{Derived by RGtkGen from GTK+ documentation}

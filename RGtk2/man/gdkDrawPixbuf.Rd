@@ -25,7 +25,13 @@ argument. Otherwise a colormap must be set on them with
 trips to the X server, and may be somewhat slow.
   
 The clip mask of \code{gc} is ignored, but clip rectangles and clip regions work
-fine.  
+fine.
+  
+If GDK is built with the Sun mediaLib library, the gdk\_draw\_pixbuf
+function is accelerated using mediaLib, which provides hardware
+acceleration on Intel, AMD, and Sparc chipsets.  If desired, mediaLib
+support can be turned off by setting the GDK\_DISABLE\_MEDIALIB environment
+variable.  
 
   Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

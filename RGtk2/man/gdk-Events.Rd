@@ -18,6 +18,7 @@
 \code{\link{gdkEventGetAxis}(object, axis.use)}\cr
 \code{\link{gdkEventGetCoords}(object)}\cr
 \code{\link{gdkEventGetRootCoords}(object)}\cr
+\code{\link{gdkEventRequestMotions}(event)}\cr
 \code{\link{gdkEventHandlerSet}(func, data)}\cr
 \code{\link{gdkAddClientMessageFilter}(message.type, func, data)}\cr
 \code{\link{gdkGetShowEvents}()}\cr
@@ -101,10 +102,11 @@ above.
 number of \code{GDK_MOTION_NOTIFY} events received. Normally a \code{GDK_MOTION_NOTIFY}
 event is received each time the mouse moves. However, if the application
 spends a lot of time processing the event (updating the display, for example),
-it can easily lag behind the position of the mouse. When using the
-\code{GDK_POINTER_MOTION_HINT_MASK} the server will only send a single 
-\code{GDK_MOTION_NOTIFY} event (which is marked as a hint) until the application 
-asks for more, by calling \code{\link{gdkWindowGetPointer}}.
+it can lag behind the position of the mouse. When using
+\code{GDK_POINTER_MOTION_HINT_MASK}, fewer \code{GDK_MOTION_NOTIFY} events will be sent,
+some of which are marked as a hint (the is\_hint member is \code{TRUE}).
+To receive more motion events after a motion hint event, the application
+needs to asks for more, by calling \code{\link{gdkEventRequestMotions}}.
 
 \describe{
 \item{\code{exposure-mask}}{receive expose events}

@@ -60,10 +60,11 @@ not \code{<Control><Shift>plus},  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  \code{TRUE} if there was a keyval bound to the keycode/state/group}
-\item{\code{keyval}}{[numeric]  return location for keyval}
-\item{\code{effective.group}}{[integer]  return location for effective group}
-\item{\code{level}}{[integer]  return location for level}
-\item{\code{consumed.modifiers}}{[\code{\link{GdkModifierType}}]  return location for modifiers that were used to determine the group or level}
+\item{\code{keyval}}{[numeric]  return location for keyval, or \code{NULL}}
+\item{\code{effective.group}}{[integer]  return location for effective group, or \code{NULL}}
+\item{\code{level}}{[integer]  return location for level, or \code{NULL}}
+\item{\code{consumed.modifiers}}{[\code{\link{GdkModifierType}}]  return location for modifiers that were used to
+    determine the group or level, or \code{NULL}}
 }
 \note{\code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For

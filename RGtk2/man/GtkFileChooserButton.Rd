@@ -24,7 +24,7 @@
                                  +----\link{GtkHBox}
                                        +----GtkFileChooserButton}}
 \section{Interfaces}{GtkFileChooserButton implements
- \code{\link{GtkFileChooser}} and  AtkImplementorIface.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
 \section{Detailed Description}{The \code{\link{GtkFileChooserButton}} is a widget that lets the user select a
 file.  It implements the \code{\link{GtkFileChooser}} interface.  Visually, it is a
 file name with a button to bring up a \code{\link{GtkFileChooserDialog}}.
@@ -49,8 +49,19 @@ This should not be accessed directly.  Use the accessor functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkFileChooserButton} is the result of collapsing the constructors of \code{GtkFileChooserButton} (\code{\link{gtkFileChooserButtonNew}}, \code{\link{gtkFileChooserButtonNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
+\section{Signals}{\describe{\item{\code{The (filechooserbutton, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{filechooserbutton}}{[\code{\link{GtkFileChooserButton}}] the object which received the signal.}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}}}
 \section{Properties}{\describe{
-\item{\code{dialog} [\code{\link{GtkFileChooserDialog}} : Write / Construct Only]}{
+\item{\code{dialog} [\code{\link{GtkFileChooser}} : Write / Construct Only]}{
 
 Instance of the \code{\link{GtkFileChooserDialog}} associated with the button.  
 

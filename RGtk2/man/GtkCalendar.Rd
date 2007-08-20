@@ -25,7 +25,7 @@
                +----\link{GtkWidget}
                      +----GtkCalendar}}
 \section{Interfaces}{GtkCalendar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
 It can be created with \code{\link{gtkCalendarNew}}.
   
@@ -73,7 +73,7 @@ These options can be used to influence the display and behaviour of a \code{\lin
 
 }}}
 \section{Signals}{\describe{
-\item{\code{day-selected(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 Emitted when the user selects a day.
 
 \describe{
@@ -83,7 +83,7 @@ Emitted when the user selects a day.
 
 
 }
-\item{\code{day-selected-double-click(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -94,7 +94,7 @@ Emitted when the user selects a day.
 
 
 }
-\item{\code{month-changed(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 Emitted when the user clicks a button to change the selected month on a
 calendar.
 
@@ -105,7 +105,7 @@ calendar.
 
 
 }
-\item{\code{next-month(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -116,7 +116,7 @@ calendar.
 
 
 }
-\item{\code{next-year(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -127,7 +127,7 @@ calendar.
 
 
 }
-\item{\code{prev-month(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -138,7 +138,7 @@ calendar.
 
 
 }
-\item{\code{prev-year(calendar, user.data)}}{
+\item{\code{The (calendar, user.data)}}{
 \emph{undocumented
 }
 

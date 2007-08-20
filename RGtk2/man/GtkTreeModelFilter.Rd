@@ -1,4 +1,5 @@
 \alias{GtkTreeModelFilter}
+\alias{gtkTreeModelFilter}
 \alias{GtkTreeModelFilterVisibleFunc}
 \alias{GtkTreeModelFilterModifyFunc}
 \name{GtkTreeModelFilter}
@@ -16,7 +17,7 @@
 \code{\link{gtkTreeModelFilterConvertPathToChildPath}(object, filter.path)}\cr
 \code{\link{gtkTreeModelFilterRefilter}(object)}\cr
 \code{\link{gtkTreeModelFilterClearCache}(object)}\cr
-
+\code{gtkTreeModelFilter(child.model, root = NULL)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTreeModelFilter}}
@@ -41,6 +42,7 @@ a \code{\link{GtkTreePath}} indicating the root node for the filter at construct
 The GtkTreeModelFilter struct contains only private fields.
 
 }}}
+\section{Convenient Construction}{\code{gtkTreeModelFilter} is the equivalent of \code{\link{gtkTreeModelFilterNew}}.}
 \section{User Functions}{\describe{
 \item{\code{GtkTreeModelFilterVisibleFunc(model, iter, data)}}{
 A function which decides whether the row indicated by \code{iter} is visible.

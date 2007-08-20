@@ -49,7 +49,7 @@
                      +----\link{GtkContainer}
                            +----GtkToolbar}}
 \section{Interfaces}{GtkToolbar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A toolbar is created with a call to \code{\link{gtkToolbarNew}}.
   
 A toolbar can contain instances of a subclass of \code{\link{GtkToolItem}}. To add
@@ -64,7 +64,7 @@ the "expand" property set to \code{TRUE} and the "draw" property set to
 toolbar.
   
 Creating a context menu for the toolbar can be done by connecting to
-the \code{GtkToolbar::popup-context-menu} signal.}
+the \code{::popup-context-menu} signal.}
 \section{Structures}{\describe{\item{\code{GtkToolbar}}{
 The \code{\link{GtkToolbar}} struct only contains private data and should only be
 accessed through the function described below.
@@ -100,7 +100,7 @@ to a \code{\link{GtkToolbar}}.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{focus-home-or-end(toolbar, focus.home, user.data)}}{
+\item{\code{The (toolbar, focus.home, user.data)}}{
 A keybinding signal used internally by GTK+. This signal can't
 be used in application code  
 
@@ -113,20 +113,7 @@ be used in application code
 \emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{move-focus(toolbar, dir, user.data)}}{
-A keybinding signal used internally by GTK+. This signal can't
-be used in application code.  
-
-\describe{
-\item{\code{toolbar}}{[\code{\link{GtkToolbar}}]  the \code{\link{GtkToolbar}} which emitted the signal}
-\item{\code{dir}}{[\code{\link{GtkDirectionType}}]  a \code{GtkDirection}}
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
-}
-
-\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
-
-}
-\item{\code{orientation-changed(toolbar, orientation, user.data)}}{
+\item{\code{The (toolbar, orientation, user.data)}}{
 Emitted when the orientation of the toolbar changes.  
 
 \describe{
@@ -137,7 +124,7 @@ Emitted when the orientation of the toolbar changes.
 
 
 }
-\item{\code{popup-context-menu(toolbar, x, y, button, user.data)}}{
+\item{\code{The (toolbar, x, y, button, user.data)}}{
 Emitted when the user right-clicks the toolbar or uses the
 keybinding to display a popup menu.
   
@@ -158,7 +145,7 @@ up using the keybaord, \code{button} is -1.
 \emph{Returns:} [logical]  return \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{style-changed(toolbar, style, user.data)}}{
+\item{\code{The (toolbar, style, user.data)}}{
 Emitted when the style of the toolbar changes.  
 
 \describe{

@@ -1,7 +1,7 @@
 \alias{gdkDrawGlyphs}
 \name{gdkDrawGlyphs}
 \title{gdkDrawGlyphs}
-\description{This is a low-level function; 99% of text rendering should be done
+\description{This is a low-level function; 99\% of text rendering should be done
 using \code{\link{gdkDrawLayout}} instead.}
 \usage{gdkDrawGlyphs(object, gc, font, x, y, glyphs)}
 \arguments{

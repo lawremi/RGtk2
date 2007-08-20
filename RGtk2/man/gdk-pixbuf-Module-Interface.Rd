@@ -64,8 +64,7 @@ The \command{gdk-pixbuf} interfaces needed for implementing modules are containe
 \file{gdk-pixbuf-animation.h} if the module supports animations).
 They are not covered by the same stability guarantees as the regular 
 \command{gdk-pixbuf} API. To underline this fact, they are protected by 
-\code{\emph{undocumented
-}}.}
+\code{#ifdef GDK_PIXBUF_ENABLE_BACKEND}.}
 \section{Structures}{\describe{\item{\code{GdkPixbufFormat}}{
 A \code{\link{GdkPixbufFormat}} contains information about the image format accepted by a
 module. Only modules should access the fields directly, applications should

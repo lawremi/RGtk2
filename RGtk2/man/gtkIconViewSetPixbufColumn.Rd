@@ -6,7 +6,7 @@ column must be of type \code{GDK_TYPE_PIXBUF}}
 \usage{gtkIconViewSetPixbufColumn(object, column)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}
-\item{\code{column}}{[integer]  A column in the currently used model.}
+\item{\code{column}}{[integer]  A column in the currently used model, or -1 to disable}
 }
 \details{  Since  2.6 }
 \author{Derived by RGtkGen from GTK+ documentation}

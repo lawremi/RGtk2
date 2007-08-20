@@ -12,12 +12,12 @@ and embedded pixbufs.}
 \item{\code{tagset.name}}{[character]  an optional tagset name, on \code{NULL}}
 }
 \details{This function is just a wrapper around
-\code{\link{gtkTextBufferRegisterSerializeFormat}}. The \code{mime_type} used
+\code{\link{gtkTextBufferRegisterSerializeFormat}}. The mime type used
 for registering is "application/x-gtk-text-buffer-rich-text", or
-"application/x-gtk-text-buffer-rich-text;format=\code{tagset_name}" if a
-\code{tagset_name} was passed.
+"application/x-gtk-text-buffer-rich-text;format=\code{tagset.name}" if a
+\code{tagset.name} was passed.
   
-The \code{tagset_name} can be used to restrict the transfer of rich text
+The \code{tagset.name} can be used to restrict the transfer of rich text
 to buffers with compatible sets of tags, in order to avoid unknown
 tags from being pasted. It is probably the common case to pass an
 identifier != \code{NULL} here, since the \code{NULL} tagset requires the

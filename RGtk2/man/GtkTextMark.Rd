@@ -1,15 +1,17 @@
 \alias{GtkTextMark}
+\alias{gtkTextMark}
 \name{GtkTextMark}
 \title{GtkTextMark}
 \description{A position in the buffer preserved across buffer modifications}
 \section{Methods and Functions}{
+\code{\link{gtkTextMarkNew}(name, left.gravity)}\cr
 \code{\link{gtkTextMarkSetVisible}(object, setting)}\cr
 \code{\link{gtkTextMarkGetVisible}(object)}\cr
 \code{\link{gtkTextMarkGetDeleted}(object)}\cr
 \code{\link{gtkTextMarkGetName}(object)}\cr
 \code{\link{gtkTextMarkGetBuffer}(object)}\cr
 \code{\link{gtkTextMarkGetLeftGravity}(object)}\cr
-
+\code{gtkTextMark(name, left.gravity)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkTextMark}}
@@ -47,6 +49,19 @@ Marks are typically created using the \code{\link{gtkTextBufferCreateMark}} func
 }
 
 }}}
+\section{Convenient Construction}{\code{gtkTextMark} is the equivalent of \code{\link{gtkTextMarkNew}}.}
+\section{Properties}{\describe{
+\item{\code{left-gravity} [logical : Read / Write / Construct Only]}{
+
+Whether the mark has left gravity.  Default value: FALSE
+
+}
+\item{\code{name} [character : Read / Write / Construct Only]}{
+
+Mark name.  Default value: NULL
+
+}
+}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTextMark.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

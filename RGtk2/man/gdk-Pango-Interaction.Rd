@@ -16,6 +16,7 @@
 \code{\link{gdkPangoContextGet}()}\cr
 \code{\link{gdkPangoContextGetForScreen}(screen)}\cr
 \code{\link{gdkPangoContextSetColormap}(context, colormap)}\cr
+\code{\link{gdkPangoAttrEmbossColorNew}(color)}\cr
 \code{\link{gdkPangoAttrEmbossedNew}(embossed)}\cr
 \code{\link{gdkPangoAttrStippleNew}(stipple)}\cr
 \code{\link{gdkPangoLayoutGetClipRegion}(layout, x.origin, index.ranges)}\cr

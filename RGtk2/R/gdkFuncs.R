@@ -6619,3 +6619,127 @@ function(object)
   return(w)
 } 
 
+
+gdkColorToString <-
+function(object)
+{
+  object <- as.GdkColor(object)
+
+  w <- .RGtkCall("S_gdk_color_to_string", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkDisplaySupportsComposite <-
+function(object)
+{
+  checkPtrType(object, "GdkDisplay")
+
+  w <- .RGtkCall("S_gdk_display_supports_composite", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkEventRequestMotions <-
+function(event)
+{
+  checkPtrType(event, "GdkEventMotion")
+
+  w <- .RGtkCall("S_gdk_event_request_motions", event, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkKeymapHaveBidiLayouts <-
+function(object)
+{
+  checkPtrType(object, "GdkKeymap")
+
+  w <- .RGtkCall("S_gdk_keymap_have_bidi_layouts", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkPangoAttrEmbossColorNew <-
+function(color)
+{
+  color <- as.GdkColor(color)
+
+  w <- .RGtkCall("S_gdk_pango_attr_emboss_color_new", color, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkWindowSetComposited <-
+function(object, composited)
+{
+  checkPtrType(object, "GdkWindow")
+  composited <- as.logical(composited)
+
+  w <- .RGtkCall("S_gdk_window_set_composited", object, composited, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowSetStartupId <-
+function(object, startup.id)
+{
+  checkPtrType(object, "GdkWindow")
+  startup.id <- as.character(startup.id)
+
+  w <- .RGtkCall("S_gdk_window_set_startup_id", object, startup.id, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowBeep <-
+function(object)
+{
+  checkPtrType(object, "GdkWindow")
+
+  w <- .RGtkCall("S_gdk_window_beep", object, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkWindowSetOpacity <-
+function(object, opacity)
+{
+  checkPtrType(object, "GdkWindow")
+  opacity <- as.numeric(opacity)
+
+  w <- .RGtkCall("S_gdk_window_set_opacity", object, opacity, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+gdkNotifyStartupCompleteWithId <-
+function(id)
+{
+  id <- as.character(id)
+
+  w <- .RGtkCall("S_gdk_notify_startup_complete_with_id", id, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+gdkPixbufApplyEmbeddedOrientation <-
+function(object)
+{
+  checkPtrType(object, "GdkPixbuf")
+
+  w <- .RGtkCall("S_gdk_pixbuf_apply_embedded_orientation", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+

@@ -25,8 +25,11 @@
                                        +----\link{GtkDialog}
                                              +----GtkFileSelection}}
 \section{Interfaces}{GtkFileSelection implements
- AtkImplementorIface.}
-\section{Detailed Description}{\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkFileSelection}} has been superseded by the newer \code{\link{GtkFileChooser}} family
+of widgets.
+  
+\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
 the user. It will create a new dialog window containing a directory list, 
 and a file list corresponding to the current working directory. The filesystem 
 can be navigated using the directory list or the drop-down history menu. 
@@ -75,13 +78,36 @@ create_file_selection <- function() {
 }
 }}
 \section{Structures}{\describe{\item{\code{GtkFileSelection}}{
+\strong{WARNING: \code{GtkFileSelection} is deprecated and should not be used in newly-written code.}
 The \code{\link{GtkFileSelection}} struct contains the following \code{\link{GtkWidget}} fields:
 
-\tabular{ll}{
-*fileop\_dialog; \tab the dialog box used to display the   \code{\link{GtkFileSelection}}  . It can be customized by adding/removing widgets from it using the standard   \code{\link{GtkDialog}}   functions. \cr
-*ok\_button, *cancel\_button; \tab the two main buttons that signals should be connected to in order to perform an action when the user hits either OK or Cancel. \cr
-*history\_pulldown; \tab the   \code{\link{GtkOptionMenu}}   used to create the drop-down directory history. \cr
-*fileop\_c\_dir, *fileop\_del\_file, *fileop\_ren\_file; \tab the buttons that appear at the top of the file selection dialog. These "operation buttons" can be hidden and redisplayed with   \code{\link{gtkFileSelectionHideFileopButtons}}   and    \code{\link{gtkFileSelectionShowFileopButtons}}   respectively. \cr
+\describe{
+\item{\code{dirList}}{[\code{\link{GtkWidget}}] }
+\item{\code{fileList}}{[\code{\link{GtkWidget}}] }
+\item{\code{selectionEntry}}{[\code{\link{GtkWidget}}] }
+\item{\code{selectionText}}{[\code{\link{GtkWidget}}] }
+\item{\code{mainVbox}}{[\code{\link{GtkWidget}}] }
+\item{\code{okButton}}{[\code{\link{GtkWidget}}] }
+\item{\code{cancelButton}}{[\code{\link{GtkWidget}}] the two main buttons that signals should be connected 
+    to in order to perform an action when the user hits either OK or 
+    Cancel.}
+\item{\code{helpButton}}{[\code{\link{GtkWidget}}] }
+\item{\code{historyPulldown}}{[\code{\link{GtkWidget}}] the \code{\link{GtkOptionMenu}} used to create the drop-down 
+    directory history.}
+\item{\code{historyMenu}}{[\code{\link{GtkWidget}}] }
+\item{\code{fileopDialog}}{[\code{\link{GtkWidget}}] }
+\item{\code{fileopEntry}}{[\code{\link{GtkWidget}}] the dialog box used to display the \code{\link{GtkFileSelection}}. 
+   It can be customized by adding/removing widgets from it using the 
+   standard \code{\link{GtkDialog}} functions.}
+\item{\code{fileopFile}}{[character] }
+\item{\code{fileopCDir}}{[\code{\link{GtkWidget}}] }
+\item{\code{fileopDelFile}}{[\code{\link{GtkWidget}}] }
+\item{\code{fileopRenFile}}{[\code{\link{GtkWidget}}] }
+\item{\code{buttonArea}}{[\code{\link{GtkWidget}}] }
+\item{\code{actionArea}}{[\code{\link{GtkWidget}}] the buttons that appear at the top of the file 
+    selection dialog. These "operation buttons" can be hidden and 
+    redisplayed with \code{\link{gtkFileSelectionHideFileopButtons}} and  
+    \code{\link{gtkFileSelectionShowFileopButtons}} respectively.}
 }
 
 }}}

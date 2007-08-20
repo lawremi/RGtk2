@@ -5,7 +5,7 @@
 \alias{GtkTextBufferTargetInfo}
 \name{GtkTextBuffer}
 \title{GtkTextBuffer}
-\description{Stores attributed text for display in a }
+\description{Stores attributed text for display in a GtkTextView}
 \section{Methods and Functions}{
 \code{\link{gtkTextBufferNew}(table = NULL)}\cr
 \code{\link{gtkTextBufferGetLineCount}(object)}\cr
@@ -31,6 +31,7 @@
 \code{\link{gtkTextBufferCreateMark}(object, mark.name = NULL, where, left.gravity = FALSE)}\cr
 \code{\link{gtkTextBufferMoveMark}(object, mark, where)}\cr
 \code{\link{gtkTextBufferMoveMarkByName}(object, name, where)}\cr
+\code{\link{gtkTextBufferAddMark}(object, mark, where)}\cr
 \code{\link{gtkTextBufferDeleteMark}(object, mark)}\cr
 \code{\link{gtkTextBufferDeleteMarkByName}(object, name)}\cr
 \code{\link{gtkTextBufferGetMark}(object, name)}\cr
@@ -111,184 +112,263 @@ types related to the text widget and how they work together.
 }}}
 \section{User Functions}{\describe{
 \item{\code{GtkTextBufferDeserializeFunc(register.buffer, content.buffer, iter, data, length, create.tags, user.data, error)}}{
-\emph{undocumented
-}
+A function that is called to deserialize rich text that has been
+serialized with \code{\link{gtkTextBufferSerialize}}, and insert it at \code{iter}.
 
 \describe{
-\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] }
-\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] }
-\item{\code{iter}}{[\code{\link{GtkTextIter}}] }
-\item{\code{data}}{[raw] }
-\item{\code{length}}{[numeric] }
-\item{\code{create.tags}}{[logical] }
-\item{\code{user.data}}{[R object] }
-\item{\code{error}}{[\code{\link{GError}}] }
+\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] the \code{\link{GtkTextBuffer}} the format is registered with}
+\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] the \code{\link{GtkTextBuffer}} to deserialize into}
+\item{\code{iter}}{[\code{\link{GtkTextIter}}] insertion point for the deserialized text}
+\item{\code{data}}{[raw] data to deserialize}
+\item{\code{length}}{[numeric] length of \code{data}}
+\item{\code{create.tags}}{[logical] \code{TRUE} if deserializing may create tags}
+\item{\code{user.data}}{[R object] user data that was specified when registering the format}
+\item{\code{error}}{[\code{\link{GError}}] return location for a \code{\link{GError}}}
 }
 
+\emph{Returns:} [logical] \code{TRUE} on success, \code{FALSE} otherwise
 
 }
 \item{\code{GtkTextBufferSerializeFunc(register.buffer, content.buffer, start, end, length, user.data)}}{
-\emph{undocumented
-}
+A function that is called to serialize the content of a text buffer.
+It must return the serialized form of the content.
 
 \describe{
-\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] }
-\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] }
-\item{\code{start}}{[\code{\link{GtkTextIter}}] }
-\item{\code{end}}{[\code{\link{GtkTextIter}}] }
-\item{\code{length}}{[numeric] }
-\item{\code{user.data}}{[R object] }
+\item{\code{register.buffer}}{[\code{\link{GtkTextBuffer}}] the \code{\link{GtkTextBuffer}} for which the format is registered}
+\item{\code{content.buffer}}{[\code{\link{GtkTextBuffer}}] the \code{GtkTextsBuffer} to serialize}
+\item{\code{start}}{[\code{\link{GtkTextIter}}] start of the block of text to serialize}
+\item{\code{end}}{[\code{\link{GtkTextIter}}] end of the block of text to serialize}
+\item{\code{length}}{[numeric] Return location for the length of the serialized data}
+\item{\code{user.data}}{[R object] user data that was specified when registering the format}
 }
 
+\emph{Returns:} [raw] a newly-allocated list of guint8 which contains the serialized
+          data, or \code{NULL} if an error occurred
 
 }
 }}
 \section{Signals}{\describe{
-\item{\code{apply-tag(textbuffer, arg1, arg2, arg3, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, tag, start, end, user.data)}}{
+The apply\_tag signal is emitted to apply a tag to a
+range of text in a \code{\link{GtkTextBuffer}}. 
+Applying actually occurs in the default handler.
+  
+Note that if your handler runs before the default handler it must not 
+invalidate the \code{start} and \code{end} iters (or has to revalidate them). 
+  
+See also: 
+\code{\link{gtkTextBufferApplyTag}},
+\code{\link{gtkTextBufferInsertWithTags}},
+\code{\link{gtkTextBufferInsertRange}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg3}}{[\code{\link{GtkTextIter}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{tag}}{[\code{\link{GtkTextTag}}]  the applied tag}
+\item{\code{start}}{[\code{\link{GtkTextIter}}]  the start of the range the tag is applied to}
+\item{\code{end}}{[\code{\link{GtkTextIter}}]  the end of the range the tag is applied to}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{begin-user-action(textbuffer, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, user.data)}}{
+The begin\_user\_action signal is emitted at the beginning of a single
+user-visible operation on a \code{\link{GtkTextBuffer}}.
+  
+See also: 
+\code{\link{gtkTextBufferBeginUserAction}},
+\code{\link{gtkTextBufferInsertInteractive}},
+\code{\link{gtkTextBufferInsertRangeInteractive}},
+\code{\link{gtkTextBufferDeleteInteractive}},
+\code{\link{gtkTextBufferBackspace}},
+\code{\link{gtkTextBufferDeleteSelection}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{changed(textbuffer, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, user.data)}}{
+The changed signal is emitted when the content of a \code{\link{GtkTextBuffer}} 
+has changed.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{delete-range(textbuffer, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, start, end, user.data)}}{
+The delete\_range signal is emitted to delete a range 
+from a \code{\link{GtkTextBuffer}}. 
+  
+Note that if your handler runs before the default handler it must not 
+invalidate the \code{start} and \code{end} iters (or has to revalidate them). 
+The default signal handler revalidates the \code{start} and \code{end} iters to 
+both point point to the location where text was deleted. Handlers
+which run after the default handler (see \code{gSignalConnectAfter()})
+do not have access to the deleted text.
+  
+See also: \code{\link{gtkTextBufferDelete}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextIter}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{start}}{[\code{\link{GtkTextIter}}]  the start of the range to be deleted}
+\item{\code{end}}{[\code{\link{GtkTextIter}}]  the end of the range to be deleted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{end-user-action(textbuffer, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, user.data)}}{
+The end\_user\_action signal is emitted at the end of a single
+user-visible operation \code{\link{GtkTextBuffer}}.
+  
+See also: 
+\code{\link{gtkTextBufferEndUserAction}},
+\code{\link{gtkTextBufferInsertInteractive}},
+\code{\link{gtkTextBufferInsertRangeInteractive}},
+\code{\link{gtkTextBufferDeleteInteractive}},
+\code{\link{gtkTextBufferBackspace}},
+\code{\link{gtkTextBufferDeleteSelection}},
+\code{\link{gtkTextBufferBackspace}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{insert-child-anchor(textbuffer, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, location, anchor, user.data)}}{
+The insert\_child\_anchor signal is emitted to insert a
+\code{\link{GtkTextChildAnchor}} in a \code{\link{GtkTextBuffer}}.
+Insertion actually occurs in the default handler.
+  
+Note that if your handler runs before the default handler it must
+not invalidate the \code{location} iter (or has to revalidate it). 
+The default signal handler revalidates it to be placed after the 
+inserted \code{anchor}.
+  
+See also: \code{\link{gtkTextBufferInsertChildAnchor}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextChildAnchor}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{location}}{[\code{\link{GtkTextIter}}]  position to insert \code{anchor} in \code{textbuffer}}
+\item{\code{anchor}}{[\code{\link{GtkTextChildAnchor}}]  the \code{\link{GtkTextChildAnchor}} to be inserted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{insert-pixbuf(textbuffer, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, location, pixbuf, user.data)}}{
+The insert\_pixbuf signal is emitted to insert a \code{\link{GdkPixbuf}} 
+in a \code{\link{GtkTextBuffer}}. Insertion actually occurs in the default handler.
+  
+Note that if your handler runs before the default handler it must not 
+invalidate the \code{location} iter (or has to revalidate it). 
+The default signal handler revalidates it to be placed after the 
+inserted \code{pixbuf}.
+  
+See also: \code{\link{gtkTextBufferInsertPixbuf}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg2}}{[\code{\link{GdkPixbuf}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{location}}{[\code{\link{GtkTextIter}}]  position to insert \code{pixbuf} in \code{textbuffer}}
+\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  the \code{\link{GdkPixbuf}} to be inserted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{insert-text(textbuffer, arg1, arg2, arg3, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, location, text, len, user.data)}}{
+The insert\_text signal is emitted to insert text in a \code{\link{GtkTextBuffer}}.
+Insertion actually occurs in the default handler.  
+  
+Note that if your handler runs before the default handler it must not 
+invalidate the \code{location} iter (or has to revalidate it). 
+The default signal handler revalidates it to point to the end of the 
+inserted text.
+  
+See also: 
+\code{\link{gtkTextBufferInsert}}, 
+\code{\link{gtkTextBufferInsertRange}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg2}}{[character] }
-\item{\code{arg3}}{[integer] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{location}}{[\code{\link{GtkTextIter}}]  position to insert \code{text} in \code{textbuffer}}
+\item{\code{text}}{[character]  the UTF-8 text to be inserted}
+\item{\code{len}}{[integer]  length of the inserted text in bytes}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{mark-deleted(textbuffer, arg1, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, mark, user.data)}}{
+The mark\_deleted signal is emitted as notification
+after a \code{\link{GtkTextMark}} is deleted. 
+  
+See also:
+\code{\link{gtkTextBufferDeleteMark}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextMark}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{mark}}{[\code{\link{GtkTextMark}}]  The mark that was deleted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{mark-set(textbuffer, arg1, arg2, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, location, mark, user.data)}}{
+The mark\_set signal is emitted as notification
+after a \code{\link{GtkTextMark}} is set.
+  
+See also: 
+\code{\link{gtkTextBufferCreateMark}},
+\code{\link{gtkTextBufferMoveMark}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextMark}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{location}}{[\code{\link{GtkTextIter}}]  The location of \code{mark} in \code{textbuffer}}
+\item{\code{mark}}{[\code{\link{GtkTextMark}}]  The mark that is set}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{modified-changed(textbuffer, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, user.data)}}{
+The modified\_changed signal is emitted when the modified bit of a 
+\code{\link{GtkTextBuffer}} flips.
+  
+See also:
+\code{\link{gtkTextBufferSetModified}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{remove-tag(textbuffer, arg1, arg2, arg3, user.data)}}{
-\emph{undocumented
-}
+\item{\code{The (textbuffer, tag, start, end, user.data)}}{
+The remove\_tag signal is emitted to remove all occurrences of \code{tag} from a
+range of text in a \code{\link{GtkTextBuffer}}. 
+Removal actually occurs in the default handler.
+  
+Note that if your handler runs before the default handler it must not 
+invalidate the \code{start} and \code{end} iters (or has to revalidate them). 
+  
+See also: 
+\code{\link{gtkTextBufferRemoveTag}}.  
 
 \describe{
-\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextIter}}] }
-\item{\code{arg3}}{[\code{\link{GtkTextIter}}] }
+\item{\code{textbuffer}}{[\code{\link{GtkTextBuffer}}]  the object which received the signal}
+\item{\code{tag}}{[\code{\link{GtkTextTag}}]  the tag to be removed}
+\item{\code{start}}{[\code{\link{GtkTextIter}}]  the start of the range the tag is removed from}
+\item{\code{end}}{[\code{\link{GtkTextIter}}]  the end of the range the tag is removed from}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -306,8 +386,9 @@ and as DND source.
 }
 \item{\code{cursor-position} [integer : Read]}{
 
-The position of the insert mark (as offset from the beginning of the buffer). 
-It is useful for getting notified when the cursor moves.  
+The position of the insert mark (as offset from the beginning 
+of the buffer). It is useful for getting notified when the 
+cursor moves.  
 
   Allowed values: >= 0  Default value: 0  Since  2.10
 

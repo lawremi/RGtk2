@@ -72,6 +72,10 @@
 \code{\link{gtkPrintSettingsSetFinishings}(object, finishings)}\cr
 \code{\link{gtkPrintSettingsGetOutputBin}(object)}\cr
 \code{\link{gtkPrintSettingsSetOutputBin}(object, output.bin)}\cr
+\code{\link{gtkPrintSettingsNewFromFile}(file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPrintSettingsNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPrintSettingsToFile}(object, file.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPrintSettingsToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPrintSettings()}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}

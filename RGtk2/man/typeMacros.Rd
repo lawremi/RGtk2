@@ -258,6 +258,12 @@
 \alias{pangoLayoutIterGetType}
 \alias{pangoRendererGetType}
 \alias{pangoTabArrayGetType}
+\alias{gtkBuildableGetType}
+\alias{gtkBuilderGetType}
+\alias{gtkRecentActionGetType} 
+\alias{gtkScaleButtonGetType}
+\alias{gtkTooltipGetType}
+\alias{gtkVolumeButtonGetType}
 \name{typeMacros}
 \title{GType accessor macros}
 \description{This function returns the R representation of the GType of the object argument.}

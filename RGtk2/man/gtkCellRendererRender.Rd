@@ -13,7 +13,8 @@ so the \code{background.area} rectangles for all cells tile to cover the entire
 \item{\code{object}}{[\code{\link{GtkCellRenderer}}]  a \code{\link{GtkCellRenderer}}}
 \item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkDrawable}} to draw to}
 \item{\code{widget}}{[\code{\link{GtkWidget}}]  the widget owning \code{window}}
-\item{\code{background.area}}{[\code{\link{GdkRectangle}}]  entire cell area (including tree expanders and maybe padding on the sides)}
+\item{\code{background.area}}{[\code{\link{GdkRectangle}}]  entire cell area (including tree expanders and maybe 
+   padding on the sides)}
 \item{\code{cell.area}}{[\code{\link{GdkRectangle}}]  area normally rendered by a cell renderer}
 \item{\code{expose.area}}{[\code{\link{GdkRectangle}}]  area that actually needs updating}
 \item{\code{flags}}{[\code{\link{GtkCellRendererState}}]  flags that affect rendering}

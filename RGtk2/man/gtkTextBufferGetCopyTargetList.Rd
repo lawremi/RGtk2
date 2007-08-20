@@ -5,7 +5,7 @@
 provide for copying and as DND source. The targets in the list are
 added with \code{info} values from the \code{\link{GtkTextBufferTargetInfo}} enum,
 using \code{\link{gtkTargetListAddRichTextTargets}} and
-\code{\link{gtkTargetListAddTextTargets}}}
+\code{\link{gtkTargetListAddTextTargets}}.}
 \usage{gtkTextBufferGetCopyTargetList(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}}
 \details{  Since  2.10}

@@ -19,7 +19,7 @@
                            +----\link{GtkImage}
                            +----\link{GtkPixmap}}}
 \section{Interfaces}{GtkMisc implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
   

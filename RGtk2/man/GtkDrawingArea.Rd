@@ -15,7 +15,7 @@
                      +----GtkDrawingArea
                            +----\link{GtkCurve}}}
 \section{Interfaces}{GtkDrawingArea implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkDrawingArea}} widget is used for creating custom user interface
 elements. It's essentially a blank widget; you can draw on
 \code{widget->window}. After creating a drawing area,
@@ -65,7 +65,7 @@ region" of the drawing area's window; \code{\link{gtkWidgetQueueDrawArea}} and
 then get an expose event for the invalid region.
   
 The available routines for drawing are documented on the GDK Drawing Primitives page.
-See also \code{\link{gdkPixbufRenderToDrawable}} for drawing a \code{\link{GdkPixbuf}}.
+See also \code{\link{gdkDrawPixbuf}} for drawing a \code{\link{GdkPixbuf}}.
   
 To receive mouse events on a drawing area, you will need to enable
 them with \code{\link{gtkWidgetAddEvents}}. To receive keyboard events, you

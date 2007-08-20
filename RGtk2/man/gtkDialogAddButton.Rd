@@ -3,9 +3,9 @@
 \title{gtkDialogAddButton}
 \description{Adds a button with the given text (or a stock button, if \code{button.text} is a
 stock ID) and sets things up so that clicking the button will emit the
-"response" signal with the given \code{response.id}. The button is appended to the
-end of the dialog's action area. The button widget is returned, but usually
-you don't need it.}
+\code{\link{gtkDialogResponse}} signal with the given \code{response.id}. The button is 
+appended to the end of the dialog's action area. The button widget is 
+returned, but usually you don't need it.}
 \usage{gtkDialogAddButton(object, button.text, response.id)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}

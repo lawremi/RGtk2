@@ -20,7 +20,7 @@
                                        +----\link{GtkGammaCurve}
                                        +----\link{GtkRecentChooserWidget}}}
 \section{Interfaces}{GtkVBox implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{GtkVBox is a container that organizes child widgets into a single column.
   
 Use the \code{\link{GtkBox}} packing interface to determine the arrangement,

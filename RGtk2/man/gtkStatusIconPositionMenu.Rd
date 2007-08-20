@@ -13,9 +13,8 @@ to position \code{menu} aligned to the status icon \code{user.data}.}
 A list containing the following elements:
 \item{\code{x}}{[integer]  return location for the x position}
 \item{\code{y}}{[integer]  return location for the y position}
-\item{\code{push.in}}{[logical]  return location for whether the menu should be pushed in 
-    to be completely inside the screen instead of just clamped to the 
-    size to the screen.}
+\item{\code{push.in}}{[logical]  whether the first menu item should be offset (pushed in) to be
+          aligned with the menu popup position (only useful for GtkOptionMenu).}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

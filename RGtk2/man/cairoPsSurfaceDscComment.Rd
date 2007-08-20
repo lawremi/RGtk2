@@ -10,12 +10,12 @@
 \details{The comment is expected to conform to the PostScript Language
 Document Structuring Conventions (DSC). Please see that manual for
 details on the available comments and their meanings. In
-particular, the %\code{IncludeFeature} comment allows a
+particular, the \%\code{IncludeFeature} comment allows a
 device-independent means of controlling printer device features. So
 the PostScript Printer Description Files Specification will also be
 a useful reference.
   
-The comment string must begin with a percent character (%) and the
+The comment string must begin with a percent character (\%) and the
 total length of the string (including any initial percent
 characters) must not exceed 255 characters. Violating either of
 these conditions will place \code{surface} into an error state. But
@@ -53,36 +53,37 @@ As a final note, cairo automatically generates several comments on
 its own. As such, applications must not manually generate any of
 the following comments:
   
-Header section: %!PS-Adobe-3.0, %\code{Creator}, %\code{CreationDate}, %\code{Pages},
-%\code{BoundingBox}, %\code{DocumentData}, %\code{LanguageLevel}, %\code{EndComments}.
+Header section: \%!PS-Adobe-3.0, \%\code{Creator}, \%\code{CreationDate}, \%\code{Pages},
+\%\code{BoundingBox}, \%\code{DocumentData}, \%\code{LanguageLevel}, \%\code{EndComments}.
   
-Setup section: %\code{BeginSetup}, %\code{EndSetup}
+Setup section: \%\code{BeginSetup}, \%\code{EndSetup}
   
-PageSetup section: %\code{BeginPageSetup}, %\code{PageBoundingBox},
-%\code{EndPageSetup}.
+PageSetup section: \%\code{BeginPageSetup}, \%\code{PageBoundingBox},
+\%\code{EndPageSetup}.
   
-Other sections: %\code{BeginProlog}, %\code{EndProlog}, %\code{Page}, %\code{Trailer}, %\code{EOF}
+Other sections: \%\code{BeginProlog}, \%\code{EndProlog}, \%\code{Page}, \%\code{Trailer}, \%\code{EOF}
   
 Here is an example sequence showing how this function might be used:
   
-\preformatted{cairo_surface_t *surface = cairo_ps_surface_create (filename, width, height);
-...
-cairo_ps_surface_dsc_comment (surface, "%  \code{Title}  : My excellent document");
-cairo_ps_surface_dsc_comment (surface, "%  \code{Copyright}  : Copyright (C) 2006 Cairo Lover")
-...
-cairo_ps_surface_dsc_begin_setup (surface);
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *MediaColor White");
-...
-cairo_ps_surface_dsc_begin_page_setup (surface);
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *PageSize A3");
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *InputSlot LargeCapacity");
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *MediaType Glossy");
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *MediaColor Blue");
-... draw to first page here ..
-cairo_show_page (cr);
-...
-cairo_ps_surface_dsc_comment (surface, "%  \code{IncludeFeature}  : *PageSize A5");
-...
+\preformatted{
+surface <- cairoPsSurfaceCreate(filename, width, height)
+# ...
+surface$dscComment("\%Title: My excellent document")
+surface$dscComment("\%Copyright: Copyright (C) 2006 Cairo Lover")
+# ...
+surface$dscBeginSetup()
+surface$dscComment("\%IncludeFeature: *MediaColor White")
+# ...
+surface$dscBeginPageSetup()
+surface$dscComment("\%IncludeFeature: *PageSize A3")
+surface$dscComment("\%IncludeFeature: *InputSlot LargeCapacity")
+surface$dscComment("\%IncludeFeature: *MediaType Glossy")
+surface$dscComment("\%IncludeFeature: *MediaColor Blue")
+# ... draw to first page here ..
+cr$showPage()
+# ...
+surface$dscComment(surface, "\%IncludeFeature: *PageSize A5")
+# ...
 }  
 
   Since  1.2}

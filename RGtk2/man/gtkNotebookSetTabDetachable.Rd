@@ -19,25 +19,18 @@ destination and accept the target "GTK\_NOTEBOOK\_TAB". The notebook
 will fill the selection with a GtkWidget** pointing to the child
 widget that corresponds to the dropped tab.
   
-\preformatted{ static void
- on_drop_zone_drag_data_received (GtkWidget        *widget,
-                                  GdkDragContext   *context,
-                                  gint              x,
-                                  gint              y,
-                                  GtkSelectionData *selection_data,
-                                  guint             info,
-                                  guint             time,
-                                  gpointer          user_data)
- {
-   GtkWidget *notebook;
-   GtkWidget **child;
-   
-   notebook = gtk_drag_get_source_widget (context);
-   child = (void*) selection_data->data;
-   
-   process_widget (*child);
-   gtk_container_remove (GTK_CONTAINER (notebook), *child);
- }
+\preformatted{
+on_drop_zone_drag_data_received <- function(widget, context, x, y, 
+  selection_data, info, time, user_data)
+{
+  notebook <- context$getWidget()
+  child <- selection_data$data
+  # unfortunately, it's not possible to actually use 'child' - there
+  # would need to be a way to derefernce it and make an externalptr
+  # if you need this functionality, please let the RGtk2 maintainer know.
+  # process_widget(child)
+  # notebook$remove(child)
+}
 }
   
 If you want a notebook to accept drags from other widgets,

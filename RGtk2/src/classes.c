@@ -118,6 +118,8 @@ void
 S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
 {
   GTypeQuery query;
+  USER_OBJECT_ s_props, s_prop_overrides;
+  gint i, j;
   
   S_GObject_symbol = install("GObject");
   
@@ -127,6 +129,18 @@ S_gobject_class_init(GObjectClass *c, USER_OBJECT_ e)
   c->set_property = S_virtual_gobject_set_property;
   c->get_property = S_virtual_gobject_get_property;
   c->finalize = S_virtual_gobject_finalize;
+  
+  s_props = findVar(install(".props"), e);
+  /* initialize properties */
+  for (i = 0; i < GET_LENGTH(s_props); i++) {
+    GParamSpec *pspec = asCGParamSpec(VECTOR_ELT(s_props, i));
+    g_object_class_install_property(c, i+1, pspec);
+  }
+  s_prop_overrides = findVar(install(".prop_overrides"), e);
+  for (j = 0; j < GET_LENGTH(s_prop_overrides); j++)
+    g_object_class_override_property(c, i+1, 
+      asCString(STRING_ELT(s_prop_overrides, j)));
+    
   /*if (VECTOR_ELT(s, 2) != NULL_USER_OBJECT)
     c->constructor = S_virtual_gobject_constructor;*/
 }
@@ -240,15 +254,13 @@ static void S_g_object_init(SGObjectIface *iface, gpointer data)
 USER_OBJECT_
 S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_interfaces, 
   USER_OBJECT_ s_class_init_sym, USER_OBJECT_ s_interface_init_syms, USER_OBJECT_ s_def,
-  USER_OBJECT_ s_props, USER_OBJECT_ s_prop_overrides, USER_OBJECT_ s_signals, 
-  USER_OBJECT_ s_abstract)
+  USER_OBJECT_ s_signals, USER_OBJECT_ s_abstract)
 {
   GTypeQuery query;
   GTypeInfo type_info = {0, };
   GInterfaceInfo interface_info = {0, };
   GType new_type, parent_type = g_type_from_name(asCString(s_parent));
-  GObjectClass *c;
-  gint i, j;
+  gint i;
   gboolean abstract = asCLogical(s_abstract);
   
   if (!_S_InstanceInit_symbol) { /* initialize globals */
@@ -284,18 +296,6 @@ S_gobject_class_new(USER_OBJECT_ s_name, USER_OBJECT_ s_parent, USER_OBJECT_ s_i
   
   interface_info.interface_init = (GInterfaceInitFunc)S_g_object_init;
   g_type_add_interface_static(new_type, S_TYPE_G_OBJECT, &interface_info);
-  
-  /* install properties */
-  /* FIXME: move this to the class_init function so that we lazily create the class? */
-  c = g_type_class_ref(new_type);
-  for (i = 0; i < GET_LENGTH(s_props); i++) {
-    GParamSpec *pspec = asCGParamSpec(VECTOR_ELT(s_props, i));
-    g_object_class_install_property(c, i+1, pspec);
-  }
-  for (j = 0; j < GET_LENGTH(s_prop_overrides); j++)
-    g_object_class_override_property(c, i+1, 
-      asCString(STRING_ELT(s_prop_overrides, j)));
-  g_type_class_unref(c);
   
   /* install signals */
   for (i = 0; i < GET_LENGTH(s_signals); i++) {

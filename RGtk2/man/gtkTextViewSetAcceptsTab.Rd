@@ -1,13 +1,16 @@
 \alias{gtkTextViewSetAcceptsTab}
 \name{gtkTextViewSetAcceptsTab}
 \title{gtkTextViewSetAcceptsTab}
-\description{Sets the behavior of the text widget when the Tab key is pressed. If \code{accepts.tab}
-is \code{TRUE} a tab character is inserted. If \code{accepts.tab} is \code{FALSE} the keyboard focus
-is moved to the next widget in the focus chain.}
+\description{Sets the behavior of the text widget when the Tab key is pressed. 
+If \code{accepts.tab} is \code{TRUE}, a tab character is inserted. If \code{accepts.tab} 
+is \code{FALSE} the keyboard focus is moved to the next widget in the focus 
+chain.}
 \usage{gtkTextViewSetAcceptsTab(object, accepts.tab)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextView}}]  A \code{\link{GtkTextView}}}
-\item{\code{accepts.tab}}{[logical]  \code{TRUE} if pressing the Tab key should insert a tab character, \code{FALSE}, if pressing the Tab key should move the keyboard focus.}
+\item{\code{accepts.tab}}{[logical]  \code{TRUE} if pressing the Tab key should insert a tab 
+   character, \code{FALSE}, if pressing the Tab key should move the 
+   keyboard focus.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ the text column set by \code{\link{gtkIconViewSetTextColumn}}.}
 \usage{gtkIconViewSetMarkupColumn(object, column)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}
-\item{\code{column}}{[integer]  A column in the currently used model.}
+\item{\code{column}}{[integer]  A column in the currently used model, or -1 to display no text}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

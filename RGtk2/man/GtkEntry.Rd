@@ -35,6 +35,8 @@
 \code{\link{gtkEntryGetVisibility}(object)}\cr
 \code{\link{gtkEntrySetCompletion}(object, completion)}\cr
 \code{\link{gtkEntryGetCompletion}(object)}\cr
+\code{\link{gtkEntrySetCursorHadjustment}(object, adjustment)}\cr
+\code{\link{gtkEntryGetCursorHadjustment}(object)}\cr
 \code{gtkEntry(max = 0, show = TRUE)}
 }
 \section{Hierarchy}{\preformatted{  \link{GObject}
@@ -44,7 +46,7 @@
                      +----GtkEntry
                            +----\link{GtkSpinButton}}}
 \section{Interfaces}{GtkEntry implements
- AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
 \section{Detailed Description}{The \code{\link{GtkEntry}} widget is a single line text entry
 widget. A fairly large set of key bindings are supported
 by default. If the entered text is longer than the allocation
@@ -56,7 +58,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }}}
 \section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{activate(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -67,7 +69,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{backspace(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -78,7 +80,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{copy-clipboard(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -89,7 +91,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{cut-clipboard(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -100,7 +102,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{delete-from-cursor(entry, arg1, arg2, user.data)}}{
+\item{\code{The (entry, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -113,7 +115,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{insert-at-cursor(entry, arg1, user.data)}}{
+\item{\code{The (entry, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -125,7 +127,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{move-cursor(entry, arg1, arg2, arg3, user.data)}}{
+\item{\code{The (entry, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
@@ -139,7 +141,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{paste-clipboard(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -150,7 +152,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{populate-popup(entry, arg1, user.data)}}{
+\item{\code{The (entry, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -162,7 +164,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{toggle-overwrite(entry, user.data)}}{
+\item{\code{The (entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -197,7 +199,7 @@ FALSE removes outside bevel from entry.  Default value: TRUE
 }
 \item{\code{inner-border} [\code{\link{GtkBorder}} : Read / Write]}{
 
-Sets the text area's border between the text and the frame  
+Sets the text area's border between the text and the frame.  
 
   Since  2.10
 
@@ -220,6 +222,14 @@ Number of pixels of the entry scrolled off the screen to the left.  Allowed valu
 \item{\code{selection-bound} [integer : Read]}{
 
 The position of the opposite end of the selection from the cursor in chars.  Allowed values: [0,65535]  Default value: 0
+
+}
+\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
+
+Which kind of shadow to draw around the entry when 
+\code{:has-frame} is set to \code{TRUE}.  
+
+  Default value: GTK\_SHADOW\_IN  Since  2.12
 
 }
 \item{\code{text} [character : Read / Write]}{
@@ -249,15 +259,13 @@ Number of characters to leave space for in the entry.  Allowed values: >= -1  De
 The horizontal alignment, from 0 (left) to 1 (right). 
 Reversed for RTL layouts.  
 
-  
-Creates a new \code{\link{GtkEntry}} widget.
   Allowed values: [0,1]  Default value: 0  Since  2.4
 
 }
 }}
 \section{Style Properties}{\describe{\item{\code{inner-border} [\code{\link{GtkBorder}} : Read]}{
 
-Sets the text area's border between the text and the frame  
+Sets the text area's border between the text and the frame.  
 
   Since  2.10
 

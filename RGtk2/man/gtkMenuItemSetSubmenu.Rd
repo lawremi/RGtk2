@@ -1,11 +1,12 @@
 \alias{gtkMenuItemSetSubmenu}
 \name{gtkMenuItemSetSubmenu}
 \title{gtkMenuItemSetSubmenu}
-\description{Sets the widget submenu, or changes it.}
+\description{Sets or replaces the menu item's submenu, or removes it when a \code{NULL}
+submenu is passed.}
 \usage{gtkMenuItemSetSubmenu(object, submenu)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenuItem}}] the menu item widget}
-\item{\code{submenu}}{[\code{\link{GtkWidget}}] the submenu}
+\item{\code{object}}{[\code{\link{GtkMenuItem}}]  a \code{\link{GtkMenuItem}}}
+\item{\code{submenu}}{[\code{\link{GtkWidget}}]  the submenu, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

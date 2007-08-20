@@ -15,8 +15,9 @@ the values given to this function.}
 \details{Calling
 \code{gtk_tree_store_insert_with_values (tree_store, iter, position, ...)}
 has the same effect as calling
-\preformatted{gtk_tree_store_insert (tree_store, iter, position);
-gtk_tree_store_set (tree_store, iter, ...);
+\preformatted{
+tree_store$insert(iter, position)
+tree_store$set(iter, ...)
 }
 with the different that the former will only emit a row\_inserted signal,
 while the latter will emit row\_inserted, row\_changed and if the tree store

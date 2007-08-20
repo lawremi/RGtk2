@@ -17,7 +17,7 @@
                            +----\link{GtkHRuler}
                            +----\link{GtkVRuler}}}
 \section{Interfaces}{GtkRuler implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If

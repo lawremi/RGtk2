@@ -58,7 +58,7 @@
                                  +----\link{GtkAccelLabel}
                                  +----\link{GtkTipsQuery}}}
 \section{Interfaces}{GtkLabel implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkLabel}} widget displays a small amount of text. As the name
 implies, most labels are used to label another widget such as a
 \code{\link{GtkButton}}, a \code{\link{GtkMenuItem}}, or a \code{\link{GtkOptionMenu}}.}
@@ -145,7 +145,7 @@ described below.
 }}}
 \section{Convenient Construction}{\code{gtkLabel} is the result of collapsing the constructors of \code{GtkLabel} (\code{\link{gtkLabelNew}}, \code{\link{gtkLabelNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{copy-clipboard(label, user.data)}}{
+\item{\code{The (label, user.data)}}{
 \emph{undocumented
 }
 
@@ -156,7 +156,7 @@ described below.
 
 
 }
-\item{\code{move-cursor(label, arg1, arg2, arg3, user.data)}}{
+\item{\code{The (label, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
@@ -170,7 +170,7 @@ described below.
 
 
 }
-\item{\code{populate-popup(label, arg1, user.data)}}{
+\item{\code{The (label, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -206,15 +206,17 @@ The current position of the insertion cursor in chars.  Allowed values: >= 0  De
 }
 \item{\code{ellipsize} [\code{\link{PangoEllipsizeMode}} : Read / Write]}{
 
-The preferred place to ellipsize the string, if the label does not have 
-enough room to display the entire string, specified as a \code{PangoEllisizeMode}. 
+The preferred place to ellipsize the string, if the label does 
+not have enough room to display the entire string, specified as a 
+\code{PangoEllisizeMode}. 
   
-Note that setting this property to a value other than \code{PANGO_ELLIPSIZE_NONE} 
-has the side-effect that the label requests only enough space to display the
-ellipsis "...". In particular, this means that ellipsizing labels don't
-work well in notebook tabs, unless the tab's ::tab-expand property is set
-to \code{TRUE}. Other means to set a label's width are
-\code{\link{gtkWidgetSetSizeRequest}} and \code{\link{gtkLabelSetWidthChars}}.  
+Note that setting this property to a value other than 
+\code{PANGO_ELLIPSIZE_NONE} has the side-effect that the label requests 
+only enough space to display the ellipsis "...". In particular, this 
+means that ellipsizing labels do not work well in notebook tabs, unless 
+the tab's \code{:tab-expand} property is set to \code{TRUE}. Other ways
+to set a label's width are \code{\link{gtkWidgetSetSizeRequest}} and
+\code{\link{gtkLabelSetWidthChars}}.  
 
   Default value: PANGO\_ELLIPSIZE\_NONE  Since  2.6
 
@@ -234,8 +236,8 @@ The text of the label.  Default value: NULL
 The desired maximum width of the label, in characters. If this property 
 is set to -1, the width will be calculated automatically, otherwise the 
 label will request space for no more than the requested number of 
-characters. If the width-chars property is set to a positive value,
-then the max-width-chars property is ignored.  
+characters. If the \code{:width-chars} property is set to a positive 
+value, then the "max-width-chars" property is ignored.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
 
@@ -291,8 +293,8 @@ If set, an underline in the text indicates the next character should be used for
 The desired width of the label, in characters. If this property is set to
 -1, the width will be calculated automatically, otherwise the label will
 request either 3 characters or the property value, whichever is greater.
-If the width-chars property is set to a positive value, then the 
-max-width-chars property is ignored.  
+If the "width-chars" property is set to a positive value, then the 
+\code{:max-width-chars} property is ignored.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
 
@@ -304,9 +306,9 @@ If set, wrap lines if the text becomes too wide.  Default value: FALSE
 }
 \item{\code{wrap-mode} [\code{\link{PangoWrapMode}} : Read / Write]}{
 
-If line wrapping is on (see the wrap property) this controls how
-the line wrapping is done. The default is \code{PANGO_WRAP_WORD} which means
-wrap on word boundaries.  
+If line wrapping is on (see the \code{:wrap} property) this controls 
+how the line wrapping is done. The default is \code{PANGO_WRAP_WORD}, which 
+means wrap on word boundaries.  
 
   Default value: PANGO\_WRAP\_WORD  Since  2.10
 

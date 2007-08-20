@@ -1,7 +1,7 @@
 \alias{gtkTreeViewGetCellArea}
 \name{gtkTreeViewGetCellArea}
 \title{gtkTreeViewGetCellArea}
-\description{Fills the bounding rectangle in tree window coordinates for the cell at the
+\description{Fills the bounding rectangle in bin\_window coordinates for the cell at the
 row specified by \code{path} and the column specified by \code{column}.  If \code{path} is
 \code{NULL}, or points to a path not currently displayed, the \code{y} and \code{height} fields
 of the rectangle will be filled with 0. If \code{column} is \code{NULL}, the \code{x} and \code{width}

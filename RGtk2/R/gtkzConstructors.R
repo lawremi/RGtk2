@@ -463,6 +463,8 @@ gtkTextBuffer <- gtkTextBufferNew
 
 gtkTextChildAnchor <- gtkTextChildAnchorNew
 
+gtkTextMark <- gtkTextMarkNew
+
 gtkTextTag <- gtkTextTagNew
 
 gtkTextTagTable <- gtkTextTagTableNew
@@ -502,6 +504,8 @@ gtkToolButton <- gtkToolButtonNew
 gtkToolItem <- gtkToolItemNew
 
 gtkTooltips <- gtkTooltipsNew
+
+gtkTreeModelFilter <- gtkTreeModelFilterNew
 
 gtkTreeModelSort <- gtkTreeModelSortNewWithModel
 
@@ -596,4 +600,12 @@ gtkRecentChooserWidget <- gtkRecentChooserWidgetNewForManager
 gtkRecentChooserDialog <- gtkRecentChooserDialogNew
 
 gtkAssistant <- gtkAssistantNew
+
+gtkBuilder <- gtkBuilderNew
+
+gtkRecentAction <- gtkRecentActionNew
+
+gtkScaleButton <- gtkScaleButtonNew
+
+gtkVolumeButton <- gtkVolumeButtonNew
 

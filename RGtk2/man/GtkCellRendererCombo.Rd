@@ -36,8 +36,8 @@ The \code{\link{GtkCellRendererCombo}} cell renderer was added in GTK+ 2.6.}
 \section{Properties}{\describe{
 \item{\code{has-entry} [logical : Read / Write]}{
 
-If  \code{TRUE}, the cell renderer will include an entry and allow to enter values 
-other than the ones in the popup list.  
+If \code{TRUE}, the cell renderer will include an entry and allow to enter 
+values other than the ones in the popup list.  
 
   Default value: TRUE  Since  2.6
 
@@ -52,13 +52,15 @@ Use the text\_column property to specify the column holding the values.
 }
 \item{\code{text-column} [integer : Read / Write]}{
 
-Specifies the model column which holds the possible values for the combo box. 
-Note that this refers to the model specified in the model property, 
-\emph{not} the model backing the tree view to which this cell 
-renderer is attached.
+Specifies the model column which holds the possible values for the 
+combo box. 
   
-\code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for this column
-to its combo box.  
+Note that this refers to the model specified in the model property, 
+\emph{not} the model backing the tree view to which 
+this cell renderer is attached.
+  
+\code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for 
+this column to its combo box.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
 

@@ -18,6 +18,7 @@
 \code{\link{gtkIconViewGetPixbufColumn}(object)}\cr
 \code{\link{gtkIconViewGetPathAtPos}(object, x, y)}\cr
 \code{\link{gtkIconViewGetItemAtPos}(object, x, y)}\cr
+\code{\link{gtkIconViewConvertWidgetToBinWindowCoords}(object, wx, wy)}\cr
 \code{\link{gtkIconViewSetCursor}(object, path, cell, start.editing)}\cr
 \code{\link{gtkIconViewGetCursor}(object)}\cr
 \code{\link{gtkIconViewSelectedForeach}(object, func, data = NULL)}\cr
@@ -46,6 +47,11 @@
 \code{\link{gtkIconViewItemActivated}(object, path)}\cr
 \code{\link{gtkIconViewScrollToPath}(object, path, use.align, row.align, col.align)}\cr
 \code{\link{gtkIconViewGetVisibleRange}(object)}\cr
+\code{\link{gtkIconViewSetTooltipItem}(object, tooltip, path)}\cr
+\code{\link{gtkIconViewSetTooltipCell}(object, tooltip, path, cell)}\cr
+\code{\link{gtkIconViewGetTooltipContext}(object, x, y, keyboard.tip)}\cr
+\code{\link{gtkIconViewSetTooltipColumn}(object, column)}\cr
+\code{\link{gtkIconViewGetTooltipColumn}(object)}\cr
 \code{\link{gtkIconViewEnableModelDragSource}(object, start.button.mask, targets, actions)}\cr
 \code{\link{gtkIconViewEnableModelDragDest}(object, targets, actions)}\cr
 \code{\link{gtkIconViewUnsetModelDragSource}(object)}\cr
@@ -65,7 +71,7 @@
                      +----\link{GtkContainer}
                            +----GtkIconView}}
 \section{Interfaces}{GtkIconView implements
- AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{\code{\link{GtkIconView}} provides an alternative view on a list model. 
 It displays the model as a grid of icons with labels. Like 
 \code{\link{GtkTreeView}}, it allows to select one or multiple items 
@@ -104,7 +110,7 @@ selected rows.  It will be called on every selected row in the view.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{activate-cursor-item(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -115,7 +121,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{item-activated(iconview, arg1, user.data)}}{
+\item{\code{The (iconview, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -127,7 +133,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{move-cursor(iconview, arg1, arg2, user.data)}}{
+\item{\code{The (iconview, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -140,7 +146,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{select-all(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -151,7 +157,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{select-cursor-item(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -162,7 +168,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{selection-changed(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -173,7 +179,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{set-scroll-adjustments(iconview, arg1, arg2, user.data)}}{
+\item{\code{The (iconview, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -186,7 +192,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{toggle-cursor-item(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -197,7 +203,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{unselect-all(iconview, user.data)}}{
+\item{\code{The (iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -319,6 +325,11 @@ of type \code{G_TYPE_STRING}. If this property and the :markup-column
 property are both set to -1, no texts are displayed.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
+
+}
+\item{\code{tooltip-column} [integer : Read / Write]}{
+
+The column in the model containing the tooltip texts for the items.  Allowed values: >= -1  Default value: -1
 
 }
 }}

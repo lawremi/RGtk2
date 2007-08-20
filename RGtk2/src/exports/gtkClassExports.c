@@ -173,6 +173,21 @@ R_RegisterCCallable("RGtk2", "S_gtk_recent_chooser_dialog_class_init", ((DL_FUNC
 #if GTK_CHECK_VERSION(2, 10, 0)
 R_RegisterCCallable("RGtk2", "S_gtk_assistant_class_init", ((DL_FUNC)S_gtk_assistant_class_init));
 #endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_builder_class_init", ((DL_FUNC)S_gtk_builder_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_recent_action_class_init", ((DL_FUNC)S_gtk_recent_action_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_scale_button_class_init", ((DL_FUNC)S_gtk_scale_button_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_tooltip_class_init", ((DL_FUNC)S_gtk_tooltip_class_init));
+#endif 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_volume_button_class_init", ((DL_FUNC)S_gtk_volume_button_class_init));
+#endif 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_editable_class_init", ((DL_FUNC)S_gtk_cell_editable_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_layout_class_init", ((DL_FUNC)S_gtk_cell_layout_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_editable_class_init", ((DL_FUNC)S_gtk_editable_class_init)); 
@@ -180,3 +195,6 @@ R_RegisterCCallable("RGtk2", "S_gtk_tree_drag_dest_class_init", ((DL_FUNC)S_gtk_
 R_RegisterCCallable("RGtk2", "S_gtk_tree_drag_source_class_init", ((DL_FUNC)S_gtk_tree_drag_source_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_tree_model_class_init", ((DL_FUNC)S_gtk_tree_model_class_init)); 
 R_RegisterCCallable("RGtk2", "S_gtk_tree_sortable_class_init", ((DL_FUNC)S_gtk_tree_sortable_class_init)); 
+#if GTK_CHECK_VERSION(2, 12, 0)
+R_RegisterCCallable("RGtk2", "S_gtk_buildable_class_init", ((DL_FUNC)S_gtk_buildable_class_init));
+#endif 

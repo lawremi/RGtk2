@@ -26,7 +26,7 @@
                                        +----GtkToggleButton
                                              +----\link{GtkCheckButton}}}
 \section{Interfaces}{GtkToggleButton implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
@@ -68,7 +68,7 @@ The \code{\link{GtkToggleButton}} struct contains private data only, and should 
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleButton} is the result of collapsing the constructors of \code{GtkToggleButton} (\code{\link{gtkToggleButtonNew}}, \code{\link{gtkToggleButtonNewWithLabel}}, \code{\link{gtkToggleButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{toggled(togglebutton, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (togglebutton, user.data)}}{
 Should be connected if you wish to perform an action whenever the
 \code{\link{GtkToggleButton}}'s state is changed.
 

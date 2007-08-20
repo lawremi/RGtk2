@@ -17,7 +17,7 @@
                      +----\link{GtkMisc}
                            +----GtkPixmap}}
 \section{Interfaces}{GtkPixmap implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkPixmap}} widget displays a graphical image or icon.
 The icon is typically created using \code{\link{gdkPixmapColormapCreateFromXpm}}
 or \code{\link{gdkPixmapColormapCreateFromXpmD}}.

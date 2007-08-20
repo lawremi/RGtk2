@@ -25,7 +25,7 @@
                                              +----\link{GtkCheckButton}
                                                    +----GtkRadioButton}}
 \section{Interfaces}{GtkRadioButton implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A single radio button performs the same basic function as a \code{\link{GtkCheckButton}},
 as its position in the object hierarchy reflects. It is only when multiple
 radio buttons are grouped together that they become a different user
@@ -86,11 +86,11 @@ functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkRadioButton} is the result of collapsing the constructors of \code{GtkRadioButton} (\code{\link{gtkRadioButtonNew}}, \code{\link{gtkRadioButtonNewFromWidget}}, \code{\link{gtkRadioButtonNewWithLabel}}, \code{\link{gtkRadioButtonNewWithLabelFromWidget}}, \code{\link{gtkRadioButtonNewWithMnemonic}}, \code{\link{gtkRadioButtonNewWithMnemonicFromWidget}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{group-changed(style, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (style, user.data)}}{
 Emitted when the group of radio buttons that a radio button belongs
 to changes. This is emitted when a radio button switches from
 being alone to being part of a group of 2 or more buttons, or
-vice-versa, and when a buttton is moved from one group of 2 or
+vice-versa, and when a button is moved from one group of 2 or
 more buttons to a different one, but not when the composition
 of the group that a button belongs to changes.  
 

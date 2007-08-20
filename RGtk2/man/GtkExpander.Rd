@@ -28,24 +28,22 @@
                            +----\link{GtkBin}
                                  +----GtkExpander}}
 \section{Interfaces}{GtkExpander implements
- AtkImplementorIface.}
-\section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking on an expander triangle similar to 
-the triangles used in a \code{\link{GtkTreeView}}.
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+\section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking 
+on an expander triangle similar to the triangles used in a \code{\link{GtkTreeView}}.
   
-    Normally you use an expander as you would use any other descendant
-    of \code{\link{GtkBin}}; you create the child widget and use
-    \code{\link{gtkContainerAdd}} to add it to the expander.  When the expander
-    is toggled, it will take care of showing and hiding the child
-    automatically.
-  }
-\section{Special Usage}{      There are situations in which you may prefer to show and
-      hide the expanded widget yourself, such as when you want to
-      actually create the widget at expansion time.  In this case,
-      create a \code{\link{GtkExpander}} but do not add a child to it.  The
-      expander widget has an \code{expanded} property
-      which can be used to monitor its expansion state.  You should
-      watch this property with a signal connection as follows:
-      \preformatted{expander = gtk_expander_new_with_mnemonic ("_More Options");
+Normally you use an expander as you would use any other descendant
+of \code{\link{GtkBin}}; you create the child widget and use \code{\link{gtkContainerAdd}} 
+to add it to the expander. When the expander is toggled, it will take 
+care of showing and hiding the child automatically.}
+\section{Special Usage}{There are situations in which you may prefer to show and hide the 
+expanded widget yourself, such as when you want to actually create 
+the widget at expansion time. In this case, create a \code{\link{GtkExpander}} 
+but do not add a child to it. The expander widget has an 
+\code{expanded} property which can be used to monitor 
+its expansion state. You should watch this property with a signal 
+connection as follows:
+  \preformatted{expander = gtk_expander_new_with_mnemonic ("_More Options");
 g_signal_connect (expander, "notify::expanded",
                   G_CALLBACK (expander_callback), NULL);
 
@@ -69,8 +67,27 @@ expander_callback (GObject    *object,
       /* Hide or destroy widgets */
     }
 }
+}}
+\section{GtkExpander as GtkBuildable}{The GtkExpander implementation of the GtkBuildable interface 
+supports placing a child in the label position by specifying
+"label" as the "type" attribute of a <child> element.
+A normal content child can be specified without specifying 
+a <child> type attribute.
+  \preformatted{
+expander <- gtkExpanderNewWithMnemonic("_More Options")
+gSignalConnect(expander, "notify::expanded", expander_callback)
 
-    
+...
+
+
+expander_callback <- (expander, param_spec, user_data)
+{
+  if (expander$getExpanded()) {
+    # Show or create widgets
+  } else {
+    # Hide or destroy widgets
+  }
+}
 }}
 \section{Structures}{\describe{\item{\code{GtkExpander}}{
 \emph{undocumented
@@ -78,7 +95,7 @@ expander_callback (GObject    *object,
 
 }}}
 \section{Convenient Construction}{\code{gtkExpander} is the equivalent of \code{\link{gtkExpanderNew}}.}
-\section{Signals}{\describe{\item{\code{activate(expander, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (expander, user.data)}}{
 \emph{undocumented
 }
 

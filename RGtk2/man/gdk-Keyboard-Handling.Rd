@@ -12,6 +12,7 @@
 \code{\link{gdkKeymapGetEntriesForKeyval}(object, keyval)}\cr
 \code{\link{gdkKeymapGetEntriesForKeycode}(object, hardware.keycode)}\cr
 \code{\link{gdkKeymapGetDirection}(object)}\cr
+\code{\link{gdkKeymapHaveBidiLayouts}(object)}\cr
 \code{\link{gdkKeyvalName}(keyval)}\cr
 \code{\link{gdkKeyvalFromName}(keyval.name)}\cr
 \code{\link{gdkKeyvalConvertCase}(symbol)}\cr
@@ -114,7 +115,7 @@ be mapped to a keyval.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{direction-changed(keymap, user.data)}}{
+\item{\code{The (keymap, user.data)}}{
 The ::direction\_changed signal gets emitted when the direction of
 the keymap changes.  
 
@@ -127,7 +128,7 @@ the keymap changes.
 
 
 }
-\item{\code{keys-changed(keymap, user.data)}}{
+\item{\code{The (keymap, user.data)}}{
 The ::keys\_changed signal is emitted when the mapping represented by
 \code{keymap} changes.  
 

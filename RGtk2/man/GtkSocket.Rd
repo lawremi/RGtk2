@@ -17,7 +17,7 @@
                      +----\link{GtkContainer}
                            +----GtkSocket}}
 \section{Interfaces}{GtkSocket implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{Together with \code{\link{GtkPlug}}, \code{\link{GtkSocket}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
@@ -59,7 +59,8 @@ When GTK+ is notified that the embedded window has been
 destroyed, then it will destroy the socket as well. You
 should always, therefore, be prepared for your sockets
 to be destroyed at any time when the main event loop
-is running.
+is running. To prevent this from happening, you can
+connect to the \code{::plug-removed} signal.
   
 The communication between a \code{\link{GtkSocket}} and a \code{\link{GtkPlug}} follows the 
 XEmbed (\url{http://www.freedesktop.org/standards/xembed-spec})
@@ -81,27 +82,28 @@ never be set by an application.)
 }}}
 \section{Convenient Construction}{\code{gtkSocket} is the equivalent of \code{\link{gtkSocketNew}}.}
 \section{Signals}{\describe{
-\item{\code{plug-added(socket, user.data)}}{
+\item{\code{The (socket., user.data)}}{
 This signal is emitted when a client is successfully
-added to the socket.
+added to the socket.  
 
 \describe{
-\item{\code{socket}}{[\code{\link{GtkSocket}}] the object which received the signal.}
+\item{\code{socket.}}{[\code{\link{GtkSocket}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{plug-removed(socket, user.data)}}{
-This signal is emitted when a client is removed from the socket. The
-default action is to destroy the \code{\link{GtkSocket}} widget, so if you want to
-reuse it you must add a signal handler that returns \code{TRUE}.
+\item{\code{The (socket., user.data)}}{
+This signal is emitted when a client is removed from the socket. 
+The default action is to destroy the \code{\link{GtkSocket}} widget, so if you 
+want to reuse it you must add a signal handler that returns \code{TRUE}.  
 
 \describe{
-\item{\code{socket}}{[\code{\link{GtkSocket}}] the object which received the signal.}
+\item{\code{socket.}}{[\code{\link{GtkSocket}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} to stop other handlers from being invoked.
 
 }
 }}

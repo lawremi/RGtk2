@@ -15,7 +15,7 @@
                      +----\link{GtkMisc}
                            +----GtkArrow}}
 \section{Interfaces}{GtkArrow implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{GtkArrow should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right).  The
 style of the arrow can be one of shadow in, shadow out, etched in, or
@@ -47,6 +47,11 @@ Appearance of the shadow surrounding the arrow.  Default value: GTK\_SHADOW\_OUT
 
 }
 }}
+\section{Style Properties}{\describe{\item{\code{arrow-scaling} [numeric : Read]}{
+
+Amount of space used up by arrow.  Allowed values: [0,1]  Default value: 0.7
+
+}}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkArrow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

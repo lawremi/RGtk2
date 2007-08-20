@@ -7,7 +7,11 @@
 \section{Methods and Functions}{
 \code{\link{gtkAboutDialogNew}(show = TRUE)}\cr
 \code{\link{gtkAboutDialogGetName}(object)}\cr
+\code{\link{gtkAboutDialogGetName}(object)}\cr
 \code{\link{gtkAboutDialogSetName}(object, name = NULL)}\cr
+\code{\link{gtkAboutDialogSetName}(object, name = NULL)}\cr
+\code{\link{gtkAboutDialogGetProgramName}(object)}\cr
+\code{\link{gtkAboutDialogSetProgramName}(object, name)}\cr
 \code{\link{gtkAboutDialogGetVersion}(object)}\cr
 \code{\link{gtkAboutDialogSetVersion}(object, version = NULL)}\cr
 \code{\link{gtkAboutDialogGetCopyright}(object)}\cr
@@ -49,7 +53,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkAboutDialog}}
 \section{Interfaces}{GtkAboutDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkAboutDialog}} offers a simple way to display information about
 a program like its logo, name, copyright, website and license. It is
 also possible to give credits to the authors, documenters, translators
@@ -68,20 +72,32 @@ recognized by looking for \code{http://url}, with
   
 To make constructing a \code{\link{GtkAboutDialog}} as convenient as possible, you can
 use the function \code{\link{gtkShowAboutDialog}} which constructs and shows a dialog 
-and keeps it around so that it can be shown again.}
+and keeps it around so that it can be shown again.
+  
+Note that GTK+ sets a default title of \code{_("About \%s")} 
+on the dialog window (where \%s is replaced by the name of the 
+application, but in order to ensure proper translation of the title, 
+applications should set the title property explicitly when constructing 
+a \code{\link{GtkAboutDialog}}, as shown in the following example:
+  \preformatted{
+gtkShowAboutDialog(NULL, 
+                   "name" = "ExampleCode",
+                   "logo" = example_logo,
+                   "title" = "About ExampleCode")
+}}
 \section{Structures}{\describe{\item{\code{GtkAboutDialog}}{
 The \code{GtkAboutDialog} struct contains
 only private fields and should not be directly accessed.
 
 }}}
 \section{Convenient Construction}{\code{gtkAboutDialog} is the equivalent of \code{\link{gtkAboutDialogNew}}.}
-\section{User Functions}{\describe{\item{\code{GtkAboutDialogActivateLinkFunc(about, link, data)}}{
+\section{User Functions}{\describe{\item{\code{GtkAboutDialogActivateLinkFunc(about, link., data)}}{
 The type of a function which is called when a URL or email
 link is activated. 
 
 \describe{
 \item{\code{about}}{[\code{\link{GtkAboutDialog}}] the \code{\link{GtkAboutDialog}} in which the link was activated}
-\item{\code{link}}{[character] the URL or email address to whiche the activated link points}
+\item{\code{link.}}{[character] the URL or email address to which the activated link points}
 \item{\code{data}}{[R object] user data that was passed when the function was registered
   with \code{\link{gtkAboutDialogSetEmailHook}} or 
   \code{\link{gtkAboutDialogSetUrlHook}}}
@@ -160,12 +176,9 @@ overrides the logo property.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{name} [character : Read / Write]}{
+\item{\code{program-name} [character : Read / Write]}{
 
-The name of the program. 
-If this is not set, it defaults to \code{gGetApplicationName()}.  
-
-  Default value: NULL  Since  2.6
+The name of the program. If this is not set, it defaults to g\_get\_application\_name().  Default value: NULL
 
 }
 \item{\code{translator-credits} [character : Read / Write]}{

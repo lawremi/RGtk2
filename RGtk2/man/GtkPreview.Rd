@@ -28,7 +28,7 @@
                +----\link{GtkWidget}
                      +----GtkPreview}}
 \section{Interfaces}{GtkPreview implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkPreview}} widget provides a simple interface 
 used to display images as RGB or grayscale data.
 It's deprecated; just use a \code{\link{GdkPixbuf}} displayed by a \code{\link{GtkImage}}, or

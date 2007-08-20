@@ -56,6 +56,9 @@ S_GtkFunction(gpointer s_data);
 S_GtkKeySnoopFunc(GtkWidget* s_grab_widget, GdkEventKey* s_event, gpointer s_func_data); 
 
   gint
+S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in, gpointer s_user_data); 
+
+  gint
 S_GtkTreeModelForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTreeIter* s_iter, gpointer s_data); 
 
   gint
@@ -163,6 +166,11 @@ S_GtkTextBufferDeserializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* 
 #if GTK_CHECK_VERSION(2, 10, 0)
   void
 S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_dialog, gpointer s_user_data);
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+  void
+S_GtkBuilderConnectFunc(GtkBuilder* s_builder, GObject* s_object, const gchar* s_signal_name, const gchar* s_handler_name, GObject* s_connect_object, guint s_flags, gpointer s_user_data);
 #endif 
 
 #endif

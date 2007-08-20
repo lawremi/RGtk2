@@ -18,6 +18,8 @@
 \code{\link{gtkStatusIconGetStock}(object)}\cr
 \code{\link{gtkStatusIconGetIconName}(object)}\cr
 \code{\link{gtkStatusIconGetSize}(object)}\cr
+\code{\link{gtkStatusIconSetScreen}(object, screen)}\cr
+\code{\link{gtkStatusIconGetScreen}(object)}\cr
 \code{\link{gtkStatusIconSetTooltip}(object, tooltip.text)}\cr
 \code{\link{gtkStatusIconSetVisible}(object, visible)}\cr
 \code{\link{gtkStatusIconGetVisible}(object)}\cr
@@ -57,7 +59,7 @@ on Win32 doesn't allow to embed arbitrary widgets.}
 }}}
 \section{Convenient Construction}{\code{gtkStatusIcon} is the equivalent of \code{\link{gtkStatusIconNew}}.}
 \section{Signals}{\describe{
-\item{\code{activate(status.icon, user.data)}}{
+\item{\code{The (status.icon, user.data)}}{
 Gets emitted when the user activates the status icon. 
 If and how status icons can activated is platform-dependent.  
 
@@ -70,7 +72,7 @@ If and how status icons can activated is platform-dependent.
 
 
 }
-\item{\code{popup-menu(status.icon, button, activate.time, user.data)}}{
+\item{\code{The (status.icon, button, activate.time, user.data)}}{
 Gets emitted when the user brings up the context menu
 of the status icon. Whether status icons can have context 
 menus and how these are activated is platform-dependent.
@@ -91,7 +93,7 @@ passed as the last to arguments to \code{\link{gtkMenuPopup}}.
 
 
 }
-\item{\code{size-changed(status.icon, size, user.data)}}{
+\item{\code{The (status.icon, size, user.data)}}{
 Gets emitted when the size available for the image
 changes, e.g. because the notification area got resized.  
 
@@ -114,6 +116,13 @@ size. Otherwise, GTK+ will scale the icon as necessary.
 Whether or not the status icon is blinking.  Default value: FALSE
 
 }
+\item{\code{embedded} [logical : Read]}{
+
+\code{TRUE} if the statusicon is embedded in a notification area.  
+
+  Default value: FALSE  Since  2.12
+
+}
 \item{\code{file} [character : Write]}{
 
 Filename to load and display.  Default value: NULL
@@ -124,9 +133,22 @@ Filename to load and display.  Default value: NULL
 The name of the icon from the icon theme.  Default value: NULL
 
 }
+\item{\code{orientation} [\code{\link{GtkOrientation}} : Read]}{
+
+The orientation of the tray in which the statusicon 
+is embedded.  
+
+  Default value: GTK\_ORIENTATION\_HORIZONTAL  Since  2.12
+
+}
 \item{\code{pixbuf} [\code{\link{GdkPixbuf}} : Read / Write]}{
 
 A GdkPixbuf to display.
+
+}
+\item{\code{screen} [\code{\link{GdkScreen}} : Read / Write]}{
+
+The screen where this status icon will be displayed.
 
 }
 \item{\code{size} [integer : Read]}{

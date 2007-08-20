@@ -5,7 +5,7 @@
 allocation changes. By default, this setting is \code{TRUE} and
 the entire widget is redrawn on every size change. If your widget
 leaves the upper left unchanged when made bigger, turning this
-setting on will improve performance.}
+setting off will improve performance.}
 \usage{gtkWidgetSetRedrawOnAllocate(object, redraw.on.allocate)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}

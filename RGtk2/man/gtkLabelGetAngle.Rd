@@ -2,7 +2,7 @@
 \name{gtkLabelGetAngle}
 \title{gtkLabelGetAngle}
 \description{Gets the angle of rotation for the label. See
-gtk\_label\_set\_angle.}
+\code{\link{gtkLabelSetAngle}}.}
 \usage{gtkLabelGetAngle(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
 \details{  Since  2.6}

@@ -4,6 +4,12 @@
 \title{GtkRange}
 \description{Base class for widgets which visualize an adjustment}
 \section{Methods and Functions}{
+\code{\link{gtkRangeGetFillLevel}(object)}\cr
+\code{\link{gtkRangeGetRestrictToFillLevel}(object)}\cr
+\code{\link{gtkRangeGetShowFillLevel}(object)}\cr
+\code{\link{gtkRangeSetFillLevel}(object, fill.level)}\cr
+\code{\link{gtkRangeSetRestrictToFillLevel}(object, restrict.to.fill.level)}\cr
+\code{\link{gtkRangeSetShowFillLevel}(object, show.fill.level)}\cr
 \code{\link{gtkRangeGetAdjustment}(object)}\cr
 \code{\link{gtkRangeSetUpdatePolicy}(object, policy)}\cr
 \code{\link{gtkRangeSetAdjustment}(object, adjustment)}\cr
@@ -28,7 +34,14 @@
                            +----\link{GtkScale}
                            +----\link{GtkScrollbar}}}
 \section{Interfaces}{GtkRange implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+\section{Detailed Description}{\code{\link{GtkRange}} is the common base class for widgets which visualize an
+adjustment, e.g scales or scrollbars. 
+  
+Apart from signals for monitoring the parameters of the adjustment, 
+GtkRange provides properties and methods for influencing the sensitivity
+of the "steppers". It also provides properties and methods for setting a 
+"fill level" on range widgets. See \code{\link{gtkRangeSetFillLevel}}.}
 \section{Structures}{\describe{\item{\code{GtkRange}}{
 \emph{undocumented
 }
@@ -47,7 +60,7 @@ at the end of range widgets.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{adjust-bounds(range, arg1, user.data)}}{
+\item{\code{The (range, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -59,7 +72,7 @@ at the end of range widgets.
 
 
 }
-\item{\code{change-value(range, scroll, value, returns, user.data)}}{
+\item{\code{The (range, scroll, value, returns, user.data)}}{
 The ::change-value signal is emitted when a scroll action is
 performed on a range.  It allows an application to determine the
 type of scroll event that occurred and the resultant new value.
@@ -79,32 +92,32 @@ It is not possible to use delayed update policies in an overridden
   Since  2.6
 
 \describe{
-\item{\code{range}}{[\code{\link{GtkRange}}]  the range that received the signal.}
-\item{\code{scroll}}{[\code{\link{GtkScrollType}}]  the type of scroll action that was performed.}
-\item{\code{value}}{[numeric]  the new value resulting from the scroll action.}
+\item{\code{range}}{[\code{\link{GtkRange}}]  the range that received the signal}
+\item{\code{scroll}}{[\code{\link{GtkScrollType}}]  the type of scroll action that was performed}
+\item{\code{value}}{[numeric]  the new value resulting from the scroll action}
 \item{\code{returns}}{[R object]  \code{TRUE} to prevent other handlers from being invoked for the
-signal.  \code{FALSE} to propagate the signal further.}
+signal, \code{FALSE} to propagate the signal further}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{move-slider(range, arg1, user.data)}}{
-Virtual function that moves the slider. Used for keybindings.
+\item{\code{The (range, step, user.data)}}{
+Virtual function that moves the slider. Used for keybindings.  
 
 \describe{
-\item{\code{range}}{[\code{\link{GtkRange}}] the \code{\link{GtkRange}}}
-\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
+\item{\code{range}}{[\code{\link{GtkRange}}]  the \code{\link{GtkRange}}}
+\item{\code{step}}{[\code{\link{GtkScrollType}}]  how to move the slider}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{value-changed(range, user.data)}}{
-Emitted when the range value changes.
+\item{\code{The (range, user.data)}}{
+Emitted when the range value changes.  
 
 \describe{
-\item{\code{range}}{[\code{\link{GtkRange}}] the \code{\link{GtkRange}}}
+\item{\code{range}}{[\code{\link{GtkRange}}]  the \code{\link{GtkRange}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -117,6 +130,14 @@ Emitted when the range value changes.
 The GtkAdjustment that contains the current value of this range object.
 
 }
+\item{\code{fill-level} [numeric : Read / Write]}{
+
+The fill level (e.g. prebuffering of a network stream).
+See \code{\link{gtkRangeSetFillLevel}}.  
+
+  Default value: 1.79769e+308  Since  2.12
+
+}
 \item{\code{inverted} [logical : Read / Write]}{
 
 Invert direction slider moves to increase range value.  Default value: FALSE
@@ -125,6 +146,24 @@ Invert direction slider moves to increase range value.  Default value: FALSE
 \item{\code{lower-stepper-sensitivity} [\code{\link{GtkSensitivityType}} : Read / Write]}{
 
 The sensitivity policy for the stepper that points to the adjustment's lower side.  Default value: GTK\_SENSITIVITY\_AUTO
+
+}
+\item{\code{restrict-to-fill-level} [logical : Read / Write]}{
+
+The restrict-to-fill-level property controls whether slider
+movement is restricted to an upper boundary set by the
+fill level. See \code{\link{gtkRangeSetRestrictToFillLevel}}.  
+
+  Default value: TRUE  Since  2.12
+
+}
+\item{\code{show-fill-level} [logical : Read / Write]}{
+
+The show-fill-level property controls whether fill level indicator
+graphics are displayed on the trough. See
+\code{\link{gtkRangeSetShowFillLevel}}.  
+
+  Default value: FALSE  Since  2.12
 
 }
 \item{\code{update-policy} [\code{\link{GtkUpdateType}} : Read / Write]}{
@@ -168,7 +207,7 @@ Length of step buttons at ends.  Allowed values: >= 0  Default value: 14
 
 The spacing between the stepper buttons and thumb. Note that
 setting this value to anything > 0 will automatically set the
-trough-under-steppers style property to TRUE as well. Also,
+trough-under-steppers style property to \code{TRUE} as well. Also,
 stepper-spacing won't have any effect if there are no steppers.  
 
   Allowed values: >= 0  Default value: 0
@@ -181,7 +220,8 @@ Spacing between thumb/steppers and outer trough bevel.  Allowed values: >= 0  De
 }
 \item{\code{trough-side-details} [logical : Read]}{
 
-  
+When \code{TRUE}, the parts of the trough on the two sides of the 
+slider are drawn with different details.  
 
   Default value: FALSE  Since  2.10
 
@@ -190,7 +230,7 @@ Spacing between thumb/steppers and outer trough bevel.  Allowed values: >= 0  De
 
 Whether to draw the trough across the full length of the range or
 to exclude the steppers and their spacing. Note that setting the
-stepper-spacing style property to any value > 0 will
+\code{:stepper-spacing} style property to any value > 0 will
 automatically enable trough-under-steppers too.  
 
   Default value: TRUE  Since  2.10

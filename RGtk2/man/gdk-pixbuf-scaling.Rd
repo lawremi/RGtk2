@@ -27,6 +27,13 @@
     given size, scale an original image to fit, and then return the
     new pixbuf.
     
+   Scaling and compositing functions take advantage of MMX hardware
+   acceleration on systems where MMX is supported.  If gdk-pixbuf is built
+   with the Sun mediaLib library, these functions are instead accelerated
+   using mediaLib, which provides hardware acceleration on Intel, AMD,
+   and Sparc chipsets.  If desired, mediaLib support can be turned off by
+   setting the GDK\_DISABLE\_MEDIALIB environment variable.  
+    
     The following example demonstrates handling an expose event by
     rendering the appropriate area of a source image (which is scaled
     to fit the widget) onto the widget's window.  The source image is

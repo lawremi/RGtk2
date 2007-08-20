@@ -20,7 +20,7 @@
                      +----\link{GtkDrawingArea}
                            +----GtkCurve}}
 \section{Interfaces}{GtkCurve implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}   
  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
@@ -45,7 +45,7 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkCurve} is the equivalent of \code{\link{gtkCurveNew}}.}
-\section{Signals}{\describe{\item{\code{curve-type-changed(curve, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (curve, user.data)}}{
 Emitted when the curve type has been changed.
 The curve type can be changed explicitly with a call to
 \code{\link{gtkCurveSetCurveType}}. It is also changed as a side-effect of

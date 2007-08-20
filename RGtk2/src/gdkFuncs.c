@@ -9147,3 +9147,215 @@ S_gdk_window_get_type_hint(USER_OBJECT_ s_object)
 }
  
 
+USER_OBJECT_
+S_gdk_color_to_string(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkColor* object = asCGdkColor(s_object);
+
+  gchar* ans;
+
+  ans = gdk_color_to_string(object);
+
+  _result = asRString(ans);
+    CLEANUP(g_free, ans);;
+#else
+  error("gdk_color_to_string exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_display_supports_composite(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkDisplay* object = GDK_DISPLAY_OBJECT(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_display_supports_composite(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_display_supports_composite exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_event_request_motions(USER_OBJECT_ s_event)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkEventMotion* event = ((GdkEventMotion*)getPtrValue(s_event));
+
+
+  gdk_event_request_motions(event);
+
+#else
+  error("gdk_event_request_motions exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_keymap_have_bidi_layouts(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkKeymap* object = GDK_KEYMAP(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = gdk_keymap_have_bidi_layouts(object);
+
+  _result = asRLogical(ans);
+#else
+  error("gdk_keymap_have_bidi_layouts exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pango_attr_emboss_color_new(USER_OBJECT_ s_color)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  const GdkColor* color = asCGdkColor(s_color);
+
+  PangoAttribute* ans;
+
+  ans = gdk_pango_attr_emboss_color_new(color);
+
+  _result = asRPangoAttribute(ans);
+#else
+  error("gdk_pango_attr_emboss_color_new exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_set_composited(USER_OBJECT_ s_object, USER_OBJECT_ s_composited)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  gboolean composited = ((gboolean)asCLogical(s_composited));
+
+
+  gdk_window_set_composited(object, composited);
+
+#else
+  error("gdk_window_set_composited exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_set_startup_id(USER_OBJECT_ s_object, USER_OBJECT_ s_startup_id)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  const gchar* startup_id = ((const gchar*)asCString(s_startup_id));
+
+
+  gdk_window_set_startup_id(object, startup_id);
+
+#else
+  error("gdk_window_set_startup_id exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_beep(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+
+
+  gdk_window_beep(object);
+
+#else
+  error("gdk_window_beep exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_window_set_opacity(USER_OBJECT_ s_object, USER_OBJECT_ s_opacity)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkWindow* object = GDK_WINDOW(getPtrValue(s_object));
+  gdouble opacity = ((gdouble)asCNumeric(s_opacity));
+
+
+  gdk_window_set_opacity(object, opacity);
+
+#else
+  error("gdk_window_set_opacity exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_notify_startup_complete_with_id(USER_OBJECT_ s_id)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  const gchar* id = ((const gchar*)asCString(s_id));
+
+
+  gdk_notify_startup_complete_with_id(id);
+
+#else
+  error("gdk_notify_startup_complete_with_id exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_gdk_pixbuf_apply_embedded_orientation(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GDK_CHECK_VERSION(2, 12, 0)
+  GdkPixbuf* object = GDK_PIXBUF(getPtrValue(s_object));
+
+  GdkPixbuf* ans;
+
+  ans = gdk_pixbuf_apply_embedded_orientation(object);
+
+  _result = toRPointerWithFinalizer(ans, "GdkPixbuf", (RPointerFinalizer) g_object_unref);
+#else
+  error("gdk_pixbuf_apply_embedded_orientation exists only in Gdk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+ 
+

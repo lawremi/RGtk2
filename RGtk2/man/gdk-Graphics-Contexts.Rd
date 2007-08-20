@@ -134,38 +134,22 @@ images, only \code{GDK_COPY}, \code{GDK_XOR} and \code{GDK_INVERT} are generally
 useful. For bitmaps, \code{GDK_AND} and \code{GDK_OR} are also useful.
 
 \describe{
-\item{\code{copy}}{\emph{undocumented
-}}
-\item{\code{invert}}{\emph{undocumented
-}}
-\item{\code{xor}}{\emph{undocumented
-}}
-\item{\code{clear}}{\emph{undocumented
-}}
-\item{\code{and}}{\emph{undocumented
-}}
-\item{\code{and-reverse}}{\emph{undocumented
-}}
-\item{\code{and-invert}}{\emph{undocumented
-}}
-\item{\code{noop}}{\emph{undocumented
-}}
-\item{\code{or}}{\emph{undocumented
-}}
-\item{\code{equiv}}{\emph{undocumented
-}}
-\item{\code{or-reverse}}{\emph{undocumented
-}}
-\item{\code{copy-invert}}{\emph{undocumented
-}}
-\item{\code{or-invert}}{\emph{undocumented
-}}
-\item{\code{nand}}{\emph{undocumented
-}}
-\item{\code{nor}}{\emph{undocumented
-}}
-\item{\code{set}}{\emph{undocumented
-}}
+\item{\code{copy}}{\code{dst = src}}
+\item{\code{invert}}{\code{dst = NOT dst}}
+\item{\code{xor}}{\code{dst = src XOR dst}}
+\item{\code{clear}}{\code{dst = 0}}
+\item{\code{and}}{\code{dst = dst AND src}}
+\item{\code{and-reverse}}{\code{dst = src AND (NOT dst)}}
+\item{\code{and-invert}}{\code{dst = (NOT src) AND dst}}
+\item{\code{noop}}{\code{dst = dst}}
+\item{\code{or}}{\code{dst = src OR dst}}
+\item{\code{equiv}}{\code{dst = (NOT src) XOR dst}}
+\item{\code{or-reverse}}{\code{dst = src OR (NOT dst)}}
+\item{\code{copy-invert}}{\code{dst = NOT src}}
+\item{\code{or-invert}}{\code{dst = (NOT src) OR dst}}
+\item{\code{nand}}{\code{dst = (NOT src) OR (NOT dst)}}
+\item{\code{nor}}{\code{dst = (NOT src) AND (NOT dst)}}
+\item{\code{set}}{\code{dst = 1}}
 }
 
 }

@@ -1258,6 +1258,56 @@ S_gtk_assistant_class_init(GtkAssistantClass * c, SEXP e)
 }
 #endif 
 
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_builder_class_init(GtkBuilderClass * c, SEXP e)
+{
+  static void (*fun)(GtkBuilderClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkBuilderClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_builder_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_recent_action_class_init(GtkRecentActionClass * c, SEXP e)
+{
+  static void (*fun)(GtkRecentActionClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkRecentActionClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_recent_action_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e)
+{
+  static void (*fun)(GtkScaleButtonClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkScaleButtonClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_scale_button_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_tooltip_class_init(GtkTooltipClass * c, SEXP e)
+{
+  static void (*fun)(GtkTooltipClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkTooltipClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_tooltip_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
+{
+  static void (*fun)(GtkVolumeButtonClass *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkVolumeButtonClass *, SEXP))R_GetCCallable("RGtk2", "S_gtk_volume_button_class_init"));
+  return(fun(c, e));
+}
+#endif 
+
 void
 S_gtk_cell_editable_class_init(GtkCellEditableIface * c, SEXP e)
 {
@@ -1313,4 +1363,14 @@ S_gtk_tree_sortable_class_init(GtkTreeSortableIface * c, SEXP e)
   if(!fun) fun = ((void (*)(GtkTreeSortableIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_tree_sortable_class_init"));
   return(fun(c, e));
 } 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+void
+S_gtk_buildable_class_init(GtkBuildableIface * c, SEXP e)
+{
+  static void (*fun)(GtkBuildableIface *, SEXP) = NULL;
+  if(!fun) fun = ((void (*)(GtkBuildableIface *, SEXP))R_GetCCallable("RGtk2", "S_gtk_buildable_class_init"));
+  return(fun(c, e));
+}
+#endif 
 

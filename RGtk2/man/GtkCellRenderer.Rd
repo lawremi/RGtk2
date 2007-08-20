@@ -3,7 +3,7 @@
 \alias{GtkCellRendererMode}
 \name{GtkCellRenderer}
 \title{GtkCellRenderer}
-\description{An object for rendering a single cell on a }
+\description{An object for rendering a single cell on a GdkDrawable}
 \section{Methods and Functions}{
 \code{\link{gtkCellRendererGetSize}(object, widget, cell.area = NULL)}\cr
 \code{\link{gtkCellRendererRender}(object, window, widget, background.area, cell.area, expose.area, flags)}\cr
@@ -68,8 +68,7 @@ probably has a selection colored background to render to.}
 \item{\code{prelit}}{The mouse is hovering over the cell.}
 \item{\code{insensitive}}{The cell is drawn in an insensitive manner}
 \item{\code{sorted}}{The cell is in a sorted row}
-\item{\code{focused}}{\emph{undocumented
-}}
+\item{\code{focused}}{The cell is in the focus row.}
 }
 
 }
@@ -88,12 +87,12 @@ it cannot be individually modified.}
 }
 }}
 \section{Signals}{\describe{
-\item{\code{editing-canceled(renderer, user.data)}}{
+\item{\code{The (renderer, user.data)}}{
 This signal gets emitted when the user cancels the process of editing a
 cell.  For example, an editable cell renderer could be written to cancel
 editing when the user presses Escape. 
   
-See also: \code{\link{gtkCellRendererEditingCanceled}}  
+See also: \code{\link{gtkCellRendererStopEditing}}.  
 
   Since  2.4
 
@@ -104,7 +103,7 @@ See also: \code{\link{gtkCellRendererEditingCanceled}}
 
 
 }
-\item{\code{editing-started(renderer, editable, path, user.data)}}{
+\item{\code{The (renderer, editable, path, user.data)}}{
 This signal gets emitted when a cell starts to be edited.
 The indended use of this signal is to do special setup
 on \code{editable}, e.g. adding a \code{\link{GtkEntryCompletion}} or setting

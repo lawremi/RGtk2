@@ -10,6 +10,7 @@
 \code{\link{gtkPaperSizeNewCustom}(name, display.name, width, height, unit)}\cr
 \code{\link{gtkPaperSizeCopy}(object)}\cr
 \code{\link{gtkPaperSizeIsEqual}(object, size2)}\cr
+\code{\link{gtkPaperSizeGetPaperSizes}(include.custom)}\cr
 \code{\link{gtkPaperSizeGetName}(object)}\cr
 \code{\link{gtkPaperSizeGetDisplayName}(object)}\cr
 \code{\link{gtkPaperSizeGetPpdName}(object)}\cr
@@ -22,6 +23,8 @@
 \code{\link{gtkPaperSizeGetDefaultLeftMargin}(object, unit)}\cr
 \code{\link{gtkPaperSizeGetDefaultRightMargin}(object, unit)}\cr
 \code{\link{gtkPaperSizeGetDefault}()}\cr
+\code{\link{gtkPaperSizeNewFromKeyFile}(key.file, group.name, .errwarn = TRUE)}\cr
+\code{\link{gtkPaperSizeToKeyFile}(object, key.file, group.name)}\cr
 }
 \section{Detailed Description}{GtkPaperSize handles paper sizes. It uses the standard called 
 "PWG 5101.1-2002 PWG: Standard for Media Standardized Names" 

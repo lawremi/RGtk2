@@ -27,8 +27,8 @@
                                  +----\link{GtkVBox}
                                  +----\link{GtkHBox}}}
 \section{Interfaces}{GtkBox implements
- AtkImplementorIface.}
-\section{Detailed Description}{GtkBox is an abstract widget which encapsulates functionallity for a
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+\section{Detailed Description}{GtkBox is an abstract widget which encapsulates functionality for a
 particular kind of container, one that organizes a variable number of
 widgets into a rectangular area.  GtkBox currently has two derived
 classes, \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
@@ -42,8 +42,8 @@ row, or the width of a column.
 GtkBox uses a notion of \emph{packing}.  Packing refers to
 adding widgets with reference to a particular position in a
 \code{\link{GtkContainer}}.  For a GtkBox, there are two reference positions: the
-\emph{start} and the \emph{end} of the box.  For a
-\code{\link{GtkVBox}}, the start is defined as the top of the box and the end is
+\emph{start} and the \emph{end} of the box.  
+For a \code{\link{GtkVBox}}, the start is defined as the top of the box and the end is
 defined as the bottom.  For a \code{\link{GtkHBox}} the start is defined as the
 left side and the end is defined as the right side.
   
@@ -54,9 +54,8 @@ both ends of the same GtkBox.
   
 Use \code{\link{gtkBoxPackStartDefaults}} or \code{\link{gtkBoxPackEndDefaults}}
 to pack widgets into a GtkBox if you do not need to specify the
-\code{expand}, \code{fill}, or
-\code{padding} attributes of the child to be
-added.
+\code{:expand}, \code{:fill}, or \code{:padding} child properties 
+for the child to be added.
   
 Because GtkBox is a \code{\link{GtkContainer}}, you may also use
 \code{\link{gtkContainerAdd}} to insert widgets into the box, and they will be
@@ -72,24 +71,20 @@ minimally placed between all children in the GtkBox.
 Use \code{\link{gtkBoxReorderChild}} to move a GtkBox child to a different
 place in the box.
   
-Use \code{\link{gtkBoxSetChildPacking}} to reset the
-\code{expand}, \code{fill},
-and \code{padding} attributes of any GtkBox child.
+Use \code{\link{gtkBoxSetChildPacking}} to reset the \code{:expand}, 
+\code{:fill} and \code{:padding} child properties.
 Use \code{\link{gtkBoxQueryChildPacking}} to query these fields.}
 \section{Structures}{\describe{
 \item{\code{GtkBox}}{
-The \code{\link{GtkBox}} describes an instance of GtkBox and contains the following fields.
-(These fields should be considered read-only. They should never be set by
-an application.)
+The \code{\link{GtkBox}} describes an instance of GtkBox and contains the 
+following fields.  (These fields should be considered read-only. 
+They should never be set by an application.)
 
-\tabular{ll}{
-\code{list}   *   \code{children}  ; \tab a list of children belonging the GtkBox.  The data is a list of
-structures of type   \code{\link{GtkBoxChild}}  . \cr
-\code{integer}     \code{spacing}  ; \tab the number of pixels to put between children of the GtkBox, zero
-by default.  Use   \code{\link{gtkBoxSetSpacing}}   to set this field. \cr
-\code{numeric}     \code{homogeneous}  ; \tab a flag that if   \code{TRUE}   forces all children to get equal space in
-the GtkBox;   \code{FALSE}   by default.  Use   \code{\link{gtkBoxSetHomogeneous}}   to set this
-field. \cr
+\describe{
+\item{\code{spacing}}{[integer] a list of children belonging the GtkBox.  
+  The data is a list of structures of type \code{\link{GtkBoxChild}}.}
+\item{\code{homogeneous}}{[numeric] the number of pixels to put between children of the GtkBox, 
+  zero by default. Use \code{\link{gtkBoxSetSpacing}} to set this field.}
 }
 
 }
@@ -105,21 +100,21 @@ and \code{pack} fields.
 should be considered read-only. They should never be directly set by an
 application.)
 
-\tabular{ll}{
-\code{\link{GtkWidget}}   *   \code{widget}  ; \tab the child widget, packed into the GtkBox. \cr
-\code{integer}     \code{padding}  ; \tab the number of extra pixels to put between this child and its
-neighbors, set when packed, zero by default. \cr
-\code{numeric}     \code{expand}  ; \tab flag indicates whether extra space should be given to this
-child.  Any extra space given to the parent GtkBox is divided up among
-all children with this attribute set to   \code{TRUE}  ; set when packed,   \code{TRUE}   by
-default. \cr
-\code{numeric}     \code{fill}  ; \tab flag indicates whether any extra space given to this child due to its
-  \code{expand}   attribute being set is actually
-allocated to the child, rather than being used as padding
-around the widget; set when packed,   \code{TRUE}   by default. \cr
-\code{numeric}     \code{pack}  ; \tab one of
-  \code{\link{GtkPackType}}   indicating whether the child is packed with reference to
-the start (top/left) or end (bottom/right) of the GtkBox. \cr
+\describe{
+\item{\code{widget}}{[\code{\link{GtkWidget}}] the child widget, packed into the GtkBox.}
+\item{\code{padding}}{[integer] the number of extra pixels to put between this child and its
+  neighbors, set when packed, zero by default.}
+\item{\code{expand}}{[numeric] flag indicates whether extra space should be given to this
+  child. Any extra space given to the parent GtkBox is divided up 
+  among all children with this attribute set to \code{TRUE}; set when packed, 
+  \code{TRUE} by default.}
+\item{\code{fill}}{[numeric] flag indicates whether any extra space given to this child due 
+  to its \code{expand} attribute being set is actually allocated to the child, 
+  rather than being used as padding around the widget; set when packed, 
+  \code{TRUE} by default.}
+\item{\code{pack}}{[numeric] one of \code{\link{GtkPackType}} indicating whether the child is packed with 
+  reference to the start (top/left) or end (bottom/right) of the GtkBox.}
+\item{\code{isSecondary}}{[numeric] \code{TRUE} if the child is secondary}
 }
 
 }

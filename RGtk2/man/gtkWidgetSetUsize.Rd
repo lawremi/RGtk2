@@ -13,7 +13,7 @@ allow users to shrink the window. Setting the usize will force them
 to leave the window at least as large as the usize. When dealing
 with window sizes, \code{\link{gtkWindowSetGeometryHints}} can be a useful
 function as well.
-\strong{WARNING: \code{gtk_widget_set_usize} is deprecated and should not be used in newly-written code.}
+\strong{WARNING: \code{gtk_widget_set_usize} is deprecated and should not be used in newly-written code. Use \code{\link{gtkWidgetSetSizeRequest}} instead.}
 }
 \usage{gtkWidgetSetUsize(object, width, height)}
 \arguments{
@@ -25,8 +25,6 @@ function as well.
 translations into other languages, different fonts, and user action
 can all change the appropriate size for a given widget. So, it's
 basically impossible to hardcode a size that will always be
-correct.
-  
-\code{Deprecated}: Use \code{\link{gtkWidgetSetSizeRequest}} instead.  }
+correct.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

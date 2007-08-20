@@ -1,7 +1,7 @@
 \alias{GtkButtonBox}
 \name{GtkButtonBox}
 \title{GtkButtonBox}
-\description{Base class for    and }
+\description{Base class for GtkHButtonBox and GtkVButtonBox}
 \section{Methods and Functions}{
 \code{\link{gtkButtonBoxGetLayout}(object)}\cr
 \code{\link{gtkButtonBoxGetChildSize}(object)}\cr
@@ -23,7 +23,7 @@
                                        +----\link{GtkHButtonBox}
                                        +----\link{GtkVButtonBox}}}
 \section{Interfaces}{GtkButtonBox implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The primary purpose of this class is to keep track of the various properties
 of \code{\link{GtkHButtonBox}} and \code{\link{GtkVButtonBox}} widgets.
   

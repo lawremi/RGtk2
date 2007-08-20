@@ -18,7 +18,9 @@
 \code{\link{gtkIconThemeSetCustomTheme}(object, theme.name)}\cr
 \code{\link{gtkIconThemeHasIcon}(object, icon.name)}\cr
 \code{\link{gtkIconThemeLookupIcon}(object, icon.name, size, flags)}\cr
+\code{\link{gtkIconThemeChooseIcon}(object, icon.names, size, flags)}\cr
 \code{\link{gtkIconThemeLoadIcon}(object, icon.name, size, flags, .errwarn = TRUE)}\cr
+\code{\link{gtkIconThemeListContexts}(object)}\cr
 \code{\link{gtkIconThemeListIcons}(object, context = NULL)}\cr
 \code{\link{gtkIconThemeGetIconSizes}(object, icon.name)}\cr
 \code{\link{gtkIconThemeGetExampleIconName}(object)}\cr
@@ -141,7 +143,7 @@ Error codes for GtkIconTheme operations.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{changed(icon.theme, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (icon.theme, user.data)}}{
 Emitted when the current icon theme is switched or GTK+ detects
 that a change has occurred in the contents of the current
 icon theme.  

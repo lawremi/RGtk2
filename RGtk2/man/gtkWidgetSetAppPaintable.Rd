@@ -2,7 +2,7 @@
 \name{gtkWidgetSetAppPaintable}
 \title{gtkWidgetSetAppPaintable}
 \description{Sets whether the application intends to draw on the widget in
-an ::expose-event handler. }
+an \code{::expose-event} handler. }
 \usage{gtkWidgetSetAppPaintable(object, app.paintable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
@@ -19,22 +19,9 @@ Note that the background is still drawn when the widget is mapped.
 If this is not suitable (e.g. because you want to make a transparent
 window using an RGBA visual), you can work around this by doing:
 \preformatted{
-drag_data_received <- function(widget, drag_context, x, y, data, info, time)
-{
-  if ((data[["length"]] >= 0) && (data[["format"]] == 8))
-    {
-      if (drag_context[["action"]] == "ask") 
-        {
-          dialog <- gtkMessageDialog(NULL, c("modal", "destroy-with-parent"),
-          				"info", "yes-no", "Move the data ?")
-          response <- dialog$run()
-          dialog$destroy()
-		  
-		  gtkDragFinish(drag_context, TRUE, response == "yes", time)
-		}
-    } else gtkDragFinish(drag_context, FALSE, FALSE, time)
-}
-
+window$realize()
+window$window$setBackPixmap(NULL, FALSE)
+window$show()
 }  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,15 +9,15 @@ and/or to have it destroyed along with its transient parent
 (\code{GTK_DIALOG_DESTROY_WITH_PARENT}). After \code{flags}, button
 text/response ID pairs should be listed, with a \code{NULL} pointer ending
 the list. Button text can be either a stock ID such as
-\code{GTK_STOCK_OK}, or some arbitrary text.  A response ID can be
+\code{GTK_STOCK_OK}, or some arbitrary text. A response ID can be
 any positive number, or one of the values in the \code{\link{GtkResponseType}}
 enumeration. If the user clicks one of these dialog buttons,
-\code{\link{GtkDialog}} will emit the "response" signal with the corresponding
-response ID. If a \code{\link{GtkDialog}} receives the "delete\_event" signal, it
-will emit "response" with a response ID of \code{GTK_RESPONSE_DELETE_EVENT}.
-However, destroying a dialog does not emit the "response" signal;
-so be careful relying on "response" when using
-the \code{GTK_DIALOG_DESTROY_WITH_PARENT} flag. Buttons are from left to right,
+\code{\link{GtkDialog}} will emit the \code{\link{gtkDialogResponse}} signal with the corresponding
+response ID. If a \code{\link{GtkDialog}} receives the \code{::delete-event} signal, 
+it will emit ::response with a response ID of \code{GTK_RESPONSE_DELETE_EVENT}.
+However, destroying a dialog does not emit the ::response signal;
+so be careful relying on ::response when using the 
+\code{GTK_DIALOG_DESTROY_WITH_PARENT} flag. Buttons are from left to right,
 so the first button in the list will be the leftmost button in the dialog.}
 \usage{gtkDialogNewWithButtons(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 \arguments{

@@ -17,10 +17,14 @@
                                        +----\link{GtkDialog}
                                              +----GtkColorSelectionDialog}}
 \section{Interfaces}{GtkColorSelectionDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkColorSelectionDialog}} provides a standard dialog which
 allows the user to select a color much like the \code{\link{GtkFileSelection}}
 provides a standard dialog for file selection.}
+\section{GtkColorSelectionDialog as GtkBuildable}{The GtkColorSelectionDialog implementation of the GtkBuildable interface
+exposes the embedded \code{\link{GtkColorSelection}} as internal child with the
+name "color\_selection". It also exposes the buttons with the names
+"ok\_button", "cancel\_button" and "help\_button".}
 \section{Structures}{\describe{\item{\code{GtkColorSelectionDialog}}{
 The \code{\link{GtkColorSelectionDialog}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by

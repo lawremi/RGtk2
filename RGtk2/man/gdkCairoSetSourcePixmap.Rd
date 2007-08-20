@@ -3,7 +3,7 @@
 \title{gdkCairoSetSourcePixmap}
 \description{Sets the given pixmap as the source pattern for the Cairo context.
 The pattern has an extend mode of \code{CAIRO_EXTEND_NONE} and is aligned
-so that the origin of \code{pixbuf} is \code{pixbuf.x}, \code{pixbuf.y}}
+so that the origin of \code{pixmap} is \code{pixmap.x}, \code{pixmap.y}}
 \usage{gdkCairoSetSourcePixmap(cr, pixmap, pixmap.x, pixmap.y)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a \code{Cairo} context}

@@ -8,8 +8,9 @@ particularly useful until you add rules with
 \code{\link{gtkRecentFilterAddApplication}}, \code{\link{gtkRecentFilterAddAge}}.
 To create a filter that accepts any recently used resource, use:}
 \usage{gtkRecentFilterNew()}
-\details{\preformatted{GtkRecentFilter *filter = gtk_recent_filter_new (    );
-gtk_recent_filter_add_pattern (filter, "*");
+\details{\preformatted{
+filter <- gtkRecentFilter()
+filter$addPattern("*")
 }  
 
   Since  2.10}

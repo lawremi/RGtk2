@@ -8,8 +8,8 @@ for widgets such as \code{\link{GtkEntry}} and \code{\link{GtkTextView}}. See al
 \code{\link{gtkWidgetModifyStyle}}.}
 \usage{gtkWidgetModifyText(object, state, color = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}.}
-\item{\code{state}}{[\code{\link{GtkStateType}}]  the state for which to set the text color.}
+\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
+\item{\code{state}}{[\code{\link{GtkStateType}}]  the state for which to set the text color}
 \item{\code{color}}{[\code{\link{GdkColor}}]  the color to assign (does not need to be allocated),
         or \code{NULL} to undo the effect of previous calls to
         of \code{\link{gtkWidgetModifyText}}.}

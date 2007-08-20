@@ -29,7 +29,7 @@
                            +----\link{GtkBin}
                                  +----GtkScrolledWindow}}
 \section{Interfaces}{GtkScrolledWindow implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container 
 the accepts a single child widget. \code{\link{GtkScrolledWindow}} adds scrollbars
 to the child widget and optionally draws a beveled frame around the 
@@ -81,7 +81,7 @@ only be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkScrolledWindow} is the equivalent of \code{\link{gtkScrolledWindowNew}}.}
 \section{Signals}{\describe{
-\item{\code{move-focus-out(scrolledwindow, arg1, user.data)}}{
+\item{\code{The (scrolledwindow, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -93,7 +93,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{scroll-child(scrolledwindow, arg1, arg2, user.data)}}{
+\item{\code{The (scrolledwindow, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -148,11 +148,20 @@ of the contents with respect to the scrollbars. Otherwise, the
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{scrollbar-spacing} [integer : Read]}{
+\section{Style Properties}{\describe{
+\item{\code{scrollbar-spacing} [integer : Read]}{
 
 Number of pixels between the scrollbars and the scrolled window.  Allowed values: >= 0  Default value: 3
 
-}}}
+}
+\item{\code{scrollbars-within-bevel} [logical : Read]}{
+
+Whether to place scrollbars within the scrolled window's bevel.  
+
+  Default value: FALSE  Since  2.12
+
+}
+}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkScrolledWindow.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{

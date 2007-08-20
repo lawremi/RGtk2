@@ -24,7 +24,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkMessageDialog}}
 \section{Interfaces}{GtkMessageDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
 message (Error, Question, etc.) alongside some message text. It's simply a 
 convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}} 

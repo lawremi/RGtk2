@@ -38,7 +38,7 @@
                                  +----GtkMenu
                                        +----\link{GtkRecentChooserMenu}}}
 \section{Interfaces}{GtkMenu implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
 a list of \code{\link{GtkMenuItem}} objects which can be navigated and activated by the 
 user to perform application functions.
@@ -100,8 +100,8 @@ and \code{y} parameters to the coordinates where the menu is to be drawn.
 menu shall be drawn.  This is an output parameter.}
 \item{\code{y}}{[integer] the \code{integer} representing the vertical position where the
 menu shall be drawn.  This is an output parameter.}
-\item{\code{push.in}}{[logical] whether the menu should be pushed in to be completely inside the
-  screen instead of just clamped to the size to the screen.}
+\item{\code{push.in}}{[logical] whether the first menu item should be offset (pushed in) to be
+          aligned with the menu popup position (only useful for GtkOptionMenu).}
 \item{\code{user.data}}{[R object] the data supplied by the user in the \code{\link{gtkMenuPopup}} \code{data}
 parameter.}
 }
@@ -120,7 +120,7 @@ will be called when the menu is later detached from the widget.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{move-scroll(menu, arg1, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (menu, arg1, user.data)}}{
 \emph{undocumented
 }
 

@@ -3,7 +3,7 @@
 \title{gtkTextBufferUnregisterDeserializeFormat}
 \description{This function unregisters a rich text format that was previously
 registered using \code{\link{gtkTextBufferRegisterDeserializeFormat}} or
-\code{\link{gtkTextBufferRegisterDeserializeTagset}}}
+\code{\link{gtkTextBufferRegisterDeserializeTagset}}.}
 \usage{gtkTextBufferUnregisterDeserializeFormat(object, format)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}

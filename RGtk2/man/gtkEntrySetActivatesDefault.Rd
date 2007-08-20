@@ -12,6 +12,6 @@ widget is usually one of the dialog buttons.}
 }
 \details{(For experts: if \code{setting} is \code{TRUE}, the entry calls
 \code{\link{gtkWindowActivateDefault}} on the window containing the entry, in
-the default handler for the "activate" signal.)  }
+the default handler for the \code{\link{gtkWidgetActivate}} signal.)  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

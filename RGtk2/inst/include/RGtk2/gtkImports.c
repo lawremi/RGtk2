@@ -34,14 +34,6 @@ S_GtkTextBufferSerializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_
   return(fun(s_register_buffer, s_content_buffer, s_start, s_end, s_length, s_user_data));
 } 
 
-gint
-S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in, gpointer s_user_data)
-{
-  static gint (*fun)(GtkMenu*, gint*, gint*, gboolean*, gpointer) = NULL;
-  if(!fun) fun = ((gint (*)(GtkMenu*, gint*, gint*, gboolean*, gpointer))R_GetCCallable("RGtk2", "S_GtkMenuPositionFunc"));
-  return(fun(s_menu, s_x, s_y, s_push_in, s_user_data));
-} 
-
 USER_OBJECT_
 asRGdkAtom(GdkAtom val)
 {

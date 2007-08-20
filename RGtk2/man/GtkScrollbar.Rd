@@ -11,7 +11,7 @@
                                  +----\link{GtkHScrollbar}
                                  +----\link{GtkVScrollbar}}}
 \section{Interfaces}{GtkScrollbar implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkScrollbar}} widget is an abstract base class for \code{\link{GtkHScrollbar}} and
 \code{\link{GtkVScrollbar}}. It is not very useful in itself.
   

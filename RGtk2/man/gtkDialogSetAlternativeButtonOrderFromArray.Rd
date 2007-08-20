@@ -1,9 +1,10 @@
 \alias{gtkDialogSetAlternativeButtonOrderFromArray}
 \name{gtkDialogSetAlternativeButtonOrderFromArray}
 \title{gtkDialogSetAlternativeButtonOrderFromArray}
-\description{Sets an alternative button order. If the gtk-alternative-button-order 
-setting is set to \code{TRUE}, the dialog buttons are reordered according to 
-the order of the response ids in \code{new.order}.}
+\description{Sets an alternative button order. If the 
+\code{:gtk-alternative-button-order} setting is set to \code{TRUE}, 
+the dialog buttons are reordered according to the order of the 
+response ids in \code{new.order}.}
 \usage{gtkDialogSetAlternativeButtonOrderFromArray(object, new.order)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}

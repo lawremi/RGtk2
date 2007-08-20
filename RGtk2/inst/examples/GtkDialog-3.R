@@ -1,5 +1,11 @@
- result <- dialog$run()
- if (result == GtkResponseType["accept"])
-	 do_application_specific_something()
- else do_nothing_since_dialog_was_cancelled()
- dialog$destroy()
+# Explicit
+dialog <- gtkDialogNewWithButtons("My dialog", main_app_window,
+	c("modal", "destroy-with-parent"), 
+  "gtk-ok", GtkResponseType["accept"], 
+  "gtk-cancel", GtkResponseType["reject"])
+# Also via collapsed constructor
+dialog <- gtkDialog("My dialog", main_app_window,
+	c("modal", "destroy-with-parent"), 
+  "gtk-ok", GtkResponseType["accept"], 
+  "gtk-cancel", GtkResponseType["reject"])
+

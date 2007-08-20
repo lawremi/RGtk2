@@ -26,7 +26,7 @@
                                  +----\link{GtkMenuBar}
                                  +----\link{GtkMenu}}}
 \section{Interfaces}{GtkMenuShell implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{A \code{\link{GtkMenuShell}} is the abstract base class used to derive the 
 \code{\link{GtkMenu}} and \code{\link{GtkMenuBar}} subclasses.  
   
@@ -54,7 +54,7 @@ GTK\_MENU\_DIR\_PREV \tab To the previous menu item. \cr
 
 }}}
 \section{Signals}{\describe{
-\item{\code{activate-current(menushell, force.hide, user.data)}}{
+\item{\code{The (menushell, force.hide, user.data)}}{
 An action signal that activates the current menu item within the menu
 shell.
 
@@ -66,7 +66,7 @@ shell.
 
 
 }
-\item{\code{cancel(menushell, user.data)}}{
+\item{\code{The (menushell, user.data)}}{
 An action signal which cancels the selection within the menu shell.
 Causes the GtkMenuShell::selection-done signal to be emitted.
 
@@ -77,7 +77,7 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 
 
 }
-\item{\code{cycle-focus(menushell, arg1, user.data)}}{
+\item{\code{The (menushell, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -89,7 +89,7 @@ Causes the GtkMenuShell::selection-done signal to be emitted.
 
 
 }
-\item{\code{deactivate(menushell, user.data)}}{
+\item{\code{The (menushell, user.data)}}{
 This signal is emitted when a menu shell is deactivated.
 
 \describe{
@@ -99,7 +99,7 @@ This signal is emitted when a menu shell is deactivated.
 
 
 }
-\item{\code{move-current(menushell, direction, user.data)}}{
+\item{\code{The (menushell, direction, user.data)}}{
 An action signal which moves the current menu item in the direction 
 specified by \code{direction}.
 
@@ -111,7 +111,22 @@ specified by \code{direction}.
 
 
 }
-\item{\code{selection-done(menushell, user.data)}}{
+\item{\code{The (menu.shell, distance, user.data)}}{
+The ::move-selected signal is emitted to move the selection to
+another item.  
+
+  Since  2.12
+
+\describe{
+\item{\code{menu.shell}}{[\code{\link{GtkMenuShell}}]  the object on which the signal is emitted}
+\item{\code{distance}}{[integer]  +1 to move to the next item, -1 to move to the previous}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+\emph{Returns:} [logical]  \code{TRUE} to stop the signal emission, \code{FALSE} to continue
+
+}
+\item{\code{The (menushell, user.data)}}{
 This signal is emitted when a selection has been completed within a menu
 shell.
 

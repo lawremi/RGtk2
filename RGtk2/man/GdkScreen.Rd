@@ -56,7 +56,7 @@ when GDK gets multihead support.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{composited-changed(screen, user.data)}}{
+\item{\code{The (screen, user.data)}}{
 The ::composited\_changed signal is emitted when the composited
 status of the screen changes  
 
@@ -69,7 +69,7 @@ status of the screen changes
 
 
 }
-\item{\code{size-changed(screen, user.data)}}{
+\item{\code{The (screen, user.data)}}{
 The ::size\_changed signal is emitted when the pixel width or 
 height of a screen changes.  
 

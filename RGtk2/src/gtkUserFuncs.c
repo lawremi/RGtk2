@@ -527,6 +527,38 @@ S_GtkKeySnoopFunc(GtkWidget* s_grab_widget, GdkEventKey* s_event, gpointer s_fun
 
 
 gint
+S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in, gpointer s_user_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 3));
+  tmp = e;
+
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithSink(s_menu, "GtkMenu"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return(((gint)0));
+  *s_x = ((gint)asCInteger(VECTOR_ELT(s_ans, 1)));
+  *s_y = ((gint)asCInteger(VECTOR_ELT(s_ans, 2)));
+  *s_push_in = ((gboolean)asCLogical(VECTOR_ELT(s_ans, 3)));
+  return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
+} 
+
+
+gint
 S_GtkTreeModelForeachFunc(GtkTreeModel* s_model, GtkTreePath* s_path, GtkTreeIter* s_iter, gpointer s_data)
 {
   USER_OBJECT_ e;
@@ -1490,6 +1522,46 @@ S_GtkTreeViewSearchPositionFunc(GtkTreeView* s_tree_view, GtkWidget* s_search_di
   SETCAR(tmp, toRPointerWithSink(s_tree_view, "GtkTreeView"));
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithSink(s_search_dialog, "GtkWidget"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+  tmp = CDR(tmp);
+
+  s_ans = R_tryEval(e, R_GlobalEnv, &err);
+
+  UNPROTECT(1);
+
+  if(err)
+    return;
+}
+#endif 
+
+#if GTK_CHECK_VERSION(2, 12, 0)
+
+void
+S_GtkBuilderConnectFunc(GtkBuilder* s_builder, GObject* s_object, const gchar* s_signal_name, const gchar* s_handler_name, GObject* s_connect_object, guint s_flags, gpointer s_user_data)
+{
+  USER_OBJECT_ e;
+  USER_OBJECT_ tmp;
+  USER_OBJECT_ s_ans;
+  gint err;
+
+  PROTECT(e = allocVector(LANGSXP, 8));
+  tmp = e;
+
+  SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
+  tmp = CDR(tmp);
+
+  SETCAR(tmp, toRPointerWithRef(s_builder, "GtkBuilder"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_object, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_signal_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRString(s_handler_name));
+  tmp = CDR(tmp);
+  SETCAR(tmp, toRPointerWithRef(s_connect_object, "GObject"));
+  tmp = CDR(tmp);
+  SETCAR(tmp, asRNumeric(s_flags));
   tmp = CDR(tmp);
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
   tmp = CDR(tmp);

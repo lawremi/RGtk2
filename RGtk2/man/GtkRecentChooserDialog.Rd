@@ -18,7 +18,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkRecentChooserDialog}}
 \section{Interfaces}{GtkRecentChooserDialog implements
- AtkImplementorIface and  \code{\link{GtkRecentChooser}}.}
+ \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkRecentChooser}}.}
 \section{Detailed Description}{\code{\link{GtkRecentChooserDialog}} is a dialog box suitable for displaying the recently
 used documents.  This widgets works by putting a \code{\link{GtkRecentChooserWidget}} inside
 a \code{\link{GtkDialog}}.  It exposes the \code{GtkRecentChooserIface} interface, so you can use
@@ -27,35 +27,16 @@ those for \code{\link{GtkDialog}}.
   
 Note that \code{\link{GtkRecentChooserDialog}} does not have any methods of its own.
 Instead, you should use the functions that work on a \code{\link{GtkRecentChooser}}.
-  
-  \emph{Typical usage}
-
-  
-    In the simplest of cases, you can use the following code to use
-    a \code{\link{GtkRecentChooserDialog}} to select a recently used file:
-  
-
-  \preformatted{GtkWidget *dialog;
-
-dialog = gtk_recent_chooser_dialog_new ("Recent Documents",
-					parent_window,
-					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
-					NULL);
+  \preformatted{
+dialog <- gtkRecentChooserDialog("Recent Documents", parent_window, "gtk-cancel",
+  GtkResponseType["cancel"], "gtk-open", GtkResponseType["accept"])
 					
-if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT)
-  {
-    GtkRecentInfo *info;
-
-    info = gtk_recent_chooser_get_current_item (GTK_RECENT_CHOOSER (dialog));
-    open_file (gtk_recent_info_get_uri (info));
-    gtk_recent_info_unref (info);
-  }
-
-gtk_widget_destroy (dialog);
-  
+if (dialog$run() == GtkResponseType["accept"])
+{
+  info <- dialog$getCurrentItem()
+  open_file(info$getUri())
 }
-  
+}  
 Recently used files are supported since GTK+ 2.10.}
 \section{Structures}{\describe{\item{\code{GtkRecentChooserDialog}}{
 \emph{undocumented

@@ -16,7 +16,7 @@
                +----\link{GtkWidget}
                      +----GtkInvisible}}
 \section{Interfaces}{GtkInvisible implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkInvisible}} widget is used internally in GTK+, and is probably not 
 very useful for application developers.
   

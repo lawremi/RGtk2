@@ -17,7 +17,7 @@
                                        +----\link{GtkMenuItem}
                                              +----GtkSeparatorMenuItem}}
 \section{Interfaces}{GtkSeparatorMenuItem implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkSeparatorMenuItem}} is a separator used to group
 items within a menu. It displays a horizontal line with a shadow to
 make it appear sunken into the interface.}

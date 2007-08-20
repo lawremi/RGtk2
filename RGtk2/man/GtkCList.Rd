@@ -92,7 +92,7 @@
                            +----GtkCList
                                  +----\link{GtkCTree}}}
 \section{Interfaces}{GtkCList implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
 It can display data in nicely aligned vertical columns, with titles 
 at the top of the list.
@@ -197,7 +197,7 @@ first.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{abort-column-resize(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when a column resize is aborted.
 
 \describe{
@@ -207,7 +207,7 @@ This signal is emitted when a column resize is aborted.
 
 
 }
-\item{\code{click-column(clist, column, user.data)}}{
+\item{\code{The (clist, column, user.data)}}{
 This signal is emitted when a column title is clicked.
 
 \describe{
@@ -218,7 +218,7 @@ This signal is emitted when a column title is clicked.
 
 
 }
-\item{\code{end-selection(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when a selection ends in a 
 multiple selection CList.
 
@@ -229,7 +229,7 @@ multiple selection CList.
 
 
 }
-\item{\code{extend-selection(clist, scroll.type, position, auto.start.selection, user.data)}}{
+\item{\code{The (clist, scroll.type, position, auto.start.selection, user.data)}}{
 This signal is emitted when the selection is extended.
 
 \describe{
@@ -243,7 +243,7 @@ occured during the selection.}
 
 
 }
-\item{\code{resize-column(clist, column, width, user.data)}}{
+\item{\code{The (clist, column, width, user.data)}}{
 This signal is emitted when a column is resized.
 
 \describe{
@@ -255,7 +255,7 @@ This signal is emitted when a column is resized.
 
 
 }
-\item{\code{row-move(clist, arg1, arg2, user.data)}}{
+\item{\code{The (clist, arg1, arg2, user.data)}}{
 This signal is emitted when a row is moved.
 
 \describe{
@@ -267,7 +267,7 @@ This signal is emitted when a row is moved.
 
 
 }
-\item{\code{scroll-horizontal(clist, scroll.type, position, user.data)}}{
+\item{\code{The (clist, scroll.type, position, user.data)}}{
 This signal is emitted when the CList is scrolled horizontally.
 
 \describe{
@@ -279,7 +279,7 @@ This signal is emitted when the CList is scrolled horizontally.
 
 
 }
-\item{\code{scroll-vertical(clist, scroll.type, position, user.data)}}{
+\item{\code{The (clist, scroll.type, position, user.data)}}{
 This signal is emitted when the CList is scrolled vertically.
 
 \describe{
@@ -291,7 +291,7 @@ This signal is emitted when the CList is scrolled vertically.
 
 
 }
-\item{\code{select-all(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when all the rows are selected in a CList.
 
 \describe{
@@ -301,7 +301,7 @@ This signal is emitted when all the rows are selected in a CList.
 
 
 }
-\item{\code{select-row(clist, row, column, event, user.data)}}{
+\item{\code{The (clist, row, column, event, user.data)}}{
 This signal is emitted when the user selects a row in the list.  
 It is emitted for every row that is selected in a multi-selection or
 by calling \code{\link{gtkCListSelectAll}}.
@@ -316,7 +316,7 @@ by calling \code{\link{gtkCListSelectAll}}.
 
 
 }
-\item{\code{set-scroll-adjustments(clist, arg1, arg2, user.data)}}{
+\item{\code{The (clist, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -329,7 +329,7 @@ by calling \code{\link{gtkCListSelectAll}}.
 
 
 }
-\item{\code{start-selection(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when a drag-selection is started in 
 a multiple-selection CList.
 
@@ -340,7 +340,7 @@ a multiple-selection CList.
 
 
 }
-\item{\code{toggle-add-mode(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when "add mode" is toggled.
 
 \describe{
@@ -350,7 +350,7 @@ This signal is emitted when "add mode" is toggled.
 
 
 }
-\item{\code{toggle-focus-row(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 \emph{undocumented
 }
 
@@ -361,7 +361,7 @@ This signal is emitted when "add mode" is toggled.
 
 
 }
-\item{\code{undo-selection(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when an undo selection occurs in the CList,
 probably via calling \code{\link{gtkCListUndoSelection}}.
 
@@ -372,7 +372,7 @@ probably via calling \code{\link{gtkCListUndoSelection}}.
 
 
 }
-\item{\code{unselect-all(clist, user.data)}}{
+\item{\code{The (clist, user.data)}}{
 This signal is emitted when all rows are unselected in a CList.
 
 \describe{
@@ -382,7 +382,7 @@ This signal is emitted when all rows are unselected in a CList.
 
 
 }
-\item{\code{unselect-row(clist, row, column, event, user.data)}}{
+\item{\code{The (clist, row, column, event, user.data)}}{
 This signal is emitted when the user unselects a row in the list.  
 It is emitted for every row that is unselected in a multi-selection or
 by calling \code{\link{gtkCListUnselectAll}}.  It is also emitted for the

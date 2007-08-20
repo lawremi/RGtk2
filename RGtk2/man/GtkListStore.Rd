@@ -2,13 +2,14 @@
 \alias{gtkListStore}
 \name{GtkListStore}
 \title{GtkListStore}
-\description{A list-like data structure that can be used with the }
+\description{A list-like data structure that can be used with the GtkTreeView}
 \section{Methods and Functions}{
 \code{\link{gtkListStoreNew}(...)}\cr
 \code{\link{gtkListStoreNewv}(value)}\cr
 \code{\link{gtkListStoreSetColumnTypes}(object, types)}\cr
 \code{\link{gtkListStoreSet}(object, iter, ...)}\cr
 \code{\link{gtkListStoreSetValue}(object, iter, column, value)}\cr
+\code{\link{gtkListStoreSetValuesv}(object, iter, columns, values)}\cr
 \code{\link{gtkListStoreRemove}(object, iter)}\cr
 \code{\link{gtkListStoreInsert}(object, position)}\cr
 \code{\link{gtkListStoreInsertBefore}(object, sibling)}\cr
@@ -28,7 +29,7 @@
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkListStore}}
 \section{Interfaces}{GtkListStore implements
- \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
+ \code{\link{GtkBuildable}},  \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
 \section{Detailed Description}{The \code{\link{GtkListStore}} object is a list model for use with a \code{\link{GtkTreeView}}
 widget.  It implements the \code{\link{GtkTreeModel}} interface, and consequentialy,
 can use all of the methods available there.  It also implements the
@@ -69,16 +70,59 @@ that \code{\link{GtkTreeIter}}s can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
 run on older versions of GTK+, it is worth keeping the iter around.
   
-It is important to note that only the methods \code{gtk.list.store.insert.with.values} and
-\code{gtk.list.store.insert.with.valuesv} are atomic, in the sense that the row is being appended
-to the store and the values filled in in a single operation with regard to \code{\link{GtkTreeModel}} signaling.
-In contrast, using e.g. \code{gtk.list.store.append} and then \code{gtk.list.store.set} will first create a row,
-which triggers the "row\_inserted" \code{\link{GtkTreeModel}} signal on \code{\link{GtkListStore}}. The row, however, is still
-empty, and any signal handler connecting to "row\_inserted" on this particular store should be prepared
-for the situation that the row might be empty.
-This is especially important if you are wrapping the \code{\link{GtkListStore}} inside a \code{\link{GtkTreeModelFilter}} and are
-using a \code{\link{GtkTreeModelFilterVisibleFunc}}. Using any of the non-atomic operations to append rows to the \code{\link{GtkListStore}}
-will cause the \code{\link{GtkTreeModelFilterVisibleFunc}} to be visited with an empty row first; the function must be prepared for that.}
+It is important to note that only the methods 
+\code{\link{gtkListStoreInsertWithValues}} and \code{\link{gtkListStoreInsertWithValuesv}} 
+are atomic, in the sense that the row is being appended to the store and the 
+values filled in in a single operation with regard to \code{\link{GtkTreeModel}} signaling.
+In contrast, using e.g. \code{\link{gtkListStoreAppend}} and then \code{\link{gtkListStoreSet}} 
+will first create a row, which triggers the \code{\link{gtkTreeModelRowInserted}} signal 
+on \code{\link{GtkListStore}}. The row, however, is still empty, and any signal handler 
+connecting to "row-inserted" on this particular store should be prepared
+for the situation that the row might be empty. This is especially important 
+if you are wrapping the \code{\link{GtkListStore}} inside a \code{\link{GtkTreeModelFilter}} and are
+using a \code{\link{GtkTreeModelFilterVisibleFunc}}. Using any of the non-atomic operations 
+to append rows to the \code{\link{GtkListStore}} will cause the 
+\code{\link{GtkTreeModelFilterVisibleFunc}} to be visited with an empty row first; the 
+function must be prepared for that.}
+\section{GtkListStore as GtkBuildable}{The GtkListStore implementation of the GtkBuildable interface allows
+to specify the model columns with a <columns> element that may
+contain multiple <column> elements, each specifying one model
+column. The "type" attribute specifies the data type for the column.
+  
+Additionally, it is possible to specify content for the list store
+in the UI definition, with the <data> element. It can contain
+multiple <row> elements, each specifying to content for one
+row of the list model. Inside a <row>, the <col> elements
+specify the content for individual cells.
+  
+Note that it is probably more common to define your models 
+in the code, and one might consider it a layering violation 
+to specify the content of a list store in a UI definition,
+\emph{data}, not \emph{presentation}, 
+and common wisdom is to separate the two, as far as possible. 
+
+  
+\emph{A UI Definition fragment for a list store}
+\preformatted{<object class="GtkListStore">
+  <columns>
+    <column type="gchararray"/>
+    <column type="gchararray"/>
+    <column type="gint"/>
+  </columns>
+  <data>
+    <row>
+      <col id="0">John</col>
+      <col id="1">Doe</col>
+      <col id="2">25</col>
+    </row>
+    <row>
+      <col id="0">Johan</col>
+      <col id="1">Dahlin</col>
+      <col id="2">50</col>
+    </row>
+  </data>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkListStore}}{
 \emph{undocumented
 }

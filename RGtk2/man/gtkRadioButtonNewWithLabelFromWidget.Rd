@@ -5,7 +5,7 @@
 as \code{group}.}
 \usage{gtkRadioButtonNewWithLabelFromWidget(group = NULL, label, show = TRUE)}
 \arguments{
-\item{\code{group}}{[\code{\link{GtkRadioButton}}] an existing \code{\link{GtkRadioButton}}.}
+\item{\code{group}}{[\code{\link{GtkRadioButton}}] }
 \item{\code{label}}{[character] a text string to display next to the radio button.}
 }
 \value{[\code{\link{GtkWidget}}] a new radio button.}

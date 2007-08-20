@@ -42,7 +42,7 @@
                                              +----GtkPrintUnixDialog
                                              +----\link{GtkRecentChooserDialog}}}
 \section{Interfaces}{GtkDialog implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{Dialog boxes are a convenient way to prompt the user for a small amount of
 input, e.g. to display a message, ask a question, or anything else that does 
 not require extensive effort on the user's part.
@@ -105,6 +105,37 @@ quick_message <- function(message) {
    dialog$showAll()
 }
 }}
+\section{GtkDialog as GtkBuildable}{The GtkDialog implementation of the GtkBuildable interface exposes the 
+\code{vbox} and \code{action.area} as internal children with the names "vbox" and 
+"action\_area".
+  
+GtkDialog supports a custom <action-widgets> element, which 
+can contain multiple <action-widget> elements. The "response"
+attribute specifies a numeric response, and the content of the element
+is the id of widget (which should be a child of the dialogs \code{action.area}).
+  
+\emph{A   \code{GtkDialog}   UI definition fragment.}
+\preformatted{<object class="GtkDialog" id="dialog1">
+  <child internal-child="vbox">"
+    <object class="GtkVBox">
+      <child internal-child="action_area">
+        <object class="GtkHButtonBox">
+          <child>
+            <object class="GtkButton" id="button_cancel"/>
+          </child>
+          <child>
+            <object class="GtkButton" id="button_ok"/>
+          </child>
+        </object>
+      </child>
+    </object>
+  </child>
+  <action-widgets>
+    <action-widget response="3">button_ok</action-widget>
+    <action-widget response="-5">button_cancel</action-widget>
+  </action-widgets>
+</object>
+}}
 \section{Structures}{\describe{\item{\code{GtkDialog}}{
 \code{vbox} is a \code{\link{GtkVBox}} - the main part of the
 dialog box.
@@ -126,7 +157,7 @@ Flags used to influence dialog construction.
 
 \describe{
 \item{\code{modal}}{Make the constructed dialog modal, 
-  see \code{gtkWidgetSetModal()}.}
+  see \code{\link{gtkWindowSetModal}}.}
 \item{\code{destroy-with-parent}}{Destroy the dialog when its
   parent is destroyed, see \code{\link{gtkWindowSetDestroyWithParent}}.}
 \item{\code{no-separator}}{Don't put a separator between the
@@ -157,7 +188,7 @@ application-defined response ids.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{close(dialog, user.data)}}{
+\item{\code{The (dialog, user.data)}}{
 \emph{undocumented
 }
 
@@ -168,7 +199,7 @@ application-defined response ids.
 
 
 }
-\item{\code{response(dialog, arg1, user.data)}}{
+\item{\code{The (dialog, arg1, user.data)}}{
 Emitted when an action widget is clicked, the dialog receives a delete event, or
 the application programmer calls \code{\link{gtkDialogResponse}}. On a delete event, the
 response ID is \code{GTK_RESPONSE_NONE}. Otherwise, it depends on which action widget

@@ -5,7 +5,7 @@
 \alias{GtkWrapMode}
 \name{GtkTextTag}
 \title{GtkTextTag}
-\description{A tag that can be applied to text in a }
+\description{A tag that can be applied to text in a GtkTextBuffer}
 \section{Methods and Functions}{
 \code{\link{gtkTextTagNew}(name = NULL)}\cr
 \code{\link{gtkTextTagGetPriority}(object)}\cr
@@ -97,21 +97,34 @@ Describes a type of line wrapping.
 }
 
 }}}
-\section{Signals}{\describe{\item{\code{event(texttag, arg1, event, arg2, user.data)}}{
-\emph{undocumented
-}
+\section{Signals}{\describe{\item{\code{The (tag, object, event, iter, user.data)}}{
+The ::event signal is emitted when an event occurs on a region of the
+buffer marked with this tag.  
 
 \describe{
-\item{\code{texttag}}{[\code{\link{GtkTextTag}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GObject}}] }
-\item{\code{event}}{[\code{\link{GdkEvent}}] }
-\item{\code{arg2}}{[\code{\link{GtkTextIter}}] }
+\item{\code{tag}}{[\code{\link{GtkTextTag}}]  the \code{\link{GtkTextTag}} on which the signal is emitted}
+\item{\code{object}}{[\code{\link{GObject}}]  the object the event was fired from (typically a \code{\link{GtkTextView}})}
+\item{\code{event}}{[\code{\link{GdkEvent}}]  the event which triggered the signal}
+\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}} pointing at the location the event occured}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+\emph{Returns:} [logical]  \code{TRUE} to stop other handlers from being invoked for the
+event. \code{FALSE} to propagate the event further.
 
 }}}
 \section{Properties}{\describe{
+\item{\code{accumulative-margin} [logical : Read / Write]}{
+
+Whether the margins accumulate or override each other.
+  
+When set to \code{TRUE} the margins of this tag are added to the margins 
+of any other non-accumulative margins present. When set to \code{FALSE} 
+the margins override one another (the default).  
+
+  Default value: FALSE  Since  2.12
+
+}
 \item{\code{background} [character : Write]}{
 
 Background color as a string.  Default value: NULL

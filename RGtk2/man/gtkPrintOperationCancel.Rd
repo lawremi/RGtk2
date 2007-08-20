@@ -2,7 +2,8 @@
 \name{gtkPrintOperationCancel}
 \title{gtkPrintOperationCancel}
 \description{Cancels a running print operation. This function may
-be called from a begin-print, paginate or draw-page
+be called from a \code{::begin-print}, 
+\code{::paginate} or \code{::draw-page}
 signal handler to stop the currently running print 
 operation.}
 \usage{gtkPrintOperationCancel(object)}

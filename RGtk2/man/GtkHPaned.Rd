@@ -15,7 +15,7 @@
                            +----\link{GtkPaned}
                                  +----GtkHPaned}}
 \section{Interfaces}{GtkHPaned implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The HPaned widget is a container widget with two
 children arranged horizontally. The division between
 the two panes is adjustable by the user by dragging

@@ -835,7 +835,7 @@ typedef enum {
     CAIRO_PATH_LINE_TO,
     CAIRO_PATH_CURVE_TO,
     CAIRO_PATH_CLOSE_PATH
-} CairoPathData;
+} CairoPathDataType;
 
 typedef union {
     struct {

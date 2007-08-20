@@ -45,7 +45,7 @@ for the "price" column could be one which returns
 
 
 }}}
-\section{Signals}{\describe{\item{\code{sort-column-changed(treesortable, user.data)}}{
+\section{Signals}{\describe{\item{\code{The (treesortable, user.data)}}{
 \emph{undocumented
 }
 

@@ -13,6 +13,7 @@
 \code{\link{gtkEntryCompletionSetMinimumKeyLength}(object, length)}\cr
 \code{\link{gtkEntryCompletionGetMinimumKeyLength}(object)}\cr
 \code{\link{gtkEntryCompletionComplete}(object)}\cr
+\code{\link{gtkEntryCompletionGetCompletionPrefix}(object)}\cr
 \code{\link{gtkEntryCompletionInsertPrefix}(object)}\cr
 \code{\link{gtkEntryCompletionInsertActionText}(object, index, text)}\cr
 \code{\link{gtkEntryCompletionInsertActionMarkup}(object, index, markup)}\cr
@@ -21,6 +22,8 @@
 \code{\link{gtkEntryCompletionGetTextColumn}(object)}\cr
 \code{\link{gtkEntryCompletionSetInlineCompletion}(object, inline.completion)}\cr
 \code{\link{gtkEntryCompletionGetInlineCompletion}(object)}\cr
+\code{\link{gtkEntryCompletionSetInlineSelection}(object, inline.selection)}\cr
+\code{\link{gtkEntryCompletionGetInlineSelection}(object)}\cr
 \code{\link{gtkEntryCompletionSetPopupCompletion}(object, popup.completion)}\cr
 \code{\link{gtkEntryCompletionGetPopupCompletion}(object)}\cr
 \code{\link{gtkEntryCompletionSetPopupSetWidth}(object, popup.set.width)}\cr
@@ -32,7 +35,7 @@
 \section{Hierarchy}{\preformatted{  \link{GObject}
    +----GtkEntryCompletion}}
 \section{Interfaces}{GtkEntryCompletion implements
- \code{\link{GtkCellLayout}}.}
+ \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{\code{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
 \code{\link{GtkEntry}} to provide the completion functionality. It implements the
 \code{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the 
@@ -82,7 +85,7 @@ to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_complet
 
 }}}
 \section{Signals}{\describe{
-\item{\code{action-activated(widget, index, user.data)}}{
+\item{\code{The (widget, index, user.data)}}{
 Gets emitted when an action is activated.  
 
   Since  2.4
@@ -95,7 +98,25 @@ Gets emitted when an action is activated.
 
 
 }
-\item{\code{insert-prefix(widget, prefix, user.data)}}{
+\item{\code{The (widget, model, iter, user.data)}}{
+Gets emitted when a match from the cursor is on a match
+of the list.The default behaviour is to replace the contents
+of the entry with the contents of the text column in the row 
+pointed to by \code{iter}.  
+
+  Since  2.12
+
+\describe{
+\item{\code{widget}}{[\code{\link{GtkEntryCompletion}}]  the object which received the signal}
+\item{\code{model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} containing the matches}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a \code{\link{GtkTreeIter}} positioned at the selected match}
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
+
+}
+\item{\code{The (widget, prefix, user.data)}}{
 Gets emitted when the inline autocompletion is triggered. 
 The default behaviour is to make the entry display the 
 whole prefix and select the newly inserted part.
@@ -116,7 +137,7 @@ next '/'.
 \emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
 
 }
-\item{\code{match-selected(widget, model, iter, user.data)}}{
+\item{\code{The (widget, model, iter, user.data)}}{
 Gets emitted when a match from the list is selected. 
 The default behaviour is to replace the contents of the 
 entry with the contents of the text column in the row 
@@ -144,6 +165,14 @@ requires text-column to be set, even if you are using a custom
 match function.  
 
   Default value: FALSE  Since  2.6
+
+}
+\item{\code{inline-selection} [logical : Read / Write]}{
+
+Determines whether the possible completions on the popup
+will appear in the entry as you navigate through them.  
+
+  Default value: FALSE  Since  2.12
 
 }
 \item{\code{minimum-key-length} [integer : Read / Write]}{

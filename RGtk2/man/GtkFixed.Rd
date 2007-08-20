@@ -19,7 +19,7 @@
                      +----\link{GtkContainer}
                            +----GtkFixed}}
 \section{Interfaces}{GtkFixed implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkFixed}} widget is a container which can place child widgets at fixed
 positions and with fixed sizes, given in pixels. \code{\link{GtkFixed}} performs no
 automatic layout management.

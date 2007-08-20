@@ -44,7 +44,7 @@
                      +----\link{GtkMisc}
                            +----GtkImage}}
 \section{Interfaces}{GtkImage implements
- AtkImplementorIface.}
+ \code{\link{GtkBuildable}} and  AtkImplementorIface.}
 \section{Detailed Description}{The \code{\link{GtkImage}} widget displays an image. Various kinds of object 
 can be displayed as an image; most typically, you would load a 
 \code{\link{GdkPixbuf}} ("pixel buffer") from a file, and then display that. 
@@ -148,7 +148,7 @@ Filename to load and display.  Default value: NULL
 }
 \item{\code{icon-name} [character : Read / Write]}{
 
-The name of the icon in the icon theme.  If the icon theme is
+The name of the icon in the icon theme. If the icon theme is
 changed, the image will be updated automatically.  
 
   Default value: NULL  Since  2.6
@@ -186,8 +186,8 @@ GdkPixbufAnimation to display.
 }
 \item{\code{pixel-size} [integer : Read / Write]}{
 
-The :pixel-size property can be used to specify a fixed size
-overriding the :icon-size property for images of type 
+The "pixel-size" property can be used to specify a fixed size
+overriding the \code{:icon-size} property for images of type 
 \code{GTK_IMAGE_ICON_NAME}.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6

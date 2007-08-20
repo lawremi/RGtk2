@@ -86,7 +86,7 @@ S_gtk_action_group_add_radio_actions(USER_OBJECT_ s_action_group, USER_OBJECT_ s
     return(S_gtk_action_group_add_radio_actions_full(s_action_group, s_entries, s_value, s_on_change, s_user_data));
 }
 
-/* reason: same asC above
+/* reason: same as above
 */
 USER_OBJECT_
 S_gtk_action_group_add_actions_full(USER_OBJECT_ s_action_group, USER_OBJECT_ s_entries, USER_OBJECT_ s_user_data)
@@ -1203,7 +1203,7 @@ S_GtkTextBufferSerializeFunc(GtkTextBuffer* s_register_buffer, GtkTextBuffer* s_
 }
 
 /* need to return the x, y, and in_push params */
-
+/*
 gint
 S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in, gpointer s_user_data)
 {
@@ -1231,6 +1231,40 @@ S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in
   UNPROTECT(1);
   return(((gint)asCInteger(VECTOR_ELT(s_ans, 0))));
 }
+*/
+
+/* GBuilder helpers */
+#if GTK_CHECK_VERSION(2,12,0)
+void
+S_GtkBuilderConnectFuncDefault(GtkBuilder* builder, GObject* object, 
+  const gchar* signal_name, const gchar* handler_name, 
+  GObject* connect_object, guint flags, gpointer s_user_data)
+{	
+  USER_OBJECT_ s_func = Rf_findFun(install(handler_name), R_GlobalEnv);
+  GClosure *closure;
+  
+	if (connect_object) /* FIXME: we can't use g_signal_connect_object */
+		s_user_data = toRPointer(connect_object, "GObject");
+	
+  closure = R_createGClosure(s_func, s_user_data);
+	((R_CallbackData)closure->data)->userDataFirst = flags & G_CONNECT_SWAPPED;
+  
+  g_signal_connect_closure(object, signal_name, closure, flags & G_CONNECT_AFTER);
+}
+
+USER_OBJECT_
+S_gtk_builder_connect_signals(USER_OBJECT_ s_object, USER_OBJECT_ s_user_data)
+{
+  GtkBuilder* object = GTK_BUILDER(getPtrValue(s_object));
+  
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  
+  gtk_builder_connect_signals_full(object, 
+    (GtkBuilderConnectFunc)S_GtkBuilderConnectFuncDefault, s_user_data);
+  
+  return(_result);
+}
+#endif
 
 /* This provides a quick way to convert GtkTreePaths to indices.
    Such an operation is necessary when interpreting selections, for example.

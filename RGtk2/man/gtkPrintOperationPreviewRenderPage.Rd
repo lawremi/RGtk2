@@ -2,7 +2,7 @@
 \name{gtkPrintOperationPreviewRenderPage}
 \title{gtkPrintOperationPreviewRenderPage}
 \description{Renders a page to the preview, using the print context that
-was passed to the GtkPrintOperation::preview handler together
+was passed to the \code{::preview} handler together
 with \code{preview}.}
 \usage{gtkPrintOperationPreviewRenderPage(object, page.nr)}
 \arguments{

@@ -6,7 +6,7 @@
 \alias{GtkTreeModelFlags}
 \name{GtkTreeModel}
 \title{GtkTreeModel}
-\description{The tree interface used by }
+\description{The tree interface used by GtkTreeView}
 \section{Methods and Functions}{
 \code{\link{gtkTreePathNew}()}\cr
 \code{\link{gtkTreePathNewFromString}(path)}\cr
@@ -63,7 +63,7 @@
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkTreeModel}}
 \section{Implementations}{GtkTreeModel is implemented by
- \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}},  \code{\link{GtkListStore}} and  \code{\link{GtkTreeModelFilter}}.}
+ \code{\link{GtkTreeModelFilter}},  \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
 \section{Interface Derivations}{GtkTreeModel is required by
  \code{\link{GtkTreeSortable}}.}
 \section{Detailed Description}{The \code{\link{GtkTreeModel}} interface defines a generic tree interface for use by
@@ -249,7 +249,7 @@ section.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{row-changed(tree.model, path, iter, user.data)}}{
+\item{\code{The (tree.model, path, iter, user.data)}}{
 This signal is emitted when a row in the model has changed.  
 
 \describe{
@@ -261,7 +261,7 @@ This signal is emitted when a row in the model has changed.
 
 
 }
-\item{\code{row-deleted(tree.model, path, user.data)}}{
+\item{\code{The (tree.model, path, user.data)}}{
 This signal is emitted when a row has been deleted.
   
 Note that no iterator is passed to the signal handler,
@@ -282,7 +282,7 @@ row-deleted handler.
 
 
 }
-\item{\code{row-has-child-toggled(tree.model, path, iter, user.data)}}{
+\item{\code{The (tree.model, path, iter, user.data)}}{
 This signal is emitted when a row has gotten the first child row or lost
 its last child row.  
 
@@ -295,7 +295,7 @@ its last child row.
 
 
 }
-\item{\code{row-inserted(tree.model, path, iter, user.data)}}{
+\item{\code{The (tree.model, path, iter, user.data)}}{
 This signal is emitted when a new row has been inserted in the model.
   
 Note that the row may still be empty at this point, since
@@ -311,7 +311,7 @@ then fill it with the desired values.
 
 
 }
-\item{\code{rows-reordered(tree.model, path, iter, user.data)}}{
+\item{\code{The (tree.model, path, iter, user.data)}}{
 This signal is emitted when the children of a node in the \code{\link{GtkTreeModel}}
 have been reordered. 
   

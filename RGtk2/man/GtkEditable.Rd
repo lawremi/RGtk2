@@ -20,7 +20,7 @@
 \section{Hierarchy}{\preformatted{  GInterface
    +----GtkEditable}}
 \section{Implementations}{GtkEditable is implemented by
- \code{\link{GtkEntry}},  \code{\link{GtkOldEditable}},  \code{\link{GtkSpinButton}} and  GtkText.}
+ \code{\link{GtkEntry}},  GtkText,  \code{\link{GtkOldEditable}} and  \code{\link{GtkSpinButton}}.}
 \section{Detailed Description}{The \code{\link{GtkEditable}} interface is an interface which should be implemented by
 text editing widgets, such as \code{\link{GtkEntry}} and \code{GtkText}. It contains functions 
 for generically manipulating an editable widget, a large number of action 
@@ -56,7 +56,7 @@ editable by the user. \cr
 
 }}}
 \section{Signals}{\describe{
-\item{\code{changed(editable, user.data)}}{
+\item{\code{The (editable, user.data)}}{
 Indicates that the user has changed the contents
 of the widget.
 
@@ -67,7 +67,7 @@ of the widget.
 
 
 }
-\item{\code{delete-text(editable, start.pos, end.pos, user.data)}}{
+\item{\code{The (editable, start.pos, end.pos, user.data)}}{
 This signal is emitted when text is deleted from
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
@@ -87,7 +87,7 @@ and \code{end.pos} parameters are interpreted as for
 
 
 }
-\item{\code{insert-text(editable, new.text, new.text.length, position, user.data)}}{
+\item{\code{The (editable, new.text, new.text.length, position, user.data)}}{
 This signal is emitted when text is inserted into
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting

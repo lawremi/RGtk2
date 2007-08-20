@@ -10,7 +10,8 @@ toCppSymbol <- function(name) {
 genCode <-
 #
 #
-function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), existingDefs = NULL, verbose=FALSE,
+function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), 
+          existingDefs = NULL, constructors = TRUE, verbose=FALSE,
           libName = filePrefix, package = "RGtk2")
 {
 
@@ -309,14 +310,13 @@ function(defs = getDefs(), filePrefix="gtk", dir=c("C"="/tmp", "S"="/tmp"), exis
   close(CAccessors)
   close(RAccessors)
 
-
     # At this point, we have created all the basic code. We now start
     # prettying it up by
-    # a) removing the new for the New being appended to the class name constructor.
-    # Note the name to get this to be the final name so it is sourced() last
-    # if the S files are listed by named.
-
-	tmp = outputConstructors(defs, getFileName("zConstructors.R"))
+    # a) creating constructor wrappers, if specified
+    
+  if (constructors)
+    outputConstructors(defs, getFileName("zConstructors.R"))
+  
 	definedRFuncs = c(definedRFuncs, sapply(names(defs$objects), changeCapitalization, FALSE))
 
   list(varargs = varargs, definedRFuncs = definedRFuncs)

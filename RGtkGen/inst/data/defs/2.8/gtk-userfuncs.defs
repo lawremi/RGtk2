@@ -173,18 +173,18 @@
       '("gpointer" "func_data")
   )
 )
-;(define-user-function MenuPositionFunc
+(define-user-function MenuPositionFunc
   (in-module "Gtk")
-;  (c-name "GtkMenuPositionFunc")
-;  (return-type "gint")
-;  (parameters
-;      '("GtkMenu*" "menu")
-;      '("gint*" "x" (out))
-;      '("gint*" "y" (out))
-;      '("gboolean*" "push_in" (out))
-;      '("gpointer" "user_data")
-;  )
-;)
+  (c-name "GtkMenuPositionFunc")
+  (return-type "gint")
+  (parameters
+      '("GtkMenu*" "menu")
+      '("gint*" "x" (out))
+      '("gint*" "y" (out))
+      '("gboolean*" "push_in" (out))
+      '("gpointer" "user_data")
+  )
+)
 (define-user-function TreeModelForeachFunc
   (in-module "Gtk")
   (c-name "GtkTreeModelForeachFunc")
