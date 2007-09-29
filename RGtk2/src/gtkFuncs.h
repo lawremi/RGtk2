@@ -3522,7 +3522,7 @@ S_gtk_get_current_event(void);
 S_gtk_get_current_event_time(void); 
 
   USER_OBJECT_
-S_gtk_get_current_event_state(USER_OBJECT_ s_state); 
+S_gtk_get_current_event_state(void); 
 
   USER_OBJECT_
 S_gtk_get_event_widget(USER_OBJECT_ s_event); 
@@ -4299,10 +4299,10 @@ S_gtk_rc_scanner_new(void);
 S_gtk_rc_parse_color(USER_OBJECT_ s_scanner, USER_OBJECT_ s_color); 
 
   USER_OBJECT_
-S_gtk_rc_parse_state(USER_OBJECT_ s_scanner, USER_OBJECT_ s_state); 
+S_gtk_rc_parse_state(USER_OBJECT_ s_scanner); 
 
   USER_OBJECT_
-S_gtk_rc_parse_priority(USER_OBJECT_ s_scanner, USER_OBJECT_ s_priority); 
+S_gtk_rc_parse_priority(USER_OBJECT_ s_scanner); 
 
   USER_OBJECT_
 S_gtk_ruler_get_type(void); 
@@ -6519,7 +6519,7 @@ S_gtk_tree_view_unset_rows_drag_dest(USER_OBJECT_ s_object);
 S_gtk_tree_view_set_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_pos); 
 
   USER_OBJECT_
-S_gtk_tree_view_get_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_pos); 
+S_gtk_tree_view_get_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path); 
 
   USER_OBJECT_
 S_gtk_tree_view_get_dest_row_at_pos(USER_OBJECT_ s_object, USER_OBJECT_ s_drag_x, USER_OBJECT_ s_drag_y); 

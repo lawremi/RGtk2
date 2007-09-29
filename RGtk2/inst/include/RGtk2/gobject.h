@@ -334,7 +334,7 @@ gchar ** asCStringArray(USER_OBJECT_ svec);
 #define asCRaw(s_raw) (GET_LENGTH(s_raw) ? RAW(s_raw)[0] : 0)
 #define asCNumeric(s_num) (GET_LENGTH(s_num) ? REAL(s_num)[0] : 0)
 
-gchar * asCString(USER_OBJECT_ s_str);
+const gchar * asCString(USER_OBJECT_ s_str);
 gchar asCCharacter(USER_OBJECT_ s_char);
 
 #define asRLogical ScalarLogical

@@ -42,7 +42,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
 
   parseType <- function(type)
   {
-      sub("-", " ", type)
+      gsub("-", " ", type)
   }
   convertDef <- function(def) {
       name <- def[["c_name"]]
@@ -251,6 +251,10 @@ function(name, classes)
 {
   ans <- name
   tmp <- name
+  
+  if (!(name %in% names(classes)))
+    return(ans) # avoid partial matching
+  
   while(!is.null(p <- classes[[tmp]])) {
      tmp <- p$parent
      if(length(tmp) < 1 || tmp == "nil")
@@ -355,7 +359,7 @@ asCoerce <- function(t)
 # removes the 'const' that qualifies a C type
 dequalify <- function(type)
 {
-    sub("^const ", "", type)
+    sub(" const", "", sub("^const ", "", type))
 }
 # removes the '[]' that designates an array type in the defs
 dearray <- function(type)
@@ -1415,6 +1419,7 @@ function(var, ptype, fun = NULL, defs)
           if (is.null(fun) || (fun$owns == 0 && !out))
             args[1] <- paste(args[1], "?", invoke(defs$boxes[[type]]$copy, args[1]), ": NULL")
           finalizer <- defs$boxes[[type]]$release
+          ptype <- dequalify(ptype) # output of copy func is no longer const
         } else if (isPointer(type, defs) && (fun$owns == 1 || out)) {
           finalizer <- "g_free"
         } else if (isObject(type, defs) || isInterface(type, defs)) {

@@ -3357,7 +3357,7 @@ S_cairo_svg_get_versions(USER_OBJECT_ s_versions, USER_OBJECT_ s_num_versions)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if CAIRO_CHECK_VERSION(1, 2, 0)
-  cairo_svg_version_t const** versions = ((cairo_svg_version_t const**)getPtrValue(s_versions));
+  cairo_svg_version_t const** versions = ((cairo_svg_version_t const**)asCEnum(s_versions, CAIRO_TYPE_SVG_VERSION));
   int* num_versions = ((int*)asCArray(s_num_versions, int, asCInteger));
 
 

@@ -26,7 +26,7 @@ R_gtkCListGetText(USER_OBJECT_ clist,  USER_OBJECT_ dims)
 USER_OBJECT_
 R_gtkCListSetText(USER_OBJECT_ clist,  USER_OBJECT_ dims, USER_OBJECT_ vals)
 {
-  char *tmp;
+  const char *tmp;
   SEXP ans = NULL_USER_OBJECT;
   int n, i, ctr;
   GtkCList *w;

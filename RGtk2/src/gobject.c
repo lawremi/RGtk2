@@ -254,7 +254,7 @@ USER_OBJECT_
 S_g_object_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name, USER_OBJECT_ s_value)
 {
         GObject * object = G_OBJECT(getPtrValue(s_object));
-		gchar * property_name = asCString(s_property_name);
+		const gchar * property_name = asCString(s_property_name);
         GValue value = { 0, };
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
@@ -268,7 +268,7 @@ USER_OBJECT_
 S_g_object_get_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name)
 {
     GObject * object = (GObject *)getPtrValue(s_object);
-    gchar * property_name = asCString(s_property_name);
+    const gchar * property_name = asCString(s_property_name);
 		GParamSpec *spec = g_object_class_find_property(G_OBJECT_GET_CLASS(object), property_name);
 		
 		USER_OBJECT_ _result = NULL_USER_OBJECT;

@@ -19,8 +19,8 @@ asCAtkAttribute(USER_OBJECT_ s_attr)
 
     attr = (AtkAttribute *)R_alloc(1, sizeof(AtkAttribute));
 
-    attr->name = asCString(GET_NAMES(s_attr));
-    attr->value = asCString(s_attr);
+    attr->name = (gchar *)asCString(GET_NAMES(s_attr));
+    attr->value = (gchar *)asCString(s_attr);
 
     return(attr);
 }

@@ -52,7 +52,7 @@ asCGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
   
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 0)) > 0) {
 		*mask |= GDK_WA_TITLE;
-		attr->title = asCString(VECTOR_ELT(s_window_attr, 0));
+		attr->title = (gchar *)asCString(VECTOR_ELT(s_window_attr, 0));
 	}
 	attr->event_mask = asCInteger(VECTOR_ELT(s_window_attr, 1));
   if (GET_LENGTH(VECTOR_ELT(s_window_attr, 2)) > 0) {
@@ -81,8 +81,8 @@ asCGdkWindowAttr(USER_OBJECT_ s_window_attr, GdkWindowAttributesType *mask)
 	}
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 11)) > 0) {
 		*mask |= GDK_WA_WMCLASS;
-		attr->wmclass_name = asCString(VECTOR_ELT(s_window_attr, 11));
-		attr->wmclass_class = asCString(VECTOR_ELT(s_window_attr, 12));
+		attr->wmclass_name = (gchar *)asCString(VECTOR_ELT(s_window_attr, 11));
+		attr->wmclass_class = (gchar *)asCString(VECTOR_ELT(s_window_attr, 12));
 	}
 	if (GET_LENGTH(VECTOR_ELT(s_window_attr, 13)) > 0) {
 		*mask |= GDK_WA_NOREDIR;

@@ -5,7 +5,7 @@ GtkTargetEntry*
 asCGtkTargetEntry(USER_OBJECT_ s_entry) {
     GtkTargetEntry* entry;
     entry = (GtkTargetEntry*)R_alloc(1, sizeof(GtkTargetEntry));
-    entry->target = asCString(VECTOR_ELT(s_entry, 0));
+    entry->target = (gchar *)asCString(VECTOR_ELT(s_entry, 0));
     entry->flags = asCFlag(VECTOR_ELT(s_entry, 1), GTK_TYPE_TARGET_FLAGS);
     entry->info = asCInteger(VECTOR_ELT(s_entry, 2));
     return(entry);
@@ -67,7 +67,7 @@ asCGtkSettingsValue(USER_OBJECT_ s_value)
 {
     GtkSettingsValue* value;
     value = (GtkSettingsValue*)R_alloc(1, sizeof(GtkSettingsValue));
-    value->origin = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_value, 0), 0));
+    value->origin = (char *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_value, 0), 0));
     value->value = *asCGValue(VECTOR_ELT(s_value, 1));
     return(value);
 }
@@ -77,11 +77,11 @@ asCGtkStockItem(USER_OBJECT_ s_item)
 {
     GtkStockItem* item;
     item = (GtkStockItem*)R_alloc(1, sizeof(GtkStockItem));
-    item->stock_id = asCString(VECTOR_ELT(s_item, 0));
-    item->label = asCString(VECTOR_ELT(s_item, 1));
+    item->stock_id = (gchar *)asCString(VECTOR_ELT(s_item, 0));
+    item->label = (gchar *)asCString(VECTOR_ELT(s_item, 1));
     item->modifier = asCFlag(VECTOR_ELT(s_item,2), GDK_TYPE_MODIFIER_TYPE);
     item->keyval = asCNumeric(VECTOR_ELT(s_item,3));
-    item->translation_domain = asCString(VECTOR_ELT(s_item, 4));
+    item->translation_domain = (gchar *)asCString(VECTOR_ELT(s_item, 4));
     return(item);
 }
 USER_OBJECT_
@@ -122,15 +122,15 @@ R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype)
 {
     GtkItemFactoryEntry *entry;
     entry = (GtkItemFactoryEntry*)R_alloc(1, sizeof(GtkItemFactoryEntry));
-    entry->path = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 0), 0));
-    entry->accelerator = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 1), 0));
+    entry->path = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 0), 0));
+    entry->accelerator = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 1), 0));
 
     if (cbtype == 1)
         entry->callback = (GtkItemFactoryCallback)S_GtkItemFactoryCallback1;
     else entry->callback = (GtkItemFactoryCallback)S_GtkItemFactoryCallback2;
 
     entry->callback_action = NUMERIC_DATA(VECTOR_ELT(s_entry, 3))[0];
-    entry->item_type = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 4), 0));
+    entry->item_type = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 4), 0));
     entry->extra_data = (gconstpointer)getPtrValue(VECTOR_ELT(s_entry, 5));
 
     return(entry);

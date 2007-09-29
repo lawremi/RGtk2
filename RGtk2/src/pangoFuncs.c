@@ -1255,7 +1255,7 @@ S_pango_context_get_matrix(USER_OBJECT_ s_object)
 
   ans = pango_context_get_matrix(object);
 
-  _result = toRPointer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix");
+  _result = toRPointerWithFinalizer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix", (RPointerFinalizer) pango_matrix_free);
 
   return(_result);
 }
@@ -3106,7 +3106,7 @@ S_pango_layout_get_font_description(USER_OBJECT_ s_object)
 
   ans = pango_layout_get_font_description(object);
 
-  _result = toRPointer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription");
+  _result = toRPointerWithFinalizer(ans ? pango_font_description_copy(ans) : NULL, "PangoFontDescription", (RPointerFinalizer) pango_font_description_free);
 
   return(_result);
 }
@@ -4310,7 +4310,7 @@ S_pango_renderer_get_matrix(USER_OBJECT_ s_object)
 
   ans = pango_renderer_get_matrix(object);
 
-  _result = toRPointer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix");
+  _result = toRPointerWithFinalizer(ans ? pango_matrix_copy(ans) : NULL, "PangoMatrix", (RPointerFinalizer) pango_matrix_free);
 
   return(_result);
 }

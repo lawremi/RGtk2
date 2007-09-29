@@ -53,21 +53,20 @@ function(libname, pkgname)
   unix_config <- NULL
   
   gtk_web <- "http://www.gtk.org"
-  ggobi_web <- "http://www.ggobi.org"
   
-  install_system_dep <- function(package_name, dep_name, dep_url, dep_web, installer)
+  install_system_dep <- function(dep_name, dep_url, dep_web, installer)
   {
-    if (is.null(dep_url)) {
-      print(paste("Please install", dep_name, "on your system."))
-    } else {
-      choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
-        paste("Need", dep_name, "?"))
-      if (choice == 1) {
-        path <- file.path(tempdir(), basename(dep_url))
-        if (download.file(dep_url, path, mode="wb") > 0)
-          stop("Failed to download ", dep_name)
-        installer(path)
-      }
+    if (!interactive()) {
+      cat("Please install ", dep_name, " from ", dep_url)
+      return()
+    }
+    choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
+      paste("Need", dep_name, "?"))
+    if (choice == 1) {
+      path <- file.path(tempdir(), basename(dep_url))
+      if (download.file(dep_url, path, mode="wb") > 0)
+        stop("Failed to download ", dep_name)
+      installer(path)
     }
     print(paste("Learn more about", dep_name, "at", dep_web))
   }
@@ -81,9 +80,10 @@ function(libname, pkgname)
     
     if (is.null(config))
       stop("Sorry this platform is not yet supported by the automatic GTK+ installer.",
-      "Please install GTK+ manually, if necessary.")
+        "Please install GTK+ manually, if necessary. See: ", gtk_web)
     
-    if (!is.null(config$gtk_url))
-      install_system_dep("RGtk2", "GTK+", config$gtk_url, gtk_web, config$installer)
+    install_system_dep("GTK+", config$gtk_url, gtk_web, config$installer)
   }
+  
+  print("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
 }

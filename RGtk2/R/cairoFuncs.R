@@ -2249,7 +2249,7 @@ function(surface, version)
 cairoSvgGetVersions <-
 function(versions, num.versions)
 {
-  checkPtrType(versions, "CairoSvgVersionT const")
+  
   num.versions <- as.list(as.integer(num.versions))
 
   w <- .RGtkCall("S_cairo_svg_get_versions", versions, num.versions, PACKAGE = "RGtk2")

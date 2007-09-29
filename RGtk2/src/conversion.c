@@ -1,4 +1,5 @@
 #include "RGtk2/gobject.h"
+#include <stdlib.h> /* for atoi */
 
 char **
 asCStringArray(USER_OBJECT_ svec)
@@ -11,7 +12,7 @@ asCStringArray(USER_OBJECT_ svec)
     if(n > 0) {
     els = (char **) R_alloc(n+1, sizeof(char*));
     for(i = 0; i < n; i++) {
-        els[i] = asCString(VECTOR_ELT(svec, i));
+        els[i] = (gchar *)asCString(VECTOR_ELT(svec, i));
     }
         els[n] = NULL;
     }
@@ -19,7 +20,7 @@ asCStringArray(USER_OBJECT_ svec)
     return(els);
 }
 
-gchar *
+const gchar *
 asCString(USER_OBJECT_ s_str)
 {
   if (s_str == NULL_USER_OBJECT)
@@ -36,7 +37,7 @@ gchar
 asCCharacter(USER_OBJECT_ s_char)
 {
   gchar c = '\0';
-  gchar *str = asCString(s_char);
+  const gchar *str = asCString(s_char);
   if (str)
     c = str[0];
   return(c);

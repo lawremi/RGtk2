@@ -41,7 +41,7 @@ toCGList(USER_OBJECT_ s_list, gboolean dup)
         SEXP s_element = VECTOR_ELT(s_list, i);
         gpointer element;
         if (IS_CHARACTER(s_element)) {
-            element = CHAR_DEREF(STRING_ELT(s_element, 0));
+            element = (gpointer)CHAR_DEREF(STRING_ELT(s_element, 0));
             if (dup && element) element = g_strdup(element);
         } else if (IS_INTEGER(s_element))
             element = GINT_TO_POINTER(INTEGER(s_element)[0]);
@@ -107,7 +107,7 @@ toCGSList(USER_OBJECT_ s_list, gboolean dup)
         SEXP s_element = VECTOR_ELT(s_list, i);
         gpointer element;
         if (IS_CHARACTER(s_element)) {
-            element = CHAR_DEREF(STRING_ELT(s_element, 0));
+            element = (gpointer)CHAR_DEREF(STRING_ELT(s_element, 0));
             if (dup && element) element = g_strdup(element);
         } else if (IS_INTEGER(s_element))
             element = GINT_TO_POINTER(INTEGER(s_element)[0]);

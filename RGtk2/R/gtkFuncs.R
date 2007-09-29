@@ -14305,11 +14305,11 @@ function()
 
 
 gtkGetCurrentEventState <-
-function(state)
+function()
 {
   
 
-  w <- .RGtkCall("S_gtk_get_current_event_state", state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_get_current_event_state", PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -17414,24 +17414,22 @@ function(scanner, color)
 
 
 gtkRcParseState <-
-function(scanner, state)
+function(scanner)
 {
   checkPtrType(scanner, "GScanner")
-  
 
-  w <- .RGtkCall("S_gtk_rc_parse_state", scanner, state, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_state", scanner, PACKAGE = "RGtk2")
 
   return(w)
 } 
 
 
 gtkRcParsePriority <-
-function(scanner, priority)
+function(scanner)
 {
   checkPtrType(scanner, "GScanner")
-  
 
-  w <- .RGtkCall("S_gtk_rc_parse_priority", scanner, priority, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_rc_parse_priority", scanner, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -26480,15 +26478,14 @@ function(object, path, pos)
 
 
 gtkTreeViewGetDragDestRow <-
-function(object, path, pos)
+function(object, path)
 {
   checkPtrType(object, "GtkTreeView")
   checkPtrType(path, "GtkTreePath")
-  
 
-  w <- .RGtkCall("S_gtk_tree_view_get_drag_dest_row", object, path, pos, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_tree_view_get_drag_dest_row", object, path, PACKAGE = "RGtk2")
 
-  return(invisible(w))
+  return(w)
 } 
 
 

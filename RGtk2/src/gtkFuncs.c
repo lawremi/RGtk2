@@ -398,7 +398,7 @@ S_gtk_about_dialog_get_authors(USER_OBJECT_ s_object)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkAboutDialog* object = GTK_ABOUT_DIALOG(getPtrValue(s_object));
 
-  const gchar** ans;
+  const gchar* const* ans;
 
   ans = gtk_about_dialog_get_authors(object);
 
@@ -429,7 +429,7 @@ S_gtk_about_dialog_get_documenters(USER_OBJECT_ s_object)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkAboutDialog* object = GTK_ABOUT_DIALOG(getPtrValue(s_object));
 
-  const gchar** ans;
+  const gchar* const* ans;
 
   ans = gtk_about_dialog_get_documenters(object);
 
@@ -460,7 +460,7 @@ S_gtk_about_dialog_get_artists(USER_OBJECT_ s_object)
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkAboutDialog* object = GTK_ABOUT_DIALOG(getPtrValue(s_object));
 
-  const gchar** ans;
+  const gchar* const* ans;
 
   ans = gtk_about_dialog_get_artists(object);
 
@@ -18833,16 +18833,19 @@ S_gtk_get_current_event_time(void)
  
 
 USER_OBJECT_
-S_gtk_get_current_event_state(USER_OBJECT_ s_state)
+S_gtk_get_current_event_state(void)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
-  GdkModifierType* state = ((GdkModifierType*)asCFlag(s_state, GDK_TYPE_MODIFIER_TYPE));
 
   gboolean ans;
+  GdkModifierType state;
 
-  ans = gtk_get_current_event_state(state);
+  ans = gtk_get_current_event_state(&state);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "state", asRFlag(state, GDK_TYPE_MODIFIER_TYPE), NULL);
+  ;
 
   return(_result);
 }
@@ -22917,34 +22920,40 @@ S_gtk_rc_parse_color(USER_OBJECT_ s_scanner, USER_OBJECT_ s_color)
  
 
 USER_OBJECT_
-S_gtk_rc_parse_state(USER_OBJECT_ s_scanner, USER_OBJECT_ s_state)
+S_gtk_rc_parse_state(USER_OBJECT_ s_scanner)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GScanner* scanner = ((GScanner*)getPtrValue(s_scanner));
-  GtkStateType* state = ((GtkStateType*)asCEnum(s_state, GTK_TYPE_STATE_TYPE));
 
   guint ans;
+  GtkStateType state;
 
-  ans = gtk_rc_parse_state(scanner, state);
+  ans = gtk_rc_parse_state(scanner, &state);
 
   _result = asRNumeric(ans);
+
+  _result = retByVal(_result, "state", asREnum(state, GTK_TYPE_STATE_TYPE), NULL);
+  ;
 
   return(_result);
 }
  
 
 USER_OBJECT_
-S_gtk_rc_parse_priority(USER_OBJECT_ s_scanner, USER_OBJECT_ s_priority)
+S_gtk_rc_parse_priority(USER_OBJECT_ s_scanner)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GScanner* scanner = ((GScanner*)getPtrValue(s_scanner));
-  GtkPathPriorityType* priority = ((GtkPathPriorityType*)asCEnum(s_priority, GTK_TYPE_PATH_PRIORITY_TYPE));
 
   guint ans;
+  GtkPathPriorityType priority;
 
-  ans = gtk_rc_parse_priority(scanner, priority);
+  ans = gtk_rc_parse_priority(scanner, &priority);
 
   _result = asRNumeric(ans);
+
+  _result = retByVal(_result, "priority", asREnum(priority, GTK_TYPE_PATH_PRIORITY_TYPE), NULL);
+  ;
 
   return(_result);
 }
@@ -35413,16 +35422,19 @@ S_gtk_tree_view_set_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path, US
  
 
 USER_OBJECT_
-S_gtk_tree_view_get_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path, USER_OBJECT_ s_pos)
+S_gtk_tree_view_get_drag_dest_row(USER_OBJECT_ s_object, USER_OBJECT_ s_path)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
   GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
   GtkTreePath** path = ((GtkTreePath**)getPtrValue(s_path));
-  GtkTreeViewDropPosition* pos = ((GtkTreeViewDropPosition*)asCEnum(s_pos, GTK_TYPE_TREE_VIEW_DROP_POSITION));
+
+  GtkTreeViewDropPosition pos;
+
+  gtk_tree_view_get_drag_dest_row(object, path, &pos);
 
 
-  gtk_tree_view_get_drag_dest_row(object, path, pos);
-
+  _result = retByVal(_result, "pos", asREnum(pos, GTK_TYPE_TREE_VIEW_DROP_POSITION), NULL);
+  ;
 
   return(_result);
 }
@@ -41457,7 +41469,7 @@ S_gtk_entry_get_inner_border(USER_OBJECT_ s_object)
 #if GTK_CHECK_VERSION(2, 10, 0)
   GtkEntry* object = GTK_ENTRY(getPtrValue(s_object));
 
-  GtkBorder* ans;
+  const GtkBorder* ans;
 
   ans = gtk_entry_get_inner_border(object);
 

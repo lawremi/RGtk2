@@ -555,7 +555,7 @@
 (define-method get_inner_border
   (of-object "GtkEntry")
   (c-name "gtk_entry_get_inner_border")
-  (return-type "GtkBorder*")
+  (return-type "const-GtkBorder*")
   (since "2.10.0")
 )
 
