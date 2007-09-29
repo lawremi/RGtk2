@@ -47,18 +47,18 @@ modified directly.
 \item{\code{justification}}{[\code{\link{GtkJustification}}] }
 \item{\code{direction}}{[\code{\link{GtkTextDirection}}] }
 \item{\code{font}}{[\code{\link{PangoFontDescription}}] }
-\item{\code{font_scale}}{[numeric] }
-\item{\code{left_margin}}{[integer] }
+\item{\code{fontScale}}{[numeric] }
+\item{\code{leftMargin}}{[integer] }
 \item{\code{indent}}{[integer] }
-\item{\code{right_margin}}{[integer] }
-\item{\code{pixels_above_lines}}{[integer] }
-\item{\code{pixels_below_lines}}{[integer] }
-\item{\code{pixels_inside_wrap}}{[integer] }
+\item{\code{rightMargin}}{[integer] }
+\item{\code{pixelsAboveLines}}{[integer] }
+\item{\code{pixelsBelowLines}}{[integer] }
+\item{\code{pixelsInsideWrap}}{[integer] }
 \item{\code{tabs}}{[\code{\link{PangoTabArray}}] }
-\item{\code{wrap_mode}}{[\code{\link{GtkWrapMode}}] }
+\item{\code{wrapMode}}{[\code{\link{GtkWrapMode}}] }
 \item{\code{language}}{[\code{\link{PangoLanguage}}] }
 \item{\code{invisible}}{[numeric] }
-\item{\code{bg_full_height}}{[numeric] }
+\item{\code{bgFullHeight}}{[numeric] }
 \item{\code{editable}}{[numeric] }
 \item{\code{realized}}{[numeric] }
 }

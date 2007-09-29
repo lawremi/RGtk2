@@ -241,6 +241,14 @@ A \code{GtkRequisition} represents the desired size of a widget. See
 \emph{undocumented
 }
 
+\describe{
+\item{\code{selection}}{[\code{\link{GdkAtom}}] }
+\item{\code{target}}{[\code{\link{GdkAtom}}] }
+\item{\code{type}}{[\code{\link{GdkAtom}}] }
+\item{\code{format}}{[integer] }
+\item{\code{data}}{[raw] }
+}
+
 }
 }}
 \section{Convenient Construction}{\code{gtkWidget} is the equivalent of \code{\link{gtkWidgetNew}}.}

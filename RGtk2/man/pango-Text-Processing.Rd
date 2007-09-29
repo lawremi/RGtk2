@@ -63,7 +63,7 @@ a segment of text. It contains the following fields:
 \item{\code{offset}}{[integer] the offset of the segment from the beginning of the
          string in bytes.}
 \item{\code{length}}{[integer] the length of the segment in bytes.}
-\item{\code{num_chars}}{[integer] the length of the segment in characters.}
+\item{\code{numChars}}{[integer] the length of the segment in characters.}
 \item{\code{analysis}}{[\code{\link{PangoAnalysis}}] the properties of the segment.}
 }
 

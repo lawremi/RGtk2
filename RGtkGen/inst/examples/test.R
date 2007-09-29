@@ -39,7 +39,7 @@ doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 #doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtktreemodelfilter.xml")-1))]
 #source("genDoc.S")
 #genDocs(doc_files[4:length(doc_files)], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
-genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
+genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = F)
 
 # exporting/importing routines for each API
 deps <- list(atk = "gobject", cairo = "gobject", pango = "cairo", 

@@ -36,10 +36,9 @@ makes the dialog modal and waits for the user to respond to it. \code{\link{gtkD
 returns when any dialog button is clicked.
 \preformatted{
 # A Modal dialog
-dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-                                  "error", "close",
-                                  "Error loading file '", filename, "': ", message)
-
+dialog <- gtkMessageDialog(main_application_window, 
+  "destroy-with-parent", "error", "close", "Error loading file '", 
+  filename, "': ", message)
 dialog$run()
 dialog$destroy()
 }
@@ -47,11 +46,9 @@ dialog$destroy()
 You might do a non-modal \code{\link{GtkMessageDialog}} as follows:
 \preformatted{
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-                                  "error", "close",
-                                  "Error loading file '", filename, "': ", message)
-
- # Destroy the dialog when the user responds to it (e.g. clicks a button)
- gSignalConnect(dialog, "response", gtkWidgetDestroy)
+  "error", "close", "Error loading file '", filename, "': ", message)
+# Destroy the dialog when the user responds to it (e.g. clicks a button)
+gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }}
 \section{Structures}{\describe{\item{\code{GtkMessageDialog}}{
 \emph{undocumented

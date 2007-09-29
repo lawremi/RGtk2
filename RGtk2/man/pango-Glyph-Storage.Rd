@@ -118,9 +118,9 @@ The storage for the glyph information is owned
 by the structure which simplifies memory management.
 
 \describe{
-\item{\code{num_glyphs}}{[integer] the number of glyphs in the string.}
+\item{\code{numGlyphs}}{[integer] the number of glyphs in the string.}
 \item{\code{glyphs}}{[\code{\link{PangoGlyphInfo}}] a list of \code{\link{PangoGlyphInfo}} structures of length \code{num_glyphs}.}
-\item{\code{log_clusters}}{[integer] for each glyph, byte index of the starting character for the
+\item{\code{logClusters}}{[integer] for each glyph, byte index of the starting character for the
 cluster. The indices are relative to the start of the text
 corresponding to the PangoGlyphString.}
 }

@@ -517,7 +517,7 @@ field_name_path <- "/varlistentry/term/structfield"
 field_type_path <- "/varlistentry/term/link/text()"
 
 toRStructs <- function(structs, defs) {
-	types <- c(defs$pointers, defs$objects, defs$interfaces)
+	types <- c(defs$pointers, defs$boxes, defs$objects, defs$interfaces)
 	get_fields <- function(struct_name) {
 		fields <- types[[struct_name]]$fields
 		if (length(grep("^GdkEvent", struct_name)) > 0 && struct_name != "GdkEventAny"){

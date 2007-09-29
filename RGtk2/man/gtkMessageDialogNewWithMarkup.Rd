@@ -25,8 +25,8 @@ as the format (it might contain '\%' characters) or as a string
 argument.
   
 \preformatted{
-dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-                                  "error", "close")
+dialog <- gtkMessageDialog(main_application_window, 
+  "destroy-with-parent", "error", "close")
 dialog$setMarkup(message)
 }  
 

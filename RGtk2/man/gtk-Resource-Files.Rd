@@ -22,8 +22,8 @@
 \code{\link{gtkRcSetDefaultFiles}(filenames)}\cr
 \code{\link{gtkRcParseColor}(scanner, color)}\cr
 \code{\link{gtkRcParseColorFull}(scanner, style)}\cr
-\code{\link{gtkRcParseState}(scanner, state)}\cr
-\code{\link{gtkRcParsePriority}(scanner, priority)}\cr
+\code{\link{gtkRcParseState}(scanner)}\cr
+\code{\link{gtkRcParsePriority}(scanner)}\cr
 \code{\link{gtkRcFindModuleInPath}(module.file)}\cr
 \code{\link{gtkRcFindPixmapInPath}(settings, scanner = NULL, pixmap.file)}\cr
 \code{\link{gtkRcGetModuleDir}()}\cr

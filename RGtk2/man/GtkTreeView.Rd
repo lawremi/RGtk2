@@ -77,7 +77,7 @@
 \code{\link{gtkTreeViewUnsetRowsDragSource}(object)}\cr
 \code{\link{gtkTreeViewUnsetRowsDragDest}(object)}\cr
 \code{\link{gtkTreeViewSetDragDestRow}(object, path, pos)}\cr
-\code{\link{gtkTreeViewGetDragDestRow}(object, path, pos)}\cr
+\code{\link{gtkTreeViewGetDragDestRow}(object, path)}\cr
 \code{\link{gtkTreeViewGetDestRowAtPos}(object, drag.x, drag.y)}\cr
 \code{\link{gtkTreeViewCreateRowDragIcon}(object, path)}\cr
 \code{\link{gtkTreeViewSetEnableSearch}(object, enable.search)}\cr
