@@ -183,9 +183,6 @@ R_RegisterCCallable("RGtk2", "S_gtk_recent_action_class_init", ((DL_FUNC)S_gtk_r
 R_RegisterCCallable("RGtk2", "S_gtk_scale_button_class_init", ((DL_FUNC)S_gtk_scale_button_class_init));
 #endif 
 #if GTK_CHECK_VERSION(2, 12, 0)
-R_RegisterCCallable("RGtk2", "S_gtk_tooltip_class_init", ((DL_FUNC)S_gtk_tooltip_class_init));
-#endif 
-#if GTK_CHECK_VERSION(2, 12, 0)
 R_RegisterCCallable("RGtk2", "S_gtk_volume_button_class_init", ((DL_FUNC)S_gtk_volume_button_class_init));
 #endif 
 R_RegisterCCallable("RGtk2", "S_gtk_cell_editable_class_init", ((DL_FUNC)S_gtk_cell_editable_class_init)); 

@@ -147,7 +147,7 @@ finalClasses <- c("GdkDevice", "GdkVisual", "GdkPixbuf", "GdkPixbufSimpleAnim",
   "GtkClipboard", "GtkFileFilter", "GtkPageSetup", "GtkPrintContext", 
   "GtkPrintOperationPreview", "GtkPrintSettings", "GtkRecentChooser",
   "GtkRecentFilter", "GtkFileChooser", "GtkAccelMap", "PangoCairoFontMap",
-  "PangoContext", "PangoFontsetSimple", "PangoLayout")
+  "PangoContext", "PangoFontsetSimple", "PangoLayout", "GtkTooltip")
 classTypeMap <- c("GdkBitmapClass" = "GdkDrawableClass", 
   "GdkPixmapClass" = "GdkPixmapObjectClass", "GtkEditableIface" = "GtkEditableClass")
 

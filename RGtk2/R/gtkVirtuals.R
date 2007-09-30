@@ -6250,7 +6250,7 @@ function(object.class, object, builder, name)
 }
 
 gtkBuildableIfaceCustomTagStart <-
-function(object.class, object, builder, child, tagname, parser, data)
+function(object.class, object, builder, child, tagname, parser)
 {
   checkPtrType(object.class, "GtkBuildableIface")
   checkPtrType(object, "GtkBuildable")
@@ -6258,24 +6258,22 @@ function(object.class, object, builder, child, tagname, parser, data)
   checkPtrType(child, "GObject")
   tagname <- as.character(tagname)
   checkPtrType(parser, "GMarkupParser")
-  
 
-  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_start", object.class, object, builder, child, tagname, parser, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_start", object.class, object, builder, child, tagname, parser, PACKAGE = "RGtk2")
 
   return(w)
 }
 
 gtkBuildableIfaceCustomTagEnd <-
-function(object.class, object, builder, child, tagname, data)
+function(object.class, object, builder, child, tagname)
 {
   checkPtrType(object.class, "GtkBuildableIface")
   checkPtrType(object, "GtkBuildable")
   checkPtrType(builder, "GtkBuilder")
   checkPtrType(child, "GObject")
   tagname <- as.character(tagname)
-  
 
-  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_end", object.class, object, builder, child, tagname, data, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_gtk_buildable_iface_custom_tag_end", object.class, object, builder, child, tagname, PACKAGE = "RGtk2")
 
   return(invisible(w))
 }

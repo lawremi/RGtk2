@@ -347,10 +347,6 @@ S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e);
 #endif 
 #if GTK_CHECK_VERSION(2, 12, 0)
 void
-S_gtk_tooltip_class_init(GtkTooltipClass * c, SEXP e);
-#endif 
-#if GTK_CHECK_VERSION(2, 12, 0)
-void
 S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e);
 #endif 
 void

@@ -21656,22 +21656,6 @@ S_gtk_scale_button_class_init(GtkScaleButtonClass * c, SEXP e)
 #endif 
 
 #if GTK_CHECK_VERSION(2, 12, 0)
-static SEXP S_GtkTooltip_symbol;
-void
-S_gtk_tooltip_class_init(GtkTooltipClass * c, SEXP e)
-{
-  SEXP s;
-
-  S_GtkTooltip_symbol = install("GtkTooltip");
-  s = findVar(S_GtkTooltip_symbol, e);
-  G_STRUCT_MEMBER(SEXP, c, sizeof(GtkTooltipClass)) = e;
-
-  S_gobject_class_init(((GObjectClass *)c), e);
-
-}
-#endif 
-
-#if GTK_CHECK_VERSION(2, 12, 0)
 static SEXP S_GtkVolumeButton_symbol;
 void
 S_gtk_volume_button_class_init(GtkVolumeButtonClass * c, SEXP e)
@@ -24300,7 +24284,7 @@ S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_b
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 7));
+  PROTECT(e = allocVector(LANGSXP, 6));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 5));
@@ -24316,8 +24300,6 @@ S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_b
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointer(s_parser, "GMarkupParser"));
   tmp = CDR(tmp);
-  SETCAR(tmp, s_data);
-  tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -24325,7 +24307,8 @@ S_virtual_gtk_buildable_custom_tag_start(GtkBuildable* s_object, GtkBuilder* s_b
 
   if(err)
     return(((gboolean)0));
-  return(((gboolean)asCLogical(s_ans)));
+  *s_data = ((gpointer)asCGenericData(VECTOR_ELT(s_ans, 1)));
+  return(((gboolean)asCLogical(VECTOR_ELT(s_ans, 0))));
 }
 static 
 void
@@ -24336,7 +24319,7 @@ S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_bui
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 6));
+  PROTECT(e = allocVector(LANGSXP, 5));
   tmp = e;
 
   SETCAR(tmp, VECTOR_ELT(findVar(S_GtkBuildable_symbol, S_GOBJECT_GET_ENV(s_object)), 6));
@@ -24350,8 +24333,6 @@ S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_bui
   tmp = CDR(tmp);
   SETCAR(tmp, asRString(s_tagname));
   tmp = CDR(tmp);
-  SETCAR(tmp, s_data);
-  tmp = CDR(tmp);
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -24359,6 +24340,7 @@ S_virtual_gtk_buildable_custom_tag_end(GtkBuildable* s_object, GtkBuilder* s_bui
 
   if(err)
     return;
+  *s_data = ((gpointer)asCGenericData(VECTOR_ELT(s_ans, 0)));
 }
 static 
 void
@@ -24607,7 +24589,7 @@ S_gtk_buildable_iface_construct_child(USER_OBJECT_ s_object_class, USER_OBJECT_ 
 }
 
 USER_OBJECT_
-S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_parser, USER_OBJECT_ s_data)
+S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_parser)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 12, 0)
@@ -24617,13 +24599,16 @@ S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_
   GObject* child = G_OBJECT(getPtrValue(s_child));
   const gchar* tagname = ((const gchar*)asCString(s_tagname));
   GMarkupParser* parser = ((GMarkupParser*)getPtrValue(s_parser));
-  gpointer* data = ((gpointer*)asCGenericData(s_data));
 
   gboolean ans;
+  gpointer data;
 
-  ans = object_class->custom_tag_start(object, builder, child, tagname, parser, data);
+  ans = object_class->custom_tag_start(object, builder, child, tagname, parser, &data);
 
   _result = asRLogical(ans);
+
+  _result = retByVal(_result, "data", data, NULL);
+  ;
 #else
   error("gtk_buildable_custom_tag_start exists only in Gtk >= 2.12.0");
 #endif
@@ -24632,7 +24617,7 @@ S_gtk_buildable_iface_custom_tag_start(USER_OBJECT_ s_object_class, USER_OBJECT_
 }
 
 USER_OBJECT_
-S_gtk_buildable_iface_custom_tag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname, USER_OBJECT_ s_data)
+S_gtk_buildable_iface_custom_tag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s_object, USER_OBJECT_ s_builder, USER_OBJECT_ s_child, USER_OBJECT_ s_tagname)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if GTK_CHECK_VERSION(2, 12, 0)
@@ -24641,11 +24626,14 @@ S_gtk_buildable_iface_custom_tag_end(USER_OBJECT_ s_object_class, USER_OBJECT_ s
   GtkBuilder* builder = GTK_BUILDER(getPtrValue(s_builder));
   GObject* child = G_OBJECT(getPtrValue(s_child));
   const gchar* tagname = ((const gchar*)asCString(s_tagname));
-  gpointer* data = ((gpointer*)asCGenericData(s_data));
+
+  gpointer data;
+
+  object_class->custom_tag_end(object, builder, child, tagname, &data);
 
 
-  object_class->custom_tag_end(object, builder, child, tagname, data);
-
+  _result = retByVal(_result, "data", data, NULL);
+  ;
 #else
   error("gtk_buildable_custom_tag_end exists only in Gtk >= 2.12.0");
 #endif
