@@ -19,9 +19,7 @@ gdkGetWindowSize(w)
     dimension}
   \item{height}{the number of pixels the window spans in the vertical dimension}  
 }
-\references{
 
-}
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
@@ -35,9 +33,7 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 \code{\link{gtkWidgetSetUsize}}
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

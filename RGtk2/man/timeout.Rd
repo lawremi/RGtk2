@@ -63,8 +63,5 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
   \code{\link{gtkAddCallback}}
 }
 
-\examples{
-}
-
 \keyword{interface}
 \keyword{internal}

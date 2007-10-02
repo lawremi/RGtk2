@@ -45,9 +45,7 @@ gtkObjectGetType(w, check=TRUE)
   The name of the type is used as the \code{names}
   vector for the numeric vector.
 }
-\references{
 
-}
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
@@ -63,9 +61,7 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
   \code{\link{gtkTypeGetClasses}}  
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

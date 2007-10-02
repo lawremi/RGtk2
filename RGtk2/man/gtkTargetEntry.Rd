@@ -37,12 +37,6 @@ gtkTargetEntryNew(target, flags, info)
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
-
-\seealso{}
-\examples{
-
-}
-
 \keyword{interface}
 \keyword{internal}
 

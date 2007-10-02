@@ -42,7 +42,7 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
 
   parseType <- function(type)
   {
-      gsub("-", " ", type)
+      gsub("-([^>])", " \\1", type)
   }
   convertDef <- function(def) {
       name <- def[["c_name"]]

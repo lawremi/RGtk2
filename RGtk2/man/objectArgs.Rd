@@ -40,15 +40,7 @@ gtkObjectSetArgs(obj, ..., .vals)
   \item{.vals}{a named list similar to \code{...} in \code{gtkObjectSetArgs}
      }
 }
-\details{
 
-}
-\value{
-
-}
-\references{
-
-}
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
@@ -56,13 +48,6 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 
-
-}
-
-
-\seealso{}
-
-\examples{
 
 }
 

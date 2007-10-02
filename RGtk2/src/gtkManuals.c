@@ -1233,7 +1233,7 @@ S_GtkMenuPositionFunc(GtkMenu* s_menu, gint* s_x, gint* s_y, gboolean* s_push_in
 }
 */
 
-/* GBuilder helpers */
+/* GtkBuilder helpers */
 #if GTK_CHECK_VERSION(2,12,0)
 void
 S_GtkBuilderConnectFuncDefault(GtkBuilder* builder, GObject* object, 
@@ -1247,7 +1247,7 @@ S_GtkBuilderConnectFuncDefault(GtkBuilder* builder, GObject* object,
 		s_user_data = toRPointer(connect_object, "GObject");
 	
   closure = R_createGClosure(s_func, s_user_data);
-	((R_CallbackData)closure->data)->userDataFirst = flags & G_CONNECT_SWAPPED;
+	((R_CallbackData *)closure->data)->userDataFirst = flags & G_CONNECT_SWAPPED;
   
   g_signal_connect_closure(object, signal_name, closure, flags & G_CONNECT_AFTER);
 }

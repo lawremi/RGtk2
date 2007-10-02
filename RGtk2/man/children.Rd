@@ -43,9 +43,7 @@ intended to encourage others to contribute code, etc.}
 \code{\link{gtkParent}}
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

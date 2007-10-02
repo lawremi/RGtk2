@@ -43,9 +43,7 @@ result will be that newly created container widget.
  \code{\link{gtkShow}}
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

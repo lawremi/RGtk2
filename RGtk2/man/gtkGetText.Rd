@@ -31,9 +31,6 @@ gtkTextClearText(w, start=0, end=-1)
   into the string at present.}
 }
 
-\value{
-
-}
 \references{
 \url{http://www.gtk.org}
 \url{http://www.omegahat.org/RGtk}
@@ -44,12 +41,6 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 This is an extra-ordinarily early release 
 intended to encourage others to contribute code, etc.}
-
-\seealso{ }
-
-\examples{
-
-}
 
 \keyword{interface}
 \keyword{internal}

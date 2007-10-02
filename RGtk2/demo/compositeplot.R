@@ -22,7 +22,8 @@ filename <- imagefile("rgtk-logo.gif")
 pixbuf <- gdkPixbufNewFromFile(filename)[[1]]
 pixbuf <- pixbuf$addAlpha(TRUE, 248, 248, 248)
 
-plot_pixbuf <- gdkPixbufGetFromDrawable(pixmap, pixmap$getColormap(), 0, 0, 0, 0, 500, 500)
+plot_pixbuf <- gdkPixbufGetFromDrawable(NULL, pixmap, pixmap$getColormap(), 
+  0, 0, 0, 0, 500, 500)
 
 w <- pixbuf$getWidth()
 h <- pixbuf$getHeight()

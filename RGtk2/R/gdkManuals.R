@@ -130,7 +130,7 @@ function(object, type, ..., .errwarn = TRUE)
         type <- as.character(type)
 		args <- c(...)
 
-        w <- object$saveToBufferv(object, type, names(args), args, .errwarn)
+        w <- object$saveToBufferv(type, names(args), args, .errwarn)
 
         return(invisible(w))
 }

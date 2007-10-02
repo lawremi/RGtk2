@@ -47,9 +47,7 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 \seealso{
 \code{\link{gtkContainerGetChildren}}
 }
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

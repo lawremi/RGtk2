@@ -117,6 +117,83 @@ function(obj)
   v <- .Call('S_GdkDragContextGetStartTime', obj, PACKAGE = "RGtk2")
   v
 } 
+gdkImageGetType <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetType', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetVisual <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetVisual', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetByteOrder <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetByteOrder', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetWidth <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetWidth', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetHeight <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetHeight', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetDepth <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetDepth', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetBpp <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetBpp', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetBpl <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetBpl', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetBitsPerPixel <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetBitsPerPixel', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetMem <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetMem', obj, PACKAGE = "RGtk2")
+  v
+} 
+gdkImageGetColormap <-
+function(obj)
+{
+  checkPtrType(obj, 'GdkImage')
+  v <- .Call('S_GdkImageGetColormap', obj, PACKAGE = "RGtk2")
+  v
+} 
 gdkVisualGetType <-
 function(obj)
 {

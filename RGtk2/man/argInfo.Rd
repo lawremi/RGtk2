@@ -57,9 +57,7 @@ gtkObjectGetArgInfo(obj, parents=TRUE, collapse=TRUE)
   \code{FALSE}, then a list indexed by class is returned.
   Each element is a list containing the property information.
 }
-\references{
 
-}
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
@@ -69,9 +67,7 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
 
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

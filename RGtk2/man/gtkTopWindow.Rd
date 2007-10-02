@@ -26,8 +26,6 @@ gtkTopWindow(title="My Window", show=TRUE)
   that has the same inheritance as the low-level
   inheritance in Gtk.
 }
-\references{
-}
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>
 }
@@ -42,9 +40,7 @@ THIS STUFF IS VERY OLD AND DEPRECATED (compatibility wrappers for RGtk 1)
   \code{\link{gtkWindowNew}}  
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

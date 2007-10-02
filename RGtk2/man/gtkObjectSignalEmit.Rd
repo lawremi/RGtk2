@@ -44,9 +44,7 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 \seealso{
  \code{\link{gtkObjectAddCallback}}
 }
-\examples{
 
-}
 \keyword{programming}
 
 \keyword{interface}

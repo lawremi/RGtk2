@@ -21,11 +21,7 @@ gtkTypeGetSignals(type)
   \item{type}{a string or object of class \code{GtkType} whose signals
     are to be retrieved.}  
 }
-\details{
 
-}
-\value{
-}
 \references{
   Information on the package is available
   from \url{http://www.omegahat.org/RGtk}.
@@ -42,9 +38,7 @@ Duncan Temple Lang <duncan@research.bell-labs.com>
 \code{\link{gtkAddCallback}}
 }
 
-\examples{
 
-}
 
 \keyword{interface}
 \keyword{internal}

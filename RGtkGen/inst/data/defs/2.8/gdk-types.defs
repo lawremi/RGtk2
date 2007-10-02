@@ -95,6 +95,19 @@
   (parent "GObject")
   (c-name "GdkImage")
   (gtype-id "GDK_TYPE_IMAGE")
+  (fields
+    '("GdkImageType" "type")
+    '("GdkVisual*" "visual")
+    '("GdkByteOrder" "byte_order")
+    '("gint" "width")
+    '("gint" "height")
+    '("guint16" "depth")
+    '("guint16" "bpp")
+    '("guint16" "bpl")
+    '("guint16" "bits_per_pixel")
+    '("guchar[obj->width*obj->height*obj->bpp]" "mem")
+    '("GdkColormap*" "colormap")
+  )
 )
 
 (define-object Keymap

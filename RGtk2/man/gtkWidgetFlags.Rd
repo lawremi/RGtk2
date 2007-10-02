@@ -18,16 +18,7 @@ gtkWidgetUnsetFlags(wid, flags)
   \item{wid}{the widget}
   \item{flags}{the flags to (un)set on the widget}
 }
-\details{
 
-}
-\value{
-}
-
-\seealso{}
-\examples{
-
-}
 \author{Michael Lawrence}
 \keyword{interface}
 \keyword{internal}

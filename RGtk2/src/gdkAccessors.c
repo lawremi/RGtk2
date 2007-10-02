@@ -240,6 +240,160 @@ S_GdkDragContextGetStartTime (USER_OBJECT_ s_obj)
    return(_result);
 } 
 USER_OBJECT_
+S_GdkImageGetType (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   GdkImageType val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->type;
+   _result = asREnum(val, GDK_TYPE_IMAGE_TYPE);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetVisual (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   GdkVisual* val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->visual;
+   _result = toRPointerWithRef(val, "GdkVisual");
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetByteOrder (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   GdkByteOrder val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->byte_order;
+   _result = asREnum(val, GDK_TYPE_BYTE_ORDER);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetWidth (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   gint val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->width;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetHeight (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   gint val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->height;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetDepth (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   guint16 val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->depth;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetBpp (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   guint16 val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->bpp;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetBpl (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   guint16 val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->bpl;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetBitsPerPixel (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   guint16 val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->bits_per_pixel;
+   _result = asRInteger(val);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetMem (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   guchar* val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->mem;
+   _result = asRRawArrayWithSize(val, obj->width*obj->height*obj->bpp);
+
+   return(_result);
+} 
+USER_OBJECT_
+S_GdkImageGetColormap (USER_OBJECT_ s_obj)
+{
+   USER_OBJECT_ _result = NULL_USER_OBJECT;
+
+   GdkImage *obj;
+   GdkColormap* val;
+
+   obj = GDK_IMAGE(getPtrValue(s_obj)) ;
+   val = obj->colormap;
+   _result = toRPointerWithRef(val, "GdkColormap");
+
+   return(_result);
+} 
+USER_OBJECT_
 S_GdkVisualGetType (USER_OBJECT_ s_obj)
 {
    USER_OBJECT_ _result = NULL_USER_OBJECT;
