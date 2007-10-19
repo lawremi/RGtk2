@@ -30,8 +30,8 @@ R_gtk_handle_events()
   R_gtk_eventHandler(NULL);
 }
 
-Rboolean
-R_gtkInit(long *rargc, char **rargv)
+void
+R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 {
   int argc;
 
@@ -39,8 +39,10 @@ R_gtkInit(long *rargc, char **rargv)
   
   if (!gdk_display_get_default()) {
     gtk_disable_setlocale();
-    if (!gtk_init_check(&argc, &rargv))
-      return FALSE;
+    if (!gtk_init_check(&argc, &rargv)) {
+      *success = FALSE;
+      return;
+    }
   }
 
 #ifndef G_OS_WIN32
@@ -57,7 +59,7 @@ R_gtkInit(long *rargc, char **rargv)
 
   R_GTK_TYPE_PARAM_SEXP;
   
-  return TRUE;
+  *success = TRUE;
 }
 
 #include <R_ext/Rdynload.h>

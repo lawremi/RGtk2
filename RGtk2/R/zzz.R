@@ -85,5 +85,7 @@ function(libname, pkgname)
     install_system_dep("GTK+", config$gtk_url, gtk_web, config$installer)
   }
   
+  install_all()
+  
   print("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
 }
