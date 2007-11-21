@@ -100,7 +100,7 @@ The CLI has always been the most popular interface to \proglang{R}.
 On some platforms, a CLI is a component of a larger 
 GUI with menus containing various utilities for working
 with \proglang{R}. Examples of CLI-based \proglang{R} GUIs include the official
-Windows and Mac OS X GUIs \citep{Mac-GUI}, as well as the cross-platform 
+Windows and Mac OS X GUIs, as well as the cross-platform 
 Java GUI for R (JGR) \citep{JGR}. Although these interfaces are GUIs, they are 
 still very much in essence CLIs, in that the primary mode of interacting with 
 \proglang{R} is the same. Thus, these GUIs appeal mostly to the power users of \proglang{R}.
@@ -117,7 +117,7 @@ interfaces usually do not contain a command line, as the limited scope of the
 task does not require it. If a task-specific GUI fits a task particularly well,
 it may even appeal to an experienced user. There are many examples of 
 task-specific GUIs in \proglang{R}, including
-exploRase \citep{explorase}, limmaGUI \citep{Limma} and Rattle \citep{rattle}.
+exploRase \citep{explorase}, limmaGUI \citep{limma} and Rattle \citep{rattle}.
 
 % GUIs in R
 The task-specific GUIs, as well as more general \proglang{R} GUIs,
@@ -176,9 +176,36 @@ of determining the size and position of each widget on the screen.
 % This section introduces the CRAN mirrors GUI as a goal, but 
 % begins with the classic "Hello World" button-in-a-window GUI
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=2in]{cran-mirror.png}
+\caption{\label{fig:cran-mirror}A dialog for selecting a CRAN mirror constructed
+using the RGtk2 package. The user selects a mirror from the list and clicks the
+``OK'' button to confirm the choice.}
+\end{center}
+\end{figure}
+
 \subsection[GTK+ Widgets]{\pkg{GTK+} Widgets}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{widget-hierarchy.pdf}
+\caption{\label{fig:widget-hierarchy}The hierarchy of the widgets in the CRAN
+mirrors GUI, shown in Figure \ref{fig:cran-mirror}. The window is at the top-level,
+and each of the other widgets is geometrically contained within its parent.}
+\end{center}
+\end{figure}
+
 \subsubsection{The Widget Type Hierarchy}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{class-hierarchy.png}
+\caption{\label{fig:class-hierarchy}A small portion of the GTK+ class hierarchy. 
+All widgets are derived from the \emph{GtkWidget} class, which is derived, 
+indirectly, from the \emph{GObject} base class.}
+\end{center}
+\end{figure}
 
 Figure \ref{fig:cran-mirror} shows a \pkg{GTK+} GUI that allows the user to
 select a CRAN mirror for downloading \proglang{R} packages.
@@ -201,7 +228,7 @@ class that inherits from the base \emph{GtkWidget} class. A \pkg{GObject}
 class encapsulates behaviors that all instances of the class share. 
 Each class has a single parent from which it inherits 
 the behaviors of its ancestors. A class can override any of its inherited behaviors.
-A more detailed and quite technical explanation of \pkg{GObject} is available in 
+A more detailed and technical explanation of \pkg{GObject} is available in 
 Section \ref{sec:primer}. 
 
 \subsubsection{The Widget Tree}
@@ -221,6 +248,14 @@ Combining primitive widgets like labels and icons within containers
 leads to more complex widgets, such as buttons, menus, toolbars. A container is 
 responsible for allocating its space to its children. This process is called
 layout management and is described in Section \ref{sec:layout}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=2in]{hello-world.png}
+\caption{\label{fig:hello-world}``Hello World'' in GTK+. 
+A window containing a single button with a label.}
+\end{center}
+\end{figure}
 
 \subsection[GTK+ Widgets in R]{\pkg{GTK+} Widgets in \proglang{R}}
 
@@ -296,7 +331,7 @@ size for the window when it is first shown. Each method belongs to a separate
 class, but the syntax frees the user from the need to remember the exact classes
 and also saves some typing.
 \begin{verbatim}
-button <- gtkButton("Click me!")
+button <- gtkButton("Hello World")
 window$add(button)
 window$setDefaultSize(200,200)
 \end{verbatim}
@@ -422,6 +457,17 @@ name of the function. For example, to learn about the \emph{add} method on
 help(gtkContainerAdd)
 \end{verbatim}
 
+\begin{figure}
+\begin{center}
+\includegraphics{packing.png}
+\caption{\label{fig:packing}A screenshot demonstrating the effect of packing two
+buttons into \emph{GtkHBox} instances using the \emph{gtkBoxPackStart} method 
+with different combinations of the \emph{expand} and \emph{fill} settings. 
+The effect of the \emph{homogeneous} spacing setting on the \emph{GtkHBox} is 
+also shown.}
+\end{center}
+\end{figure}
+
 \subsection{Widget Layout}\label{sec:layout}
 
 In our ``Hello World'' example, we added only a single widget, a button, to the 
@@ -478,6 +524,8 @@ the left side of the box. The space distribution is homogeneous, but the
 extra space for each widget is not filled. This results in the first row in 
 Figure \ref{fig:packing}.
 \begin{verbatim}
+button_a <- gtkButton("Button A")
+button_b <- gtkButton("Button B")
 box$packStart(button_a, fill = FALSE)
 box$packStart(button_b, fill = FALSE)
 \end{verbatim}
@@ -502,11 +550,11 @@ side of the box.
 box$packStart(button_a, expand = TRUE, fill = FALSE)
 box$packStart(button_b, expand = FALSE, fill = FALSE)
 \end{verbatim}
-The result is the fourth row from the top in Figure \ref{fig:packing}. The
+The result is the sixth row from the top in Figure \ref{fig:packing}. The
 figure contains several other permutations of the \emph{homogeneous}, \emph{expand} 
 and \emph{fill} settings.
 
-\emph{GTK+} contains many types of layout containers besides boxes, including 
+\pkg{GTK+} contains many types of layout containers besides boxes, including 
 a grid layout (\emph{GtkTable}), a user-adjustable split pane (\emph{GtkHPaned}
 and \emph{GtkVPaned}), and a tabbed notebook (\emph{GtkNotebook}). More types of
 layout containers will be demonstrated later in the tutorial.
@@ -546,7 +594,15 @@ The signal handlers encapsulate the logic beneath the interface. In this
 section, we will demonstrate these two steps and show how their integration
 results in functional GUIs.
 
-\subsection{Dialogs With The User}
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{upgrade-dialog.png}
+\caption{\label{fig:upgrade-dialog}A screenshot of a message dialog requesting a 
+``Yes'' or ``No'' response from the user.}
+\end{center}
+\end{figure}
+
+\subsection{Dialogs With The User}\label{sec:dialog-example}
 
 A user interface is the conduit for a conversation between the machine and the
 user. This conversation may be broken down into a series of exchanges called 
@@ -568,6 +624,7 @@ directly, \emph{GtkMessageDialog}, an extension of \emph{GtkDialog}, saves
 typing for queries that can be expressed with a textual message and a set
 of buttons for the response. The dialog is constructed with a single function call:
 \begin{verbatim}
+main_application_window <- NULL # for purposes of this example
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent", 
   "question", "yes-no", "Do you want to upgrade RGtk2?")
 \end{verbatim}
@@ -584,13 +641,12 @@ The resulting dialog is shown in Figure \ref{fig:upgrade-dialog}.
 It is desirable for this dialog to be \emph{modal}, meaning that the focus
 is restricted to the dialog window until the user responds to the question. By
 invoking the \emph{gtkDialogRun} function, the dialog becomes modal and execution
-is blocked until the user gives a response, which may be retrieved from the 
-dialog with \emph{gtkDialogGetResponse}. If the user answered ``Yes,'' the 
-latest version of \pkg{RGtk2} will be installed. The call to \emph{gtkWidgetDestroy}
-closes the dialog window and renders it unusable.
+is blocked until the user gives a response, which is returned from the function.
+If the user answered ``Yes,'' the latest version of \pkg{RGtk2} will be 
+installed. The call to \emph{gtkWidgetDestroy} closes the dialog window and 
+renders it unusable.
 \begin{verbatim}
-dialog$run()
-if (dialog$getResponse() == GtkResponseType["yes"])
+if (dialog$run() == GtkResponseType["yes"])
  install.packages("RGtk2")
 dialog$destroy()
 \end{verbatim}
@@ -601,6 +657,23 @@ a plain numeric value to avoid an unnecessary restriction on the number of
 possible response types from a dialog. In this case, it is known from
 the documentation of \emph{GtkMessageDialog} that the value corresponding to
 the user clicking the ``Yes'' button will equal the ``yes'' value in \emph{GtkResponseType}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{checkbox-dialog.png}
+\caption{\label{fig:checkbox-dialog}A screenshot of a message dialog with a 
+check box for requesting additional input on top of the
+original dialog in Figure \ref{fig:upgrade-dialog}.}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{radio-dialog.png}
+\caption{\label{fig:radio-dialog}A screenshot of a message dialog with a set of
+radio buttons on top of the base dialog shown in Figure \ref{fig:upgrade-dialog}.}
+\end{center}
+\end{figure}
 
 \subsection{Presenting Options}
 % toggle button, radio buttons, combo box
@@ -635,7 +708,7 @@ The area above the buttons in the \emph{GtkDialog} is contained within a
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent", 
   "question", "yes-no", "Do you want to upgrade RGtk2?")
-check <- gtkToggleButton("Upgrade GTK+, as well")
+check <- gtkCheckButton("Upgrade GTK+ system library")
 dialog[["vbox"]]$add(check)
 \end{verbatim}
 
@@ -651,7 +724,7 @@ Each button is added to a vertical box.
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent", 
   "question", "yes-no", "Do you want to upgrade RGtk2?")
-choices <- c("None", "Stable", "Unstable")
+choices <- c("None", "Stable version", "Unstable version")
 radio_buttons <- NULL
 vbox <- gtkVBox(FALSE, 0)
 for (choice in choices) {
@@ -666,37 +739,48 @@ called \emph{GtkFrame} and is generally used for graphically grouping widgets th
 logically related. The code below adds the box containing the radio buttons
 to a frame. The final result is shown in Figure \ref{fig:radio-dialog}.
 \begin{verbatim}
-frame <- gtkFrame("Install GTK+ library")
+frame <- gtkFrame("Install GTK+ system library")
 frame$add(vbox)
 dialog[["vbox"]]$add(frame)
 \end{verbatim}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{combo-dialog.png}
+\caption{\label{fig:combo-dialog}A screenshot of a message dialog with a 
+combobox for selecting an option from a drop-down menu before responding to
+the dialog.}
+\end{center}
+\end{figure}
+
 Now we would like to go a step further and allow the user to choose the
-exact series of \pkg{GTK+} to install, as \pkg{RGtk2} works with any version after
-$2.8.0$. As the number of options increases, however, radio buttons tend to
-consume too much space. In this case, a drop down menu, known as \emph{GtkComboBox} in
-\pkg{GTK+}, may be appropriate. The following snippet illustrates its use. Each
-call to \emph{gtkComboBoxAppendText} adds a text item to the drop-down menu. 
-The call to \emph{gtkComboBoxSetActive} makes the first item the selected one.
-Figure \ref{fig:combobox-dialog} shows the result.
+exact series of \pkg{GTK+} to install, as \pkg{RGtk2} is source compatible with 
+any version after $2.8.0$. As the number of options increases, however, radio 
+buttons tend to consume too much space. In this case, a drop down menu, known 
+as \emph{GtkComboBox} in \pkg{GTK+}, may be appropriate. The following snippet 
+illustrates its use. Each call to \emph{gtkComboBoxAppendText} adds a text item
+to the drop-down menu. The call to \emph{gtkComboBoxSetActive} makes the first 
+item the selected one. Figure \ref{fig:combo-dialog} shows the result.
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent", 
   "question", "yes-no", "Do you want to upgrade RGtk2?")
-choices <- c("Do not install GTK+", "GTK+ 2.8.x", "GTK+ 2.10.x", "GTK+ 2.12.x")
+choices <- c("None", "GTK+ 2.8.x", "GTK+ 2.10.x", "GTK+ 2.12.x")
 combo <- gtkComboBoxNewText()
 combo$show()
 for (choice in choices) {
   combo$appendText(choice)
 }
 combo$setActive(0)
-dialog[["vbox"]]$add(combo)
+frame <- gtkFrame("Install GTK+ system library")
+frame$add(combo)
+dialog[["vbox"]]$add(frame)
 \end{verbatim}
 
 \subsection{The CRAN Mirrors Dialog}
 
 Having demonstrated the creation some basic dialogs, we are now prepared to 
 construct the CRAN mirror selection dialog, shown
-in Figure \ref{fig:cran-mirrors}.
+in Figure \ref{fig:cran-mirror}.
 Given the large number of CRAN mirrors, one strategy would be to 
 borrow the combobox dialog created above; however, there may be a better 
 alternative. Since their is no reasonable default CRAN mirror, the user always
@@ -712,7 +796,7 @@ assume that there is no main application window to serve as the parent.
 Instead, we pass \emph{NULL} for the parent and $0$ for the second argument 
 rather than \emph{``destroy-with-parent''}.
 \begin{verbatim}
-dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel", "Choose a mirror:")
+dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel", "Choose a mirror:", show = FALSE)
 \end{verbatim}
 Next, we create a list for holding the mirror names using the \emph{GtkTreeView}
 widget. \pkg{GTK+} treats lists as a table with a single column, and the rows in
@@ -726,7 +810,7 @@ of CRAN mirrors and construct a \emph{GtkTreeView} based on it.
 \begin{verbatim}
 mirrors <- read.csv(file.path(R.home("doc"), "CRAN_mirrors.csv"), as.is = TRUE)
 model <- rGtkDataFrame(mirrors)
-view <- gtkTreeView(mirrors)
+view <- gtkTreeView(model)
 \end{verbatim}
 Initially, the tree view does not contain any columns. We need to
 create a \emph{GtkTreeViewColumn} to list the mirror names. A \emph{GtkTreeViewColumn}
@@ -748,30 +832,37 @@ view$appendColumn(column)
 Given the large number of CRAN mirrors, the list would take up excessive space
 if not embedded into a scrolled window. \emph{GtkScrolledWindow} is a container 
 widget that provides a scrolled view of its child when the child requests more
-space than is available.
+space than is available. We add the tree view to a \emph{GtkScrolledWindow} 
+instance that requests a minimum vertical size sufficient for showing several 
+mirrors at once.
 \begin{verbatim}
 scrolled_window <- gtkScrolledWindow()
-scrolled_window$add(tree_view)
+scrolled_window$setSizeRequest(-1, 150)
+scrolled_window$add(view)
 \end{verbatim}
 It only remains to add the scrolled window to the dialog, run the dialog, and
 set the selected CRAN mirror if the user confirms the selection. The selection
 of a tree view is stored in a separate \emph{GtkTreeSelection} object retrieved
-by \emph{gtkTreeViewGetSelection}. We then get the \emph{GtkTreePath}
-describing the selection and get the row index from that.
+by \emph{gtkTreeViewGetSelection}. The \emph{getSelectedRows} method returns a 
+list containing the tree paths for the selected rows and the tree model. The 
+list of tree paths is stored under the name \emph{retval} as it is the actual
+return value from the \proglang{C} function. Finally, we retrieve the row index
+from the \emph{GtkTreePath} for the first (and only) selected row and set its 
+URL as the repository.
 \begin{verbatim}
 dialog[["vbox"]]$add(scrolled_window)
-dialog$run()
-if (dialog$getResponse() == GtkResponseType["ok"]) {
+if (dialog$run() == GtkResponseType["ok"]) {
   selection <- view$getSelection()
-  path <- selection$getSelectedRows()[[1]]
-  options(repos = path$getIndices()[[1]])
+  sel_paths <- selection$getSelectedRows()$retval
+  sel_row <- sel_paths[[1]]$getIndices()[[1]]
+  options(repos = mirrors[sel_row, "URL"])
 }
 dialog$destroy()
 \end{verbatim}
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{demo-alpha-random-07-3}
+\includegraphics[width=3in]{demo-alpha-random-07-3}
 \caption{\label{fig:rgtk2-demo-initial}Scatterplot of two microarray replicates,
 with a slider widget underneath that controls the alpha level of the
 points. This screenshot shows the initial alpha of $0.7$.}
@@ -780,7 +871,7 @@ points. This screenshot shows the initial alpha of $0.7$.}
 
 \begin{figure}
 \begin{center}
-\includegraphics[scale=0.5]{demo-alpha-random-01-3}
+\includegraphics[width=3in]{demo-alpha-random-01-3}
 \caption{\label{fig:rgtk2-demo-final}The same scatterplot from 
 \ref{fig:rgtk2-demo-initial}, except the alpha has been set to to $0.1$.}
 \end{center}
@@ -886,6 +977,16 @@ moved to set the alpha at 0.1.
 slider$setValue(0.7)
 \end{verbatim}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=6in]{spreadsheet.png}
+\caption{\label{fig:spreadsheet}Screenshot of a spreadsheet application 
+constructed with RGtk2. The current sheet is from the \emph{mtcars} dataset. The
+table is filtered by the expression \texttt{mpg > 20} and sorted by \emph{mpg}
+in decreasing order.}
+\end{center}
+\end{figure}
+
 \section{A Sample Application}\label{sec:spreadsheet-example}
 
 The interfaces presented thus far are designed for a focused task, such as 
@@ -903,11 +1004,13 @@ the progress of long running operations.
 This example demonstrates how one might construct a reasonably complex
 application using \pkg{RGtk2}. We aim to build a viewer of R \emph{data.frame}s that
 is capable of sorting and filtering. It should also be able to load and save
-a \emph{data.frame} to and from a CSV file. 
+a \emph{data.frame} to and from a CSV file. The resulting GUI is shown in Figure
+\ref{fig:spreadsheet}.
 
 We begin by creating the main window for the application and setting its default size.
 \begin{verbatim}
 main_window <- gtkWindow(show = FALSE)
+main_window["title"] <- "RGtk2 Spreadsheet"
 main_window$setDefaultSize(600,600)
 \end{verbatim}
 
@@ -920,20 +1023,24 @@ for specifying the path to a file. \emph{GtkFileChooserDialog}
 has several modes corresponding to common file selection tasks. In this case, 
 we use the ``open'' mode for the open action and the ``save'' mode for
 the save action. The ``accept'' response from the dialog indicates that the user
-has confirmed the file selection.
+has confirmed the file selection by clicking the ``Open'' or ``Save'' button.
 \begin{verbatim}
 open_cb <- function(widget, window)  
 {
-  dialog <- gtkFileChooserDialog("Choose a CSV file", window, "open")
-  dialog$run()
-  if (dialog$getResponse() == GtkResponseType["accept"])
-    load_file(dialog$getFilename()) # not implemented
+  dialog <- gtkFileChooserDialog("Choose a CSV file", window, "open",
+    "gtk-cancel", GtkResponseType["cancel"],
+		"gtk-open", GtkResponseType["accept"])
+  if (dialog$run() == GtkResponseType["accept"]) {
+    df <- read.csv(dialog$getFilename())
+    load_spreadsheet(df, basename(dialog$getFilename()))
+  }
   dialog$destroy()
 }
 save_cb <- function(widget, window) {
-  dialog <- gtkFileChooserDialog("Enter a name for the file", window, "save")
-  dialog$run()
-  if (dialog$getResponse() == GtkResponseType["accept"])
+  dialog <- gtkFileChooserDialog("Enter a name for the file", window, "save",
+    "gtk-cancel", GtkResponseType["cancel"],
+		"gtk-save", GtkResponseType["accept"])
+  if (dialog$run() == GtkResponseType["accept"])
     save_file(dialog$getFilename()) # not implemented
   dialog$destroy()
 }
@@ -2130,7 +2237,7 @@ this would be to provide a high-level wrapper interface, designed for GUI
 construction, on top of the low-level interface to \proglang{Java}.
 
 Such an interface is delivered by the \pkg{gWidgets} package
-\citep{gwidgets}. \pkg{gWidgets} provides a simplified API for GUI programming
+\citep{gWidgets}. \pkg{gWidgets} provides a simplified API for GUI programming
 that, like the API of \pkg{wxWidgets}, is implemented by multiple toolkit 
 backends. \pkg{gWidgets} is written in \proglang{R}, so its backends rely on 
 bindings to the external toolkits. So far, there are three backends for 
@@ -2157,7 +2264,7 @@ package enables this for \pkg{GGobi}, a software tool for multivariate graphics.
 for constructing GUIs in \proglang{R}. The design of the API prioritizes
 usability from the perspective of the \proglang{R} programmer.
 The package has been adopted by several projects, including: \pkg{gWidgets} 
-\citep{gwidgets}, a simple interface for GUI construction in \proglang{R}; 
+\citep{gWidgets}, a simple interface for GUI construction in \proglang{R}; 
 \pkg{Rattle} \citep{rattle}, a data mining GUI based on \pkg{Libglade}; and 
 \pkg{plotAndPlayGTK} \citep{plotandplaygtk}, a package for interactive \proglang{R}
 graphics. Future plans for \pkg{RGtk2} include more fully automating the code 
