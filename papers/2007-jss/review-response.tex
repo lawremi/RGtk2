@@ -1,0 +1,295 @@
+\documentclass{article}
+
+\begin{document}
+
+\section*{Review of ``RGtk2: A Graphical User Interface Toolkit for R''}
+
+I am afraid that I have to give this paper a negative evaluation as it stands. The
+software as such is mostly fine - an impressive piece of work in fact, but the
+paper is far from the academic standards that we require for the JSS. I do think
+it is possible to revise it to become an attractive and useful paper, though, so I
+shall try to be quite specific in my criticism below.
+
+\subsection*{General notes}
+
+Overall, the paper reads unevenly and has a sloppy, unfinished feel to it. Stylistically,
+there is an annoying tendency to write in a clichee-ridden ``brochure
+language''. The paper also tends to polemicize unnecessarily, and self-praises a
+number of times. This only weakens the paper; a much stronger case can be
+made by letting the facts and features stand for themselves.
+In general, it would be wise to reconsider the use of adjectives, adverbs, and
+other fillers. Often, text is improved by their removal.
+
+\emph{We have taken this advice and reworded the problem phrases}
+
+It does not seem like the authors have made their target audience clear. In many
+cases strong implicit assumptions are being made about the readers' knowledge.
+It is of course always a problem to decide what is common knowledge, but
+I really don't think it can be assumed that everyone is conversant in six or
+seven programming languages. We have to realize that the typical reader is
+a statistician who just wants to try building some simple interfaces using the
+toolkit.
+
+I think it is reasonable to assume that readers will fall in three broad categories.
+The structure of the paper should reflect the structure of the audience.
+
+\begin{enumerate}
+\item Basic users. These may not know any other computer languages than R.
+They will be interested in trying out the package to write some simple
+GUIs. Initial descriptions and examples should be for these people.
+\item Experienced GUI coders. This group will be interested in the interface as
+such, and will need to know at least R and C. I conjecture that in quite
+a few cases, that is exactly what they know, so I suggest that references
+to other languages should be minimized when describing the interface
+implementation.
+\item People interested in the interfacing issue as such. At this point it is relevant
+to bring in aspects of other languages, but it is still not given that the
+reader knows about each of their characteristics, so a few chosen words of
+introduction could be in order.
+\end{enumerate}
+
+\emph{We have restructured the paper. It now consists of two major parts: 
+(1) a tutorial and (2) technical description of the package design. The tutorial
+begins with the fundamentals and slowly builds up to a full application. This 
+is followed by a treatment of tricks/features that may be of interest to
+advanced users. The second part is geared toward those interested in software
+interfaces. The paper concludes with a discussion of related work, which was 
+reworked to be more accessible to novice users.}
+
+\subsection*{Specific comments}
+
+Notwithstanding the possible need to restructure the paper, I give some comments
+section for section in the following.
+
+\subsubsection*{Section 1}
+
+\emph{The introduction, like virtually every other section of the paper, has
+been largely rewritten.}
+
+p.2 What exactly does it mean to ``interrupt the flow of a graphical analysis''?
+
+\emph{Rephrased}
+
+The detail level of the history of GTK+ seems a bit high.
+
+\emph{Reduced}
+
+The literature references to Tcl/Tk are unsatisfactory (see References below).
+
+\emph{Hopefully resolved using your suggested references}
+
+\subsubsection*{Section 2}
+
+To have a whole section of a scholarly paper consist entirely of bullet points is
+just plain wrong!
+
+\emph{There are no longer any bullet points in the paper.}
+
+Please avoid self-praise like ``built on the succesful RGtk''.
+As the documentation for RGtk was never very detailed, I don't think it suffices
+just to describe the differences between that and RGtk2; it is necessary to describe
+the final product. 
+
+\emph{The paper no longer attempts to compare RGtk2 to RGtk.}
+
+Also, since readers are not necessarily C programmers,
+prior understanding of GTK+ can not be assumed. I.e., there needs to be a
+ground-level description of the basic concepts involved (Gtk objects, callbacks,
+signals, packing of widget components, etc.).
+
+\emph{This now exists.}
+
+\subsubsection*{Section 3}
+
+The reference to ``random microarray data'' is a bit obscure. What is generated
+is a sample from a 2-d mixture distribution of correlated variables. If this
+is intended to emulate data from microarray experiments, it needs to be said
+explicitly. 
+
+\emph{Rephrased.}
+
+The code for generating the data is a bit lengthy and might be moved
+out of sight (into an appendix, e.g.)
+
+\emph{It doesn't seem that long and we'd rather not complicate the structure
+by adding appendices.}
+
+The phrase ``camel back capitalization'' is amusing, but I believe the proper
+term is ``mixed case''. 
+
+\emph{According to wikipedia, the main term is ``camelBack'', although
+``mixed case'' is a synonym.}
+
+Do get rid of at least one part of ``compact and easier to type''.
+
+\emph{Done.}
+
+Last para on p. 6 ``the default is acceptable'': What is the default?
+``The final steps are. . . '' (p.7, 3rd para). These steps do not appear to be final,
+since more steps follow later on. It doesn't really matter whether they are,
+though.
+
+\emph{Thanks for catching this, fixed.}
+
+``Rgtk2 supports a convenient Java-like syntax'' (p.7). It is not needed to say
+that it is convenient (let the user decide that), nor necessarily at this point to
+bring Java into the picture. I'd just say that it supports making methods for an
+object available using the \$ operator and maybe afterwards say that this was
+inspired by object-oriented languages like Java. As it stands, the sentence also
+has the (unintended?) effect of implying that Java syntax is somehow superior
+R syntax.
+
+\emph{This has been reworded.}
+
+The example as such is OK, but it is very simplistic. A user approaching this
+paper will likely be looking for an impression on how it is like to program in
+RGtk2 and will be disappointed over the small amount of information. I don't
+think the reference to the demos in the package is quite sufficient. Things that
+I would be looking for is how the packing of widget elements works, and how to
+communicate in both directions between widget elements (e.g., in a text widget
+with a scrollbar). A few more examples, possibly with a less detailed description
+would be good.
+
+\emph{More examples have been added, including a hello world GUI, dialog boxes,
+various types of buttons, and a spreadsheet application. 
+There is a careful introduction to widget packing. There also advanced examples
+demonstrating integration with other GObject-based libraries and the
+creation of GObject-derived classes.}
+
+\subsubsection*{Section 4}
+
+Putting the bound libraries in an itemized list is OK, but describing the components
+of a binding with one sentence per piece doesn't work. A subsection
+for each is more like it. This is partly a restructuring matter; some of the information
+I'd want in a subsection about function wrapping is in the 2nd para.
+on p.9, the following para. would belong with the discussion of Fields, etc.
+The statement about ``Converters'' is close to vacuous.
+
+\emph{This section has been restructured along with these points in mind.}
+
+The defs format is described as ``scheme-based''. Should this not be Schemebased
+(i.e. the language)? It should be possible to say a little more about this
+and about the conversion processes.
+
+\emph{More detail has been added.}
+
+p.8 ``enjoy the benefits''. Come on!
+p.9 ``wrapped on the fly'' could use a bit more explanation
+The pages 9-10 obviously reflect areas where the authors have spent much of the
+hard work, but unfortunately it also comes across as a hard read. It is as if the
+text tries to say too much at once. Some structure in the form of subheadings
+could help here, as could a more leaned-back writing style where more time is
+spent on explaining what the problem is before jumping to the solution. In
+particular the two paragraphs on simple C structures look like they could be
+written considerably more clearly.
+
+\emph{Again, this section has been completely reworked with these points in mind.}
+
+I am not sure it can be assumed that readers know about opaque and transparent
+structures (it is a rather recent feature of the C standards). A few words of
+definition could be in order.
+
+\emph{These terms have been avoided.}
+
+\subsubsection*{Section 5}
+
+The literature references are strongly lacking in this section. (Again, see References
+below.)
+
+I find it somewhat debatable whether it really is a good design principle to
+use fixed-GUI designs like Glade to wrap code for an extensible programming
+language.
+
+\emph{Certainly Glade is not appropriate in many cases, but it is still
+a feature that users seem to appreciate.}
+
+p.11 ``with Tcl/Tk it is not possible to extend. . . ''. This is untrue, if meant as
+written. Megawidgets have existed in Tk for a long time, written in Tcl or in
+C. It might however be true is that it is not obvious how to write a new widget
+in R.
+
+\emph{We've tried to make a distinction between the compound ``megawidgets'' and
+overriding the base behavior of a widget with RGtk2.}
+
+It is not clear what the authors mean when saying that the tcltk package ``aims
+to expose complexity'' etc., if anything, it aims to expose functionality. I would
+characterize the difference as mainly that Tk was always designed for binding
+to a high level language (which, removing the syntactic sugar, is LISP-like like
+R is) whereas GTK is a C library so that there is some work to be done.
+
+\emph{Good point, this has been reworded.}
+
+In the penultimate section on p.11, the concept of Java ``interfaces'' is introduced
+without definition.
+
+\emph{Java interfaces are no longer mentioned.}
+
+\subsubsection*{Section 6}
+
+Final sentence of 3rd para. seems to have been garbled (``bring them with'').
+
+\emph{Thanks, fixed.}
+
+\subsubsection*{Section 7}
+
+p.13, top: There has been no previous mention of the ``issues with the R event
+loops'', and there probably should be. I'm also not sure whether it is warranted
+to call such issues ``minor''; event loop issues are usually a major headache.
+
+\emph{A section has been added to the discussion on event loops.}
+
+One issue not discussed is speed. RGtk2 feels considerably slower than similar
+Tk code. It would be nice to have some discussion about the reasons for this
+and the potential for improvement.
+
+\emph{It would not be surprising if RGtk2 were slower than Tcl/TK, given the
+complexity of GTK 2.0, which is slower than GTK 1.2. However, we do
+not feel that the performance impact is so significant that it merits any
+special discussion (beyond the mention when comparing RGtk2 to tcltk).
+}
+
+\subsubsection*{References}
+
+The authors need to get the Tcl/Tk references straight. There are two R News
+articles about the tcltk package which could be cited. The website given as the
+only reference is the ``Tcl Developer Xchange'' and not what is written, and it
+makes no sense as a reference for tcltk2.
+There are books on Tcl/Tk. I'd suggest Ousterhout's book from 1994 ``Tcl and
+the Tk Toolkit'' for historical reasons and Brent Welch's ``Practical Programming
+in Tcl and Tk'', 4th ed., 2003 for a reasonably up to date guide.
+
+Similarly, better references for Swing, SWT, and wxWindows must be available.
+There is at least one book on wxWindows, for instance.
+
+\emph{The references have been completely revised.}
+
+The software
+I have tested the software superficially, mostly by running the demos. Currently
+(R-2.5.1, RGtk2 2.10.11, cairoDevice 2.3), there seems to be quite a few
+issues with the demos, many of them failing with errors like VECTOR ELT()
+can only be applied to a 'list', not a 'integer'. The potential is impressive,
+but the quality control apparently needs tightening. 
+
+\emph{Unfortunately it seems that we were caught at a bad time. These issues
+were fixed as of RGtk2 2.10.12, having been introduced with R 2.5.0.}
+
+Also, there
+seems to be a problem with system files: demo(images) attempts to load
+/usr/share/gtk-2.0/demo/floppybuddy.gif which isn't there on my system,
+but in /opt/gnome.
+
+I couldn't help but notice that the source tarball at CRAN has some SVN files
+inside, which indicates that some cleanup step was omitted.
+
+\emph{This seems to be a problem with R CMD build not cleaning out subdirectories
+of the 'src' directory. A patch was submitted to R to fix this problem. Not sure
+if it was incorporated.}
+
+Also, the auxiliary documentation in the package could do with some revision
+instead of being left in the current half-finished state.
+
+\emph{Agreed. We are porting the C GTK+ tutorial to R but it is tedious work;
+there may be a better way. This paper may be a good interim solution, as it now
+has a more substantial tutorial.}
+
+\end{document}

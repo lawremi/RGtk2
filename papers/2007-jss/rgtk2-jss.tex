@@ -176,36 +176,9 @@ of determining the size and position of each widget on the screen.
 % This section introduces the CRAN mirrors GUI as a goal, but 
 % begins with the classic "Hello World" button-in-a-window GUI
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=2in]{cran-mirror.png}
-\caption{\label{fig:cran-mirror}A dialog for selecting a CRAN mirror constructed
-using the RGtk2 package. The user selects a mirror from the list and clicks the
-``OK'' button to confirm the choice.}
-\end{center}
-\end{figure}
-
 \subsection[GTK+ Widgets]{\pkg{GTK+} Widgets}
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=3in]{widget-hierarchy.pdf}
-\caption{\label{fig:widget-hierarchy}The hierarchy of the widgets in the CRAN
-mirrors GUI, shown in Figure \ref{fig:cran-mirror}. The window is at the top-level,
-and each of the other widgets is geometrically contained within its parent.}
-\end{center}
-\end{figure}
-
 \subsubsection{The Widget Type Hierarchy}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3in]{class-hierarchy.png}
-\caption{\label{fig:class-hierarchy}A small portion of the GTK+ class hierarchy. 
-All widgets are derived from the \emph{GtkWidget} class, which is derived, 
-indirectly, from the \emph{GObject} base class.}
-\end{center}
-\end{figure}
 
 Figure \ref{fig:cran-mirror} shows a \pkg{GTK+} GUI that allows the user to
 select a CRAN mirror for downloading \proglang{R} packages.
@@ -231,6 +204,15 @@ the behaviors of its ancestors. A class can override any of its inherited behavi
 A more detailed and technical explanation of \pkg{GObject} is available in 
 Section \ref{sec:primer}. 
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{class-hierarchy.png}
+\caption{\label{fig:class-hierarchy}A small portion of the GTK+ class hierarchy. 
+All widgets are derived from the \emph{GtkWidget} class, which is derived, 
+indirectly, from the \emph{GObject} base class.}
+\end{center}
+\end{figure}
+
 \subsubsection{The Widget Tree}
 
 There is another tree hierarchy that is orthogonal to the 
@@ -249,11 +231,21 @@ leads to more complex widgets, such as buttons, menus, toolbars. A container is
 responsible for allocating its space to its children. This process is called
 layout management and is described in Section \ref{sec:layout}.
 
-\begin{figure}
+\begin{figure}[bhp]
 \begin{center}
-\includegraphics[width=2in]{hello-world.png}
-\caption{\label{fig:hello-world}``Hello World'' in GTK+. 
-A window containing a single button with a label.}
+\includegraphics[width=2in]{cran-mirror.png}
+\caption{\label{fig:cran-mirror}A dialog for selecting a CRAN mirror constructed
+using the RGtk2 package. The user selects a mirror from the list and clicks the
+``OK'' button to confirm the choice.}
+\end{center}
+\end{figure}
+
+\begin{figure}[thp]
+\begin{center}
+\includegraphics[width=2.5in]{widget-hierarchy.pdf}
+\caption{\label{fig:widget-hierarchy}The hierarchy of the widgets in the CRAN
+mirrors GUI, shown in Figure \ref{fig:cran-mirror}. The window is at the top-level,
+and each of the other widgets is geometrically contained within its parent.}
 \end{center}
 \end{figure}
 
@@ -278,7 +270,17 @@ a default value for a function parameter whenever sensible.
 
 To demonstrate the basic syntax and
 features of the \pkg{RGtk2} API, we will construct a simple ``Hello World'' GUI,
-shown in Figure \ref{fig:hello-world}. We will gradually 
+shown in Figure \ref{fig:hello-world}. 
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=2in]{hello-world.png}
+\caption{\label{fig:hello-world}``Hello World'' in GTK+. 
+A window containing a single button with a label.}
+\end{center}
+\end{figure}
+
+We will gradually 
 progress from this trivial GUI to the aforementioned CRAN mirrors GUI and beyond.
 The first step is to create a top-level window to contain our GUI.
 Creating an instance of a \pkg{GTK+} widget requires calling a single \proglang{R} 
@@ -457,17 +459,6 @@ name of the function. For example, to learn about the \emph{add} method on
 help(gtkContainerAdd)
 \end{verbatim}
 
-\begin{figure}
-\begin{center}
-\includegraphics{packing.png}
-\caption{\label{fig:packing}A screenshot demonstrating the effect of packing two
-buttons into \emph{GtkHBox} instances using the \emph{gtkBoxPackStart} method 
-with different combinations of the \emph{expand} and \emph{fill} settings. 
-The effect of the \emph{homogeneous} spacing setting on the \emph{GtkHBox} is 
-also shown.}
-\end{center}
-\end{figure}
-
 \subsection{Widget Layout}\label{sec:layout}
 
 In our ``Hello World'' example, we added only a single widget, a button, to the 
@@ -505,6 +496,18 @@ Here we will explain and demonstrate the use of \emph{GtkHBox}, the generic
 horizontal box layout container. \emph{GtkVBox} can be used exactly the same way;
 only the direction of stacking is different. Figure \ref{fig:packing} illustrates
 a sampling of the possible layouts that are possible with a \emph{GtkHBox}.
+
+\begin{figure}
+\begin{center}
+\includegraphics{packing.png}
+\caption{\label{fig:packing}A screenshot demonstrating the effect of packing two
+buttons into \emph{GtkHBox} instances using the \emph{gtkBoxPackStart} method 
+with different combinations of the \emph{expand} and \emph{fill} settings. 
+The effect of the \emph{homogeneous} spacing setting on the \emph{GtkHBox} is 
+also shown.}
+\end{center}
+\end{figure}
+
 The code for some of these layouts is presented here.
 We begin by creating a \emph{GtkHBox} widget. We pass \emph{TRUE} for the
 first parameter, \emph{homogeneous}. This means every child will have the
@@ -594,15 +597,7 @@ The signal handlers encapsulate the logic beneath the interface. In this
 section, we will demonstrate these two steps and show how their integration
 results in functional GUIs.
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=3in]{upgrade-dialog.png}
-\caption{\label{fig:upgrade-dialog}A screenshot of a message dialog requesting a 
-``Yes'' or ``No'' response from the user.}
-\end{center}
-\end{figure}
-
-\subsection{Dialogs With The User}\label{sec:dialog-example}
+\subsection{A Dialog with the User}\label{sec:dialog-example}
 
 A user interface is the conduit for a conversation between the machine and the
 user. This conversation may be broken down into a series of exchanges called 
@@ -638,6 +633,14 @@ predefined set of buttons, in this case consisting of ``Yes'' and ``No'',
 is specified by the next parameter. The final parameter specifies the message text.
 The resulting dialog is shown in Figure \ref{fig:upgrade-dialog}.
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{upgrade-dialog.png}
+\caption{\label{fig:upgrade-dialog}A screenshot of a message dialog requesting a 
+``Yes'' or ``No'' response from the user.}
+\end{center}
+\end{figure}
+
 It is desirable for this dialog to be \emph{modal}, meaning that the focus
 is restricted to the dialog window until the user responds to the question. By
 invoking the \emph{gtkDialogRun} function, the dialog becomes modal and execution
@@ -658,24 +661,7 @@ possible response types from a dialog. In this case, it is known from
 the documentation of \emph{GtkMessageDialog} that the value corresponding to
 the user clicking the ``Yes'' button will equal the ``yes'' value in \emph{GtkResponseType}.
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=3in]{checkbox-dialog.png}
-\caption{\label{fig:checkbox-dialog}A screenshot of a message dialog with a 
-check box for requesting additional input on top of the
-original dialog in Figure \ref{fig:upgrade-dialog}.}
-\end{center}
-\end{figure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=3in]{radio-dialog.png}
-\caption{\label{fig:radio-dialog}A screenshot of a message dialog with a set of
-radio buttons on top of the base dialog shown in Figure \ref{fig:upgrade-dialog}.}
-\end{center}
-\end{figure}
-
-\subsection{Presenting Options}
+\subsection{Giving the User More Options}
 % toggle button, radio buttons, combo box
 
 Applications often need to ask questions for which a simple ``Yes'' or ``No''
@@ -712,6 +698,15 @@ check <- gtkCheckButton("Upgrade GTK+ system library")
 dialog[["vbox"]]$add(check)
 \end{verbatim}
 
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{checkbox-dialog.png}
+\caption{\label{fig:checkbox-dialog}A screenshot of a message dialog with a 
+check box for requesting additional input on top of the
+original dialog in Figure \ref{fig:upgrade-dialog}.}
+\end{center}
+\end{figure}
+
 Let us now suppose that we would like to give the user the additional option of
 installing a development (unstable) version of \pkg{GTK+}.
 When an option has several choices, a check button is no longer adequate. A
@@ -746,10 +741,9 @@ dialog[["vbox"]]$add(frame)
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=3in]{combo-dialog.png}
-\caption{\label{fig:combo-dialog}A screenshot of a message dialog with a 
-combobox for selecting an option from a drop-down menu before responding to
-the dialog.}
+\includegraphics[width=3in]{radio-dialog.png}
+\caption{\label{fig:radio-dialog}A screenshot of a message dialog with a set of
+radio buttons on top of the base dialog shown in Figure \ref{fig:upgrade-dialog}.}
 \end{center}
 \end{figure}
 
@@ -775,6 +769,15 @@ frame <- gtkFrame("Install GTK+ system library")
 frame$add(combo)
 dialog[["vbox"]]$add(frame)
 \end{verbatim}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=3in]{combo-dialog.png}
+\caption{\label{fig:combo-dialog}A screenshot of a message dialog with a 
+combobox for selecting an option from a drop-down menu before responding to
+the dialog.}
+\end{center}
+\end{figure}
 
 \subsection{The CRAN Mirrors Dialog}
 
@@ -860,6 +863,18 @@ if (dialog$run() == GtkResponseType["ok"]) {
 dialog$destroy()
 \end{verbatim}
 
+\subsection{Embedded R Graphics}
+
+In exploratory data analysis, it is often beneficial to integrate
+a GUI with statistical graphics. As an example, we consider the contemporary
+problem of visualizing micoarray data. The large number of genes leads
+to a significant amount of overplotting when, for example, plotting
+the expression levels from two chips in a scatterplot. One solution
+to the problem of overplotting is alpha blending. However, choosing
+the ideal alpha level may be time-consuming and tedious. Linking a
+slider widget to the alpha level of an \proglang{R} scatterplot may accelerate
+the search (See Figures \ref{fig:rgtk2-demo-initial} and \ref{fig:rgtk2-demo-final}). 
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=3in]{demo-alpha-random-07-3}
@@ -876,18 +891,6 @@ points. This screenshot shows the initial alpha of $0.7$.}
 \ref{fig:rgtk2-demo-initial}, except the alpha has been set to to $0.1$.}
 \end{center}
 \end{figure}
-
-\subsection{Embedded R Graphics}
-
-In exploratory data analysis, it is often beneficial to integrate
-a GUI with statistical graphics. As an example, we consider the contemporary
-problem of visualizing micoarray data. The large number of genes leads
-to a significant amount of overplotting when, for example, plotting
-the expression levels from two chips in a scatterplot. One solution
-to the problem of overplotting is alpha blending. However, choosing
-the ideal alpha level may be time-consuming and tedious. Linking a
-slider widget to the alpha level of an \proglang{R} scatterplot may accelerate
-the search (See Figures \ref{fig:rgtk2-demo-initial} and \ref{fig:rgtk2-demo-final}). 
 
 As a preliminary step, we use a 2D mixture distribution of correlated variables
 to emulate expression values for two microarray chips. 
@@ -977,16 +980,6 @@ moved to set the alpha at 0.1.
 slider$setValue(0.7)
 \end{verbatim}
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=6in]{spreadsheet.png}
-\caption{\label{fig:spreadsheet}Screenshot of a spreadsheet application 
-constructed with RGtk2. The current sheet is from the \emph{mtcars} dataset. The
-table is filtered by the expression \texttt{mpg > 20} and sorted by \emph{mpg}
-in decreasing order.}
-\end{center}
-\end{figure}
-
 \section{A Sample Application}\label{sec:spreadsheet-example}
 
 The interfaces presented thus far are designed for a focused task, such as 
@@ -1006,6 +999,16 @@ application using \pkg{RGtk2}. We aim to build a viewer of R \emph{data.frame}s 
 is capable of sorting and filtering. It should also be able to load and save
 a \emph{data.frame} to and from a CSV file. The resulting GUI is shown in Figure
 \ref{fig:spreadsheet}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=6in]{spreadsheet.png}
+\caption{\label{fig:spreadsheet}Screenshot of a spreadsheet application 
+constructed with RGtk2. The current sheet is from the \emph{mtcars} dataset. The
+table is filtered by the expression \texttt{mpg > 20} and sorted by \emph{mpg}
+in decreasing order.}
+\end{center}
+\end{figure}
 
 We begin by creating the main window for the application and setting its default size.
 \begin{verbatim}
@@ -1137,8 +1140,10 @@ main_window$show()
 Next, we define a function that will add a spreadsheet page to the notebook
 given a data frame and, optionally, a name for the dataset.
 \begin{verbatim}
-load_spreadsheet <- function(df, name = deparse(substitute(df)))
+load_spreadsheet <- function(df, name)
 {
+  if (missing(name))
+    name <- deparse(substitute(df))
 \end{verbatim}
 This will use the \emph{RGtkDataFrame} utility that allows
 the \emph{GtkTreeView} to use an \proglang{R}
@@ -1186,15 +1191,14 @@ key, we update the filter by the result of the \proglang{R} expression.
   { # update column used by filter according to logical expression
     model[,"filter"] <- eval(parse(text=entry$text), df)
   }
+  gSignalConnect(entry, "activate", subset_table)
 \end{verbatim}
 All of the widgets have been constructed, so they are packed into the new notebook page.
 To limit its visible size, the table is added to a \emph{GtkScrolledWindow}.
 \begin{verbatim}
-  gSignalConnect(entry, "activate", subset_table)
   hbox <- gtkHBox(FALSE, 5)
   hbox$packStart(gtkLabel("Filter expression:"), FALSE, FALSE, 0)
   hbox$packStart(entry, TRUE, TRUE, 0)
-
   vbox <- gtkVBox(FALSE, 5)
   scrolled_window <- gtkScrolledWindow()
   scrolled_window$add(tree_view) # support scrolling for the table
@@ -2266,7 +2270,7 @@ usability from the perspective of the \proglang{R} programmer.
 The package has been adopted by several projects, including: \pkg{gWidgets} 
 \citep{gWidgets}, a simple interface for GUI construction in \proglang{R}; 
 \pkg{Rattle} \citep{rattle}, a data mining GUI based on \pkg{Libglade}; and 
-\pkg{plotAndPlayGTK} \citep{plotandplaygtk}, a package for interactive \proglang{R}
+\pkg{playwith} \citep{playwith}, a package for interactive \proglang{R}
 graphics. Future plans for \pkg{RGtk2} include more fully automating the code 
 generation process and keeping pace with frequent \pkg{GTK+} releases.
 
