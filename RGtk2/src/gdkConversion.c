@@ -149,62 +149,66 @@ asCGdkGCValuesWithMask(USER_OBJECT_ s_values, GdkGCValuesMask *mask)
     if (GET_LENGTH(VECTOR_ELT(s_values, 2)) > 0) {
         *mask |= GDK_GC_FONT;
         values->font = (GdkFont*)getPtrValue(VECTOR_ELT(s_values, 2));
-    } /* cannot convert GdkFunction */
+    } 
     if (GET_LENGTH(VECTOR_ELT(s_values, 3)) > 0) {
-        *mask |= GDK_GC_FILL;
-        values->fill = (GdkFill)INTEGER_DATA(VECTOR_ELT(s_values, 3))[0];
+        *mask |= GDK_GC_FUNCTION;
+        values->function = (GdkFunction)INTEGER_DATA(VECTOR_ELT(s_values, 3))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 4)) > 0) {
-        *mask |= GDK_GC_TILE;
-        values->tile = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 4));
+        *mask |= GDK_GC_FILL;
+        values->fill = (GdkFill)INTEGER_DATA(VECTOR_ELT(s_values, 4))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 5)) > 0) {
         *mask |= GDK_GC_TILE;
-        values->stipple = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 5));
+        values->tile = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 5));
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 6)) > 0) {
-        *mask |= GDK_GC_CLIP_MASK;
-        values->clip_mask = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 6));
+        *mask |= GDK_GC_TILE;
+        values->stipple = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 6));
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 7)) > 0) {
-        *mask |= GDK_GC_SUBWINDOW;
-        values->subwindow_mode = (GdkSubwindowMode)INTEGER_DATA(VECTOR_ELT(s_values, 7))[0];
+        *mask |= GDK_GC_CLIP_MASK;
+        values->clip_mask = (GdkPixmap*)getPtrValue(VECTOR_ELT(s_values, 7));
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 8)) > 0) {
-        *mask |= GDK_GC_TS_X_ORIGIN;
-        values->ts_x_origin = INTEGER_DATA(VECTOR_ELT(s_values, 8))[0];
+        *mask |= GDK_GC_SUBWINDOW;
+        values->subwindow_mode = (GdkSubwindowMode)INTEGER_DATA(VECTOR_ELT(s_values, 8))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 9)) > 0) {
-        *mask |= GDK_GC_TS_Y_ORIGIN;
-        values->ts_y_origin = INTEGER_DATA(VECTOR_ELT(s_values, 9))[0];
+        *mask |= GDK_GC_TS_X_ORIGIN;
+        values->ts_x_origin = INTEGER_DATA(VECTOR_ELT(s_values, 9))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 10)) > 0) {
-        *mask |= GDK_GC_CLIP_X_ORIGIN;
-        values->clip_x_origin = INTEGER_DATA(VECTOR_ELT(s_values, 10))[0];
+        *mask |= GDK_GC_TS_Y_ORIGIN;
+        values->ts_y_origin = INTEGER_DATA(VECTOR_ELT(s_values, 10))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 11)) > 0) {
-        *mask |= GDK_GC_CLIP_Y_ORIGIN;
-        values->clip_y_origin = INTEGER_DATA(VECTOR_ELT(s_values, 11))[0];
+        *mask |= GDK_GC_CLIP_X_ORIGIN;
+        values->clip_x_origin = INTEGER_DATA(VECTOR_ELT(s_values, 11))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 12)) > 0) {
-        *mask |= GDK_GC_EXPOSURES;
-        values->graphics_exposures = INTEGER_DATA(VECTOR_ELT(s_values, 12))[0];
+        *mask |= GDK_GC_CLIP_Y_ORIGIN;
+        values->clip_y_origin = INTEGER_DATA(VECTOR_ELT(s_values, 12))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 13)) > 0) {
-        *mask |= GDK_GC_LINE_WIDTH;
-        values->line_width = INTEGER_DATA(VECTOR_ELT(s_values, 13))[0];
+        *mask |= GDK_GC_EXPOSURES;
+        values->graphics_exposures = INTEGER_DATA(VECTOR_ELT(s_values, 13))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 14)) > 0) {
-        *mask |= GDK_GC_LINE_STYLE;
-        values->line_style = (GdkLineStyle)INTEGER_DATA(VECTOR_ELT(s_values, 14))[0];
+        *mask |= GDK_GC_LINE_WIDTH;
+        values->line_width = INTEGER_DATA(VECTOR_ELT(s_values, 14))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 15)) > 0) {
-        *mask |= GDK_GC_CAP_STYLE;
-        values->cap_style = (GdkCapStyle)INTEGER_DATA(VECTOR_ELT(s_values, 15))[0];
+        *mask |= GDK_GC_LINE_STYLE;
+        values->line_style = (GdkLineStyle)INTEGER_DATA(VECTOR_ELT(s_values, 15))[0];
     }
     if (GET_LENGTH(VECTOR_ELT(s_values, 16)) > 0) {
+        *mask |= GDK_GC_CAP_STYLE;
+        values->cap_style = (GdkCapStyle)INTEGER_DATA(VECTOR_ELT(s_values, 16))[0];
+    }
+    if (GET_LENGTH(VECTOR_ELT(s_values, 17)) > 0) {
         *mask |= GDK_GC_JOIN_STYLE;
-        values->join_style = (GdkJoinStyle)INTEGER_DATA(VECTOR_ELT(s_values, 16))[0];
+        values->join_style = (GdkJoinStyle)INTEGER_DATA(VECTOR_ELT(s_values, 17))[0];
     }
 	
 	return(values);

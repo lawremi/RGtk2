@@ -8,7 +8,7 @@ S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -18,8 +18,11 @@ S_GdkFilterFunc(GdkXEvent* s_xevent, GdkEvent* s_event, gpointer s_data)
   tmp = CDR(tmp);
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -38,7 +41,7 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 2+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -46,8 +49,11 @@ S_GdkEventFunc(GdkEvent* s_event, gpointer s_data)
 
   SETCAR(tmp, toRGdkEvent(((GdkEvent *)s_event), FALSE));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -66,7 +72,7 @@ S_GdkPixbufSaveFunc(const guchar* s_buf, gsize s_count, GError** s_error, gpoint
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -76,8 +82,11 @@ S_GdkPixbufSaveFunc(const guchar* s_buf, gsize s_count, GError** s_error, gpoint
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_count));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -98,7 +107,7 @@ S_GdkSpanFunc(GdkSpan* s_span, gpointer s_data)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 2+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -106,8 +115,11 @@ S_GdkSpanFunc(GdkSpan* s_span, gpointer s_data)
 
   SETCAR(tmp, asRGdkSpan(s_span));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 

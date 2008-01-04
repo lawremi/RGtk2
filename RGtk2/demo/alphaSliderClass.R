@@ -1,7 +1,7 @@
 require(RGtk2)
 
 #debug(gClass)
-tform_scale_type <- gClass("RTransformedHScale", "GtkHScale", list(
+tform_scale_type <- gClass("RTransformedHScale", "GtkHScale",
   .props = list(
     gParamSpec("R", "expr", "e", "Transformation of scale value",
       default.value = expression(x))
@@ -17,7 +17,7 @@ tform_scale_type <- gClass("RTransformedHScale", "GtkHScale", list(
     format_value = function(self, x)
       as.character(self$transformValue(x))
   )
-))
+)
 
 
 adj <- gtkAdjustment(0.5, 0.15, 1.00, 0.05, 0.5, 0)

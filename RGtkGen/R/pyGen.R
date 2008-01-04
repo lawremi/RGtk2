@@ -1937,6 +1937,10 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     #  invoke("G_OBJECT_GET_CLASS", "s_object"), "query.class_size")), virtual),
     field(dataName, "function"))
   
+  lang_length <- length(in_params)+1
+  if (!virtual)
+    lang_length <- paste(lang_length, field(dataName, "useData"), sep="+")
+  
   code <- c(code,
   header,
   "{",
@@ -1950,7 +1954,7 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
     #    statement(invokev("g_type_query", invoke("G_OBJECT_TYPE", "s_object"), refName("query"))),
     #    "")
     #},
-    statement(alloc("e", "lang", length(in_params)+1+!virtual)),
+    statement(alloc("e", "lang", lang_length)),
     statement(cassign("tmp", "e")),
     "",
     statement(pushvec("tmp", fun_code)),
@@ -1961,8 +1965,12 @@ genUserFunctionCode <- function(fun, defs, name = fun$name, virtual = 0, package
         conversion <- invokev("S_G_OBJECT_ADD_ENV", param$name, conversion)
       pushvec("tmp", conversion)
     })),
-    if (!virtual)
-      statement(pushvec("tmp", field(dataName, "data"))),
+    if (!virtual) {
+      c(ind(invoke("if", field(dataName, "useData"))), 
+      ind("{"),
+        statement(pushvec("tmp", field(dataName, "data")), 2),
+      ind("}"))
+    },
     "",
     statement(cassign("s_ans", invokev("R_tryEval", "e", "R_GlobalEnv", "&err"))),
     "",

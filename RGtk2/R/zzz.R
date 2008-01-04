@@ -60,7 +60,7 @@ function(libname, pkgname)
   install_system_dep <- function(dep_name, dep_url, dep_web, installer)
   {
     if (!interactive()) {
-      cat("Please install ", dep_name, " from ", dep_url)
+      message("Please install ", dep_name, " from ", dep_url)
       return()
     }
     choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
@@ -71,7 +71,7 @@ function(libname, pkgname)
         stop("Failed to download ", dep_name)
       installer(path)
     }
-    print(paste("Learn more about", dep_name, "at", dep_web))
+    message("Learn more about ", dep_name, " at ", dep_web)
   }
   
   install_all <- function() {
@@ -90,5 +90,5 @@ function(libname, pkgname)
   
   install_all()
   
-  print("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
+  message("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
 }

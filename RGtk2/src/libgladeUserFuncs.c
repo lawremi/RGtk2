@@ -8,7 +8,7 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 9));
+  PROTECT(e = allocVector(LANGSXP, 8+((R_CallbackData *)s_user_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
@@ -28,8 +28,11 @@ S_GladeXMLCustomWidgetHandler(GladeXML* s_xml, gchar* s_func_name, gchar* s_name
   tmp = CDR(tmp);
   SETCAR(tmp, asRInteger(s_int2));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_user_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -49,7 +52,7 @@ S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gcha
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 8));
+  PROTECT(e = allocVector(LANGSXP, 7+((R_CallbackData *)s_user_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_user_data)->function);
@@ -67,8 +70,11 @@ S_GladeXMLConnectFunc(const gchar* s_handler_name, GObject* s_object, const gcha
   tmp = CDR(tmp);
   SETCAR(tmp, asRLogical(s_after));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_user_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_user_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 

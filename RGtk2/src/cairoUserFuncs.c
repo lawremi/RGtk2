@@ -8,7 +8,7 @@ S_cairo_write_func_t(gpointer s_closure, const guchar* s_data, guint s_length)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3+((R_CallbackData *)s_closure)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_closure)->function);
@@ -18,8 +18,11 @@ S_cairo_write_func_t(gpointer s_closure, const guchar* s_data, guint s_length)
   tmp = CDR(tmp);
   SETCAR(tmp, asRNumeric(s_length));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_closure)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_closure)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_closure)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 

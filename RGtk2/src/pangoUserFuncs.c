@@ -8,7 +8,7 @@ S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 4));
+  PROTECT(e = allocVector(LANGSXP, 3+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -18,8 +18,11 @@ S_PangoFontsetForeachFunc(PangoFontset* s_fontset, PangoFont* s_font, gpointer s
   tmp = CDR(tmp);
   SETCAR(tmp, toRPointerWithRef(s_font, "PangoFont"));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 
@@ -39,7 +42,7 @@ S_PangoAttrFilterFunc(PangoAttribute* s_attribute, gpointer s_data)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 2+((R_CallbackData *)s_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_data)->function);
@@ -47,8 +50,11 @@ S_PangoAttrFilterFunc(PangoAttribute* s_attribute, gpointer s_data)
 
   SETCAR(tmp, asRPangoAttributeCopy(s_attribute));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 

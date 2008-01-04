@@ -8,7 +8,7 @@ S_AtkKeySnoopFunc(AtkKeyEventStruct* s_event, gpointer s_func_data)
   USER_OBJECT_ s_ans;
   gint err;
 
-  PROTECT(e = allocVector(LANGSXP, 3));
+  PROTECT(e = allocVector(LANGSXP, 2+((R_CallbackData *)s_func_data)->useData));
   tmp = e;
 
   SETCAR(tmp, ((R_CallbackData *)s_func_data)->function);
@@ -16,8 +16,11 @@ S_AtkKeySnoopFunc(AtkKeyEventStruct* s_event, gpointer s_func_data)
 
   SETCAR(tmp, asRAtkKeyEventStruct(s_event));
   tmp = CDR(tmp);
-  SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
-  tmp = CDR(tmp);
+  if(((R_CallbackData *)s_func_data)->useData)
+  {
+    SETCAR(tmp, ((R_CallbackData *)s_func_data)->data);
+    tmp = CDR(tmp);
+  }
 
   s_ans = R_tryEval(e, R_GlobalEnv, &err);
 

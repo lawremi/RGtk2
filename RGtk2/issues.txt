@@ -1,4 +1,5 @@
 ==== TO DO =====
+- Ensure asR* functions set the class on the object
 - Support introspection, if/when it arrives
 
 Adding support for extending GObjects

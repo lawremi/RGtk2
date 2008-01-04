@@ -1217,7 +1217,7 @@ R_createCBData(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
     return(cbdata);
 }
 
-/* Creates a GClosure for a specified R function and asCsociated user-data */
+/* Creates a GClosure for a specified R function and associated user-data */
 GClosure*
 R_createGClosure(USER_OBJECT_ s_func, USER_OBJECT_ s_data)
 {

@@ -384,6 +384,15 @@
 \alias{pangoLogAttrGetIsWhite}
 \alias{pangoLogAttrGetIsWordEnd}
 \alias{pangoLogAttrGetIsWordStart}
+\alias{gdkImageGetBitsPerPixel}
+\alias{gdkImageGetBpl}
+\alias{gdkImageGetBpp}
+\alias{gdkImageGetByteOrder}
+\alias{gdkImageGetDepth}
+\alias{gdkImageGetHeight}
+\alias{gdkImageGetMem}
+\alias{gdkImageGetVisual}
+\alias{gdkImageGetWidth}
 \name{getters}
 \title{Getters}
 \description{This function gets the \code{Field} from the \code{Structure} in its name,

@@ -14,7 +14,7 @@
 
 # FIXME: Should we really require that interfaces be specified only within
 # the class definition - no explicit argument?
-gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
+gClass <- function(name, parent = "GObject", ..., abstract = FALSE)
 {
   virtuals <- as.list(.virtuals)
   
@@ -36,8 +36,8 @@ gClass <- function(name, parent = "GObject", class_def = NULL, abstract = FALSE)
     stop("Parent type ", parent, " is not a GObject-derived type")
   
   # process class definition
-  
-  class_list <- as.list(class_def)
+
+  class_list <- list(...)
   types <- class_list[!(names(class_list) %in% .reserved)]
   known_types <- names(types) %in% names(virtuals)
   if (any(!known_types))
