@@ -1,10 +1,11 @@
 as.GdkAtom <-
 function(x)
 {
-    if (!inherits(x, "GdkAtom") && !is.numeric(x)) {
-        x <- as.character(x)
-    }
-    x
+  if (is.integer(x))
+    x <- as.numeric(x)
+  else if (!inherits(x, "GdkAtom") && !is.numeric(x))
+    x <- as.character(x)
+  x
 }
 
 # either 'pixel' or ('red', 'green', 'blue') must exist (may be combined) 

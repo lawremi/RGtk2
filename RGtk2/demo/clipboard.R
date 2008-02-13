@@ -5,8 +5,8 @@ copy.button.clicked <- function(button, user.data)
   checkPtrType(user.data, "GtkWidget")
   entry <- user.data
 
- clipboard <- entry$getClipboard(69) # weird, but means get default clipboard
-
+ clipboard <- entry$getClipboard(GDK_SELECTION_CLIPBOARD)
+  
  clipboard$setText(entry$getText()) # copy all the text to the clipboard
 }
 
@@ -23,7 +23,7 @@ paste.button.clicked <- function(button, user.data)
   checkPtrType(user.data, "GtkWidget")
   entry <- user.data
 
-  clipboard <- entry$getClipboard(69)
+  clipboard <- entry$getClipboard(GDK_SELECTION_CLIPBOARD)
 
   # Request the contents of the clipboard, paste.received will be
   #   called when we do get the contents.

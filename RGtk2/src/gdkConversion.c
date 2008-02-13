@@ -16,9 +16,9 @@ asCGdkAtom(USER_OBJECT_ s_atom)
 {
     GdkAtom atom;
     if (TYPEOF(s_atom) == EXTPTRSXP)
-        atom = GDK_POINTER_TO_ATOM(getPtrValue(s_atom));
+      atom = GDK_POINTER_TO_ATOM(getPtrValue(s_atom));
     else if (IS_NUMERIC(s_atom))
-        atom = _GDK_MAKE_ATOM(asCInteger(s_atom));
+      atom = _GDK_MAKE_ATOM((guint)asCNumeric(s_atom));
     else atom = gdk_atom_intern(asCString(s_atom), FALSE);
     return(atom);
 }

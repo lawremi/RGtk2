@@ -1,0 +1,13 @@
+\alias{gtkTreeViewGetTooltipColumn}
+\name{gtkTreeViewGetTooltipColumn}
+\title{gtkTreeViewGetTooltipColumn}
+\description{Returns the column of \code{tree.view}'s model which is being used for
+displaying tooltips on \code{tree.view}'s rows.}
+\usage{gtkTreeViewGetTooltipColumn(object)}
+\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\value{[integer]  the index of the tooltip column that is currently being
+used, or -1 if this is disabled.
+
+Since 2.12}
+\author{Derived by RGtkGen from GTK+ documentation}
+\keyword{internal}
