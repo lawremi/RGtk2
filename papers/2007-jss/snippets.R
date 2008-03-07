@@ -111,6 +111,7 @@ dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel", "Choose a mirror:",
 mirrors <- read.csv(file.path(R.home("doc"), "CRAN_mirrors.csv"), as.is = TRUE)
 model <- rGtkDataFrame(mirrors)
 view <- gtkTreeView(model)
+view$getSelection()$setMode("browse")
 
 # add a column for showing the mirror names
 column <- gtkTreeViewColumn("Mirror", gtkCellRendererText(), text = 0)
@@ -146,10 +147,12 @@ graphics <- gtkDrawingArea()
 slider <- gtkHScale(min=0.1, max=1.00, step=0.1)
 
 # adjust alpha via slider
-scale_cb <- function(range) 
+scale_cb <- function(range) {
+  par(pty = "s")
   plot(ma_data[,1], ma_data[,2], col = rgb(0, 0, 0, range$getValue()),
     xlab = "Replicate 1", ylab = "Replicate 2", 
     main = "Mock expression data", pch = 19)
+}
 gSignalConnect(slider, "value-changed", scale_cb)
 
 # add widgets to containers
@@ -165,7 +168,6 @@ win$showAll()
 # prepare the graphics device
 require(cairoDevice)
 asCairoDevice(graphics)
-par(pty = "s")
 
 # update the graphic
 slider$setValue(0.7)
@@ -275,8 +277,15 @@ load_spreadsheet <- function(df, name)
   # add a view column for each column in data
   append_tree_view_column <- function(j)
   {
-    column <- gtkTreeViewColumn(colnames(df)[j], gtkCellRendererText(), text = j)
+    renderer <- gtkCellRendererText()
+    column <- gtkTreeViewColumn(colnames(df)[j], renderer, text = j)
     column$setSortColumnId(j)
+    column$setCellDataFunc(renderer,
+                           function(column, renderer, model, iter)
+                           {
+                             ind <- model$getPath(iter)$getIndices()
+                            renderer["text"] <-  
+                           })
     tree_view$appendColumn(column)
   } # add view columns for each data column
   sapply(seq_len(ncol(df)), append_tree_view_column)

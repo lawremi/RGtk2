@@ -259,6 +259,23 @@ of determining the size and position of each widget on the screen.
 
 \subsubsection{The Widget Type Hierarchy}
 
+\begin{figure}[bhp]
+\begin{center}
+\includegraphics[width=2in]{cran-mirror.png}
+\includegraphics[width=2in]{widget-hierarchy.pdf}
+\caption{\label{fig:cran-mirror}\label{fig:widget-hierarchy} 
+A dialog for selecting a CRAN mirror constructed
+using the RGtk2 package. The screenshot of the dialog is shown on the
+left. The user selects a mirror from the list and clicks the
+``OK'' button to confirm the choice.
+Each rectangle in the diagram on the right corresponds to a widget in
+the GUI. The window is at the top-level,
+and each of the other widgets is geometrically contained within its
+parent. Many of the container widgets are invisible in the
+screenshot.}
+\end{center}
+\end{figure}
+
 %DTL:  Strange that we refer first to figure 2 and then figure 1.
 % Why not put figure 1 and 2 side-by-side in a single figure and label
 % them a) and b).
@@ -347,22 +364,7 @@ responsible for allocating its space to its children. This process is
 called
 layout management and is described in Section \ref{sec:layout}.
 
-\begin{figure}[bhp]
-\begin{center}
-\includegraphics[width=2in]{cran-mirror.png}
-\includegraphics[width=2in]{widget-hierarchy.pdf}
-\caption{\label{fig:cran-mirror}\label{fig:widget-hierarchy} 
-A dialog for selecting a CRAN mirror constructed
-using the RGtk2 package. The screenshot of the dialog is shown on the
-left. The user selects a mirror from the list and clicks the
-``OK'' button to confirm the choice.
-Each rectangle in the diagram on the right corresponds to a widget in
-the GUI. The window is at the top-level,
-and each of the other widgets is geometrically contained within its
-parent. Many of the container widgets are invisible in the
-screenshot.}
-\end{center}
-\end{figure}
+
 
 \subsection[GTK+ Widgets in R]{\pkg{GTK+} Widgets in \proglang{R}}
 
@@ -1179,7 +1181,7 @@ one part of the list is visible at a given time.
 We begin with the construction of the dialog window. For this dialog,
 we 
 assume that there is no main application window (see Section
-\label{sec:spreadsheet-example}) to serve as the
+\ref{sec:spreadsheet-example}) to serve as the
 parent. 
 %DTL: The concept of an application window needs more explanation.
 % It is defined in section 4 (Sample Application).
@@ -1192,11 +1194,7 @@ dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel",
 \end{verbatim}
 Next, we create a list for holding the mirror names using the
 \emph{GtkTreeView}
-widget. \pkg{GTK+} treats lists as a table with a single column, and
-the rows in
-a table can have a tree structure, which explains the name of the
-widget.
-In this case, of course, we want the rows to be flat. \pkg{RGtk2}
+widget (so named because the rows in the list may be organized hierarchically, but we will not discuss this feature).  \pkg{RGtk2}
 provides a 
 facility for creating a flat tabular data structure based on an
 \proglang{R}
@@ -1477,11 +1475,7 @@ rows in each data frame. We also give it facilities to load and save a
 \emph{data.frame} to and from a CSV file. 
 
 The resulting GUI is shown in Figure \ref{fig:spreadsheet}. The data
-is displayed in a table, using a \emp{GtkTreeView} widget. As we would
-like to support multiple spreadsheets at once, we embed each table in
-a tabbed notebook, \emph{GtkNotebook}. Below each spreadsheet is a
-text entry, \emph{GtkEntry}, in which the user may enter an expression
-for filtering the table view. Below this is a statusbar,
+is displayed in a table, using a \emph{GtkTreeView} widget. As we would like to support multiple spreadsheets at once, we embed each table in a tabbed notebook, \emph{GtkNotebook}. Below each spreadsheet is a text entry, \emph{GtkEntry}, in which the user may enter an expression for filtering the table view. Below this is a statusbar,
 \emph{GtkStatusbar}, that communicates the status of the application
 to the user, such as whether the loading of a dataset is complete. At
 the top are a menubar (\emph{GtkMenubar}) and toolbar
@@ -1730,7 +1724,7 @@ or
 Next, we need to create the \emph{GtkTreeView} that will display a
 given \emph{data.frame} as a table.  The data is passed to the
 \emph{GtkTreeView} by attaching it to a \emph{GtkTreeModel} data
-model. The following function, \emph{create_tree_model}, will create a
+model. The following function, \emph{create\_tree\_model}, will create a
 \emph{GtkTreeModel} object that derives its data from an \proglang{R}
 \emph{data.frame}, passed as an argument to the function. 
 \begin{verbatim}
@@ -1754,22 +1748,27 @@ source data model and a client, such as a \emph{GtkTreeView}. The data
 provided by a proxy model results from the modification of the data in
 the source model.
 
-The next function, \emph{create_tree_view},  will create the
+The next function, \emph{create\_tree\_view},  will create the
 \emph{GtkTreeView} given the \emph{GtkTreeModel} created by
-\emph{create_tree_model} above. Each column of the \emph{data.frame},
+\emph{create\_tree\_model} above. Each column of the \emph{data.frame},
 provided as the second argument, is displayed by a column in the tree
-view. We configure the tree view so that it shows grid lines (if the
-user has \pkg{GTK+} 2.10.0 or higher) and supports sorting on a column
-when the user clicks on the column header.
+view. We configure the tree view so that it shows grid lines (if the user has \pkg{GTK+} 2.10.0 or higher) and supports sorting on a column when the user clicks on the column header. 
 \begin{verbatim}
 create_tree_view <- function(model, df)
 {
   tree_view <- gtkTreeView(model)
   sapply(seq_len(ncol(df)),
          function(j)   {
-            column <- gtkTreeViewColumn(colnames(df)[j], 
-                                        gtkCellRendererText(), text=j)
+            renderer <- gtkCellRendererText()
+            column <- gtkTreeViewColumn(colnames(df)[j], renderer,
+                                        text = j)
             column$setSortColumnId(j)
+            column$setCellDataFunc(renderer,
+               function(column, renderer, model, iter)
+               {
+                  i <- model$getPath(iter)$getIndices()[[1]] + 1
+                  renderer["text"] <- as.character(df[i,j])
+               } )
             tree_view$appendColumn(column)
   } )
   tree_view$setHeadersClickable(TRUE) # sort by clicking column header
@@ -1777,6 +1776,8 @@ create_tree_view <- function(model, df)
     tree_view$setGridLines("both")
 }
 \end{verbatim}
+The call to \emph{setCellDataFunc} (above) attaches a callback that formats the text values with a reasonable number of significant figures (GTK+ takes the simpler approach of giving each number 6 significant figures). Note that this callback is called each time a cell is rendered, so it could negatively impact performance, especially when scrolling. For large spreadsheets, we recommend using a dedicated spreadsheet application. 
+
 %DTL:  why doesn't gtkCheckVersion() return TRUE or FALSE? Checking
 % for NULL is a little counter-intuitive.
 %ML: I agree, but I don't want to get into the business of redesigning
