@@ -1,0 +1,3 @@
+; for pango 1.18, when it arrives
+
+(include "../2.10/pango.defs")

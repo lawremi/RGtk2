@@ -1,0 +1,3 @@
+; for cairo 1.6 when it arrives
+
+(include "../2.10/cairo.defs")
