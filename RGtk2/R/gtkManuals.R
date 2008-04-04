@@ -773,7 +773,7 @@ function(model, rows = NULL, cols = 0:(model$getNColumns()-1)) {
 	model$unload(rows, cols)
 }
 
-dimnames.GtkTreeModel <- function(x, ...)
+dimnames.GtkTreeStore <- dimnames.GtkListStore  <- function(x, ...)
 {
 	list(x$getData("rownames"), x$getData("colnames"))
 }

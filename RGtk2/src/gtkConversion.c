@@ -35,10 +35,10 @@ asCGtkFileFilterInfo(USER_OBJECT_ s_info)
     GtkFileFilterInfo* info;
     info = (GtkFileFilterInfo*)R_alloc(1, sizeof(GtkFileFilterInfo));
     info->contains = (GtkFileFilterFlags)asCFlag(VECTOR_ELT(s_info, 0), GTK_TYPE_FILE_FILTER_FLAGS);
-    info->filename = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 0));
-    info->uri = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 1));
-    info->display_name = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 2));
-    info->mime_type = CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_info, 1), 3));
+    info->filename = asCString(VECTOR_ELT(s_info, 1));
+    info->uri = asCString(STRING_ELT(VECTOR_ELT(s_info, 1), 1));
+    info->display_name = asCString(STRING_ELT(VECTOR_ELT(s_info, 1), 2));
+    info->mime_type = asCString(STRING_ELT(VECTOR_ELT(s_info, 1), 3));
     return(info);
 }
 USER_OBJECT_
@@ -67,7 +67,7 @@ asCGtkSettingsValue(USER_OBJECT_ s_value)
 {
     GtkSettingsValue* value;
     value = (GtkSettingsValue*)R_alloc(1, sizeof(GtkSettingsValue));
-    value->origin = (char *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_value, 0), 0));
+    value->origin = (char *)asCString(VECTOR_ELT(s_value, 0));
     value->value = *asCGValue(VECTOR_ELT(s_value, 1));
     return(value);
 }
@@ -122,15 +122,15 @@ R_createGtkItemFactoryEntry(USER_OBJECT_ s_entry, guint cbtype)
 {
     GtkItemFactoryEntry *entry;
     entry = (GtkItemFactoryEntry*)R_alloc(1, sizeof(GtkItemFactoryEntry));
-    entry->path = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 0), 0));
-    entry->accelerator = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 1), 0));
+    entry->path = (gchar *)asCString(VECTOR_ELT(s_entry, 0));
+    entry->accelerator = (gchar *)asCString(VECTOR_ELT(s_entry, 1));
 
     if (cbtype == 1)
         entry->callback = (GtkItemFactoryCallback)S_GtkItemFactoryCallback1;
     else entry->callback = (GtkItemFactoryCallback)S_GtkItemFactoryCallback2;
 
     entry->callback_action = NUMERIC_DATA(VECTOR_ELT(s_entry, 3))[0];
-    entry->item_type = (gchar *)CHAR_DEREF(STRING_ELT(VECTOR_ELT(s_entry, 4), 0));
+    entry->item_type = (gchar *)asCString(VECTOR_ELT(s_entry, 4));
     entry->extra_data = (gconstpointer)getPtrValue(VECTOR_ELT(s_entry, 5));
 
     return(entry);

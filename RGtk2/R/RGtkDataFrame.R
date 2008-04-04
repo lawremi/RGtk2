@@ -1,4 +1,4 @@
-# The goal of the RGtkDataFrame is to provide a (flat) GtkTreeModel implementation
+# The goal of RGtkDataFrame is to provide a (flat) GtkTreeModel implementation
 # that responds to the familiar subset and replacement operators for data frames
 # with minimal performance lost relative to a native data frame.
 

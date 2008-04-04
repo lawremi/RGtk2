@@ -1,3 +1,29 @@
 exportPattern("^[^\\.]")
 export(.RGtkCall)
+
 #useDynLib(RGtk2)
+
+S3method(dimnames, RGtkDataFrame)
+S3method("dimnames<-", RGtkDataFrame)
+S3method(dim, RGtkDataFrame)
+S3method("[<-", RGtkDataFrame)
+S3method("[", RGtkDataFrame)
+S3method("as.data.frame", RGtkDataFrame)
+
+S3method(names, GObject)
+S3method("[", GObject)
+S3method("[<-", GObject)
+S3method("$", GObject)
+S3method("$<-", GObject)
+S3method("[[<-", GObject)
+S3method("[[", GObject)
+
+S3method("==", RGtkObject)
+S3method("[[", RGtkObject)
+
+S3method("[[", GtkContainer)
+
+S3method("[", flags)
+S3method("==", enum)
+
+S3method("$", "<invalid>")

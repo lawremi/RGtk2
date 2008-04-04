@@ -10063,7 +10063,7 @@
 (define-function check_version
   (in-module "Gtk")
   (c-name "gtk_check_version")
-  (return-type "gchar*")
+  (return-type "const-gchar*")
   (parameters
     '("guint" "required_major" (in))
     '("guint" "required_minor" (in))

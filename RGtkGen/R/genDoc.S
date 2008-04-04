@@ -546,19 +546,19 @@ param_text_path <- "/variablelist/varlistentry/listitem/simpara"
 extract_quotes <- function(text) sub("^[^\"]*\"", "", sub("\"[^\"]*$", "", text))
 
 toCallbacks <- function(callback_nodes, name_path) {
-	if (length(callback_nodes) == 0)
-		return()
-	callback_names <- NULL
-	code <- rd("describe", sapply(callback_nodes, function(node) {
-		name <- xmlValue(getNodeSet(node, name_path)[[1]])
-		name <- extract_quotes(name)
-		callback_names <<- c(callback_names, name)
+  if (length(callback_nodes) == 0)
+    return()
+  callback_names <- NULL
+  code <- rd("describe", sapply(callback_nodes, function(node) {
+    name <- xmlValue(getNodeSet(node, name_path)[[1]])
+    name <- extract_quotes(name)
+    callback_names <<- c(callback_names, name)
     retval <- toReturnValue(node)
-		rd("item", rd("code", invoke(name, s_signature(sapply(getNodeSet(node, param_name_path), child_val)))),
-			c(toFuncText(node), "", rd("describe", toParameterItems(node)), "", 
-      if (nchar(retval)) paste(rd("emph", "Returns:"), retval), ""))
-	}))
-	list(code = code, names = callback_names)
+    rd("item", rd("code", invoke(name, s_signature(sapply(getNodeSet(node, param_name_path), child_val)))),
+       c(toFuncText(node), "", rd("describe", toParameterItems(node)), "", 
+         if (nchar(retval)) paste(rd("emph", "Returns:"), retval), ""))
+  }))
+  list(code = code, names = callback_names)
 }
 
 toUserFuncs <- function(userfunc_nodes)
@@ -567,7 +567,7 @@ toUserFuncs <- function(userfunc_nodes)
 }
 toSignals <- function(signal_nodes)
 {
-	toCallbacks(signal_nodes, desc_name_path)$code
+	toCallbacks(signal_nodes, prop_name_path)$code
 }
 
 toFuncText <- function(node) {

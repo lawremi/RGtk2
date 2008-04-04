@@ -283,8 +283,8 @@ load_spreadsheet <- function(df, name)
     column$setCellDataFunc(renderer,
                            function(column, renderer, model, iter)
                            {
-                             ind <- model$getPath(iter)$getIndices()
-                            renderer["text"] <-  
+                             i <- model$getPath(iter)$getIndices()[[1]] + 1
+                             renderer["text"] <- as.character(df[i,j])
                            })
     tree_view$appendColumn(column)
   } # add view columns for each data column

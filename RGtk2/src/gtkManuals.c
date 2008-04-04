@@ -147,7 +147,7 @@ USER_OBJECT_
 }
 
 /* reason: GtkSignalFunc is a generic user-func, cannot auto-convert
-    (even though at least in the defs it is always treated as a GtkCallback)
+   (even though at least in the defs it is always treated as a GtkCallback)
 USER_OBJECT_
  S_gtk_toolbar_append_element ( USER_OBJECT_ s_object, USER_OBJECT_ s_type, USER_OBJECT_ s_widget, USER_OBJECT_ s_text, USER_OBJECT_ s_tooltip_text, USER_OBJECT_ s_tooltip_private_text, USER_OBJECT_ s_icon, USER_OBJECT_ s_callback, USER_OBJECT_ s_user_data )
 {
@@ -852,7 +852,7 @@ S_gtk_tree_view_insert_column_with_attributes(USER_OBJECT_ s_object, USER_OBJECT
 
 		s_names = GET_NAMES(s_attributes);
 		for (i = 0; i < GET_LENGTH(s_attributes); i++) {
-			gtk_tree_view_column_add_attribute(column, cell, CHAR_DEREF(STRING_ELT(s_names, i)), 
+			gtk_tree_view_column_add_attribute(column, cell, asCString(STRING_ELT(s_names, i)), 
 				asCInteger(VECTOR_ELT(s_attributes, i)));
 		}
 		ans = gtk_tree_view_insert_column(object, column, position);

@@ -30,7 +30,7 @@ asCString(USER_OBJECT_ s_str)
       return(NULL);
     s_str = STRING_ELT(s_str, 0);
   }
-  return(CHAR_DEREF(s_str));
+  return(translateCharUTF8(s_str));
   /*return(CHAR_DEREF(STRING_ELT(s_str, 0)));*/
 }
 gchar
@@ -261,7 +261,7 @@ asCFlag(USER_OBJECT_ s_flag, GType ftype)
     } else {
         int i;
         for (i = 0; i < GET_LENGTH(s_flag); i++) {
-            const gchar *fname = CHAR_DEREF(STRING_ELT(s_flag, i));
+            const gchar *fname = asCString(STRING_ELT(s_flag, i));
             /*Rprintf("Searching for flag value %s\n", fname);*/
             GFlagsValue *fvalue = g_flags_get_value_by_name(fclass, fname);
             if (!fvalue)

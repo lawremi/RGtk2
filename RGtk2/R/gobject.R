@@ -530,6 +530,7 @@ function(obj, member)
 {
   # check SGObject environments first, then fall back to field/property
   val <- try(.getAutoMemberByName(obj, member), T)
+  # check for C field (fast), then GObject prop
   if (inherits(val, "try-error"))
     val <- try(NextMethod("[["), T)
   if (inherits(val, "try-error"))
@@ -545,10 +546,9 @@ function(obj, member)
   #
 function(x, field)
 {
-  # check for C field (fast), then GObject prop
-  sym <- try(.getAutoElementByName(x, field, error = FALSE), T)
-  if (!inherits(sym, "try-error"))
-    val <- eval(substitute(sym(x), list(sym=sym)))
+  fun <- try(.getAutoElementByName(x, field, error = FALSE, where = parent.frame()), T)
+  if (!inherits(fun, "try-error"))
+    val <- fun(x)
   else stop("Cannot find '", field, "' for classes ", paste(class(x), collapse=", "))
   return(val)
 }
@@ -570,12 +570,12 @@ function(x, name, value)
 }
 }
 .getAutoElementByName <-
-function(obj, name, op = "Get", error = TRUE)
+function(obj, name, op = "Get", error = TRUE, where = parent.frame())
 {
  sym <- paste(tolower(substring(class(obj), 1, 1)), substring(class(obj), 2), op,
     toupper(substring(name, 1, 1)), substring(name, 2),sep="")
     #print(sym)
- which <- sapply(sym, exists)
+ which <- sapply(sym, exists, where)
 
  if(!any(which)) {
    message <- paste("Could not", op, "field", name,"for classes", paste(class(obj), collapse=", "))
@@ -588,9 +588,9 @@ function(obj, name, op = "Get", error = TRUE)
    }
  }
 
- sym <- as.name(sym[which][1])
+ fun <- get(sym[which][1], where, mode = "function")
 
- sym
+ fun
 }
 
 # This attempts to coerce an R object to an RGClosure that is understood on the C side

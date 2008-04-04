@@ -35,7 +35,7 @@ R_gtkCListSetText(USER_OBJECT_ clist,  USER_OBJECT_ dims, USER_OBJECT_ vals)
 
   n = Rf_length(vals);
   for(i = 0, ctr = 0; i < n; i++, ctr += 2) {
-     tmp = CHAR_DEREF(STRING_ELT(vals, i)); 
+     tmp = asCString(STRING_ELT(vals, i)); 
      gtk_clist_set_text(w, INTEGER(dims)[i], INTEGER(dims)[i + n], tmp);  
   }
 

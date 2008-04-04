@@ -104,7 +104,7 @@ R_gTypeFromName(USER_OBJECT_ name)
 {
     const gchar *val;
     GType type;
-    val = CHAR_DEREF(STRING_ELT(name, 0));
+    val = asCString(name);
     type = g_type_from_name(val);
 
     if( type == G_TYPE_INVALID) {
@@ -335,7 +335,7 @@ R_gObjectNew(USER_OBJECT_ stype, USER_OBJECT_ svals)
   USER_OBJECT_ result = NULL_USER_OBJECT;
     
     for(i = 0; i < n; i++) {
-		params[i].name = CHAR_DEREF(STRING_ELT(argNames, i));
+		params[i].name = asCString(STRING_ELT(argNames, i));
         R_setGValueForProperty(&params[i].value, class, params[i].name, VECTOR_ELT(svals, i));
     }
 
@@ -907,13 +907,13 @@ R_connectGSignalHandler(USER_OBJECT_ swidget, USER_OBJECT_ sfunc, USER_OBJECT_ s
     closure = R_createGClosure(sfunc, data);
 	((R_CallbackData *)closure->data)->userDataFirst = LOGICAL_DATA(first)[0];
 	
-    id = g_signal_connect_closure(G_OBJECT(w), CHAR_DEREF(STRING_ELT(signalName, 0)),
+    id = g_signal_connect_closure(G_OBJECT(w), asCString(signalName),
                     closure, (gboolean) LOGICAL_DATA(after)[0]);
 
     if(id == 0) {
         g_closure_sink(closure);
         PROBLEM "Couldn't register callback %s. Check name",
-                      CHAR_DEREF(STRING_ELT(signalName, 0))
+                      asCString(signalName)
         ERROR;
     }
 
@@ -971,7 +971,7 @@ R_gSignalEmit(USER_OBJECT_ sobj, USER_OBJECT_ signal, USER_OBJECT_ sargs)
     n = GET_LENGTH(sargs);
     instance_and_args = g_new0(GValue, n+1);
 
-    sigName = CHAR_DEREF(STRING_ELT(signal, 0));
+    sigName = asCString(signal);
     g_signal_parse_name(sigName, G_OBJECT_TYPE(obj), &sigId, &detail, TRUE);
     g_signal_query(sigId, &query);
 
@@ -1054,7 +1054,7 @@ R_getGSignalIdsByType(USER_OBJECT_ className)
     type = (GType)  NUMERIC_DATA(className)[0];
     if(type == 0 || type == G_TYPE_INVALID) {
     PROBLEM "No type for class %s",
-        CHAR_DEREF(STRING_ELT(className, 0))
+        asCString(className)
         ERROR;
     }
     return(R_internal_getGSignalIds(type));
@@ -1598,7 +1598,7 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
         if (level != NA_INTEGER)
           level_str = STRING_ELT(levels, level-1);
         g_value_init(raw, G_TYPE_STRING);
-        g_value_set_string(raw, CHAR_DEREF(level_str));
+        g_value_set_string(raw, asCString(level_str));
       } else {
         g_value_init(raw, G_TYPE_INT);
         g_value_set_int(raw, INTEGER_DATA(sval)[n]);
@@ -1612,7 +1612,7 @@ initGValueFromVector(USER_OBJECT_ sval, gint n, GValue *raw) {
 	  case STRSXP:
 	  case CHARSXP:
       g_value_init(raw, G_TYPE_STRING);
-      g_value_set_string(raw, CHAR_DEREF(STRING_ELT(sval, n)));
+      g_value_set_string(raw, asCString(STRING_ELT(sval, n)));
     break;
     default:
       /*fprintf(stderr, "Unhandled R type %d\n", TYPEOF(sval));fflush(stderr);*/
