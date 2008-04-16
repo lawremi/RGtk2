@@ -3,15 +3,8 @@
 #include "RGtk2/libglade.h"
 #endif
 
-/* This is an simple version of the event handler for windows.
-   It mimicks what we do in Rggobi, namely hijacking the hook into the
-   event loop that Tk uses.
-   This currently doesn't handle timed tasks.
-   More to come later on an overhaul of the R event loop.
- */
 #ifdef G_OS_WIN32
-#include <sys/types.h>
-extern  __declspec(dllimport) void (* R_tcldo)();
+#include <windows.h>
 #else
 #include "R_ext/eventloop.h"
 #include <gdk/gdkx.h>
@@ -24,11 +17,29 @@ R_gtk_eventHandler(void *userData)
     gtk_main_iteration();
 }
 
+#ifdef G_OS_WIN32
+
+/* On Windows, run the GTK+ event loop in a separate thread, synchronizing
+   with the Windows event loop.
+   This currently doesn't handle timed tasks.
+   More to come later on an overhaul of the R event loop.
+*/
+
+#define RGTK2_ITERATE WM_USER + 101
+
+DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
+  while(1) {
+    if (gtk_events_pending())
+      PostMessage((HWND)lpParam, RGTK2_ITERATE, NULL, NULL);
+  }
+}
+
 void
-R_gtk_handle_events()
+R_gtk_win_proc()
 {
   R_gtk_eventHandler(NULL);
 }
+#endif
 
 void
 R_gtkInit(long *rargc, char **rargv, Rboolean *success)
@@ -56,7 +67,17 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
           R_gtk_eventHandler, -1);
   }
 #else
-  R_tcldo = R_gtk_handle_events;
+  /* Create a dummy window for receiving messages */
+  HINSTANCE instance = GetModuleHandle(NULL);
+  WNDCLASS wndclass = { 0, R_gtk_win_proc, 0, 0, instance, NULL, NULL, NULL, NULL,
+                        "RGtk2" };
+  ATOM atom = RegisterClass(&wndclass);
+  HWND win = CreateWindow(atom, NULL, NULL, 1, 1, 1, 1, HWND_MESSAGE, NULL,
+                          instance, NULL);
+
+  /* Create a thread that will post messages to our window on this thread */
+  HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);
+  SetThreadPriority(thread, THREAD_PRIORITY_IDLE);
 #endif
 
   R_GTK_TYPE_PARAM_SEXP;

@@ -13,12 +13,42 @@ University of California - Davis}
 \Plaintitle{RGtk2: A Graphical User Interface Toolkit for R} 
 \Shorttitle{RGtk2} 
 
+
+%DTL2:
+% A general comment: some of the descriptions are a little cryptic
+% or abstract partly because they start with the general concept
+% and then provide an example to make it concrete.
+% e.g. page 37, start of section "Constructors". And there are 
+% several more. 
+% I think it would be easier to read if the example/motivation
+% came first and then the explanation of the generalities.
+% It is a matter of taste and style, but I (who knows about this
+% stuff) found some of the general sentences a little too cryptic
+% or vaguge.  Switching to an example-general ordering involves
+% only changing the order of the sentences (and conjunctions).
+
+%DTL2: Page 11, the section on Widget Layout is a little confusing,
+% and it is a potentially confusing topic.
+% It might amount to rewording the third paragraph with clear, precise terminology.
+
+%DTL2:  As a point of "grammar", we should clean up the  presence of
+%code segments within the document where the code is not part of a
+%sentence and just present on its own, e.g. page 7, end of page 12,
+%page 17, etc.
+% These should be separate  figure elements in the \latex or 
+% glued into the sentence via a :, e.g. in the following code: ....
+% As it stands, they are not grammatically correct.
+
+%DTL2: You mention that things should be transparent for the R user,
+%using R conventions, etc.. But we are using 0-based counting in many circumstances.
+
+
 \Abstract{
 Graphical User Interfaces (GUIs) are growing in popularity as a
 complement or alternative to
 the traditional Command Line Interfaces (CLIs) to \proglang{R}.
 \pkg{RGtk2} is an 
-\proglang{R} package for creating \proglang{R} GUIs. The package
+\proglang{R} package for creating  GUIs in \proglang{R}. The package
 provides programmatic access
 to \pkg{GTK+} 2.0, an open-source GUI toolkit written in \proglang{C}.
 To 
@@ -72,36 +102,25 @@ platform and language for statistical computing \citep{R}.
 
 % user interfaces
 Two common types of user interfaces in statistical computing are the
-Command
-Line Interface (CLI) and the Graphical User Interface (GUI). The usual
-CLI 
-consists of a textual console where the user types a sequence of
-commands
-at a prompt. The \proglang{R} console is an example of a CLI. The GUI
-is the primary
-means of interacting with desktops, like Windows and Mac OS, and
-statistical software like JMP \citep{JMP}. These
-interfaces are based on the WIMP (Window, Icon, Menu and Pointer)
-paradigm 
-\citep{WIMP}. WIMP was developed at Xerox PARC in the 1970's and was
-popularized by 
-the Apple Macintosh. On a WIMP desktop, application GUIs are contained
-within 
-windows, and resources, such as documents, are represented by
-graphical icons. 
-User actions are packed into hierarchical drop-down menus. The user
-manipulates
-the windows, icons and menus with a pointer device, such as a mouse.
-The windows,
-icons, and menus, as well as other graphical controls such as buttons,
-sliders and 
-text fields, have come to be known as \emph{widgets}. The graphical
-nature and 
-overall complexity of widgets makes their implementation a non-trivial
-task.  
-To alleviate the burden on the application
-programmer, reusable widgets are collected into \emph{widget
-toolkits}.
+Command Line Interface (CLI) and the Graphical User Interface
+(GUI). The usual CLI consists of a textual console where the user
+types a sequence of commands at a prompt. The \proglang{R} console is
+an example of a CLI. A GUI is the primary means of interacting with
+desktops, like Windows and Mac OS, and statistical software like JMP
+\citep{JMP}. These interfaces are based on the WIMP (Window, Icon,
+Menu and Pointer) paradigm \citep{WIMP}. WIMP was developed at Xerox
+PARC in the 1970's and was popularized by the Apple Macintosh. On a
+WIMP desktop, application GUIs are contained within windows, and
+resources, such as documents, are represented by graphical icons.
+User controls are packed into hierarchical drop-down menus, buttons,
+sliders, etc. The user manipulates the windows, icons and menus with a
+pointer device, such as a mouse.  The windows, icons, and menus, as
+well as other graphical controls such as buttons, sliders and text
+fields, have come to be known as \emph{widgets}. The graphical
+event-driven, non-procedural nature and overall complexity of widgets
+makes their implementation a non-trivial task.  To alleviate the
+burden on the application programmer, reusable widgets are collected
+into \emph{widget toolkits}.
 
 % motivation for guis
 There is often debate over the relative merits of a CLI and a GUI
@@ -110,16 +129,16 @@ needs of the user \citep{gui-cli}. Effective use of a CLI requires the
 user to be proficient in the command language understood by the
 interface. For example, with a CLI, \pkg{R} users need to understand
 the \proglang{R} language. Learning a computer language often demands
-a significant commitment of time and energy; however, given a
-small amount of knowledge, one can use the language to perform
-arbitrary, rich tasks.  A graphical interface is much less general
-and restrictive, but typically makes performing a specific task
-easier. It does this two different ways: a) stream-lining the steps
-involved in the task by providing a constrained context, and b)
-removing the need to remember function names and syntax.  Different
-users benefit from the two different interfaces for different tasks. 
-And there is little doubt that for occasional users of a language and
-for users focused a specific task, a GUI is easier to learn and more
+a significant commitment of time and energy; however, given a small
+amount of knowledge, one can use the language to perform arbitrary,
+rich tasks.  A graphical interface is much less general and
+restrictive, but typically makes performing a specific task easier. It
+does this two different ways: a) stream-lining the steps involved in
+the task by providing a constrained context, and b) removing the need
+to remember function names and syntax.  Different users benefit from
+the two different interfaces for different tasks.  And there is little
+doubt that for occasional users of a language and for users focused a
+specific task, a well-designed GUI is easier to learn and more
 accessible than a general purpose programming language.
 
 % GUIs for R
@@ -205,52 +224,49 @@ which
 facilitates access from languages like \proglang{R} that are also
 implemented 
 in \proglang{C}. It is licensed under the \emph{Lesser GNU Public
-License} (LGPL),
+License} (LGPL).
 %DTL:  meaning that \pkg{GTK+} does not force a specific license on
 %the software that uses it.
 % Yes it does. It forces the LGPL by definition
-which provides greater flexibility and more wide-spread use than the
-regular GPL license.
-This contributes to its popularity. \pkg{GTK+} provides the same
-widgets 
-on every platform, though it can be customized to emulate 
-platform-specific look and feel. The original \pkg{RGtk} is bound to
-the previous
-generation of \pkg{GTK+}, version 1.2. \pkg{RGtk2} is based on
-\pkg{GTK+ 2.0},
-the current generation. Henceforth, this paper will only refer to
-\pkg{RGtk2},
+%which provides greater flexibility 
+% and more wide-spread use 
+%DTL2:  "more wide-spread" would need some verification and there are
+%some who don't like the freedom the LGPL provides for commercial
+%interests to use the code in proprietary systems. 
+%than the regular GNU Public License (GPL).
+%This contributes to its popularity.
+%DTL2: again, this is debatable and needs evidence.
+% I think it is unnecessary to make claims about popularity and
+% flexibility as they are undefined terms and highly subjective. 
+\pkg{GTK+} provides the same widgets on every platform, though it can
+be customized to emulate platform-specific look and feel. The original
+\pkg{RGtk} is bound to the previous generation of \pkg{GTK+}, version
+1.2. \pkg{RGtk2} is based on \pkg{GTK+ 2.0}, the current
+generation. Henceforth, this paper will only refer to \pkg{RGtk2},
 although many of the fundamental features of \pkg{RGtk2} are inherited
 from \pkg{RGtk}.
 
 % outline
 We continue with the fundamentals of the \pkg{GTK+} GUI and the
-\pkg{RGtk2} 
-package. This is followed by a tutorial, including examples, on using 
-\pkg{RGtk2} to construct basic to intermediate GUIs. The paper then
-moves into 
-a more technical domain, introducing the advanced features of the
-interface, 
-including the creation of new types of widgets. We then present a
-technical 
-description of the design and generation of
-the interface, which is followed by a discussion of more general
-binding issues.
-Next, we compare \pkg{RGtk2} to existing GUI toolkits in \proglang{R}.
-We conclude
-by mentioning some applications of \pkg{RGtk2} and explore directions
-for future development.
+\pkg{RGtk2} package. This is followed by a tutorial, including
+examples, on using \pkg{RGtk2} to construct basic to intermediate
+GUIs. The paper then moves into a more technical domain, introducing
+the advanced features of the interface, including the creation of new
+types of widgets. We then present a technical description of the
+design and generation of the interface, which is followed by a
+discussion of more general binding issues.  Next, we compare
+\pkg{RGtk2} to existing GUI toolkits in \proglang{R}.  We conclude by
+mentioning some applications of \pkg{RGtk2} and explore directions for
+future development.
 
 \section{Fundamentals}
 
 This section begins with an introduction to the basic widgets and
-elements of the of the \pkg{GTK+} library.
-We then turn our attention to the \proglang{RGtk2} interface to 
-\pkg{GTK+}, explaining how to create and manipulate widgets and how to
-respond to
-user input. The section concludes by introducing widget layout, the
-process
-of determining the size and position of each widget on the screen.
+elements of the of the \pkg{GTK+} library.  We then turn our attention
+to the \proglang{RGtk2} interface to \pkg{GTK+}, explaining how to
+create and manipulate widgets and how to respond to user input. The
+section concludes by introducing widget layout, the process of
+determining the size and position of each widget on the screen.
 
 % This section introduces the CRAN mirrors GUI as a goal, but 
 % begins with the classic "Hello World" button-in-a-window GUI
@@ -262,17 +278,16 @@ of determining the size and position of each widget on the screen.
 \begin{figure}[bhp]
 \begin{center}
 \includegraphics[width=2in]{cran-mirror.png}
+\hspace{.5in}
 \includegraphics[width=2in]{widget-hierarchy.pdf}
-\caption{\label{fig:cran-mirror}\label{fig:widget-hierarchy} 
-A dialog for selecting a CRAN mirror constructed
-using the RGtk2 package. The screenshot of the dialog is shown on the
-left. The user selects a mirror from the list and clicks the
-``OK'' button to confirm the choice.
-Each rectangle in the diagram on the right corresponds to a widget in
-the GUI. The window is at the top-level,
-and each of the other widgets is geometrically contained within its
-parent. Many of the container widgets are invisible in the
-screenshot.}
+\caption{\label{fig:cran-mirror}\label{fig:widget-hierarchy} A dialog
+  for selecting a CRAN mirror constructed using the RGtk2 package. The
+  screenshot of the dialog is shown on the left. The user selects a
+  mirror from the list and clicks the ``OK'' button to confirm the
+  choice.  In the image on the right, each rectangle corresponds to a
+  widget in the GUI. The window is at the top-level, and each of the
+  other widgets is geometrically contained within its parent. Many of
+  the container widgets are invisible in the screenshot.}
 \end{center}
 \end{figure}
 
@@ -283,46 +298,37 @@ screenshot.}
 % relate to the GUI in figure 2.
 %ML: I placed the CRAN mirror GUI and the widget hierarchy together.
 % They now come before the class hierarchy.
-Figure \ref{fig:cran-mirror} shows a \pkg{GTK+} GUI that allows the
-user to
-select a CRAN mirror for downloading \proglang{R} packages.
-This GUI is likely familiar to many \proglang{R} users, since a
-similar interface
-is present in the official Windows and Mac OS X \proglang{R} GUIs,
-among others.
-There are several different types of widgets in the CRAN mirrors GUI.
-A
-text label instructs the user to choose a mirror.  A list contains the 
-names of the mirrors, and there are buttons for confirming or
-canceling the choice. 
-The interface is enclosed by another type of widget, a window. 
+
+%DTL2: Thanks. In my version, figure 1 is still the class hierarchy.
+The left panel of figure \ref{fig:cran-mirror} shows a \pkg{GTK+} GUI
+that allows the user to select a CRAN mirror for downloading
+\proglang{R} packages.  This GUI is likely familiar to many
+\proglang{R} users, since a similar interface is present in the
+official Windows and Mac OS X \proglang{R} GUIs, among others.  There
+are several different types of widgets in the CRAN mirrors GUI.  A
+text label instructs the user to choose a mirror.  A list
+control/widget contains the names of the available mirrors, and there
+are buttons for confirming or canceling the choice.  The interface is
+enclosed by another type of widget, a window.
 
 All of these widget types have functionality in common. For example,
-they are
-all drawn on the screen in a consistent style. To formalize this
-relationship 
-and to simplify implementation by sharing code
+they are all drawn on the screen in a consistent style. To formalize
+this relationship and to simplify implementation by sharing code
 between widgets, \pkg{GTK+} defines an inheritance hierarchy for its
-widget
-types, or classes. A small portion of the \pkg{GTK+} class hierarchy
-is shown
-in Figure \ref{fig:class-hierarchy}. For specifying the hierarchy,
-\pkg{GTK+} 
-relies on \pkg{GObject}, a \proglang{C} library that implements a
-class-based, single-inheritance 
+widget types, or classes. A small portion of the \pkg{GTK+} class
+hierarchy is shown in Figure \ref{fig:class-hierarchy}. For specifying
+the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a \proglang{C}
+library that implements a class-based, single-inheritance
 object-oriented system.  Each type of \pkg{GTK+} widget is a
-\pkg{GObject} 
-class that inherits from the base \emph{GtkWidget} class which
-provides the general characteristics shared by all widget classes,
-e.g. properties giving the location, color; methods for hiding,
-showing and painting the widget. A \pkg{GObject} 
-class encapsulates behaviors that all instances of the class share. 
-Each class has a single parent from which it inherits 
-the behaviors of its ancestors. A class can override any of its
-inherited behaviors.
-A more detailed and technical explanation of \pkg{GObject} is
-available in 
-Section \ref{sec:primer}. 
+\pkg{GObject} class that inherits from the base \emph{GtkWidget} class
+which provides the general characteristics shared by all widget
+classes, e.g. properties giving the location, color; methods for
+hiding, showing and painting the widget. A \pkg{GObject} class
+encapsulates behaviors that all instances of the class share.  Each
+class has a single parent from which it inherits the behaviors of its
+ancestors. A class can override any of its inherited behaviors.  A
+more detailed and technical explanation of \pkg{GObject} is available
+in Section \ref{sec:primer}.
 
 \begin{figure}
 \begin{center}
@@ -337,41 +343,34 @@ indirectly, from the \emph{GObject} base class.}
 
 \subsubsection{The Widget Tree}
 
-There is another tree hierarchy that is orthogonal to the 
-class inheritance hierarchy. This hierarchy involves widget instances
-rather
-than widget classes. Each widget instance has a single parent
-instance, except
-for a top-level window which has none and serves as the root of the
-tree. Child widgets are geometrically
-contained by their parents. In Figure \ref{fig:cran-mirror}, 
-for example, the label, list of mirrors, and buttons are all contained
-within the 
-top-level window, meaning that the window is the common ancestor of
-the other widgets.
-Figure \ref{fig:widget-hierarchy} shows, in a simplified way, the two
-dimensional
-nesting of the widgets in the mirror selection example. Widgets that
-can contain 
-other widgets are called \emph{containers} and their classes are
-derived from 
-the \emph{GtkContainer} class. Windows and tabbed notebooks are
-examples of containers.
-Combining primitive widgets like labels and icons within containers
-leads to more complex displays, such as menus, toolbars and even
-buttons which contain labels to display the text. A container is 
-responsible for allocating its space to its children. This process is
-called
-layout management and is described in Section \ref{sec:layout}.
-
-
+There is another tree hierarchy that is orthogonal to the class
+inheritance hierarchy. This hierarchy involves widget instances rather
+than widget classes. Each widget instance has a single parent instance
+in which it is contained, except for a top-level window which has no parent
+and serves as the root of the tree. Child widgets are contained within the rectangular region of their parents.
+%DTL2:  can you explain what geometrically means in this context.
+%MFL2: reworded
+In Figure \ref{fig:cran-mirror}, for
+example, the label, list of mirrors, and buttons are all contained
+within the top-level window, meaning that the window is the common
+ancestor of the other widgets.  The right panel of figure
+\ref{fig:widget-hierarchy} shows, in a simplified way, the two
+dimensional nesting of the widgets in the mirror selection
+example. Widgets that can contain other widgets are called
+\emph{containers} and their classes are derived from the
+\emph{GtkContainer} class. Windows and tabbed notebooks are examples
+of containers.  Combining primitive widgets like labels and icons
+within containers leads to more complex displays, such as menus,
+tool bars and even buttons which contain labels to display the text. A
+container is responsible for allocating its space to its
+children. This process is called layout management and is described in
+Section \ref{sec:layout}.
 
 \subsection[GTK+ Widgets in R]{\pkg{GTK+} Widgets in \proglang{R}}
 
 \pkg{RGtk2} provides an Application Programming Interface (API) to the
 \pkg{GTK+} 
-library. An API is a type of user interface where the user
-is a programmer creating an application based on functions implemented
+library. A programmer uses an API to create an application based on functions implemented
 within a separate module. It is a contract that specifies in detail
 the functionality available to a programmer without specifying how
 that functionality is implemented. 
@@ -384,6 +383,15 @@ that functionality is implemented.
  
 % ML: I added a sentence along the lines of it defining a contract. I
 % would still argue, however, that an API is a user interface.
+% DTL:  I don't disagree, but I don't think the analogy is very helpful
+% in this particular case as it doesn't help to clarify things for the
+% reader and certainly runs the risk of confusing the concept of a
+% graphical user interface with programmer user interface.  So no
+% disagreement on concept, just a choice of presentation.
+
+% MFL2: I see what you mean. I guess I was only trying to relate APIs
+% to GUIs, but that offers little benefit and is likely confusing
+
 
 As with other user interfaces,
 an API should be consistent and efficient to use. As an \proglang{R}
@@ -406,18 +414,15 @@ garbage collector. Array length parameters are also excluded, as the
 length of a vector is always known in \proglang{R}.
 %DTL: e.g.  some examples
 The \pkg{RGtk2} API has also been designed for ease/efficiency of use.
-Towards this end,
-it specifies
-a default value for a function parameter whenever sensible and uses a
-special object-oriented syntax, as introduced by the SJava package
-\citep{SJava}.
+Towards this end, it specifies a default value for a function
+parameter whenever sensible and uses a special object-oriented syntax,
+as introduced by the SJava package \citep{sjava}.
 %DTL: RGtk didn't introduce the special syntax. It was first
 %introduced in the SJava package.
 
-To demonstrate the basic syntax and
-features of the \pkg{RGtk2} API, we will construct a simple ``Hello
-World'' GUI,
-shown in Figure \ref{fig:hello-world}. 
+To demonstrate the basic syntax and features of the \pkg{RGtk2} API,
+we will construct a simple ``Hello World'' GUI, shown in Figure
+\ref{fig:hello-world}.
 
 \begin{figure}
 \begin{center}
@@ -443,26 +448,31 @@ window <- gtkWindow("toplevel", show = FALSE)
 \end{verbatim}
 
 The first argument to the constructor for \emph{GtkWindow} corresponds
-to the type of the window. The set of possible window types is
-specified by what in \proglang{C} is known as an
+to the type of the top-level window. The set of possible window types
+is specified by what in \proglang{C} is known as an
 \emph{enumeration}. Since enumerations are foreign to R, \pkg{RGtk2}
 accepts string representations of enumeration values, like
 ``toplevel''. For every \pkg{GTK+} enumeration, \pkg{RGtk2} provides
 an \proglang{R} vector that maps the nicknames to the underlying
 numeric values.  In the above case, the vector is named
-\emph{GtkWindowType}. It is rarely necessary to explicitly use the
+\emph{GtkWindowType}. The expression \emph{names(GtkWindowType)} returns the names of the possible values of the \emph{GtkWindowType} enumeration, and the same applies to all other enumerations. It is rarely necessary to explicitly use the
 enumeration vectors; specifying the nickname will work in most cases,
 including all method invocations and is preferable as it is easier for
-human readers to comprehend.
+human readers to comprehend. 
+
+%DTL2:  it would be good to identify here (or elsewhere later in the
+%article) how one can find the possible values for an enumeration
+%type.  As it stands, the user must know the nickname. But she might
+%want to see all the possible values in order to chose the relevant one.
+
+
+
 
 The \emph{show} argument is the last argument for every widget
-constructor. It
-indicates whether the widget should be made visible immediately after
-construction.
-The default value of \emph{show} is \emph{TRUE}. In this case we want
-to
-defer showing the window until after we finish constructing our simple
-GUI.
+constructor. It indicates whether the widget should be made visible
+immediately after construction.  The default value of \emph{show} is
+\emph{TRUE}. In this case we want to defer showing the window until
+after we finish constructing our simple GUI.
 
 %DTL: This next paragraph hangs out a little, i.e. it doesn't flow
 %directly from the previous paragraphs but introduces a new concept
@@ -470,16 +480,13 @@ GUI.
 %try to connect it a little more.
 The next steps are to create a ``Hello World'' button and to place the
 button in the window that we have already created. This depends on an
-understanding of how of one programmatically interacts with widgets.
-Each widget class defines an API 
-consisting of methods, properties, fields and signals. Methods are
-functions 
-that take an instance of their class as the first argument and are
-used to instruct the 
-widget to perform an action. Properties and fields store the public
-state of a widget. Examples of properties include the title of a
-window, the label on a button, and whether a widget has the keyboard
-focus. 
+understanding of how of one programmatically manipulates widgets.
+Each widget class defines an API consisting of methods, properties,
+fields and signals. Methods are functions that take an instance of
+their class as the first argument and are used to instruct the widget
+to perform an action. Properties and fields store the public state of
+a widget. Examples of properties include the title of a window, the
+label on a button, and whether a widget has the keyboard focus.
 %DTL: e.g., give some examples.
 Signals are emitted as a result of events, such as user interaction
 with a widget.
@@ -494,31 +501,25 @@ each of these in the following sections as we continue with our
 \subsubsection{Invoking Methods}
 
 Methods are functions that operate on widgets inheriting from a
-particular class.
-The \pkg{RGtk2} function for each \pkg{GTK+} method is named according
-to the 
-\emph{classNameMethodName} pattern. For example, to add a child to a
-container, we 
-need to invoke the \emph{add} method on the \emph{GtkContainer} class. 
-The corresponding function name would be \emph{gtkContainerAdd}.
-However, this 
+particular class.  The \pkg{RGtk2} function for each \pkg{GTK+} method
+is named according to the \emph{classNameMethodName} pattern. For
+example, to add a child to a container, we need to invoke the
+\emph{add} method on the \emph{GtkContainer} class.  The corresponding
+function name would be \emph{gtkContainerAdd}.  However, this
 introduces an inefficiency in that the user needs to remember the
-class to which
-a method belongs. To circumvent this problem, we introduce a syntax
-that is similar
-to that found in various object-oriented languages. The widget
-variable is given first, followed by the \$ operator, then the method
-name and its arguments. This syntax for calling \emph{gtkContainerAdd}
-is demonstrated 
-below as we add a button with the label ``Hello World'' to our window.
-The
-third statement calls \emph{gtkWindowSetDefaultSize} to specify our
-desired
-size for the window when it is first shown. Each method belongs to a
-separate
+class to which a method belongs. To circumvent this problem, we
+introduce a syntax that is similar to that found in various
+object-oriented languages. The widget variable is given first,
+followed by the \$ operator, then the method name and its
+arguments. This syntax for calling \emph{gtkContainerAdd} is
+demonstrated below as we add a button with the label ``Hello World''
+to our window.  The third statement calls
+\emph{gtkWindowSetDefaultSize} to specify our desired size for the
+window when it is first shown. Each method belongs to a separate
 class, but the syntax frees the user from the need to remember the
-exact classes
-and also saves some typing.
+exact classes and also saves some typing as 
+the \$ operator finds the most specific/appropriate method based on
+the class inheritance of the widget.
 \begin{verbatim}
 button <- gtkButton("Hello World")
 window$add(button)
@@ -533,18 +534,22 @@ separator and we use lower case at the beginning of new words.
 
 \subsubsection{Accessing Properties and Fields}
 
-Properties are self-describing elements that store the state of a
-widget.
-Examples of properties include the title of a window, whether a
-checkbox is checked, and
-the length in characters of a text entry box. The \proglang{R} subset
-function 
-\emph{[} may be used to get the value of a widget property by name.
-Below we access the value of the \emph{visible} property of our
-window. We
-find that the value is \emph{FALSE}, since we specified it not to be
-shown
-at construction and have not made it visible since then.
+Properties are self-describing 
+%DTL2: explain what self-describing means here, i.e. provide run-time
+%information about their type.
+% However, perhaps mentioning this here is too technical and somewhat
+% irrelevant to the user looking for an overview at this point.
+elements that store the state of an aspect of a widget.  Examples of
+properties include the title of a window, whether a checkbox is
+checked, and the length in characters of a text entry box. The
+%DTL2:  Is this [ or [[. Perhaps [[ but fine to leave as is. Just need
+%to be consistent. The dialog example on page 13 seems to use dialog[["vbox"]]
+% MFL2: The '[' gets properties, the '[[' gets fields, as far as the paper is concerned anyway. In the code, they may be interchangeable.
+\proglang{R} subset function \emph{[} may be used to get the value of
+a widget property by name.  Below we access the value of the
+\emph{visible} property of our window. We find that the value is
+\emph{FALSE}, since we specified it not to be shown at construction
+and have not made it visible since then.
 \begin{verbatim}
 > window["visible"]
 [1] FALSE
@@ -554,9 +559,9 @@ at construction and have not made it visible since then.
 the regular R assignment operator (\emph{<-} or \emph{=}). This is
 actually implemented via the \emph{[<-} method for \pkg{Gtk+} widgets
 in \pkg{RGtk2}. The example below makes the window created above
-visible, using the two property setting methods. In this particular
-case, we could also show the window using the \emph{gtkWidgetShow}
-method, which is more conventional.
+visible, using both property-setting methods,
+the second corresponding to a call to \emph{gtkWidgetShow}, which is
+more conventional:
 \begin{verbatim}
 window["visible"] <- TRUE # or
 window$show()             # the conventional way
@@ -596,8 +601,7 @@ a field using the \emph{[[} function. For example, now that our window
 has been shown, it has been allocated a rectangle on the screen. This
 is stored
 in the \emph{allocation} field of \emph{GtkWidget}. It returns a list 
-representing a \emph{GdkRectangle} with
-elements \emph{x}, \emph{y}, \emph{width} and \emph{height}.
+representing a \emph{GtkAllocation} with elements \emph{x}, \emph{y}, \emph{width} and \emph{height}.
 %DTL:  Why doesn't this have a class such as GdkRectangle. We are
 %losing information about the object which is available from the
 %property.
@@ -605,6 +609,7 @@ elements \emph{x}, \emph{y}, \emph{width} and \emph{height}.
 % ML: This appears to be a bug. It seems that some of the older 
 % conversion routines that I implemented manually do not set the class
 % attribute. Weird how I never noticed that.
+%DTL2: I know that feeling!
 
 \begin{verbatim}
 > window[["allocation"]]
@@ -619,62 +624,52 @@ $width
 
 $height
 [1] 200
+
+attr(,"class")
+[1] "GtkAllocation"
 \end{verbatim}
+%DTL2:  class of the object should be RGdkRectangle (or whatever)
+
 
 \subsubsection{Handling Signals/Events}
 
-Once a GUI is displayed on the screen, the user is 
-generally free to interact with it. Examples of user actions include 
-clicking on buttons, dragging a slider and typing text into an entry
-box.
-In the CRAN mirrors example, possible user actions include
-selecting a mirror in the list, clicking the ``OK'' or ``Cancel''
-buttons 
-and pressing a keyboard shortcut, such as \texttt{Alt-O} for ``OK''. 
-An application may wish to respond in a certain way to one or more of
-such actions.
+Once a GUI is displayed on the screen, the user is generally free to
+interact with it. Examples of user actions include clicking on
+buttons, dragging a slider and typing text into an entry box.  In the
+CRAN mirrors example, possible user actions include selecting a mirror
+in the list, clicking the ``OK'' or ``Cancel'' buttons and pressing a
+keyboard shortcut, such as \texttt{Alt-O} for ``OK''.  An application
+may wish to respond in a certain way to one or more of such actions.
 The CRAN mirrors application, for example, should respond to an ``OK''
-response
-by saving the chosen mirror in the session options.
+response by saving the chosen mirror in the session options.
 
-So far, we have created and manipulated widgets by calling a list
-of procedures in a fixed order. This is convenient as long as the
-application
-is ignoring the user. Listening to the user would
-require a loop which continuously checks for user input.
-It is not desirable to implement such a loop for every application, so
-\pkg{GTK+} provides one for applications to use. When an application
-initializes the \pkg{GTK+} event processing loop, there is an 
-\emph{inversion of control}. The application no longer has primary
-control
-of its flow; instead, \pkg{GTK+} asynchronously informs the
-application of 
-events through the invocation of functions provided by the application
-to 
-handle a specific type of event. These handlers are known as 
-\emph{callbacks}, because \pkg{GTK+} is calling back into the
-application. 
+So far, we have created and manipulated widgets by calling a list of
+procedures in a fixed order. This is convenient as long as the
+application is ignoring the user. Listening to the user would require
+a loop which continuously checks for user input.  It is not desirable
+to implement such a loop for every application, so \pkg{GTK+} provides
+one for all GUI applications to use within the same R session. When an
+application initializes the \pkg{GTK+} event processing loop, there is
+an \emph{inversion of control}. The application no longer has primary
+control of its flow; instead, \pkg{GTK+} asynchronously informs the
+application of events through the invocation of functions provided by
+the application to handle a specific type of event. These handlers are
+known as \emph{callbacks}, because \pkg{GTK+} is calling back into the
+application.
 
 \pkg{GTK+} widgets represent event types as signals. One or more
-callbacks can be connected to a signal. When the event corresponding
-to the
-signal occurs, the signal is emitted and the callbacks are executed in
-an order
-depending on how they were connected. In order to execute \proglang{R}
-code in 
-response to a user action on a widget, we connect an \proglang{R}
-function to the 
-appropriate signal on the widget.  The \emph{gSignalConnect} function 
+callbacks can be connected to a signal for each widget instance. When
+the event corresponding to the signal occurs, the signal is emitted
+and the callbacks are executed in an order depending on how they were
+connected. In order to execute \proglang{R} code in response to a user
+action on a widget, we connect an \proglang{R} function to the
+appropriate signal on the widget.  The \emph{gSignalConnect} function
 performs this connection. The following code will make our ``Hello
-World'' 
-example from above more interactive.
-The call to \emph{gSignalConnect} will cause ``Hello World!'' to be
-printed 
-upon emission of the ``clicked'' signal from the button in our window.
-The 
+World'' example from above more interactive.  The call to
+\emph{gSignalConnect} will cause ``Hello World!'' to be printed upon
+emission of the ``clicked'' signal from the button in our window.  The
 ``clicked'' signal is emitted when the user clicks the button with a
-pointer
-device or activates the button with a keyboard shortcut.
+pointer device or activates the button with a keyboard shortcut.
 \begin{verbatim}
 gSignalConnect(button, "clicked", 
                function(widget) print("Hello world!"))
@@ -695,81 +690,66 @@ help(GtkWindow)
 \end{verbatim}
 
 Similarly, the detailed help for a specific method is stored under the
-full
-name of the function. For example, to learn about the \emph{add}
-method on
-\emph{GtkContainer}, we enter:
+full name of the function. For example, to learn about the \emph{add}
+method on \emph{GtkContainer}, we enter:
 \begin{verbatim}
 help(gtkContainerAdd)
 \end{verbatim}
+%DTL2:  We should also be able to do something along the lines of 
+%   help(w$add)
+% where w is a container widget and find the relevant method.  The
+% operator ? in tends to work this way.
 
 \subsection{Widget Layout}\label{sec:layout}
+%DTL2:  Take a read over this and see if it is clear and comprehensive
+%for you. I think it is a little unclear and perhaps a few sentences
+%would aid greatly. Not sure where at this point. Sorry !
+
 
 In our ``Hello World'' example, we added only a single widget, a
-button, to the 
-top-level window. In contrast, the CRAN mirrors window contains
-multiple 
-widgets, which introduces the problem of appropriately allocating the
-space in a
-window to each of its descendents. This problem is often called
-\emph{layout management}.
-Laying out a GUI requires specifying the position and size of each
-widget below
-the top-level window. The simplest type of layout management is
-static; the
-position and size of each widget are fixed to specific values. This is
-possible
+button, to the  top-level window. In contrast, the CRAN mirrors window contains multiple widgets, which introduces the problem of appropriately allocating the space in a window to each of its descendents in the container hierarchy. This problem is often called
+\emph{layout management}. Laying out a GUI requires specifying the position and size of each widget below the top-level window. The simplest type of layout management is static; the position and size of each widget are fixed to specific values. This is possible
 with \pkg{GTK+}, but it often yields undesirable results. A GUI is
-interactive 
-and changes in response to user input. The quality of a fixed layout
-tends to decrease
-with certain events, such as the user resizing
-the window, a widget changing its size requirement, or the application
-adding or removing widgets. For this reason, most layout management is
-dynamic.
+interactive and changes in response to user input. The quality of a fixed layout tends to decrease with certain events, such as the user resizing the window, a widget changing its size requirement, or the application adding or removing widgets. For this reason, most layout management is dynamic.
 
-In \pkg{GTK+}, containers are responsible for the layout
-of their children. Figure \ref{fig:widget-hierarchy} shows how the
-nesting of 
-layout containers results in the CRAN mirrors GUI shown in Figure 
-\ref{fig:cran-mirror}. The example employs several important types of
-\pkg{GTK+}
-layout containers. First, there is the top-level \emph{GtkWindow} that
-is derived from \emph{GtkBin}, which in turn derives from
-\emph{GtkContainer}.
-A \emph{GtkBin} holds only a single child, and \emph{GtkWindow} simply
-fills all
-of its allocated space with its child. The most commonly used
-container
-for holding multiple children is the general \emph{GtkBox} class,
-which stacks its children
-in a specified order and in a single direction, vertical or
-horizontal. The 
-children of a \emph{GtkBox} always fill the space allocated to the box
-in the direction orthogonal to that of the stacking. The \emph{GtkBox}
-class is abstract (or virtual), meaning that one cannot create
-instances of it. Instead, we instantiate one of its non-abstract
-subclassses.  For example, in the CRAN mirror GUI, a vertical box,
-\emph{GtkVBox}, stacks the label above the list, and a horizontal
-button box, \emph{GtkHButtonBox},
-arranges the two buttons. \emph{GtkVBox} and its horizontal analog
-\emph{GtkHBox}
-are generic layout containers, while the button boxes
-\emph{GtkVButtonBox} and 
-\emph{GtkHButtonBox} offer facilities specific to the layout of sets
-of buttons.
+In \pkg{GTK+}, containers are responsible for the layout of their
+children. The right panel in figure \ref{fig:widget-hierarchy} shows
+how the nesting of layout containers results in the CRAN mirrors GUI
+shown in Figure \ref{fig:cran-mirror}. The example employs several
+important types of \pkg{GTK+} layout containers. 
+
+First, there is the
+top-level \emph{GtkWindow} that is derived from \emph{GtkBin}, which
+in turn derives from \emph{GtkContainer}.  A \emph{GtkBin} holds only
+a single child, and \emph{GtkWindow} simply fills all of its allocated
+space with its child. 
+
+The most commonly used container for holding
+multiple children is the general \emph{GtkBox} class, which stacks its
+children in a specified order and in a single direction, vertical or
+horizontal. The children of a \emph{GtkBox} always fill the space
+allocated to the box in the direction orthogonal to that of the
+stacking, e.g. fill the available width when stacked vertically on top
+of each other. 
+
+The \emph{GtkBox} class is abstract (or virtual), meaning
+that one cannot create instances of it. Instead, we instantiate one of
+its non-abstract subclassses.  For example, in the CRAN mirror GUI, a
+vertical box, \emph{GtkVBox}, stacks the label above the list, and a
+horizontal button box, \emph{GtkHButtonBox}, arranges the two
+buttons. \emph{GtkVBox} and its horizontal analog \emph{GtkHBox} are
+general
+%DTL2: I think this should be general rather than generic.  At least,
+%generic in the technical sense and since R uses the word "generic"
+% in a specific manner, it is probably best to avoid this.
+layout containers, while the button boxes \emph{GtkVButtonBox}
+and \emph{GtkHButtonBox} offer facilities specific to the layout of
+sets of buttons.
 %DTL: perhaps mention that GtkBox is a virtual class of which we never
 %create instances and we use the derived classes GtkHBox and GtkVBox.
 
-
 Here we will explain and demonstrate the use of \emph{GtkHBox}, the
-generic
-horizontal box layout container. \emph{GtkVBox} can be used exactly
-the same way;
-only the direction of stacking is different. Figure \ref{fig:packing}
-illustrates
-a sampling of the possible layouts that are possible with a
-\emph{GtkHBox}.
+general horizontal box layout container. \emph{GtkVBox} can be used exactly the same way; only the direction of stacking is different. Figure \ref{fig:packing} illustrates a sampling of the possible layouts that are possible with a \emph{GtkHBox}.
 
 %DTL: It would be good to number the rows so that people can easily
 %connect the descriptions in the text to the particular row.
@@ -788,30 +768,23 @@ also shown.}
 \end{center}
 \end{figure}
 
-The code for some of these layouts is presented here.
-We begin by creating a \emph{GtkHBox} widget. We pass \emph{TRUE} for
-the
-first parameter, \emph{homogeneous}. This means every child will have
-the
-same amount of available space in the horizontal orientation. The
-second 
-parameter directs the box to leave 5 pixels of space between each
-child. 
+The code for some of these layouts is presented here. We begin by creating a \emph{GtkHBox} widget. We pass \emph{TRUE} for the
+first parameter, \emph{homogeneous}. This means that the horizontal allocation of the box will be evenly distributed between the children.  The second parameter directs the box to leave 5 pixels of space between each child. 
 \begin{verbatim}
 box <- gtkHBox(TRUE, 5)
 \end{verbatim}
-Making the space available to the children does not mean that the
-children will fill it. That is specified by the \emph{fill} parameter
-of the \emph{gtkBoxPackStart} and \emph{gtkBoxPackEnd} methods, which
-pack a widget into a box with left and right justification (top and
+The equal distribution of available space is strictly enforced; the minimum size requirement of a homogeneous box is set such that the box always satisfies this assertion, as well as the minimum size requirements of its children.
+
+The \emph{gtkBoxPackStart} and \emph{gtkBoxPackEnd} methods pack a widget into a box with left and right justification (top and
 bottom for a \emph{GtkVBox}), respectively. For this explanation, we
 restrict ourselves to \emph{gtkBoxPackStart}, since
 \emph{gtkBoxPackEnd} works the same except for the
 %DTL: direction or justification?
 justification. Below, we pack two buttons, \emph{button\_a} and
-\emph{button\_b}, against the left side of the box. The space
-distribution is homogeneous, but the extra space for each widget is
-not filled. This results in the first row in Figure \ref{fig:packing}.
+\emph{button\_b} using left justification. First, \emph{button\_a} is packed against the left side of the box, and then we pack \emph{button\_b} against the right side of \emph{button\_a}.
+The space distribution is homogeneous, but
+the extra space for each widget is not filled. This results in the
+first row in Figure \ref{fig:packing}.
 \begin{verbatim}
 button_a <- gtkButton("Button A")
 button_b <- gtkButton("Button B")
@@ -819,41 +792,33 @@ box$packStart(button_a, fill = FALSE)
 box$packStart(button_b, fill = FALSE)
 \end{verbatim}
 
-In many cases, it is desirable to give children unequal amounts of
-space.
-This is evident in the CRAN mirrors dialog, where the mirror list is
-given
-priority over the ``Please choose a mirror:'' label in space
-distribution.
-To create an inhomogeneously spaced \emph{GtkHBox}, we pass
-\emph{FALSE} as the first
-argument to the constructor.
+Making the space available to a child does not mean that the
+child will fill it. That depends on the minimum size requirement of the child, as well as the value of the \emph{fill} parameter passed to \emph{gtkBoxPackStart}. When a widget is packed with the \emph{fill} parameter set to \emph{TRUE}, the widget is sized to consume the available space. This results in rows $2$ and $3$ in Figure \ref{fig:packing}.
+
+%DTL2: This is the confusing part.
+
+In many cases, it is desirable to give children unequal amounts of available space, as in rows 4-9 in Figure \ref{fig:packing}. This is evident in the CRAN mirrors dialog, where the mirror list is given more space than the ``Please choose a mirror:'' label. To create an inhomogeneously spaced \emph{GtkHBox}, we pass
+\emph{FALSE} as the first argument to the constructor, as in the following code:
 \begin{verbatim}
 box <- gtkHBox(FALSE, 5)
 \end{verbatim}
-In an inhomongeneous layout, the widgets only take up their minimum
-required
-size, unless we pass \emph{TRUE} for the \emph{expand} parameter to
-\emph{gtkBoxPackStart}. When a widget is packed to expand, its
-available space
-expands against the space given to the other children. Any space that
-is
-not consumed by the minimum size requirements of the children is
-divided
-equally among the expanding children. In the example below, the
-\emph{button\_a}
-expands against \emph{button\_b} and pushes \emph{button\_a} against
-the right 
-side of the box.
+
+An inhomongeneous layout is freed of the restriction that all widgets must be given the same amount of available space; it only needs to ensure that each child has enough space to meet its minimum size requirement. After satisfying this constraint, a box is often left with extra space. The programmer may control the distribution of this extra space through the \emph{expand} parameter to \emph{gtkBoxPackStart}.  When a widget is packed with \emph{expand} set to \emph{TRUE}, we will call the widget an ``expanding'' widget. All expanding widgets in a box are given an equal portion of the entirety of the extra space. If no widgets in a box are expanding, as in row 5 of Figure \ref{fig:packing}, the extra space is left undistributed. It is common to mix expanding and non-expanding widgets in the same box. For example, in the CRAN mirrors dialog, the box first ensures that the mirror list and the label above it are given enough space to satisfy their minimum requirement. Then, since the mirror list is expanding, all of the extra space is made available to it, while the label is left only with its minimum requirement (i.e. enough space to show its text).
+%DTL2: against is a strange term here. I don't understand it properly.
+% So either it needs clarification or let's chose another word, e.g.
+% expands, "consuming the space given to the other children".
+%MFL2: reworded this
+% Is this really its "available space". There seems to be an
+% imprecision here that will confuse people.
+%MFL2: Available space is space the widget *could*, consome whether it
+% does depends on its space requirements and the fill parameter.
+Another example is given below, where \emph{button\_a} is expanding, while \emph{button_b} is not.
 \begin{verbatim}
 box$packStart(button_a, expand = TRUE, fill = FALSE)
 box$packStart(button_b, expand = FALSE, fill = FALSE)
 \end{verbatim}
-The result is the sixth row from the top in Figure \ref{fig:packing}.
-The
-figure contains several other permutations of the \emph{homogeneous},
-\emph{expand} 
-and \emph{fill} settings.
+The result is shown in row 6 of Figure \ref{fig:packing}. 
+The figure contains several other permutations of the \emph{homogeneous}, \emph{expand} and \emph{fill} settings.
 
 \pkg{GTK+} contains many types of layout containers besides boxes,
 including 
@@ -863,26 +828,31 @@ and \emph{GtkVPaned}), and a tabbed notebook (\emph{GtkNotebook}).
 More types of
 layout containers will be demonstrated later in the tutorial.
 
+
+%DTL2:  To complete the overview, it would seem that there should be 
+% a description of callbacks at this point giving the basics about
+% how they are connected, the number and types of arguments they will be called with.
+
+%MFL: Isn't this covered sufficiently in the signals section above?
+
 \section{Basic GUI Construction}
 
-% a relatively simple first gui: dialogs (just a message, multiple
-buttons)
+% a relatively simple first gui: dialogs (just a message, multiple buttons)
 % giving the user more choices: check button, radio buttons, combo box
-in dialogs
+% in dialogs
 % CRAN mirrors example (list dialog)
 % alpha-slider (microarray) example
 %   (approximiately) continuous choices: slider, (spin button)
-%   displaying information as graphics: cairoDevice, mention
-GtkDrawingArea
+%   displaying information as graphics: cairoDevice, mention GtkDrawingArea
 % spreadsheet app: 
 %   advanced choosers: files, mention colors, fonts
 %   displaying tabular information: tree view
 %   arbitrary text input: text entry (completion)
 %   advanced containers: 
 %     space saving / hiding: menubar, toolbar, scrolled window,
-notebook, (expander)
+% notebook, (expander)
 %     (letting the user decide: pane)
-%   displaying status: statusbar (progressbar)
+%   displaying status: status bar (progressbar)
 %   assisting the user: tooltips, (wizard)
 % moving data around: dnd, clipboard
 
@@ -913,57 +883,54 @@ results in functional GUIs.
 \subsection{A Dialog with the User}\label{sec:dialog-example}
 
 A user interface is the conduit for a conversation between the machine
-and the
-user. This conversation may be broken down into a series of exchanges
-called 
-\emph{dialogs}. An application often needs to make a specific request
-for user input, such as the desired CRAN mirror. This type of dialog
-is 
-initiated by the machine sending a question to the user. The machine
-then
-waits for the user to respond. Usually, the application is unable to
-continue
-until receiving the user response, so the rest of the GUI is blocked
-until
-the dialog is concluded. This is called a \emph{modal} dialog.
-A dialog is described as \emph{non-modal} when the user can continue
-to perform other tasks even when the dialog is displayed.
+and the user. This conversation may be broken down into a series of
+exchanges called \emph{dialogs}. An application often needs to make a
+specific request for user input, such as the desired CRAN mirror. This
+type of dialog is initiated by the machine posing a question to the
+user. The machine then waits for the user to respond. Usually, the
+application is unable to continue until receiving the user response,
+so the rest of the GUI is blocked until the dialog is concluded. This
+is called a \emph{modal} dialog.  A dialog is described as
+\emph{non-modal} when the user can continue to perform other tasks
+even when the dialog is displayed.
 
 \pkg{GTK+} explicitly supports modal and non-modal requests for user
 input with a dialog widget, a top-level window that emits the
 \emph{response} signal when the user has responded to the query. All
 dialogs in \pkg{GTK+} are derived from the \emph{GtkDialog} class. The
-CRAN mirrors GUI is an application of \emph{GtkDialog}. In the simpler
-example below, we will create a dialog that asks whether the user
-wants to upgrade the \pkg{RGtk2} package installed on the
-system. Although we could build such a dialog using \emph{GtkDialog}
-directly, \emph{GtkMessageDialog}, an extension of \emph{GtkDialog},
-saves typing for queries that can be expressed with a textual message
-and a set of buttons for the response. The dialog is constructed with
-a single function call:
+CRAN mirrors GUI is an instance of \emph{GtkDialog}. In the simpler
+example below,
+%DTL2:  can we label this with a formal paragraph title so that it is
+%more obvious to what this refers.
+%MFL: I'm a little confused about what you mean here...
+we will create a dialog that asks whether the user wants to upgrade
+the \pkg{RGtk2} package installed on the system. Although we could
+build such a dialog using \emph{GtkDialog} directly,
+\emph{GtkMessageDialog}, an extension of \emph{GtkDialog}, reduces the amount of necessary code
+%DTL2: for whom - the user or programmer. It is presumably the
+%programmer so easier to say that it is less code for the programmer
+% and the is more than just less typing, but also less code to
+% maintain, fewer bugs, etc.
+for queries that can be expressed with a textual message and a
+set of buttons for the response. The dialog is constructed with a
+single function call:
 \begin{verbatim}
 main_application_window <- NULL # for purposes of this example
 dialog <- gtkMessageDialog(main_application_window,
 "destroy-with-parent", 
   "question", "yes-no", "Do you want to upgrade RGtk2?")
 \end{verbatim}
-In the above invocation, the first parameter indicates the parent
-window for
-the dialog. It is assumed that the main window of the application is
-stored 
-as \emph{main\_application\_window}. The second parameter indicates
-that
+In the above invocation, the first parameter of the call to 
+\emph{gtkMessageDialog} indicates the parent window for the dialog. It
+is assumed that the main window of the application is stored as
+\emph{main\_application\_window}. The second parameter indicates that
 the dialog should be destroyed when its parent, the main window, is
-destroyed.
-The next parameter indicates that this is a ``question'' dialog, which
-causes
-the dialog to display a question mark icon to the left of the text.
-The 
-predefined set of buttons, in this case consisting of ``Yes'' and
-``No'', 
-is specified by the next parameter. The final parameter specifies the
-message text.
-The resulting dialog is shown in Figure \ref{fig:upgrade-dialog}.
+destroyed.  The next parameter indicates that this is a ``question''
+dialog, which causes the dialog to display a question mark icon to the
+left of the text.  The predefined set of buttons, in this case
+consisting of ``Yes'' and ``No'', is specified by the next
+parameter. The final parameter specifies the text of the message.  The
+resulting dialog is shown in Figure \ref{fig:upgrade-dialog}.
 
 \begin{figure}
 \begin{center}
@@ -974,74 +941,82 @@ requesting a
 \end{center}
 \end{figure}
 
-It is desirable for this dialog to be \emph{modal}, meaning that the
-focus
+It is desirable for this dialog to be \emph{modal}, meaning that user interaction
+%DTL2:  "focus" is a somewhat technical term here, so either use
+%another or explain the concept.
 is restricted to the dialog window until the user responds to the
-question. By
-invoking the \emph{gtkDialogRun} function, the dialog becomes modal
-and execution
-is blocked until the user gives a response, which is returned from the
-function.
-If the user answered ``Yes,'' the latest version of \pkg{RGtk2} will
-be 
-installed. The call to \emph{gtkWidgetDestroy} closes the dialog
-window and 
-renders it unusable.
+question. By invoking the \emph{gtkDialogRun} function, the dialog
+becomes modal and execution is blocked until the user gives a
+response, which is returned from the function.  If the user answered
+``Yes'', our callback will install the latest version of the
+\pkg{RGtk2} package. The call to \emph{gtkWidgetDestroy} closes the
+dialog window and renders it unusable, i.e. if the object is used in
+subsequent computations, an error will be raised, because the dialog
+widget is no longer valid.
 \begin{verbatim}
 if (dialog$run() == GtkResponseType["yes"])
  install.packages("RGtk2")
 dialog$destroy()
 \end{verbatim}
 The reference to \emph{GtkResponseType} above is one of the rare cases
-in which
-it is necessary to access an enumeration vector to retrieve the
-numeric value
-for a nickname. The reason for this is that
-\emph{gtkDialogGetResponse} returns
-a plain numeric value to avoid an unnecessary restriction on the
-number of 
-possible response types from a dialog. In this case, it is known from
-the documentation of \emph{GtkMessageDialog} that the value
-corresponding to
-the user clicking the ``Yes'' button will equal the ``yes'' value in
+in which it is necessary to access an enumeration vector to retrieve
+the numeric value for a nickname. The reason for this is that
+\emph{gtkDialogGetResponse} returns a plain numeric value to avoid an
+unnecessary restriction on the number of possible response types from
+a dialog. This allows programmers to introduce response types that do not exist within the \emph{GtkResponseType} enumeration.
+%DTL2:  slightly confusing. Can you elaborate to say what this means
+%in practice (i.e. that others can introduce additional return values)
+In this case, it is known from the documentation of
+%DTL2: how and can we automate this so that the relevant coversion is performed.
+%MFL: it's difficult to automate, because we would have to assume that
+% the return value is a GtkResponseType even though it is not
+% contracted to be such by gtkDialogGetResponse. We could return a
+% special type that when compared for equality with a string value
+% would try to match a value in GtkResponseType... but I like to
+% stay consistent with the GTK+ API when possible - it's a trade-off..
+\emph{GtkMessageDialog} that the value corresponding to the user
+clicking the ``Yes'' button will equal the ``yes'' value in
 \emph{GtkResponseType}.
 
 \subsection{Giving the User More Options}
 % toggle button, radio buttons, combo box
 
+%DTL2:  Nice example to work through the different widgets.
+
 Applications often need to ask questions for which a simple ``Yes'' or
 ``No'' answer does not suffice. As the number of possible responses to
 a query increases, enumerating every response with a button would
-place a burden on the user; it is easy to make a mistake when choosing
-one response from many. An interface should be forgiving and allow the
-user to confirm the choice before proceeding.  This is how the CRAN
-mirrors dialog behaves: if the user accidentally chooses a mirror on
-the other side of the world, the user can correct the choice before
-clicking the ``Okay'' button and starting the installation
-process. This relates to the common need for a program to issue a set
-of queries to the user. Separating each query into its own dialog of
-buttons may unnecessarily force the user to answer the questions in a
-fixed, linear order and may not be very forgiving. It would also leave
-the user without a sense of context. If there were many actions and
-choices available to the user, a dialog-based interface would be
-tedious to use, requiring the user to click through dialog after
-dialog. Instead, a less assertive, non-linear interface is desired. In
-the examples below, we demonstrate widgets that present options in a
-passive way, meaning that there is usually no significant, immediate
-consequence to user interaction with the widget and the user has to
-conclude the interaction by clicking either the ``Okay'' or ``Cancel''
-button.
+place a burden on the user with a lengthy sequence of binary
+questions.  It is easy to make a mistake when choosing one response
+from many and hard to go back to correct such errors. An interface
+should be forgiving and allow the user to confirm the choice before
+proceeding.  This is how the CRAN mirrors dialog behaves: if the user
+accidentally chooses a mirror on the other side of the world, the user
+can correct the choice before clicking the ``Okay'' button and
+starting the installation process. This relates to the common need for
+a program to issue a set of queries to the user. Separating each query
+into its own dialog of buttons may unnecessarily force the user to
+answer the questions in a fixed, linear order and may not be very
+forgiving. It would also leave the user without a sense of context. If
+there were many actions and choices available to the user, a
+dialog-based interface would be tedious to use, requiring the user to
+click through dialog after dialog. Instead, a less assertive,
+non-linear interface is desired. In the examples below, we demonstrate
+widgets that present options in a passive way, meaning that there is
+usually no significant, immediate consequence to user interaction with
+the widget and the user has to conclude the interaction by clicking
+either the ``Okay'' or ``Cancel'' button.
 
 The simplest user-level choice is binary and is usually represented in
-a passive
-way by a checkbox. In \pkg{GTK+}, the checkbox class is the
+a passive way via a checkbox with a checked/unchecked or  on/off 
+state. In \pkg{GTK+}, the checkbox class is the
 \emph{GtkCheckButton}. We may wish to extend our dialog confirming the
 upgrade of \pkg{RGtk2} to include the option of also upgrading the
-\pkg{GTK+} library. In the snippet below, we achieve this by adding a
+underlying \pkg{GTK+} C library. In the snippet below, we achieve this by adding a
 check button to the dialog.  The area above the buttons in the
 \emph{GtkDialog} is contained within a \emph{GtkVBox}, which is stored
-as a field named \emph{vbox}. Figure \ref{fig:checkbox-dialog} shows
-our custom checkbox dialog.
+as a property named \emph{vbox} in the dialog object. Figure \ref{fig:checkbox-dialog} shows
+our custom checkbox dialog and the following code is how to create it:
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window,
 "destroy-with-parent", 
@@ -1049,6 +1024,9 @@ dialog <- gtkMessageDialog(main_application_window,
 check <- gtkCheckButton("Upgrade GTK+ system library")
 dialog[["vbox"]]$add(check)
 \end{verbatim}
+%DTL2:  Is this a property (or actually a field as originally in the
+%text) and do we need [[ or [ as just [ is used earlier in the document.
+
 
 \begin{figure}
 \begin{center}
@@ -1061,21 +1039,17 @@ original dialog in Figure \ref{fig:upgrade-dialog}.}
 \end{figure}
 
 Let us now suppose that we would like to give the user the additional
-option of
-installing a development (experimental) version of \pkg{GTK+}.
-When an option has several choices, a check button is no longer
-adequate. A
-simple extension is to create a set of toggle buttons where only one
-button
-may be active at once. The buttons in this set are known as
-\emph{radio buttons}.
-Below, we create a new dialog that asks the user to specify the
-version of \pkg{GTK+}
-to install, if any. When each radio button is created, it needs to be
-given the existing buttons
-in the group. For creating the first button, \emph{NULL} should be
-passed as the group.
-Each button is added to a vertical box. 
+option of installing a development (experimental) version of
+\pkg{GTK+}.  When an option has several choices, a check button is no
+longer adequate. A simple approach is to create a set of toggle
+buttons where only one button may be active at once. The buttons in
+this set are known as \emph{radio buttons}, corresponding to the
+pre-programed channel selection buttons on old-style radios.  Below,
+we create a new dialog that asks the user to specify the version of
+\pkg{GTK+} C libraries to install, if any. When each radio button is created, it
+needs to be given the existing collection of buttons already in the
+group. For creating the first button, \emph{NULL} should be passed as
+the group.  Each button is added to a vertical box.
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window,
 "destroy-with-parent", 
@@ -1085,21 +1059,19 @@ radio_buttons <- NULL
 vbox <- gtkVBox(FALSE, 0)
 for (choice in choices) {
   button <- gtkRadioButton(radio_buttons, choice)
-  radio_buttons <- c(radio_buttons, button)
   vbox$add(button)
+  radio_buttons <- c(radio_buttons, button)
 }
 \end{verbatim}
 A group of radio buttons are often graphically enclosed by a drawn
 border with a text label indicating the purpose of the buttons. This
-widget is a container 
-called \emph{GtkFrame} and is generally used for graphically grouping
-widgets that are
-logically related. The code below adds the box containing the radio
-buttons
-to a frame.
+widget is a container called \emph{GtkFrame} and is generally used for
+graphically grouping widgets that are logically related. The code
+below adds the box containing the radio buttons to a newly created frame.
 %DTL: need to explain what a frame is and connect it to the frame
 widget.
 %ML: isn't this done above or do you mean more information?
+%DTL2: Yep. Sorry about that.
 The final result is shown in Figure \ref{fig:radio-dialog}.
 \begin{verbatim}
 frame <- gtkFrame("Install GTK+ system library")
@@ -1118,17 +1090,18 @@ radio buttons on top of the base dialog shown in Figure
 \end{figure}
 
 Now we would like to go a step further and allow the user to choose
-the exact series of \pkg{GTK+} to install, as \pkg{RGtk2} is source
-compatible with any version after $2.8.0$. As the number of options
-increases, however, radio buttons tend to consume too much space on
-the screen. In
-this case, a label displaying the current selection with a drop down
-menu allowing for selecting from a list of alternatives may be
-appropriate.  This is known as a \emph{GtkComboBox} in \pkg{GTK+}. The
-following snippet illustrates its use. Each call to
-\emph{gtkComboBoxAppendText} adds a text item to the drop-down
-menu. The call to \emph{gtkComboBoxSetActive} makes the first item the
-selected one. Figure \ref{fig:combo-dialog} shows the result.
+the exact version of \pkg{GTK+} to install, as \pkg{RGtk2} is source
+compatible with any version from $2.8.0$ onwards. As the number of
+options increases, however, radio buttons tend to consume too much
+space on the screen. In this case, a label displaying the current
+selection with a drop down menu allowing for selecting from a list of
+alternatives may be appropriate.  This is known as a
+\emph{GtkComboBox} in \pkg{GTK+}. The following snippet illustrates
+its use. Each call to \emph{gtkComboBoxAppendText} adds a text item to
+the drop-down menu. The call to \emph{gtkComboBoxSetActive} makes the
+first item ($0$ due to zero-based counting in C) the currently selected
+one. Figure \ref{fig:combo-dialog} shows the result and below is the
+corresponding code:
 \begin{verbatim}
 dialog <- gtkMessageDialog(main_application_window,
 "destroy-with-parent", 
@@ -1159,24 +1132,17 @@ the dialog.}
 \subsection{The CRAN Mirrors Dialog}
 
 Having demonstrated the creation some basic dialogs, we are now
-prepared to 
-construct the CRAN mirror selection dialog, shown
-in Figure \ref{fig:cran-mirror}.
-Given the large number of CRAN mirrors, one strategy would be to 
-borrow the combobox dialog created above; however, there may be a
-better 
-alternative. Since their is no reasonable default CRAN mirror, the
-user always
-needs to pick a mirror. Packing the mirrors into a combo box would
-only force 
-the user to make an extra click. Instead, we want to display a
-reasonable
+prepared to construct the CRAN mirror selection dialog, shown in
+Figure \ref{fig:cran-mirror}.  Given the large number of CRAN mirrors,
+one strategy would be to borrow the combobox dialog created above;
+however, there may be a better alternative. Since there is no
+reasonable default CRAN mirror, the user always needs to pick a
+mirror. Packing the mirrors into a combo box would only force the user
+to make an extra click.  Instead, we want to display a reasonable
 number of CRAN mirrors immediately after the dialog is opened. It may
 not be possible to display every mirror at once on the screen, but, as
-seen
-in the screenshot, we can embed the list in a scrolled box, so that
-only
-one part of the list is visible at a given time.
+seen in the screenshot, we can embed the list in a scrolled box, so
+that only one part of the list is visible at a given time.
 
 We begin with the construction of the dialog window. For this dialog,
 we 
@@ -1185,63 +1151,81 @@ assume that there is no main application window (see Section
 parent. 
 %DTL: The concept of an application window needs more explanation.
 % It is defined in section 4 (Sample Application).
-Instead, we pass \emph{NULL} for the parent and $0$ for the second
-argument 
-rather than \emph{``destroy-with-parent''}.
+Instead, we pass \emph{NULL} for the parent and $0$ 
+%DTL2:  What does 0 correspond to, i.e. what is the name for the
+%enumerated constant.  It is not good practice to see literals in the
+%code, especially for pedagogical purposes.
+%MFL: This is a strange case - there is no name for 0 in the  %GtkDialogFlags enumeration. It's the same for all "flags" in GTK+.
+for the second argument rather than \emph{``destroy-with-parent''}. We use the literal $0$ here instead of a value name, because \emph{GtkDialogFlags}, like all flag enumerations in \pkg{GTK+}, lacks a value for $0$.
 \begin{verbatim}
 dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel", 
                             "Choose a mirror:", show = FALSE)
 \end{verbatim}
 Next, we create a list for holding the mirror names using the
 \emph{GtkTreeView}
-widget (so named because the rows in the list may be organized hierarchically, but we will not discuss this feature).  \pkg{RGtk2}
-provides a 
-facility for creating a flat tabular data structure based on an
-\proglang{R}
-\emph{data.frame}, called \emph{RGtkDataFrame}. \emph{RGtkDataFrame}
-is
-an extension of \emph{GtkTreeModel}, which is the data structure
-viewed by
+widget  (so named because the rows in the list may be organized hierarchically, but we will not discuss this feature). 
+%DTL2: How does this correspond to R?  This might be going into too
+%much generality here at the expense of confusion as the data
+%structure is very simple - a vector and we are talking about
+%hierarchical structure for which there is no counterpart in R and
+%arbitrary number of ways to do this in C, so vague.  So I
+%would leave this out, perhaps put the ability to deal with
+%hierarchical data in a footnote.
+% MFL: the intent was only to explain why we are using a widget named
+% GtkTreeView when we are displaying a list.
+The \pkg{RGtk2} package provides a facility for creating a tabular data structure based on an \proglang{R} \emph{data.frame},
+called \emph{RGtkDataFrame}. \emph{RGtkDataFrame} is an extension of
+\emph{GtkTreeModel}, which is the data structure viewed by
 \emph{GtkTreeView}. Below, we create an \emph{RGtkDataFrame} for our
-list
-of CRAN mirrors and construct a \emph{GtkTreeView} based on it.
+list of CRAN mirrors and construct a \emph{GtkTreeView} based on it.
 \begin{verbatim}
 mirrors <- read.csv(file.path(R.home("doc"), "CRAN_mirrors.csv"),
-as.is = TRUE)
+                     as.is = TRUE)
 model <- rGtkDataFrame(mirrors)
 view <- gtkTreeView(model)
+view$getSelection()$setMode("browse")
 \end{verbatim}
+The final line configures the \emph{GtkTreeView} so that exactly one item is always selected in the view. This prevents the user from providing invalid input (i.e. a multiple or empty selection). 
 %DTL: This next bit is very detailed and specific relative to all the
 %text in the document up until this point.
 %ML: I included this explanation, because the GtkTreeView is very 
 %complex. To really understand what is going on, even when just
 %creating a simple list, one needs a complete explanation.
+
+%DTL2: I still think this is less tangible and abstract than the
+%reader will be able to master. So how about show the code first and
+%then present this explanation later.
+%
+%  Also if something is "very complex", then it probably needs to be simplified
+% and that is what RGtkDataFrame does. There is not much need to go
+% into how it simplifies GtkTreeView, but just that it does simplify
+% something more general and flexible which we don't need.  So I think
+% we could  remove much of this and improve the readability and state
+% that the RGtkDataFrame that you added to RGtk2 makes things simpler to use
+% by building a higher-level interface to low-level a Gtk+ widget.
+% So the explanation of the GktTreeView is actually not necessary
+% because of your work.
+%
+
+%MFL: actually, the RGtkDataFrame only simplifies the data model -
+% GtkTreeView is still quite complicated. Simplifying the creation
+% of GtkTreeView would require only a single convenience function,
+% implemented entirely in R. The gWidgets package provides this.
+% RGtkDataFrame is more generally useful and is native code 
+% (mostly for performance), so it remains part of RGtk2.
+% I've tried to make the explanation less detailed though.
+
 Initially, the tree view does not contain any columns. We need to
-create a \emph{GtkTreeViewColumn} to list the mirror names. A
-\emph{GtkTreeViewColumn}
-is a \emph{GtkCellLayout}, which is a container of
-\emph{GtkCellRenderer}s. 
-A \emph{GtkCellRenderer} is not a widget; it is responsible for
-rendering
-a portion of every cell in a column. Its rendering is defined by a set
-of
-properties, each of which may be linked to a column in the data model
-being displayed. For each
-cell in a column, the cell renderer determines each of its data-linked
-visual
-properties from the value in the data model at the current
-row and the column associated with the property. For simply displaying
-text in a table, we use a \emph{GtkCellRendererText} and link its
-\emph{text}
-property to the column in the data containing the text we want to
-display.
-In this case, we want to display the first column of the
-\emph{data.frame},
-which is column $0$ to the \emph{GtkTreeView}.
+create a \emph{GtkTreeViewColumn} to list the mirror names, and we do so with the following code:
 \begin{verbatim}
 column <- gtkTreeViewColumn("Mirror", gtkCellRendererText(), text = 0)
 view$appendColumn(column)
 \end{verbatim}
+The first parameter to \emph{gtkTreeViewColumn} specifies the title of the new column. Since we are displaying text (the names of the mirrors) in the column, we pass an instance of \emph{GtkCellRendererText} which draws the values in our \emph{data.frame} as text in the \emph{GtkTreeView}. The parameter named \emph{text} specifies that the first column of the \emph{data.frame} contains the values to draw as text. Note that the index is zero-based (for historical reasons).
+%DTL2:  This should be 1-based in R.
+%MFL: we can consider this on the TODO list 
+% - it would certainly break compatibility with existing work
+
 Given the large number of CRAN mirrors, the list would take up
 excessive space
 if not embedded into a scrolled window. \emph{GtkScrolledWindow} is a
@@ -1258,23 +1242,27 @@ scrolled_window <- gtkScrolledWindow()
 scrolled_window$setSizeRequest(-1, 150)
 scrolled_window$add(view)
 \end{verbatim}
+%DTL2:  Mention the units (pixels) for the 150
+The size of \emph{scrolled\_window} is set using \emph{gtkWidgetSetSizeRequest}, which takes values in pixel units.
+
 It only remains to add the scrolled window to the dialog, run the
-dialog, and
-set the selected CRAN mirror if the user confirms the selection. The
-selection
-of a tree view is stored in a separate \emph{GtkTreeSelection} object
-retrieved
-by \emph{gtkTreeViewGetSelection}. The \emph{getSelectedRows} method
-returns a 
-list containing the tree paths for the selected rows and the tree
-model. The 
-list of tree paths is stored under the name \emph{retval} as it is the
-actual
-return value from the \proglang{C} function. Finally, we retrieve the
-row index
-from the \emph{GtkTreePath} for the first (and only) selected row and
-set its 
+dialog, and set the selected CRAN mirror if the user confirms the
+selection. The selection of a tree view is stored in a separate
+\emph{GtkTreeSelection} object retrieved by
+\emph{gtkTreeViewGetSelection}. The \emph{getSelectedRows} method
+returns a list containing the tree paths for the selected rows and the
+tree model. The list of tree paths is stored under the name
+\emph{retval} as it is the actual return value from the \proglang{C}
+function. Finally, we retrieve the row index from the
+\emph{GtkTreePath} for the first (and only) selected row and set its
 URL as the repository.
+%DTL2: Make part of sentence or separate figure.
+%
+% Also explain the retval.
+% MFL: this is already explained above
+% What about multiple selections ? Show how to eliminate the
+% possiblity of the user making multiple selections.
+% MFL: added code for this above
 \begin{verbatim}
 dialog[["vbox"]]$add(scrolled_window)
 if (dialog$run() == GtkResponseType["ok"]) {
@@ -1285,6 +1273,7 @@ if (dialog$run() == GtkResponseType["ok"]) {
 }
 dialog$destroy()
 \end{verbatim}
+
 
 \subsection{Embedded R Graphics}\label{sec:embedded-graphics}
 
@@ -1302,10 +1291,12 @@ search (See Figures \ref{fig:rgtk2-demo-initial} and
 
 
 %DTL:  The different color doesn't show up too well here, which is of
-course the point. But we should either say this or use a different
-value (e.g. .5) or use color.
+%course the point. But we should either say this or use a different
+%value (e.g. .5) or use color.
 
 %ML: I am not sure what you mean by this.
+
+
 
 \begin{figure}
 \begin{center}
@@ -1313,7 +1304,10 @@ value (e.g. .5) or use color.
 \caption{\label{fig:rgtk2-demo-initial}Scatterplot of two microarray
 replicates,
 with a slider widget underneath that controls the alpha level of the
-points. This screenshot shows the initial alpha of $0.7$.}
+points. This screenshot shows the initial alpha of $0.7$.
+This value does not lead to a clear display of the density at each
+location.
+}
 \end{center}
 \end{figure}
 
@@ -1321,14 +1315,18 @@ points. This screenshot shows the initial alpha of $0.7$.}
 \begin{center}
 \includegraphics[width=3in]{demo-alpha-random-01-3}
 \caption{\label{fig:rgtk2-demo-final}The same scatterplot from 
-\ref{fig:rgtk2-demo-initial}, except the alpha has been set to to
+\ref{fig:rgtk2-demo-initial}, except the alpha parameter has been set to to
 $0.1$.}
 \end{center}
 \end{figure}
 
 As a preliminary step, we use a 2D mixture distribution of correlated
-variables
-to emulate expression values for two microarray chips. 
+variables to simulate expression values for two microarray chips.
+%DTL2:  Why are we not using real data?  And if we are using simulated
+%data, why do we have to explain how in the code.  I would just say 
+% here are the data
+% MFL: so that readers may easily try this out for themselves
+%DTL2:  make part of previous sentence or use a figure.
 \begin{verbatim}
 n <- 5000
 backbone <- rnorm(n)
@@ -1338,24 +1336,19 @@ ma_data <- apply(ma_data, 2, function(col) col - min(col))
 \end{verbatim}
 
 The first step towards making our GUI is to create the window that
-will contain everything. 
+will contain the graphics device and slider widgets.
 \begin{verbatim}
 win <- gtkWindow(show = FALSE)
 \end{verbatim}
 
 One may embed \proglang{R} graphics within an \pkg{RGtk2} GUI using
-the 
-\pkg{cairoDevice} \citep{cairoDevice} or \pkg{gtkDevice}
-\citep{gtkDevice}
-packages. The \pkg{cairoDevice} package draws \proglang{R} graphics
-using 
-\pkg{Cairo} \citep{cairo}, a library for vector-based, antialiased
-graphics.
-When \pkg{cairoDevice} draws to the screen it is actually drawing to a 
-\pkg{GTK+} widget called \emph{GtkDrawingArea}. A
-\emph{GtkDrawingArea}
-is an empty widget meant for drawing arbitrary graphics in an
-interface. Here we 
+the \pkg{cairoDevice} \citep{cairoDevice} or \pkg{gtkDevice}
+\citep{gtkDevice} packages. The \pkg{cairoDevice} package draws
+\proglang{R} graphics using \pkg{Cairo} \citep{cairo}, a library for
+vector-based, antialiased graphics.  When \pkg{cairoDevice} draws to
+the screen it is actually drawing to a \pkg{GTK+} widget of type
+\emph{GtkDrawingArea}. A \emph{GtkDrawingArea} is an empty widget
+meant for drawing arbitrary graphics in an interface. Here we
 construct a drawing area in which the \proglang{R} graphics will be
 drawn:
 \begin{verbatim}
@@ -1366,46 +1359,48 @@ Now that we have a widget for displaying \proglang{R} graphics, we
 need the slider that controls the alpha level. A slider is a widget,
 much like a scroll bar, for choosing a number at a certain precision
 from a certain range. Here, a horizontal slider, called
-\emph{GtkHScale}, is created with to range from 0.1 to 1.0, with a
+\emph{GtkHScale}, is created with a range from 0.1 to 1.0, with a
 step size of 0.1.
 \begin{verbatim}
 slider <- gtkHScale(min=0.1, max=1.00, step=0.1)
 \end{verbatim}
 
 When the user moves the slider, the plot should be updated so that its
-alpha
-level reflects the slider value. This is achieved by connecting
+alpha level reflects the slider value. This is achieved by connecting
 an \proglang{R} callback function to the ``value-changed'' signal of
-the slider. 
-This callback function, \emph{scale\_cb}, replots the microarray data,
-\emph{ma\_data}, using
-an alpha level equal to the current value of the slider. 
+the slider.  This callback function, \emph{scale\_cb}, replots the
+microarray data, \emph{ma\_data}, using an alpha level equal to the
+current value of the slider.
+%DTL2:  Goot to mention what type is the variable range here? a
+%GtkRange as opposed to the use of the word range in the text meaning 
+% a mathematical interval.
 \begin{verbatim}
-scale_cb <- function(range) 
+scale_cb <- function(range) { # 'range' is of type GtkRange
+              par(pty = "s")
               plot(ma_data[,1], ma_data[,2], 
                    col = rgb(0, 0, 0, alpha = range$getValue()),
                    xlab = "Replicate 1", ylab = "Replicate 2", 
                    main = "Mock expression data", pch = 19)
+            }
 gSignalConnect(slider, "value-changed", scale_cb)
 \end{verbatim}
 %DTL: It would be good to address the issues of global variables and
 %the use of closures.
 %ML: It seems you have well-formed thoughts on that issue; could you
-please add something?
+%please add something?
+%XXXX - for me.
+%DTL2: I haven't had a chance to yet. Will do shortly.
 
 The next steps are to add the drawing area and the slider to the
 window and then to show the window on the screen. Although the window
-is a
-container, it inherits from \emph{GtkBin}, meaning that it can hold
-only
-a single child widget. Thus, we will pack our widgets into a vertical
-stacking 
-box container, \emph{GtkVBox}, and add our box to the window.
-Here, we would like the graphics to take up all of the space not
-consumed by the
-slider, so the graphics device is packed to \emph{expand} and
-\emph{fill}, while
-the slider is not.
+is a container, it inherits from \emph{GtkBin}, meaning that it can
+hold only a single child widget. Thus, we will pack our widgets into a
+vertical stacking box container, \emph{GtkVBox}, and add our box to
+the window.  Here, we would like the graphics to take up all of the
+space not consumed by the slider, so the graphics device is packed to
+\emph{expand} and \emph{fill}, while the slider is not.
+(See section \ref{sec:layout}.)
+%DTL2: connect to previous sentence of make separate figure.
 \begin{verbatim}
 vbox <- gtkVBox()
 vbox$packStart(graphics, expand = TRUE, fill = TRUE, padding = 0)
@@ -1421,16 +1416,17 @@ win$showAll()
 \end{verbatim}
 
 Now that the window is visible on screen, we can instruct \proglang{R}
-to draw
-its graphics to the drawing area. Using the \emph{asCairoDevice}
-function, it is possible
-to tell \pkg{cairoDevice} to draw to our \emph{GtkDrawingArea} widget
-created above.
+to draw its graphics to the drawing area using the
+\emph{asCairoDevice} function in the \pkg{cairoDevice} package:
 \begin{verbatim}
 require(cairoDevice)
 asCairoDevice(graphics)
-par(pty = "s")
 \end{verbatim}
+%DTL2: The par(pty = "s") is specific to our application, and
+%shouldn't it be done in the callback when doing the plotting just in
+%case anybody (e.g. another callback) manages to put another plot
+%there with different settings.
+%moved
 The call to \emph{asCairoDevice} makes an R graphics device from this
 widget and makes this the currently active graphics device on which R
 graphics will be displayed.
@@ -1451,44 +1447,62 @@ to $0.1$.
 The interfaces presented thus far are each designed for a singular,
 focused task, such as choosing a CRAN mirror or viewing a scatterplot
 at different alpha levels.  However, often an interface supports a
-larger scope of different operations and the user is in control of
+larger collection of separate operations and the user is in control of
 initiating different tasks from the general interface. These
 interfaces for broader, more complex
 applications are typically based on what is called an
-%DTL: Here we define application window, yet we referred to it
-earlier.
-\emph{application window}, which often contains a menubar, toolbar,
-application-specific area, and statusbar in order from top to
-bottom. The menubar and toolbar are widgets designed to facilitate the
-user selecting different \emph{actions}, each of which represents an
-option or operation in the application.  The statusbar at the bottom
-commonly reports the status of the application or information for the
-user as a text message and may be adjacent to a progressbar that
-monitors the progress of long running operations.  This layout and
-design is a common convention which helps users navigate a new GUI.
+%DTL: Here we define application window, yet we referred to it earlier.
+\emph{application window}, which often contains a menu bar, tool bar,
+application-specific area, and status bar in order from top to
+bottom. The menu bar and tool bar are widgets designed to facilitate
+the user selecting different \emph{actions}, each of which represents
+an option or operation in the application.  The status bar at the
+bottom commonly reports information about the activities or state of
+the application or information for the user as a text message and may
+be adjacent to a progress bar that displays the continuing progress of
+long running operations.  This layout and design is a common
+convention which helps users navigate a new GUI.
 
 
-This example demonstrates how one might construct a reasonably complex
+The following example demonstrates how one might construct a reasonably complex
 application using \pkg{RGtk2}. We aim to build a viewer for one or
 more R \emph{data.frame}s that is capable of sorting and filtering the
 rows in each data frame. We also give it facilities to load and save a
 \emph{data.frame} to and from a CSV file. 
 
-The resulting GUI is shown in Figure \ref{fig:spreadsheet}. The data
-is displayed in a table, using a \emph{GtkTreeView} widget. As we would like to support multiple spreadsheets at once, we embed each table in a tabbed notebook, \emph{GtkNotebook}. Below each spreadsheet is a text entry, \emph{GtkEntry}, in which the user may enter an expression for filtering the table view. Below this is a statusbar,
-\emph{GtkStatusbar}, that communicates the status of the application
-to the user, such as whether the loading of a dataset is complete. At
-the top are a menubar (\emph{GtkMenubar}) and toolbar
-(\emph{GtkToolbar}) that allow the user to invoke various actions,
-such as loading a new dataset or quitting the application.
+The resulting GUI is shown in Figure \ref{fig:spreadsheet}. Each data
+frame is displayed in a table, using a \emph{GtkTreeView} widget. As
+we would like to support multiple spreadsheets at once, we embed each
+table in a tabbed notebook, \emph{GtkNotebook}. Below each spreadsheet
+is a text entry (a \emph{GtkEntry} widget), in which the user may
+enter an expression for filtering the table view. Below this is a
+status bar (a \emph{GtkStatusbar} widget) that communicates the status
+of the application to the user, such as whether the loading of a
+dataset is complete. At the top are a menu bar (a \emph{GtkMenubar}
+widget) and tool bar (a \emph{GtkToolbar} widget) that allow the user
+to invoke various actions, such as loading a new dataset or quitting
+the application.
 
 %DTL: the reader has to pull together the different parts in the next
 %few pages.  It would be very valuable to provide a brief high-level
-overview of
+%overview of
 %the steps involved and how they piece together and then go into the
 %details.
 
 % ML: I hope the paragraph above rectifies this.
+
+%DTL2:  Yep, that helps. It would be useful I think also to
+%identify/label the paragraphs that correspond to this different
+%elements so that readers can quickly jump between them.
+% Or as I have in my notes, 
+%  Detail the steps in an intial short list at the beginning and then
+%  label the intial paragraph/section for the topic with the corresponding name.
+%
+% MFL: added a lot more structure to this section
+
+% (BTW, statusbar, menubar, etc. are not in the dictionary, so I
+% changed (some of) them to status bar, menu bar, ....
+% MFL: thanks, took care of the rest of them
 
 % As it stands, this looks quite involved and will be intimidating.
 % As for the XML, I think mentioning that is a big mistake.
@@ -1500,6 +1514,9 @@ overview of
 % Granted, there is a jump here, but I'm trying to satisfy a broad
 % spectrum of readers.
 
+
+
+
 \begin{figure}
 \begin{center}
 %DTL:  The number of decimal places in this figure is way too
@@ -1510,35 +1527,64 @@ overview of
 %ML: This is a difficult problem to solve. Either we convert the data
 % to a string ourselves (which would break eg sorting) or add an R
 % handler to do the conversion on the fly (more complicated and slow).
+
+%DTL2: Indeed, but it is something that people would expect to be able
+%to control and something that immediately catches the eye as being
+%not quite right. I assume a Cell Renderer would do the job as it is 
+% a view of the model in the MVC framework. And if this does slow
+% things down too much, that is a real limitation of Gtk+/RGtk and
+% something we need to admit to, i.e. that this example is not suitable for
+% large datasets and one should use, e.g., Gnumeric or a dedicated
+% spreadsheet. But I think it is good to try it and if it is slow, we
+% could figure out where and how to make it faster.
+% But to ignore the problem suggests that the results one can achieve
+% are less than professional quality. That is the case in so many R
+% GUI papers and applications, so it would be nice to set a better
+% tone and standard.
+%
+% MFL: I went ahead and added the callback to override the formatting.
+% It is definitely slower, so I added a note about that.
+
+%DTL2:  It would also be good to show multiple data sets in the screen
+%shot. The fact that we talk about the ability to handle more than one
+%and only show one is odd.  And it would also help to illustrate the
+%notebook and its tabs.
+% MFL: done
+
 \includegraphics[width=6in]{spreadsheet.png}
 \caption{\label{fig:spreadsheet}Screenshot of a spreadsheet
-application 
-constructed with RGtk2. The current sheet is from the \emph{mtcars}
-dataset. The
-table is filtered by the expression \texttt{mpg > 20} and sorted by
-\emph{mpg}
-in decreasing order.}
+  application constructed with RGtk2. The current sheet is from the
+  \emph{mtcars} dataset. The table is filtered by the expression
+  \texttt{mpg > 20} and sorted by in decreasing order of the values of the \emph{mpg} variable.}
 \end{center}
 \end{figure}
 
+\subsection{Main window}
+
 We begin by creating the main window for the application and setting
-its default size.
+its default size, specified in number of screen pixels.
+%DTL2: Perhaps dynamically set the window title to the name of the
+%dataset currently being viewed, i.e. when we switch tabs.
 \begin{verbatim}
 main_window <- gtkWindow(show = FALSE)
 main_window["title"] <- "RGtk2 Spreadsheet"
 main_window$setDefaultSize(600,600)
 \end{verbatim}
 
-Next, we implement the operations for the menu actions to load and
-save a data frame and to quit the ``application''. Each of these
-functions is a callback which takes the widget associated with the
-action as its first argument and the top-level window as its
-second. The load and save operations leverage the
-\emph{GtkFileChooserDialog} widget type, a dialog that contains a
+\subsection{Menu bar and tool bar}
+
+\subsubsection{Callbacks}
+
+Next, we implement the operations for the menu items and corresponding
+callbacks to load and save a data frame and to quit the
+``application''. Each of these functions is a callback which takes the
+widget associated with the action as its first argument and the
+top-level window as its second. The load and save operations leverage
+the \emph{GtkFileChooserDialog} widget type, a dialog that contains a
 graphical file browser for specifying the path to a
 file. \emph{GtkFileChooserDialog} has several modes corresponding to
 common file selection tasks. In this case, we use the ``open'' mode
-for the open action and the ``save'' mode for the save action. The
+for the reading action and the ``save'' mode for the writing action. The
 ``accept'' response from the dialog indicates that the user has
 confirmed the file selection by clicking the ``Open'' or ``Save''
 button.
@@ -1547,9 +1593,9 @@ open_cb <- function(widget, window)
 {
   dialog <- gtkFileChooserDialog("Choose a CSV file", window, "open",
                                  "gtk-cancel",
-GtkResponseType["cancel"],
+                                  GtkResponseType["cancel"],
 	      	                 "gtk-open",
-GtkResponseType["accept"])
+                                 GtkResponseType["accept"])
   if (dialog$run() == GtkResponseType["accept"]) {
     df <- read.csv(dialog$getFilename())
     load_spreadsheet(df, basename(dialog$getFilename()))
@@ -1558,11 +1604,11 @@ GtkResponseType["accept"])
 }
 save_cb <- function(widget, window) {
   dialog <- gtkFileChooserDialog("Enter a name for the file", window,
-"save",
+                                 "save",
                                  "gtk-cancel",
-GtkResponseType["cancel"],
+                                 GtkResponseType["cancel"],
           	                 "gtk-save",
-GtkResponseType["accept"])
+                                 GtkResponseType["accept"])
   if (dialog$run() == GtkResponseType["accept"])
     save_file(dialog$getFilename()) # not implemented
   dialog$destroy()
@@ -1572,8 +1618,10 @@ quit_cb <- function(widget, window)
 
 \end{verbatim}
 
-We make these action callbacks accessible available in both the
-menubar and toolbar. We begin by creating the main window, defining
+\subsubsection{User actions}\label{sec:spreadsheet-actions}
+
+We make these action callbacks available in both the
+menu bar and tool bar. We begin by creating the main window, defining
 the actions and bundling them into a \emph{GtkActionGroup}.  A
 \emph{GtkActionGroup} is a container for \emph{GtkAction} objects. 
 %DTL: I think the concept of a GtkAction needs more description here,
@@ -1581,10 +1629,26 @@ the actions and bundling them into a \emph{GtkActionGroup}.  A
 The base \emph{GtkAction} represents an operation that a user may
 request an application to perform. An action may be manifested in a
 GUI in multiple ways, such as an item in a menu or a button in a
-toolbar. The widgets are synchronized with the properties of the
+tool bar. The widgets are synchronized with the properties of the
 action. For example, if an action is disabled, the menu items and
-toolbar buttons will also be disabled. Extensions of \emph{GtkAction}
+tool bar buttons will also be disabled. Extensions of \emph{GtkAction}
 exist for toggle and radio options, but those are not described here.
+For details, see \emph{help(GtkToggleAction)} and \emph{help(GtkRadioAction)}, respectively.
+%DTL2: Can you add a reference
+%DTL2: Put this in a figure or connect to a sentence.
+%DTL2:  It would be good to use formal classes or at least named
+%elements here rather so that the reader of the code knows what each 
+% element is for. For example, one cannot figure out what the NULL is for.
+% MFL: I moved the description of the elements to before the example.
+% I hope this makes it clearer.
+
+Each action is defined with a list, containing the action ID (for referring to the item later in the code),
+% Is this for referring to it later or the label that appears in the
+% tool bar and/or menu bar?
+%DTL2: What does "stock" mean here? I think it is tied to the Gtk+
+%documentation, but doesn't tell us much. So perhaps just omit and use
+%icon separately.
+icon ID, label, keyboard shortcut, tooltip, and callback.
 \begin{verbatim}
 actions <- list(
   list("FileMenu", NULL, "_File"), 
@@ -1592,32 +1656,27 @@ actions <- list(
        "Select a CSV file to load as a spreadsheet", open_cb),
   list("Save", "gtk-save", "_Save", "<control>S", 
        "Save the current spreadsheet to a CSV file", save_cb),
-  list("Quit", "gtk-quit", "_Quit", "<control>Q", "Quit the
-application", quit_cb)
+  list("Quit", "gtk-quit", "_Quit", "<control>Q", 
+         "Quit the application", quit_cb)
 )
 action_group <- gtkActionGroup("spreadsheetActions")
 action_group$addActions(actions, main_window)
 \end{verbatim}
-Each action is defined with a list, containing the action ID,
-% Is this for referring to it later or the label that appears in the
-% toolbar and/or menubar?
-stock icon ID,
-label, keyboard shortcut, tooltip, and callback.
 %DTL:  If the FileMenu element is a container for the Open, Save and
 % Quit elements, why aren't they elements of the FileMenu list.
 % This flat structure to represent a hierarchy seems odd.
 %ML: In GTK+, the actions are not organized hierarchically - that is
 % specified in the layout (which is parsed from XML).
-This is an example of 
-high-level type conversion, where a native \proglang{R} structure is
-implicitly converted to a complex \pkg{GTK+} object. In this case, an
-\proglang{R} list is being converted to a set of \emph{GtkAction}
+Specifying the action definitions as \proglang{R} lists is an example of  high-level type conversion, where a native \proglang{R} structure is implicitly converted to a complex \pkg{GTK+} object. In this case, an \proglang{R} list is being converted to a set of \emph{GtkAction}
 objects. See Section \ref{sec:high-level-conversion} for
 a technical explanation and justification. The first action will serve
-as the menu shell
+as the basic menu container
 %DTL: this is vague and undefined so please explain.
-for the rest of the actions. Since it performs no
-function, it is not necessary to specify all of the fields. 
+for the rest of the items and actions. Since it performs no
+function, it is not necessary to specify all of the fields,
+such as the action. 
+
+\subsubsection{Loading the actions into a GtkUIManager}
 
 We then create a \emph{GtkUIManager} and provide it with our action group.
 \begin{verbatim}
@@ -1625,17 +1684,17 @@ ui_manager <- gtkUIManager()
 ui_manager$insertActionGroup(action_group, 0)
 \end{verbatim}
 Next, we specify
-the layout of the menubar and toolbar containing the actions defined
+the layout of the menu bar and tool bar containing the actions defined
 above, by calling the \emph{gtkUIManagerAddUi} method. Each piece of
-UI added to a \emph{GtkUIManager} instance must be identified by a
+the user interface added to a \emph{GtkUIManager} instance must be identified by a
 ``merge id''. This allows removing (unmerging) the UI at a later time.
 The \emph{path} parameter indicates where the UI element should be
-merged. Similar to a path in a URL, each element name in the path is
+merged. Similar to a path in a file system or URL, each element name in the path is
 delimited by a forward slash (``/''). The \emph{name} parameter
 identifies the element to the manager, and \emph{action} is the ID of
 the action in the provided action group. If \emph{action} is NULL, a
 separator widget is added. Finally, \emph{type} indicates the type of
-UI element, such as a toolbar or menubar. The default is ``auto'',
+UI element, such as a tool bar or menu bar. The default is ``auto'',
 which asks the \emph{GtkUIManager} to guess based on the path.
 %DTL:  Boy, this seems very odd. Why an R programmer would switch to
 %XML to express something that is easily specified in R is bizarre.
@@ -1647,6 +1706,7 @@ which asks the \emph{GtkUIManager} to guess based on the path.
 %ML: I've changed this to use the low-level API
 % It's not as pretty but will keep everything in R.
 % Could try to express a subset of it as a list... not sure.
+%DTL2: Thanks. I think it is better.  
 \begin{verbatim}
 merge <- ui_manager$newMergeId()
 ui_manager$addUi(merge_id = merge, path = "/", name = "menubar",
@@ -1661,32 +1721,46 @@ ui_manager$addUi(merge, "/toolbar", "open", "Open", "toolitem")
 ui_manager$addUi(merge, "/toolbar", "save", "Save", "toolitem")
 ui_manager$addUi(merge, "/toolbar", "quit", "Quit", "toolitem")
 \end{verbatim}
-It is also possible to specify the layout of the actions using an XML
-description. This may be desirable in more complex applications, where
-the benefit of the declarative nature of XML outweighs the complexity
-of mixing languages.
+%DTL2:  I don't think declarative is the right term here.
+% In what way is XML more declarative than R or any programming
+% language.
+% I think the key idea where XML is preferred is that it is generated
+% by another tool or already exists in a language neutral manner 
+% and so can be readily reused in an arbitrary language. But for
+% building a GUI ourselves in R, an XML "document" is not convenient.
+%MFL: Well the XML is definitely clearer to me than the 
+% mess above. BUT I agree with you in general. There needs to be
+% a better solution.
+% I took out the XML comment.
 
-The next step is to use the \emph{GtkUIManager} to create the actual menubar and toolbar widgets from the action definitions and layout.
+\subsubsection{Creating the widgets}
+
+The next step is to use the \emph{GtkUIManager} to create the actual
+menu bar and tool bar widgets from the action definitions and layout.
 \begin{verbatim}
 menubar <- ui_manager$getWidget("/Menubar")
 toolbar <- ui_manager$getWidget("/Toolbar")
-# so keyboard shortcuts work
+    # enable keyboard shortcuts 
 main_window$addAccelGroup(ui_manager$getAccelGroup()) 
 \end{verbatim}
 
-To report the status of the application, we will use a
-\emph{GtkStatusbar}. 
-A statusbar maintains a stack of text messages and displays the
-message
-on top of the stack. Each message is associated with a \emph{context}.
-A context
-ID may be created using the \emph{gtkStatusbarGetContextId} function.
-Here we create a 
-statusbar and push the message ``Ready'' onto the top of the stack
-within
-the ``info'' context. Other contexts could be ``warning'' or
-``error''; a context
-can be created for any string.
+\subsection{Status bar}
+
+To report information from and about the application, we will use a
+\emph{GtkStatusbar} widget.  A status bar maintains a 
+% DTL2: You probably need to explain (in one sentence) what a stack is
+% in this context.
+stack of text messages and displays the message on top of the
+stack. When a message is added to the status bar stack, it is immediately displayed, and when the message is removed, the previous one is displayed.
+%DTL2: e.g. When we add a message, it is immediately displayed and
+%when we remove it, the previous one is then displayed.
+Each message is associated with a \emph{context}.  A context ID may be created using the \emph{gtkStatusbarGetContextId} function. A context ID is a number that is generated in a consistent way from any user-supplied string that serves as the human-readable context name.
+Here we create a status bar and push the message ``Ready'' onto the top
+of the stack within the context named ``info''. Other contexts could be named, e.g.,
+``warning'' or ``error''.
+%DTL2: It is not quite obvious what the R variable info is - a context
+%or an ID.  We are getting the ContextId but it seems like the "info"
+%is the Id and we get the Context.
 \begin{verbatim}
 statusbar <- gtkStatusbar()
 info <- statusbar$getContextId("info")
@@ -1700,13 +1774,16 @@ between the different widgets within the notebook.  This is used in
 Excel to present several work sheets within a single window, and also
 within certain Web browsers to allow the user to view multiple Web
 pages within a single window. Below, we create the notebook and add
-it, along with the menubar, toolbar and statusbar, to the window,
+it, along with the menu bar, tool bar and status bar, to the window,
 through a \emph{GtkVBox}.
+%DTL2:  specify the names for the arguments to gtkVBox() and the first
+%call to packStart() to identify what the values are controlling,
+%i.e. the FALSE and 0
 \begin{verbatim}
 notebook <- gtkNotebook()
 notebook$setTabPos("bottom") # tabs horizontally along the bottom
-vbox <- gtkVBox(FALSE, 0)
-vbox$packStart(menubar, FALSE, FALSE, 0)
+vbox <- gtkVBox(homogeneous = FALSE, spacing = 0)
+vbox$packStart(menubar, expand = FALSE, fill = FALSE, padding = 0)
 vbox$packStart(toolbar, FALSE, FALSE, 0)
 vbox$packStart(notebook, TRUE, TRUE, 0)
 vbox$packStart(statusbar, FALSE, FALSE, 0)
@@ -1715,44 +1792,71 @@ main_window$show()
 \end{verbatim}
 %
 %DTL: This paragraph is technically correct, but not very informative
-or 
+%or 
 % descriptive for somebody who doesn't know what is going on. It would
 % be better to give a high-level view of the concept rather than the
 % details.
 % Proxied warrants a short description.
 
+\subsection{Spreadsheet}
+
 Next, we need to create the \emph{GtkTreeView} that will display a
 given \emph{data.frame} as a table.  The data is passed to the
 \emph{GtkTreeView} by attaching it to a \emph{GtkTreeModel} data
-model. The following function, \emph{create\_tree\_model}, will create a
-\emph{GtkTreeModel} object that derives its data from an \proglang{R}
+model.
+
+\subsubsection{Data model}\label{sec:spreadsheet-model}
+
+ The following function, \emph{create\_tree\_model}, will create a
+\emph{GtkTreeModel} object that obtains its data from an \proglang{R}
 \emph{data.frame}, passed as an argument to the function. 
+%DTL2: Connect the code to the previous sentence, i.e. : or figure
+% and put a comment or two in the code to make it clearer/more
+% accessible to the reader.
 \begin{verbatim}
 create_tree_model <- function(df)
   df <- cbind(rownames = rownames(df), df)
+  # add logical visbility column (all visible by default)
   filter_df <- cbind(filter = TRUE, df)
   model <- rGtkDataFrame(filter_df)
+  # create filter
   filter_model <- gtkTreeModelFilterNew(model)
+  # show rows that have TRUE in first column
   filter_model$setVisibleColumn(0)
+  # allow sorting of table
   sort_model <-  gtkTreeModelSort(filter_model)
   sort_model
 }
 \end{verbatim}
 The function employs the \emph{RGtkDataFrame} utility that allows
 the \emph{GtkTreeView} to use an \proglang{R}
-\emph{data.frame} as its data model.  In order to support filtering
+\emph{data.frame} as its data source.
+%DTL2: model is a dangerous term to use in statistics as many will
+%think it refers to a statistical model!
+% You could use the word "source".  If you stick with model, then you
+% need to have a reference and a brief sentence about the Model View
+% Controller paradigm.  Many readers will not be familiar with that term.
+In order to support filtering
 and sorting of the displayed data, the \emph{RGtkDataFrame} is proxied
-by a \emph{GtkTreeModelFilter} model, which is turn proxied by a
+by a \emph{GtkTreeModelFilter} model, which in turn is proxied by a
 \emph{GtkTreeModelSort} model. A proxy data model sits between a
 source data model and a client, such as a \emph{GtkTreeView}. The data
 provided by a proxy model results from the modification of the data in
 the source model.
+%DTL2: Does the proxy actually modify the source or just represent a
+%modified view of the original source? This is an issue for R as it
+%has no references and does not have side-effects (in general).
+% MFL: No it does not modify the source.
+
+\subsubsection{Table view}
 
 The next function, \emph{create\_tree\_view},  will create the
 \emph{GtkTreeView} given the \emph{GtkTreeModel} created by
 \emph{create\_tree\_model} above. Each column of the \emph{data.frame},
 provided as the second argument, is displayed by a column in the tree
-view. We configure the tree view so that it shows grid lines (if the user has \pkg{GTK+} 2.10.0 or higher) and supports sorting on a column when the user clicks on the column header. 
+view. We configure the tree view so that it shows grid lines (if the
+user has \pkg{GTK+} 2.10.0 or higher) and supports sorting on a column
+when the user clicks on the column header.
 \begin{verbatim}
 create_tree_view <- function(model, df)
 {
@@ -1776,12 +1880,16 @@ create_tree_view <- function(model, df)
     tree_view$setGridLines("both")
 }
 \end{verbatim}
-The call to \emph{setCellDataFunc} (above) attaches a callback that formats the text values with a reasonable number of significant figures (GTK+ takes the simpler approach of giving each number 6 significant figures). Note that this callback is called each time a cell is rendered, so it could negatively impact performance, especially when scrolling. For large spreadsheets, we recommend using a dedicated spreadsheet application. 
+The call to \emph{setCellDataFunc} (above) attaches a callback that formats the text values as R does by default (GTK+ takes a simpler approach that gives each number 6 significant figures). Note that this callback is called each time a cell is rendered, so it could negatively impact performance, especially when scrolling. For large spreadsheets, we recommend using a dedicated spreadsheet application. 
 
 %DTL:  why doesn't gtkCheckVersion() return TRUE or FALSE? Checking
 % for NULL is a little counter-intuitive.
 %ML: I agree, but I don't want to get into the business of redesigning
 % the GTK+ API.
+%DTL2: Fair enough.
+
+\subsubsection{Filter text entry}
+
 Next, we define a function that creates the text box for the user to
 enter a filter expression. This uses the \emph{GtkEntry} widget.
 Whenever the \emph{GtkEntry} is ``activated,'' e.g. by the user
@@ -1798,11 +1906,26 @@ create_entry <- function(model)
                  function(entry)
                      # update column used by filter 
                      # according to logical expression
-                   model[,"filter"] <- eval(parse(text=entry$text),
+                   model[,"filter"] <<- eval(parse(text=entry$text),
 df))
 }
 \end{verbatim}
-Finally, we define the function leverages the others to load a \emph{data.frame} into the GUI. This function creates the necessary widgets and packs them into a notebook page. To limit its visible size, the table is added to a \emph{GtkScrolledWindow}.
+%DTL2:  Does this do the right thing or do you need <<- rather than <-. This is a closure and you are
+%modifyng the value of model. But a <- rather than <<- will make a
+%local modification within the function call, not within the
+%environment containing model. Is this a regular R object or an RGtk
+%object pointing to a C object. Either way, <<- is probably best.
+%MFL: It's an externalptr (an RGtkDataFrame), <<- is fine.
+
+\subsection{Loading a spreadsheet}
+
+Finally, we define the function that uses the others to load a
+\emph{data.frame} into the GUI. This function creates the necessary
+widgets and packs them into a notebook page. To limit its visible
+size, the data grid/table is added to a \emph{GtkScrolledWindow}.
+%DTL2:  make the connection between this code and the callback for
+%open_cb which is 3 1/2 pages back. 
+%DTL2: connect to sentence or put in figure.
 \begin{verbatim}
 load_spreadsheet <- function(df, name)
 {
@@ -1829,7 +1952,7 @@ load_spreadsheet <- function(df, name)
   statusbar$push(info, paste("Dataset", name, "loaded."))
 }
 \end{verbatim}
-The function concludes by updating the statusbar to indicate that the dataset has been successfully loaded.
+The function concludes by updating the status bar to indicate that the dataset has been successfully loaded.
 
 An example of using the above function to add a spreadsheet is given
 below:
@@ -1856,30 +1979,32 @@ and third-party libraries that are integrated with \pkg{GTK+}. Much of this func
 %DTL: say who the intended audience is so that readers know if it is
 %for them. The material on types & classes is advanced but not in the
 %sense of more complex GUIs, but for a whole different type of RGtk
-user.
+%user.
 
-First, we describe the extra libraries bound by \pkg{RGtk2} that are
-meant to support the construction of advanced, graphically-intensive
-interfaces. The focus then shifts to the low-level support for the
-\pkg{GObject} object-oriented programming library. The \pkg{RGtk2}
-user is able to manipulate objects in external \pkg{GObject}-based
-applications (i.e. top-level GUIs running within the same R session)
-that are bound to \proglang{R} by other packages. \pkg{RGtk2} also
-supports defining new \pkg{GObject} classes in \proglang{R}.
+First, we describe the additional libraries (other than Gtk+) bound by
+\pkg{RGtk2} that are meant to support the construction of advanced,
+graphically-intensive interfaces. The focus then shifts to the
+low-level support for the \pkg{GObject} object-oriented programming
+library. The \pkg{RGtk2} user is able to manipulate objects in
+external \pkg{GObject}-based applications (i.e. top-level GUIs running
+within the same R session) that are bound to \proglang{R} by code
+outside of the \pkg{RGtk2} package. \pkg{RGtk2} also supports defining
+new \pkg{GObject} classes in \proglang{R}.
 
 \subsection{Additional Library Support}
 
 The \pkg{GTK+} 2.0 library incorporates several other libraries:
 \pkg{Cairo}, \pkg{GDK}, \pkg{GdkPixbuf}, \pkg{Pango} and \pkg{ATK}
-each of which we describe below.  The \pkg{RGtk2} package provides
-\proglang{R}-level bindings for each of these libraries, in addition
-to \pkg{GTK+} itself.  \pkg{Libglade}, a library for building GUIs
-from their XML description, is also bound by \pkg{RGtk2}. Each of
-these libraries is described in the paragraphs below.
+%each of which we describe below. 
+and the \pkg{RGtk2} package provides \proglang{R}-level bindings for
+each of these libraries, in addition to \pkg{GTK+} itself.
 
 \paragraph[Cairo]{\pkg{Cairo}} 
 
 Cairo is a 2D vector graphics library with which \pkg{GTK+} widgets
+%DTL2:  Is it really for drawing the widgets themselves or used for 
+% drawing onto Gtk widgets?
+%MFL: The widgets themselves - GTK+ uses Cairo for all drawing
 are drawn. It is possible to use \pkg{Cairo} directly to draw custom
 graphics within a \emph{GtkDrawingArea}. The library is also useful
 outside of GUI construction, in that one can draw vector graphics to
@@ -1890,13 +2015,13 @@ files.
 
 The GIMP Drawing Kit, \pkg{GDK}, is the low-level hardware access and
 drawing layer 
-for \pkg{GTK+}. It is most useful for raster-based drawing of
-graphical 
-primitives like lines, rectangles and circles and for handling raw
-mouse and 
-keyboard events. It also provides access to windowing system
-resources, such
-as screens in a multi-headed environment.
+%DTL2:  Since Cairo is also for drawing, need to mention why Gdk has
+%drawing facilities also.
+for \pkg{GTK+}. It is most useful for raster-based (non-vector)
+drawing of graphical primitives like lines, rectangles and circles and
+for handling raw mouse and keyboard events. It also provides access to
+windowing system resources, such as screens in a multi-headed
+environment. Although the drawing functions of \pkg{GDK} overlap somewhat with \pkg{Cairo}, \pkg{Cairo} is for drawing vectors, while \pkg{GDK} is for direct drawing of pixels. Another reason for the redundancy is that \pkg{GDK} predates \pkg{Cairo}, and thus the \pkg{GDK} drawing routines are present for backwards compatibility.
 
 \paragraph[GdkPixbuf]{\pkg{GdkPixbuf}}
 
@@ -1919,7 +2044,8 @@ graphics in \proglang{R}.
 rich capabilities for handling international characters. It also
 provides cross-platform access to the font configuration of a system.
 \pkg{Pango} is most often used directly for embedding text in graphics
-when drawing to a \emph{GtkDrawingArea} or somewhere off-screen.
+when drawing to a \emph{GtkDrawingArea} or an off-screen destination,
+e.g. image.
 
 \paragraph[ATK]{\pkg{ATK}} 
 
@@ -1934,7 +2060,7 @@ are present in the \pkg{GTK+} API.
 
 \pkg{Libglade} constructs \pkg{GTK+} GUIs from XML descriptions.
 The XML descriptions are output from
-\pkg{Glade}, which is a GUI tool for designing other GUIs. 
+\pkg{Glade}, which is a GUI tool for interactively designing other GUIs. 
 %The \pkg{RGtkGlade}
 %package \citep{RGtkGlade} bound the previous generation of this
 %library.
@@ -1971,7 +2097,7 @@ detail below.
 For further details, please see the \pkg{GObject} documentation
 \citep{gobject}.
 
-\subsubsection{GType}
+\subsubsection{GType}\label{sec:gtype}
 % DTL: This is very detailed but more in a factual way than an
 % informative way, especially the GObject material. When reading it, I
 % wasn't certain what was going on and I know this stuff. In fact,
@@ -1994,65 +2120,66 @@ For further details, please see the \pkg{GObject} documentation
 \emph{GType} is at the core of \pkg{GObject}. Its basic functionality
 is to manage the definition, registration and introspection of types
 at run-time. The main commonality between all GTypes, as they are
-called, is that they define a method for copying the content of  value. This allows generic memory management for every value with a
+called, is that they define a method for copying their values. This allows generic memory management for every value with a
 GType. Those GTypes that directly define a copy mechanism, instead of
-inheriting one, are known as \emph{fundamental} types.  GTypes are
-further classified by whether they are classed and whether they are
-instanciable, i.e. whether one can create an instance of this type.
+inheriting one, are known as \emph{fundamental} types.
 
-Fundamental types that are non-classed and non-instanciable 
-include ``primitive'' types like integers and strings, as well as
-\emph{GBoxed}.
-Types that extend \emph{GBoxed} are able to register functions for
-their
-copying and freeing. This facilitates creating a GType for a
-corresponding
-\proglang{C} structure. For example, \pkg{RGtk2} registers a boxed
-type for 
-the \emph{SEXP} structure of \proglang{R} which is used to represent
-all R objects. 
+% MFL2: I tried to simplify this some more and improve its clarity.
 
-The fundamental \emph{GObject} type is both classed and instanciable. It corresponds to the concept of a \emph{class} in object-oriented languages. Classed types are associated with a class structure. Inheritance of class structures is accomplished through the standard C idiom for object-oriented programming: prefixing a structure with the structure of the parent class, so that fields are aligned. The use of the structure prefixing idiom restricts \pkg{GObject} to single inheritance. The class structure contains class-wide fields, including function pointers called \emph{virtual functions} that may be overriden by changing the value of the corresponding field in the class structure during intialization. This is the primary mechanism in \pkg{GObject} for changing object behavior through inheritance. Instances, or values of instanciable types, use the same idiom for inheritance as the class structure.
+The set of fundamental types includes many of the built-in \proglang{C} data types. For example, ``primitive'' types like integers, doubles, and strings (character pointers) are all fundamental types. Arbitrary \proglang{C} structures are adapted to the \pkg{GType} framework by providing a copy function and free function for the structure. Such types are said to be ``boxed'' types and inherit from the type \emph{GBoxed}. For
+example, \pkg{RGtk2} registers a boxed type for the \proglang{R} \emph{SEXP} structure, which is used to represent all R objects.
 
-Like many object-oriented languages, \pkg{GObject} supports the definition and implementation of \emph{interfaces}. An interface specifies a set of methods that represent a role performed by a set of classes, where the role is shared independent of the class hierarchy. If a class plays a role represented by an interface, it may formally declare the contract by registering itself as an implementation of the interface. As a result, the type is required to provide values (implementations) for the methods declared by the interface. Any classed and instanciable type, such as \emph{GObject}, may implement multiple interfaces. Like a \emph{GObject} class, an interface is a classed type and its methods are specified through the virtual functions declared in its class structure. Every interface structure may only be prefixed by \emph{GTypeInterface}, so there is no inheritance between interfaces in \pkg{GObject}. This is a significant difference from many object-oriented languages. However, an interface can be made to \emph{require} the implementation of one or more other interfaces by any type that implements it. Unlike the \emph{GObject} type, \emph{GTypeInterface} is non-instanciable, so it is not possible to create instances of interfaces directly.
+The \pkg{GType} module also supports the definition of object types (the main purpose of \pkg{GObject}). Like all GTypes, object types must be or inherit from a fundamental type. \pkg{GObject} provides a fundamental type, \emph{GObject}, that may be extended to define a new type of object. Every type derived from \emph{GObject} has a \proglang{C} structure representing its class. Inheritance of class structures is accomplished through the standard \proglang{C} idiom for object-oriented programming: prefixing a structure with the structure of the parent class, so that fields are aligned. The use of the structure prefixing idiom restricts \pkg{GObject} to single inheritance. The class structure contains class-wide fields, including function pointers called \emph{virtual functions} that may be overriden by changing the value of the corresponding field in the class structure during intialization. This is the primary mechanism in \pkg{GObject} for changing class
+%DTL2: Is this object or class. Presumably class and hence the
+%behaviour of all objects of that class. 
+behavior through inheritance. Each object type also has a registered structure with instance-level members (i.e. fields). The instance structure of a type inherits from the parent instance structure using the same idiom as the class structures. An instance of an object type is manifested as a value of the corresponding instance structure. In order to link an instance to its class, each instance structure holds a reference to the shared value of the class structure for the type.
 
-Two other fundamental, classed, non-instanciable types are
-\emph{GEnum} and 
-\emph{GFlags}. The \emph{GEnumClass} stores metadata about a
-particular
-enumeration, such as the names and nicknames of its values.
-\emph{GFlags} is
-similar as it represents an enumeration with values that are powers of
-two, 
-so that they may be combined with a bitwise \emph{or} operation.
+Like many object-oriented languages, \pkg{GObject} supports the
+definition and implementation of \emph{interfaces}. An interface
+specifies a set of methods that represent a role performed by one or
+more classes, where the role is shared independently of the class
+hierarchy. If a class plays a role represented by an interface, it may
+formally declare the contract by registering itself as an
+implementation of the interface. As a result, the type is required to
+provide values (implementations) for the methods declared by the
+interface. Any object type, such as \emph{GObject},
+may implement multiple interfaces. Like a \emph{GObject}-derived type, an interface has a class structure that declares its virtual functions (i.e. methods). Every interface class structure may only be prefixed by \emph{GTypeInterface}, so there is no inheritance between interfaces in \pkg{GObject}. This is a significant difference from many object-oriented languages. However, an interface can be made to \emph{require} the implementation of one or more other interfaces by any type that implements it. Unlike the \emph{GObject} type, \emph{GTypeInterface} is non-instanciable, so there is no instance-level structure and it is not possible to create instances of interfaces directly.
+
+Two other fundamental types are
+\emph{GEnum} and \emph{GFlags}, both of which are registered with a class structure. The \emph{GEnumClass} structure stores metadata about a particular enumeration, such as the names and nicknames of its
+values.  \emph{GFlags} is similar as it represents an enumeration
+where the values are intended to be combined bitwise (via AND and OR
+operations) to represent the presence of one or more settings.
+%DTL2: technically not all have to be powers of two.
 
 \subsubsection{GSignal}
 
 One of the defining characteristics of \pkg{GObject} is its emphasis
-on
-\emph{signals}, which were introduced earlier in this paper in the
-context of
-notification of user events in a \pkg{GTK+} GUI. Any instance of a
-GType can 
-have registered signals. Each \emph{signal} is defined by its name and
-the types
-of its arguments and return value. A class inherits signals from its
-parents.
+on \emph{signals}, which were introduced earlier in this paper in the
+context of notification of user events in a \pkg{GTK+} GUI. Any
+instance of a GType can have registered signals. Each \emph{signal} is
+defined by its name and the types of its arguments and return value. A
+class inherits signals from its parents.
 
 \subsubsection{The GObject Base Class}
 
-\emph{GObject} is the classed and instanciable type provided by the
-\pkg{GObject} library.  The key feature provided by the \emph{GObject} class, from the perspective of the 
-\pkg{RGtk2} user, are \emph{properties}. Properties may be described
-as introspectable and encapsulated public fields. Like fields, properties are inherited. They support automated validation 
-of their values at runtime, and a change in a property value emits the 
-\emph{notify} signal from its instance, allowing objects to respond
-to changes in the state of other objects. It is possible to control
-whether a 
-property is readable, writeable, and more. Depending on its options,
+\emph{GObject} is the basic/fundamental classed and instanciable type
+provided by the \pkg{GObject} library.  The key feature provided by
+the \emph{GObject} class, from the perspective of the \pkg{RGtk2}
+user, are \emph{properties}. Properties may be thought of as
+introspectable and encapsulated public fields. Like instance fields of a \emph{GObject}-derived type,
+%DTL2: in what context ? Gtk+, C, ...
+properties
+are inherited. They support automated validation of their values at
+runtime, and a change in a property value emits the \emph{notify}
+signal from its instance, allowing objects to respond to changes in
+the state of other objects. It is possible to control whether a
+property is readable, writeable, and more. Depending on the options specified in the declaration of a property,
+declaration,
+%DTL2: declaration or optinons specified when it is declared
 one may be able to or even restricted to set a property at
-construction time, 
-using the generic \emph{GObject} constructor, \emph{gObject()}. 
+construction time, using the generic \emph{GObject} constructor,
+\emph{gObject()}.
 
 A property is defined by a \emph{GParamSpec} structure that specifies
 a name, 
@@ -2070,22 +2197,18 @@ Many \emph{GParamSpec} subclasses also permit default values.
 Applications]{Interfacing With External \pkg{GObject}-based
 Applications}
 
-Much of the \pkg{RGtk2} functions developed for the
-creation of GUIs using \pkg{GTK+} are applicable to other libraries
-and applications based on \pkg{GObject}. There are several such
-packages of
-interest to staticians, including \pkg{Gnumeric}, a spreadsheet
-application, and
+Many of the \pkg{RGtk2} functions developed for the creation of GUIs
+using \pkg{GTK+} are applicable to other libraries and applications
+based on \pkg{GObject}. There are several such packages of interest to
+staticians, including \pkg{Gnumeric}, a spreadsheet application, and
 \pkg{GGobi}, software for multivariate interactive graphics. The
-\pkg{rggobi}
-package \citep{rggobi} provides a high-level interface to \pkg{GGobi}
-from 
-\proglang{R}. Although it is somewhat hidden, \pkg{rggobi} objects are 
-\emph{externalptr}s that reference the underlying \pkg{GGobi} objects,
-which
-extend \emph{GObject}. \pkg{RGtk2} uses the same \proglang{R}
-representation, so
-many \pkg{RGtk2} functions can operate on \pkg{rggobi} objects.
+\pkg{rggobi} package \citep{rggobi} provides a high-level interface to
+\pkg{GGobi} from \proglang{R}. Although it is somewhat hidden,
+\pkg{rggobi} objects are \emph{externalptr}s that reference the
+underlying \pkg{GGobi} objects, which extend
+\emph{GObject}. \pkg{RGtk2} uses the same \proglang{R} representation,
+so many \pkg{RGtk2} functions can operate on \pkg{rggobi} objects
+directly without additional interface code.
 
 As an example, we consider the problem of displaying an \proglang{R}
 plot in
@@ -2103,9 +2226,10 @@ executed whenever a point is identified.
 % Also, think it is better to introduce it first with a sentence or
 % two describig the basic idea.
 The following code displays data within a \pkg{GGobi} window and
-draws a fit of the simple linear model in an R graphics window.
+draws a fit of the simple linear model in a separate R graphics window.
 When the user identifies a point in the GGobi plot, the corresponding
-point is highlighted in the R display.
+point is highlighted in the R display, providing simple linking.
+%DTL2: Make a figure or connect to sentence.
 \begin{verbatim}
 library(rggobi)
 attach(mtcars)
@@ -2113,26 +2237,23 @@ gg <- ggobi(mtcars)
 model <- lm(mpg ~ hp)
 plot(hp, mpg)
 abline(model)
-gSignalConnect(gg, "identify-point", function(gg, plot, id, dataset)
-{
-  plot(hp, mpg)
-  points(hp[id+1], mpg[id+1], pch=19)
-  abline(model)
-})
+gSignalConnect(gg, "identify-point", 
+               function(gg, plot, id, dataset) {
+                plot(hp, mpg)
+                points(hp[id+1], mpg[id+1], pch=19)
+                abline(model)
+               })
 \end{verbatim}
-The \pkg{GGobi} is initialized with the \emph{mtcars} dataset. 
-A linear model is fit with \emph{lm} and the line is drawn on an R
-plot. The 
-important step is connecting a handler to the ``identify-point''
-signal. The
-handler regenerates the \proglang{R} plot, and, for the identified
-point, 
-replaces the empty circle glyph with a filled circle.
-In this way, we have integrated the interactive graphics of
-\pkg{GGobi} with an
-\proglang{R} graphic that displays a linear model fit, which
-\pkg{GGobi} cannot
-display. More interesting integration uses the same basic tools.
+The \pkg{GGobi} instance is initialized with the \emph{mtcars} dataset.  A
+linear model is fit with \emph{lm} and the line is drawn on an R
+plot. The important step is connecting a handler to the
+``identify-point'' signal. The handler regenerates the \proglang{R}
+plot, and, for the identified point, replaces the empty circle glyph
+with a filled circle.  In this way, we have created a simple
+integration of the interactive
+graphics of \pkg{GGobi} with an \proglang{R} graphic that displays a
+linear model fit, which \pkg{GGobi} cannot display. More interesting
+integration uses the same basic tools.
 
 Since the \pkg{GGobi} GUI is based on \pkg{GTK+}, it is possible to
 embed 
@@ -2157,9 +2278,14 @@ definition. The class definition is a series of arguments that specify the new f
 methods that override inherited methods,
 %method overrides,
  signals, properties, and
-initialization function for the class. The name of a parameter
-specifies
-its role in the definition. 
+initialization function
+%DTL2:  function or functions. I think the latter, but please check.
+%MFL2: 'functions' - there's one hook called during initialization
+for the class. The name of a parameter specifies its role in the
+definition.
+
+\subsubsection{Example of defining a class}
+\label{sec:class-example}
 
 The example below illustrates the definition of a new
 \emph{GObject}-derived
@@ -2194,7 +2320,7 @@ the horizontal slider.
 %DTL: First, the arguments to gParamSpec are not clear just by reading
 %them. Why not use the parameter names, as in
 %    gParamSpec(type = "R", name = "expr", nick = "e", blurb =
-"Transformation of scale value",
+%"Transformation of scale value",
 % That would make it clearer.
 % Also, the  description in the paragraph that explains this code
 % does not refer to the value "R" at all but to 
@@ -2205,7 +2331,6 @@ the horizontal slider.
 % .props, .public, ... as named parameters. It is very un-R-like.
 %
 % ML: I was thinking that one might want to encapsulate the definition % of a class within a list, but I agree that it is probably cleaner to % make the function variadic. Thanks for the suggestion.
-
 \begin{verbatim}
 tform_scale_type <- gClass("RTransformedHScale", "GtkHScale",
   .props = list(
@@ -2215,8 +2340,9 @@ tform_scale_type <- gClass("RTransformedHScale", "GtkHScale",
   ),
   .public = list(
     getExpr = function(self) self["expr"],
-    getTransformedValue = function(self)
-self$transformValue(self$value)
+    getTransformedValue = 
+            function(self)
+               self$transformValue(self$value)
   ),
   .private = list(
     transformValue = function(self, x) eval(self$expr, list(x = x))
@@ -2239,7 +2365,9 @@ performs the transformation, e.g. \verb+x^3+. Definitions of
 properties may refer to any GType by name. 
 The names of primitive \proglang{R} types, like \emph{integer} and
 \emph{character} 
-are mapped to the corresponding GType, if available. It is also
+are mapped to the corresponding (scalar) GType, if available. 
+%DTL2:  However these are scalars in Gtk+ and vectors of length 1 in R.
+It is also
 possible to specify the 
 %DTL: State that this is the same as "R" if it is or connect to the
 % "R" in the example code.
@@ -2252,44 +2380,54 @@ not have a conventional \proglang{C} analog, like expressions, data
 frames, fitted models and S4 objects. For \emph{RGtkSexp} properties,
 it is possible to specify the underlying \proglang{R} type for
 validation purposes. In our example, that type is inferred from the
-default value, which is of mode \emph{expression}.  The ``any'' type
+default value, which is of mode 
+%DTL2:  mode or typeof()?  Which is used in the code - typeof() may
+%make more sense.
+%MFL2: it's typeof() in the code
+\emph{expression}.  The ``any'' type
 allows an \emph{RGtkSexp} property to hold any \proglang{R} type.
-Overrides of ancestor properties, which we did not demonstrate, are
-specified by name in a character vector passed as an argument named
-\emph{.prop\_overrides} to the \emph{gClass} function.
+Normally, the class definining a property is responsible for handling the getting and setting of it. In order to override the management of a property defined by a parent class, the name of the property should be included in a character vector passed as an argument named \emph{.prop\_overrides} to the \emph{gClass} function.
+%DTL2: why just name and not a type. It would be good to show an
+%example of this.
+%MFL2: hopefully this is a little clearer now
+% an example may be a bit of overkill for a rarely used feature
+
 
 Methods and fields may be encapsulated at the public, protected or
 private level.  Public members may be accessed by any code, while
 protected members are restricted to methods belonging to the same
 class or a subclass. Access to private members is the most restricted
-as they are only available to methods in the same class. There is a
-parameter to \emph{gClass} for each level of encapsulation. The parameters are lists and are named according to
-their level: \emph{.public}, \emph{.protected} or \emph{.private}.
-The functions for the methods and the initial assignments for the
-fields should be passed in the relevant parameter. The name of a member in a list serves as its
-identifier. In our example above, we define two public methods,
-\emph{getExpr} and \emph{getTransformedValue}, for retrieving the
-transformation expression and the transformed value,
+as they are only available to methods in the same class. \emph{gClass}
+has a separate parameter for each level of encapsulation. The
+values should be lists and are named according to their level of encapsulation:
+\emph{.public}, \emph{.protected} or \emph{.private}.  The functions
+for the methods and the initial assignments for the fields should be
+passed in the relevant parameter. The name of a member in a list
+serves as its identifier. In our example above, we define two public
+methods, \emph{getExpr} and \emph{getTransformedValue}, for retrieving
+the transformation expression and the transformed value,
 respectively. There is one private method, \emph{transformValue} that
 is a utility for evaluating the expression on the current value.
 
-Any virtual method defined by an inherited class or registered
-interface may be overriden. Like other methods, virtual methods are implemented as \proglang{R} functions. A function implementing a virtual method may delegate to the function that it overrides from an ancestor class.
+%DTL2: This seems vague and clear only if you know the answer
+%already. i.e. it is like a legal document
+Any virtual function defined by an inherited class or registered
+interface may be overriden. Like methods, virtual functions are
+implemented as \proglang{R} functions.
 %DTL: define chain up, or preferably, describe the concept.
-A function overriding a virtual method is 
-placed in a list passed as a parameter to \emph{gClass} with the same name as the class that defines the virtual 
-method. The name of the override in that list should match the name
-of the virtual method. In the \emph{RGtkTransformedHScale} example, we override the \emph{format\_value} virtual method
-%DTL: virtual what? - function.
-in the \emph{GtkScale} class to display the
-transformed value in the label above the slider.  Any public or 
-%DTL: This is confusing. Why would override methods that we just
-define in R .
-protected method defined in \proglang{R} may be overridden in 
-\proglang{R} as if it were a virtual function. This is useful when the new class extends a class that itself is defined in \proglang{R}. Methods external to \proglang{R} may only be overridden if they are virtual methods.
+In the \emph{RGtkTransformedHScale} example, we override the
+\emph{format\_value} virtual function in the \emph{GtkScale} class to display the transformed value in the label above the slider. We first define the \proglang{R} function that implements the new behavior. Next, since the \emph{gClass} function requires all overrides of methods from a particular class to be grouped together in a list, we create a list for \emph{GtkScale}. We then add our \proglang{R} function to the list as an element named ``format\_value''. This informs \emph{gClass} that we are overriding the \emph{format\_value} method. 
+
+Any public or protected method defined in \proglang{R} may be overridden in \proglang{R} as if it were a virtual function. This is useful when the new class extends a class that itself is defined in
+\proglang{R}. Methods external to \proglang{R} may only be overridden
+if they are virtual functions.
+
+A function implementing a
+virtual function may delegate to the function that it overrides from an ancestor class. This is achieved by calling the \emph{parentHandler} function and passing it the name of the method and the arguments to forward to the method. For example, in the override of \emph{format\_value} in the \emph{RGtkTransformedHScale} class, we could call \emph{parentHandler(``format\_value'', self, x)} to delegate to the implementation of \emph{format\_value} in \emph{GtkScale}.
+%DTL2: How? what is the calling mechanism
 
 %DTL: There is a question here about whether R fields in the
-definition
+% definition
 %are copied  when each new instance of this type is created. I assume
 %they are, but it might be good to mention this for completeness.
 
@@ -2300,10 +2438,51 @@ Two elements of the class definition that are not in the example above
 are
 the list of signal definitions and the initialization function.
 %DTL: again, named element.
-The signal definition list is passed as a parameter named \emph{.signals} and contains lists that each
-define a signal for the class. Each list includes the name, return
-type, and parameter types of the signal. The types may be specified in the same format as used for property definitions. The initialization
-function is passed as the \emph{.initialize} parameter and is executed whenever an instance of the class is created.
+%DTL2: Better to use named lists or an S4 object so its elements are
+%validated and typos are caught.
+%MFL2: It does use named lists. 
+% Everything is validated in \emph{gClass}, which is the only place
+% I would anticipate using a signal definition, but S4 objects would
+% be helpful.
+The signal definition list is passed as a parameter named
+\emph{.signals} and contains lists that each define a signal for the
+class. Each list includes the name, return type, and parameter types
+of the signal. The types may be specified in the same format as used
+for property definitions. The initialization function, passed as the
+\emph{.initialize} parameter, is invoked whenever an instance of
+the class is created, before any properties are set. It takes the newly created instance of the class as its only parameter.
+%DTL2: What are the parameters for the initialization function?
+% The basic pointer to the instantiated C-level object?
+
+%MFL2: Yes, it's just the pointer to the C-level object. In fact,
+% there is no "R-level" object besides the externalptr 
+% - it's all in the C structure
+
+% An idiom that is useful is to have the function take the target R
+% object as an argument, e.g.
+%  i = function(x, y, obj = new("MyObject")) {
+%    obj@x = x; obj@y = y
+%    obj
+% }
+% as this allows another constructor function to call this 
+% one with its own extended object, e.g. 
+% ii = function(a, b, x, y, obj = new("MyDerivedObject"))
+%   obj = i(x, y, obj)
+%   obj@a = a,...
+
+% This is a nice idea. I guess gClass() is designed to be a
+%  a low-level means of defining types entirely within the
+%  GObject framework. So gObject(className, x = 1, y = 2) is
+%  the way objects are created, if 'x' and 'y' are properties.
+%  The initialization function is called during object construction,
+%  before the properties passed to gObject() are set. While it's
+%  possible to intercept the setting of properties,
+%  it only operates a property at a time, unlike your idea.
+
+%  Of course, it's still possible to build such a scheme on top
+%   of gClass(). That is, replace new() in your example with
+%   gObject(). It would be great to better integrate this stuff
+%   with S4, but that might happen at a higher level.
 
 The return value from the call to \emph{gClass} is the identifier of the new \emph{GType}, and this can be used in calls to create instances of this type.
 
@@ -2323,13 +2502,10 @@ gSignalConnect(s, "value-changed", function(scale) {
 })
 \end{verbatim}
 Instances of any \pkg{GObject} class may be created using the
-\emph{gObject} function.
-The expression $x^3$ is set on the ``expr'' property at construction.
-The
-signal handler now calls the new \emph{getTransformedValue} method,
-instead
-of \emph{getValue} as in the original version. This final block of
-code
+\emph{gObject} function.  The value of the ``expr'' property is set to
+the R expression $x^3$ when the object is created.  The signal handler
+now calls the new \emph{getTransformedValue} method, instead of
+\emph{getValue} as in the original version. This final block of code
 completes the example:
 \begin{verbatim}
 win <- gtkWindow(show = FALSE)
@@ -2352,7 +2528,13 @@ More precise details on defining \pkg{GObject} classes are available
 in the 
 \proglang{R} help page for the \emph{gClass} function.
 
-\section{Technical Design Considerations}
+
+%DTL2: This title seems to overlap with that of section 7 and is not
+%really informative abut what is in the section which is all about
+%language bindings.
+% How about something like (I didn't give it too much thought)
+%   The model and generation of the language bindings
+\section{Language binding design and generation}
 
 \subsection{Goals and Scope}
 
@@ -2387,20 +2569,15 @@ Towards this end, it provides facilities like the \emph{RGtkDataFrame}
 utility 
 and the custom syntax for calling methods and accessing properties. 
 
-In addition to \pkg{GTK+}, \pkg{RGtk2} also binds
+In addition to \pkg{GTK+}, \pkg{RGtk2} also provides bindings for
 \pkg{Cairo}, \pkg{GDK}, \pkg{GdkPixbuf}, \pkg{Pango}, \pkg{ATK}, and
-\pkg{Libglade}.
-All of these libraries were designed with language bindings in mind,
-and, except
-for \pkg{Cairo}, they are all based on the \pkg{GObject} framework.
-The API of
-\pkg{Cairo} is sufficiently simple that its independence from
-\pkg{GObject} is
-of little consequence. As a result, there are no significant binding
-issues that
+\pkg{Libglade}.  All of these libraries were designed with language
+bindings in mind, and, except for \pkg{Cairo}, they are all based on
+the \pkg{GObject} framework.  The API for \pkg{Cairo} is sufficiently
+simple that its independence from \pkg{GObject} is of little
+consequence. As a result, there are no significant binding issues that
 are particular to a single library, so the discussion of \pkg{GTK+}
-suffices
-for all of the bindings. 
+suffices for all of the bindings.
 
 With the exception of properties and signals, which are bound at
 runtime using introspection, the \pkg{RGtk2} bindings, including
@@ -2412,7 +2589,7 @@ generation system and the type conversion routines utilized by the
 generated code. It concludes by introducing the system for
 autogenerating the \proglang{R} documentation for the package. The
 explanations assume the reader has a working knowledge of
-\pkg{GObject}, see Section \ref{sec:primer}.
+the \pkg{GObject} system (see section \ref{sec:primer}).
 
 \subsection{Automatic Binding Generation}
 
@@ -2427,20 +2604,15 @@ describes the design of the code generation system, beginning with the
 input format and then explaining how each component of the bindings is
 generated.
 
-\subsubsection[The defs Format]{The \emph{defs} Format}
+\subsubsection[The defs format]{The \emph{defs} format}
 
 The \pkg{GTK+} API and other \pkg{GObject}-based API's are often
 described by
-a Scheme-based format called \emph{defs}. A \emph{defs} file describes
-the types
-and functions of an API. The autogeneration system for the \pkg{RGtk2}
-bindings
-takes \emph{defs} files as its input. This section briefly describes
-the 
-\emph{defs} format and how it is leveraged by \pkg{RGtk2}. It
-concludes
+a Scheme-based \citep{scheme} format called \emph{defs}. A \emph{defs} file describes the types and functions of an API. The autogeneration system for the \pkg{RGtk2} bindings takes \emph{defs} files as its input. This section briefly describes the \emph{defs} format and how it is leveraged by \pkg{RGtk2}. It concludes
 with a discussion of alternative API description methods.
 
+% Make into a figure
+\begin{figure}
 \begin{verbatim}
 (define-object Widget
   (in-module "Gtk")
@@ -2456,40 +2628,54 @@ with a discussion of alternative API description methods.
   )
 )
 \end{verbatim}
+\caption{\label{fig:defs}An example of the \emph{defs} format for specifying the API of \pkg{GObject}-based libraries. This particular expression describes the \emph{GtkWidget} class.}
+\end{figure}
 
 %DTL: I would put the code snippet/example up here before explaining
 % it in this  case as I think it is reasonably self-describing and
 % helps to navigate the 3rd sentence which reads a little awkwardly. 
 The \emph{defs} format supports six different kinds of types: objects,
 interfaces, boxed types, enumerations, flags and pointers. Each of
-these correspond to a fundamental GType. Every type of definition has
-fields for its module (usually the name of the library or API), its
-\proglang{C}
-symbol and its GType, with the exception of raw pointer types, which
-lack a specific GType. The objects, boxes, and pointers may contain a
-list of field definitions, each consisting of the type and name of a
-field. The type names are formatted as they are in \proglang{C} except
-for some special syntax for indicating arrays and specifying the type
-of the elements in a list. Object definitions have a field for the
-parent type, while definitions of boxed types specify the copy and
-free functions of the type.  Each enumeration and flag definition
-contains a list of their allowed values.  As an example, the
-\emph{defs} representation of the \emph{GtkWidget} object is given
-below.
+these correspond to a fundamental GType (see section \ref{sec:gtype}). 
+%DTL2:  reference back to the sectin discussing types.
+Every type of definition has
+a field identifying the module in which it is contained (usually the
+name of the library or API), its \proglang{C} symbol and its GType,
+with the exception of raw pointer types, which lack a specific
+GType. The objects, boxes, and pointers may contain a list of field
+definitions, each consisting of the type and name of a field. The type
+names are formatted as they are in \proglang{C} except for some
+special syntax for indicating arrays and specifying the type of the
+elements in a list. Object definitions have a field for the parent
+type, while definitions of boxed types specify the copy and free
+functions of the type.  Each enumeration and flag definition contains
+a list of their allowed values.  As an example, the \emph{defs}
+representation of the \emph{GtkWidget} object is given in Figure \ref{fig:defs}. 
+%DTL2: reference the figure giving the GtkWidget defs.
 
 In addition to types, the \emph{defs} format supports definition of
-four kinds of callables: functions, methods, virtuals and
+four kinds of invocable or callable elements: functions, methods, virtual functions and
 callbacks. All callable definitions contain the \proglang{C} symbol, a
 return type, whether the caller owns the returned memory and a list of
-parameter definitions. Each parameter definition contains a type,
+parameter definitions.
+
+Each parameter definition contains a type,
 name, parameter
 %DTL: Needs some explanation/definition.
-direction (in or out), optional default value and optional deprecation
-message. Parameter direction refers to whether a parameter is passed as input (\emph{in}) to the function or is part of the return value (\emph{out}), which is known as ``return by reference'' in \proglang{C}. Parameter types are formatted like field types. Methods are distinguished from plain functions in that they belong to an object or interface type, and the name of that type is specified in each method definition.  Another difference is that functions, but not methods, may be marked as constructors, i.e. for creating objects of that type. 
+direction (in or out),
+%DTL2: what about inout parameters?
+%DTL2: Also, some examples of out arguments would be usefule.
+optional default value and optional deprecation
+message. Parameter direction refers to whether a parameter is passed as input (\emph{in}) to the function or is part of the return value (\emph{out}), which is known as ``return by reference'' in \proglang{C}. An example is retrieving the dimensions of a \emph{GdkDrawable}, the rectangular target of \pkg{GDK} drawing operations. The method \emph{gdkDrawableGetSize} has two integer out parameters, \emph{width} and \emph{height}. A few parameters in the bound API's are sent in both directions, but these so-called \emph{inout} parameters are so rare that we handle them manually. Parameter types are formatted like field types. 
+
+There are slight differences in the way the different types of callables are defined in the \emph{defs}. Functions may be marked as constructors, i.e. for creating objects of a specified type. Methods and virtual functions belong to an object or interface type. This distinguishes them from plain functions and callback functions, which are independent of a class. The name of the type declaring the method or virtual function is specified in the definition.
 %DTL: This example should be put somewhere else in the text as it is
 % unrelated to constructors and virtuals and so is a non-sequitor
 Below is an
 example of the \emph{getSize} method on \emph{GtkWindow}:
+%DTL2:  Explain or comment on the ' preceeding the parameters.
+%MFL2: Is it really necessary? We already say the format is Scheme.
+%      I will add a reference to Scheme.
 \begin{verbatim}
 (define-method get_size
   (of-object "GtkWindow")
@@ -2501,13 +2687,9 @@ example of the \emph{getSize} method on \emph{GtkWindow}:
   )
 )
 \end{verbatim}
-Virtual method definitions contain the same information as method
-definitions. The difference is that the virtual methods
-%DTL: virtual whats? This sentence is not clear.
-are overridable fields in a class structure, while methods are
-declared independently and often serve as ``public'' wrappers of
-virtuals.  Callbacks are functions that are passed to and returned
-from API functions, and they are defined like functions. 
+
+% I took out the text on virtual functions and callbacks, as it
+% seemed redundant and uninformative.
 
 The \proglang{Python} binding to \pkg{GTK+},
 \pkg{PyGTK} \citep{PyGTK}, provides Python classes for the generation
@@ -2554,11 +2736,18 @@ switch. A second XML-based format, \emph{GIDL} \citep{gidl}, has
 recently been developed as a unifying standard for representing
 \pkg{GObject}-based API's. Although no official tools for generating
 \emph{GIDL} yet exist, it holds promise for being accepted as a
-standard, as it has the backing of \pkg{GTK+} developers. The use of XML as input to our code generation system would remove the dependency on the \pkg{RSPython} package.
+standard, as it has the backing of \pkg{GTK+} developers. The use of
+XML as input to our code generation system would substitute the
+dependency on the \pkg{RSPython} package with the \pkg{XML} package
+and this might prove simpler.
 %DTL: Mention that using XML would remove the dependency on RSPython.
 
-\subsubsection{The Generated Code}
+%DTL2: This section heading just hangs out there given the  paragraph
+%label below. Perhaps an introduction sentence or so.
+\subsubsection{The Generated Bindings}
 
+This section introduces each component of the bindings output by the code generation system. The components include a set of wrappers for each callable type, an accessor function for each field, and code for creating an \proglang{R} vector for each enumeration/flags type.
+ 
 \paragraph{Function and Method Wrappers}
 
 Functions and methods are mapped to \proglang{R} functions of the same
@@ -2593,7 +2782,7 @@ returned to the user.
 The following is an example of this process for the function 
 \emph{gtkWidgetCreatePangoLayout}, which is a commonly used function
 for
-drawing text to a widget, such as a \emph{GtkDrawingArea}. First, we
+drawing text on a widget, such as a \emph{GtkDrawingArea}. First, we
 present
 the autogenerated \proglang{R} wrapper, from the \pkg{RGtk2} source
 code, 
@@ -2619,12 +2808,16 @@ wrapper with the validated arguments and returns the result. Below is
 the
 source code listing of the
 \emph{S\_gtk\_widget\_create\_pango\_layout} function.
+%DTL2: Instead of USER_OBJECT_ which is for handling both R and S with
+%the same C code, we should probably just use SEXP here to clarify
+%things.
+% Similarly, R_NilValue
+
 \begin{verbatim}
 USER_OBJECT_
-S_gtk_widget_create_pango_layout(USER_OBJECT_ s_object, USER_OBJECT_
-s_text)
+S_gtk_widget_create_pango_layout(SEXP s_object, SEXP s_text)
 {
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  SEXP _result = R_NilValue;
   GtkWidget* object = GTK_WIDGET(getPtrValue(s_object));
   const gchar* text = ((const gchar*)asCString(s_text));
 
@@ -2640,24 +2833,23 @@ s_text)
 \end{verbatim}
 The \proglang{R} types are converted to \proglang{C} types and passed
 to
-the actual \pkg{GTK+} function. The answer, a \emph{PangoLayout}
+the actual \pkg{GTK+} function. The result, a \emph{PangoLayout}
 object, is
 converted to an \proglang{R} \emph{externalptr} type and returned.
 
 \paragraph{Constructors}
+%DTL2: Provide some introduction and motivatin rather than a technical
+%process.
+%e.g. 
 
-For each object class, a function is created with its parameter list
-matching 
-the union of all of the parameter lists for each constructor of the
-class.
-The function body delegates to one of the constructors based on which
-parameters are provided by the user. The name of the function is the
-name
-of the class with the first character in lower case. As an example,
-the 
-programmatically generated \emph{gtkButton} function, the
-meta-constructor for \emph{GtkButton},
-is given below.  The \emph{GtkButton} class has three constructors which correspond to the functions \emph{gtkButtonNewFromStock(stock.id)}, \emph{gtkButtonNewWithLabel(label)} and the basic \emph{gtkButtonNew}, which takes no arguments. From these, we generate the following code:
+There are often several constructor routines for a given \pkg{GTK+}
+class, e.g. for \emph{GtkButton} there is \emph{gtkButtonNew}, \emph{gtkButtonNewWithLabel}, \emph{gtkButtonNewFromStock}. While bindings for each of these are available, we also want the \proglang{R} programmer to be able to use a single general purpose constructor function, e.g. \emph{gtkButton()}. Depending on which arguments are provided to \emph{gtkButton()}, the code decides which of the low-level constructors is to be invoked.
+
+For each object class, the high-level constructor function (e.g. \emph{gtkButton()}), is programmatically generated. Its parameter list
+matches the union of all of the parameter lists for each constructor of the class. The function body delegates to one of the constructors based on which parameters are provided by the user. As with \emph{GtkButton}, the name of the constructor is the name
+of the class with the first character in lower case. 
+
+As an example, the code for the programmatically generated \emph{gtkButton()} function is given below.  The \emph{GtkButton} class has three constructors which correspond to the functions \emph{gtkButtonNewFromStock(stock.id)}, \emph{gtkButtonNewWithLabel(label)} and the basic \emph{gtkButtonNew}, which takes no arguments. From these, we generate the following code:
 %DTL: tell the reader that there are 3 constructors and tell them the
 %definitions and so they can understand the mapping that is created.
 % Something like
@@ -2677,10 +2869,16 @@ gtkButton <- function (label, stock.id, show = TRUE)
     }
 }
 \end{verbatim}
+This then allows the R programmer to use calls such as
+\begin{verbatim}
+gtkButton()
+gtkButton('my label')
+gtkButton(stock.id = '...')
+\end{verbatim}
 
 \paragraph{Callback Wrappers}
 %DTL:  I find these two paragraphs all very confusing. The notion of
-direction needs
+%direction needs
 %to be made more precise as it relates to the origin of the call to a
 %routine or function. Again, instead of focusing on details, I think
 %it would be much clearer to give the general description or concept.
@@ -2691,24 +2889,47 @@ direction needs
 % arguments to the R equivalents and invokes the R function,
 % converting and returning the return value as appropriate.
 %
-Callbacks are functions that are passed to and returned from the API. As with signal handlers, the user needs to provide an \proglang{R} function to serve as the callback. The flow of control for callbacks is the reverse relative to that for functions in the API. A \proglang{C} function is invoked by the external library, and that function converts its parameters to their \proglang{R} equivalents, calls the user-provided \proglang{R} function, and converts the result to its \proglang{C} equivalent before returning it.
+
+%DTL2:  This section still needs more information. It is a very
+%important section and vital that readers really comprehend.
+
+%MFL2: I've tried to add more information. But it may now be too
+% detailed and thus confusing.
+
+Callbacks are functions that are passed to and returned from functions and methods in the API of a library. After a callback is registered, the library may invoke it to perform a particular task, and, in so doing, it \emph{calls back} into client code. Thus, callbacks are one means for a client to customize part of the functionality of a library.
+
+An example of a function that registers a callback is \emph{gtkTreeViewColumnSetCellDataFunc}, which is used by the \emph{create\_tree\_view} function in section \ref{sec:spreadsheet-model} to customize the rendering of the numeric values as text in the spreadsheet. There are two integral components of the bindings that enable support for callback functions. First, there is the wrapper for each callback registration function, like \emph{gtkTreeViewColumnSetCellDataFunc}. Then, for each callback function, there is a \proglang{C} implementation of the callback that delegates to the \proglang{R} function registered as the callback by the user.
+
+In general, callback registration functions take two parameters: the callback function and a ``user-data'' structure that is conventionally passed as the final argument to the callback function. Similar to connecting a handler to a signal, the user needs to provide an \proglang{R} function as the callback function. The ``user-data'' parameter is optional; if given, it may be any \proglang{R} object.
+
+When wrapping a callback registration function, special handling is required for its parameters. As the underlying \proglang{C} registration function requires a \proglang{C} function for its callback parameter, we pass an autogenerated \proglang{C} function, which delegates to the user-provided \proglang{R} callback function (see below). In order to provide the  \proglang{R} function to the \proglang{C} wrapper, we place the \proglang{R} function, as well as the \proglang{R} ``user-data'' (if any) in a structure and pass that structure to the underlying \proglang{C} registration function as the ``user-data''.
+
+The generated code for the \proglang{C} wrapper that delegates to the user-provided \proglang{R} callback is similar to that of an ordinary function wrapper, except the flow of control is in the opposite direction. When invoked, the function retrieves the \proglang{R} function and ``user-data'' object from the special structure passed as the ``user-data'' to the wrapper. The wrapper then converts its parameters to their \proglang{R} equivalents, calls the user-provided \proglang{R} function, and returns the result after converting it to its \proglang{C} equivalent.
+
+%DTL2: How is this done in the wrappers/bindings? Issues with
+%recursives calls? or is a void * used to pass data and avoid global variables.
+
+%MFL2: I've added these details.
 
 \paragraph{Virtual Function Wrappers}
+%DTL2: Somewhat confusing.
+Virtual functions, like \emph{format\_value} in the \emph{RTransformedHScale} class defined in section \ref{sec:class-example}, are bound to \proglang{R} in order to support the extension of \pkg{GObject} classes. Wrappers for virtual functions are generated for both directions, from \proglang{R} to \proglang{C}, like the function wrappers, and from \proglang{C} to \proglang{R}, like callbacks. 
 
-Virtual functions are wrapped in both directions, from \proglang{R} to
-\proglang{C}, like the function wrappers, and from \proglang{C} to \proglang{R}, like callbacks. Virtual functions are not meant to be called from client code, but they are bound in the forward direction for use when implementing new types. In 
-%DTL: chaining up needs to be defined, and again it would be better to
-%get the concept, not some jingo that is imprecise but unclear.
-particular, they are necessary for calling the overriden implementation of a virtual method in the parent class. The reverse mapping is needed to allow the overriding of virtual methods when extending \pkg{GObject} classes. The \proglang{R} functions implementing the virtual methods are stored within the \pkg{GObject} class structure. When a virtual method is invoked, the code searches for a corresponding \proglang{R} function. If one is found, the \proglang{R} function is invoked in the manner described above for general callbacks. If no overriding function is found, the code delegates to the implementation of the method in the parent class.
+Although virtual functions are not public like methods, they are bound in the forward direction for calling the overriden implementation of a virtual function in a parent class.  The generated code in this case is very similar to that for wrapping ordinary functions and methods.
+
+The reverse wrapper, from \proglang{C} to \proglang{R}, is needed to support the overriding of virtual functions through inheritance. The \proglang{R} functions implementing the virtual functions are stored within the \pkg{GObject} class structure. When a virtual function is invoked, the code searches for a corresponding \proglang{R} function. It is not guaranteed that one exists within the class structure, as a class need not override every virtual function it inherits. If one is found, the \proglang{R} function is invoked in the manner described above for callbacks functions. If no overriding function is found, the code delegates to the implementation of the method in the parent class.
 %DTL: A picture would make this clearer. 
-
 
 \paragraph{Field Accessors}
 
-Fields, which are virtually always considered read-only in
-\pkg{GObject} API's, may be accessed in \proglang{R} as if they were
-an element of a named vector, which should be familiar to every
-\proglang{R} programmer. This mechanism is based on an \proglang{R}
+Fields, which are typically considered read-only in
+\pkg{GObject} API's, may be accessed in \proglang{R} using the extraction function \emph{[[} as in \emph{obj[[name]]}. The usage of \emph{[[} is the same as when extracting a named element from an \proglang{R} list, which should be familiar to every
+\proglang{R} programmer. 
+%DTL2:  This emphasis on vector is critical. Many might expect
+%obj[[name]] to work and also obj$name which won't. So somewhat
+%confusing and maybe worth noting.  Similarly for $<- and [[<-.
+%MFL2: tried to clear this up
+This mechanism is based on an \proglang{R}
 wrapper function named according to the scheme
 \emph{classNameGetFieldName}, e.g. \emph{gtkWidgetGetStyle} for retrieving the \emph{style} field from an instance of \emph{GtkWidget}. %DTL: add an example
 This function works much the same as the function bindings introduced
@@ -2717,7 +2938,6 @@ above, except the \proglang{C} wrapper accesses a field of a
 the value from C to R.
 
 \paragraph{Enumeration and Flag Definitions}
-
 Although the function wrappers accept the string representations of
 enumerations 
 and flags, as that is likely familiar to \proglang{R} programmers,
@@ -2743,10 +2963,18 @@ such as \emph{int} and
 \emph{double}, is relatively obvious and simple. Pointers to
 \proglang{C} structures are converted
 in two different ways, generally referred to as ``high-level''
-and ``low-level'' type conversion. High-level conversion is the
+and ``low-level'' type conversion. 
+%DTL2: These are usually referred to as deep and shallow copies so it
+%would be good to use that terminology.
+%MFL: But it's not the same as copying - it's conversion. 
+% In the FFI literature I've read, it's high-level vs. low-level.
+High-level conversion is the
 translation
 between a \proglang{C} structure and a native \proglang{R} object,
-such as a list. 
+%DTL2: why not an S3 or better yet an S4 class?  Why give up information?
+%MFL2: S3 is often used here. 
+% S4 would be another possibility. We could to this at some point.
+such as a list. The class attribute on the object normally corresponds to the type of the original \proglang{C} structure. 
 The alternative is low-level conversion to and from
 \proglang{R} \emph{externalptr}s. For consistency, the method of
 conversion is 
@@ -2764,7 +2992,7 @@ conversion.
 \subsubsection[High-level Conversion]{High-level
 Conversion}\label{sec:high-level-conversion}
 
-High-level structure conversion produces and consumes a native
+High-level structure conversion either produces or consumes a native
 \proglang{R} object instead of a low-level \emph{externalptr}. The
 advantage of a native R value is more obvious integration with
 \proglang{R}. In particular, reference semantics are avoided.
@@ -2774,7 +3002,8 @@ feasible in certain cases.  One rare case is where a complex
 \proglang{C} type has a clear analog in \proglang{R}.  An example of
 this is the \emph{GString} structure, which is a convenience wrapper
 around an array of characters. This is naturally mapped to an
-\proglang{R} \emph{character} vector. The more common second case is
+\proglang{R} \emph{character} vector of length 1, i.e. a single string and
+not a vector of characters. The more common second case is
 the conversion between \proglang{C} structures and \proglang{R} lists,
 where each field of the structure is represented by an element in the
 list, in the same order. The names of the list elements match the
@@ -2784,9 +3013,9 @@ Structures qualify for the second case if they are meant to be
 initialized directly in \proglang{C} and therefore lack a constructor.
 Although a new function could be introduced as a constructor, this
 would introduce an unnecessary inconsistency between \proglang{R} and
-\proglang{C}. In virtually all cases, if the underlying API requires
-that a structure be initialized directly, the structure is relatively
-simple, with all public fields, and the design of the \proglang{C} library does not require the structure to be treated as a reference. Thus, it is feasible to perform high-level conversion on such structures. An example of this type of high-level conversion may be found in the spreadsheet example in Section \ref{sec:spreadsheet-example}. The actions for the menu and toolbar are specified as lists; no external references are created.
+\proglang{C}.
+%DTL2: This sentence is quite hard to parse, so difficult to understand.
+In our experience, if the underlying API requires that a structure be initialized directly, it is feasible to perform high-level conversion on the structure. An example of this type of high-level conversion may be found in the spreadsheet example in Section \ref{sec:spreadsheet-example}. The actions for the menu and tool bar are specified as lists; no external references are created.
 
 \subsubsection[Low-level Conversion]{Low-level Conversion}
 
@@ -2798,7 +3027,9 @@ many structures as references. For reasons connected to run-time
 ``safety'' and method dispatch, the type of the pointer, as well as
 the entire class hierarchy in the case of an object, is stored as a
 character vector in the \emph{class} attribute of the \proglang{R}
-object. This is used, for example, when checking parameter types in
+object. 
+%DTL2: Should also be in the tag of the external pointer for further checking.
+This is used, for example, when validating inputs in
 function wrappers, as well as for determining the function to call
 when the user employs the object-\$-method syntax.
 
@@ -2806,7 +3037,9 @@ An important consideration when handling references is memory
 management, which needs to be hidden from the \proglang{R} user. The
 base policy is that memory is preserved until it is no longer
 referenced by \proglang{R}. This relies on the \proglang{R} garbage
-collector. Boxed structures are copied using their copy function and
+collector and the reference counting of \pkg{GObject}. 
+%DTL2: And gtk's and gobject's reference counting. So a combination of both.
+Boxed structures are copied using their copy function and
 registered for finalization using their free function. Instances
 derived (directly or indirectly) from the \emph{GObject} class are
 managed using a reference counting scheme. The reference count is
@@ -2827,6 +3060,12 @@ manage its memory.
 Thus, the structure is passed to \proglang{R} without copying it or
 otherwise
 transferring the ownership of the memory to \proglang{R}, in the hope
+%DTL2: Can we do better than hope? At least tag these functions manually?
+%MFL2: What do you mean? We could try to write our own copy/free
+% functions (i.e. make the structures boxed). But the fields are
+% often declared in private headers, so maintenance would be tough.
+% In some cases, copying would be very inefficient, and reference
+% counting would not work without cooperation from the external code.
 that the
 memory is not freed externally. Thankfully, these types of structures
 are rare.
@@ -2838,38 +3077,31 @@ which avoids holding a reference.
 % In the case of these plain pointers, it would not be easy, since
 % the size of the strucure is not generally known.
 
-The second exception is \emph{GtkObject}, which
-extends \emph{GObject} to support explicit destruction via the 
-\emph{gtkObjectDestroy} function. When that function is invoked, the
-``destroy''
-signal is emitted. All parties that hold a reference to the object are
-required
+The second exception is \emph{GtkObject}, which extends \emph{GObject}
+to support explicit destruction via the \emph{gtkObjectDestroy}
+function. When that function is invoked, the ``destroy'' signal is
+emitted. All parties that hold a reference to the object are required
 to respond to the signal by releasing their reference. This
-functionality is 
-useful for destroying widgets when they are no longer needed, even if
-other 
-parties hold references to them. However, it also means that the
-\proglang{R}
-references to the object will become invalid even though they are
-still
-visible to the \proglang{R} session. When a reference to a
-\emph{GtkObject} is
-obtained, \pkg{RGtk2} connects to the ``destroy'' signal.  Besides
-releasing
-the reference, the signal handler modifies the \emph{class} attribute
-of the 
-\emph{externalptr} to a sentinel value indicating that the reference
-is invalid.
-If the programmer attempts to use invalidated reference, an error will
-be thrown.
-This silent modification of the class attribute may surprise the
-\proglang{R}
+functionality is useful for destroying widgets when they are no longer
+needed, even if other parties hold references to them. However, it
+also means that the \proglang{R} references to the object will become
+invalid even though they are still visible to the \proglang{R}
+session. When a reference to a \emph{GtkObject} is obtained, the
+\pkg{RGtk2} package transparently connects a handler to its ``destroy'' signal.
+Besides releasing the reference, the signal handler modifies the
+\emph{class} attribute of the \emph{externalptr} to a sentinel value
+indicating that the reference is invalid.  If the programmer attempts
+to use an invalidated reference, an error will be thrown.  This silent
+modification of the class attribute may surprise the \proglang{R}
 programmer, but it avoids fatal errors that may corrupt the R session
 (e.g. segmentation faults).
 
 \subsubsection{Arrays}
 
-\proglang{C} arrays are converted to \proglang{R} lists, with each
+\proglang{C} arrays are converted to \proglang{R} lists, 
+%DTL2: event arrays of homogeneous primitive elements, e.g. int[] or a
+%garray of ints.
+with each
 element
 converted individually. The primary complication is that \proglang{C}
 arrays 
@@ -2884,17 +3116,20 @@ along with arrays. Array length parameters need to be hidden from the
 length.
 The code generator uses heuristics to identify array length parameters
 and
-does not require the \proglang{R} programmer to provide them. For
+does not require the \proglang{R} programmer to provide them. 
+%DTL2:  Show a specific, concrete example of a gtk function signature in which this
+%happens. Also, does it get them all right? If not, how do we override this.
+For
 example,
 if an array parameter is followed by an integer parameter, the
 generator
 will assume the integer parameter specifies the length of the array.
-For input
-parameters, the wrapper passes the length of the input \proglang{R}
-list as
-the array parameter. For returned arrays, a similar heuristic finds
-the returned
-length and uses it when converting the array to an \proglang{R} list.
+%DTL2: Example....
+A specific example of this is the function \emph{gtkActionGroupAddActions}, which is called in section \ref{sec:spreadsheet-actions} as part of the spreadsheet application example. The function wraps the \proglang{C} function with the signature \emph{gtk\_action\_group\_add\_actions(GtkActionGroup *action_group, GtkActionEntry *entries, guint n\_entries, gpointer user\_data)}. The generator guesses that the unsigned integer \emph{n\_entries} parameter represents the length of the array of \emph{GtkActionEntry} structures passed as \emph{entries}. 
+For input parameters, the wrapper passes the length of the input \proglang{R} list as the array parameter. For returned arrays, a similar heuristic finds the returned length and uses it when converting the array to an \proglang{R} list. For example, the \proglang{C} function \emph{gtk\_recent\_chooser\_get\_uris(GtkRecentChooser *chooser, gsize *length)} returns an array of strings, containing the URI's in a recent file chooser widget. The generator identifies the \emph{length} return-by-reference (out) parameter as representing the length of the returned array. This heuristic is slightly less reliable compared to the one for input arrays, since there is no array parameter to search around for a length parameter.
+%DTL2: example.   Also note that this is more difficult to get right,
+%at least  without being able programmatically process the body of the routine.
+In cases where these heuristics fail, we manually implement the function wrapper (relying on the code generator for a head start).
 
 \subsubsection{Errors}
 
@@ -2908,10 +3143,15 @@ value of \emph{TRUE} or \emph{FALSE} as the value of the
 raised.  Alternatively, if \emph{.errwarn} is \emph{FALSE}, no warning
 will be emitted and the user can inspect a returned list structure
 containing the fields of the \emph{GError}, which often holds more
-information compared to the warning string. In the future, a new type of R-level condition may be
-added for
-a \emph{GError}, but warnings are currently emitted due to their
-familiarity to the \proglang{R} programmer.
+information compared to the warning string. In the future, a new type of R-level condition may be added for a \emph{GError}, but the system currently emits only warnings.
+%DTL2: But we can use the extensible error/condition system in R
+%without any additional complexity for the user as these are regular
+%extensions of the basic errors and warnings, so no different for the
+%user, just easier to handle with tryCatch() as there would be types
+%on the errors.
+%MFL2: Well, this was my plan, but I think warnings are still more
+% familiar to R users compared to a new type of condition.
+% Anyway, I took that part out.
 
 
 \subsection{Autogeneration of the Documentation}
@@ -2947,7 +3187,7 @@ Fortunately, all of the bound libraries rely on the \pkg{gtk-doc}
 utility that 
 produces documentation as Docbook XML. The XML representation may be
 parsed into \proglang{R} using the XML package \citep{XML}. From
-within \proglang{R} it is possible
+within \proglang{R}, it is possible
 to introspect the bindings and access the API descriptions stored
 in the \emph{defs} files. By combining this information with the
 original 
@@ -2969,7 +3209,8 @@ is still very much a work in progress.
 %ML: The problem is really related to processing the natural language
 % of the documentation.
 
-\section{Technical Issues}
+\section{Technical Language Binding and GUI Issues}
+%DTL2:  Perhaps a more expressive/informative title.
 
 \subsection{Fully Programmatic Binding Generation}
 
@@ -2983,9 +3224,10 @@ of the \proglang{C} functions. This requires human annotatation of the
 \emph{defs}
 files.  The two most common types of required annotation are the
 direction
-of parameters (in or out) and the transfer of memory ownership. There
+of parameters (in, out or inout) and the transfer of memory ownership. There
 is no
 way to determine this information from the header files. 
+%DTL2: But can (with difficulty) from the source code.
 
 One way the machine might programmatically determine information about
 return-by-reference parameters, memory management and other aspects
@@ -3014,14 +3256,18 @@ no longer be necessary. However, runtime introspection of functions
 would
 have a high performance cost due to the need to lookup the information
 each time it is needed and the consumption of a large amount of memory.  
-%DTL: Why if we have compiled bindings would we need this information
-around.
-One way around this would be to use the information for generating a compiled interface but not to load the information during normal use of the library. Still, the previous solution of storing
-the information in comments would have the advantage of being
-accessible
+%DTL: Why if we have compiled bindings would we need this information around.
+One way around this would be to use the information for generating a
+compiled interface but not to load the information during normal use
+of the library. Still, the previous solution of storing the
+information in comments would have the advantage of being accessible
 without linking to the library.
 
-A more radical solution would be an entirely different language, which
+A more radical solution would be to write libraries in an entirely different language,
+%DTL2: for what - the defs files, the Gtk developers, the R
+%programmerusng the bindings?
+%MFL2: A language for implementing the libraries (so yes Gtk)
+ which
 compiled down to \pkg{GObject}-based \proglang{C} code. The design of
 the
 language would ensure that all information necessary for binding would
@@ -3038,22 +3284,30 @@ and function parameter directions may be obtained. Of course, this
 solution would require an existing library to be completely
 reimplemented in
 \proglang{Vala}, so it may only be feasible in the future, if and when
-\proglang{Vala} becomes more widespread.
+\proglang{Vala} becomes more widespread. Another drawback is that it introduces an additional compilation stage and thus complicates the build process.
+%DTL2: But Vala has its own limitations.   
+%DTL2: Somehow this paragraph sounds as if this is the right way to do
+%things, but thre is little evidence of that other than it being
+%different and new.
+%MFL2: Well I say that it might only be feasible in the future
+% assuming Vala even becomes "mainstream" - seems unlikely.
+% I added a sentence saying that it complicates the build process.
 
 \subsection[RGtk2 as a Base for Other GObject Bindings]{\pkg{RGtk2} as
 a Base for Other \pkg{GObject} Bindings}
 
-Although the mainstream software development community seems to have
-shifted its interest from \proglang{C} to \proglang{C++} and virtual
-machine runtimes like \proglang{Java} and \proglang{.NET}, the primary
-implementations of most progamming languages are still written in
+% Took out the claim about C++/Java/.NET being popular
+
+Implementations of most progamming languages are still written in
 \proglang{C}. This suggests that libraries implemented in \proglang{C}
 are likely accessible to more languages than those implemented in
 \proglang{Java}, for example. \pkg{GObject} is designed with language
-bindings in mind, and \proglang{Vala} is an object-oriented language
-for implementing \pkg{GObject}-based libraries.  Given these
-incentives for basing libraries on \pkg{GObject}, it is likely that
-the number of such libraries will continue to grow.
+bindings in mind.
+%DTL2: This reference to Vala seems unrelated to anything before or
+%after and doesn't seem to add much to the argument.  
+%MFL2: Removed, but it's definitely an incentive to me. Writing
+% GObject code in C is a serious chore.
+Given this incentive, it is likely that the number of \pkg{GObject}-based libraries will continue to grow.
 
 \pkg{RGtk2} has been designed to serve as a base for other
 \proglang{R}
@@ -3082,7 +3336,7 @@ All user interfaces need to respond to user input. \pkg{GTK+} provides
 an \emph{event loop} that checks for user input and executes
 application callbacks when necessary. \pkg{GTK+} applications written
 in \proglang{C} usually execute the \pkg{GTK+} event loop after
-initialization. The loop takes is started and is continues processing
+initialization. The loop takes is started and continues processing
 events until the GUI is terminated. The interactive \proglang{R}
 session is a user interface, and it has its own event loop. When using
 \pkg{RGtk2} from an interactive session, there are two event loops,
@@ -3099,17 +3353,20 @@ are not executed reliably. While it is not expected that many
 \pkg{RGtk2} users will rely on timers, several \pkg{GTK+} widgets use
 timers for animation purposes. These widgets tend not to be as
 responsive as the others without reliable iteration of the \pkg{GTK+}
-event loop. One solution to this problem is to invoke the function
+event loop. One solution to this problem is to invoke the R function
 \emph{gtkMain}, which transfers control to the \pkg{GTK+} event loop
 and blocks the \proglang{R} console for the lifetime of that GUI.  If
-the user is willing the sacrifice access to the regular \proglang{R}
+the user is willing to sacrifice access to the regular \proglang{R}
 console, this is a viable method to enhance the responsiveness of the
 \pkg{GTK+} GUI.  Of course, an alternative command line interface can
 be provided by implementing it within a Gtk+-based GUI and so the user
-would have both. Indeed, we feel that R should not have its
-own event loop but rather be treated as library from other front ends.
-Another possible solution would be a multithreaded model, with
-synchronized access to the \proglang{R} evaluator. There has been some work towards a solution to this problem, such as the REventLoop package \citep{REventLoop}, but this remains an important area for further research.
+would have both. Indeed, we feel that R should not have its own event
+loop but rather be treated as library from other front ends.  Another
+possible solution would be a multithreaded model, with synchronized
+access to the \proglang{R} evaluator. There has been some work towards
+a solution to this problem, such as the REventLoop package
+\citep{REventLoop}, but this remains an area for further
+research.
 %DTL: There has been work on this, REventLoop package
 
 \section[Comparison of RGtk2 to other R GUI toolkit
@@ -3155,37 +3412,29 @@ canvas widget
 being one example.
 
 Unfortunately, \pkg{tcl/tk} development is slow and the library is
-beginning
-to show its age. It lacks many of the widgets present in \pkg{GTK+}
-and
-other modern toolkits, such as tree tables, progress bars, and
-autocompleting
-text fields. \pkg{tcl/tk} widgets are often less sophisticated than
-their
-\pkg{GTK+} counterparts. For example, a \pkg{GTK+} menu is able to be
-torn off
-as an independent window and the \pkg{GTK+} file chooser supports the
-storage
-of shortcuts. \pkg{tcl/tk} also lacks theme support, so it is not able
-to
-emulate native look and feels. There is no existing means
-for constructing \pkg{tcl/tk} GUIs from XML descriptions, like
-\pkg{Libglade}
-\citep{libglade} for \pkg{GTK+}. Also, \pkg{tcl/tk} is not
-object-oriented,
-and it is not possible to override the fundamental behavior of
-widgets.
-While one can build so-called ``megawidgets'' on top of existing
-\pkg{Tk} widgets, this is not the same as creating new
-\emph{GtkWidget}-derived
-classes with \pkg{RGtk2}. Moreover, the design goals of the
-\pkg{tcltk} package
+beginning to show its age. It lacks many of the widgets present in
+\pkg{GTK+} and other modern toolkits, such as tree tables, progress
+bars, and autocompleting text fields. \pkg{tcl/tk} widgets are often
+less modern or sophisticated than their \pkg{GTK+} counterparts. For
+example, a \pkg{GTK+} menu is able to be torn off as an independent
+window and the \pkg{GTK+} file chooser supports the storage of
+shortcuts. \pkg{tcl/tk} also lacks theme support, so it is not able to
+emulate native look and feels.  \pkg{tcl/tk} is
+not object-oriented, and it is not possible to override the
+fundamental behavior of widgets.  While one can build so-called
+``megawidgets'' on top of existing \pkg{Tk} widgets, this is not the
+same as creating new \emph{GtkWidget}-derived classes with
+\pkg{RGtk2}. Moreover, the design goals of the \pkg{tcltk} package
 differ from those of \pkg{RGtk2}, in that \pkg{tcltk} aims to expose
-the 
-functionality of the \proglang{Tcl} engine to the \proglang{R}
-programmer, while 
-\pkg{RGtk2} is a binding to a collection of specialized \proglang{C}
-libraries.
+the functionality of the \proglang{Tcl} engine to the \proglang{R}
+programmer, while \pkg{RGtk2} is a binding to a collection of
+specialized \proglang{C} libraries.
+%DTL2: Importantly, no serious application  in wide-spread use is
+%built on tcl/tk. It is for smaller, one-off, older applications.
+%MFL2: That seems to be what it was designed for, but it would be
+% tough to back up this claim. For example, aMSN is a popular
+% MSN chat client, at least on Linux.
+
 
 The Windows-specific \pkg{tcltk2} package \citep{tcltk2} is an attempt to overcome some
 of the limitations of the \pkg{tcltk} package by binding the
@@ -3215,16 +3464,28 @@ implementation of \pkg{wxWidgets}.  The first binding from
 package that leverages \pkg{RSPython} to access the \proglang{Python}
 binding to \pkg{wxWidgets}.  \pkg{RwxWidgets} \citep{RwxWidgets} is a
 more recent binding that directly binds to the \proglang{C++} classes
-of \pkg{wxWidgets}.  \pkg{wxWidgets} is somewhat restricted by the
-combined limitations of its underlying native libraries, so it is not
-able to offer the fine-grained control of \pkg{GTK+}. However, this may not matter in practice.
+of \pkg{wxWidgets}. 
 %DTL: example of this? Does it in fact matter?
+%DTL2: I still think this claim is dubious and somewhat spurious
+%especially when we mention Swing later in the section and do not
+%attribute the same limitations to it.
+%MFL2: But Swing does not follow this pattern (it's like GTK+)
+% Maybe you mean AWT or SWT? Anyway, the claim is gone.
+
+%  Both use a "common
+%denominator" approach, but both allow one to use toolkit-specific
+% facilities, but in a mre convention-oriented manner, i.e. by
+% defining an interface and stating that it is not implemented for one
+% or other platforms. So the code still works. Which is essentially
+% the same as using a specific tookit.
 \pkg{wxWidgets} also lacks integrated 2D vector graphics. The
-\pkg{RwxWidgets} package does not yet bind to an XML GUI builder like
-\pkg{Libglade}.
+\pkg{RwxWidgets} package does not yet bind to a parser of external GUI descriptions like \pkg{Libglade} for \pkg{GTK+}.
 However, \pkg{wxWidgets} does provide some features that
 do not exist yet in base \pkg{GTK+}, such as HTML display and a
 dockable window framework.
+%DTL2: I believe it does.
+%MFL2: There are libraries (e.g. WebKitGTK) but nothing in base
+% GTK+, so RGtk2 does not bind them.
 %DTL: There are many more things wxWidgets provides such as document
 %models, MDI, threads, ...
 %ML: Please feel free to add anything here.
@@ -3233,7 +3494,13 @@ The \pkg{RDCOM} \citep{RDCOM} and \pkg{R-(D)COM} \citep{RDCOM2}
 packages provide an interface between \proglang{R} and \pkg{DCOM}
 \citep{DCOM}. This permits manipulation of existing GUIs, such as that
 of Microsoft Office or programmatically placing ActiveX controls on an
-Excel spreadsheet and connecting R functions to their events. The
+Excel spreadsheet and, with the \pkg{RDCOMEvents} package \citep{RDCOMEvents}, connecting R functions to their events.
+%DTL2: Are you sure that you can do this with R-(D)COM.  I don't think
+%one can do it directly, but have to program this with Visual Basic
+%event handlers that call R. The RDCOMEvents package does allow this
+%to be done directly in R with pretty much the same spirit of
+%interface as RGtk, etc.
+ The
 \pkg{R-(D)COM} package has been used to create the educational
 \proglang{R} GUI \pkg{simpleR} \citep{simpleR}. A major drawback to
 the use of \pkg{DCOM}, however, is its dependence on Microsoft
@@ -3247,7 +3514,14 @@ also accessible
 from \proglang{R} through \proglang{R}-\proglang{Java} interfaces such
 \pkg{rJava} 
 \citep{rJava}. The features
-of \pkg{Swing} and \pkg{SWT} are comparable to those of \pkg{GTK+}, and one could use \pkg{rJava} to develop \proglang{Java}-based GUIs. This would be facilitated by a high-level interface for GUI development built on top of the low-level interface provided by \pkg{rJava}. 
+of \pkg{Swing} and \pkg{SWT} are comparable to those of \pkg{GTK+},
+and one could use \pkg{rJava} to develop \proglang{Java}-based
+GUIs. This would be facilitated by a high-level interface for GUI
+development built on top of the low-level interface provided by
+\pkg{rJava}. 
+%DTL2:  As I mention above, Swing is another common denominator
+%library and so similar to wxWidgets, yet this reads as if it has the
+%same flexibility as Gtk+ while wxWidgets doesn't.
 %DTL: Where does this opinion come from? Is it tied to rJava which
 %did not have the notion of callbacks for a while? SJava does and it
 %was very easy to create GUIs using that even 7 years ago.  And this
@@ -3276,6 +3550,12 @@ of simple GUIs by those inexperienced with GUI programming. For this
 purpose, using \pkg{gWidgets} is likely a better course than direct
 use of \pkg{RGtk2}; however, the simplified interface hides
 functionality that more complex applications might find useful.
+
+%DTL2:  A section on Qt  is missing. Deepayan has done some work and
+%so have I and we can auto-generate the bindings and probably will do
+%soon. So it is probably worth mentioning.
+%MFL2: Would you please add this? Since it's your work...
+
 
 One benefit of \pkg{RGtk2} (and \pkg{RwxWidgets} on Linux) is the capability to integrate with other GUIs based on \pkg{GTK+}.
 Such software includes \pkg{GGobi}, \pkg{Mozilla Firefox} (on some
@@ -3314,11 +3594,34 @@ are available at the \pkg{RGtk2} website
 
 \subsection*{Acknowledgements}
 
-This work was supported by National Science Foundation Arabidopsis
-2010 grants DBI-0209809 and DBI-052067. We also thank Dr. Dianne Cook
-for providing helpful feedback on the software and this paper.
+Michael Lawrence's work was supported in part by National Science
+Foundation Arabidopsis 2010 grants DBI-0209809 and DBI-052067. We also
+thank Dr. Dianne Cook for providing helpful feedback on the software
+and this paper.
 
 %\bibliographystyle{plainnat}
+%DTL2:  
+%  There is an  Rcmdr paper in JSS that would probably be a better citation.
+% MFL2: thanks, changed
+
+%  Krause's Foundations of Gtk+ Development seems to trail off. What
+%  year, edition, ....
+% MFL2: the year shows up for me.. I think there's only one edition..
+
+% Did Lyndon Drake agree to being author of the cairoDevice (Just
+% curious)
+% MFL2: just put him on the package author list, because it's based
+% on his gtkDevice. Is this not appropriate? I took his name off.
+
+% SAS Institute  for JMP reference.  SAS Institute is normally the
+% publisher, not the author.
+
+% wxWidgets  is Wxwidgets in Smart, J.....
+% MFL2: Ok, fixed, Amazon had it differently
+
+% Luke Tierney's TK Rplot probably needs to be capitalized differently.
+% MFL2: That's how it is spelled in the DESCRIPTION file...
+
 \bibliography{rgtk2-jss}
 
 \end{document}

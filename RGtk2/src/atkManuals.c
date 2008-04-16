@@ -34,7 +34,7 @@ atk_text_free_ranges (AtkTextRange **ranges)
           AtkTextRange *range;
 
           range = *ranges;
-          *ranges++;
+          (*ranges)++;
           g_free (range->content);
           g_free (range);
         }

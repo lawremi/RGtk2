@@ -30,7 +30,11 @@ asCString(USER_OBJECT_ s_str)
       return(NULL);
     s_str = STRING_ELT(s_str, 0);
   }
+#if defined(R_VERSION) && R_VERSION >= R_Version(2, 7, 0)
   return(translateCharUTF8(s_str));
+#else
+  return(CHAR_DEREF(s_str));
+#endif
   /*return(CHAR_DEREF(STRING_ELT(s_str, 0)));*/
 }
 gchar
