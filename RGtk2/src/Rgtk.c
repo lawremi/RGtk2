@@ -29,8 +29,10 @@ R_gtk_eventHandler(void *userData)
 
 DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
   while(1) {
-    if (gtk_events_pending())
+    if (gtk_events_pending()) {
+      Rprintf("Trying event loop\n");
       PostMessage((HWND)lpParam, RGTK2_ITERATE, 0, 0);
+    }
   }
   return 0;
 }
