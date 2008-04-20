@@ -1,3 +1,112 @@
-; for cairo 1.6 when it arrives
+; as of cairo 1.6.4
 
 (include "../2.10/cairo.defs")
+
+(define-enum PsLevel
+  (in-module "Cairo")
+  (c-name "cairo_ps_level_t")
+  (gtype-id "CAIRO_TYPE_PS_LEVEL")
+  (values
+    '("2" "CAIRO_PS_LEVEL_2")
+    '("3" "CAIRO_PS_LEVEL_3")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_format_stride_for_width
+  (in-module "cairo")
+  (c-name "cairo_format_stride_for_width")
+  (return-type "int")
+  (parameters
+    '("cairo_format_t" "format")
+    '("int" "width")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_has_current_point
+  (in-module "cairo")
+  (c-name "cairo_has_current_point")
+  (return-type "gboolean")
+  (parameters
+    '("cairo_t*" "cr")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_path_extents
+  (in-module "cairo")
+  (c-name "cairo_path_extents")
+  (return-type "none")
+  (parameters
+    '("cairo_t*" "cr")
+    '("double*" "x1" (out))
+    '("double*" "y1" (out))
+    '("double*" "x2" (out))
+    '("double*" "y2" (out))
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_surface_copy_page
+  (in-module "cairo")
+  (c-name "cairo_surface_copy_page")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_surface_show_page
+  (in-module "cairo")
+  (c-name "cairo_surface_show_page")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_ps_surface_restrict_to_level
+  (in-module "cairo")
+  (c-name "cairo_ps_surface_restrict_to_level")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+    '("cairo_ps_level_t" "level")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_ps_get_levels
+  (in-module "cairo")
+  (c-name "cairo_ps_get_levels")
+  (return-type "none")
+  (parameters
+    '("cairo_ps_level_t*[]" "levels" (out))
+    '("int*" "nlevels" (out))
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_ps_level_to_string
+  (in-module "cairo")
+  (c-name "cairo_ps_level_to_string")
+  (return-type "const-char*")
+  (parameters
+    '("cairo_ps_level_t" "level")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_ps_surface_set_eps
+  (in-module "cairo")
+  (c-name "cairo_ps_surface_set_eps")
+  (return-type "none")
+  (parameters
+    '("cairo_surface_t*" "surface")
+    '("gboolean" "eps")
+  )
+  (since "1.6.0")
+)

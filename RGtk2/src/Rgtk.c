@@ -31,7 +31,6 @@ DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
   while(1) {
     if (gtk_events_pending())
       PostMessage((HWND)lpParam, RGTK2_ITERATE, 0, 0);
-    Rprintf("Thread\n");
   }
   return 0;
 }
