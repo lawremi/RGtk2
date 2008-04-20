@@ -25,14 +25,15 @@ R_gtk_eventHandler(void *userData)
    More to come later on an overhaul of the R event loop.
 */
 
+/* should exist win2k/xp and later, but mingw does not have it */
+#define HWND_MESSAGE                ((HWND)-3)
+
 #define RGTK2_ITERATE WM_USER + 101
 
 DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
   while(1) {
-    if (gtk_events_pending()) {
-      Rprintf("Trying event loop\n");
+    if (gtk_events_pending())
       PostMessage((HWND)lpParam, RGTK2_ITERATE, 0, 0);
-    }
   }
   return 0;
 }
@@ -78,7 +79,8 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   WNDCLASS wndclass = { 0, R_gtk_win_proc, 0, 0, instance, NULL, 0, 0, NULL,
                         class };
   RegisterClass(&wndclass);
-  HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, NULL, NULL, instance, NULL);
+  HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE, NULL,
+                          instance, NULL);
 
   /* Create a thread that will post messages to our window on this thread */
   HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);
