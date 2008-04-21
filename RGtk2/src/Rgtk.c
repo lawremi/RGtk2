@@ -42,8 +42,11 @@ LRESULT CALLBACK
 R_gtk_win_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   Rprintf("Event loop\n");
-  R_gtk_eventHandler(NULL);
-  return 0;
+  if (message == RGTK2_ITERATE) {
+    R_gtk_eventHandler(NULL);
+    return 0;
+  }
+  return DefWindowProc(hwnd, message, wParam, lParam);
 }
 #endif
 
@@ -79,8 +82,8 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   WNDCLASS wndclass = { 0, R_gtk_win_proc, 0, 0, instance, NULL, 0, 0, NULL,
                         class };
   RegisterClass(&wndclass);
-  HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE, NULL,
-                          instance, NULL);
+  HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE,
+                          NULL, instance, NULL);
 
   /* Create a thread that will post messages to our window on this thread */
   HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);

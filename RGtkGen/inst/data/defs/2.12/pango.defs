@@ -1,3 +1,109 @@
-; for pango 1.18, when it arrives
+; as of pango 1.20.2
 
 (include "../2.10/pango.defs")
+
+(define-method set_height
+  (of-object "PangoLayout")
+  (c-name "pango_layout_set_height")
+  (return-type "none")
+  (parameters
+    '("gint" "height" (in))
+  )
+  (since "1.20.0")
+)
+
+(define-function pango_attribute_init
+  (c-name "pango_attribute_init")
+  (return-type "none")
+  (parameters
+    '("PangoAttribute*" "attr")
+    '("const-PangoAttrClass*" "klass")
+  )
+  (since "1.20.0") 
+)
+
+(define-function pango_layout_iter_get_layout
+  (c-name "pango_layout_iter_get_layout")
+  (return-type "PangoLayout*")
+  (parameters
+    '("PangoLayoutIter*" "iter")
+  )
+  (since "1.20.0")
+)
+
+(define-function pango_renderer_get_layout
+  (c-name "pango_renderer_get_layout")
+  (return-type "PangoLayout*")
+  (parameters
+    '("PangoRenderer*" "renderer")
+  )
+  (since "1.20.0")
+)
+
+(define-function pango_renderer_get_layout_line
+  (c-name "pango_renderer_get_layout_line")
+  (return-type "PangoLayoutLine*")
+  (parameters
+    '("PangoRenderer*" "renderer")
+  )
+  (since "1.20.0")
+)
+
+(define-method is_synthesized
+  (of-object "PangoFontFace")
+  (c-name "pango_font_face_is_synthesized")
+  (return-type "gboolean")
+  (since "1.18.0")
+)
+
+(define-method get_scaled_font
+  (of-object "PangoCairoFont")
+  (c-name "pango_cairo_font_get_scaled_font")
+  (return-type "cairo_scaled_font_t*")
+  (since "1.18.0")
+)
+
+(define-function pango_cairo_font_map_new_for_font_type
+  (c-name "pango_cairo_font_map_new_for_font_type")
+  (is-constructor-of "PangoCairoFontMap")
+  (return-type "PangoCairoFontMap*")
+  (parameters
+    '("cairo_font_type_t" "fonttype")
+  )
+  (since "1.18.0")
+)
+
+(define-user-function CairoShapeRendererFunc
+  (in-module "Pango")
+  (c-name "PangoCairoShapeRendererFunc")
+  (return-type "gboolean")
+  (parameters
+      '("cairo_t*" "cr")
+      '("PangoAttrShape*" "attr")
+      '("gboolean" "do_path")
+      '("gpointer" "data")
+  )
+  (since "1.18.0")
+)
+
+(define-method set_shape_renderer
+  (of-object "PangoContext")
+  (c-name "pango_cairo_context_set_shape_renderer")
+  (return-type "none")
+  (parameters
+    '("PangoCairoShapeRendererFunc" "func")
+    '("gpointer" "data")
+    '("GDestroyNotify" "dnotify")
+  )
+  (since "1.18.0")
+)
+
+(define-method get_shape_renderer
+  (of-object "PangoContext")
+  (c-name "pango_cairo_context_get_shape_renderer")
+  (return-type "PangoCairoShapeRendererFunc")
+  (parameters
+    '("gpointer*" "data" (out))
+  )
+  (since "1.18.0")
+)

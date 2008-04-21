@@ -319,8 +319,8 @@
   (c-name "pango_extents_to_pixels")
   (return-type "none")
   (parameters
-    '("PangoRectangle*" "ink_rect")
-    '("PangoRectangle*" "logical_rect")
+    '("PangoRectangle*" "inclusive")
+    '("PangoRectangle*" "nearest")
   )
   (since "1.16.0")
 )
