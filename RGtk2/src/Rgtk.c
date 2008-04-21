@@ -41,9 +41,10 @@ DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
 LRESULT CALLBACK
 R_gtk_win_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-  Rprintf("Event loop\n");
-  if (message == RGTK2_ITERATE)
+  if (message == RGTK2_ITERATE) {
     R_gtk_eventHandler(NULL);
+    return 1;
+  }
   return DefWindowProc(hwnd, message, wParam, lParam);
 }
 #endif
@@ -85,7 +86,7 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 
   /* Create a thread that will post messages to our window on this thread */
   HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);
-  /*SetThreadPriority(thread, THREAD_PRIORITY_IDLE);*/
+  SetThreadPriority(thread, THREAD_PRIORITY_IDLE);
 #endif
 
   R_GTK_TYPE_PARAM_SEXP;
