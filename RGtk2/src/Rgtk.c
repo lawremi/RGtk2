@@ -42,10 +42,8 @@ LRESULT CALLBACK
 R_gtk_win_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
   Rprintf("Event loop\n");
-  if (message == RGTK2_ITERATE) {
+  if (message == RGTK2_ITERATE)
     R_gtk_eventHandler(NULL);
-    return 0;
-  }
   return DefWindowProc(hwnd, message, wParam, lParam);
 }
 #endif
