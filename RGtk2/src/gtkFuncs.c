@@ -49164,39 +49164,7 @@ S_gtk_icon_view_set_tooltip_cell(USER_OBJECT_ s_object, USER_OBJECT_ s_tooltip, 
 #endif
 
   return(_result);
-}
- 
-
-USER_OBJECT_
-S_gtk_icon_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip)
-{
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if GTK_CHECK_VERSION(2, 12, 0)
-  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
-  gint* x = ((gint*)asCArray(s_x, gint, asCInteger));
-  gint* y = ((gint*)asCArray(s_y, gint, asCInteger));
-  gboolean keyboard_tip = ((gboolean)asCLogical(s_keyboard_tip));
-
-  gboolean ans;
-  GtkTreeModel* model = NULL;
-  GtkTreePath* path = NULL;
-  GtkTreeIter iter;
-
-  ans = gtk_icon_view_get_tooltip_context(object, x, y, keyboard_tip, &model, &path, &iter);
-
-  _result = asRLogical(ans);
-
-  _result = retByVal(_result, "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
-  ;
-  ;
-  ;
-#else
-  error("gtk_icon_view_get_tooltip_context exists only in Gtk >= 2.12.0");
-#endif
-
-  return(_result);
-}
- 
+} 
 
 USER_OBJECT_
 S_gtk_icon_view_set_tooltip_column(USER_OBJECT_ s_object, USER_OBJECT_ s_column)
@@ -50540,38 +50508,6 @@ S_gtk_tree_view_is_rubber_banding_active(USER_OBJECT_ s_object)
 
   return(_result);
 }
- 
-
-USER_OBJECT_
-S_gtk_tree_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip)
-{
-  USER_OBJECT_ _result = NULL_USER_OBJECT;
-#if GTK_CHECK_VERSION(2, 12, 0)
-  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
-  gint* x = ((gint*)asCArray(s_x, gint, asCInteger));
-  gint* y = ((gint*)asCArray(s_y, gint, asCInteger));
-  gboolean keyboard_tip = ((gboolean)asCLogical(s_keyboard_tip));
-
-  gboolean ans;
-  GtkTreeModel* model = NULL;
-  GtkTreePath* path = NULL;
-  GtkTreeIter iter;
-
-  ans = gtk_tree_view_get_tooltip_context(object, x, y, keyboard_tip, &model, &path, &iter);
-
-  _result = asRLogical(ans);
-
-  _result = retByVal(_result, "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
-  ;
-  ;
-  ;
-#else
-  error("gtk_tree_view_get_tooltip_context exists only in Gtk >= 2.12.0");
-#endif
-
-  return(_result);
-}
- 
 
 USER_OBJECT_
 S_gtk_tree_view_set_tooltip_column(USER_OBJECT_ s_object, USER_OBJECT_ s_column)

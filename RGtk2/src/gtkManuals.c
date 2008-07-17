@@ -1266,6 +1266,67 @@ S_gtk_builder_connect_signals(USER_OBJECT_ s_object, USER_OBJECT_ s_user_data)
 }
 #endif
 
+
+/* Tooltip contexts due to in/out parameters */
+USER_OBJECT_
+S_gtk_tree_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkTreeView* object = GTK_TREE_VIEW(getPtrValue(s_object));
+  gint x = asCInteger(s_x);
+  gint y = asCInteger(s_y);
+  gboolean keyboard_tip = ((gboolean)asCLogical(s_keyboard_tip));
+
+  gboolean ans;
+  GtkTreeModel* model = NULL;
+  GtkTreePath* path = NULL;
+  GtkTreeIter iter;
+
+  ans = gtk_tree_view_get_tooltip_context(object, &x, &y, keyboard_tip, &model, &path, &iter);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
+  ;
+  ;
+#else
+  error("gtk_tree_view_get_tooltip_context exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+USER_OBJECT_
+S_gtk_icon_view_get_tooltip_context(USER_OBJECT_ s_object, USER_OBJECT_ s_x, USER_OBJECT_ s_y, USER_OBJECT_ s_keyboard_tip)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if GTK_CHECK_VERSION(2, 12, 0)
+  GtkIconView* object = GTK_ICON_VIEW(getPtrValue(s_object));
+  gint x = asCInteger(s_x);
+  gint y = asCInteger(s_y);
+  gboolean keyboard_tip = ((gboolean)asCLogical(s_keyboard_tip));
+
+  gboolean ans;
+  GtkTreeModel* model = NULL;
+  GtkTreePath* path = NULL;
+  GtkTreeIter iter;
+
+  ans = gtk_icon_view_get_tooltip_context(object, &x, &y, keyboard_tip, &model, &path, &iter);
+
+  _result = asRLogical(ans);
+
+  _result = retByVal(_result, "x", asRInteger(x), "y", asRInteger(y), "model", toRPointerWithRef(model, "GtkTreeModel"), "path", toRPointerWithFinalizer(path, "GtkTreePath", (RPointerFinalizer) gtk_tree_path_free), "iter", toRPointerWithFinalizer(&iter ? gtk_tree_iter_copy(&iter) : NULL, "GtkTreeIter", (RPointerFinalizer) gtk_tree_iter_free), NULL);
+  ;
+  ;
+  ;
+#else
+  error("gtk_icon_view_get_tooltip_context exists only in Gtk >= 2.12.0");
+#endif
+
+  return(_result);
+}
+
 /* This provides a quick way to convert GtkTreePaths to indices.
    Such an operation is necessary when interpreting selections, for example.
 */
