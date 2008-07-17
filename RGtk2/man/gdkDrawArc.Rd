@@ -8,7 +8,7 @@ of the ellipse to be drawn.}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
 \item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{filled}}{[logical]  \code{TRUE} if the arc should be filled, producing a 'pie slice'.}
+\item{\code{filled}}{[logical] \code{TRUE} if the arc should be filled, producing a 'pie slice'.}
 \item{\code{x}}{[integer]  the x coordinate of the left edge of the bounding rectangle.}
 \item{\code{y}}{[integer]  the y coordinate of the top edge of the bounding rectangle.}
 \item{\code{width}}{[integer]  the width of the bounding rectangle.}

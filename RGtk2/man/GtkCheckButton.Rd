@@ -9,7 +9,7 @@
 \code{\link{gtkCheckButtonNewWithMnemonic}(label, show = TRUE)}\cr
 \code{gtkCheckButton(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                                              +----GtkCheckButton
                                                    +----\link{GtkRadioButton}}}
 \section{Interfaces}{GtkCheckButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkCheckButton}} places a discrete \code{\link{GtkToggleButton}} next to a widget, (usually a \code{\link{GtkLabel}}). See the section on \code{\link{GtkToggleButton}} widgets for more information about toggle/check buttons.
   
 The important signal ('toggled') is also inherited from \code{\link{GtkToggleButton}}.}

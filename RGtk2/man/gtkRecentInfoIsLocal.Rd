@@ -6,6 +6,6 @@ scheme of its URI.}
 \usage{gtkRecentInfoIsLocal(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the resource is local.}
+\value{[logical] \code{TRUE} if the resource is local.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -24,6 +24,6 @@ If this function returns \code{FALSE}, there's no need to update the animation
 display, assuming the display had been rendered prior to advancing;
 if \code{TRUE}, you need to call \code{gdkAnimationIterGetPixbuf()} and update the
 display with the new pixbuf.  }
-\value{[logical]  \code{TRUE} if the image may need updating}
+\value{[logical] \code{TRUE} if the image may need updating}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

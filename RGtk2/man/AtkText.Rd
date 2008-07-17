@@ -33,7 +33,7 @@
 \code{\link{atkTextAttributeForName}(name)}\cr
 \code{\link{atkTextAttributeGetValue}(attr, index)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkText}}
 \section{Implementations}{AtkText is implemented by
  \code{\link{AtkNoOpObject}}.}
@@ -47,8 +47,7 @@ property for other information, the \code{\link{AtkText}} interface should be us
 to expose the text content.  In the case of editable text content,
 \code{\link{AtkEditableText}} (a subtype of the \code{\link{AtkText}} interface) should be
 implemented instead.
-  
-\code{\link{AtkText}} provides not only traversal facilities and change notification
+  \code{\link{AtkText}} provides not only traversal facilities and change notification
 for text content, but also caret tracking and glyph bounding box
 calculations.  Note that the text strings are exposed as UTF-8, and are
 therefore potentially multi-byte, and caret-to-byte offset mapping makes

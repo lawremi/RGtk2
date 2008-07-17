@@ -4,7 +4,7 @@
 \description{Emit a comment into the PostScript output for the given surface.}
 \usage{cairoPsSurfaceDscComment(surface, comment)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PostScript cairo\_surface\_t}
+\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PostScript \code{\link{CairoSurface}}}
 \item{\code{comment}}{[char]  a comment string to be emitted into the PostScript output}
 }
 \details{The comment is expected to conform to the PostScript Language
@@ -64,8 +64,7 @@ PageSetup section: \%\code{BeginPageSetup}, \%\code{PageBoundingBox},
 Other sections: \%\code{BeginProlog}, \%\code{EndProlog}, \%\code{Page}, \%\code{Trailer}, \%\code{EOF}
   
 Here is an example sequence showing how this function might be used:
-  
-\preformatted{
+  \preformatted{
 surface <- cairoPsSurfaceCreate(filename, width, height)
 # ...
 surface$dscComment("\%Title: My excellent document")

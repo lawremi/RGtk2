@@ -2,7 +2,7 @@
 \name{gtkWidgetErrorBell}
 \title{gtkWidgetErrorBell}
 \description{Notifies the user about an input-related error on this widget. 
-If the \code{:gtk-error-bell} setting is \code{TRUE}, it calls
+If the \code{"gtk-error-bell"} setting is \code{TRUE}, it calls
 \code{\link{gdkWindowBeep}}, otherwise it does nothing.}
 \usage{gtkWidgetErrorBell(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}

@@ -10,7 +10,7 @@ standard policy for its semantic type.}
 \usage{gdkWindowSetSkipTaskbarHint(object, modal)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{modal}}{[logical]  \code{TRUE} to skip the taskbar}
+\item{\code{modal}}{[logical] \code{TRUE} to skip the taskbar}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

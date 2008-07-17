@@ -34,18 +34,17 @@ To destroy a \code{\link{GdkImage}} use \code{gdkImageDestroy()}.}
 The \code{\link{GdkImage}} struct contains information on the image and the pixel data.
 
 \describe{
-\item{\code{parent_instance}}{[\code{\link{GObject}}] the parent instance}
-\item{\code{type}}{[\code{\link{GdkImageType}}] the type of the image.}
-\item{\code{visual}}{[\code{\link{GdkVisual}}] the visual.}
-\item{\code{byte_order}}{[\code{\link{GdkByteOrder}}] the byte order.}
-\item{\code{width}}{[integer] the width of the image in pixels.}
-\item{\code{height}}{[integer] the height of the image in pixels.}
-\item{\code{depth}}{[integer] the depth of the image, i.e. the number of bits per pixel.}
-\item{\code{bpp}}{[integer] the number of bytes per pixel.}
-\item{\code{bpl}}{[integer] the number of bytes per line of the image.}
-\item{\code{bits_per_pixel}}{[integer] the number of bits per pixel.}
-\item{\code{mem}}{[R object] the pixel data.}
-\item{\code{colormap}}{[\code{\link{GdkColormap}}] the \code{\link{GdkColormap}} associated with the image}
+\item{\code{type}}{[\code{\link{GdkImageType}}] the parent instance}
+\item{\code{visual}}{[\code{\link{GdkVisual}}] the type of the image.}
+\item{\code{byteOrder}}{[\code{\link{GdkByteOrder}}] the visual.}
+\item{\code{width}}{[integer] the byte order.}
+\item{\code{height}}{[integer] the width of the image in pixels.}
+\item{\code{depth}}{[integer] the height of the image in pixels.}
+\item{\code{bpp}}{[integer] the depth of the image, i.e. the number of bits per pixel.}
+\item{\code{bpl}}{[integer] the number of bytes per pixel.}
+\item{\code{bitsPerPixel}}{[integer] the number of bytes per line of the image.}
+\item{\code{mem}}{[raw] the number of bits per pixel.}
+\item{\code{colormap}}{[\code{\link{GdkColormap}}] the pixel data.}
 }
 
 }}}

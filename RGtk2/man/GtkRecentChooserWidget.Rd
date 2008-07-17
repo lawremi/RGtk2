@@ -8,7 +8,7 @@
 \code{\link{gtkRecentChooserWidgetNewForManager}(manager = NULL, show = TRUE)}\cr
 \code{gtkRecentChooserWidget(manager = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkRecentChooserWidget}}
 \section{Interfaces}{GtkRecentChooserWidget implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkRecentChooser}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkRecentChooser}}.}
 \section{Detailed Description}{\code{\link{GtkRecentChooserWidget}} is a widget suitable for selecting recently used
 files.  It is the main building block of a \code{\link{GtkRecentChooserDialog}}.  Most
 applications will only need to use the latter; you can use

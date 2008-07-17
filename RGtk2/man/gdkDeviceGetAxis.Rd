@@ -11,7 +11,7 @@ and locates the value in the list for a given axis use.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the given axis use was found, otherwise \code{FALSE}}
+\item{retval}{[logical] \code{TRUE} if the given axis use was found, otherwise \code{FALSE}}
 \item{\code{value}}{[numeric]  location to store the found value.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

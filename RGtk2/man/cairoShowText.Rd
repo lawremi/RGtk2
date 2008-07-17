@@ -21,7 +21,7 @@ the current point will be at the origin of the final glyph offset
 by its advance values. This allows for easy display of a single
 logical string with multiple calls to \code{\link{cairoShowText}}.
   
-NOTE: The \code{\link{cairoShowText}} function call is part of what the cairo
+Note: The \code{\link{cairoShowText}} function call is part of what the cairo
 designers call the "toy" text API. It is convenient for short demos
 and simple programs, but it is not expected to be adequate for
 serious text-using applications. See \code{\link{cairoShowGlyphs}} for the

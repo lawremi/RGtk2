@@ -7,7 +7,7 @@
 \code{\link{gtkCellRendererPixbufNew}()}\cr
 \code{gtkCellRendererPixbuf()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}

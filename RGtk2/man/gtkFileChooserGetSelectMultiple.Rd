@@ -6,6 +6,6 @@ selector. See \code{\link{gtkFileChooserSetSelectMultiple}}.}
 \usage{gtkFileChooserGetSelectMultiple(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if multiple files can be selected.}
+\value{[logical] \code{TRUE} if multiple files can be selected.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

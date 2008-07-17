@@ -12,7 +12,7 @@ already visible, so you should call it before calling \code{gtkWindowShow()}.}
 \usage{gtkWindowSetDecorated(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{setting}}{[logical]  \code{TRUE} to decorate the window}
+\item{\code{setting}}{[logical] \code{TRUE} to decorate the window}
 }
 \details{On Windows, this function always works, since there's no window manager
 policy involved.  }

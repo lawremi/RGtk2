@@ -10,14 +10,14 @@
 \code{\link{gtkPixmapSetBuildInsensitive}(object, build)}\cr
 \code{gtkPixmap(pixmap, mask = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkMisc}
                            +----GtkPixmap}}
 \section{Interfaces}{GtkPixmap implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkPixmap}} widget displays a graphical image or icon.
 The icon is typically created using \code{\link{gdkPixmapColormapCreateFromXpm}}
 or \code{\link{gdkPixmapColormapCreateFromXpmD}}.

@@ -30,7 +30,7 @@
 \code{\link{gtkActionSetAccelGroup}(object, accel.group)}\cr
 \code{gtkAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkAction
          +----\link{GtkToggleAction}
          +----\link{GtkRecentAction}}}
@@ -72,7 +72,7 @@ and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkAction} is the equivalent of \code{\link{gtkActionNew}}.}
-\section{Signals}{\describe{\item{\code{The (action, user.data)}}{
+\section{Signals}{\describe{\item{\code{activate(action, user.data)}}{
 The "activate" signal is emitted when the action is activated.  
 
   Since  2.4

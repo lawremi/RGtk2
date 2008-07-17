@@ -58,14 +58,14 @@
 \code{\link{gtkNotebookSetWindowCreationHook}(func, data)}\cr
 \code{gtkNotebook(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkNotebook}}
 \section{Interfaces}{GtkNotebook implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkNotebook}} widget is a \code{\link{GtkContainer}} whose children are pages that
 can be switched between using tab labels along one edge.
   
@@ -75,7 +75,7 @@ things, you can choose on which edge the tabs appear
 tabs to fit the noteobook should be made bigger or scrolling
 arrows added (see gtk\_notebook\_set\_scrollable), and whether there
 will be a popup menu allowing the users to switch pages.
-(see \code{gtkNotebookEnablePopup()}, \code{gtkNoteobookDisablePopup()})}
+(see \code{\link{gtkNotebookPopupEnable}}, \code{gtkNoteobookPopupDisable()})}
 \section{GtkNotebook as GtkBuildable}{The GtkNoteboopk implementation of the GtkBuildable interface
 supports placing children into tabs by specifying "tab" as the
 "type" attribute of a <child> element. Note that the content
@@ -83,8 +83,7 @@ of the tab must be created before the tab can be filled.
 A tab child can be specified without specifying a <child> 
 type attribute.
   
-\emph{A UI definition fragment with GtkNotebook}
-\preformatted{<object class="GtkNotebook">
+ \emph{A UI definition fragment with GtkNotebook}\preformatted{<object class="GtkNotebook">
   <child>
     <object class="GtkLabel" id="notebook-content">
       <property name="label">Content</property>
@@ -126,7 +125,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (notebook, arg1, user.data)}}{
+\item{\code{change-current-page(notebook, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -138,7 +137,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 
 
 }
-\item{\code{The (notebook, page, x, y, user.data)}}{
+\item{\code{create-window(notebook, page, x, y, user.data)}}{
 The ::create-window signal is emitted when a detachable
 tab is dropped on the root window. 
   
@@ -146,7 +145,7 @@ A handler for this signal can create a window containing
 a notebook where the tab will be attached. It is also 
 responsible for moving/resizing the window and adding the 
 necessary properties to the notebook (e.g. the 
-\code{:group-id} ).
+\code{"group-id"} ).
   
 The default handler uses the global window creation hook,
 if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.  
@@ -164,7 +163,7 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 \emph{Returns:} [\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}} that \code{page} should be added to, or \code{NULL}.
 
 }
-\item{\code{The (notebook, arg1, user.data)}}{
+\item{\code{focus-tab(notebook, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -176,7 +175,7 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 
 
 }
-\item{\code{The (notebook, arg1, user.data)}}{
+\item{\code{move-focus-out(notebook, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -188,7 +187,7 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 
 
 }
-\item{\code{The (notebook, child, page.num, user.data)}}{
+\item{\code{page-added(notebook, child, page.num, user.data)}}{
 the ::page-added signal is emitted in the notebook
 right after a page is added to the notebook.  
 
@@ -203,7 +202,7 @@ right after a page is added to the notebook.
 
 
 }
-\item{\code{The (notebook, child, page.num, user.data)}}{
+\item{\code{page-removed(notebook, child, page.num, user.data)}}{
 the ::page-removed signal is emitted in the notebook
 right after a page is removed from the notebook.  
 
@@ -218,7 +217,7 @@ right after a page is removed from the notebook.
 
 
 }
-\item{\code{The (notebook, child, page.num, user.data)}}{
+\item{\code{page-reordered(notebook, child, page.num, user.data)}}{
 the ::page-reordered signal is emitted in the notebook
 right after a page has been reordered.  
 
@@ -233,7 +232,7 @@ right after a page has been reordered.
 
 
 }
-\item{\code{The (notebook, arg1, Param3, user.data)}}{
+\item{\code{reorder-tab(notebook, arg1, Param3, user.data)}}{
 \emph{undocumented
 }
 
@@ -246,7 +245,7 @@ right after a page has been reordered.
 
 
 }
-\item{\code{The (notebook, arg1, user.data)}}{
+\item{\code{select-page(notebook, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -258,7 +257,7 @@ right after a page has been reordered.
 
 
 }
-\item{\code{The (notebook, page, page.num, user.data)}}{
+\item{\code{switch-page(notebook, page, page.num, user.data)}}{
 Emitted when the user or a function changes the current page.
 
 \describe{

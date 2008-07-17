@@ -1,7 +1,7 @@
 \alias{cairoMatrixScale}
 \name{cairoMatrixScale}
 \title{cairoMatrixScale}
-\description{Applies scaling by \code{tx}, \code{ty} to the transformation in \code{matrix}. The
+\description{Applies scaling by \code{sx}, \code{sy} to the transformation in \code{matrix}. The
 effect of the new transformation is to first scale the coordinates
 by \code{sx} and \code{sy}, then apply the original transformation to the coordinates.}
 \usage{cairoMatrixScale(matrix, sx, sy)}

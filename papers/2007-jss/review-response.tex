@@ -76,7 +76,7 @@ The detail level of the history of GTK+ seems a bit high.
 
 The literature references to Tcl/Tk are unsatisfactory (see References below).
 
-\emph{Hopefully resolved using your suggested references}
+\emph{Hopefully resolved using suggested references}
 
 \subsubsection*{Section 2}
 
@@ -111,8 +111,7 @@ explicitly.
 The code for generating the data is a bit lengthy and might be moved
 out of sight (into an appendix, e.g.)
 
-\emph{It doesn't seem that long and we'd rather not complicate the structure
-by adding appendices.}
+\emph{It doesn't seem that long and we'd rather not complicate the structure by adding appendices.}
 
 The phrase ``camel back capitalization'' is amusing, but I believe the proper
 term is ``mixed case''. 
@@ -129,7 +128,7 @@ Last para on p. 6 ``the default is acceptable'': What is the default?
 since more steps follow later on. It doesn't really matter whether they are,
 though.
 
-\emph{Thanks for catching this, fixed.}
+\emph{Fixed.}
 
 ``Rgtk2 supports a convenient Java-like syntax'' (p.7). It is not needed to say
 that it is convenient (let the user decide that), nor necessarily at this point to
@@ -150,11 +149,8 @@ communicate in both directions between widget elements (e.g., in a text widget
 with a scrollbar). A few more examples, possibly with a less detailed description
 would be good.
 
-\emph{More examples have been added, including a hello world GUI, dialog boxes,
-various types of buttons, and a spreadsheet application. 
-There is a careful introduction to widget packing. There also advanced examples
-demonstrating integration with other GObject-based libraries and the
-creation of GObject-derived classes.}
+\emph{More examples have been added, including a hello world GUI, dialog boxes, various types of buttons, and a spreadsheet application. 
+There is a careful introduction to widget packing. There also advanced examples demonstrating integration with other GObject-based libraries and the creation of GObject-derived classes.}
 
 \subsubsection*{Section 4}
 
@@ -200,16 +196,14 @@ I find it somewhat debatable whether it really is a good design principle to
 use fixed-GUI designs like Glade to wrap code for an extensible programming
 language.
 
-\emph{Certainly Glade is not appropriate in many cases, but it is still
-a feature that users seem to appreciate.}
+\emph{Certainly Glade is not appropriate in many cases, but it is still a feature that users seem to appreciate.}
 
 p.11 ``with Tcl/Tk it is not possible to extend. . . ''. This is untrue, if meant as
 written. Megawidgets have existed in Tk for a long time, written in Tcl or in
 C. It might however be true is that it is not obvious how to write a new widget
 in R.
 
-\emph{We've tried to make a distinction between the compound ``megawidgets'' and
-overriding the base behavior of a widget with RGtk2.}
+\emph{We've tried to make a distinction between the compound ``megawidgets'' and overriding the base behavior of a widget with RGtk2.}
 
 It is not clear what the authors mean when saying that the tcltk package ``aims
 to expose complexity'' etc., if anything, it aims to expose functionality. I would
@@ -242,10 +236,7 @@ One issue not discussed is speed. RGtk2 feels considerably slower than similar
 Tk code. It would be nice to have some discussion about the reasons for this
 and the potential for improvement.
 
-\emph{It would not be surprising if RGtk2 were slower than Tcl/TK, given the
-complexity of GTK 2.0, which is slower than GTK 1.2. However, we do
-not feel that the performance impact is so significant that it merits any
-special discussion (beyond the mention when comparing RGtk2 to tcltk).
+\emph{It would not be surprising if RGtk2 were slower than Tcl/TK, given the complexity of GTK 2.0, which is slower than GTK 1.2. However, we donot feel that the performance impact is so significant that it merits any special discussion (beyond the mention when comparing RGtk2 to tcltk).
 }
 
 \subsubsection*{References}
@@ -270,8 +261,7 @@ issues with the demos, many of them failing with errors like VECTOR ELT()
 can only be applied to a 'list', not a 'integer'. The potential is impressive,
 but the quality control apparently needs tightening. 
 
-\emph{Unfortunately it seems that we were caught at a bad time. These issues
-were fixed as of RGtk2 2.10.12, having been introduced with R 2.5.0.}
+\emph{Unfortunately it seems that we were caught at a bad time. These issues were fixed as of RGtk2 2.10.12, having been introduced with R 2.5.0.}
 
 Also, there
 seems to be a problem with system files: demo(images) attempts to load
@@ -281,15 +271,11 @@ but in /opt/gnome.
 I couldn't help but notice that the source tarball at CRAN has some SVN files
 inside, which indicates that some cleanup step was omitted.
 
-\emph{This seems to be a problem with R CMD build not cleaning out subdirectories
-of the 'src' directory. A patch was submitted to R to fix this problem. Not sure
-if it was incorporated.}
+\emph{This seems to be a problem with R CMD build not cleaning out subdirectories of the 'src' directory. A patch was submitted to R to fix this problem. Not sure if it was incorporated.}
 
 Also, the auxiliary documentation in the package could do with some revision
 instead of being left in the current half-finished state.
 
-\emph{Agreed. We are porting the C GTK+ tutorial to R but it is tedious work;
-there may be a better way. This paper may be a good interim solution, as it now
-has a more substantial tutorial.}
+\emph{Agreed. We are porting the C GTK+ tutorial to R but it is tedious work;there may be a better way. This paper may be a good interim solution, as it now has a more substantial tutorial.}
 
 \end{document}

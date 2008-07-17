@@ -10,7 +10,7 @@ does \emph{not} have the tag applied to it.}
 \usage{gtkTextIterGetToggledTags(object, toggled.on)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}
-\item{\code{toggled.on}}{[logical]  \code{TRUE} to get toggled-on tags}
+\item{\code{toggled.on}}{[logical] \code{TRUE} to get toggled-on tags}
 }
 \value{[list]  tags toggled at this point}
 \author{Derived by RGtkGen from GTK+ documentation}

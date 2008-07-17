@@ -13,7 +13,7 @@
 \item{\code{widget}}{[\code{\link{GtkWidget}}]  the widget (may be \code{NULL})}
 \item{\code{detail}}{[character]  a style detail (may be \code{NULL})}
 \item{\code{points}}{[\code{\link{GdkPoint}}]  a list of \code{\link{GdkPoint}}s}
-\item{\code{fill}}{[logical]  \code{TRUE} if the polygon should be filled}
+\item{\code{fill}}{[logical] \code{TRUE} if the polygon should be filled}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

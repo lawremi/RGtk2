@@ -5,6 +5,6 @@
 for it).}
 \usage{gtkTextMarkGetVisible(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}}}
-\value{[logical]  \code{TRUE} if visible}
+\value{[logical] \code{TRUE} if visible}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

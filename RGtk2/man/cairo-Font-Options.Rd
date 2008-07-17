@@ -5,7 +5,7 @@
 \alias{CairoHintStyle}
 \alias{CairoHintMetrics}
 \name{cairo-Font-Options}
-\title{Font Options}
+\title{cairo\_font\_options\_t}
 \description{How a font should be rendered}
 \section{Methods and Functions}{
 \code{\link{cairoFontOptionsCreate}()}\cr
@@ -23,6 +23,10 @@
 \code{\link{cairoFontOptionsGetHintMetrics}(options)}\cr
 \code{cairoFontOptions()}
 }
+\section{Detailed Description}{The font options specify how fonts should be rendered.  Most of the time the
+font options implied by a surface are just right and do not need any changes,
+but for pixel-based targets tweaking font options may result in superior
+output on a particular display.}
 \section{Structures}{\describe{\item{\code{CairoFontOptions}}{
 An opaque structure holding all options that are used when
 rendering fonts.
@@ -75,7 +79,7 @@ New entries may be added in future versions.
 
 \describe{
 \item{\code{default}}{ Use the default hint style for
-  for font backend and target device}
+  font backend and target device}
 \item{\code{none}}{ Do not hint outlines}
 \item{\code{slight}}{ Hint outlines slightly to improve
   contrast while retaining good fidelity to the original

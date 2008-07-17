@@ -16,10 +16,13 @@ might be an ampersand or underscore. All characters marked
 as an accelerator will receive a \code{PANGO_UNDERLINE_LOW} attribute,
 and the first character so marked will be returned in \code{accel.char}.
 Two \code{accel.marker} characters following each other produce a single
-literal \code{accel.marker} character.  }
+literal \code{accel.marker} character.
+  
+If any error happens, none of the output arguments are touched except
+for \code{error}.  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{FALSE} if \code{error} is set, otherwise \code{TRUE}}
+\item{retval}{[logical] \code{FALSE} if \code{error} is set, otherwise \code{TRUE}}
 \item{\code{attr.list}}{[\code{\link{PangoAttrList}}]  return location for a \code{\link{PangoAttrList}}, or \code{NULL}}
 \item{\code{text}}{[char]  return location for text with tags stripped, or \code{NULL}}
 \item{\code{accel.char}}{[numeric]  return location for accelerator char, or \code{NULL}}

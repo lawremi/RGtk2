@@ -7,6 +7,6 @@
 \item{\code{object}}{[\code{\link{AtkAction}}]  a \code{\link{GObject}} instance that implements AtkActionIface}
 \item{\code{i}}{[integer]  the action index corresponding to the action to be performed }
 }
-\value{[logical]  \code{TRUE} if success, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if success, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

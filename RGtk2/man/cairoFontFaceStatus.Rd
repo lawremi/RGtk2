@@ -5,7 +5,7 @@
 font face}
 \usage{cairoFontFaceStatus(font.face)}
 \arguments{\item{\code{font.face}}{[\code{\link{CairoFontFace}}]  a \code{\link{CairoFontFace}}}}
-\value{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS} or another error such as
+\value{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS} or another error such as
   \code{CAIRO_STATUS_NO_MEMORY}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

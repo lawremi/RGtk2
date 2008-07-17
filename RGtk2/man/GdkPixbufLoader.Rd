@@ -15,9 +15,9 @@
 \code{\link{gdkPixbufLoaderClose}(object, .errwarn = TRUE)}\cr
 \code{gdkPixbufLoader(image.type, mime.type, .errwarn = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkPixbufLoader}}
-\section{Detailed Description}{    \code{\link{GdkPixbufLoader}} provides a way for applications to drive the
+\section{Detailed Description}{\code{\link{GdkPixbufLoader}} provides a way for applications to drive the
     process of loading an image, by letting them send the image data
     directly to the loader instead of having the loader read the data
     from a file.  Applications can use this functionality instead of
@@ -65,7 +65,7 @@ fields.
 }}}
 \section{Convenient Construction}{\code{gdkPixbufLoader} is the result of collapsing the constructors of \code{GdkPixbufLoader} (\code{\link{gdkPixbufLoaderNew}}, \code{\link{gdkPixbufLoaderNewWithType}}, \code{\link{gdkPixbufLoaderNewWithMimeType}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (loader, user.data)}}{
+\item{\code{area-prepared(loader, user.data)}}{
 This signal is emitted when the pixbuf loader has allocated the 
 pixbuf in the desired size.  After this signal is emitted, 
 applications can call \code{\link{gdkPixbufLoaderGetPixbuf}} to fetch 
@@ -79,7 +79,7 @@ the partially-loaded pixbuf.
 
 
 }
-\item{\code{The (loader, x, y, width, height, user.data)}}{
+\item{\code{area-updated(loader, x, y, width, height, user.data)}}{
 This signal is emitted when a significant area of the image being
 loaded has been updated.  Normally it means that a complete
 scanline has been read in, but it could be a different area as
@@ -98,7 +98,7 @@ areas of an image that is being loaded.
 
 
 }
-\item{\code{The (loader, user.data)}}{
+\item{\code{closed(loader, user.data)}}{
 This signal is emitted when \code{\link{gdkPixbufLoaderClose}} is called.
 It can be used by different parts of an application to receive
 notification when an image loader is closed by the code that
@@ -112,7 +112,7 @@ drives it.
 
 
 }
-\item{\code{The (loader, width, height, user.data)}}{
+\item{\code{size-prepared(loader, width, height, user.data)}}{
 This signal is emitted when the pixbuf loader has been fed the
 initial amount of data that is required to figure out the size
 of the image that it will create.  Applications can call  

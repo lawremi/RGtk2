@@ -9,12 +9,11 @@ only be used with that specific state.}
 \usage{gtkIconSourceSetStateWildcarded(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}
-\item{\code{setting}}{[logical]  \code{TRUE} to wildcard the widget state}
+\item{\code{setting}}{[logical] \code{TRUE} to wildcard the widget state}
 }
 \details{\code{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
 wildcarded sources, and will use an exact match when possible.
-  
-\code{\link{GtkIconSet}} will normally transform wildcarded source images to
+  \code{\link{GtkIconSet}} will normally transform wildcarded source images to
 produce an appropriate icon for a given state, for example
 lightening an image on prelight, but will not modify source images
 that match exactly.  }

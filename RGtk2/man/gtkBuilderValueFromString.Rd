@@ -19,7 +19,7 @@ still to come.
   Since  2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} on success}
+\item{retval}{[logical] \code{TRUE} on success}
 \item{\code{value}}{[R object]  the \code{R object} to store the result in}
 \item{\code{error}}{[\code{\link{GError}}]  return location for an error, or \code{NULL}}
 }

@@ -8,6 +8,6 @@
 \item{\code{page}}{[\code{\link{GtkWidget}}]  a page of \code{assistant}}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if \code{page} is complete.}
+\value{[logical] \code{TRUE} if \code{page} is complete.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

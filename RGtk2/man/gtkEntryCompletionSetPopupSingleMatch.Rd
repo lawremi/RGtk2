@@ -8,7 +8,7 @@ completion.}
 \usage{gtkEntryCompletionSetPopupSingleMatch(object, popup.single.match)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}
-\item{\code{popup.single.match}}{[logical]  \code{TRUE} if the popup should appear even for a single
+\item{\code{popup.single.match}}{[logical] \code{TRUE} if the popup should appear even for a single
   match}
 }
 \details{  Since  2.8}

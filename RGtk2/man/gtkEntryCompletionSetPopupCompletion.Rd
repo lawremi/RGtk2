@@ -5,7 +5,7 @@
 \usage{gtkEntryCompletionSetPopupCompletion(object, popup.completion)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}
-\item{\code{popup.completion}}{[logical]  \code{TRUE} to do popup completion}
+\item{\code{popup.completion}}{[logical] \code{TRUE} to do popup completion}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

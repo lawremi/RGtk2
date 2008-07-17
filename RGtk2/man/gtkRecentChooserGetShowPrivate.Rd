@@ -6,7 +6,7 @@ registered as private.}
 \usage{gtkRecentChooserGetShowPrivate(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the recent chooser should show private items,
+\value{[logical] \code{TRUE} if the recent chooser should show private items,
   \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

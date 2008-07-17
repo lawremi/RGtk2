@@ -10,7 +10,7 @@ The pixbuf is converted to the form determined by
 \item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}}
 }
 \details{  Since  2.6}
-\value{[logical]  \code{TRUE} if the selection was successfully set,
+\value{[logical] \code{TRUE} if the selection was successfully set,
   otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

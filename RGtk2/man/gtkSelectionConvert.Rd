@@ -11,7 +11,7 @@ a "selection\_received" signal will be generated.}
 \item{\code{time}}{[numeric]  Time of request (usually of triggering event)
        In emergency, you could use \code{GDK_CURRENT_TIME}}
 }
-\value{[logical]  \code{TRUE} if requested succeeded. \code{FALSE} if we could not process
+\value{[logical] \code{TRUE} if requested succeeded. \code{FALSE} if we could not process
          request. (e.g., there was already a request in process for
          this widget).}
 \author{Derived by RGtkGen from GTK+ documentation}

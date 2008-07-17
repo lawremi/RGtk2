@@ -13,7 +13,7 @@ glyph, puts that character in the address pointed to by \code{mirrored.ch}.
 provide full details.  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{ch} has a mirrored character and \code{mirrored.ch} is
+\item{retval}{[logical] \code{TRUE} if \code{ch} has a mirrored character and \code{mirrored.ch} is
 filled in, \code{FALSE} otherwise}
 \item{\code{mirrored.ch}}{[numeric]  location to store the mirrored character}
 }

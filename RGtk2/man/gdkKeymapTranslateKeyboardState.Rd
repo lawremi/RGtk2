@@ -23,29 +23,26 @@ instance, on a US keyboard, the \code{plus}
 symbol is shifted, so when comparing a key press to a
 \code{<Control>plus} accelerator <Shift> should
 be masked out.
-  
   \preformatted{
 # We want to ignore irrelevant modifiers like ScrollLock
 all_accels_mask <- GdkModifierType["control-mask"] | 
-	GdkModifierType["shift-mask"] | GdkModifierType["mod1-mask"]
+GdkModifierType["shift-mask"] | GdkModifierType["mod1-mask"]
 state <- gdkKeymapTranslateKeyboardState(keymap, event[["hardware_keycode"]],
-  event[["state"]], event[["group"]])
+                                         event[["state"]], event[["group"]])
 unconsumed <- all_accels_mask & event[["state"]] & !as.flag(state$consumed) 
 if (state$keyval == .gdkPlus && unconsumed == GdkModifierType["control-mask"])
-	print("Control was pressed")
+  print("Control was pressed")
 }  
-  
 An older interpretation \code{consumed.modifiers} was that it contained
 all modifiers that might affect the translation of the key;
 this allowed accelerators to be stored with irrelevant consumed
-modifiers, by doing:  
-  \preformatted{
+modifiers, by doing:  \preformatted{
 # XXX Don't do this XXX
 unconsumed <- all_accel_mask & event[["state"]] & !as.flag(state$consumed)
-if (state$keyval == accel_keyval && unconsumed == accel_mods & !as.flag(state$consumed))
- 	print("Accellerator was pressed")
+if (state$keyval == accel_keyval &&
+    unconsumed == accel_mods & !as.flag(state$consumed))
+  print("Accellerator was pressed")
 }  
-  
 However, this did not work if multi-modifier combinations were
 used in the keymap, since, for instance, \code{<Control>}
 would be masked out even if only \code{<Control><Alt>}
@@ -59,7 +56,7 @@ removed. Store \code{<Control>plus},
 not \code{<Control><Shift>plus},  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if there was a keyval bound to the keycode/state/group}
+\item{retval}{[logical] \code{TRUE} if there was a keyval bound to the keycode/state/group}
 \item{\code{keyval}}{[numeric]  return location for keyval, or \code{NULL}}
 \item{\code{effective.group}}{[integer]  return location for effective group, or \code{NULL}}
 \item{\code{level}}{[integer]  return location for level, or \code{NULL}}

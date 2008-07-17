@@ -10,7 +10,7 @@
 \code{\link{gdkDisplayGetCorePointer}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkDisplayManager}}
 \section{Detailed Description}{The purpose of the \code{\link{GdkDisplayManager}} singleton object is to offer
 notification when displays appear or disappear or the default display 
@@ -21,7 +21,7 @@ fields.
   Since 2.2
 
 }}}
-\section{Signals}{\describe{\item{\code{The (display.manager, display, user.data)}}{
+\section{Signals}{\describe{\item{\code{display-opened(display.manager, display, user.data)}}{
 The ::display\_opened signal is emitted when a display is opened.  
 
   Since  2.2

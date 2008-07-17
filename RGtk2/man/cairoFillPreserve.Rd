@@ -3,7 +3,7 @@
 \title{cairoFillPreserve}
 \description{A drawing operator that fills the current path according to the
 current fill rule, (each sub-path is implicitly closed before being
-filled). Unlike \code{\link{cairoFill}}, cairo\_fill\_preserve preserves the
+filled). Unlike \code{\link{cairoFill}}, \code{\link{cairoFillPreserve}} preserves the
 path within the cairo context.}
 \usage{cairoFillPreserve(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}

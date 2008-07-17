@@ -6,7 +6,7 @@
 \code{\link{gtkAccessibleConnectWidgetDestroyed}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{AtkObject}
          +----GtkAccessible}}
 \section{Structures}{\describe{\item{\code{GtkAccessible}}{

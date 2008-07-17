@@ -14,7 +14,7 @@
 \code{\link{gtkMessageDialogFormatSecondaryMarkup}(object, ...)}\cr
 \code{gtkMessageDialog(parent, flags, type, buttons, ..., show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -24,7 +24,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkMessageDialog}}
 \section{Interfaces}{GtkMessageDialog implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkMessageDialog}} presents a dialog with an image representing the type of 
 message (Error, Question, etc.) alongside some message text. It's simply a 
 convenience widget; you could construct the equivalent of \code{\link{GtkMessageDialog}} 
@@ -34,19 +34,24 @@ The easiest way to do a modal message dialog is to use \code{\link{gtkDialogRun}
 you can also pass in the \code{GTK_DIALOG_MODAL} flag, \code{\link{gtkDialogRun}} automatically
 makes the dialog modal and waits for the user to respond to it. \code{\link{gtkDialogRun}}
 returns when any dialog button is clicked.
+
+ \emph{A modal dialog.}
 \preformatted{
 # A Modal dialog
-dialog <- gtkMessageDialog(main_application_window, 
-  "destroy-with-parent", "error", "close", "Error loading file '", 
-  filename, "': ", message)
+dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
+                           "error", "close", "Error loading file '", filename,
+                           "': ", message)
 dialog$run()
 dialog$destroy()
 }
   
 You might do a non-modal \code{\link{GtkMessageDialog}} as follows:
+
+ \emph{A non-modal dialog.}
 \preformatted{
 dialog <- gtkMessageDialog(main_application_window, "destroy-with-parent",
-  "error", "close", "Error loading file '", filename, "': ", message)
+                           "error", "close", "Error loading file '", filename,
+                           "': ", message)
 # Destroy the dialog when the user responds to it (e.g. clicks a button)
 gSignalConnect(dialog, "response", gtkWidgetDestroy)
 }}

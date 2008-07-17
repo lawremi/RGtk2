@@ -9,8 +9,8 @@ match any changes to the widget's attributes.}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{If you create and keep a \code{\link{PangoLayout}} using this context, you must
 deal with changes to the context by calling \code{\link{pangoLayoutContextChanged}}
-on the layout in response to the \code{::style-set} and 
-\code{::direction-changed} signals for the widget.  }
+on the layout in response to the \code{"style-set"} and 
+\code{"direction-changed"} signals for the widget.  }
 \value{[\code{\link{PangoContext}}]  the \code{\link{PangoContext}} for the widget.}
 \note{Unlike the context returned by \code{\link{gtkWidgetCreatePangoContext}}, 
 this context is owned by the widget (it can be used until the screen for 

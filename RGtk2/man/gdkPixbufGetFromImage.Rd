@@ -16,7 +16,7 @@ an image.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkPixbuf}}]  \code{dest}, newly-created pixbuf if \code{dest} was \code{NULL}, \code{NULL} on error}
+\item{retval}{[\code{\link{GdkPixbuf}}] \code{dest}, newly-created pixbuf if \code{dest} was \code{NULL}, \code{NULL} on error}
 \item{\code{dest}}{[\code{\link{GdkPixbuf}}]  Destination pixbuf, or \code{NULL} if a new pixbuf should be created.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

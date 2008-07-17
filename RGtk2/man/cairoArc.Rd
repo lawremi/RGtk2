@@ -17,7 +17,8 @@ until it is greater than \code{angle1}.}
 }
 \details{If there is a current point, an initial line segment will be added
 to the path to connect the current point to the beginning of the
-arc.
+arc. If this initial line is undesired, it can be avoided by
+calling \code{\link{cairoNewSubPath}} before calling \code{\link{cairoArc}}.
   
 Angles are measured in radians. An angle of 0.0 is in the direction
 of the positive X axis (in user space). An angle of \code{M_PI}/2.0 radians
@@ -37,8 +38,7 @@ The arc is circular in user space. To achieve an elliptical arc,
 you can scale the current transformation matrix by different
 amounts in the X and Y directions. For example, to draw an ellipse
 in the box given by \code{x}, \code{y}, \code{width}, \code{height}:
-  
-\preformatted{
+  \preformatted{
 cr$save()
 cr$translate(x + width / 2, y + height / 2)
 cr$scale(1 / (height / 2), 1 / (width / 2))

@@ -7,7 +7,7 @@
 \code{\link{gtkCellEditableEditingDone}(object)}\cr
 \code{\link{gtkCellEditableRemoveWidget}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkCellEditable}}
 \section{Implementations}{GtkCellEditable is implemented by
  \code{\link{GtkEntry}},  \code{\link{GtkComboBox}},  \code{\link{GtkSpinButton}} and  \code{\link{GtkComboBoxEntry}}.}
@@ -19,15 +19,14 @@ to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (cell.editable, user.data)}}{
+\item{\code{editing-done(cell.editable, user.data)}}{
 This signal is a sign for the cell renderer to update its 
 value from the \code{cell.editable}. 
   
 Implementations of \code{\link{GtkCellEditable}} are responsible for 
 emitting this signal when they are done editing, e.g. 
 \code{\link{GtkEntry}} is emitting it when the user presses Enter.
-  
-\code{\link{gtkCellEditableEditingDone}} is a convenience method
+  \code{\link{gtkCellEditableEditingDone}} is a convenience method
 for emitting ::editing-done.  
 
 \describe{
@@ -37,7 +36,7 @@ for emitting ::editing-done.
 
 
 }
-\item{\code{The (cell.editable, user.data)}}{
+\item{\code{remove-widget(cell.editable, user.data)}}{
 This signal is meant to indicate that the cell is finished 
 editing, and the widget may now be destroyed. 
   
@@ -46,8 +45,7 @@ emitting this signal when they are done editing. It must
 be emitted after the \code{\link{gtkCellEditableEditingDone}} signal, 
 to give the cell renderer a chance to update the cell's value 
 before the widget is removed. 
-  
-\code{\link{gtkCellEditableRemoveWidget}} is a convenience method
+  \code{\link{gtkCellEditableRemoveWidget}} is a convenience method
 for emitting ::remove-widget.  
 
 \describe{

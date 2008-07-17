@@ -7,7 +7,7 @@ when using the \code{\link{PangoLayout}} function you need to convert to
 and from pixels using \code{pangoPixels()} or \code{PANGO_SCALE}. }
 \usage{gtkScaleGetLayoutOffsets(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkScale}}]  a \code{\link{GtkScale}}}}
-\details{If the \code{:draw-value} property is \code{FALSE}, the return 
+\details{If the \code{"draw-value"} property is \code{FALSE}, the return 
 values are undefined.  
 
   Since  2.4}

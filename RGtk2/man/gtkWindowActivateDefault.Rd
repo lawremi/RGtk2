@@ -7,6 +7,6 @@ focused widget has been configured to receive the default action
 focused widget is activated.}
 \usage{gtkWindowActivateDefault(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\value{[logical]  \code{TRUE} if a widget got activated.}
+\value{[logical] \code{TRUE} if a widget got activated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

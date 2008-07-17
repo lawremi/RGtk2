@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateLinear}
 \name{cairoPatternCreateLinear}
 \title{cairoPatternCreateLinear}
-\description{Create a new linear gradient cairo\_pattern\_t along the line defined
+\description{Create a new linear gradient \code{\link{CairoPattern}} along the line defined
 by (x0, y0) and (x1, y1).  Before using the gradient pattern, a
 number of color stops should be defined using
 \code{\link{cairoPatternAddColorStopRgb}} or

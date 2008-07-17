@@ -14,7 +14,7 @@ between 0 and 1.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{gstring} could be parsed and \code{property.value}
+\item{retval}{[logical] \code{TRUE} if \code{gstring} could be parsed and \code{property.value}
 has been set to the resulting \code{\link{GdkColor}}.}
 \item{\code{property.value}}{[R object]  a \code{R object} which must hold \code{\link{GdkColor}} values.}
 }

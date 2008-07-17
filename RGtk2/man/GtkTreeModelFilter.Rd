@@ -19,7 +19,7 @@
 \code{\link{gtkTreeModelFilterClearCache}(object)}\cr
 \code{gtkTreeModelFilter(child.model, root = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkTreeModelFilter}}
 \section{Interfaces}{GtkTreeModelFilter implements
  \code{\link{GtkTreeModel}} and  \code{\link{GtkTreeDragSource}}.}

@@ -10,7 +10,7 @@
 \code{\link{gtkAlignmentSetPadding}(object, padding.top, padding.bottom, padding.left, padding.right)}\cr
 \code{gtkAlignment(xalign = NULL, yalign = NULL, xscale = NULL, yscale = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -18,7 +18,7 @@
                            +----\link{GtkBin}
                                  +----GtkAlignment}}
 \section{Interfaces}{GtkAlignment implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkAlignment}} widget controls the alignment and size of its child widget.
 It has four settings: xscale, yscale, xalign, and yalign.
   

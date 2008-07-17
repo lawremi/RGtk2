@@ -14,7 +14,7 @@ can only happen when the widget is realized.}
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}}}
 \item{\code{focus.column}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}, or \code{NULL}}
-\item{\code{start.editing}}{[logical]  \code{TRUE} if the specified cell should start being edited.}
+\item{\code{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

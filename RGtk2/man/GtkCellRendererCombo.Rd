@@ -7,7 +7,7 @@
 \code{\link{gtkCellRendererComboNew}()}\cr
 \code{gtkCellRendererCombo()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}
@@ -58,8 +58,7 @@ combo box.
 Note that this refers to the model specified in the model property, 
 \emph{not} the model backing the tree view to which 
 this cell renderer is attached.
-  
-\code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for 
+  \code{\link{GtkCellRendererCombo}} automatically adds a text cell renderer for 
 this column to its combo box.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6

@@ -17,7 +17,7 @@
 \code{\link{gtkCheckMenuItemGetDrawAsRadio}(object)}\cr
 \code{gtkCheckMenuItem(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -28,7 +28,7 @@
                                              +----GtkCheckMenuItem
                                                    +----\link{GtkRadioMenuItem}}}
 \section{Interfaces}{GtkCheckMenuItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkCheckMenuItem}} is a menu item that maintains the state of a boolean 
 value in addition to a \code{\link{GtkMenuItem}}'s usual role in activating application
 code.
@@ -45,7 +45,7 @@ an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkCheckMenuItem} is the result of collapsing the constructors of \code{GtkCheckMenuItem} (\code{\link{gtkCheckMenuItemNew}}, \code{\link{gtkCheckMenuItemNewWithLabel}}, \code{\link{gtkCheckMenuItemNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{The (checkmenuitem, user.data)}}{
+\section{Signals}{\describe{\item{\code{toggled(checkmenuitem, user.data)}}{
 This signal is emitted when the state of the check box is changed.
   
 A signal handler can examine the \code{active} 
@@ -77,7 +77,7 @@ Whether to display an "inconsistent" state.  Default value: FALSE
 }}
 \section{Style Properties}{\describe{\item{\code{indicator-size} [integer : Read]}{
 
-Size of check or radio indicator.  Allowed values: >= 0  Default value: 12
+Size of check or radio indicator.  Allowed values: >= 0  Default value: 13
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCheckMenuItem.html}}

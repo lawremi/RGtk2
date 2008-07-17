@@ -15,7 +15,7 @@
 \code{\link{gtkFileChooserButtonSetFocusOnClick}(object, focus.on.click)}\cr
 \code{gtkFileChooserButton(title, action, backend, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -24,32 +24,32 @@
                                  +----\link{GtkHBox}
                                        +----GtkFileChooserButton}}
 \section{Interfaces}{GtkFileChooserButton implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkFileChooser}}.}
 \section{Detailed Description}{The \code{\link{GtkFileChooserButton}} is a widget that lets the user select a
 file.  It implements the \code{\link{GtkFileChooser}} interface.  Visually, it is a
 file name with a button to bring up a \code{\link{GtkFileChooserDialog}}.
 The user can then use that dialog to change the file associated with
 that button.  This widget does not support setting the "select-multiple"
 property to \code{TRUE}.
-  \preformatted{
+  
+ \emph{Create a button to let the user select a file in /etc}
+\preformatted{
 # Create a button to let the user select a file in /etc
 button <- gtkFileChooserButton("Select a file", "open")
 button$setCurrentFolder("/etc")
 }  
 The \code{\link{GtkFileChooserButton}} supports the \code{\link{GtkFileChooserAction}}s \code{GTK_FILE_CHOOSER_ACTION_OPEN} and \code{GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER}.
-  \strong{PLEASE NOTE:}   
-The \code{\link{GtkFileChooserButton}} will ellipsize the label,
+  \strong{PLEASE NOTE:} The \code{\link{GtkFileChooserButton}} will ellipsize the label,
 and thus will thus request little horizontal space.  To give the button
 more space, you should call \code{\link{gtkWidgetSizeRequest}},
 \code{\link{gtkFileChooserButtonSetWidthChars}}, or pack the button in
-such a way that other interface elements give space to the widget.
-  }
+such a way that other interface elements give space to the widget.}
 \section{Structures}{\describe{\item{\code{GtkFileChooserButton}}{
 This should not be accessed directly.  Use the accessor functions below. 
 
 }}}
 \section{Convenient Construction}{\code{gtkFileChooserButton} is the result of collapsing the constructors of \code{GtkFileChooserButton} (\code{\link{gtkFileChooserButtonNew}}, \code{\link{gtkFileChooserButtonNewWithBackend}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{The (filechooserbutton, user.data)}}{
+\section{Signals}{\describe{\item{\code{file-set(filechooserbutton, user.data)}}{
 \emph{undocumented
 }
 

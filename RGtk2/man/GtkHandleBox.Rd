@@ -13,7 +13,7 @@
 \code{\link{gtkHandleBoxGetSnapEdge}(object)}\cr
 \code{gtkHandleBox(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -21,7 +21,7 @@
                            +----\link{GtkBin}
                                  +----GtkHandleBox}}
 \section{Interfaces}{GtkHandleBox implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkHandleBox}} widget allows a portion of a window to be "torn
 off". It is a bin widget which displays its child and a handle that
 the user can drag to tear off a separate window (the \dfn{float
@@ -62,7 +62,7 @@ child is attached or detached. \cr
 }}}
 \section{Convenient Construction}{\code{gtkHandleBox} is the equivalent of \code{\link{gtkHandleBoxNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (handlebox, widget, user.data)}}{
+\item{\code{child-attached(handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the
 handlebox are reattached to the main window.
 
@@ -76,7 +76,7 @@ handlebox are reattached to the main window.
 
 
 }
-\item{\code{The (handlebox, widget, user.data)}}{
+\item{\code{child-detached(handlebox, widget, user.data)}}{
 This signal is emitted when the contents of the
 handlebox are detached from the main window.
 

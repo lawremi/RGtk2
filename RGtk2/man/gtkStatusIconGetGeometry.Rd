@@ -18,7 +18,7 @@ is embedded in a notification area, see
   Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the location information has 
+\item{retval}{[logical] \code{TRUE} if the location information has 
               been filled in}
 \item{\code{screen}}{[\code{\link{GdkScreen}}]  return location for the screen, or \code{NULL} if the
          information is not needed }

@@ -34,7 +34,7 @@
 \code{\link{gtkRcStyleCopy}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkRcStyle}}
 \section{Detailed Description}{GTK+ provides resource file mechanism for configuring
 various aspects of the operation of a GTK+ program

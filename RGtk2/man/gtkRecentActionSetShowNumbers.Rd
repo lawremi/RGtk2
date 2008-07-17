@@ -8,7 +8,7 @@ label. Only the first ten items get a number to avoid clashes.}
 \usage{gtkRecentActionSetShowNumbers(object, show.numbers)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkRecentAction}}]  a \code{\link{GtkRecentAction}}}
-\item{\code{show.numbers}}{[logical]  \code{TRUE} if the shown items should be numbered}
+\item{\code{show.numbers}}{[logical] \code{TRUE} if the shown items should be numbered}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

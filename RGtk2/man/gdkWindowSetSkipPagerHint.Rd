@@ -12,7 +12,7 @@ its semantic type.}
 \usage{gdkWindowSetSkipPagerHint(object, modal)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{modal}}{[logical]  \code{TRUE} to skip the pager}
+\item{\code{modal}}{[logical] \code{TRUE} to skip the pager}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

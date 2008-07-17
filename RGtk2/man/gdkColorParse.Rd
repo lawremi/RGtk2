@@ -16,7 +16,7 @@ such as \code{#3050b2} or \code{#35b}.}
 \arguments{\item{\code{spec}}{[character]  the string specifying the color.}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the parsing succeeded.}
+\item{retval}{[logical] \code{TRUE} if the parsing succeeded.}
 \item{\code{color}}{[\code{\link{GdkColor}}]  the \code{\link{GdkColor}} to fill in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

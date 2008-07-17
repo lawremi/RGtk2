@@ -14,6 +14,6 @@
 \item{\code{best.match}}{[logical]  If \code{TRUE}, GDK will attempt to do matching against
    existing colors if the color cannot be allocated as requested.}
 }
-\value{[logical]  \code{TRUE} if the allocation succeeded.}
+\value{[logical] \code{TRUE} if the allocation succeeded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

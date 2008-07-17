@@ -9,6 +9,6 @@ should be done for this key event.}
 \item{\code{object}}{[\code{\link{GtkIMContext}}]  a \code{\link{GtkIMContext}}}
 \item{\code{event}}{[\code{\link{GdkEventKey}}]  the key event}
 }
-\value{[logical]  \code{TRUE} if the input method handled the key event.}
+\value{[logical] \code{TRUE} if the input method handled the key event.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

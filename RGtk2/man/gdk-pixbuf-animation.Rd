@@ -23,9 +23,9 @@
 \code{gdkPixbufAnimation(filename, .errwarn = TRUE)}\cr\code{gdkPixbufSimpleAnim(width, height, rate)}
 }
 \section{Hierarchy}{\preformatted{
-  \link{GObject}
+\link{GObject}
    +----GdkPixbufAnimation
-  \link{GObject}
+\link{GObject}
    +----GdkPixbufAnimationIter
 }}
 \section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism to load and represent

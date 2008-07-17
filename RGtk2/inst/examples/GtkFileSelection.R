@@ -8,22 +8,23 @@ store_filename <- function(widget, file_selector) {
 
 create_file_selection <- function() {
 
-  # Create the selector
+  ## Create the selector
    
-   file_selector <- gtkFileSelection("Please select a file for editing.", show = F)
+  file_selector <- gtkFileSelection("Please select a file for editing.",
+                                    show = FALSE)
    
-   gSignalConnect(file_selector[["ok_button"]], "clicked", store_filename,
-                     file_selector)
+  gSignalConnect(file_selector[["ok_button"]], "clicked", store_filename,
+                 file_selector)
    			   
-   # Ensure that the dialog box is destroyed when the user clicks a button.
+  ## Ensure that the dialog box is destroyed when the user clicks a button.
    
-   gSignalConnect(file_selector[["ok_button"]], "clicked", gtkWidgetDestroy, 
-                             file_selector, user.data.first = T)
-
-   gSignalConnect(file_selector[["cancel_button"]], "clicked", gtkWidgetDestroy,
-                             file_selector, user.data.first = T) 
+  gSignalConnect(file_selector[["ok_button"]], "clicked", gtkWidgetDestroy, 
+                 file_selector, user.data.first = TRUE)
+  
+  gSignalConnect(file_selector[["cancel_button"]], "clicked", gtkWidgetDestroy,
+                 file_selector, user.data.first = TRUE) 
    
-   # Display that dialog
+  ## Display that dialog
    
-   file_selector$show()
+  file_selector$show()
 }

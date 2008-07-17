@@ -12,7 +12,7 @@ forms is '\#fff' '\#ffffff' '\#fffffffff' and '\#ffffffffffff')}
 \arguments{\item{\code{spec}}{[char]  a string specifying the new color}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if parsing of the specifier succeeded,
+\item{retval}{[logical] \code{TRUE} if parsing of the specifier succeeded,
   otherwise false.}
 \item{\code{color}}{[\code{\link{PangoColor}}]  a \code{\link{PangoColor}} structure in which to store the result}
 }

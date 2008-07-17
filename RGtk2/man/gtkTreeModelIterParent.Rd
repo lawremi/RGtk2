@@ -12,7 +12,7 @@ called.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{iter} is set to the parent of \code{child}.}
+\item{retval}{[logical] \code{TRUE}, if \code{iter} is set to the parent of \code{child}.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The new \code{\link{GtkTreeIter}} to set to the parent.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -12,6 +12,8 @@ correspond to the script(s) used by that language.}
            for, or \code{NULL} to indicate to get the metrics for the entire
            font.}
 }
+\details{If \code{font} is \code{NULL}, this function gracefully sets some sane values in the
+output variables and returns.  }
 \value{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} object.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

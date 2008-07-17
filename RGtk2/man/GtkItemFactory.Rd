@@ -35,7 +35,7 @@
 \code{\link{gtkItemFactorySetTranslateFunc}(object, func, data = NULL)}\cr
 \code{gtkItemFactory(container.type, path, accel.group = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----GtkItemFactory}}

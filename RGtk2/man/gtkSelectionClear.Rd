@@ -14,6 +14,6 @@ from any other context is illegal.}
 \item{\code{event}}{[\code{\link{GdkEventSelection}}]  the event}
 }
 \details{  Since  2.2}
-\value{[logical]  \code{TRUE} if the event was handled, otherwise false}
+\value{[logical] \code{TRUE} if the event was handled, otherwise false}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

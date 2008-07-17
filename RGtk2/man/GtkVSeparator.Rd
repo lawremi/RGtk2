@@ -7,14 +7,14 @@
 \code{\link{gtkVSeparatorNew}(show = TRUE)}\cr
 \code{gtkVSeparator(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkSeparator}
                            +----GtkVSeparator}}
 \section{Interfaces}{GtkVSeparator implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkVSeparator}} widget is a vertical separator, used to group the
 widgets within a window. It displays a vertical line with a shadow to
 make it appear sunken into the interface.}

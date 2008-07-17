@@ -12,14 +12,14 @@ function returns \code{FALSE}; on an exact hit, it returns \code{TRUE}.}
 \usage{pangoLayoutXyToIndex(object, x, y)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayout}}]     a \code{\link{PangoLayout}}}
-\item{\code{x}}{[integer]          the X offset (in \code{integer})
+\item{\code{x}}{[integer]          the X offset (in Pango units)
             from the left edge of the layout.}
-\item{\code{y}}{[integer]          the Y offset (in \code{integer})
+\item{\code{y}}{[integer]          the Y offset (in Pango units)
             from the top edge of the layout}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the coordinates were inside text, \code{FALSE} otherwise.}
+\item{retval}{[logical] \code{TRUE} if the coordinates were inside text, \code{FALSE} otherwise.}
 \item{\code{index}}{[integer]     location to store calculated byte index}
 \item{\code{trailing}}{[integer]   location to store a integer indicating where
             in the grapheme the user clicked. It will either

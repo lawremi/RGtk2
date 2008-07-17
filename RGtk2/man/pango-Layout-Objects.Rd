@@ -24,6 +24,8 @@
 \code{\link{pangoLayoutGetFontDescription}(object)}\cr
 \code{\link{pangoLayoutSetWidth}(object, width)}\cr
 \code{\link{pangoLayoutGetWidth}(object)}\cr
+\code{\link{pangoLayoutSetHeight}(object, height)}\cr
+\code{\link{pangoLayoutGetHeight}(object)}\cr
 \code{\link{pangoLayoutSetWrap}(object, wrap)}\cr
 \code{\link{pangoLayoutGetWrap}(object)}\cr
 \code{\link{pangoLayoutIsWrapped}(object)}\cr
@@ -72,6 +74,7 @@
 \code{\link{pangoLayoutIterGetRunReadonly}(object)}\cr
 \code{\link{pangoLayoutIterGetLine}(object)}\cr
 \code{\link{pangoLayoutIterGetLineReadonly}(object)}\cr
+\code{\link{pangoLayoutIterGetLayout}(iter)}\cr
 \code{\link{pangoLayoutIterGetCharExtents}(object)}\cr
 \code{\link{pangoLayoutIterGetClusterExtents}(object)}\cr
 \code{\link{pangoLayoutIterGetRunExtents}(object)}\cr
@@ -85,6 +88,8 @@
 \code{\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)}\cr
 \code{pangoLayout(context)}
 }
+\section{Hierarchy}{\preformatted{\link{GObject}
+   +----PangoLayout}}
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
 that functionality directly involves writing a fairly large amount
@@ -93,7 +98,7 @@ high-level driver for formatting entire paragraphs of text
 at once.}
 \section{Structures}{\describe{
 \item{\code{PangoLayout}}{
-The \code{\link{PangoLayout}} structure represents and entire paragraph
+The \code{\link{PangoLayout}} structure represents an entire paragraph
 of text. It is initialized with a \code{\link{PangoContext}}, UTF-8 string
 and set of attributes for that string. Once that is done, the
 set of formatted lines can be extracted from the object,

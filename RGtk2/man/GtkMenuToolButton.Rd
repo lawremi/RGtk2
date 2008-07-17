@@ -14,7 +14,7 @@
 \code{\link{gtkMenuToolButtonSetArrowTooltipMarkup}(object, markup)}\cr
 \code{gtkMenuToolButton(icon.widget, label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -24,7 +24,7 @@
                                        +----\link{GtkToolButton}
                                              +----GtkMenuToolButton}}
 \section{Interfaces}{GtkMenuToolButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{  A \code{\link{GtkMenuToolButton}} is a \code{\link{GtkToolItem}} that contains a button and
   a small additional button with an arrow. When clicked, the arrow
   button pops up a dropdown menu.
@@ -38,7 +38,7 @@
 
 }}}
 \section{Convenient Construction}{\code{gtkMenuToolButton} is the equivalent of \code{\link{gtkMenuToolButtonNew}}.}
-\section{Signals}{\describe{\item{\code{The (menutoolbutton, user.data)}}{
+\section{Signals}{\describe{\item{\code{show-menu(menutoolbutton, user.data)}}{
 \emph{undocumented
 }
 

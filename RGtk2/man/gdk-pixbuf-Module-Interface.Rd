@@ -47,14 +47,12 @@ supply a generic \code{load} implementation wrapping the incremental loading.
 Installing a module is a two-step process:
 \itemize{
 \item copy the module file(s) to the loader directory (normally
-\file{\emph{undocumented
-}},
+\file{libdir},
 unless overridden by the environment variable
 \env{GDK\_PIXBUF\_MODULEDIR}) 
 \item call \command{gdk-pixbuf-query-loaders} to update the
 module file (normally
-\file{\emph{undocumented
-}},
+\file{sysconfdir},
 unless overridden by the environment variable
 \env{GDK\_PIXBUF\_MODULE\_FILE})
 }
@@ -132,8 +130,7 @@ efficiently.
 \item{\code{GdkPixbufModulePreparedFunc(pixbuf, anim, user.data)}}{
 Defines the type of the function that gets called once the initial 
 setup of \code{pixbuf} is done.
-  
-\code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
+  \code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
 "area\_prepared"
 signal.
   Since 2.2
@@ -149,8 +146,7 @@ signal.
 \item{\code{GdkPixbufModuleUpdatedFunc(pixbuf, x, y, width, height, user.data)}}{
 Defines the type of the function that gets called every time a region
 of \code{pixbuf} is updated.
-  
-\code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
+  \code{\link{GdkPixbufLoader}} uses a function of this type to emit the 
 "area\_updated"
 signal.
   Since 2.2

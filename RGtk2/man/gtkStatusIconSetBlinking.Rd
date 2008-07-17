@@ -8,7 +8,7 @@ this setting has no effect.}
 \usage{gtkStatusIconSetBlinking(object, blinking)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}
-\item{\code{blinking}}{[logical]  \code{TRUE} to turn blinking on, \code{FALSE} to turn it off}
+\item{\code{blinking}}{[logical] \code{TRUE} to turn blinking on, \code{FALSE} to turn it off}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

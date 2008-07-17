@@ -4,7 +4,7 @@
 \description{Set the current fill rule within the cairo context. The fill rule
 is used to determine which regions are inside or outside a complex
 (potentially self-intersecting) path. The current fill rule affects
-both cairo\_fill and cairo\_clip. See \code{\link{CairoFillRule}} for details
+both \code{\link{cairoFill}} and \code{\link{cairoClip}}. See \code{\link{CairoFillRule}} for details
 on the semantics of each available fill rule.}
 \usage{cairoSetFillRule(cr, fill.rule)}
 \arguments{

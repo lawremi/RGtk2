@@ -9,7 +9,7 @@ combines these two steps if all you need is the pixbuf.)}
 \usage{gtkIconThemeChooseIcon(object, icon.names, size, flags)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
-\item{\code{icon.names}}{[character]  list of icon names to lookup}
+\item{\code{icon.names}}{[character] array of icon names to lookup}
 \item{\code{size}}{[integer]  desired icon size}
 \item{\code{flags}}{[\code{\link{GtkIconLookupFlags}}]  flags modifying the behavior of the icon lookup}
 }

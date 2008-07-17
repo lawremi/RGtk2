@@ -10,8 +10,7 @@ suitable to the function of the window in your application.}
 \item{\code{hint}}{[\code{\link{GdkWindowTypeHint}}]  the window type}
 }
 \details{This function should be called before the window becomes visible.
-  
-\code{\link{gtkDialogNewWithButtons}} and other convenience functions in GTK+
+  \code{\link{gtkDialogNewWithButtons}} and other convenience functions in GTK+
 will sometimes call \code{\link{gtkWindowSetTypeHint}} on your behalf.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

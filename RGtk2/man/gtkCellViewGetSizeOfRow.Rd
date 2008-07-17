@@ -11,7 +11,7 @@ the model row pointed to by \code{path}.}
 \details{  Since  2.6}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}}
+\item{retval}{[logical] \code{TRUE}}
 \item{\code{requisition}}{[\code{\link{GtkRequisition}}]  return location for the size }
 }
 \author{Derived by RGtkGen from GTK+ documentation}

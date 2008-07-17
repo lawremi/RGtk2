@@ -8,7 +8,7 @@ the arrow.}
 \usage{gtkTreeViewColumnSetSortIndicator(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}}}
-\item{\code{setting}}{[logical]  \code{TRUE} to display an indicator that the column is sorted}
+\item{\code{setting}}{[logical] \code{TRUE} to display an indicator that the column is sorted}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

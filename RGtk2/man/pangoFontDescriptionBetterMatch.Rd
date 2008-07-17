@@ -11,6 +11,6 @@ weight and style; other attributes must match exactly.}
 \item{\code{old.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}, or \code{NULL}}
 \item{\code{new.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
 }
-\value{[logical]  \code{TRUE} if \code{new.match} is a better match}
+\value{[logical] \code{TRUE} if \code{new.match} is a better match}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -12,7 +12,7 @@ can be selected.}
 \code{\link{atkSelectionRemoveSelection}(object, i)}\cr
 \code{\link{atkSelectionSelectAllSelection}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkSelection}}
 \section{Implementations}{AtkSelection is implemented by
  \code{\link{AtkNoOpObject}}.}

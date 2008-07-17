@@ -12,8 +12,8 @@ changes are indicated by a \code{TRUE} return value.}
 \item{\code{accel.path}}{[character]   a valid accelerator path}
 \item{\code{accel.key}}{[numeric]    the new accelerator key}
 \item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]   the new accelerator modifiers}
-\item{\code{replace}}{[logical]      \code{TRUE} if other accelerators may be deleted upon conflicts}
+\item{\code{replace}}{[logical] \code{TRUE} if other accelerators may be deleted upon conflicts}
 }
-\value{[logical]      \code{TRUE} if the accelerator could be changed, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if the accelerator could be changed, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,7 +5,7 @@
 \usage{gtkBuildableConstructChild(object, builder, name)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkBuildable}}]  A \code{\link{GtkBuildable}}}
-\item{\code{builder}}{[\code{\link{GtkBuilder}}]  \code{\link{GtkBuilder}} used to construct this object}
+\item{\code{builder}}{[\code{\link{GtkBuilder}}] \code{\link{GtkBuilder}} used to construct this object}
 \item{\code{name}}{[character]  name of child to construct}
 }
 \details{\code{\link{GtkBuilder}} calls this function if a "constructor" has been

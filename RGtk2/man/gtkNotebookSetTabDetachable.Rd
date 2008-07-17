@@ -18,10 +18,10 @@ If you want a widget to interact with a notebook through DnD
 destination and accept the target "GTK\_NOTEBOOK\_TAB". The notebook
 will fill the selection with a GtkWidget** pointing to the child
 widget that corresponds to the dropped tab.
-  
-\preformatted{
-on_drop_zone_drag_data_received <- function(widget, context, x, y, 
-  selection_data, info, time, user_data)
+  \preformatted{
+on_drop_zone_drag_data_received <- function(widget, context, x, y,
+                                            selection_data, info, time,
+                                            user_data)
 {
   notebook <- context$getWidget()
   child <- selection_data$data
@@ -31,8 +31,7 @@ on_drop_zone_drag_data_received <- function(widget, context, x, y,
   # process_widget(child)
   # notebook$remove(child)
 }
-}
-  
+}  
 If you want a notebook to accept drags from other widgets,
 you will have to set your own DnD code to do it.  
 

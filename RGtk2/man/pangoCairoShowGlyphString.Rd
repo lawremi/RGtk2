@@ -7,7 +7,7 @@ be drawn at the current point of the cairo context.}
 \usage{pangoCairoShowGlyphString(cr, font, glyphs)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}
-\item{\code{font}}{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}}
+\item{\code{font}}{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}} from a \code{\link{PangoCairoFontMap}}}
 \item{\code{glyphs}}{[\code{\link{PangoGlyphString}}]  a \code{\link{PangoGlyphString}}}
 }
 \details{  Since  1.10}

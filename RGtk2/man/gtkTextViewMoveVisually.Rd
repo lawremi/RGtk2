@@ -18,6 +18,6 @@ cursor position.}
 between logical and visual order will depend on the direction
 of the current run, and there may be jumps when the cursor
 is moved off of the end of a run.  }
-\value{[logical]  \code{TRUE} if \code{iter} moved and is not on the end iterator}
+\value{[logical] \code{TRUE} if \code{iter} moved and is not on the end iterator}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

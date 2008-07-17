@@ -8,14 +8,14 @@
 \code{\link{gtkOldEditableChanged}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkOldEditable
                            +----GtkText}}
 \section{Interfaces}{GtkOldEditable implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkEditable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkEditable}}.}
 \section{Detailed Description}{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
 in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 \section{Structures}{\describe{\item{\code{GtkOldEditable}}{
@@ -36,7 +36,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (oldeditable, user.data)}}{
+\item{\code{activate(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
@@ -47,7 +47,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, user.data)}}{
+\item{\code{copy-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
@@ -58,7 +58,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, user.data)}}{
+\item{\code{cut-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
@@ -69,19 +69,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
-\emph{undocumented
-}
-
-\describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
-\item{\code{arg1}}{[integer] }
-\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
-}
-
-
-}
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{kill-char(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -93,7 +81,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{kill-line(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -105,20 +93,19 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, arg2, user.data)}}{
+\item{\code{kill-word(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
 \describe{
 \item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
-\item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (oldeditable, arg1, arg2, user.data)}}{
+\item{\code{move-cursor(oldeditable, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -131,7 +118,20 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{move-page(oldeditable, arg1, arg2, user.data)}}{
+\emph{undocumented
+}
+
+\describe{
+\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{arg1}}{[integer] }
+\item{\code{arg2}}{[integer] }
+\item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
+}
+
+
+}
+\item{\code{move-to-column(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -143,7 +143,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{move-to-row(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -155,7 +155,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{move-word(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -167,7 +167,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, user.data)}}{
+\item{\code{paste-clipboard(oldeditable, user.data)}}{
 \emph{undocumented
 }
 
@@ -178,7 +178,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 
 
 }
-\item{\code{The (oldeditable, arg1, user.data)}}{
+\item{\code{set-editable(oldeditable, arg1, user.data)}}{
 \emph{undocumented
 }
 

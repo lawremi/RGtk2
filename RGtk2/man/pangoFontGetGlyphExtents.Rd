@@ -13,6 +13,8 @@ of the rectangles are in 1/PANGO\_SCALE of a device unit.}
 \item{\code{object}}{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}}
 \item{\code{glyph}}{[numeric]  the glyph index}
 }
+\details{If \code{font} is \code{NULL}, this function gracefully sets some sane values in the
+output variables and returns.  }
 \value{
 A list containing the following elements:
 \item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]  rectangle used to store the extents of the glyph as drawn

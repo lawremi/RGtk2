@@ -13,6 +13,6 @@ is returned.}
 \item{\code{accel.key}}{[numeric]      accelerator keyval from a key event}
 \item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]     keyboard state mask from a key event}
 }
-\value{[logical]        \code{TRUE} if the accelerator was handled, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if the accelerator was handled, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

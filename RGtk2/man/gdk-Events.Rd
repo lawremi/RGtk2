@@ -97,8 +97,7 @@ for the possible window states}
 A set of bit-flags to indicate which events a window is to receive.
 Most of these masks map onto one or more of the \code{\link{GdkEventType}} event types
 above.
-  
-\code{GDK_POINTER_MOTION_HINT_MASK} is a special mask which is used to reduce the
+  \code{GDK_POINTER_MOTION_HINT_MASK} is a special mask which is used to reduce the
 number of \code{GDK_MOTION_NOTIFY} events received. Normally a \code{GDK_MOTION_NOTIFY}
 event is received each time the mouse moves. However, if the application
 spends a lot of time processing the event (updating the display, for example),

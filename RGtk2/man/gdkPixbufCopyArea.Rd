@@ -14,5 +14,8 @@ pixbuf formats is done automatically.}
 \item{\code{dest.x}}{[integer]  X coordinate within \code{dest.pixbuf}.}
 \item{\code{dest.y}}{[integer]  Y coordinate within \code{dest.pixbuf}.}
 }
+\details{If the source rectangle overlaps the destination rectangle on the
+same pixbuf, it will be overwritten during the copy operation.
+Therefore, you can not use this function to scroll a pixbuf.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

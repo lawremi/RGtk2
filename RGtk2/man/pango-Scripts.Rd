@@ -25,8 +25,8 @@ The \code{\link{PangoScript}} enumeration identifies different writing
 systems. The values correspond to the names as defined in the
 Unicode standard.
 Note that new types may be added in the future. Applications should be ready
-to handle unknown values.
-See Unicode Standard Annex
+to handle unknown values.  This enumeration is interchangeable with
+\code{GUnicodeScript}.  See Unicode Standard Annex
  (\url{http://www.unicode.org/reports/tr24/}).
 
 \describe{

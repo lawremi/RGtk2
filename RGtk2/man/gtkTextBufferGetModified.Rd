@@ -7,6 +7,6 @@ to \code{\link{gtkTextBufferSetModified}} set the modification flag to
 editor.}
 \usage{gtkTextBufferGetModified(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}} }}
-\value{[logical]  \code{TRUE} if the buffer has been modified}
+\value{[logical] \code{TRUE} if the buffer has been modified}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

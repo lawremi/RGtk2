@@ -8,7 +8,7 @@ implementing accessible objects.}
 \code{\link{atkGObjectAccessibleGetObject}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{AtkObject}
          +----AtkGObjectAccessible}}
 \section{Detailed Description}{This object class is derived from AtkObject. It can be used as a basis for

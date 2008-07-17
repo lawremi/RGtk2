@@ -16,7 +16,7 @@
 \code{\link{gtkTextAttributesCopyValues}(object, dest)}\cr
 \code{gtkTextTag(name = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkTextTag}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
@@ -24,8 +24,7 @@ types related to the text widget and how they work together.
   
 Tags should be in the \code{\link{GtkTextTagTable}} for a given \code{\link{GtkTextBuffer}}
 before using them with that buffer.
-  
-\code{\link{gtkTextBufferCreateTag}} is the best way to create tags.
+  \code{\link{gtkTextBufferCreateTag}} is the best way to create tags.
 See \command{gtk-demo} for numerous examples.
   
 The "invisible" property was not implemented for GTK+ 2.0; it's
@@ -97,7 +96,7 @@ Describes a type of line wrapping.
 }
 
 }}}
-\section{Signals}{\describe{\item{\code{The (tag, object, event, iter, user.data)}}{
+\section{Signals}{\describe{\item{\code{event(tag, object, event, iter, user.data)}}{
 The ::event signal is emitted when an event occurs on a region of the
 buffer marked with this tag.  
 
@@ -109,7 +108,7 @@ buffer marked with this tag.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} to stop other handlers from being invoked for the
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked for the
 event. \code{FALSE} to propagate the event further.
 
 }}}

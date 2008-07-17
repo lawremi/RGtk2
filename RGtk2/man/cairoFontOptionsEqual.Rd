@@ -7,6 +7,8 @@
 \item{\code{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}}}
 \item{\code{other}}{[\code{\link{CairoFontOptions}}]  another \code{\link{CairoFontOptions}}}
 }
-\value{[logical]  \code{TRUE} if all fields of the two font options objects match}
+\value{[logical] \code{TRUE} if all fields of the two font options objects match.
+Note that this function will return \code{FALSE} if either object is in
+error.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

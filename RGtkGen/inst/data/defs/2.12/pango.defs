@@ -2,6 +2,20 @@
 
 (include "../2.10/pango.defs")
 
+(define-interface CairoFont
+  (in-module "Pango")
+  (c-name "PangoCairoFont")
+  (gtype-id "PANGO_TYPE_CAIRO_FONT")
+  (since "1.18.0")
+)
+
+(define-method get_height
+  (of-object "PangoLayout")
+  (c-name "pango_layout_get_height")
+  (return-type "gint")
+  (since "1.20.0")
+)
+
 (define-method set_height
   (of-object "PangoLayout")
   (c-name "pango_layout_set_height")
@@ -13,6 +27,7 @@
 )
 
 (define-function pango_attribute_init
+  (in-module "Pango")
   (c-name "pango_attribute_init")
   (return-type "none")
   (parameters
@@ -23,6 +38,7 @@
 )
 
 (define-function pango_layout_iter_get_layout
+  (in-module "Pango") 
   (c-name "pango_layout_iter_get_layout")
   (return-type "PangoLayout*")
   (parameters
@@ -32,6 +48,7 @@
 )
 
 (define-function pango_renderer_get_layout
+  (in-module "Pango")
   (c-name "pango_renderer_get_layout")
   (return-type "PangoLayout*")
   (parameters
@@ -41,6 +58,7 @@
 )
 
 (define-function pango_renderer_get_layout_line
+  (in-module "Pango")
   (c-name "pango_renderer_get_layout_line")
   (return-type "PangoLayoutLine*")
   (parameters
@@ -64,12 +82,20 @@
 )
 
 (define-function pango_cairo_font_map_new_for_font_type
+  (in-module "Pango")
   (c-name "pango_cairo_font_map_new_for_font_type")
   (is-constructor-of "PangoCairoFontMap")
   (return-type "PangoCairoFontMap*")
   (parameters
     '("cairo_font_type_t" "fonttype")
   )
+  (since "1.18.0")
+)
+
+(define-method get_font_type
+  (of-object "PangoCairoFontMap")
+  (c-name "pango_cairo_font_map_get_font_type")
+  (return-type "cairo_font_type_t")
   (since "1.18.0")
 )
 

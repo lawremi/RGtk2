@@ -8,7 +8,7 @@ window at the top.}
 \usage{gtkWidgetHasScreen(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{  Since  2.2}
-\value{[logical]  \code{TRUE} if there is a \code{\link{GdkScreen}} associcated
+\value{[logical] \code{TRUE} if there is a \code{\link{GdkScreen}} associcated
   with the widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

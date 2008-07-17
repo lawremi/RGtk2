@@ -2,7 +2,8 @@
 \name{pangoFontDescriptionSetAbsoluteSize}
 \title{pangoFontDescriptionSetAbsoluteSize}
 \description{Sets the size field of a font description, in device units. This is mutually
-exclusive with \code{\link{pangoFontDescriptionSetSize}}.}
+exclusive with \code{\link{pangoFontDescriptionSetSize}} which sets the font size
+in points.}
 \usage{pangoFontDescriptionSetAbsoluteSize(object, size)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}

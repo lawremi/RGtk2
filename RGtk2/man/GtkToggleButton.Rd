@@ -16,7 +16,7 @@
 \code{\link{gtkToggleButtonSetInconsistent}(object, setting)}\cr
 \code{gtkToggleButton(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -26,7 +26,7 @@
                                        +----GtkToggleButton
                                              +----\link{GtkCheckButton}}}
 \section{Interfaces}{GtkToggleButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
@@ -41,24 +41,26 @@ The state of a \code{\link{GtkToggleButton}} can be set specifically using
 \code{\link{gtkToggleButtonGetActive}}.
   
 To simply switch the state of a toggle button, use gtk\_toggle\_button\_toggled.
-  \preformatted{
+  
+ \emph{Creating two   \code{GtkToggleButton}   widgets.}
+\preformatted{
 # Let's make two toggle buttons
 make_toggles <- function() {
-   dialog <- gtkDialog(show = F)
-   toggle1 <- gtkToggleButton("Hi, i'm a toggle button.")
-
-   # Makes this toggle button invisible
-   toggle1$setMode(TRUE)
+  dialog <- gtkDialog(show = F)
+  toggle1 <- gtkToggleButton("Hi, i'm a toggle button.")
+  
+  ## Makes this toggle button invisible
+  toggle1$setMode(TRUE)
    
-   gSignalConnect(toggle1, "toggled", output_state)
-   dialog[["actionArea"]]$packStart(toggle1, FALSE, FALSE, 2)
+  gSignalConnect(toggle1, "toggled", output_state)
+  dialog[["actionArea"]]$packStart(toggle1, FALSE, FALSE, 2)
 
-   toggle2 <- gtkToggleButton("Hi, i'm another button.")
-   toggle2$setMode(FALSE)
-   gSignalConnect(toggle2, "toggled", output_state)
-   dialog[["actionArea"]]$packStart(toggle2, FALSE, FALSE, 2)
+  toggle2 <- gtkToggleButton("Hi, i'm another button.")
+  toggle2$setMode(FALSE)
+  gSignalConnect(toggle2, "toggled", output_state)
+  dialog[["actionArea"]]$packStart(toggle2, FALSE, FALSE, 2)
 
-   dialog$showAll()
+  dialog$showAll()
 }
 }}
 \section{Structures}{\describe{\item{\code{GtkToggleButton}}{
@@ -68,7 +70,7 @@ The \code{\link{GtkToggleButton}} struct contains private data only, and should 
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleButton} is the result of collapsing the constructors of \code{GtkToggleButton} (\code{\link{gtkToggleButtonNew}}, \code{\link{gtkToggleButtonNewWithLabel}}, \code{\link{gtkToggleButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Signals}{\describe{\item{\code{The (togglebutton, user.data)}}{
+\section{Signals}{\describe{\item{\code{toggled(togglebutton, user.data)}}{
 Should be connected if you wish to perform an action whenever the
 \code{\link{GtkToggleButton}}'s state is changed.
 

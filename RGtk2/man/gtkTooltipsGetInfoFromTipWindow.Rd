@@ -14,7 +14,7 @@ applications should have little use for it.
   Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{tip.window} is displaying tooltips, otherwise \code{FALSE}.}
+\item{retval}{[logical] \code{TRUE} if \code{tip.window} is displaying tooltips, otherwise \code{FALSE}.}
 \item{\code{tooltips}}{[\code{\link{GtkTooltips}}]  the return location for the tooltips which are displayed 
    in \code{tip.window}, or \code{NULL}}
 \item{\code{current.widget}}{[\code{\link{GtkWidget}}]  the return location for the widget whose tooltips 

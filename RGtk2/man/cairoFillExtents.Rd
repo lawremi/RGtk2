@@ -2,13 +2,17 @@
 \name{cairoFillExtents}
 \title{cairoFillExtents}
 \description{Computes a bounding box in user coordinates covering the area that
-would be affected by a \code{\link{cairoFill}} operation given the current path
-and fill parameters. If the current path is empty, returns an empty
-rectangle (0,0, 0,0). Surface dimensions and clipping are not taken
-into account.}
+would be affected, (the "inked" area), by a \code{\link{cairoFill}} operation
+given the current path and fill parameters. If the current path is
+empty, returns an empty rectangle ((0,0), (0,0)). Surface
+dimensions and clipping are not taken into account.}
 \usage{cairoFillExtents(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
-\details{See \code{\link{cairoFill}}, \code{\link{cairoSetFillRule}} and \code{\link{cairoFillPreserve}}.  }
+\details{Contrast with \code{\link{cairoPathExtents}}, which is similar, but returns
+non-zero extents for some paths no inked area, (such as a simple
+line segment).
+  
+See \code{\link{cairoFill}}, \code{\link{cairoSetFillRule}} and \code{\link{cairoFillPreserve}}.  }
 \value{
 A list containing the following elements:
 \item{\code{x1}}{[numeric]  left of the resulting extents}

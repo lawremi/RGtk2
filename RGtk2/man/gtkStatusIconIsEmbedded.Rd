@@ -6,7 +6,7 @@ area.}
 \usage{gtkStatusIconIsEmbedded(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the status icon is embedded in
+\value{[logical] \code{TRUE} if the status icon is embedded in
   a notification area.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

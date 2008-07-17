@@ -8,7 +8,7 @@ with an inappropriate license, see \code{\link{gdkPixbufFormatGetLicense}}.}
 \usage{gdkPixbufFormatSetDisabled(object, disabled)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkPixbufFormat}}]  a \code{\link{GdkPixbufFormat}}}
-\item{\code{disabled}}{[logical]  \code{TRUE} to disable the format \code{format}}
+\item{\code{disabled}}{[logical] \code{TRUE} to disable the format \code{format}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

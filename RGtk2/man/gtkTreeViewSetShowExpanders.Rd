@@ -11,7 +11,7 @@ This does not have any visible effects for lists.}
 \usage{gtkTreeViewSetShowExpanders(object, enabled)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{enabled}}{[logical]  \code{TRUE} to enable expander drawing, \code{FALSE} otherwise.}
+\item{\code{enabled}}{[logical] \code{TRUE} to enable expander drawing, \code{FALSE} otherwise.}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

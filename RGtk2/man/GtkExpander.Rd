@@ -20,7 +20,7 @@
 \code{\link{gtkExpanderGetLabelWidget}(object)}\cr
 \code{gtkExpander(label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -28,7 +28,7 @@
                            +----\link{GtkBin}
                                  +----GtkExpander}}
 \section{Interfaces}{GtkExpander implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking 
 on an expander triangle similar to the triangles used in a \code{\link{GtkTreeView}}.
   
@@ -73,7 +73,9 @@ supports placing a child in the label position by specifying
 "label" as the "type" attribute of a <child> element.
 A normal content child can be specified without specifying 
 a <child> type attribute.
-  \preformatted{
+  
+ \emph{A UI definition fragment with GtkExpander}
+\preformatted{
 expander <- gtkExpanderNewWithMnemonic("_More Options")
 gSignalConnect(expander, "notify::expanded", expander_callback)
 
@@ -95,7 +97,7 @@ expander_callback <- (expander, param_spec, user_data)
 
 }}}
 \section{Convenient Construction}{\code{gtkExpander} is the equivalent of \code{\link{gtkExpanderNew}}.}
-\section{Signals}{\describe{\item{\code{The (expander, user.data)}}{
+\section{Signals}{\describe{\item{\code{activate(expander, user.data)}}{
 \emph{undocumented
 }
 

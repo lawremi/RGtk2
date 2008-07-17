@@ -10,7 +10,7 @@ The string is converted to the form determined by
 \item{\code{str}}{[character]  a UTF-8 string}
 \item{\code{len}}{[integer]  the length of \code{str}, or -1 if \code{str} is nul-terminated.}
 }
-\value{[logical]  \code{TRUE} if the selection was successfully set,
+\value{[logical] \code{TRUE} if the selection was successfully set,
   otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

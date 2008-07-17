@@ -8,7 +8,7 @@ interactively (such as popups from network activity).}
 \usage{gdkWindowSetFocusOnMap(object, focus.on.map)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{focus.on.map}}{[logical]  \code{TRUE} if the window should receive input focus when mapped}
+\item{\code{focus.on.map}}{[logical] \code{TRUE} if the window should receive input focus when mapped}
 }
 \details{On X, it is the responsibility of the window manager to interpret
 this hint.org window

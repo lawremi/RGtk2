@@ -10,5 +10,7 @@ absolute value of \code{indent}.}
 \item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
 \item{\code{indent}}{[integer]  the amount by which to indent.}
 }
+\details{The indent setting is ignored if layout alignment is set to
+\code{PANGO_ALIGN_CENTER}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

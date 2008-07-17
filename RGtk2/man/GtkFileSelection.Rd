@@ -15,7 +15,7 @@
 \code{\link{gtkFileSelectionGetSelectMultiple}(object)}\cr
 \code{gtkFileSelection(title = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -25,11 +25,10 @@
                                        +----\link{GtkDialog}
                                              +----GtkFileSelection}}
 \section{Interfaces}{GtkFileSelection implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkFileSelection}} has been superseded by the newer \code{\link{GtkFileChooser}} family
 of widgets.
-  
-\code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
+  \code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
 the user. It will create a new dialog window containing a directory list, 
 and a file list corresponding to the current working directory. The filesystem 
 can be navigated using the directory list or the drop-down history menu. 
@@ -46,6 +45,7 @@ that match a given pattern. This can be used for example, to show only
   
 Simple file operations; create directory, delete file, and rename file, are available from buttons at the top of the dialog. These can be hidden using \code{\link{gtkFileSelectionHideFileopButtons}} and shown again using \code{\link{gtkFileSelectionShowFileopButtons}}.
   
+ \emph{Getting a filename from the user.}
 \preformatted{
 # Getting a filename from a user
 # Note how much easier GtkFileChooser is to use
@@ -57,24 +57,25 @@ store_filename <- function(widget, file_selector) {
 
 create_file_selection <- function() {
 
-  # Create the selector
+  ## Create the selector
    
-   file_selector <- gtkFileSelection("Please select a file for editing.", show = F)
+  file_selector <- gtkFileSelection("Please select a file for editing.",
+                                    show = FALSE)
    
-   gSignalConnect(file_selector[["ok_button"]], "clicked", store_filename,
-                     file_selector)
+  gSignalConnect(file_selector[["ok_button"]], "clicked", store_filename,
+                 file_selector)
    			   
-   # Ensure that the dialog box is destroyed when the user clicks a button.
+  ## Ensure that the dialog box is destroyed when the user clicks a button.
    
-   gSignalConnect(file_selector[["ok_button"]], "clicked", gtkWidgetDestroy, 
-                             file_selector, user.data.first = T)
-
-   gSignalConnect(file_selector[["cancel_button"]], "clicked", gtkWidgetDestroy,
-                             file_selector, user.data.first = T) 
+  gSignalConnect(file_selector[["ok_button"]], "clicked", gtkWidgetDestroy, 
+                 file_selector, user.data.first = TRUE)
+  
+  gSignalConnect(file_selector[["cancel_button"]], "clicked", gtkWidgetDestroy,
+                 file_selector, user.data.first = TRUE) 
    
-   # Display that dialog
+  ## Display that dialog
    
-   file_selector$show()
+  file_selector$show()
 }
 }}
 \section{Structures}{\describe{\item{\code{GtkFileSelection}}{

@@ -8,6 +8,6 @@ the user can actually see the icon, see also
 \usage{gtkStatusIconGetVisible(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the status icon is visible}
+\value{[logical] \code{TRUE} if the status icon is visible}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

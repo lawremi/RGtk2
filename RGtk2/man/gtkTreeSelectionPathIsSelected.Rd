@@ -8,6 +8,6 @@ does not point to a valid location, \code{FALSE} is returned}
 \item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}} to check selection on.}
 }
-\value{[logical]  \code{TRUE} if \code{path} is selected.}
+\value{[logical] \code{TRUE} if \code{path} is selected.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

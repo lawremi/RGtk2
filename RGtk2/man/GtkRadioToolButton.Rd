@@ -12,7 +12,7 @@
 \code{\link{gtkRadioToolButtonSetGroup}(object, group)}\cr
 \code{gtkRadioToolButton(group = NULL, stock.id, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -23,7 +23,7 @@
                                              +----\link{GtkToggleToolButton}
                                                    +----GtkRadioToolButton}}
 \section{Interfaces}{GtkRadioToolButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkRadioToolButton}} is a \code{\link{GtkToolItem}} that contains a radio button,
 that is, a button that is part of a group of toggle buttons where only
 one button can be active at a time.

@@ -21,7 +21,7 @@
 \code{\link{gladeSetCustomHandler}(handler, user.data)}\cr
 \code{gladeXML(root = NULL, domain = NULL, fname, buffer, size = nchar(buffer))}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GladeXML}}
 \section{Detailed Description}{This object represents an `instantiation' of an XML interface description.
 When one of these objects is created, the XML file is read, and the

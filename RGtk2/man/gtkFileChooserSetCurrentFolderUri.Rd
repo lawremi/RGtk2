@@ -10,7 +10,7 @@ plus user interface elements for navigating to other folders.}
 \item{\code{uri}}{[character]  the URI for the new current folder}
 }
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if the folder could be changed successfully, \code{FALSE}
+\value{[logical] \code{TRUE} if the folder could be changed successfully, \code{FALSE}
 otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -3,7 +3,9 @@
 \title{pangoLayoutLineGetPixelExtents}
 \description{Computes the logical and ink extents of \code{layout.line} in device units.
 This function just calls \code{\link{pangoLayoutLineGetExtents}} followed by
-\code{\link{pangoExtentsToPixels}}.}
+two \code{\link{pangoExtentsToPixels}} calls, rounding \code{ink.rect} and \code{logical.rect}
+such that the rounded rectangles fully contain the unrounded one (that is,
+passes them as first argument to \code{\link{pangoExtentsToPixels}}).}
 \usage{pangoLayoutLineGetPixelExtents(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayoutLine}}]  a \code{\link{PangoLayoutLine}}}}
 \value{

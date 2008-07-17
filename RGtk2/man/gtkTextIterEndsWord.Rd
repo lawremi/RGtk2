@@ -7,6 +7,6 @@ language (if not, the correct fix would be to the Pango word break
 algorithms).}
 \usage{gtkTextIterEndsWord(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
-\value{[logical]  \code{TRUE} if \code{iter} is at the end of a word}
+\value{[logical] \code{TRUE} if \code{iter} is at the end of a word}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

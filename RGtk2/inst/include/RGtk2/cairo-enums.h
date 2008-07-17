@@ -7,7 +7,7 @@
 #include <glib-object.h>
 
 G_BEGIN_DECLS
-/* enumerations from "cairo-1.2.h" */
+/* enumerations from "cairo-1.6.h" */
 GType cairo_status_get_type (void);
 #define CAIRO_TYPE_STATUS (cairo_status_get_type())
 GType cairo_content_get_type (void);
@@ -48,6 +48,8 @@ GType cairo_filter_get_type (void);
 #define CAIRO_TYPE_FILTER (cairo_filter_get_type())
 GType cairo_svg_version_get_type (void);
 #define CAIRO_TYPE_SVG_VERSION (cairo_svg_version_get_type())
+GType cairo_ps_level_get_type (void);
+#define CAIRO_TYPE_PS_LEVEL (cairo_ps_level_get_type())
 G_END_DECLS
 
 #endif /* __CAIRO_ENUM_TYPES_H__ */

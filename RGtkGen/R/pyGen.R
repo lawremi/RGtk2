@@ -13,9 +13,7 @@ parseDefs <-
 
 function(fileName = "gtk.defs")
 {
- library(RSPython)
-
- x <- try(importPythonModule("defsparser"))
+ x <- try(importPythonModule("sys"))
 
  if(inherits(x, "try-error")) {
   stop("Cannot find the Python module defsparser or potentially one of the modules on which it depends.\n Set the PYTHONPATH environment variable appropriately and try again.")
@@ -40,6 +38,40 @@ function(fileNames = c("/usr/share/pygtk/2.0/defs/gtk.defs"))
 
   # Converters
 
+  ## Mappings from DEFS to GI typelib:
+  ## all types:
+  ##   name -> name
+  ##   c_name -> symbol (functions), typeName (types)
+  ##   typecode -> type_init()
+  ##   module -> namespace
+  ##   since -> ***FIXME***
+  ## objects:
+  ##   parent -> parent
+  ##   fields -> fields (but list of S4, not character vector)
+  ## enums:
+  ##   values -> values (list of S4, not numeric) 
+  ##   names -> in values
+  ##   nick names -> figure out from names?
+  ## boxed:
+  ##   fields -> fields (like in objects)
+  ## parameters:
+  ##   name -> name
+  ##   type -> type
+  ##   access -> direction
+  ##   nullok -> mayBeNull
+  ##   dflt -> ***FIXME*** -- may not be feasible directly from metadata
+  ## calls:
+  ##   return -> returnType
+  ##   owns -> callerOwnsReturn
+  ##   deprecated -> deprecated
+  ##   varargs -> ***FIXME***
+  ## method:
+  ##   ofobject -> isMethod (and then first argument type)
+  ## function:
+  ##   constructorof -> isConstructor (and then returnType)
+  ## virtual:
+  ##   ofobject -> first argument type
+  
   parseType <- function(type)
   {
       gsub("-([^>])", " \\1", type)

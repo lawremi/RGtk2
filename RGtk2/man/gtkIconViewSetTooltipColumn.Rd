@@ -12,8 +12,8 @@ can use this function to have \code{\link{GtkIconView}} handle these automatical
 for you. \code{column} should be set to the column in \code{icon.view}'s model
 containing the tooltip texts, or -1 to disable this feature.
   
-When enabled, \code{::has-tooltip} will be set to \code{TRUE} and
-\code{icon.view} will connect a \code{::query-tooltip} signal handler.  
+When enabled, \code{"has-tooltip"} will be set to \code{TRUE} and
+\code{icon.view} will connect a \code{"query-tooltip"} signal handler.  
 
   Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

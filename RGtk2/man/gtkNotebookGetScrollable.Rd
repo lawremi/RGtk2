@@ -5,6 +5,6 @@
 \code{\link{gtkNotebookSetScrollable}}.}
 \usage{gtkNotebookGetScrollable(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}}
-\value{[logical]  \code{TRUE} if arrows for scrolling are present}
+\value{[logical] \code{TRUE} if arrows for scrolling are present}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

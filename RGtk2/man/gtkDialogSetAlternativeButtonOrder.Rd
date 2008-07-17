@@ -2,7 +2,7 @@
 \name{gtkDialogSetAlternativeButtonOrder}
 \title{gtkDialogSetAlternativeButtonOrder}
 \description{Sets an alternative button order. If the 
-\code{:gtk-alternative-button-order} setting is set to \code{TRUE}, 
+\code{"gtk-alternative-button-order"} setting is set to \code{TRUE}, 
 the dialog buttons are reordered according to the order of the 
 response ids passed to this function.}
 \usage{gtkDialogSetAlternativeButtonOrder(object, ...)}

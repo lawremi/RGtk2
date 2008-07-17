@@ -5,7 +5,7 @@
 \usage{gtkColorSelectionSetHasPalette(object, has.palette)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkColorSelection}}]  a \code{\link{GtkColorSelection}}.}
-\item{\code{has.palette}}{[logical]  \code{TRUE} if palette is to be visible, \code{FALSE} otherwise.}
+\item{\code{has.palette}}{[logical] \code{TRUE} if palette is to be visible, \code{FALSE} otherwise.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

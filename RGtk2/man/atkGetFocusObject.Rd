@@ -3,9 +3,7 @@
 \title{atkGetFocusObject}
 \description{Gets the currently focused object.}
 \usage{atkGetFocusObject()}
-\details{Returns:  
-
-  Since  ATK 1.6}
+\details{  Since  ATK 1.6}
 \value{[\code{\link{AtkObject}}]  the currently focused object for the current application}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

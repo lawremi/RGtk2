@@ -1,7 +1,7 @@
 \alias{gtkEntryGetInnerBorder}
 \name{gtkEntryGetInnerBorder}
 \title{gtkEntryGetInnerBorder}
-\description{This function returns the entry's \code{:inner-border} property. See
+\description{This function returns the entry's \code{"inner-border"} property. See
 \code{\link{gtkEntrySetInnerBorder}} for more information.}
 \usage{gtkEntryGetInnerBorder(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}}

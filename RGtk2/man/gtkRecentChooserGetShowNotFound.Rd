@@ -6,7 +6,7 @@ were not found.}
 \usage{gtkRecentChooserGetShowNotFound(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the resources not found should be displayed, and
+\value{[logical] \code{TRUE} if the resources not found should be displayed, and
   \code{FALSE} otheriwse.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

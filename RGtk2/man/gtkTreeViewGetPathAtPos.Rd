@@ -23,7 +23,7 @@ GtkWidget::query-tooltip), please see
 \code{\link{gtkTreeViewConvertWidgetToBinWindowCoords}}.  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if a row exists at that coordinate.}
+\item{retval}{[logical] \code{TRUE} if a row exists at that coordinate.}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  A pointer to a \code{\link{GtkTreePath}} pointer to be filled in, or \code{NULL}}
 \item{\code{column}}{[\code{\link{GtkTreeViewColumn}}]  A pointer to a \code{\link{GtkTreeViewColumn}} pointer to be filled in, or \code{NULL}}
 \item{\code{cell.x}}{[integer]  A pointer where the X coordinate relative to the cell can be placed, or \code{NULL}}

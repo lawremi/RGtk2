@@ -5,7 +5,7 @@
 default values and with \code{target} as a target surface. The target
 surface should be constructed with a backend-specific function such
 as \code{\link{cairoImageSurfaceCreate}} (or any other
-\code{cairo_<backend>_surface_create} variant).}
+cairo\_\emph{backend}\_surface\_create variant).}
 \usage{cairoCreate(target)}
 \arguments{\item{\code{target}}{[\code{\link{CairoSurface}}]  target surface for the context}}
 \details{This function references \code{target}, so you can immediately

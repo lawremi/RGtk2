@@ -63,7 +63,7 @@
 \code{\link{gtkBorderCopy}(object)}\cr
 \code{gtkStyle()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkStyle}}
 \section{Structures}{\describe{
 \item{\code{GtkStyle}}{
@@ -118,7 +118,7 @@
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (style, user.data)}}{
+\item{\code{realize(style, user.data)}}{
 Emitted when the style has been initialized for a particular
 colormap and depth. Connecting to this signal is probably seldom
 useful since most of the time applications and widgets only
@@ -133,7 +133,7 @@ deal with styles that have been already realized.
 
 
 }
-\item{\code{The (style, user.data)}}{
+\item{\code{unrealize(style, user.data)}}{
 Emitted when the aspects of the style specific to a particular colormap
 and depth are being cleaned up. A connection to this signal can be useful
 if a widget wants to cache objects like a \code{\link{GdkGC}} as object data on \code{\link{GtkStyle}}.

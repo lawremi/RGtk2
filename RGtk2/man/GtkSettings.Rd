@@ -19,7 +19,7 @@
 \code{\link{gtkSettingsSetDoubleProperty}(object, name, v.double, origin)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkSettings}}
 \section{Structures}{\describe{
 \item{\code{GtkSettings}}{
@@ -37,7 +37,7 @@
 \section{Properties}{\describe{
 \item{\code{color-hash} [GHashTable : Read]}{
 
-Holds a hash table representation of the \code{:gtk-color-scheme} 
+Holds a hash table representation of the \code{"gtk-color-scheme"} 
 setting, mapping color names to \code{\link{GdkColor}}s.  
 
   Since  2.10
@@ -100,7 +100,7 @@ by ';' instead of newlines:
 
 Whether the cursor should blink. 
   
-Also see the \code{:gtk-cursor-blink-timeout} setting, 
+Also see the \code{"gtk-cursor-blink-timeout"} setting, 
 which allows more flexible control over cursor blinking.  
 
   Default value: TRUE
@@ -117,7 +117,7 @@ Time after which the cursor stops blinking, in seconds.
 The timer is reset after each user interaction.
   
 Setting this to zero has the same effect as setting
-\code{:gtk-cursor-blink} to \code{FALSE}.  
+\code{"gtk-cursor-blink"} to \code{FALSE}.  
 
   Allowed values: >= 1  Default value: 2147483647  Since  2.12
 
@@ -170,7 +170,7 @@ can be activated.
 }
 \item{\code{gtk-entry-password-hint-timeout} [numeric : Read / Write]}{
 
-How long to show the last inputted character in hidden
+How long to show the last input character in hidden
 entries. This value is in milliseconds. 0 disables showing the
 last char. 600 is a good value for enabling it.  
 
@@ -366,7 +366,7 @@ Whether default toolbars have text only, text and icons, icons only, etc.  Defau
 Amount of time, in milliseconds, after which the browse mode
 will be disabled.
   
-See \code{:gtk-tooltip-browse-timeout} for more information
+See \code{"gtk-tooltip-browse-timeout"} for more information
 about browse mode.  
 
   Allowed values: >= 0  Default value: 500  Since  2.12
@@ -380,11 +380,11 @@ browse mode is enabled, in milliseconds.
 Browse mode is enabled when the mouse pointer moves off an object
 where a tooltip was currently being displayed. If the mouse pointer
 hits another object before the browse mode timeout expires (see
-\code{:gtk-tooltip-browse-mode-timeout}), it will take the 
+\code{"gtk-tooltip-browse-mode-timeout"}), it will take the 
 amount of milliseconds specified by this setting to popup the tooltip
 for the new object.  
 
-  Allowed values: >= 0  Default value: 100  Since  2.12
+  Allowed values: >= 0  Default value: 60  Since  2.12
 
 }
 \item{\code{gtk-tooltip-timeout} [integer : Read / Write]}{
@@ -392,7 +392,7 @@ for the new object.
 Time, in milliseconds, after which a tooltip could appear if the
 cursor is hovering on top of a widget.  
 
-  Allowed values: >= 0  Default value: 1500  Since  2.12
+  Allowed values: >= 0  Default value: 500  Since  2.12
 
 }
 \item{\code{gtk-touchscreen-mode} [logical : Read / Write]}{

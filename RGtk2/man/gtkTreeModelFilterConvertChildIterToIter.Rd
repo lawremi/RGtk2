@@ -12,7 +12,7 @@ returned.}
 \details{  Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{filter.iter} was set, i.e. if \code{child.iter} is a
+\item{retval}{[logical] \code{TRUE}, if \code{filter.iter} was set, i.e. if \code{child.iter} is a
 valid iterator pointing to a visible row in child model.}
 \item{\code{filter.iter}}{[\code{\link{GtkTreeIter}}]  An uninitialized \code{\link{GtkTreeIter}}.}
 }

@@ -17,7 +17,7 @@
 \code{\link{gtkEditableSetEditable}(object, is.editable)}\cr
 \code{\link{gtkEditableGetEditable}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkEditable}}
 \section{Implementations}{GtkEditable is implemented by
  \code{\link{GtkEntry}},  GtkText,  \code{\link{GtkOldEditable}} and  \code{\link{GtkSpinButton}}.}
@@ -31,6 +31,8 @@ As an example of the latter usage, by connecting
 the following handler to "insert\_text", an application
 can convert all entry into a widget into uppercase.
 
+
+ \emph{Forcing entry to uppercase.}
 \preformatted{
 insert_text_handler <- function(editable, text, length, position, id)
 {
@@ -56,7 +58,7 @@ editable by the user. \cr
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (editable, user.data)}}{
+\item{\code{changed(editable, user.data)}}{
 Indicates that the user has changed the contents
 of the widget.
 
@@ -67,7 +69,7 @@ of the widget.
 
 
 }
-\item{\code{The (editable, start.pos, end.pos, user.data)}}{
+\item{\code{delete-text(editable, start.pos, end.pos, user.data)}}{
 This signal is emitted when text is deleted from
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting
@@ -87,7 +89,7 @@ and \code{end.pos} parameters are interpreted as for
 
 
 }
-\item{\code{The (editable, new.text, new.text.length, position, user.data)}}{
+\item{\code{insert-text(editable, new.text, new.text.length, position, user.data)}}{
 This signal is emitted when text is inserted into
 the widget by the user. The default handler for
 this signal will normally be responsible for inserting

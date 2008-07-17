@@ -6,7 +6,7 @@ directional levels, produce a list in visual order.
 The original list is unmodified.}
 \usage{pangoReorderItems(logical.items)}
 \arguments{\item{\code{logical.items}}{[list]   a \code{list} of \code{\link{PangoItem}} in logical order.}}
-\value{[list] a \code{list} of \code{\link{PangoItem}} structures in visual order.
+\value{[list]  a \code{list} of \code{\link{PangoItem}} structures in visual order.
 
 (Please open a bug if you use this function.
  It is not a particularly convenient interface, and the code

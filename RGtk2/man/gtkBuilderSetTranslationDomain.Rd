@@ -2,7 +2,7 @@
 \name{gtkBuilderSetTranslationDomain}
 \title{gtkBuilderSetTranslationDomain}
 \description{Sets the translation domain of \code{builder}. 
-See \code{:translation-domain}.}
+See \code{"translation-domain"}.}
 \usage{gtkBuilderSetTranslationDomain(object, domain)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkBuilder}}]  a \code{\link{GtkBuilder}}}

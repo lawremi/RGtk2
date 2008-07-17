@@ -29,7 +29,7 @@
 \code{\link{gtkPageSetupToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPageSetup()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkPageSetup}}
 \section{Detailed Description}{A GtkPageSetup object stores the page size, orientation and margins. 
 The idea is that you can get one of these from the page setup dialog 
@@ -47,14 +47,16 @@ margins.
 To obtain a \code{\link{GtkPageSetup}} use \code{\link{gtkPageSetupNew}}
 to get the defaults, or use \code{\link{gtkPrintRunPageSetupDialog}} to show 
 the page setup dialog and receive the resulting page setup.
-  \preformatted{
+  
+ \emph{A page setup dialog}
+\preformatted{
 do_page_setup <- function()
 {
   if (is.null(settings))
     settings <- gtkPrintSettings()
 
-  new_page_setup <- gtkPrintRunPageSetupDialog(main_window, page_setup, 
-    settings)
+  new_page_setup <- gtkPrintRunPageSetupDialog(main_window, page_setup,
+                                               settings)
 
   page_setup <- new_page_setup
 }

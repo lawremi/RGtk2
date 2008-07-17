@@ -8,14 +8,14 @@
 \code{\link{gtkArrowSet}(object, arrow.type, shadow.type)}\cr
 \code{gtkArrow(arrow.type = NULL, shadow.type = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkMisc}
                            +----GtkArrow}}
 \section{Interfaces}{GtkArrow implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkArrow should be used to draw simple arrows that need to point in
 one of the four cardinal directions (up, down, left, or right).  The
 style of the arrow can be one of shadow in, shadow out, etched in, or

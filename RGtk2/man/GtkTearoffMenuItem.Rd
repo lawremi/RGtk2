@@ -7,7 +7,7 @@
 \code{\link{gtkTearoffMenuItemNew}(show = TRUE)}\cr
 \code{gtkTearoffMenuItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                        +----\link{GtkMenuItem}
                                              +----GtkTearoffMenuItem}}
 \section{Interfaces}{GtkTearoffMenuItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkTearoffMenuItem}} is a special \code{\link{GtkMenuItem}} which is used to
 tear off and reattach its menu.
   

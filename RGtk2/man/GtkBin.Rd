@@ -6,7 +6,7 @@
 \code{\link{gtkBinGetChild}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -25,7 +25,7 @@
                                  +----\link{GtkScrolledWindow}
                                  +----\link{GtkViewport}}}
 \section{Interfaces}{GtkBin implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkBin}} widget is a container with just one child.
 It is not very useful itself, but it is useful for deriving subclasses,
 since it provides common code needed for handling a single child widget.

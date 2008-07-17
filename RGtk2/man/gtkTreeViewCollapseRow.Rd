@@ -7,6 +7,6 @@
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  path to a row in the \code{tree.view}}
 }
-\value{[logical]  \code{TRUE} if the row was collapsed.}
+\value{[logical] \code{TRUE} if the row was collapsed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

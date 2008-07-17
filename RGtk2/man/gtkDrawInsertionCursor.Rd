@@ -13,7 +13,7 @@ but merely a convenience function for drawing the standard cursor shape.}
 \item{\code{is.primary}}{[logical]  if the cursor should be the primary cursor color.}
 \item{\code{direction}}{[\code{\link{GtkTextDirection}}]  whether the cursor is left-to-right or
             right-to-left. Should never be \code{GTK_TEXT_DIR_NONE}}
-\item{\code{draw.arrow}}{[logical]  \code{TRUE} to draw a directional arrow on the
+\item{\code{draw.arrow}}{[logical] \code{TRUE} to draw a directional arrow on the
        cursor. Should be \code{FALSE} unless the cursor is split.}
 }
 \details{  Since  2.4}

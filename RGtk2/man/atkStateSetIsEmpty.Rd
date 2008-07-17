@@ -4,6 +4,6 @@
 \description{Checks whether the state set is empty, i.e. has no states set.}
 \usage{atkStateSetIsEmpty(object)}
 \arguments{\item{\code{object}}{[\code{\link{AtkStateSet}}]  an \code{\link{AtkStateType}}}}
-\value{[logical]  \code{TRUE} if \code{set} has no states set, otherwise \code{FALSE}}
+\value{[logical] \code{TRUE} if \code{set} has no states set, otherwise \code{FALSE}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

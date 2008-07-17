@@ -9,7 +9,7 @@
 \code{\link{gtkSeparatorToolItemGetDraw}(object)}\cr
 \code{gtkSeparatorToolItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -18,7 +18,7 @@
                                  +----\link{GtkToolItem}
                                        +----GtkSeparatorToolItem}}
 \section{Interfaces}{GtkSeparatorToolItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{  A \code{GtkSeparatorItem} is a \code{\link{GtkToolItem}} that separates groups of other
   \code{GtkToolItems}. Depending on the theme, a \code{\link{GtkSeparatorToolItem}} will
   often look like a vertical line on horizontally docked toolbars.

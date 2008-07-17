@@ -16,7 +16,7 @@
 \code{\link{gtkCellRendererSetFixedSize}(object, width, height)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----GtkCellRenderer
@@ -87,7 +87,7 @@ it cannot be individually modified.}
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (renderer, user.data)}}{
+\item{\code{editing-canceled(renderer, user.data)}}{
 This signal gets emitted when the user cancels the process of editing a
 cell.  For example, an editable cell renderer could be written to cancel
 editing when the user presses Escape. 
@@ -103,7 +103,7 @@ See also: \code{\link{gtkCellRendererStopEditing}}.
 
 
 }
-\item{\code{The (renderer, editable, path, user.data)}}{
+\item{\code{editing-started(renderer, editable, path, user.data)}}{
 This signal gets emitted when a cell starts to be edited.
 The indended use of this signal is to do special setup
 on \code{editable}, e.g. adding a \code{\link{GtkEntryCompletion}} or setting
@@ -113,13 +113,12 @@ Note that GTK+ doesn't guarantee that cell renderers will
 continue to use the same kind of widget for editing in future
 releases, therefore you should check the type of \code{editable}
 before doing any specific setup, as in the following example:
-  
-\preformatted{
+  \preformatted{
 text_editing_started <- function(cell, editable, path, data)
 {
-	checkPtrType(editable, "GtkEntry")
-    # ... create a GtkEntryCompletion
-    editable$setCompletion(completion)
+  checkPtrType(editable, "GtkEntry")
+  ## ... create a GtkEntryCompletion
+  editable$setCompletion(completion)
 }
 
 }  

@@ -42,24 +42,27 @@
     image doesn't have an alpha channel, calling
     \code{\link{gdkPixbufCompositeColor}} function has exactly the same effect
     as calling \code{\link{gdkPixbufScale}}.
-    \preformatted{
+    
+ \emph{Handling an expose event.}
+\preformatted{
 expose_cb <- function(widget, event, data)
 {
   dest <- gdkPixbuf(color = "rgb", has.alpha = FALSE, bits = 8, 
-  			w = event[["area"]]$width, h = event[["area"]]$height)
+                    w = event[["area"]]$width, h = event[["area"]]$height)
 
   area <- event[["area"]]
   pixbuf$compositeColor(dest, 0, 0, area$width, area$height,
-                              -area$x, -area$y,
-                              widget[["allocation"]]$width / pixbuf$getWidth(),
-                              widget[["allocation"]]$height / pixbuf$getHeight(),
-                              "bilinear", 255,
-                              area$x, area$y, 16, 0xaaaaaa, 0x555555)
+                        -area$x, -area$y,
+                        widget[["allocation"]]$width / pixbuf$getWidth(),
+                        widget[["allocation"]]$height / pixbuf$getHeight(),
+                        "bilinear", 255,
+                        area$x, area$y, 16, 0xaaaaaa, 0x555555)
 
-  dest$renderToDrawable(widget[["window"]], widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
-                                 0, 0, area$x, area$y,
-                                 area$width, area$height,
-                                 "normal", area$x, area$y)
+  dest$renderToDrawable(widget[["window"]],
+                        widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
+                        0, 0, area$x, area$y,
+                        area$width, area$height,
+                        "normal", area$x, area$y)
 
   return(TRUE)
 }
@@ -72,11 +75,9 @@ expose_cb <- function(widget, event, data)
     scaling down. \code{GDK.INTERP.BILINEAR} is the best choice if you 
     aren't sure what to choose, it has a good speed/quality balance.
 
-    \strong{PLEASE NOTE:}         
-	Cubic filtering is missing from the list; hyperbolic
+    \strong{PLEASE NOTE:} 	Cubic filtering is missing from the list; hyperbolic
 	interpolation is just as fast and results in higher quality.
-        
-    
+      
   
 
 \describe{

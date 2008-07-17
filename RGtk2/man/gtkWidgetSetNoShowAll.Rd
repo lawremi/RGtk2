@@ -1,7 +1,7 @@
 \alias{gtkWidgetSetNoShowAll}
 \name{gtkWidgetSetNoShowAll}
 \title{gtkWidgetSetNoShowAll}
-\description{Sets the \code{:no-show-all} property, which determines whether 
+\description{Sets the \code{"no-show-all"} property, which determines whether 
 calls to \code{\link{gtkWidgetShowAll}} and \code{\link{gtkWidgetHideAll}} will affect 
 this widget. }
 \usage{gtkWidgetSetNoShowAll(object, no.show.all)}

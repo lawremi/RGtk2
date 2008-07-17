@@ -13,6 +13,6 @@ insensitive or not.}
 \code{\link{gtkClipboardWaitIsTextAvailable}} instead.  
 
   Since  2.6}
-\value{[logical]  \code{TRUE} if the target is available, \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} if the target is available, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

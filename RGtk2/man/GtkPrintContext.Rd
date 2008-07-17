@@ -15,7 +15,7 @@
 \code{\link{gtkPrintContextCreatePangoLayout}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkPrintContext}}
 \section{Detailed Description}{A GtkPrintContext encapsulates context information that is required when
 drawing pages for printing, such as the cairo context and important 
@@ -25,7 +25,9 @@ of the cairo surface.
   
 GtkPrintContext objects gets passed to the ::begin-print, ::end-print, 
 ::request-page-setup and ::draw-page signals on the \code{\link{GtkPrintOperation}}.
-  \preformatted{
+  
+ \emph{Using GtkPrintContext in a ::draw-page callback}
+\preformatted{
 draw_page <- function(operation, context, page_nr)
 {
   cr <- context$getCairoContext()

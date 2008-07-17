@@ -9,9 +9,10 @@ names.}
 \usage{gtkActionNew(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 \arguments{
 \item{\code{name}}{[character]  A unique name for the action}
-\item{\code{label}}{[character]  the label displayed in menu items and on buttons}
-\item{\code{tooltip}}{[character]  a tooltip for the action}
-\item{\code{stock.id}}{[character]  the stock icon to display in widgets representing the action}
+\item{\code{label}}{[character]  the label displayed in menu items and on buttons, or \code{NULL}}
+\item{\code{tooltip}}{[character]  a tooltip for the action, or \code{NULL}}
+\item{\code{stock.id}}{[character]  the stock icon to display in widgets representing the
+  action, or \code{NULL}}
 }
 \details{  Since  2.4}
 \value{[\code{\link{GtkAction}}]  a new \code{\link{GtkAction}}}

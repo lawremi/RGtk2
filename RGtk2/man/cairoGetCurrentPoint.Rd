@@ -10,15 +10,24 @@ conceptually the final point reached by the path so far.}
 \item{\code{y}}{[numeric]  return value for Y coordinate of the current point}
 }
 \details{The current point is returned in the user-space coordinate
-system. If there is no defined current point then \code{x} and \code{y} will
-both be set to 0.0.
+system. If there is no defined current point or if \code{cr} is in an
+error status, \code{x} and \code{y} will both be set to 0.0. It is possible to
+check this in advance with \code{\link{cairoHasCurrentPoint}}.
   
 Most path construction functions alter the current point. See the
 following for details on how they affect the current point:
+\code{\link{cairoNewPath}}, \code{\link{cairoNewSubPath}},
+\code{\link{cairoAppendPath}}, \code{\link{cairoClosePath}},
+\code{\link{cairoMoveTo}}, \code{\link{cairoLineTo}}, \code{\link{cairoCurveTo}},
+\code{\link{cairoRelMoveTo}}, \code{\link{cairoRelLineTo}}, \code{\link{cairoRelCurveTo}},
+\code{\link{cairoArc}}, \code{\link{cairoArcNegative}}, \code{\link{cairoRectangle}},
+\code{\link{cairoTextPath}}, \code{\link{cairoGlyphPath}}, \code{cairoStrokeToPath()}
   
-\code{\link{cairoNewPath}}, \code{\link{cairoMoveTo}}, \code{\link{cairoLineTo}},
-\code{\link{cairoCurveTo}}, \code{\link{cairoArc}}, \code{\link{cairoRelMoveTo}},
-\code{\link{cairoRelLineTo}}, \code{\link{cairoRelCurveTo}}, \code{\link{cairoArc}},
-\code{\link{cairoTextPath}}, \code{cairoStrokeToPath()}  }
+Some functions use and alter the current point but do not otherwise
+change current path:
+\code{\link{cairoShowText}}, \code{\link{cairoShowGlyphs}}.
+  
+Some functions unset the current path and as a result, current point:
+\code{\link{cairoFill}}, \code{\link{cairoStroke}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

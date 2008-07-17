@@ -12,7 +12,7 @@ destroyed during the call to \code{\link{gtkDialogRun}}, \code{\link{gtkDialogRu
 \code{\link{gtkWidgetShow}} on the dialog for you. Note that you still
 need to show any children of the dialog yourself.
   
-During \code{\link{gtkDialogRun}}, the default behavior of \code{::delete-event} 
+During \code{\link{gtkDialogRun}}, the default behavior of \code{"delete-event"} 
 is disabled; if the dialog receives ::delete\_event, it will not be
 destroyed as windows usually are, and \code{\link{gtkDialogRun}} will return
 \code{GTK_RESPONSE_DELETE_EVENT}. Also, during \code{\link{gtkDialogRun}} the dialog 
@@ -26,11 +26,11 @@ destroying the dialog if you wish to do so.
   
 Typical usage of this function might be:
 \preformatted{
- result <- dialog$run()
- if (result == GtkResponseType["accept"])
-	 do_application_specific_something()
- else do_nothing_since_dialog_was_cancelled()
- dialog$destroy()
+result <- dialog$run()
+if (result == GtkResponseType["accept"])
+  do_application_specific_something()
+else do_nothing_since_dialog_was_cancelled()
+dialog$destroy()
 }
   
 Note that even though the recursive main loop gives the effect of a

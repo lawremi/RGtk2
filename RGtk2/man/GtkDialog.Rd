@@ -23,7 +23,7 @@
 \code{\link{gtkDialogSetAlternativeButtonOrderFromArray}(object, new.order)}\cr
 \code{gtkDialog(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -42,7 +42,7 @@
                                              +----GtkPrintUnixDialog
                                              +----\link{GtkRecentChooserDialog}}}
 \section{Interfaces}{GtkDialog implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Dialog boxes are a convenient way to prompt the user for a small amount of
 input, e.g. to display a message, ask a question, or anything else that does 
 not require extensive effort on the user's part.
@@ -53,8 +53,7 @@ be packed. The bottom area is known as the
 \code{action_area}. This is generally used for
 packing buttons into the dialog which may perform functions such as
 cancel, ok, or apply. The two areas are separated by a \code{\link{GtkHSeparator}}.
-  
-\code{\link{GtkDialog}} boxes are created with a call to \code{\link{gtkDialogNew}} or
+  \code{\link{GtkDialog}} boxes are created with a call to \code{\link{gtkDialogNew}} or
 \code{\link{gtkDialogNewWithButtons}}. \code{\link{gtkDialogNewWithButtons}} is recommended; it
 allows you to set the dialog title, some convenient flags, and add simple
 buttons.
@@ -87,22 +86,25 @@ response ID corresponding to the button the user clicked.
 For the simple dialog in the following example, in reality you'd probably use
 \code{\link{GtkMessageDialog}} to save yourself some effort.  But you'd need to create the
 dialog contents manually if you had more than a simple message in the dialog.
+
+ \emph{Simple   \code{GtkDialog}   usage.}
 \preformatted{
 # Function to open a dialog box displaying the message provided.
 quick_message <- function(message) {
-   # Create the widgets 
+  ## Create the widgets 
    
-   dialog <- gtkDialog("Message", NULL, "destroy-with-parent", "gtk-ok", "none", show = F)
-   label <- gtkLabel(message)
+  dialog <- gtkDialog("Message", NULL, "destroy-with-parent", "gtk-ok", "none",
+                      show = FALSE)
+  label <- gtkLabel(message)
    
-   # Ensure that the dialog box is destroyed when the user responds.
+  ## Ensure that the dialog box is destroyed when the user responds.
    
-   gSignalConnect(dialog, "response", gtkWidgetDestroy)
+  gSignalConnect(dialog, "response", gtkWidgetDestroy)
 
-   # Add the label, and show everything we've added to the dialog.
+  ## Add the label, and show everything we've added to the dialog.
 
-   dialog[["vbox"]]$add(label)
-   dialog$showAll()
+  dialog[["vbox"]]$add(label)
+  dialog$showAll()
 }
 }}
 \section{GtkDialog as GtkBuildable}{The GtkDialog implementation of the GtkBuildable interface exposes the 
@@ -114,8 +116,7 @@ can contain multiple <action-widget> elements. The "response"
 attribute specifies a numeric response, and the content of the element
 is the id of widget (which should be a child of the dialogs \code{action.area}).
   
-\emph{A   \code{GtkDialog}   UI definition fragment.}
-\preformatted{<object class="GtkDialog" id="dialog1">
+ \emph{A   \code{GtkDialog}   UI definition fragment.}\preformatted{<object class="GtkDialog" id="dialog1">
   <child internal-child="vbox">"
     <object class="GtkVBox">
       <child internal-child="action_area">
@@ -139,8 +140,7 @@ is the id of widget (which should be a child of the dialogs \code{action.area}).
 \section{Structures}{\describe{\item{\code{GtkDialog}}{
 \code{vbox} is a \code{\link{GtkVBox}} - the main part of the
 dialog box.
-  
-\code{action_area} is a \code{\link{GtkHButtonBox}} packed below the
+  \code{action_area} is a \code{\link{GtkHButtonBox}} packed below the
 dividing \code{\link{GtkHSeparator}} in the dialog. It is treated exactly the same
 as any other \code{\link{GtkHButtonBox}}.
 
@@ -188,7 +188,7 @@ application-defined response ids.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (dialog, user.data)}}{
+\item{\code{close(dialog, user.data)}}{
 \emph{undocumented
 }
 
@@ -199,7 +199,7 @@ application-defined response ids.
 
 
 }
-\item{\code{The (dialog, arg1, user.data)}}{
+\item{\code{response(dialog, arg1, user.data)}}{
 Emitted when an action widget is clicked, the dialog receives a delete event, or
 the application programmer calls \code{\link{gtkDialogResponse}}. On a delete event, the
 response ID is \code{GTK_RESPONSE_NONE}. Otherwise, it depends on which action widget

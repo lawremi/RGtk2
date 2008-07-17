@@ -10,7 +10,7 @@ The string is converted to the form determined by
 \item{\code{uris}}{[character]  a list of strings hilding URIs}
 }
 \details{  Since  2.6}
-\value{[logical]  \code{TRUE} if the selection was successfully set,
+\value{[logical] \code{TRUE} if the selection was successfully set,
   otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

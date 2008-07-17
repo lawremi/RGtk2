@@ -6,6 +6,6 @@ resources selector.  See \code{\link{gtkRecentChooserSetLocalOnly}}}
 \usage{gtkRecentChooserGetLocalOnly(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if only local resources should be shown.}
+\value{[logical] \code{TRUE} if only local resources should be shown.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

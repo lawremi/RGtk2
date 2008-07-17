@@ -8,6 +8,6 @@
 \item{\code{month}}{[numeric]  a month number between 0 and 11.}
 \item{\code{year}}{[numeric]  the year the month is in.}
 }
-\value{[logical]  \code{TRUE}, always}
+\value{[logical] \code{TRUE}, always}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

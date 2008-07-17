@@ -9,7 +9,7 @@ for a particular name.}
 \item{\code{icon.name}}{[character]  the name of an icon}
 }
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if \code{icon.theme} includes an
+\value{[logical] \code{TRUE} if \code{icon.theme} includes an
  icon for \code{icon.name}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

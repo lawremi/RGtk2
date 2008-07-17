@@ -13,6 +13,6 @@ between those two characters. See also the \code{\link{PangoLogAttr}} structure 
 \code{\link{pangoBreak}} function.}
 \usage{gtkTextIterForwardCursorPosition(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
-\value{[logical]  \code{TRUE} if we moved and the new position is dereferenceable}
+\value{[logical] \code{TRUE} if we moved and the new position is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -2,11 +2,11 @@
 \name{gtkWidgetSetAppPaintable}
 \title{gtkWidgetSetAppPaintable}
 \description{Sets whether the application intends to draw on the widget in
-an \code{::expose-event} handler. }
+an \code{"expose-event"} handler. }
 \usage{gtkWidgetSetAppPaintable(object, app.paintable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{app.paintable}}{[logical]  \code{TRUE} if the application will paint on the widget}
+\item{\code{app.paintable}}{[logical] \code{TRUE} if the application will paint on the widget}
 }
 \details{This is a hint to the widget and does not affect the behavior of 
 the GTK+ core; many widgets ignore this flag entirely. For widgets 

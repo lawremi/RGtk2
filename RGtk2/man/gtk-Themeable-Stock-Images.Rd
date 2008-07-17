@@ -48,7 +48,7 @@
 \code{\link{gtkIconSourceSetStateWildcarded}(object, setting)}\cr
 \code{gtkIconFactory()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkIconFactory}}
 \section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use 
 the \command{gtk-demo} application for this purpose.

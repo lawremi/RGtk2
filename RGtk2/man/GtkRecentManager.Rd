@@ -48,7 +48,7 @@
 \code{\link{gtkRecentInfoMatch}(object, info.b)}\cr
 \code{gtkRecentManager()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkRecentManager}}
 \section{Detailed Description}{\code{\link{GtkRecentManager}} provides a facility for adding, removing and
 looking up recently used files.  Each recently used file is
@@ -136,7 +136,7 @@ Error codes for GtkRecentManager operations
 }
 
 }}}
-\section{Signals}{\describe{\item{\code{The (recent.manager, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(recent.manager, user.data)}}{
 Emitted when the current recently used resources manager changes its
 contents.  
 

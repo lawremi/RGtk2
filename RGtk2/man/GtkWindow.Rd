@@ -103,7 +103,7 @@
 \code{\link{gtkWindowSetOpacity}(object, opacity)}\cr
 \code{gtkWindow(type = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -114,7 +114,7 @@
                                        +----\link{GtkAssistant}
                                        +----\link{GtkPlug}}}
 \section{Interfaces}{GtkWindow implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Structures}{\describe{\item{\code{GtkWindow}}{
 \emph{undocumented
 }
@@ -159,7 +159,7 @@
 }}}
 \section{Convenient Construction}{\code{gtkWindow} is the equivalent of \code{\link{gtkWindowNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (window, user.data)}}{
+\item{\code{activate-default(window, user.data)}}{
 \emph{undocumented
 }
 
@@ -170,7 +170,7 @@
 
 
 }
-\item{\code{The (window, user.data)}}{
+\item{\code{activate-focus(window, user.data)}}{
 \emph{undocumented
 }
 
@@ -181,7 +181,7 @@
 
 
 }
-\item{\code{The (window, event, user.data)}}{
+\item{\code{frame-event(window, event, user.data)}}{
 \emph{undocumented
 }
 
@@ -193,7 +193,7 @@
 
 
 }
-\item{\code{The (window, user.data)}}{
+\item{\code{keys-changed(window, user.data)}}{
 \emph{undocumented
 }
 
@@ -204,7 +204,7 @@
 
 
 }
-\item{\code{The (window, widget, user.data)}}{
+\item{\code{set-focus(window, widget, user.data)}}{
 \emph{undocumented
 }
 

@@ -13,7 +13,7 @@ parameters. \code{arrow.type} determines the direction of the arrow.
 \item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
 \item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  the type of shadow to draw}
 \item{\code{arrow.type}}{[\code{\link{GtkArrowType}}]  the type of arrow to draw}
-\item{\code{fill}}{[logical]  \code{TRUE} if the arrow tip should be filled}
+\item{\code{fill}}{[logical] \code{TRUE} if the arrow tip should be filled}
 \item{\code{x}}{[integer]  x origin of the rectangle to draw the arrow in}
 \item{\code{y}}{[integer]  y origin of the rectangle to draw the arrow in}
 \item{\code{width}}{[integer]  width of the rectangle to draw the arrow in}

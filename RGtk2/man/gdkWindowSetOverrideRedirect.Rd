@@ -8,7 +8,7 @@ can't see the override redirect window at all.}
 \usage{gdkWindowSetOverrideRedirect(object, override.redirect)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{override.redirect}}{[logical]  \code{TRUE} if window should be override redirect}
+\item{\code{override.redirect}}{[logical] \code{TRUE} if window should be override redirect}
 }
 \details{Override redirect should only be used for short-lived temporary
 windows, such as popup menus. \code{\link{GtkMenu}} uses an override redirect

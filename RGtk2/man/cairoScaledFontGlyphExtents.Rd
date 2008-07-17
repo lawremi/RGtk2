@@ -7,7 +7,7 @@ glyphs, (as they would be drawn by \code{\link{cairoShowGlyphs}} if the cairo
 graphics state were set to the same font\_face, font\_matrix, ctm,
 and font\_options as \code{scaled.font}).  Additionally, the x\_advance and
 y\_advance values indicate the amount by which the current point
-would be advanced by cairo\_show\_glyphs.}
+would be advanced by \code{\link{cairoShowGlyphs}}.}
 \usage{cairoScaledFontGlyphExtents(scaled.font, glyphs, num.glyphs)}
 \arguments{
 \item{\code{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}

@@ -8,6 +8,6 @@
 \item{\code{key}}{[character]  a key}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE}, if \code{key} has a value}
+\value{[logical] \code{TRUE}, if \code{key} has a value}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

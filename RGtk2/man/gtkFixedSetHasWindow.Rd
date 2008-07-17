@@ -9,7 +9,7 @@ window is created.}
 \usage{gtkFixedSetHasWindow(object, has.window)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFixed}}]  a \code{\link{GtkFixed}}}
-\item{\code{has.window}}{[logical]  \code{TRUE} if a separate window should be created}
+\item{\code{has.window}}{[logical] \code{TRUE} if a separate window should be created}
 }
 \details{This function was added to provide an easy migration path for
 older applications which may expect \code{\link{GtkFixed}} to have a separate window.  }

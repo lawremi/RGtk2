@@ -12,7 +12,7 @@ list handled by a recent manager.}
 \details{  Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the item pointed by \code{uri} has been successfully
+\item{retval}{[logical] \code{TRUE} if the item pointed by \code{uri} has been successfully
   removed by the recently used resources list, and \code{FALSE} otherwise.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for a \code{\link{GError}}, or \code{NULL}}
 }

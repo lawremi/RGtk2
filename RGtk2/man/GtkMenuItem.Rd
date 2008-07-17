@@ -20,7 +20,7 @@
 \code{\link{gtkMenuItemGetSubmenu}(object)}\cr
 \code{gtkMenuItem(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -33,7 +33,7 @@
                                              +----\link{GtkSeparatorMenuItem}
                                              +----\link{GtkTearoffMenuItem}}}
 \section{Interfaces}{GtkMenuItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkMenuItem}} widget and the derived widgets are the only valid
 childs for menus. Their function is to correctly handle highlighting,
 alignment, events and submenus.
@@ -47,7 +47,7 @@ only a few are really useful.}
 }}}
 \section{Convenient Construction}{\code{gtkMenuItem} is the result of collapsing the constructors of \code{GtkMenuItem} (\code{\link{gtkMenuItemNew}}, \code{\link{gtkMenuItemNewWithLabel}}, \code{\link{gtkMenuItemNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (menuitem, user.data)}}{
+\item{\code{activate(menuitem, user.data)}}{
 Emitted when the item is activated.
 
 \describe{
@@ -57,7 +57,7 @@ Emitted when the item is activated.
 
 
 }
-\item{\code{The (menuitem, user.data)}}{
+\item{\code{activate-item(menuitem, user.data)}}{
 Emitted when the item is activated, but also if the menu item has a
 submenu. For normal applications, the relevant signal is "activate".
 
@@ -68,7 +68,7 @@ submenu. For normal applications, the relevant signal is "activate".
 
 
 }
-\item{\code{The (menuitem, arg1, user.data)}}{
+\item{\code{toggle-size-allocate(menuitem, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -80,7 +80,7 @@ submenu. For normal applications, the relevant signal is "activate".
 
 
 }
-\item{\code{The (menuitem, arg1, user.data)}}{
+\item{\code{toggle-size-request(menuitem, arg1, user.data)}}{
 \emph{undocumented
 }
 

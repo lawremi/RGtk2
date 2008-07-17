@@ -13,6 +13,6 @@ special "nil" \code{\link{CairoScaledFont}} object will be returned on which
 this nil object will cause its error state to propagate to other
 objects it is passed to, (for example, calling
 \code{\link{cairoSetScaledFont}} with a nil font will trigger an error that
-will shutdown the cairo\_t object).}
+will shutdown the \code{\link{Cairo}} object).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

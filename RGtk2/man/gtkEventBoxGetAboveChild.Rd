@@ -7,7 +7,7 @@ details.}
 \usage{gtkEventBoxGetAboveChild(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkEventBox}}]  a \code{\link{GtkEventBox}}}}
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if the event box window is above the window
+\value{[logical] \code{TRUE} if the event box window is above the window
 of its child.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

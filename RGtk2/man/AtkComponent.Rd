@@ -19,7 +19,7 @@ the screen.}
 \code{\link{atkComponentSetSize}(object, width, height)}\cr
 \code{\link{atkComponentGetAlpha}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkComponent}}
 \section{Implementations}{AtkComponent is implemented by
  \code{\link{AtkNoOpObject}}.}

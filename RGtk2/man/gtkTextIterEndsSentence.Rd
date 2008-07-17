@@ -7,6 +7,6 @@ determined by Pango and should be correct for nearly any language
 algorithms).}
 \usage{gtkTextIterEndsSentence(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
-\value{[logical]  \code{TRUE} if \code{iter} is at the end of a sentence.}
+\value{[logical] \code{TRUE} if \code{iter} is at the end of a sentence.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

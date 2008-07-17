@@ -45,6 +45,21 @@
 
 CAIRO_BEGIN_DECLS
 
+/**
+ * cairo_ps_level_t:
+ * @CAIRO_PS_LEVEL_2: The language level 2 of the PostScript specification.
+ * @CAIRO_PS_LEVEL_3: The language level 3 of the PostScript specification.
+ *
+ * #cairo_ps_level_t is used to describe the language level of the
+ * PostScript Language Reference that a generated PostScript file will
+ * conform to.
+ */
+typedef enum {
+  CAIRO_PS_LEVEL_2,
+  CAIRO_PS_LEVEL_3
+} CairoPSLevel;
+
+
 /* PS-surface functions */
 
 cairo_surface_t *

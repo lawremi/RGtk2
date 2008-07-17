@@ -37,7 +37,7 @@
 \code{\link{gtkComboBoxGetFocusOnClick}(object)}\cr
 \code{gtkComboBox(model, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -46,7 +46,7 @@
                                  +----GtkComboBox
                                        +----\link{GtkComboBoxEntry}}}
 \section{Interfaces}{GtkComboBox implements
- \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkComboBox}} is a widget that allows the user to choose from a
 list of valid choices.  The \code{\link{GtkComboBox}} displays the selected 
 choice.  When activated, the \code{\link{GtkComboBox}} displays a popup 
@@ -76,7 +76,7 @@ the data in a model. It consists of the functions \code{\link{gtkComboBoxNewText
 }}}
 \section{Convenient Construction}{\code{gtkComboBox} is the result of collapsing the constructors of \code{GtkComboBox} (\code{\link{gtkComboBoxNew}}, \code{\link{gtkComboBoxNewWithModel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (widget, user.data)}}{
+\item{\code{changed(widget, user.data)}}{
 The changed signal is emitted when the active
 item is changed. The can be due to the user selecting
 a different item from the list, or due to a 
@@ -93,35 +93,48 @@ as well as when selecting an item from the GtkComboBoxEntry's list.
 
 
 }
-\item{\code{The (combobox, arg1, user.data)}}{
-\emph{undocumented
-}
+\item{\code{move-active(widget, scroll.type, user.data)}}{
+The ::move-active signal is a 
+keybinding signal
+which gets emitted to move the active selection.  
+
+  Since  2.12
 
 \describe{
-\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
+\item{\code{widget}}{[\code{\link{GtkComboBox}}]  the object that received the signal}
+\item{\code{scroll.type}}{[\code{\link{GtkScrollType}}]  a \code{\link{GtkScrollType}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (combobox, user.data)}}{
-\emph{undocumented
-}
+\item{\code{popdown(button, user.data)}}{
+The ::popdown signal is a 
+keybinding signal 
+which gets emitted to popdown the combo box list.
+  
+The default bindings for this signal are Alt+Up and Escape.  
+
+  Since  2.12
 
 \describe{
-\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
+\item{\code{button}}{[\code{\link{GtkComboBox}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (combobox, user.data)}}{
-\emph{undocumented
-}
+\item{\code{popup(widget, user.data)}}{
+The ::popup signal is a 
+keybinding signal
+which gets emitted to popup the combo box list.
+  
+The default binding for this signal is Alt+Down.  
+
+  Since  2.12
 
 \describe{
-\item{\code{combobox}}{[\code{\link{GtkComboBox}}] the object which received the signal.}
+\item{\code{widget}}{[\code{\link{GtkComboBox}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

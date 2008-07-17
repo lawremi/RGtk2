@@ -2,7 +2,7 @@
 # -*- Mode: Python; py-indent-offset: 4 -*-
 from __future__ import generators
 
-import string
+#import string
 import types
 
 class error(Exception):
@@ -16,11 +16,11 @@ class error(Exception):
 
 trans = [' '] * 256
 for i in range(256):
-    if chr(i) in string.letters + string.digits + '_':
+    if chr(i) in 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ' + "0123456789" + '_':
         trans[i] = chr(i)
     else:
         trans[i] = '_'
-trans = string.join(trans, '')
+trans = ''.join(trans)#string.join(trans, '')
 
 def parse(filename):
     if isinstance(filename, str):
@@ -113,7 +113,7 @@ class Parser:
         for statement in statements:
             self.handle(statement)
     def handle(self, tup):
-        cmd = string.translate(tup[0], trans)
+        cmd = tup[0].translate(trans)
         if hasattr(self, cmd):
             getattr(self, cmd)(*tup[1:])
         else:

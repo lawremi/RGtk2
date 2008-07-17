@@ -10,13 +10,13 @@
 \code{\link{gtkInvisibleGetScreen}(object)}\cr
 \code{gtkInvisible(screen, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkInvisible}}
 \section{Interfaces}{GtkInvisible implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkInvisible}} widget is used internally in GTK+, and is probably not 
 very useful for application developers.
   

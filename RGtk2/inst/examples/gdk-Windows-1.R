@@ -45,7 +45,7 @@ window_expose_event <- function(widget, event)
 
   # the source data is the (composited) event box
   gdkCairoSetSourcePixmap(cr, child$window, child$allocation$x, 
-    child$allocation$y)
+                          child$allocation$y)
 
   # draw no more than our expose event intersects our child
   region <- gdkRegionRectangle(child$allocation)

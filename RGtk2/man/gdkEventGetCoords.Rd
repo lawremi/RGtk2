@@ -6,7 +6,7 @@
 \arguments{\item{\code{object}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the event delivered event window coordinates}
+\item{retval}{[logical] \code{TRUE} if the event delivered event window coordinates}
 \item{\code{x.win}}{[numeric]  location to put event window x coordinate}
 \item{\code{y.win}}{[numeric]  location to put event window y coordinate}
 }

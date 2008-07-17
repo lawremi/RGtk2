@@ -18,14 +18,14 @@
 \code{\link{gtkProgressConfigure}(object, value, min, max)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkProgress
                            +----\link{GtkProgressBar}}}
 \section{Interfaces}{GtkProgress implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
 a \code{\link{GtkProgressBar}} which provides a visual representation of
 the progress of a long running operation.  }

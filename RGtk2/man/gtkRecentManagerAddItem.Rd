@@ -16,7 +16,7 @@ See \code{\link{gtkRecentManagerAddFull}} if you want to explicitly
 define the metadata for the resource pointed by \code{uri}.  
 
   Since  2.10}
-\value{[logical]  \code{TRUE} if the new item was successfully added
+\value{[logical] \code{TRUE} if the new item was successfully added
   to the recently used resources list}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

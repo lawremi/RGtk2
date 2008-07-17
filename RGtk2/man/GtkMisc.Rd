@@ -9,7 +9,7 @@
 \code{\link{gtkMiscGetPadding}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -19,7 +19,7 @@
                            +----\link{GtkImage}
                            +----\link{GtkPixmap}}}
 \section{Interfaces}{GtkMisc implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkMisc}} widget is an abstract widget which is not useful itself, but
 is used to derive subclasses which have alignment and padding attributes.
   
@@ -36,11 +36,11 @@ The \code{\link{GtkMisc}} struct contains the following fields.
 an application.)
 
 \tabular{ll}{
-\code{numeric}     \code{xalign}  ; \tab the horizontal alignment, from 0 (left) to 1 (right). \cr
-\code{numeric}     \code{yalign}  ; \tab the vertical alignment, from 0 (top) to 1 (bottom). \cr
-\code{integer}     \code{xpad}  ; \tab the amount of space to add on the left and right of the widget,
+\code{numeric}  \code{xalign}  ; \tab the horizontal alignment, from 0 (left) to 1 (right). \cr
+\code{numeric}  \code{yalign}  ; \tab the vertical alignment, from 0 (top) to 1 (bottom). \cr
+\code{integer}  \code{xpad}  ; \tab the amount of space to add on the left and right of the widget,
 in pixels. \cr
-\code{integer}     \code{ypad}  ; \tab the amount of space to add on the top and bottom of the widget,
+\code{integer}  \code{ypad}  ; \tab the amount of space to add on the top and bottom of the widget,
 in pixels. \cr
 }
 

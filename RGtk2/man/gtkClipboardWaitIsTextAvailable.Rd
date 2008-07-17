@@ -11,6 +11,6 @@ timeouts, etc, may be dispatched during the wait.}
 \details{This function is a little faster than calling
 \code{\link{gtkClipboardWaitForText}} since it doesn't need to retrieve
 the actual text.  }
-\value{[logical]  \code{TRUE} is there is text available, \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} is there is text available, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

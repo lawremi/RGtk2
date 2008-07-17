@@ -21,7 +21,7 @@
 \code{\link{gtkAccelMapUnlockPath}(accel.path)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkAccelMap}}
 \section{Structures}{\describe{\item{\code{GtkAccelMap}}{
 \emph{undocumented
@@ -42,7 +42,7 @@
 
 
 }}}
-\section{Signals}{\describe{\item{\code{The (object, accel.path, accel.key, accel.mods, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(object, accel.path, accel.key, accel.mods, user.data)}}{
 Notifies of a change in the global accelerator map.
 The path is also used as the detail for the signal,
 so it is possible to connect to

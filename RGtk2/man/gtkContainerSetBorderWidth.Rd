@@ -13,7 +13,8 @@ around the outside of the container. The only exception to this is
 \code{\link{GtkWindow}}; because toplevel windows can't leave space outside,
 they leave the space inside. The border is added on all sides of
 the container. To add space to only one side, one approach is to
-create a \code{\link{GtkAlignment}} widget, call \code{\link{gtkWidgetSetUsize}} to give
-it a size, and place it on the side of the container as a spacer.  }
+create a \code{\link{GtkAlignment}} widget, call \code{\link{gtkWidgetSetSizeRequest}}
+to give it a size, and place it on the side of the container as
+a spacer.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

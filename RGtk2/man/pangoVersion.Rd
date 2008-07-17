@@ -9,7 +9,7 @@ as opposed to the version available at compile-time.}
 \code{pangoVersionEncode()}.  
 
   Since  1.16}
-\value{[integer] value: The encoded version of Pango library
+\value{[integer]  The encoded version of Pango library
   available at run time.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

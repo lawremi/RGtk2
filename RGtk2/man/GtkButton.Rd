@@ -31,7 +31,7 @@
 \code{\link{gtkButtonGetImagePosition}(object)}\cr
 \code{gtkButton(label, stock.id, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -45,7 +45,7 @@
                                        +----\link{GtkOptionMenu}
                                        +----\link{GtkScaleButton}}}
 \section{Interfaces}{GtkButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkButton}} widget is generally used to attach a function to that
 is called when the button is pressed.  The various signals and how to use
 them are outlined below.
@@ -59,7 +59,7 @@ This should not be accessed directly.  Use the accessor functions below.
 }}}
 \section{Convenient Construction}{\code{gtkButton} is the result of collapsing the constructors of \code{GtkButton} (\code{\link{gtkButtonNew}}, \code{\link{gtkButtonNewWithLabel}}, \code{\link{gtkButtonNewFromStock}}, \code{\link{gtkButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (widget, user.data)}}{
+\item{\code{activate(widget, user.data)}}{
 The ::activate signal on GtkButton is an action signal and
 emitting it causes the button to animate press then release. 
 Applications should never connect to this signal, but use the
@@ -72,7 +72,7 @@ Applications should never connect to this signal, but use the
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{clicked(button, user.data)}}{
 Emitted when the button has been activated (pressed and released).  
 
 \describe{
@@ -82,10 +82,9 @@ Emitted when the button has been activated (pressed and released).
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{enter(button, user.data)}}{
 Emitted when the pointer enters the button.
-  
-\code{Deprecated}: Use the \code{::enter-notify-event} signal.  
+  \code{Deprecated}: Use the \code{"enter-notify-event"} signal.  
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -94,10 +93,9 @@ Emitted when the pointer enters the button.
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{leave(button, user.data)}}{
 Emitted when the pointer leaves the button.
-  
-\code{Deprecated}: Use the \code{::leave-notify-event} signal.  
+  \code{Deprecated}: Use the \code{"leave-notify-event"} signal.  
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -106,10 +104,9 @@ Emitted when the pointer leaves the button.
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{pressed(button, user.data)}}{
 Emitted when the button is pressed.
-  
-\code{Deprecated}: Use the \code{::button-press-event} signal.  
+  \code{Deprecated}: Use the \code{"button-press-event"} signal.  
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}
@@ -118,10 +115,9 @@ Emitted when the button is pressed.
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{released(button, user.data)}}{
 Emitted when the button is released.
-  
-\code{Deprecated}: Use the \code{::button-release-event} signal.  
+  \code{Deprecated}: Use the \code{"button-release-event"} signal.  
 
 \describe{
 \item{\code{button}}{[\code{\link{GtkButton}}]  the object that received the signal}

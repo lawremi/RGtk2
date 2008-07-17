@@ -11,7 +11,7 @@
 \code{\link{gtkTipsQuerySetLabels}(object, label.inactive, label.no.tip)}\cr
 \code{gtkTipsQuery(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -19,7 +19,7 @@
                            +----\link{GtkLabel}
                                  +----GtkTipsQuery}}
 \section{Interfaces}{GtkTipsQuery implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display
 help about widgets in a user interface.
   
@@ -47,7 +47,7 @@ should be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkTipsQuery} is the equivalent of \code{\link{gtkTipsQueryNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (tipsquery, user.data)}}{
+\item{\code{start-query(tipsquery, user.data)}}{
 Emitted when the query is started.
 
 \describe{
@@ -57,7 +57,7 @@ Emitted when the query is started.
 
 
 }
-\item{\code{The (tipsquery, user.data)}}{
+\item{\code{stop-query(tipsquery, user.data)}}{
 Emitted when the query is stopped.
 
 \describe{
@@ -67,7 +67,7 @@ Emitted when the query is stopped.
 
 
 }
-\item{\code{The (tipsquery, widget, tip.text, tip.private, user.data)}}{
+\item{\code{widget-entered(tipsquery, widget, tip.text, tip.private, user.data)}}{
 Emitted when a widget is entered by the pointer while the query is in effect.
 
 \describe{
@@ -80,7 +80,7 @@ Emitted when a widget is entered by the pointer while the query is in effect.
 
 
 }
-\item{\code{The (tipsquery, widget, tip.text, tip.private, event, user.data)}}{
+\item{\code{widget-selected(tipsquery, widget, tip.text, tip.private, event, user.data)}}{
 Emitted when a widget is selected during a query.
 
 \describe{

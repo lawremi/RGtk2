@@ -9,7 +9,7 @@
 \code{\link{gtkRulerGetRange}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,16 +17,14 @@
                            +----\link{GtkHRuler}
                            +----\link{GtkVRuler}}}
 \section{Interfaces}{GtkRuler implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
-\section{Detailed Description}{\strong{PLEASE NOTE:}   
- This widget is considered too specialized/little-used for
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+\section{Detailed Description}{\strong{PLEASE NOTE:}  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
  widget does work and is useful in some applications; it's just not
  of general interest. However, we are not accepting new features for
  the widget, and it will eventually move out of the GTK+
- distribution.
-    
+ distribution.  
 The GTKRuler widget is a base class for horizontal and vertical rulers. Rulers
 are used to show the mouse pointer's location in a window. The ruler can either
 be horizontal or vertical on the window. Within the ruler a small triangle

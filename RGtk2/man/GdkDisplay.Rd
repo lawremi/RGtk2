@@ -42,7 +42,7 @@
 \code{\link{gdkDisplaySupportsComposite}(object)}\cr
 \code{gdkDisplay(display.name)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkDisplay}}
 \section{Detailed Description}{\code{\link{GdkDisplay}} objects purpose are two fold:
 \itemize{
@@ -51,7 +51,6 @@
 		available for this \code{\link{GdkDisplay}}
 	  
 }
-  
   \code{\link{GdkDisplay}} objects are the GDK representation of the X Display which can be 
   described as \emph{a workstation consisting of a keyboard a pointing
   device (such as a mouse) and one or more screens}. 
@@ -65,7 +64,7 @@ of an X display. All its fields are private and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gdkDisplay} is the equivalent of \code{\link{gdkDisplayOpen}}.}
-\section{Signals}{\describe{\item{\code{The (display, is.error, user.data)}}{
+\section{Signals}{\describe{\item{\code{closed(display, is.error, user.data)}}{
 The ::closed signal is emitted when the connection to the windowing
 system for \code{display} is closed.  
 
@@ -73,7 +72,7 @@ system for \code{display} is closed.
 
 \describe{
 \item{\code{display}}{[\code{\link{GdkDisplay}}]  the object on which the signal is emitted}
-\item{\code{is.error}}{[logical]  \code{TRUE} if the display was closed due to an error}
+\item{\code{is.error}}{[logical] \code{TRUE} if the display was closed due to an error}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

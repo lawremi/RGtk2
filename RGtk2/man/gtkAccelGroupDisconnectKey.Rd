@@ -9,7 +9,7 @@
 \item{\code{accel.key}}{[numeric]         key value of the accelerator}
 \item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]        modifier combination of the accelerator}
 }
-\value{[logical]           \code{TRUE} if there was an accelerator which could be 
+\value{[logical] \code{TRUE} if there was an accelerator which could be 
                    removed, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

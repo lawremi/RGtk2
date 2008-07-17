@@ -8,7 +8,6 @@ if the layer of the accessible is not ATK\_LAYER\_MDI.
 }
 \usage{atkObjectGetMdiZorder(object)}
 \arguments{\item{\code{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}}
-\details{Returns:  }
 \value{[integer]  a gint which is the zorder of the accessible, i.e. the depth at 
 which the component is shown in relation to other components in the same 
 container.}

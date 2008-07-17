@@ -7,6 +7,6 @@ for that.}
 \usage{gtkActionGetVisible(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}}
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if the action itself is visible.}
+\value{[logical] \code{TRUE} if the action itself is visible.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -16,7 +16,7 @@ and copies into that. See \code{\link{gdkDrawableGetImage}} for further details.
 \item{\code{height}}{[integer]  height or region to get}
 }
 \details{  Since  2.4}
-\value{[\code{\link{GdkImage}}]  \code{image}, or a new a \code{\link{GdkImage}} containing the contents
+\value{[\code{\link{GdkImage}}] \code{image}, or a new a \code{\link{GdkImage}} containing the contents
               of \code{drawable}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

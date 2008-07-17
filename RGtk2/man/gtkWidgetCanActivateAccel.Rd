@@ -14,6 +14,6 @@ its ancestors mapped.}
 \item{\code{signal.id}}{[numeric]  the ID of a signal installed on \code{widget}}
 }
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE} if the accelerator can be activated.}
+\value{[logical] \code{TRUE} if the accelerator can be activated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

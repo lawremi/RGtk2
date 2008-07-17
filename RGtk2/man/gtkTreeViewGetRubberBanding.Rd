@@ -7,6 +7,6 @@ user to select multiple rows by dragging the mouse.}
 \usage{gtkTreeViewGetRubberBanding(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if rubber banding in \code{tree.view} is enabled.}
+\value{[logical] \code{TRUE} if rubber banding in \code{tree.view} is enabled.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

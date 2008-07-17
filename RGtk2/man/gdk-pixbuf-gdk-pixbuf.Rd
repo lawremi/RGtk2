@@ -19,7 +19,7 @@
 \code{\link{gdkPixbufGetOption}(object, key)}\cr
 \code{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkPixbuf}}
 \section{Detailed Description}{    The \code{GdkPixbuf} structure contains
     information that describes an image in memory.

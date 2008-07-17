@@ -1,7 +1,7 @@
 \alias{gtkBoxSetSpacing}
 \name{gtkBoxSetSpacing}
 \title{gtkBoxSetSpacing}
-\description{Sets the \code{:spacing} property of \code{box}, which is the 
+\description{Sets the \code{"spacing"} property of \code{box}, which is the 
 number of pixels to place between children of \code{box}.}
 \usage{gtkBoxSetSpacing(object, spacing)}
 \arguments{

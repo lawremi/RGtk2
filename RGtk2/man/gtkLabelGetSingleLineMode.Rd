@@ -5,6 +5,6 @@
 \usage{gtkLabelGetSingleLineMode(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
 \details{  Since  2.6}
-\value{[logical]  \code{TRUE} when the label is in single line mode.}
+\value{[logical] \code{TRUE} when the label is in single line mode.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

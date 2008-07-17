@@ -7,7 +7,7 @@
 \code{\link{gtkVBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}\cr
 \code{gtkVBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                                        +----\link{GtkGammaCurve}
                                        +----\link{GtkRecentChooserWidget}}}
 \section{Interfaces}{GtkVBox implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkVBox is a container that organizes child widgets into a single column.
   
 Use the \code{\link{GtkBox}} packing interface to determine the arrangement,

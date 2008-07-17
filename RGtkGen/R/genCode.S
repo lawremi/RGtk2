@@ -391,7 +391,7 @@ generateCodeFiles <-
   # code during the configuration.
   #
 function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
-          verbose=FALSE, package = "RGtk2", allDefs = NULL)
+         constructors = FALSE, verbose=FALSE, package = "RGtk2", allDefs = NULL)
 {
    # allDefs becomes the incrementally cumulated collection of definitions across the files.
   if(missing(allDefs)) {
@@ -436,7 +436,9 @@ function(..., classNames = NULL, dir=c("C"="/tmp", "S" = "/tmp"),
    defs <- getDefs(defFileNames[i])
     # Now generate the .c, .h and .R files for the classes, routines, enums, etc.
     # in this library.
-   tmp = genCode(defs, basename(defNames[i]), dir=dir, allDefs, verbose = verbose, libName = classNames[i], package = package)
+   tmp <- genCode(defs, basename(defNames[i]), dir=dir, allDefs,
+                  constructors = constructors, verbose = verbose,
+                  libName = classNames[i], package = package)
    definedRFuncs = c(definedRFuncs, tmp$definedRFuncs)
 
    if(i > 1) {

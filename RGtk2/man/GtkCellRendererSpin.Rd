@@ -7,7 +7,7 @@
 \code{\link{gtkCellRendererSpinNew}()}\cr
 \code{gtkCellRendererSpin()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}

@@ -9,6 +9,6 @@ display lines vs. paragraphs.}
 \item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
 \item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
 }
-\value{[logical]  \code{TRUE} if \code{iter} begins a wrapped line}
+\value{[logical] \code{TRUE} if \code{iter} begins a wrapped line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

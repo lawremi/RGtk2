@@ -33,18 +33,14 @@
 }
 \section{Detailed Description}{GDK provides the \code{\link{GdkPoint}}, \code{\link{GdkRectangle}}, \code{\link{GdkRegion}} and \code{\link{GdkSpan}} data types
 for representing pixels and sets of pixels on the screen.
-  
-\code{\link{GdkPoint}} is a simple structure containing an x and y coordinate of a point.
-  
-\code{\link{GdkRectangle}} is a structure holding the position and size of a rectangle.
+  \code{\link{GdkPoint}} is a simple structure containing an x and y coordinate of a point.
+  \code{\link{GdkRectangle}} is a structure holding the position and size of a rectangle.
 The intersection of two rectangles can be computed with
 \code{\link{gdkRectangleIntersect}}. To find the union of two rectangles use
 \code{\link{gdkRectangleUnion}}.
-  
-\code{\link{GdkRegion}} is an opaque data type holding a set of arbitrary pixels, and is
+  \code{\link{GdkRegion}} is an opaque data type holding a set of arbitrary pixels, and is
 usually used for clipping graphical operations (see \code{\link{gdkGCSetClipRegion}}).
-  
-\code{\link{GdkSpan}} is a structure holding a spanline. A spanline is a horizontal line that
+  \code{\link{GdkSpan}} is a structure holding a spanline. A spanline is a horizontal line that
 is one pixel wide. It is mainly used when rasterizing other graphics primitives.
 It can be intersected to regions by using \code{\link{gdkRegionSpansIntersectForeach}}.}
 \section{Structures}{\describe{

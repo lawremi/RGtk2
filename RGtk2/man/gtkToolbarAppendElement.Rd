@@ -21,8 +21,7 @@ Adds a new element to the end of a toolbar.
 If \code{type} == \code{GTK_TOOLBAR_CHILD_RADIOBUTTON}, \code{widget} is used to determine
 the radio group for the new element. In all other cases, \code{widget} must
 be \code{NULL}.
-  
-\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
+  \code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
 arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  
 
   }

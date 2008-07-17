@@ -13,7 +13,7 @@
 \code{\link{gtkViewportGetShadowType}(object)}\cr
 \code{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -21,14 +21,14 @@
                            +----\link{GtkBin}
                                  +----GtkViewport}}
 \section{Interfaces}{GtkViewport implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Structures}{\describe{\item{\code{GtkViewport}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkViewport} is the equivalent of \code{\link{gtkViewportNew}}.}
-\section{Signals}{\describe{\item{\code{The (viewport, arg1, arg2, user.data)}}{
+\section{Signals}{\describe{\item{\code{set-scroll-adjustments(viewport, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 

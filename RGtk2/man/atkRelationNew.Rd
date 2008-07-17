@@ -2,7 +2,7 @@
 \name{atkRelationNew}
 \title{atkRelationNew}
 \description{Create a new relation for the specified key and the specified list
-of targets.}
+of targets.  See also \code{\link{atkObjectAddRelationship}}.}
 \usage{atkRelationNew(targets, relationship)}
 \arguments{
 \item{\code{targets}}{[\code{\link{AtkObject}}]  a list of pointers to \code{AtkObjects}  }

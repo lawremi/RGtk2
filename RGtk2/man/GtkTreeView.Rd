@@ -113,14 +113,14 @@
 \code{\link{gtkTreeViewSetTooltipColumn}(object, column)}\cr
 \code{gtkTreeView(model = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkTreeView}}
 \section{Interfaces}{GtkTreeView implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Widget that displays any object that implements the \code{\link{GtkTreeModel}} interface.
   
 Please refer to the tree widget conceptual 
@@ -151,8 +151,7 @@ former you can use \code{\link{gtkTreeViewConvertWidgetToBinWindowCoords}}
 \section{GtkTreeView as GtkBuildable}{The GtkTreeView implementation of the GtkBuildable interface accepts
 GtkTreeViewColumn objects as <child> elements in UI definitions.
   
-\emph{A UI definition fragment with GtkTreeView}
-\preformatted{<object class="GtkTreeView">
+ \emph{A UI definition fragment with GtkTreeView}\preformatted{<object class="GtkTreeView">
   <property name="model">liststore1</property>
   <child>
     <object class="GtkTreeViewColumn">
@@ -295,7 +294,7 @@ returns.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{columns-changed(tree.view, user.data)}}{
 The number of columns of the treeview has changed.  
 
 \describe{
@@ -305,7 +304,7 @@ The number of columns of the treeview has changed.
 
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{cursor-changed(tree.view, user.data)}}{
 The position of the cursor (focused cell) has changed.  
 
 \describe{
@@ -315,7 +314,7 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{The (tree.view, arg1, arg2, arg3, user.data)}}{
+\item{\code{expand-collapse-cursor-row(tree.view, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
@@ -329,7 +328,7 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{The (tree.view, arg1, arg2, user.data)}}{
+\item{\code{move-cursor(tree.view, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -342,7 +341,7 @@ The position of the cursor (focused cell) has changed.
 
 
 }
-\item{\code{The (tree.view, path, column, user.data)}}{
+\item{\code{row-activated(tree.view, path, column, user.data)}}{
 The "row-activated" signal is emitted when the method
 \code{\link{gtkTreeViewRowActivated}} is called or the user double clicks 
 a treeview row. It is also emitted when a non-editable row is 
@@ -361,7 +360,7 @@ widget conceptual overview as well as \code{\link{GtkTreeSelection}}.
 
 
 }
-\item{\code{The (tree.view, iter, path, user.data)}}{
+\item{\code{row-collapsed(tree.view, iter, path, user.data)}}{
 The given row has been collapsed (child nodes are hidden).  
 
 \describe{
@@ -373,7 +372,7 @@ The given row has been collapsed (child nodes are hidden).
 
 
 }
-\item{\code{The (tree.view, iter, path, user.data)}}{
+\item{\code{row-expanded(tree.view, iter, path, user.data)}}{
 The given row has been expanded (child nodes are shown).  
 
 \describe{
@@ -385,7 +384,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{select-all(tree.view, user.data)}}{
 \emph{undocumented
 }
 
@@ -396,7 +395,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{select-cursor-parent(tree.view, user.data)}}{
 \emph{undocumented
 }
 
@@ -407,7 +406,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, arg1, user.data)}}{
+\item{\code{select-cursor-row(tree.view, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -419,7 +418,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, arg1, arg2, user.data)}}{
+\item{\code{set-scroll-adjustments(tree.view, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -432,7 +431,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{start-interactive-search(tree.view, user.data)}}{
 \emph{undocumented
 }
 
@@ -443,7 +442,7 @@ The given row has been expanded (child nodes are shown).
 
 
 }
-\item{\code{The (tree.view, iter, path, user.data)}}{
+\item{\code{test-collapse-row(tree.view, iter, path, user.data)}}{
 The given row is about to be collapsed (hide its children nodes). Use this
 signal if you need to control the collapsibility of individual rows.  
 
@@ -454,10 +453,10 @@ signal if you need to control the collapsibility of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{FALSE} to allow collapsing, \code{TRUE} to reject
+\emph{Returns:} [logical] \code{FALSE} to allow collapsing, \code{TRUE} to reject
 
 }
-\item{\code{The (tree.view, iter, path, user.data)}}{
+\item{\code{test-expand-row(tree.view, iter, path, user.data)}}{
 The given row is about to be expanded (show its children nodes). Use this
 signal if you need to control the expandability of individual rows.  
 
@@ -468,10 +467,10 @@ signal if you need to control the expandability of individual rows.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{FALSE} to allow expansion, \code{TRUE} to reject
+\emph{Returns:} [logical] \code{FALSE} to allow expansion, \code{TRUE} to reject
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{toggle-cursor-row(tree.view, user.data)}}{
 \emph{undocumented
 }
 
@@ -482,7 +481,7 @@ signal if you need to control the expandability of individual rows.
 
 
 }
-\item{\code{The (tree.view, user.data)}}{
+\item{\code{unselect-all(tree.view, user.data)}}{
 \emph{undocumented
 }
 

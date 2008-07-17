@@ -11,7 +11,7 @@
 \details{  Since  2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} on success}
+\item{retval}{[logical] \code{TRUE} on success}
 \item{\code{error}}{[\code{\link{GError}}]  return location for errors, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

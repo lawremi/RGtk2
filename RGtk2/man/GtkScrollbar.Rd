@@ -2,7 +2,7 @@
 \name{GtkScrollbar}
 \title{GtkScrollbar}
 \description{Base class for GtkHScrollbar and GtkVScrollbar}
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -11,7 +11,7 @@
                                  +----\link{GtkHScrollbar}
                                  +----\link{GtkVScrollbar}}}
 \section{Interfaces}{GtkScrollbar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkScrollbar}} widget is an abstract base class for \code{\link{GtkHScrollbar}} and
 \code{\link{GtkVScrollbar}}. It is not very useful in itself.
   

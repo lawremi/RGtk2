@@ -23,7 +23,7 @@
 \code{\link{atkGetToolkitVersion}()}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkUtil}}
 \section{Detailed Description}{A set of ATK utility functions which are used to support event registration of
 various types, and obtaining the 'root' accessible of a process and
@@ -88,8 +88,7 @@ as used in \code{\link{atkAddFocusTracker}}.
 Currently the only events for which object-specific handlers are
 supported are events of type "focus:".  Most clients of ATK will prefer to 
 attach signal handlers for the various ATK signals instead.
-  
-\code{see}: atk\_add\_focus\_tracker.  
+  \code{see}: atk\_add\_focus\_tracker.  
 
 \describe{\item{\code{obj}}{[\code{\link{AtkObject}}]  An \code{\link{AtkObject}} instance for whom the callback will be called when
 the specified event (e.g. 'focus:') takes place.}}
@@ -100,8 +99,7 @@ the specified event (e.g. 'focus:') takes place.}}
 An \code{AtkEventListenerInit} function is a special function that is
 called in order to initialize the per-object event registration system
 used by \code{AtkEventListener}, if any preparation is required.  
-  
-\code{see}: atk\_focus\_tracker\_init.  
+  \code{see}: atk\_focus\_tracker\_init.  
 
 
 

@@ -12,5 +12,10 @@
          encountering a nul-termination even when \code{length} is
          positive.}
 }
+\details{Note that if you have used
+\code{\link{pangoLayoutSetMarkup}} or \code{\link{pangoLayoutSetMarkupWithAccel}} on
+\code{layout} before, you may want to call \code{\link{pangoLayoutSetAttributes}} to clear
+the attributes set on the layout from the markup as this function does not
+clear attributes.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

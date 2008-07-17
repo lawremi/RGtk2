@@ -22,14 +22,14 @@
 \code{\link{gtkTableGetDefaultColSpacing}(object)}\cr
 \code{gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkTable}}
 \section{Interfaces}{GtkTable implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
 columns, making it easy to align many widgets next to each other,
 horizontally and vertically.
@@ -44,16 +44,14 @@ To alter the space next to a specific row, use \code{\link{gtkTableSetRowSpacing
 and for a column, \code{\link{gtkTableSetColSpacing}}.  
 The gaps between \emph{all} rows or columns can be changed by calling
 \code{\link{gtkTableSetRowSpacings}} or \code{\link{gtkTableSetColSpacings}} respectively.
-  
-\code{\link{gtkTableSetHomogeneous}}, can be used to set whether all cells in the
+  \code{\link{gtkTableSetHomogeneous}}, can be used to set whether all cells in the
 table will resize themselves to the size of the largest widget in the table.}
 \section{Structures}{\describe{
 \item{\code{GtkTable}}{
 The \code{GtkTable} structure holds the data for the actual table itself. 
 
 \code{children} is a \code{list} of all the widgets the table contains. \code{rows} and \code{columns} are pointers to \code{\link{GtkTableRowCol}} structures, which contain the default spacing and expansion details for the \code{\link{GtkTable}}'s rows and columns, respectively.
-  
-\code{nrows} and \code{ncols} are 16bit integers storing the number of rows and columns the table has. 
+  \code{nrows} and \code{ncols} are 16bit integers storing the number of rows and columns the table has. 
 
 \describe{
 \item{\code{children}}{[list] }
@@ -72,8 +70,7 @@ The \code{left_attach},
 \code{top_attach}, and
 \code{bottom_attach} fields specify the row and column
 numbers which make up the invisible rectangle that the child widget is packed into.
-  
-\code{xpadding} and \code{ypadding}
+  \code{xpadding} and \code{ypadding}
 specify the space between this widget and the surrounding table cells.
 
 \describe{

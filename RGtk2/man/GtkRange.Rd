@@ -26,7 +26,7 @@
 \code{\link{gtkRangeGetUpperStepperSensitivity}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -34,7 +34,7 @@
                            +----\link{GtkScale}
                            +----\link{GtkScrollbar}}}
 \section{Interfaces}{GtkRange implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkRange}} is the common base class for widgets which visualize an
 adjustment, e.g scales or scrollbars. 
   
@@ -60,7 +60,7 @@ at the end of range widgets.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (range, arg1, user.data)}}{
+\item{\code{adjust-bounds(range, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -72,7 +72,7 @@ at the end of range widgets.
 
 
 }
-\item{\code{The (range, scroll, value, returns, user.data)}}{
+\item{\code{change-value(range, scroll, value, returns, user.data)}}{
 The ::change-value signal is emitted when a scroll action is
 performed on a range.  It allows an application to determine the
 type of scroll event that occurred and the resultant new value.
@@ -95,14 +95,14 @@ It is not possible to use delayed update policies in an overridden
 \item{\code{range}}{[\code{\link{GtkRange}}]  the range that received the signal}
 \item{\code{scroll}}{[\code{\link{GtkScrollType}}]  the type of scroll action that was performed}
 \item{\code{value}}{[numeric]  the new value resulting from the scroll action}
-\item{\code{returns}}{[R object]  \code{TRUE} to prevent other handlers from being invoked for the
+\item{\code{returns}}{[R object] \code{TRUE} to prevent other handlers from being invoked for the
 signal, \code{FALSE} to propagate the signal further}
 \item{\code{user.data}}{user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (range, step, user.data)}}{
+\item{\code{move-slider(range, step, user.data)}}{
 Virtual function that moves the slider. Used for keybindings.  
 
 \describe{
@@ -113,7 +113,7 @@ Virtual function that moves the slider. Used for keybindings.
 
 
 }
-\item{\code{The (range, user.data)}}{
+\item{\code{value-changed(range, user.data)}}{
 Emitted when the range value changes.  
 
 \describe{
@@ -230,7 +230,7 @@ slider are drawn with different details.
 
 Whether to draw the trough across the full length of the range or
 to exclude the steppers and their spacing. Note that setting the
-\code{:stepper-spacing} style property to any value > 0 will
+\code{"stepper-spacing"} style property to any value > 0 will
 automatically enable trough-under-steppers too.  
 
   Default value: TRUE  Since  2.10

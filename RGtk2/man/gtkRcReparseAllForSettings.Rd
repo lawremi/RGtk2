@@ -9,6 +9,6 @@ and then reread all previously read RC files.}
 \item{\code{settings}}{[\code{\link{GtkSettings}}]  a \code{\link{GtkSettings}}}
 \item{\code{force.load}}{[logical]  load whether or not anything changed}
 }
-\value{[logical]  \code{TRUE} if the files were reread.}
+\value{[logical] \code{TRUE} if the files were reread.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

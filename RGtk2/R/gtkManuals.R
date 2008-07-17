@@ -331,15 +331,16 @@ function(object, position, title, cell, ...)
 gtkTextBufferInsertWithTags <-
 function(object, iter, text, ...)
 {
-        checkPtrType(object, "GtkTextBuffer")
-        checkPtrType(iter, "GtkTextIter")
-        text <- as.character(text)
-		tags <- list(...)
-		checkArrType(tags, function(x) checkPtrType(x, "GtkTextTag"))
+  checkPtrType(object, "GtkTextBuffer")
+  checkPtrType(iter, "GtkTextIter")
+  text <- as.character(text)
+  tags <- list(...)
+  checkArrType(tags, function(x) checkPtrType(x, "GtkTextTag"))
+  
+  w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags", object, iter, text, -1L,
+                 tags)
 
-        w <- .RGtkCall("S_gtk_text_buffer_insert_with_tags", object, iter, text, -1, tags)
-
-        return(invisible(w))
+  return(invisible(w))
 }
 
 # reason: same as above

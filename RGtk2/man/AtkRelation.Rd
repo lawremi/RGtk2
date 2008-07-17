@@ -15,7 +15,7 @@ other objects.}
 \code{\link{atkRelationAddTarget}(object, target)}\cr
 \code{atkRelation(targets, relationship)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkRelation}}
 \section{Detailed Description}{An AtkRelation describes a relation between an object and one or more
 other objects. The actual relations that an object has with other objects

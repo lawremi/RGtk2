@@ -8,7 +8,7 @@ A convenient way to sensitize/desensitize dialog buttons.}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}
 \item{\code{response.id}}{[integer]  a response ID}
-\item{\code{setting}}{[logical]  \code{TRUE} for sensitive}
+\item{\code{setting}}{[logical] \code{TRUE} for sensitive}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

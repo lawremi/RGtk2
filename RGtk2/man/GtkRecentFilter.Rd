@@ -21,7 +21,7 @@
 \code{\link{gtkRecentFilterFilter}(object, filter.info)}\cr
 \code{gtkRecentFilter()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----GtkRecentFilter}}

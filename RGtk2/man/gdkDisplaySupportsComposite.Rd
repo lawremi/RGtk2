@@ -9,6 +9,6 @@ to redirect drawing on the window using compositing.}
 XDamage extensions available.  
 
   Since  2.12}
-\value{[logical]  \code{TRUE} if windows may be composited.}
+\value{[logical] \code{TRUE} if windows may be composited.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@ and when the print job actually reaches the printer.}
 \usage{gtkPrintOperationSetTrackPrintStatus(object, track.status)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}
-\item{\code{track.status}}{[logical]  \code{TRUE} to track status after printing}
+\item{\code{track.status}}{[logical] \code{TRUE} to track status after printing}
 }
 \details{This function is often implemented using some form of polling, so it should
 not be enabled unless needed.  

@@ -29,8 +29,7 @@ the group by using \code{\link{cairoPushGroupWithContent}} instead.
 As an example, here is how one might fill and stroke a path with
 translucence, but without any portion of the fill being visible
 under the stroke:
-  
-\preformatted{
+  \preformatted{
 cr$pushGroup()
 cr$setSource(fill_pattern)
 cr$fillPreserve()

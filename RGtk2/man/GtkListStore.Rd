@@ -26,7 +26,7 @@
 \code{\link{gtkListStoreMoveAfter}(object, iter, position = NULL)}\cr
 \code{gtkListStore(..., value)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkListStore}}
 \section{Interfaces}{GtkListStore implements
  \code{\link{GtkBuildable}},  \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
@@ -46,20 +46,22 @@ value.  As a result, if the object is modified, it is up to the
 application writer to call \code{gtk.tree.model.row.changed} to emit the
 "row\_changed" signal.  This most commonly affects lists with
 \code{\link{GdkPixbuf}}s stored.
-  \preformatted{
-  list_store <- gtk_list_store_new ("character", "integer", "logical")
+  
+ \emph{Creating a simple list store.}
+\preformatted{
+list_store <- gtk_list_store_new ("character", "integer", "logical")
 
-  sapply(character_vector, function(string)
-    {
-      # Add a new row to the model
-      iter <- list_store$append(iter)$iter
-      list_store$set(iter, 0, string, 1, i, 2,  FALSE)
-	})
+sapply(character_vector,
+       function(string) {
+         ## Add a new row to the model
+         iter <- list_store$append(iter)$iter
+         list_store$set(iter, 0, string, 1, i, 2,  FALSE)
+       })
 
-  # Modify a particular row
-  path <- gtkTreePathNewFromString("4")
-  iter <- list_store$getIter(path)$iter
-  list_store$set(iter, 2, TRUE)
+## Modify a particular row
+path <- gtkTreePathNewFromString("4")
+iter <- list_store$getIter(path)$iter
+list_store$set(iter, 2, TRUE)
 
 }}
 \section{Performance Considerations}{Internally, the \code{\link{GtkListStore}} was implemented with a linked list with a
@@ -102,8 +104,7 @@ to specify the content of a list store in a UI definition,
 and common wisdom is to separate the two, as far as possible. 
 
   
-\emph{A UI Definition fragment for a list store}
-\preformatted{<object class="GtkListStore">
+ \emph{A UI Definition fragment for a list store}\preformatted{<object class="GtkListStore">
   <columns>
     <column type="gchararray"/>
     <column type="gchararray"/>

@@ -10,14 +10,12 @@
 even vs. odd numbers to distinguish fixed points in the software
 vs. in-progress development, (such as from git instead of a tar file,
 or as a "snapshot" tar file as opposed to a "release" tar file).
-  
-\preformatted{ _____ Major. Always 1, until we invent a new scheme.
+  \preformatted{ _____ Major. Always 1, until we invent a new scheme.
 /  ___ Minor. Even/Odd = Release/Snapshot (tar files) or Branch/Head (git)
 | /  _ Micro. Even/Odd = Tar-file/git
 | | /
 1.0.0
-}
-  
+}  
 Here are a few examples of versions that one might see.
 \preformatted{Releases
 --------
@@ -56,9 +54,8 @@ rather the many states between snapshots and releases.}
 \section{Examining the version}{Cairo provides the ability to examine the version at either
 compile-time or run-time and in both a human-readable form as well as
 an encoded form suitable for direct comparison. Cairo also provides a
-function (CAIRO\_VERSION\_ENCODE) to perform the encoding.
-  
-\preformatted{
+function (\code{cairoVersionEncode()}) to perform the encoding.
+  \preformatted{
 Compile-time
 --------
 R users should not be concerned with compile-time version checking.
@@ -67,8 +64,7 @@ Run-time
 --------
 cairoVersionString()	Human-readable, use compareVersion() for comparison
 cairoVersion()		Encoded, not very useful in R
-}
-  
+}  
 For example, checking that the cairo version is greater than or equal
 to 1.0.0 could be achieved at compile-time or run-time as follows:
 
@@ -76,7 +72,7 @@ to 1.0.0 could be achieved at compile-time or run-time as follows:
 # R users should not be concerned with compile-time checking, but at runtime:
 
 if (compareVersion(cairoVersionString(), "1.0.0") == 1)
-    cat("Running with suitable cairo version:", cairoVersionString(), "\n")
+  cat("Running with suitable cairo version:", cairoVersionString(), "\n")
 
 }}
 \references{\url{http://www.cairographics.org/manual/cairo-Version-Information.html}}

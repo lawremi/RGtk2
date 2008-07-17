@@ -7,6 +7,6 @@ is returned.}
 \usage{pangoScriptIterNext(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoScriptIter}}]  a \code{\link{PangoScriptIter}}}}
 \details{  Since  1.4}
-\value{[logical]  \code{TRUE} if \code{iter} was successfully advanced.}
+\value{[logical] \code{TRUE} if \code{iter} was successfully advanced.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

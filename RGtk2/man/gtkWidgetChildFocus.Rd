@@ -15,7 +15,7 @@ functions instead.}
 around the window using keyboard shortcuts. \code{direction} indicates
 what kind of motion is taking place (up, down, left, right, tab
 forward, tab backward). \code{\link{gtkWidgetChildFocus}} emits the
-\code{::focus}" signal; widgets override the default handler
+\code{"focus"}" signal; widgets override the default handler
 for this signal in order to implement appropriate focus behavior.
   
 The default ::focus handler for a widget should return \code{TRUE} if
@@ -30,6 +30,6 @@ It was necessary to check that the child was visible, sensitive,
 and focusable before calling \code{gtkContainerFocus()}. 
 \code{\link{gtkWidgetChildFocus}} returns \code{FALSE} if the widget is not 
 currently in a focusable state, so there's no need for those checks.  }
-\value{[logical]  \code{TRUE} if focus ended up inside \code{widget}}
+\value{[logical] \code{TRUE} if focus ended up inside \code{widget}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,12 +8,10 @@ as the source pattern in the given cairo context.}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
 \details{The behavior of this function is equivalent to the sequence of
 operations:
-  
-\preformatted{
+  \preformatted{
 group <- cr$popGroup()
 cr$setSource(group)
-}
-  
+}  
 but is more convenient as their is no need for a variable to store
 the short-lived pointer to the pattern.
   

@@ -9,7 +9,7 @@ widget or not.
 \usage{gtkEntrySetEditable(object, editable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{editable}}{[logical]  \code{TRUE} if the user is allowed to edit the text
+\item{\code{editable}}{[logical] \code{TRUE} if the user is allowed to edit the text
   in the widget}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -3,7 +3,7 @@
 \title{gtkWidgetKeynavFailed}
 \description{This function should be called whenever keyboard navigation within
 a single widget hits a boundary. The function emits the
-\code{::keynav-changed} signal on the widget and its return 
+\code{\link{gtkWidgetKeynavFailed}} signal on the widget and its return
 value should be interpreted in a way similar to the return value of
 \code{\link{gtkWidgetChildFocus}}:}
 \usage{gtkWidgetKeynavFailed(object, direction)}
@@ -22,7 +22,7 @@ navigation outside the widget, e.g. by calling
 The default ::keynav-failed handler returns \code{TRUE} for 
 \code{GTK_DIR_TAB_FORWARD} and \code{GTK_DIR_TAB_BACKWARD}. For the other 
 values of \code{\link{GtkDirectionType}}, it looks at the 
-\code{:gtk-keynav-cursor-only}" setting and returns \code{FALSE} 
+\code{"gtk-keynav-cursor-only"} setting and returns \code{FALSE} 
 if the setting is \code{TRUE}. This way the entire user interface
 becomes cursor-navigatable on input devices such as mobile phones
 which only have cursor keys but no tab key.
@@ -38,7 +38,7 @@ entire row with the cursor keys, as e.g. known from user interfaces
 that require entering license keys.  
 
   Since  2.12}
-\value{[logical]  \code{TRUE} if stopping keyboard navigation is fine, \code{FALSE}
+\value{[logical] \code{TRUE} if stopping keyboard navigation is fine, \code{FALSE}
               if the emitting widget should try to handle the keyboard
               navigation attempt in its parent container(s).}
 \author{Derived by RGtkGen from GTK+ documentation}

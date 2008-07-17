@@ -11,7 +11,7 @@ the image's aspect ratio. }
 \item{\code{filename}}{[char]  Name of file to load, in the GLib file name encoding}
 \item{\code{width}}{[integer]  The width the image should have or -1 to not constrain the width}
 \item{\code{height}}{[integer]  The height the image should have or -1 to not constrain the height}
-\item{\code{preserve.aspect.ratio}}{[logical]  \code{TRUE} to preserve the image's aspect ratio}
+\item{\code{preserve.aspect.ratio}}{[logical] \code{TRUE} to preserve the image's aspect ratio}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{When preserving the aspect ratio, a \code{width} of -1 will cause the image

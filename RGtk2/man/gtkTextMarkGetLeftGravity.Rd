@@ -4,6 +4,6 @@
 \description{Determines whether the mark has left gravity.}
 \usage{gtkTextMarkGetLeftGravity(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}}}
-\value{[logical]  \code{TRUE} if the mark has left gravity, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if the mark has left gravity, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

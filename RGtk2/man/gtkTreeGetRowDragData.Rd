@@ -13,7 +13,7 @@ in from the current process.}
 \arguments{\item{\code{object}}{[\code{\link{GtkSelectionData}}]  a \code{\link{GtkSelectionData}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{selection.data} had target type \code{GTK_TREE_MODEL_ROW} and
+\item{retval}{[logical] \code{TRUE} if \code{selection.data} had target type \code{GTK_TREE_MODEL_ROW} and
  is otherwise valid}
 \item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  a \code{\link{GtkTreeModel}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  row in \code{tree.model}}

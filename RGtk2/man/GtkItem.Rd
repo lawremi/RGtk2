@@ -8,7 +8,7 @@
 \code{\link{gtkItemToggle}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -19,7 +19,7 @@
                                        +----\link{GtkListItem}
                                        +----GtkTreeItem}}
 \section{Interfaces}{GtkItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
 and \code{GtkTreeItem}.}
 \section{Structures}{\describe{\item{\code{GtkItem}}{
@@ -28,7 +28,7 @@ should be accessed using the functions below.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (item, user.data)}}{
+\item{\code{deselect(item, user.data)}}{
 Emitted when the item is deselected.
 
 \describe{
@@ -38,7 +38,7 @@ Emitted when the item is deselected.
 
 
 }
-\item{\code{The (item, user.data)}}{
+\item{\code{select(item, user.data)}}{
 Emitted when the item is selected.
 
 \describe{
@@ -48,7 +48,7 @@ Emitted when the item is selected.
 
 
 }
-\item{\code{The (item, user.data)}}{
+\item{\code{toggle(item, user.data)}}{
 Emitted when the item is toggled.
 
 \describe{

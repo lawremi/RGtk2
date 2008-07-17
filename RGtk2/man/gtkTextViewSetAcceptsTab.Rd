@@ -8,7 +8,7 @@ chain.}
 \usage{gtkTextViewSetAcceptsTab(object, accepts.tab)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextView}}]  A \code{\link{GtkTextView}}}
-\item{\code{accepts.tab}}{[logical]  \code{TRUE} if pressing the Tab key should insert a tab 
+\item{\code{accepts.tab}}{[logical] \code{TRUE} if pressing the Tab key should insert a tab 
    character, \code{FALSE}, if pressing the Tab key should move the 
    keyboard focus.}
 }

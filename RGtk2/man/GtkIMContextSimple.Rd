@@ -8,7 +8,7 @@
 \code{\link{gtkIMContextSimpleAddTable}(object, data, max.seq.len, n.seqs)}\cr
 \code{gtkIMContextSimple()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GtkIMContext}
          +----GtkIMContextSimple}}
 \section{Structures}{\describe{\item{\code{GtkIMContextSimple}}{

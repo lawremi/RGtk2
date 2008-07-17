@@ -7,7 +7,7 @@ and other attributes of the \code{\link{GdkGC}}.}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
 \item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{filled}}{[logical]  \code{TRUE} if the rectangle should be filled.}
+\item{\code{filled}}{[logical] \code{TRUE} if the rectangle should be filled.}
 \item{\code{x}}{[integer]  the x coordinate of the left edge of the rectangle.}
 \item{\code{y}}{[integer]  the y coordinate of the top edge of the rectangle.}
 \item{\code{width}}{[integer]  the width of the rectangle.}

@@ -19,13 +19,13 @@
 \code{\link{gtkCalendarThaw}(object)}\cr
 \code{gtkCalendar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkCalendar}}
 \section{Interfaces}{GtkCalendar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
 It can be created with \code{\link{gtkCalendarNew}}.
   
@@ -45,11 +45,9 @@ The selected date can be retrieved from a \code{\link{GtkCalendar}} using
 \section{Structures}{\describe{\item{\code{GtkCalendar}}{
 \code{num_marked_dates} is an integer containing the
 number of days that have a mark over them.
-  
-\code{marked_date} is a list containing the day numbers
+  \code{marked_date} is a list containing the day numbers
 that currently have a mark over them.
-  
-\code{month}, \code{year}, and 
+  \code{month}, \code{year}, and 
 \code{selected_day} contain the currently visible month,
 year, and selected day respectively.
   
@@ -73,7 +71,7 @@ These options can be used to influence the display and behaviour of a \code{\lin
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (calendar, user.data)}}{
+\item{\code{day-selected(calendar, user.data)}}{
 Emitted when the user selects a day.
 
 \describe{
@@ -83,7 +81,7 @@ Emitted when the user selects a day.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{day-selected-double-click(calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -94,7 +92,7 @@ Emitted when the user selects a day.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{month-changed(calendar, user.data)}}{
 Emitted when the user clicks a button to change the selected month on a
 calendar.
 
@@ -105,7 +103,7 @@ calendar.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{next-month(calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -116,7 +114,7 @@ calendar.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{next-year(calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -127,7 +125,7 @@ calendar.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{prev-month(calendar, user.data)}}{
 \emph{undocumented
 }
 
@@ -138,7 +136,7 @@ calendar.
 
 
 }
-\item{\code{The (calendar, user.data)}}{
+\item{\code{prev-year(calendar, user.data)}}{
 \emph{undocumented
 }
 

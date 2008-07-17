@@ -13,7 +13,7 @@
 \code{\link{gtkStatusbarGetHasResizeGrip}(object)}\cr
 \code{gtkStatusbar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -22,7 +22,7 @@
                                  +----\link{GtkHBox}
                                        +----GtkStatusbar}}
 \section{Interfaces}{GtkStatusbar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkStatusbar}} is usually placed along the bottom of an application's main
 \code{\link{GtkWindow}}. It may provide a regular commentary of the application's status
 (as is usually the case in a web browser, for example), or may be used to
@@ -59,7 +59,7 @@ below.
 }}}
 \section{Convenient Construction}{\code{gtkStatusbar} is the equivalent of \code{\link{gtkStatusbarNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (statusbar, context.id, text, user.data)}}{
+\item{\code{text-popped(statusbar, context.id, text, user.data)}}{
 Is emitted whenever a new message is popped off a statusbar's stack.  
 
 \describe{
@@ -71,7 +71,7 @@ Is emitted whenever a new message is popped off a statusbar's stack.
 
 
 }
-\item{\code{The (statusbar, context.id, text, user.data)}}{
+\item{\code{text-pushed(statusbar, context.id, text, user.data)}}{
 Is emitted whenever a new message gets pushed onto a statusbar's stack.  
 
 \describe{

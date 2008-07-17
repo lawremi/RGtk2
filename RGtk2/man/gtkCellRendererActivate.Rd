@@ -15,6 +15,6 @@ toggles when it gets a mouse click.}
 \item{\code{cell.area}}{[\code{\link{GdkRectangle}}]  cell area as passed to \code{\link{gtkCellRendererRender}}}
 \item{\code{flags}}{[\code{\link{GtkCellRendererState}}]  render flags}
 }
-\value{[logical]  \code{TRUE} if the event was consumed/handled}
+\value{[logical] \code{TRUE} if the event was consumed/handled}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

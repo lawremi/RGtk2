@@ -6,7 +6,7 @@ provide an uri list.}
 \usage{gtkTargetsIncludeUri(targets)}
 \arguments{\item{\code{targets}}{[\code{\link{GdkAtom}}]  a list of \code{\link{GdkAtom}}s}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if \code{targets} include a suitable target for uri lists,
+\value{[logical] \code{TRUE} if \code{targets} include a suitable target for uri lists,
   otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

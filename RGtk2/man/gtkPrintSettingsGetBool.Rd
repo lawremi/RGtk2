@@ -12,6 +12,6 @@ that is associated with \code{key}. }
 string \code{FALSE}.  
 
   Since  2.10}
-\value{[logical]  \code{TRUE}, if \code{key} maps to a true value.}
+\value{[logical] \code{TRUE}, if \code{key} maps to a true value.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

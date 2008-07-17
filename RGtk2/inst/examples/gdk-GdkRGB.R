@@ -28,7 +28,7 @@ rgb_example <- function()
 
 on_darea_expose <- function(widget, event, buf)
 {
-  gdkDrawRgbImage(widget[["window"]], widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
-		      0, 0, IMAGE_WIDTH, IMAGE_HEIGHT,
-		      "max", buf, IMAGE_WIDTH * 3)
+  gdkDrawRgbImage(widget[["window"]],
+                  widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
+                  0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, "max", buf, IMAGE_WIDTH * 3)
 }

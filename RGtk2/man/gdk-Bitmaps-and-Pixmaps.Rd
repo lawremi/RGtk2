@@ -15,7 +15,7 @@
 \code{\link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)}\cr
 \code{gdkPixmap(drawable, data, transparent.color, height, width, depth, filename, colormap, fg, bg)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GdkDrawable}
          +----GdkPixmap}}
 \section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the

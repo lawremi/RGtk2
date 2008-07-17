@@ -11,7 +11,7 @@ response to those expose events.}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
 \item{\code{region}}{[\code{\link{GdkRegion}}]  a \code{\link{GdkRegion}}}
-\item{\code{invalidate.children}}{[logical]  \code{TRUE} to also invalidate child windows }
+\item{\code{invalidate.children}}{[logical] \code{TRUE} to also invalidate child windows }
 }
 \details{GDK will call \code{\link{gdkWindowProcessAllUpdates}} on your behalf
 whenever your program returns to the main loop and becomes idle, so

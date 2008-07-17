@@ -2,10 +2,21 @@
 \name{cairoStrokeExtents}
 \title{cairoStrokeExtents}
 \description{Computes a bounding box in user coordinates covering the area that
-would be affected by a \code{\link{cairoStroke}} operation operation given the
-current path and stroke parameters. If the current path is empty,}
+would be affected, (the "inked" area), by a \code{\link{cairoStroke}}
+operation operation given the current path and stroke
+parameters. If the current path is empty, returns an empty
+rectangle ((0,0), (0,0)). Surface dimensions and clipping are not
+taken into account.}
 \usage{cairoStrokeExtents(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\details{Note that if the line width is set to exactly zero, then
+cairo\_stroke\_extents will return an empty rectangle. Contrast with
+\code{\link{cairoPathExtents}} which can be used to compute the non-empty
+bounds as the line width approaches zero.
+  
+See \code{\link{cairoStroke}}, \code{\link{cairoSetLineWidth}}, \code{\link{cairoSetLineJoin}},
+\code{\link{cairoSetLineCap}}, \code{\link{cairoSetDash}}, and
+\code{\link{cairoStrokePreserve}}.  }
 \value{
 A list containing the following elements:
 \item{\code{x1}}{[numeric]  left of the resulting extents}

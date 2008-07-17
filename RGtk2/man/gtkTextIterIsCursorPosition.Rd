@@ -5,6 +5,6 @@
 \code{\link{pangoBreak}} for details on what a cursor position is.}
 \usage{gtkTextIterIsCursorPosition(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
-\value{[logical]  \code{TRUE} if the cursor can be placed at \code{iter}}
+\value{[logical] \code{TRUE} if the cursor can be placed at \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

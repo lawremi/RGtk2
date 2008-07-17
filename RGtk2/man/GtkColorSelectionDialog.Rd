@@ -7,7 +7,7 @@
 \code{\link{gtkColorSelectionDialogNew}(title = NULL, show = TRUE)}\cr
 \code{gtkColorSelectionDialog(title = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkColorSelectionDialog}}
 \section{Interfaces}{GtkColorSelectionDialog implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkColorSelectionDialog}} provides a standard dialog which
 allows the user to select a color much like the \code{\link{GtkFileSelection}}
 provides a standard dialog for file selection.}

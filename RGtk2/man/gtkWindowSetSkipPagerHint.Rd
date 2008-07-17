@@ -9,7 +9,7 @@ on the screen.)}
 \usage{gtkWindowSetSkipPagerHint(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}} }
-\item{\code{setting}}{[logical]  \code{TRUE} to keep this window from appearing in the pager}
+\item{\code{setting}}{[logical] \code{TRUE} to keep this window from appearing in the pager}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

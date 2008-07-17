@@ -19,6 +19,6 @@ invalid after calling this function; however, the \code{iter} will be
 re-initialized to point to the location where text was deleted.  
 
   Since  2.6}
-\value{[logical]  \code{TRUE} if the buffer was modified}
+\value{[logical] \code{TRUE} if the buffer was modified}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

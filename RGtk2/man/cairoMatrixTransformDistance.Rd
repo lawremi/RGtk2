@@ -13,8 +13,7 @@ the returned vector is as follows:}
 }
 \details{\preformatted{dx2 = dx1 * a + dy1 * c;
 dy2 = dx1 * b + dy1 * d;
-}
-  
+}  
 Affine transformations are position invariant, so the same vector
 always transforms to the same vector. If (\code{x1},\code{y1}) transforms
 to (\code{x2},\code{y2}) then (\code{x1}+\code{dx1},\code{y1}+\code{dy1}) will transform to

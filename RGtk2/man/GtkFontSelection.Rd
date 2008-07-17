@@ -12,7 +12,7 @@
 \code{\link{gtkFontSelectionSetPreviewText}(object, text)}\cr
 \code{gtkFontSelection(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -21,7 +21,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkFontSelection}}
 \section{Interfaces}{GtkFontSelection implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkFontSelection}} widget lists the available fonts, styles and sizes,
 allowing the user to select a font.
 It is used in the \code{\link{GtkFontSelectionDialog}} widget to provide a dialog box for

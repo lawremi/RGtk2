@@ -9,10 +9,10 @@
 }
 \value{
 A list containing the following elements:
-\item{\code{expand}}{[logical]  pointer to return location for \code{:expand} child property }
-\item{\code{fill}}{[logical]  pointer to return location for \code{:fill} child property }
-\item{\code{padding}}{[numeric]  pointer to return location for \code{:padding} child property }
-\item{\code{pack.type}}{[\code{\link{GtkPackType}}]  pointer to return location for \code{:pack-type} child property }
+\item{\code{expand}}{[logical]  pointer to return location for \code{"expand"} child property }
+\item{\code{fill}}{[logical]  pointer to return location for \code{"fill"} child property }
+\item{\code{padding}}{[numeric]  pointer to return location for \code{"padding"} child property }
+\item{\code{pack.type}}{[\code{\link{GtkPackType}}]  pointer to return location for \code{"pack-type"} child property }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

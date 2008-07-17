@@ -29,7 +29,7 @@
 \code{\link{gtkMenuSetMonitor}(object, monitor.num)}\cr
 \code{gtkMenu(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -38,7 +38,7 @@
                                  +----GtkMenu
                                        +----\link{GtkRecentChooserMenu}}}
 \section{Interfaces}{GtkMenu implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
 a list of \code{\link{GtkMenuItem}} objects which can be navigated and activated by the 
 user to perform application functions.
@@ -53,10 +53,15 @@ as well.
 Applications can display a \code{\link{GtkMenu}} as a popup menu by calling the 
 \code{\link{gtkMenuPopup}} function.  The example below shows how an application
 can pop up a menu when the 3rd mouse button is pressed.  
-  \preformatted{
-    # connect our handler which will popup the menu 
-    gSignalConnect(window, "button_press_event", my_popup_handler, menu, user.data.first=T)
-}  \preformatted{
+  
+ \emph{Connecting the popup signal handler.}
+\preformatted{
+## connect our handler which will popup the menu 
+gSignalConnect(window, "button_press_event", my_popup_handler, menu,
+               user.data.first=TRUE)
+}  
+ \emph{Signal handler which displays a popup menu.}
+\preformatted{
 # The popup handler
 my_popup_handler <- function(widget, event)
 {
@@ -64,19 +69,16 @@ my_popup_handler <- function(widget, event)
   checkPtrType(widget, "GtkMenu")
   stopifnot(event != NULL)
 
-  # The "widget" is the menu that was supplied when 
-  # gSignalConnect() was called.
-  #
+  ## The "widget" is the menu that was supplied when 
+  ## gSignalConnect() was called.
   menu <- widget
 
-  if (event[["type"]] == "button-press")
-    {
-      if (event[["button"]] == 3)
-	{
-	  menu$popup(button=event[["button"]], activate.time=event[["time"]])
-	  return(TRUE)
-	}
+  if (event[["type"]] == "button-press") {
+    if (event[["button"]] == 3) {
+      menu$popup(button=event[["button"]], activate.time=event[["time"]])
+      return(TRUE)
     }
+  }
 
   return(FALSE)
 }
@@ -100,8 +102,19 @@ and \code{y} parameters to the coordinates where the menu is to be drawn.
 menu shall be drawn.  This is an output parameter.}
 \item{\code{y}}{[integer] the \code{integer} representing the vertical position where the
 menu shall be drawn.  This is an output parameter.}
-\item{\code{push.in}}{[logical] whether the first menu item should be offset (pushed in) to be
-          aligned with the menu popup position (only useful for GtkOptionMenu).}
+\item{\code{push.in}}{[logical] This parameter controls how menus placed outside the monitor are handled.
+        If this is set to TRUE and part of the menu is outside the monitor then
+        GTK+ pushes the window into the visible area, effectively modifying the
+        popup position.
+        Note that moving and possibly resizing the menu around will alter the
+        scroll position to keep the menu items "in place", i.e. at the same monitor
+        position they would have been without resizing.
+        In practice, this behavior is only useful for combobox popups or option
+        menus and cannot be used to simply confine a menu to monitor boundaries.
+        In that case, changing the scroll offset is not desirable.
+        To simply constrain the menu within the monitor, get its size with
+        \code{\link{gtkWidgetSizeRequest}} before showing it, and alter the coordinates
+        passed to \code{\link{gtkMenuPopup}} accordingly.}
 \item{\code{user.data}}{[R object] the data supplied by the user in the \code{\link{gtkMenuPopup}} \code{data}
 parameter.}
 }
@@ -120,7 +133,7 @@ will be called when the menu is later detached from the widget.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{The (menu, arg1, user.data)}}{
+\section{Signals}{\describe{\item{\code{move-scroll(menu, arg1, user.data)}}{
 \emph{undocumented
 }
 

@@ -27,7 +27,7 @@ considered private - that is, should be displayed only by the
 applications that have registered it.  
 
   Since  2.10}
-\value{[logical]  \code{TRUE} if the new item was successfully added to the
+\value{[logical] \code{TRUE} if the new item was successfully added to the
 recently used resources list, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

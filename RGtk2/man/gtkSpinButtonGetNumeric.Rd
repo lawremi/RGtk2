@@ -5,6 +5,6 @@
 See \code{\link{gtkSpinButtonSetNumeric}}.}
 \usage{gtkSpinButtonGetNumeric(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkSpinButton}}]  a \code{\link{GtkSpinButton}}}}
-\value{[logical]  \code{TRUE} if only numeric text can be entered}
+\value{[logical] \code{TRUE} if only numeric text can be entered}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

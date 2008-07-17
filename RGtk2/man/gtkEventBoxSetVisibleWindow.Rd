@@ -25,8 +25,7 @@ if the user is using a theme with gradients or pixmaps.
 The main reason to create a non input-only event box is if
 you want to set the background to a different color or
 draw on it.
-  
-\strong{PLEASE NOTE:} There is one unexpected issue for an invisible event box that has its
+  \strong{PLEASE NOTE:} There is one unexpected issue for an invisible event box that has its
 window below the child. (See \code{\link{gtkEventBoxSetAboveChild}}.)
 Since the input-only window is not an ancestor window of any windows
 that descendent widgets of the event box create, events on these 

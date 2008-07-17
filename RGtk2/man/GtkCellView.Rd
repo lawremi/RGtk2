@@ -16,13 +16,13 @@
 \code{\link{gtkCellViewGetCellRenderers}(object)}\cr
 \code{gtkCellView(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkCellView}}
 \section{Interfaces}{GtkCellView implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkCellView}} displays a single row of a \code{\link{GtkTreeModel}}, using
 cell renderers just like \code{\link{GtkTreeView}}. \code{\link{GtkCellView}} doesn't support
 some of the more complex features of \code{\link{GtkTreeView}}, like cell editing

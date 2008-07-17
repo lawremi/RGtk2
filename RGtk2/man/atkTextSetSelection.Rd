@@ -14,6 +14,6 @@ moving or deleting a selected region can change the numbering.}
 \item{\code{end.offset}}{[integer]  the new end position of (e.g. offset immediately past) 
 the selection}
 }
-\value{[logical]  \code{TRUE} if success, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if success, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

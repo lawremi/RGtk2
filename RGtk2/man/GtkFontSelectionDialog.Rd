@@ -12,7 +12,7 @@
 \code{\link{gtkFontSelectionDialogSetPreviewText}(object, text)}\cr
 \code{gtkFontSelectionDialog(title = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -22,7 +22,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkFontSelectionDialog}}
 \section{Interfaces}{GtkFontSelectionDialog implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkFontSelectionDialog}} widget is a dialog box for selecting a font.
   
 To set the font which is initially selected, use

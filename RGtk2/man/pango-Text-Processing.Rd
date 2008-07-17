@@ -36,14 +36,13 @@
 \code{\link{pangoGetMirrorChar}(ch)}\cr
 \code{\link{pangoUnicharDirection}(ch)}\cr
 \code{\link{pangoFindBaseDir}(text, length = -1)}\cr
-\code{\link{pangoGravityToRotation}(base.gravity)}\cr
 \code{\link{pangoBreak}(text, analysis)}\cr
 \code{\link{pangoGetLogAttrs}(text, level, language)}\cr
 \code{\link{pangoFindParagraphBoundary}(text, length = -1)}\cr
 \code{\link{pangoShape}(text, analysis, glyphs)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----PangoContext}}
 \section{Detailed Description}{The Pango rendering pipeline takes a string of
 Unicode characters and converts it into glyphs.

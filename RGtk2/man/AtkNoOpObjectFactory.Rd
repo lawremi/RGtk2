@@ -7,7 +7,7 @@
 \code{\link{atkNoOpObjectFactoryNew}()}\cr
 \code{atkNoOpObjectFactory()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{AtkObjectFactory}
          +----AtkNoOpObjectFactory}}
 \section{Detailed Description}{The AtkObjectFactory which creates an AtkNoOpObject. An instance of this is

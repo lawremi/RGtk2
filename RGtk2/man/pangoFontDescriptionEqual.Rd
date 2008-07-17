@@ -11,7 +11,7 @@ being loaded, but still compare \code{FALSE}.)}
 \item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
 \item{\code{desc2}}{[\code{\link{PangoFontDescription}}]  another \code{\link{PangoFontDescription}}}
 }
-\value{[logical]  \code{TRUE} if the two font descriptions are identical,
+\value{[logical] \code{TRUE} if the two font descriptions are identical,
 	 \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

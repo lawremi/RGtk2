@@ -11,7 +11,7 @@
 \code{\link{gtkVButtonBoxSetLayoutDefault}(layout)}\cr
 \code{gtkVButtonBox(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                                  +----\link{GtkButtonBox}
                                        +----GtkVButtonBox}}
 \section{Interfaces}{GtkVButtonBox implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A button box should be used to provide a consistent layout of buttons
 throughout your application. The layout/spacing can be altered by the
 programmer, or if desired, by the user to alter the 'feel' of a

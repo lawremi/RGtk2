@@ -6,7 +6,7 @@ This does not have any visible effects for lists.}
 \usage{gtkTreeViewSetEnableTreeLines(object, enabled)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{enabled}}{[logical]  \code{TRUE} to enable tree line drawing, \code{FALSE} otherwise.}
+\item{\code{enabled}}{[logical] \code{TRUE} to enable tree line drawing, \code{FALSE} otherwise.}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

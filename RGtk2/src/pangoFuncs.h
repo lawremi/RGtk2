@@ -927,7 +927,7 @@ S_pango_units_from_double(USER_OBJECT_ s_d);
 S_pango_units_to_double(USER_OBJECT_ s_i); 
 
   USER_OBJECT_
-S_pango_extents_to_pixels(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect); 
+S_pango_extents_to_pixels(USER_OBJECT_ s_inclusive, USER_OBJECT_ s_nearest); 
 
   USER_OBJECT_
 S_pango_layout_is_wrapped(USER_OBJECT_ s_object); 
@@ -946,5 +946,41 @@ S_pango_version_string(void);
 
   USER_OBJECT_
 S_pango_version_check(USER_OBJECT_ s_required_major, USER_OBJECT_ s_required_minor, USER_OBJECT_ s_required_micro); 
+
+  USER_OBJECT_
+S_pango_layout_get_height(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_layout_set_height(USER_OBJECT_ s_object, USER_OBJECT_ s_height); 
+
+  USER_OBJECT_
+S_pango_attribute_init(USER_OBJECT_ s_attr, USER_OBJECT_ s_klass); 
+
+  USER_OBJECT_
+S_pango_layout_iter_get_layout(USER_OBJECT_ s_iter); 
+
+  USER_OBJECT_
+S_pango_renderer_get_layout(USER_OBJECT_ s_renderer); 
+
+  USER_OBJECT_
+S_pango_renderer_get_layout_line(USER_OBJECT_ s_renderer); 
+
+  USER_OBJECT_
+S_pango_font_face_is_synthesized(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_cairo_font_get_scaled_font(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_cairo_font_map_new_for_font_type(USER_OBJECT_ s_fonttype); 
+
+  USER_OBJECT_
+S_pango_cairo_font_map_get_font_type(USER_OBJECT_ s_object); 
+
+  USER_OBJECT_
+S_pango_cairo_context_set_shape_renderer(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data); 
+
+  USER_OBJECT_
+S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object); 
 
 #endif

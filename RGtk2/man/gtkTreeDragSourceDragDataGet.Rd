@@ -12,7 +12,7 @@ longer found in the model!}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if data of the required type was provided }
+\item{retval}{[logical] \code{TRUE} if data of the required type was provided }
 \item{\code{selection.data}}{[\code{\link{GtkSelectionData}}]  a \code{\link{GtkSelectionData}} to fill with data from the dragged row}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

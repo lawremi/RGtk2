@@ -6,6 +6,6 @@ the moment this check is done only on resources pointing to local files.}
 \usage{gtkRecentInfoExists(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the resource exists}
+\value{[logical] \code{TRUE} if the resource exists}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

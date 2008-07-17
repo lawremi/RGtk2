@@ -5,7 +5,7 @@
 \usage{gtkColorSelectionSetHasOpacityControl(object, has.opacity)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkColorSelection}}]  a \code{\link{GtkColorSelection}}.}
-\item{\code{has.opacity}}{[logical]  \code{TRUE} if \code{colorsel} can set the opacity, \code{FALSE} otherwise.}
+\item{\code{has.opacity}}{[logical] \code{TRUE} if \code{colorsel} can set the opacity, \code{FALSE} otherwise.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

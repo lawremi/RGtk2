@@ -15,6 +15,6 @@ is intended principally for use in the implementation of
 \code{\link{GtkRecentChooser}}.  
 
   Since  2.10}
-\value{[logical]  \code{TRUE} if the file should be displayed}
+\value{[logical] \code{TRUE} if the file should be displayed}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

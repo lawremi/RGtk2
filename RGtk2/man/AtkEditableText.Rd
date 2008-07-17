@@ -11,15 +11,14 @@
 \code{\link{atkEditableTextDeleteText}(object, start.pos, end.pos)}\cr
 \code{\link{atkEditableTextPasteText}(object, position)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkEditableText}}
 \section{Implementations}{AtkEditableText is implemented by
  \code{\link{AtkNoOpObject}}.}
 \section{Detailed Description}{\code{\link{AtkEditableText}} should be implemented by UI components which contain
 text which the user can edit, via the \code{\link{AtkObject}} corresponding to that
 component (see \code{\link{AtkObject}}).
-  
-\code{\link{AtkEditableText}} is a subclass of \code{\link{AtkText}}, and as such, an object which
+  \code{\link{AtkEditableText}} is a subclass of \code{\link{AtkText}}, and as such, an object which
 implements \code{\link{AtkEditableText}} is by definition an \code{\link{AtkText}} implementor as well.}
 \section{Structures}{\describe{\item{\code{AtkEditableText}}{
 The AtkEditableText structure does not contain any fields.

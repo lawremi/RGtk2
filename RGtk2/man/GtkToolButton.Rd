@@ -20,7 +20,7 @@
 \code{\link{gtkToolButtonGetLabelWidget}(object)}\cr
 \code{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -31,7 +31,7 @@
                                              +----\link{GtkMenuToolButton}
                                              +----\link{GtkToggleToolButton}}}
 \section{Interfaces}{GtkToolButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
   
 Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
@@ -56,7 +56,7 @@ accessed with the function described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkToolButton} is the equivalent of \code{\link{gtkToolButtonNew}}.}
-\section{Signals}{\describe{\item{\code{The (toolbutton, user.data)}}{
+\section{Signals}{\describe{\item{\code{clicked(toolbutton, user.data)}}{
 This signal is emitted when the tool button is clicked with the mouse
 or activated with the keyboard.  
 

@@ -4,6 +4,7 @@
 \title{Image Surfaces}
 \description{Rendering to memory buffers}
 \section{Methods and Functions}{
+\code{\link{cairoFormatStrideForWidth}(format, width)}\cr
 \code{\link{cairoImageSurfaceCreate}(format, width, height)}\cr
 \code{\link{cairoImageSurfaceCreateForData}(data, format, width, height, stride)}\cr
 \code{\link{cairoImageSurfaceGetData}(surface)}\cr
@@ -12,10 +13,9 @@
 \code{\link{cairoImageSurfaceGetHeight}(surface)}\cr
 \code{\link{cairoImageSurfaceGetStride}(surface)}\cr
 }
-\section{Detailed Description}{    Image surfaces provide the ability to render to memory buffers
-    either allocated by cairo or by the calling code.  The supported
-    image formats are those defined in \code{\link{CairoFormat}}.
-  }
+\section{Detailed Description}{Image surfaces provide the ability to render to memory buffers
+either allocated by cairo or by the calling code.  The supported
+image formats are those defined in \code{\link{CairoFormat}}.}
 \section{Enums and Flags}{\describe{\item{\code{CairoFormat}}{
 \code{\link{CairoFormat}} is used to identify the memory format of
 image data.

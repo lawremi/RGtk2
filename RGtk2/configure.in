@@ -12,7 +12,7 @@ AC_SUBST(GTK_LIBS)
 AC_SUBST(HAVE_GTK)
 
 AC_ARG_ENABLE(libglade,
-  [  --disable-libglade          Enable libglade support],
+  [  --disable-libglade          Disable libglade support],
   [use_libglade=$enableval], [use_libglade=yes])
 
 if test "x$use_libglade" = "xyes"; then
@@ -27,7 +27,7 @@ else
 fi
 
 AC_ARG_ENABLE(introspection,
-  [  --disable-introspection          Enable introspection support],
+  [  --disable-introspection          Disable introspection support],
   [use_introspection=$enableval], [use_introspection=yes])
 
 if test "x$use_introspection" = "xyes"; then

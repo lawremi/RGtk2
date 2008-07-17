@@ -11,6 +11,6 @@ as an accelerator.}
 \item{\code{keyval}}{[numeric]     a GDK keyval}
 \item{\code{modifiers}}{[\code{\link{GdkModifierType}}]  modifier mask}
 }
-\value{[logical]    \code{TRUE} if the accelerator is valid}
+\value{[logical] \code{TRUE} if the accelerator is valid}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

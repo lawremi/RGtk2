@@ -53,27 +53,27 @@ genDoc <- function(file, defs, output, verbose)
 	concept
 }
 
-title_path <- "/refnamediv/refname/text()"
-desc_path <- "/refnamediv/refpurpose/text()"
-synopsis_path <- "/refsynopsisdiv/title[text() = 'Synopsis']/../synopsis/link[contains(@linkend, '-')]"
-hierarchy_path <- "/refsect1/title[text() = 'Object Hierarchy']/../synopsis"
-impl_path <- "/refsect1/title[text() = 'Known Implementations']/../para"
-interface_path <- "/refsect1/title[text() = 'Implemented Interfaces']/../para"
-derived_path <- "/refsect1/title[text() = 'Known Derived Interfaces']/../para"
-details_path <- "/refsect1/title[text() = 'Description']/../*[name() != 'title' and name() != 'refsect2' and name() != 'section']"
-extras_path <- "/refsect1/title[text() = 'Description']/../*[name() = 'refsect2' or name() = 'section']"
-properties_path <- "/refsect1/title[text() = 'Property Details' or text() = 'Properties']/../refsect2"
-signals_path <- "/refsect1/title[text() = 'Signals' or text() = 'Signal Details']/../refsect2"
-style_props_path <- "/refsect1/title[text() = 'Style Property Details']/../refsect2"
-seealso_path <- "/refsect1/title[text() = 'See Also']/../para/link/type/text()"
-library_path <- "/refmeta/refmiscinfo/text()"
-enum_path <- "/refsect1/refsect2/title[contains(text(), 'enum')]/.."
+title_path <- "refnamediv/refname/text()"
+desc_path <- "refnamediv/refpurpose/text()"
+synopsis_path <- "refsynopsisdiv/title[text() = 'Synopsis']/../synopsis/link[contains(@linkend, '-')]"
+hierarchy_path <- "refsect1/title[text() = 'Object Hierarchy']/../synopsis"
+impl_path <- "refsect1/title[text() = 'Known Implementations']/../para"
+interface_path <- "refsect1/title[text() = 'Implemented Interfaces']/../para"
+derived_path <- "refsect1/title[text() = 'Known Derived Interfaces']/../para"
+details_path <- "refsect1/title[text() = 'Description']/../*[name() != 'title' and name() != 'refsect2' and name() != 'section']"
+extras_path <- "refsect1/title[text() = 'Description']/../*[name() = 'refsect2' or name() = 'section']"
+properties_path <- "refsect1/title[text() = 'Property Details' or text() = 'Properties']/../refsect2"
+signals_path <- "refsect1/title[text() = 'Signals' or text() = 'Signal Details']/../refsect2"
+style_props_path <- "refsect1/title[text() = 'Style Property Details']/../refsect2"
+seealso_path <- "refsect1/title[text() = 'See Also']/../para/link/type/text()"
+library_path <- "refmeta/refmiscinfo/text()"
+enum_path <- "refsect1/refsect2/title[contains(text(), 'enum')]/.."
 #struct_path <- "/refsect1/refsect2/title[not(contains(text(), ' ')) and not(contains(text(), '_')) or contains(text(), 'struct')]/.."
-struct_path <- "/refsect1/refsect2/programlisting[contains(text(), 'struct')]/.."
+struct_path <- "refsect1/refsect2/programlisting[contains(text(), 'struct')]/.."
 func_path <- "/refentry/refsect1/refsect2/title[contains(text(), ' ()') and contains(text(), '_')]/.."
-userfunc_path <- "/refsect1/refsect2/title[contains(text(), ' ()') and not(contains(text(), '_'))]/.."
-func_name_path <- "/indexterm/primary/text()"
-func_names_path <- paste(func_path, func_name_path, sep="")
+userfunc_path <- "refsect1/refsect2/title[contains(text(), ' ()') and not(contains(text(), '_'))]/.."
+func_name_path <- "indexterm/primary/text()"
+func_names_path <- paste(func_path, func_name_path, sep="/")
 
 parseConcept <- function(doc, defs, verbose) {
 	entry <- getNodeSet(doc, "/refentry")[[1]]
@@ -100,10 +100,10 @@ parseConcept <- function(doc, defs, verbose) {
 				return()
 			concept[["aliases"]] <- c(concept[["aliases"]], linkend_to_func(id))
 		}
-		title <- xmlValue(getNodeSet(extra, "/title/text()")[[1]])
+		title <- xmlValue(getNodeSet(extra, "title/text()")[[1]])
 		if (title %in% omittedSections)
 			return()
-		concept[title] <<- markup(getNodeSet(extra, "/*[name() != 'title']"))
+		concept[title] <<- markup(getNodeSet(extra, "*[name() != 'title']|text()"))
 	})
 	structs <- toRStructs(getNodeSet(entry, struct_path), defs)
 	concept[["Structures"]] <- structs$code
@@ -142,10 +142,10 @@ parseFunctions <- function(doc, defs, verbose) {
 	lapply(funcs, parseFunction, defs, verbose)
 }
 
-func_value_path <- "/variablelist/varlistentry/term/emphasis[text() = 'Returns']/../../listitem/simpara"
-func_value_type_path <- "/programlisting/link[1]/text()"
-warning_path <- "/warning"
-note_path <- "/note|/para/note"
+func_value_path <- "variablelist/varlistentry/term/emphasis[text() = 'Returns']/../../listitem/simpara"
+func_value_type_path <- "programlisting/link[1]/text()"
+warning_path <- "warning"
+note_path <- "note|para/note"
 
 toReturnValue <- function(node) {
   value <- filter(markup(getNodeSet(node, func_value_path)))
@@ -287,11 +287,11 @@ tolink <- function(linkend, preformat = F) {
 }
 
 toNotes <- function(notes) {
-	sapply(notes, function(note) markup(getNodeSet(note, "/para")))
+	sapply(notes, function(note) markup(getNodeSet(note, "para")))
 }
 
 toWarning <- function(warning) {
-	rd("strong", paste("WARNING:", markup(getNodeSet(warning, "/para[1]"))))
+	rd("strong", paste("WARNING:", markup(getNodeSet(warning, "para[1]"))))
 }
 
 toSeeAlso <- function(others) {
@@ -313,7 +313,7 @@ xmlTraverse <- function(node, handlers) {
 	name <- xmlName(node)
   if (is.na(name))
     name <- "text"
-	#print(name)
+	##print(name)
 	val <- NULL
 	recurse <- TRUE
 	if (!(name %in% names(handlers)))
@@ -330,7 +330,7 @@ isG <- function(type) length(grep("^G[A-Z]", type)) > 0
 child_val <- function(node) xmlValue(xmlChildren(node)[[1]])
 
 example_count_path <- "count(//informalexample|//example)"
-example_preceding_path <- "count(/preceding::example|/preceding::informalexample)"
+example_preceding_path <- "count(preceding::example|preceding::informalexample)"
 
 markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_link <- function(link) {
@@ -348,58 +348,63 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_literal <- function(literal) rd("code", child_val(literal))
 	#markup_parameter <- function(param) rd("var", child_val(param))
 	markup_emphasis <- function(emph) rd("emph", markup(xmlChildren(emph)))
+        markup_title <- function(title) paste("\n", markup_emphasis(title))
 	markup_ulink <- function(ulink) paste(child_val(ulink), " (", rd("url", xmlGetAttr(ulink, "url")), ")", sep="")
 	markup_filename <- function(filename) rd("file", escape_text(child_val(filename)))
 	markup_program <- function(program) {
-		if (length(getNodeSet(program, "/parent::informalexample|/parent::example")) == 0)
+		if (length(getNodeSet(program, "parent::informalexample|parent::example")) == 0)
 			print("---MISSING PROGRAMLISTING---")
 		rd("preformatted", paste(markup(xmlChildren(program), T), "\n", sep=""))
 	}
 	#markup_example <- function(example) rd("emph", "C language example intentionally omitted, please see reference")
 	markup_example <- function(example) {
-		# first example id, else section term, else id for entire refentry
-		refentry <- getNodeSet(example, "/ancestor::refentry")[[1]]
+		## first example id, else section term, else id for entire refentry
+          refentry <- getNodeSet(example, "ancestor::refentry")[[1]]
 		id <- xmlGetAttr(refentry, "id")
 		if (getNodeSet(refentry, example_count_path) > 1) 
 			id <- paste(id, "-", getNodeSet(example, example_preceding_path) + 1, sep="")
 		example_file <- examplefile(paste(id, ".R", sep=""))
-		if (file.exists(example_file))
-			rd("preformatted", readLines(example_file))
-		else {
+		if (file.exists(example_file)) {
+                  ex <- rd("preformatted", readLines(example_file))
+                  title <- getNodeSet(example, "title")
+                  if (length(title))
+                    ex <- paste(markup_title(title[[1]]), ex, sep = "\n")
+                  ex
+                } else {
 			#browser()
 			NULL
 		}
 	}
 	markup_itemized <- function(itemized, type="itemize") {
-		rd(type, sapply(getNodeSet(itemized, "/listitem"), function(para) {
-			paste(rd("item"), markup(getNodeSet(para, "/para")))
+		rd(type, sapply(getNodeSet(itemized, "listitem"), function(para) {
+			paste(rd("item"), markup(getNodeSet(para, "para")))
 		}))
 	}
 	markup_ordered <- function(ordered) markup_itemized(ordered, "enumerate")
 	markup_list <- function(list) {
-		rd("itemize", sapply(getNodeSet(list, "/member"), function(member) {
+		rd("itemize", sapply(getNodeSet(list, "member"), function(member) {
 			paste(rd("item"), markup(xmlChildren(member)))
 		}))
 	}
 	markup_option <- function(option) rd("option", child_val(option))
 	markup_table <- function(table) {
-		ncols <- xmlGetAttr(getNodeSet(table, "/tgroup")[[1]], "cols")
-		rd("tabular", paste(rep("l",ncols),collapse=""), sapply(getNodeSet(table, "/tgroup/tbody/row"), function(row) {
-			paste(paste(sapply(getNodeSet(row, "/entry"), function(entry) 
+		ncols <- xmlGetAttr(getNodeSet(table, "tgroup")[[1]], "cols")
+		rd("tabular", paste(rep("l",ncols),collapse=""), sapply(getNodeSet(table, "tgroup/tbody/row"), function(row) {
+			paste(paste(sapply(getNodeSet(row, "entry"), function(entry) 
 				markup(xmlChildren(entry))
 			), collapse=paste("",rd("tab"),"")), rd("cr"))
 		}))
 	}
 	markup_varlist <- function(varlist) 
 		rd("describe", toItems(varlist, desc_sub_name_path, 
-			"/varlistentry/listitem/para|/varlistentry/listitem/simpara"))
+			"varlistentry/listitem/para|varlistentry/listitem/simpara"))
 	markup_envar <- function(envar) rd("env", escape_text(child_val(envar)))
 	markup_warning <- function(warning) toWarning(warning)
 	markup_app <- function(app) rd("command", child_val(app))
 	markup_var <- function(var) escape_text(rd("var", child_val(var)))
 	markup_quote <- function(quote) rd("dQuote", child_val(quote))
 	markup_key <- function(key) rd("kbd", child_val(key))
-	markup_combo <- function(combo) paste(sapply(getNodeSet(combo, "/keycap"), markup_key), collapse="-")
+	markup_combo <- function(combo) paste(sapply(getNodeSet(combo, "keycap"), markup_key), collapse="-")
 	# LaTeX doesn't like multiparagraph emph's
 	markup_important <- markup_note <- function(imp) paste(rd("strong", "PLEASE NOTE:"), markup(xmlChildren(imp)))
 	#markup_important <- markup_note <- function(imp) rd("emph", markup(xmlChildren(imp)))
@@ -433,7 +438,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 		"filename" = markup_filename,
 		"itemizedlist" = markup_itemized,
 		"inlinegraphic" = NULL, "anchor" = NULL,
-		"figure" = NULL, "graphic" = NULL,
+		"figure" = markup_ignore, "graphic" = NULL,
 		"option" = markup_option,
 		"firstterm" = markup_first, "term" = NULL,
 		"informaltable" = markup_table,
@@ -443,7 +448,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 		"note" = markup_note, "footnote" = markup_note, "tip" = markup_note,
 		"xref" = markup_link,
 		"classname" = markup_literal,
-		"guimenuitem" = markup_emphasis, "title" = markup_emphasis,
+		"guimenuitem" = markup_emphasis, "title" = markup_title,
 		"application" = markup_app, "command" = markup_app,
 		"simplelist" = markup_list,
 		"replaceable" = markup_var,
@@ -484,9 +489,9 @@ semantics <- function(text) {
 	text
 }
 
-prop_name_path <- "/title/literal/text()"
-prop_type_path <- "/programlisting/link/text()"
-prop_access_path <- "/programlisting/text()[2]"
+prop_name_path <- "title/literal/text()"
+prop_type_path <- "programlisting/link/text()"
+prop_access_path <- "programlisting/text()[2]"
 
 toProperties <- function(prop_nodes) {
 	if (length(prop_nodes) == 0)
@@ -507,14 +512,14 @@ mapTypeToLink <- function(type)
 	type
 }
 
-desc_text_path <- "/para"
-desc_name_path <- "/title/text()"
-desc_sub_path <- "/variablelist"
-desc_sub_name_path <- "/varlistentry/term"
-desc_sub_text_path <- "/varlistentry/listitem/simpara"
+desc_text_path <- "para"
+desc_name_path <- "title/text()"
+desc_sub_path <- "variablelist"
+desc_sub_name_path <- "varlistentry/term"
+desc_sub_text_path <- "varlistentry/listitem/simpara"
 
-field_name_path <- "/varlistentry/term/structfield"
-field_type_path <- "/varlistentry/term/link/text()"
+field_name_path <- "varlistentry/term/structfield"
+field_type_path <- "varlistentry/term/link/text()"
 
 toRStructs <- function(structs, defs) {
 	types <- c(defs$pointers, defs$boxes, defs$objects, defs$interfaces)
@@ -539,9 +544,9 @@ toREnums <- function(enums, defs) {
 	toDescs(enums, get_values)
 }
 
-param_type_path <- "/programlisting/link[position() > 1]/text()"
-param_name_path <- "/variablelist/varlistentry/term/parameter"
-param_text_path <- "/variablelist/varlistentry/listitem/simpara"
+param_type_path <- "programlisting/link[position() > 1]/text()"
+param_name_path <- "variablelist/varlistentry/term/parameter"
+param_text_path <- "variablelist/varlistentry/listitem/simpara"
 
 extract_quotes <- function(text) sub("^[^\"]*\"", "", sub("\"[^\"]*$", "", text))
 
@@ -606,7 +611,7 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 			text <- c(toWarning(warning[[1]]), text)
 		info <- item_info(name)
 		items <- getNodeSet(node, sub_path)
-		old_style <- length(getNodeSet(node, "/para/informaltable")) > 0
+		old_style <- length(getNodeSet(node, "para/informaltable")) > 0
 		if (length(items) > 0 || (length(info) > 0 && !old_style)) {
 			if (length(items) > 0)
 				items <- items[[1]]
@@ -748,12 +753,16 @@ filter <- function(text) {
 
 examplefile <- function(name)
 {
-	file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "examples", name)
+  file.path(system.file("examples", package="RGtk2"), name)
+  ##file.path(installed.packages()["RGtk2", "LibPath"], "RGtk2", "examples", name)
 }
 
-xmlValue.XMLInternalNode =
-function(node, ignoreComments = FALSE)
-{
-	#xmlValue(as(node, "XMLNode"))
-	.Call("RS_XML_xmlNodeValue", node)
-}
+
+## hacks for XML package
+
+## xmlValue.XMLInternalNode =
+## function(node, ignoreComments = FALSE)
+## {
+## 	#xmlValue(as(node, "XMLNode"))
+## 	.Call("RS_XML_xmlNodeValue", node)
+## }

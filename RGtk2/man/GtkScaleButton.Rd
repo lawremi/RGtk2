@@ -12,7 +12,7 @@
 \code{\link{gtkScaleButtonGetValue}(object)}\cr
 \code{gtkScaleButton(size, min, max, step, icons, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -22,7 +22,7 @@
                                        +----GtkScaleButton
                                              +----\link{GtkVolumeButton}}}
 \section{Interfaces}{GtkScaleButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkScaleButton}} provides a button which pops up a scale widget. 
 This kind of widget is commonly used for volume controls in multimedia
 applications, and GTK+ provides a \code{\link{GtkVolumeButton}} subclass that
@@ -34,7 +34,7 @@ is tailored for this use case.}
 }}}
 \section{Convenient Construction}{\code{gtkScaleButton} is the equivalent of \code{\link{gtkScaleButtonNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (button, user.data)}}{
+\item{\code{popdown(button, user.data)}}{
 The ::popdown signal is a 
 keybinding signal 
 which gets emitted to popdown the scale widget.
@@ -50,7 +50,7 @@ The default binding for this signal is Escape.
 
 
 }
-\item{\code{The (button, user.data)}}{
+\item{\code{popup(button, user.data)}}{
 The ::popup signal is a 
 keybinding signal 
 which gets emitted to popup the scale widget.
@@ -66,7 +66,7 @@ The default bindings for this signal are Space, Enter and Return.
 
 
 }
-\item{\code{The (button, value, user.data)}}{
+\item{\code{value-changed(button, value, user.data)}}{
 The ::value-changed signal is emitted when the value field has
 changed.  
 

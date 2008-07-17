@@ -9,7 +9,7 @@ provide the result of any drawing to the group as a pattern,
 \usage{cairoPushGroupWithContent(cr, content)}
 \arguments{
 \item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{content}}{[\code{\link{CairoContent}}]  a \code{\link{CairoContent}} indicating the type of group that
+\item{\code{content}}{[\code{\link{CairoContent}}]  a \%\code{\link{CairoContent}} indicating the type of group that
           will be created}
 }
 \details{The group will have a content type of \code{content}. The ability to

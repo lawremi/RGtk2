@@ -7,5 +7,7 @@ for the next page too.  Use \code{\link{cairoShowPage}} if you want to get an
 empty page after the emission.}
 \usage{cairoCopyPage(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\details{This is a convenience function that simply calls
+\code{\link{cairoSurfaceCopyPage}} on \code{cr}'s target.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

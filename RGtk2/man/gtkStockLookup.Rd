@@ -7,7 +7,7 @@ if \code{stock.id} was known.}
 \arguments{\item{\code{stock.id}}{[character]  a stock item name}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{item} was initialized}
+\item{retval}{[logical] \code{TRUE} if \code{item} was initialized}
 \item{\code{item}}{[\code{\link{GtkStockItem}}]  stock item to initialize with values}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

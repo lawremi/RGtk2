@@ -11,7 +11,7 @@
 \code{\link{gtkComboBoxEntryGetTextColumn}(object)}\cr
 \code{gtkComboBoxEntry(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                                  +----\link{GtkComboBox}
                                        +----GtkComboBoxEntry}}
 \section{Interfaces}{GtkComboBoxEntry implements
- \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkCellEditable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{A \code{\link{GtkComboBoxEntry}} is a widget that allows the user to choose from a
 list of valid choices or enter a different value. It is very similar
 to a \code{\link{GtkComboBox}}, but it displays the selected value in an entry to

@@ -8,7 +8,7 @@
 \code{\link{gtkVScrollbarNew}(adjustment = NULL, show = TRUE)}\cr
 \code{gtkVScrollbar(adjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -16,7 +16,7 @@
                            +----\link{GtkScrollbar}
                                  +----GtkVScrollbar}}
 \section{Interfaces}{GtkVScrollbar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Structures}{\describe{\item{\code{GtkVScrollbar}}{
 \emph{undocumented
 }

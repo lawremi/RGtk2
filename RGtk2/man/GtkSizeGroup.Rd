@@ -15,7 +15,7 @@
 \code{\link{gtkSizeGroupGetWidgets}(object)}\cr
 \code{gtkSizeGroup(mode = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkSizeGroup}}
 \section{Interfaces}{GtkSizeGroup implements
  \code{\link{GtkBuildable}}.}
@@ -36,8 +36,7 @@ a \code{\link{GtkSizeGroup}} to actually be the same size, you need to pack them
 such a way that they get the size they request and not more. For
 example, if you are packing your widgets into a table, you would not
 include the \code{GTK_FILL} flag.
-  
-\code{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
+  \code{\link{GtkSizeGroup}} objects are referenced by each widget in the size group,
 so once you have added all widgets to a \code{\link{GtkSizeGroup}}, you can drop
 the initial reference to the size group with \code{gObjectUnref()}. If the
 widgets in the size group are subsequently destroyed, then they will
@@ -59,8 +58,7 @@ size group are specified by a <widgets> element that may
 contain multiple <widget> elements, one for each member
 of the size group. The name attribute gives the id of the widget.
   
-\emph{A UI definition fragment with GtkSizeGroup}
-\preformatted{<object class="GtkSizeGroup">
+ \emph{A UI definition fragment with GtkSizeGroup}\preformatted{<object class="GtkSizeGroup">
   <property name="mode">GTK_SIZE_GROUP_HORIZONTAL</property>
   <widgets>
     <widget name="radio1"/>

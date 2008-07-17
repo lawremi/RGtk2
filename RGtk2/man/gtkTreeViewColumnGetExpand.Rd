@@ -5,6 +5,6 @@
 \usage{gtkTreeViewColumnGetExpand(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}}}}
 \details{  Since  2.4}
-\value{[logical]  \code{TRUE}, if the column expands}
+\value{[logical] \code{TRUE}, if the column expands}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

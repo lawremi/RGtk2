@@ -131,7 +131,7 @@
 \code{\link{gdkSetPointerHooks}(object, new.hooks)}\cr
 \code{gdkWindow(parent = NULL, attributes)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GdkDrawable}
          +----GdkWindow}}
 \section{Detailed Description}{A \code{\link{GdkWindow}} is a rectangular region on the screen. It's a low-level object,
@@ -139,7 +139,9 @@ used to implement high-level objects such as \code{\link{GtkWidget}} and \code{\
 GTK+ level. A \code{\link{GtkWindow}} is a toplevel window, the thing a user might think of 
 as a "window" with a titlebar and so on; a \code{\link{GtkWindow}} may contain many \code{\link{GdkWindow}}. 
 For example, each \code{\link{GtkButton}} has a \code{\link{GdkWindow}} associated with it.
-  \preformatted{
+  
+ \emph{Composited windows}
+\preformatted{
 # The expose event handler for the event box.
 # 
 # This function simply draws a transparency onto a widget on the area
@@ -187,7 +189,7 @@ window_expose_event <- function(widget, event)
 
   # the source data is the (composited) event box
   gdkCairoSetSourcePixmap(cr, child$window, child$allocation$x, 
-    child$allocation$y)
+                          child$allocation$y)
 
   # draw no more than our expose event intersects our child
   region <- gdkRegionRectangle(child$allocation)
@@ -269,8 +271,7 @@ The \code{\link{GdkGeometry}} struct gives the window manager information about
 a window's geometry constraints. Normally you would set these on 
 the GTK+ level using \code{\link{gtkWindowSetGeometryHints}}. \code{\link{GtkWindow}} 
 then sets the hints on the \code{\link{GdkWindow}} it creates.
-  
-\code{\link{gdkWindowSetGeometryHints}} expects the hints to be fully valid already and
+  \code{\link{gdkWindowSetGeometryHints}} expects the hints to be fully valid already and
 simply passes them to the window manager; in contrast,
 \code{\link{gtkWindowSetGeometryHints}} performs some interpretation. For example,
 \code{\link{GtkWindow}} will apply the hints to the geometry widget instead of the toplevel
@@ -295,7 +296,8 @@ the "character grid" will be allowed.
 Here's an example of how the terminal example would be implemented, assuming 
 a terminal area widget called "terminal" and a toplevel window "toplevel":
 \preformatted{
-fields <- c("base.width", "base.height", "min.width", "min.height", "width.inc", "height.inc")
+fields <- c("base.width", "base.height", "min.width", "min.height", "width.inc",
+            "height.inc")
 hints[fields] <- char_width
 toplevel$setGeometryHints(terminal, hints)
 }
@@ -361,7 +363,7 @@ Describes the kind of window.
 \describe{
 \item{\code{root}}{root window; this window has no parent, covers the entire screen, and is created by the window system}
 \item{\code{toplevel}}{toplevel window (used to implement \code{\link{GtkWindow}})}
-\item{\code{child}}{child window (used to implement e.g. \code{\link{GtkButton}})}
+\item{\code{child}}{child window (used to implement e.g. \code{\link{GtkEntry}})}
 \item{\code{dialog}}{useless/deprecated compatibility type}
 \item{\code{temp}}{override redirect temporary window (used to implement \code{\link{GtkMenu}})}
 \item{\code{foreign}}{foreign window (see \code{gdkWindowForeignNew()})}

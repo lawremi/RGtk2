@@ -15,8 +15,7 @@ so reflects the latest position of \code{window}; this may be out-of-sync
 with the position of \code{window} delivered in the most-recently-processed
 \code{\link{GdkEventConfigure}}. \code{\link{gdkWindowGetPosition}} in contrast gets the
 position from the most recent configure event.
-  
-\strong{PLEASE NOTE:} If   \code{window}   is not a toplevel, it is   \emph{much}   better 
+  \strong{PLEASE NOTE:} If   \code{window}   is not a toplevel, it is   \emph{much}   better 
 to call   \code{\link{gdkWindowGetPosition}}   and   \code{\link{gdkDrawableGetSize}}   instead, 
 because it avoids the roundtrip to the X server and because 
   \code{\link{gdkDrawableGetSize}}   supports the full 32-bit coordinate space,

@@ -9,7 +9,7 @@ select a value from a bounded range of values.}
 \code{\link{atkValueGetMinimumValue}(object)}\cr
 \code{\link{atkValueSetCurrentValue}(object, value)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkValue}}
 \section{Implementations}{AtkValue is implemented by
  \code{\link{AtkNoOpObject}}.}

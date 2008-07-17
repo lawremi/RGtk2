@@ -29,7 +29,7 @@ colormap images to a \code{\link{GdkDrawable}}. It does this as efficiently as
 possible, handling issues such as colormaps, visuals, dithering,
 temporary buffers, and so on. Most code should use the higher-level
 \code{\link{GdkPixbuf}} features in place of this module; for example,
-\code{\link{gdkPixbufRenderToDrawable}} uses GdkRGB in its implementation.
+\code{\link{gdkDrawPixbuf}} uses GdkRGB in its implementation.
   
 GdkRGB allocates a color cube to use when rendering images.  You can
 set the threshold for installing colormaps with
@@ -52,7 +52,9 @@ If GDK is built with the Sun mediaLib library, the GdkRGB functions are
 accelerated using mediaLib, which provides hardware acceleration on Intel,
 AMD, and Sparc chipsets.  If desired, mediaLib support can be turned off
 by setting the GDK\_DISABLE\_MEDIALIB environment variable.
-  \preformatted{
+  
+ \emph{A simple example program using GdkRGB}
+\preformatted{
 # Simple example of using GdkRGB with RGtk2
 
 IMAGE_WIDTH	<- 256
@@ -83,9 +85,9 @@ rgb_example <- function()
 
 on_darea_expose <- function(widget, event, buf)
 {
-  gdkDrawRgbImage(widget[["window"]], widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
-		      0, 0, IMAGE_WIDTH, IMAGE_HEIGHT,
-		      "max", buf, IMAGE_WIDTH * 3)
+  gdkDrawRgbImage(widget[["window"]],
+                  widget[["style"]][["fgGc"]][[GtkStateType["normal"]+1]],
+                  0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, "max", buf, IMAGE_WIDTH * 3)
 }
 }}
 \section{Structures}{\describe{\item{\code{GdkRgbCmap}}{

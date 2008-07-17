@@ -27,7 +27,7 @@ A list containing the following elements:
               with each range starting at \code{(*ranges)[2*n]}
               and of width \code{(*ranges)[2*n + 1] - (*ranges)[2*n]}.
               This list must be freed with \code{gFree()}. The coordinates are relative
-              to the layout and are in \code{integer}.}
+              to the layout and are in Pango units.}
 \item{\code{n.ranges}}{[integer]  The number of ranges stored in \code{ranges}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

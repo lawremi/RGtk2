@@ -14,7 +14,7 @@ switch occurs.}
 \details{  Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the mapping was found.}
+\item{retval}{[logical] \code{TRUE} if the mapping was found.}
 \item{\code{color}}{[\code{\link{GdkColor}}]  the \code{\link{GdkColor}} to fill in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

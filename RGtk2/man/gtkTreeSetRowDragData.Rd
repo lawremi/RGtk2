@@ -9,6 +9,6 @@ in a drag\_data\_get handler.}
 \item{\code{tree.model}}{[\code{\link{GtkTreeModel}}]  a \code{\link{GtkTreeModel}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  a row in \code{tree.model}}
 }
-\value{[logical]  \code{TRUE} if the \code{\link{GtkSelectionData}} had the proper target type to allow us to set a tree row}
+\value{[logical] \code{TRUE} if the \code{\link{GtkSelectionData}} had the proper target type to allow us to set a tree row}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

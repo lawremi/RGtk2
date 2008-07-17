@@ -5,7 +5,7 @@
 \usage{gtkFontButtonSetShowSize(object, show.size)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFontButton}}]  a \code{\link{GtkFontButton}}}
-\item{\code{show.size}}{[logical]  \code{TRUE} if font size should be displayed in dialog.}
+\item{\code{show.size}}{[logical] \code{TRUE} if font size should be displayed in dialog.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

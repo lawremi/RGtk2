@@ -2,7 +2,7 @@
 \name{gtkTreeViewSetTooltipRow}
 \title{gtkTreeViewSetTooltipRow}
 \description{Sets the tip area of \code{tooltip} to be the area covered by the row at \code{path}.
-See also \code{\link{gtkTooltipsetTipArea}}.}
+See also \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkTreeViewSetTooltipRow(object, tooltip, path)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}

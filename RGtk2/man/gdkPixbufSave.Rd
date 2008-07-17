@@ -16,8 +16,7 @@ following way:}
 \details{\preformatted{
 formats <- gdkPixbufGetFormats()
 writeable_formats <- formats[sapply(formats, gdkPixbufFormatIsWritable)]
-}
-  
+}  
 If \code{error} is set, \code{FALSE} will be returned. Possible errors include 
 those in the \code{GDK_PIXBUF_ERROR} domain and those in the \code{G_FILE_ERROR} domain.
   

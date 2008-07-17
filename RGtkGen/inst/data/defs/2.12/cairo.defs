@@ -84,7 +84,7 @@
   (c-name "cairo_ps_get_levels")
   (return-type "none")
   (parameters
-    '("cairo_ps_level_t*[]" "levels" (out))
+    '("const-cairo_ps_level_t*[]" "levels" (out))
     '("int*" "nlevels" (out))
   )
   (since "1.6.0")
@@ -107,6 +107,16 @@
   (parameters
     '("cairo_surface_t*" "surface")
     '("gboolean" "eps")
+  )
+  (since "1.6.0")
+)
+
+(define-function cairo_ps_surface_get_eps
+  (in-module "cairo")
+  (c-name "cairo_ps_surface_get_eps")
+  (return-type "gboolean")
+  (parameters
+    '("cairo_surface_t*" "surface")
   )
   (since "1.6.0")
 )

@@ -647,4 +647,34 @@ S_cairo_pattern_get_user_data(USER_OBJECT_ s_pattern, USER_OBJECT_ s_key);
   USER_OBJECT_
 S_cairo_pattern_set_user_data(USER_OBJECT_ s_pattern, USER_OBJECT_ s_key, USER_OBJECT_ s_user_data); 
 
+  USER_OBJECT_
+S_cairo_format_stride_for_width(USER_OBJECT_ s_format, USER_OBJECT_ s_width); 
+
+  USER_OBJECT_
+S_cairo_has_current_point(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_path_extents(USER_OBJECT_ s_cr); 
+
+  USER_OBJECT_
+S_cairo_surface_copy_page(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_surface_show_page(USER_OBJECT_ s_surface); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_restrict_to_level(USER_OBJECT_ s_surface, USER_OBJECT_ s_level); 
+
+  USER_OBJECT_
+S_cairo_ps_get_levels(void); 
+
+  USER_OBJECT_
+S_cairo_ps_level_to_string(USER_OBJECT_ s_level); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_set_eps(USER_OBJECT_ s_surface, USER_OBJECT_ s_eps); 
+
+  USER_OBJECT_
+S_cairo_ps_surface_get_eps(USER_OBJECT_ s_surface); 
+
 #endif

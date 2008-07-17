@@ -27,8 +27,7 @@ fields wildcarded, which will be used as a fallback if no more
 specific source matches. \code{\link{GtkIconSet}} always prefers more specific
 icon sources to more generic icon sources. The order in which you
 add the sources to the icon set does not matter.
-  
-\code{\link{gtkIconSetNewFromPixbuf}} creates a new icon set with a
+  \code{\link{gtkIconSetNewFromPixbuf}} creates a new icon set with a
 default icon source based on the given pixbuf.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

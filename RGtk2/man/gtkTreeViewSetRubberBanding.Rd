@@ -7,7 +7,7 @@ multiple rows by dragging the mouse.}
 \usage{gtkTreeViewSetRubberBanding(object, enable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{enable}}{[logical]  \code{TRUE} to enable rubber banding}
+\item{\code{enable}}{[logical] \code{TRUE} to enable rubber banding}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

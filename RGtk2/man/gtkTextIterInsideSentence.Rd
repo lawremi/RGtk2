@@ -8,6 +8,6 @@ by Pango and should be correct for nearly any language (if not, the
 correct fix would be to the Pango text boundary algorithms).}
 \usage{gtkTextIterInsideSentence(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
-\value{[logical]  \code{TRUE} if \code{iter} is inside a sentence.}
+\value{[logical] \code{TRUE} if \code{iter} is inside a sentence.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

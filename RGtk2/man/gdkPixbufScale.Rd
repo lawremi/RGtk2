@@ -22,6 +22,10 @@ replacing the previous contents.}
 }
 \details{Try to use \code{\link{gdkPixbufScaleSimple}} first, this function is
 the industrial-strength power tool you can fall back to if
-\code{\link{gdkPixbufScaleSimple}} isn't powerful enough.  }
+\code{\link{gdkPixbufScaleSimple}} isn't powerful enough.
+  
+If the source rectangle overlaps the destination rectangle on the
+same pixbuf, it will be overwritten during the scaling which
+results in rendering artifacts.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

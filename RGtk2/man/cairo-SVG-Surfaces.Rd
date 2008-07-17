@@ -10,6 +10,8 @@
 \code{\link{cairoSvgGetVersions}(versions, num.versions)}\cr
 \code{\link{cairoSvgVersionToString}(version)}\cr
 }
+\section{Detailed Description}{The SVG surface is used to render cairo graphics to
+SVG files and is a multi-page vector surface backend.}
 \section{Enums and Flags}{\describe{\item{\code{CairoSvgVersion}}{
 \code{\link{CairoSvgVersion}} is used to describe the version number of the SVG
 specification that a generated SVG file will conform to.  

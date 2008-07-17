@@ -20,7 +20,7 @@ the usual size.}
 \details{  Since  2.2}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{size} was a valid size}
+\item{retval}{[logical] \code{TRUE} if \code{size} was a valid size}
 \item{\code{width}}{[integer]  location to store icon width}
 \item{\code{height}}{[integer]  location to store icon height}
 }

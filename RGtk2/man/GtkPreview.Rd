@@ -22,13 +22,13 @@
 \code{\link{gtkPreviewReset}()}\cr
 \code{gtkPreview(type, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkPreview}}
 \section{Interfaces}{GtkPreview implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkPreview}} widget provides a simple interface 
 used to display images as RGB or grayscale data.
 It's deprecated; just use a \code{\link{GdkPixbuf}} displayed by a \code{\link{GtkImage}}, or

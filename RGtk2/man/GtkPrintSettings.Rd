@@ -78,7 +78,7 @@
 \code{\link{gtkPrintSettingsToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPrintSettings()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkPrintSettings}}
 \section{Detailed Description}{A GtkPrintSettings object represents the settings of a print dialog in 
 a system-independent way. The main use for this object is that once 

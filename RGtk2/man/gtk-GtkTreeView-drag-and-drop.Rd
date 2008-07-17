@@ -14,9 +14,9 @@
 \code{\link{gtkTreeGetRowDragData}(object)}\cr
 }
 \section{Hierarchy}{\preformatted{
-  GInterface
+GInterface
    +----GtkTreeDragSource
-  GInterface
+GInterface
    +----GtkTreeDragDest
 }}
 \section{Implementations}{GtkTreeDragSource is implemented by

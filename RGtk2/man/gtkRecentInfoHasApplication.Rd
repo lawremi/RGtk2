@@ -8,7 +8,7 @@
 \item{\code{app.name}}{[character]  a string containing an application name}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if an application with name \code{app.name} was found,
+\value{[logical] \code{TRUE} if an application with name \code{app.name} was found,
   \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

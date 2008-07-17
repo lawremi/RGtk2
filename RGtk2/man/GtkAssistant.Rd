@@ -30,7 +30,7 @@
 \code{\link{gtkAssistantUpdateButtonsState}(object)}\cr
 \code{gtkAssistant(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -39,7 +39,7 @@
                                  +----\link{GtkWindow}
                                        +----GtkAssistant}}
 \section{Interfaces}{GtkAssistant implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkAssistant}} is a widget used to represent a generally complex
 operation splitted in several steps, guiding the user through its pages
 and controlling the page flow to collect the necessary data.}
@@ -80,7 +80,7 @@ the behavior of the "last" button.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (assistant, user.data)}}{
+\item{\code{apply(assistant, user.data)}}{
 The ::apply signal is emitted when the apply button is clicked. The default
 behavior of the \code{\link{GtkAssistant}} is to switch to the page after the current page,
 unless the current page is the last one.
@@ -100,7 +100,7 @@ the progress page.
 
 
 }
-\item{\code{The (assistant, user.data)}}{
+\item{\code{cancel(assistant, user.data)}}{
 The ::cancel signal is emitted when then the cancel button is clicked.  
 
   Since  2.10
@@ -112,7 +112,7 @@ The ::cancel signal is emitted when then the cancel button is clicked.
 
 
 }
-\item{\code{The (assistant, user.data)}}{
+\item{\code{close(assistant, user.data)}}{
 The ::close signal is emitted either when the close button of
 a summary page is clicked, or when the apply button in the last
 page in the flow (of type GTK\_ASSISTANT\_PAGE\_CONFIRM) is clicked.  
@@ -126,7 +126,7 @@ page in the flow (of type GTK\_ASSISTANT\_PAGE\_CONFIRM) is clicked.
 
 
 }
-\item{\code{The (assistant, page, user.data)}}{
+\item{\code{prepare(assistant, page, user.data)}}{
 The ::prepared signal is emitted when a new page is set as the assistant's 
 current page, before making the new page visible. A handler for this signal 
 can do any preparation which are necessary before showing \code{page}.  

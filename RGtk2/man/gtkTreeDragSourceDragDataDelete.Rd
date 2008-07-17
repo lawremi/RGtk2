@@ -11,6 +11,6 @@ longer found in the model!}
 \item{\code{object}}{[\code{\link{GtkTreeDragSource}}]  a \code{\link{GtkTreeDragSource}}}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  row that was being dragged}
 }
-\value{[logical]  \code{TRUE} if the row was successfully deleted}
+\value{[logical] \code{TRUE} if the row was successfully deleted}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

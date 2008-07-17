@@ -13,7 +13,7 @@
 \code{\link{atkHyperlinkIsSelectedLink}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkHyperlink}}
 \section{Interfaces}{AtkHyperlink implements
  \code{\link{AtkAction}}.}

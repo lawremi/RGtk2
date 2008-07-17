@@ -12,7 +12,7 @@ visual appearance, it doesn't affect the semantics of the widget.}
 \usage{gtkCheckMenuItemSetInconsistent(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkCheckMenuItem}}]  a \code{\link{GtkCheckMenuItem}}}
-\item{\code{setting}}{[logical]  \code{TRUE} to display an "inconsistent" third state check}
+\item{\code{setting}}{[logical] \code{TRUE} to display an "inconsistent" third state check}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -11,7 +11,7 @@
 \details{  Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the operation succeeds, \code{FALSE} otherwise.  
+\item{retval}{[logical] \code{TRUE} if the operation succeeds, \code{FALSE} otherwise.  
 In the latter case, the \code{error} will be set as appropriate.
 
 See also: \code{\link{gtkFileChooserAddShortcutFolderUri}}}

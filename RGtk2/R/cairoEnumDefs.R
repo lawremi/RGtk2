@@ -167,3 +167,8 @@ CairoSvgVersion<-c("1-1" = 0,
 storage.mode(CairoSvgVersion) <- 'integer'
 class(CairoSvgVersion) <- 'enums' 
 
+CairoPsLevel<-c("2" = 0,
+	"3" = 1)
+storage.mode(CairoPsLevel) <- 'integer'
+class(CairoPsLevel) <- 'enums' 
+

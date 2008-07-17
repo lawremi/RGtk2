@@ -7,7 +7,7 @@
 \code{\link{gtkHScrollbarNew}(adjustment = NULL, show = TRUE)}\cr
 \code{gtkHScrollbar(adjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -15,7 +15,7 @@
                            +----\link{GtkScrollbar}
                                  +----GtkHScrollbar}}
 \section{Interfaces}{GtkHScrollbar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkHScrollbar}} widget is a widget arranged horizontally creating a
 scrollbar. See \code{\link{GtkScrollbar}} for details on
 scrollbars. \code{\link{GtkAdjustment}} pointers may be added to handle the

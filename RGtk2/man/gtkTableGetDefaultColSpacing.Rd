@@ -6,6 +6,6 @@ the spacing that will be used for newly added columns.
 (See \code{\link{gtkTableSetColSpacings}})}
 \usage{gtkTableGetDefaultColSpacing(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTable}}]  a \code{\link{GtkTable}}}}
-\value{[numeric] value: the default column spacing}
+\value{[numeric]  the default column spacing}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

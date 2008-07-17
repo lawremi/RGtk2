@@ -10,7 +10,7 @@ content on-screen.}
 \code{\link{atkImageGetImageSize}(object)}\cr
 \code{\link{atkImageGetImageLocale}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkImage}}
 \section{Implementations}{AtkImage is implemented by
  \code{\link{AtkNoOpObject}}.}
@@ -19,8 +19,7 @@ components which display image/pixmap information onscreen, and which
 provide information (other than just widget borders, etc.) via that
 image content.  For instance, icons, buttons with icons, toolbar
 elements, and image viewing panes typically should implement \code{\link{AtkImage}}.
-  
-\code{\link{AtkImage}} primarily provides two types of information: coordinate
+  \code{\link{AtkImage}} primarily provides two types of information: coordinate
 information (useful for screen review mode of screenreaders, and for use
 by onscreen magnifiers), and descriptive information.  The descriptive
 information is provided for alternative, text-only presentation of the

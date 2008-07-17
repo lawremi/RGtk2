@@ -2465,3 +2465,116 @@ function(pattern, key, user.data)
   return(w)
 } 
 
+
+cairoFormatStrideForWidth <-
+function(format, width)
+{
+  
+  width <- as.integer(width)
+
+  w <- .RGtkCall("S_cairo_format_stride_for_width", format, width, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoHasCurrentPoint <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_has_current_point", cr, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPathExtents <-
+function(cr)
+{
+  checkPtrType(cr, "Cairo")
+
+  w <- .RGtkCall("S_cairo_path_extents", cr, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoSurfaceCopyPage <-
+function(surface)
+{
+  checkPtrType(surface, "CairoSurface")
+
+  w <- .RGtkCall("S_cairo_surface_copy_page", surface, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoSurfaceShowPage <-
+function(surface)
+{
+  checkPtrType(surface, "CairoSurface")
+
+  w <- .RGtkCall("S_cairo_surface_show_page", surface, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPsSurfaceRestrictToLevel <-
+function(surface, level)
+{
+  checkPtrType(surface, "CairoSurface")
+  
+
+  w <- .RGtkCall("S_cairo_ps_surface_restrict_to_level", surface, level, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPsGetLevels <-
+function()
+{
+  
+
+  w <- .RGtkCall("S_cairo_ps_get_levels", PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+cairoPsLevelToString <-
+function(level)
+{
+  
+
+  w <- .RGtkCall("S_cairo_ps_level_to_string", level, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPsSurfaceSetEps <-
+function(surface, eps)
+{
+  checkPtrType(surface, "CairoSurface")
+  eps <- as.logical(eps)
+
+  w <- .RGtkCall("S_cairo_ps_surface_set_eps", surface, eps, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+cairoPsSurfaceGetEps <-
+function(surface)
+{
+  checkPtrType(surface, "CairoSurface")
+
+  w <- .RGtkCall("S_cairo_ps_surface_get_eps", surface, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+

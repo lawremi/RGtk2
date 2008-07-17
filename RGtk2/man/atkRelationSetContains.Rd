@@ -8,7 +8,7 @@ specified type.}
 \item{\code{object}}{[\code{\link{AtkRelationSet}}]  an \code{\link{AtkRelationSet}}}
 \item{\code{relationship}}{[\code{\link{AtkRelationType}}]  an \code{\link{AtkRelationType}}}
 }
-\value{[logical]  \code{TRUE} if \code{relationship} is the relationship type of a relation
+\value{[logical] \code{TRUE} if \code{relationship} is the relationship type of a relation
 in \code{set}, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

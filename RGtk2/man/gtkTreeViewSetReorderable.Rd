@@ -10,7 +10,7 @@ row\_inserted and row\_deleted signals.}
 \usage{gtkTreeViewSetReorderable(object, reorderable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}.}
-\item{\code{reorderable}}{[logical]  \code{TRUE}, if the tree can be reordered.}
+\item{\code{reorderable}}{[logical] \code{TRUE}, if the tree can be reordered.}
 }
 \details{This function does not give you any degree of control over the order -- any
 reordering is allowed.  If more control is needed, you should probably

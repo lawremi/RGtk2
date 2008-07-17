@@ -23,8 +23,17 @@
 \code{\link{cairoSurfaceGetType}(surface)}\cr
 \code{\link{cairoSurfaceSetUserData}(surface, key, user.data)}\cr
 \code{\link{cairoSurfaceGetUserData}(surface, key)}\cr
+\code{\link{cairoSurfaceCopyPage}(surface)}\cr
+\code{\link{cairoSurfaceShowPage}(surface)}\cr
 \code{cairoSurface(width, height, format, other, content, data, stride, filename, con)}
 }
+\section{Detailed Description}{\code{\link{CairoSurface}} is the abstract type representing all different drawing
+targets that cairo can render to.  The actual drawings are
+performed using a cairo \dfn{context}.
+  
+A cairo surface is created by using \dfn{backend}-specific
+constructors, typically of the form
+cairo\_\emph{backend}\code{surfaceCreate()}.}
 \section{Structures}{\describe{\item{\code{CairoSurface}}{
 A \code{\link{CairoSurface}} represents an image, either as the destination
 of a drawing operation or as source when drawing onto another
@@ -47,8 +56,8 @@ Memory management of \code{\link{CairoSurface}} is done with
 contain, whether color information, alpha information (translucence
 vs. opacity), or both.
   
-Note: The large values here are designed to keep cairo\_content\_t
-values distinct from cairo\_format\_t values so that the
+Note: The large values here are designed to keep \code{\link{CairoContent}}
+values distinct from \code{\link{CairoFormat}} values so that the
 implementation can detect the error if users confuse the two types.  
 
 \describe{
@@ -64,12 +73,12 @@ surface. The surface types are also known as "backends" or "surface
 backends" within cairo.
   
 The type of a surface is determined by the function used to create
-it, which will generally be of the form cairo\_\emph{type}\_surface\_create,
-(though see cairo\_surface\_create\_similar as well).
+it, which will generally be of the form cairo\_\emph{type}\code{surfaceCreate()},
+(though see \code{\link{cairoSurfaceCreateSimilar}} as well).
   
 The surface type can be queried with \code{\link{cairoSurfaceGetType}}
   
-The various cairo\_surface functions can be used with surfaces of
+The various \code{\link{CairoSurface}} functions can be used with surfaces of
 any type, but some backends also provide type-specific functions
 that must only be called with a surface of the appropriate
 type. These functions have names that begin with

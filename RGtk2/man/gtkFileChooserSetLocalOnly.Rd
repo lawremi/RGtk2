@@ -13,7 +13,7 @@ rather than the URI functions like
 \usage{gtkFileChooserSetLocalOnly(object, local.only)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{local.only}}{[logical]  \code{TRUE} if only local files can be selected}
+\item{\code{local.only}}{[logical] \code{TRUE} if only local files can be selected}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,7 +8,7 @@ pattern.}
 \details{  Since  1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS}, or
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
 \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} if \code{pattern} is not a gradient
 pattern.}
 \item{\code{count}}{[integer]  return value for the number of color stops, or \code{NULL}}

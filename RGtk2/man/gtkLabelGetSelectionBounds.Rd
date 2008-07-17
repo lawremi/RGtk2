@@ -7,7 +7,7 @@ if there's a selection.}
 \arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if selection is non-empty}
+\item{retval}{[logical] \code{TRUE} if selection is non-empty}
 \item{\code{start}}{[integer]  return location for start of selection, as a character offset}
 \item{\code{end}}{[integer]  return location for end of selection, as a character offset}
 }

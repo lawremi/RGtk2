@@ -35866,7 +35866,7 @@ function()
 } 
 
 
-gtkTooltipsetMarkup <-
+gtkTooltipSetMarkup <-
 function(object, markup)
 {
   checkPtrType(object, "GtkTooltip")
@@ -35878,7 +35878,7 @@ function(object, markup)
 } 
 
 
-gtkTooltipsetText <-
+gtkTooltipSetText <-
 function(object, text)
 {
   checkPtrType(object, "GtkTooltip")
@@ -35890,7 +35890,7 @@ function(object, text)
 } 
 
 
-gtkTooltipsetIcon <-
+gtkTooltipSetIcon <-
 function(object, pixbuf)
 {
   checkPtrType(object, "GtkTooltip")
@@ -35902,7 +35902,7 @@ function(object, pixbuf)
 } 
 
 
-gtkTooltipsetIconFromStock <-
+gtkTooltipSetIconFromStock <-
 function(object, stock.id, size)
 {
   checkPtrType(object, "GtkTooltip")
@@ -35915,7 +35915,7 @@ function(object, stock.id, size)
 } 
 
 
-gtkTooltipsetCustom <-
+gtkTooltipSetCustom <-
 function(object, custom.widget)
 {
   checkPtrType(object, "GtkTooltip")
@@ -35938,7 +35938,7 @@ function(display)
 } 
 
 
-gtkTooltipsetTipArea <-
+gtkTooltipSetTipArea <-
 function(object, area)
 {
   checkPtrType(object, "GtkTooltip")

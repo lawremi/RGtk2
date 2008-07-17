@@ -11,7 +11,7 @@
 \code{\link{gtkTreeSortableSetDefaultSortFunc}(object, sort.func, user.data = NULL)}\cr
 \code{\link{gtkTreeSortableHasDefaultSortFunc}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkTreeSortable}}
 \section{Implementations}{GtkTreeSortable is implemented by
  \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
@@ -45,7 +45,7 @@ for the "price" column could be one which returns
 
 
 }}}
-\section{Signals}{\describe{\item{\code{The (treesortable, user.data)}}{
+\section{Signals}{\describe{\item{\code{sort-column-changed(treesortable, user.data)}}{
 \emph{undocumented
 }
 

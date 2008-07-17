@@ -13,7 +13,7 @@
 \code{\link{gtkTextTagTableGetSize}(object)}\cr
 \code{gtkTextTagTable()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkTextTagTable}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
@@ -37,7 +37,7 @@ types related to the text widget and how they work together.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (texttagtable, arg1, user.data)}}{
+\item{\code{tag-added(texttagtable, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -49,7 +49,7 @@ types related to the text widget and how they work together.
 
 
 }
-\item{\code{The (texttagtable, arg1, arg2, user.data)}}{
+\item{\code{tag-changed(texttagtable, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -62,7 +62,7 @@ types related to the text widget and how they work together.
 
 
 }
-\item{\code{The (texttagtable, arg1, user.data)}}{
+\item{\code{tag-removed(texttagtable, arg1, user.data)}}{
 \emph{undocumented
 }
 

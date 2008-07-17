@@ -34,7 +34,7 @@ row/column information.}
 \code{\link{atkTableRemoveColumnSelection}(object, column)}\cr
 \code{\link{atkTableRemoveRowSelection}(object, row)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkTable}}
 \section{Implementations}{AtkTable is implemented by
  \code{\link{AtkNoOpObject}}.}

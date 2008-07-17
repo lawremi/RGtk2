@@ -20,13 +20,11 @@ inverse of the pattern matrix.
   
 For example, if you want to make a pattern appear twice as large as
 it does by default the correct code to use is:
-  
-\preformatted{
+  \preformatted{
 matrix <- cairoMatrixInitScale(0.5, 0.5)$matrix
 pattern$setMatrix(matrix)
 
-}
-  
+}  
 Meanwhile, using values of 2.0 rather than 0.5 in the code above
 would cause the pattern to appear at half of its default size.
   

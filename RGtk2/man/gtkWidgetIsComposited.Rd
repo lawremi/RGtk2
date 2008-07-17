@@ -12,7 +12,7 @@ window in its heirarchy (as set by
 \code{\link{gdkWindowSetComposited}}).  
 
   Since  2.10}
-\value{[logical]  \code{TRUE} if the widget can rely on its alpha
+\value{[logical] \code{TRUE} if the widget can rely on its alpha
 channel being drawn correctly.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

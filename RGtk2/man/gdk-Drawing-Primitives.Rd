@@ -42,7 +42,7 @@
 \code{\link{gdkDrawableCopyToImage}(object, image = NULL, src.x, src.y, dest.x, dest.y, width, height)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkDrawable
          +----\link{GdkWindow}
          +----\link{GdkPixmap}}}

@@ -7,7 +7,7 @@
 \code{\link{gtkHBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}\cr
 \code{gtkHBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -18,7 +18,7 @@
                                        +----\link{GtkFileChooserButton}
                                        +----\link{GtkStatusbar}}}
 \section{Interfaces}{GtkHBox implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkHBox is a container that organizes child widgets into a single row.
   
 Use the \code{\link{GtkBox}} packing interface to determine the arrangement,

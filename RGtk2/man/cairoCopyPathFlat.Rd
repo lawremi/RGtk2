@@ -14,11 +14,10 @@ of type \code{CAIRO_PATH_CURVE_TO} which will instead be replaced by a
 series of \code{CAIRO_PATH_LINE_TO} elements.
   
 This function will always return a valid pointer, but the result
-will have no data (\code{data==NULL} and
+will have no data (\code{data==} and
 \code{num_data==0}), if either of the following
 conditions hold:
-  
-\enumerate{
+  \enumerate{
 \item 
 \item 
 }  }

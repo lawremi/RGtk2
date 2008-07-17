@@ -13,6 +13,6 @@ obtain the defaults from \code{\link{gtkTextViewGetDefaultAttributes}}.}
 \details{\code{\link{gtkTextIterGetAttributes}} will modify \code{values}, applying the
 effects of any tags present at \code{iter}. If any tags affected \code{values},
 the function returns \code{TRUE}.  }
-\value{[logical]  \code{TRUE} if \code{values} was modified}
+\value{[logical] \code{TRUE} if \code{values} was modified}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -23,7 +23,7 @@ windowing systems. GDK provides drawing and window system facilities on X11,
 Windows, and the Linux framebuffer device.}
 \item{\link{GTK}}{The GTK+ library itself contains widgets, that is, GUI components 
 such as \code{\link{GtkButton}} or \code{\link{GtkTextView}}.}
-\item{\link{GDKPixbuf}}{This is a small library which allows you to create GdkPixbuf 
+\item{\link{GDK-Pixbuf}}{This is a small library which allows you to create GdkPixbuf 
 ('pixel buffer') objects from image data or image files. Use a 
 \code{\link{GdkPixbuf}} in combination with \code{\link{GtkImage}} to display images.}
 \item{\link{Cairo}}{Cairo is a 2D graphics library with support for multiple output 
@@ -44,10 +44,7 @@ R objects wrapping external objects extend the \code{\link{RGtkObject}} class.
 \note{
 As described above, RGtk2 binds many libraries beyond GTK+ itself. Thus, it can 
 serve many purposes besides GUI construction. For example, \link{GDKPixbuf} 
-and \link{Cairo} allow the R user to produce arbitary high-quality graphics. 
-
-There are also possibilities of integration with other R packages that bind to 
-a \link{GObject}-based API, such as Rggobi (to GGobi, \url{http://www.ggobi.org/}).
+and \link{Cairo} allow the R user to produce arbitary high-quality graphics.
 }
 \author{Michael Lawrence, with excerpts from library documentation}
 \keyword{interface}

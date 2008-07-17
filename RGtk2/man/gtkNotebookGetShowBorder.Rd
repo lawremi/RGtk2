@@ -5,6 +5,6 @@
 \code{\link{gtkNotebookSetShowBorder}}.}
 \usage{gtkNotebookGetShowBorder(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}}
-\value{[logical]  \code{TRUE} if the bevel is drawn}
+\value{[logical] \code{TRUE} if the bevel is drawn}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

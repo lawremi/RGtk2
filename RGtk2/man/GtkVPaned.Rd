@@ -7,7 +7,7 @@
 \code{\link{gtkVPanedNew}(show = TRUE)}\cr
 \code{gtkVPaned(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -15,7 +15,7 @@
                            +----\link{GtkPaned}
                                  +----GtkVPaned}}
 \section{Interfaces}{GtkVPaned implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The VPaned widget is a container widget with two
 children arranged vertically. The division between
 the two panes is adjustable by the user by dragging

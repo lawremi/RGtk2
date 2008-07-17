@@ -12,7 +12,7 @@ returned by \code{\link{cairoPatternGetColorStopCount}}.}
 \details{  Since  1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS}, or \code{CAIRO_STATUS_INVALID_INDEX}
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or \code{CAIRO_STATUS_INVALID_INDEX}
 if \code{index} is not valid for the given pattern.  If the pattern is
 not a gradient pattern, \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} is
 returned.}

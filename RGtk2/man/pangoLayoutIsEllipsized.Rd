@@ -10,7 +10,7 @@ and there are paragraphs exceeding that width that have to be
 ellipsized.  
 
   Since  1.16}
-\value{[logical]  \code{TRUE} if any paragraphs had to be ellipsized, \code{FALSE}
+\value{[logical] \code{TRUE} if any paragraphs had to be ellipsized, \code{FALSE}
 otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,6 +9,6 @@ have been selected for printing.}
 \item{\code{page.nr}}{[integer]  a page number}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the page has been selected for printing}
+\value{[logical] \code{TRUE} if the page has been selected for printing}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -15,7 +15,8 @@ be used.}
 \item{\code{ctm}}{[\code{\link{CairoMatrix}}]  user to device transformation matrix with which the font will
       be used.}
 \item{\code{option}}{[\code{\link{CairoFontOptions}}]  options to use when getting metrics for the font and
-          rendering with it.}
+          rendering with it. A \code{NULL} pointer will be interpreted as
+          meaning the default options.}
 }
 \value{[\code{\link{CairoScaledFont}}]  a newly created \code{\link{CairoScaledFont}}}
 \author{Derived by RGtkGen from GTK+ documentation}

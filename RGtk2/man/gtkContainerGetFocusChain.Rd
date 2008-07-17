@@ -10,7 +10,7 @@ of the children. In that case, GTK+ stores \code{NULL} in
 \arguments{\item{\code{object}}{[\code{\link{GtkContainer}}]          a \code{\link{GtkContainer}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the focus chain of the container 
+\item{retval}{[logical] \code{TRUE} if the focus chain of the container 
 has been set explicitly.}
 \item{\code{focusable.widgets}}{[list]  location to store the focus chain of the
                     container, or \code{NULL}. You should free this list

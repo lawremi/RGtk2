@@ -10,7 +10,7 @@
 \item{\code{coord.type}}{[\code{\link{AtkCoordType}}]  specifies whether the coordinates are relative to the screen
 or to the components top level window}
 }
-\value{[logical]  \code{TRUE} or \code{FALSE} indicating whether the specified point is within
+\value{[logical] \code{TRUE} or \code{FALSE} indicating whether the specified point is within
 the extent of the \code{component} or not}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

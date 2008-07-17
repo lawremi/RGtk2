@@ -14,7 +14,7 @@ node after this function has been called.  As a special case, if \code{parent} i
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{parent} has an \code{n}th child.}
+\item{retval}{[logical] \code{TRUE}, if \code{parent} has an \code{n}th child.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}} to set to the nth child.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

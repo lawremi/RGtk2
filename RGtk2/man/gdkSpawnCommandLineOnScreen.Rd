@@ -17,7 +17,7 @@ on a specific screen.
   Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} on success, \code{FALSE} if error is set.}
+\item{retval}{[logical] \code{TRUE} on success, \code{FALSE} if error is set.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for errors}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

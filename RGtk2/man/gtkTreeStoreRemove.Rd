@@ -9,6 +9,6 @@ last one.}
 \item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}}
 }
-\value{[logical]  \code{TRUE} if \code{iter} is still valid, \code{FALSE} if not.}
+\value{[logical] \code{TRUE} if \code{iter} is still valid, \code{FALSE} if not.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

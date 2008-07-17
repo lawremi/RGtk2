@@ -24,6 +24,6 @@ handler; so this function may not have the desired effect if it's
 called before the height computations. To avoid oddness, consider 
 using \code{\link{gtkTextViewScrollToMark}} which saves a point to be 
 scrolled to after line validation.  }
-\value{[logical]  \code{TRUE} if scrolling occurred}
+\value{[logical] \code{TRUE} if scrolling occurred}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

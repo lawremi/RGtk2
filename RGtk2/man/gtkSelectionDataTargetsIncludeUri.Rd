@@ -7,7 +7,7 @@ provide a list or URIs.}
 \usage{gtkSelectionDataTargetsIncludeUri(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkSelectionData}}]  a \code{\link{GtkSelectionData}} object}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if \code{selection.data} holds a list of targets,
+\value{[logical] \code{TRUE} if \code{selection.data} holds a list of targets,
   and a suitable target for text is included, otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -24,7 +24,7 @@
 \code{\link{gdkUnicodeToKeyval}(wc)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkKeymap}}
 \section{Detailed Description}{Key values are the codes which are sent whenever a key is pressed or released.
 They appear in the \code{keyval} field of the
@@ -115,7 +115,7 @@ be mapped to a keyval.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (keymap, user.data)}}{
+\item{\code{direction-changed(keymap, user.data)}}{
 The ::direction\_changed signal gets emitted when the direction of
 the keymap changes.  
 
@@ -128,7 +128,7 @@ the keymap changes.
 
 
 }
-\item{\code{The (keymap, user.data)}}{
+\item{\code{keys-changed(keymap, user.data)}}{
 The ::keys\_changed signal is emitted when the mapping represented by
 \code{keymap} changes.  
 

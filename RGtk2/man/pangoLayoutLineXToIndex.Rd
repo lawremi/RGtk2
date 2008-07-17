@@ -14,18 +14,18 @@ in that grapheme. The reverse is true for a left-to-right line.}
 \usage{pangoLayoutLineXToIndex(object, x.pos)}
 \arguments{
 \item{\code{object}}{[\code{\link{PangoLayoutLine}}]       a \code{\link{PangoLayoutLine}}}
-\item{\code{x.pos}}{[integer]      the X offset (in \code{integer})
+\item{\code{x.pos}}{[integer]      the X offset (in Pango units)
             from the left edge of the line.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{FALSE} if \code{x.pos} was outside the line, \code{TRUE} if inside}
+\item{retval}{[logical] \code{FALSE} if \code{x.pos} was outside the line, \code{TRUE} if inside}
 \item{\code{index}}{[integer]     location to store calculated byte index for
             the grapheme in which the user clicked.}
-\item{\code{trailing}}{[integer]   location to store a integer indicating where
+\item{\code{trailing}}{[integer]   location to store an integer indicating where
             in the grapheme the user clicked. It will either
             be zero, or the number of characters in the
-            grapheme. 0 represents the trailing edge of the grapheme.}
+            grapheme. 0 represents the leading edge of the grapheme.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

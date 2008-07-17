@@ -39,7 +39,7 @@
 \code{\link{gtkClipboardStore}(object)}\cr
 \code{gtkClipboard(display, selection = "GDK_SELECTION_CLIPBOARD")}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkClipboard}}
 \section{Detailed Description}{    The \code{\link{GtkClipboard}} object represents a clipboard of data shared
     between different processes or between different widgets in
@@ -59,7 +59,6 @@
     \code{\link{gtkClipboardSetWithData}} or \code{\link{gtkClipboardSetWithOwner}}.)
     Providing a callback also avoids having to make copies of the data
     when it is not needed.
-    
     \code{\link{gtkClipboardSetWithData}} and \code{\link{gtkClipboardSetWithOwner}}
     are quite similar; the choice between the two depends mostly on
     which is more convenient in a particular situation.
@@ -212,7 +211,7 @@ will not be used again.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{The (clipboard, event, user.data)}}{
+\section{Signals}{\describe{\item{\code{owner-change(clipboard, event, user.data)}}{
 The ::owner-change signal is emitted when GTK+ receives an
 event that indicates that the ownership of the selection 
 associated with \code{clipboard} has changed.  

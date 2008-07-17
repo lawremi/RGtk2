@@ -8,6 +8,7 @@
 \code{\link{cairoCopyPath}(cr)}\cr
 \code{\link{cairoCopyPathFlat}(cr)}\cr
 \code{\link{cairoAppendPath}(cr, path)}\cr
+\code{\link{cairoHasCurrentPoint}(cr)}\cr
 \code{\link{cairoGetCurrentPoint}(cr, x, y)}\cr
 \code{\link{cairoNewPath}(cr)}\cr
 \code{\link{cairoNewSubPath}(cr)}\cr
@@ -23,7 +24,10 @@
 \code{\link{cairoRelCurveTo}(cr, dx1, dy1, dx2, dy2, dx3, dy3)}\cr
 \code{\link{cairoRelLineTo}(cr, dx, dy)}\cr
 \code{\link{cairoRelMoveTo}(cr, dx, dy)}\cr
+\code{\link{cairoPathExtents}(cr)}\cr
 }
+\section{Detailed Description}{Paths are the most basic drawing tools and are primarily used to implicitly
+generate simple masks.}
 \section{Structures}{\describe{\item{\code{CairoPath}}{
 A data structure for holding a path. This data structure serves as
 the return value for \code{\link{cairoCopyPath}} and

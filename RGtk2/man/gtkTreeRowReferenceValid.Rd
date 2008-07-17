@@ -5,6 +5,6 @@
 path.}
 \usage{gtkTreeRowReferenceValid(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeRowReference}}]  A \code{\link{GtkTreeRowReference}}, or \code{NULL}}}
-\value{[logical]  \code{TRUE} if \code{reference} points to a valid path.}
+\value{[logical] \code{TRUE} if \code{reference} points to a valid path.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

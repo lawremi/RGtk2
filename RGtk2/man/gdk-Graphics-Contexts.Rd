@@ -42,7 +42,7 @@
 \code{\link{gdkGCOffset}(object, x.offset, y.offset)}\cr
 \code{gdkGC(drawable)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkGC}}
 \section{Detailed Description}{All drawing operations in GDK take a 
 \dfn{graphics context} (GC) argument. 

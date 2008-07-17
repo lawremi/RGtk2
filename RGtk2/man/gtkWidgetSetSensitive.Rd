@@ -8,7 +8,7 @@ user can't interact with them. Insensitive widgets are known as
 \usage{gtkWidgetSetSensitive(object, sensitive)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{sensitive}}{[logical]  \code{TRUE} to make the widget sensitive}
+\item{\code{sensitive}}{[logical] \code{TRUE} to make the widget sensitive}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

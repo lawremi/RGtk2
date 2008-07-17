@@ -37,7 +37,7 @@
 \code{\link{gtkIconInfoGetDisplayName}(object)}\cr
 \code{gtkIconTheme()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkIconTheme}}
 \section{Detailed Description}{\code{\link{GtkIconTheme}} provides a facility for looking up icons by name
 and size. The main reason for using a name rather than simply
@@ -88,15 +88,12 @@ being used, looking up an icon can be as simple as:
   \preformatted{
 icon_theme <- gtkIconThemeGetDefault()
 result <- icon_theme$loadIcon("my-icon-name", 48, 0)
-if (!result[[1]])
-  {
-    warning("Couldn't load icon: ", result$error$message)
-  }
-else
-  {
-	pixbuf <- result[[1]]
-    # Use the pixbuf
-  }
+if (!result[[1]]) {
+  warning("Couldn't load icon: ", result$error$message)
+} else {
+  pixbuf <- result[[1]]
+  ## Use the pixbuf
+}
 }}
 \section{Structures}{\describe{
 \item{\code{GtkIconInfo}}{
@@ -143,7 +140,7 @@ Error codes for GtkIconTheme operations.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{The (icon.theme, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(icon.theme, user.data)}}{
 Emitted when the current icon theme is switched or GTK+ detects
 that a change has occurred in the contents of the current
 icon theme.  

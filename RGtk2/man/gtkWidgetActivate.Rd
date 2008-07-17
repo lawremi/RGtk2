@@ -7,6 +7,6 @@ press Enter on a widget during key navigation. If \code{widget} isn't
 activatable, the function returns \code{FALSE}.}
 \usage{gtkWidgetActivate(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} that's activatable}}
-\value{[logical]  \code{TRUE} if the widget was activatable}
+\value{[logical] \code{TRUE} if the widget was activatable}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

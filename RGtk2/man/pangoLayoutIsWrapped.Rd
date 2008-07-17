@@ -10,7 +10,7 @@ and there are paragraphs exceeding the layout width that have
 to be wrapped.  
 
   Since  1.16}
-\value{[logical]  \code{TRUE} if any paragraphs had to be wrapped, \code{FALSE}
+\value{[logical] \code{TRUE} if any paragraphs had to be wrapped, \code{FALSE}
 otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -66,6 +66,7 @@
 \code{\link{pangoFontFaceGetFaceName}(object)}\cr
 \code{\link{pangoFontFaceListSizes}(object)}\cr
 \code{\link{pangoFontFaceDescribe}(object)}\cr
+\code{\link{pangoFontFaceIsSynthesized}(object)}\cr
 \code{\link{pangoFontMapLoadFont}(object, context, desc)}\cr
 \code{\link{pangoFontMapLoadFontset}(object, context, desc, language)}\cr
 \code{\link{pangoFontMapListFamilies}(object)}\cr
@@ -75,20 +76,20 @@
 
 }
 \section{Hierarchy}{\preformatted{
-  \link{GObject}
+\link{GObject}
    +----PangoFont
          +----PangoFcFont
-  \link{GObject}
+\link{GObject}
    +----PangoFontFamily
-  \link{GObject}
+\link{GObject}
    +----PangoFontFace
-  \link{GObject}
+\link{GObject}
    +----PangoFontMap
          +----PangoFcFontMap
-  \link{GObject}
+\link{GObject}
    +----PangoFontset
          +----\link{PangoFontsetSimple}
-  \link{GObject}
+\link{GObject}
    +----\link{PangoFontset}
          +----PangoFontsetSimple
 }}

@@ -10,7 +10,7 @@
 \code{\link{gtkRecentChooserMenuSetShowNumbers}(object, show.numbers)}\cr
 \code{gtkRecentChooserMenu(manager = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -19,7 +19,7 @@
                                  +----\link{GtkMenu}
                                        +----GtkRecentChooserMenu}}
 \section{Interfaces}{GtkRecentChooserMenu implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkRecentChooser}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkRecentChooser}}.}
 \section{Detailed Description}{\code{\link{GtkRecentChooserMenu}} is a widget suitable for displaying recently used files
 inside a menu.  It can be used to set a sub-menu of a \code{\link{GtkMenuItem}} using
 \code{\link{gtkMenuItemSetSubmenu}}, or as the menu of a \code{\link{GtkMenuToolButton}}.

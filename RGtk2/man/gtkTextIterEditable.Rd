@@ -9,7 +9,7 @@ to this text affect editability, \code{default.setting} will be returned.}
 \usage{gtkTextIterEditable(object, default.setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}
-\item{\code{default.setting}}{[logical]  \code{TRUE} if text is editable by default}
+\item{\code{default.setting}}{[logical] \code{TRUE} if text is editable by default}
 }
 \details{You don't want to use this function to decide whether text can be
 inserted at \code{iter}, because for insertion you don't want to know

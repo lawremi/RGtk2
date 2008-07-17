@@ -16,7 +16,7 @@
 \code{\link{gtkIMContextDeleteSurrounding}(object, offset, n.chars)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkIMContext
          +----\link{GtkIMContextSimple}
          +----\link{GtkIMMulticontext}}}
@@ -26,7 +26,7 @@
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (imcontext, arg1, user.data)}}{
+\item{\code{commit(imcontext, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -38,7 +38,7 @@
 
 
 }
-\item{\code{The (imcontext, arg1, arg2, user.data)}}{
+\item{\code{delete-surrounding(imcontext, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -51,7 +51,7 @@
 
 
 }
-\item{\code{The (imcontext, user.data)}}{
+\item{\code{preedit-changed(imcontext, user.data)}}{
 \emph{undocumented
 }
 
@@ -62,7 +62,7 @@
 
 
 }
-\item{\code{The (imcontext, user.data)}}{
+\item{\code{preedit-end(imcontext, user.data)}}{
 \emph{undocumented
 }
 
@@ -73,7 +73,7 @@
 
 
 }
-\item{\code{The (imcontext, user.data)}}{
+\item{\code{preedit-start(imcontext, user.data)}}{
 \emph{undocumented
 }
 
@@ -84,7 +84,7 @@
 
 
 }
-\item{\code{The (imcontext, user.data)}}{
+\item{\code{retrieve-surrounding(imcontext, user.data)}}{
 \emph{undocumented
 }
 

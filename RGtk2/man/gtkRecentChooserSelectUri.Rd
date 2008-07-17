@@ -11,7 +11,7 @@
 \details{  Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{uri} was found.}
+\item{retval}{[logical] \code{TRUE} if \code{uri} was found.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for a \code{\link{GError}}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

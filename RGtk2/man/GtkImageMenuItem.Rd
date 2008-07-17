@@ -12,7 +12,7 @@
 \code{\link{gtkImageMenuItemNewWithMnemonic}(label, show = TRUE)}\cr
 \code{gtkImageMenuItem(label, stock.id, accel.group, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -22,7 +22,7 @@
                                        +----\link{GtkMenuItem}
                                              +----GtkImageMenuItem}}
 \section{Interfaces}{GtkImageMenuItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A GtkImageMenuItem is a menu item which has an icon next to the text label.
   
 Note that the user can disable display of menu icons, so make sure to still

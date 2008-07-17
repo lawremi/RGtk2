@@ -6,6 +6,6 @@ See \code{\link{gtkIconViewSetReorderable}}.}
 \usage{gtkIconViewGetReorderable(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}}
 \details{  Since  2.8}
-\value{[logical]  \code{TRUE} if the list can be reordered.}
+\value{[logical] \code{TRUE} if the list can be reordered.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@
 \code{\link{gtkCellRendererProgressNew}()}\cr
 \code{gtkCellRendererProgress()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}

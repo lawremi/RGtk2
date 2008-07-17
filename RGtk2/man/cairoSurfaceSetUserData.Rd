@@ -10,7 +10,7 @@ for \code{data}.}
 \item{\code{key}}{[\code{\link{CairoUserDataKey}}]  the a \code{\link{CairoUserDataKey}} to attach the user data to}
 \item{\code{user.data}}{[R object]  the user data to attach to the surface}
 }
-\value{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS} or \code{CAIRO_STATUS_NO_MEMORY} if a
+\value{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS} or \code{CAIRO_STATUS_NO_MEMORY} if a
 slot could not be allocated for the user data.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

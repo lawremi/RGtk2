@@ -14,7 +14,7 @@
 \code{\link{gtkComboDisableActivate}(object)}\cr
 \code{gtkCombo(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -23,7 +23,7 @@
                                  +----\link{GtkHBox}
                                        +----GtkCombo}}
 \section{Interfaces}{GtkCombo implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
 list. The drop-down list is displayed when the user clicks on a small arrow
 button to the right of the entry field.
@@ -40,39 +40,45 @@ arrow (cursor) keys, though this behaviour can be turned off with
 \code{\link{gtkComboSetUseArrows}}.
   
 As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\link{GtkComboBox}}.
-  \preformatted{
+  
+ \emph{Creating a   \code{GtkCombo}   widget with simple text 
+items.}
+\preformatted{
 ######
 # Creating a combobox with simple text items
 ######
 
-  items <- c("First Item", "Second Item", "Third Item", "Fourth Item", "Fifth Item")
-  combo <- gtkCombo()
-  combo$setPopdownStrings(items)
-}  \preformatted{
+items <- c("First Item", "Second Item", "Third Item", "Fourth Item",
+           "Fifth Item")
+combo <- gtkCombo()
+combo$setPopdownStrings(items)
+}  
+ \emph{Creating a   \code{GtkCombo}   widget with a complex item.}
+\preformatted{
 ######
 # Creating a combobox with a complex item
 ######
   
-  combo <- gtkCombo()
-  item <- gtkListItem()
+combo <- gtkCombo()
+item <- gtkListItem()
 
-  # You can put almost anything into the GtkListItem widget. Here we will use
-  #   a horizontal box with an arrow and a label in it.
-  hbox <- gtkHbox(FALSE, 3)
-  item$add(hbox)
+## You can put almost anything into the GtkListItem widget. Here we will use
+##   a horizontal box with an arrow and a label in it.
+hbox <- gtkHbox(FALSE, 3)
+item$add(hbox)
   
-  arrow <- gtkArrow("right", "out")
-  hbox$packStart(arrow, FALSE, FALSE, 0)
+arrow <- gtkArrow("right", "out")
+hbox$packStart(arrow, FALSE, FALSE, 0)
 
-  label <- gtkLabel("First Item")
-  hbox$packStart(label, FALSE, FALSE, 0)
+label <- gtkLabel("First Item")
+hbox$packStart(label, FALSE, FALSE, 0)
 
-  # You must set the string to display in the entry field when the item is
-  #   selected.
-  combo$setItemString(item, "1st Item")
+## You must set the string to display in the entry field when the item is
+##   selected.
+combo$setItemString(item, "1st Item")
 
-  # Now we simply add the item to the combo's list.
-  combo[["list"]]$add(item)
+## Now we simply add the item to the combo's list.
+combo[["list"]]$add(item)
 }}
 \section{Structures}{\describe{\item{\code{GtkCombo}}{
 \strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}

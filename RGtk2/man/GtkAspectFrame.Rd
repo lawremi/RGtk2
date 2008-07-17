@@ -8,7 +8,7 @@
 \code{\link{gtkAspectFrameSet}(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)}\cr
 \code{gtkAspectFrame(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                  +----\link{GtkFrame}
                                        +----GtkAspectFrame}}
 \section{Interfaces}{GtkAspectFrame implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkAspectFrame}} is useful when you want
 pack a widget so that it can resize but always retains
 the same aspect ratio. For instance, one might be

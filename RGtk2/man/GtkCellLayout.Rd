@@ -14,7 +14,7 @@
 \code{\link{gtkCellLayoutSetCellDataFunc}(object, cell, func, func.data = NULL)}\cr
 \code{\link{gtkCellLayoutClearAttributes}(object, cell)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkCellLayout}}
 \section{Implementations}{GtkCellLayout is implemented by
  \code{\link{GtkTreeViewColumn}},  \code{\link{GtkIconView}},  \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkComboBox}} and  \code{\link{GtkComboBoxEntry}}.}
@@ -40,8 +40,7 @@ multiple <attribute> elements. Each <attribute> element has
 a name attribute which specifies a property of the cell renderer; the 
 content of the element is the attribute value.
   
-\emph{A UI definition fragment specifying attributes}
-\preformatted{<object class="GtkCellView">
+ \emph{A UI definition fragment specifying attributes}\preformatted{<object class="GtkCellView">
   <child>
     <object class="GtkCellRendererText"/>
     <attributes>

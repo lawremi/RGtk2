@@ -20,7 +20,7 @@
 \code{\link{gtkFontButtonGetTitle}(object)}\cr
 \code{gtkFontButton(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -29,7 +29,7 @@
                                  +----\link{GtkButton}
                                        +----GtkFontButton}}
 \section{Interfaces}{GtkFontButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection 
 dialog to change the font. It is suitable widget for selecting a font in a preference dialog.}
 \section{Structures}{\describe{\item{\code{GtkFontButton}}{
@@ -38,7 +38,7 @@ directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkFontButton} is the equivalent of \code{\link{gtkFontButtonNew}}.}
-\section{Signals}{\describe{\item{\code{The (widget, user.data)}}{
+\section{Signals}{\describe{\item{\code{font-set(widget, user.data)}}{
 The ::font-set signal is emitted when the user selects a font. 
 When handling this signal, use \code{\link{gtkFontButtonGetFontName}} 
 to find out which font was just selected.

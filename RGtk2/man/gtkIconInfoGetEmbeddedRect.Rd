@@ -11,8 +11,8 @@ information about the coordinate system.}
 \details{  Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the icon has an embedded rectangle}
-\item{\code{rectangle}}{[\code{\link{GdkRectangle}}]  \code{\link{GdkRectangle}} in which to store embedded
+\item{retval}{[logical] \code{TRUE} if the icon has an embedded rectangle}
+\item{\code{rectangle}}{[\code{\link{GdkRectangle}}] \code{\link{GdkRectangle}} in which to store embedded
   rectangle coordinates; coordinates are only stored
   when this function returns \code{TRUE}.}
 }

@@ -8,6 +8,8 @@
 \code{\link{cairoSurfaceWriteToPng}(surface, filename)}\cr
 \code{\link{cairoSurfaceWriteToPngStream}(surface, con)}\cr
 }
+\section{Detailed Description}{The PNG functions allow reading PNG images into image surfaces, and writing
+any surface to a PNG file.}
 \references{\url{http://www.cairographics.org/manual/cairo-PNG-Support.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

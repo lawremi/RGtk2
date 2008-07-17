@@ -9,6 +9,6 @@ or, if \code{widget} is \code{NULL}, release ownership of the selection.}
 \item{\code{selection}}{[\code{\link{GdkAtom}}]   an interned atom representing the selection to claim}
 \item{\code{time}}{[numeric]  timestamp with which to claim the selection}
 }
-\value{[logical]  \code{TRUE} if the operation succeeded}
+\value{[logical] \code{TRUE} if the operation succeeded}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

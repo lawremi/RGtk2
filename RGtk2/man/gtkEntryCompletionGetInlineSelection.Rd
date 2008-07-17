@@ -5,6 +5,6 @@
 \usage{gtkEntryCompletionGetInlineSelection(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}}
 \details{  Since  2.12}
-\value{[logical]  \code{TRUE} if inline-selection mode is on}
+\value{[logical] \code{TRUE} if inline-selection mode is on}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

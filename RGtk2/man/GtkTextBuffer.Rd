@@ -82,7 +82,7 @@
 \code{\link{gtkTextBufferUnregisterSerializeFormat}(object, format)}\cr
 \code{gtkTextBuffer(table = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkTextBuffer}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
@@ -148,7 +148,7 @@ It must return the serialized form of the content.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (textbuffer, tag, start, end, user.data)}}{
+\item{\code{apply-tag(textbuffer, tag, start, end, user.data)}}{
 The apply\_tag signal is emitted to apply a tag to a
 range of text in a \code{\link{GtkTextBuffer}}. 
 Applying actually occurs in the default handler.
@@ -171,7 +171,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, user.data)}}{
+\item{\code{begin-user-action(textbuffer, user.data)}}{
 The begin\_user\_action signal is emitted at the beginning of a single
 user-visible operation on a \code{\link{GtkTextBuffer}}.
   
@@ -190,7 +190,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, user.data)}}{
+\item{\code{changed(textbuffer, user.data)}}{
 The changed signal is emitted when the content of a \code{\link{GtkTextBuffer}} 
 has changed.  
 
@@ -201,7 +201,7 @@ has changed.
 
 
 }
-\item{\code{The (textbuffer, start, end, user.data)}}{
+\item{\code{delete-range(textbuffer, start, end, user.data)}}{
 The delete\_range signal is emitted to delete a range 
 from a \code{\link{GtkTextBuffer}}. 
   
@@ -223,7 +223,7 @@ See also: \code{\link{gtkTextBufferDelete}}.
 
 
 }
-\item{\code{The (textbuffer, user.data)}}{
+\item{\code{end-user-action(textbuffer, user.data)}}{
 The end\_user\_action signal is emitted at the end of a single
 user-visible operation \code{\link{GtkTextBuffer}}.
   
@@ -243,7 +243,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, location, anchor, user.data)}}{
+\item{\code{insert-child-anchor(textbuffer, location, anchor, user.data)}}{
 The insert\_child\_anchor signal is emitted to insert a
 \code{\link{GtkTextChildAnchor}} in a \code{\link{GtkTextBuffer}}.
 Insertion actually occurs in the default handler.
@@ -264,7 +264,7 @@ See also: \code{\link{gtkTextBufferInsertChildAnchor}}.
 
 
 }
-\item{\code{The (textbuffer, location, pixbuf, user.data)}}{
+\item{\code{insert-pixbuf(textbuffer, location, pixbuf, user.data)}}{
 The insert\_pixbuf signal is emitted to insert a \code{\link{GdkPixbuf}} 
 in a \code{\link{GtkTextBuffer}}. Insertion actually occurs in the default handler.
   
@@ -284,7 +284,7 @@ See also: \code{\link{gtkTextBufferInsertPixbuf}}.
 
 
 }
-\item{\code{The (textbuffer, location, text, len, user.data)}}{
+\item{\code{insert-text(textbuffer, location, text, len, user.data)}}{
 The insert\_text signal is emitted to insert text in a \code{\link{GtkTextBuffer}}.
 Insertion actually occurs in the default handler.  
   
@@ -307,7 +307,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, mark, user.data)}}{
+\item{\code{mark-deleted(textbuffer, mark, user.data)}}{
 The mark\_deleted signal is emitted as notification
 after a \code{\link{GtkTextMark}} is deleted. 
   
@@ -322,7 +322,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, location, mark, user.data)}}{
+\item{\code{mark-set(textbuffer, location, mark, user.data)}}{
 The mark\_set signal is emitted as notification
 after a \code{\link{GtkTextMark}} is set.
   
@@ -339,7 +339,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, user.data)}}{
+\item{\code{modified-changed(textbuffer, user.data)}}{
 The modified\_changed signal is emitted when the modified bit of a 
 \code{\link{GtkTextBuffer}} flips.
   
@@ -353,7 +353,7 @@ See also:
 
 
 }
-\item{\code{The (textbuffer, tag, start, end, user.data)}}{
+\item{\code{remove-tag(textbuffer, tag, start, end, user.data)}}{
 The remove\_tag signal is emitted to remove all occurrences of \code{tag} from a
 range of text in a \code{\link{GtkTextBuffer}}. 
 Removal actually occurs in the default handler.

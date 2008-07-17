@@ -12,7 +12,7 @@
 \code{\link{gtkAccelLabelRefetch}(object)}\cr
 \code{gtkAccelLabel(string = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                            +----\link{GtkLabel}
                                  +----GtkAccelLabel}}
 \section{Interfaces}{GtkAccelLabel implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkAccelLabel}} widget is a subclass of \code{\link{GtkLabel}} that also displays an
 accelerator key on the right of the label text, e.g. 'Ctl+S'.
 It is commonly used in menus to show the keyboard short-cuts for commands.
@@ -45,22 +45,24 @@ A \code{\link{GtkAccelLabel}} will only display accelerators which have \code{GT
 set (see \code{\link{GtkAccelFlags}}).
 A \code{\link{GtkAccelLabel}} can display multiple accelerators and even signal names,
 though it is almost always used to display just one accelerator key.
-  \preformatted{
-# Creating a simple menu item with an accelerator key.
+  
+ \emph{Creating a simple menu item with an accelerator key.}
+\preformatted{
+## Creating a simple menu item with an accelerator key.
 
-  # Create a GtkAccelGroup and add it to the window.
-  accel_group = gtkAccelGroup();
-  window$addAccelGroup(accel_group)
+## Create a GtkAccelGroup and add it to the window.
+accel_group = gtkAccelGroup()
+window$addAccelGroup(accel_group)
 
-  # Create the menu item
-  save_item = gtkMenuItem("Save")
-  menu$add(save_item)
+## Create the menu item
+save_item = gtkMenuItem("Save")
+menu$add(save_item)
 
-  # Now add the accelerator to the GtkMenuItem. 
-  # It will be activated if the user types ctrl-s
-  # We just need to make sure we use the "visible" flag here to show it.
-  save_item$addAccelerator("activate", accel_group, .gdkS, 
-  	"control-mask", "visible")
+## Now add the accelerator to the GtkMenuItem. 
+## It will be activated if the user types ctrl-s
+## We just need to make sure we use the "visible" flag here to show it.
+save_item$addAccelerator("activate", accel_group, .gdkS, 
+                         "control-mask", "visible")
 }}
 \section{Structures}{\describe{\item{\code{GtkAccelLabel}}{
 The \code{\link{GtkAccelLabel}} struct contains private data only, and

@@ -5,6 +5,6 @@
 \usage{pangoFontGetFontMap(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoFont}}]  a \code{\link{PangoFont}}}}
 \details{  Since  1.10}
-\value{[\code{\link{PangoFontMap}}]  the \code{\link{PangoFontMap}} for the font}
+\value{[\code{\link{PangoFontMap}}]  the \code{\link{PangoFontMap}} for the font, or \code{NULL} if \code{font} is \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

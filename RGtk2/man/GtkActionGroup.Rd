@@ -29,7 +29,7 @@
 \code{\link{gtkActionGroupTranslateString}(object, string)}\cr
 \code{gtkActionGroup(name = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkActionGroup}}
 \section{Interfaces}{GtkActionGroup implements
  \code{\link{GtkBuildable}}.}
@@ -63,8 +63,7 @@ modifiers and allows to specify accelerators. This is similar to the
 <accelerator> element of GtkWidget, the main difference is that 
 it doesn't allow you to specify a signal.
   
-\emph{A   \code{GtkDialog}   UI definition fragment.}
-\preformatted{<object class="GtkActionGroup" id="actiongroup">
+ \emph{A   \code{GtkDialog}   UI definition fragment.}\preformatted{<object class="GtkActionGroup" id="actiongroup">
   <child>
       <object class="GtkAction" id="About">
           <property name="name">About</property>
@@ -143,7 +142,7 @@ members and should not be accessed directly.
 }}
 \section{Convenient Construction}{\code{gtkActionGroup} is the equivalent of \code{\link{gtkActionGroupNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (action.group, action, proxy, user.data)}}{
+\item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
 The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. Note that the proxy may have been connected 
 to a different action before.
@@ -151,8 +150,7 @@ to a different action before.
 This is intended for simple customizations for which a custom action
 class would be too clumsy, e.g. showing tooltips for menuitems in the
 statusbar.
-  
-\code{\link{GtkUIManager}} proxies the signal and provides global notification 
+  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
 just before any action is connected to a proxy, which is probably more
 convenient to use.  
 
@@ -167,11 +165,10 @@ convenient to use.
 
 
 }
-\item{\code{The (action.group, action, proxy, user.data)}}{
+\item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group. 
-  
-\code{\link{GtkUIManager}} proxies the signal and provides global notification 
+  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
 just before any action is connected to a proxy, which is probably more
 convenient to use.  
 
@@ -186,7 +183,7 @@ convenient to use.
 
 
 }
-\item{\code{The (action.group, action, user.data)}}{
+\item{\code{post-activate(action.group, action, user.data)}}{
 The post\_activate signal is emitted just after the \code{action} in the
 \code{action.group} is activated
   
@@ -203,7 +200,7 @@ notification just after any action is activated.
 
 
 }
-\item{\code{The (action.group, action, user.data)}}{
+\item{\code{pre-activate(action.group, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action} in the
 \code{action.group} is activated
   

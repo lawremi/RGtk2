@@ -11,7 +11,7 @@ If no cell currently has focus, then *\code{cell} will be \code{NULL}.}
   Since  2.8}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the cursor is set.}
+\item{retval}{[logical] \code{TRUE} if the cursor is set.}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  Return location for the current cursor path, or \code{NULL}}
 \item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  Return location the current focus cell, or \code{NULL}}
 }

@@ -12,7 +12,7 @@
 and of the default handler for the GtkWidget::query-tooltip signal.
   
 See also the GtkWidget:tooltip-markup property and
-\code{\link{gtkTooltipsetMarkup}}.  
+\code{\link{gtkTooltipSetMarkup}}.  
 
   Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

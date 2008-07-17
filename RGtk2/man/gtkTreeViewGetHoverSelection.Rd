@@ -5,6 +5,6 @@
 \usage{gtkTreeViewGetHoverSelection(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
 \details{  Since  2.6 }
-\value{[logical]  \code{TRUE} if \code{tree.view} is in hover selection mode}
+\value{[logical] \code{TRUE} if \code{tree.view} is in hover selection mode}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

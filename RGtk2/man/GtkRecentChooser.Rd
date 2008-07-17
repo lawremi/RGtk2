@@ -39,7 +39,7 @@
 \code{\link{gtkRecentChooserGetFilter}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkRecentChooser}}
 \section{Implementations}{GtkRecentChooser is implemented by
  \code{\link{GtkRecentChooserMenu}},  \code{\link{GtkRecentChooserDialog}},  \code{\link{GtkRecentChooserWidget}} and  \code{\link{GtkRecentAction}}.}
@@ -95,7 +95,7 @@ used resource list.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (chooser, user.data)}}{
+\item{\code{item-activated(chooser, user.data)}}{
 This signal is emitted when the user "activates" a recent item
 in the recent chooser.  This can happen by double-clicking on an item
 in the recently used resources list, or by pressing
@@ -110,7 +110,7 @@ in the recently used resources list, or by pressing
 
 
 }
-\item{\code{The (chooser, user.data)}}{
+\item{\code{selection-changed(chooser, user.data)}}{
 This signal is emitted when there is a change in the set of
 selected recently used resources.  This can happen when a user
 modifies the selection with the mouse or the keyboard, or when
@@ -123,6 +123,87 @@ explicitely calling functions to change the selection.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
+}
+}}
+\section{Properties}{\describe{
+\item{\code{filter} [\code{\link{GtkRecentFilter}} : Read / Write]}{
+
+The \code{\link{GtkRecentFilter}} object to be used when displaying
+the recently used resources.  
+
+  Since  2.10
+
+}
+\item{\code{limit} [integer : Read / Write]}{
+
+The maximum number of recently used resources to be displayed,
+or -1 to display all items. By default, the
+GtkSetting:gtk-recent-files-limit setting is respected: you can
+override that limit on a particular instance of \code{\link{GtkRecentChooser}}
+by setting this property.  
+
+  Allowed values: >= -1  Default value: -1  Since  2.10
+
+}
+\item{\code{local-only} [logical : Read / Write]}{
+
+Whether this \code{\link{GtkRecentChooser}} should display only local (file:)
+resources.  
+
+  Default value: TRUE  Since  2.10
+
+}
+\item{\code{recent-manager} [\code{\link{GtkRecentManager}} : Write / Construct Only]}{
+
+The \code{\link{GtkRecentManager}} instance used by the \code{\link{GtkRecentChooser}} to
+display the list of recently used resources.  
+
+  Since  2.10
+
+}
+\item{\code{select-multiple} [logical : Read / Write]}{
+
+Allow the user to select multiple resources.  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{show-icons} [logical : Read / Write]}{
+
+Whether this \code{\link{GtkRecentChooser}} should display an icon near the item.  
+
+  Default value: TRUE  Since  2.10
+
+}
+\item{\code{show-not-found} [logical : Read / Write]}{
+
+Whether this \code{\link{GtkRecentChooser}} should display the recently used resources
+even if not present anymore. Setting this to \code{FALSE} will perform a
+potentially expensive check on every local resource (every remote
+resource will always be displayed).  
+
+  Default value: TRUE  Since  2.10
+
+}
+\item{\code{show-private} [logical : Read / Write]}{
+
+Whether the private items should be displayed.  Default value: FALSE
+
+}
+\item{\code{show-tips} [logical : Read / Write]}{
+
+Whether this \code{\link{GtkRecentChooser}} should display a tooltip containing the
+full path of the recently used resources.  
+
+  Default value: FALSE  Since  2.10
+
+}
+\item{\code{sort-type} [\code{\link{GtkRecentSortType}} : Read / Write]}{
+
+Sorting order to be used when displaying the recently used resources.  
+
+  Default value: GTK\_RECENT\_SORT\_NONE  Since  2.10
 
 }
 }}

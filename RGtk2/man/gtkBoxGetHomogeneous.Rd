@@ -5,6 +5,6 @@
 same size). See \code{\link{gtkBoxSetHomogeneous}}.}
 \usage{gtkBoxGetHomogeneous(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkBox}}]  a \code{\link{GtkBox}}}}
-\value{[logical]  \code{TRUE} if the box is homogeneous.}
+\value{[logical] \code{TRUE} if the box is homogeneous.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

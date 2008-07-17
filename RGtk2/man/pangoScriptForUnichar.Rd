@@ -7,7 +7,10 @@ valid Unicode character; if you pass in invalid character, the
 result is undefined.}
 \usage{pangoScriptForUnichar(ch)}
 \arguments{\item{\code{ch}}{[numeric]  a Unicode character}}
-\details{  Since  1.4}
+\details{As of Pango 1.18, this function simply returns the return value of
+\code{gUnicharGetScript()}.  
+
+  Since  1.4}
 \value{[\code{\link{PangoScript}}]  the \code{\link{PangoScript}} for the character.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

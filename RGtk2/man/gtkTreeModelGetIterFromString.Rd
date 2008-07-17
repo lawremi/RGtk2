@@ -10,7 +10,7 @@ exists. Otherwise, \code{iter} is left invalid and \code{FALSE} is returned.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{iter} was set.}
+\item{retval}{[logical] \code{TRUE}, if \code{iter} was set.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An uninitialized \code{\link{GtkTreeIter}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

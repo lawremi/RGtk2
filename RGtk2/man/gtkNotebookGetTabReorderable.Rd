@@ -8,6 +8,6 @@
 \item{\code{child}}{[\code{\link{GtkWidget}}]  a child \code{\link{GtkWidget}}}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the tab is reorderable.}
+\value{[logical] \code{TRUE} if the tab is reorderable.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

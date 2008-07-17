@@ -5,6 +5,6 @@
 \usage{gtkRecentChooserMenuGetShowNumbers(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentChooserMenu}}]  a \code{\link{GtkRecentChooserMenu}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if numbers should be shown.}
+\value{[logical] \code{TRUE} if numbers should be shown.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -37,7 +37,7 @@
 \code{\link{atkRoleForName}(name)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkObject
          +----\link{AtkGObjectAccessible}
          +----\link{AtkNoOpObject}}}
@@ -62,7 +62,7 @@ The AtkObject structure should not be accessed directly.
 
 }
 \item{\code{AtkImplementor}}{
-The AtkImplementor structure does not contain any fields.
+The AtkImplementor interface is implemented by objects for which AtkObject peers may be obtained via calls to iface->(ref\_accessible)(implementor);
 
 }
 }}
@@ -134,26 +134,26 @@ ATK\_ROLE\_LAST\_DEFINED is not necessarily an error.
 \item{\code{table-column-header}}{ The header for a column of a table}
 \item{\code{table-row-header}}{ The header for a row of a table}
 \item{\code{tear-off-menu-item}}{ A menu item used to tear off and reattach its menu}
-\item{\code{terminal}}{ An object that represents an accessible terminal}
+\item{\code{terminal}}{ An object that represents an accessible terminal.  \code{Since}: ATK-0.6}
 \item{\code{text}}{ An object that presents text to the user}
 \item{\code{toggle-button}}{ A specialized push button that can be checked or unchecked, but does not provide a separate indicator for the current state}
 \item{\code{tool-bar}}{ A bar or palette usually composed of push buttons or toggle buttons}
 \item{\code{tool-tip}}{ An object that provides information about another object}
 \item{\code{tree}}{ An object used to represent hierarchical information to the user}
-\item{\code{tree-table}}{ An object capable of expanding and collapsing rows as well as showing multiple columns of data}
+\item{\code{tree-table}}{ An object capable of expanding and collapsing rows as well as showing multiple columns of data.   \code{Since}: ATK-0.7}
 \item{\code{unknown}}{ The object contains some Accessible information, but its role is not known}
 \item{\code{viewport}}{ An object usually used in a scroll pane}
 \item{\code{window}}{ A top level window with no title or border.}
-\item{\code{header}}{ An object that serves as a document header.}
-\item{\code{footer}}{ An object that serves as a document footer.}
-\item{\code{paragraph}}{ An object which is contains a paragraph of text content.}
-\item{\code{ruler}}{ An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER\_FOR relation to such).}
-\item{\code{application}}{ The object is an application object, which may contain \code{ATK.ROLE.FRAME} objects or other types of accessibles.  The root accessible of any application's ATK hierarchy should have ATK\_ROLE\_APPLICATION.}
-\item{\code{autocomplete}}{ The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.}
-\item{\code{editbar}}{ The object is an editable text object in a toolbar}
-\item{\code{embedded}}{ The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.}
-\item{\code{form}}{ The object is a component whose textual content may be entered or modified by the user, provided \code{ATK.STATE.EDITABLE} is present.}
-\item{\code{last-defined}}{ The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED\_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property.}
+\item{\code{header}}{ An object that serves as a document header. \code{Since}:ATK 1.1.1}
+\item{\code{footer}}{ An object that serves as a document footer.  \code{Since}: ATK-1.1.1}
+\item{\code{paragraph}}{ An object which is contains a paragraph of text content.   \code{Since}: ATK-1.1.1}
+\item{\code{ruler}}{ An object which describes margins and tab stops, etc. for text objects which it controls (should have CONTROLLER\_FOR relation to such).   \code{Since}: ATK-1.1.1}
+\item{\code{application}}{ The object is an application object, which may contain \code{ATK.ROLE.FRAME} objects or other types of accessibles.  The root accessible of any application's ATK hierarchy should have ATK\_ROLE\_APPLICATION.   \code{Since}: ATK-1.1.4}
+\item{\code{autocomplete}}{ The object is a dialog or list containing items for insertion into an entry widget, for instance a list of words for completion of a text entry.   \code{Since}: ATK-1.3}
+\item{\code{editbar}}{ The object is an editable text object in a toolbar.  \code{Since}: ATK-1.5}
+\item{\code{embedded}}{ The object is an embedded container within a document or panel.  This role is a grouping "hint" indicating that the contained objects share a context.  \code{Since}: ATK-1.7.2}
+\item{\code{form}}{ The object is a component whose textual content may be entered or modified by the user, provided \code{ATK.STATE.EDITABLE} is present.   \code{Since}: ATK-1.11}
+\item{\code{last-defined}}{ The object is a graphical depiction of quantitative data. It may contain multiple subelements whose attributes and/or description may be queried to obtain both the quantitative data and information about how the data is being presented. The LABELLED\_BY relation is particularly important in interpreting objects of this type, as is the accessible-description property.  \code{Since}: ATK-1.11}
 }
 
 }

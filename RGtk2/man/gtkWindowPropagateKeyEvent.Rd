@@ -12,6 +12,6 @@ overriding the standard key handling for a toplevel window.}
 \item{\code{object}}{[\code{\link{GtkWindow}}]   a \code{\link{GtkWindow}}}
 \item{\code{event}}{[\code{\link{GdkEventKey}}]    a \code{\link{GdkEventKey}}}
 }
-\value{[logical]  \code{TRUE} if a widget in the focus chain handled the event.}
+\value{[logical] \code{TRUE} if a widget in the focus chain handled the event.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

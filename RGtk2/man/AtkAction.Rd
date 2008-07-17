@@ -12,7 +12,7 @@ activate/interact with,}
 \code{\link{atkActionGetKeybinding}(object, i)}\cr
 \code{\link{atkActionSetDescription}(object, i, desc)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkAction}}
 \section{Implementations}{AtkAction is implemented by
  \code{\link{AtkHyperlink}} and  \code{\link{AtkNoOpObject}}.}

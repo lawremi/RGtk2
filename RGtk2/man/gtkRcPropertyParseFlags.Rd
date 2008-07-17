@@ -13,7 +13,7 @@ numerically. Multiple flags can be specified in the form
 \code{"( flag1 | flag2 | ... )"}.  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if \code{gstring} could be parsed and \code{property.value}
+\item{retval}{[logical] \code{TRUE} if \code{gstring} could be parsed and \code{property.value}
 has been set to the resulting flags value.}
 \item{\code{property.value}}{[R object]  a \code{R object} which must hold flags values.}
 }

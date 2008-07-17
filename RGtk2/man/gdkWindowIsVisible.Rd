@@ -5,6 +5,6 @@
 \code{\link{gdkWindowShowUnraised}}).}
 \usage{gdkWindowIsVisible(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
-\value{[logical]  \code{TRUE} if the window is mapped}
+\value{[logical] \code{TRUE} if the window is mapped}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

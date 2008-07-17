@@ -12,7 +12,7 @@ on disk. Warns on failure if \code{err} is \code{NULL}.}
 \details{  Since  2.2}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if setting the icon succeeded.}
+\item{retval}{[logical] \code{TRUE} if setting the icon succeeded.}
 \item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

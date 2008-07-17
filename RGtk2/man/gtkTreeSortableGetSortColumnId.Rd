@@ -9,7 +9,7 @@ order.  It returns \code{TRUE} unless the \code{sort.column.id} is
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeSortable}}]  A \code{\link{GtkTreeSortable}}}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the sort column is not one of the special sort
+\item{retval}{[logical] \code{TRUE} if the sort column is not one of the special sort
   column ids.}
 \item{\code{sort.column.id}}{[integer]  The sort column id to be filled in}
 \item{\code{order}}{[\code{\link{GtkSortType}}]  The \code{\link{GtkSortType}} to be filled in}

@@ -59,7 +59,7 @@
 \code{\link{gtkTreeViewColumnGetTreeView}(object)}\cr
 \code{gtkTreeViewColumn(title, cell, ...)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----GtkTreeViewColumn}}
@@ -108,7 +108,7 @@ calling \code{\link{gtkTreeViewColumnSetCellDataFunc}}
 
 
 }}}
-\section{Signals}{\describe{\item{\code{The (treeviewcolumn, user.data)}}{
+\section{Signals}{\describe{\item{\code{clicked(treeviewcolumn, user.data)}}{
 \emph{undocumented
 }
 

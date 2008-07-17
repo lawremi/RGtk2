@@ -7,23 +7,21 @@
 \code{\link{gtkHSeparatorNew}(show = TRUE)}\cr
 \code{gtkHSeparator(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkSeparator}
                            +----GtkHSeparator}}
 \section{Interfaces}{GtkHSeparator implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkHSeparator}} widget is a horizontal separator, used to group the
 widgets within a window. It displays a horizontal line with a shadow to
 make it appear sunken into the interface.
-  \strong{PLEASE NOTE:}   
-The \code{\link{GtkHSeparator}} widget is not used as a separator within menus.
+  \strong{PLEASE NOTE:} The \code{\link{GtkHSeparator}} widget is not used as a separator within menus.
 To create a separator in a menu create an empty \code{\link{GtkSeparatorMenuItem}} 
 widget using \code{\link{gtkSeparatorMenuItemNew}} and add it to the menu with 
-\code{\link{gtkMenuShellAppend}}.
-  }
+\code{\link{gtkMenuShellAppend}}.}
 \section{Structures}{\describe{\item{\code{GtkHSeparator}}{
 The \code{\link{GtkHSeparator}} struct contains private data only, and
 should be accessed using the functions below.

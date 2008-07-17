@@ -7,7 +7,7 @@
 \code{\link{atkNoOpObjectNew}(obj)}\cr
 \code{atkNoOpObject(obj)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{AtkObject}
          +----AtkNoOpObject}}
 \section{Interfaces}{AtkNoOpObject implements

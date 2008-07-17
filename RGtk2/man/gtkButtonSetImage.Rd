@@ -2,7 +2,7 @@
 \name{gtkButtonSetImage}
 \title{gtkButtonSetImage}
 \description{Set the image of \code{button} to the given widget. Note that
-it depends on the \code{:gtk-button-images} setting whether the
+it depends on the \code{"gtk-button-images"} setting whether the
 image will be displayed or not, you don't have to call
 \code{\link{gtkWidgetShow}} on \code{image} yourself.}
 \usage{gtkButtonSetImage(object, image)}

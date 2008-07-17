@@ -2,7 +2,8 @@
 \alias{CairoUserDataKey}
 \name{cairo-Types}
 \title{Types}
-\description{Generic data types used in the cairo API}
+\description{Generic data types}
+\section{Detailed Description}{Generic data types used in the cairo API}
 \section{Structures}{\describe{\item{\code{CairoUserDataKey}}{
 \code{\link{CairoUserDataKey}} is used for attaching user data to cairo
 data structures.  The actual contents of the struct is never used,

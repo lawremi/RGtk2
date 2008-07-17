@@ -8,7 +8,7 @@ To do this, you can use \code{\link{gtkTreeRowReferenceNew}}.}
 \usage{gtkIconViewGetSelectedItems(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}}
 \details{To free the return value, use:
-\preformatted{# You don't have to free anything with RGtk2, silly}  
+\preformatted{# You don't have to free anything with RGtk2...}  
 
   Since  2.6}
 \value{[list]  A \code{list} containing a \code{\link{GtkTreePath}} for each selected row.}

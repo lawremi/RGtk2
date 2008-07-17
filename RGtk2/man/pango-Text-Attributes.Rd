@@ -23,6 +23,7 @@
 \section{Methods and Functions}{
 \code{\link{pangoParseMarkup}(markup.text, accel.marker, .errwarn = TRUE)}\cr
 \code{\link{pangoAttrTypeRegister}(name)}\cr
+\code{\link{pangoAttributeInit}(attr, klass)}\cr
 \code{\link{pangoAttributeCopy}(object)}\cr
 \code{\link{pangoAttributeEqual}(object, attr2)}\cr
 \code{\link{pangoAttrLanguageNew}(language)}\cr
@@ -89,7 +90,8 @@ The \code{\link{PangoAttribute}} structure represents the common portions of all
 attributes. Particular types of attributes include this structure
 as their initial portion. The common portion of the attribute holds
 the range to which the value in the type-specific part of the attribute
-applies. 
+applies and should be initialized using \code{\link{pangoAttributeInit}}.
+By default an attribute will have an all-inclusive range of [0,\code{G_MAXUINT}].
 
 \describe{
 \item{\code{klass}}{[\code{\link{PangoAttrClass}}] the class structure holding information about the type of the attribute}
@@ -179,8 +181,7 @@ represent a color in an uncalibrated RGB color-space.
 \item{\code{PangoLanguage}}{
 The \code{\link{PangoLanguage}} structure is used to
 represent a language.
-  
-\code{\link{PangoLanguage}} pointers can be efficiently 
+  \code{\link{PangoLanguage}} pointers can be efficiently 
 copied and compared with each other.
 
 }

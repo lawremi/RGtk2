@@ -11,6 +11,6 @@ comparing the offsets yourself. Also, it's a bit faster than
 \item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
 \item{\code{rhs}}{[\code{\link{GtkTextIter}}]  another \code{\link{GtkTextIter}}}
 }
-\value{[logical]  \code{TRUE} if the iterators point to the same place in the buffer}
+\value{[logical] \code{TRUE} if the iterators point to the same place in the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,7 +8,7 @@
 \code{\link{gtkFileChooserDialogNewWithBackend}(title = NULL, parent = NULL, action, backend, ..., show = TRUE)}\cr
 \code{gtkFileChooserDialog(title = NULL, parent = NULL, action, ..., backend, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -18,8 +18,8 @@
                                        +----\link{GtkDialog}
                                              +----GtkFileChooserDialog}}
 \section{Interfaces}{GtkFileChooserDialog implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkFileChooser}}.}
-\section{Detailed Description}{      \code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkFileChooser}}.}
+\section{Detailed Description}{\code{\link{GtkFileChooserDialog}} is a dialog box suitable for use with
       "File/Open" or "File/Save as" commands.  This widget works by
       putting a \code{\link{GtkFileChooserWidget}} inside a \code{\link{GtkDialog}}.  It exposes
       the \code{GtkFileChooserIface} interface, so you can use all of the
@@ -29,7 +29,9 @@
       Note that \code{\link{GtkFileChooserDialog}} does not have any methods of its
       own.  Instead, you should use the functions that work on a
       \code{\link{GtkFileChooser}}.
-      \preformatted{
+      
+ \emph{Typical usage}
+\preformatted{
 ######
 # Request a file from the user and open it
 ######
@@ -37,18 +39,17 @@
 # This is how one creates a dialog with buttons and associated response codes.
 # (Please ignore the C "Response Code" example in the next section)
 dialog <- gtkFileChooserDialog("Open File", parent_window, "open",
-				      "gtk-cancel", GtkResponseType["cancel"], 
-              "gtk-open", GtkResponseType["accept"])
+                               "gtk-cancel", GtkResponseType["cancel"], 
+                               "gtk-open", GtkResponseType["accept"])
 
-if (dialog$run() == GtkResponseType["accept"])
-  {
-    filename <- dialog$getFileName()
-    f <- file(filename)
-  }
+if (dialog$run() == GtkResponseType["accept"]) {
+  filename <- dialog$getFilename()
+  f <- file(filename)
+}
 
 dialog$destroy()
 }}
-\section{Response Codes}{      \code{\link{GtkFileChooserDialog}} inherits from \code{\link{GtkDialog}}, so buttons that
+\section{Response Codes}{\code{\link{GtkFileChooserDialog}} inherits from \code{\link{GtkDialog}}, so buttons that
       go in its action area have response codes such as
       \code{GTK_RESPONSE_ACCEPT} and \code{GTK_RESPONSE_CANCEL}.  For example, you
       could call \code{\link{gtkFileChooserDialogNew}} as follows:
@@ -81,12 +82,10 @@ dialog = gtk_file_chooser_dialog_new ("Open File",
       dialog terminate -- the implementation uses these known
       response codes to know which responses can be blocked if
       appropriate.
-      \strong{PLEASE NOTE:}         
-	To summarize, make sure you use a stock response
+      \strong{PLEASE NOTE:} 	To summarize, make sure you use a stock response
 	code when you use \code{\link{GtkFileChooserDialog}} to ensure
 	proper operation.
-        
-    }
+      }
 \section{Structures}{\describe{\item{\code{GtkFileChooserDialog}}{
 \emph{undocumented
 }

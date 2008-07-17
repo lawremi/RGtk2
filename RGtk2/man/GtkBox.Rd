@@ -17,7 +17,7 @@
 \code{\link{gtkBoxSetChildPacking}(object, child, expand, fill, padding, pack.type)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -27,7 +27,7 @@
                                  +----\link{GtkVBox}
                                  +----\link{GtkHBox}}}
 \section{Interfaces}{GtkBox implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkBox is an abstract widget which encapsulates functionality for a
 particular kind of container, one that organizes a variable number of
 widgets into a rectangular area.  GtkBox currently has two derived
@@ -54,7 +54,7 @@ both ends of the same GtkBox.
   
 Use \code{\link{gtkBoxPackStartDefaults}} or \code{\link{gtkBoxPackEndDefaults}}
 to pack widgets into a GtkBox if you do not need to specify the
-\code{:expand}, \code{:fill}, or \code{:padding} child properties 
+\code{"expand"}, \code{"fill"}, or \code{"padding"} child properties 
 for the child to be added.
   
 Because GtkBox is a \code{\link{GtkContainer}}, you may also use
@@ -71,8 +71,8 @@ minimally placed between all children in the GtkBox.
 Use \code{\link{gtkBoxReorderChild}} to move a GtkBox child to a different
 place in the box.
   
-Use \code{\link{gtkBoxSetChildPacking}} to reset the \code{:expand}, 
-\code{:fill} and \code{:padding} child properties.
+Use \code{\link{gtkBoxSetChildPacking}} to reset the \code{"expand"}, 
+\code{"fill"} and \code{"padding"} child properties.
 Use \code{\link{gtkBoxQueryChildPacking}} to query these fields.}
 \section{Structures}{\describe{
 \item{\code{GtkBox}}{
@@ -95,8 +95,7 @@ how the child is to be packed into the GtkBox.  Use
 and reset the \code{padding},
 \code{expand}, \code{fill},
 and \code{pack} fields.
-  
-\code{\link{GtkBoxChild}} contains the following fields.  (These fields
+  \code{\link{GtkBoxChild}} contains the following fields.  (These fields
 should be considered read-only. They should never be directly set by an
 application.)
 

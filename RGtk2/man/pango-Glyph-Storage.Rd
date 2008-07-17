@@ -12,7 +12,7 @@
 \section{Methods and Functions}{
 \code{\link{pangoUnitsToDouble}(i)}\cr
 \code{\link{pangoUnitsFromDouble}(d)}\cr
-\code{\link{pangoExtentsToPixels}(ink.rect, logical.rect)}\cr
+\code{\link{pangoExtentsToPixels}(inclusive, nearest)}\cr
 \code{\link{pangoMatrixCopy}(object)}\cr
 \code{\link{pangoMatrixTranslate}(object, tx, ty)}\cr
 \code{\link{pangoMatrixScale}(object, scale.x, scale.y)}\cr
@@ -59,8 +59,7 @@ of text. (See, for instance, \code{\link{pangoFontGetGlyphExtents}})
 A structure specifying a transformation between user-space
 coordinates and device coordinates. The transformation
 is given by
-  
-\preformatted{x_device = x_user * matrix->xx + y_user * matrix->xy + matrix->x0;
+  \preformatted{x_device = x_user * matrix->xx + y_user * matrix->xy + matrix->x0;
 y_device = x_user * matrix->yx + y_user * matrix->yy + matrix->y0;
 }  
 

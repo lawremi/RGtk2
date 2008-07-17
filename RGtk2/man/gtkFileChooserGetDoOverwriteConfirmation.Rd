@@ -6,7 +6,7 @@ types a file name that already exists.}
 \usage{gtkFileChooserGetDoOverwriteConfirmation(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
 \details{  Since  2.8}
-\value{[logical]  \code{TRUE} if the file chooser will present a confirmation dialog;
+\value{[logical] \code{TRUE} if the file chooser will present a confirmation dialog;
 \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

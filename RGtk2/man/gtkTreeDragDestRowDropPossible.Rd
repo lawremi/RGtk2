@@ -12,6 +12,6 @@ parent of \code{dest.path} doesn't exist, though.}
 \item{\code{dest.path}}{[\code{\link{GtkTreePath}}]  destination row}
 \item{\code{selection.data}}{[\code{\link{GtkSelectionData}}]  the data being dragged}
 }
-\value{[logical]  \code{TRUE} if a drop is possible before \code{dest.path}}
+\value{[logical] \code{TRUE} if a drop is possible before \code{dest.path}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

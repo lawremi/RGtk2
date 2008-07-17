@@ -5,9 +5,8 @@
 displaying tooltips on \code{icon.view}'s rows.}
 \usage{gtkIconViewGetTooltipColumn(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}}
+\details{  Since  2.12}
 \value{[integer]  the index of the tooltip column that is currently being
-used, or -1 if this is disabled.
-
-Since 2.12}
+used, or -1 if this is disabled.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

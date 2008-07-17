@@ -32,7 +32,7 @@
 \code{\link{gtkEntryCompletionGetPopupSingleMatch}(object)}\cr
 \code{gtkEntryCompletion()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkEntryCompletion}}
 \section{Interfaces}{GtkEntryCompletion implements
  \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
@@ -85,7 +85,7 @@ to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_complet
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (widget, index, user.data)}}{
+\item{\code{action-activated(widget, index, user.data)}}{
 Gets emitted when an action is activated.  
 
   Since  2.4
@@ -98,7 +98,7 @@ Gets emitted when an action is activated.
 
 
 }
-\item{\code{The (widget, model, iter, user.data)}}{
+\item{\code{cursor-on-match(widget, model, iter, user.data)}}{
 Gets emitted when a match from the cursor is on a match
 of the list.The default behaviour is to replace the contents
 of the entry with the contents of the text column in the row 
@@ -113,10 +113,10 @@ pointed to by \code{iter}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
+\emph{Returns:} [logical] \code{TRUE} if the signal has been handled
 
 }
-\item{\code{The (widget, prefix, user.data)}}{
+\item{\code{insert-prefix(widget, prefix, user.data)}}{
 Gets emitted when the inline autocompletion is triggered. 
 The default behaviour is to make the entry display the 
 whole prefix and select the newly inserted part.
@@ -134,10 +134,10 @@ next '/'.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
+\emph{Returns:} [logical] \code{TRUE} if the signal has been handled
 
 }
-\item{\code{The (widget, model, iter, user.data)}}{
+\item{\code{match-selected(widget, model, iter, user.data)}}{
 Gets emitted when a match from the list is selected. 
 The default behaviour is to replace the contents of the 
 entry with the contents of the text column in the row 
@@ -152,7 +152,7 @@ pointed to by \code{iter}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the signal has been handled
+\emph{Returns:} [logical] \code{TRUE} if the signal has been handled
 
 }
 }}
@@ -214,7 +214,8 @@ completion.
 }
 \item{\code{text-column} [integer : Read / Write]}{
 
-The column of the model containing the strings.  
+The column of the model containing the strings.
+Note that the strings must be UTF-8.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
 

@@ -12,7 +12,7 @@ for an example.}
 \usage{gdkWindowSetComposited(object, composited)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{composited}}{[logical]  \code{TRUE} to set the window as composited}
+\item{\code{composited}}{[logical] \code{TRUE} to set the window as composited}
 }
 \details{It only makes sense for child windows to be composited; see
 \code{\link{gdkWindowSetOpacity}} if you need translucent toplevel

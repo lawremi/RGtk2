@@ -10,6 +10,6 @@ a font matching \code{desc}.}
 \item{\code{desc}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}} describing the font to load}
 \item{\code{language}}{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}} the fonts will be used for}
 }
-\value{[\code{\link{PangoFontset}}] the fontset, or \code{NULL} if no font matched.}
+\value{[\code{\link{PangoFontset}}]  the fontset, or \code{NULL} if no font matched.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

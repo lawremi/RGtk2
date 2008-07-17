@@ -3,7 +3,7 @@
 \title{gtkListSetSelectionMode}
 \description{
 Set the list selection mode. The selection mode can be any value in
-\code{:}
+\code{""}
 \describe{
 \item{\code{GTK_SELECTION_SINGLE}}{Zero or one element may be selected.}
 \item{\code{GTK_SELECTION_BROWSE}}{Exactly one element is always selected (this can be false after you have

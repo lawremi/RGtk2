@@ -12,7 +12,7 @@ to call to get the actual data when it is requested.}
 \item{\code{get.func}}{[\code{\link{GtkClipboardGetFunc}}]    function to call to get the actual clipboard data}
 \item{\code{user.data}}{[R object]   user data to pass to \code{get.func} and \code{clear.func}.}
 }
-\value{[logical]  \code{TRUE} if setting the clipboard data succeeded. If setting
+\value{[logical] \code{TRUE} if setting the clipboard data succeeded. If setting
               the clipboard data failed the provided callback functions
               will be ignored.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,6 +8,6 @@
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  path to a row}
 \item{\code{open.all}}{[logical]  whether to recursively expand, or just expand immediate children}
 }
-\value{[logical]  \code{TRUE} if the row existed and had children}
+\value{[logical] \code{TRUE} if the row existed and had children}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

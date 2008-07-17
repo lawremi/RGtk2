@@ -8,7 +8,7 @@ mode is changed to \code{GTK_TREE_VIEW_COLUMN_GROW_ONLY}.}
 \usage{gtkTreeViewColumnSetResizable(object, resizable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}}
-\item{\code{resizable}}{[logical]  \code{TRUE}, if the column can be resized}
+\item{\code{resizable}}{[logical] \code{TRUE}, if the column can be resized}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

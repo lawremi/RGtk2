@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateRgba}
 \name{cairoPatternCreateRgba}
 \title{cairoPatternCreateRgba}
-\description{Creates a new cairo\_pattern\_t corresponding to a translucent color.
+\description{Creates a new \code{\link{CairoPattern}} corresponding to a translucent color.
 The color components are floating point numbers in the range 0 to
 1.  If the values passed in are outside that range, they will be
 clamped.}

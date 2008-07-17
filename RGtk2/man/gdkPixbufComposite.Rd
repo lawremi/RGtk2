@@ -25,10 +25,6 @@ original destination image.}
 \details{When the destination rectangle contains parts not in the source 
 image, the data at the edges of the source image is replicated
 to infinity. 
-  
-
-  \emph{Compositing of pixbufs}
-  
-  }
+    }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

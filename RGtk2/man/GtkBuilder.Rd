@@ -20,7 +20,7 @@
 \code{\link{gtkBuilderValueFromStringType}(object, type, string, .errwarn = TRUE)}\cr
 \code{gtkBuilder()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkBuilder}}
 \section{Detailed Description}{A GtkBuilder is an auxiliary object that reads textual descriptions
 of a user interface and instantiates the described objects. To pass a 
@@ -56,8 +56,7 @@ by the DTD below. We refer to these descriptions as
 Do not confuse GtkBuilder UI Definitions with 
 GtkUIManager UI Definitions, 
 which are more limited in scope. 
-  
-\preformatted{<!ELEMENT interface object* >
+  \preformatted{<!ELEMENT interface object* >
 <!ELEMENT object    (property|signal|child|ANY)* >
 <!ELEMENT property  PCDATA >
 <!ELEMENT signal    EMPTY >
@@ -65,7 +64,7 @@ which are more limited in scope.
 
 <!ATTLIST interface  domain         	    #IMPLIED >
 <!ATTLIST object     id             	    #REQUIRED
-                     class          	    #IMPLIED
+                     class          	    #REQUIRED
                      type-func      	    #IMPLIED
                      constructor    	    #IMPLIED >
 <!ATTLIST property   name           	    #REQUIRED
@@ -80,8 +79,7 @@ which are more limited in scope.
                      last_modification_time #IMPLIED >
 <!ATTLIST child      type           	    #IMPLIED
                      internal-child 	    #IMPLIED >
-}
-  
+}  
 The toplevel element is <interface>.
 It optionally takes a "domain" attribute, which will make
 the builder look for translated strings using \code{dgettext()} in the
@@ -164,8 +162,7 @@ in a UI definition by specifying the "type" attribute on a <child>
 The possible values for the "type" attribute are described in 
 the sections describing the widget-specific portions of UI definitions.
   
-\emph{A GtkBuilder UI Definition}
-\preformatted{<interface>
+ \emph{A GtkBuilder UI Definition}\preformatted{<interface>
   <object class="GtkDialog" id="dialog1">
     <child internal-child="vbox">
       <object class="GtkVBox" id="vbox1">
@@ -186,8 +183,7 @@ the sections describing the widget-specific portions of UI definitions.
     </child>
   </object>
 </interface>
-}
-  
+}  
 Beyond this general structure, several object classes define
 their own XML DTD fragments for filling in the ANY placeholders
 in the DTD above. Note that a custom element in a <child>
@@ -256,7 +252,7 @@ connection process.
 \item{\code{signal.name}}{[character]  name of the signal}
 \item{\code{handler.name}}{[character]  name of the handler}
 \item{\code{connect.object}}{[\code{\link{GObject}}]  a \code{\link{GObject}}, if non-\code{NULL}, use \code{gSignalConnectObject()}}
-\item{\code{flags}}{[\code{\link{GConnectFlags}}]  \code{\link{GConnectFlags}} to use}
+\item{\code{flags}}{[\code{\link{GConnectFlags}}] \code{\link{GConnectFlags}} to use}
 \item{\code{user.data}}{[R object]  user data}
 }
 

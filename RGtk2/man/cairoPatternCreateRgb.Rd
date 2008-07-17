@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateRgb}
 \name{cairoPatternCreateRgb}
 \title{cairoPatternCreateRgb}
-\description{Creates a new cairo\_pattern\_t corresponding to an opaque color.  The
+\description{Creates a new \code{\link{CairoPattern}} corresponding to an opaque color.  The
 color components are floating point numbers in the range 0 to 1.
 If the values passed in are outside that range, they will be
 clamped.}

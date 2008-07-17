@@ -15,6 +15,6 @@ in the tag is '-'.}
   Each element must either be '*', or a RFC 3066 language range
   canonicalized as by \code{\link{pangoLanguageFromString}}}
 }
-\value{[logical]  \code{TRUE} if a match was found.}
+\value{[logical] \code{TRUE} if a match was found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

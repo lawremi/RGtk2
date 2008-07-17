@@ -1,7 +1,6 @@
-\alias{pango-PangoRenderer}
 \alias{PangoRenderer}
 \alias{PangoRenderPart}
-\name{pango-PangoRenderer}
+\name{PangoRenderer}
 \title{PangoRenderer}
 \description{Rendering driver base class}
 \section{Methods and Functions}{
@@ -19,8 +18,13 @@
 \code{\link{pangoRendererGetColor}(object, part)}\cr
 \code{\link{pangoRendererSetMatrix}(object, matrix)}\cr
 \code{\link{pangoRendererGetMatrix}(object)}\cr
+\code{\link{pangoRendererGetLayout}(renderer)}\cr
+\code{\link{pangoRendererGetLayoutLine}(renderer)}\cr
 
 }
+\section{Hierarchy}{\preformatted{\link{GObject}
+   +----PangoRenderer
+         +----PangoXftRenderer}}
 \section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
 rendering a \code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}}. By subclassing
 \code{\link{PangoRenderer}} and overriding operations such as \code{draw.glyphs} and
@@ -51,6 +55,6 @@ purposes as setting colors.
 }
 
 }}}
-\references{\url{http://developer.gnome.org/doc/API/2.0/pango/pango-PangoRenderer.html}}
+\references{\url{http://developer.gnome.org/doc/API/2.0/pango/PangoRenderer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

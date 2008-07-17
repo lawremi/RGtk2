@@ -10,8 +10,8 @@ are computed by dividing up each cluster into equal portions.}
 \item{\code{text}}{[char]       the text for the run}
 \item{\code{analysis}}{[\code{\link{PangoAnalysis}}]   the analysis information return from \code{\link{pangoItemize}}}
 \item{\code{index}}{[integer]     the byte index within \code{text}}
-\item{\code{trailing}}{[logical]   whether we should compute the result for the beginning
-            or end of the character.}
+\item{\code{trailing}}{[logical]   whether we should compute the result for the beginning (\code{FALSE})
+            or end (\code{TRUE}) of the character.}
 }
 \value{
 A list containing the following elements:

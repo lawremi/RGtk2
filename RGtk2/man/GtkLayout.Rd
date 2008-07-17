@@ -17,14 +17,14 @@
 \code{\link{gtkLayoutSetVadjustment}(object, adjustment = NULL)}\cr
 \code{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkLayout}}
 \section{Interfaces}{GtkLayout implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
 and doesn't do anything but paint a blank background by default. It's
 different in that it supports scrolling natively (you can add it to a
@@ -44,7 +44,7 @@ area.}
 
 }}}
 \section{Convenient Construction}{\code{gtkLayout} is the equivalent of \code{\link{gtkLayoutNew}}.}
-\section{Signals}{\describe{\item{\code{The (layout, arg1, arg2, user.data)}}{
+\section{Signals}{\describe{\item{\code{set-scroll-adjustments(layout, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 

@@ -10,7 +10,7 @@
 \code{\link{atkDocumentGetAttributes}(object)}\cr
 \code{\link{atkDocumentGetLocale}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkDocument}}
 \section{Implementations}{AtkDocument is implemented by
  \code{\link{AtkNoOpObject}}.}

@@ -17,7 +17,7 @@ keyboard group. The level is computed from the modifier mask.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if keys were found and returned}
+\item{retval}{[logical] \code{TRUE} if keys were found and returned}
 \item{\code{keys}}{[\code{\link{GdkKeymapKey}}]  return location for a list of \code{\link{GdkKeymapKey}}}
 \item{\code{n.keys}}{[integer]  return location for number of elements in returned list}
 }

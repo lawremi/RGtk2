@@ -10,8 +10,8 @@ containing the tooltip texts, or -1 to disable this feature.}
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
 \item{\code{column}}{[integer]  an integer, which is a valid column number for \code{tree.view}'s model}
 }
-\details{When enabled, \code{::has-tooltip} will be set to \code{TRUE} and
-\code{tree.view} will connect a \code{::query-tooltip} signal handler.  
+\details{When enabled, \code{"has-tooltip"} will be set to \code{TRUE} and
+\code{tree.view} will connect a \code{"query-tooltip"} signal handler.  
 
   Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

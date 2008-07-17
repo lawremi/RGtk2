@@ -10,7 +10,7 @@
 \code{\link{gtkRecentActionSetShowNumbers}(object, show.numbers)}\cr
 \code{gtkRecentAction(name, label, tooltip, stock.id)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GtkAction}
          +----GtkRecentAction}}
 \section{Interfaces}{GtkRecentAction implements

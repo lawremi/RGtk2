@@ -12,7 +12,7 @@ references to symbolic colors.}
 \details{  Since  2.12}
 \value{
 A list containing the following elements:
-\item{retval}{[numeric]  \code{G_TOKEN_NONE} if parsing succeeded, otherwise the token
+\item{retval}{[numeric] \code{G_TOKEN_NONE} if parsing succeeded, otherwise the token
     that was expected but not found}
 \item{\code{color}}{[\code{\link{GdkColor}}]  a pointer to a \code{GtkColor} structure in which to store the result}
 }

@@ -5,9 +5,8 @@
 displaying tooltips on \code{tree.view}'s rows.}
 \usage{gtkTreeViewGetTooltipColumn(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\details{  Since  2.12}
 \value{[integer]  the index of the tooltip column that is currently being
-used, or -1 if this is disabled.
-
-Since 2.12}
+used, or -1 if this is disabled.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

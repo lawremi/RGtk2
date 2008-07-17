@@ -12,7 +12,7 @@
 \code{\link{gtkOptionMenuGetHistory}(object)}\cr
 \code{gtkOptionMenu(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -21,7 +21,7 @@
                                  +----\link{GtkButton}
                                        +----GtkOptionMenu}}
 \section{Interfaces}{GtkOptionMenu implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A \code{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
 list of valid choices.  The \code{\link{GtkOptionMenu}} displays the selected 
 choice.  When activated the \code{\link{GtkOptionMenu}} displays a popup \code{\link{GtkMenu}} 
@@ -43,7 +43,7 @@ should be accessed using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkOptionMenu} is the equivalent of \code{\link{gtkOptionMenuNew}}.}
-\section{Signals}{\describe{\item{\code{The (optionmenu, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(optionmenu, user.data)}}{
 \emph{undocumented
 }
 

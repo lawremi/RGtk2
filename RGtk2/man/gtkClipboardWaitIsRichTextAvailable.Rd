@@ -16,6 +16,6 @@ timeouts, etc, may be dispatched during the wait.}
 the actual text.  
 
   Since  2.10}
-\value{[logical]  \code{TRUE} is there is rich text available, \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} is there is rich text available, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

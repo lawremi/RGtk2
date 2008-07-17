@@ -8,7 +8,7 @@ divided evenly between cells for which \code{expand} is \code{TRUE}.}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkCellLayout}}]  A \code{\link{GtkCellLayout}}.}
 \item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}.}
-\item{\code{expand}}{[logical]  \code{TRUE} if \code{cell} is to be given extra space allocated to \code{cell.layout}.}
+\item{\code{expand}}{[logical] \code{TRUE} if \code{cell} is to be given extra space allocated to \code{cell.layout}.}
 }
 \details{Note that reusing the same cell renderer is not supported.  
 

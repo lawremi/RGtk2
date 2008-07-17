@@ -7,7 +7,7 @@
 \code{\link{atkStreamableContentGetMimeType}(object, i)}\cr
 \code{\link{atkStreamableContentGetStream}(object, mime.type)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkStreamableContent}}
 \section{Detailed Description}{An interface whereby an object allows its backing content to be streamed to
 clients.  Typical implementors would be images or icons, HTML content, or

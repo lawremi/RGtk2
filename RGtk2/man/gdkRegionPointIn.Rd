@@ -8,6 +8,6 @@
 \item{\code{x}}{[integer]  the x coordinate of a point}
 \item{\code{y}}{[integer]  the y coordinate of a point}
 }
-\value{[logical]  \code{TRUE} if the point is in \code{region}.}
+\value{[logical] \code{TRUE} if the point is in \code{region}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

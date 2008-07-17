@@ -8,7 +8,7 @@
 \code{\link{gtkCellRendererTextSetFixedHeightFromFont}(object, number.of.rows)}\cr
 \code{gtkCellRendererText()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}
@@ -29,7 +29,7 @@ the \code{\link{GtkCellRendererText}} allows to edit its text using an entry.}
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererText} is the equivalent of \code{\link{gtkCellRendererTextNew}}.}
-\section{Signals}{\describe{\item{\code{The (renderer, path, new.text, user.data)}}{
+\section{Signals}{\describe{\item{\code{edited(renderer, path, new.text, user.data)}}{
 This signal is emitted after \code{renderer} has been edited.
   
 It is the responsibility of the application to update the model

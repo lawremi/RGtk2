@@ -9,7 +9,7 @@ objects of a specific GType.}
 \code{\link{atkObjectFactoryInvalidate}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkObjectFactory
          +----\link{AtkNoOpObjectFactory}}}
 \section{Detailed Description}{This class is the base object class for a factory used to create an 

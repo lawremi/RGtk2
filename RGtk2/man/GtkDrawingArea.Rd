@@ -8,14 +8,14 @@
 \code{\link{gtkDrawingAreaSize}(object, width, height)}\cr
 \code{gtkDrawingArea(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkDrawingArea
                            +----\link{GtkCurve}}}
 \section{Interfaces}{GtkDrawingArea implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkDrawingArea}} widget is used for creating custom user interface
 elements. It's essentially a blank widget; you can draw on
 \code{widget->window}. After creating a drawing area,
@@ -44,18 +44,21 @@ color.
 Note that GDK automatically clears the exposed area
 to the background color before sending the expose event, and 
 that drawing is implicitly clipped to the exposed area.
-  \preformatted{
+  
+ \emph{Simple   \code{GtkDrawingArea}   usage.}
+\preformatted{
 expose_event_callback <- function(widget, event, data) {
-  gdkDrawArc(widget[["window"]], widget[["style"]][["fgGc"]][[widget[["state"]]+1]],
-                TRUE, 0, 0, widget[["allocation"]]$width, widget[["allocation"]]$height,
-                0, 64 * 360)
+  gdkDrawArc(widget[["window"]],
+             widget[["style"]][["fgGc"]][[widget[["state"]]+1]],
+             TRUE, 0, 0, widget[["allocation"]]$width,
+             widget[["allocation"]]$height, 0, 64 * 360)
   return(TRUE)
 }
 [...]
   
-  drawing_area = gtkDrawingArea();
-  drawing_area$setSizeRequest(100, 100)
-  gSignalConnect(drawing_area, "expose_event", expose_event_callback)
+drawing_area = gtkDrawingArea()
+drawing_area$setSizeRequest(100, 100)
+gSignalConnect(drawing_area, "expose_event", expose_event_callback)
 }  
 Expose events are normally delivered when a drawing area first comes
 onscreen, or when it's covered by another window and then uncovered

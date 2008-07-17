@@ -10,7 +10,7 @@ value has already allocated been allocated.
 \arguments{\item{\code{object}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}.}}
 \value{
 A list containing the following elements:
-\item{retval}{[integer]  \code{TRUE} if the allocation succeeded.}
+\item{retval}{[integer] \code{TRUE} if the allocation succeeded.}
 \item{\code{color}}{[\code{\link{GdkColor}}]  the location to store the color.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

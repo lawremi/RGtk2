@@ -7,7 +7,7 @@ If \code{canceled} is \code{TRUE}, the cell renderer will emit the
 \usage{gtkCellRendererStopEditing(object, canceled)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}}
-\item{\code{canceled}}{[logical]  \code{TRUE} if the editing has been canceled}
+\item{\code{canceled}}{[logical] \code{TRUE} if the editing has been canceled}
 }
 \details{This function should be called by cell renderer implementations 
 in response to the \code{\link{gtkCellEditableEditingDone}} signal of 

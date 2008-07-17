@@ -23,7 +23,7 @@
 \code{\link{gdkPangoLayoutLineGetClipRegion}(line, x.origin, index.ranges)}\cr
 \code{gdkPangoRenderer(screen)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{PangoRenderer}
          +----GdkPangoRenderer}}
 \section{Detailed Description}{Pango is the text layout system used by GDK and GTK+. The functions
@@ -47,7 +47,9 @@ you can also draw pieces of the layout with \code{\link{gdkDrawLayout}} or
 that is used internally to implement these functions. Using it
 directly or subclassing it can be useful in some cases. See the
 \code{\link{GdkPangoRenderer}} documentation for details.
-  \preformatted{
+  
+ \emph{Using   \code{\link{GdkPangoRenderer}}   to draw transformed text}
+\preformatted{
 window <- NULL
 
 RADIUS <- 150
@@ -57,26 +59,26 @@ FONT <- "Sans Bold 27"
 rotated.text.expose.event <- function(widget, event, data)
 {
 
-    # matrix describing font transformation, initialize to identity
+  ## matrix describing font transformation, initialize to identity
   matrix <- pangoMatrixInit()
-
+  
   width <- widget[["allocation"]][["width"]]
   height <- widget[["allocation"]][["height"]]
 
-  # Get the default renderer for the screen, and set it up for drawing
+  ## Get the default renderer for the screen, and set it up for drawing
   renderer <- gdkPangoRendererGetDefault(widget$getScreen())
   renderer$setDrawable(widget[["window"]])
   renderer$setGc(widget[["style"]][["blackGc"]])
 
-  # Set up a transformation matrix so that the user space coordinates for
-  # the centered square where we draw are [-RADIUS, RADIUS], [-RADIUS, RADIUS]
-  # We first center, then change the scale
+  ## Set up a transformation matrix so that the user space coordinates for
+  ## the centered square where we draw are [-RADIUS, RADIUS], [-RADIUS, RADIUS]
+  ## We first center, then change the scale
   device.radius <- min(width, height) / 2.
   matrix$translate(device.radius + (width - 2 * device.radius) / 2,
-              device.radius + (height - 2 * device.radius) / 2)
+                   device.radius + (height - 2 * device.radius) / 2)
   matrix$scale(device.radius / RADIUS, device.radius / RADIUS)
 
-  # Create a PangoLayout, set the font and text
+  ## Create a PangoLayout, set the font and text
   context <- widget$createPangoContext()
   layout <- pangoLayoutNew(context)
   layout$setText("Text")
@@ -84,31 +86,30 @@ rotated.text.expose.event <- function(widget, event, data)
   layout$setFontDescription(desc)
 
   # Draw the layout N.WORDS times in a circle
-  for (i in 1:N.WORDS)
-    {
-      rotated.matrix <- matrix$copy()
-      angle <- (360 * i) / N.WORDS
-
-      color <- list()
-      # Gradient from red at angle 60 to blue at angle 300
-      color$red <- 65535 * (1 + cos((angle - 60) * pi / 180)) / 2
-      color$green <- 0
-      color$blue <- 65535 - color$red
-
-      renderer$setOverrideColor("foreground", color)
-
-      rotated.matrix$rotate(angle)
-
-      context$setMatrix(rotated.matrix)
-
-      # Inform Pango to re-layout the text with the new transformation matrix
-      layout$contextChanged()
-
-      size <- layout$getSize()
-      renderer$drawLayout(layout, - size$width / 2, - RADIUS * 1024)
-    }
-
-  # Clean up default renderer, since it is shared
+  for (i in 1:N.WORDS) {
+    rotated.matrix <- matrix$copy()
+    angle <- (360 * i) / N.WORDS
+    
+    color <- list()
+    ## Gradient from red at angle 60 to blue at angle 300
+    color$red <- 65535 * (1 + cos((angle - 60) * pi / 180)) / 2
+    color$green <- 0
+    color$blue <- 65535 - color$red
+    
+    renderer$setOverrideColor("foreground", color)
+    
+    rotated.matrix$rotate(angle)
+    
+    context$setMatrix(rotated.matrix)
+    
+    ## Inform Pango to re-layout the text with the new transformation matrix
+    layout$contextChanged()
+    
+    size <- layout$getSize()
+    renderer$drawLayout(layout, - size$width / 2, - RADIUS * 1024)
+  }
+  
+  ## Clean up default renderer, since it is shared
   renderer$setOverrideColor("foreground", NULL)
   renderer$setDrawable(NULL)
   renderer$setGc(NULL)
@@ -132,9 +133,7 @@ gSignalConnect(drawing.area, "expose-event", rotated.text.expose.event)
 window$setDefaultSize(2 * RADIUS, 2 * RADIUS)
 
 window$showAll()
-}  
-  \emph{Output of   }
-  }
+}  }
 \section{Structures}{\describe{
 \item{\code{GdkPangoRenderer}}{
 \code{\link{GdkPangoRenderer}} is a subclass of \code{\link{PangoRenderer}} used for rendering

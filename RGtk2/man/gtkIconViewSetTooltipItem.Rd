@@ -2,7 +2,7 @@
 \name{gtkIconViewSetTooltipItem}
 \title{gtkIconViewSetTooltipItem}
 \description{Sets the tip area of \code{tooltip} to be the area covered by the item at \code{path}.
-See also \code{\link{gtkTooltipsetTipArea}}.}
+See also \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkIconViewSetTooltipItem(object, tooltip, path)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}

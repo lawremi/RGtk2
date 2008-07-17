@@ -5,7 +5,7 @@
 to use in laying out a single \code{\link{PangoItem}}.}
 \usage{pangoGravityGetForScript(script, base.gravity, hint)}
 \arguments{
-\item{\code{script}}{[\code{\link{PangoScript}}]  \code{\link{PangoScript}} to query}
+\item{\code{script}}{[\code{\link{PangoScript}}] \code{\link{PangoScript}} to query}
 \item{\code{base.gravity}}{[\code{\link{PangoGravity}}]  base gravity of the paragraph}
 \item{\code{hint}}{[\code{\link{PangoGravityHint}}]  orientation hint}
 }

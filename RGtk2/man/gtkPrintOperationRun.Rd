@@ -12,17 +12,16 @@ print settings in the print dialog, and then print the document.}
 }
 \details{Normally that this function does not return until the rendering of all 
 pages is complete. You can connect to the 
-\code{::status-changed} signal on \code{op} to obtain some 
+\code{"status-changed"} signal on \code{op} to obtain some 
 information about the progress of the print operation. 
 Furthermore, it may use a recursive mainloop to show the print dialog.
   
 If you call \code{\link{gtkPrintOperationSetAllowAsync}} or set the allow-async
 property the operation will run asyncronously if this is supported on the
-platform. The \code{::done} signal will be emitted with the 
+platform. The \code{"done"} signal will be emitted with the 
 operation results when the operation is done (i.e. when the dialog is 
 canceled, or when the print succeeds or fails).
-  
-\preformatted{
+  \preformatted{
 if (!is.null(settings))
   op$setPrintSettings(settings)
   
@@ -35,14 +34,13 @@ gSignalConnect(op, "draw-page", draw_page)
 res <- op$run("print-dialog", parent)
  
 if (res[[1]] == "error") {
-   error_dialog = gtkMessageDialog(parent, "destroy-with-parent", "error",
+  error_dialog = gtkMessageDialog(parent, "destroy-with-parent", "error",
     "close", "Error printing file: ", res$error$message)
-   gSignalConnect(error_dialog, "response", gtkWidgetDestroy)
-   error_dialog$show()
+  gSignalConnect(error_dialog, "response", gtkWidgetDestroy)
+  error_dialog$show()
 } else if (res[[1]] == "apply")
-   settings = op$getPrintSettings()
-}
-  
+  settings = op$getPrintSettings()
+}  
 Note that \code{\link{gtkPrintOperationRun}} can only be called once on a
 given \code{\link{GtkPrintOperation}}.  
 

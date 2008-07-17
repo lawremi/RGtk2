@@ -23,10 +23,9 @@ label, then you need to use \code{\link{gtkMessageDialogSetMarkup}}
 instead, since you can't pass the markup string either
 as the format (it might contain '\%' characters) or as a string
 argument.
-  
-\preformatted{
-dialog <- gtkMessageDialog(main_application_window, 
-  "destroy-with-parent", "error", "close")
+  \preformatted{
+dialog <- gtkMessageDialog(main_application_window,  "destroy-with-parent",
+                           "error", "close")
 dialog$setMarkup(message)
 }  
 

@@ -5,7 +5,7 @@
 \usage{gtkWindowGetFocusOnMap(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
 \details{  Since  2.6}
-\value{[logical]  \code{TRUE} if window should receive the input focus when
+\value{[logical] \code{TRUE} if window should receive the input focus when
 mapped.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,7 +7,7 @@
 \details{  Since  1.4}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{CairoStatus}}]  \code{CAIRO_STATUS_SUCCESS}, or
+\item{retval}{[\code{\link{CairoStatus}}] \code{CAIRO_STATUS_SUCCESS}, or
 \code{CAIRO_STATUS_PATTERN_TYPE_MISMATCH} if the pattern is not a solid
 color pattern.}
 \item{\code{red}}{[numeric]  return value for red component of color, or \code{NULL}}

@@ -43,7 +43,7 @@
 \code{\link{gtkShowAboutDialog}(parent, ...)}\cr
 \code{gtkAboutDialog(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -53,7 +53,7 @@
                                        +----\link{GtkDialog}
                                              +----GtkAboutDialog}}
 \section{Interfaces}{GtkAboutDialog implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkAboutDialog}} offers a simple way to display information about
 a program like its logo, name, copyright, website and license. It is
 also possible to give credits to the authors, documenters, translators
@@ -80,11 +80,12 @@ application, but in order to ensure proper translation of the title,
 applications should set the title property explicitly when constructing 
 a \code{\link{GtkAboutDialog}}, as shown in the following example:
   \preformatted{
-gtkShowAboutDialog(NULL, 
-                   "name" = "ExampleCode",
-                   "logo" = example_logo,
+gtkShowAboutDialog(NULL, "name" = "ExampleCode", "logo" = example_logo,
                    "title" = "About ExampleCode")
-}}
+}  
+Note that prior to GTK+ 2.12, the \code{"program-name"} property
+was called "name". This was changed to avoid the conflict with the
+\code{"name"} property.}
 \section{Structures}{\describe{\item{\code{GtkAboutDialog}}{
 The \code{GtkAboutDialog} struct contains
 only private fields and should not be directly accessed.
@@ -178,7 +179,10 @@ overrides the logo property.
 }
 \item{\code{program-name} [character : Read / Write]}{
 
-The name of the program. If this is not set, it defaults to g\_get\_application\_name().  Default value: NULL
+The name of the program. 
+If this is not set, it defaults to \code{gGetApplicationName()}.  
+
+  Default value: NULL  Since  2.12
 
 }
 \item{\code{translator-credits} [character : Read / Write]}{

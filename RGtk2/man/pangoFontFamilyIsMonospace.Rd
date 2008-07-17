@@ -16,6 +16,6 @@ of \code{\link{pangoFontMetricsGetApproximateCharWidth}} may be affected
 by double-width characters.  
 
   Since  1.4}
-\value{[logical]  \code{TRUE} if the family is monospace.}
+\value{[logical] \code{TRUE} if the family is monospace.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

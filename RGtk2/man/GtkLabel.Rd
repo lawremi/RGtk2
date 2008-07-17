@@ -49,7 +49,7 @@
 \code{\link{gtkLabelSetAngle}(object, angle)}\cr
 \code{gtkLabel(str = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -58,7 +58,7 @@
                                  +----\link{GtkAccelLabel}
                                  +----\link{GtkTipsQuery}}}
 \section{Interfaces}{GtkLabel implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkLabel}} widget displays a small amount of text. As the name
 implies, most labels are used to label another widget such as a
 \code{\link{GtkButton}}, a \code{\link{GtkMenuItem}}, or a \code{\link{GtkOptionMenu}}.}
@@ -95,7 +95,7 @@ To create a mnemonic for a widget alongside the label, such as a
 \code{\link{gtkLabelSetMnemonicWidget}}:
 \preformatted{
 # Pressing Alt+H will focus the entry
-entry <- gtkEntry();
+entry <- gtkEntry()
 label <- gtkLabelNewWithMnemonic("_Hello")
 label$setMnemonicWidget(entry)
 }}
@@ -134,8 +134,7 @@ understood by Pango.
   
 Labels can automatically wrap text if you call
 \code{\link{gtkLabelSetLineWrap}}.
-  
-\code{\link{gtkLabelSetJustify}} sets how the lines in a label align 
+  \code{\link{gtkLabelSetJustify}} sets how the lines in a label align 
 with one another. If you want to set how the label as a whole 
 aligns in its available space, see \code{\link{gtkMiscSetAlignment}}.}
 \section{Structures}{\describe{\item{\code{GtkLabel}}{
@@ -145,7 +144,7 @@ described below.
 }}}
 \section{Convenient Construction}{\code{gtkLabel} is the result of collapsing the constructors of \code{GtkLabel} (\code{\link{gtkLabelNew}}, \code{\link{gtkLabelNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (label, user.data)}}{
+\item{\code{copy-clipboard(label, user.data)}}{
 \emph{undocumented
 }
 
@@ -156,7 +155,7 @@ described below.
 
 
 }
-\item{\code{The (label, arg1, arg2, arg3, user.data)}}{
+\item{\code{move-cursor(label, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
@@ -170,7 +169,7 @@ described below.
 
 
 }
-\item{\code{The (label, arg1, user.data)}}{
+\item{\code{populate-popup(label, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -214,7 +213,7 @@ Note that setting this property to a value other than
 \code{PANGO_ELLIPSIZE_NONE} has the side-effect that the label requests 
 only enough space to display the ellipsis "...". In particular, this 
 means that ellipsizing labels do not work well in notebook tabs, unless 
-the tab's \code{:tab-expand} property is set to \code{TRUE}. Other ways
+the tab's \code{"tab-expand"} property is set to \code{TRUE}. Other ways
 to set a label's width are \code{\link{gtkWidgetSetSizeRequest}} and
 \code{\link{gtkLabelSetWidthChars}}.  
 
@@ -236,7 +235,7 @@ The text of the label.  Default value: NULL
 The desired maximum width of the label, in characters. If this property 
 is set to -1, the width will be calculated automatically, otherwise the 
 label will request space for no more than the requested number of 
-characters. If the \code{:width-chars} property is set to a positive 
+characters. If the \code{"width-chars"} property is set to a positive 
 value, then the "max-width-chars" property is ignored.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
@@ -294,7 +293,7 @@ The desired width of the label, in characters. If this property is set to
 -1, the width will be calculated automatically, otherwise the label will
 request either 3 characters or the property value, whichever is greater.
 If the "width-chars" property is set to a positive value, then the 
-\code{:max-width-chars} property is ignored.  
+\code{"max-width-chars"} property is ignored.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6
 
@@ -306,7 +305,7 @@ If set, wrap lines if the text becomes too wide.  Default value: FALSE
 }
 \item{\code{wrap-mode} [\code{\link{PangoWrapMode}} : Read / Write]}{
 
-If line wrapping is on (see the \code{:wrap} property) this controls 
+If line wrapping is on (see the \code{"wrap"} property) this controls 
 how the line wrapping is done. The default is \code{PANGO_WRAP_WORD}, which 
 means wrap on word boundaries.  
 

@@ -14,7 +14,7 @@
 \code{\link{atkRelationSetAddRelationByType}(object, relationship, target)}\cr
 \code{atkRelationSet()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkRelationSet}}
 \section{Detailed Description}{The AtkRelationSet held by an object establishes its relationships with
 objects beyond the normal "parent/child" hierarchical relationships that all

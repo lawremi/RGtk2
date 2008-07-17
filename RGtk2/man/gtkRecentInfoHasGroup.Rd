@@ -9,6 +9,6 @@ recently used item \code{info}.}
 \item{\code{group.name}}{[character]  name of a group}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the group was found.}
+\value{[logical] \code{TRUE} if the group was found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -32,7 +32,6 @@
 \code{\link{gtkPrintOperationGetStatus}(object)}\cr
 \code{\link{gtkPrintOperationGetStatusString}(object)}\cr
 \code{\link{gtkPrintOperationIsFinished}(object)}\cr
-\code{\link{gtkPrintOperationGetError}(object, .errwarn = TRUE)}\cr
 \code{\link{gtkPrintRunPageSetupDialog}(parent, page.setup = NULL, settings)}\cr
 \code{\link{gtkPrintRunPageSetupDialogAsync}(parent, page.setup, settings, done.cb, data)}\cr
 \code{\link{gtkPrintOperationPreviewEndPreview}(object)}\cr
@@ -41,9 +40,9 @@
 \code{gtkPrintOperation()}
 }
 \section{Hierarchy}{\preformatted{
-  \link{GObject}
+\link{GObject}
    +----GtkPrintOperation
-  GInterface
+GInterface
    +----GtkPrintOperationPreview
 }}
 \section{Implementations}{GtkPrintOperationPreview is implemented by
@@ -68,7 +67,9 @@ It will then show a dialog, let the user select a printer and options.
 When the user finished the dialog various signals will be emitted on the 
 \code{\link{GtkPrintOperation}}, the main one being ::draw-page, which you are supposed 
 to catch and render the page on the provided \code{\link{GtkPrintContext}} using Cairo.
-  \preformatted{
+  
+ \emph{The high-level printing API}
+\preformatted{
 settings <- NULL
 print_something <-
 {
@@ -188,7 +189,7 @@ also serves as destroy notify for \code{data}.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (operation, context, user.data)}}{
+\item{\code{begin-print(operation, context, user.data)}}{
 Emitted after the user has finished changing print settings
 in the dialog, before the actual rendering starts. 
   
@@ -206,7 +207,7 @@ set the number of pages with \code{\link{gtkPrintOperationSetNPages}}.
 
 
 }
-\item{\code{The (operation, user.data)}}{
+\item{\code{create-custom-widget(operation, user.data)}}{
 Emitted when displaying the print dialog. If you return a
 widget in a handler for this signal it will be added to a custom
 tab in the print dialog. You typically return a container widget
@@ -214,7 +215,7 @@ with multiple widgets in it.
   
 The print dialog owns the returned widget, and its lifetime
 isn't controlled by the app. However, the widget is guaranteed
-to stay around until the \code{::custom-widget-apply} 
+to stay around until the \code{"custom-widget-apply"} 
 signal is emitted on the operation. Then you can read out any 
 information you need from the widgets.  
 
@@ -229,8 +230,8 @@ information you need from the widgets.
          or \code{NULL}
 
 }
-\item{\code{The (operation, widget, user.data)}}{
-Emitted right before \code{::begin-print} if you added
+\item{\code{custom-widget-apply(operation, widget, user.data)}}{
+Emitted right before \code{"begin-print"} if you added
 a custom widget in the \code{\link{gtkPrintOperation}};create-custom-widget handler. 
 When you get this signal you should read the information from the 
 custom widgets, as the widgets are not guaraneed to be around at a 
@@ -246,7 +247,7 @@ later time.
 
 
 }
-\item{\code{The (operation, result, user.data)}}{
+\item{\code{done(operation, result, user.data)}}{
 Emitted when the print operation run has finished doing
 everything required for printing. \code{result} gives you information
 about what happened during the run. If \code{result} is
@@ -255,7 +256,7 @@ about what happened during the run. If \code{result} is
   
 If you enabled print status tracking then 
 \code{\link{gtkPrintOperationIsFinished}} may still return \code{FALSE} 
-after \code{::done} was emitted.  
+after \code{"done"} was emitted.  
 
   Since  2.10
 
@@ -267,12 +268,11 @@ after \code{::done} was emitted.
 
 
 }
-\item{\code{The (operation, context, page.nr, user.data)}}{
+\item{\code{draw-page(operation, context, page.nr, user.data)}}{
 Emitted for every page that is printed. The signal handler
 must render the \code{page.nr}'s page onto the cairo context obtained
 from \code{context} using \code{\link{gtkPrintContextGetCairoContext}}.
-  
-\preformatted{
+  \preformatted{
 draw_page <- (operation, context, page_nr, user_data)
 {
   cr <- context$getCairoContext()
@@ -298,8 +298,7 @@ draw_page <- (operation, context, page_nr, user_data)
   cr$moveTo(width / 2,  (HEADER_HEIGHT - text_height) / 2)
   pangoCairoShowLayout(cr, layout)
 }
-}
-  
+}  
 Use \code{\link{gtkPrintOperationSetUseFullPage}} and 
 \code{\link{gtkPrintOperationSetUnit}} before starting the print operation
 to set up the transformation of the cairo context according to your
@@ -316,10 +315,10 @@ needs.
 
 
 }
-\item{\code{The (operation, context, user.data)}}{
+\item{\code{end-print(operation, context, user.data)}}{
 Emitted after all pages have been rendered. 
 A handler for this signal can clean up any resources that have
-been allocated in the \code{::begin-print} handler.  
+been allocated in the \code{"begin-print"} handler.  
 
   Since  2.10
 
@@ -331,8 +330,8 @@ been allocated in the \code{::begin-print} handler.
 
 
 }
-\item{\code{The (operation, context, user.data)}}{
-Emitted after the \code{::begin-print} signal, but before 
+\item{\code{paginate(operation, context, user.data)}}{
+Emitted after the \code{"begin-print"} signal, but before 
 the actual rendering starts. It keeps getting emitted until it 
 returns \code{FALSE}. 
   
@@ -354,10 +353,10 @@ from there.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if pagination is complete
+\emph{Returns:} [logical] \code{TRUE} if pagination is complete
 
 }
-\item{\code{The (operation, preview, context, parent, user.data)}}{
+\item{\code{preview(operation, preview, context, parent, user.data)}}{
 Gets emitted when a preview is requested from the native dialog.
   
 The default handler for this signal uses an external viewer 
@@ -385,10 +384,10 @@ finished by calling \code{\link{gtkPrintOperationPreviewEndPreview}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the listener wants to take over control of the preview
+\emph{Returns:} [logical] \code{TRUE} if the listener wants to take over control of the preview
 
 }
-\item{\code{The (operation, context, page.nr, setup, user.data)}}{
+\item{\code{request-page-setup(operation, context, page.nr, setup, user.data)}}{
 Emitted once for every page that is printed, to give
 the application a chance to modify the page setup. Any changes 
 done to \code{setup} will be in force only for printing this page.  
@@ -405,7 +404,7 @@ done to \code{setup} will be in force only for printing this page.
 
 
 }
-\item{\code{The (operation, user.data)}}{
+\item{\code{status-changed(operation, user.data)}}{
 Emitted at between the various phases of the print operation.
 See \code{\link{GtkPrintStatus}} for the phases that are being discriminated.
 Use \code{\link{gtkPrintOperationGetStatus}} to find out the current
@@ -466,7 +465,7 @@ The \code{\link{GtkPageSetup}} used by default.
   
 This page setup will be used by \code{\link{gtkPrintOperationRun}},
 but it can be overridden on a per-page basis by connecting
-to the \code{::request-page-setup} signal.  
+to the \code{"request-page-setup"} signal.  
 
   Since  2.10
 
@@ -504,11 +503,11 @@ The number of pages in the document.
   
 This \emph{must} be set to a positive number
 before the rendering starts. It may be set in a 
-\code{::begin-print} signal hander.
+\code{"begin-print"} signal hander.
   
 Note that the page numbers passed to the 
-\code{::request-page-setup} and 
-\code{::draw-page} signals are 0-based, i.e. if 
+\code{"request-page-setup"} and 
+\code{"draw-page"} signals are 0-based, i.e. if 
 the user chooses to print all pages, the last ::draw-page signal 
 will be for page \code{n.pages} - 1.  
 

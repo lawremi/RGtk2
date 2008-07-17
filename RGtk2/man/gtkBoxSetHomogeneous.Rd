@@ -1,7 +1,7 @@
 \alias{gtkBoxSetHomogeneous}
 \name{gtkBoxSetHomogeneous}
 \title{gtkBoxSetHomogeneous}
-\description{Sets the \code{:homogeneous} property of \code{box}, controlling 
+\description{Sets the \code{"homogeneous"} property of \code{box}, controlling 
 whether or not all children of \code{box} are given equal space 
 in the box.}
 \usage{gtkBoxSetHomogeneous(object, homogeneous)}

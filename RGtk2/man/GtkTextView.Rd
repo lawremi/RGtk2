@@ -70,17 +70,17 @@
 \code{gtkTextView(buffer = NULL, show = TRUE)}\cr\code{gtkTextChildAnchor()}
 }
 \section{Hierarchy}{\preformatted{
-  \link{GObject}
+\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkTextView
-  \link{GObject}
+\link{GObject}
    +----GtkTextChildAnchor
 }}
 \section{Interfaces}{GtkTextView implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
@@ -126,7 +126,7 @@ multiple views.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (text.view, user.data)}}{
+\item{\code{backspace(text.view, user.data)}}{
 The ::backspace signal is a 
 keybinding signal 
 which gets emitted when the user asks for it.
@@ -141,7 +141,7 @@ Backspace and Shift-Backspace.
 
 
 }
-\item{\code{The (text.view, user.data)}}{
+\item{\code{copy-clipboard(text.view, user.data)}}{
 The ::copy-clipboard signal is a 
 keybinding signal 
 which gets emitted to copy the selection to the clipboard.
@@ -156,7 +156,7 @@ Ctrl-c and Ctrl-Insert.
 
 
 }
-\item{\code{The (text.view, user.data)}}{
+\item{\code{cut-clipboard(text.view, user.data)}}{
 The ::cut-clipboard signal is a 
 keybinding signal 
 which gets emitted to cut the selection to the clipboard.
@@ -171,7 +171,7 @@ Ctrl-x and Shift-Delete.
 
 
 }
-\item{\code{The (text.view, type, count, user.data)}}{
+\item{\code{delete-from-cursor(text.view, type, count, user.data)}}{
 The ::delete-from-cursor signal is a 
 keybinding signal 
 which gets emitted when the user initiates a text deletion.
@@ -194,7 +194,7 @@ backwords.
 
 
 }
-\item{\code{The (textview, arg1, user.data)}}{
+\item{\code{insert-at-cursor(textview, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -206,7 +206,7 @@ backwords.
 
 
 }
-\item{\code{The (text.view, step, count, extend.selection, user.data)}}{
+\item{\code{move-cursor(text.view, step, count, extend.selection, user.data)}}{
 The ::move-cursor signal is a 
 keybinding signal 
 which gets emitted when the user initiates a cursor movement. 
@@ -233,13 +233,13 @@ There are too many key combinations to list them all here.
 \item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{step}}{[\code{\link{GtkMovementStep}}]  the granularity of the move, as a \code{\link{GtkMovementStep}}}
 \item{\code{count}}{[integer]  the number of \code{step} units to move}
-\item{\code{extend.selection}}{[logical]  \code{TRUE} if the move should extend the selection}
+\item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (text.view, step, count, user.data)}}{
+\item{\code{move-viewport(text.view, step, count, user.data)}}{
 The ::move-viewport signal is a 
 keybinding signal 
 which can be bound to key combinations to allow the user
@@ -257,26 +257,26 @@ There are no default bindings for this signal.
 
 
 }
-\item{\code{The (text.view, count, extend.selection, user.data)}}{
+\item{\code{page-horizontally(text.view, count, extend.selection, user.data)}}{
 The ::page-horizontally signal is a 
 keybinding signal 
 which can be bound to key combinations to allow the user
 to initiate horizontal cursor movement by pages.  
   
 This signal should not be used anymore, instead use the
-\code{::move-cursor} signal with the \code{GTK_MOVEMENT_HORIZONTAL_PAGES}
+\code{"move-cursor"} signal with the \code{GTK_MOVEMENT_HORIZONTAL_PAGES}
 granularity.  
 
 \describe{
 \item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{count}}{[integer]  the number of \code{step} units to move}
-\item{\code{extend.selection}}{[logical]  \code{TRUE} if the move should extend the selection}
+\item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (text.view, user.data)}}{
+\item{\code{paste-clipboard(text.view, user.data)}}{
 The ::paste-clipboard signal is a 
 keybinding signal 
 which gets emitted to paste the contents of the clipboard 
@@ -292,7 +292,7 @@ Ctrl-v and Shift-Insert.
 
 
 }
-\item{\code{The (textview, arg1, user.data)}}{
+\item{\code{populate-popup(textview, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -304,7 +304,7 @@ Ctrl-v and Shift-Insert.
 
 
 }
-\item{\code{The (text.view, select, user.data)}}{
+\item{\code{select-all(text.view, select, user.data)}}{
 The ::select-all signal is a 
 keybinding signal 
 which gets emitted to select or unselect the complete
@@ -315,13 +315,13 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 
 \describe{
 \item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
-\item{\code{select}}{[logical]  \code{TRUE} to select, \code{FALSE} to unselect}
+\item{\code{select}}{[logical] \code{TRUE} to select, \code{FALSE} to unselect}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
-\item{\code{The (textview, user.data)}}{
+\item{\code{set-anchor(textview, user.data)}}{
 \emph{undocumented
 }
 
@@ -332,7 +332,7 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 
 
 }
-\item{\code{The (textview, arg1, arg2, user.data)}}{
+\item{\code{set-scroll-adjustments(textview, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -345,7 +345,7 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 
 
 }
-\item{\code{The (text.view, user.data)}}{
+\item{\code{toggle-cursor-visible(text.view, user.data)}}{
 The ::toggle-cursor-visible signal is a 
 keybinding signal 
 which gets emitted to toggle the visibility of the cursor.
@@ -359,7 +359,7 @@ The default binding for this signal is F7.
 
 
 }
-\item{\code{The (text.view, user.data)}}{
+\item{\code{toggle-overwrite(text.view, user.data)}}{
 The ::toggle-overwrite signal is a 
 keybinding signal 
 which gets emitted to change the editability of the text view.

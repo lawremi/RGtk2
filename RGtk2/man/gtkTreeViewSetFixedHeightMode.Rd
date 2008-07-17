@@ -9,7 +9,7 @@ columns are of type \code{GTK_TREE_VIEW_COLUMN_FIXED}.}
 \usage{gtkTreeViewSetFixedHeightMode(object, enable)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}} }
-\item{\code{enable}}{[logical]  \code{TRUE} to enable fixed height mode}
+\item{\code{enable}}{[logical] \code{TRUE} to enable fixed height mode}
 }
 \details{  Since  2.6 }
 \author{Derived by RGtkGen from GTK+ documentation}

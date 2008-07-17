@@ -21,7 +21,7 @@
 \code{\link{gtkScrolledWindowGetShadowType}(object)}\cr
 \code{gtkScrolledWindow(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -29,7 +29,7 @@
                            +----\link{GtkBin}
                                  +----GtkScrolledWindow}}
 \section{Interfaces}{GtkScrolledWindow implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkScrolledWindow}} is a \code{\link{GtkBin}} subclass: it's a container 
 the accepts a single child widget. \code{\link{GtkScrolledWindow}} adds scrollbars
 to the child widget and optionally draws a beveled frame around the 
@@ -81,7 +81,7 @@ only be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkScrolledWindow} is the equivalent of \code{\link{gtkScrolledWindowNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (scrolledwindow, arg1, user.data)}}{
+\item{\code{move-focus-out(scrolledwindow, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -93,7 +93,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (scrolledwindow, arg1, arg2, user.data)}}{
+\item{\code{scroll-child(scrolledwindow, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 

@@ -14,43 +14,77 @@ an component is described by its AtkStateSet, which is a set of AtkStates.}
 The possible types of states of an object  
 
 \describe{
-\item{\code{invalid}}{ Indicates an invalid state}
-\item{\code{active}}{ Indicates a window is currently the active window}
-\item{\code{armed}}{ Indicates that the object is armed.}
-\item{\code{busy}}{ Indicates the current object is busy.  This state may be used by implementors of Document to indicate that content loading is in process.}
-\item{\code{checked}}{ Indicates this object is currently checked}
-\item{\code{defunct}}{ Indicates the user interface object corresponding to this object no longer exists}
+\item{\code{invalid}}{ Indicates an invalid state - probably an error condition.}
+\item{\code{active}}{ Indicates a window is currently the active window, or is an active subelement within a container or table}
+\item{\code{armed}}{ Indicates that the object is 'armed', i.e. will be activated by if a pointer button-release event occurs within its bounds.  Buttons often enter this state when a pointer click occurs within their bounds, as a precursor to activation.}
+\item{\code{busy}}{  Indicates the current object is busy, i.e. onscreen representation is in the process of changing, or the object is temporarily unavailable for interaction due to activity already in progress.  This state may be used by implementors of Document to indicate that content loading is underway.  It also may indicate other 'pending' conditions; clients may wish to interrogate this object when the ATK\_STATE\_BUSY flag is removed.}
+\item{\code{checked}}{ Indicates this object is currently checked, for instance a checkbox is 'non-empty'.}
+\item{\code{defunct}}{ Indicates that this object no longer has a valid backing widget (for instance, if its peer object has been destroyed)}
 \item{\code{editable}}{ Indicates the user can change the contents of this object}
-\item{\code{enabled}}{ Indicates that this object is enabled. An inconsistent GtkToggleButton is an example of an object which is sensitive but not enabled.}
+\item{\code{enabled}}{ 	Indicates that this object is enabled, i.e. that it currently reflects some application state. Objects that are "greyed out" may lack this state, and may lack the STATE\_SENSITIVE if direct user interaction cannot cause them to acquire STATE\_ENABLED. See also: ATK\_STATE\_SENSITIVE}
 \item{\code{expandable}}{ Indicates this object allows progressive disclosure of its children}
-\item{\code{expanded}}{ Indicates this object its expanded}
+\item{\code{expanded}}{ Indicates this object its expanded - see ATK\_STATE\_EXPANDABLE above}
 \item{\code{focusable}}{ Indicates this object can accept keyboard focus, which means all events resulting from typing on the keyboard will normally be passed to it when it has focus}
 \item{\code{focused}}{ Indicates this object currently has the keyboard focus}
-\item{\code{horizontal}}{ Indicates the orientation of this object is horizontal}
+\item{\code{horizontal}}{ Indicates the orientation of this object is horizontal; used, for instance, by objects of ATK\_ROLE\_SCROLL\_BAR.  For objects where vertical/horizontal orientation is especially meaningful.}
 \item{\code{iconified}}{ Indicates this object is minimized and is represented only by an icon}
 \item{\code{modal}}{ Indicates something must be done with this object before the user can interact with an object in a different window}
 \item{\code{multi-line}}{ Indicates this (text) object can contain multiple lines of text}
-\item{\code{multiselectable}}{ Indicates this object allows more than one of its children to be selected at the same time}
+\item{\code{multiselectable}}{ Indicates this object allows more than one of its children to be selected at the same time, or in the case of text objects, that the object supports non-contiguous text selections.}
 \item{\code{opaque}}{ Indicates this object paints every pixel within its rectangular region.}
-\item{\code{pressed}}{ Indicates this object is currently pressed}
+\item{\code{pressed}}{ Indicates this object is currently pressed; c.f. ATK\_STATE\_ARMED}
 \item{\code{resizable}}{ Indicates the size of this object is not fixed}
 \item{\code{selectable}}{ Indicates this object is the child of an object that allows its children to be selected and that this child is one of those children that can be selected}
 \item{\code{selected}}{ Indicates this object is the child of an object that allows its children to be selected and that this child is one of those children that has been selected}
-\item{\code{sensitive}}{ Indicates this object is sensitive}
-\item{\code{showing}}{ Indicates this object, the object's parent, the object's parent's parent, and so on, are all visible}
+\item{\code{sensitive}}{ Indicates this object is sensitive, e.g. to user interaction. 
+STATE\_SENSITIVE usually accompanies STATE\_ENABLED for user-actionable controls,
+but may be found in the absence of STATE\_ENABLED if the current visible state of the 
+control is "disconnected" from the application state.  In such cases, direct user interaction
+can often result in the object gaining STATE\_SENSITIVE, for instance if a user makes 
+an explicit selection using an object whose current state is ambiguous or undefined.
+\code{see} STATE\_ENABLED, STATE\_INDETERMINATE.}
+\item{\code{showing}}{ Indicates this object, the object's parent, the object's parent's parent, and so on, 
+are all 'shown' to the end-user, i.e. subject to "exposure" if blocking or obscuring objects do not interpose
+between this object and the top of the window stack.}
 \item{\code{single-line}}{ Indicates this (text) object can contain only a single line of text}
-\item{\code{stale}}{ Indicates that the index associated with this object has changed since the user accessed the object.}
-\item{\code{transient}}{ Indicates this object is transient}
+\item{\code{stale}}{ Indicates that the information returned for this object may no longer be
+synchronized with the application state.  This is implied if the object has STATE\_TRANSIENT,
+and can also occur towards the end of the object peer's lifecycle. It can also be used to indicate that 
+the index associated with this object has changed since the user accessed the object (in lieu of
+"index-in-parent-changed" events).}
+\item{\code{transient}}{ Indicates this object is transient, i.e. a snapshot which may not emit events when its
+state changes.  Data from objects with ATK\_STATE\_TRANSIENT should not be cached, since there may be no
+notification given when the cached data becomes obsolete.}
 \item{\code{vertical}}{ Indicates the orientation of this object is vertical}
-\item{\code{visible}}{ Indicates this object is visible}
+\item{\code{visible}}{ Indicates this object is visible, e.g. has been explicitly marked for exposure to the user.}
 \item{\code{manages-descendants}}{ Indicates that "active-descendant-changed" event
 is sent when children become 'active' (i.e. are selected or navigated to onscreen).
-Used to prevent need to enumerate all children in very large containers, like tables.}
-\item{\code{indeterminate}}{ Indicates that a check box is in a state other than checked or not checked.}
+Used to prevent need to enumerate all children in very large containers, like tables.
+The presence of STATE\_MANAGES\_DESCENDANTS is an indication to the client.
+that the children should not, and need not, be enumerated by the client.
+Objects implementing this state are expected to provide relevant state
+notifications to listening clients, for instance notifications of visibility
+changes and activation of their contained child objects, without the client 
+having previously requested references to those children.}
+\item{\code{indeterminate}}{ Indicates that a check box is in a state other than checked or not checked.
+This usually means that the boolean value reflected or 
+controlled by the object does not apply consistently to the entire current context.
+For example, a checkbox for the "Bold" attribute of text may have STATE\_INDETERMINATE
+if the currently selected text contains a mixture of weight attributes.  
+In many cases interacting with a STATE\_INDETERMINATE object will cause 
+the context's corresponding boolean attribute to be homogenized, whereupon the object
+will lose STATE\_INDETERMINATE and a corresponding state-changed event will be fired.}
 \item{\code{truncated}}{ Indicates that an object is truncated, e.g. a text value in a speradsheet cell.}
 \item{\code{required}}{ Indicates that explicit user interaction with an object is required by the user interface, e.g. a required field in a "web-form" interface.}
 \item{\code{animated}}{ Indicates that the object has encountered an error condition due to failure of input validation. For instance, a form control may acquire this state in response to invalid or malformed user input.}
-\item{\code{visited}}{ Indicates that the object may exhibit "typeahead" behavior in response to user keystrokes, e.g. one keystroke may result in the insertion of several characters into an entry, or result in the auto-selection of an item in a list.  This state supplants \code{ATK.ROLE.AUTOCOMPLETE}.}
+\item{\code{visited}}{  Indicates that the object in question implements some form of ¨typeahead¨ or 
+pre-selection behavior whereby entering the first character of one or more sub-elements
+causes those elements to scroll into view or become selected.  Subsequent character input
+may narrow the selection further as long as one or more sub-elements match the string.
+This state is normally only useful and encountered on objects that implement Selection.
+In some cases the typeahead behavior may result in full or partial ¨completion¨ of 
+the data in the input field, in which case these input events may trigger text-changed
+events from the AtkText interface.  This state supplants \code{ATK.ROLE.AUTOCOMPLETE}.}
 \item{\code{default}}{Indicates that the object in question supports text selection. It should only be exposed on objects which implement the Text interface, in order to distinguish this state from \code{ATK.STATE.SELECTABLE}, which infers that the object in question is a selectable child of an object which implements Selection. While similar, text selection and subelement selection are distinct operations.}
 \item{\code{last-defined}}{ Indicates that the object is the "default" active component, i.e. the object which is activated by an end-user press of the "Enter" or "Return" key.  Typically a "close" or "submit" button.}
 }

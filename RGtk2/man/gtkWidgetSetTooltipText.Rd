@@ -9,7 +9,7 @@ handler for the GtkWidget::query-tooltip signal.}
 \item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
 \item{\code{text}}{[character]  the contents of the tooltip for \code{widget}}
 }
-\details{See also the GtkWidget:tooltip-text property and \code{\link{gtkTooltipsetText}}.  
+\details{See also the GtkWidget:tooltip-text property and \code{\link{gtkTooltipSetText}}.  
 
   Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,6 +5,6 @@
 \usage{gtkRecentActionGetShowNumbers(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentAction}}]  a \code{\link{GtkRecentAction}}}}
 \details{  Since  2.12}
-\value{[logical]  \code{TRUE} if numbers should be shown.}
+\value{[logical] \code{TRUE} if numbers should be shown.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

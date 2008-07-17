@@ -4,6 +4,6 @@
 \description{Checks whether an error has previously occurred for this context.}
 \usage{cairoStatus(cr)}
 \arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
-\value{[\code{\link{CairoStatus}}] the current status of this context, see \code{\link{CairoStatus}}}
+\value{[\code{\link{CairoStatus}}]  the current status of this context, see \code{\link{CairoStatus}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

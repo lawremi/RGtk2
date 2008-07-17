@@ -16,7 +16,7 @@ motion history is supported and no events were found.)}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the windowing system supports motion history and
+\item{retval}{[logical] \code{TRUE} if the windowing system supports motion history and
  at least one event was found.}
 \item{\code{events}}{[\code{\link{GdkTimeCoord}}]  location to store a newly-allocated list of \code{\link{GdkTimeCoord}}, or \code{NULL}}
 \item{\code{n.events}}{[integer]  location to store the length of \code{events}, or \code{NULL}}

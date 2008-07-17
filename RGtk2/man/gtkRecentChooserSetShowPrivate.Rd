@@ -5,7 +5,7 @@
 \usage{gtkRecentChooserSetShowPrivate(object, show.private)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}
-\item{\code{show.private}}{[logical]  \code{TRUE} to show private items, \code{FALSE} otherwise}
+\item{\code{show.private}}{[logical] \code{TRUE} to show private items, \code{FALSE} otherwise}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

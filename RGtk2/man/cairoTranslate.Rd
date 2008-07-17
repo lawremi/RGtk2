@@ -4,7 +4,7 @@
 \description{Modifies the current transformation matrix (CTM) by translating the
 user-space origin by (\code{tx}, \code{ty}). This offset is interpreted as a
 user-space coordinate according to the CTM in place before the new
-call to cairo\_translate. In other words, the translation of the
+call to \code{\link{cairoTranslate}}. In other words, the translation of the
 user-space origin takes place after any existing transformation.}
 \usage{cairoTranslate(cr, tx, ty)}
 \arguments{

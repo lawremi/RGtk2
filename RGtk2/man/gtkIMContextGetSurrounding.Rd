@@ -16,7 +16,7 @@ for a widget to respond to the ::retrieve\_surrounding signal, so input
 methods must be prepared to function without context.  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if surrounding text was provided; in this case
+\item{retval}{[logical] \code{TRUE} if surrounding text was provided; in this case
    you must free the result stored in *text.}
 \item{\code{text}}{[character]  location to store a UTF-8 encoded string of text
        holding context around the insertion point.

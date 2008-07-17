@@ -14,7 +14,7 @@ storage specification, they will be expanded.
   Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if an application with \code{app.name} has registered this
+\item{retval}{[logical] \code{TRUE} if an application with \code{app.name} has registered this
   resource inside the recently used list, or \code{FALSE} otherwise.}
 \item{\code{app.exec}}{[character]  return location for the string containing the command line}
 \item{\code{count}}{[numeric]  return location for the number of times this item was registered}

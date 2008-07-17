@@ -3466,12 +3466,12 @@ function(i)
 
 
 pangoExtentsToPixels <-
-function(ink.rect, logical.rect)
+function(inclusive, nearest)
 {
-  ink.rect <- as.PangoRectangle(ink.rect)
-  logical.rect <- as.PangoRectangle(logical.rect)
+  inclusive <- as.PangoRectangle(inclusive)
+  nearest <- as.PangoRectangle(nearest)
 
-  w <- .RGtkCall("S_pango_extents_to_pixels", ink.rect, logical.rect, PACKAGE = "RGtk2")
+  w <- .RGtkCall("S_pango_extents_to_pixels", inclusive, nearest, PACKAGE = "RGtk2")
 
   return(w)
 } 
@@ -3540,6 +3540,142 @@ function(required.major, required.minor, required.micro)
   required.micro <- as.integer(required.micro)
 
   w <- .RGtkCall("S_pango_version_check", required.major, required.minor, required.micro, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutGetHeight <-
+function(object)
+{
+  checkPtrType(object, "PangoLayout")
+
+  w <- .RGtkCall("S_pango_layout_get_height", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutSetHeight <-
+function(object, height)
+{
+  checkPtrType(object, "PangoLayout")
+  height <- as.integer(height)
+
+  w <- .RGtkCall("S_pango_layout_set_height", object, height, PACKAGE = "RGtk2")
+
+  return(invisible(w))
+} 
+
+
+pangoAttributeInit <-
+function(attr, klass)
+{
+  checkPtrType(attr, "PangoAttribute")
+  checkPtrType(klass, "PangoAttrClass")
+
+  w <- .RGtkCall("S_pango_attribute_init", attr, klass, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoLayoutIterGetLayout <-
+function(iter)
+{
+  checkPtrType(iter, "PangoLayoutIter")
+
+  w <- .RGtkCall("S_pango_layout_iter_get_layout", iter, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoRendererGetLayout <-
+function(renderer)
+{
+  checkPtrType(renderer, "PangoRenderer")
+
+  w <- .RGtkCall("S_pango_renderer_get_layout", renderer, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoRendererGetLayoutLine <-
+function(renderer)
+{
+  checkPtrType(renderer, "PangoRenderer")
+
+  w <- .RGtkCall("S_pango_renderer_get_layout_line", renderer, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoFontFaceIsSynthesized <-
+function(object)
+{
+  checkPtrType(object, "PangoFontFace")
+
+  w <- .RGtkCall("S_pango_font_face_is_synthesized", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoFontGetScaledFont <-
+function(object)
+{
+  checkPtrType(object, "PangoCairoFont")
+
+  w <- .RGtkCall("S_pango_cairo_font_get_scaled_font", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoFontMapNewForFontType <-
+function(fonttype)
+{
+  
+
+  w <- .RGtkCall("S_pango_cairo_font_map_new_for_font_type", fonttype, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoFontMapGetFontType <-
+function(object)
+{
+  checkPtrType(object, "PangoCairoFontMap")
+
+  w <- .RGtkCall("S_pango_cairo_font_map_get_font_type", object, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoContextSetShapeRenderer <-
+function(object, func, data)
+{
+  checkPtrType(object, "PangoContext")
+  func <- as.function(func)
+  
+
+  w <- .RGtkCall("S_pango_cairo_context_set_shape_renderer", object, func, data, PACKAGE = "RGtk2")
+
+  return(w)
+} 
+
+
+pangoCairoContextGetShapeRenderer <-
+function(object)
+{
+  checkPtrType(object, "PangoContext")
+
+  w <- .RGtkCall("S_pango_cairo_context_get_shape_renderer", object, PACKAGE = "RGtk2")
 
   return(w)
 } 

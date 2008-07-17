@@ -6,7 +6,7 @@ window doesn't want to receive input focus. }
 \usage{gdkWindowSetAcceptFocus(object, accept.focus)}
 \arguments{
 \item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{accept.focus}}{[logical]  \code{TRUE} if the window should receive input focus}
+\item{\code{accept.focus}}{[logical] \code{TRUE} if the window should receive input focus}
 }
 \details{On X, it is the responsibility of the window manager to interpret this 
 hint. ICCCM-compliant window manager usually respect it.  

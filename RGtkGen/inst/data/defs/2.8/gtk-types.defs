@@ -2334,6 +2334,15 @@
   (gtype-id "GTK_TYPE_TOOL_ITEM")
 )
 
+; define this here, before GtkTooltips to prevent conflicts
+(define-object Tooltip
+  (in-module "Gtk")
+  (parent "GObject")
+  (c-name "GtkTooltip")
+  (gtype-id "GTK_TYPE_TOOLTIP")
+  (since "2.12.0")
+  )
+
 (define-object Tooltips
   (in-module "Gtk")
   (parent "GtkObject")

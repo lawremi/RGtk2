@@ -3,8 +3,9 @@
 \title{gtkWidgetGetChildRequisition}
 \description{This function is only for use in widget implementations. Obtains
 \code{widget->requisition}, unless someone has forced a particular
-geometry on the widget (e.g. with \code{\link{gtkWidgetSetUsize}}), in which
-case it returns that geometry instead of the widget's requisition.}
+geometry on the widget (e.g. with \code{\link{gtkWidgetSetSizeRequest}}),
+in which case it returns that geometry instead of the widget's
+requisition.}
 \usage{gtkWidgetGetChildRequisition(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
 \details{This function differs from \code{\link{gtkWidgetSizeRequest}} in that

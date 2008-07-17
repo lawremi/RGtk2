@@ -9,7 +9,7 @@ resource.}
 \item{\code{info.b}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if both \code{\link{GtkRecentInfo}} structures point to se same
+\value{[logical] \code{TRUE} if both \code{\link{GtkRecentInfo}} structures point to se same
   resource, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

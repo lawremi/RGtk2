@@ -9,6 +9,6 @@ with \code{uri} inside the recent manager.}
 \item{\code{uri}}{[character]  a URI}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the resource was found, \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} if the resource was found, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

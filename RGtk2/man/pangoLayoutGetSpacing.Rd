@@ -1,10 +1,9 @@
 \alias{pangoLayoutGetSpacing}
 \name{pangoLayoutGetSpacing}
 \title{pangoLayoutGetSpacing}
-\description{Gets the amount of spacing in \code{integer} between the lines of the
-layout.}
+\description{Gets the amount of spacing between the lines of the layout.}
 \usage{pangoLayoutGetSpacing(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
-\value{[integer]  the spacing.}
+\value{[integer]  the spacing in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

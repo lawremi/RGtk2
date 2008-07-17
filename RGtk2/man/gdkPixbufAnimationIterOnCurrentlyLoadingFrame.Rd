@@ -8,6 +8,6 @@ you're on the currently loading frame, you need to redraw the screen for
 the updated area.}
 \usage{gdkPixbufAnimationIterOnCurrentlyLoadingFrame(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkPixbufAnimationIter}}]  a \code{\link{GdkPixbufAnimationIter}}}}
-\value{[logical]  \code{TRUE} if the frame we're on is partially loaded, or the last frame}
+\value{[logical] \code{TRUE} if the frame we're on is partially loaded, or the last frame}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

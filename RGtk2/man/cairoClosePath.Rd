@@ -13,10 +13,10 @@ stroking. When a closed sub-path is stroked, there are no caps on
 the ends of the sub-path. Instead, there is a line join connecting
 the final and initial segments of the sub-path.
   
-If there is no current point before the call to cairo\_close\_path,
+If there is no current point before the call to \code{\link{cairoClosePath}},
 this function will have no effect.
   
-Note: As of cairo version 1.2.4 any call to cairo\_close\_path will
+Note: As of cairo version 1.2.4 any call to \code{\link{cairoClosePath}} will
 place an explicit MOVE\_TO element into the path immediately after
 the CLOSE\_PATH element, (which can be seen in \code{\link{cairoCopyPath}} for
 example). This can simplify path processing in some cases as it may

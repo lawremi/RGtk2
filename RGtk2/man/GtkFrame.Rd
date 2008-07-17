@@ -15,7 +15,7 @@
 \code{\link{gtkFrameGetShadowType}(object)}\cr
 \code{gtkFrame(label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -24,7 +24,7 @@
                                  +----GtkFrame
                                        +----\link{GtkAspectFrame}}}
 \section{Interfaces}{GtkFrame implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The frame widget is a Bin that surrounds its child
 with a decorative frame and an optional label.
 If present, the label is drawn in a gap in the
@@ -36,8 +36,7 @@ supports placing a child in the label position by specifying
 A normal content child can be specified without specifying 
 a <child> type attribute.
   
-\emph{A UI definition fragment with GtkFrame}
-\preformatted{<object class="GtkFrame">
+ \emph{A UI definition fragment with GtkFrame}\preformatted{<object class="GtkFrame">
   <child type="label">
     <object class="GtkLabel" id="frame-label"/>
   </child>
@@ -65,7 +64,7 @@ A widget to display in place of the usual frame label.
 }
 \item{\code{label-xalign} [numeric : Read / Write]}{
 
-The horizontal alignment of the label.  Allowed values: [0,1]  Default value: 0.5
+The horizontal alignment of the label.  Allowed values: [0,1]  Default value: 0
 
 }
 \item{\code{label-yalign} [numeric : Read / Write]}{

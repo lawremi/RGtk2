@@ -5,7 +5,7 @@
 \usage{gtkFileChooserSetShowHidden(object, show.hidden)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{show.hidden}}{[logical]  \code{TRUE} if hidden files and folders should be displayed.}
+\item{\code{show.hidden}}{[logical] \code{TRUE} if hidden files and folders should be displayed.}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -17,7 +17,7 @@ contains image data in a canonical 24-bit RGB format.)}
 implement the eyedropper feature in \code{\link{GtkColorSelection}}.  }
 \value{
 A list containing the following elements:
-\item{\code{result}}{[\code{\link{GdkColor}}]  \code{\link{GdkColor}} with red, green, blue fields initialized}
+\item{\code{result}}{[\code{\link{GdkColor}}] \code{\link{GdkColor}} with red, green, blue fields initialized}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

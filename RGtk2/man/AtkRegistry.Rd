@@ -10,7 +10,7 @@ object for an object of a particular GType.}
 \code{\link{atkGetDefaultRegistry}()}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----AtkRegistry}}
 \section{Detailed Description}{The AtkRegistry is normally used to create appropriate ATK "peers" for user
 interface components.  Application developers usually need only interact with

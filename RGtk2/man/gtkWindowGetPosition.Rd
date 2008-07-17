@@ -12,8 +12,7 @@ gravity. See \code{\link{gtkWindowMove}} for more details.}
 gets the position of the top-left corner of the window manager
 frame for the window. \code{\link{gtkWindowMove}} sets the position of this
 same top-left corner.
-  
-\code{\link{gtkWindowGetPosition}} is not 100\% reliable because the X Window System
+  \code{\link{gtkWindowGetPosition}} is not 100\% reliable because the X Window System
 does not specify a way to obtain the geometry of the
 decorations placed on a window by the window manager.
 Thus GTK+ is using a "best guess" that works with most

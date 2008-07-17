@@ -15,7 +15,7 @@ or \code{G_FILE_ERROR} domains.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the write was successful, or \code{FALSE} if the loader
+\item{retval}{[logical] \code{TRUE} if the write was successful, or \code{FALSE} if the loader
 cannot parse the buffer.}
 \item{\code{error}}{[\code{\link{GError}}]  return location for errors}
 }

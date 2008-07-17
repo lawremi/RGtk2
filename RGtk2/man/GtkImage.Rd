@@ -37,14 +37,14 @@
 \code{\link{gtkImageGetPixelSize}(object)}\cr
 \code{gtkImage(mask = NULL, size, pixmap = NULL, image = NULL, filename, pixbuf = NULL, stock.id, icon.set, animation, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkMisc}
                            +----GtkImage}}
 \section{Interfaces}{GtkImage implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkImage}} widget displays an image. Various kinds of object 
 can be displayed as an image; most typically, you would load a 
 \code{\link{GdkPixbuf}} ("pixel buffer") from a file, and then display that. 
@@ -64,41 +64,41 @@ for example by displaying an error message, then load the image with
   
 The image file may contain an animation, if so the \code{\link{GtkImage}} will 
 display an animation (\code{\link{GdkPixbufAnimation}}) instead of a static image.
-  
-\code{\link{GtkImage}} is a subclass of \code{\link{GtkMisc}}, which implies that you can 
+  \code{\link{GtkImage}} is a subclass of \code{\link{GtkMisc}}, which implies that you can 
 align it (center, left, right) and add padding to it, using 
 \code{\link{GtkMisc}} methods.
-  
-\code{\link{GtkImage}} is a "no window" widget (has no \code{\link{GdkWindow}} of its own), 
+  \code{\link{GtkImage}} is a "no window" widget (has no \code{\link{GdkWindow}} of its own), 
 so by default does not receive events. If you want to receive events
 on the image, such as button clicks, place the image inside a 
 \code{\link{GtkEventBox}}, then connect to the event signals on the event box.
+
+ \emph{Handling button press events on a 
+  \code{GtkImage}  .}
 \preformatted{
 # Handling button-press events on a GtkImage
-  button_press_callback <- (event_box, event, data)
-  {
-    print(paste("Event box clicked at coordinates ", event[["x"]], ",", event[["y"]]), sep="") 
+button_press_callback <- function(event_box, event, data) {
+  print(paste("Event box clicked at coordinates ", event[["x"]], ",",
+              event[["y"]], sep=""))
 
-    # Returning TRUE means we handled the event, so the signal 
-     # emission should be stopped (don't call any further 
-     # callbacks that may be connected). Return FALSE
-     # to continue invoking callbacks.
+  ## Returning TRUE means we handled the event, so the signal 
+  ## emission should be stopped (don't call any further 
+  ## callbacks that may be connected). Return FALSE
+  ## to continue invoking callbacks.
+  
+  return(TRUE)
+}
 
-    return(TRUE)
-  }
-
- create_image <- function()
-  {
-    image <- gtkImage(file="myfile.png")
-
-    event_box <- gtkEventBox()
-	event_box$add(image)
-
-	
-    gSignalConnect(event_box, "button_press_event", button_press_callback, image)
-
-    return(image)
-  }
+create_image <- function() {
+  image <- gtkImage(file="myfile.png")
+  
+  event_box <- gtkEventBox()
+  event_box$add(image)
+  
+  
+  gSignalConnect(event_box, "button_press_event", button_press_callback, image)
+  
+  return(image)
+}
 }
   
 When handling events on the event box, keep in mind that coordinates
@@ -187,7 +187,7 @@ GdkPixbufAnimation to display.
 \item{\code{pixel-size} [integer : Read / Write]}{
 
 The "pixel-size" property can be used to specify a fixed size
-overriding the \code{:icon-size} property for images of type 
+overriding the \code{"icon-size"} property for images of type 
 \code{GTK_IMAGE_ICON_NAME}.  
 
   Allowed values: >= -1  Default value: -1  Since  2.6

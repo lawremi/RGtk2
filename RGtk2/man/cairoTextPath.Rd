@@ -18,7 +18,7 @@ the origin of the final glyph offset by its advance values.
 This allows for chaining multiple calls to to \code{\link{cairoTextPath}}
 without having to set current point in between.
   
-NOTE: The \code{\link{cairoTextPath}} function call is part of what the cairo
+Note: The \code{\link{cairoTextPath}} function call is part of what the cairo
 designers call the "toy" text API. It is convenient for short demos
 and simple programs, but it is not expected to be adequate for
 serious text-using applications. See \code{\link{cairoGlyphPath}} for the

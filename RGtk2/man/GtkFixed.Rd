@@ -12,14 +12,14 @@
 \code{\link{gtkFixedSetHasWindow}(object, has.window)}\cr
 \code{gtkFixed(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkFixed}}
 \section{Interfaces}{GtkFixed implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkFixed}} widget is a container which can place child widgets at fixed
 positions and with fixed sizes, given in pixels. \code{\link{GtkFixed}} performs no
 automatic layout management.

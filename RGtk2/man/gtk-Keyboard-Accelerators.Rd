@@ -29,7 +29,7 @@
 \code{\link{gtkAcceleratorGetDefaultModMask}()}\cr
 \code{gtkAccelGroup()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkAccelGroup}}
 \section{Detailed Description}{A \code{\link{GtkAccelGroup}} represents a group of keyboard accelerators,
 typically attached to a toplevel \code{\link{GtkWindow}} (with
@@ -92,7 +92,7 @@ An object representing and maintaining a group of accelerators.
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (accel.group, acceleratable, keyval, modifier, user.data)}}{
+\item{\code{accel-activate(accel.group, acceleratable, keyval, modifier, user.data)}}{
 The accel-activate signal is an implementation detail of
 \code{\link{GtkAccelGroup}} and not meant to be used by applications.  
 
@@ -104,10 +104,10 @@ The accel-activate signal is an implementation detail of
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the accelerator was activated
+\emph{Returns:} [logical] \code{TRUE} if the accelerator was activated
 
 }
-\item{\code{The (accel.group, keyval, modifier, accel.closure, user.data)}}{
+\item{\code{accel-changed(accel.group, keyval, modifier, accel.closure, user.data)}}{
 The accel-changed signal is emitted when a \code{GtkAccelGroupEntry}
 is added to or removed from the accel group. 
   

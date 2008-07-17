@@ -17,7 +17,7 @@
 \code{\link{cairoMatrixTransformDistance}(matrix, dx, dy)}\cr
 \code{\link{cairoMatrixTransformPoint}(matrix, x, y)}\cr
 }
-\section{Detailed Description}{    \code{\link{CairoMatrix}} is used throughout cairo to convert between different
+\section{Detailed Description}{\code{\link{CairoMatrix}} is used throughout cairo to convert between different
     coordinate spaces.  A \code{\link{CairoMatrix}} holds an affine transformation,
     such as a scale, rotation, shear, or a combination of these.
     The transformation of a point (\code{x},\code{y})

@@ -7,6 +7,6 @@ applications that have registered them.}
 \usage{gtkRecentInfoGetPrivateHint(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}}
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if the private flag was found, \code{FALSE} otherwise.}
+\value{[logical] \code{TRUE} if the private flag was found, \code{FALSE} otherwise.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

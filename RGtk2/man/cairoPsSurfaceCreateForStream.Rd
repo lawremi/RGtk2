@@ -17,7 +17,7 @@ output can vary. See \code{\link{cairoPsSurfaceSetSize}}.
 
   Since  1.2}
 \value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
-owns the surface and should call cairo\_surface\_destroy when done
+owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 
 This function always returns a valid pointer, but it will return a

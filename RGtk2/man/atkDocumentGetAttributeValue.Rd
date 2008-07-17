@@ -1,7 +1,8 @@
 \alias{atkDocumentGetAttributeValue}
 \name{atkDocumentGetAttributeValue}
 \title{atkDocumentGetAttributeValue}
-\description{Returns:}
+\description{\emph{undocumented
+}}
 \usage{atkDocumentGetAttributeValue(object, attribute.name)}
 \arguments{
 \item{\code{object}}{[\code{\link{AtkDocument}}]  a \code{\link{GObject}} instance that implements AtkDocumentIface}

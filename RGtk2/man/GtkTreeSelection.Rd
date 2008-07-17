@@ -26,7 +26,7 @@
 \code{\link{gtkTreeSelectionUnselectRange}(object, start.path, end.path)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkTreeSelection}}
 \section{Detailed Description}{The \code{\link{GtkTreeSelection}} object is a helper object to manage the selection
 for a \code{\link{GtkTreeView}} widget.  The \code{\link{GtkTreeSelection}} object is
@@ -46,7 +46,7 @@ is not currently displayed by the view without expanding its parents
 first.
   
 One of the important things to remember when monitoring the selection of
-a view is that the \code{::changed} signal is mostly a hint.  That is, it may
+a view is that the \code{"changed"} signal is mostly a hint.  That is, it may
 only emit one signal when a range of rows is selected.  Additionally, it
 may on occasion emit a ::changed signal when nothing has happened
 (mostly as a result of programmers calling select\_row on an already
@@ -88,7 +88,7 @@ selected rows.  It will be called on every selected row in the view.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{The (treeselection, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(treeselection, user.data)}}{
 Emitted whenever the selection has (possibly) changed.  Please note that
 this signal is mostly a hint.  It may only be emitted once when a range
 of rows are selected, and it may occasionally be emitted when nothing

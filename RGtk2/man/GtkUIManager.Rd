@@ -24,7 +24,7 @@
 \code{\link{gtkUIManagerEnsureUpdate}(object)}\cr
 \code{gtkUIManager()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkUIManager}}
 \section{Interfaces}{GtkUIManager implements
  \code{\link{GtkBuildable}}.}
@@ -37,8 +37,7 @@ roughly described by the following DTD.
 Do not confuse the GtkUIManager UI Definitions described here with
 the similarly named GtkBuilder UI 
 Definitions. 
-  
-\preformatted{<!ELEMENT ui          (menubar|toolbar|popup|accelerator)* >
+  \preformatted{<!ELEMENT ui          (menubar|toolbar|popup|accelerator)* >
 <!ELEMENT menubar     (menuitem|separator|placeholder|menu)* >
 <!ELEMENT menu        (menuitem|separator|placeholder|menu)* >
 <!ELEMENT popup       (menuitem|separator|placeholder|menu)* >
@@ -84,8 +83,7 @@ would mess up path lookup) and must be usable as XML attributes when
 enclosed in doublequotes, thus they must not '"' characters or references 
 to the &quot; entity.
   
-\emph{A UI definition}
-\preformatted{<ui>
+ \emph{A UI definition}\preformatted{<ui>
   <menubar>
     <menu name="FileMenu" action="FileMenuAction">
       <menuitem name="New" action="New2Action" />
@@ -109,8 +107,7 @@ to the &quot; entity.
     </placeholder>
   </toolbar>
 </ui>
-}
-  
+}  
 The constructed widget hierarchy is very similar to the element tree
 of the XML, with the exception that placeholders are merged into their
 parents. The correspondence of XML elements to widgets should be
@@ -176,8 +173,7 @@ The widgets that are constructed by a GtkUIManager can be embedded in
 other parts of the constructed user interface with the help of the
 "constructor" attribute. See the example below.
   
-\emph{An embedded GtkUIManager UI definition}
-\preformatted{<object class="GtkUIManager" id="uiman">
+ \emph{An embedded GtkUIManager UI definition}\preformatted{<object class="GtkUIManager" id="uiman">
   <child>
     <object class="GtkActionGroup">
       <child>
@@ -225,7 +221,7 @@ what UI element to create.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (merge, user.data)}}{
+\item{\code{actions-changed(merge, user.data)}}{
 The "actions-changed" signal is emitted whenever the set of actions
 changes.  
 
@@ -238,7 +234,7 @@ changes.
 
 
 }
-\item{\code{The (merge, widget, user.data)}}{
+\item{\code{add-widget(merge, widget, user.data)}}{
 The add\_widget signal is emitted for each generated menubar and toolbar.
 It is not emitted for generated popup menus, which can be obtained by 
 \code{\link{gtkUIManagerGetWidget}}.  
@@ -253,7 +249,7 @@ It is not emitted for generated popup menus, which can be obtained by
 
 
 }
-\item{\code{The (uimanager, action, proxy, user.data)}}{
+\item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
 The connect\_proxy signal is emitted after connecting a proxy to 
 an action in the group. 
   
@@ -272,7 +268,7 @@ statusbar.
 
 
 }
-\item{\code{The (uimanager, action, proxy, user.data)}}{
+\item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
 The disconnect\_proxy signal is emitted after disconnecting a proxy 
 from an action in the group.  
 
@@ -287,7 +283,7 @@ from an action in the group.
 
 
 }
-\item{\code{The (uimanager, action, user.data)}}{
+\item{\code{post-activate(uimanager, action, user.data)}}{
 The post\_activate signal is emitted just after the \code{action}
 is activated.
   
@@ -304,7 +300,7 @@ just after any action is activated.
 
 
 }
-\item{\code{The (uimanager, action, user.data)}}{
+\item{\code{pre-activate(uimanager, action, user.data)}}{
 The pre\_activate signal is emitted just before the \code{action}
 is activated.
   

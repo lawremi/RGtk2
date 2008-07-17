@@ -4,7 +4,7 @@
 \alias{CairoFontWeight}
 \name{cairo-Text}
 \title{Text}
-\description{Rendering text and sets of glyphs}
+\description{Rendering text and glyphs}
 \section{Methods and Functions}{
 \code{\link{cairoSelectFontFace}(cr, family, slant, weight)}\cr
 \code{\link{cairoSetFontSize}(cr, size)}\cr
@@ -22,6 +22,11 @@
 \code{\link{cairoTextExtents}(cr, utf8)}\cr
 \code{\link{cairoGlyphExtents}(cr, glyphs)}\cr
 }
+\section{Detailed Description}{Cairo has two sets of text rendering capabilities:
+\itemize{
+\item 
+\item 
+}}
 \section{Structures}{\describe{\item{\code{CairoGlyph}}{
 The \code{\link{CairoGlyph}} structure holds information about a single glyph
 when drawing or measuring text. A font is (in simple terms) a

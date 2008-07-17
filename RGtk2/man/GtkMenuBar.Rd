@@ -12,7 +12,7 @@
 \code{\link{gtkMenuBarGetChildPackDirection}(object)}\cr
 \code{gtkMenuBar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                            +----\link{GtkMenuShell}
                                  +----GtkMenuBar}}
 \section{Interfaces}{GtkMenuBar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \code{gtk_menu_bar_set_shadow_type} function.}
 \section{Structures}{\describe{\item{\code{GtkMenuBar}}{
 The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)

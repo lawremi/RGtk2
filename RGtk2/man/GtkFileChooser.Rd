@@ -55,18 +55,17 @@
 \code{\link{gtkFileChooserRemoveShortcutFolderUri}(object, uri, .errwarn = TRUE)}\cr
 \code{\link{gtkFileChooserListShortcutFolderUris}(object)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkFileChooser}}
 \section{Implementations}{GtkFileChooser is implemented by
  \code{\link{GtkFileChooserButton}},  \code{\link{GtkFileChooserWidget}} and  \code{\link{GtkFileChooserDialog}}.}
-\section{Detailed Description}{      \code{\link{GtkFileChooser}} is an interface that can be implemented by file
+\section{Detailed Description}{\code{\link{GtkFileChooser}} is an interface that can be implemented by file
       selection widgets.  In GTK+, the main objects that implement this
       interface are \code{\link{GtkFileChooserWidget}}, \code{\link{GtkFileChooserDialog}}, and
       \code{\link{GtkFileChooserButton}}.  You do not need to write an object that
       implements the \code{\link{GtkFileChooser}} interface unless you are trying to
       adapt an existing file selector to expose a standard programming
       interface.
-      
       \code{\link{GtkFileChooser}} allows for shortcuts to various places in the filesystem.
       In the default implementation these are displayed in the left pane. It
       may be a bit confusing at first taht these shortcuts come from various 
@@ -95,8 +94,7 @@
 	\env{G\_FILENAME\_ENCODING} environment variable.
 	Please see the Glib documentation for more details about this
 	variable.
-        \strong{PLEASE NOTE:} 	  
-	  This means that while you can pass the result of
+        \strong{PLEASE NOTE:} 	  This means that while you can pass the result of
 	  \code{\link{gtkFileChooserGetFilename}} to
 	  \code{open(2)} or
 	  \code{fopen(3)}, you may not be able to
@@ -104,13 +102,12 @@
 	  convert it first to UTF-8, which all GTK+ widgets expect.
 	  You should use \code{gFilenameToUtf8()} to convert filenames
 	  into strings that can be passed to GTK+ widgets.
-	  
-      }
+	}
 \section{Adding a Preview Widget}{	You can add a custom preview widget to a file chooser and then
 	get notification about when the preview needs to be updated.
 	To install a preview widget, use
 	\code{\link{gtkFileChooserSetPreviewWidget}}.  Then, connect to the
-	\code{::update-preview} signal to get notified when
+	\code{"update-preview"} signal to get notified when
 	you need to update the contents of the preview.
         
 	Your callback should use
@@ -120,7 +117,9 @@
 	\code{\link{gtkFileChooserSetPreviewWidgetActive}} with a boolean
 	flag that indicates whether your callback could successfully
 	generate a preview.
-        \preformatted{
+        
+ \emph{Sample Usage}
+\preformatted{
 update_preview_cb <- function(file_chooser, preview)
 {
   filename <- file_chooser$getPreviewFilename()
@@ -143,16 +142,16 @@ gSignalConnect(my_file_chooser, "update-preview", update_preview_cb, preview)
 	file in read-only mode.  You can use
 	\code{\link{gtkFileChooserSetExtraWidget}} to insert additional
 	widgets in a file chooser.
-        \preformatted{
+        
+ \emph{Sample Usage}
+\preformatted{
 toggle <- gtkCheckButton("Open file read-only")
 my_file_chooser$setExtraWidget(toggle)
-}  \strong{PLEASE NOTE:} 	  
-	  If you want to set more than one extra widget in the file
+}  \strong{PLEASE NOTE:} 	  If you want to set more than one extra widget in the file
 	  chooser, you can a container such as a GtkVBox or a GtkTable
 	  and include your widgets in it.  Then, set the container as
 	  the whole extra widget.
-	  
-      }
+	}
 \section{Key Bindings}{	Internally, GTK+ implements a file chooser's graphical user
 	interface with the private
 	\code{GtkFileChooserDefaultClass}.  This
@@ -160,29 +159,21 @@ my_file_chooser$setExtraWidget(toggle)
 	bindings and their associated signals.  This section
 	describes the available key binding signals.
         
-	\emph{GtkFileChooser key binding example}
-
-	
+ \emph{GtkFileChooser key binding example}
 	  The default keys that activate the key-binding signals in
 	  \code{GtkFileChooserDefaultClass} are as
 	  follows:
-	
-
 	\tabular{ll}{
 Signal name \tab Default key combinations \cr
-location-popup \tab 		    \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{~}   (empty path);
-		    \kbd{/}   (path of "/")  \strong{PLEASE NOTE:} 		      
-		      Both the individual \kbd{/} key and the
+location-popup \tab \kbd{Control}-\kbd{L}   (empty path);
+		    \kbd{/}   (path of "/")  \strong{PLEASE NOTE:} 		      Both the individual \kbd{/} key and the
 		      numeric keypad's "divide" key are supported.
-		      
-		    ;
+		      ;
 		    \kbd{~}   (path of "~")
 		 \cr
-up-folder \tab 		    \kbd{Alt}-\kbd{Up}-\kbd{Backspace}  \strong{PLEASE NOTE:} 		      
-		      Both the individual Up key and the numeric
+up-folder \tab \kbd{Alt}-\kbd{Up}  \strong{PLEASE NOTE:} 		      Both the individual Up key and the numeric
 		      keypad's Up key are supported.
 		      
-		    
 		  ;
 		    \kbd{Backspace}  
 		 \cr
@@ -191,14 +182,10 @@ home-folder \tab \kbd{Alt}-\kbd{Home} \cr
 desktop-folder \tab \kbd{Alt}-\kbd{D} \cr
 quick-bookmark \tab \kbd{Alt}-\kbd{1}   through   \kbd{Alt}-\kbd{0} \cr
 }
-
-	
 	  You can change these defaults to something else.  For
 	  example, to add a \kbd{Shift} modifier to a few
 	  of the default bindings, you can include the following
 	  fragment in your \file{.gtkrc-2.0} file:
-	
-
 	\preformatted{binding "my-own-gtkfilechooser-bindings" {
 	bind "<Alt><Shift>Up" {
 		"up-folder" ()
@@ -213,23 +200,18 @@ quick-bookmark \tab \kbd{Alt}-\kbd{1}   through   \kbd{Alt}-\kbd{0} \cr
 
 class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	
-}
-        
-	\emph{The "GtkFileChooserDefault::location-popup" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+}  
+ \emph{The "GtkFileChooserDefault::location-popup" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                               const char            *path,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser show a "Location"
 	  dialog which the user can use to manually type the name of
 	  the file he wishes to select.  The
 	  \code{path} argument is a string that gets
 	  put in the text entry for the file name.  By default this is bound to
-	  \kbd{Control}-\kbd{L}-\kbd{/}-\kbd{/}-\kbd{~}
+	  \kbd{Control}-\kbd{L}
 	  with a \code{path} string of "" (the empty
 	  string).  It is also bound to \kbd{/} with a
 	  \code{path} string of "\code{/}"
@@ -237,8 +219,6 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	  immediately type a path name.  On Unix systems, this is bound to
 	  \kbd{~} (tilde) with a \code{path} string
 	  of "~" itself for access to home directories.
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
@@ -246,10 +226,7 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-
-	\strong{PLEASE NOTE:} 	    
-	    You can create your own bindings for the
+}\strong{PLEASE NOTE:} 	    You can create your own bindings for the
 	    \code{location-popup} signal with custom
 	    \code{path} strings, and have a crude form
 	    of easily-to-type bookmarks.  For example, say you access
@@ -257,8 +234,6 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 	    frequently.  You could then create an \kbd{Alt}-\kbd{M}
 	    shortcut by including the following in your
 	    \file{.gtkrc-2.0}:
-	    
-
 	    \preformatted{binding "misc-shortcut" {
 	bind "<Alt>M" {
 		"location-popup" ("/home/username/misc")
@@ -268,38 +243,25 @@ class "GtkFileChooserDefault" binding "my-own-gtkfilechooser-bindings"
 class "GtkFileChooserDefault" binding "misc-shortcut"
 	  
 }  
-	
-        
-	\emph{The "GtkFileChooserDefault::up-folder" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+ \emph{The "GtkFileChooserDefault::up-folder" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser go to the parent of
 	  the current folder in the file hierarchy.  By default this
 	  is bound to \kbd{Backspace} and
 	  \kbd{Alt}-\kbd{Up}
 	  (the Up key in the numeric keypad also works).
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-        
-	\emph{The "GtkFileChooserDefault::down-folder" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+}  
+ \emph{The "GtkFileChooserDefault::down-folder" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser go to a child of the
 	  current folder in the file hierarchy.  The subfolder that
 	  will be used is displayed in the path bar widget of the file
@@ -309,65 +271,44 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 	  default this is bound to
 	  \kbd{Alt}-\kbd{Down}
 	  (the Down key in the numeric keypad also works).
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-        
-	\emph{The "GtkFileChooserDefault::home-folder" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+}  
+ \emph{The "GtkFileChooserDefault::home-folder" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser show the user's home
 	  folder in the file list.  By default this is bound to
 	  \kbd{Alt}-\kbd{Home}
 	  (the Home key in the numeric keypad also works).
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-        
-	\emph{The "GtkFileChooserDefault::desktop-folder" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+}  
+ \emph{The "GtkFileChooserDefault::desktop-folder" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser show the user's Desktop
 	  folder in the file list.  By default this is bound to
 	  \kbd{Alt}-\kbd{D}.
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-        
-	\emph{The "GtkFileChooserDefault::quick-bookmark" signal}
-
-	\preformatted{          void user_function (GtkFileChooserDefault *chooser,
+}  
+ \emph{The "GtkFileChooserDefault::quick-bookmark" signal}\preformatted{          void user_function (GtkFileChooserDefault *chooser,
                               gint bookmark_index,
                                 gpointer   user_data);
 	
 }
-
-	
 	  This is used to make the file chooser switch to the bookmark
 	  specified in the \code{bookmark.index} parameter.
 	  For example, if you have three bookmarks, you can pass 0, 1, 2 to
@@ -382,8 +323,6 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 	  successively;
 	  \kbd{Alt}-\kbd{0} is
 	  defined to switch to the bookmark at index 10.
-	
-
 	\describe{
 \item{\code{chooser} :}{		the object which received the signal.
 	      }
@@ -391,8 +330,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 	      }
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
-}
-      }
+}}
 \section{Structures}{\describe{\item{\code{GtkFileChooser}}{
 \emph{undocumented
 }
@@ -454,7 +392,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (filechooser, user.data)}}{
+\item{\code{confirm-overwrite(filechooser, user.data)}}{
       This signal gets emitted whenever it is appropriate to present a
       confirmation dialog when the user has selected a file name that
       already exists.  The signal only gets emitted when the file
@@ -494,7 +432,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 }
-\item{\code{The (chooser, user.data)}}{
+\item{\code{current-folder-changed(chooser, user.data)}}{
 This signal is emitted when the current folder in a \code{\link{GtkFileChooser}}
 changes.  This can happen due to the user performing some action that
 changes folders, such as selecting a bookmark or visiting a folder on the
@@ -516,7 +454,7 @@ See also:  \code{\link{gtkFileChooserSetCurrentFolder}},
 
 
 }
-\item{\code{The (chooser, user.data)}}{
+\item{\code{file-activated(chooser, user.data)}}{
 This signal is emitted when the user "activates" a file in the file
 chooser.  This can happen by double-clicking on a file in the file list, or
 by pressing \kbd{Enter}.
@@ -536,7 +474,7 @@ See also: \code{\link{gtkFileChooserGetFilename}},
 
 
 }
-\item{\code{The (chooser, user.data)}}{
+\item{\code{selection-changed(chooser, user.data)}}{
 This signal is emitted when there is a change in the set of selected files
 in a \code{\link{GtkFileChooser}}.  This can happen when the user modifies the selection
 with the mouse or the keyboard, or when explicitly calling functions to
@@ -559,7 +497,7 @@ See also: \code{\link{gtkFileChooserSelectFilename}},
 
 
 }
-\item{\code{The (chooser, user.data)}}{
+\item{\code{update-preview(chooser, user.data)}}{
 This signal is emitted when the preview in a file chooser should be
 regenerated.  For example, this can happen when the currently selected file
 changes.  You should use this signal if you want your file chooser to have
@@ -587,6 +525,67 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
+
+}
+}}
+\section{Properties}{\describe{
+\item{\code{action} [\code{\link{GtkFileChooserAction}} : Read / Write]}{
+
+The type of operation that the file selector is performing.  Default value: GTK\_FILE\_CHOOSER\_ACTION\_OPEN
+
+}
+\item{\code{do-overwrite-confirmation} [logical : Read / Write]}{
+
+Whether a file chooser in \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode
+will present an overwrite confirmation dialog if the user
+selects a file name that already exists.  
+
+  Default value: FALSE  Since  2.8
+
+}
+\item{\code{extra-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+
+Application supplied widget for extra options.
+
+}
+\item{\code{file-system-backend} [character : Write / Construct Only]}{
+
+Name of file system backend to use.  Default value: NULL
+
+}
+\item{\code{filter} [\code{\link{GtkFileFilter}} : Read / Write]}{
+
+The current filter for selecting which files are displayed.
+
+}
+\item{\code{local-only} [logical : Read / Write]}{
+
+Whether the selected file(s) should be limited to local file: URLs.  Default value: TRUE
+
+}
+\item{\code{preview-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+
+Application supplied widget for custom previews.
+
+}
+\item{\code{preview-widget-active} [logical : Read / Write]}{
+
+Whether the application supplied widget for custom previews should be shown.  Default value: TRUE
+
+}
+\item{\code{select-multiple} [logical : Read / Write]}{
+
+Whether to allow multiple files to be selected.  Default value: FALSE
+
+}
+\item{\code{show-hidden} [logical : Read / Write]}{
+
+Whether the hidden files and folders should be displayed.  Default value: FALSE
+
+}
+\item{\code{use-preview-label} [logical : Read / Write]}{
+
+Whether to display a stock label with the name of the previewed file.  Default value: TRUE
 
 }
 }}

@@ -3787,3 +3787,209 @@ S_cairo_pattern_set_user_data(USER_OBJECT_ s_pattern, USER_OBJECT_ s_key, USER_O
 }
  
 
+USER_OBJECT_
+S_cairo_format_stride_for_width(USER_OBJECT_ s_format, USER_OBJECT_ s_width)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_format_t format = ((cairo_format_t)asCEnum(s_format, CAIRO_TYPE_FORMAT));
+  int width = ((int)asCInteger(s_width));
+
+  int ans;
+
+  ans = cairo_format_stride_for_width(format, width);
+
+  _result = asRInteger(ans);
+#else
+  error("cairo_format_stride_for_width exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_has_current_point(USER_OBJECT_ s_cr)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+
+  gboolean ans;
+
+  ans = cairo_has_current_point(cr);
+
+  _result = asRLogical(ans);
+#else
+  error("cairo_has_current_point exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_path_extents(USER_OBJECT_ s_cr)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_t* cr = ((cairo_t*)getPtrValue(s_cr));
+
+  double x1;
+  double y1;
+  double x2;
+  double y2;
+
+  cairo_path_extents(cr, &x1, &y1, &x2, &y2);
+
+
+  _result = retByVal(_result, "x1", asRNumeric(x1), "y1", asRNumeric(y1), "x2", asRNumeric(x2), "y2", asRNumeric(y2), NULL);
+  ;
+  ;
+  ;
+  ;
+#else
+  error("cairo_path_extents exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_copy_page(USER_OBJECT_ s_surface)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+
+  cairo_surface_copy_page(surface);
+
+#else
+  error("cairo_surface_copy_page exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_surface_show_page(USER_OBJECT_ s_surface)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+
+  cairo_surface_show_page(surface);
+
+#else
+  error("cairo_surface_show_page exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_restrict_to_level(USER_OBJECT_ s_surface, USER_OBJECT_ s_level)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  cairo_ps_level_t level = ((cairo_ps_level_t)asCEnum(s_level, CAIRO_TYPE_PS_LEVEL));
+
+
+  cairo_ps_surface_restrict_to_level(surface, level);
+
+#else
+  error("cairo_ps_surface_restrict_to_level exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_get_levels(void)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+
+  const cairo_ps_level_t* levels = NULL;
+  int nlevels;
+
+  cairo_ps_get_levels(&levels, &nlevels);
+
+
+  _result = retByVal(_result, "levels", asREnumArrayWithSize(levels, CAIRO_TYPE_PS_LEVEL, nlevels), "nlevels", asRInteger(nlevels), NULL);
+  ;
+  ;
+#else
+  error("cairo_ps_get_levels exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_level_to_string(USER_OBJECT_ s_level)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_ps_level_t level = ((cairo_ps_level_t)asCEnum(s_level, CAIRO_TYPE_PS_LEVEL));
+
+  const char* ans;
+
+  ans = cairo_ps_level_to_string(level);
+
+  _result = asRString(ans);
+#else
+  error("cairo_ps_level_to_string exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_set_eps(USER_OBJECT_ s_surface, USER_OBJECT_ s_eps)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+  gboolean eps = ((gboolean)asCLogical(s_eps));
+
+
+  cairo_ps_surface_set_eps(surface, eps);
+
+#else
+  error("cairo_ps_surface_set_eps exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_cairo_ps_surface_get_eps(USER_OBJECT_ s_surface)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if CAIRO_CHECK_VERSION(1, 6, 0)
+  cairo_surface_t* surface = ((cairo_surface_t*)getPtrValue(s_surface));
+
+  gboolean ans;
+
+  ans = cairo_ps_surface_get_eps(surface);
+
+  _result = asRLogical(ans);
+#else
+  error("cairo_ps_surface_get_eps exists only in cairo >= 1.6.0");
+#endif
+
+  return(_result);
+}
+ 
+

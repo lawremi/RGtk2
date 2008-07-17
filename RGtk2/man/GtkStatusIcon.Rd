@@ -30,7 +30,7 @@
 \code{\link{gtkStatusIconGetGeometry}(object)}\cr
 \code{gtkStatusIcon()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GtkStatusIcon}}
 \section{Detailed Description}{The "system tray" or notification area is normally used for transient icons 
 that indicate some special state. For example, a system tray icon might 
@@ -59,7 +59,7 @@ on Win32 doesn't allow to embed arbitrary widgets.}
 }}}
 \section{Convenient Construction}{\code{gtkStatusIcon} is the equivalent of \code{\link{gtkStatusIconNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (status.icon, user.data)}}{
+\item{\code{activate(status.icon, user.data)}}{
 Gets emitted when the user activates the status icon. 
 If and how status icons can activated is platform-dependent.  
 
@@ -72,7 +72,7 @@ If and how status icons can activated is platform-dependent.
 
 
 }
-\item{\code{The (status.icon, button, activate.time, user.data)}}{
+\item{\code{popup-menu(status.icon, button, activate.time, user.data)}}{
 Gets emitted when the user brings up the context menu
 of the status icon. Whether status icons can have context 
 menus and how these are activated is platform-dependent.
@@ -93,7 +93,7 @@ passed as the last to arguments to \code{\link{gtkMenuPopup}}.
 
 
 }
-\item{\code{The (status.icon, size, user.data)}}{
+\item{\code{size-changed(status.icon, size, user.data)}}{
 Gets emitted when the size available for the image
 changes, e.g. because the notification area got resized.  
 
@@ -105,7 +105,7 @@ changes, e.g. because the notification area got resized.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the icon was updated for the new
+\emph{Returns:} [logical] \code{TRUE} if the icon was updated for the new
 size. Otherwise, GTK+ will scale the icon as necessary.
 
 }

@@ -11,7 +11,7 @@
 \code{\link{gtkCellRendererToggleSetActive}(object, setting)}\cr
 \code{gtkCellRendererToggle()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkCellRenderer}
@@ -26,7 +26,7 @@ property. When activated, it emits the toggled signal.}
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererToggle} is the equivalent of \code{\link{gtkCellRendererToggleNew}}.}
-\section{Signals}{\describe{\item{\code{The (cell.renderer, path, user.data)}}{
+\section{Signals}{\describe{\item{\code{toggled(cell.renderer, path, user.data)}}{
 The ::toggled signal is emitted when the cell is toggled.  
 
 \describe{
@@ -56,7 +56,7 @@ The inconsistent state of the button.  Default value: FALSE
 }
 \item{\code{indicator-size} [integer : Read / Write]}{
 
-Size of check or radio indicator.  Allowed values: >= 0  Default value: 12
+Size of check or radio indicator.  Allowed values: >= 0  Default value: 13
 
 }
 \item{\code{radio} [logical : Read / Write]}{

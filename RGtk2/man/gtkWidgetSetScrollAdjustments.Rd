@@ -12,6 +12,6 @@ support scrolling.}
 \item{\code{hadjustment}}{[\code{\link{GtkAdjustment}}]  an adjustment for horizontal scrolling, or \code{NULL}}
 \item{\code{vadjustment}}{[\code{\link{GtkAdjustment}}]  an adjustment for vertical scrolling, or \code{NULL}}
 }
-\value{[logical]  \code{TRUE} if the widget supports scrolling}
+\value{[logical] \code{TRUE} if the widget supports scrolling}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

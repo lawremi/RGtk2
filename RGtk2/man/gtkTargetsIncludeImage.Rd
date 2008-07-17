@@ -10,7 +10,7 @@ provide a \code{\link{GdkPixbuf}}.}
   how to convert a pixbuf into the format}
 }
 \details{  Since  2.10}
-\value{[logical]  \code{TRUE} if \code{targets} include a suitable target for images,
+\value{[logical] \code{TRUE} if \code{targets} include a suitable target for images,
   otherwise \code{FALSE}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

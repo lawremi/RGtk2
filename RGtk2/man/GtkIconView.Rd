@@ -64,14 +64,14 @@
 \code{\link{gtkIconViewCreateDragIcon}(object, path)}\cr
 \code{gtkIconView(model = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkIconView}}
 \section{Interfaces}{GtkIconView implements
- \code{\link{GtkBuildable}},  AtkImplementorIface and  \code{\link{GtkCellLayout}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
 \section{Detailed Description}{\code{\link{GtkIconView}} provides an alternative view on a list model. 
 It displays the model as a grid of icons with labels. Like 
 \code{\link{GtkTreeView}}, it allows to select one or multiple items 
@@ -110,7 +110,7 @@ selected rows.  It will be called on every selected row in the view.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (iconview, user.data)}}{
+\item{\code{activate-cursor-item(iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -121,7 +121,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, arg1, user.data)}}{
+\item{\code{item-activated(iconview, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -133,7 +133,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, arg1, arg2, user.data)}}{
+\item{\code{move-cursor(iconview, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -146,7 +146,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, user.data)}}{
+\item{\code{select-all(iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -157,7 +157,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, user.data)}}{
+\item{\code{select-cursor-item(iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -168,7 +168,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, user.data)}}{
+\item{\code{selection-changed(iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -179,7 +179,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, arg1, arg2, user.data)}}{
+\item{\code{set-scroll-adjustments(iconview, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -192,7 +192,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, user.data)}}{
+\item{\code{toggle-cursor-item(iconview, user.data)}}{
 \emph{undocumented
 }
 
@@ -203,7 +203,7 @@ selected rows.  It will be called on every selected row in the view.
 
 
 }
-\item{\code{The (iconview, user.data)}}{
+\item{\code{unselect-all(iconview, user.data)}}{
 \emph{undocumented
 }
 

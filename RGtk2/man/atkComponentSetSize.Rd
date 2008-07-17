@@ -8,6 +8,6 @@
 \item{\code{width}}{[integer]  width to set for \code{component}}
 \item{\code{height}}{[integer]  height to set for \code{component}}
 }
-\value{[logical]  \code{TRUE} or \code{FALSE} whether the size was set or not}
+\value{[logical] \code{TRUE} or \code{FALSE} whether the size was set or not}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -26,14 +26,14 @@
 \code{\link{gtkProgressBarUpdate}(object, percentage)}\cr
 \code{gtkProgressBar(adjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkProgress}
                            +----GtkProgressBar}}
 \section{Interfaces}{GtkProgressBar implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkProgressBar}} is typically used to display the progress of a long
 running operation.  It provides a visual clue that processing
 is underway.  The \code{\link{GtkProgressBar}} can be used in two different
@@ -56,8 +56,7 @@ There is quite a bit of flexibility provided to control the appearance
 of the \code{\link{GtkProgressBar}}.  Functions are provided to control the 
 orientation of the bar, optional text can be displayed along with
 the bar, and the step size used in activity mode can be set.
-  \strong{PLEASE NOTE:}   
-The \code{\link{GtkProgressBar}}/\code{\link{GtkProgress}} API in GTK 1.2 was bloated, needlessly complex
+  \strong{PLEASE NOTE:} The \code{\link{GtkProgressBar}}/\code{\link{GtkProgress}} API in GTK 1.2 was bloated, needlessly complex
 and hard to use properly.  Therefore \code{\link{GtkProgress}} has been deprecated
 completely and the \code{\link{GtkProgressBar}} API has been reduced to the following 10
 functions: \code{\link{gtkProgressBarNew}}, \code{\link{gtkProgressBarPulse}}, 
@@ -66,8 +65,7 @@ functions: \code{\link{gtkProgressBarNew}}, \code{\link{gtkProgressBarPulse}},
 \code{\link{gtkProgressBarGetText}}, \code{\link{gtkProgressBarGetFraction}}, 
 \code{\link{gtkProgressBarGetPulseStep}}, \code{\link{gtkProgressBarGetOrientation}}. 
 These have been grouped at the beginning of this section, followed by 
-a large chunk of deprecated 1.2 compatibility functions.
-  }
+a large chunk of deprecated 1.2 compatibility functions.}
 \section{Structures}{\describe{\item{\code{GtkProgressBar}}{
 The \code{\link{GtkProgressBar}} struct contains private data only, 
 and should be accessed using the functions below.

@@ -7,7 +7,7 @@
 \arguments{\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{iter} was set.}
+\item{retval}{[logical] \code{TRUE}, if \code{iter} was set.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The uninitialized \code{\link{GtkTreeIter}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

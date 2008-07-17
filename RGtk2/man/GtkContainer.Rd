@@ -36,7 +36,7 @@
 \code{\link{gtkContainerClassListChildProperties}(cclass)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -58,7 +58,7 @@
                            +----GtkTree
                            +----\link{GtkTreeView}}}
 \section{Interfaces}{GtkContainer implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. 
 Container widgets are the inner nodes in the resulting tree of widgets: 
 they contain other widgets. So, for example, you might have a \code{\link{GtkWindow}} 
@@ -138,8 +138,7 @@ supports a <packing> element for children, which can
 contain multiple <property> elements that specify
 child properties for the child.
   
-\emph{Child properties in UI definitions}
-\preformatted{<object class="GtkVBox">
+ \emph{Child properties in UI definitions}\preformatted{<object class="GtkVBox">
   <child>
     <object class="GtkLabel"/>
     <packing>
@@ -163,7 +162,7 @@ child properties for the child.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (container, widget, user.data)}}{
+\item{\code{add(container, widget, user.data)}}{
 \emph{undocumented
 }
 
@@ -175,7 +174,7 @@ child properties for the child.
 
 
 }
-\item{\code{The (container, user.data)}}{
+\item{\code{check-resize(container, user.data)}}{
 \emph{undocumented
 }
 
@@ -186,7 +185,7 @@ child properties for the child.
 
 
 }
-\item{\code{The (container, widget, user.data)}}{
+\item{\code{remove(container, widget, user.data)}}{
 \emph{undocumented
 }
 
@@ -198,7 +197,7 @@ child properties for the child.
 
 
 }
-\item{\code{The (container, widget, user.data)}}{
+\item{\code{set-focus-child(container, widget, user.data)}}{
 \emph{undocumented
 }
 

@@ -11,7 +11,7 @@
 \code{\link{gtkRadioActionSetCurrentValue}(object, current.value)}\cr
 \code{gtkRadioAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL, value = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GtkAction}
          +----\link{GtkToggleAction}
                +----GtkRadioAction}}
@@ -26,7 +26,7 @@ only private members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkRadioAction} is the equivalent of \code{\link{gtkRadioActionNew}}.}
-\section{Signals}{\describe{\item{\code{The (action, current, user.data)}}{
+\section{Signals}{\describe{\item{\code{changed(action, current, user.data)}}{
 The ::changed signal is emitted on every member of a radio group when the
 active member is changed. The signal gets emitted after the ::activate signals
 for the previous and current active members.  

@@ -5,6 +5,6 @@
 such as a title bar via \code{\link{gtkWindowSetDecorated}}.}
 \usage{gtkWindowGetDecorated(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\value{[logical]  \code{TRUE} if the window has been set to have decorations}
+\value{[logical] \code{TRUE} if the window has been set to have decorations}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

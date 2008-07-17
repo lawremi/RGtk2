@@ -60,7 +60,7 @@
 \code{\link{gtkTreeModelRowDeleted}(object, path)}\cr
 \code{\link{gtkTreeModelRowsReordered}(object, path, iter, new.order)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----GtkTreeModel}}
 \section{Implementations}{GtkTreeModel is implemented by
  \code{\link{GtkTreeModelFilter}},  \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
@@ -94,9 +94,7 @@ Models are accessed on a node/column level of granularity.  One can
 query for the value of a model at a certain node and a certain column
 on that node.  There are two structures used to reference a particular
 node in a model.  They are the \code{\link{GtkTreePath}} and the \code{\link{GtkTreeIter}}
-\strong{PLEASE NOTE:}   
-Here, \emph{iter} is short for \dQuote{iterator}
-  
+\strong{PLEASE NOTE:} Here, \emph{iter} is short for \dQuote{iterator}
 Most of the interface consists of operations on a \code{\link{GtkTreeIter}}.
   
 A path is essentially a potential node.  It is a location on a model
@@ -142,54 +140,55 @@ provided.  The first example shows three ways of getting the iter at the
 location \dQuote{3:2:5}.  While the first method shown is easier,
 the second is much more common, as you often get paths from callbacks.
   
+ \emph{Acquiring a   \code{GtkTreeIter}}
 \preformatted{
-# Acquiring a GtkTreeIter
+## Acquiring a GtkTreeIter
 
-# Three ways of getting the iter pointing to the location
+## Three ways of getting the iter pointing to the location
 
-  # get the iterator from a string 
-  model$getIterFromString("3:2:5")$iter
+## get the iterator from a string 
+model$getIterFromString("3:2:5")$iter
 
-  # get the iterator from a path
-  path <- gtkTreePathNewFromString("3:2:5")
-  model$getIter(path)$iter
+## get the iterator from a path
+path <- gtkTreePathNewFromString("3:2:5")
+model$getIter(path)$iter
 
-  # walk the tree to find the iterator
-  parent_iter <- model$iterNthChild(NULL, 3)$iter
-  parent_iter <- model$iterNthChild(parent_iter, 2)$iter
-  model$iterNthChild(parent_iter, 5)$iter
-}
-  
+## walk the tree to find the iterator
+parent_iter <- model$iterNthChild(NULL, 3)$iter
+parent_iter <- model$iterNthChild(parent_iter, 2)$iter
+model$iterNthChild(parent_iter, 5)$iter
+}  
 This second example shows a quick way of iterating through a list and
 getting a string and an integer from each row.  The
 \code{populateModel} function used below is not shown, as
 it is specific to the \code{\link{GtkListStore}}.  For information on how to write
 such a function, see the \code{\link{GtkListStore}} documentation.
+
+ \emph{Reading data from a   \code{GtkTreeModel}}
 \preformatted{
-# Reading data from a GtkTreeModel
+## Reading data from a GtkTreeModel
 
-# make a new list_store
-  list_store <- gtkListStore("character", "integer")
+## make a new list_store
+list_store <- gtkListStore("character", "integer")
 
-  # Fill the list store with data
-  populate_model(list_store)
+## Fill the list store with data
+populate_model(list_store)
 
-  # Get the first iter in the list 
-  result <- list_store$getIterFirst()
+## Get the first iter in the list 
+result <- list_store$getIterFirst()
 
-  row_count <- 1
-  while (result[[1]])
-    {
-      # Walk through the list, reading each row
+row_count <- 1
+while(result[[1]]) {
+  ## Walk through the list, reading each row
       
-      data <- list_store$get(result$iter, 0, 1)
-
-      # Do something with the data
-      print(paste("Row ", row_count, ": (", data[[1]], ",", data[[2]], ")", sep=""))
-      
-	  row_count <- row_count + 1
-      result <- list_store$iterNext()
-    }
+  data <- list_store$get(result$iter, 0, 1)
+  
+  ## Do something with the data
+  print(paste("Row ", row_count, ": (", data[[1]], ",", data[[2]], ")", sep=""))
+  
+  row_count <- row_count + 1
+  result <- list_store$iterNext()
+}
 }}
 \section{Structures}{\describe{
 \item{\code{GtkTreeModel}}{
@@ -240,16 +239,17 @@ section.
 }
 
 \describe{
-\item{\code{model}}{[\code{\link{GtkTreeModel}}] }
-\item{\code{path}}{[\code{\link{GtkTreePath}}] }
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}] }
-\item{\code{data}}{[R object] }
+\item{\code{model}}{[\code{\link{GtkTreeModel}}] The \code{\link{GtkTreeModel}} currently being iterated}
+\item{\code{path}}{[\code{\link{GtkTreePath}}] The current \code{\link{GtkTreePath}}}
+\item{\code{iter}}{[\code{\link{GtkTreeIter}}] The current \code{\link{GtkTreeIter}}}
+\item{\code{data}}{[R object] The user data passed to \code{\link{gtkTreeModelForeach}}}
 }
 
+\emph{Returns:} [logical] \code{TRUE} to stop iterating, \code{FALSE} to continue.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (tree.model, path, iter, user.data)}}{
+\item{\code{row-changed(tree.model, path, iter, user.data)}}{
 This signal is emitted when a row in the model has changed.  
 
 \describe{
@@ -261,7 +261,7 @@ This signal is emitted when a row in the model has changed.
 
 
 }
-\item{\code{The (tree.model, path, user.data)}}{
+\item{\code{row-deleted(tree.model, path, user.data)}}{
 This signal is emitted when a row has been deleted.
   
 Note that no iterator is passed to the signal handler,
@@ -282,7 +282,7 @@ row-deleted handler.
 
 
 }
-\item{\code{The (tree.model, path, iter, user.data)}}{
+\item{\code{row-has-child-toggled(tree.model, path, iter, user.data)}}{
 This signal is emitted when a row has gotten the first child row or lost
 its last child row.  
 
@@ -295,7 +295,7 @@ its last child row.
 
 
 }
-\item{\code{The (tree.model, path, iter, user.data)}}{
+\item{\code{row-inserted(tree.model, path, iter, user.data)}}{
 This signal is emitted when a new row has been inserted in the model.
   
 Note that the row may still be empty at this point, since
@@ -311,7 +311,7 @@ then fill it with the desired values.
 
 
 }
-\item{\code{The (tree.model, path, iter, user.data)}}{
+\item{\code{rows-reordered(tree.model, path, iter, user.data)}}{
 This signal is emitted when the children of a node in the \code{\link{GtkTreeModel}}
 have been reordered. 
   

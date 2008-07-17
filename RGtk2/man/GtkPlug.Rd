@@ -11,7 +11,7 @@
 \code{\link{gtkPlugGetId}(object)}\cr
 \code{gtkPlug(socket.id, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -20,7 +20,7 @@
                                  +----\link{GtkWindow}
                                        +----GtkPlug}}
 \section{Interfaces}{GtkPlug implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
@@ -29,17 +29,15 @@ ID of that widgets window to the other process,
 which then creates a \code{\link{GtkPlug}} with that window ID.
 Any widgets contained in the \code{\link{GtkPlug}} then will appear
 inside the first applications window.
-  \strong{PLEASE NOTE:}   
-The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
-on all platforms supported by GTK+.
-  }
+  \strong{PLEASE NOTE:} The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
+on all platforms supported by GTK+.}
 \section{Structures}{\describe{\item{\code{GtkPlug}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkPlug} is the equivalent of \code{\link{gtkPlugNew}}.}
-\section{Signals}{\describe{\item{\code{The (plug, user.data)}}{
+\section{Signals}{\describe{\item{\code{embedded(plug, user.data)}}{
 Gets emitted when the plug becomes embedded in a socket
 and when the embedding ends.  
 

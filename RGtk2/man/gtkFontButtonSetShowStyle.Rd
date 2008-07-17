@@ -5,7 +5,7 @@
 \usage{gtkFontButtonSetShowStyle(object, show.style)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkFontButton}}]  a \code{\link{GtkFontButton}}}
-\item{\code{show.style}}{[logical]  \code{TRUE} if font style should be displayed in label.}
+\item{\code{show.style}}{[logical] \code{TRUE} if font style should be displayed in label.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

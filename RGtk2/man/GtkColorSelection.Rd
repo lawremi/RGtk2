@@ -29,7 +29,7 @@
 \code{\link{gtkColorSelectionGetColor}(object)}\cr
 \code{gtkColorSelection(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -38,7 +38,7 @@
                                  +----\link{GtkVBox}
                                        +----GtkColorSelection}}
 \section{Interfaces}{GtkColorSelection implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkColorSelection}} is a widget that is used to select 
 a color.  It consists of a color wheel and number of sliders
 and entry boxes for color parameters such as hue, saturation,
@@ -74,7 +74,7 @@ and should be accessed using the functions below.
 
 }
 }}
-\section{Signals}{\describe{\item{\code{The (colorselection, user.data)}}{
+\section{Signals}{\describe{\item{\code{color-changed(colorselection, user.data)}}{
 This signal is emitted when the color changes in the \code{\link{GtkColorSelection}}
 according to its update policy.
 

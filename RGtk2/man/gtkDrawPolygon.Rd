@@ -12,7 +12,7 @@ Draws a polygon on \code{window} with the given parameters.
 \item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
 \item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  type of shadow to draw}
 \item{\code{points}}{[\code{\link{GdkPoint}}]  a list of \code{\link{GdkPoint}}s}
-\item{\code{fill}}{[logical]  \code{TRUE} if the polygon should be filled}
+\item{\code{fill}}{[logical] \code{TRUE} if the polygon should be filled}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

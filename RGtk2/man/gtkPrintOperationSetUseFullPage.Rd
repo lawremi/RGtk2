@@ -10,7 +10,7 @@ imageable area (i.e. inside the margins).}
 \usage{gtkPrintOperationSetUseFullPage(object, full.page)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}
-\item{\code{full.page}}{[logical]  \code{TRUE} to set up the \code{\link{GtkPrintContext}} for the full page}
+\item{\code{full.page}}{[logical] \code{TRUE} to set up the \code{\link{GtkPrintContext}} for the full page}
 }
 \details{  Since  2.10 }
 \author{Derived by RGtkGen from GTK+ documentation}

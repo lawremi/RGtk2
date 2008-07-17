@@ -10,7 +10,7 @@ will only be used with that text direction.}
 \usage{gtkIconSourceSetDirectionWildcarded(object, setting)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}
-\item{\code{setting}}{[logical]  \code{TRUE} to wildcard the text direction}
+\item{\code{setting}}{[logical] \code{TRUE} to wildcard the text direction}
 }
 \details{\code{\link{GtkIconSet}} prefers non-wildcarded sources (exact matches) over
 wildcarded sources, and will use an exact match when possible.  }

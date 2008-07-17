@@ -7,7 +7,7 @@ see \code{\link{gtkPrintOperationRun}}.}
 \usage{gtkPrintOperationSetPrintSettings(object, print.settings = NULL)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}
-\item{\code{print.settings}}{[\code{\link{GtkPrintSettings}}]  \code{\link{GtkPrintSettings}}, or \code{NULL}}
+\item{\code{print.settings}}{[\code{\link{GtkPrintSettings}}] \code{\link{GtkPrintSettings}}, or \code{NULL}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

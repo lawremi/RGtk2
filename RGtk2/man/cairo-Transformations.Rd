@@ -15,6 +15,11 @@
 \code{\link{cairoDeviceToUser}(cr, x, y)}\cr
 \code{\link{cairoDeviceToUserDistance}(cr, dx, dy)}\cr
 }
+\section{Detailed Description}{The current transformation matrix, \dfn{ctm}, is a
+two-dimensional affine transformation that maps all coordinates and other
+drawing instruments from the \dfn{user space} into the
+surface's canonical coordinate system, also known as the \dfn{device
+space}.}
 \references{\url{http://www.cairographics.org/manual/cairo-Transformations.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

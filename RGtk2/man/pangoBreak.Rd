@@ -7,7 +7,7 @@ purposes you may want to use \code{\link{pangoGetLogAttrs}}.}
 \usage{pangoBreak(text, analysis)}
 \arguments{
 \item{\code{text}}{[character]       the text to process}
-\item{\code{analysis}}{[\code{\link{PangoAnalysis}}]   \code{\link{PangoAnalysis}} structure from \code{\link{pangoItemize}}}
+\item{\code{analysis}}{[\code{\link{PangoAnalysis}}] \code{\link{PangoAnalysis}} structure from \code{\link{pangoItemize}}}
 }
 \value{
 A list containing the following elements:

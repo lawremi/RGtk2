@@ -15,7 +15,7 @@ should be and how much you should shift the layout when rendering.
   
 For better accuracy, you should use \code{\link{pangoMatrixTransformRectangle}} on
 original rectangle in Pango units and convert to pixels afterward
-using \code{\link{pangoExtentsToPixels}} as \code{ink.rect}.  
+using \code{\link{pangoExtentsToPixels}}'s first argument.  
 
   Since  1.16}
 \author{Derived by RGtkGen from GTK+ documentation}

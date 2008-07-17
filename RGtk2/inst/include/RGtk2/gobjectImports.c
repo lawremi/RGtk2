@@ -12,11 +12,11 @@ asCStringArray(USER_OBJECT_ svec)
   return(fun(svec));
 } 
 
-gchar*
+const gchar*
 asCString(USER_OBJECT_ s_str)
 {
-  static gchar* (*fun)(USER_OBJECT_) = NULL;
-  if(!fun) fun = ((gchar* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCString"));
+  static const gchar* (*fun)(USER_OBJECT_) = NULL;
+  if(!fun) fun = ((const gchar* (*)(USER_OBJECT_))R_GetCCallable("RGtk2", "asCString"));
   return(fun(s_str));
 } 
 
@@ -356,10 +356,10 @@ S_GCompareFunc(gconstpointer s_a, gconstpointer s_b)
   return(fun(s_a, s_b));
 } 
 
-void
+gboolean
 S_GSourceFunc(gpointer data)
 {
-  static void (*fun)(gpointer) = NULL;
+  static gboolean (*fun)(gpointer) = NULL;
   if(!fun) fun = ((gboolean (*)(gpointer))R_GetCCallable("RGtk2", "S_GSourceFunc"));
   return(fun(data));
 } 

@@ -38,9 +38,9 @@
 \code{\link{gdkSpawnCommandLineOnScreen}(screen, command.line, .errwarn = TRUE)}\cr
 
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GdkScreen}}
-\section{Detailed Description}{  \code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
+\section{Detailed Description}{\code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
   throughout GDK and GTK+ to specify which screen the top level windows
   are to be displayed on. 
   It is also used to query the screen specification and default settings such as 
@@ -56,7 +56,7 @@ when GDK gets multihead support.
 
 }}}
 \section{Signals}{\describe{
-\item{\code{The (screen, user.data)}}{
+\item{\code{composited-changed(screen, user.data)}}{
 The ::composited\_changed signal is emitted when the composited
 status of the screen changes  
 
@@ -69,7 +69,7 @@ status of the screen changes
 
 
 }
-\item{\code{The (screen, user.data)}}{
+\item{\code{size-changed(screen, user.data)}}{
 The ::size\_changed signal is emitted when the pixel width or 
 height of a screen changes.  
 

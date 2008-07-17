@@ -7,6 +7,6 @@ necessarily set; \code{HAS_FOCUS} will only be set if the
 toplevel widget additionally has the global input focus.)}
 \usage{gtkWidgetIsFocus(object)}
 \arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
-\value{[logical]  \code{TRUE} if the widget is the focus widget.}
+\value{[logical] \code{TRUE} if the widget is the focus widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

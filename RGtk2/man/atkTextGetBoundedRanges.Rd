@@ -10,9 +10,7 @@
 \item{\code{x.clip.type}}{[\code{\link{AtkTextClipType}}]  Specify the horizontal clip type.}
 \item{\code{y.clip.type}}{[\code{\link{AtkTextClipType}}]  Specify the vertical clip type.}
 }
-\details{Returns:  
-
-  Since  ATK 1.3}
+\details{  Since  ATK 1.3}
 \value{[\code{\link{AtkTextRange}}]  list of AtkTextRange. The last element of the list returned 
          by this function will be NULL.}
 \author{Derived by RGtkGen from GTK+ documentation}

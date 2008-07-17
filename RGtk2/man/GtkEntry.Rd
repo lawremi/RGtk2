@@ -39,14 +39,14 @@
 \code{\link{gtkEntryGetCursorHadjustment}(object)}\cr
 \code{gtkEntry(max = 0, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----GtkEntry
                            +----\link{GtkSpinButton}}}
 \section{Interfaces}{GtkEntry implements
- \code{\link{GtkBuildable}},  AtkImplementorIface,  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
+ AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
 \section{Detailed Description}{The \code{\link{GtkEntry}} widget is a single line text entry
 widget. A fairly large set of key bindings are supported
 by default. If the entered text is longer than the allocation
@@ -58,7 +58,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }}}
 \section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (entry, user.data)}}{
+\item{\code{activate(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -69,7 +69,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, user.data)}}{
+\item{\code{backspace(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -80,7 +80,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, user.data)}}{
+\item{\code{copy-clipboard(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -91,7 +91,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, user.data)}}{
+\item{\code{cut-clipboard(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -102,7 +102,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, arg1, arg2, user.data)}}{
+\item{\code{delete-from-cursor(entry, arg1, arg2, user.data)}}{
 \emph{undocumented
 }
 
@@ -115,7 +115,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, arg1, user.data)}}{
+\item{\code{insert-at-cursor(entry, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -127,7 +127,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, arg1, arg2, arg3, user.data)}}{
+\item{\code{move-cursor(entry, arg1, arg2, arg3, user.data)}}{
 \emph{undocumented
 }
 
@@ -141,7 +141,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, user.data)}}{
+\item{\code{paste-clipboard(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -152,7 +152,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, arg1, user.data)}}{
+\item{\code{populate-popup(entry, arg1, user.data)}}{
 \emph{undocumented
 }
 
@@ -164,7 +164,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 
 
 }
-\item{\code{The (entry, user.data)}}{
+\item{\code{toggle-overwrite(entry, user.data)}}{
 \emph{undocumented
 }
 
@@ -227,7 +227,7 @@ The position of the opposite end of the selection from the cursor in chars.  All
 \item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
 Which kind of shadow to draw around the entry when 
-\code{:has-frame} is set to \code{TRUE}.  
+\code{"has-frame"} is set to \code{TRUE}.  
 
   Default value: GTK\_SHADOW\_IN  Since  2.12
 

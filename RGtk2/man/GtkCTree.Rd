@@ -81,7 +81,7 @@
 \code{\link{gtkCTreeSetShowStub}(object, show.stub)}\cr
 \code{gtkCTree(columns = 1, tree.column = 0, titles, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -89,7 +89,7 @@
                            +----\link{GtkCList}
                                  +----GtkCTree}}
 \section{Interfaces}{GtkCTree implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkCTree}} widget is used for showing a hierarchical tree 
 to the user, for example a directory tree.
   
@@ -114,14 +114,14 @@ These fields should be considered read-only; to set the values,
 use the methods below.
 
 \tabular{ll}{
-\code{integer}     \code{tree_indent}  ; \tab The number of pixels each successive level of the tree is
+\code{integer}  \code{tree_indent}  ; \tab The number of pixels each successive level of the tree is
 indented in the display. \cr
-\code{integer}     \code{tree_spacing}  ; \tab The space in pixels between the graphical tree and the text in the
+\code{integer}  \code{tree_spacing}  ; \tab The space in pixels between the graphical tree and the text in the
 node. \cr
-\code{integer}     \code{tree_column}  ; \tab The index of the column for which the tree graphics is drawn.  \cr
-\code{\link{GtkCTreeLineStyle}}     \code{line_style}  ; \tab The style in which the lines in the tree graphics are drawn. \cr
-\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab The style in which the expander buttons are drawn. \cr
-\code{\link{GtkCTreeExpanderStyle}}     \code{expander_style}  ; \tab FIXME. \cr
+\code{integer}  \code{tree_column}  ; \tab The index of the column for which the tree graphics is drawn.  \cr
+\code{\link{GtkCTreeLineStyle}}  \code{line_style}  ; \tab The style in which the lines in the tree graphics are drawn. \cr
+\code{\link{GtkCTreeExpanderStyle}}  \code{expander_style}  ; \tab The style in which the expander buttons are drawn. \cr
+\code{\link{GtkCTreeExpanderStyle}}  \code{expander_style}  ; \tab FIXME. \cr
 }
 
 }
@@ -140,9 +140,9 @@ the other children, just use the siblings of that node. \cr
 \code{\link{GdkBitmap}}   *  \code{mask_closed}  ; \tab  The mask for the above pixmap. \cr
 \code{\link{GdkPixmap}}   *  \code{pixmap_opened}  ; \tab  The pixmap to be shown when the node is expanded. \cr
 \code{\link{GdkBitmap}}   *  \code{mask_opened}  ; \tab  The mask for the above pixmap. \cr
-\code{integer}     \code{level}  ; \tab The level of this node in the tree. \cr
-\code{numeric}     \code{is_leaf}   : 1; \tab Whether this row is a leaf. \cr
-\code{numeric}     \code{expanded}   : 1; \tab Whether the children of this row are visible. \cr
+\code{integer}  \code{level}  ; \tab The level of this node in the tree. \cr
+\code{numeric}  \code{is_leaf}   : 1; \tab Whether this row is a leaf. \cr
+\code{numeric}  \code{expanded}   : 1; \tab Whether the children of this row are visible. \cr
 }
 
 }
@@ -247,7 +247,7 @@ FIXME
 }
 }}
 \section{Signals}{\describe{
-\item{\code{The (ctree, expansion, user.data)}}{
+\item{\code{change-focus-row-expansion(ctree, expansion, user.data)}}{
 The row which has the focus is either collapsed or expanded
 or toggled.
 
@@ -259,7 +259,7 @@ or toggled.
 
 
 }
-\item{\code{The (ctree, node, user.data)}}{
+\item{\code{tree-collapse(ctree, node, user.data)}}{
 Emitted when a node is collapsed.
 
 \describe{
@@ -270,7 +270,7 @@ Emitted when a node is collapsed.
 
 
 }
-\item{\code{The (ctree, node, user.data)}}{
+\item{\code{tree-expand(ctree, node, user.data)}}{
 Emitted when a node is expanded.
 
 \describe{
@@ -281,7 +281,7 @@ Emitted when a node is expanded.
 
 
 }
-\item{\code{The (ctree, node, new.parent, new.sibling, user.data)}}{
+\item{\code{tree-move(ctree, node, new.parent, new.sibling, user.data)}}{
 Emitted when a node is moved.
 
 \describe{
@@ -294,7 +294,7 @@ Emitted when a node is moved.
 
 
 }
-\item{\code{The (ctree, node, column, user.data)}}{
+\item{\code{tree-select-row(ctree, node, column, user.data)}}{
 Emitted when a row is selected.
 
 \describe{
@@ -306,7 +306,7 @@ Emitted when a row is selected.
 
 
 }
-\item{\code{The (ctree, node, column, user.data)}}{
+\item{\code{tree-unselect-row(ctree, node, column, user.data)}}{
 Emitted when a node is unselected.
 
 \describe{

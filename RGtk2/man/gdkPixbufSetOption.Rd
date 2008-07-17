@@ -11,6 +11,6 @@ ignored and \code{FALSE} is returned.}
 \item{\code{value}}{[character]  a string.}
 }
 \details{  Since  2.2}
-\value{[logical]  \code{TRUE} on success.}
+\value{[logical] \code{TRUE} on success.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

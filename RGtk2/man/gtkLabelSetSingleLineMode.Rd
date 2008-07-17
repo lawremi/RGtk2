@@ -5,7 +5,7 @@
 \usage{gtkLabelSetSingleLineMode(object, single.line.mode)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}
-\item{\code{single.line.mode}}{[logical]  \code{TRUE} if the label should be in single line mode}
+\item{\code{single.line.mode}}{[logical] \code{TRUE} if the label should be in single line mode}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

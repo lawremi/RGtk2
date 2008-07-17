@@ -1,7 +1,7 @@
 \alias{gtkTreeViewGetTooltipContext}
 \name{gtkTreeViewGetTooltipContext}
 \title{gtkTreeViewGetTooltipContext}
-\description{This function is supposed to be used in a \code{::query-tooltip}
+\description{This function is supposed to be used in a \code{"query-tooltip"}
 signal handler for \code{\link{GtkTreeView}}.  The \code{x}, \code{y} and \code{keyboard.tip} values
 which are received in the signal handler, should be passed to this
 function without modification.}

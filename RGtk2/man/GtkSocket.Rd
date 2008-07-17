@@ -10,14 +10,14 @@
 \code{\link{gtkSocketGetId}(object)}\cr
 \code{gtkSocket(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
                      +----\link{GtkContainer}
                            +----GtkSocket}}
 \section{Interfaces}{GtkSocket implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{Together with \code{\link{GtkPlug}}, \code{\link{GtkSocket}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
@@ -32,12 +32,14 @@ The socket's window ID is obtained by using
 the socket must have been realized, and for hence,
 have been added to its parent.
 
+
+ \emph{Obtaining the window ID of a socket.}
 \preformatted{
 socket <- gtkSocket()
 parent$add(socket)
 
-# The following call is only necessary if one of
-# the ancestors of the socket is not yet visible.
+## The following call is only necessary if one of
+## the ancestors of the socket is not yet visible.
 socket$realize()
 print(paste("The ID of the sockets window is", socket$getId()))
 }
@@ -60,7 +62,7 @@ destroyed, then it will destroy the socket as well. You
 should always, therefore, be prepared for your sockets
 to be destroyed at any time when the main event loop
 is running. To prevent this from happening, you can
-connect to the \code{::plug-removed} signal.
+connect to the \code{"plug-removed"} signal.
   
 The communication between a \code{\link{GtkSocket}} and a \code{\link{GtkPlug}} follows the 
 XEmbed (\url{http://www.freedesktop.org/standards/xembed-spec})
@@ -70,10 +72,8 @@ when embedding a \command{Qt} widget in GTK or vice versa.
 A socket can also be used to swallow arbitrary 
 pre-existing top-level windows using \code{\link{gtkSocketSteal}},
 though the integration when this is done will not be as close
-as between a \code{\link{GtkPlug}} and a \code{\link{GtkSocket}}.  \strong{PLEASE NOTE:}   
-The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
-on all platforms supported by GTK+.
-  }
+as between a \code{\link{GtkPlug}} and a \code{\link{GtkSocket}}.  \strong{PLEASE NOTE:} The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
+on all platforms supported by GTK+.}
 \section{Structures}{\describe{\item{\code{GtkSocket}}{
 The \code{\link{GtkSocket}} structure contains the \code{plug_window}
 field.  (This field should be considered read-only. It should
@@ -82,7 +82,7 @@ never be set by an application.)
 }}}
 \section{Convenient Construction}{\code{gtkSocket} is the equivalent of \code{\link{gtkSocketNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (socket., user.data)}}{
+\item{\code{plug-added(socket., user.data)}}{
 This signal is emitted when a client is successfully
 added to the socket.  
 
@@ -93,7 +93,7 @@ added to the socket.
 
 
 }
-\item{\code{The (socket., user.data)}}{
+\item{\code{plug-removed(socket., user.data)}}{
 This signal is emitted when a client is removed from the socket. 
 The default action is to destroy the \code{\link{GtkSocket}} widget, so if you 
 want to reuse it you must add a signal handler that returns \code{TRUE}.  
@@ -103,7 +103,7 @@ want to reuse it you must add a signal handler that returns \code{TRUE}.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} to stop other handlers from being invoked.
+\emph{Returns:} [logical] \code{TRUE} to stop other handlers from being invoked.
 
 }
 }}

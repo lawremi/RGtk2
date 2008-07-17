@@ -14,7 +14,7 @@ keyboard group and level. See \code{\link{gdkKeymapTranslateKeyboardState}}.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if there were any entries}
+\item{retval}{[logical] \code{TRUE} if there were any entries}
 \item{\code{keys}}{[\code{\link{GdkKeymapKey}}]  return location for list of \code{\link{GdkKeymapKey}}, or NULL}
 \item{\code{keyvals}}{[numeric]  return location for list of keyvals, or NULL}
 \item{\code{n.entries}}{[integer]  length of \code{keys} and \code{keyvals}}

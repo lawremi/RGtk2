@@ -69,12 +69,11 @@
 \code{\link{cairoGetUserData}(cr, key)}\cr
 \code{cairo(target)}
 }
-\section{Detailed Description}{    \code{\link{Cairo}} is the main object used when drawing with cairo. To
+\section{Detailed Description}{\code{\link{Cairo}} is the main object used when drawing with cairo. To
     draw with cairo, you create a \code{\link{Cairo}}, set the target surface,
     and drawing options for the \code{\link{Cairo}}, create shapes with
     functions like \code{\link{cairoMoveTo}} and \code{\link{cairoLineTo}}, and then
     draw shapes with \code{\link{cairoStroke}} or \code{\link{cairoFill}}.
-    
     \code{\link{Cairo}}'s can be pushed to a stack via \code{\link{cairoSave}}.
     They may then safely be changed, without loosing the current state.
     Use \code{\link{cairoRestore}} to restore to the saved state.
@@ -187,38 +186,46 @@ the line width from the joint point}
 
 }
 \item{\code{CairoOperator}}{
-\emph{undocumented
-}
+\code{\link{CairoOperator}} is used to set the compositing operator for all cairo
+drawing operations.
+  
+The operators marked as \dfn{unbounded} modify their
+destination even outside of the mask layer (that is, their effect is not
+bound by the mask layer).  However, their effect can still be limited by
+way of clipping.
+  
+To keep things simple, the operator descriptions here
+document the behavior for when both source and destination are either fully
+transparent or fully opaque.  The actual implementation works for
+translucent layers too.
+For a more detailed explanation of the effects of each operator, including
+the mathematical definitions, see
+http://cairographics.org/operators/ (\url{http://cairographics.org/operators/}).  
 
 \describe{
-\item{\code{clear}}{\emph{undocumented
-}}
-\item{\code{source}}{\emph{undocumented
-}}
-\item{\code{over}}{\emph{undocumented
-}}
-\item{\code{in}}{\emph{undocumented
-}}
-\item{\code{out}}{\emph{undocumented
-}}
-\item{\code{atop}}{\emph{undocumented
-}}
-\item{\code{dest}}{\emph{undocumented
-}}
-\item{\code{dest-over}}{\emph{undocumented
-}}
-\item{\code{dest-in}}{\emph{undocumented
-}}
-\item{\code{dest-out}}{\emph{undocumented
-}}
-\item{\code{dest-atop}}{\emph{undocumented
-}}
-\item{\code{xor}}{\emph{undocumented
-}}
-\item{\code{add}}{\emph{undocumented
-}}
-\item{\code{saturate}}{\emph{undocumented
-}}
+\item{\code{clear}}{ clear destination layer (bounded)}
+\item{\code{source}}{ replace destination layer (bounded)}
+\item{\code{over}}{ draw source layer on top of destination layer
+(bounded)}
+\item{\code{in}}{ draw source where there was destination content
+(unbounded)}
+\item{\code{out}}{ draw source where there was no destination
+content (unbounded)}
+\item{\code{atop}}{ draw source on top of destination content and
+only there}
+\item{\code{dest}}{ ignore the source}
+\item{\code{dest-over}}{ draw destination on top of source}
+\item{\code{dest-in}}{ leave destination only where there was
+source content (unbounded)}
+\item{\code{dest-out}}{ leave destination only where there was no
+source content}
+\item{\code{dest-atop}}{ leave destination on top of source content
+and only there (unbounded)}
+\item{\code{xor}}{ source and destination are shown where there is only
+one of them}
+\item{\code{add}}{ source and destination layers are accumulated}
+\item{\code{saturate}}{ like over, but assuming source and dest are
+disjoint geometries}
 }
 
 }

@@ -1,3 +1,5 @@
-window$realize()
-window$window$setBackPixmap(NULL, FALSE)
-window$show()
+gtkWidgetPushCompositeChild()
+hscrollbar <- gtkHScrollbarNew(hadjustment)
+hscrollbar$setCompositeName("hscrollbar")
+gtkWidgetPopCompositeChild()
+hscrollbar$setParent(scrolled_window)

@@ -5,7 +5,7 @@
 subsequent) pages.}
 \usage{cairoPdfSurfaceSetSize(surface, width.in.points, height.in.points)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PDF cairo\_surface\_t}
+\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PDF \code{\link{CairoSurface}}}
 \item{\code{width.in.points}}{[numeric]  new surface width, in points (1 point == 1/72.0 inch)}
 \item{\code{height.in.points}}{[numeric]  new surface height, in points (1 point == 1/72.0 inch)}
 }

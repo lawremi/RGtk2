@@ -7,7 +7,7 @@
 \code{\link{gtkVolumeButtonNew}(show = TRUE)}\cr
 \code{gtkVolumeButton(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                        +----\link{GtkScaleButton}
                                              +----GtkVolumeButton}}
 \section{Interfaces}{GtkVolumeButton implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkVolumeButton}} is a subclass of \code{\link{GtkScaleButton}} that has
 been tailored for use as a volume control widget with suitable 
 icons, tooltips and accessible labels.}

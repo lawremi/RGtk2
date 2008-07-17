@@ -6,7 +6,7 @@ width as the entry.}
 \usage{gtkEntryCompletionSetPopupSetWidth(object, popup.set.width)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}
-\item{\code{popup.set.width}}{[logical]  \code{TRUE} to make the width of the popup the same as the entry}
+\item{\code{popup.set.width}}{[logical] \code{TRUE} to make the width of the popup the same as the entry}
 }
 \details{  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -1,7 +1,7 @@
 \alias{pangoFontDescriptionGetSizeIsAbsolute}
 \name{pangoFontDescriptionGetSizeIsAbsolute}
 \title{pangoFontDescriptionGetSizeIsAbsolute}
-\description{Determines whether the size of the font is in points or device units.
+\description{Determines whether the size of the font is in points (not absolute) or device units (absolute).
 See \code{\link{pangoFontDescriptionSetSize}} and \code{\link{pangoFontDescriptionSetAbsoluteSize}}.}
 \usage{pangoFontDescriptionGetSizeIsAbsolute(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}}

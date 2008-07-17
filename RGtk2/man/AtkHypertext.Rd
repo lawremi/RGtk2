@@ -7,7 +7,7 @@
 \code{\link{atkHypertextGetNLinks}(object)}\cr
 \code{\link{atkHypertextGetLinkIndex}(object, char.index)}\cr
 }
-\section{Hierarchy}{\preformatted{  GInterface
+\section{Hierarchy}{\preformatted{GInterface
    +----AtkHypertext}}
 \section{Implementations}{AtkHypertext is implemented by
  \code{\link{AtkNoOpObject}}.}

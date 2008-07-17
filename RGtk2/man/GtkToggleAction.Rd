@@ -12,7 +12,7 @@
 \code{\link{gtkToggleActionGetDrawAsRadio}(object)}\cr
 \code{gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----\link{GtkAction}
          +----GtkToggleAction
                +----\link{GtkRadioAction}}}
@@ -26,7 +26,7 @@ private members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleAction} is the equivalent of \code{\link{gtkToggleActionNew}}.}
-\section{Signals}{\describe{\item{\code{The (toggleaction, user.data)}}{
+\section{Signals}{\describe{\item{\code{toggled(toggleaction, user.data)}}{
 \emph{undocumented
 }
 

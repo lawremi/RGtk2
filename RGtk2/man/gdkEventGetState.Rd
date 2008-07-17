@@ -9,7 +9,7 @@ as if the event had no state field.}
 \arguments{\item{\code{object}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}} or NULL}}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if there was a state field in the event }
+\item{retval}{[logical] \code{TRUE} if there was a state field in the event }
 \item{\code{state}}{[\code{\link{GdkModifierType}}]  return location for state}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

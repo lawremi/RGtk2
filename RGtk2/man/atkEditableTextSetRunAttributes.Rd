@@ -12,7 +12,7 @@ ATK\_ATTRIBUTE functions may also be set for certain text widgets.}
 \item{\code{start.offset}}{[integer]  start of range in which to set attributes}
 \item{\code{end.offset}}{[integer]  end of range in which to set attributes}
 }
-\value{[logical]  \code{TRUE} if attributes successfully set for the specified
+\value{[logical] \code{TRUE} if attributes successfully set for the specified
 range, otherwise \code{FALSE}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

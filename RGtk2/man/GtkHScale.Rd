@@ -8,7 +8,7 @@
 \code{\link{gtkHScaleNewWithRange}(min, max, step, show = TRUE)}\cr
 \code{gtkHScale(adjustment = NULL, min, max, step, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -16,7 +16,7 @@
                            +----\link{GtkScale}
                                  +----GtkHScale}}
 \section{Interfaces}{GtkHScale implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkHScale}} widget is used to allow the user to select a value using
 a horizontal slider. To create one, use \code{\link{gtkHScaleNewWithRange}}.
   

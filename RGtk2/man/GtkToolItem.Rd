@@ -31,7 +31,7 @@
 \code{\link{gtkToolItemRebuildMenu}(object)}\cr
 \code{gtkToolItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -41,7 +41,7 @@
                                        +----\link{GtkToolButton}
                                        +----\link{GtkSeparatorToolItem}}}
 \section{Interfaces}{GtkToolItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{\code{\link{GtkToolItem}}s are widgets that can appear on a toolbar. To
 create a toolbar item that contain something else than a button, use
 \code{\link{gtkToolItemNew}}. Use \code{\link{gtkContainerAdd}} to add a child
@@ -57,7 +57,7 @@ accessed through the functions described below.
 }}}
 \section{Convenient Construction}{\code{gtkToolItem} is the equivalent of \code{\link{gtkToolItemNew}}.}
 \section{Signals}{\describe{
-\item{\code{The (tool.item, user.data)}}{
+\item{\code{create-menu-proxy(tool.item, user.data)}}{
 This signal is emitted when the toolbar needs information from \code{tool.item}
 about whether the item should appear in the toolbar overflow menu. In
 response the tool item should either
@@ -77,10 +77,10 @@ menu.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
+\emph{Returns:} [logical] \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{The (tool.item, tooltips, tip.text, tip.private, user.data)}}{
+\item{\code{set-tooltip(tool.item, tooltips, tip.text, tip.private, user.data)}}{
 This signal is emitted when the toolitem's tooltip changes.
 Application developers can use \code{\link{gtkToolItemSetTooltip}} to
 set the item's tooltip.  
@@ -93,10 +93,10 @@ set the item's tooltip.
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [logical]  \code{TRUE} if the signal was handled, \code{FALSE} if not
+\emph{Returns:} [logical] \code{TRUE} if the signal was handled, \code{FALSE} if not
 
 }
-\item{\code{The (tool.item, user.data)}}{
+\item{\code{toolbar-reconfigured(tool.item, user.data)}}{
 This signal is emitted when some property of the toolbar that the
 item is a child of changes. For custom subclasses of \code{\link{GtkToolItem}},
 the default handler of this signal use the functions

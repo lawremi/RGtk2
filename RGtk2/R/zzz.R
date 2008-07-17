@@ -37,7 +37,7 @@ function(libname, pkgname)
 {
   windows_config <- list(
     source = F,
-    gtk_url = "http://downloads.sourceforge.net/gladewin32/gtk-2.10.11-win32-1.exe",
+    gtk_url = "http://downloads.sourceforge.net/gladewin32/gtk-2.12.9-win32-2.exe",
     installer = function(path) {
       shell(path)
     }
@@ -64,7 +64,7 @@ function(libname, pkgname)
       return()
     }
     choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
-      paste("Need", dep_name, "?"))
+      paste("Need", dep_name, "? (Please restart R after installing)"))
     if (choice == 1) {
       path <- file.path(tempdir(), basename(dep_url))
       if (download.file(dep_url, path, mode="wb") > 0)
@@ -90,5 +90,5 @@ function(libname, pkgname)
   
   install_all()
   
-  message("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
+  stop("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
 }

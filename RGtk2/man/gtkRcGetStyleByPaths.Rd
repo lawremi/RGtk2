@@ -18,9 +18,9 @@ would be items inside a GNOME canvas widget.}
 }
 \details{The action of \code{\link{gtkRcGetStyle}} is similar to:
 \preformatted{
- path <- widget$path()$path
- class_path <- widget$classPath()$path
- gtkRcGetStyleByPaths(widget$getSettings(), path, class_path, class(widget)[1])
+path <- widget$path()$path
+class_path <- widget$classPath()$path
+gtkRcGetStyleByPaths(widget$getSettings(), path, class_path, class(widget)[1])
 }  }
 \value{[\code{\link{GtkStyle}}]  A style created by matching with the supplied paths,
   or \code{NULL} if nothing matching was specified and the default style should

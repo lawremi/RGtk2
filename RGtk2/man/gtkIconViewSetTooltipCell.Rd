@@ -2,7 +2,7 @@
 \name{gtkIconViewSetTooltipCell}
 \title{gtkIconViewSetTooltipCell}
 \description{Sets the tip area of \code{tooltip} to the area which \code{cell} occupies in
-the item pointed to by \code{path}. See also \code{\link{gtkTooltipsetTipArea}}.}
+the item pointed to by \code{path}. See also \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkIconViewSetTooltipCell(object, tooltip, path, cell)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}

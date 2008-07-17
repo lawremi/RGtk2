@@ -19,7 +19,7 @@
 \code{\link{gtkFileFilterFilter}(object, filter.info)}\cr
 \code{gtkFileFilter()}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----GtkFileFilter}}

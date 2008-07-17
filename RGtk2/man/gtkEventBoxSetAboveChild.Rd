@@ -9,7 +9,7 @@ to its parents.}
 \usage{gtkEventBoxSetAboveChild(object, above.child)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEventBox}}]  a \code{\link{GtkEventBox}}}
-\item{\code{above.child}}{[logical]  \code{TRUE} if the event box window is above the windows of its child}
+\item{\code{above.child}}{[logical] \code{TRUE} if the event box window is above the windows of its child}
 }
 \details{The default is to keep the window below the child.  
 

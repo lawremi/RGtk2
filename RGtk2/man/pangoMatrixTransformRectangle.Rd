@@ -18,8 +18,9 @@ If you have a rectangle in device units (pixels), use
 If you have the rectangle in Pango units and want to convert to
 transformed pixel bounding box, it is more accurate to transform it first
 (using this function) and pass the result to \code{\link{pangoExtentsToPixels}},
-as \code{ink.rect}.  However, there is a reason that you may want to convert
-to pixels first and then transform, and that is when the transformed
+first argument, for an inclusive rounded rectangle.
+However, there are valid reasons that you may want to convert
+to pixels first and then transform, for example when the transformed
 coordinates may overflow in Pango units (large matrix translation for
 example).  
 

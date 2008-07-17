@@ -1,8 +1,8 @@
 \alias{cairoPatternCreateRadial}
 \name{cairoPatternCreateRadial}
 \title{cairoPatternCreateRadial}
-\description{Creates a new radial gradient cairo\_pattern\_t between the two
-circles defined by (x0, y0, c0) and (x1, y1, c0).  Before using the
+\description{Creates a new radial gradient \code{\link{CairoPattern}} between the two
+circles defined by (cx0, cy0, radius0) and (cx1, cy1, radius1).  Before using the
 gradient pattern, a number of color stops should be defined using
 \code{\link{cairoPatternAddColorStopRgb}} or
 \code{\link{cairoPatternAddColorStopRgba}}.}

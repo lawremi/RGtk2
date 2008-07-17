@@ -14,7 +14,7 @@ more information.
   Since  2.2}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the setting existed and a value was stored
+\item{retval}{[logical] \code{TRUE} if the setting existed and a value was stored
   in \code{value}, \code{FALSE} otherwise.}
 \item{\code{value}}{[R object]  location to store the value of the setting}
 }

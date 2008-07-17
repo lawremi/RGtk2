@@ -4,9 +4,7 @@
 \description{Determines whether this AtkHyperlink is selected}
 \usage{atkHyperlinkIsSelectedLink(object)}
 \arguments{\item{\code{object}}{[\code{\link{AtkHyperlink}}]  an \code{\link{AtkHyperlink}}}}
-\details{Returns:  
-
-  Since  ATK 1.4
+\details{  Since  ATK 1.4
 
 @Deprecated: This method is deprecated since ATK version 1.8.
 Please use ATK\_STATE\_SELECTED to indicate when a hyperlink within a

@@ -16,8 +16,7 @@ Due to an oversight, this function does not escape special XML characters
 like \code{\link{gtkMessageDialogNewWithMarkup}} does. Thus, if the arguments 
 may contain special XML characters, you should use \code{gMarkupPrintfEscaped()}
 to escape it.
-  
-\preformatted{# GMarkup is not yet supported in RGtk2}  
+  \preformatted{# GMarkup is not yet supported in RGtk2}  
 
   Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

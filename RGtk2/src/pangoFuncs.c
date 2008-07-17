@@ -5236,15 +5236,15 @@ S_pango_units_to_double(USER_OBJECT_ s_i)
  
 
 USER_OBJECT_
-S_pango_extents_to_pixels(USER_OBJECT_ s_ink_rect, USER_OBJECT_ s_logical_rect)
+S_pango_extents_to_pixels(USER_OBJECT_ s_inclusive, USER_OBJECT_ s_nearest)
 {
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 #if PANGO_CHECK_VERSION(1, 16, 0)
-  PangoRectangle* ink_rect = asCPangoRectangle(s_ink_rect);
-  PangoRectangle* logical_rect = asCPangoRectangle(s_logical_rect);
+  PangoRectangle* inclusive = asCPangoRectangle(s_inclusive);
+  PangoRectangle* nearest = asCPangoRectangle(s_nearest);
 
 
-  pango_extents_to_pixels(ink_rect, logical_rect);
+  pango_extents_to_pixels(inclusive, nearest);
 
 #else
   error("pango_extents_to_pixels exists only in Pango >= 1.16.0");
@@ -5368,6 +5368,249 @@ S_pango_version_check(USER_OBJECT_ s_required_major, USER_OBJECT_ s_required_min
   _result = asRString(ans);
 #else
   error("pango_version_check exists only in Pango >= 1.16.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_layout_get_height(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
+
+  gint ans;
+
+  ans = pango_layout_get_height(object);
+
+  _result = asRInteger(ans);
+#else
+  error("pango_layout_get_height exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_layout_set_height(USER_OBJECT_ s_object, USER_OBJECT_ s_height)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoLayout* object = PANGO_LAYOUT(getPtrValue(s_object));
+  gint height = ((gint)asCInteger(s_height));
+
+
+  pango_layout_set_height(object, height);
+
+#else
+  error("pango_layout_set_height exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_attribute_init(USER_OBJECT_ s_attr, USER_OBJECT_ s_klass)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoAttribute* attr = ((PangoAttribute*)getPtrValue(s_attr));
+  const PangoAttrClass* klass = ((const PangoAttrClass*)getPtrValue(s_klass));
+
+
+  pango_attribute_init(attr, klass);
+
+#else
+  error("pango_attribute_init exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_layout_iter_get_layout(USER_OBJECT_ s_iter)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoLayoutIter* iter = ((PangoLayoutIter*)getPtrValue(s_iter));
+
+  PangoLayout* ans;
+
+  ans = pango_layout_iter_get_layout(iter);
+
+  _result = toRPointerWithRef(ans, "PangoLayout");
+#else
+  error("pango_layout_iter_get_layout exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_renderer_get_layout(USER_OBJECT_ s_renderer)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoRenderer* renderer = PANGO_RENDERER(getPtrValue(s_renderer));
+
+  PangoLayout* ans;
+
+  ans = pango_renderer_get_layout(renderer);
+
+  _result = toRPointerWithRef(ans, "PangoLayout");
+#else
+  error("pango_renderer_get_layout exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_renderer_get_layout_line(USER_OBJECT_ s_renderer)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 20, 0)
+  PangoRenderer* renderer = PANGO_RENDERER(getPtrValue(s_renderer));
+
+  PangoLayoutLine* ans;
+
+  ans = pango_renderer_get_layout_line(renderer);
+
+  _result = toRPointer(ans, "PangoLayoutLine");
+#else
+  error("pango_renderer_get_layout_line exists only in Pango >= 1.20.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_font_face_is_synthesized(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  PangoFontFace* object = PANGO_FONT_FACE(getPtrValue(s_object));
+
+  gboolean ans;
+
+  ans = pango_font_face_is_synthesized(object);
+
+  _result = asRLogical(ans);
+#else
+  error("pango_font_face_is_synthesized exists only in Pango >= 1.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_cairo_font_get_scaled_font(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  PangoCairoFont* object = PANGO_CAIRO_FONT(getPtrValue(s_object));
+
+  cairo_scaled_font_t* ans;
+
+  ans = pango_cairo_font_get_scaled_font(object);
+
+  _result = toRPointerWithCairoRef(ans, "CairoScaledFont", cairo_scaled_font);
+#else
+  error("pango_cairo_font_get_scaled_font exists only in Pango >= 1.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_cairo_font_map_new_for_font_type(USER_OBJECT_ s_fonttype)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  cairo_font_type_t fonttype = ((cairo_font_type_t)asCEnum(s_fonttype, CAIRO_TYPE_FONT_TYPE));
+
+  PangoCairoFontMap* ans;
+
+  ans = pango_cairo_font_map_new_for_font_type(fonttype);
+
+  _result = toRPointerWithFinalizer(ans, "PangoCairoFontMap", (RPointerFinalizer) g_object_unref);
+#else
+  error("pango_cairo_font_map_new_for_font_type exists only in Pango >= 1.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_cairo_font_map_get_font_type(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  PangoCairoFontMap* object = PANGO_CAIRO_FONT_MAP(getPtrValue(s_object));
+
+  cairo_font_type_t ans;
+
+  ans = pango_cairo_font_map_get_font_type(object);
+
+  _result = asREnum(ans, CAIRO_TYPE_FONT_TYPE);
+#else
+  error("pango_cairo_font_map_get_font_type exists only in Pango >= 1.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_cairo_context_set_shape_renderer(USER_OBJECT_ s_object, USER_OBJECT_ s_func, USER_OBJECT_ s_data)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  PangoCairoShapeRendererFunc func = ((PangoCairoShapeRendererFunc)S_PangoCairoShapeRendererFunc);
+  R_CallbackData* data = R_createCBData(s_func, s_data);
+  PangoContext* object = PANGO_CONTEXT(getPtrValue(s_object));
+  GDestroyNotify dnotify = ((GDestroyNotify)R_freeCBData);
+
+
+  pango_cairo_context_set_shape_renderer(object, func, data, dnotify);
+
+#else
+  error("pango_cairo_context_set_shape_renderer exists only in Pango >= 1.18.0");
+#endif
+
+  return(_result);
+}
+ 
+
+USER_OBJECT_
+S_pango_cairo_context_get_shape_renderer(USER_OBJECT_ s_object)
+{
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+#if PANGO_CHECK_VERSION(1, 18, 0)
+  PangoContext* object = PANGO_CONTEXT(getPtrValue(s_object));
+
+  PangoCairoShapeRendererFunc ans;
+  gpointer data;
+
+  ans = pango_cairo_context_get_shape_renderer(object, &data);
+
+  _result = toRPointer(ans, "PangoCairoShapeRendererFunc");
+
+  _result = retByVal(_result, "data", data, NULL);
+  ;
+#else
+  error("pango_cairo_context_get_shape_renderer exists only in Pango >= 1.18.0");
 #endif
 
   return(_result);

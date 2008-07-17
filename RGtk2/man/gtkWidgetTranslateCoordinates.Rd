@@ -14,7 +14,7 @@ toplevel.}
 }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{FALSE} if either widget was not realized, or there
+\item{retval}{[logical] \code{FALSE} if either widget was not realized, or there
   was no common ancestor. In this case, nothing is stored in
   *\code{dest.x} and *\code{dest.y}. Otherwise \code{TRUE}.}
 \item{\code{dest.x}}{[integer]  location to store X position relative to \code{dest.widget}}

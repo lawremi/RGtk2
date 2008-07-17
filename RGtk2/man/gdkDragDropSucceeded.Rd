@@ -8,6 +8,6 @@ meaningless at other times.}
 \usage{gdkDragDropSucceeded(object)}
 \arguments{\item{\code{object}}{[\code{\link{GdkDragContext}}]  a \code{\link{GdkDragContext}}}}
 \details{  Since  2.6}
-\value{[logical]  \code{TRUE} if the drop was successful.}
+\value{[logical] \code{TRUE} if the drop was successful.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

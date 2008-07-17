@@ -10,7 +10,7 @@
 \code{\link{gtkListItemDeselect}(object)}\cr
 \code{gtkListItem(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -19,7 +19,7 @@
                                  +----\link{GtkItem}
                                        +----GtkListItem}}
 \section{Interfaces}{GtkListItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
   
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
@@ -32,7 +32,7 @@ only be accessed using the functions below.
 }}}
 \section{Convenient Construction}{\code{gtkListItem} is the result of collapsing the constructors of \code{GtkListItem} (\code{\link{gtkListItemNew}}, \code{\link{gtkListItemNewWithLabel}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{
-\item{\code{The (listitem, user.data)}}{
+\item{\code{end-selection(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -43,7 +43,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, scroll.type, position, auto.start.selection, user.data)}}{
+\item{\code{extend-selection(listitem, scroll.type, position, auto.start.selection, user.data)}}{
 \emph{undocumented
 }
 
@@ -57,7 +57,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, scroll.type, position, user.data)}}{
+\item{\code{scroll-horizontal(listitem, scroll.type, position, user.data)}}{
 \emph{undocumented
 }
 
@@ -70,7 +70,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, scroll.type, position, user.data)}}{
+\item{\code{scroll-vertical(listitem, scroll.type, position, user.data)}}{
 \emph{undocumented
 }
 
@@ -83,7 +83,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{select-all(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -94,7 +94,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{start-selection(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -105,7 +105,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{toggle-add-mode(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -116,7 +116,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{toggle-focus-row(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -127,7 +127,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{undo-selection(listitem, user.data)}}{
 \emph{undocumented
 }
 
@@ -138,7 +138,7 @@ only be accessed using the functions below.
 
 
 }
-\item{\code{The (listitem, user.data)}}{
+\item{\code{unselect-all(listitem, user.data)}}{
 \emph{undocumented
 }
 

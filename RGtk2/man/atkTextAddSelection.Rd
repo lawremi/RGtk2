@@ -8,6 +8,6 @@
 \item{\code{start.offset}}{[integer]  the start position of the selected region}
 \item{\code{end.offset}}{[integer]  the offset of the first character after the selected region.}
 }
-\value{[logical]  \code{TRUE} if success, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if success, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

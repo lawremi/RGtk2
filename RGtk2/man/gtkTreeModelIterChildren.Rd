@@ -13,7 +13,7 @@ will remain a valid node after this function has been called.}
 \code{gtk_tree_model_get_iter_first (tree_model, iter);}  }
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE}, if \code{child} has been set to the first child.}
+\item{retval}{[logical] \code{TRUE}, if \code{child} has been set to the first child.}
 \item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The new \code{\link{GtkTreeIter}} to be set to the child.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

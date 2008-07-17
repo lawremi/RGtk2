@@ -11,6 +11,6 @@ Allocates a single color from a colormap.
 \item{\code{color}}{[\code{\link{GdkColor}}]  The color to allocate. On return, the 
    \code{pixel} field will be filled in.}
 }
-\value{[integer]  \code{TRUE} if the allocation succeeded.}
+\value{[integer] \code{TRUE} if the allocation succeeded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

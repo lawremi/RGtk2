@@ -3,7 +3,9 @@
 \title{pangoLayoutGetPixelExtents}
 \description{Computes the logical and ink extents of \code{layout} in device units.
 This function just calls \code{\link{pangoLayoutGetExtents}} followed by
-\code{\link{pangoExtentsToPixels}}.}
+two \code{\link{pangoExtentsToPixels}} calls, rounding \code{ink.rect} and \code{logical.rect}
+such that the rounded rectangles fully contain the unrounded one (that is,
+passes them as first argument to \code{\link{pangoExtentsToPixels}}).}
 \usage{pangoLayoutGetPixelExtents(object)}
 \arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]    a \code{\link{PangoLayout}}}}
 \value{

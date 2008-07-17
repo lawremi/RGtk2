@@ -31,10 +31,8 @@
 \title{Event Structures}
 \description{Data structures specific to each type of event}
 \section{Detailed Description}{The event structs contain data specific to each type of event in GDK.
-  \strong{PLEASE NOTE:}   
-A common mistake is to forget to set the event mask of a widget so that the
-required events are received. See \code{\link{gtkWidgetSetEvents}}.
-  }
+  \strong{PLEASE NOTE:} A common mistake is to forget to set the event mask of a widget so that the
+required events are received. See \code{\link{gtkWidgetSetEvents}}.}
 \section{Structures}{\describe{
 \item{\code{GdkEventAny}}{
 Contains the fields which are common to all event structs.
@@ -406,7 +404,7 @@ can also cause \code{\link{GdkEventGrabBroken}} events.
 \item{\code{implicit}}{[logical] \code{TRUE} if the broken grab was implicit}
 \item{\code{grabWindow}}{[\code{\link{GdkWindow}}] If this event is caused by another grab in the same 
   application, \code{grab.window} contains the new grab window. Otherwise
-  \code{grab.window} id \code{NULL}.}
+  \code{grab.window} is \code{NULL}.}
 }
 
 }

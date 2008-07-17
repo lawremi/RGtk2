@@ -14,7 +14,7 @@ by the application.  For example, you can use this to add a
 \details{  Since  2.4}
 \value{
 A list containing the following elements:
-\item{retval}{[logical]  \code{TRUE} if the folder could be added successfully, \code{FALSE}
+\item{retval}{[logical] \code{TRUE} if the folder could be added successfully, \code{FALSE}
 otherwise.  In the latter case, the \code{error} will be set as appropriate.}
 \item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}}
 }

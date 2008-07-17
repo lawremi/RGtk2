@@ -8,13 +8,12 @@ to the group. }
 \arguments{\item{\code{object}}{[\code{\link{GtkRadioAction}}]  the action object}}
 \details{A common way to set up a group of radio group is the following:
 \preformatted{
-   while (more_actions)
-    {
-       action <- gtkRadioAction(...)
-       
-       action$setGroup(group)
-       group = action$getGroup()
-    }
+while (more_actions) {
+  action <- gtkRadioAction(...)
+  
+  action$setGroup(group)
+  group <- action$getGroup()
+}
 }  
 
   Since  2.4}

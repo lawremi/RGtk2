@@ -16,6 +16,6 @@ using \code{\link{gdkColormapAllocColors}} with the
 in the \code{pixel} field,
 and the new value in the remaining fields.}
 }
-\value{[integer]  \code{TRUE} if the color was successfully changed.}
+\value{[integer] \code{TRUE} if the color was successfully changed.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

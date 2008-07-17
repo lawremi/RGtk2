@@ -5,8 +5,8 @@
 \alias{CairoFilter}
 \alias{CairoPatternType}
 \name{cairo-Patterns}
-\title{Patterns}
-\description{Gradients and filtered sources}
+\title{cairo\_pattern\_t}
+\description{Sources for drawing}
 \section{Methods and Functions}{
 \code{\link{cairoPatternAddColorStopRgb}(pattern, offset, red, green, blue)}\cr
 \code{\link{cairoPatternAddColorStopRgba}(pattern, offset, red, green, blue, alpha)}\cr
@@ -33,6 +33,14 @@
 \code{\link{cairoPatternGetUserData}(pattern, key)}\cr
 \code{cairoPattern(red, green, blue, alpha, surface, x0, y0, x1, y1, cx0, cy0, radius0, cx1, cy1, radius1)}
 }
+\section{Detailed Description}{\code{\link{CairoPattern}} is the paint with which cairo draws.
+The primary use of patterns is as the source for all cairo drawing operations,
+although they can also be used as masks, that is, as the brush too.
+  
+A cairo pattern is created by using one of the many constructors,
+of the form cairo\_pattern\_create\_\emph{type}()
+or implicitly through
+cairo\_set\_source\_\emph{type}() functions.}
 \section{Structures}{\describe{\item{\code{CairoPattern}}{
 A \code{\link{CairoPattern}} represents a source when drawing onto a
 surface. There are different subtypes of \code{\link{CairoPattern}},
@@ -40,9 +48,9 @@ for different types of sources; for example,
 \code{\link{cairoPatternCreateRgb}} creates a pattern for a solid
 opaque color.
   
-Other than various cairo\_pattern\_create\_\emph{type}
+Other than various cairo\_pattern\_create\_\emph{type}()
 functions, some of the pattern types can be implicitly created
-using vairous cairo\_set\_source\_\emph{type} functions;
+using various cairo\_set\_source\_\emph{type}() functions;
 for example \code{\link{cairoSetSourceRgb}}.
   
 The type of a pattern can be queried with \code{\link{cairoPatternGetType}}.
@@ -69,22 +77,22 @@ New entries may be added in future versions.
 
 }
 \item{\code{CairoFilter}}{
-\emph{undocumented
-}
+\code{\link{CairoFilter}} is used to indicate what filtering should be
+applied when reading pixel values from patterns. See
+\code{cairoPatternSetSource()} for indicating the desired filter to be
+used with a particular pattern.  
 
 \describe{
-\item{\code{fast}}{\emph{undocumented
-}}
-\item{\code{good}}{\emph{undocumented
-}}
-\item{\code{best}}{\emph{undocumented
-}}
-\item{\code{nearest}}{\emph{undocumented
-}}
-\item{\code{bilinear}}{\emph{undocumented
-}}
-\item{\code{gaussian}}{\emph{undocumented
-}}
+\item{\code{fast}}{ A high-performance filter, with quality similar
+    to \code{CAIRO_FILTER_NEAREST}}
+\item{\code{good}}{ A reasonable-performance filter, with quality
+    similar to \code{CAIRO_FILTER_BILINEAR}}
+\item{\code{best}}{ The highest-quality available, performance may
+    not be suitable for interactive use.}
+\item{\code{nearest}}{ Nearest-neighbor filtering}
+\item{\code{bilinear}}{ Linear interpolation in two dimensions}
+\item{\code{gaussian}}{ This filter value is currently
+    unimplemented, and should not be used in current code.}
 }
 
 }
@@ -99,7 +107,7 @@ ways.
   
 The pattern type can be queried with \code{\link{cairoPatternGetType}}
   
-Most cairo\_pattern functions can be called with a pattern of any
+Most \code{\link{CairoPattern}} functions can be called with a pattern of any
 type, (though trying to change the extend or filter for a solid
 pattern will have no effect). A notable exception is
 \code{\link{cairoPatternAddColorStopRgb}} and

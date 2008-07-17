@@ -7,7 +7,7 @@
 \code{\link{gtkSeparatorMenuItemNew}(show = TRUE)}\cr
 \code{gtkSeparatorMenuItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{  \link{GObject}
+\section{Hierarchy}{\preformatted{\link{GObject}
    +----GInitiallyUnowned
          +----\link{GtkObject}
                +----\link{GtkWidget}
@@ -17,7 +17,7 @@
                                        +----\link{GtkMenuItem}
                                              +----GtkSeparatorMenuItem}}
 \section{Interfaces}{GtkSeparatorMenuItem implements
- \code{\link{GtkBuildable}} and  AtkImplementorIface.}
+ AtkImplementorIface and  \code{\link{GtkBuildable}}.}
 \section{Detailed Description}{The \code{\link{GtkSeparatorMenuItem}} is a separator used to group
 items within a menu. It displays a horizontal line with a shadow to
 make it appear sunken into the interface.}

@@ -1,5 +1,6 @@
-on_drop_zone_drag_data_received <- function(widget, context, x, y, 
-  selection_data, info, time, user_data)
+on_drop_zone_drag_data_received <- function(widget, context, x, y,
+                                            selection_data, info, time,
+                                            user_data)
 {
   notebook <- context$getWidget()
   child <- selection_data$data

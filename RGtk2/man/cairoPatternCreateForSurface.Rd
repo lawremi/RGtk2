@@ -1,7 +1,7 @@
 \alias{cairoPatternCreateForSurface}
 \name{cairoPatternCreateForSurface}
 \title{cairoPatternCreateForSurface}
-\description{Create a new cairo\_pattern\_t for the given surface.}
+\description{Create a new \code{\link{CairoPattern}} for the given surface.}
 \usage{cairoPatternCreateForSurface(surface)}
 \arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  the surface}}
 \value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or

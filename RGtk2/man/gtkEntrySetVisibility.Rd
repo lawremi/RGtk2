@@ -8,7 +8,7 @@ the text in the entry widget is copied elsewhere.}
 \usage{gtkEntrySetVisibility(object, visible)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{visible}}{[logical]  \code{TRUE} if the contents of the entry are displayed
+\item{\code{visible}}{[logical] \code{TRUE} if the contents of the entry are displayed
           as plaintext}
 }
 \details{The default invisible char is the asterisk '*', but it can

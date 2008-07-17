@@ -11,6 +11,6 @@ start of the text.  The selected region closest to the beginning
 of the text region is assigned the number 0, etc.  Note that adding,
 moving or deleting a selected region can change the numbering.}
 }
-\value{[logical]  \code{TRUE} if success, \code{FALSE} otherwise}
+\value{[logical] \code{TRUE} if success, \code{FALSE} otherwise}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

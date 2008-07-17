@@ -18,7 +18,7 @@ realized.}
 \item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}}}
 \item{\code{focus.column}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}, or \code{NULL}}
 \item{\code{focus.cell}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}, or \code{NULL}}
-\item{\code{start.editing}}{[logical]  \code{TRUE} if the specified cell should start being edited.}
+\item{\code{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}
