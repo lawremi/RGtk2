@@ -64,7 +64,7 @@ function(libname, pkgname)
       return()
     }
     choice <- menu(paste(c("Install", "Do not install"), dep_name), T, 
-      paste("Need", dep_name, "? (Please restart R after installing)"))
+      paste("Need", dep_name, "? (Restart R after installing)"))
     if (choice == 1) {
       path <- file.path(tempdir(), basename(dep_url))
       if (download.file(dep_url, path, mode="wb") > 0)
@@ -90,5 +90,5 @@ function(libname, pkgname)
   
   install_all()
   
-  stop("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
+  stop("PLEASE RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN. If it still does not work, please check if GTK+ is in your PATH environment variable.")
 }

@@ -35067,7 +35067,7 @@ function(object)
 
 
 gtkBuilderConnectSignals <-
-function(object, user.data)
+function(object, user.data = NULL)
 {
   checkPtrType(object, "GtkBuilder")
   

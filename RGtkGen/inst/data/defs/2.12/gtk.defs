@@ -301,7 +301,7 @@
   (c-name "gtk_builder_connect_signals")
   (return-type "none")
   (parameters
-    '("gpointer" "user_data")
+    '("gpointer" "user_data" (null-ok))
   )
   (since "2.12.0")
 )
