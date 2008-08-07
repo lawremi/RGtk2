@@ -1,3 +1,4 @@
+library(RGtk2)
 countend <- 0
 
 scroll_to_end <- function(textview)
@@ -22,7 +23,7 @@ scroll_to_end <- function(textview)
 
   # Now scroll the end mark onscreen.
 
-  textview$markOnscreen(mark)
+  textview$scrollMarkOnscreen(mark)
 
   # Emulate typewriter behavior, shift to the left if we 
   # are far enough to the right.
@@ -41,7 +42,7 @@ scroll_to_bottom <- function(textview)
   buffer <- textview$getBuffer()
   
   ## Get end iterator
-  buffer$getEndIter(iter)
+  iter <- buffer$getEndIter()$iter
 
   # and insert some text at it, the iter will be revalidated
   # after insertion to point to the end of inserted text
@@ -49,11 +50,9 @@ scroll_to_bottom <- function(textview)
   countbot <<- countbot + 1
   spaces <- paste(rep(" ", countbot), collapse = "")
   
-  spaces <- g_strnfill (count++, ' ');
-  gtk_text_buffer_insert (buffer, &iter, "\n", -1);
   buffer$insert(iter, "\n")
   buffer$insert(iter, spaces)
-  buffer$insert(iter, "Scroll to end scroll to end scroll to end scroll to end")
+  buffer$insert(iter, "Scroll bottom scroll bottom scroll bottom scroll bottom")
 
   # Move the iterator to the beginning of line, so we don't scroll 
   # in horizontal direction
@@ -65,7 +64,7 @@ scroll_to_bottom <- function(textview)
   buffer$moveMark(mark, iter)
   
   # Scroll the mark onscreen.
-  textview$markOnscreen(mark)
+  textview$scrollMarkOnscreen(mark)
   
   # Shift text back if we got enough to the right.
   if (countbot > 40)
@@ -89,7 +88,7 @@ setup_scroll <- function(textview, to_end)
     buffer$createMark("end", iter, FALSE)
     
     ## Add scrolling timeout.
-    return gTimeoutAdd(50, scroll_to_end, textview)
+    return(gTimeoutAdd(50, scroll_to_end, textview))
   }
   else
   {
@@ -102,7 +101,7 @@ setup_scroll <- function(textview, to_end)
     buffer$createMark("scroll", iter, TRUE)
     
     ## Add scrolling timeout.
-    return gTimeoutAdd (100, scroll_to_bottom, textview)
+    return(gTimeoutAdd (100, scroll_to_bottom, textview))
   }
 }
 
