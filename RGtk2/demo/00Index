@@ -25,3 +25,6 @@ assistant A three-page demonstration of the wizard-like GtkAssistant
 alphaSlider	An R plot of microarray data with the alpha controlled by a slider
 alphaSliderClass	The alphaSlider demo based on a subclass of the GtkHScale widget
 slide A simple cairo-based cell sliding game implemented as a new widget class (WARNING: UNSTABLE)
+text-scroll	Automatic text view scrolling
+builder	Building a GUI from XML with GtkBuilder (GTK+ 2.12)
+tooltips	Fancy tooltips with GtkTooltip (GTK+ 2.12)

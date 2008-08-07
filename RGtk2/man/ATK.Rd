@@ -17,8 +17,6 @@ implementing accessible objects.}
 \item{\link{AtkHypertext}}{The ATK interface which provides standard mechanism for manipulating hyperlinks.}
 \item{\link{AtkImage}}{The ATK Interface implemented by components which expose image or pixmap
 content on-screen.}
-\item{\link{atk-AtkMisc}}{\emph{undocumented
-}}
 \item{\link{AtkNoOpObject}}{An AtkObject which purports to implement all ATK interfaces.}
 \item{\link{AtkNoOpObjectFactory}}{The AtkObjectFactory which creates an AtkNoOpObject.}
 \item{\link{AtkObject}}{The base object class for the Accessibility Toolkit API.}
