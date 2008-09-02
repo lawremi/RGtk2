@@ -19,6 +19,14 @@ R_gtk_eventHandler(void *userData)
 
 #ifdef G_OS_WIN32
 
+#if R_VERSION < R_Version(2,8,0)
+#include <sys/types.h>
+extern  __declspec(dllimport) void (* R_tcldo)();
+void R_gtk_handle_events() {
+  R_gtk_eventHandler(NULL);
+}
+#else
+
 /* On Windows, run the GTK+ event loop in a separate thread, synchronizing
    through the Windows event loop on the main thread.
    This currently doesn't handle timed tasks.
@@ -48,7 +56,8 @@ R_gtk_win_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
   }
   return DefWindowProc(hwnd, message, wParam, lParam);
 }
-#endif
+#endif // R < 2.8.0
+#endif // Windows
 
 void
 R_gtkInit(long *rargc, char **rargv, Rboolean *success)
@@ -76,6 +85,9 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
           R_gtk_eventHandler, -1);
   }
 #else
+#if R_VERSION < R_Version(2,8,0)
+  R_tcldo = R_gtk_handle_events;
+#else
   /* Create a dummy window for receiving messages */
   LPCTSTR class = "RGtk2";
   HINSTANCE instance = GetModuleHandle(NULL);
@@ -88,7 +100,8 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
   /* Create a thread that will post messages to our window on this thread */
   HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);
   SetThreadPriority(thread, THREAD_PRIORITY_IDLE);
-#endif
+#endif // R < 2.8.0
+#endif // Windows
 
   R_GTK_TYPE_PARAM_SEXP;
   
