@@ -11,5 +11,5 @@ menu$add(save_item)
 ## Now add the accelerator to the GtkMenuItem. 
 ## It will be activated if the user types ctrl-s
 ## We just need to make sure we use the "visible" flag here to show it.
-save_item$addAccelerator("activate", accel_group, .gdkS, 
+save_item$addAccelerator("activate", accel_group, GDK_S, 
                          "control-mask", "visible")
