@@ -88,6 +88,9 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 #if R_VERSION < R_Version(2,8,0)
   R_tcldo = R_gtk_handle_events;
 #else
+  /* We'll need to use threads */
+  if (!g_thread_supported ()) g_thread_init (NULL);
+  
   /* Create a dummy window for receiving messages */
   LPCTSTR class = "RGtk2";
   HINSTANCE instance = GetModuleHandle(NULL);
