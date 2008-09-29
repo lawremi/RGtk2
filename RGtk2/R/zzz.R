@@ -9,7 +9,7 @@ function(libname, pkgname)
 {
  options(depwarn = TRUE, gdkFlush = TRUE)
  
- dll <- try(library.dynam("RGtk2", pkgname, libname), quiet = TRUE)
+ dll <- try(library.dynam("RGtk2", pkgname, libname), silent = TRUE)
  if (is.character(dll)) {
    message("Failed to load RGtk2 dynamic library, attempting to install it.")
    .install_system_dependencies()
@@ -90,6 +90,6 @@ function(libname, pkgname)
   
   install_all()
   
-  message("Please ensure that GTK+ is installed and that it is on your PATH environment variable")
+  message("If the package still does not load, please ensure that GTK+ is installed and that it is on your PATH environment variable")
   message("IN ANY CASE, RESTART R BEFORE TRYING TO LOAD THE PACKAGE AGAIN")
 }
