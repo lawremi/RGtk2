@@ -646,6 +646,7 @@ INTROSPECTION_CFLAGS
 INTROSPECTION_LIBS
 HAVE_LIBGLADE
 HAVE_INTROSPECTION
+CPPFLAGS
 R_PACKAGE_DIR
 INSTALL_DIR
 DEFINES
@@ -2117,6 +2118,10 @@ fi
 
 
 
+## allow specifying arbitrary flags here
+
+
+
 
 
 
@@ -2595,7 +2600,7 @@ _ACEOF
 
 cat >>$CONFIG_STATUS <<_ACEOF || ac_write_fail=1
 # Files that config.status was made for.
-config_files="$ac_config_files"
+config_files="`echo $ac_config_files`"
 
 _ACEOF
 

@@ -52,13 +52,14 @@ function(x, i, j, value)
 
 rGtkDataFrame <- rGtkDataFrameNew <- function(frame = data.frame())
 {
-	sort_closure <- function(frame, col, order) {
-		new_order <- order(frame[,col+1],decreasing=order)
-		list(frame[new_order,drop=F], as.integer((1:length(new_order))[new_order]-1))
-	}
-		
-	w <- .RGtkCall("R_r_gtk_data_frame_new", frame, sort_closure)
-	w
+  sort_closure <- function(frame, col, order) {
+    new_order <- order(frame[,col+1],decreasing=order)
+    list(frame[new_order,drop=F],
+         as.integer((1:length(new_order))[new_order]-1))
+  }
+  
+  w <- .RGtkCall("R_r_gtk_data_frame_new", as.data.frame(frame), sort_closure)
+  w
 }
 
 as.data.frame.RGtkDataFrame <- function(x, ...) .RGtkCall("R_r_gtk_data_frame_get", x)

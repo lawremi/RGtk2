@@ -36,26 +36,15 @@ void R_gtk_handle_events() {
 /* should exist win2k/xp and later, but mingw does not have it */
 #define HWND_MESSAGE                ((HWND)-3)
 
-#define RGTK2_ITERATE WM_USER + 101
+#define RGTK2_TIMER_ID 0
+#define RGTK2_TIMER_DELAY 50
 
-DWORD WINAPI R_gtk_thread_proc(LPVOID lpParam) {
-  while(1) {
-    if (gtk_events_pending())
-      PostMessage((HWND)lpParam, RGTK2_ITERATE, 0, 0);
-    Sleep(20);
-  }
-  return 0;
-}
-
-LRESULT CALLBACK
-R_gtk_win_proc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
+VOID CALLBACK R_gtk_timer_proc(HWND hwnd, UINT uMsg, UINT_PTR idEvent,
+                               DWORD dwTime)
 {
-  if (message == RGTK2_ITERATE) {
-    R_gtk_eventHandler(NULL);
-    return 1;
-  }
-  return DefWindowProc(hwnd, message, wParam, lParam);
+  R_gtk_eventHandler(NULL);
 }
+
 #endif // R < 2.8.0
 #endif // Windows
 
@@ -88,21 +77,17 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 #if R_VERSION < R_Version(2,8,0)
   R_tcldo = R_gtk_handle_events;
 #else
-  /* We'll need to use threads */
-  if (!g_thread_supported ()) g_thread_init (NULL);
   
   /* Create a dummy window for receiving messages */
   LPCTSTR class = "RGtk2";
   HINSTANCE instance = GetModuleHandle(NULL);
-  WNDCLASS wndclass = { 0, R_gtk_win_proc, 0, 0, instance, NULL, 0, 0, NULL,
+  WNDCLASS wndclass = { 0, DefWindowProc, 0, 0, instance, NULL, 0, 0, NULL,
                         class };
   RegisterClass(&wndclass);
   HWND win = CreateWindow(class, NULL, 0, 1, 1, 1, 1, HWND_MESSAGE,
                           NULL, instance, NULL);
 
-  /* Create a thread that will post messages to our window on this thread */
-  HANDLE thread = CreateThread(NULL, 0, R_gtk_thread_proc, win, 0, NULL);
-  SetThreadPriority(thread, THREAD_PRIORITY_IDLE);
+  SetTimer(win, RGTK2_TIMER_ID, RGTK2_TIMER_DELAY, (TIMERPROC)R_gtk_timer_proc);
 #endif // R < 2.8.0
 #endif // Windows
 
