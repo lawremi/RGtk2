@@ -1,26 +1,19 @@
 AC_INIT(src/Rgtk.c)
 
 DEFINES=
-
-GTK_VERSION="2.8.0"
-
-PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_VERSION, HAVE_GTK="1",
-  AC_MSG_ERROR(GTK version $GTK_VERSION required))
-
-AC_SUBST(GTK_CFLAGS)
-AC_SUBST(GTK_LIBS)
-AC_SUBST(HAVE_GTK)
+EXTRA_MODULES=
 
 AC_ARG_ENABLE(libglade,
   [  --disable-libglade          Disable libglade support],
   [use_libglade=$enableval], [use_libglade=yes])
 
 if test "x$use_libglade" = "xyes"; then
-	PKG_CHECK_MODULES(LIBGLADE, libglade-2.0, have_libglade=yes, AC_MSG_WARN(libglade not found, disabling))
+   PKG_CHECK_MODULES(LIBGLADE, libglade-2.0, have_libglade=yes, AC_MSG_WARN(libglade not found, disabling))
 fi
 
 if test "x$have_libglade" = "xyes"; then
 	DEFINES="$DEFINES -DHAVE_LIBGLADE"
+        EXTRA_MODULES="$EXTRA_MODULES libglade-2.0"
 else
 	rm R/libglade*
 	rm src/libglade*
@@ -31,20 +24,30 @@ AC_ARG_ENABLE(introspection,
   [use_introspection=$enableval], [use_introspection=yes])
 
 if test "x$use_introspection" = "xyes"; then
-        PKG_CHECK_MODULES(INTROSPECTION, gobject-introspection, have_introspection=yes,have_introspection=no)
+   PKG_CHECK_MODULES(INTROSPECTION, gobject-introspection, have_introspection=yes,have_introspection=no)
 fi
 
 if test "x$have_introspection" = "xyes"; then
+        EXTRA_MODULES="$EXTRA_MODULES gobject-introspection"
         DEFINES="$DEFINES -DHAVE_INTROSPECTION"
 fi
 
-AC_SUBST(LIBGLADE_CFLAGS)
-AC_SUBST(LIBGLADE_LIBS)
-AC_SUBST(HAVE_LIBGLADE)
+##AC_SUBST(LIBGLADE_CFLAGS)
+##AC_SUBST(LIBGLADE_LIBS)
+##AC_SUBST(HAVE_LIBGLADE)
 
-AC_SUBST(INTROSPECTION_CFLAGS)
-AC_SUBST(INTROSPECTION_LIBS)
-AC_SUBST(HAVE_INTROSPECTION)
+##AC_SUBST(INTROSPECTION_CFLAGS)
+##AC_SUBST(INTROSPECTION_LIBS)
+##AC_SUBST(HAVE_INTROSPECTION)
+
+GTK_VERSION="2.8.0"
+
+PKG_CHECK_MODULES(GTK, gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES, HAVE_GTK="1",
+  AC_MSG_ERROR(GTK version $GTK_VERSION required))
+
+AC_SUBST(GTK_CFLAGS)
+AC_SUBST(GTK_LIBS)
+AC_SUBST(HAVE_GTK)
 
 ## allow specifying arbitrary flags here
 AC_SUBST(CPPFLAGS)

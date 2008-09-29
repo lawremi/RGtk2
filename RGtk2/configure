@@ -637,15 +637,13 @@ build_alias
 host_alias
 target_alias
 PKG_CONFIG
-GTK_CFLAGS
-GTK_LIBS
-HAVE_GTK
 LIBGLADE_CFLAGS
 LIBGLADE_LIBS
 INTROSPECTION_CFLAGS
 INTROSPECTION_LIBS
-HAVE_LIBGLADE
-HAVE_INTROSPECTION
+GTK_CFLAGS
+GTK_LIBS
+HAVE_GTK
 CPPFLAGS
 R_PACKAGE_DIR
 INSTALL_DIR
@@ -662,12 +660,12 @@ enable_introspection
 host_alias
 target_alias
 PKG_CONFIG
-GTK_CFLAGS
-GTK_LIBS
 LIBGLADE_CFLAGS
 LIBGLADE_LIBS
 INTROSPECTION_CFLAGS
-INTROSPECTION_LIBS'
+INTROSPECTION_LIBS
+GTK_CFLAGS
+GTK_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1292,8 +1290,6 @@ Optional Features:
 
 Some influential environment variables:
   PKG_CONFIG  path to pkg-config utility
-  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
-  GTK_LIBS    linker flags for GTK, overriding pkg-config
   LIBGLADE_CFLAGS
               C compiler flags for LIBGLADE, overriding pkg-config
   LIBGLADE_LIBS
@@ -1302,6 +1298,8 @@ Some influential environment variables:
               C compiler flags for INTROSPECTION, overriding pkg-config
   INTROSPECTION_LIBS
               linker flags for INTROSPECTION, overriding pkg-config
+  GTK_CFLAGS  C compiler flags for GTK, overriding pkg-config
+  GTK_LIBS    linker flags for GTK, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -1742,9 +1740,18 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 DEFINES=
+EXTRA_MODULES=
 
-GTK_VERSION="2.8.0"
+# Check whether --enable-libglade was given.
+if test "${enable_libglade+set}" = set; then
+  enableval=$enable_libglade; use_libglade=$enableval
+else
+  use_libglade=yes
+fi
 
+
+if test "x$use_libglade" = "xyes"; then
+   ##PKG_CHECK_EXISTS(libglade-2.0, have_libglade=yes, AC_MSG_WARN(libglade not found, disabling))
 
 
 if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
@@ -1867,91 +1874,6 @@ $as_echo "no" >&6; }
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:$LINENO: checking for GTK" >&5
-$as_echo_n "checking for GTK... " >&6; }
-
-if test -n "$GTK_CFLAGS"; then
-    pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= $GTK_VERSION" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-if test -n "$GTK_LIBS"; then
-    pkg_cv_GTK_LIBS="$GTK_LIBS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION\"") >&5
-  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); }; then
-  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= $GTK_VERSION" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gtk+-2.0 >= $GTK_VERSION" 2>&1`
-        else
-	        GTK_PKG_ERRORS=`$PKG_CONFIG --print-errors "gtk+-2.0 >= $GTK_VERSION" 2>&1`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$GTK_PKG_ERRORS" >&5
-
-	{ $as_echo "$as_me:$LINENO: result: no" >&5
-$as_echo "no" >&6; }
-                { { $as_echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
-$as_echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
-   { (exit 1); exit 1; }; }
-elif test $pkg_failed = untried; then
-	{ { $as_echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
-$as_echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
-   { (exit 1); exit 1; }; }
-else
-	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
-	GTK_LIBS=$pkg_cv_GTK_LIBS
-        { $as_echo "$as_me:$LINENO: result: yes" >&5
-$as_echo "yes" >&6; }
-	HAVE_GTK="1"
-fi
-
-
-
-
-
-# Check whether --enable-libglade was given.
-if test "${enable_libglade+set}" = set; then
-  enableval=$enable_libglade; use_libglade=$enableval
-else
-  use_libglade=yes
-fi
-
-
-if test "x$use_libglade" = "xyes"; then
-
-pkg_failed=no
 { $as_echo "$as_me:$LINENO: checking for LIBGLADE" >&5
 $as_echo_n "checking for LIBGLADE... " >&6; }
 
@@ -2023,6 +1945,7 @@ fi
 
 if test "x$have_libglade" = "xyes"; then
 	DEFINES="$DEFINES -DHAVE_LIBGLADE"
+        EXTRA_MODULES="$EXTRA_MODULES libglade-2.0"
 else
 	rm R/libglade*
 	rm src/libglade*
@@ -2037,6 +1960,7 @@ fi
 
 
 if test "x$use_introspection" = "xyes"; then
+   ##PKG_CHECK_EXISTS(gobject-introspection, have_introspection=yes,have_introspection=no)
 
 pkg_failed=no
 { $as_echo "$as_me:$LINENO: checking for INTROSPECTION" >&5
@@ -2107,12 +2031,91 @@ fi
 fi
 
 if test "x$have_introspection" = "xyes"; then
+        EXTRA_MODULES="$EXTRA_MODULES gobject-introspection"
         DEFINES="$DEFINES -DHAVE_INTROSPECTION"
+fi
+
+##AC_SUBST(LIBGLADE_CFLAGS)
+##AC_SUBST(LIBGLADE_LIBS)
+##AC_SUBST(HAVE_LIBGLADE)
+
+##AC_SUBST(INTROSPECTION_CFLAGS)
+##AC_SUBST(INTROSPECTION_LIBS)
+##AC_SUBST(HAVE_INTROSPECTION)
+
+GTK_VERSION="2.8.0"
+
+
+pkg_failed=no
+{ $as_echo "$as_me:$LINENO: checking for GTK" >&5
+$as_echo_n "checking for GTK... " >&6; }
+
+if test -n "$GTK_CFLAGS"; then
+    pkg_cv_GTK_CFLAGS="$GTK_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION \$EXTRA_MODULES\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_CFLAGS=`$PKG_CONFIG --cflags "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$GTK_LIBS"; then
+    pkg_cv_GTK_LIBS="$GTK_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"gtk+-2.0 >= \$GTK_VERSION \$EXTRA_MODULES\"") >&5
+  ($PKG_CONFIG --exists --print-errors "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); }; then
+  pkg_cv_GTK_LIBS=`$PKG_CONFIG --libs "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
 fi
 
 
 
+if test $pkg_failed = yes; then
 
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES" 2>&1`
+        else
+	        GTK_PKG_ERRORS=`$PKG_CONFIG --print-errors "gtk+-2.0 >= $GTK_VERSION $EXTRA_MODULES" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$GTK_PKG_ERRORS" >&5
+
+	{ $as_echo "$as_me:$LINENO: result: no" >&5
+$as_echo "no" >&6; }
+                { { $as_echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
+$as_echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
+   { (exit 1); exit 1; }; }
+elif test $pkg_failed = untried; then
+	{ { $as_echo "$as_me:$LINENO: error: GTK version $GTK_VERSION required" >&5
+$as_echo "$as_me: error: GTK version $GTK_VERSION required" >&2;}
+   { (exit 1); exit 1; }; }
+else
+	GTK_CFLAGS=$pkg_cv_GTK_CFLAGS
+	GTK_LIBS=$pkg_cv_GTK_LIBS
+        { $as_echo "$as_me:$LINENO: result: yes" >&5
+$as_echo "yes" >&6; }
+	HAVE_GTK="1"
+fi
 
 
 
