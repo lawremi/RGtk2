@@ -1861,17 +1861,17 @@ above, by calling the \code{gtkUIManagerAddUi} method:
 %DTL2: Thanks. I think it is better.  
 \begin{Code}
 merge <- ui_manager$newMergeId()
-ui_manager$addUi(merge_id = merge, path = "/", name = "menubar",
-                 action = NULL, "menubar")
-ui_manager$addUi(merge, "/menubar", "file", "FileMenu", "menu")
-ui_manager$addUi(merge, "/menubar/file", "open", "Open", "menuitem")
-ui_manager$addUi(merge, "/menubar/file", "save", "Save", "menuitem")
-ui_manager$addUi(merge, "/menubar/file", "sep", NULL, "menuitem")
-ui_manager$addUi(merge, "/menubar/file", "quit", "Quit", "menuitem")
-ui_manager$addUi(merge, "/", "toolbar", NULL, "toolbar")
-ui_manager$addUi(merge, "/toolbar", "open", "Open", "toolitem")
-ui_manager$addUi(merge, "/toolbar", "save", "Save", "toolitem")
-ui_manager$addUi(merge, "/toolbar", "quit", "Quit", "toolitem")
+ui_manager$addUi(merge.id = merge, path = "/", name = "menubar",
+                 action = NULL, type = "menubar", top = FALSE)
+ui_manager$addUi(merge, "/menubar", "file", "FileMenu", "menu", FALSE)
+ui_manager$addUi(merge, "/menubar/file", "open", "Open", "menuitem", FALSE)
+ui_manager$addUi(merge, "/menubar/file", "save", "Save", "menuitem", FALSE)
+ui_manager$addUi(merge, "/menubar/file", "sep", NULL, "menuitem", FALSE)
+ui_manager$addUi(merge, "/menubar/file", "quit", "Quit", "menuitem", FALSE)
+ui_manager$addUi(merge, "/", "toolbar", NULL, "toolbar", FALSE)
+ui_manager$addUi(merge, "/toolbar", "open", "Open", "toolitem", FALSE)
+ui_manager$addUi(merge, "/toolbar", "save", "Save", "toolitem", FALSE)
+ui_manager$addUi(merge, "/toolbar", "quit", "Quit", "toolitem", FALSE)
 \end{Code}
 Each piece of the user interface added to a \code{GtkUIManager}
 instance must be associated with a
@@ -1957,7 +1957,7 @@ The following function, \code{create\_tree\_model}, will create a
 % and put a comment or two in the code to make it clearer/more
 % accessible to the reader.
 \begin{Code}
-create_tree_model <- function(df)
+create_tree_model <- function(df) {
   df <- cbind(rownames = rownames(df), df)
   # add logical visbility column (all visible by default)
   filter_df <- cbind(filter = TRUE, df)
@@ -2018,6 +2018,7 @@ create_tree_view <- function(model, df)
   tree_view$setHeadersClickable(TRUE) # sort by clicking column header
   if (is.null(gtkCheckVersion(2,10,0))) # check GTK+ version >= 2.10.x
     tree_view$setGridLines("both")
+  tree_view
 }
 \end{Code}
 Above, each column of the \code{data.frame},
@@ -2055,6 +2056,7 @@ create_entry <- function(model)
                      # according to logical expression
                    model[,"filter"] <<- eval(parse(text=entry$text), 
                                              df))
+  entry
 }
 \end{Code}
 This uses the \code{GtkEntry} widget.
