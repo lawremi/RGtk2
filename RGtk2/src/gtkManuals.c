@@ -777,7 +777,7 @@ S_gtk_cell_layout_set_attributes(USER_OBJECT_ s_object, USER_OBJECT_ s_cell, USE
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 		for (i = 0; i < GET_LENGTH(s_attributes); i++)
-			gtk_cell_layout_add_attribute(object, cell, asCString(VECTOR_ELT(names, i)), 
+			gtk_cell_layout_add_attribute(object, cell, asCString(STRING_ELT(names, i)), 
 				asCInteger(VECTOR_ELT(s_attributes, i)));
 
         return(_result);
@@ -795,7 +795,7 @@ S_gtk_container_child_set(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
 		for (i = 0; i < GET_LENGTH(s_props); i++)
-			gtk_container_child_set_property(object, child, asCString(VECTOR_ELT(names, i)), 
+			gtk_container_child_set_property(object, child, asCString(STRING_ELT(names, i)), 
 				asCGValue(VECTOR_ELT(s_props, i)));
 
         return(_result);
@@ -827,7 +827,7 @@ S_gtk_container_child_get(USER_OBJECT_ s_object, USER_OBJECT_ s_child, USER_OBJE
 		
 		for (i = 0; i < GET_LENGTH(s_names); i++)
 			SET_VECTOR_ELT(_result, i, VECTOR_ELT(
-				S_gtk_container_child_get_property(s_object, s_child, VECTOR_ELT(s_names, i)), 1));
+				S_gtk_container_child_get_property(s_object, s_child, STRING_ELT(s_names, i)), 1));
 
         return(_result);
 }
