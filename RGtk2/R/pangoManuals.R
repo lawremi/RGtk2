@@ -168,3 +168,13 @@ function(logical.items)
 {
 	.notimplemented("wouldn't work automatically due to memory management details and the API says its useless")
 }
+
+## version checking ##
+
+boundPangoVersion <- function() {
+  paste(.RGtkCall("boundPangoVersion"), collapse=".")
+}
+
+checkPango <- function(version) {
+  compareVersion(boundPangoVersion(), version)
+}

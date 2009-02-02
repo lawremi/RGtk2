@@ -853,3 +853,13 @@ function(klass, pspec, parser)
 {
 	.notimplemented("does not have user data for the parser callback. You probably don't need to be defining new property types in GTK style files anyway.")
 }
+
+## version checking ##
+
+boundGTKVersion <- function() {
+  paste(.RGtkCall("boundGTKVersion"), collapse=".")
+}
+
+checkGTK <- function(version) {
+  compareVersion(boundGTKVersion(), version)
+}

@@ -121,3 +121,15 @@ S_pango_attr_iterator_get_font(USER_OBJECT_ s_object)
 
 	return(_result);
 }
+
+/* Retrieve compile-time version information for Pango */
+
+USER_OBJECT_
+boundPangoVersion(void) {
+  USER_OBJECT_ version;
+  version = NEW_INTEGER(3);
+  INTEGER(version)[0] = PANGO_VERSION_MAJOR;
+  INTEGER(version)[1] = PANGO_VERSION_MINOR;
+  INTEGER(version)[2] = PANGO_VERSION_MICRO;
+  return(version);
+}

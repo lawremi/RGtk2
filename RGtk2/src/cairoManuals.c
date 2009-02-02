@@ -97,3 +97,15 @@ S_cairo_get_dash(USER_OBJECT_ s_cr)
 
   return(_result);
 }
+
+/* retrieve compile-time version information */
+
+USER_OBJECT_
+boundCairoVersion(void) {
+  USER_OBJECT_ version;
+  version = NEW_INTEGER(3);
+  INTEGER(version)[0] = CAIRO_VERSION_MAJOR;
+  INTEGER(version)[1] = CAIRO_VERSION_MINOR;
+  INTEGER(version)[2] = CAIRO_VERSION_MICRO;
+  return(version);
+}
