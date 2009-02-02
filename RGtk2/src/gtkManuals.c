@@ -424,15 +424,17 @@ S_gtk_message_dialog_format_secondary_markup(USER_OBJECT_ s_object, USER_OBJECT_
 
 /* reason: var args, take lists of labels and responses from R */
 USER_OBJECT_
-S_gtk_dialog_add_buttons(USER_OBJECT_ s_object, USER_OBJECT_ s_labels, USER_OBJECT_ s_responses)
+S_gtk_dialog_add_buttons(USER_OBJECT_ s_object, USER_OBJECT_ s_labels,
+                         USER_OBJECT_ s_responses)
 {
-        USER_OBJECT_ _result = NULL_USER_OBJECT;
-		gint i;
-		
-		for (i = 0; i < GET_LENGTH(s_labels); i++)
-			S_gtk_dialog_add_button(s_object, VECTOR_ELT(s_labels, i), VECTOR_ELT(s_responses, i));
-
-        return(_result);
+  USER_OBJECT_ _result = NULL_USER_OBJECT;
+  gint i;
+  
+  for (i = 0; i < GET_LENGTH(s_labels); i++)
+    S_gtk_dialog_add_button(s_object, STRING_ELT(s_labels, i),
+                            STRING_ELT(s_responses, i));
+  
+  return(_result);
 }
 
 /* reason: var args, take lists of labels and responses describing the buttons */
@@ -583,7 +585,7 @@ S_gtk_text_buffer_insert_with_tags_by_name(USER_OBJECT_ s_object, USER_OBJECT_ s
 		gtk_text_buffer_get_iter_at_offset(object, &start, start_offset);
 
 		for (i = 0; i < GET_LENGTH(s_tag_names); i++) {
-			gtk_text_buffer_apply_tag_by_name(object, (const gchar*)asCString(VECTOR_ELT(s_tag_names, i)), &start, iter);
+			gtk_text_buffer_apply_tag_by_name(object, (const gchar*)asCString(STRING_ELT(s_tag_names, i)), &start, iter);
 		}
 		
 		return(_result);
@@ -1600,4 +1602,16 @@ S_gtk_tree_iter_get_stamp(USER_OBJECT_ s_iter)
 {
   GtkTreeIter *iter = getPtrValue(s_iter);
   return asRInteger(iter->stamp);
+}
+
+/* get compile-time GTK version */
+
+USER_OBJECT_
+boundGTKVersion(void) {
+  USER_OBJECT_ version;
+  version = NEW_INTEGER(3);
+  INTEGER(version)[0] = GTK_MAJOR_VERSION;
+  INTEGER(version)[1] = GTK_MINOR_VERSION;
+  INTEGER(version)[2] = GTK_MICRO_VERSION;
+  return(version);
 }
