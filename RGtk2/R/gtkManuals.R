@@ -58,9 +58,9 @@ function(title = NULL, parent = NULL, flags = 0, ..., show = TRUE)
     if (length(args) %% 2 != 0)
       stop("Must have one stock ID for every response type")
     args_split <- split(args, rep(c(1,2), length(args) / 2))
-		labels <- as.list(as.character(args_split[[1]]))
-		responses <- as.list(as.integer(args_split[[2]]))
-		
+    labels <- as.character(args_split[[1]])
+    responses <- as.list(as.integer(args_split[[2]]))
+    
     w <- .RGtkCall("S_gtk_dialog_new_with_buttons", title, parent, flags, labels, responses)
 
     if(show)

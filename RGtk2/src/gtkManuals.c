@@ -432,7 +432,7 @@ S_gtk_dialog_add_buttons(USER_OBJECT_ s_object, USER_OBJECT_ s_labels,
   
   for (i = 0; i < GET_LENGTH(s_labels); i++)
     S_gtk_dialog_add_button(s_object, STRING_ELT(s_labels, i),
-                            STRING_ELT(s_responses, i));
+                            VECTOR_ELT(s_responses, i));
   
   return(_result);
 }
