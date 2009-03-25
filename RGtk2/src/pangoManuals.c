@@ -128,8 +128,14 @@ USER_OBJECT_
 boundPangoVersion(void) {
   USER_OBJECT_ version;
   version = NEW_INTEGER(3);
+#if PANGO_CHECK_VERSION(1, 15, 0)
   INTEGER(version)[0] = PANGO_VERSION_MAJOR;
   INTEGER(version)[1] = PANGO_VERSION_MINOR;
   INTEGER(version)[2] = PANGO_VERSION_MICRO;
+#else
+  INTEGER(version)[0] = 1;
+  INTEGER(version)[1] = 10;
+  INTEGER(version)[2] = 0;
+#endif
   return(version);
 }
