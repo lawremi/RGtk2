@@ -526,15 +526,15 @@ function(obj, member, value)
 }
 
 "[[.GObject" <-
-function(obj, member)
+function(obj, member, where = parent.frame())
 {
   # check SGObject environments first, then fall back to field/property
-  val <- try(.getAutoMemberByName(obj, member), T)
+  val <- try(.getAutoMemberByName(obj, member), TRUE)
   # check for C field (fast), then GObject prop
   if (inherits(val, "try-error"))
-    val <- try(NextMethod("[["), T)
+    val <- try(NextMethod("[[", where = where), TRUE)
   if (inherits(val, "try-error"))
-    val <- try(obj$get(member), T)
+    val <- try(obj$get(member), TRUE)
   if (inherits(val, "try-error"))
     stop("Cannot find '", member, "' for classes ", paste(class(obj), collapse=", "))
   val
@@ -544,12 +544,14 @@ function(obj, member)
   #
   #
   #
-function(x, field)
+function(x, field, where = parent.frame())
 {
-  fun <- try(.getAutoElementByName(x, field, error = FALSE, where = parent.frame()), T)
+  fun <- try(.getAutoElementByName(x, field, error = FALSE, where = where),
+             TRUE)
   if (!inherits(fun, "try-error"))
     val <- fun(x)
-  else stop("Cannot find '", field, "' for classes ", paste(class(x), collapse=", "))
+  else stop("Cannot find '", field, "' for classes ",
+            paste(class(x), collapse=", "))
   return(val)
 }
 # C field setting is not allowed

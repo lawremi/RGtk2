@@ -633,11 +633,11 @@ gtkRadioToolButtonNewWithStockFromWidget(group[[1]], stock.id, show)
 
 # getting child widgets by index
 "[[.GtkContainer" <-
-function(x, field)
+function(x, field, where = parent.frame())
 {
   if(is.numeric(field))
     return(x$getChildren()[[field]])
-  else NextMethod("[[")
+  else NextMethod("[[", where = where)
 }
 
 # EXPERIMENTAL TREE MODEL ACCESS
