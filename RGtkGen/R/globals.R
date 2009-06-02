@@ -64,24 +64,34 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "gtk_icon_view_get_tooltip_context")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
-# there is a problem with the argument list, etc
-badRFuncs <- c("gdk_window_invalidate_maybe_recurse", "gtk_clipboard_set_with_owner",
-	"gtk_list_store_insert_with_valuesv", "pango_get_log_attrs", "pango_break",
-	"pango_glyph_string_get_logical_widths", "gtk_text_buffer_insert_interactive", 
-	"gtk_text_buffer_insert_interactive_at_cursor", "gtk_im_context_simple_add_table",
-	"gtk_selection_data_set", "gdk_text_extents", "pango_layout_set_markup_with_accel",
-	"pango_glyph_string_index_to_x", "pango_glyph_string_x_to_index", "gdk_draw_rgb_image",
-	"pango_shape", "gdk_window_constrain_size", "gdk_pixbuf_new_from_data", "gtk_tree_store_new",
-	"gdk_device_free_history", "gdk_window_new", "pango_font_descriptions_free", "gtk_widget_destroy",
-	"atk_add_global_event_listener", "gtk_widget_destroyed", "gtk_init", "gtk_init_check",
-	"pango_context_new", "pango_font_map_get_shape_engine_type", "pango_reorder_items",
-	"gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data", "glade_xml_new_from_buffer",
-	"glade_xml_construct", "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new", 
-	"cairo_image_surface_create_from_png_stream", "cairo_surface_write_to_png_stream",
-	"gtk_radio_button_new", "gtk_radio_button_new_with_label", "gtk_radio_menu_item_new", 
-  "gtk_radio_menu_item_new_with_label", "gtk_radio_menu_item_new_with_mnemonic", 
-  "gtk_radio_tool_button_new", "gtk_radio_tool_button_new_from_stock", 
-  "gtk_tree_store_insert_with_valuesv")
+# there is a problem with the argument list, etc badRFuncs <-
+c("gdk_window_invalidate_maybe_recurse",
+  "gtk_clipboard_set_with_owner", "gtk_list_store_insert_with_valuesv",
+  "pango_get_log_attrs", "pango_break",
+  "pango_glyph_string_get_logical_widths",
+  "gtk_text_buffer_insert_interactive",
+  "gtk_text_buffer_insert_interactive_at_cursor",
+  "gtk_im_context_simple_add_table", "gtk_selection_data_set",
+  "gdk_text_extents", "pango_layout_set_markup_with_accel",
+  "pango_glyph_string_index_to_x", "pango_glyph_string_x_to_index",
+  "gdk_draw_rgb_image", "pango_shape", "gdk_window_constrain_size",
+  "gdk_pixbuf_new_from_data", "gtk_tree_store_new",
+  "gdk_device_free_history", "gdk_window_new",
+  "pango_font_descriptions_free", "gtk_widget_destroy",
+  "atk_add_global_event_listener", "gtk_widget_destroyed", "gtk_init",
+  "gtk_init_check", "pango_context_new",
+  "pango_font_map_get_shape_engine_type", "pango_reorder_items",
+  "gtk_icon_theme_set_search_path", "gdk_bitmap_create_from_data",
+  "glade_xml_new_from_buffer", "glade_xml_construct",
+  "gdk_colormap_alloc_colors", "gdk_colors_store", "gtk_list_store_new",
+  "cairo_image_surface_create_from_png_stream",
+  "cairo_surface_write_to_png_stream", "gtk_radio_button_new",
+  "gtk_radio_button_new_with_label", "gtk_radio_menu_item_new",
+  "gtk_radio_menu_item_new_with_label",
+  "gtk_radio_menu_item_new_with_mnemonic", "gtk_radio_tool_button_new",
+  "gtk_radio_tool_button_new_from_stock",
+  "gtk_tree_store_insert_with_valuesv",
+  "gtk_tree_view_get_tooltip_context", "gtk_icon_view_get_tooltip_context")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")

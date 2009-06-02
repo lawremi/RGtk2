@@ -4,7 +4,8 @@
 \description{Stores new data into a \code{\link{GtkSelectionData}} object. Should
 \emph{only} be called from a selection handler callback.
 Zero-terminates the stored data.}
-\usage{gtkSelectionDataSet(object, type, format, data, length = length(data))}
+\usage{gtkSelectionDataSet(object, type = object[["target"]], format =
+8L, data)}
 \arguments{
 \item{\code{object}}{[\code{\link{GtkSelectionData}}]  a pointer to a \code{\link{GtkSelectionData}} structure.}
 \item{\code{type}}{[\code{\link{GdkAtom}}]  the type of selection data}

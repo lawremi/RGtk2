@@ -451,17 +451,16 @@ function(object, data, max.seq.len, n.seqs)
         return(w)
 }
 
-# reason: for convenience give default for data length parameter
+# reason: for convenience give defaults for parameters
 gtkSelectionDataSet <-
-function(object, type, format, data, length = length(data))
+function(object, type = object[["target"]], format = 8L, data)
 {
         checkPtrType(object, "GtkSelectionData")
         type <- as.GdkAtom(type)
         format <- as.integer(format)
-        data <- as.list(as.integer(data))
-        length <- as.integer(length)
+        data <- as.list(as.raw(data)) # inefficient for large data
 
-        w <- .RGtkCall("S_gtk_selection_data_set", object, type, format, data, length)
+        w <- .RGtkCall("S_gtk_selection_data_set", object, type, format, data)
 
         return(invisible(w))
 }
@@ -600,6 +599,32 @@ function(object, cell.renderer, ...)
         
         return(invisible(w))
 }
+
+## x and y are in-out parameters
+gtkTreeViewGetTooltipContext <-
+  function(object, x, y, keyboard.tip)
+{
+  checkPtrType(object, "GtkTreeView")
+  x <- as.integer(x)
+  y <- as.integer(y)
+  keyboard.tip <- as.logical(keyboard.tip)
+
+  w <- .RGtkCall("S_gtk_tree_view_get_tooltip_context", object, x, y, keyboard.tip, PACKAGE = "RGtk2")
+
+  return(w)
+}
+gtkIconViewGetTooltipContext <-
+  function(object, x, y, keyboard.tip)
+{
+  checkPtrType(object, "GtkIconView")
+  x <- as.integer(x)
+  y <- as.integer(y)
+  keyboard.tip <- as.logical(keyboard.tip)
+
+  w <- .RGtkCall("S_gtk_icon_view_get_tooltip_context", object, x, y, keyboard.tip, PACKAGE = "RGtk2")
+
+  return(w)
+} 
 
 # reason: unfortunately, the 'group' must be an exact pointer match so 
 # we delegate to 'gtkRadioButtonNewFromWidget' with the first element.
