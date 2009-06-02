@@ -9,7 +9,7 @@
 Practically, it allows convenience operators to be specified for any external object.
 }
 \usage{
-"[[.RGtkObject"(x, field)
+"[[.RGtkObject"(x, field, where = parent.frame())
 "$.RGtkObject"(x, member)
 "==.RGtkObject"(x, y)
 }
@@ -18,6 +18,7 @@ Practically, it allows convenience operators to be specified for any external ob
 \item{field}{The name of the field whose value will be retrieved}
 \item{member}{The name of the member (eg method) that will be retrieved}
 \item{y}{The right hand operand of a comparison}
+\item{where}{The environment in which to look for the field accessor function}
 }
 \value{
 A context-dependent value resulting from the specified API call.

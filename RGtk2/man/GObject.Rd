@@ -31,7 +31,7 @@ gObjectGet(obj, ..., drop = T)
 "[.GObject"(obj, value, ...)
 gObjectSet(obj, ...)
 "[<-.GObject"(obj, propNames, value)
-"[[.GObject"(obj, member)
+"[[.GObject"(obj, member, where = parent.frame())
 "[[<-.GObject"(obj, member, value)
 "$.GObject"(x, member)
 "$<-.GObject"(obj, member, value)
@@ -59,7 +59,9 @@ return the element from the list, instead of the list with just that element.}
 \item{value}{a value with which to set a proprety}
 \item{parents}{whether to include the parents when retrieving property info}
 \item{collapse}{whether to collapse the properties over the parents}
-\item{x}{The \code{GObject} for which the property names are to be retrieved}
+\item{x}{The \code{GObject} for which the property names are to be
+  retrieved}
+\item{where}{The environment in which to look for the field accessor function}
 }
 \value{
 Properties and data for \code{gObjectGet} and \code{gObjectGetData}, respectively. 
