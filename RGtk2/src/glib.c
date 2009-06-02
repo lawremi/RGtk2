@@ -220,7 +220,8 @@ asCGError(USER_OBJECT_ s_error)
     return NULL;
   
   error = g_error_new(asCNumeric(VECTOR_ELT(s_error, 0)),
-    asCInteger(VECTOR_ELT(s_error, 1)), asCString(VECTOR_ELT(s_error, 2)));
+                      asCInteger(VECTOR_ELT(s_error, 1)), "%s",
+                      asCString(VECTOR_ELT(s_error, 2)));
   
   return error;
 }
@@ -296,8 +297,7 @@ S_GSourceFunc(gpointer data)
 
     if(!errorOccurred) {
     if(TYPEOF(sval) != LGLSXP) {
-        fprintf(stderr, "This handler didn't return a logical value. Removing it.\n");
-        fflush(stderr);
+        warning("Handler didn't return a logical value. Removing it.");
         val = FALSE;
     } else
         val = LOGICAL_DATA(sval)[0];

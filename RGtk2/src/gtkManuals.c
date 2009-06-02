@@ -368,7 +368,8 @@ S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJEC
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        ans = gtk_message_dialog_new(parent, flags, type, buttons, message_format);
+        ans = gtk_message_dialog_new(parent, flags, type, buttons, "%s",
+                                     message_format);
 
         _result = toRPointerWithSink(ans, "GtkWidget");
 
@@ -387,7 +388,8 @@ S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        ans = gtk_message_dialog_new_with_markup(parent, flags, type, buttons, message_format);
+        ans = gtk_message_dialog_new_with_markup(parent, flags, type, buttons,
+                                                 "%s", message_format);
 
         _result = toRPointerWithSink(ans, "GtkWidget");
 
@@ -402,7 +404,7 @@ S_gtk_message_dialog_format_secondary_text(USER_OBJECT_ s_object, USER_OBJECT_ s
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        gtk_message_dialog_format_secondary_text(object, message_format);
+        gtk_message_dialog_format_secondary_text(object, "%s", message_format);
 
 
         return(_result);
@@ -416,7 +418,8 @@ S_gtk_message_dialog_format_secondary_markup(USER_OBJECT_ s_object, USER_OBJECT_
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-        gtk_message_dialog_format_secondary_markup(object, message_format);
+        gtk_message_dialog_format_secondary_markup(object, "%s",
+                                                   message_format);
 
 
         return(_result);
@@ -473,7 +476,8 @@ S_gtk_recent_chooser_dialog_new_for_manager(USER_OBJECT_ s_title, USER_OBJECT_ s
   GtkWidget* ans;
   USER_OBJECT_ _result = NULL_USER_OBJECT;
 
-  ans = gtk_recent_chooser_dialog_new_for_manager(title, parent, manager, NULL);
+  ans = gtk_recent_chooser_dialog_new_for_manager(title, parent, manager, NULL,
+                                                  NULL);
 
   _result = PROTECT(toRPointerWithSink(ans, "GtkWidget"));
 
