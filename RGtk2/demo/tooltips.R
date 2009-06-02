@@ -22,8 +22,7 @@ query_tooltip_text_view_cb <- function(widget, x, y, keyboard_tip, tooltip,
   }
   else {
     coords <- widget$windowToBufferCoords("text", x, y)
-    iter <- widget$getIterAtPosition(coords[[1]], coords[[2]])$iter
-    
+    iter <- widget$getIterAtPosition(coords[[2]], coords[[3]])$iter
     if (iter$hasTag(data))
       tooltip$setText("Tooltip on text tag")
     else return(FALSE)
