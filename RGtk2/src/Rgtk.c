@@ -6,14 +6,17 @@
 #ifdef G_OS_WIN32
 #include <windows.h>
 #else
-#include "R_ext/eventloop.h"
+#include <R_ext/eventloop.h>
 #include <gdk/gdkx.h>
+#include <unistd.h>
+#define CSTACK_DEFNS
+#include <Rinterface.h>
 #endif
 
 void
 R_gtk_eventHandler(void *userData)
 {
- while (gtk_events_pending())
+ while (gtk_events_pending()) 
     gtk_main_iteration();
 }
 
@@ -46,6 +49,48 @@ VOID CALLBACK R_gtk_timer_proc(HWND hwnd, UINT uMsg, UINT_PTR idEvent,
 }
 
 #endif // R < 2.8.0
+
+#else
+
+static int fired = 0;
+static int ifd, ofd;
+
+gboolean R_gtk_timerFunc(gpointer data) {
+  if (!fired) {
+    gchar buf[16];
+    fired = 1;
+    *buf = 0;
+    //Rprintf("Timer firing\n");
+    if (!write(ofd, buf, 1)) {
+      g_critical("Timer failed to write to pipe; disabling timer");
+      return FALSE;
+    }
+  }
+  return TRUE;
+}
+
+gpointer R_gtk_timerThreadFunc(gpointer data) {
+  GMainContext *ctx = g_main_context_new();
+  GMainLoop *loop = g_main_loop_new(ctx, FALSE);
+  GSource *timeout = g_timeout_source_new(100);
+  //g_timeout_add(100, R_gtk_timerFunc, NULL);
+  g_source_set_callback(timeout, R_gtk_timerFunc, NULL, NULL);
+  g_source_attach(timeout, ctx);
+  g_main_loop_run(loop);
+  return 0;
+}
+
+void R_gtk_timerInputHandler(void *userData) {
+  gchar buf[16];
+  //Rprintf("Input handler hit\n");
+  if (!read(ifd, buf, 16))
+    g_critical("Input handler failed to read from pipe");
+  //Rprintf("Handling events\n");
+  R_gtk_eventHandler(NULL);
+  //Rprintf("Events handled\n");
+  fired = 0;
+}
+
 #endif // Windows
 
 void
@@ -65,13 +110,28 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
 
 #ifndef G_OS_WIN32
   {
-    InputHandler *h;
+    int fds[2];
+
     if (!GDK_DISPLAY()) {
       *success = FALSE;
       return;
     }
-    h = addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
-          R_gtk_eventHandler, -1);
+    
+    addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
+                    R_gtk_eventHandler, -1);
+
+    /* Experimental timer-based piping to a file descriptor */
+#ifdef G_THREADS_ENABLED
+    if (!pipe(fds)) {
+      ifd = fds[0];
+      ofd = fds[1];
+      addInputHandler(R_InputHandlers, ifd, R_gtk_timerInputHandler, 32);
+      if (!g_thread_supported ()) g_thread_init (NULL);
+      g_thread_create(R_gtk_timerThreadFunc, NULL, FALSE, NULL);
+      R_CStackLimit = -1;
+    } else g_warning("Failed to establish pipe; ",
+                     "disabling timer-based event handling");
+#endif
   }
 #else
 #if R_VERSION < R_Version(2,8,0)

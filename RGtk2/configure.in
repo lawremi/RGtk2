@@ -41,6 +41,10 @@ AC_SUBST(GTK_CFLAGS)
 AC_SUBST(GTK_LIBS)
 AC_SUBST(HAVE_GTK)
 
+PKG_CHECK_MODULES(GTHREAD, gthread-2.0, HAVE_GTHREAD=yes,
+                  AC_MSG_WARN(No GLib thread support: disabling threads))
+AC_SUBST(GTHREAD_LIBS)
+
 ## allow specifying arbitrary flags here
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LIBS)

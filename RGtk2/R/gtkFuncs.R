@@ -35325,20 +35325,6 @@ function(object, tooltip, path, cell)
 } 
 
 
-gtkIconViewGetTooltipContext <-
-function(object, x, y, keyboard.tip)
-{
-  checkPtrType(object, "GtkIconView")
-  x <- as.list(as.integer(x))
-  y <- as.list(as.integer(y))
-  keyboard.tip <- as.logical(keyboard.tip)
-
-  w <- .RGtkCall("S_gtk_icon_view_get_tooltip_context", object, x, y, keyboard.tip, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
 gtkIconViewSetTooltipColumn <-
 function(object, column)
 {
@@ -36129,20 +36115,6 @@ function(object)
   checkPtrType(object, "GtkTreeView")
 
   w <- .RGtkCall("S_gtk_tree_view_is_rubber_banding_active", object, PACKAGE = "RGtk2")
-
-  return(w)
-} 
-
-
-gtkTreeViewGetTooltipContext <-
-function(object, x, y, keyboard.tip)
-{
-  checkPtrType(object, "GtkTreeView")
-  x <- as.list(as.integer(x))
-  y <- as.list(as.integer(y))
-  keyboard.tip <- as.logical(keyboard.tip)
-
-  w <- .RGtkCall("S_gtk_tree_view_get_tooltip_context", object, x, y, keyboard.tip, PACKAGE = "RGtk2")
 
   return(w)
 } 
