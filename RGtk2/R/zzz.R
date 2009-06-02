@@ -9,7 +9,8 @@ function(libname, pkgname)
 {
  options(depwarn = TRUE, gdkFlush = TRUE)
  
- dll <- try(library.dynam("RGtk2", pkgname, libname), silent = TRUE)
+ dll <- try(library.dynam("RGtk2", pkgname, libname),
+            silent = getOption("verbose"))
  if (is.character(dll)) {
    message("Failed to load RGtk2 dynamic library, attempting to install it.")
    .install_system_dependencies()
@@ -83,8 +84,8 @@ function(libname, pkgname)
     else config <- unix_config
     
     if (is.null(config))
-      stop("Sorry this platform is not yet supported by the automatic GTK+ installer.",
-        "Please install GTK+ manually, if necessary. See: ", gtk_web)
+      stop("This platform is not yet supported by the automatic installer. ",
+           "Please install GTK+ manually, if necessary. See: ", gtk_web)
     
     install_system_dep("GTK+", config$gtk_url, gtk_web, config$installer)
   }
