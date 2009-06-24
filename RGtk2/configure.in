@@ -45,6 +45,8 @@ PKG_CHECK_MODULES(GTHREAD, gthread-2.0, HAVE_GTHREAD=yes,
                   AC_MSG_WARN(No GLib thread support: disabling threads))
 AC_SUBST(GTHREAD_LIBS)
 
+AC_CHECK_TYPES([uintptr_t], [DEFINES="$DEFINES -DHAVE_UINTPTR_T"])
+
 ## allow specifying arbitrary flags here
 AC_SUBST(CPPFLAGS)
 AC_SUBST(LIBS)

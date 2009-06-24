@@ -9,6 +9,7 @@
 #include <R_ext/eventloop.h>
 #include <gdk/gdkx.h>
 #include <unistd.h>
+#include <stdint.h>
 #define CSTACK_DEFNS
 #include <Rinterface.h>
 #endif
