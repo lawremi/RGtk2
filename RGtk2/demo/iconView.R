@@ -82,7 +82,7 @@ sort.func <- function(model, a, b, user.data)
       ret <- -1
   else ret <- 1
 
-  return(ret)
+  return(as.integer(ret))
 }
 
 create.store <- function()

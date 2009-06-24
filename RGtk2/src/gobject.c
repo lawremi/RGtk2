@@ -258,7 +258,6 @@ S_g_object_set_property(USER_OBJECT_ s_object, USER_OBJECT_ s_property_name, USE
         GValue value = { 0, };
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
-
 		R_setGValueForProperty(&value, G_OBJECT_GET_CLASS(object), property_name, s_value);
 		
         g_object_set_property(object, property_name, &value);
@@ -1271,7 +1270,6 @@ int
 R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
     GValue *raw = createGValueFromSValue(sval);
     int ret = 0;
-
 	if (raw && g_value_type_compatible(G_VALUE_TYPE(raw), G_VALUE_TYPE(value)))
         g_value_copy(raw, value);
     else if (raw && g_value_type_transformable(G_VALUE_TYPE(raw), G_VALUE_TYPE(value)))
@@ -1325,17 +1323,26 @@ R_setGValueFromSValue(GValue *value, USER_OBJECT_ sval) {
 			else g_value_set_boxed(value, getPtrValue(sval));
 		break;
 		case G_TYPE_POINTER:
-			g_value_set_pointer(value, sval == NULL_USER_OBJECT ? NULL : getPtrValue(sval));
-		break;
+                  /*
+                    g_value_set_pointer(value, sval == NULL_USER_OBJECT
+                    ? NULL : getPtrValue(sval));
+                    break;
+                  */
 		case G_TYPE_INTERFACE:
 		case G_TYPE_OBJECT:
-			g_value_set_object(value, sval == NULL_USER_OBJECT ? NULL : getPtrValue(sval));
-		break;
+                  /*
+                    g_value_set_object(value, sval == NULL_USER_OBJECT
+                    ? NULL : getPtrValue(sval));
+                  */
+                  /* If we get here, we know that initGValueFromSValue()
+                     found that 'sval' is not an externalptr */
+                  PROBLEM "Cannot set pointer value from non-externalptr\n"
+                    ERROR;
 		case G_TYPE_INVALID:
-			fprintf(stderr, "Attempt to set invalid type\n");fflush(stderr);
+                  PROBLEM "Attempt to set invalid type\n" ERROR;
 		break;
 		case G_TYPE_NONE:
-			fprintf(stderr, "None type\n");fflush(stderr);
+                  PROBLEM "Attempt to set none type\n" ERROR;
 		break;
 		default:
 			PROBLEM "got an unknown/unhandled type named: %s\n", g_type_name(G_VALUE_TYPE(value))

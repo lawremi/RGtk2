@@ -368,6 +368,8 @@ S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJEC
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
+        if (!message_format)
+          message_format = "";
         ans = gtk_message_dialog_new(parent, flags, type, buttons, "%s",
                                      message_format);
 
@@ -375,7 +377,7 @@ S_gtk_message_dialog_new(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJEC
 
         return(_result);
 }
-/* reason: same asC above */
+/* reason: same as above */
 USER_OBJECT_
 S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags, USER_OBJECT_ s_type, USER_OBJECT_ s_buttons, USER_OBJECT_ s_message_format)
 {
@@ -388,6 +390,8 @@ S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags
         GtkWidget* ans;
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
+        if (!message_format)
+          message_format = "";
         ans = gtk_message_dialog_new_with_markup(parent, flags, type, buttons,
                                                  "%s", message_format);
 
@@ -395,7 +399,7 @@ S_gtk_message_dialog_new_with_markup(USER_OBJECT_ s_parent, USER_OBJECT_ s_flags
 
         return(_result);
 }
-/* reason: same asC above */
+/* reason: same as above */
 USER_OBJECT_
 S_gtk_message_dialog_format_secondary_text(USER_OBJECT_ s_object, USER_OBJECT_ s_message_format)
 {
@@ -404,12 +408,14 @@ S_gtk_message_dialog_format_secondary_text(USER_OBJECT_ s_object, USER_OBJECT_ s
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
+        if (!message_format)
+          message_format = "";
         gtk_message_dialog_format_secondary_text(object, "%s", message_format);
 
 
         return(_result);
 }
-/* reason: same asC above */
+/* reason: same as above */
 USER_OBJECT_
 S_gtk_message_dialog_format_secondary_markup(USER_OBJECT_ s_object, USER_OBJECT_ s_message_format)
 {
@@ -418,6 +424,8 @@ S_gtk_message_dialog_format_secondary_markup(USER_OBJECT_ s_object, USER_OBJECT_
 
         USER_OBJECT_ _result = NULL_USER_OBJECT;
 
+        if (!message_format)
+          message_format = "";
         gtk_message_dialog_format_secondary_markup(object, "%s",
                                                    message_format);
 
@@ -725,14 +733,11 @@ S_gtk_list_store_set_value(USER_OBJECT_ s_object, USER_OBJECT_ s_iter, USER_OBJE
 	GValue value = { 0, };
 	
 	USER_OBJECT_ _result = NULL_USER_OBJECT;
-
+        
 	g_value_init(&value, gtk_tree_model_get_column_type(GTK_TREE_MODEL(object), column));
 	R_setGValueFromSValue(&value, s_value);
-	
 	gtk_list_store_set_value(object, iter, column, &value);
-
 	CLEANUP(g_value_unset, &value);
-
 	return(_result);
 }
 

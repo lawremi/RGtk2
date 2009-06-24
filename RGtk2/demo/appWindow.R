@@ -46,10 +46,14 @@ about.cb <- function(action, window)
     gtkAboutDialogSetEmailHook(activate.email)
     gtkAboutDialogSetUrlHook(activate.url)
 
-    gtkShowAboutDialog(window, name="RGtk Example", version="2.0 beta",
-        copyright="(C) 2005 Michael Lawrence and Duncan", license="Have Fun!",
-        website="http://www.omegahat.org/RGtk", comments="An example of RGtk's power",
-        authors=c("Michael <lawremi@iastate.edu>", "Duncan"), documenters="Nobody yet", logo=transparent)
+    gtkShowAboutDialog(window, name="RGtk Example", version="2.0",
+                       copyright="(C) M. Lawrence and D. Temple Lang",
+                       license="GPL",
+                       website="http://www.omegahat.org/RGtk",
+                       comments="An example of RGtk2",
+                       authors=c("Michael <mflawren@fhcrc.org>", "Duncan"),
+                       documenters="See authors", logo=transparent)
+    
 }
 update.statusbar <- function(buffer, statusbar)
 {

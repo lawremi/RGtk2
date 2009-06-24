@@ -12,7 +12,8 @@ asCStringArray(USER_OBJECT_ svec)
     if(n > 0) {
     els = (char **) R_alloc(n+1, sizeof(char*));
     for(i = 0; i < n; i++) {
-        els[i] = (gchar *)asCString(VECTOR_ELT(svec, i));
+      els[i] = (gchar *)asCString(TYPEOF(svec) == STRSXP ? STRING_ELT(svec, i)
+                                  : VECTOR_ELT(svec, i));
     }
         els[n] = NULL;
     }
