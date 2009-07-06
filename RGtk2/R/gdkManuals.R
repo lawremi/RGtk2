@@ -45,7 +45,7 @@ function(geometry, width, height)
 gdkPixbufNewFromData <-
 function(data, colorspace, has.alpha, bits.per.sample, width, height, rowstride)
 {
-        data <- as.list(as.integer(data))
+        data <- as.raw(data)
         
         has.alpha <- as.logical(has.alpha)
         bits.per.sample <- as.integer(bits.per.sample)

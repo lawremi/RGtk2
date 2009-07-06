@@ -17,6 +17,8 @@
 void
 R_gtk_eventHandler(void *userData)
 {
+  // FIXME: this is an infinite loop when there are idle tasks, do we
+  // still need the gtk_events_pending()?
  while (gtk_events_pending()) 
     gtk_main_iteration();
 }
