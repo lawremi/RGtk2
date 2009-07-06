@@ -64,7 +64,8 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "gtk_icon_view_get_tooltip_context")
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
-# there is a problem with the argument list, etc badRFuncs <-
+# there is a problem with the argument list, etc
+badRFuncs <-
 c("gdk_window_invalidate_maybe_recurse",
   "gtk_clipboard_set_with_owner", "gtk_list_store_insert_with_valuesv",
   "pango_get_log_attrs", "pango_break",

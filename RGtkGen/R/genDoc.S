@@ -410,7 +410,8 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	#markup_important <- markup_note <- function(imp) rd("emph", markup(xmlChildren(imp)))
 	markup_first <- function(first) rd("dfn", child_val(first))
 	markup_param <- function(param) rd("code", nameToS(child_val(param)))
-	markup_func <- function(func) rd("code", toCapPhraseName(markup(xmlChildren(func), T), T))
+	markup_func <- function(func)
+          rd("code", toCapPhraseName(markup(xmlChildren(func), T), T))
 	markup_ignore <- function(ignore) ""
 	markup_text <- function(text) {
     val <- xmlValue(text)
@@ -418,8 +419,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
       val <- escape_text(val)
     val
   }
-	
-	handlers <- list(
+        handlers <- list(
 		"text" = markup_text,
 		"comment" = NULL,
 		"literal" = markup_literal,
@@ -568,6 +568,7 @@ toCallbacks <- function(callback_nodes, name_path) {
 
 toUserFuncs <- function(userfunc_nodes)
 {
+  browser()
 	toCallbacks(userfunc_nodes, func_name_path)
 }
 toSignals <- function(signal_nodes)
