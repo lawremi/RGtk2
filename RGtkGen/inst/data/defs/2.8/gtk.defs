@@ -3205,7 +3205,7 @@
   (c-name "gtk_color_button_get_color")
   (return-type "none")
   (parameters
-    '("GdkColor*" "color" (in))
+    '("GdkColor*" "color" (out))
   )
 )
 

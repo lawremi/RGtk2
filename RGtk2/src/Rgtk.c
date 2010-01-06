@@ -19,7 +19,12 @@ R_gtk_eventHandler(void *userData)
 {
   // FIXME: this is an infinite loop when there are idle tasks, do we
   // still need the gtk_events_pending()?
- while (gtk_events_pending()) 
+  
+  // It seems we do; if the events are not flushed, this handler is
+  // continually invoked, at least on non-Windows systems.
+#ifndef G_OS_WIN32
+  while (gtk_events_pending())
+#endif
     gtk_main_iteration();
 }
 
@@ -119,7 +124,8 @@ R_gtkInit(long *rargc, char **rargv, Rboolean *success)
       *success = FALSE;
       return;
     }
-    
+
+
     addInputHandler(R_InputHandlers, ConnectionNumber(GDK_DISPLAY()),
                     R_gtk_eventHandler, -1);
 

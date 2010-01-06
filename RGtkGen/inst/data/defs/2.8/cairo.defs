@@ -324,7 +324,6 @@
 	)
 )
 ;(define-user-function read_func
-  (in-module "cairo")
 ;	(in-module "cairo")
 ;	(c-name "cairo_read_func_t")
 ;	(return-type "cairo_status_t")

@@ -92,8 +92,9 @@ dialog contents manually if you had more than a simple message in the dialog.
 # Function to open a dialog box displaying the message provided.
 quick_message <- function(message) {
   ## Create the widgets 
-   
-  dialog <- gtkDialog("Message", NULL, "destroy-with-parent", "gtk-ok", "none",
+
+  dialog <- gtkDialog("Message", NULL, "destroy-with-parent",
+                      "gtk-ok", GtkResponseType["none"],
                       show = FALSE)
   label <- gtkLabel(message)
    

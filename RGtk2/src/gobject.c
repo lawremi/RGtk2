@@ -1172,14 +1172,15 @@ R_GClosureMarshal(GClosure *closure, GValue *return_value, guint n_param_values,
         }
     } else {
         e = cbdata->function;
-        if(cbdata->data && cbdata->data != NULL_USER_OBJECT && TYPEOF(cbdata->data) == ENVSXP) {
-            envir = cbdata->data;
-        }
+        if(cbdata->data && cbdata->data != NULL_USER_OBJECT &&
+           TYPEOF(cbdata->data) == ENVSXP)
+          envir = cbdata->data;
     }
 
     val = R_tryEval(e, envir, &errorOccurred);
 
-    if(errorOccurred || !return_value || G_VALUE_TYPE(return_value) == G_TYPE_NONE ||
+    if(errorOccurred || !return_value ||
+       G_VALUE_TYPE(return_value) == G_TYPE_NONE ||
        G_VALUE_TYPE(return_value) == G_TYPE_INVALID) 
     {
         UNPROTECT(numProtects);
@@ -1470,6 +1471,8 @@ asRGValue(const GValue *value)
           ans = toRGdkEvent(g_value_get_boxed(value), FALSE);
         else if (G_VALUE_TYPE(value) == R_GTK_TYPE_SEXP)
           ans = g_value_get_boxed(value);
+        else if (G_VALUE_TYPE(value) == GDK_TYPE_COLOR)
+          ans = asRGdkColor(g_value_get_boxed(value));
         else ans = toRPointer(g_value_get_boxed(value), G_VALUE_TYPE_NAME(value));
       break;
 

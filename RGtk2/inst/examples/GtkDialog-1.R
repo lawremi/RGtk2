@@ -2,7 +2,8 @@
 quick_message <- function(message) {
   ## Create the widgets 
    
-  dialog <- gtkDialog("Message", NULL, "destroy-with-parent", "gtk-ok", "none",
+  dialog <- gtkDialog("Message", NULL, "destroy-with-parent",
+                      "gtk-ok", GtkResponseType["none"],
                       show = FALSE)
   label <- gtkLabel(message)
    

@@ -310,7 +310,8 @@ determining the size and position of each widget on the screen.
 % They now come before the class hierarchy.
 
 %DTL2: Thanks. In my version, figure 1 is still the class hierarchy.
-The left panel of Figure \ref{fig:cran-mirror} shows a \pkg{GTK+} GUI
+
+The left panel of Figure~\ref{fig:cran-mirror} shows a \pkg{GTK+} GUI
 that allows the user to select a CRAN mirror for downloading
 \proglang{R} packages.  This GUI is likely familiar to many
 \proglang{R} users, since a similar interface is present in the
@@ -326,7 +327,7 @@ they are all drawn on the screen in a consistent style. To formalize
 this relationship and to simplify implementation by sharing code
 between widgets, \pkg{GTK+} defines an inheritance hierarchy for its
 widget types, or classes. A small portion of the \pkg{GTK+} class
-hierarchy is shown in Figure \ref{fig:class-hierarchy}. For specifying
+hierarchy is shown in Figure~\ref{fig:class-hierarchy}. For specifying
 the hierarchy, \pkg{GTK+} relies on \pkg{GObject}, a \proglang{C}
 library that implements a class-based, single-inheritance
 object-oriented system.  Each type of \pkg{GTK+} widget is a
@@ -362,7 +363,7 @@ and serves as the root of the tree. Child widgets are contained within
 the rectangular region of their parents.
 %DTL2:  can you explain what geometrically means in this context.
 %MFL2: reworded
-In Figure \ref{fig:cran-mirror}, for
+In Figure~\ref{fig:cran-mirror}, for
 example, the label, list of mirrors, and buttons are all contained
 within the top-level window, meaning that the window is the common
 ancestor of the other widgets.  The right panel of Figure
@@ -762,9 +763,9 @@ application adding or removing widgets. For this reason, most layout
 management is dynamic.
 
 In \pkg{GTK+}, containers are responsible for the layout of their
-children. The right panel in Figure \ref{fig:widget-hierarchy} shows
+children. The right panel in Figure~\ref{fig:widget-hierarchy} shows
 how the nesting of layout containers results in the CRAN mirrors GUI
-shown in Figure \ref{fig:cran-mirror}. The example employs several
+shown in Figure~\ref{fig:cran-mirror}. The example employs several
 important types of \pkg{GTK+} layout containers. 
 
 First, there is the
@@ -800,7 +801,7 @@ sets of buttons.
 Here we will explain and demonstrate the use of \code{GtkHBox}, the
 general horizontal box layout container. \code{GtkVBox} can be used
 exactly the same way; only the direction of stacking is different.
-Figure \ref{fig:packing} illustrates a sampling of the possible
+Figure~\ref{fig:packing} illustrates a sampling of the possible
 layouts that are possible with a \code{GtkHBox}.
 
 %DTL: It would be good to number the rows so that people can easily
@@ -853,7 +854,7 @@ and then we pack \code{button\_b} against the right side of
 \code{button\_a}.
 The space distribution is homogeneous, but
 the extra space for each widget is not filled. This results in the
-first row in Figure \ref{fig:packing}.
+first row in Figure~\ref{fig:packing}.
 
 Making the space available to a child does not mean that the
 child will fill it. That depends on the minimum size requirement of
@@ -866,7 +867,7 @@ available space. This results in rows $2$ and $3$ in Figure
 %DTL2: This is the confusing part.
 
 In many cases, it is desirable to give children unequal amounts of
-available space, as in rows 4-9 in Figure \ref{fig:packing}. This is
+available space, as in rows 4-9 in Figure~\ref{fig:packing}. This is
 evident in the CRAN mirrors dialog, where the mirror list is given
 more space than the \code{Please choose a mirror} label. To create an
 inhomogeneously spaced \code{GtkHBox}, we pass
@@ -886,7 +887,7 @@ extra space through the \code{expand} parameter to
 set to \code{TRUE}, we will call the widget an \emph{expanding}
 widget. All expanding widgets in a box are given an equal portion of
 the entirety of the extra space. If no widgets in a box are expanding,
-as in row 5 of Figure \ref{fig:packing}, the extra space is left
+as in row 5 of Figure~\ref{fig:packing}, the extra space is left
 undistributed. It is common to mix expanding and non-expanding widgets
 in the same box. For example, in the CRAN mirrors dialog, the box
 first ensures that the mirror list and the label above it are given
@@ -908,7 +909,7 @@ while \code{button\_b} is not:
 box$packStart(button_a, expand = TRUE, fill = FALSE)
 box$packStart(button_b, expand = FALSE, fill = FALSE)
 \end{Code}
-The result is shown in row 6 of Figure \ref{fig:packing}. 
+The result is shown in row 6 of Figure~\ref{fig:packing}. 
 The figure contains several other permutations of the
 \code{homogeneous}, \code{expand} and \code{fill} settings.
 
@@ -1036,7 +1037,7 @@ destroyed.  The next parameter specifies that this is a
 mark icon to the left of the text.  The predefined set of buttons, in
 this case consisting of \code{Yes} and \code{No}, is given by the next
 parameter. The final parameter specifies the text of the message.  The
-resulting dialog is shown in Figure \ref{fig:upgrade-dialog}.
+resulting dialog is shown in Figure~\ref{fig:upgrade-dialog}.
 
 It is desirable for this dialog to be \emph{modal}, meaning that user
 interaction
@@ -1117,7 +1118,7 @@ either the \code{OK} or \code{Cancel} button.
 dialog
       with a 
       check box for requesting additional input on top of the
-      original dialog in Figure \ref{fig:upgrade-dialog}.}
+      original dialog in Figure~\ref{fig:upgrade-dialog}.}
   \end{center}
 \end{figure}
 
@@ -1193,7 +1194,7 @@ frame <- gtkFrame("Install GTK+ system library")
 frame$add(vbox)
 dialog[["vbox"]]$add(frame)
 \end{Code}
-The final result is shown in Figure \ref{fig:radio-dialog}.
+The final result is shown in Figure~\ref{fig:radio-dialog}.
 
 \begin{figure}[tbp]
   \begin{center}
@@ -1219,7 +1220,7 @@ its use. Each call to \code{gtkComboBoxAppendText} adds a text item to
 the drop-down menu. The call to \code{gtkComboBoxSetActive} makes the
 first item ($0$ due to zero-based counting in \proglang{C}) the
 currently selected
-one. Figure \ref{fig:combo-dialog} shows the result and below is the
+one. Figure~\ref{fig:combo-dialog} shows the result and below is the
 corresponding code:
 \begin{Code}
 dialog <- gtkMessageDialog(main_application_window,
@@ -1241,7 +1242,7 @@ dialog[["vbox"]]$add(frame)
 
 Having demonstrated the creation some basic dialogs, we are now
 prepared to construct the CRAN mirror selection dialog, shown in
-Figure \ref{fig:cran-mirror}.  Given the large number of CRAN mirrors,
+Figure~\ref{fig:cran-mirror}.  Given the large number of CRAN mirrors,
 one strategy would be to borrow the combobox dialog created above;
 however, there may be a better alternative. Since there is no
 reasonable default CRAN mirror, the user always needs to pick a
@@ -1569,7 +1570,7 @@ slider$setValue(0.7)
 \end{Code}
 which in turn activates the callback, generating the initial plot. The
 initial state of the interface is shown in Figure
-\ref{fig:rgtk2-demo-initial}.  Figure \ref{fig:rgtk2-demo-final} shows
+\ref{fig:rgtk2-demo-initial}.  Figure~\ref{fig:rgtk2-demo-final} shows
 the plot after the user has moved the slider to set the value of alpha
 to $0.1$.
 
@@ -1605,7 +1606,7 @@ filtering the
 rows in each \code{data.frame}. We also give it facilities to load and
 save a \code{data.frame} to and from a CSV file. 
 
-The resulting GUI is shown in Figure \ref{fig:spreadsheet}. Each
+The resulting GUI is shown in Figure~\ref{fig:spreadsheet}. Each
 \code{data.frame} frame is displayed in a table, using a
 \code{GtkTreeView} widget. As we would like to support multiple
 spreadsheets at once, we embed each table in a tabbed notebook,
@@ -1998,25 +1999,29 @@ The next function, \code{create\_tree\_view},  will create the
 \code{GtkTreeView} given the \code{GtkTreeModel} created by
 \code{create\_tree\_model} above:
 \begin{Code}
-create_tree_view <- function(model, df)
-{
+create_tree_view <- function(model) {
   tree_view <- gtkTreeView(model)
-  sapply(seq_len(ncol(df)),
-         function(j)   {
-            renderer <- gtkCellRendererText()
-            column <- gtkTreeViewColumn(colnames(df)[j], renderer,
-                                        text = j)
-            column$setSortColumnId(j)
-            column$setCellDataFunc(renderer,
-               function(column, renderer, model, iter)
-               {
-                  i <- model$getPath(iter)$getIndices()[[1]] + 1
-                  renderer["text"] <- as.character(df[i,j])
-               } )
-            tree_view$appendColumn(column)
-  } )
-  tree_view$setHeadersClickable(TRUE) # sort by clicking column header
-  if (is.null(gtkCheckVersion(2,10,0))) # check GTK+ version >= 2.10.x
+  rdf <- model$getModel()$getModel()
+  sapply(tail(seq_len(ncol(rdf)), -1), function(j) {
+    renderer <- gtkCellRendererText()
+    column <- gtkTreeViewColumn(colnames(rdf)[j], renderer, 
+                                text = j-1)
+    column$setSortColumnId(j-1)
+    column$setCellDataFunc(renderer, 
+                           function(column, renderer, model, iter) 
+    {
+      iter <- model$convertIterToChildIter(iter)$child.iter
+      child <- model$getModel()
+      iter <- child$convertIterToChildIter(iter)$child.iter
+      i <- rdf$getPath(iter)$getIndices()[[1]] + 1
+      renderer["text"] <- as.character(rdf[i, j])
+    })
+    tree_view$appendColumn(column)
+  })
+  ## sort by clicking column header
+  tree_view$setHeadersClickable(TRUE)
+  ## check GTK+ version >= 2.10.x 
+  if (is.null(gtkCheckVersion(2,10,0))) 
     tree_view$setGridLines("both")
   tree_view
 }
@@ -2051,11 +2056,12 @@ create_entry <- function(model)
 {
   entry <- gtkEntry() # for filter expression
   gSignalConnect(entry, "activate", 
-                 function(entry)
+                 function(entry) {
                      # update column used by filter 
                      # according to logical expression
                    model[,"filter"] <<- eval(parse(text=entry$text), 
-                                             df))
+                                             as.data.frame(model))
+                 })
   entry
 }
 \end{Code}
@@ -2113,13 +2119,12 @@ from the \code{open\_cb} callback above, that loads a
 %open_cb which is 3 1/2 pages back. 
 %DTL2: connect to sentence or put in figure.
 \begin{Code}
-load_spreadsheet <- function(df, name)
-{
+load_spreadsheet <- function(df, name) {
   model <- create_tree_model(df)
-  tree_view <- create_tree_view(model, df)
-  entry <- create_entry(model)
-
-  # pack widgets
+  tree_view <- create_tree_view(model)
+  entry <- create_entry(model$getModel()$getModel())
+  
+  ## pack widgets
   hbox <- gtkHBox(FALSE, 5)
   hbox$packStart(gtkLabel("Filter expression:"), FALSE, FALSE, 0)
   hbox$packStart(entry, TRUE, TRUE, 0)
@@ -2129,12 +2134,12 @@ load_spreadsheet <- function(df, name)
   vbox$packStart(scrolled_window, TRUE, TRUE, 0)
   vbox$packStart(hbox, FALSE, FALSE, 0)
 
-  # add page to notebook  
+  ## add page to notebook  
   if (missing(name))
-    name <- deparse(substitute(df))
+  name <- deparse(substitute(df))
   notebook$appendPage(vbox, gtkLabel(name))
-
-  # update statusbar
+  
+  ## update statusbar
   statusbar$push(info, paste("Dataset", name, "loaded."))
 }
 \end{Code}

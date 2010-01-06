@@ -37,9 +37,9 @@ doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 #defs <- getDefs(files[1])
 #doc_file <- doc_files[[1]][11]
 #genDoc(doc_file, defs, file.path(path, "docgen"))
-#doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtkwidget.xml")-1))]
+doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtkprintjob.xml")-1))]
 #source("genDoc.S")
-#genDocs(doc_files[4:length(doc_files)], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
+genDocs(doc_files[4], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = TRUE)
 
 # exporting/importing routines for each API

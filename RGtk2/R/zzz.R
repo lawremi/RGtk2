@@ -50,8 +50,8 @@ function(libname, pkgname)
     gtk_url = "http://r.research.att.com/gtk2-runtime.dmg", 
     installer = function(path) {
       system(paste("hdiutil attach ", path, sep=""))
-      system("open '/Volumes/GTK+ 2.10.11 run-time/gtk2-runtime.pkg'")
-      system("hdiutil detach '/Volumes/GTK+ 2.10.11 run-time'")
+      system("open '/Volumes/GTK+ 2.14.3 run-time/gtk2-runtime.pkg'")
+      system("hdiutil detach '/Volumes/GTK+ 2.14.3 run-time'")
     }
   )
   

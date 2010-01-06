@@ -1,16 +1,20 @@
 # Here we define global variables controlling the code generation.
 
-# BAD types.. those we cannot handle.. not sure if this is the best place to put these
-# most of these are either undocumented or are user-functions without user-data
-# I haven't come up with a good way of handling va_list since it's not possible to
-# manually recreate it after element conversion. I can think of some ways around
-# this but they aren't convenient at all.
+# BAD types.. those we cannot handle.. not sure if this is the best
+# place to put these most of these are either undocumented or are
+# user-functions without user-data. I haven't come up with a good way
+# of handling va_list since it's not possible to manually recreate it
+# after element conversion. I can think of some ways around this but
+# they aren't convenient at all.
 
-badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks", "GtkRcPropertyParser", "GtkMenuDetachFunc",
-    "va_list", "GtkMenuEntry", "GtkCListCompareFunc", "GtkCTreeCompareDragFunc", "GtkAccelGroupEntry",
-    "AtkEventListener", "AtkEventListenerInit", "AtkFocusHandler",
-    "AtkPropertyChangeHandler", "AtkPropertyValues", "PangoFontsetSimple",
-	"GdkInputCondition", "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags")
+badTypes <- c("GdkPointerHooks", "GdkDisplayPointerHooks",
+              "GtkRcPropertyParser", "GtkMenuDetachFunc", "va_list",
+              "GtkMenuEntry", "GtkCListCompareFunc", "GtkCTreeCompareDragFunc",
+              "GtkAccelGroupEntry", "AtkEventListener", "AtkEventListenerInit",
+              "AtkFocusHandler", "AtkPropertyChangeHandler",
+              "AtkPropertyValues", "PangoFontsetSimple", "GdkInputCondition",
+              "GdkStatus", "GtkArgFlags", "GtkDebugFlag", "GtkObjectFlags",
+              "GSimpleAsyncThreadFunc")
 
 ## Functions that we cannot handle
 ## This list will certainly grow. Most of these are implemented manually.
@@ -61,7 +65,8 @@ badCFuncs <- c("gtk_editable_insert_text", "gtk_clipboard_set_with_owner",
                "cairo_rectangle_list_destroy", "cairo_get_dash",
                "gtk_builder_connect_signals",
                "gtk_tree_view_get_tooltip_context",
-               "gtk_icon_view_get_tooltip_context")
+               "gtk_icon_view_get_tooltip_context"
+               )
 
 # sometimes it's easier to fix things from the R side (simple aliasing) or
 # there is a problem with the argument list, etc
@@ -92,82 +97,119 @@ c("gdk_window_invalidate_maybe_recurse",
   "gtk_radio_menu_item_new_with_mnemonic", "gtk_radio_tool_button_new",
   "gtk_radio_tool_button_new_from_stock",
   "gtk_tree_store_insert_with_valuesv",
-  "gtk_tree_view_get_tooltip_context", "gtk_icon_view_get_tooltip_context")
+  "gtk_tree_view_get_tooltip_context", "gtk_icon_view_get_tooltip_context",
+  "g_buffered_input_stream_peek", "g_file_attribute_info_list_ref",
+  "g_file_attribute_info_list_unref", "g_file_attribute_info_list_dup")
 
 # enums that are blocked, these two because RGtk handles them implicitly
 badEnums <- c("GdkGeometryHints", "GdkGCValuesMask")
 
 # User functions that we wrap manually
-manUserFuncs <- c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
-  "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc",
-  "GSourceFunc", "GtkBuilderConnectFunc")
+manUserFuncs <-
+  c("GCompareFunc", "GCallback", "GtkSignalFunc", "GtkAccelGroupActivate",
+    "cairo_read_func_t", "GtkTextBufferSerializeFunc", "GtkMenuPositionFunc",
+    "GSourceFunc", "GtkBuilderConnectFunc")
 
 # these structures are passed as opaque pointers to R, without any accessors
-# most of these are GLib facilities, and we're not binding GLib (yet anyway).
-opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode", "GMarkupParser", "GKeyFile")
+# most of these are GLib facilities, and we're not binding GLib (yet anyway).\
+opaqueTypes <- c("GtkNotebookPage", "GScanner", "GNode",
+                 "GMarkupParser", "GKeyFile")
 
-# this is a list of simple types that are easily converted to native R types (like lists)
-# and (in most cases) are not instantiable via the any defined API
-# note: GType and GQuark are also considered primitives
-transparentTypes <- c("GParamSpec", "GtkFileFilterInfo", "GtkTargetEntry", "AtkAttribute",
-    "GtkSettingsValue", "GValue", "GClosure", "GQuark", "GType",  "GList", "GSList",
-    "GtkStockItem", "GString", "GtkItemFactoryEntry", "GtkAllocation", "GdkAtom", "GTimeVal",
-    "PangoRectangle", "GdkRectangle", "AtkAttributeSet", "GdkRgbCmap", "GdkKeymapKey", "GdkGCValues", "GdkGeometry",
-    "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError", "GdkWindowAttr", "GdkTrapezoid",
-	"GtkActionEntry", "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t", "cairo_glyph_t",
-	"cairo_path_data_t", "AtkTextRectangle", "AtkTextRange", "GdkSpan", "GdkTimeCoord",
-  "GtkPageRange", "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct", 
-  "GtkAccelKey", "AtkRectangle", "cairo_rectangle_t", "cairo_rectangle_list_t")
+# this is a list of simple types that are easily converted to native R
+# types (like lists) and (in most cases) are not instantiable via the
+# any defined API
+## note: GType and GQuark are also considered primitives
+transparentTypes <-
+  c("GParamSpec", "GtkFileFilterInfo",
+    "GtkTargetEntry", "AtkAttribute", "GtkSettingsValue", "GValue",
+    "GClosure", "GQuark", "GType", "GList", "GSList", "GtkStockItem",
+    "GString", "GtkItemFactoryEntry", "GtkAllocation", "GdkAtom",
+    "GTimeVal", "PangoRectangle", "GdkRectangle", "AtkAttributeSet",
+    "GdkRgbCmap", "GdkKeymapKey", "GdkGCValues", "GdkGeometry",
+    "GdkPoint", "GdkSegment", "GdkColor", "GdkNativeWindow", "GError",
+    "GdkWindowAttr", "GdkTrapezoid", "GtkActionEntry",
+    "GtkToggleActionEntry", "GtkRadioActionEntry", "cairo_path_t",
+    "cairo_glyph_t", "cairo_path_data_t", "AtkTextRectangle",
+    "AtkTextRange", "GdkSpan", "GdkTimeCoord", "GtkPageRange",
+    "GtkRecentFilterInfo", "GtkRecentData", "AtkKeyEventStruct",
+    "GtkAccelKey", "AtkRectangle", "cairo_rectangle_t",
+    "cairo_rectangle_list_t")
 
 # functions for releasing memory
-# objects are automatically assigned g_object_unref and boxed types have release funcs in the defs
+# objects are automatically assigned
+# g_object_unref and boxed types have release funcs in the defs
 # transparent types are g_free'd after conversion
 # most of these are glib/gobject things
-# GdkNativeWindow is an example of a transparent type that should obviously not be freed
-cleanupFuncs <- list("GParamSpec"="g_param_spec_sink", "GValue"=c("g_value_unset", "g_free"),
-    "GList" = "g_list_free", "GSList"="g_slist_free", "GString"="free_g_string", 
-	"AtkAttributeSet"="atk_attribute_set_free", "cairo_path_t"="cairo_path_destroy",
-    "GError" = "g_error_free", "GdkNativeWindow"="", "GtkCTreeNode"="", 
-	"GtkTooltipsData"="", "GtkAccelKey"="", "AtkTextRange[]"="atk_text_free_ranges",
-  "cairo_rectangle_list_t" = "cairo_rectangle_list_destroy")
+# GdkNativeWindow is an example of a transparent type that should
+# obviously not be freed
+cleanupFuncs <-
+list("GParamSpec"="g_param_spec_sink",
+     "GValue"=c("g_value_unset", "g_free"), "GList" = "g_list_free",
+     "GSList"="g_slist_free", "GString"="free_g_string",
+     "AtkAttributeSet"="atk_attribute_set_free",
+     "cairo_path_t"="cairo_path_destroy", "GError" = "g_error_free",
+     "GdkNativeWindow"="", "GtkCTreeNode"="", "GtkTooltipsData"="",
+     "GtkAccelKey"="", "AtkTextRange[]"="atk_text_free_ranges",
+     "cairo_rectangle_list_t" = "cairo_rectangle_list_destroy",
+     "cairo_glyph_t[]" = "cairo_glyph_free",
+     "cairo_text_cluster_t[]" = "cairo_text_cluster_free")
+
 # functions for custom finalization
-finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy", "GtkTargetList"="gtk_target_list_unref",
-	"GdkRegion" = "gdk_region_destroy", "PangoAttrIterator" = "pango_attr_iterator_destroy",
-	"PangoItem" = "pango_item_free", "cairo_font_options_t" = "cairo_font_options_destroy",
-	"PangoGlyphItem" = "pango_glyph_item_free", "PangoCoverage" = "pango_coverage_unref",
-  "PangoScriptIter" = "pango_script_iter_free")
+
+finalizerFuncs <- list("PangoAttribute" = "pango_attribute_destroy",
+                       "GtkTargetList"="gtk_target_list_unref",
+                       "GdkRegion" = "gdk_region_destroy",
+                       "PangoAttrIterator" = "pango_attr_iterator_destroy",
+                       "PangoItem" = "pango_item_free",
+                       "cairo_font_options_t" = "cairo_font_options_destroy",
+                       "PangoGlyphItem" = "pango_glyph_item_free",
+                       "PangoCoverage" = "pango_coverage_unref",
+                       "PangoScriptIter" = "pango_script_iter_free")
 # copy functions for types without a GType
-copyFuncs <- c("GdkRegion" = "gdk_region_copy", "PangoCoverage" = "pango_coverage_ref")
+copyFuncs <- c("GdkRegion" = "gdk_region_copy",
+               "PangoCoverage" = "pango_coverage_ref")
 
 # type names are now pure C (glib) so we map them to generic types to simplify conversion
 
 CPrimitiveToGeneric <- c("gchar" = "character", "guchar" = "raw",
-                           "gchar*" = "string", "char*" = "string",
-                           "gssize" = "integer", "time_t" = "integer",
-                           "size_t" = "integer", "gshort" = "integer", "gushort" = "integer",
-                           "gint" = "integer", "int" = "integer", "gint8" = "raw",
-                           "gint16" = "integer", "gint32" = "integer", "guint8" = "raw", 
-                           "guint16" = "integer", "PangoGlyphUnit" = "integer", 
-                           "gint64" = "numeric", "gsize" = "numeric", "gunichar" = "numeric", 
-                           "guint" = "numeric", "PangoGlyph" = "numeric", 
-                           "GQuark" = "numeric", "guint32" = "numeric", "GdkWChar" = "numeric",
-                           "guint64" = "numeric", "AtkState" = "numeric", "gfloat" = "numeric",
-                           "float" = "numeric", "gdouble" = "numeric", "double" = "numeric", 
-                           "glong" = "numeric", "gulong" = "numeric", "GType" = "numeric", 
-                           "gboolean" = "logical", "cairo_bool_t" = "logical"
-)
+                         "gchar*" = "string", "char*" = "string",
+                         "gssize" = "integer", "time_t" = "integer",
+                         "size_t" = "integer", "gshort" = "integer",
+                         "gushort" = "integer",
+                         "gint" = "integer", "int" = "integer", "gint8" = "raw",
+                         "gint16" = "integer", "gint32" = "integer",
+                         "guint8" = "raw", 
+                         "guint16" = "integer", "PangoGlyphUnit" = "integer", 
+                         "gint64" = "numeric", "gsize" = "numeric",
+                         "gunichar" = "numeric", 
+                         "guint" = "numeric", "PangoGlyph" = "numeric", 
+                         "GQuark" = "numeric", "guint32" = "numeric",
+                         "GdkWChar" = "numeric",
+                         "guint64" = "numeric", "AtkState" = "numeric",
+                         "gfloat" = "numeric",
+                         "float" = "numeric", "gdouble" = "numeric",
+                         "double" = "numeric", 
+                         "glong" = "numeric", "gulong" = "numeric",
+                         "GType" = "numeric", 
+                         "gboolean" = "logical", "cairo_bool_t" = "logical"
+                         )
 
 # build mappings to GType constants
-CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR", rep("G_TYPE_STRING",2), rep("G_TYPE_INT",13),
-                        "G_TYPE_INT64", rep("G_TYPE_UINT", 7), rep("G_TYPE_UINT64",2),
-                        rep("G_TYPE_FLOAT",2), rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
-                        rep("G_TYPE_ULONG", 2), rep("G_TYPE_BOOLEAN",2))
+
+CPrimitiveToGType <- c(rep("G_TYPE_CHAR",1), "G_TYPE_UCHAR",
+                       rep("G_TYPE_STRING",2), rep("G_TYPE_INT",13),
+                       "G_TYPE_INT64", rep("G_TYPE_UINT", 7),
+                       rep("G_TYPE_UINT64",2), rep("G_TYPE_FLOAT",2),
+                       rep("G_TYPE_DOUBLE",2), "G_TYPE_LONG",
+                       rep("G_TYPE_ULONG", 2),
+                       rep("G_TYPE_BOOLEAN",2))
 names(CPrimitiveToGType) <- names(CPrimitiveToGeneric)
-CPrimitiveToGType[["gpointer"]] <- "G_TYPE_POINTER" # has no R primitive equivalent
+CPrimitiveToGType[["gpointer"]] <- "G_TYPE_POINTER" # no R primitive equivalent
 
 # types that are not included as incoming parameters
 hiddenTypes <- c("GDestroyNotify", "GtkDestroyNotify", "GtkClipboardClearFunc", 
-	"GdkGCValuesMask", "GdkWindowHints", "cairo_destroy_func_t")
+                 "GdkGCValuesMask", "GdkWindowHints", "cairo_destroy_func_t",
+                 "GReallocFunc")
 
 # types that we just ignore (do not convert, do not fail as if it were 'bad')
 ignoredTypes <- c("GtkCallbackMarshal", "PangoAttrDataCopyFunc")
@@ -188,53 +230,95 @@ classTypeMap <- c("GdkBitmapClass" = "GdkDrawableClass",
 
 # functions that we aren't documenting (ie, memory management, low-level)
 # these are not includeded in RGtk
-lowlevel_funcs <- c("pango_context_new", "pango_fontset_simple_new", "pango_font_map_get_shape_engine_type", 
-"pango_fontset_simple_append", "pango_fontset_simple_size", "gdk_event_send_client_message", 
-"gdk_event_send_client_message_for_display", "gdk_event_send_clientmessage_toall",
-"gdk_spawn_on_screen", "gdk_spawn_on_screen_with_pipes", "gdk_init", "gdk_init_check", 
-"gdk_parse_args", "gdk_set_locale", "gdk_exit", "gdk_get_use_xshm", "gdk_set_sm_client_id",
-"gdk_set_use_xshm", "gdk_error_trap_push", "gdk_error_trap_pop", "gdk_pixmap_foreign_new",
-"gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup", "gdk_pixmap_lookup_for_display",
-"pango_font_find_shaper", "gtk_disable_setlocale", "gdk_pixmap_foreign_new_for_screen", "atk_misc_threads_enter", "atk_misc_threads_leave")
+lowlevel_funcs <-
+c("pango_context_new", "pango_fontset_simple_new",
+  "pango_font_map_get_shape_engine_type", "pango_fontset_simple_append",
+  "pango_fontset_simple_size", "gdk_event_send_client_message",
+  "gdk_event_send_client_message_for_display",
+  "gdk_event_send_clientmessage_toall", "gdk_spawn_on_screen",
+  "gdk_spawn_on_screen_with_pipes", "gdk_init", "gdk_init_check",
+  "gdk_parse_args", "gdk_set_locale", "gdk_exit", "gdk_get_use_xshm",
+  "gdk_set_sm_client_id", "gdk_set_use_xshm", "gdk_error_trap_push",
+  "gdk_error_trap_pop", "gdk_pixmap_foreign_new",
+  "gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup",
+  "gdk_pixmap_lookup_for_display", "pango_font_find_shaper",
+  "gtk_disable_setlocale", "gdk_pixmap_foreign_new_for_screen",
+  "atk_misc_threads_enter", "atk_misc_threads_leave")
 
-useless_funcs <- c("pango_default_break", "gdk_colormap_change",  "gdk_color_copy", 
-"gdk_colors_alloc", "gdk_color_hash", "gdk_color_equal", "gdk_wcstombs", "gdk_mbstowcs",
-"gdk_image_new_bitmap", "gdk_text_property_to_text_list", "gdk_text_property_to_text_list_for_display",
- "gdk_text_property_to_utf8_list", "gdk_text_property_to_utf8_list_for_display", "gdk_get_display_arg_name",
- "gdk_string_to_compound_text", "gdk_string_to_compound_text_for_display", "gdk_pixbuf_new_from_inline",
- "gdk_utf8_to_string_target", "gdk_utf8_to_compound_text", "gdk_utf8_to_compound_text_for_display",
- "gdk_rgb_init", "gtk_parse_args", "gtk_init_with_args", "gtk_get_option_group", "gtk_widget_destroyed",
- "cairo_font_options_hash", "gtk_decorated_window_set_title", "gtk_decorated_window_move_resize_window",
- "cairo_debug_reset_static_data", "cairo_destroy_func_t", "gtk_window_parse_geometry",
- "gtk_decorated_window_init", "gtk_decorated_window_calculate_frame_size", "gtk_widget_style_get_valist",
- "gtk_tree_store_set_valist", "gtk_tree_model_get_valist", "gtk_list_store_set_valist", 
- "gtk_container_child_get_valist", "gtk_container_child_set_valist", "cairo_read_func_t", 
- "cairo_write_func_t", "gtk_recent_chooser_set_show_numbers", "gtk_recent_chooser_get_show_numbers", "atk_misc_get_instance")
+useless_funcs <- c("pango_default_break", "gdk_colormap_change",
+                   "gdk_color_copy", "gdk_colors_alloc", "gdk_color_hash",
+                   "gdk_color_equal", "gdk_wcstombs", "gdk_mbstowcs",
+                   "gdk_image_new_bitmap", "gdk_text_property_to_text_list",
+                   "gdk_text_property_to_text_list_for_display",
+                   "gdk_text_property_to_utf8_list",
+                   "gdk_text_property_to_utf8_list_for_display",
+                   "gdk_get_display_arg_name", "gdk_string_to_compound_text",
+                   "gdk_string_to_compound_text_for_display",
+                   "gdk_pixbuf_new_from_inline", "gdk_utf8_to_string_target",
+                   "gdk_utf8_to_compound_text",
+                   "gdk_utf8_to_compound_text_for_display",
+                   "gdk_rgb_init", "gtk_parse_args", "gtk_init_with_args",
+                   "gtk_get_option_group", "gtk_widget_destroyed",
+                   "cairo_font_options_hash", "gtk_decorated_window_set_title",
+                   "gtk_decorated_window_move_resize_window",
+                   "cairo_debug_reset_static_data", "cairo_destroy_func_t",
+                   "gtk_window_parse_geometry", "gtk_decorated_window_init",
+                   "gtk_decorated_window_calculate_frame_size",
+                   "gtk_widget_style_get_valist", "gtk_tree_store_set_valist",
+                   "gtk_tree_model_get_valist", "gtk_list_store_set_valist",
+                   "gtk_container_child_get_valist",
+                   "gtk_container_child_set_valist",
+                   "cairo_read_func_t", "cairo_write_func_t",
+                   "gtk_recent_chooser_set_show_numbers",
+                   "gtk_recent_chooser_get_show_numbers",
+                   "atk_misc_get_instance", "g_buffered_input_stream_peek",
+                   "gtk_style_get_valist")
 
-mem_funcs <- c("atk_text_free_ranges", "pango_font_description_merge_static",
-"pango_font_descriptions_free", "pango_matrix_free", "pango_glyph_item_free", "pango_layout_line_ref",
-"pango_layout_line_unref", "pango_item_free",  "gdk_colormap_ref", "gdk_colormap_unref",
- "gdk_device_free_history","gdk_color_free", "gdk_colors_free", "gdk_cursor_ref", "gdk_cursor_unref",
-"gdk_font_ref", "gdk_font_unref", "gdk_font_equal",  "atk_attribute_set_free",
-"gdk_gc_ref", "gdk_gc_unref", "gdk_image_ref", "gdk_image_unref", "gdk_free_text_list",
-"gdk_free_compound_text", "gdk_region_destroy", "gdk_drawable_ref", "gdk_drawable_unref", "gdk_rgb_cmap_free",
-"gdk_pixbuf_animation_ref", "gdk_pixbuf_animation_unref", "cairo_font_options_destroy",
-"cairo_font_face_reference", "cairo_font_face_destroy", "cairo_pattern_reference", "cairo_pattern_destroy",
-"cairo_reference", "cairo_path_destroy", "cairo_destroy", "cairo_scaled_font_reference", "cairo_scaled_font_destroy",
-"gdk_drag_context_ref", "gdk_drag_context_unref", "gtk_icon_set_ref", "gtk_icon_set_unref",
-"gtk_list_remove_items_no_unref", "gtk_rc_style_ref", "gtk_rc_style_unref", "gtk_style_ref",
-"gtk_style_unref", "gtk_target_list_ref", "gtk_target_list_unref", "gtk_text_attributes_ref",
-"gtk_text_attributes_unref", "gtk_tree_row_reference_free", "gtk_widget_ref", "gtk_widget_unref",
-"pango_attr_list_ref", "pango_attr_list_unref", "pango_coverage_ref", "pango_coverage_unref", 
-"pango_font_metrics_ref", "pango_font_metrics_unref", "atk_attribute_set_free", "gtk_object_destroy",
-"gdk_event_free", "gtk_border_free", "gtk_icon_info_free", "gtk_icon_source_free", 
-"gtk_requisition_free", "gtk_selection_data_free", "gtk_stock_item_free", "gtk_text_iter_free",
-"gtk_tree_iter_free", "gtk_tree_path_free", "pango_font_description_free", "pango_glyph_string_free",
-"pango_layout_iter_free", "pango_tab_array_free", "gtk_target_table_free", "gtk_paper_size_free",
-"pango_script_iter_free", "cairo_rectangle_list_destroy", "cairo_get_reference_count",
-"cairo_surface_get_reference_count", "cairo_pattern_get_reference_count",
-"cairo_font_face_get_reference_count", "cairo_scaled_font_get_reference_count",
-"pango_glyph_item_copy", "pango_layout_iter_copy")
+mem_funcs <-
+  c("atk_text_free_ranges",
+    "pango_font_description_merge_static",
+    "pango_font_descriptions_free", "pango_matrix_free",
+    "pango_glyph_item_free", "pango_layout_line_ref",
+    "pango_layout_line_unref", "pango_item_free", "gdk_colormap_ref",
+    "gdk_colormap_unref", "gdk_device_free_history","gdk_color_free",
+    "gdk_colors_free", "gdk_cursor_ref", "gdk_cursor_unref",
+    "gdk_font_ref", "gdk_font_unref", "gdk_font_equal",
+    "atk_attribute_set_free", "gdk_gc_ref", "gdk_gc_unref",
+    "gdk_image_ref", "gdk_image_unref", "gdk_free_text_list",
+    "gdk_free_compound_text", "gdk_region_destroy", "gdk_drawable_ref",
+    "gdk_drawable_unref", "gdk_rgb_cmap_free",
+    "gdk_pixbuf_animation_ref", "gdk_pixbuf_animation_unref",
+    "cairo_font_options_destroy", "cairo_font_face_reference",
+    "cairo_font_face_destroy", "cairo_pattern_reference",
+    "cairo_pattern_destroy", "cairo_reference", "cairo_path_destroy",
+    "cairo_destroy", "cairo_scaled_font_reference",
+    "cairo_scaled_font_destroy", "gdk_drag_context_ref",
+    "gdk_drag_context_unref", "gtk_icon_set_ref", "gtk_icon_set_unref",
+    "gtk_list_remove_items_no_unref", "gtk_rc_style_ref",
+    "gtk_rc_style_unref", "gtk_style_ref", "gtk_style_unref",
+    "gtk_target_list_ref", "gtk_target_list_unref",
+    "gtk_text_attributes_ref", "gtk_text_attributes_unref",
+    "gtk_tree_row_reference_free", "gtk_widget_ref", "gtk_widget_unref",
+    "pango_attr_list_ref", "pango_attr_list_unref",
+    "pango_coverage_ref", "pango_coverage_unref",
+    "pango_font_metrics_ref", "pango_font_metrics_unref",
+    "atk_attribute_set_free", "gtk_object_destroy", "gdk_event_free",
+    "gtk_border_free", "gtk_icon_info_free", "gtk_icon_source_free",
+    "gtk_requisition_free", "gtk_selection_data_free",
+    "gtk_stock_item_free", "gtk_text_iter_free", "gtk_tree_iter_free",
+    "gtk_tree_path_free", "pango_font_description_free",
+    "pango_glyph_string_free", "pango_layout_iter_free",
+    "pango_tab_array_free", "gtk_target_table_free",
+    "gtk_paper_size_free", "pango_script_iter_free",
+    "cairo_rectangle_list_destroy", "cairo_get_reference_count",
+    "cairo_surface_get_reference_count",
+    "cairo_pattern_get_reference_count",
+    "cairo_font_face_get_reference_count",
+    "cairo_scaled_font_get_reference_count", "pango_glyph_item_copy",
+    "pango_layout_iter_copy", "g_file_attribute_info_list_ref",
+    "g_file_attribute_info_list_unref",
+    "g_file_attribute_matcher_ref", "g_file_attribute_matcher_unref",
+    "pango_glyph_item_iter_copy", "pango_glyph_item_iter_free")
 
 cleanups <- unlist(cleanupFuncs)[sapply(unlist(cleanupFuncs), function(func) nchar(func) > 0)]
 mem_funcs <- unique(c(mem_funcs, cleanups, finalizerFuncs, "g_object_unref", "g_object_ref", "g_strfreev"))
