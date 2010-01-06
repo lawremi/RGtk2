@@ -1,0 +1,263 @@
+;; -*- scheme -*-
+
+; for cairo 1.8
+
+(include "../2.12/cairo.defs")
+
+(define-function cairo_toy_font_face_create
+  (in-module "cairo")
+  (c-name "cairo_toy_font_face_create")
+  (is-constructor-of "cairo_font_face_t")
+  (return-type "cairo_font_face_t*")
+  (parameters
+   '("const-char*" "family")
+   '("cairo_font_slant_t" "slant")
+   '("cairo_font_weight_t" "weight")
+   )
+  )
+
+(define-function cairo_toy_font_face_get_family
+  (in-module "cairo")
+  (c-name "cairo_toy_font_face_get_family")
+  (return-type "const-char*")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+(define-function cairo_toy_font_face_get_slant
+  (in-module "cairo")
+  (c-name "cairo_toy_font_face_get_family")
+  (return-type "cairo_font_slant_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+
+(define-function cairo_toy_font_face_get_weight
+  (in-module "cairo")
+  (c-name "cairo_toy_font_face_get_weight")
+  (return-type "cairo_font_weight_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+(define-function cairo_surface_get_fallback_resolution
+  (in-module "cairo")
+  (c-name "cairo_surface_get_fallback_resolution")
+  (return-type "none")
+  (parameters
+   '("cairo_surface_t*" "surface")
+   '("double*" "x_pixels_per_inch" (out))
+   '("double*" "y_pixels_per_inch" (out))
+   )
+  )
+
+(define-function cairo_surface_has_show_text_glyphs
+  (in-module "cairo")
+  (c-name "cairo_surface_has_show_text_glyphs")
+  (return-type "gboolean")
+  (parameters
+   '("cairo_surface_t*" "surface")
+   )
+  )
+
+(define-function cairo_show_text_glyphs
+  (in-module "cairo")
+  (c-name "cairo_show_text_glyphs")
+  (return-type "none")
+  (parameters
+   '("cairo_t*" "cr"
+   '("const-char*" "utf8")
+   '("int" "utf8_len" (default "-1"))
+   '("const-cairo_glyph_t[]" "glyphs")
+   '("int" "num_glyphs")
+   '("const-cairo_text_cluster_t[]" "clusters")
+   '("int" "num_clusters")
+   '("cairo_text_cluster_flags_t" "cluster_flags")
+   )
+  )
+
+(define-function cairo_scaled_font_get_scale_matrix
+  (in-module "cairo")
+  (c-name "cairo_scaled_font_get_scale_matrix")
+  (return-type "none")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("cairo_matrix_t*" "scale_matrix" (out))
+   )
+  )
+
+(define-function cairo_scaled_font_text_to_glyphs
+  (in-module "cairo")
+  (c-name "cairo_scaled_font_text_to_glyphs")
+  (return-type "cairo_status_t")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("double" "x")
+   '("double" "y")
+   '("const-char*" "utf8")
+   '("int" "utf8_len" (default "-1"))
+   '("cairo_glyph_t*[]" "glyphs" (out))
+   '("int*" "num_glyphs" (out))
+   '("cairo_text_cluster_t*[]" "clusters" (out))
+   '("int*" "num_clusters" (out))
+   '("cairo_text_cluster_flags_t*" "cluster_flags" (out))
+   )
+  )
+
+; MANUAL: needs to be a transparent type
+(define-pointer cairo_text_cluster_t
+  (in-module "cairo")
+  (c-name "cairo_text_cluster_t")
+  (fields
+   '("int" "num_bytes")
+   '("int" "num_glyphs")
+   )
+  )
+
+(define-function cairo_user_font_face_create
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_create")
+  (return-type "cairo_font_face_t*")
+  (is-constructor-of "cairo_font_face_t")
+)
+
+(define-function cairo_user_font_face_set_init_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_set_init_func")
+  (return-type "none")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   '("cairo_user_scaled_font_init_func_t" "init_func")
+  )
+)
+
+(define-function cairo_user_font_face_set_render_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_set_render_glyph_func")
+  (return-type "none")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   '("cairo_user_scaled_font_render_glyph_func_t" "render_glyph_func")
+   )
+  )
+
+(define-function cairo_user_font_face_set_unicode_to_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_set_unicode_to_glyph_func")
+  (return-type "none")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   '("cairo_user_scaled_font_unicode_to_glyph_func_t" "unicode_to_glyph_func")
+   )
+  )
+
+(define-function cairo_user_font_face_set_text_to_glyphs_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_set_text_to_glyphs_func")
+  (return-type "none")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   '("cairo_user_scaled_font_text_to_glyphs_func_t" "text_to_glyphs_func")
+   )
+  )
+
+(define-function cairo_user_font_face_get_init_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_get_init_func")
+  (return-type "cairo_user_scaled_font_init_func_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+(define-function cairo_user_font_face_get_render_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_get_render_glyph_func")
+  (return-type "cairo_user_scaled_font_render_glyph_func_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+
+(define-function cairo_user_font_face_get_unicode_to_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_get_unicode_to_glyph_func")
+  (return-type "cairo_user_scaled_font_unicode_to_glyph_func_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+(define-function cairo_user_font_face_get_text_to_glyphs_func
+  (in-module "cairo")
+  (c-name "cairo_user_font_face_get_text_to_glyphs_func")
+  (return-type "cairo_user_scaled_font_text_to_glyphs_func_t")
+  (parameters
+   '("cairo_font_face_t*" "font_face")
+   )
+  )
+
+(define-enum text_cluster_flags
+  (in-module "cairo")
+  (c-name "cairo_text_cluster_flags_t")
+  (gtype-id "CAIRO_TYPE_TEXT_CLUSTER_FLAGS")
+  (values
+   '("backward" "CAIRO_TEXT_CLUSTER_FLAG_BACKWARD")
+   )
+  )
+
+(define-user-function user_scaled_font_init_func
+  (in-module "cairo")
+  (c-name "cairo_user_scaled_font_init_func_t")
+  (return-type "cairo_status_t")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("cairo_t*" "cr")
+   '("cairo_font_extents_t*" "extents" (out))
+   )
+  )
+
+(define-user-function user_scaled_font_render_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_scaled_font_render_glyph_func_t")
+  (return-type "cairo_status_t")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("gulong" "glyph")
+   '("cairo_t*" "cr")
+   '("cairo_font_extents_t*" "extents" (out))
+   )
+  )
+
+;; MANUAL: need to allocate the 'glyphs' and 'clusters' arrays appropriately
+(define-user-function user_scaled_font_text_to_glyphs_func
+  (in-module "cairo")
+  (c-name "cairo_user_scaled_font_text_to_glyphs_func_t")
+  (return-type "cairo_status_t")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("const-char*" "utf8")
+   '("int" "utf8_len")
+   '("cairo_glyph_t*[]" "glyphs" (out))
+   '("int*" "num_glyphs" (out))
+   '("cairo_text_cluster_t*[]" "clusters" (out))
+   '("int*" "num_clusters" (out))
+   '("cairo_text_cluster_flags_t*" "cluster_flags" (out))
+   )
+  )
+
+(define-user-function user_scaled_font_unicode_to_glyph_func
+  (in-module "cairo")
+  (c-name "cairo_user_scaled_font_unicode_to_glyph_func_t")
+  (return-type "cairo_status_t")
+  (parameters
+   '("cairo_scaled_font_t*" "scaled_font")
+   '("gulong" "unicode")
+   '("gulong*" "glyph_index" (out))
+   )
+  )

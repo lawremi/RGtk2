@@ -1,0 +1,12 @@
+;; -*- scheme -*-
+
+(include "../2.14/gdk.defs")
+
+;; From gdkkeys.h
+
+(define-method get_caps_lock_state
+  (of-object "GdkKeymap")
+  (c-name "gdk_keymap_get_caps_lock_state")
+  (return-type "gboolean")
+  (since "2.16.0")
+)
