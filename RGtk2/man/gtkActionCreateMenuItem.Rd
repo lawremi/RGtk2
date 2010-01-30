@@ -3,8 +3,8 @@
 \title{gtkActionCreateMenuItem}
 \description{Creates a menu item widget that proxies for the given action.}
 \usage{gtkActionCreateMenuItem(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}}
 \details{  Since  2.4}
-\value{[\code{\link{GtkWidget}}]  a menu item connected to the action.}
+\value{[\verb{\link{GtkWidget}}]  a menu item connected to the action.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

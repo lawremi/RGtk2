@@ -7,9 +7,9 @@ The select function should return \code{TRUE} if the state of the node may be to
 and \code{FALSE} if the state of the node should be left unchanged.}
 \usage{gtkTreeSelectionSetSelectFunction(object, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}
-\item{\code{func}}{[\code{\link{GtkTreeSelectionFunc}}]  The selection function.}
-\item{\code{data}}{[R object]  The selection function's data.}
+\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}
+\item{\verb{func}}{[\verb{\link{GtkTreeSelectionFunc}}]  The selection function.}
+\item{\verb{data}}{[R object]  The selection function's data.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

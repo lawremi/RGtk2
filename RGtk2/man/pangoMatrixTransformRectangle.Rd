@@ -5,8 +5,8 @@
 of the transformed rectangle.  The rectangle should be in Pango units.}
 \usage{pangoMatrixTransformRectangle(object, rect)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoMatrix}}]  a \code{\link{PangoMatrix}}, or \code{NULL}}
-\item{\code{rect}}{[\code{\link{PangoRectangle}}]  in/out bounding box in Pango units, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{PangoMatrix}}]  a \verb{\link{PangoMatrix}}, or \code{NULL}}
+\item{\verb{rect}}{[\verb{\link{PangoRectangle}}]  in/out bounding box in Pango units, or \code{NULL}}
 }
 \details{This function is useful for example when you want to draw a rotated
 \code{PangoLayout} to an image buffer, and want to know how large the image

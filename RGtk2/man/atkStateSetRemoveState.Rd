@@ -4,8 +4,8 @@
 \description{Removes the state for the specified type from the state set.}
 \usage{atkStateSetRemoveState(object, type)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkStateSet}}]  an \code{\link{AtkStateSet}}}
-\item{\code{type}}{[\code{\link{AtkStateType}}]  an \code{AtkType}}
+\item{\verb{object}}{[\verb{\link{AtkStateSet}}]  an \verb{\link{AtkStateSet}}}
+\item{\verb{type}}{[\code{\link{AtkStateType}}]  an \verb{AtkType}}
 }
 \value{[logical] \code{TRUE} if \code{type} was the state type is in \code{set}.}
 \author{Derived by RGtkGen from GTK+ documentation}

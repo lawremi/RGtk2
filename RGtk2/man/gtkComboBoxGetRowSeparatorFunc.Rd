@@ -3,8 +3,8 @@
 \title{gtkComboBoxGetRowSeparatorFunc}
 \description{Returns the current row separator function.}
 \usage{gtkComboBoxGetRowSeparatorFunc(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkComboBox}}]  a \code{\link{GtkComboBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}}
 \details{  Since  2.6}
-\value{[\code{\link{GtkTreeViewRowSeparatorFunc}}]  the current row separator function.}
+\value{[\verb{\link{GtkTreeViewRowSeparatorFunc}}]  the current row separator function.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

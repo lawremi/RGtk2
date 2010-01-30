@@ -1,12 +1,12 @@
 \alias{gtkTreeModelGetPath}
 \name{gtkTreeModelGetPath}
 \title{gtkTreeModelGetPath}
-\description{Returns a newly-created \code{\link{GtkTreePath}} referenced by \code{iter}.}
+\description{Returns a newly-created \verb{\link{GtkTreePath}} referenced by \code{iter}.}
 \usage{gtkTreeModelGetPath(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}.}
 }
-\value{[\code{\link{GtkTreePath}}]  a newly-created \code{\link{GtkTreePath}}.}
+\value{[\verb{\link{GtkTreePath}}]  a newly-created \verb{\link{GtkTreePath}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

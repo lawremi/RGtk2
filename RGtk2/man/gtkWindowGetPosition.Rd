@@ -6,9 +6,9 @@
 means that the meaning of the returned value varies with window
 gravity. See \code{\link{gtkWindowMove}} for more details.}
 \usage{gtkWindowGetPosition(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \details{If you haven't changed the window gravity, its gravity will be
-\code{GDK_GRAVITY_NORTH_WEST}. This means that \code{\link{gtkWindowGetPosition}}
+\verb{GDK_GRAVITY_NORTH_WEST}. This means that \code{\link{gtkWindowGetPosition}}
 gets the position of the top-left corner of the window manager
 frame for the window. \code{\link{gtkWindowMove}} sets the position of this
 same top-left corner.
@@ -24,7 +24,7 @@ its current position as returned by \code{\link{gtkWindowGetPosition}} tends
 to result in moving the window slightly. Window managers are
 slowly getting better over time.
   
-If a window has gravity \code{GDK_GRAVITY_STATIC} the window manager
+If a window has gravity \verb{GDK_GRAVITY_STATIC} the window manager
 frame is not relevant, and thus \code{\link{gtkWindowGetPosition}} will
 always produce accurate results. However you can't use static
 gravity to do things like place a window in a corner of the screen,
@@ -39,8 +39,8 @@ Mechanism is to support the session management protocol (see the
 the window manager to save your window sizes and positions.  }
 \value{
 A list containing the following elements:
-\item{\code{root.x}}{[integer]  return location for X coordinate of gravity-determined reference p\\oint}
-\item{\code{root.y}}{[integer]  return location for Y coordinate of gravity-determined reference p\\oint}
+\item{\verb{root.x}}{[integer]  return location for X coordinate of gravity-determined reference p\\oint}
+\item{\verb{root.y}}{[integer]  return location for Y coordinate of gravity-determined reference p\\oint}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

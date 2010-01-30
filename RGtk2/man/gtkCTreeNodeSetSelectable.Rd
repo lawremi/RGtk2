@@ -7,9 +7,9 @@
 }
 \usage{gtkCTreeNodeSetSelectable(object, node, selectable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{selectable}}{[logical] Whether this node can be selected by the user.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{selectable}}{[logical] Whether this node can be selected by the user.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

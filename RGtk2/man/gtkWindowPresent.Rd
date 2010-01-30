@@ -6,7 +6,7 @@ in the stacking order, deiconifying it, moving it to the current
 desktop, and/or giving it the keyboard focus, possibly dependent
 on the user's platform, window manager, and preferences.}
 \usage{gtkWindowPresent(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \details{If \code{window} is hidden, this function calls \code{\link{gtkWidgetShow}}
 as well.
   

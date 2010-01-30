@@ -7,9 +7,9 @@ components of the transformation are ignored. The calculation of
 the returned vector is as follows:}
 \usage{pangoMatrixTransformDistance(object, dx, dy)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoMatrix}}]  a \code{\link{PangoMatrix}}, or \code{NULL}}
-\item{\code{dx}}{[numeric]  in/out X component of a distance vector}
-\item{\code{dy}}{[numeric]  yn/out Y component of a distance vector}
+\item{\verb{object}}{[\verb{\link{PangoMatrix}}]  a \verb{\link{PangoMatrix}}, or \code{NULL}}
+\item{\verb{dx}}{[numeric]  in/out X component of a distance vector}
+\item{\verb{dy}}{[numeric]  yn/out Y component of a distance vector}
 }
 \details{\preformatted{dx2 = dx1 * xx + dy1 * xy;
 dy2 = dx1 * yx + dy1 * yy;

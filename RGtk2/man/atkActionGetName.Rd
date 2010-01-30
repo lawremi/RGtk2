@@ -12,8 +12,8 @@ The "popup" action should be used to pop up a context menu for the
 object, if one exists.}
 \usage{atkActionGetName(object, i)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkAction}}]  a \code{\link{GObject}} instance that implements AtkActionIface}
-\item{\code{i}}{[integer]  the action index corresponding to the action to be performed }
+\item{\verb{object}}{[\verb{\link{AtkAction}}]  a \verb{\link{GObject}} instance that implements AtkActionIface}
+\item{\verb{i}}{[integer]  the action index corresponding to the action to be performed }
 }
 \details{For technical reasons, some toolkits cannot guarantee that the 
 reported action is actually 'bound' to a nontrivial user event;

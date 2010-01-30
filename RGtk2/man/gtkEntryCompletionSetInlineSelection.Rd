@@ -5,8 +5,8 @@
 inside the entry.}
 \usage{gtkEntryCompletionSetInlineSelection(object, inline.selection)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}
-\item{\code{inline.selection}}{[logical] \code{TRUE} to do inline selection}
+\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}
+\item{\verb{inline.selection}}{[logical] \code{TRUE} to do inline selection}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

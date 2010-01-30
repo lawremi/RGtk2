@@ -42,19 +42,19 @@ rendering to images, to PDF files, and to the screen on X and on other
 windowing systems. The functions in this section allow using Pango
 to render to Cairo surfaces.
   
-Using Pango with Cairo is straightforward. A \code{\link{PangoContext}} created
+Using Pango with Cairo is straightforward. A \verb{\link{PangoContext}} created
 with \code{\link{pangoCairoFontMapCreateContext}} can be used on any
-Cairo context (cairo\_t), but needs to be updated to match the
+Cairo context (cairo_t), but needs to be updated to match the
 current transformation matrix and target surface of the Cairo context
 using \code{\link{pangoCairoUpdateContext}}. The convenience functions
 \code{\link{pangoCairoCreateLayout}} and \code{\link{pangoCairoUpdateLayout}} handle
 the common case where the program doesn't need to manipulate the
-properties of the \code{\link{PangoContext}}.
+properties of the \verb{\link{PangoContext}}.
   
 When you get the metrics of a layout or of a piece of a layout using
 functions such as \code{\link{pangoLayoutGetExtents}}, the reported metrics
 are in user-space coordinates. If a piece of text is 10 units long,
-and you call cairo\_scale (cr, 2.0), it still is more-or-less 10
+and you call cairo_scale (cr, 2.0), it still is more-or-less 10
 units long. However, the results will be affected by hinting
 (that is, the process of adjusting the text to look good on the
 pixel grid), so you shouldn't assume they are completely independent
@@ -128,16 +128,16 @@ gSignalConnect(drawing.area, "expose-event", draw.text)
 window$showAll()
 }  }
 \section{Structures}{\describe{
-\item{\code{PangoCairoFont}}{
-\code{\link{PangoCairoFont}} is an interface exported by fonts for
+\item{\verb{PangoCairoFont}}{
+\verb{\link{PangoCairoFont}} is an interface exported by fonts for
 use with Cairo. The actual type of the font will depend
 on the particular font technology Cairo was compiled to use.  
 
   Since  1.18
 
 }
-\item{\code{PangoCairoFontMap}}{
-\code{\link{PangoCairoFontMap}} is an interface exported by font maps for
+\item{\verb{PangoCairoFontMap}}{
+\verb{\link{PangoCairoFontMap}} is an interface exported by font maps for
 use with Cairo. The actual type of the font map will depend
 on the particular font technology Cairo was compiled to use.  
 
@@ -150,9 +150,9 @@ Function type for rendering attributes of type \code{PANGO_ATTR_SHAPE}
 with Pango's Cairo renderer.
 
 \describe{
-\item{\code{cr}}{[\code{\link{Cairo}}] a Cairo context with current point set to where the shape should
+\item{\code{cr}}{[\verb{\link{Cairo}}] a Cairo context with current point set to where the shape should
      be rendered}
-\item{\code{attr}}{[\code{\link{PangoAttrShape}}] the \code{PANGO_ATTR_SHAPE} to render}
+\item{\code{attr}}{[\verb{\link{PangoAttrShape}}] the \code{PANGO_ATTR_SHAPE} to render}
 \item{\code{do.path}}{[logical] whether only the shape path should be appended to current
           path of \code{cr} and no filling/stroking done.  This will be set
 	  to \code{TRUE} when called from \code{\link{pangoCairoLayoutPath}} and

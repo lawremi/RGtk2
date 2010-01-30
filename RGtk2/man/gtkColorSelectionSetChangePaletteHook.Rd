@@ -11,7 +11,7 @@ the new palette contents, and update the GtkSettings property
 not work in multihead environments.}
 }
 \usage{gtkColorSelectionSetChangePaletteHook(func)}
-\arguments{\item{\code{func}}{[\code{\link{GtkColorSelectionChangePaletteFunc}}]  a function to call when the custom palette needs saving.}}
-\value{[\code{\link{GtkColorSelectionChangePaletteFunc}}]  the previous change palette hook (that was replaced).}
+\arguments{\item{\verb{func}}{[\verb{\link{GtkColorSelectionChangePaletteFunc}}]  a function to call when the custom palette needs saving.}}
+\value{[\verb{\link{GtkColorSelectionChangePaletteFunc}}]  the previous change palette hook (that was replaced).}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

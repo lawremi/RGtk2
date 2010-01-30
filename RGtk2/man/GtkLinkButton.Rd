@@ -12,17 +12,17 @@
 \code{\link{gtkLinkButtonSetUriHook}(func, data)}\cr
 \code{gtkLinkButton(uri, label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkLinkButton}}
 \section{Interfaces}{GtkLinkButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkLinkButton}} is a \code{\link{GtkButton}} with a hyperlink, similar to the one
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkLinkButton}} is a \verb{\link{GtkButton}} with a hyperlink, similar to the one
 used by web browsers, which triggers an action when clicked. It is useful
 to show quick links to resources.
   
@@ -30,23 +30,23 @@ A link button is created by calling either \code{\link{gtkLinkButtonNew}} or
 \code{\link{gtkLinkButtonNewWithLabel}}. If using the former, the URI you pass
 to the constructor is used as a label for the widget.
   
-The URI bound to a \code{\link{GtkLinkButton}} can be set specifically using
+The URI bound to a \verb{\link{GtkLinkButton}} can be set specifically using
 \code{\link{gtkLinkButtonSetUri}}, and retrieved using \code{\link{gtkLinkButtonGetUri}}.
-  \code{\link{GtkLinkButton}} offers a global hook, which is called when the used clicks
+  \verb{\link{GtkLinkButton}} offers a global hook, which is called when the used clicks
 on it: see \code{\link{gtkLinkButtonSetUriHook}}.
-  \code{\link{GtkLinkButton}} was added in GTK+ 2.10.}
-\section{Structures}{\describe{\item{\code{GtkLinkButton}}{
-The \code{\link{GtkLinkButton}} struct contains private data only, and should be
+  \verb{\link{GtkLinkButton}} was added in GTK+ 2.10.}
+\section{Structures}{\describe{\item{\verb{GtkLinkButton}}{
+The \verb{\link{GtkLinkButton}} struct contains private data only, and should be
 manipulated using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkLinkButton} is the equivalent of \code{\link{gtkLinkButtonNewWithLabel}}.}
 \section{User Functions}{\describe{\item{\code{GtkLinkButtonUriFunc(button, link., user.data)}}{
-The type of a function which is called when the \code{\link{GtkLinkButton}} is
+The type of a function which is called when the \verb{\link{GtkLinkButton}} is
 clicked.
 
 \describe{
-\item{\code{button}}{[\code{\link{GtkLinkButton}}] the \code{\link{GtkLinkButton}} which was clicked}
+\item{\code{button}}{[\verb{\link{GtkLinkButton}}] the \verb{\link{GtkLinkButton}} which was clicked}
 \item{\code{link.}}{[character] }
 \item{\code{user.data}}{[R object] user data that was passed when the function was registered
   with \code{\link{gtkLinkButtonSetUriHook}}}
@@ -54,7 +54,7 @@ clicked.
 
 
 }}}
-\section{Properties}{\describe{\item{\code{uri} [character : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{uri} [character : *                : Read / Write]}{
 
 The URI bound to this button.  
 
@@ -63,5 +63,5 @@ The URI bound to this button.
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkLinkButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GtkButton}}}
+\seealso{\verb{\link{GtkButton}}}
 \keyword{internal}

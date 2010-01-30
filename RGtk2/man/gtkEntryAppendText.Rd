@@ -9,8 +9,8 @@ Appends the given text to the contents of the widget.
 }
 \usage{gtkEntryAppendText(object, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{text}}{[character]  the text to append}
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{text}}{[character]  the text to append}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

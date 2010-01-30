@@ -5,8 +5,8 @@
 the tree interactively (this is sometimes called "typeahead find").}
 \usage{gtkTreeViewSetEnableSearch(object, enable.search)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{enable.search}}{[logical] \code{TRUE}, if the user can search interactively}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{enable.search}}{[logical] \code{TRUE}, if the user can search interactively}
 }
 \details{Note that even if this is \code{FALSE}, the user can still initiate a search 
 using the "start-interactive-search" key binding.  }

@@ -6,7 +6,7 @@
 \code{g} and \code{b} are hex digits
 representing the red, green and blue components respectively.}
 \usage{gdkColorToString(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkColor}}]  a \code{\link{GdkColor}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkColor}}]  a \verb{\link{GdkColor}}}}
 \details{  Since  2.12}
 \value{[character]  a newly-allocated text string}
 \author{Derived by RGtkGen from GTK+ documentation}

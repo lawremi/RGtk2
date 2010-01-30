@@ -38,9 +38,9 @@
 \code{\link{gdkSpawnCommandLineOnScreen}(screen, command.line, .errwarn = TRUE)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GdkScreen}}
-\section{Detailed Description}{\code{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
+\section{Detailed Description}{\verb{\link{GdkScreen}} objects are the GDK representation of a physical screen. It is used 
   throughout GDK and GTK+ to specify which screen the top level windows
   are to be displayed on. 
   It is also used to query the screen specification and default settings such as 
@@ -48,35 +48,35 @@
   the screen width (\code{\link{gdkScreenGetWidth}}), etc.
   Note that a screen may consist of multiple monitors which are merged to
 form a large screen area. }
-\section{Structures}{\describe{\item{\code{GdkScreen}}{
+\section{Structures}{\describe{\item{\verb{GdkScreen}}{
 This is a currently just a placeholder typedef for the first argument of 
-the \code{window.at.pointer} function in \code{GdkPointerHooks}. It will be used
+the \code{window.at.pointer} function in \verb{GdkPointerHooks}. It will be used
 when GDK gets multihead support. 
   Since 2.2
 
 }}}
 \section{Signals}{\describe{
 \item{\code{composited-changed(screen, user.data)}}{
-The ::composited\_changed signal is emitted when the composited
+The ::composited_changed signal is emitted when the composited
 status of the screen changes  
 
   Since  2.10
 
 \describe{
-\item{\code{screen}}{[\code{\link{GdkScreen}}]  the object on which the signal is emitted}
+\item{\code{screen}}{[\verb{\link{GdkScreen}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{size-changed(screen, user.data)}}{
-The ::size\_changed signal is emitted when the pixel width or 
+The ::size_changed signal is emitted when the pixel width or 
 height of a screen changes.  
 
   Since  2.2
 
 \describe{
-\item{\code{screen}}{[\code{\link{GdkScreen}}]  the object on which the signal is emitted}
+\item{\code{screen}}{[\verb{\link{GdkScreen}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -84,12 +84,12 @@ height of a screen changes.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{font-options} [R object : Read / Write]}{
+\item{\verb{font-options} [R object : Read / Write]}{
 
 The default font options for the screen.
 
 }
-\item{\code{resolution} [numeric : Read / Write]}{
+\item{\verb{resolution} [numeric : Read / Write]}{
 
 The resolution for fonts on the screen.  Default value: -1
 

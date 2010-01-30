@@ -10,8 +10,8 @@ function may not have any effect when called on a window that is
 already visible, so you should call it before calling \code{gtkWindowShow()}.}
 \usage{gtkWindowSetDeletable(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{setting}}{[logical] \code{TRUE} to decorate the window as deletable}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{setting}}{[logical] \code{TRUE} to decorate the window as deletable}
 }
 \details{On Windows, this function always works, since there's no window manager
 policy involved.  

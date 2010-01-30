@@ -8,8 +8,8 @@ not respond to events, such as the user clicking on it.
 }
 \usage{gtkCListColumnTitlePassive(object, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{column}}{[integer] The column to make passive, counting from 0.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{column}}{[integer] The column to make passive, counting from 0.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

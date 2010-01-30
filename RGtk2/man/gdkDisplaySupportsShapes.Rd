@@ -4,7 +4,7 @@
 \description{Returns \code{TRUE} if \code{\link{gdkWindowShapeCombineMask}} can
 be used to create shaped windows on \code{display}.}
 \usage{gdkDisplaySupportsShapes(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if shaped windows are supported }
 \author{Derived by RGtkGen from GTK+ documentation}

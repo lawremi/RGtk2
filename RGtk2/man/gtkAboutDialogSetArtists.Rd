@@ -5,8 +5,8 @@
 of the secondary credits dialog.}
 \usage{gtkAboutDialogSetArtists(object, artists)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}
-\item{\code{artists}}{[character]  a list of strings }
+\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
+\item{\verb{artists}}{[character]  a list of strings }
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

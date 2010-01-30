@@ -4,8 +4,8 @@
 \description{This function is only useful on X11, not with other GTK+ targets.}
 \usage{gtkWindowSetRole(object, role)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{role}}{[character]  unique identifier for the window to be used when restoring a session}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{role}}{[character]  unique identifier for the window to be used when restoring a session}
 }
 \details{In combination with the window title, the window role allows a
 window manager to identify "the

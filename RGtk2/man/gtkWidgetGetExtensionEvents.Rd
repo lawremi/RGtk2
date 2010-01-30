@@ -4,7 +4,7 @@
 \description{Retrieves the extension events the widget will receive; see
 \code{\link{gdkInputSetExtensionEvents}}.}
 \usage{gtkWidgetGetExtensionEvents(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \value{[\code{\link{GdkExtensionMode}}]  extension events for \code{widget}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

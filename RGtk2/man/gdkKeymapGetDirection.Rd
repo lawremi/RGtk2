@@ -4,7 +4,7 @@
 \description{\emph{undocumented
 }}
 \usage{gdkKeymapGetDirection(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkKeymap}}]  a \code{\link{GdkKeymap}} or \code{NULL} to use the default keymap}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkKeymap}}]  a \verb{\link{GdkKeymap}} or \code{NULL} to use the default keymap}}
 \details{Returns the direction of the keymap. }
 \value{[\code{\link{PangoDirection}}] the direction of effective layout of the keymap.
 

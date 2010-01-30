@@ -9,9 +9,9 @@ cursor position will be \code{count} positions to the left of the old
 cursor position.}
 \usage{gtkTextViewMoveVisually(object, iter, count)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{count}}{[integer]  number of characters to move (negative moves left, 
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{count}}{[integer]  number of characters to move (negative moves left, 
    positive moves right)}
 }
 \details{In the presence of bi-directional text, the correspondence

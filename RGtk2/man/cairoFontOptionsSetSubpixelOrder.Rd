@@ -5,11 +5,11 @@
 order specifies the order of color elements within each pixel on
 the display device when rendering with an antialiasing mode of
 \code{CAIRO_ANTIALIAS_SUBPIXEL}. See the documentation for
-\code{\link{CairoSubpixelOrder}} for full details.}
+\verb{\link{CairoSubpixelOrder}} for full details.}
 \usage{cairoFontOptionsSetSubpixelOrder(options, subpixel.order)}
 \arguments{
-\item{\code{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}}}
-\item{\code{subpixel.order}}{[\code{\link{CairoSubpixelOrder}}]  the new subpixel order}
+\item{\verb{options}}{[\verb{\link{CairoFontOptions}}]  a \verb{\link{CairoFontOptions}}}
+\item{\verb{subpixel.order}}{[\verb{\link{CairoSubpixelOrder}}]  the new subpixel order}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

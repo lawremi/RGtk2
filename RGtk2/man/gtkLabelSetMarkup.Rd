@@ -8,8 +8,8 @@ external data, you may need to escape it with \code{gMarkupEscapeText()} or
 \preformatted{# RGtk2 does not currently support GMarkup}}
 \usage{gtkLabelSetMarkup(object, str)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}
-\item{\code{str}}{[character]  a markup string (see Pango markup format)}
+\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
+\item{\verb{str}}{[character]  a markup string (see Pango markup format)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

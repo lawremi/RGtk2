@@ -6,8 +6,8 @@ device is active and whether the device's range is mapped to the
 entire screen or to a single window.}
 \usage{gdkDeviceSetMode(object, mode)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDevice}}] a \code{\link{GdkDevice}}.}
-\item{\code{mode}}{[\code{\link{GdkInputMode}}] the input mode.}
+\item{\verb{object}}{[\verb{\link{GdkDevice}}] a \verb{\link{GdkDevice}}.}
+\item{\verb{mode}}{[\code{\link{GdkInputMode}}] the input mode.}
 }
 \value{[logical] \code{TRUE} if the mode was successfully changed.}
 \author{Derived by RGtkGen from GTK+ documentation}

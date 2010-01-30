@@ -3,7 +3,7 @@
 \title{gtkPrintSettingsGetMediaType}
 \description{Gets the value of \code{GTK_PRINT_SETTINGS_MEDIA_TYPE}.}
 \usage{gtkPrintSettingsGetMediaType(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}}
 \details{The set of media types is defined in PWG 5101.1-2002 PWG.
   
 

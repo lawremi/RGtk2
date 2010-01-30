@@ -9,8 +9,8 @@ current working directory.
 }
 \usage{gtkFileSelectionSetFilename(object, filename)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileSelection}}]  a \code{\link{GtkFileSelection}}.}
-\item{\code{filename}}{[character]   a string to set as the default file name.}
+\item{\verb{object}}{[\verb{\link{GtkFileSelection}}]  a \verb{\link{GtkFileSelection}}.}
+\item{\verb{filename}}{[character]   a string to set as the default file name.}
 }
 \details{This has the consequence that in order to open the requestor with a 
 working directory and an empty filename, \code{filename} must have a trailing

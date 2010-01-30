@@ -6,10 +6,10 @@ so that the window may be nonrectangular. See also
 \code{\link{gdkWindowShapeCombineMask}} to use a bitmap as the mask.}
 \usage{gdkWindowShapeCombineRegion(object, shape.region = NULL, offset.x, offset.y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{shape.region}}{[\code{\link{GdkRegion}}]  region of window to be non-transparent}
-\item{\code{offset.x}}{[integer]  X position of \code{shape.region} in \code{window} coordinates}
-\item{\code{offset.y}}{[integer]  Y position of \code{shape.region} in \code{window} coordinates}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{shape.region}}{[\verb{\link{GdkRegion}}]  region of window to be non-transparent}
+\item{\verb{offset.x}}{[integer]  X position of \code{shape.region} in \code{window} coordinates}
+\item{\verb{offset.y}}{[integer]  Y position of \code{shape.region} in \code{window} coordinates}
 }
 \details{If \code{shape.region} is \code{NULL}, the shape will be unset, so the whole
 window will be opaque again. \code{offset.x} and \code{offset.y} are ignored

@@ -4,8 +4,8 @@
 \description{Adds the given rectangle to the current path of \code{cr}.}
 \usage{gdkCairoRectangle(cr, rectangle)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
-\item{\code{rectangle}}{[\code{\link{GdkRectangle}}]  a \code{\link{GdkRectangle}}}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
+\item{\verb{rectangle}}{[\verb{\link{GdkRectangle}}]  a \verb{\link{GdkRectangle}}}
 }
 \details{  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

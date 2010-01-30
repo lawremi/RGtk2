@@ -13,13 +13,13 @@
 \code{\link{gtkTextTagTableGetSize}(object)}\cr
 \code{gtkTextTagTable()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkTextTagTable}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
-\section{Structures}{\describe{\item{\code{GtkTextTagTable}}{
+\section{Structures}{\describe{\item{\verb{GtkTextTagTable}}{
 \emph{undocumented
 }
 
@@ -30,7 +30,7 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{tag}}{[\code{\link{GtkTextTag}}] }
+\item{\code{tag}}{[\verb{\link{GtkTextTag}}] }
 \item{\code{data}}{[R object] }
 }
 
@@ -42,8 +42,8 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
+\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -54,8 +54,8 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
+\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
 \item{\code{arg2}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -67,8 +67,8 @@ types related to the text widget and how they work together.
 }
 
 \describe{
-\item{\code{texttagtable}}{[\code{\link{GtkTextTagTable}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkTextTag}}] }
+\item{\code{texttagtable}}{[\verb{\link{GtkTextTagTable}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkTextTag}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

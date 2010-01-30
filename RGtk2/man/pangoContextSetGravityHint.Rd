@@ -4,8 +4,8 @@
 \description{Sets the gravity hint for the context.}
 \usage{pangoContextSetGravityHint(object, hint)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{hint}}{[\code{\link{PangoGravityHint}}]  the new gravity hint}
+\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{hint}}{[\code{\link{PangoGravityHint}}]  the new gravity hint}
 }
 \details{The gravity hint is used in laying vertical text out, and is only relevant
 if gravity of the context as returned by \code{\link{pangoContextGetGravity}}

@@ -12,10 +12,10 @@ mark with right gravity (when you type, the cursor stays on the right
 side of the text you're typing).}
 \usage{gtkTextMarkNew(name, left.gravity)}
 \arguments{
-\item{\code{name}}{[character]  mark name or \code{NULL}}
-\item{\code{left.gravity}}{[logical]  whether the mark should have left gravity}
+\item{\verb{name}}{[character]  mark name or \code{NULL}}
+\item{\verb{left.gravity}}{[logical]  whether the mark should have left gravity}
 }
 \details{  Since  2.12}
-\value{[\code{\link{GtkTextMark}}]  new \code{\link{GtkTextMark}}}
+\value{[\verb{\link{GtkTextMark}}]  new \verb{\link{GtkTextMark}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

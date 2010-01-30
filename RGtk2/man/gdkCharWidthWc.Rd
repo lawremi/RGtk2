@@ -8,8 +8,8 @@ in the wide-character encoding of the current locale).
 }
 \usage{gdkCharWidthWc(object, character)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}}
-\item{\code{character}}{[numeric]  the character to measure.}
+\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}}
+\item{\verb{character}}{[numeric]  the character to measure.}
 }
 \value{[integer]  the width of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

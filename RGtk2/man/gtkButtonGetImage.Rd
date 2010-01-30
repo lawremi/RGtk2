@@ -5,8 +5,8 @@
 This may have been explicitly set by \code{\link{gtkButtonSetImage}}
 or constructed by \code{\link{gtkButtonNewFromStock}}.}
 \usage{gtkButtonGetImage(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkButton}}]  a \code{\link{GtkButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}}
 \details{  Since  2.6}
-\value{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} or \code{NULL} in case there is no image}
+\value{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} or \code{NULL} in case there is no image}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

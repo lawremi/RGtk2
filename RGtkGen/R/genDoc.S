@@ -34,7 +34,7 @@ genDoc <- function(file, defs, output, verbose)
 	if (sub("\\.[^.]*$", "", basename(file)) %in% undocumentedConcepts)
 		return(NA)
 	
-	entities <- c("num" = "\\#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\\%",
+	entities <- c("num" = "#", "nbsp" = " ", "sol" = "/", "mdash"="--", "percnt" = "\\%",
 		"gdk-pixbuf" = "<application>gdk-pixbuf</application>")
 	text <- paste(readLines(file), collapse="\n")
 	sapply(names(entities), function(entity) 
@@ -270,18 +270,21 @@ linkend_to_func <- function(linkend) {
 	toCapPhraseName(gsub("-", "_", linkend), TRUE, classes)
 }
 
-tolink <- function(linkend, preformat = F) {
+tolink <- function(linkend, code = FALSE) {
 	linkend <- gsub("-", "_", gsub("-struct", "", linkend))
 	if (isFunc(linkend))
 		linkend <- linkend_to_func(linkend)
 	if ((!islower(linkend) && exists(linkend)) || linkend %in% types || linkend %in% concepts ||
 		(mapType(linkend) %in% transparentTypes) || linkend == "GObject" || linkend == "GType") 
 	{
+                markup <- "verb"
+                if (!islower(linkend) && exists(linkend))
+                        markup <- "code"
 		if (linkend %in% types || linkend %in% transparentTypes)
 			linkend <- asRTypeName(linkend)
 		link <- rd("link", linkend)
-		if (!preformat)
-			link <- rd("code", link)
+                if (!code)
+			link <- rd(markup, link)
 		link
 	} else NULL
 }
@@ -332,19 +335,19 @@ child_val <- function(node) xmlValue(xmlChildren(node)[[1]])
 example_count_path <- "count(//informalexample|//example)"
 example_preceding_path <- "count(preceding::example|preceding::informalexample)"
 
-markup <- function(nodes, preformat=F, collapse="  ") {
-	markup_link <- function(link) {
-		linkend <- xmlGetAttr(link, "linkend")
+markup <- function(nodes, verbatim = FALSE, collapse="  ", code = FALSE) {
+        markup_link <- function(link) {
+          linkend <- xmlGetAttr(link, "linkend")
 		if (length(linkend) > 0) {
-			result <- tolink(linkend, preformat)
+			result <- tolink(linkend, code)
 			if (is.null(result)) {
-				#print(paste("bad link: ", linkend))
-				result <- markup(xmlChildren(link))
+                          ##print(paste("bad link: ", linkend))
+                          result <- markup(xmlChildren(link), code = code)
 			}
 		} else result <- paste(child_val(link), " (", rd("url", xmlGetAttr(link, "href")), ")", sep="")
 		result
 	}
-	markup_type <- function(type) rd("code", mapType(child_val(type)))
+	markup_type <- function(type) rd("verb", mapType(child_val(type)))
 	markup_literal <- function(literal) rd("code", child_val(literal))
 	#markup_parameter <- function(param) rd("var", child_val(param))
 	markup_emphasis <- function(emph) rd("emph", markup(xmlChildren(emph)))
@@ -352,9 +355,11 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_ulink <- function(ulink) paste(child_val(ulink), " (", rd("url", xmlGetAttr(ulink, "url")), ")", sep="")
 	markup_filename <- function(filename) rd("file", escape_text(child_val(filename)))
 	markup_program <- function(program) {
-		if (length(getNodeSet(program, "parent::informalexample|parent::example")) == 0)
-			print("---MISSING PROGRAMLISTING---")
-		rd("preformatted", paste(markup(xmlChildren(program), T), "\n", sep=""))
+          if (length(getNodeSet(program,
+                                "parent::informalexample|parent::example")) == 0)
+            print("---MISSING PROGRAMLISTING---")
+          rd("preformatted",
+             paste(markup(xmlChildren(program), TRUE, collapse), "\n", sep=""))
 	}
 	#markup_example <- function(example) rd("emph", "C language example intentionally omitted, please see reference")
 	markup_example <- function(example) {
@@ -377,7 +382,7 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	}
 	markup_itemized <- function(itemized, type="itemize") {
 		rd(type, sapply(getNodeSet(itemized, "listitem"), function(para) {
-			paste(rd("item"), markup(getNodeSet(para, "para")))
+                  paste(rd("item"), markup(getNodeSet(para, "para")))
 		}))
 	}
 	markup_ordered <- function(ordered) markup_itemized(ordered, "enumerate")
@@ -411,14 +416,14 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 	markup_first <- function(first) rd("dfn", child_val(first))
 	markup_param <- function(param) rd("code", nameToS(child_val(param)))
 	markup_func <- function(func)
-          rd("code", toCapPhraseName(markup(xmlChildren(func), T), T))
+          rd("code", toCapPhraseName(markup(xmlChildren(func), code=TRUE), TRUE))
 	markup_ignore <- function(ignore) ""
 	markup_text <- function(text) {
-    val <- xmlValue(text)
-    if (!preformat)
-      val <- escape_text(val)
-    val
-  }
+          val <- xmlValue(text)
+          if (!verbatim)
+            val <- escape_text(val)
+          val
+        }
         handlers <- list(
 		"text" = markup_text,
 		"comment" = NULL,
@@ -458,14 +463,24 @@ markup <- function(nodes, preformat=F, collapse="  ") {
 		"keycap" = markup_key, "keycombo" = markup_combo,
 		"abbrev" = markup_emphasis
 	)
-	#if (is.null(nodes[[1]]))
+        restrictHandlers <- function(allowed) {
+          restrictedHandlers <- structure(vector("list", length(handlers)),
+                                          names = names(handlers))
+          restrictedHandlers[allowed] <- handlers[allowed]
+          restrictedHandlers
+        }
+        if (verbatim)
+          handlers <- restrictHandlers("text")
+        else if (code)
+          handlers <- restrictHandlers(c("text", "link", "xref", "replaceable"))
+        #if (is.null(nodes[[1]]))
 	#	browser()
 	escape_all(semantics(strip(paste(sapply(nodes, xmlTraverse, handlers), collapse = collapse))))
 }
 
 escape_all <- function(text) gsub("([%])", "\\\\\\1", text)
 escape_text <- function(text) {
-  gsub("([_#$\\^])", "\\\\\\1", text)
+  gsub("([\\])", "\\\\\\1", text)
 	#text
 }
 strip <- function(text) {
@@ -497,7 +512,7 @@ toProperties <- function(prop_nodes) {
 	if (length(prop_nodes) == 0)
 		return()
 	rd("describe", sapply(prop_nodes, function(node) {
-		rd("item", paste(rd("code", extract_quotes(xmlValue(getNodeSet(node, prop_name_path)[[1]]))),
+		rd("item", paste(rd("verb", extract_quotes(xmlValue(getNodeSet(node, prop_name_path)[[1]]))),
 			" [", mapTypeToLink(xmlValue(getNodeSet(node, prop_type_path)[[1]])), " : ",
 			sub("^ *: ", "", xmlValue(getNodeSet(node, prop_access_path)[[1]])), "]", sep=""),
 			c("", markup(getNodeSet(node, desc_text_path)), ""))
@@ -568,7 +583,6 @@ toCallbacks <- function(callback_nodes, name_path) {
 
 toUserFuncs <- function(userfunc_nodes)
 {
-  browser()
 	toCallbacks(userfunc_nodes, func_name_path)
 }
 toSignals <- function(signal_nodes)
@@ -606,7 +620,7 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 		text <- ensureText(markup(getNodeSet(node, text_path)))
 		warning <- getNodeSet(node, warning_path)
 		if (name %in% transparentTypes)
-			text <- c(text, rd("strong", paste(rd("code", type_name), " is a ", 
+			text <- c(text, rd("strong", paste(rd("verb", type_name), " is a ", 
 				rd("link", "transparent-type"), ".", sep="")))
 		if (length(warning) > 0)
 			text <- c(toWarning(warning[[1]]), text)
@@ -621,7 +635,7 @@ toDescs <- function(nodes, item_info, name_path = desc_name_path, text_path = de
 		}
 		type_names <<- c(type_names, type_name)
 		names <<- c(names, name)
-		rd("item", rd("code", type_name), nl(text))
+		rd("item", rd("verb", type_name), nl(text))
 	})
 	items <- items[which(!is.na(items))]
 	if (length(items) > 0)
@@ -646,7 +660,7 @@ toItems <- function(node, name_path, text_path, type_path = NULL, item_info=NULL
 	sapply(1:length(names), function(i) {
 		if (inherits(names[[i]], "XMLInternalNode"))
 			name <- markup(names[i])
-		else name <- rd("code", names[i])
+		else name <- rd("verb", names[i])
 		if (length(node) > 0 && length(text) >= i)
 			text <- markup(text[i])
 		else text <- ""

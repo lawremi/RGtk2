@@ -4,7 +4,7 @@
 \description{Returns whether the combo box grabs focus when it is clicked 
 with the mouse. See \code{\link{gtkComboBoxSetFocusOnClick}}.}
 \usage{gtkComboBoxGetFocusOnClick(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkComboBox}}]  a \code{\link{GtkComboBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}}
 \details{  Since  2.6}
 \value{[logical] \code{TRUE} if the combo box grabs focus when it is 
     clicked with the mouse.}

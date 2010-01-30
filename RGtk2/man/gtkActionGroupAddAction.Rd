@@ -9,8 +9,8 @@ the action. Therefore you must either set the accel path yourself with
 \code{gtk_action_group_add_action_with_accel (..., NULL)}.}
 \usage{gtkActionGroupAddAction(object, action)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkActionGroup}}]  the action group}
-\item{\code{action}}{[\code{\link{GtkAction}}]  an action}
+\item{\verb{object}}{[\verb{\link{GtkActionGroup}}]  the action group}
+\item{\verb{action}}{[\verb{\link{GtkAction}}]  an action}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

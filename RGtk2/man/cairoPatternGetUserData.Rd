@@ -6,8 +6,8 @@ specified key.  If no user data has been attached with the given
 key this function returns \code{NULL}.}
 \usage{cairoPatternGetUserData(pattern, key)}
 \arguments{
-\item{\code{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
-\item{\code{key}}{[\code{\link{CairoUserDataKey}}]  the the \code{\link{CairoUserDataKey}} the user data was
+\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
+\item{\verb{key}}{[\verb{\link{CairoUserDataKey}}]  the the \verb{\link{CairoUserDataKey}} the user data was
 attached to}
 }
 \details{  Since  1.4}

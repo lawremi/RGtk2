@@ -36,49 +36,49 @@
 \code{\link{gtkContainerClassListChildProperties}(cclass)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkContainer
-                           +----\link{GtkBin}
-                           +----\link{GtkBox}
-                           +----\link{GtkCList}
-                           +----\link{GtkFixed}
-                           +----\link{GtkPaned}
-                           +----\link{GtkIconView}
-                           +----\link{GtkLayout}
-                           +----\link{GtkList}
-                           +----\link{GtkMenuShell}
-                           +----\link{GtkNotebook}
-                           +----\link{GtkSocket}
-                           +----\link{GtkTable}
-                           +----\link{GtkTextView}
-                           +----\link{GtkToolbar}
+                           +----GtkBin
+                           +----GtkBox
+                           +----GtkCList
+                           +----GtkFixed
+                           +----GtkPaned
+                           +----GtkIconView
+                           +----GtkLayout
+                           +----GtkList
+                           +----GtkMenuShell
+                           +----GtkNotebook
+                           +----GtkSocket
+                           +----GtkTable
+                           +----GtkTextView
+                           +----GtkToolbar
                            +----GtkTree
-                           +----\link{GtkTreeView}}}
+                           +----GtkTreeView}}
 \section{Interfaces}{GtkContainer implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{A GTK+ user interface is constructed by nesting widgets inside widgets. 
 Container widgets are the inner nodes in the resulting tree of widgets: 
-they contain other widgets. So, for example, you might have a \code{\link{GtkWindow}} 
-containing a \code{\link{GtkFrame}} containing a GtkLabel. If you wanted an image instead 
-of a textual label inside the frame, you might replace the \code{\link{GtkLabel}} widget 
-with a \code{\link{GtkImage}} widget.
+they contain other widgets. So, for example, you might have a \verb{\link{GtkWindow}} 
+containing a \verb{\link{GtkFrame}} containing a GtkLabel. If you wanted an image instead 
+of a textual label inside the frame, you might replace the \verb{\link{GtkLabel}} widget 
+with a \verb{\link{GtkImage}} widget.
   
 There are two major kinds of container widgets in GTK+. Both are subclasses 
-of the abstract \code{\link{GtkContainer}} base class.
+of the abstract \verb{\link{GtkContainer}} base class.
   
 The first type of container widget has a single child widget and derives 
-from \code{\link{GtkBin}}. These containers are \dfn{decorators}, which 
-add some kind of functionality to the child. For example, a \code{\link{GtkButton}} makes 
-its child into a clickable button; a \code{\link{GtkFrame}} draws a frame around its child 
-and a \code{\link{GtkWindow}} places its child widget inside a top-level window.
+from \verb{\link{GtkBin}}. These containers are \dfn{decorators}, which 
+add some kind of functionality to the child. For example, a \verb{\link{GtkButton}} makes 
+its child into a clickable button; a \verb{\link{GtkFrame}} draws a frame around its child 
+and a \verb{\link{GtkWindow}} places its child widget inside a top-level window.
   
 The second type of container can have more than one child; its purpose is to 
 manage \dfn{layout}. This means that these containers assign 
-sizes and positions to their children. For example, a \code{\link{GtkHBox}} arranges its 
-children in a horizontal row, and a \code{\link{GtkTable}} arranges the widgets it contains 
+sizes and positions to their children. For example, a \verb{\link{GtkHBox}} arranges its 
+children in a horizontal row, and a \verb{\link{GtkTable}} arranges the widgets it contains 
 in a two-dimensional grid. 
   
 To fulfill its task, a layout container must negotiate the size requirements 
@@ -86,15 +86,15 @@ with its parent and its children. This negotiation is carried out in two
 phases, \dfn{size requisition} and \dfn{size 
 allocation}. }
 \section{Size Requisition}{The size requisition of a widget is it's desired width and height. 
-This is represented by a \code{\link{GtkRequisition}}.
+This is represented by a \verb{\link{GtkRequisition}}.
   
 How a widget determines its desired size depends on the widget. 
-A \code{\link{GtkLabel}}, for example, requests enough space to display all its text. 
+A \verb{\link{GtkLabel}}, for example, requests enough space to display all its text. 
 Container widgets generally base their size request on the requisitions 
 of their children.  
   
 The size requisition phase of the widget layout process operates top-down. 
-It starts at a top-level widget, typically a \code{\link{GtkWindow}}. The top-level widget 
+It starts at a top-level widget, typically a \verb{\link{GtkWindow}}. The top-level widget 
 asks its child for its size requisition by calling \code{\link{gtkWidgetSizeRequest}}. 
 To determine its requisition, the child asks its own children for their 
 requisitions and so on. Finally, the top-level widget will get a requisition 
@@ -106,10 +106,10 @@ widget may be able to expand in order to satisfy the size request or it may
 have to ignore the size request and keep its fixed size. It then tells its 
 child widget how much space it gets by calling \code{\link{gtkWidgetSizeAllocate}}. 
 The child widget divides the space among its children and tells each child 
-how much space it got, and so on. Under normal circumstances, a \code{\link{GtkWindow}} 
+how much space it got, and so on. Under normal circumstances, a \verb{\link{GtkWindow}} 
 will always give its child the amount of space the child requested.
   
-A child's size allocation is represented by a \code{\link{GtkAllocation}}. This struct 
+A child's size allocation is represented by a \verb{\link{GtkAllocation}}. This struct 
 contains not only a width and height, but also a position (i.e. X and Y 
 coordinates), so that containers can tell their children not only how much
 space they have gotten, but also where they are positioned inside the space 
@@ -121,7 +121,7 @@ request is only a request, and widgets must be able to cope with any size.}
 properties} - these are object properties that are not specific
 to either the container or the contained widget, but rather to their relation.
 Typical examples of child properties are the position or pack-type of a widget
-which is contained in a \code{\link{GtkBox}}.  
+which is contained in a \verb{\link{GtkBox}}.  
 Use \code{\link{gtkContainerClassInstallChildProperty}} to install child properties 
 for a container class and \code{\link{gtkContainerClassFindChildProperty}} or
 \code{\link{gtkContainerClassListChildProperties}} to get information about existing
@@ -147,17 +147,17 @@ child properties for the child.
   </child>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkContainer}}{
+\section{Structures}{\describe{\item{\verb{GtkContainer}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{focusChild}}{[\code{\link{GtkWidget}}] }
-\item{\code{borderWidth}}{[numeric] }
-\item{\code{needResize}}{[numeric] }
-\item{\code{resizeMode}}{[numeric] }
-\item{\code{reallocateRedraws}}{[numeric] }
-\item{\code{hasFocusChain}}{[numeric] }
+\item{\verb{focusChild}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{borderWidth}}{[numeric] }
+\item{\verb{needResize}}{[numeric] }
+\item{\verb{resizeMode}}{[numeric] }
+\item{\verb{reallocateRedraws}}{[numeric] }
+\item{\verb{hasFocusChain}}{[numeric] }
 }
 
 }}}
@@ -167,8 +167,8 @@ child properties for the child.
 }
 
 \describe{
-\item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{container}}{[\verb{\link{GtkContainer}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -179,7 +179,7 @@ child properties for the child.
 }
 
 \describe{
-\item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
+\item{\code{container}}{[\verb{\link{GtkContainer}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -190,8 +190,8 @@ child properties for the child.
 }
 
 \describe{
-\item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{container}}{[\verb{\link{GtkContainer}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -202,8 +202,8 @@ child properties for the child.
 }
 
 \describe{
-\item{\code{container}}{[\code{\link{GtkContainer}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{container}}{[\verb{\link{GtkContainer}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -211,19 +211,19 @@ child properties for the child.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{border-width} [numeric : Read / Write]}{
+\item{\verb{border-width} [numeric : Read / Write]}{
 
-The width of the empty border outside the containers children.  Allowed values: <= G\_MAXINT  Default value: 0
+The width of the empty border outside the containers children.  Allowed values: <= G_MAXINT  Default value: 0
 
 }
-\item{\code{child} [\code{\link{GtkWidget}} : Write]}{
+\item{\verb{child} [\verb{\link{GtkWidget}} : *            : Write]}{
 
 Can be used to add a new child to the container.
 
 }
-\item{\code{resize-mode} [\code{\link{GtkResizeMode}} : Read / Write]}{
+\item{\verb{resize-mode} [\code{\link{GtkResizeMode}} : Read / Write]}{
 
-Specify how resize events are handled.  Default value: GTK\_RESIZE\_PARENT
+Specify how resize events are handled.  Default value: GTK_RESIZE_PARENT
 
 }
 }}

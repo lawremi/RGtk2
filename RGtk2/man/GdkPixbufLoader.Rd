@@ -15,9 +15,9 @@
 \code{\link{gdkPixbufLoaderClose}(object, .errwarn = TRUE)}\cr
 \code{gdkPixbufLoader(image.type, mime.type, .errwarn = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GdkPixbufLoader}}
-\section{Detailed Description}{\code{\link{GdkPixbufLoader}} provides a way for applications to drive the
+\section{Detailed Description}{\verb{\link{GdkPixbufLoader}} provides a way for applications to drive the
     process of loading an image, by letting them send the image data
     directly to the loader instead of having the loader read the data
     from a file.  Applications can use this functionality instead of
@@ -27,16 +27,16 @@
     image from a (potentially) slow network connection, or when
     loading an extremely large file.
     
-    To use \code{\link{GdkPixbufLoader}} to load an image, just create a new one,
+    To use \verb{\link{GdkPixbufLoader}} to load an image, just create a new one,
     and call \code{\link{gdkPixbufLoaderWrite}} to send the data to it.  When
     done, \code{\link{gdkPixbufLoaderClose}} should be called to end the stream
     and finalize everything.  The loader will emit three important
-    signals throughout the process.  The first, "size\_prepared",
+    signals throughout the process.  The first, "size_prepared",
     will be called as soon as the image has enough information to
     determine the size of the image to be used. If you want to scale
     the image while loading it, you can call \code{\link{gdkPixbufLoaderSetSize}}
     in response to this signal.
-      The second signal, "area\_prepared",
+      The second signal, "area_prepared",
     will be called as soon as the pixbuf of the desired has been 
     allocated.  You can obtain it by calling \code{\link{gdkPixbufLoaderGetPixbuf}}. 
     If you want to use it, simply ref it.  
@@ -45,7 +45,7 @@
     initial color) as needed.  You can also call
     \code{\link{gdkPixbufLoaderGetPixbuf}} later and get the same pixbuf.
     
-    The last signal, "area\_updated" gets
+    The last signal, "area_updated" gets
     called every time a region is updated.  This way you can update a
     partially completed image.  Note that you do not know anything
     about the completeness of an image from the area updated.  For
@@ -53,12 +53,12 @@
     before the image is done loading.
   }
 \section{Loading an animation}{      Loading an animation is almost as easy as loading an
-      image.  Once the first "area\_prepared" signal
+      image.  Once the first "area_prepared" signal
       has been emitted, you can call \code{\link{gdkPixbufLoaderGetAnimation}}
-      to get the \code{\link{GdkPixbufAnimation}} struct and \code{\link{gdkPixbufAnimationGetIter}}
-      to get an \code{\link{GdkPixbufAnimationIter}} for displaying it. 
+      to get the \verb{\link{GdkPixbufAnimation}} struct and \code{\link{gdkPixbufAnimationGetIter}}
+      to get an \verb{\link{GdkPixbufAnimationIter}} for displaying it. 
     }
-\section{Structures}{\describe{\item{\code{GdkPixbufLoader}}{
+\section{Structures}{\describe{\item{\verb{GdkPixbufLoader}}{
 The \code{GdkPixbufLoader} struct contains only private
 fields. 
 
@@ -73,7 +73,7 @@ the partially-loaded pixbuf.
   
 
 \describe{
-\item{\code{loader}}{[\code{\link{GdkPixbufLoader}}]  the object which received the signal.}
+\item{\code{loader}}{[\verb{\link{GdkPixbufLoader}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -88,7 +88,7 @@ areas of an image that is being loaded.
   
 
 \describe{
-\item{\code{loader}}{[\code{\link{GdkPixbufLoader}}]  the object which received the signal.}
+\item{\code{loader}}{[\verb{\link{GdkPixbufLoader}}]  the object which received the signal.}
 \item{\code{x}}{[integer]  X offset of upper-left corner of the updated area.}
 \item{\code{y}}{[integer]  Y offset of upper-left corner of the updated area.}
 \item{\code{width}}{[integer]  Width of updated area.}
@@ -106,7 +106,7 @@ drives it.
   
 
 \describe{
-\item{\code{loader}}{[\code{\link{GdkPixbufLoader}}]  the object which received the signal.}
+\item{\code{loader}}{[\verb{\link{GdkPixbufLoader}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -121,7 +121,7 @@ the desired size to which the image should be scaled.
   
 
 \describe{
-\item{\code{loader}}{[\code{\link{GdkPixbufLoader}}]  the object which received the signal.}
+\item{\code{loader}}{[\verb{\link{GdkPixbufLoader}}]  the object which received the signal.}
 \item{\code{width}}{[integer]  the original width of the image}
 \item{\code{height}}{[integer]  the original height of the image}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}

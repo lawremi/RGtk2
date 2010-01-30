@@ -1,10 +1,10 @@
 \alias{gtkPaperSizeCopy}
 \name{gtkPaperSizeCopy}
 \title{gtkPaperSizeCopy}
-\description{Copies an existing \code{\link{GtkPaperSize}}.}
+\description{Copies an existing \verb{\link{GtkPaperSize}}.}
 \usage{gtkPaperSizeCopy(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPaperSize}}]  a \code{\link{GtkPaperSize}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPaperSize}}]  a \verb{\link{GtkPaperSize}}}}
 \details{  Since  2.10}
-\value{[\code{\link{GtkPaperSize}}]  a copy of \code{other}}
+\value{[\verb{\link{GtkPaperSize}}]  a copy of \code{other}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

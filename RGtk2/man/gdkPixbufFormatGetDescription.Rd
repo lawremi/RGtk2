@@ -3,7 +3,7 @@
 \title{gdkPixbufFormatGetDescription}
 \description{Returns a description of the format.}
 \usage{gdkPixbufFormatGetDescription(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkPixbufFormat}}]  a \code{\link{GdkPixbufFormat}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbufFormat}}]  a \verb{\link{GdkPixbufFormat}}}}
 \details{  Since  2.2}
 \value{[character]  a description of the format.}
 \author{Derived by RGtkGen from GTK+ documentation}

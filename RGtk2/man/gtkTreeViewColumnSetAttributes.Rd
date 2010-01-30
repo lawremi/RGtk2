@@ -7,9 +7,9 @@ The attributes should be in attribute/column order, as in
 are removed, and replaced with the new attributes.}
 \usage{gtkTreeViewColumnSetAttributes(object, cell.renderer, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}.}
-\item{\code{cell.renderer}}{[\code{\link{GtkCellRenderer}}]  the \code{\link{GtkCellRenderer}} we're setting the attributes of}
-\item{\code{...}}{ A list of attributes.}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}.}
+\item{\verb{cell.renderer}}{[\verb{\link{GtkCellRenderer}}]  the \verb{\link{GtkCellRenderer}} we're setting the attributes of}
+\item{\verb{...}}{ A list of attributes.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

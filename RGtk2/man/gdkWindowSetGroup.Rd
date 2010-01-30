@@ -7,8 +7,8 @@ to a global window implicitly created by GDK. With this function
 you can override this default.}
 \usage{gdkWindowSetGroup(object, leader)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{leader}}{[\code{\link{GdkWindow}}]  group leader window, or \code{NULL} to restore the default group leader window}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{leader}}{[\verb{\link{GdkWindow}}]  group leader window, or \code{NULL} to restore the default group leader window}
 }
 \details{The group leader window allows the window manager to distinguish
 all windows that belong to a single application. It may for example

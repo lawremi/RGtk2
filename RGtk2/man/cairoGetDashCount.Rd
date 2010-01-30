@@ -4,7 +4,7 @@
 \description{This function returns the length of the dash list in \code{cr} (0 if dashing
 is not currently in effect).}
 \usage{cairoGetDashCount(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}}
 \details{See also \code{\link{cairoSetDash}} and \code{\link{cairoGetDash}}.  
 
   Since  1.4}

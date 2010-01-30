@@ -11,8 +11,8 @@ set the preview active using \code{\link{gtkFileChooserSetPreviewWidgetActive}}.
 Otherwise, set the preview inactive.}
 \usage{gtkFileChooserSetPreviewWidget(object, preview.widget)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{preview.widget}}{[\code{\link{GtkWidget}}]  widget for displaying preview.}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{preview.widget}}{[\verb{\link{GtkWidget}}]  widget for displaying preview.}
 }
 \details{When there is no application-supplied preview widget, or the
 application-supplied preview widget is not active, the file chooser

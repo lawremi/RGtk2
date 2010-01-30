@@ -3,7 +3,7 @@
 \title{gtkRecentChooserMenuGetShowNumbers}
 \description{Returns the value set by \code{\link{gtkRecentChooserMenuSetShowNumbers}}.}
 \usage{gtkRecentChooserMenuGetShowNumbers(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRecentChooserMenu}}]  a \code{\link{GtkRecentChooserMenu}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRecentChooserMenu}}]  a \verb{\link{GtkRecentChooserMenu}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if numbers should be shown.}
 \author{Derived by RGtkGen from GTK+ documentation}

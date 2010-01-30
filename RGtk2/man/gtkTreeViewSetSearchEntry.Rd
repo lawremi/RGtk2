@@ -8,8 +8,8 @@ in our interface at all time at a fixed position.  Passing \code{NULL} for
 entry again.}
 \usage{gtkTreeViewSetSearchEntry(object, entry = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{entry}}{[\code{\link{GtkEntry}}]  the entry the interactive search code of \code{tree.view} should use or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{entry}}{[\verb{\link{GtkEntry}}]  the entry the interactive search code of \code{tree.view} should use or \code{NULL}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

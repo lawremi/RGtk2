@@ -4,9 +4,9 @@
 \description{Sets the value of \code{GTK_PRINT_SETTINGS_PAPER_HEIGHT}.}
 \usage{gtkPrintSettingsSetPaperHeight(object, height, unit)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{height}}{[numeric]  the paper height}
-\item{\code{unit}}{[\code{\link{GtkUnit}}]  the units of \code{height}}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{height}}{[numeric]  the paper height}
+\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the units of \code{height}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -6,8 +6,8 @@
 level concept.}
 \usage{gtkRangeSetRestrictToFillLevel(object, restrict.to.fill.level)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRange}}]                   A \code{\link{GtkRange}}}
-\item{\code{restrict.to.fill.level}}{[logical]  Whether the fill level restricts slider movement.}
+\item{\verb{object}}{[\verb{\link{GtkRange}}]                   A \verb{\link{GtkRange}}}
+\item{\verb{restrict.to.fill.level}}{[logical]  Whether the fill level restricts slider movement.}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

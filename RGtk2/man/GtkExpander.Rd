@@ -20,25 +20,25 @@
 \code{\link{gtkExpanderGetLabelWidget}(object)}\cr
 \code{gtkExpander(label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
                                  +----GtkExpander}}
 \section{Interfaces}{GtkExpander implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkExpander}} allows the user to hide or show its child by clicking 
-on an expander triangle similar to the triangles used in a \code{\link{GtkTreeView}}.
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkExpander}} allows the user to hide or show its child by clicking 
+on an expander triangle similar to the triangles used in a \verb{\link{GtkTreeView}}.
   
 Normally you use an expander as you would use any other descendant
-of \code{\link{GtkBin}}; you create the child widget and use \code{\link{gtkContainerAdd}} 
+of \verb{\link{GtkBin}}; you create the child widget and use \code{\link{gtkContainerAdd}} 
 to add it to the expander. When the expander is toggled, it will take 
 care of showing and hiding the child automatically.}
 \section{Special Usage}{There are situations in which you may prefer to show and hide the 
 expanded widget yourself, such as when you want to actually create 
-the widget at expansion time. In this case, create a \code{\link{GtkExpander}} 
+the widget at expansion time. In this case, create a \verb{\link{GtkExpander}} 
 but do not add a child to it. The expander widget has an 
 \code{expanded} property which can be used to monitor 
 its expansion state. You should watch this property with a signal 
@@ -91,7 +91,7 @@ expander_callback <- (expander, param_spec, user_data)
   }
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkExpander}}{
+\section{Structures}{\describe{\item{\verb{GtkExpander}}{
 \emph{undocumented
 }
 
@@ -102,51 +102,51 @@ expander_callback <- (expander, param_spec, user_data)
 }
 
 \describe{
-\item{\code{expander}}{[\code{\link{GtkExpander}}] the object which received the signal.}
+\item{\code{expander}}{[\verb{\link{GtkExpander}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{expanded} [logical : Read / Write / Construct]}{
+\item{\verb{expanded} [logical : Read / Write / Construct]}{
 
 Whether the expander has been opened to reveal the child widget.  Default value: FALSE
 
 }
-\item{\code{label} [character : Read / Write / Construct]}{
+\item{\verb{label} [character : *                : Read / Write / Construct]}{
 
 Text of the expander's label.  Default value: NULL
 
 }
-\item{\code{label-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{label-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 A widget to display in place of the usual expander label.
 
 }
-\item{\code{spacing} [integer : Read / Write]}{
+\item{\verb{spacing} [integer : Read / Write]}{
 
 Space to put between the label and the child.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{use-markup} [logical : Read / Write / Construct]}{
+\item{\verb{use-markup} [logical : Read / Write / Construct]}{
 
-The text of the label includes XML markup. See pango\_parse\_markup().  Default value: FALSE
+The text of the label includes XML markup. See pango_parse_markup().  Default value: FALSE
 
 }
-\item{\code{use-underline} [logical : Read / Write / Construct]}{
+\item{\verb{use-underline} [logical : Read / Write / Construct]}{
 
 If set, an underline in the text indicates the next character should be used for the mnemonic accelerator key.  Default value: FALSE
 
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{expander-size} [integer : Read]}{
+\item{\verb{expander-size} [integer : Read]}{
 
 Size of the expander arrow.  Allowed values: >= 0  Default value: 10
 
 }
-\item{\code{expander-spacing} [integer : Read]}{
+\item{\verb{expander-spacing} [integer : Read]}{
 
 Spacing around expander arrow.  Allowed values: >= 0  Default value: 2
 

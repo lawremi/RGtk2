@@ -10,9 +10,9 @@ is usually a better choice than calling than \code{\link{gtkIconThemeNew}}
 and setting the screen yourself; by using this function
 a single icon theme object will be shared between users.}
 \usage{gtkIconThemeGetForScreen(screen)}
-\arguments{\item{\code{screen}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}}
+\arguments{\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
 \details{  Since  2.4}
-\value{[\code{\link{GtkIconTheme}}]  A unique \code{\link{GtkIconTheme}} associated with
+\value{[\verb{\link{GtkIconTheme}}]  A unique \verb{\link{GtkIconTheme}} associated with
  the given screen. This icon theme is associated with
  the screen and can be used as long as the screen
  is open. Do not ref or unref it.}

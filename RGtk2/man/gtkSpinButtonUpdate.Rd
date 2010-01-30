@@ -3,6 +3,6 @@
 \title{gtkSpinButtonUpdate}
 \description{Manually force an update of the spin button.}
 \usage{gtkSpinButtonUpdate(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkSpinButton}}]  a \code{\link{GtkSpinButton}} }}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkSpinButton}}]  a \verb{\link{GtkSpinButton}} }}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

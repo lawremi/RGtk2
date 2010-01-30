@@ -6,8 +6,8 @@ that will be displayed in the file selector user interface if
 there is a selectable list of filters.}
 \usage{gtkFileFilterSetName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}
-\item{\code{name}}{[character]  the human-readable-name for the filter, or \code{NULL}
+\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}
+\item{\verb{name}}{[character]  the human-readable-name for the filter, or \code{NULL}
   to remove any existing name.}
 }
 \details{  Since  2.4}

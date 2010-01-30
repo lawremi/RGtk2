@@ -5,8 +5,8 @@
 window was already below, then this function does nothing.}
 \usage{gdkWindowSetKeepBelow(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{setting}}{[logical]  whether to keep \code{window} below other windows}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{setting}}{[logical]  whether to keep \code{window} below other windows}
 }
 \details{On X11, asks the window manager to keep \code{window} below, if the window
 manager supports this operation. Not all window managers support

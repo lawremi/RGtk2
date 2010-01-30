@@ -4,7 +4,7 @@
 \description{Retrieves whether the button is displayed as a separate indicator
 and label. See \code{\link{gtkToggleButtonSetMode}}.}
 \usage{gtkToggleButtonGetMode(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkToggleButton}}]  a \code{\link{GtkToggleButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkToggleButton}}]  a \verb{\link{GtkToggleButton}}}}
 \value{[logical] \code{TRUE} if the togglebutton is drawn as a separate indicator
   and label.}
 \author{Derived by RGtkGen from GTK+ documentation}

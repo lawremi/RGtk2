@@ -12,28 +12,28 @@
 \code{\link{gtkImageMenuItemNewWithMnemonic}(label, show = TRUE)}\cr
 \code{gtkImageMenuItem(label, stock.id, accel.group, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkItem}
-                                       +----\link{GtkMenuItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkItem
+                                       +----GtkMenuItem
                                              +----GtkImageMenuItem}}
 \section{Interfaces}{GtkImageMenuItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{A GtkImageMenuItem is a menu item which has an icon next to the text label.
   
 Note that the user can disable display of menu icons, so make sure to still
 fill in the text label.}
-\section{Structures}{\describe{\item{\code{GtkImageMenuItem}}{
+\section{Structures}{\describe{\item{\verb{GtkImageMenuItem}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkImageMenuItem} is the result of collapsing the constructors of \code{GtkImageMenuItem} (\code{\link{gtkImageMenuItemNew}}, \code{\link{gtkImageMenuItemNewWithLabel}}, \code{\link{gtkImageMenuItemNewWithMnemonic}}, \code{\link{gtkImageMenuItemNewFromStock}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
-\section{Properties}{\describe{\item{\code{image} [\code{\link{GtkWidget}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{image} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 Child widget to appear next to the menu text.
 

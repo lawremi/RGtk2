@@ -7,9 +7,9 @@ works with unsorted stores. If \code{position} is \code{NULL}, \code{iter} will 
 to the start of the level.}
 \usage{gtkTreeStoreMoveAfter(object, iter, position = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
-\item{\code{position}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
+\item{\verb{position}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

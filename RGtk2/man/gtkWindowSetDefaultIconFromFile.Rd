@@ -6,14 +6,14 @@ had \code{\link{gtkWindowSetIconList}} called on them from a file
 on disk. Warns on failure if \code{err} is \code{NULL}.}
 \usage{gtkWindowSetDefaultIconFromFile(filename, .errwarn = TRUE)}
 \arguments{
-\item{\code{filename}}{[character]  location of icon file}
+\item{\verb{filename}}{[character]  location of icon file}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.2}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if setting the icon succeeded.}
-\item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}.}
+\item{\verb{error}}{[\verb{\link{GError}}]  location to store error, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

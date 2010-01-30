@@ -96,6 +96,7 @@ The RGtk binding to the GTK library consists of the following components:
 \item{\link{GtkList}}{Widget for packing a list of selectable items}
 \item{\link{GtkListItem}}{An item in a GtkList}
 \item{\link{GtkListStore}}{A list-like data structure that can be used with the GtkTreeView}
+\item{\link{gtk-General}}{Library initialization, main event loop, and events}
 \item{\link{GtkMenu}}{A menu widget}
 \item{\link{GtkMenuBar}}{A subclass widget for GtkMenuShell which holds GtkMenuItem widgets}
 \item{\link{GtkMenuItem}}{The widget used for item in menus}

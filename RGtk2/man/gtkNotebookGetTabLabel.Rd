@@ -6,9 +6,9 @@ if \code{child} is not in \code{notebook} or if no tab label has specifically
 been set for \code{child}.}
 \usage{gtkNotebookGetTabLabel(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the page}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the page}
 }
-\value{[\code{\link{GtkWidget}}]  the tab label}
+\value{[\verb{\link{GtkWidget}}]  the tab label}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

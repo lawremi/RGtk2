@@ -58,15 +58,15 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkFileChooser}}
 \section{Implementations}{GtkFileChooser is implemented by
- \code{\link{GtkFileChooserButton}},  \code{\link{GtkFileChooserWidget}} and  \code{\link{GtkFileChooserDialog}}.}
-\section{Detailed Description}{\code{\link{GtkFileChooser}} is an interface that can be implemented by file
+ \verb{\link{GtkFileChooserButton}},  \verb{\link{GtkFileChooserWidget}} and  \verb{\link{GtkFileChooserDialog}}.}
+\section{Detailed Description}{\verb{\link{GtkFileChooser}} is an interface that can be implemented by file
       selection widgets.  In GTK+, the main objects that implement this
-      interface are \code{\link{GtkFileChooserWidget}}, \code{\link{GtkFileChooserDialog}}, and
-      \code{\link{GtkFileChooserButton}}.  You do not need to write an object that
-      implements the \code{\link{GtkFileChooser}} interface unless you are trying to
+      interface are \verb{\link{GtkFileChooserWidget}}, \verb{\link{GtkFileChooserDialog}}, and
+      \verb{\link{GtkFileChooserButton}}.  You do not need to write an object that
+      implements the \verb{\link{GtkFileChooser}} interface unless you are trying to
       adapt an existing file selector to expose a standard programming
       interface.
-      \code{\link{GtkFileChooser}} allows for shortcuts to various places in the filesystem.
+      \verb{\link{GtkFileChooser}} allows for shortcuts to various places in the filesystem.
       In the default implementation these are displayed in the left pane. It
       may be a bit confusing at first taht these shortcuts come from various 
       sources and in various flavours, so lets explain the terminology here:
@@ -86,19 +86,19 @@
            }
 }}
 \section{File Names and Encodings}{	When the user is finished selecting files in a
-	\code{\link{GtkFileChooser}}, your program can get the selected names
+	\verb{\link{GtkFileChooser}}, your program can get the selected names
 	either as filenames or as URIs.  For URIs, the normal escaping
 	rules are applied if the URI contains non-ASCII characters.
 	However, filenames are \emph{always} returned in
 	the character set specified by the
-	\env{G\_FILENAME\_ENCODING} environment variable.
+	\env{G_FILENAME_ENCODING} environment variable.
 	Please see the Glib documentation for more details about this
 	variable.
         \strong{PLEASE NOTE:} 	  This means that while you can pass the result of
 	  \code{\link{gtkFileChooserGetFilename}} to
 	  \code{open(2)} or
 	  \code{fopen(3)}, you may not be able to
-	  directly set it as the text of a \code{\link{GtkLabel}} widget unless you
+	  directly set it as the text of a \verb{\link{GtkLabel}} widget unless you
 	  convert it first to UTF-8, which all GTK+ widgets expect.
 	  You should use \code{gFilenameToUtf8()} to convert filenames
 	  into strings that can be passed to GTK+ widgets.
@@ -107,7 +107,7 @@
 	get notification about when the preview needs to be updated.
 	To install a preview widget, use
 	\code{\link{gtkFileChooserSetPreviewWidget}}.  Then, connect to the
-	\code{"update-preview"} signal to get notified when
+	\verb{"update-preview"} signal to get notified when
 	you need to update the contents of the preview.
         
 	Your callback should use
@@ -331,33 +331,33 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 \item{\code{user.data} :}{		user data set when the signal handler was connected.
 	      }
 }}
-\section{Structures}{\describe{\item{\code{GtkFileChooser}}{
+\section{Structures}{\describe{\item{\verb{GtkFileChooser}}{
 \emph{undocumented
 }
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkFileChooserAction}}{
-      Describes whether a \code{\link{GtkFileChooser}} is being used to open
+\item{\verb{GtkFileChooserAction}}{
+      Describes whether a \verb{\link{GtkFileChooser}} is being used to open
       existing files or to save to a possibly new file.
     
 
 \describe{
-\item{\code{open}}{Indicates open mode.  The file chooser
+\item{\verb{open}}{Indicates open mode.  The file chooser
     will only let the user pick an existing file.}
-\item{\code{save}}{Indicates save mode.  The file chooser
+\item{\verb{save}}{Indicates save mode.  The file chooser
     will let the user pick an existing file, or type in a new
     filename.}
-\item{\code{select-folder}}{Indicates an Open mode for
+\item{\verb{select-folder}}{Indicates an Open mode for
     selecting folders.  The file chooser will let the user pick an
     existing folder.}
-\item{\code{create-folder}}{Indicates a mode for creating a
+\item{\verb{create-folder}}{Indicates a mode for creating a
     new folder.  The file chooser will let the user name an existing or
     new folder.}
 }
 
 }
-\item{\code{GtkFileChooserConfirmation}}{
+\item{\verb{GtkFileChooserConfirmation}}{
       Used as a return value of handlers for the confirm-overwrite
       signal of a \code{GtkFileChooser}.  This value
       determines whether the file chooser will present the stock
@@ -366,11 +366,11 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
     
 
 \describe{
-\item{\code{confirm}}{The file chooser will present
+\item{\verb{confirm}}{The file chooser will present
     its stock dialog to confirm about overwriting an existing file.}
-\item{\code{accept-filename}}{The file chooser will
+\item{\verb{accept-filename}}{The file chooser will
     terminate and accept the user's choice of a file name.}
-\item{\code{select-again}}{The file chooser will
+\item{\verb{select-again}}{The file chooser will
     continue running, so as to let the user select another file name.
 
     
@@ -379,14 +379,14 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 }
 
 }
-\item{\code{GtkFileChooserError}}{
+\item{\verb{GtkFileChooserError}}{
       These identify the various errors that can occur while calling
-      \code{\link{GtkFileChooser}} functions.
+      \verb{\link{GtkFileChooser}} functions.
     
 
 \describe{
-\item{\code{nonexistent}}{Indicates that a file does not exist.}
-\item{\code{bad-filename}}{Indicates a malformed filename.}
+\item{\verb{nonexistent}}{Indicates that a file does not exist.}
+\item{\verb{bad-filename}}{Indicates a malformed filename.}
 }
 
 }
@@ -396,7 +396,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
       This signal gets emitted whenever it is appropriate to present a
       confirmation dialog when the user has selected a file name that
       already exists.  The signal only gets emitted when the file
-      chooser is in \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode.
+      chooser is in \verb{GTK_FILE_CHOOSER_ACTION_SAVE} mode.
       
       Most applications just need to turn on the do-overwrite-confirmation
       property (or call the
@@ -410,17 +410,17 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
       \code{\link{GtkFileChooserConfirmation}} value, which indicates the action to
       take.  If the handler determines that the user wants to select a
       different filename, it should return
-      \code{GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN}.  If it determines
+      \verb{GTK_FILE_CHOOSER_CONFIRMATION_SELECT_AGAIN}.  If it determines
       that the user is satisfied with his choice of file name, it
-      should return \code{GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME}.
+      should return \verb{GTK_FILE_CHOOSER_CONFIRMATION_ACCEPT_FILENAME}.
       On the other hand, if it determines that the stock confirmation
       dialog should be used, it should return
-      \code{GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM}.  The following example
+      \verb{GTK_FILE_CHOOSER_CONFIRMATION_CONFIRM}.  The following example
       illustrates this.
     
 
 \describe{
-\item{\code{filechooser}}{[\code{\link{GtkFileChooser}}] the object which received the signal.}
+\item{\code{filechooser}}{[\verb{\link{GtkFileChooser}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -433,7 +433,7 @@ class "GtkFileChooserDefault" binding "misc-shortcut"
 
 }
 \item{\code{current-folder-changed(chooser, user.data)}}{
-This signal is emitted when the current folder in a \code{\link{GtkFileChooser}}
+This signal is emitted when the current folder in a \verb{\link{GtkFileChooser}}
 changes.  This can happen due to the user performing some action that
 changes folders, such as selecting a bookmark or visiting a folder on the
 file list.  It can also happen as a result of calling a function to
@@ -448,7 +448,7 @@ See also:  \code{\link{gtkFileChooserSetCurrentFolder}},
 \code{\link{gtkFileChooserGetCurrentFolderUri}}.  
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
+\item{\code{chooser}}{[\verb{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -460,7 +460,7 @@ chooser.  This can happen by double-clicking on a file in the file list, or
 by pressing \kbd{Enter}.
   
 Normally you do not need to connect to this signal.  It is used internally
-by \code{\link{GtkFileChooserDialog}} to know when to activate the default button in the
+by \verb{\link{GtkFileChooserDialog}} to know when to activate the default button in the
 dialog.
   
 See also: \code{\link{gtkFileChooserGetFilename}},
@@ -468,7 +468,7 @@ See also: \code{\link{gtkFileChooserGetFilename}},
 \code{\link{gtkFileChooserGetUris}}.  
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
+\item{\code{chooser}}{[\verb{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -476,7 +476,7 @@ See also: \code{\link{gtkFileChooserGetFilename}},
 }
 \item{\code{selection-changed(chooser, user.data)}}{
 This signal is emitted when there is a change in the set of selected files
-in a \code{\link{GtkFileChooser}}.  This can happen when the user modifies the selection
+in a \verb{\link{GtkFileChooser}}.  This can happen when the user modifies the selection
 with the mouse or the keyboard, or when explicitly calling functions to
 change the selection.
   
@@ -491,7 +491,7 @@ See also: \code{\link{gtkFileChooserSelectFilename}},
 \code{\link{gtkFileChooserGetUris}}.  
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
+\item{\code{chooser}}{[\verb{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -521,7 +521,7 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 \code{\link{gtkFileChooserGetPreviewUri}}.  
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkFileChooser}}]  the object which received the signal.}
+\item{\code{chooser}}{[\verb{\link{GtkFileChooser}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -529,12 +529,12 @@ See also: \code{\link{gtkFileChooserSetPreviewWidget}},
 }
 }}
 \section{Properties}{\describe{
-\item{\code{action} [\code{\link{GtkFileChooserAction}} : Read / Write]}{
+\item{\verb{action} [\code{\link{GtkFileChooserAction}} : Read / Write]}{
 
-The type of operation that the file selector is performing.  Default value: GTK\_FILE\_CHOOSER\_ACTION\_OPEN
+The type of operation that the file selector is performing.  Default value: GTK_FILE_CHOOSER_ACTION_OPEN
 
 }
-\item{\code{do-overwrite-confirmation} [logical : Read / Write]}{
+\item{\verb{do-overwrite-confirmation} [logical : Read / Write]}{
 
 Whether a file chooser in \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode
 will present an overwrite confirmation dialog if the user
@@ -543,47 +543,47 @@ selects a file name that already exists.
   Default value: FALSE  Since  2.8
 
 }
-\item{\code{extra-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{extra-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 Application supplied widget for extra options.
 
 }
-\item{\code{file-system-backend} [character : Write / Construct Only]}{
+\item{\verb{file-system-backend} [character : *                : Write / Construct Only]}{
 
 Name of file system backend to use.  Default value: NULL
 
 }
-\item{\code{filter} [\code{\link{GtkFileFilter}} : Read / Write]}{
+\item{\verb{filter} [\verb{\link{GtkFileFilter}} : *        : Read / Write]}{
 
 The current filter for selecting which files are displayed.
 
 }
-\item{\code{local-only} [logical : Read / Write]}{
+\item{\verb{local-only} [logical : Read / Write]}{
 
 Whether the selected file(s) should be limited to local file: URLs.  Default value: TRUE
 
 }
-\item{\code{preview-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{preview-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 Application supplied widget for custom previews.
 
 }
-\item{\code{preview-widget-active} [logical : Read / Write]}{
+\item{\verb{preview-widget-active} [logical : Read / Write]}{
 
 Whether the application supplied widget for custom previews should be shown.  Default value: TRUE
 
 }
-\item{\code{select-multiple} [logical : Read / Write]}{
+\item{\verb{select-multiple} [logical : Read / Write]}{
 
 Whether to allow multiple files to be selected.  Default value: FALSE
 
 }
-\item{\code{show-hidden} [logical : Read / Write]}{
+\item{\verb{show-hidden} [logical : Read / Write]}{
 
 Whether the hidden files and folders should be displayed.  Default value: FALSE
 
 }
-\item{\code{use-preview-label} [logical : Read / Write]}{
+\item{\verb{use-preview-label} [logical : Read / Write]}{
 
 Whether to display a stock label with the name of the previewed file.  Default value: TRUE
 
@@ -592,8 +592,8 @@ Whether to display a stock label with the name of the previewed file.  Default v
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFileChooser.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkFileChooserDialog}}
-\code{\link{GtkFileChooserWidget}}
-\code{\link{GtkFileChooserButton}}
+\verb{\link{GtkFileChooserDialog}}
+\verb{\link{GtkFileChooserWidget}}
+\verb{\link{GtkFileChooserButton}}
 }
 \keyword{internal}

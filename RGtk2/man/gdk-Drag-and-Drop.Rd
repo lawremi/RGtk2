@@ -25,62 +25,62 @@
 }
 \section{Detailed Description}{These functions provide a low level interface for drag and drop.
 The X backend of GDK supports both the Xdnd and Motif drag and drop protocols 
-transparently, the Win32 backend supports the WM\_DROPFILES protocol.
+transparently, the Win32 backend supports the WM_DROPFILES protocol.
   
 GTK+ provides a higher level abstraction based on top of these functions,
 and so they are not normally needed in GTK+ applications.
 See the Drag and Drop section of
 the GTK+ documentation for more information.}
-\section{Structures}{\describe{\item{\code{GdkDragContext}}{
+\section{Structures}{\describe{\item{\verb{GdkDragContext}}{
 A \code{GdkDragContext} holds information about a 
 drag in progress. It is used on both source and destination sides.
 
 \describe{
-\item{\code{protocol}}{[\code{\link{GdkDragProtocol}}] the parent instance}
-\item{\code{isSource}}{[logical] the DND protocol which governs this drag.}
-\item{\code{sourceWindow}}{[\code{\link{GdkWindow}}] \code{TRUE} if the context is used on the source side.}
-\item{\code{destWindow}}{[\code{\link{GdkWindow}}] the source of this drag.}
-\item{\code{targets}}{[list] the destination window of this drag.}
-\item{\code{actions}}{[\code{\link{GdkDragAction}}] a list of targets offered by the source.}
-\item{\code{suggestedAction}}{[\code{\link{GdkDragAction}}] a bitmask of actions proposed by the source when 
+\item{\verb{protocol}}{[\code{\link{GdkDragProtocol}}] the parent instance}
+\item{\verb{isSource}}{[logical] the DND protocol which governs this drag.}
+\item{\verb{sourceWindow}}{[\verb{\link{GdkWindow}}] \code{TRUE} if the context is used on the source side.}
+\item{\verb{destWindow}}{[\verb{\link{GdkWindow}}] the source of this drag.}
+\item{\verb{targets}}{[list] the destination window of this drag.}
+\item{\verb{actions}}{[\code{\link{GdkDragAction}}] a list of targets offered by the source.}
+\item{\verb{suggestedAction}}{[\code{\link{GdkDragAction}}] a bitmask of actions proposed by the source when 
    \code{suggested.action} is \code{GDK_ACTION_ASK}.}
-\item{\code{action}}{[\code{\link{GdkDragAction}}] the action suggested by the source.}
-\item{\code{startTime}}{[numeric] the action chosen by the destination.}
+\item{\verb{action}}{[\code{\link{GdkDragAction}}] the action suggested by the source.}
+\item{\verb{startTime}}{[numeric] the action chosen by the destination.}
 }
 
 }}}
 \section{Convenient Construction}{\code{gdkDragContext} is the equivalent of \code{\link{gdkDragContextNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkDragProtocol}}{
-Used in \code{\link{GdkDragContext}} to indicate the protocol according to
+\item{\verb{GdkDragProtocol}}{
+Used in \verb{\link{GdkDragContext}} to indicate the protocol according to
 which DND is done.
 
 \describe{
-\item{\code{motif}}{The Motif DND protocol.}
-\item{\code{xdnd}}{The Xdnd protocol.}
-\item{\code{rootwin}}{An extension to the Xdnd protocol for
+\item{\verb{motif}}{The Motif DND protocol.}
+\item{\verb{xdnd}}{The Xdnd protocol.}
+\item{\verb{rootwin}}{An extension to the Xdnd protocol for
   unclaimed root window drops.}
-\item{\code{none}}{no protocol.}
-\item{\code{win32-dropfiles}}{The simple WM\_DROPFILES protocol.}
-\item{\code{ole2}}{The complex OLE2 DND protocol (not implemented).}
-\item{\code{local}}{Intra-application DND.}
+\item{\verb{none}}{no protocol.}
+\item{\verb{win32-dropfiles}}{The simple WM_DROPFILES protocol.}
+\item{\verb{ole2}}{The complex OLE2 DND protocol (not implemented).}
+\item{\verb{local}}{Intra-application DND.}
 }
 
 }
-\item{\code{GdkDragAction}}{
-Used in \code{\link{GdkDragContext}} to indicate what the destination
+\item{\verb{GdkDragAction}}{
+Used in \verb{\link{GdkDragContext}} to indicate what the destination
 should do with the dropped data.
 
 \describe{
-\item{\code{default}}{Means nothing, and should not be used.}
-\item{\code{copy}}{Copy the data.}
-\item{\code{move}}{Move the data, i.e. first copy it, then delete
+\item{\verb{default}}{Means nothing, and should not be used.}
+\item{\verb{copy}}{Copy the data.}
+\item{\verb{move}}{Move the data, i.e. first copy it, then delete
   it from the source using the DELETE target of the X selection protocol.}
-\item{\code{link}}{Add a link to the data. Note that this is only
+\item{\verb{link}}{Add a link to the data. Note that this is only
   useful if source and destination agree on what it means.}
-\item{\code{private}}{Special action which tells the source that the
+\item{\verb{private}}{Special action which tells the source that the
   destination will do something that the source doesn't understand.}
-\item{\code{ask}}{Ask the user what to do with the data.}
+\item{\verb{ask}}{Ask the user what to do with the data.}
 }
 
 }

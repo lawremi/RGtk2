@@ -1,13 +1,13 @@
 \alias{gtkScaleButtonSetAdjustment}
 \name{gtkScaleButtonSetAdjustment}
 \title{gtkScaleButtonSetAdjustment}
-\description{Sets the \code{\link{GtkAdjustment}} to be used as a model 
-for the \code{\link{GtkScaleButton}}'s scale.
+\description{Sets the \verb{\link{GtkAdjustment}} to be used as a model 
+for the \verb{\link{GtkScaleButton}}'s scale.
 See \code{\link{gtkRangeSetAdjustment}} for details.}
 \usage{gtkScaleButtonSetAdjustment(object, adjustment)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkScaleButton}}]  a \code{\link{GtkScaleButton}}}
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}]  a \code{\link{GtkAdjustment}}}
+\item{\verb{object}}{[\verb{\link{GtkScaleButton}}]  a \verb{\link{GtkScaleButton}}}
+\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  a \verb{\link{GtkAdjustment}}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

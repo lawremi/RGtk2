@@ -7,9 +7,9 @@ Gets whether the specified row is selectable or not.
 }
 \usage{gtkCListGetSelectable(object, row)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row to query.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row to query.}
 }
-\value{[logical] A \code{logical} value.}
+\value{[logical] A \verb{logical} value.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

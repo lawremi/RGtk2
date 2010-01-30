@@ -5,6 +5,6 @@
 zero.  See
 \code{\link{cairoSurfaceReference}}.}
 \usage{cairoSurfaceDestroy(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

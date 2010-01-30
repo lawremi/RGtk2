@@ -3,13 +3,13 @@
 \title{gtkAccelMapForeachUnfiltered}
 \description{Loops over all entries in the accelerator map, and execute
 \code{foreach.func} on each. The signature of \code{foreach.func} is that of
-\code{\link{GtkAccelMapForeach}}, the \code{changed} parameter indicates whether
+\verb{\link{GtkAccelMapForeach}}, the \code{changed} parameter indicates whether
 this accelerator was changed during runtime (thus, would need
 saving during an accelerator map dump).}
 \usage{gtkAccelMapForeachUnfiltered(data = NULL, foreach.func)}
 \arguments{
-\item{\code{data}}{[R object]          data to be passed into \code{foreach.func}}
-\item{\code{foreach.func}}{[\code{\link{GtkAccelMapForeach}}]  function to be executed for each accel map entry}
+\item{\verb{data}}{[R object]          data to be passed into \code{foreach.func}}
+\item{\verb{foreach.func}}{[\verb{\link{GtkAccelMapForeach}}]  function to be executed for each accel map entry}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

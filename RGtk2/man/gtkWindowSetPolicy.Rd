@@ -17,10 +17,10 @@ be resized by users.
 }
 \usage{gtkWindowSetPolicy(object, allow.shrink, allow.grow, auto.shrink)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}] the window}
-\item{\code{allow.shrink}}{[integer] whether the user can shrink the window below its size request}
-\item{\code{allow.grow}}{[integer] whether the user can grow the window larger than its size request}
-\item{\code{auto.shrink}}{[integer] whether the window automatically snaps back to its size request 
+\item{\verb{object}}{[\verb{\link{GtkWindow}}] the window}
+\item{\verb{allow.shrink}}{[integer] whether the user can shrink the window below its size request}
+\item{\verb{allow.grow}}{[integer] whether the user can grow the window larger than its size request}
+\item{\verb{auto.shrink}}{[integer] whether the window automatically snaps back to its size request 
               if it's larger}
 }
 \details{The basic ugly truth of this function is that it should be simply:

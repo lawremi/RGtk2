@@ -2,11 +2,11 @@
 \name{gtkScaleButtonSetIcons}
 \title{gtkScaleButtonSetIcons}
 \description{Sets the icons to be used by the scale button. 
-For details, see the \code{"icons"} property.}
+For details, see the \verb{"icons"} property.}
 \usage{gtkScaleButtonSetIcons(object, icons)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkScaleButton}}]  a \code{\link{GtkScaleButton}}}
-\item{\code{icons}}{[character]  a list of icon names}
+\item{\verb{object}}{[\verb{\link{GtkScaleButton}}]  a \verb{\link{GtkScaleButton}}}
+\item{\verb{icons}}{[character]  a list of icon names}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

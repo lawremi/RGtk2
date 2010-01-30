@@ -5,20 +5,20 @@
 print settings in the print dialog, and then print the document.}
 \usage{gtkPrintOperationRun(object, action, parent = NULL, .errwarn = TRUE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}
-\item{\code{action}}{[\code{\link{GtkPrintOperationAction}}]  the action to start}
-\item{\code{parent}}{[\code{\link{GtkWindow}}]  Transient parent of the dialog, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}
+\item{\verb{action}}{[\code{\link{GtkPrintOperationAction}}]  the action to start}
+\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  Transient parent of the dialog, or \code{NULL}}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{Normally that this function does not return until the rendering of all 
 pages is complete. You can connect to the 
-\code{"status-changed"} signal on \code{op} to obtain some 
+\verb{"status-changed"} signal on \code{op} to obtain some 
 information about the progress of the print operation. 
 Furthermore, it may use a recursive mainloop to show the print dialog.
   
 If you call \code{\link{gtkPrintOperationSetAllowAsync}} or set the allow-async
 property the operation will run asyncronously if this is supported on the
-platform. The \code{"done"} signal will be emitted with the 
+platform. The \verb{"done"} signal will be emitted with the 
 operation results when the operation is done (i.e. when the dialog is 
 canceled, or when the print succeeds or fails).
   \preformatted{
@@ -42,7 +42,7 @@ if (res[[1]] == "error") {
   settings = op$getPrintSettings()
 }  
 Note that \code{\link{gtkPrintOperationRun}} can only be called once on a
-given \code{\link{GtkPrintOperation}}.  
+given \verb{\link{GtkPrintOperation}}.  
 
   Since  2.10}
 \value{
@@ -54,7 +54,7 @@ A list containing the following elements:
   and store them for reuse with the next print operation. A value of
   \code{GTK_PRINT_OPERATION_RESULT_IN_PROGRESS} means the operation is running
   asynchronously, and will emit the ::done signal when done.}
-\item{\code{error}}{[\code{\link{GError}}]  Return location for errors, or \code{NULL}}
+\item{\verb{error}}{[\verb{\link{GError}}]  Return location for errors, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

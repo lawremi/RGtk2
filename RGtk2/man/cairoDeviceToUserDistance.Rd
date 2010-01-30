@@ -7,9 +7,9 @@ translation components of the inverse CTM will be ignored when
 transforming (\code{dx},\code{dy}).}
 \usage{cairoDeviceToUserDistance(cr, dx, dy)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{dx}}{[numeric]  X component of a distance vector (in/out parameter)}
-\item{\code{dy}}{[numeric]  Y component of a distance vector (in/out parameter)}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{dx}}{[numeric]  X component of a distance vector (in/out parameter)}
+\item{\verb{dy}}{[numeric]  Y component of a distance vector (in/out parameter)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

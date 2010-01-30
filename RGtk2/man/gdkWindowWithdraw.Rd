@@ -5,6 +5,6 @@
 This function is not really useful as \code{\link{gdkWindowHide}} automatically
 withdraws toplevel windows before hiding them.}
 \usage{gdkWindowWithdraw(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

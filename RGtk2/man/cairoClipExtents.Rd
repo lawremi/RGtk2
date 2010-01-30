@@ -4,14 +4,14 @@
 \description{Computes a bounding box in user coordinates covering the area inside the
 current clip.}
 \usage{cairoClipExtents(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{  Since  1.4}
 \value{
 A list containing the following elements:
-\item{\code{x1}}{[numeric]  left of the resulting extents}
-\item{\code{y1}}{[numeric]  top of the resulting extents}
-\item{\code{x2}}{[numeric]  right of the resulting extents}
-\item{\code{y2}}{[numeric]  bottom of the resulting extents}
+\item{\verb{x1}}{[numeric]  left of the resulting extents}
+\item{\verb{y1}}{[numeric]  top of the resulting extents}
+\item{\verb{x2}}{[numeric]  right of the resulting extents}
+\item{\verb{y2}}{[numeric]  bottom of the resulting extents}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

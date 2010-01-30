@@ -7,8 +7,8 @@ Set the dithering mode for the display.
 }
 \usage{gtkPreviewSetDither(object, dither)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPreview}}] a \code{\link{GtkPreview}}.}
-\item{\code{dither}}{[\code{\link{GdkRgbDither}}] the dithering mode.}
+\item{\verb{object}}{[\verb{\link{GtkPreview}}] a \verb{\link{GtkPreview}}.}
+\item{\verb{dither}}{[\code{\link{GdkRgbDither}}] the dithering mode.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

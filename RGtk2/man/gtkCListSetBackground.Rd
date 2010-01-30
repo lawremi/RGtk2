@@ -7,9 +7,9 @@ Sets the background color for the specified row.
 }
 \usage{gtkCListSetBackground(object, row, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row to affect.}
-\item{\code{color}}{[\code{\link{GdkColor}}] A pointer to a \code{\link{GdkColor}} structure.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row to affect.}
+\item{\verb{color}}{[\verb{\link{GdkColor}}] A pointer to a \verb{\link{GdkColor}} structure.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

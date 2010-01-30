@@ -6,8 +6,8 @@ want the GtkToggleButton to be 'pressed in', and \code{FALSE} to raise it.
 This action causes the toggled signal to be emitted.}
 \usage{gtkToggleToolButtonSetActive(object, is.active)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToggleToolButton}}]  a \code{\link{GtkToggleToolButton}}}
-\item{\code{is.active}}{[logical]  whether \code{button} should be active}
+\item{\verb{object}}{[\verb{\link{GtkToggleToolButton}}]  a \verb{\link{GtkToggleToolButton}}}
+\item{\verb{is.active}}{[logical]  whether \code{button} should be active}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

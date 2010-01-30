@@ -8,7 +8,7 @@ Xlib calls mixed with GDK calls on the X11 platform. It may also
 matter for toplevel windows, because the window manager may choose
 to reparent them.}
 \usage{gdkWindowGetParent(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
-\value{[\code{\link{GdkWindow}}]  parent of \code{window}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
+\value{[\verb{\link{GdkWindow}}]  parent of \code{window}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

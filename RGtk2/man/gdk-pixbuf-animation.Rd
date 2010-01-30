@@ -23,9 +23,9 @@
 \code{gdkPixbufAnimation(filename, .errwarn = TRUE)}\cr\code{gdkPixbufSimpleAnim(width, height, rate)}
 }
 \section{Hierarchy}{\preformatted{
-\link{GObject}
+GObject
    +----GdkPixbufAnimation
-\link{GObject}
+GObject
    +----GdkPixbufAnimationIter
 }}
 \section{Detailed Description}{    The \command{gdk-pixbuf} library provides a simple mechanism to load and represent
@@ -37,16 +37,16 @@
     ask \command{gdk-pixbuf} what should be displayed at a given point in time. 
   }
 \section{Structures}{\describe{
-\item{\code{GdkPixbufAnimation}}{
+\item{\verb{GdkPixbufAnimation}}{
 And opaque struct representing an animation.
 
 }
-\item{\code{GdkPixbufAnimationIter}}{
+\item{\verb{GdkPixbufAnimationIter}}{
 And opaque struct representing an iterator which points to a
 certain position in an animation.
 
 }
-\item{\code{GdkPixbufSimpleAnim}}{
+\item{\verb{GdkPixbufSimpleAnim}}{
 An
 
 }
@@ -57,5 +57,5 @@ An
 }
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-animation.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GdkPixbufLoader}}}
+\seealso{\verb{\link{GdkPixbufLoader}}}
 \keyword{internal}

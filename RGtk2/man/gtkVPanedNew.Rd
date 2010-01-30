@@ -1,8 +1,8 @@
 \alias{gtkVPanedNew}
 \name{gtkVPanedNew}
 \title{gtkVPanedNew}
-\description{Create a new \code{\link{GtkVPaned}}}
+\description{Create a new \verb{\link{GtkVPaned}}}
 \usage{gtkVPanedNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] the new \code{\link{GtkVPaned}}}
+\value{[\verb{\link{GtkWidget}}] the new \verb{\link{GtkVPaned}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

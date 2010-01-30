@@ -6,8 +6,8 @@ that will be displayed in the recently used resources selector
 user interface if there is a selectable list of filters.}
 \usage{gtkRecentFilterSetName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentFilter}}]  a \code{\link{GtkRecentFilter}}}
-\item{\code{name}}{[character]  then human readable name of \code{filter}}
+\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}
+\item{\verb{name}}{[character]  then human readable name of \code{filter}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

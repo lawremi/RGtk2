@@ -3,7 +3,7 @@
 \title{gtkComboBoxGetAddTearoffs}
 \description{Gets the current value of the :add-tearoffs property.}
 \usage{gtkComboBoxGetAddTearoffs(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkComboBox}}]  a \code{\link{GtkComboBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}}
 \value{[logical]  the current value of the :add-tearoffs property.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

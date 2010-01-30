@@ -15,8 +15,8 @@ useful from a functional standpoint (since it has lots of columns,
 generally).}
 \usage{gtkTreeViewSetRulesHint(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{setting}}{[logical] \code{TRUE} if the tree requires reading across rows}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
+\item{\verb{setting}}{[logical] \code{TRUE} if the tree requires reading across rows}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

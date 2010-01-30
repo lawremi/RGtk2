@@ -5,8 +5,8 @@
 direction, according to the Unicode bidirectional algorithm.}
 \usage{pangoFindBaseDir(text, length = -1)}
 \arguments{
-\item{\code{text}}{[character]    the text to process}
-\item{\code{length}}{[integer]  length of \code{text} in bytes (may be -1 if \code{text} is nul-terminated)}
+\item{\verb{text}}{[character]    the text to process}
+\item{\verb{length}}{[integer]  length of \code{text} in bytes (may be -1 if \code{text} is nul-terminated)}
 }
 \details{  Since  1.4}
 \value{[\code{\link{PangoDirection}}]  The direction corresponding to the first strong character.

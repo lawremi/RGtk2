@@ -7,8 +7,8 @@ FIXME
 }
 \usage{gtkCTreeSetDragCompareFunc(object, cmp.func)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{cmp.func}}{[GtkCTreeCompareDragFunc] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{cmp.func}}{[GtkCTreeCompareDragFunc] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

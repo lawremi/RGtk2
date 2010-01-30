@@ -5,8 +5,8 @@
 with \code{uri} inside the recent manager.}
 \usage{gtkRecentManagerHasItem(object, uri)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentManager}}]  a \code{\link{GtkRecentManager}}}
-\item{\code{uri}}{[character]  a URI}
+\item{\verb{object}}{[\verb{\link{GtkRecentManager}}]  a \verb{\link{GtkRecentManager}}}
+\item{\verb{uri}}{[character]  a URI}
 }
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the resource was found, \code{FALSE} otherwise.}

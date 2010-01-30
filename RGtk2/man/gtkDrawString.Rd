@@ -7,12 +7,12 @@ Draws a text string on \code{window} with the given parameters.
 }
 \usage{gtkDrawString(object, window, state.type, x, y, string)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{x}}{[integer]  x origin}
-\item{\code{y}}{[integer]  y origin}
-\item{\code{string}}{[character]  the string to draw}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{x}}{[integer]  x origin}
+\item{\verb{y}}{[integer]  y origin}
+\item{\verb{string}}{[character]  the string to draw}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,9 +6,9 @@ GTK+ to use built in icon images, you must pass the
 \code{GTK_ICON_LOOKUP_USE_BUILTIN} to
 \code{\link{gtkIconThemeLookupIcon}}.}
 \usage{gtkIconInfoGetBuiltinPixbuf(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}} structure}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}} structure}}
 \details{  Since  2.4}
-\value{[\code{\link{GdkPixbuf}}]  the built-in image pixbuf, or \code{NULL}. No
+\value{[\verb{\link{GdkPixbuf}}]  the built-in image pixbuf, or \code{NULL}. No
  extra reference is added to the returned pixbuf, so if
  you want to keep it around.
  The returned image must not be modified.}

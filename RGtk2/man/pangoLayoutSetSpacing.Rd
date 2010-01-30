@@ -5,8 +5,8 @@
 layout.}
 \usage{pangoLayoutSetSpacing(object, spacing)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
-\item{\code{spacing}}{[integer]  the amount of spacing}
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}.}
+\item{\verb{spacing}}{[integer]  the amount of spacing}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

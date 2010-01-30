@@ -6,8 +6,8 @@ care of setting GtkWidget:has-tooltip to \code{TRUE} and of the default
 handler for the GtkWidget::query-tooltip signal.}
 \usage{gtkWidgetSetTooltipText(object, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{text}}{[character]  the contents of the tooltip for \code{widget}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{text}}{[character]  the contents of the tooltip for \code{widget}}
 }
 \details{See also the GtkWidget:tooltip-text property and \code{\link{gtkTooltipSetText}}.  
 

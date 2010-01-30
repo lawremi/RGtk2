@@ -3,9 +3,9 @@
 \title{gtkPrintOperationGetStatusString}
 \description{Returns a string representation of the status of the 
 print operation. The string is translated and suitable
-for displaying the print status e.g. in a \code{\link{GtkStatusbar}}.}
+for displaying the print status e.g. in a \verb{\link{GtkStatusbar}}.}
 \usage{gtkPrintOperationGetStatusString(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}}
 \details{Use \code{\link{gtkPrintOperationGetStatus}} to obtain a status
 value that is suitable for programmatic use.  
 

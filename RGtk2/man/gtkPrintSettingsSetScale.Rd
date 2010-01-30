@@ -4,8 +4,8 @@
 \description{Sets the value of \code{GTK_PRINT_SETTINGS_SCALE}.}
 \usage{gtkPrintSettingsSetScale(object, scale)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{scale}}{[numeric]  the scale in percent}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{scale}}{[numeric]  the scale in percent}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

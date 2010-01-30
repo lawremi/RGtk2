@@ -8,11 +8,11 @@ where \code{column} is placed.  Both are expected to be between 0.0 and 1.0.
 center.}
 \usage{gtkIconViewScrollToPath(object, path, use.align, row.align, col.align)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  The path of the item to move to.}
-\item{\code{use.align}}{[logical]  whether to use alignment arguments, or \code{FALSE}.}
-\item{\code{row.align}}{[numeric]  The vertical alignment of the item specified by \code{path}.}
-\item{\code{col.align}}{[numeric]  The horizontal alignment of the item specified by \code{path}.}
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}.}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  The path of the item to move to.}
+\item{\verb{use.align}}{[logical]  whether to use alignment arguments, or \code{FALSE}.}
+\item{\verb{row.align}}{[numeric]  The vertical alignment of the item specified by \code{path}.}
+\item{\verb{col.align}}{[numeric]  The horizontal alignment of the item specified by \code{path}.}
 }
 \details{If \code{use.align} is \code{FALSE}, then the alignment arguments are ignored, and the
 tree does the minimum amount of work to scroll the item onto the screen.

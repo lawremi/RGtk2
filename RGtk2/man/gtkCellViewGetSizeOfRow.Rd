@@ -5,14 +5,14 @@
 the model row pointed to by \code{path}.}
 \usage{gtkCellViewGetSizeOfRow(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCellView}}]  a \code{\link{GtkCellView}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} }
+\item{\verb{object}}{[\verb{\link{GtkCellView}}]  a \verb{\link{GtkCellView}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}} }
 }
 \details{  Since  2.6}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE}}
-\item{\code{requisition}}{[\code{\link{GtkRequisition}}]  return location for the size }
+\item{\verb{requisition}}{[\verb{\link{GtkRequisition}}]  return location for the size }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,12 +8,12 @@ given style.
 }
 \usage{gtkDrawFocus(object, window, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{x}}{[integer]  the x origin of the rectangle around which to draw a focus indicator}
-\item{\code{y}}{[integer]  the y origin of the rectangle around which to draw a focus indicator}
-\item{\code{width}}{[integer]  the width of the rectangle around which to draw a focus indicator}
-\item{\code{height}}{[integer]  the height of the rectangle around which to draw a focus indicator}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{x}}{[integer]  the x origin of the rectangle around which to draw a focus indicator}
+\item{\verb{y}}{[integer]  the y origin of the rectangle around which to draw a focus indicator}
+\item{\verb{width}}{[integer]  the width of the rectangle around which to draw a focus indicator}
+\item{\verb{height}}{[integer]  the height of the rectangle around which to draw a focus indicator}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ The user will be shown the full contents of the current folder,
 plus user interface elements for navigating to other folders.}
 \usage{gtkFileChooserSetCurrentFolderUri(object, uri)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{uri}}{[character]  the URI for the new current folder}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{uri}}{[character]  the URI for the new current folder}
 }
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the folder could be changed successfully, \code{FALSE}

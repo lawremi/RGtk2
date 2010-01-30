@@ -5,7 +5,7 @@
 for the layout according to the contents of the layout.
 See \code{\link{pangoLayoutSetAutoDir}}.}
 \usage{pangoLayoutGetAutoDir(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{  Since  1.4}
 \value{[logical] \code{TRUE} if the bidirectional base direction
   is computed from the layout's contents, \code{FALSE} otherwise.}

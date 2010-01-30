@@ -9,9 +9,9 @@ application would normally redraw the contents of \code{window} in
 response to those expose events.}
 \usage{gdkWindowInvalidateMaybeRecurse(object, region, child.func, user.data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{region}}{[\code{\link{GdkRegion}}]  a \code{\link{GdkRegion}}}
-\item{\code{user.data}}{[R object]  data passed to \code{child.func}}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{region}}{[\verb{\link{GdkRegion}}]  a \verb{\link{GdkRegion}}}
+\item{\verb{user.data}}{[R object]  data passed to \code{child.func}}
 }
 \details{GDK will call \code{\link{gdkWindowProcessAllUpdates}} on your behalf
 whenever your program returns to the main loop and becomes idle, so

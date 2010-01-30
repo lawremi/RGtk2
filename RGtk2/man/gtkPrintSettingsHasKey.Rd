@@ -4,8 +4,8 @@
 \description{Returns \code{TRUE}, if a value is associated with \code{key}.}
 \usage{gtkPrintSettingsHasKey(object, key)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
 }
 \details{  Since  2.10}
 \value{[logical] \code{TRUE}, if \code{key} has a value}

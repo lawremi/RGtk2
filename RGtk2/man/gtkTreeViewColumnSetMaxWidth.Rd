@@ -7,8 +7,8 @@ width if it's the last column in a view.  In this case, the column expands to
 fill any extra space.}
 \usage{gtkTreeViewColumnSetMaxWidth(object, max.width)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}.}
-\item{\code{max.width}}{[integer]  The maximum width of the column in pixels, or -1.}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}.}
+\item{\verb{max.width}}{[integer]  The maximum width of the column in pixels, or -1.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

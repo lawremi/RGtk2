@@ -7,9 +7,9 @@
 }
 \usage{gtkCTreeNodeSetBackground(object, node, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{color}}{[\code{\link{GdkColor}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{color}}{[\verb{\link{GdkColor}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,8 +9,8 @@ Other values in \code{\link{GtkCornerType}} are \code{GTK_CORNER_TOP_RIGHT},
 \code{GTK_CORNER_BOTTOM_LEFT}, and \code{GTK_CORNER_BOTTOM_RIGHT}.}
 \usage{gtkScrolledWindowSetPlacement(object, window.placement)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkScrolledWindow}}]  a \code{\link{GtkScrolledWindow}}}
-\item{\code{window.placement}}{[\code{\link{GtkCornerType}}]  position of the child window}
+\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}]  a \verb{\link{GtkScrolledWindow}}}
+\item{\verb{window.placement}}{[\code{\link{GtkCornerType}}]  position of the child window}
 }
 \details{See also \code{\link{gtkScrolledWindowGetPlacement}} and
 \code{\link{gtkScrolledWindowUnsetPlacement}}.  

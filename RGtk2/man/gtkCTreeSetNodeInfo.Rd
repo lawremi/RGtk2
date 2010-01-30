@@ -8,16 +8,16 @@ to the parameters of \code{\link{gtkCTreeInsertNode}}.
 }
 \usage{gtkCTreeSetNodeInfo(object, node, text, spacing, pixmap.closed = NULL, mask.closed = NULL, pixmap.opened = NULL, mask.opened = NULL, is.leaf, expanded)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{text}}{[character] The text to be in the tree column.}
-\item{\code{spacing}}{[raw] }
-\item{\code{pixmap.closed}}{[\code{\link{GdkPixmap}}] }
-\item{\code{mask.closed}}{[\code{\link{GdkBitmap}}] }
-\item{\code{pixmap.opened}}{[\code{\link{GdkPixmap}}] }
-\item{\code{mask.opened}}{[\code{\link{GdkBitmap}}] }
-\item{\code{is.leaf}}{[logical] }
-\item{\code{expanded}}{[logical] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{text}}{[character] The text to be in the tree column.}
+\item{\verb{spacing}}{[raw] }
+\item{\verb{pixmap.closed}}{[\verb{\link{GdkPixmap}}] }
+\item{\verb{mask.closed}}{[\verb{\link{GdkBitmap}}] }
+\item{\verb{pixmap.opened}}{[\verb{\link{GdkPixmap}}] }
+\item{\verb{mask.opened}}{[\verb{\link{GdkBitmap}}] }
+\item{\verb{is.leaf}}{[logical] }
+\item{\verb{expanded}}{[logical] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

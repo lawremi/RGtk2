@@ -8,11 +8,11 @@ If this is not set, it defaults to \code{gGetApplicationName()}.
 }
 \usage{gtkAboutDialogSetName(object, name = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}
-\item{\code{name}}{[character]  the program name}
+\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
+\item{\verb{name}}{[character]  the program name}
 }
 \details{  Since  2.6
 
-@Deprecated: 2.12: Use gtk\_about\_dialog\_set\_program\_name() instead.}
+@Deprecated: 2.12: Use gtk_about_dialog_set_program_name() instead.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

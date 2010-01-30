@@ -6,12 +6,12 @@ alignment requirements of the accelerated image-rendering code
 within cairo. Typical usage will be of the form:}
 \usage{cairoFormatStrideForWidth(format, width)}
 \arguments{
-\item{\code{format}}{[\code{\link{CairoFormat}}]  A \code{\link{CairoFormat}} value}
-\item{\code{width}}{[integer]  The desired width of an image surface to be created.}
+\item{\verb{format}}{[\verb{\link{CairoFormat}}]  A \verb{\link{CairoFormat}} value}
+\item{\verb{width}}{[integer]  The desired width of an image surface to be created.}
 }
 \details{\preformatted{int stride;
 unsigned char *data;
-  \link{CairoSurface}   *surface;
+  cairo_surface_t   *surface;
 
 stride = cairo_format_stride_for_width (format, width);
 data = malloc (stride * height);

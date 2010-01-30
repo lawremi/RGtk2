@@ -5,7 +5,7 @@
 display, if supported. Otherwise, emits a short beep on
 the display just as \code{\link{gdkDisplayBeep}}.}
 \usage{gdkWindowBeep(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}}
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

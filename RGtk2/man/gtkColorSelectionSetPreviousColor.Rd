@@ -7,8 +7,8 @@ Calling \code{\link{gtkColorSelectionSetCurrentColor}} will also set this color 
 time it is called.}
 \usage{gtkColorSelectionSetPreviousColor(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkColorSelection}}]  a \code{\link{GtkColorSelection}}.}
-\item{\code{color}}{[\code{\link{GdkColor}}]  a \code{\link{GdkColor}} to set the previous color with.}
+\item{\verb{object}}{[\verb{\link{GtkColorSelection}}]  a \verb{\link{GtkColorSelection}}.}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  a \verb{\link{GdkColor}} to set the previous color with.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

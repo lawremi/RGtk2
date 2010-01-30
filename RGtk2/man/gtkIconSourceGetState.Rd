@@ -5,7 +5,7 @@
 value is only useful/meaningful if the widget state is \emph{not}
 wildcarded.}
 \usage{gtkIconSourceGetState(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}}
 \value{[\code{\link{GtkStateType}}]  widget state this source matches}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

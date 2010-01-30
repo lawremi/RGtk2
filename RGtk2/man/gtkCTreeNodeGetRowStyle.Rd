@@ -7,8 +7,8 @@ Get the style of a row.
 }
 \usage{gtkCTreeNodeGetRowStyle(object, node)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

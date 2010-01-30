@@ -7,8 +7,8 @@ a language binding to call some other function, or to limit what
 functions can be called to create custom widgets.}
 \usage{gladeSetCustomHandler(handler, user.data)}
 \arguments{
-\item{\code{handler}}{[\code{\link{GladeXMLCustomWidgetHandler}}]  the custom widget handler}
-\item{\code{user.data}}{[R object]  user data passed to the custom handler}
+\item{\verb{handler}}{[\verb{\link{GladeXMLCustomWidgetHandler}}]  the custom widget handler}
+\item{\verb{user.data}}{[R object]  user data passed to the custom handler}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

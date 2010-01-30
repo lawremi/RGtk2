@@ -3,6 +3,6 @@
 \title{gtkTreeViewCollapseAll}
 \description{Recursively collapses all visible, expanded nodes in \code{tree.view}.}
 \usage{gtkTreeViewCollapseAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

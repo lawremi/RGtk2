@@ -4,8 +4,8 @@
 \description{Set the new position of the fill level indicator.}
 \usage{gtkRangeSetFillLevel(object, fill.level)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRange}}]  a \code{\link{GtkRange}}}
-\item{\code{fill.level}}{[numeric]  the new position of the fill level indicator}
+\item{\verb{object}}{[\verb{\link{GtkRange}}]  a \verb{\link{GtkRange}}}
+\item{\verb{fill.level}}{[numeric]  the new position of the fill level indicator}
 }
 \details{The "fill level" is probably best described by its most prominent
 use case, which is an indicator for the amount of pre-buffering in

@@ -5,7 +5,7 @@
 from the \code{\link{GdkEventMask}} enumeration). These are the events that the widget
 will receive.}
 \usage{gtkWidgetGetEvents(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \value{[integer]  event mask for \code{widget}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

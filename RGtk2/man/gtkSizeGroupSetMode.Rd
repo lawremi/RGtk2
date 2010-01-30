@@ -9,8 +9,8 @@ or should all have the same requisition in both directions
 (\code{GTK_SIZE_GROUP_MODE_BOTH}).}
 \usage{gtkSizeGroupSetMode(object, mode)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkSizeGroup}}]  a \code{\link{GtkSizeGroup}}}
-\item{\code{mode}}{[\code{\link{GtkSizeGroupMode}}]  the mode to set for the size group.}
+\item{\verb{object}}{[\verb{\link{GtkSizeGroup}}]  a \verb{\link{GtkSizeGroup}}}
+\item{\verb{mode}}{[\code{\link{GtkSizeGroupMode}}]  the mode to set for the size group.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

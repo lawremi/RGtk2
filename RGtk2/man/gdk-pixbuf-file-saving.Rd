@@ -11,7 +11,7 @@
 \code{\link{gdkPixbufSaveToBuffer}(object, type, ..., .errwarn = TRUE)}\cr
 \code{\link{gdkPixbufSaveToBufferv}(object, type, option.keys, option.values, .errwarn = TRUE)}\cr
 }
-\section{Detailed Description}{These functions allow to save a \code{\link{GdkPixbuf}} in a number of 
+\section{Detailed Description}{These functions allow to save a \verb{\link{GdkPixbuf}} in a number of 
 file formats. The formatted data can be written to a file
 or to a memory buffer. \command{gdk-pixbuf} can also call a user-defined
 callback on the data, which allows to e.g. write the image 
@@ -28,7 +28,7 @@ will fail with the same error.
 \describe{
 \item{\code{buf}}{[character] bytes to be written.}
 \item{\code{count}}{[numeric] number of bytes in \code{buf}.}
-\item{\code{error}}{[\code{\link{GError}}] A location to return an error.}
+\item{\code{error}}{[\verb{\link{GError}}] A location to return an error.}
 \item{\code{data}}{[R object] user data passed to \code{\link{gdkPixbufSaveToCallback}}.}
 }
 

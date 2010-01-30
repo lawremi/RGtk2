@@ -3,7 +3,7 @@
 \title{gtkAccelGroupLock}
 \description{Locks the given accelerator group.}
 \usage{gtkAccelGroupLock(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAccelGroup}}]  a \code{\link{GtkAccelGroup}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAccelGroup}}]  a \verb{\link{GtkAccelGroup}}}}
 \details{Locking an acelerator group prevents the accelerators contained
 within it to be changed during runtime. Refer to
 \code{\link{gtkAccelMapChangeEntry}} about runtime accelerator changes.

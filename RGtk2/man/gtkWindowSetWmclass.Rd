@@ -11,9 +11,9 @@ benefit of the session manager. Setting the role allows the window
 manager to restore window positions when loading a saved session.}
 \usage{gtkWindowSetWmclass(object, wmclass.name, wmclass.class)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{wmclass.name}}{[character]  window name hint}
-\item{\code{wmclass.class}}{[character]  window class hint}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{wmclass.name}}{[character]  window name hint}
+\item{\verb{wmclass.class}}{[character]  window class hint}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

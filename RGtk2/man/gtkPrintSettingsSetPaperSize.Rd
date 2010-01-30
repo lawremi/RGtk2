@@ -6,8 +6,8 @@
 \code{GTK_PRINT_SETTINGS_PAPER_HEIGHT}.}
 \usage{gtkPrintSettingsSetPaperSize(object, paper.size)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{paper.size}}{[\code{\link{GtkPaperSize}}]  a paper size}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{paper.size}}{[\verb{\link{GtkPaperSize}}]  a paper size}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

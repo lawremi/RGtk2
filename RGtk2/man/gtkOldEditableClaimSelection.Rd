@@ -7,10 +7,10 @@ Claims or gives up ownership of the selection.
 }
 \usage{gtkOldEditableClaimSelection(object, claim, time = "GDK_CURRENT_TIME")}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkOldEditable}}]  a \code{\link{GtkOldEditable}}}
-\item{\code{claim}}{[logical]  if \code{TRUE}, claim ownership of the selection, if \code{FALSE}, give
+\item{\verb{object}}{[\verb{\link{GtkOldEditable}}]  a \verb{\link{GtkOldEditable}}}
+\item{\verb{claim}}{[logical]  if \code{TRUE}, claim ownership of the selection, if \code{FALSE}, give
   up ownership}
-\item{\code{time}}{[numeric]  timestamp for this operation}
+\item{\verb{time}}{[numeric]  timestamp for this operation}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

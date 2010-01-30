@@ -9,9 +9,9 @@
 \code{\link{gtkWindowGroupRemoveWindow}(object, window)}\cr
 \code{gtkWindowGroup()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkWindowGroup}}
-\section{Structures}{\describe{\item{\code{GtkWindowGroup}}{
+\section{Structures}{\describe{\item{\verb{GtkWindowGroup}}{
 \emph{undocumented
 }
 

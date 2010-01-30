@@ -1,13 +1,13 @@
 \alias{pangoLayoutSetHeight}
 \name{pangoLayoutSetHeight}
 \title{pangoLayoutSetHeight}
-\description{Sets the height to which the \code{\link{PangoLayout}} should be ellipsized at.  There
+\description{Sets the height to which the \verb{\link{PangoLayout}} should be ellipsized at.  There
 are two different behaviors, based on whether \code{height} is positive or
 negative.}
 \usage{pangoLayoutSetHeight(object, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
-\item{\code{height}}{[integer]  the desired height of the layout in Pango units if positive,
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}.}
+\item{\verb{height}}{[integer]  the desired height of the layout in Pango units if positive,
          or desired number of lines if negative.}
 }
 \details{If \code{height} is positive, it will be the maximum height of the layout.  Only

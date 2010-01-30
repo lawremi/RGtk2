@@ -15,16 +15,16 @@
 \code{\link{gtkFrameGetShadowType}(object)}\cr
 \code{gtkFrame(label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
                                  +----GtkFrame
-                                       +----\link{GtkAspectFrame}}}
+                                       +----GtkAspectFrame}}
 \section{Interfaces}{GtkFrame implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{The frame widget is a Bin that surrounds its child
 with a decorative frame and an optional label.
 If present, the label is drawn in a gap in the
@@ -45,41 +45,41 @@ a <child> type attribute.
   </child>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkFrame}}{
+\section{Structures}{\describe{\item{\verb{GtkFrame}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkFrame} is the equivalent of \code{\link{gtkFrameNew}}.}
 \section{Properties}{\describe{
-\item{\code{label} [character : Read / Write]}{
+\item{\verb{label} [character : *                : Read / Write]}{
 
 Text of the frame's label.  Default value: NULL
 
 }
-\item{\code{label-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{label-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 A widget to display in place of the usual frame label.
 
 }
-\item{\code{label-xalign} [numeric : Read / Write]}{
+\item{\verb{label-xalign} [numeric : Read / Write]}{
 
 The horizontal alignment of the label.  Allowed values: [0,1]  Default value: 0
 
 }
-\item{\code{label-yalign} [numeric : Read / Write]}{
+\item{\verb{label-yalign} [numeric : Read / Write]}{
 
 The vertical alignment of the label.  Allowed values: [0,1]  Default value: 0.5
 
 }
-\item{\code{shadow} [\code{\link{GtkShadowType}} : Read / Write]}{
+\item{\verb{shadow} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Deprecated property, use shadow\_type instead.  Default value: GTK\_SHADOW\_ETCHED\_IN
+Deprecated property, use shadow_type instead.  Default value: GTK_SHADOW_ETCHED_IN
 
 }
-\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
+\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Appearance of the frame border.  Default value: GTK\_SHADOW\_ETCHED\_IN
+Appearance of the frame border.  Default value: GTK_SHADOW_ETCHED_IN
 
 }
 }}

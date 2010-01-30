@@ -6,8 +6,8 @@ for the locale of the running process can be found using
 \code{pangoLanguageGetDefault()}.}
 \usage{pangoContextSetLanguage(object, language)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{language}}{[\code{\link{PangoLanguage}}]  the new language tag.}
+\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{language}}{[\verb{\link{PangoLanguage}}]  the new language tag.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

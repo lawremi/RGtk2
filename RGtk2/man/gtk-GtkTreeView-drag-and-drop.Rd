@@ -20,9 +20,9 @@ GInterface
    +----GtkTreeDragDest
 }}
 \section{Implementations}{GtkTreeDragSource is implemented by
- \code{\link{GtkTreeModelFilter}},  \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.  
+ \verb{\link{GtkTreeModelFilter}},  \verb{\link{GtkTreeModelSort}},  \verb{\link{GtkTreeStore}} and  \verb{\link{GtkListStore}}.  
 GtkTreeDragDest is implemented by
- \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
+ \verb{\link{GtkTreeStore}} and  \verb{\link{GtkListStore}}.}
 \section{Detailed Description}{GTK+ supports Drag-and-Drop in tree views with a high-level and a low-level 
 API.
   
@@ -37,14 +37,14 @@ hover-to-open-rows or autoscrolling on top of this API is a lot of work.
 On the other hand, if you write to the high-level API, then all the 
 bookkeeping of rows is done for you, as well as things like hover-to-open 
 and auto-scroll, but your models have to implement the 
-\code{\link{GtkTreeDragSource}} and \code{\link{GtkTreeDragDest}} interfaces.}
+\verb{\link{GtkTreeDragSource}} and \verb{\link{GtkTreeDragDest}} interfaces.}
 \section{Structures}{\describe{
-\item{\code{GtkTreeDragSource}}{
+\item{\verb{GtkTreeDragSource}}{
 \emph{undocumented
 }
 
 }
-\item{\code{GtkTreeDragDest}}{
+\item{\verb{GtkTreeDragDest}}{
 \emph{undocumented
 }
 

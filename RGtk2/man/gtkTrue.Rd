@@ -7,6 +7,5 @@ not do this as the user expects a reaction from clicking the close
 icon of the window...}
 \usage{gtkTrue()}
 \value{[logical] \code{TRUE}}
-
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

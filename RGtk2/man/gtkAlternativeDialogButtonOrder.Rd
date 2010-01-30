@@ -6,10 +6,10 @@ button order on the screen \code{screen}. See
 \code{\link{gtkDialogSetAlternativeButtonOrder}} for more details
 about alternative button order. }
 \usage{gtkAlternativeDialogButtonOrder(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}, or \code{NULL} to use the default screen}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}, or \code{NULL} to use the default screen}}
 \details{If you need to use this function, you should probably connect
 to the ::notify:gtk-alternative-button-order signal on the
-\code{\link{GtkSettings}} object associated to \code{screen}, in order to be 
+\verb{\link{GtkSettings}} object associated to \code{screen}, in order to be 
 notified if the button order setting changes.  
 
   Since  2.6}

@@ -6,7 +6,7 @@ Equivalent to calling \code{\link{gtkTextBufferGetMark}} to get the mark
 named "insert", but very slightly more efficient, and involves less
 typing.}
 \usage{gtkTextBufferGetInsert(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}}
-\value{[\code{\link{GtkTextMark}}]  insertion point mark}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}}
+\value{[\verb{\link{GtkTextMark}}]  insertion point mark}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

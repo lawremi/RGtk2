@@ -18,39 +18,39 @@
 \code{\link{gtkProgressConfigure}(object, value, min, max)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkProgress
-                           +----\link{GtkProgressBar}}}
+                           +----GtkProgressBar}}
 \section{Interfaces}{GtkProgress implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkProgress}} is the abstract base class used to derive
-a \code{\link{GtkProgressBar}} which provides a visual representation of
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkProgress}} is the abstract base class used to derive
+a \verb{\link{GtkProgressBar}} which provides a visual representation of
 the progress of a long running operation.  }
-\section{Structures}{\describe{\item{\code{GtkProgress}}{
-The \code{\link{GtkProgress}} struct contains private data only.
+\section{Structures}{\describe{\item{\verb{GtkProgress}}{
+The \verb{\link{GtkProgress}} struct contains private data only.
 and should be accessed using the functions below.
 
 }}}
 \section{Properties}{\describe{
-\item{\code{activity-mode} [logical : Read / Write]}{
+\item{\verb{activity-mode} [logical : Read / Write]}{
 
 If TRUE, the GtkProgress is in activity mode, meaning that it signals something is happening, but not how much of the activity is finished. This is used when you're doing something but don't know how long it will take.  Default value: FALSE
 
 }
-\item{\code{show-text} [logical : Read / Write]}{
+\item{\verb{show-text} [logical : Read / Write]}{
 
 Whether the progress is shown as text.  Default value: FALSE
 
 }
-\item{\code{text-xalign} [numeric : Read / Write]}{
+\item{\verb{text-xalign} [numeric : Read / Write]}{
 
 The horizontal text alignment, from 0 (left) to 1 (right). Reversed for RTL layouts.  Allowed values: [0,1]  Default value: 0.5
 
 }
-\item{\code{text-yalign} [numeric : Read / Write]}{
+\item{\verb{text-yalign} [numeric : Read / Write]}{
 
 The vertical text alignment, from 0 (top) to 1 (bottom).  Allowed values: [0,1]  Default value: 0.5
 

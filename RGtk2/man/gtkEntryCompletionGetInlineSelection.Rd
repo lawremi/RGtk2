@@ -3,7 +3,7 @@
 \title{gtkEntryCompletionGetInlineSelection}
 \description{Returns \code{TRUE} if inline-selection mode is turned on.}
 \usage{gtkEntryCompletionGetInlineSelection(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}}
 \details{  Since  2.12}
 \value{[logical] \code{TRUE} if inline-selection mode is on}
 \author{Derived by RGtkGen from GTK+ documentation}

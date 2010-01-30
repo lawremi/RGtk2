@@ -8,8 +8,8 @@ leaves the upper left unchanged when made bigger, turning this
 setting off will improve performance.}
 \usage{gtkWidgetSetRedrawOnAllocate(object, redraw.on.allocate)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{redraw.on.allocate}}{[logical]  if \code{TRUE}, the entire widget will be redrawn
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{redraw.on.allocate}}{[logical]  if \code{TRUE}, the entire widget will be redrawn
   when it is allocated to a new size. Otherwise, only the
   new portion of the widget will be redrawn.}
 }

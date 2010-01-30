@@ -7,11 +7,11 @@ area will be set to the full area covered by \code{column}.  See also
 \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkTreeViewSetTooltipCell(object, tooltip, path, column, cell)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{tooltip}}{[\code{\link{GtkTooltip}}]  a \code{\link{GtkTooltip}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} or \code{NULL}}
-\item{\code{column}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}} or \code{NULL}}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  a \code{\link{GtkCellRenderer}} or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
+\item{\verb{tooltip}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}} or \code{NULL}}
+\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}} or \code{NULL}}
+\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  a \verb{\link{GtkCellRenderer}} or \code{NULL}}
 }
 \details{Note that if \code{path} is not specified and \code{cell} is set and part of a column
 containing the expander, the tooltip might not show and hide at the correct

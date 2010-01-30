@@ -4,7 +4,7 @@
 \description{Sets the icon for a particular drag to the default
 icon.}
 \usage{gtkDragSetIconDefault(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDragContext}}]  the context for a drag. (This must be called 
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDragContext}}]  the context for a drag. (This must be called 
              with a  context for the source side of a drag)}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

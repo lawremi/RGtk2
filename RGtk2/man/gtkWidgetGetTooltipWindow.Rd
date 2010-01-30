@@ -1,12 +1,12 @@
 \alias{gtkWidgetGetTooltipWindow}
 \name{gtkWidgetGetTooltipWindow}
 \title{gtkWidgetGetTooltipWindow}
-\description{Returns the \code{\link{GtkWindow}} of the current tooltip. This can be the
+\description{Returns the \verb{\link{GtkWindow}} of the current tooltip. This can be the
 GtkWindow created by default, or the custom tooltip window set
 using \code{\link{gtkWidgetSetTooltipWindow}}.}
 \usage{gtkWidgetGetTooltipWindow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{  Since  2.12}
-\value{[\code{\link{GtkWindow}}]  The \code{\link{GtkWindow}} of the current tooltip.}
+\value{[\verb{\link{GtkWindow}}]  The \verb{\link{GtkWindow}} of the current tooltip.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

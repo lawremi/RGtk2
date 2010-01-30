@@ -7,8 +7,8 @@ string rather than a filename. This function is meant for
 such uses as a suggested name in a "Save As..." dialog.}
 \usage{gtkFileChooserSetCurrentName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{name}}{[character]  the filename to use, as a UTF-8 string}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{name}}{[character]  the filename to use, as a UTF-8 string}
 }
 \details{If you want to preselect a particular existing file, you should use
 \code{\link{gtkFileChooserSetFilename}} or \code{\link{gtkFileChooserSetUri}} instead.

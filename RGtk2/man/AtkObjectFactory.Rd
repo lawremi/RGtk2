@@ -9,15 +9,15 @@ objects of a specific GType.}
 \code{\link{atkObjectFactoryInvalidate}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----AtkObjectFactory
-         +----\link{AtkNoOpObjectFactory}}}
+         +----AtkNoOpObjectFactory}}
 \section{Detailed Description}{This class is the base object class for a factory used to create an 
 accessible object for a specific GType. The function 
 \code{\link{atkRegistrySetFactoryType}} is normally called to store 
 in the registry the factory type to be used to create an accessible of a
 particular GType.}
-\section{Structures}{\describe{\item{\code{AtkObjectFactory}}{
+\section{Structures}{\describe{\item{\verb{AtkObjectFactory}}{
 The AtkObjectFactory structure should not be accessed directly.
 
 }}}

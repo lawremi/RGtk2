@@ -5,7 +5,7 @@
 \usage{cairoMatrixInitIdentity()}
 \value{
 A list containing the following elements:
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

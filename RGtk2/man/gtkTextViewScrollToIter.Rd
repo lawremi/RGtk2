@@ -10,13 +10,13 @@ screen for purposes of this function is reduced by a margin of size
 \code{within.margin}.}
 \usage{gtkTextViewScrollToIter(object, iter, within.margin, use.align = FALSE, xalign = 0.5, yalign = 0.5)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{within.margin}}{[numeric]  margin as a [0.0,0.5) fraction of screen size}
-\item{\code{use.align}}{[logical]  whether to use alignment arguments (if \code{FALSE}, 
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{within.margin}}{[numeric]  margin as a [0.0,0.5) fraction of screen size}
+\item{\verb{use.align}}{[logical]  whether to use alignment arguments (if \code{FALSE}, 
    just get the mark onscreen)}
-\item{\code{xalign}}{[numeric]  horizontal alignment of mark within visible area}
-\item{\code{yalign}}{[numeric]  vertical alignment of mark within visible area}
+\item{\verb{xalign}}{[numeric]  horizontal alignment of mark within visible area}
+\item{\verb{yalign}}{[numeric]  vertical alignment of mark within visible area}
 }
 \details{Note that this function uses the currently-computed height of the
 lines in the text buffer. Line heights are computed in an idle 

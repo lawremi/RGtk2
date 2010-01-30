@@ -100,19 +100,19 @@
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
-\section{Structures}{\describe{\item{\code{GtkTextIter}}{
+\section{Structures}{\describe{\item{\verb{GtkTextIter}}{
 \emph{undocumented
 }
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{GtkTextSearchFlags}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkTextSearchFlags}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{visible-only}}{\emph{undocumented
+\item{\verb{visible-only}}{\emph{undocumented
 }}
-\item{\code{text-only}}{\emph{undocumented
+\item{\verb{text-only}}{\emph{undocumented
 }}
 }
 

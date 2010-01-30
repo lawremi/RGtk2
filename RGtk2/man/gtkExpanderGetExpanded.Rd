@@ -1,10 +1,10 @@
 \alias{gtkExpanderGetExpanded}
 \name{gtkExpanderGetExpanded}
 \title{gtkExpanderGetExpanded}
-\description{Queries a \code{\link{GtkExpander}} and returns its current state. Returns \code{TRUE}
+\description{Queries a \verb{\link{GtkExpander}} and returns its current state. Returns \code{TRUE}
 if the child widget is revealed.}
 \usage{gtkExpanderGetExpanded(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkExpander}}] a \code{\link{GtkExpander}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkExpander}}] a \verb{\link{GtkExpander}}}}
 \details{See \code{\link{gtkExpanderSetExpanded}}.  
 
   Since  2.4}

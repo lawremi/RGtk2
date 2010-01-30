@@ -7,10 +7,10 @@ Finds a node in the tree under \code{node} that has the given user data pointer.
 }
 \usage{gtkCTreeFindByRowData(object, node, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{data}}{[R object] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{data}}{[R object] }
 }
-\value{[\code{\link{GtkCTreeNode}}] The node, or \code{NULL} if not found.}
+\value{[\verb{\link{GtkCTreeNode}}] The node, or \code{NULL} if not found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,9 +1,9 @@
 \alias{gtkPrintSettingsNew}
 \name{gtkPrintSettingsNew}
 \title{gtkPrintSettingsNew}
-\description{Creates a new \code{\link{GtkPrintSettings}} object.}
+\description{Creates a new \verb{\link{GtkPrintSettings}} object.}
 \usage{gtkPrintSettingsNew()}
 \details{  Since  2.10}
-\value{[\code{\link{GtkPrintSettings}}]  a new \code{\link{GtkPrintSettings}} object}
+\value{[\verb{\link{GtkPrintSettings}}]  a new \verb{\link{GtkPrintSettings}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

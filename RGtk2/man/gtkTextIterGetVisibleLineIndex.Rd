@@ -6,7 +6,7 @@ line to the given \code{iter}, not counting bytes that
 are invisible due to tags with the "invisible" flag
 toggled on.}
 \usage{gtkTextIterGetVisibleLineIndex(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}}
 \value{[integer]  byte index of \code{iter} with respect to the start of the line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -29,28 +29,28 @@
 \code{\link{gtkMenuSetMonitor}(object, monitor.num)}\cr
 \code{gtkMenu(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkMenuShell}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkMenuShell
                                  +----GtkMenu
-                                       +----\link{GtkRecentChooserMenu}}}
+                                       +----GtkRecentChooserMenu}}
 \section{Interfaces}{GtkMenu implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkMenu}} is a \code{\link{GtkMenuShell}} that implements a drop down menu consisting of
-a list of \code{\link{GtkMenuItem}} objects which can be navigated and activated by the 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkMenu}} is a \verb{\link{GtkMenuShell}} that implements a drop down menu consisting of
+a list of \verb{\link{GtkMenuItem}} objects which can be navigated and activated by the 
 user to perform application functions.
   
-A \code{\link{GtkMenu}} is most commonly dropped down by activating a \code{\link{GtkMenuItem}} in a 
-\code{\link{GtkMenuBar}} or popped up by activating a \code{\link{GtkMenuItem}} in another \code{\link{GtkMenu}}.  
+A \verb{\link{GtkMenu}} is most commonly dropped down by activating a \verb{\link{GtkMenuItem}} in a 
+\verb{\link{GtkMenuBar}} or popped up by activating a \verb{\link{GtkMenuItem}} in another \verb{\link{GtkMenu}}.  
   
-A \code{\link{GtkMenu}} can also be popped up by activating a \code{\link{GtkOptionMenu}}.  
-Other composite widgets such as the \code{\link{GtkNotebook}} can pop up a \code{\link{GtkMenu}} 
+A \verb{\link{GtkMenu}} can also be popped up by activating a \verb{\link{GtkOptionMenu}}.  
+Other composite widgets such as the \verb{\link{GtkNotebook}} can pop up a \verb{\link{GtkMenu}} 
 as well.
   
-Applications can display a \code{\link{GtkMenu}} as a popup menu by calling the 
+Applications can display a \verb{\link{GtkMenu}} as a popup menu by calling the 
 \code{\link{gtkMenuPopup}} function.  The example below shows how an application
 can pop up a menu when the 3rd mouse button is pressed.  
   
@@ -84,8 +84,8 @@ my_popup_handler <- function(widget, event)
 }
 
 }}
-\section{Structures}{\describe{\item{\code{GtkMenu}}{
-The \code{\link{GtkMenu}} struct contains private data only, and
+\section{Structures}{\describe{\item{\verb{GtkMenu}}{
+The \verb{\link{GtkMenu}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -97,10 +97,10 @@ positioning of the menu when it is displayed.  The function sets the \code{x}
 and \code{y} parameters to the coordinates where the menu is to be drawn.
 
 \describe{
-\item{\code{menu}}{[\code{\link{GtkMenu}}] a \code{\link{GtkMenu}}.}
-\item{\code{x}}{[integer] the \code{integer} representing the horizontal position where the
+\item{\code{menu}}{[\verb{\link{GtkMenu}}] a \verb{\link{GtkMenu}}.}
+\item{\code{x}}{[integer] the \verb{integer} representing the horizontal position where the
 menu shall be drawn.  This is an output parameter.}
-\item{\code{y}}{[integer] the \code{integer} representing the vertical position where the
+\item{\code{y}}{[integer] the \verb{integer} representing the vertical position where the
 menu shall be drawn.  This is an output parameter.}
 \item{\code{push.in}}{[logical] This parameter controls how menus placed outside the monitor are handled.
         If this is set to TRUE and part of the menu is outside the monitor then
@@ -126,8 +126,8 @@ A user function supplied when calling \code{\link{gtkMenuAttachToWidget}} which
 will be called when the menu is later detached from the widget.
 
 \describe{
-\item{\code{attach.widget}}{[\code{\link{GtkWidget}}] the \code{\link{GtkWidget}} that the menu is being detached from.}
-\item{\code{menu}}{[\code{\link{GtkMenu}}] the \code{\link{GtkMenu}} being detached.}
+\item{\code{attach.widget}}{[\verb{\link{GtkWidget}}] the \verb{\link{GtkWidget}} that the menu is being detached from.}
+\item{\code{menu}}{[\verb{\link{GtkMenu}}] the \verb{\link{GtkMenu}} being detached.}
 }
 
 
@@ -138,7 +138,7 @@ will be called when the menu is later detached from the widget.
 }
 
 \describe{
-\item{\code{menu}}{[\code{\link{GtkMenu}}] the object which received the signal.}
+\item{\code{menu}}{[\verb{\link{GtkMenu}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -146,41 +146,41 @@ will be called when the menu is later detached from the widget.
 
 }}}
 \section{Properties}{\describe{
-\item{\code{tearoff-state} [logical : Read / Write]}{
+\item{\verb{tearoff-state} [logical : Read / Write]}{
 
 A boolean that indicates whether the menu is torn-off.  
 
   Default value: FALSE  Since  2.6
 
 }
-\item{\code{tearoff-title} [character : Read / Write]}{
+\item{\verb{tearoff-title} [character : *                : Read / Write]}{
 
 A title that may be displayed by the window manager when this menu is torn-off.  Default value: ""
 
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{double-arrows} [logical : Read]}{
+\item{\verb{double-arrows} [logical : Read]}{
 
 When scrolling, always show both arrows.  Default value: TRUE
 
 }
-\item{\code{horizontal-offset} [integer : Read]}{
+\item{\verb{horizontal-offset} [integer : Read]}{
 
 When the menu is a submenu, position it this number of pixels offset horizontally.  Default value: -2
 
 }
-\item{\code{horizontal-padding} [integer : Read]}{
+\item{\verb{horizontal-padding} [integer : Read]}{
 
 Extra space at the left and right edges of the menu.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{vertical-offset} [integer : Read]}{
+\item{\verb{vertical-offset} [integer : Read]}{
 
 When the menu is a submenu, position it this number of pixels offset vertically.  Default value: 0
 
 }
-\item{\code{vertical-padding} [integer : Read]}{
+\item{\verb{vertical-padding} [integer : Read]}{
 
 Extra space at the top and bottom of the menu.  Allowed values: >= 0  Default value: 1
 

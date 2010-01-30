@@ -7,8 +7,8 @@ Inserts \code{items} at the beginning of the \code{list}.
 }
 \usage{gtkListPrependItems(object, items)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkList}}] the list widget.}
-\item{\code{items}}{[list] the items.}
+\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
+\item{\verb{items}}{[list] the items.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

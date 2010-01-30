@@ -8,9 +8,9 @@ again, and not all window managers honor requests to unfullscreen
 windows. But normally the window will end up restored to its normal
 state. Just don't write code that crashes if not.}
 \usage{gtkWindowUnfullscreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\details{You can track the fullscreen state via the "window\_state\_event" signal
-on \code{\link{GtkWidget}}.  
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
+\details{You can track the fullscreen state via the "window_state_event" signal
+on \verb{\link{GtkWidget}}.  
 
   Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -3,6 +3,6 @@
 \title{gdkWindowRegisterDnd}
 \description{Registers a window as a potential drop destination.}
 \usage{gdkWindowRegisterDnd(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}] a \code{\link{GdkWindow}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}] a \verb{\link{GdkWindow}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

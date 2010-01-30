@@ -3,7 +3,7 @@
 \title{gdkAtomName}
 \description{Determines the string corresponding to an atom.}
 \usage{gdkAtomName(atom)}
-\arguments{\item{\code{atom}}{[\code{\link{GdkAtom}}] a \code{\link{GdkAtom}}.}}
+\arguments{\item{\verb{atom}}{[\verb{\link{GdkAtom}}] a \verb{\link{GdkAtom}}.}}
 \value{[character] a newly-allocated string containing the string
           corresponding to \code{atom}. When you are done
           with the return value.}

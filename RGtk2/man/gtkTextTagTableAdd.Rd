@@ -5,8 +5,8 @@
 in the table.}
 \usage{gtkTextTagTableAdd(object, tag)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextTagTable}}]  a \code{\link{GtkTextTagTable}}}
-\item{\code{tag}}{[\code{\link{GtkTextTag}}]  a \code{\link{GtkTextTag}}}
+\item{\verb{object}}{[\verb{\link{GtkTextTagTable}}]  a \verb{\link{GtkTextTagTable}}}
+\item{\verb{tag}}{[\verb{\link{GtkTextTag}}]  a \verb{\link{GtkTextTag}}}
 }
 \details{\code{tag} must not be in a tag table already, and may not have
 the same name as an already-added tag.  }

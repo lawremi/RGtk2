@@ -5,7 +5,7 @@
 glyphs for all characters in the layout text were found, or more
 than zero otherwise.}
 \usage{pangoLayoutGetUnknownGlyphsCount(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{This function can be used to determine if there are any fonts
 available to render all characters in a certain string, or when
 used in combination with \code{PANGO_ATTR_FALLBACK}, to check if a

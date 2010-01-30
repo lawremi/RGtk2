@@ -1,18 +1,18 @@
 \alias{gtkTreeViewInsertColumnWithAttributes}
 \name{gtkTreeViewInsertColumnWithAttributes}
 \title{gtkTreeViewInsertColumnWithAttributes}
-\description{Creates a new \code{\link{GtkTreeViewColumn}} and inserts it into the \code{tree.view} at
+\description{Creates a new \verb{\link{GtkTreeViewColumn}} and inserts it into the \code{tree.view} at
 \code{position}.  If \code{position} is -1, then the newly created column is inserted at
 the end.  The column is initialized with the attributes given. If \code{tree.view}
-has "fixed\_height" mode enabled, then the new column will have its sizing
-property set to be GTK\_TREE\_VIEW\_COLUMN\_FIXED.}
+has "fixed_height" mode enabled, then the new column will have its sizing
+property set to be GTK_TREE_VIEW_COLUMN_FIXED.}
 \usage{gtkTreeViewInsertColumnWithAttributes(object, position, title, cell, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{position}}{[integer]  The position to insert the new column in.}
-\item{\code{title}}{[character]  The title to set the header to.}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  The \code{\link{GtkCellRenderer}}.}
-\item{\code{...}}{ A list of attributes.}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{position}}{[integer]  The position to insert the new column in.}
+\item{\verb{title}}{[character]  The title to set the header to.}
+\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  The \verb{\link{GtkCellRenderer}}.}
+\item{\verb{...}}{ A list of attributes.}
 }
 \value{[integer]  The number of columns in \code{tree.view} after insertion.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -6,8 +6,8 @@ path if filled, achieves an effect similar to that of
 \code{\link{cairoShowGlyphs}}.}
 \usage{cairoGlyphPath(cr, glyphs)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{glyphs}}{[\code{\link{CairoGlyph}}]  list of glyphs to show}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{glyphs}}{[\verb{\link{CairoGlyph}}]  list of glyphs to show}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

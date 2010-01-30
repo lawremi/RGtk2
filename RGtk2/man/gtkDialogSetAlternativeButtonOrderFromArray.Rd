@@ -2,13 +2,13 @@
 \name{gtkDialogSetAlternativeButtonOrderFromArray}
 \title{gtkDialogSetAlternativeButtonOrderFromArray}
 \description{Sets an alternative button order. If the 
-\code{"gtk-alternative-button-order"} setting is set to \code{TRUE}, 
+\verb{"gtk-alternative-button-order"} setting is set to \code{TRUE}, 
 the dialog buttons are reordered according to the order of the 
 response ids in \code{new.order}.}
 \usage{gtkDialogSetAlternativeButtonOrderFromArray(object, new.order)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}
-\item{\code{new.order}}{[integer]  a list of response ids of \code{dialog}'s buttons}
+\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
+\item{\verb{new.order}}{[integer]  a list of response ids of \code{dialog}'s buttons}
 }
 \details{See \code{\link{gtkDialogSetAlternativeButtonOrder}} for more information.
   

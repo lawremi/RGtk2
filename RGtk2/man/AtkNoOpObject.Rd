@@ -7,15 +7,15 @@
 \code{\link{atkNoOpObjectNew}(obj)}\cr
 \code{atkNoOpObject(obj)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{AtkObject}
+\section{Hierarchy}{\preformatted{GObject
+   +----AtkObject
          +----AtkNoOpObject}}
 \section{Interfaces}{AtkNoOpObject implements
- \code{\link{AtkAction}},  \code{\link{AtkComponent}},  \code{\link{AtkDocument}},  \code{\link{AtkEditableText}},  \code{\link{AtkHypertext}},  \code{\link{AtkImage}},  \code{\link{AtkSelection}},  \code{\link{AtkTable}},  \code{\link{AtkText}} and  \code{\link{AtkValue}}.}
+ \verb{\link{AtkAction}},  \verb{\link{AtkComponent}},  \verb{\link{AtkDocument}},  \verb{\link{AtkEditableText}},  \verb{\link{AtkHypertext}},  \verb{\link{AtkImage}},  \verb{\link{AtkSelection}},  \verb{\link{AtkTable}},  \verb{\link{AtkText}} and  \verb{\link{AtkValue}}.}
 \section{Detailed Description}{An AtkNoOpObject is an AtkObject which purports to implement all ATK 
 interfaces. It is the type of AtkObject which is created if an accessible
 object is requested for an object type for which no factory type is specified.}
-\section{Structures}{\describe{\item{\code{AtkNoOpObject}}{
+\section{Structures}{\describe{\item{\verb{AtkNoOpObject}}{
 The AtkNoOpObject structure should not be accessed directly.
 
 }}}

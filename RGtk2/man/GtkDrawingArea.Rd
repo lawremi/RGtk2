@@ -8,15 +8,15 @@
 \code{\link{gtkDrawingAreaSize}(object, width, height)}\cr
 \code{gtkDrawingArea(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkDrawingArea
-                           +----\link{GtkCurve}}}
+                           +----GtkCurve}}
 \section{Interfaces}{GtkDrawingArea implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkDrawingArea}} widget is used for creating custom user interface
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkDrawingArea}} widget is used for creating custom user interface
 elements. It's essentially a blank widget; you can draw on
 \code{widget->window}. After creating a drawing area,
 the application may want to connect to:
@@ -30,10 +30,10 @@ the application may want to connect to:
     when the widget is instantiated on a particular display.
     (Create GDK resources in response to this signal.)
     
-\item     The "configure\_event" signal to take any necessary actions
+\item     The "configure_event" signal to take any necessary actions
     when the widget changes size.
     
-\item     The "expose\_event" signal to handle redrawing the
+\item     The "expose_event" signal to handle redrawing the
     contents of the widget.
     
 }
@@ -68,17 +68,17 @@ region" of the drawing area's window; \code{\link{gtkWidgetQueueDrawArea}} and
 then get an expose event for the invalid region.
   
 The available routines for drawing are documented on the GDK Drawing Primitives page.
-See also \code{\link{gdkDrawPixbuf}} for drawing a \code{\link{GdkPixbuf}}.
+See also \code{\link{gdkDrawPixbuf}} for drawing a \verb{\link{GdkPixbuf}}.
   
 To receive mouse events on a drawing area, you will need to enable
 them with \code{\link{gtkWidgetAddEvents}}. To receive keyboard events, you
-will need to set the \code{GTK_CAN_FOCUS} flag on the drawing area, and
+will need to set the \verb{GTK_CAN_FOCUS} flag on the drawing area, and
 should probably draw some user-visible indication that the drawing
 area is focused. Use the \code{gtkHasFocus()} function in your expose event
 handler to decide whether to draw the focus indicator. See
 \code{\link{gtkPaintFocus}} for one way to draw focus.}
-\section{Structures}{\describe{\item{\code{GtkDrawingArea}}{
-The \code{\link{GtkDrawingArea}} struct contains private data only, and
+\section{Structures}{\describe{\item{\verb{GtkDrawingArea}}{
+The \verb{\link{GtkDrawingArea}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -86,10 +86,10 @@ should be accessed using the functions below.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkDrawingArea.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkImage}}
-\code{\link{GdkPixmap}}
-\code{\link{GtkImage}}
-\code{\link{GdkPixmap}}
-\code{\link{GtkImage}}
+\verb{\link{GtkImage}}
+\verb{\link{GdkPixmap}}
+\verb{\link{GtkImage}}
+\verb{\link{GdkPixmap}}
+\verb{\link{GtkImage}}
 }
 \keyword{internal}

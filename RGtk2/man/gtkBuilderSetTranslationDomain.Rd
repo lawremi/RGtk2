@@ -2,11 +2,11 @@
 \name{gtkBuilderSetTranslationDomain}
 \title{gtkBuilderSetTranslationDomain}
 \description{Sets the translation domain of \code{builder}. 
-See \code{"translation-domain"}.}
+See \verb{"translation-domain"}.}
 \usage{gtkBuilderSetTranslationDomain(object, domain)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBuilder}}]  a \code{\link{GtkBuilder}}}
-\item{\code{domain}}{[character]  the translation domain or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
+\item{\verb{domain}}{[character]  the translation domain or \code{NULL}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

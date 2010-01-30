@@ -5,8 +5,8 @@
 were added as a result of growing the list.}
 \usage{pangoTabArrayResize(object, new.size)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoTabArray}}]  a \code{\link{PangoTabArray}}}
-\item{\code{new.size}}{[integer]  new size of the list}
+\item{\verb{object}}{[\verb{\link{PangoTabArray}}]  a \verb{\link{PangoTabArray}}}
+\item{\verb{new.size}}{[integer]  new size of the list}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

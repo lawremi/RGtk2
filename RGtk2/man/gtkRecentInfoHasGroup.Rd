@@ -5,8 +5,8 @@
 recently used item \code{info}.}
 \usage{gtkRecentInfoHasGroup(object, group.name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}
-\item{\code{group.name}}{[character]  name of a group}
+\item{\verb{object}}{[\verb{\link{GtkRecentInfo}}]  a \verb{\link{GtkRecentInfo}}}
+\item{\verb{group.name}}{[character]  name of a group}
 }
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the group was found.}

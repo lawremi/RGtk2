@@ -6,7 +6,7 @@ colormap rather than trying to find a best fit with the colors already
 allocated. Ordinarily, GdkRGB will install a colormap only if a
 sufficient cube cannot be allocated.}
 \usage{gdkRgbSetInstall(install)}
-\arguments{\item{\code{install}}{[logical] \code{TRUE} to set install mode.}}
+\arguments{\item{\verb{install}}{[logical] \code{TRUE} to set install mode.}}
 \details{A private colormap has more colors, leading to better quality display,
 but also leads to the dreaded "colormap flashing" effect.}
 \author{Derived by RGtkGen from GTK+ documentation}

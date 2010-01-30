@@ -7,14 +7,14 @@ Loads a fontset for use on \code{display}.
 }
 \usage{gdkFontsetLoadForDisplay(display, fontset.name)}
 \arguments{
-\item{\code{display}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}
-\item{\code{fontset.name}}{[character]  a comma-separated list of XLFDs describing
+\item{\verb{display}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
+\item{\verb{fontset.name}}{[character]  a comma-separated list of XLFDs describing
   the component fonts of the fontset to load.}
 }
 \details{The fontset may be newly loaded or looked up in a cache. 
 You should make no assumptions about the initial reference count.  
 
   Since  2.2}
-\value{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}, or \code{NULL} if the fontset could not be loaded.}
+\value{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}, or \code{NULL} if the fontset could not be loaded.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

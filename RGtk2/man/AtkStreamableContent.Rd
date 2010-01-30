@@ -23,7 +23,7 @@ stored, or converted, then use of the AtkStreamableContent interface can help
 address performance issues. Unlike most ATK interfaces,
 this interface is not strongly tied to the current user-agent view of the
 a particular document, but may in some cases give access to the underlying model data.}
-\section{Structures}{\describe{\item{\code{AtkStreamableContent}}{
+\section{Structures}{\describe{\item{\verb{AtkStreamableContent}}{
 The AtkStreamableContent structure does not contain any fields.
 
 }}}

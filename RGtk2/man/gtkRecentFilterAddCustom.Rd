@@ -8,12 +8,12 @@ this allows GTK+ to avoid retrieving expensive information when
 it isn't needed by the filter.}
 \usage{gtkRecentFilterAddCustom(object, needed, func, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentFilter}}]  a \code{\link{GtkRecentFilter}}}
-\item{\code{needed}}{[\code{\link{GtkRecentFilterFlags}}]  bitfield of flags indicating the information that the custom
+\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}
+\item{\verb{needed}}{[\code{\link{GtkRecentFilterFlags}}]  bitfield of flags indicating the information that the custom
          filter function needs.}
-\item{\code{func}}{[\code{\link{GtkRecentFilterFunc}}]  callback function; if the function returns \code{TRUE}, then
+\item{\verb{func}}{[\verb{\link{GtkRecentFilterFunc}}]  callback function; if the function returns \code{TRUE}, then
   the file will be displayed.}
-\item{\code{data}}{[R object]  data to pass to \code{func}}
+\item{\verb{data}}{[R object]  data to pass to \code{func}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

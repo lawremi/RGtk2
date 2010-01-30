@@ -8,9 +8,9 @@ stroke. The \code{offset} specifies an offset into the pattern at which
 the stroke begins.}
 \usage{cairoSetDash(cr, dashes, offset)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{dashes}}{[numeric]  a list specifying alternate lengths of on and off stroke portions}
-\item{\code{offset}}{[numeric]  an offset into the dash pattern at which the stroke should start}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{dashes}}{[numeric]  a list specifying alternate lengths of on and off stroke portions}
+\item{\verb{offset}}{[numeric]  an offset into the dash pattern at which the stroke should start}
 }
 \details{Each "on" segment will have caps applied as if the segment were a
 separate sub-path. In particular, it is valid to use an "on" length
@@ -29,6 +29,6 @@ on and off portions of the size specified by the single value in
   
 If any value in \code{dashes} is negative, or if all values are 0, then
 \code{cr} will be put into an error state with a status of
-\#\code{CAIRO_STATUS_INVALID_DASH}.  }
+#\code{CAIRO_STATUS_INVALID_DASH}.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

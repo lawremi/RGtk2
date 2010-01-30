@@ -4,8 +4,8 @@
 \description{Sets the value of \code{GTK_PRINT_SETTINGS_FINISHINGS}.}
 \usage{gtkPrintSettingsSetFinishings(object, finishings)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{finishings}}{[character]  the finishings}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{finishings}}{[character]  the finishings}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

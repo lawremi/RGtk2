@@ -7,8 +7,8 @@ must have previously been added to the list with
 \code{\link{gtkWidgetAddMnemonicLabel}}.}
 \usage{gtkWidgetRemoveMnemonicLabel(object, label)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{label}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} that was previously set as a mnemnic label for
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{label}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that was previously set as a mnemnic label for
         \code{widget} with \code{\link{gtkWidgetAddMnemonicLabel}}.}
 }
 \details{  Since  2.4}

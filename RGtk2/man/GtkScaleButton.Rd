@@ -12,22 +12,22 @@
 \code{\link{gtkScaleButtonGetValue}(object)}\cr
 \code{gtkScaleButton(size, min, max, step, icons, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkScaleButton
-                                             +----\link{GtkVolumeButton}}}
+                                             +----GtkVolumeButton}}
 \section{Interfaces}{GtkScaleButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkScaleButton}} provides a button which pops up a scale widget. 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkScaleButton}} provides a button which pops up a scale widget. 
 This kind of widget is commonly used for volume controls in multimedia
-applications, and GTK+ provides a \code{\link{GtkVolumeButton}} subclass that
+applications, and GTK+ provides a \verb{\link{GtkVolumeButton}} subclass that
 is tailored for this use case.}
-\section{Structures}{\describe{\item{\code{GtkScaleButton}}{
+\section{Structures}{\describe{\item{\verb{GtkScaleButton}}{
 \emph{undocumented
 }
 
@@ -44,7 +44,7 @@ The default binding for this signal is Escape.
   Since  2.12
 
 \describe{
-\item{\code{button}}{[\code{\link{GtkScaleButton}}]  the object which received the signal}
+\item{\code{button}}{[\verb{\link{GtkScaleButton}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -60,7 +60,7 @@ The default bindings for this signal are Space, Enter and Return.
   Since  2.12
 
 \describe{
-\item{\code{button}}{[\code{\link{GtkScaleButton}}]  the object which received the signal}
+\item{\code{button}}{[\verb{\link{GtkScaleButton}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -73,7 +73,7 @@ changed.
   Since  2.12
 
 \describe{
-\item{\code{button}}{[\code{\link{GtkScaleButton}}]  the object which received the signal}
+\item{\code{button}}{[\verb{\link{GtkScaleButton}}]  the object which received the signal}
 \item{\code{value}}{[numeric]  the new value}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -82,12 +82,12 @@ changed.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{adjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{
+\item{\verb{adjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The GtkAdjustment that contains the current value of this scale button object.
 
 }
-\item{\code{icons} [character list : Read / Write]}{
+\item{\verb{icons} [character list : *                : Read / Write]}{
 
 The names of the icons to be used by the scale button. 
 The first item in the list will be used in the button 
@@ -102,18 +102,18 @@ the \code{icons} list, the first one will be used for the bottom
 50\% of the scale, and the second one for the top 50\%.
   
 It is recommended to use at least 3 icons so that the 
-\code{\link{GtkScaleButton}} reflects the current value of the scale 
+\verb{\link{GtkScaleButton}} reflects the current value of the scale 
 better for the users.  
 
   Since  2.12
 
 }
-\item{\code{size} [\code{\link{GtkIconSize}} : Read / Write]}{
+\item{\verb{size} [\code{\link{GtkIconSize}} : Read / Write]}{
 
-The icon size.  Default value: GTK\_ICON\_SIZE\_SMALL\_TOOLBAR
+The icon size.  Default value: GTK_ICON_SIZE_SMALL_TOOLBAR
 
 }
-\item{\code{value} [numeric : Read / Write]}{
+\item{\verb{value} [numeric : Read / Write]}{
 
 The value of the scale.  Default value: 0
 

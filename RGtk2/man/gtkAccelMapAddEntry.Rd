@@ -17,9 +17,9 @@ So a full valid accelerator path may look like:
 "<Gimp-Toolbox>/File/Dialogs/Tool Options...".}
 \usage{gtkAccelMapAddEntry(accel.path, accel.key, accel.mods)}
 \arguments{
-\item{\code{accel.path}}{[character]  valid accelerator path}
-\item{\code{accel.key}}{[numeric]   the accelerator key}
-\item{\code{accel.mods}}{[\code{\link{GdkModifierType}}]  the accelerator modifiers}
+\item{\verb{accel.path}}{[character]  valid accelerator path}
+\item{\verb{accel.key}}{[numeric]   the accelerator key}
+\item{\verb{accel.mods}}{[\code{\link{GdkModifierType}}]  the accelerator modifiers}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

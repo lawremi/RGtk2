@@ -4,9 +4,9 @@
 \description{This function adds the print settings from \code{settings} to \code{key.file}.}
 \usage{gtkPrintSettingsToKeyFile(object, key.file, group.name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key.file}}{[GKeyFile]  the \code{GKeyFile} to save the print settings to}
-\item{\code{group.name}}{[character]  the group to add the settings to in \code{key.file}, or 
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key.file}}{[GKeyFile]  the \verb{GKeyFile} to save the print settings to}
+\item{\verb{group.name}}{[character]  the group to add the settings to in \code{key.file}, or 
     \code{NULL} to use the default "Print Settings"}
 }
 \details{  Since  2.12}

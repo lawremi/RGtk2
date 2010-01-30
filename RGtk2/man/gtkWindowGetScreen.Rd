@@ -1,10 +1,10 @@
 \alias{gtkWindowGetScreen}
 \name{gtkWindowGetScreen}
 \title{gtkWindowGetScreen}
-\description{Returns the \code{\link{GdkScreen}} associated with \code{window}.}
+\description{Returns the \verb{\link{GdkScreen}} associated with \code{window}.}
 \usage{gtkWindowGetScreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}.}}
 \details{  Since  2.2}
-\value{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}.}
+\value{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

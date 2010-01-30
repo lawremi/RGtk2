@@ -5,6 +5,6 @@
 than cairo, and that cairo should reread any cached areas. Note
 that you must call \code{\link{cairoSurfaceFlush}} before doing such drawing.}
 \usage{cairoSurfaceMarkDirty(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

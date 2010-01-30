@@ -9,8 +9,8 @@ buffer). The return value indicates whether the new position of
 is 0, the function does nothing and returns \code{FALSE}.}
 \usage{gtkTextIterForwardChars(object, count)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}
-\item{\code{count}}{[integer]  number of characters to move, may be negative}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}
+\item{\verb{count}}{[integer]  number of characters to move, may be negative}
 }
 \value{[logical]  whether \code{iter} moved and is dereferenceable}
 \author{Derived by RGtkGen from GTK+ documentation}

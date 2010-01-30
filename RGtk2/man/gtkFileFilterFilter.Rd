@@ -2,17 +2,17 @@
 \name{gtkFileFilterFilter}
 \title{gtkFileFilterFilter}
 \description{Tests whether a file should be displayed according to \code{filter}.
-The \code{\link{GtkFileFilterInfo}} structure \code{filter.info} should include
+The \verb{\link{GtkFileFilterInfo}} structure \code{filter.info} should include
 the fields returned from \code{\link{gtkFileFilterGetNeeded}}.}
 \usage{gtkFileFilterFilter(object, filter.info)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}
-\item{\code{filter.info}}{[\code{\link{GtkFileFilterInfo}}]  a \code{\link{GtkFileFilterInfo}} structure containing information
+\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}
+\item{\verb{filter.info}}{[\verb{\link{GtkFileFilterInfo}}]  a \verb{\link{GtkFileFilterInfo}} structure containing information
  about a file.}
 }
 \details{This function will not typically be used by applications; it
 is intended principally for use in the implementation of
-\code{\link{GtkFileChooser}}.  
+\verb{\link{GtkFileChooser}}.  
 
   Since  2.4}
 \value{[logical] \code{TRUE} if the file should be displayed}

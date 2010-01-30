@@ -12,8 +12,8 @@ update in one smooth step, and don't see individual graphics
 primitives being rendered.}
 \usage{gtkWidgetSetDoubleBuffered(object, double.buffered)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{double.buffered}}{[logical] \code{TRUE} to double-buffer a widget}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{double.buffered}}{[logical] \code{TRUE} to double-buffer a widget}
 }
 \details{In very simple terms, double buffered widgets don't flicker,
 so you would only use this function to turn off double buffering

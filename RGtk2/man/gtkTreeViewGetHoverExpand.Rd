@@ -3,7 +3,7 @@
 \title{gtkTreeViewGetHoverExpand}
 \description{Returns whether hover expansion mode is turned on for \code{tree.view}.}
 \usage{gtkTreeViewGetHoverExpand(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}}
 \details{  Since  2.6 }
 \value{[logical] \code{TRUE} if \code{tree.view} is in hover expansion mode}
 \author{Derived by RGtkGen from GTK+ documentation}

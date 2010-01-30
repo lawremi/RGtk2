@@ -3,7 +3,7 @@
 \title{gtkColorButtonGetUseAlpha}
 \description{Does the color selection dialog use the alpha channel?}
 \usage{gtkColorButtonGetUseAlpha(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkColorButton}}]  a \code{\link{GtkColorButton}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkColorButton}}]  a \verb{\link{GtkColorButton}}.}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the color sample uses alpha channel, \code{FALSE} if not.}
 \author{Derived by RGtkGen from GTK+ documentation}

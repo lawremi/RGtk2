@@ -6,11 +6,11 @@ the columns and values as two lists, instead of varargs.  This
 function is mainly intended for language bindings.}
 \usage{gtkTreeStoreInsertWithValuesv(object, parent, position, columns, values)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}}
-\item{\code{parent}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}, or \code{NULL}}
-\item{\code{position}}{[integer]  position to insert the new row}
-\item{\code{columns}}{[integer]  a list of column numbers}
-\item{\code{values}}{[R object]  a list of GValues}
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
+\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}, or \code{NULL}}
+\item{\verb{position}}{[integer]  position to insert the new row}
+\item{\verb{columns}}{[integer]  a list of column numbers}
+\item{\verb{values}}{[R object]  a list of GValues}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

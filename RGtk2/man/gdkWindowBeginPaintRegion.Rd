@@ -12,8 +12,8 @@ the part of \code{window} contained in \code{region} will be modified; that is,
 drawing operations are clipped to \code{region}.}
 \usage{gdkWindowBeginPaintRegion(object, region)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{region}}{[\code{\link{GdkRegion}}]  region you intend to draw to}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{region}}{[\verb{\link{GdkRegion}}]  region you intend to draw to}
 }
 \details{The net result of all this is to remove flicker, because the user
 sees the finished product appear all at once when you call
@@ -26,9 +26,9 @@ programmer, so you can avoid doing that work yourself.
   
 When using GTK+, the widget system automatically places calls to
 \code{\link{gdkWindowBeginPaintRegion}} and \code{\link{gdkWindowEndPaint}} around
-emissions of the expose\_event signal. That is, if you're writing an
+emissions of the expose_event signal. That is, if you're writing an
 expose event handler, you can assume that the exposed area in
-\code{\link{GdkEventExpose}} has already been cleared to the window background,
+\verb{\link{GdkEventExpose}} has already been cleared to the window background,
 is already set as the clip region, and already has a backing store.
 Therefore in most cases, application code need not call
 \code{\link{gdkWindowBeginPaintRegion}}. (You can disable the automatic

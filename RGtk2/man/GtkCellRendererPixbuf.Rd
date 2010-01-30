@@ -7,17 +7,17 @@
 \code{\link{gtkCellRendererPixbufNew}()}\cr
 \code{gtkCellRendererPixbuf()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkCellRenderer}
+         +----GtkObject
+               +----GtkCellRenderer
                      +----GtkCellRendererPixbuf}}
-\section{Detailed Description}{A \code{\link{GtkCellRendererPixbuf}} can be used to render an image in a cell. It allows to render 
-either a given \code{\link{GdkPixbuf}} (set via the 
+\section{Detailed Description}{A \verb{\link{GtkCellRendererPixbuf}} can be used to render an image in a cell. It allows to render 
+either a given \verb{\link{GdkPixbuf}} (set via the 
 pixbuf property) or a stock icon 
 (set via the stock-id property).
   
-To support the tree view, \code{\link{GtkCellRendererPixbuf}} also supports rendering two alternative 
+To support the tree view, \verb{\link{GtkCellRendererPixbuf}} also supports rendering two alternative 
 pixbufs, when the is-expander property 
 is \code{TRUE}. If the is-expanded property 
 is \code{TRUE} and the 
@@ -27,14 +27,14 @@ is-expanded property is \code{FALSE} and
 the 
 pixbuf-expander-closed 
 property is set to a pixbuf, it renders that one. }
-\section{Structures}{\describe{\item{\code{GtkCellRendererPixbuf}}{
+\section{Structures}{\describe{\item{\verb{GtkCellRendererPixbuf}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererPixbuf} is the equivalent of \code{\link{gtkCellRendererPixbufNew}}.}
 \section{Properties}{\describe{
-\item{\code{follow-state} [logical : Read / Write]}{
+\item{\verb{follow-state} [logical : Read / Write]}{
 
 Specifies whether the rendered pixbuf should be colorized
 according to the \code{\link{GtkCellRendererState}}.  
@@ -42,41 +42,41 @@ according to the \code{\link{GtkCellRendererState}}.
   Default value: FALSE  Since  2.8
 
 }
-\item{\code{icon-name} [character : Read / Write]}{
+\item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The name of the themed icon to display.
-This property only has an effect if not overridden by "stock\_id" 
+This property only has an effect if not overridden by "stock_id" 
 or "pixbuf" properties.  
 
   Default value: NULL  Since  2.8 
 
 }
-\item{\code{pixbuf} [\code{\link{GdkPixbuf}} : Read / Write]}{
+\item{\verb{pixbuf} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 The pixbuf to render.
 
 }
-\item{\code{pixbuf-expander-closed} [\code{\link{GdkPixbuf}} : Read / Write]}{
+\item{\verb{pixbuf-expander-closed} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 Pixbuf for closed expander.
 
 }
-\item{\code{pixbuf-expander-open} [\code{\link{GdkPixbuf}} : Read / Write]}{
+\item{\verb{pixbuf-expander-open} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 Pixbuf for open expander.
 
 }
-\item{\code{stock-detail} [character : Read / Write]}{
+\item{\verb{stock-detail} [character : *                : Read / Write]}{
 
 Render detail to pass to the theme engine.  Default value: NULL
 
 }
-\item{\code{stock-id} [character : Read / Write]}{
+\item{\verb{stock-id} [character : *                : Read / Write]}{
 
 The stock ID of the stock icon to render.  Default value: NULL
 
 }
-\item{\code{stock-size} [numeric : Read / Write]}{
+\item{\verb{stock-size} [numeric : Read / Write]}{
 
 The GtkIconSize value that specifies the size of the rendered icon.  Default value: 1
 

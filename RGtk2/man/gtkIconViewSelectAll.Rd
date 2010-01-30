@@ -2,9 +2,9 @@
 \name{gtkIconViewSelectAll}
 \title{gtkIconViewSelectAll}
 \description{Selects all the icons. \code{icon.view} must has its selection mode set
-to \code{GTK_SELECTION_MULTIPLE}.}
+to \verb{GTK_SELECTION_MULTIPLE}.}
 \usage{gtkIconViewSelectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}.}}
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

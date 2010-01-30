@@ -9,11 +9,11 @@ Window Manager Hints (\url{http://www.org/Standards/wm-spec}), but has a fallbac
 other window managers.}
 \usage{gdkWindowBeginMoveDrag(object, button, root.x, root.y, timestamp)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{button}}{[integer]  the button being used to drag}
-\item{\code{root.x}}{[integer]  root window X coordinate of mouse click that began the drag}
-\item{\code{root.y}}{[integer]  root window Y coordinate of mouse click that began the drag}
-\item{\code{timestamp}}{[numeric]  timestamp of mouse click that began the drag}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{button}}{[integer]  the button being used to drag}
+\item{\verb{root.x}}{[integer]  root window X coordinate of mouse click that began the drag}
+\item{\verb{root.y}}{[integer]  root window Y coordinate of mouse click that began the drag}
+\item{\verb{timestamp}}{[numeric]  timestamp of mouse click that began the drag}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

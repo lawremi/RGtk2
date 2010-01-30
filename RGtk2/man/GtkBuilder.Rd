@@ -11,7 +11,7 @@
 \code{\link{gtkBuilderAddFromString}(object, buffer, length, .errwarn = TRUE)}\cr
 \code{\link{gtkBuilderGetObject}(object, name)}\cr
 \code{\link{gtkBuilderGetObjects}(object)}\cr
-\code{\link{gtkBuilderConnectSignals}(object, user.data)}\cr
+\code{\link{gtkBuilderConnectSignals}(object, user.data = NULL)}\cr
 \code{\link{gtkBuilderConnectSignalsFull}(object, func, user.data)}\cr
 \code{\link{gtkBuilderSetTranslationDomain}(object, domain)}\cr
 \code{\link{gtkBuilderGetTranslationDomain}(object)}\cr
@@ -20,7 +20,7 @@
 \code{\link{gtkBuilderValueFromStringType}(object, type, string, .errwarn = TRUE)}\cr
 \code{gtkBuilder()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkBuilder}}
 \section{Detailed Description}{A GtkBuilder is an auxiliary object that reads textual descriptions
 of a user interface and instantiates the described objects. To pass a 
@@ -96,13 +96,13 @@ an <object> element which describes the child object.
 Typically, the specific kind of object represented by an
 <object> element is specified by the "class" attribute.
 If the type has not been loaded yet, GTK+ tries to find the
-\code{\code{gettype()}} from the class name by applying 
+\code{getType()} from the class name by applying 
 heuristics. This works in most cases, but if necessary, it is
-possible to specify the name of the \code{\code{gettype()}} 
+possible to specify the name of the \code{getType()} 
 explictly with the "type-func" attribute. As a special case, 
 GtkBuilder allows to use an object that has been constructed
-by a \code{\link{GtkUIManager}} in another part of the UI definition by
-specifying the id of the \code{\link{GtkUIManager}} in the "constructor"
+by a \verb{\link{GtkUIManager}} in another part of the UI definition by
+specifying the id of the \verb{\link{GtkUIManager}} in the "constructor"
 attribute and the name of the object in the "id" attribute.
   
 Objects must be given a name with the "id" attribute, which 
@@ -129,7 +129,7 @@ interpreted as \code{TRUE}, strings like "FALSE, "f", "no", "n", "0" are
 interpreted as \code{FALSE}), enumerations (can be specified by their 
 name, nick or integer value), flags (can be specified by their name, 
 nick, integer value, optionally combined with "|", e.g. 
-"GTK\_VISIBLE|GTK\_REALIZED")  and colors (in a format understood by 
+"GTK_VISIBLE|GTK_REALIZED")  and colors (in a format understood by 
 \code{\link{gdkColorParse}}). Objects can be referred to by their name. 
 Pixbufs can be specified as a filename of an image file to load.
 In general, GtkBuilder allows forward references to objects -- 
@@ -141,17 +141,17 @@ Signal handlers are set up with the <signal> element.
 The "name" attribute specifies the name of the signal, and the
 "handler" attribute specifies the function to connect to the signal.
 By default, GTK+ tries to find the handler using \code{gModuleSymbol()},
-but this can be changed by passing a custom \code{\link{GtkBuilderConnectFunc}}
+but this can be changed by passing a custom \verb{\link{GtkBuilderConnectFunc}}
 to \code{\link{gtkBuilderConnectSignalsFull}}. The remaining attributes,
 "after", "swapped" and "object", have the same meaning as the 
 corresponding parameters of the \code{gSignalConnectObject()} or
-\code{gSignalConnectData()} functions. A "last\_modification\_time" attribute
+\code{gSignalConnectData()} functions. A "last_modification_time" attribute
 is also allowed, but it does not have a meaning to the builder.
   
 Sometimes it is necessary to refer to widgets which have implicitly
 been constructed by GTK+ as part of a composite widget, to set 
 properties on them or to add further children (e.g. the \code{vbox} 
-of a \code{\link{GtkDialog}}). This can be achieved by setting the "internal-child"
+of a \verb{\link{GtkDialog}}). This can be achieved by setting the "internal-child"
 propery of the <child> element to a true value. Note that
 GtkBuilder still requires an <object> element for the internal
 child, even if it has already been constructed.
@@ -209,30 +209,30 @@ GtkSizeGroup,
 GtkTreeView,
 GtkUIManager,
 GtkActionGroup.}
-\section{Structures}{\describe{\item{\code{GtkBuilder}}{
+\section{Structures}{\describe{\item{\verb{GtkBuilder}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkBuilder} is the equivalent of \code{\link{gtkBuilderNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkBuilderError}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkBuilderError}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{invalid-type-function}}{\emph{undocumented
+\item{\verb{invalid-type-function}}{\emph{undocumented
 }}
-\item{\code{unhandled-tag}}{\emph{undocumented
+\item{\verb{unhandled-tag}}{\emph{undocumented
 }}
-\item{\code{missing-attribute}}{\emph{undocumented
+\item{\verb{missing-attribute}}{\emph{undocumented
 }}
-\item{\code{invalid-attribute}}{\emph{undocumented
+\item{\verb{invalid-attribute}}{\emph{undocumented
 }}
-\item{\code{invalid-tag}}{\emph{undocumented
+\item{\verb{invalid-tag}}{\emph{undocumented
 }}
-\item{\code{missing-property-value}}{\emph{undocumented
+\item{\verb{missing-property-value}}{\emph{undocumented
 }}
-\item{\code{invalid-value}}{\emph{undocumented
+\item{\verb{invalid-value}}{\emph{undocumented
 }}
 }
 
@@ -247,22 +247,22 @@ connection process.
   Since  2.12
 
 \describe{
-\item{\code{builder}}{[\code{\link{GtkBuilder}}]  a \code{\link{GtkBuilder}}}
-\item{\code{object}}{[\code{\link{GObject}}]  object to connect a signal to}
+\item{\code{builder}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
+\item{\code{object}}{[\verb{\link{GObject}}]  object to connect a signal to}
 \item{\code{signal.name}}{[character]  name of the signal}
 \item{\code{handler.name}}{[character]  name of the handler}
-\item{\code{connect.object}}{[\code{\link{GObject}}]  a \code{\link{GObject}}, if non-\code{NULL}, use \code{gSignalConnectObject()}}
+\item{\code{connect.object}}{[\verb{\link{GObject}}]  a \verb{\link{GObject}}, if non-\code{NULL}, use \code{gSignalConnectObject()}}
 \item{\code{flags}}{[\code{\link{GConnectFlags}}] \code{\link{GConnectFlags}} to use}
 \item{\code{user.data}}{[R object]  user data}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{translation-domain} [character : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{translation-domain} [character : *                : Read / Write]}{
 
 The translation domain used when translating property values that
 have been marked as translatable in interface descriptions.
-If the translation domain is \code{NULL}, \code{\link{GtkBuilder}} uses \code{gettext()},
+If the translation domain is \code{NULL}, \verb{\link{GtkBuilder}} uses \code{gettext()},
 otherwise \code{dgettext()}.  
 
   Default value: NULL  Since  2.12

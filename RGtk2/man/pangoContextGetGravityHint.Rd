@@ -4,7 +4,7 @@
 \description{Retrieves the gravity hint for the context. See
 \code{\link{pangoContextSetGravityHint}} for details.}
 \usage{pangoContextGetGravityHint(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}}
 \details{  Since  1.16}
 \value{[\code{\link{PangoGravityHint}}]  the gravity hint for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}

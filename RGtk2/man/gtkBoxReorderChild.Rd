@@ -3,14 +3,14 @@
 \title{gtkBoxReorderChild}
 \description{Moves \code{child} to a new \code{position} in the list of \code{box} children.  
 The list is the \code{children} field of
-\code{\link{GtkBox}}, and contains both widgets packed \code{GTK_PACK_START} 
-as well as widgets packed \code{GTK_PACK_END}, in the order that these 
+\verb{\link{GtkBox}}, and contains both widgets packed \verb{GTK_PACK_START} 
+as well as widgets packed \verb{GTK_PACK_END}, in the order that these 
 widgets were added to \code{box}.}
 \usage{gtkBoxReorderChild(object, child, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBox}}]  a \code{\link{GtkBox}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the \code{\link{GtkWidget}} to move}
-\item{\code{position}}{[integer]  the new position for \code{child} in the list of children 
+\item{\verb{object}}{[\verb{\link{GtkBox}}]  a \verb{\link{GtkBox}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the \verb{\link{GtkWidget}} to move}
+\item{\verb{position}}{[integer]  the new position for \code{child} in the list of children 
   of \code{box}, starting from 0. If negative, indicates the end of 
   the list}
 }

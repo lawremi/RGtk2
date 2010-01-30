@@ -7,15 +7,15 @@ The standard cursor size is 16 by 16 pixels. You can create a bitmap
 from inline data as in the below example.}
 \usage{gdkCursorNewFromPixmap(source, mask, fg, bg, x, y)}
 \arguments{
-\item{\code{source}}{[\code{\link{GdkPixmap}}]  the pixmap specifying the cursor.}
-\item{\code{mask}}{[\code{\link{GdkPixmap}}]  the pixmap specifying the mask, which must be the same size as 
+\item{\verb{source}}{[\verb{\link{GdkPixmap}}]  the pixmap specifying the cursor.}
+\item{\verb{mask}}{[\verb{\link{GdkPixmap}}]  the pixmap specifying the mask, which must be the same size as 
    \code{source}.}
-\item{\code{fg}}{[\code{\link{GdkColor}}]  the foreground color, used for the bits in the source which are 1.
+\item{\verb{fg}}{[\verb{\link{GdkColor}}]  the foreground color, used for the bits in the source which are 1.
    The color does not have to be allocated first. }
-\item{\code{bg}}{[\code{\link{GdkColor}}]  the background color, used for the bits in the source which are 0.
+\item{\verb{bg}}{[\verb{\link{GdkColor}}]  the background color, used for the bits in the source which are 0.
    The color does not have to be allocated first.}
-\item{\code{x}}{[integer]  the horizontal offset of the 'hotspot' of the cursor. }
-\item{\code{y}}{[integer]  the vertical offset of the 'hotspot' of the cursor.}
+\item{\verb{x}}{[integer]  the horizontal offset of the 'hotspot' of the cursor. }
+\item{\verb{y}}{[integer]  the vertical offset of the 'hotspot' of the cursor.}
 }
 \details{ \emph{Creating a custom cursor}
 \preformatted{
@@ -49,6 +49,6 @@ cursor <- gdkCursorNewFromPixmap(source, mask, fg, bg, 8, 8)
 
 widget[["window"]]$setCursor(cursor)
 }  }
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}.}
+\value{[\verb{\link{GdkCursor}}]  a new \verb{\link{GdkCursor}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

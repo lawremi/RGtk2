@@ -6,8 +6,8 @@ have the dimensions specified when the animation
 was constructed.}
 \usage{gdkPixbufSimpleAnimAddFrame(object, pixbuf)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbufSimpleAnim}}]  a \code{\link{GdkPixbufSimpleAnim}}}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  the pixbuf to add }
+\item{\verb{object}}{[\verb{\link{GdkPixbufSimpleAnim}}]  a \verb{\link{GdkPixbufSimpleAnim}}}
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}]  the pixbuf to add }
 }
 \details{  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

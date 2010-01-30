@@ -8,9 +8,9 @@ the user from resizing it larger than that specified.
 }
 \usage{gtkCListSetColumnMaxWidth(object, column, max.width)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{column}}{[integer] The column to set the maximum width.}
-\item{\code{max.width}}{[integer] The width, in pixels.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{column}}{[integer] The column to set the maximum width.}
+\item{\verb{max.width}}{[integer] The width, in pixels.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

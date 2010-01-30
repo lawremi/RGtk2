@@ -8,8 +8,8 @@ dragging-and-dropping text. Most other marks are not visible.
 Marks are not visible by default.}
 \usage{gtkTextMarkSetVisible(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}}
-\item{\code{setting}}{[logical]  visibility of mark}
+\item{\verb{object}}{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}}}
+\item{\verb{setting}}{[logical]  visibility of mark}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

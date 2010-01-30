@@ -4,7 +4,7 @@
 \description{Returns the column of \code{icon.view}'s model which is being used for
 displaying tooltips on \code{icon.view}'s rows.}
 \usage{gtkIconViewGetTooltipColumn(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}}
 \details{  Since  2.12}
 \value{[integer]  the index of the tooltip column that is currently being
 used, or -1 if this is disabled.}

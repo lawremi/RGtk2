@@ -16,20 +16,20 @@
 \code{\link{gtkColorButtonGetTitle}(object)}\cr
 \code{gtkColorButton(color, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkColorButton}}
 \section{Interfaces}{GtkColorButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkColorButton}} is a button which displays the currently selected color 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkColorButton}} is a button which displays the currently selected color 
 an allows to open a color selection dialog to change the color. It is suitable 
 widget for selecting a color in a preference dialog.}
-\section{Structures}{\describe{\item{\code{GtkColorButton}}{
+\section{Structures}{\describe{\item{\verb{GtkColorButton}}{
 The GtkColorButton struct has only private fields and 
 should not be used directly.
 
@@ -47,35 +47,35 @@ as well, use the notify::color signal.
   Since  2.4
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkColorButton}}]  the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkColorButton}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{alpha} [numeric : Read / Write]}{
+\item{\verb{alpha} [numeric : Read / Write]}{
 
 The selected opacity value (0 fully transparent, 65535 fully opaque).  
 
   Allowed values: <= 65535  Default value: 65535  Since  2.4
 
 }
-\item{\code{color} [\code{\link{GdkColor}} : Read / Write]}{
+\item{\verb{color} [\verb{\link{GdkColor}} : *             : Read / Write]}{
 
 The selected color.  
 
   Since  2.4
 
 }
-\item{\code{title} [character : Read / Write]}{
+\item{\verb{title} [character : *                : Read / Write]}{
 
 The title of the color selection dialog  
 
   Default value: "Pick a Color"  Since  2.4
 
 }
-\item{\code{use-alpha} [logical : Read / Write]}{
+\item{\verb{use-alpha} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the color swatch on the button is rendered against a 
 checkerboard background to show its opacity and the opacity slider is displayed in the 
@@ -88,7 +88,7 @@ color selection dialog.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkColorButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkColorSelectionDialog}}
-\code{\link{GtkFontButton}}
+\verb{\link{GtkColorSelectionDialog}}
+\verb{\link{GtkFontButton}}
 }
 \keyword{internal}

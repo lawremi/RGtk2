@@ -5,8 +5,8 @@
 with.}
 \usage{gtkIconSourceSetDirection(object, direction)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}
-\item{\code{direction}}{[\code{\link{GtkTextDirection}}]  text direction this source applies to}
+\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}
+\item{\verb{direction}}{[\code{\link{GtkTextDirection}}]  text direction this source applies to}
 }
 \details{Setting the text direction on an icon source makes no difference
 if the text direction is wildcarded. Therefore, you should usually

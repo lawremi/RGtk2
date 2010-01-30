@@ -4,8 +4,8 @@
 \description{Sets the current miter limit within the cairo context.}
 \usage{cairoSetMiterLimit(cr, limit)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{limit}}{[numeric]  miter limit to set}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{limit}}{[numeric]  miter limit to set}
 }
 \details{If the current line join style is set to \code{CAIRO_LINE_JOIN_MITER}
 (see \code{\link{cairoSetLineJoin}}), the miter limit is used to determine

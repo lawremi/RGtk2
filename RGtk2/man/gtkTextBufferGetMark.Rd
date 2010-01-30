@@ -5,9 +5,9 @@
 mark exists in the buffer.}
 \usage{gtkTextBufferGetMark(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{name}}{[character]  a mark name}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{name}}{[character]  a mark name}
 }
-\value{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}, or \code{NULL}}
+\value{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

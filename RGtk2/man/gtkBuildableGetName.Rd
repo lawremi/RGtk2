@@ -3,8 +3,8 @@
 \title{gtkBuildableGetName}
 \description{Gets the name of the \code{buildable} object. }
 \usage{gtkBuildableGetName(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkBuildable}}]  a \code{\link{GtkBuildable}}}}
-\details{\code{\link{GtkBuilder}} sets the name based on the the 
+\arguments{\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  a \verb{\link{GtkBuildable}}}}
+\details{\verb{\link{GtkBuilder}} sets the name based on the the 
 GtkBuilder UI definition 
 used to construct the \code{buildable}.  
 

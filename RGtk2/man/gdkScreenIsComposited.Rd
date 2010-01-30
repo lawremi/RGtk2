@@ -5,7 +5,7 @@
 be expected to have their alpha channel drawn correctly on
 the screen.}
 \usage{gdkScreenIsComposited(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
 \details{On X11 this function returns whether a compositing manager is
 compositing \code{screen}.  
 

@@ -6,7 +6,7 @@ not appear on the screen. If you want to show all the widgets in a
 container, it's easier to call \code{\link{gtkWidgetShowAll}} on the
 container, instead of individually showing the widgets.}
 \usage{gtkWidgetShow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{Remember that you have to show the containers containing a widget,
 in addition to the widget itself, before it will appear onscreen.
   

@@ -5,7 +5,7 @@
 menu or list.  For example, calling this function on an item that refers to
 "file:///foo/bar.txt" will yield "bar.txt".}
 \usage{gtkRecentInfoGetShortName(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  an \code{\link{GtkRecentInfo}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRecentInfo}}]  an \verb{\link{GtkRecentInfo}}}}
 \details{  Since  2.10}
 \value{[character] .}
 \author{Derived by RGtkGen from GTK+ documentation}

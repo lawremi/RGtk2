@@ -5,9 +5,9 @@
 See also \code{\link{gtkTooltipSetTipArea}}.}
 \usage{gtkTreeViewSetTooltipRow(object, tooltip, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{tooltip}}{[\code{\link{GtkTooltip}}]  a \code{\link{GtkTooltip}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}}}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
+\item{\verb{tooltip}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,9 +8,9 @@ or the range is a prefix of the tag, and the character after it
 in the tag is '-'.}
 \usage{pangoLanguageMatches(object, range.list)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLanguage}}]  a language tag (see \code{\link{pangoLanguageFromString}}),
+\item{\verb{object}}{[\verb{\link{PangoLanguage}}]  a language tag (see \code{\link{pangoLanguageFromString}}),
            \code{NULL} is allowed and matches nothing but '*'}
-\item{\code{range.list}}{[char]  a list of language ranges, separated by ';', ':',
+\item{\verb{range.list}}{[char]  a list of language ranges, separated by ';', ':',
   ',', or space characters.
   Each element must either be '*', or a RFC 3066 language range
   canonicalized as by \code{\link{pangoLanguageFromString}}}

@@ -1,7 +1,7 @@
 \alias{cairo-cairo-matrix-t}
 \alias{CairoMatrix}
 \name{cairo-cairo-matrix-t}
-\title{cairo\_matrix\_t}
+\title{cairo_matrix_t}
 \description{Generic matrix operations}
 \section{Methods and Functions}{
 \code{\link{cairoMatrixInit}(xx, yx, xy, yy, x0, y0)}\cr
@@ -17,8 +17,8 @@
 \code{\link{cairoMatrixTransformDistance}(matrix, dx, dy)}\cr
 \code{\link{cairoMatrixTransformPoint}(matrix, x, y)}\cr
 }
-\section{Detailed Description}{\code{\link{CairoMatrix}} is used throughout cairo to convert between different
-    coordinate spaces.  A \code{\link{CairoMatrix}} holds an affine transformation,
+\section{Detailed Description}{\verb{\link{CairoMatrix}} is used throughout cairo to convert between different
+    coordinate spaces.  A \verb{\link{CairoMatrix}} holds an affine transformation,
     such as a scale, rotation, shear, or a combination of these.
     The transformation of a point (\code{x},\code{y})
     is given by:
@@ -26,13 +26,13 @@
     y_new = yx * x + yy * y + y0;
   
 }  
-    The current transformation matrix of a \code{\link{Cairo}}, represented as a
-    \code{\link{CairoMatrix}}, defines the transformation from user-space
+    The current transformation matrix of a \verb{\link{Cairo}}, represented as a
+    \verb{\link{CairoMatrix}}, defines the transformation from user-space
     coordinates to device-space coordinates. See \code{\link{cairoGetMatrix}} and
     \code{\link{cairoSetMatrix}}.
   }
-\section{Structures}{\describe{\item{\code{CairoMatrix}}{
-A \code{\link{CairoMatrix}} holds an affine transformation, such as a scale,
+\section{Structures}{\describe{\item{\verb{CairoMatrix}}{
+A \verb{\link{CairoMatrix}} holds an affine transformation, such as a scale,
 rotation, shear, or a combination of those. The transformation of
 a point (x, y) is given by:
 \preformatted{    x_new = xx * x + xy * y + x0;
@@ -40,12 +40,12 @@ a point (x, y) is given by:
 }  
 
 \describe{
-\item{\code{xx}}{[numeric]  xx component of the affine transformation}
-\item{\code{yx}}{[numeric]  yx component of the affine transformation}
-\item{\code{xy}}{[numeric]  xy component of the affine transformation}
-\item{\code{yy}}{[numeric]  yy component of the affine transformation}
-\item{\code{x0}}{[numeric]  X translation component of the affine transformation}
-\item{\code{y0}}{[numeric]  Y translation component of the affine transformation}
+\item{\verb{xx}}{[numeric]  xx component of the affine transformation}
+\item{\verb{yx}}{[numeric]  yx component of the affine transformation}
+\item{\verb{xy}}{[numeric]  xy component of the affine transformation}
+\item{\verb{yy}}{[numeric]  yy component of the affine transformation}
+\item{\verb{x0}}{[numeric]  X translation component of the affine transformation}
+\item{\verb{y0}}{[numeric]  Y translation component of the affine transformation}
 }
 
 }}}

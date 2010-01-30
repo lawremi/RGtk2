@@ -3,7 +3,7 @@
 \title{gtkWidgetGetParentWindow}
 \description{Gets \code{widget}'s parent window.}
 \usage{gtkWidgetGetParentWindow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}.}}
-\value{[\code{\link{GdkWindow}}]  the parent window of \code{widget}.}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}.}}
+\value{[\verb{\link{GdkWindow}}]  the parent window of \code{widget}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

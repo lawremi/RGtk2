@@ -5,8 +5,8 @@
 be invoked when the menu calls \code{\link{gtkMenuDetach}} during its destruction.}
 \usage{gtkMenuAttachToWidget(object, attach.widget)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenu}}] a \code{\link{GtkMenu}}.}
-\item{\code{attach.widget}}{[\code{\link{GtkWidget}}] the \code{\link{GtkWidget}} that the menu will be attached to.}
+\item{\verb{object}}{[\verb{\link{GtkMenu}}] a \verb{\link{GtkMenu}}.}
+\item{\verb{attach.widget}}{[\verb{\link{GtkWidget}}] the \verb{\link{GtkWidget}} that the menu will be attached to.}
 }
 \note{This does not yet support the callback function, sorry.}
 \author{Derived by RGtkGen from GTK+ documentation}

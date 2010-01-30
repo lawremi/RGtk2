@@ -4,7 +4,7 @@
 \description{Returns whether \code{tool.item} is considered important. See
 \code{\link{gtkToolItemSetIsImportant}}}
 \usage{gtkToolItemGetIsImportant(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkToolItem}}]  a \verb{\link{GtkToolItem}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if \code{tool.item} is considered important.}
 \author{Derived by RGtkGen from GTK+ documentation}

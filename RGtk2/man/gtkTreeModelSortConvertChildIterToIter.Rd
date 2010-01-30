@@ -5,12 +5,12 @@
 the row pointed at by \code{child.iter}.}
 \usage{gtkTreeModelSortConvertChildIterToIter(object, child.iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModelSort}}]  A \code{\link{GtkTreeModelSort}}}
-\item{\code{child.iter}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}} pointing to a row on the child model}
+\item{\verb{object}}{[\verb{\link{GtkTreeModelSort}}]  A \verb{\link{GtkTreeModelSort}}}
+\item{\verb{child.iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}} pointing to a row on the child model}
 }
 \value{
 A list containing the following elements:
-\item{\code{sort.iter}}{[\code{\link{GtkTreeIter}}]  An uninitialized \code{\link{GtkTreeIter}}.}
+\item{\verb{sort.iter}}{[\verb{\link{GtkTreeIter}}]  An uninitialized \verb{\link{GtkTreeIter}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

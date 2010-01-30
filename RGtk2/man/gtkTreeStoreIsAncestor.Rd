@@ -5,9 +5,9 @@
 parent (or grandparent or great-grandparent) of \code{descendant}.}
 \usage{gtkTreeStoreIsAncestor(object, iter, descendant)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}}
-\item{\code{descendant}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}}
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}}
+\item{\verb{descendant}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}}
 }
 \value{[logical] \code{TRUE}, if \code{iter} is an ancestor of \code{descendant}}
 \author{Derived by RGtkGen from GTK+ documentation}

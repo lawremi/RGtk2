@@ -10,7 +10,7 @@ the end of a line, the line ends before the \\r. The end iterator is
 considered to be at the end of a line, even though there are no
 paragraph delimiter chars there.}
 \usage{gtkTextIterEndsLine(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
 \value{[logical]  whether \code{iter} is at the end of a line}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \description{Returns the resize mode for the container. See
 \code{\link{gtkContainerSetResizeMode}}.}
 \usage{gtkContainerGetResizeMode(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}}
 \value{[\code{\link{GtkResizeMode}}]  the current resize mode}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

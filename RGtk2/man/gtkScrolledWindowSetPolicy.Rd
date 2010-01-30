@@ -10,9 +10,9 @@ if needed (that is, if the slider part of the bar would be smaller
 than the trough - the display is larger than the page size).}
 \usage{gtkScrolledWindowSetPolicy(object, hscrollbar.policy, vscrollbar.policy)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkScrolledWindow}}] A \code{\link{GtkScrolledWindow}}.}
-\item{\code{hscrollbar.policy}}{[\code{\link{GtkPolicyType}}] Policy for horizontal bar.}
-\item{\code{vscrollbar.policy}}{[\code{\link{GtkPolicyType}}] Policy for vertical bar.}
+\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}] A \verb{\link{GtkScrolledWindow}}.}
+\item{\verb{hscrollbar.policy}}{[\code{\link{GtkPolicyType}}] Policy for horizontal bar.}
+\item{\verb{vscrollbar.policy}}{[\code{\link{GtkPolicyType}}] Policy for vertical bar.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

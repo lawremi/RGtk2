@@ -8,8 +8,8 @@ how you pack the widget into containers. If \code{n.chars} is -1, the
 size reverts to the default entry size.}
 \usage{gtkEntrySetWidthChars(object, n.chars)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{n.chars}}{[integer]  width in chars}
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{n.chars}}{[integer]  width in chars}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

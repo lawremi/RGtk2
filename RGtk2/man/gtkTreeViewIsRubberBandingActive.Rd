@@ -4,7 +4,7 @@
 \description{Returns whether a rubber banding operation is currently being done
 in \code{tree.view}.}
 \usage{gtkTreeViewIsRubberBandingActive(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}}
 \details{  Since  2.12}
 \value{[logical] \code{TRUE} if a rubber banding operation is currently being
 done in \code{tree.view}.}

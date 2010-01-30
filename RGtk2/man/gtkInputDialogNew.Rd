@@ -1,8 +1,8 @@
 \alias{gtkInputDialogNew}
 \name{gtkInputDialogNew}
 \title{gtkInputDialogNew}
-\description{Creates a new \code{\link{GtkInputDialog}}.}
+\description{Creates a new \verb{\link{GtkInputDialog}}.}
 \usage{gtkInputDialogNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] the new \code{\link{GtkInputDialog}}.}
+\value{[\verb{\link{GtkWidget}}] the new \verb{\link{GtkInputDialog}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

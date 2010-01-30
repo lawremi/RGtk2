@@ -9,12 +9,12 @@ can access the \code{popup.data} while the menu is posted via
 }
 \usage{gtkItemFactoryPopupWithData(object, popup.data, x, y, mouse.button, time = "GDK_CURRENT_TIME")}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}} of type \code{GTK_TYPE_MENU} (see \code{\link{gtkItemFactoryNew}})}
-\item{\code{popup.data}}{[R object]  data available for callbacks while the menu is posted}
-\item{\code{x}}{[numeric]  the x position }
-\item{\code{y}}{[numeric]  the y position}
-\item{\code{mouse.button}}{[numeric]  the mouse button which was pressed to initiate the popup}
-\item{\code{time}}{[numeric]  the time at which the activation event occurred}
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}} of type \verb{GTK_TYPE_MENU} (see \code{\link{gtkItemFactoryNew}})}
+\item{\verb{popup.data}}{[R object]  data available for callbacks while the menu is posted}
+\item{\verb{x}}{[numeric]  the x position }
+\item{\verb{y}}{[numeric]  the y position}
+\item{\verb{mouse.button}}{[numeric]  the mouse button which was pressed to initiate the popup}
+\item{\verb{time}}{[numeric]  the time at which the activation event occurred}
 }
 \details{The \code{mouse.button} parameter should be the mouse button pressed to initiate
 the menu popup. If the menu popup was initiated by something other than

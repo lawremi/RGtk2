@@ -7,7 +7,7 @@ if the size of the notification area changes. For other
 storage types, the size-changed signal can be used to
 react to size changes.}
 \usage{gtkStatusIconGetSize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}}
 \details{Note that the returned size is only meaningful while the 
 status icon is embedded (see \code{\link{gtkStatusIconIsEmbedded}}).  
 

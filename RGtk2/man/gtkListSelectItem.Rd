@@ -8,8 +8,8 @@ is out of bounds. The signal GtkList::select-child will be emitted.
 }
 \usage{gtkListSelectItem(object, item)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkList}}] the list widget.}
-\item{\code{item}}{[integer] the index of the child to select.}
+\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
+\item{\verb{item}}{[integer] the index of the child to select.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

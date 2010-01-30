@@ -5,15 +5,15 @@
 by (\code{x}, \code{y}).}
 \usage{cairoRelMoveTo(cr, dx, dy)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{dx}}{[numeric]  the X offset}
-\item{\code{dy}}{[numeric]  the Y offset}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{dx}}{[numeric]  the X offset}
+\item{\verb{dy}}{[numeric]  the Y offset}
 }
-\details{Given a current point of (x, y), cairo\_rel\_move\_to(\code{cr}, \code{dx}, \code{dy})
-is logically equivalent to cairo\_move\_to (\code{cr}, x + \code{dx}, y + \code{dy}).
+\details{Given a current point of (x, y), cairo_rel_move_to(\code{cr}, \code{dx}, \code{dy})
+is logically equivalent to cairo_move_to (\code{cr}, x + \code{dx}, y + \code{dy}).
   
 It is an error to call this function with no current point. Doing
 so will cause \code{cr} to shutdown with a status of
-CAIRO\_STATUS\_NO\_CURRENT\_POINT.  }
+CAIRO_STATUS_NO_CURRENT_POINT.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

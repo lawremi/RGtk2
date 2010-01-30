@@ -1,10 +1,10 @@
 \alias{gtkInvisibleGetScreen}
 \name{gtkInvisibleGetScreen}
 \title{gtkInvisibleGetScreen}
-\description{Returns the \code{\link{GdkScreen}} object associated with \code{invisible}}
+\description{Returns the \verb{\link{GdkScreen}} object associated with \code{invisible}}
 \usage{gtkInvisibleGetScreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkInvisible}}]  a \code{\link{GtkInvisible}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkInvisible}}]  a \verb{\link{GtkInvisible}}.}}
 \details{  Since  2.2}
-\value{[\code{\link{GdkScreen}}]  the associated \code{\link{GdkScreen}}.}
+\value{[\verb{\link{GdkScreen}}]  the associated \verb{\link{GdkScreen}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

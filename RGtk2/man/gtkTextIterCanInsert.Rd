@@ -9,8 +9,8 @@ user should be allowed to insert text at \code{iter}.
 whether insertions are allowed at a given position.}
 \usage{gtkTextIterCanInsert(object, default.editability)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}
-\item{\code{default.editability}}{[logical] \code{TRUE} if text is editable by default}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}
+\item{\verb{default.editability}}{[logical] \code{TRUE} if text is editable by default}
 }
 \value{[logical]  whether text inserted at \code{iter} would be editable}
 \author{Derived by RGtkGen from GTK+ documentation}

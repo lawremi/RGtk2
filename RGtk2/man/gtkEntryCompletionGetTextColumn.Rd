@@ -3,7 +3,7 @@
 \title{gtkEntryCompletionGetTextColumn}
 \description{Returns the column in the model of \code{completion} to get strings from.}
 \usage{gtkEntryCompletionGetTextColumn(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}}
 \details{  Since  2.6}
 \value{[integer]  the column containing the strings}
 \author{Derived by RGtkGen from GTK+ documentation}

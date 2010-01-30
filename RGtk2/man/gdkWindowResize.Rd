@@ -6,9 +6,9 @@ the window. The window manager may not allow the resize. When using GTK+,
 use \code{\link{gtkWindowResize}} instead of this low-level GDK function.}
 \usage{gdkWindowResize(object, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{width}}{[integer]  new width of the window}
-\item{\code{height}}{[integer]  new height of the window}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{width}}{[integer]  new width of the window}
+\item{\verb{height}}{[integer]  new height of the window}
 }
 \details{Windows may not be resized below 1x1.
   

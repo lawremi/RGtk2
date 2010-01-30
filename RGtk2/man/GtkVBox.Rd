@@ -7,27 +7,27 @@
 \code{\link{gtkVBoxNew}(homogeneous = NULL, spacing = NULL, show = TRUE)}\cr
 \code{gtkVBox(homogeneous = NULL, spacing = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBox}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBox
                                  +----GtkVBox
-                                       +----\link{GtkColorSelection}
-                                       +----\link{GtkFileChooserWidget}
-                                       +----\link{GtkFontSelection}
-                                       +----\link{GtkGammaCurve}
-                                       +----\link{GtkRecentChooserWidget}}}
+                                       +----GtkColorSelection
+                                       +----GtkFileChooserWidget
+                                       +----GtkFontSelection
+                                       +----GtkGammaCurve
+                                       +----GtkRecentChooserWidget}}
 \section{Interfaces}{GtkVBox implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{GtkVBox is a container that organizes child widgets into a single column.
   
-Use the \code{\link{GtkBox}} packing interface to determine the arrangement,
+Use the \verb{\link{GtkBox}} packing interface to determine the arrangement,
 spacing, height, and alignment of GtkVBox children.
   
 All children are allocated the same width.}
-\section{Structures}{\describe{\item{\code{GtkVBox}}{
+\section{Structures}{\describe{\item{\verb{GtkVBox}}{
 \emph{undocumented
 }
 

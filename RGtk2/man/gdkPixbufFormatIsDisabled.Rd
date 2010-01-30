@@ -4,7 +4,7 @@
 \description{Returns whether this image format is disabled. See
 \code{\link{gdkPixbufFormatSetDisabled}}.}
 \usage{gdkPixbufFormatIsDisabled(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkPixbufFormat}}]  a \code{\link{GdkPixbufFormat}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbufFormat}}]  a \verb{\link{GdkPixbufFormat}}}}
 \details{  Since  2.6}
 \value{[logical]  whether this image format is disabled.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,11 +5,11 @@
 a font matching \code{desc}.}
 \usage{pangoFontMapLoadFontset(object, context, desc, language)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontMap}}]  a \code{\link{PangoFontMap}}}
-\item{\code{context}}{[\code{\link{PangoContext}}]  the \code{\link{PangoContext}} the font will be used with}
-\item{\code{desc}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}} describing the font to load}
-\item{\code{language}}{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}} the fonts will be used for}
+\item{\verb{object}}{[\verb{\link{PangoFontMap}}]  a \verb{\link{PangoFontMap}}}
+\item{\verb{context}}{[\verb{\link{PangoContext}}]  the \verb{\link{PangoContext}} the font will be used with}
+\item{\verb{desc}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}} describing the font to load}
+\item{\verb{language}}{[\verb{\link{PangoLanguage}}]  a \verb{\link{PangoLanguage}} the fonts will be used for}
 }
-\value{[\code{\link{PangoFontset}}]  the fontset, or \code{NULL} if no font matched.}
+\value{[\verb{\link{PangoFontset}}]  the fontset, or \code{NULL} if no font matched.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

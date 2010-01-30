@@ -3,7 +3,7 @@
 \title{gtkComboBoxPopdown}
 \description{Hides the menu or dropdown list of \code{combo.box}.}
 \usage{gtkComboBoxPopdown(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkComboBox}}]  a \code{\link{GtkComboBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}}
 \details{This function is mostly intended for use by accessibility technologies;
 applications should have little use for it.  
 

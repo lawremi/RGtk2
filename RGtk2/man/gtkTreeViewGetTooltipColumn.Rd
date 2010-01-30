@@ -4,7 +4,7 @@
 \description{Returns the column of \code{tree.view}'s model which is being used for
 displaying tooltips on \code{tree.view}'s rows.}
 \usage{gtkTreeViewGetTooltipColumn(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}}
 \details{  Since  2.12}
 \value{[integer]  the index of the tooltip column that is currently being
 used, or -1 if this is disabled.}

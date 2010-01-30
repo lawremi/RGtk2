@@ -4,7 +4,7 @@
 \description{Gets the weight field of a font description. See
 \code{\link{pangoFontDescriptionSetWeight}}.}
 \usage{pangoFontDescriptionGetWeight(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}}
 \value{[\code{\link{PangoWeight}}]  the weight field for the font description. Use
   \code{\link{pangoFontDescriptionGetSetFields}} to find out if
   the field was explicitly set or not.}

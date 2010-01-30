@@ -8,10 +8,10 @@
 \code{\link{gtkIMMulticontextAppendMenuitems}(object, menushell)}\cr
 \code{gtkIMMulticontext()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{GtkIMContext}
+\section{Hierarchy}{\preformatted{GObject
+   +----GtkIMContext
          +----GtkIMMulticontext}}
-\section{Structures}{\describe{\item{\code{GtkIMMulticontext}}{
+\section{Structures}{\describe{\item{\verb{GtkIMMulticontext}}{
 \emph{undocumented
 }
 

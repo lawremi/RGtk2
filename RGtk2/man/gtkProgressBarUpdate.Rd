@@ -8,8 +8,8 @@ This function is deprecated.  Please use \code{\link{gtkProgressSetValue}} or
 }
 \usage{gtkProgressBarUpdate(object, percentage)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}] a \code{\link{GtkProgressBar}}.}
-\item{\code{percentage}}{[numeric] the new percent complete value.}
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}] a \verb{\link{GtkProgressBar}}.}
+\item{\verb{percentage}}{[numeric] the new percent complete value.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

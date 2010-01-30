@@ -9,12 +9,12 @@ The new pixbuf holds a reference to \code{src.pixbuf}, so
 is finalized.}
 \usage{gdkPixbufNewSubpixbuf(object, src.x, src.y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}}
-\item{\code{src.x}}{[integer]  X coord in \code{src.pixbuf}}
-\item{\code{src.y}}{[integer]  Y coord in \code{src.pixbuf}}
-\item{\code{width}}{[integer]  width of region in \code{src.pixbuf}}
-\item{\code{height}}{[integer]  height of region in \code{src.pixbuf}}
+\item{\verb{object}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}}}
+\item{\verb{src.x}}{[integer]  X coord in \code{src.pixbuf}}
+\item{\verb{src.y}}{[integer]  Y coord in \code{src.pixbuf}}
+\item{\verb{width}}{[integer]  width of region in \code{src.pixbuf}}
+\item{\verb{height}}{[integer]  height of region in \code{src.pixbuf}}
 }
-\value{[\code{\link{GdkPixbuf}}]  a new pixbuf }
+\value{[\verb{\link{GdkPixbuf}}]  a new pixbuf }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

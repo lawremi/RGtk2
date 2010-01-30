@@ -1,11 +1,11 @@
 \alias{gdkCairoSetSourceColor}
 \name{gdkCairoSetSourceColor}
 \title{gdkCairoSetSourceColor}
-\description{Sets the specified \code{\link{GdkColor}} as the source color of \code{cr}.}
+\description{Sets the specified \verb{\link{GdkColor}} as the source color of \code{cr}.}
 \usage{gdkCairoSetSourceColor(cr, color)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
-\item{\code{color}}{[\code{\link{GdkColor}}]  a \code{\link{GdkColor}}}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  a \verb{\link{GdkColor}}}
 }
 \details{  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

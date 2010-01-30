@@ -7,11 +7,11 @@ FIXME
 }
 \usage{gtkCTreeNodeSetPixmap(object, node, column, pixmap, mask = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{column}}{[integer] }
-\item{\code{pixmap}}{[\code{\link{GdkPixmap}}] }
-\item{\code{mask}}{[\code{\link{GdkBitmap}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{column}}{[integer] }
+\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] }
+\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

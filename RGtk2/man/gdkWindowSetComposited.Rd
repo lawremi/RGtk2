@@ -1,7 +1,7 @@
 \alias{gdkWindowSetComposited}
 \name{gdkWindowSetComposited}
 \title{gdkWindowSetComposited}
-\description{Sets a \code{\link{GdkWindow}} as composited, or unsets it. Composited 
+\description{Sets a \verb{\link{GdkWindow}} as composited, or unsets it. Composited 
 windows do not automatically have their contents drawn to 
 the screen. Drawing is redirected to an offscreen buffer 
 and an expose event is emitted on the parent of the composited 
@@ -11,8 +11,8 @@ whatever way it sees fit. See
 for an example.}
 \usage{gdkWindowSetComposited(object, composited)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{composited}}{[logical] \code{TRUE} to set the window as composited}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{composited}}{[logical] \code{TRUE} to set the window as composited}
 }
 \details{It only makes sense for child windows to be composited; see
 \code{\link{gdkWindowSetOpacity}} if you need translucent toplevel

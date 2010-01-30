@@ -4,10 +4,10 @@
 \description{Associates a length in units of \code{unit} with \code{key}.}
 \usage{gtkPrintSettingsSetLength(object, key, value, unit)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
-\item{\code{value}}{[numeric]  a length}
-\item{\code{unit}}{[\code{\link{GtkUnit}}]  the unit of \code{length}}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
+\item{\verb{value}}{[numeric]  a length}
+\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the unit of \code{length}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

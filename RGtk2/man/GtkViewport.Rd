@@ -13,16 +13,16 @@
 \code{\link{gtkViewportGetShadowType}(object)}\cr
 \code{gtkViewport(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
                                  +----GtkViewport}}
 \section{Interfaces}{GtkViewport implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Structures}{\describe{\item{\code{GtkViewport}}{
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Structures}{\describe{\item{\verb{GtkViewport}}{
 \emph{undocumented
 }
 
@@ -33,26 +33,26 @@
 }
 
 \describe{
-\item{\code{viewport}}{[\code{\link{GtkViewport}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\code{\link{GtkAdjustment}}] }
+\item{\code{viewport}}{[\verb{\link{GtkViewport}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
+\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{hadjustment} [\code{\link{GtkAdjustment}} : Read / Write / Construct]}{
+\item{\verb{hadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment that determines the values of the horizontal position for this viewport.
 
 }
-\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
+\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
-Determines how the shadowed box around the viewport is drawn.  Default value: GTK\_SHADOW\_IN
+Determines how the shadowed box around the viewport is drawn.  Default value: GTK_SHADOW_IN
 
 }
-\item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write / Construct]}{
+\item{\verb{vadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write / Construct]}{
 
 The GtkAdjustment that determines the values of the vertical position for this viewport.
 

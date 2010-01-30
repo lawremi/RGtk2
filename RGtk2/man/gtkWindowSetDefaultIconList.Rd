@@ -6,7 +6,7 @@ had \code{\link{gtkWindowSetIconList}} called on them to set up a
 window-specific icon list. This function allows you to set up the
 icon for all windows in your app at once.}
 \usage{gtkWindowSetDefaultIconList(list)}
-\arguments{\item{\code{list}}{[list]  a list of \code{\link{GdkPixbuf}}}}
+\arguments{\item{\verb{list}}{[list]  a list of \verb{\link{GdkPixbuf}}}}
 \details{See \code{\link{gtkWindowSetIconList}} for more details.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

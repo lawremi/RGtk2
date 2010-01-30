@@ -8,10 +8,10 @@ character in the text buffer. If dereferenced with
 the buffer (call \code{\link{gtkTextBufferGetStartIter}} to get
 character position 0) to the end iterator.}
 \usage{gtkTextBufferGetEndIter(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}} }}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}} }}
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  iterator to initialize}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  iterator to initialize}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

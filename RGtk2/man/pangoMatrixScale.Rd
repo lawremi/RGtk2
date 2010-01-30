@@ -7,9 +7,9 @@ and \code{sy} in the Y direction then applying the original
 transformation.}
 \usage{pangoMatrixScale(object, scale.x, scale.y)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoMatrix}}]  a \code{\link{PangoMatrix}}}
-\item{\code{scale.x}}{[numeric]  amount to scale by in X direction}
-\item{\code{scale.y}}{[numeric]  amount to scale by in Y direction}
+\item{\verb{object}}{[\verb{\link{PangoMatrix}}]  a \verb{\link{PangoMatrix}}}
+\item{\verb{scale.x}}{[numeric]  amount to scale by in X direction}
+\item{\verb{scale.y}}{[numeric]  amount to scale by in Y direction}
 }
 \details{  Since  1.6}
 \author{Derived by RGtkGen from GTK+ documentation}

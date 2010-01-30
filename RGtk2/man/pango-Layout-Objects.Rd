@@ -88,7 +88,7 @@
 \code{\link{pangoLayoutLineGetXRanges}(object, start.index, end.index)}\cr
 \code{pangoLayout(context)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----PangoLayout}}
 \section{Detailed Description}{While complete access to the layout capabilities of Pango is provided
 using the detailed interfaces for itemization and shaping, using
@@ -97,9 +97,9 @@ of code. The objects and functions in this section provide a
 high-level driver for formatting entire paragraphs of text
 at once.}
 \section{Structures}{\describe{
-\item{\code{PangoLayout}}{
-The \code{\link{PangoLayout}} structure represents an entire paragraph
-of text. It is initialized with a \code{\link{PangoContext}}, UTF-8 string
+\item{\verb{PangoLayout}}{
+The \verb{\link{PangoLayout}} structure represents an entire paragraph
+of text. It is initialized with a \verb{\link{PangoContext}}, UTF-8 string
 and set of attributes for that string. Once that is done, the
 set of formatted lines can be extracted from the object,
 the layout can be rendered, and conversion between logical
@@ -107,55 +107,55 @@ character positions within the layout's text, and the physical
 position of the resulting glyphs can be made.
   
 There are also a number of parameters to adjust the formatting
-of a \code{\link{PangoLayout}}, which are illustrated in .
+of a \verb{\link{PangoLayout}}, which are illustrated in .
 It is possible, as well, to ignore the 2-D setup, and simply
-treat the results of a \code{\link{PangoLayout}} as a list of lines.
+treat the results of a \verb{\link{PangoLayout}} as a list of lines.
   
-The \code{\link{PangoLayout}} structure is opaque, and has no user-visible
+The \verb{\link{PangoLayout}} structure is opaque, and has no user-visible
 fields.
 
 }
-\item{\code{PangoLayoutIter}}{
-A \code{\link{PangoLayoutIter}} structure can be used to
-iterate over the visual extents of a \code{\link{PangoLayout}}. 
+\item{\verb{PangoLayoutIter}}{
+A \verb{\link{PangoLayoutIter}} structure can be used to
+iterate over the visual extents of a \verb{\link{PangoLayout}}. 
   
-The \code{\link{PangoLayoutIter}} structure is opaque, and 
+The \verb{\link{PangoLayoutIter}} structure is opaque, and 
 has no user-visible fields.
 
 }
-\item{\code{PangoLayoutLine}}{
-The \code{\link{PangoLayoutLine}} structure represents one of the lines resulting
-from laying out a paragraph via \code{\link{PangoLayout}}. \code{\link{PangoLayoutLine}}
+\item{\verb{PangoLayoutLine}}{
+The \verb{\link{PangoLayoutLine}} structure represents one of the lines resulting
+from laying out a paragraph via \verb{\link{PangoLayout}}. \verb{\link{PangoLayoutLine}}
 structures are obtained by calling \code{\link{pangoLayoutGetLine}} and
 are only valid until the text, attributes, or settings of the
-parent \code{\link{PangoLayout}} are modified.
+parent \verb{\link{PangoLayout}} are modified.
   
 Routines for rendering PangoLayout objects are provided in
 code specific to each rendering system.
 
 \describe{
-\item{\code{layout}}{[\code{\link{PangoLayout}}] the parent layout for this line}
-\item{\code{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
-\item{\code{length}}{[integer] the length of the line in bytes}
-\item{\code{runs}}{[list] a list containing the runs of the line in visual order}
-\item{\code{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph}
-\item{\code{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
+\item{\verb{layout}}{[\verb{\link{PangoLayout}}] the parent layout for this line}
+\item{\verb{startIndex}}{[integer] the start of the line as byte index into \code{layout->text}}
+\item{\verb{length}}{[integer] the length of the line in bytes}
+\item{\verb{runs}}{[list] a list containing the runs of the line in visual order}
+\item{\verb{isParagraphStart}}{[numeric] \code{TRUE} if this is the first line of the paragraph}
+\item{\verb{resolvedDir}}{[numeric] the resolved \code{\link{PangoDirection}} of the line}
 }
 
 }
 }}
 \section{Convenient Construction}{\code{pangoLayout} is the equivalent of \code{\link{pangoLayoutNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{PangoWrapMode}}{
-A \code{\link{PangoWrapMode}} describes how to wrap the lines of a \code{\link{PangoLayout}} to the desired width.
+\item{\verb{PangoWrapMode}}{
+A \code{\link{PangoWrapMode}} describes how to wrap the lines of a \verb{\link{PangoLayout}} to the desired width.
 
 \describe{
-\item{\code{word}}{wrap lines at word boundaries.}
-\item{\code{char}}{wrap lines at character boundaries.}
+\item{\verb{word}}{wrap lines at word boundaries.}
+\item{\verb{char}}{wrap lines at character boundaries.}
 }
 
 }
-\item{\code{PangoEllipsizeMode}}{
+\item{\verb{PangoEllipsizeMode}}{
 The \code{\link{PangoEllipsizeMode}} type describes what sort of (if any)
 ellipsization should be applied to a line of text. In
 the ellipsization process characters are removed from the
@@ -163,22 +163,22 @@ text in order to make it fit to a given width and replaced
 with an ellipsis.  
 
 \describe{
-\item{\code{none}}{ No ellipsization}
-\item{\code{start}}{ Omit characters at the start of the text}
-\item{\code{middle}}{ Omit characters in the middle of the text}
-\item{\code{end}}{ Omit characters at the end of the text}
+\item{\verb{none}}{ No ellipsization}
+\item{\verb{start}}{ Omit characters at the start of the text}
+\item{\verb{middle}}{ Omit characters in the middle of the text}
+\item{\verb{end}}{ Omit characters at the end of the text}
 }
 
 }
-\item{\code{PangoAlignment}}{
-A \code{\link{PangoAlignment}} describes how to align the lines of a \code{\link{PangoLayout}} within the
-available space. If the \code{\link{PangoLayout}} is set to justify
+\item{\verb{PangoAlignment}}{
+A \code{\link{PangoAlignment}} describes how to align the lines of a \verb{\link{PangoLayout}} within the
+available space. If the \verb{\link{PangoLayout}} is set to justify
 using \code{\link{pangoLayoutSetJustify}}, this only has effect for partial lines.
 
 \describe{
-\item{\code{left}}{Put all available space on the right}
-\item{\code{center}}{Center the line within the available space}
-\item{\code{right}}{Put all available space on the left}
+\item{\verb{left}}{Put all available space on the right}
+\item{\verb{center}}{Center the line within the available space}
+\item{\verb{right}}{Put all available space on the left}
 }
 
 }

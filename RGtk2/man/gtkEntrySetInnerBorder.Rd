@@ -6,8 +6,8 @@ is passed. The inner-border is the area around the entry's text, but
 inside its frame.}
 \usage{gtkEntrySetInnerBorder(object, border = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{border}}{[\code{\link{GtkBorder}}]  a \code{\link{GtkBorder}}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{border}}{[\verb{\link{GtkBorder}}]  a \verb{\link{GtkBorder}}, or \code{NULL}}
 }
 \details{If set, this property overrides the inner-border style property.
 Overriding the style-provided border is useful when you want to do

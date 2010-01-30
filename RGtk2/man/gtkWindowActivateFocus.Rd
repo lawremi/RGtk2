@@ -3,7 +3,7 @@
 \title{gtkWindowActivateFocus}
 \description{Activates the current focused widget within the window.}
 \usage{gtkWindowActivateFocus(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \value{[logical] \code{TRUE} if a widget got activated.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

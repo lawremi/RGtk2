@@ -4,9 +4,9 @@
 \description{Set the horizontal and vertical resolution for image fallbacks.}
 \usage{cairoSurfaceSetFallbackResolution(surface, x.pixels.per.inch, y.pixels.per.inch)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
-\item{\code{x.pixels.per.inch}}{[numeric]  horizontal setting for pixels per inch}
-\item{\code{y.pixels.per.inch}}{[numeric]  vertical setting for pixels per inch}
+\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}
+\item{\verb{x.pixels.per.inch}}{[numeric]  horizontal setting for pixels per inch}
+\item{\verb{y.pixels.per.inch}}{[numeric]  vertical setting for pixels per inch}
 }
 \details{When certain operations aren't supported natively by a backend,
 cairo will fallback by rendering operations to an image and then

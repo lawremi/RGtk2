@@ -5,8 +5,8 @@
 place between cell renderers packed into it.}
 \usage{gtkTreeViewColumnSetSpacing(object, spacing)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}.}
-\item{\code{spacing}}{[integer]  distance between cell renderers in pixels.}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}.}
+\item{\verb{spacing}}{[integer]  distance between cell renderers in pixels.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

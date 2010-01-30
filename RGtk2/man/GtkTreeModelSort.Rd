@@ -15,22 +15,22 @@
 \code{\link{gtkTreeModelSortIterIsValid}(object, iter)}\cr
 \code{gtkTreeModelSort(child.model = NULL)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkTreeModelSort}}
 \section{Interfaces}{GtkTreeModelSort implements
- \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}} and  \code{\link{GtkTreeSortable}}.}
-\section{Detailed Description}{The \code{\link{GtkTreeModelSort}} is a model which implements the \code{\link{GtkTreeSortable}}
+ \verb{\link{GtkTreeModel}},  \verb{\link{GtkTreeDragSource}} and  \verb{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \verb{\link{GtkTreeModelSort}} is a model which implements the \verb{\link{GtkTreeSortable}}
 interface.  It does not hold any data itself, but rather is created with
 a child model and proxies its data.  It has identical column types to
 this child model, and the changes in the child are propagated.  The
 primary purpose of this model is to provide a way to sort a different
 model without modifying it. Note that the sort function used by
-\code{\link{GtkTreeModelSort}} is not guaranteed to be stable.
+\verb{\link{GtkTreeModelSort}} is not guaranteed to be stable.
   
 The use of this is best demonstrated through an example.  In the
-following sample code we create two \code{\link{GtkTreeView}} widgets each with a
+following sample code we create two \verb{\link{GtkTreeView}} widgets each with a
 view of the same data.  As the model is wrapped here by a
-\code{\link{GtkTreeModelSort}}, the two \code{\link{GtkTreeView}}s can each sort their
+\verb{\link{GtkTreeModelSort}}, the two \verb{\link{GtkTreeView}}s can each sort their
 view of the data without affecting the other.  By contrast, if we
 simply put the same model in each widget, then sorting the first would
 sort the second.
@@ -55,8 +55,8 @@ sort_model1$setSortColumnId(0, "ascending")
 sort_model2$setSortColumnId(0, "descending")
 }  
 To demonstrate how to access the underlying child model from the sort
-model, the next example will be a callback for the \code{\link{GtkTreeSelection}}
-"changed" signal.  In this callback, we get a string from COLUMN\_1 of
+model, the next example will be a callback for the \verb{\link{GtkTreeSelection}}
+"changed" signal.  In this callback, we get a string from COLUMN_1 of
 the model.  We then modify the string, find the same selected row on the
 child model, and change the row there.
   
@@ -87,12 +87,12 @@ selection_changed <- function(selection, data)
   child_model$set(child_iter, COLUMN_1, modified_data)
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkTreeModelSort}}{
+\section{Structures}{\describe{\item{\verb{GtkTreeModelSort}}{
 This should not be accessed directly.  Use the accessor functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkTreeModelSort} is the equivalent of \code{\link{gtkTreeModelSortNewWithModel}}.}
-\section{Properties}{\describe{\item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write / Construct Only]}{
+\section{Properties}{\describe{\item{\verb{model} [\verb{\link{GtkTreeModel}} : *         : Read / Write / Construct Only]}{
 
 The model for the TreeModelSort to sort.
 
@@ -100,10 +100,10 @@ The model for the TreeModelSort to sort.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeModelSort.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTreeModel}}
-\code{\link{GtkListStore}}
-\code{\link{GtkTreeStore}}
-\code{\link{GtkTreeSortable}}
-\code{\link{GtkTreeModelFilter}}
+\verb{\link{GtkTreeModel}}
+\verb{\link{GtkListStore}}
+\verb{\link{GtkTreeStore}}
+\verb{\link{GtkTreeSortable}}
+\verb{\link{GtkTreeModelFilter}}
 }
 \keyword{internal}

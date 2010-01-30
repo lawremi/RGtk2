@@ -5,9 +5,9 @@
 via drag and drop or not.}
 \usage{gtkNotebookSetTabReorderable(object, child, reorderable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  a child \code{\link{GtkWidget}}}
-\item{\code{reorderable}}{[logical]  whether the tab is reorderable or not.}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a child \verb{\link{GtkWidget}}}
+\item{\verb{reorderable}}{[logical]  whether the tab is reorderable or not.}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

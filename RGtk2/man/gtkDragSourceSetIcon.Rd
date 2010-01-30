@@ -7,10 +7,10 @@ will release them when they are no longer needed.
 Use \code{\link{gtkDragSourceSetIconPixbuf}} instead.}
 \usage{gtkDragSourceSetIcon(object, colormap, pixmap, mask = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{colormap}}{[\code{\link{GdkColormap}}]  the colormap of the icon}
-\item{\code{pixmap}}{[\code{\link{GdkPixmap}}]  the image data for the icon}
-\item{\code{mask}}{[\code{\link{GdkBitmap}}]  the transparency mask for an image.}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  the colormap of the icon}
+\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}]  the image data for the icon}
+\item{\verb{mask}}{[\verb{\link{GdkBitmap}}]  the transparency mask for an image.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

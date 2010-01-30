@@ -4,11 +4,11 @@
 \description{Widgets can be named, which allows you to refer to them from a
 gtkrc file. You can apply a style to widgets with a particular name
 in the gtkrc file. See the documentation for gtkrc files (on the
-same page as the docs for \code{\link{GtkRcStyle}}).}
+same page as the docs for \verb{\link{GtkRcStyle}}).}
 \usage{gtkWidgetSetName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{name}}{[character]  name for the widget}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{name}}{[character]  name for the widget}
 }
 \details{Note that widget names are separated by periods in paths (see 
 \code{\link{gtkWidgetPath}}), so names with embedded periods may cause confusion.  }

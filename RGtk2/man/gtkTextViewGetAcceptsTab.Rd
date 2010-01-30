@@ -4,7 +4,7 @@
 \description{Returns whether pressing the Tab key inserts a tab characters.
 \code{\link{gtkTextViewSetAcceptsTab}}.}
 \usage{gtkTextViewGetAcceptsTab(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextView}}]  A \code{\link{GtkTextView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextView}}]  A \verb{\link{GtkTextView}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if pressing the Tab key inserts a tab character, 
   \code{FALSE} if pressing the Tab key moves the keyboard focus.}

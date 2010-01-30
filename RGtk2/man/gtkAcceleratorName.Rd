@@ -3,12 +3,12 @@
 \title{gtkAcceleratorName}
 \description{Converts an accelerator keyval and modifier mask
 into a string parseable by \code{\link{gtkAcceleratorParse}}.
-For example, if you pass in \code{GDK_q} and \code{GDK_CONTROL_MASK},
+For example, if you pass in \verb{GDK_q} and \verb{GDK_CONTROL_MASK},
 this function returns "<Control>q". }
 \usage{gtkAcceleratorName(accelerator.key, accelerator.mods)}
 \arguments{
-\item{\code{accelerator.key}}{[numeric]   accelerator keyval}
-\item{\code{accelerator.mods}}{[\code{\link{GdkModifierType}}]  accelerator modifier mask}
+\item{\verb{accelerator.key}}{[numeric]   accelerator keyval}
+\item{\verb{accelerator.mods}}{[\code{\link{GdkModifierType}}]  accelerator modifier mask}
 }
 \details{If you need to display accelerators in the user interface,
 see \code{\link{gtkAcceleratorGetLabel}}.  }

@@ -9,32 +9,32 @@
 \code{\link{gtkSeparatorToolItemGetDraw}(object)}\cr
 \code{gtkSeparatorToolItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkToolItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkToolItem
                                        +----GtkSeparatorToolItem}}
 \section{Interfaces}{GtkSeparatorToolItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{  A \code{GtkSeparatorItem} is a \code{\link{GtkToolItem}} that separates groups of other
-  \code{GtkToolItems}. Depending on the theme, a \code{\link{GtkSeparatorToolItem}} will
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{  A \verb{GtkSeparatorItem} is a \verb{\link{GtkToolItem}} that separates groups of other
+  \verb{GtkToolItems}. Depending on the theme, a \verb{\link{GtkSeparatorToolItem}} will
   often look like a vertical line on horizontally docked toolbars.
   
-If the property "expand" is \code{TRUE} and the property "draw" is \code{FALSE}, a
-\code{\link{GtkSeparatorToolItem}} will act as a "spring" that forces other items
+If the property "expand" is \verb{TRUE} and the property "draw" is \verb{FALSE}, a
+\verb{\link{GtkSeparatorToolItem}} will act as a "spring" that forces other items
 to the ends of the toolbar.
   
-  Use \code{\link{gtkSeparatorToolItemNew}} to create a new \code{\link{GtkSeparatorToolItem}}.}
-\section{Structures}{\describe{\item{\code{GtkSeparatorToolItem}}{
-The \code{\link{GtkSeparatorToolItem}} struct contains only private data and
+  Use \code{\link{gtkSeparatorToolItemNew}} to create a new \verb{\link{GtkSeparatorToolItem}}.}
+\section{Structures}{\describe{\item{\verb{GtkSeparatorToolItem}}{
+The \verb{\link{GtkSeparatorToolItem}} struct contains only private data and
 should only be accessed through the functions described below.
 
 }}}
 \section{Convenient Construction}{\code{gtkSeparatorToolItem} is the equivalent of \code{\link{gtkSeparatorToolItemNew}}.}
-\section{Properties}{\describe{\item{\code{draw} [logical : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{draw} [logical : Read / Write]}{
 
 Whether the separator is drawn, or just blank.  Default value: TRUE
 

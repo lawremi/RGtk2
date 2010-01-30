@@ -4,8 +4,8 @@
 \description{Sets the source type for an input device.}
 \usage{gdkDeviceSetSource(object, source)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDevice}}] a \code{\link{GdkDevice}}.}
-\item{\code{source}}{[\code{\link{GdkInputSource}}] the source type.}
+\item{\verb{object}}{[\verb{\link{GdkDevice}}] a \verb{\link{GdkDevice}}.}
+\item{\verb{source}}{[\code{\link{GdkInputSource}}] the source type.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

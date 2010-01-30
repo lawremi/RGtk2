@@ -7,7 +7,7 @@
           \code{TRUE}.
 a *}
 \usage{atkHyperlinkIsInline(object)}
-\arguments{\item{\code{object}}{[\code{\link{AtkHyperlink}}]  an \code{\link{AtkHyperlink}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{AtkHyperlink}}]  an \verb{\link{AtkHyperlink}}}}
 \value{[logical]  whether or not this link displays its content inline.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

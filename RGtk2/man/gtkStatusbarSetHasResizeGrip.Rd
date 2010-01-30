@@ -5,8 +5,8 @@
 \code{TRUE} by default.}
 \usage{gtkStatusbarSetHasResizeGrip(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStatusbar}}]  a \code{GtkStatusBar}}
-\item{\code{setting}}{[logical] \code{TRUE} to have a resize grip}
+\item{\verb{object}}{[\verb{\link{GtkStatusbar}}]  a \verb{GtkStatusBar}}
+\item{\verb{setting}}{[logical] \code{TRUE} to have a resize grip}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

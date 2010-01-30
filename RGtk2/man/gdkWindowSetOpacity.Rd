@@ -6,8 +6,8 @@ with opacity 0 being fully transparent and 1 fully opaque. (Values
 of the opacity parameter are clamped to the [0,1] range.) }
 \usage{gdkWindowSetOpacity(object, opacity)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a top-level \code{\link{GdkWindow}}}
-\item{\code{opacity}}{[numeric]  opacity}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a top-level \verb{\link{GdkWindow}}}
+\item{\verb{opacity}}{[numeric]  opacity}
 }
 \details{On X11, this works only on X screens with a compositing manager 
 running.

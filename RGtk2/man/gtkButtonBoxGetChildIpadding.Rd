@@ -7,11 +7,11 @@ Gets the default number of pixels that pad the buttons in a given button box.
 \code{"child-internal-pad-x/-y"} instead.}
 }
 \usage{gtkButtonBoxGetChildIpadding(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkButtonBox}}] a \code{\link{GtkButtonBox}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkButtonBox}}] a \verb{\link{GtkButtonBox}}.}}
 \value{
 A list containing the following elements:
-\item{\code{ipad.x}}{[integer] the horizontal padding used by buttons in \code{widget}.}
-\item{\code{ipad.y}}{[integer] the vertical padding used by buttons in \code{widget}.}
+\item{\verb{ipad.x}}{[integer] the horizontal padding used by buttons in \code{widget}.}
+\item{\verb{ipad.y}}{[integer] the vertical padding used by buttons in \code{widget}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

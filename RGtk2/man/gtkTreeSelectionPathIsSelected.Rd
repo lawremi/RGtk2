@@ -5,8 +5,8 @@
 does not point to a valid location, \code{FALSE} is returned}
 \usage{gtkTreeSelectionPathIsSelected(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}} to check selection on.}
+\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} to check selection on.}
 }
 \value{[logical] \code{TRUE} if \code{path} is selected.}
 \author{Derived by RGtkGen from GTK+ documentation}

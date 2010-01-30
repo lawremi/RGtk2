@@ -7,9 +7,9 @@ new row will be appended to the list. The row will be filled with the
 values given to this function. }
 \usage{gtkListStoreInsertWithValues(object, position, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkListStore}}]  A \code{\link{GtkListStore}}}
-\item{\code{position}}{[integer]  position to insert the new row}
-\item{\code{...}}{ pairs of column number and value, terminated with -1}
+\item{\verb{object}}{[\verb{\link{GtkListStore}}]  A \verb{\link{GtkListStore}}}
+\item{\verb{position}}{[integer]  position to insert the new row}
+\item{\verb{...}}{ pairs of column number and value, terminated with -1}
 }
 \details{Calling
 \code{gtk_list_store_insert_with_values(list_store, iter, position...)} 
@@ -18,9 +18,9 @@ has the same effect as calling
 list_store$insert(iter, position)
 list_store$set(iter, ...)
 }
-with the difference that the former will only emit a row\_inserted signal,
-while the latter will emit row\_inserted, row\_changed and, if the list store
-is sorted, rows\_reordered. Since emitting the rows\_reordered signal
+with the difference that the former will only emit a row_inserted signal,
+while the latter will emit row_inserted, row_changed and, if the list store
+is sorted, rows_reordered. Since emitting the rows_reordered signal
 repeatedly can affect the performance of the program, 
 \code{\link{gtkListStoreInsertWithValues}} should generally be preferred when
 inserting rows in a sorted list store.  
@@ -28,7 +28,7 @@ inserting rows in a sorted list store.
   Since  2.6}
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An unset \code{\link{GtkTreeIter}} to set to the new row, or \code{NULL}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An unset \verb{\link{GtkTreeIter}} to set to the new row, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

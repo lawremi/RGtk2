@@ -7,9 +7,9 @@ Sets the data for specified row, with a callback when the row is destroyed.
 }
 \usage{gtkCListSetRowDataFull(object, row, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row to affect.}
-\item{\code{data}}{[R object] The data to set for the row.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row to affect.}
+\item{\verb{data}}{[R object] The data to set for the row.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

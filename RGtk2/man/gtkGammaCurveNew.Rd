@@ -1,8 +1,8 @@
 \alias{gtkGammaCurveNew}
 \name{gtkGammaCurveNew}
 \title{gtkGammaCurveNew}
-\description{Creates a new \code{\link{GtkGammaCurve}}.}
+\description{Creates a new \verb{\link{GtkGammaCurve}}.}
 \usage{gtkGammaCurveNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkGammaCurve}}.}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkGammaCurve}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

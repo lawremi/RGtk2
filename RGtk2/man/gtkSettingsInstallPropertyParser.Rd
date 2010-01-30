@@ -5,8 +5,8 @@
 }}
 \usage{gtkSettingsInstallPropertyParser(pspec, parser)}
 \arguments{
-\item{\code{pspec}}{[\code{\link{GParamSpec}}] }
-\item{\code{parser}}{[GtkRcPropertyParser] }
+\item{\verb{pspec}}{[\verb{\link{GParamSpec}}] }
+\item{\verb{parser}}{[GtkRcPropertyParser] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

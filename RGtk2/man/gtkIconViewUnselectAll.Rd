@@ -3,7 +3,7 @@
 \title{gtkIconViewUnselectAll}
 \description{Unselects all the icons.}
 \usage{gtkIconViewUnselectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}.}}
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

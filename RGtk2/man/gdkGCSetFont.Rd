@@ -10,8 +10,8 @@ argument is \code{NULL}.)
 }
 \usage{gdkGCSetFont(object, font)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{font}}{[\code{\link{GdkFont}}]  the new font. }
+\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
+\item{\verb{font}}{[\verb{\link{GdkFont}}]  the new font. }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

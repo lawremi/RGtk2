@@ -2,12 +2,12 @@
 \name{gtkPrintOperationPreviewRenderPage}
 \title{gtkPrintOperationPreviewRenderPage}
 \description{Renders a page to the preview, using the print context that
-was passed to the \code{"preview"} handler together
+was passed to the \verb{"preview"} handler together
 with \code{preview}.}
 \usage{gtkPrintOperationPreviewRenderPage(object, page.nr)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintOperationPreview}}]  a \code{\link{GtkPrintOperationPreview}}}
-\item{\code{page.nr}}{[integer]  the page to render}
+\item{\verb{object}}{[\verb{\link{GtkPrintOperationPreview}}]  a \verb{\link{GtkPrintOperationPreview}}}
+\item{\verb{page.nr}}{[integer]  the page to render}
 }
 \details{Note that this function requires a suitable cairo context to 
 be associated with the print context.  

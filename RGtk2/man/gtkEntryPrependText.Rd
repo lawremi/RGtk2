@@ -9,8 +9,8 @@ Prepends the given text to the contents of the widget.
 }
 \usage{gtkEntryPrependText(object, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{text}}{[character]  the text to prepend}
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{text}}{[character]  the text to prepend}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

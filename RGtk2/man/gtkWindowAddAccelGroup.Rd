@@ -6,8 +6,8 @@
 in \code{accel.group}.}
 \usage{gtkWindowAddAccelGroup(object, accel.group)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  window to attach accelerator group to}
-\item{\code{accel.group}}{[\code{\link{GtkAccelGroup}}]  a \code{\link{GtkAccelGroup}}}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  window to attach accelerator group to}
+\item{\verb{accel.group}}{[\verb{\link{GtkAccelGroup}}]  a \verb{\link{GtkAccelGroup}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

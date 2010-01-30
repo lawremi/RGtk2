@@ -3,7 +3,7 @@
 \title{gtkIconViewGetItemWidth}
 \description{Returns the value of the ::item-width property.}
 \usage{gtkIconViewGetItemWidth(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}}
 \details{  Since  2.6}
 \value{[integer]  the width of a single item, or -1}
 \author{Derived by RGtkGen from GTK+ documentation}

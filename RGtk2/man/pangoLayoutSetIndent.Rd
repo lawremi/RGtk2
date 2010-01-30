@@ -7,8 +7,8 @@ have the full width, and subsequent lines will be indented by the
 absolute value of \code{indent}.}
 \usage{pangoLayoutSetIndent(object, indent)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}.}
-\item{\code{indent}}{[integer]  the amount by which to indent.}
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}.}
+\item{\verb{indent}}{[integer]  the amount by which to indent.}
 }
 \details{The indent setting is ignored if layout alignment is set to
 \code{PANGO_ALIGN_CENTER}.  }

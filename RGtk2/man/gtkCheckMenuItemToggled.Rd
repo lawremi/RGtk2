@@ -3,6 +3,6 @@
 \title{gtkCheckMenuItemToggled}
 \description{Emits the GtkCheckMenuItem::toggled signal.}
 \usage{gtkCheckMenuItemToggled(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkCheckMenuItem}}] a \code{\link{GtkCheckMenuItem}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkCheckMenuItem}}] a \verb{\link{GtkCheckMenuItem}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

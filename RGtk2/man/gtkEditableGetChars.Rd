@@ -9,9 +9,9 @@ will be those characters from \code{start.pos} to the end
 of the text.}
 \usage{gtkEditableGetChars(object, start.pos, end.pos)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEditable}}] a \code{\link{GtkEditable}} widget.}
-\item{\code{start.pos}}{[integer] the starting position.}
-\item{\code{end.pos}}{[integer] the end position.}
+\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}
+\item{\verb{start.pos}}{[integer] the starting position.}
+\item{\verb{end.pos}}{[integer] the end position.}
 }
 \value{[character] the characters in the indicated region.}
 \author{Derived by RGtkGen from GTK+ documentation}

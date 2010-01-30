@@ -4,8 +4,8 @@
 \description{Release any pointer grab.}
 \usage{gdkDisplayPointerUngrab(object, time. = "GDK_CURRENT_TIME")}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}.}
-\item{\code{time.}}{[numeric]  a timestap (e.g. \code{GDK_CURRENT_TIME}).}
+\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}.}
+\item{\verb{time.}}{[numeric]  a timestap (e.g. \code{GDK_CURRENT_TIME}).}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

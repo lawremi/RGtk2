@@ -7,9 +7,9 @@ Unselects the specified row.  Causes the "unselect-row" signal to be emitted for
 }
 \usage{gtkCListUnselectRow(object, row, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row to select.}
-\item{\code{column}}{[integer] The column to select.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row to select.}
+\item{\verb{column}}{[integer] The column to select.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

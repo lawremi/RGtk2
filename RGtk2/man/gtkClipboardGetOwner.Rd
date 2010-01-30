@@ -6,7 +6,7 @@
 \code{\link{gtkClipboardClear}} has not subsequently called, returns the owner set 
 by \code{\link{gtkClipboardSetWithOwner}}.}
 \usage{gtkClipboardGetOwner(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}}
-\value{[\code{\link{GObject}}]  the owner of the clipboard, if any; otherwise \code{NULL}.}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}}
+\value{[\verb{\link{GObject}}]  the owner of the clipboard, if any; otherwise \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

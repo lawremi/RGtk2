@@ -4,11 +4,11 @@
 \description{Gets the current folder of \code{chooser} as a local filename.
 See \code{\link{gtkFileChooserSetCurrentFolder}}.}
 \usage{gtkFileChooserGetCurrentFolder(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}}
 \details{Note that this is the folder that the file chooser is currently displaying
 (e.g. "/home/username/Documents"), which is \emph{not the same}
 as the currently-selected folder if the chooser is in
-\code{GTK_FILE_CHOOSER_SELECT_FOLDER} mode
+\verb{GTK_FILE_CHOOSER_SELECT_FOLDER} mode
 (e.g. "/home/username/Documents/selected-folder/".  To get the
 currently-selected folder in that mode, use \code{\link{gtkFileChooserGetUri}} as the
 usual way to get the selection.  

@@ -48,9 +48,9 @@
 \code{\link{gtkRecentInfoMatch}(object, info.b)}\cr
 \code{gtkRecentManager()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkRecentManager}}
-\section{Detailed Description}{\code{\link{GtkRecentManager}} provides a facility for adding, removing and
+\section{Detailed Description}{\verb{\link{GtkRecentManager}} provides a facility for adding, removing and
 looking up recently used files.  Each recently used file is
 identified by its URI, and has meta-data associated to it, like
 the names and command lines of the applications that have
@@ -59,10 +59,10 @@ the same file, the mime type of the file and whether the file
 should be displayed only by the applications that have
 registered it.
   
-The \code{\link{GtkRecentManager}} acts like a database of all the recently
-used files.  You can create new \code{\link{GtkRecentManager}} objects, but
+The \verb{\link{GtkRecentManager}} acts like a database of all the recently
+used files.  You can create new \verb{\link{GtkRecentManager}} objects, but
 it is more efficient to use the standard recent manager for
-the \code{\link{GdkScreen}} so that informations about the recently used
+the \verb{\link{GdkScreen}} so that informations about the recently used
 files is shared with other people using them.  In case the
 default screen is being used, adding a new recently used
 file is as simple as:
@@ -79,7 +79,7 @@ else use_info_object(lookup$retval)
 }  
 Recently used files are supported since GTK+ 2.10.}
 \section{Structures}{\describe{
-\item{\code{GtkRecentManager}}{
+\item{\verb{GtkRecentManager}}{
 Acts as a database of information about the list of recently
 used files.  Normally, you retrieve the recent manager for a
 particular screen using \code{\link{gtkRecentManagerGetForScreen}}
@@ -87,52 +87,52 @@ and it will contain information about current recent manager
 for that screen.
 
 }
-\item{\code{GtkRecentInfo}}{
+\item{\verb{GtkRecentInfo}}{
 Contains informations found when looking up an entry of the
 recently used files list.
 
 }
-\item{\code{GtkRecentData}}{
+\item{\verb{GtkRecentData}}{
 Meta-data to be passed to \code{\link{gtkRecentManagerAddFull}} when
 registering a recently used resource.  
-\strong{\code{GtkRecentData} is a \link{transparent-type}.}
+\strong{\verb{GtkRecentData} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{displayName}}{[character]  a UTF-8 encoded string, containing the name of the recently
+\item{\verb{displayName}}{[character]  a UTF-8 encoded string, containing the name of the recently
   used resource to be displayed, or \code{NULL};}
-\item{\code{description}}{[character]  a UTF-8 encoded string, containing a short description of
+\item{\verb{description}}{[character]  a UTF-8 encoded string, containing a short description of
   the resource, or \code{NULL};}
-\item{\code{mimeType}}{[character]  the MIME type of the resource;}
-\item{\code{appName}}{[character]  the name of the application that is registering this recently
+\item{\verb{mimeType}}{[character]  the MIME type of the resource;}
+\item{\verb{appName}}{[character]  the name of the application that is registering this recently
   used resource;}
-\item{\code{appExec}}{[character]  command line used to launch this resource; may contain the
+\item{\verb{appExec}}{[character]  command line used to launch this resource; may contain the
   "\%f" and "\%u" escape characters which will be expanded 
   to the resource file path and URI respectively when the command line 
   is retrieved;}
-\item{\code{groups}}{[character]  a vector of strings containing groups names;}
-\item{\code{isPrivate}}{[logical]  whether this resource should be displayed only by the
+\item{\verb{groups}}{[character]  a vector of strings containing groups names;}
+\item{\verb{isPrivate}}{[logical]  whether this resource should be displayed only by the
   applications that have registered it or not.}
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkRecentManager} is the equivalent of \code{\link{gtkRecentManagerNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkRecentManagerError}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkRecentManagerError}}{
 Error codes for GtkRecentManager operations  
 
 \describe{
-\item{\code{not-found}}{ the URI specified does not exists in
+\item{\verb{not-found}}{ the URI specified does not exists in
   the recently used resources list.}
-\item{\code{invalid-uri}}{ the URI specified is not valid.}
-\item{\code{invalid-encoding}}{ the supplied string is not
+\item{\verb{invalid-uri}}{ the URI specified is not valid.}
+\item{\verb{invalid-encoding}}{ the supplied string is not
   UTF-8 encoded.}
-\item{\code{not-registered}}{ no application has registered
+\item{\verb{not-registered}}{ no application has registered
   the specified item.}
-\item{\code{read}}{ failure while reading the recently used
+\item{\verb{read}}{ failure while reading the recently used
   resources file.}
-\item{\code{write}}{ failure while writing the recently used
+\item{\verb{write}}{ failure while writing the recently used
   resources file.}
-\item{\code{unknown}}{ unspecified error.}
+\item{\verb{unknown}}{ unspecified error.}
 }
 
 }}}
@@ -143,14 +143,14 @@ contents.
   Since  2.10
 
 \describe{
-\item{\code{recent.manager}}{[\code{\link{GtkRecentManager}}]  the recent manager}
+\item{\code{recent.manager}}{[\verb{\link{GtkRecentManager}}]  the recent manager}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{filename} [character : Read / Write / Construct Only]}{
+\item{\verb{filename} [character : *                : Read / Write / Construct Only]}{
 
 The full path to the file to be used to store and read the recently
 used resources list  
@@ -158,7 +158,7 @@ used resources list
   Default value: NULL  Since  2.10
 
 }
-\item{\code{limit} [integer : Read / Write]}{
+\item{\verb{limit} [integer : Read / Write]}{
 
 The maximum number of items to be returned by the
 \code{\link{gtkRecentManagerGetItems}} function.  
@@ -166,7 +166,7 @@ The maximum number of items to be returned by the
   Allowed values: >= -1  Default value: -1  Since  2.10
 
 }
-\item{\code{size} [integer : Read]}{
+\item{\verb{size} [integer : Read]}{
 
 The size of the recently used resources list.  
 

@@ -6,8 +6,8 @@ events regardless of the targets and the \code{GTK_DEST_DEFAULT_MOTION}
 flag. }
 \usage{gtkDragDestSetTrackMotion(object, track.motion)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} that's a drag destination}
-\item{\code{track.motion}}{[logical]  whether to accept all targets}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that's a drag destination}
+\item{\verb{track.motion}}{[logical]  whether to accept all targets}
 }
 \details{This may be used when a widget wants to do generic
 actions regardless of the targets that the source offers.  

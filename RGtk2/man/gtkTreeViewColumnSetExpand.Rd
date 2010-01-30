@@ -7,8 +7,8 @@ option set, then the last column gets all extra space.  By default, every
 column is created with this \code{FALSE}.}
 \usage{gtkTreeViewColumnSetExpand(object, expand)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}}
-\item{\code{expand}}{[logical] \code{TRUE} if the column should take available extra space, \code{FALSE} if not}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}}
+\item{\verb{expand}}{[logical] \code{TRUE} if the column should take available extra space, \code{FALSE} if not}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -37,8 +37,6 @@ gtkRemoveIdle(id)
   This is an integer giving the identifier
   returned by the low-level Gtk interface.
 }
-\references{
-}
 
 \author{
 Duncan Temple Lang <duncan@research.bell-labs.com>

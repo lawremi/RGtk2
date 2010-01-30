@@ -11,9 +11,9 @@ call to \code{\link{gtkCListSetColumnAutoResize}}.
 }
 \usage{gtkCListSetColumnResizeable(object, column, resizeable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{column}}{[integer] The column on which to set resizeability.}
-\item{\code{resizeable}}{[logical] \code{TRUE} or \code{FALSE}.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{column}}{[integer] The column on which to set resizeability.}
+\item{\verb{resizeable}}{[logical] \code{TRUE} or \code{FALSE}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

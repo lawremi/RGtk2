@@ -8,12 +8,12 @@ then \code{start} and \code{end} are filled in with the same value).
 NULL, then they are not filled in, but the return value still indicates
 whether text is selected.}
 \usage{gtkTextBufferGetSelectionBounds(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}} a \code{\link{GtkTextBuffer}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}} a \verb{\link{GtkTextBuffer}}}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether the selection has nonzero length}
-\item{\code{start}}{[\code{\link{GtkTextIter}}]  iterator to initialize with selection start}
-\item{\code{end}}{[\code{\link{GtkTextIter}}]  iterator to initialize with selection end}
+\item{\verb{start}}{[\verb{\link{GtkTextIter}}]  iterator to initialize with selection start}
+\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  iterator to initialize with selection end}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

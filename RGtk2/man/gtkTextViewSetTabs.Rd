@@ -5,8 +5,8 @@
 Tags in the buffer may override the default.}
 \usage{gtkTextViewSetTabs(object, tabs)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{tabs}}{[\code{\link{PangoTabArray}}]  tabs as a \code{\link{PangoTabArray}}}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{tabs}}{[\verb{\link{PangoTabArray}}]  tabs as a \verb{\link{PangoTabArray}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

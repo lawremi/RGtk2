@@ -3,7 +3,7 @@
 \title{gtkUIManagerGetUi}
 \description{Creates a UI definition of the merged UI.}
 \usage{gtkUIManagerGetUi(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}}}}
 \details{  Since  2.4}
 \value{[character]  A newly allocated string containing an XML representation of 
 the merged UI.}

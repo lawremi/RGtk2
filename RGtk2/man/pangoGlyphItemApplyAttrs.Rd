@@ -9,15 +9,15 @@ apply the shaping process and then reapply them to the result using
 this function.}
 \usage{pangoGlyphItemApplyAttrs(glyph.item, text, list)}
 \arguments{
-\item{\code{glyph.item}}{[\code{\link{PangoGlyphItem}}]  a shaped item}
-\item{\code{text}}{[char]  text that \code{list} applies to}
-\item{\code{list}}{[\code{\link{PangoAttrList}}]  a \code{\link{PangoAttrList}}}
+\item{\verb{glyph.item}}{[\verb{\link{PangoGlyphItem}}]  a shaped item}
+\item{\verb{text}}{[char]  text that \code{list} applies to}
+\item{\verb{list}}{[\verb{\link{PangoAttrList}}]  a \verb{\link{PangoAttrList}}}
 }
 \details{All attributes that start or end inside a cluster are applied
 to that cluster; for instance, if half of a cluster is underlined
 and the other-half strikethrough, then the cluster will end
 up with both underline and strikethrough attributes. In these
-cases, it may happen that item->extra\_attrs for some of the
+cases, it may happen that item->extra_attrs for some of the
 result items can have multiple attributes of the same type.
   
 This function takes ownership of \code{glyph.item}; it will be reused

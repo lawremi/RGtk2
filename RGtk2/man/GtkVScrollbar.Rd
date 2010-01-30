@@ -8,16 +8,16 @@
 \code{\link{gtkVScrollbarNew}(adjustment = NULL, show = TRUE)}\cr
 \code{gtkVScrollbar(adjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkRange}
-                           +----\link{GtkScrollbar}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkRange
+                           +----GtkScrollbar
                                  +----GtkVScrollbar}}
 \section{Interfaces}{GtkVScrollbar implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Structures}{\describe{\item{\code{GtkVScrollbar}}{
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Structures}{\describe{\item{\verb{GtkVScrollbar}}{
 \emph{undocumented
 }
 

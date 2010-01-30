@@ -32,22 +32,22 @@
 \code{\link{gtkSpinButtonGetWrap}(object)}\cr
 \code{gtkSpinButton(adjustment = NULL, climb.rate = NULL, digits = NULL, min, max, step, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkEntry}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkEntry
                            +----GtkSpinButton}}
 \section{Interfaces}{GtkSpinButton implements
- AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
-\section{Detailed Description}{A \code{\link{GtkSpinButton}} is an ideal way to allow the user to set the value of some 
-attribute. Rather than having to directly type a number into a \code{\link{GtkEntry}}, 
-\code{\link{GtkSpinButton}} allows the user to click on one of two arrows to increment or 
+ AtkImplementorIface,  \verb{\link{GtkBuildable}},  \verb{\link{GtkCellEditable}} and  \verb{\link{GtkEditable}}.}
+\section{Detailed Description}{A \verb{\link{GtkSpinButton}} is an ideal way to allow the user to set the value of some 
+attribute. Rather than having to directly type a number into a \verb{\link{GtkEntry}}, 
+\verb{\link{GtkSpinButton}} allows the user to click on one of two arrows to increment or 
 decrement the displayed value. A value can still be typed in, with the bonus 
 that it can be checked to ensure it is in a given range.
   
-The main properties of a \code{\link{GtkSpinButton}} are through a \code{\link{GtkAdjustment}}. See the 
-\code{\link{GtkAdjustment}} section for more details about an adjustment's properties.
+The main properties of a \verb{\link{GtkSpinButton}} are through a \verb{\link{GtkAdjustment}}. See the 
+\verb{\link{GtkAdjustment}} section for more details about an adjustment's properties.
   
  \emph{Using a   \code{GtkSpinButton}   to get an integer.}
 \preformatted{
@@ -95,30 +95,30 @@ create_floating_spin_button <- function() {
   window$showAll()
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkSpinButton}}{
-\code{entry} is the \code{\link{GtkEntry}} part of the \code{\link{GtkSpinButton}} 
+\section{Structures}{\describe{\item{\verb{GtkSpinButton}}{
+\code{entry} is the \verb{\link{GtkEntry}} part of the \verb{\link{GtkSpinButton}} 
 widget, and can be used accordingly. All other fields contain private data 
 and should only be modified using the functions below.
 
 }}}
 \section{Convenient Construction}{\code{gtkSpinButton} is the result of collapsing the constructors of \code{GtkSpinButton} (\code{\link{gtkSpinButtonNew}}, \code{\link{gtkSpinButtonNewWithRange}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkSpinButtonUpdatePolicy}}{
+\item{\verb{GtkSpinButtonUpdatePolicy}}{
 \tabular{ll}{
-GTK\_UPDATE\_ALWAYS \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is always displayed. \cr
-GTK\_UPDATE\_IF\_VALID \tab When refreshing your   \code{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \code{\link{GtkAdjustment}}  . \cr
+GTK_UPDATE_ALWAYS \tab When refreshing your   \verb{\link{GtkSpinButton}}  , the value is always displayed. \cr
+GTK_UPDATE_IF_VALID \tab When refreshing your   \verb{\link{GtkSpinButton}}  , the value is only displayed if it is valid within the bounds of the spin button's   \verb{\link{GtkAdjustment}}  . \cr
 }
 
 }
-\item{\code{GtkSpinType}}{
+\item{\verb{GtkSpinType}}{
 \tabular{ll}{
-GTK\_SPIN\_STEP\_FORWARD, 
-GTK\_SPIN\_STEP\_BACKWARD, 
-GTK\_SPIN\_PAGE\_FORWARD, 
-GTK\_SPIN\_PAGE\_BACKWARD \tab These values spin a   \code{\link{GtkSpinButton}}   by the relevant values of the spin button's   \code{\link{GtkAdjustment}}  . \cr
-GTK\_SPIN\_HOME, 
-GTK\_SPIN\_END \tab These set the spin button's value to the minimum or maxmimum possible values, (set by its   \code{\link{GtkAdjustment}}  ), respectively. \cr
-GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to spin the   \code{\link{GtkSpinButton}}  . \cr
+GTK_SPIN_STEP_FORWARD, 
+GTK_SPIN_STEP_BACKWARD, 
+GTK_SPIN_PAGE_FORWARD, 
+GTK_SPIN_PAGE_BACKWARD \tab These values spin a   \verb{\link{GtkSpinButton}}   by the relevant values of the spin button's   \verb{\link{GtkAdjustment}}  . \cr
+GTK_SPIN_HOME, 
+GTK_SPIN_END \tab These set the spin button's value to the minimum or maxmimum possible values, (set by its   \verb{\link{GtkAdjustment}}  ), respectively. \cr
+GTK_SPIN_USER_DEFINED \tab The programmer must specify the exact amount to spin the   \verb{\link{GtkSpinButton}}  . \cr
 }
 
 }
@@ -129,7 +129,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 }
 
 \describe{
-\item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}] the object which received the signal.}
+\item{\code{spinbutton}}{[\verb{\link{GtkSpinButton}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkScrollType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -141,7 +141,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 }
 
 \describe{
-\item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}] the object which received the signal.}
+\item{\code{spinbutton}}{[\verb{\link{GtkSpinButton}}] the object which received the signal.}
 \item{\code{arg1}}{[R object] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -153,7 +153,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 }
 
 \describe{
-\item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}] the object which received the signal.}
+\item{\code{spinbutton}}{[\verb{\link{GtkSpinButton}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -164,7 +164,7 @@ GTK\_SPIN\_USER\_DEFINED \tab The programmer must specify the exact amount to sp
 }
 
 \describe{
-\item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}] the object which received the signal.}
+\item{\code{spinbutton}}{[\verb{\link{GtkSpinButton}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -177,7 +177,7 @@ from its maximum to minimum value or vice-versa.
   Since  2.10
 
 \describe{
-\item{\code{spinbutton}}{[\code{\link{GtkSpinButton}}]  the object which received the signal}
+\item{\code{spinbutton}}{[\verb{\link{GtkSpinButton}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -185,51 +185,51 @@ from its maximum to minimum value or vice-versa.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{adjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{
+\item{\verb{adjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The adjustment that holds the value of the spinbutton.
 
 }
-\item{\code{climb-rate} [numeric : Read / Write]}{
+\item{\verb{climb-rate} [numeric : Read / Write]}{
 
 The acceleration rate when you hold down a button.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{digits} [numeric : Read / Write]}{
+\item{\verb{digits} [numeric : Read / Write]}{
 
 The number of decimal places to display.  Allowed values: <= 20  Default value: 0
 
 }
-\item{\code{numeric} [logical : Read / Write]}{
+\item{\verb{numeric} [logical : Read / Write]}{
 
 Whether non-numeric characters should be ignored.  Default value: FALSE
 
 }
-\item{\code{snap-to-ticks} [logical : Read / Write]}{
+\item{\verb{snap-to-ticks} [logical : Read / Write]}{
 
 Whether erroneous values are automatically changed to a spin button's nearest step increment.  Default value: FALSE
 
 }
-\item{\code{update-policy} [\code{\link{GtkSpinButtonUpdatePolicy}} : Read / Write]}{
+\item{\verb{update-policy} [\code{\link{GtkSpinButtonUpdatePolicy}} : Read / Write]}{
 
-Whether the spin button should update always, or only when the value is legal.  Default value: GTK\_UPDATE\_ALWAYS
+Whether the spin button should update always, or only when the value is legal.  Default value: GTK_UPDATE_ALWAYS
 
 }
-\item{\code{value} [numeric : Read / Write]}{
+\item{\verb{value} [numeric : Read / Write]}{
 
 Reads the current value, or sets a new value.  Default value: 0
 
 }
-\item{\code{wrap} [logical : Read / Write]}{
+\item{\verb{wrap} [logical : Read / Write]}{
 
 Whether a spin button should wrap upon reaching its limits.  Default value: FALSE
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
+\section{Style Properties}{\describe{\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
 the type of border that surrounds the arrows of a spin button.
-  Default value: GTK\_SHADOW\_IN
+  Default value: GTK_SHADOW_IN
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkSpinButton.html}}

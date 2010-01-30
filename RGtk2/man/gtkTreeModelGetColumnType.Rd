@@ -4,9 +4,9 @@
 \description{Returns the type of the column.}
 \usage{gtkTreeModelGetColumnType(object, index)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}
-\item{\code{index}}{[integer]  The column index.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
+\item{\verb{index}}{[integer]  The column index.}
 }
-\value{[\code{\link{GType}}]  The type of the column.}
+\value{[\verb{\link{GType}}]  The type of the column.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

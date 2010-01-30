@@ -10,13 +10,13 @@ fill in values, you need to call \code{\link{gtkTreeStoreSet}} or
 \code{\link{gtkTreeStoreSetValue}}.}
 \usage{gtkTreeStoreInsert(object, parent = NULL, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}}
-\item{\code{parent}}{[\code{\link{GtkTreeIter}}]  A valid \code{\link{GtkTreeIter}}, or \code{NULL}}
-\item{\code{position}}{[integer]  position to insert the new row}
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}}
+\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A valid \verb{\link{GtkTreeIter}}, or \code{NULL}}
+\item{\verb{position}}{[integer]  position to insert the new row}
 }
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An unset \code{\link{GtkTreeIter}} to set to the new row}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An unset \verb{\link{GtkTreeIter}} to set to the new row}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

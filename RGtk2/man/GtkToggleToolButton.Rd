@@ -10,26 +10,26 @@
 \code{\link{gtkToggleToolButtonGetActive}(object)}\cr
 \code{gtkToggleToolButton(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkToolItem}
-                                       +----\link{GtkToolButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkToolItem
+                                       +----GtkToolButton
                                              +----GtkToggleToolButton
-                                                   +----\link{GtkRadioToolButton}}}
+                                                   +----GtkRadioToolButton}}
 \section{Interfaces}{GtkToggleToolButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{  A \code{\link{GtkToggleToolButton}} is a \code{\link{GtkToolItem}} that contains a toggle
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{  A \verb{\link{GtkToggleToolButton}} is a \verb{\link{GtkToolItem}} that contains a toggle
   button.
   
   Use \code{\link{gtkToggleToolButtonNew}} to create a new
-  \code{\link{GtkToggleToolButton}}. Use \code{\link{gtkToggleToolButtonNewFromStock}} to
-  create a new \code{\link{GtkToggleToolButton}} containing a stock item.}
-\section{Structures}{\describe{\item{\code{GtkToggleToolButton}}{
-  The \code{\link{GtkToggleToolButton}} struct contains only private data and
+  \verb{\link{GtkToggleToolButton}}. Use \code{\link{gtkToggleToolButtonNewFromStock}} to
+  create a new \verb{\link{GtkToggleToolButton}} containing a stock item.}
+\section{Structures}{\describe{\item{\verb{GtkToggleToolButton}}{
+  The \verb{\link{GtkToggleToolButton}} struct contains only private data and
   should only be accessed through the functions described below.
 
 }}}
@@ -38,13 +38,13 @@
 Emitted whenever the toggle tool button changes state.  
 
 \describe{
-\item{\code{toggle.tool.button}}{[\code{\link{GtkToggleToolButton}}]  the object that emitted the signal}
+\item{\code{toggle.tool.button}}{[\verb{\link{GtkToggleToolButton}}]  the object that emitted the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{active} [logical : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{active} [logical : Read / Write]}{
 
 If the toggle tool button should be pressed in or not.  
 

@@ -8,8 +8,8 @@ if nothing is known about the language tag \code{language},
 \code{script} might be used to write \code{language}.}
 \usage{pangoLanguageIncludesScript(object, script)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLanguage}}]  a \code{\link{PangoLanguage}}, or \code{NULL}}
-\item{\code{script}}{[\code{\link{PangoScript}}]  a \code{\link{PangoScript}}}
+\item{\verb{object}}{[\verb{\link{PangoLanguage}}]  a \verb{\link{PangoLanguage}}, or \code{NULL}}
+\item{\verb{script}}{[\code{\link{PangoScript}}]  a \code{\link{PangoScript}}}
 }
 \details{This routine is used in Pango's itemization process when
 determining if a supplied language tag is relevant to

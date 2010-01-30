@@ -5,7 +5,7 @@
 window covers the entire screen and is above any panels
 or task bars.}
 \usage{gdkWindowFullscreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}}
 \details{If the window was already fullscreen, then this function does nothing.
   
 On X11, asks the window manager to put \code{window} in a fullscreen

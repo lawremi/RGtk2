@@ -8,9 +8,9 @@ can be given for the data.
 }
 \usage{gtkCTreeNodeSetRowDataFull(object, node, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{data}}{[R object] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{data}}{[R object] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 of the handle box.}
 \usage{gtkHandleBoxSetShadowType(object, type)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkHandleBox}}] a \code{\link{GtkHandleBox}}}
-\item{\code{type}}{[\code{\link{GtkShadowType}}] the shadow type.}
+\item{\verb{object}}{[\verb{\link{GtkHandleBox}}] a \verb{\link{GtkHandleBox}}}
+\item{\verb{type}}{[\code{\link{GtkShadowType}}] the shadow type.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,25 +1,25 @@
 \alias{gdkPixbufGetFromDrawable}
 \name{gdkPixbufGetFromDrawable}
 \title{gdkPixbufGetFromDrawable}
-\description{Transfers image data from a \code{\link{GdkDrawable}} and converts it to an RGB(A)
-representation inside a \code{\link{GdkPixbuf}}. In other words, copies
+\description{Transfers image data from a \verb{\link{GdkDrawable}} and converts it to an RGB(A)
+representation inside a \verb{\link{GdkPixbuf}}. In other words, copies
 image data from a server-side drawable to a client-side RGB(A) buffer.
 This allows you to efficiently read individual pixels on the client side.}
 \usage{gdkPixbufGetFromDrawable(dest = NULL, src, cmap = NULL, src.x, src.y, dest.x, dest.y, width, height)}
 \arguments{
-\item{\code{dest}}{[\code{\link{GdkPixbuf}}]  Destination pixbuf, or \code{NULL} if a new pixbuf should be created.}
-\item{\code{src}}{[\code{\link{GdkDrawable}}]  Source drawable.}
-\item{\code{cmap}}{[\code{\link{GdkColormap}}]  A colormap if \code{src} doesn't have one set.}
-\item{\code{src.x}}{[integer]  Source X coordinate within drawable.}
-\item{\code{src.y}}{[integer]  Source Y coordinate within drawable.}
-\item{\code{dest.x}}{[integer]  Destination X coordinate in pixbuf, or 0 if \code{dest} is NULL.}
-\item{\code{dest.y}}{[integer]  Destination Y coordinate in pixbuf, or 0 if \code{dest} is NULL.}
-\item{\code{width}}{[integer]  Width in pixels of region to get.}
-\item{\code{height}}{[integer]  Height in pixels of region to get.}
+\item{\verb{dest}}{[\verb{\link{GdkPixbuf}}]  Destination pixbuf, or \code{NULL} if a new pixbuf should be created.}
+\item{\verb{src}}{[\verb{\link{GdkDrawable}}]  Source drawable.}
+\item{\verb{cmap}}{[\verb{\link{GdkColormap}}]  A colormap if \code{src} doesn't have one set.}
+\item{\verb{src.x}}{[integer]  Source X coordinate within drawable.}
+\item{\verb{src.y}}{[integer]  Source Y coordinate within drawable.}
+\item{\verb{dest.x}}{[integer]  Destination X coordinate in pixbuf, or 0 if \code{dest} is NULL.}
+\item{\verb{dest.y}}{[integer]  Destination Y coordinate in pixbuf, or 0 if \code{dest} is NULL.}
+\item{\verb{width}}{[integer]  Width in pixels of region to get.}
+\item{\verb{height}}{[integer]  Height in pixels of region to get.}
 }
 \details{If the drawable \code{src} has no colormap (\code{\link{gdkDrawableGetColormap}}
 returns \code{NULL}), then a suitable colormap must be specified.
-Typically a \code{\link{GdkWindow}} or a pixmap created by passing a \code{\link{GdkWindow}}
+Typically a \verb{\link{GdkWindow}} or a pixmap created by passing a \verb{\link{GdkWindow}}
 to \code{\link{gdkPixmapNew}} will already have a colormap associated with
 it.  If the drawable has a colormap, the \code{cmap} argument will be
 ignored.  If the drawable is a bitmap (1 bit per pixel pixmap),
@@ -62,9 +62,9 @@ instead.
  it returns \code{NULL}; so check the return value.)
   
 This function calls \code{\link{gdkDrawableGetImage}} internally and
-converts the resulting image to a \code{\link{GdkPixbuf}}, so the
+converts the resulting image to a \verb{\link{GdkPixbuf}}, so the
 documentation for \code{\link{gdkDrawableGetImage}} may also be relevant.  }
-\value{[\code{\link{GdkPixbuf}}]  The same pixbuf as \code{dest} if it was non-\code{NULL}, or a newly-created
+\value{[\verb{\link{GdkPixbuf}}]  The same pixbuf as \code{dest} if it was non-\code{NULL}, or a newly-created
 pixbuf with a reference count of 1 if no destination pixbuf was specified, or \code{NULL} on error}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

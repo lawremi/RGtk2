@@ -8,17 +8,17 @@ toolbar where it will be inserted.
 }
 \usage{gtkToolbarInsertItem(object, text, tooltip.text, tooltip.private.text, icon, callback, user.data, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}.}
-\item{\code{text}}{[char]  give your toolbar button a label.}
-\item{\code{tooltip.text}}{[char]  a string that appears when the user holds the mouse over this item.}
-\item{\code{tooltip.private.text}}{[char]  use with \code{\link{GtkTipsQuery}}.}
-\item{\code{icon}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} that should be used as the button's icon.}
-\item{\code{callback}}{[GtkSignalFunc]  the function to be executed when the button is pressed.}
-\item{\code{user.data}}{[R object]  a pointer to any data you wish to be passed to the callback.}
-\item{\code{position}}{[integer]  the number of widgets to insert this item after.}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}.}
+\item{\verb{text}}{[char]  give your toolbar button a label.}
+\item{\verb{tooltip.text}}{[char]  a string that appears when the user holds the mouse over this item.}
+\item{\verb{tooltip.private.text}}{[char]  use with \verb{\link{GtkTipsQuery}}.}
+\item{\verb{icon}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that should be used as the button's icon.}
+\item{\verb{callback}}{[GtkSignalFunc]  the function to be executed when the button is pressed.}
+\item{\verb{user.data}}{[R object]  a pointer to any data you wish to be passed to the callback.}
+\item{\verb{position}}{[integer]  the number of widgets to insert this item after.}
 }
-\details{\code{callback} must be a pointer to a function taking a \code{\link{GtkWidget}} and a gpointer as
-arguments. Use the \code{gtkSignalFunc()} to cast the function to \code{GtkSignalFunc}.  }
-\value{[\code{\link{GtkWidget}}]  the new toolbar item as a \code{\link{GtkWidget}}.}
+\details{\code{callback} must be a pointer to a function taking a \verb{\link{GtkWidget}} and a gpointer as
+arguments. Use the \code{gtkSignalFunc()} to cast the function to \verb{GtkSignalFunc}.  }
+\value{[\verb{\link{GtkWidget}}]  the new toolbar item as a \verb{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

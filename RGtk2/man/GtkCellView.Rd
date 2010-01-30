@@ -16,40 +16,40 @@
 \code{\link{gtkCellViewGetCellRenderers}(object)}\cr
 \code{gtkCellView(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkCellView}}
 \section{Interfaces}{GtkCellView implements
- AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
-\section{Detailed Description}{A \code{\link{GtkCellView}} displays a single row of a \code{\link{GtkTreeModel}}, using
-cell renderers just like \code{\link{GtkTreeView}}. \code{\link{GtkCellView}} doesn't support
-some of the more complex features of \code{\link{GtkTreeView}}, like cell editing
+ AtkImplementorIface,  \verb{\link{GtkBuildable}} and  \verb{\link{GtkCellLayout}}.}
+\section{Detailed Description}{A \verb{\link{GtkCellView}} displays a single row of a \verb{\link{GtkTreeModel}}, using
+cell renderers just like \verb{\link{GtkTreeView}}. \verb{\link{GtkCellView}} doesn't support
+some of the more complex features of \verb{\link{GtkTreeView}}, like cell editing
 and drag and drop.}
-\section{Structures}{\describe{\item{\code{GtkCellView}}{
+\section{Structures}{\describe{\item{\verb{GtkCellView}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkCellView} is the equivalent of \code{\link{gtkCellViewNew}}.}
 \section{Properties}{\describe{
-\item{\code{background} [character : Write]}{
+\item{\verb{background} [character : *                : Write]}{
 
 Background color as a string.  Default value: NULL
 
 }
-\item{\code{background-gdk} [\code{\link{GdkColor}} : Read / Write]}{
+\item{\verb{background-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
 
 Background color as a GdkColor.
 
 }
-\item{\code{background-set} [logical : Read / Write]}{
+\item{\verb{background-set} [logical : Read / Write]}{
 
 Whether this tag affects the background color.  Default value: FALSE
 
 }
-\item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write]}{
+\item{\verb{model} [\verb{\link{GtkTreeModel}} : *         : Read / Write]}{
 
 The model for cell view
   

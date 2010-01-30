@@ -8,7 +8,7 @@ events where motion notifies are provided for devices other than the
 core pointer. Coordinate extraction, processing and requesting more
 motion events from a \code{GDK_MOTION_NOTIFY} event usually works like this:}
 \usage{gdkEventRequestMotions(event)}
-\arguments{\item{\code{event}}{[\code{\link{GdkEventMotion}}]  a valid \code{\link{GdkEvent}}}}
+\arguments{\item{\verb{event}}{[\verb{\link{GdkEventMotion}}]  a valid \verb{\link{GdkEvent}}}}
 \details{\preformatted{
 # motion event handler
 {

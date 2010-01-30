@@ -8,8 +8,8 @@ comparing the offsets yourself. Also, it's a bit faster than
 \code{\link{gtkTextIterCompare}}.}
 \usage{gtkTextIterEqual(object, rhs)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{rhs}}{[\code{\link{GtkTextIter}}]  another \code{\link{GtkTextIter}}}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{rhs}}{[\verb{\link{GtkTextIter}}]  another \verb{\link{GtkTextIter}}}
 }
 \value{[logical] \code{TRUE} if the iterators point to the same place in the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}

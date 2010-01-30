@@ -9,9 +9,9 @@ will be those characters from \code{start.pos} to the end
 of the text.}
 \usage{gtkEditableSelectRegion(object, start, end)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEditable}}] a \code{\link{GtkEditable}} widget.}
-\item{\code{start}}{[integer] the starting position.}
-\item{\code{end}}{[integer] the end position.}
+\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}
+\item{\verb{start}}{[integer] the starting position.}
+\item{\verb{end}}{[integer] the end position.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

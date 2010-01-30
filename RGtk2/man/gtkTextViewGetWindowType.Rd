@@ -7,8 +7,8 @@ should be called on \code{event->window} to
 see which window it was.}
 \usage{gtkTextViewGetWindowType(object, window)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a window type}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a window type}
 }
 \value{[\code{\link{GtkTextWindowType}}]  the window type.}
 \author{Derived by RGtkGen from GTK+ documentation}

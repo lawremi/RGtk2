@@ -1,8 +1,8 @@
 \alias{gtkAccelGroupNew}
 \name{gtkAccelGroupNew}
 \title{gtkAccelGroupNew}
-\description{Creates a new \code{\link{GtkAccelGroup}}.}
+\description{Creates a new \verb{\link{GtkAccelGroup}}.}
 \usage{gtkAccelGroupNew()}
-\value{[\code{\link{GtkAccelGroup}}]  a new \code{\link{GtkAccelGroup}} object}
+\value{[\verb{\link{GtkAccelGroup}}]  a new \verb{\link{GtkAccelGroup}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

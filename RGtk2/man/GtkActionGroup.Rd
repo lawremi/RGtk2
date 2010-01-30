@@ -29,12 +29,12 @@
 \code{\link{gtkActionGroupTranslateString}(object, string)}\cr
 \code{gtkActionGroup(name = NULL)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkActionGroup}}
 \section{Interfaces}{GtkActionGroup implements
- \code{\link{GtkBuildable}}.}
+ \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{Actions are organised into groups.  An action group is essentially a
-map from names to \code{\link{GtkAction}} objects.
+map from names to \verb{\link{GtkAction}} objects.
   
 All actions that would make sense to use in a particular context
 should be in a single group.  Multiple action groups may be used for a
@@ -75,15 +75,15 @@ it doesn't allow you to specify a signal.
 </object>
 }}
 \section{Structures}{\describe{
-\item{\code{GtkActionGroup}}{
+\item{\verb{GtkActionGroup}}{
 The \code{GtkActionGroup} struct contains only private 
 members and should not be accessed directly.
 
 }
-\item{\code{GtkActionEntry}}{
+\item{\verb{GtkActionEntry}}{
 \code{GtkActionEntry} structs are used with 
 \code{\link{gtkActionGroupAddActions}} to construct actions.
-\strong{\code{GtkActionEntry} is a \link{transparent-type}.}
+\strong{\verb{GtkActionEntry} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
@@ -100,10 +100,10 @@ members and should not be accessed directly.
 }
 
 }
-\item{\code{GtkToggleActionEntry}}{
+\item{\verb{GtkToggleActionEntry}}{
 \code{GtkToggleActionEntry} structs are used with 
 \code{\link{gtkActionGroupAddToggleActions}} to construct toggle actions.
-\strong{\code{GtkToggleActionEntry} is a \link{transparent-type}.}
+\strong{\verb{GtkToggleActionEntry} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
@@ -120,10 +120,10 @@ members and should not be accessed directly.
 }
 
 }
-\item{\code{GtkRadioActionEntry}}{
+\item{\verb{GtkRadioActionEntry}}{
 \code{GtkRadioActionEntry} structs are used with 
 \code{\link{gtkActionGroupAddRadioActions}} to construct groups of radio actions.
-\strong{\code{GtkRadioActionEntry} is a \link{transparent-type}.}
+\strong{\verb{GtkRadioActionEntry} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{name}}{[character] The name of the action.}
@@ -143,75 +143,75 @@ members and should not be accessed directly.
 \section{Convenient Construction}{\code{gtkActionGroup} is the equivalent of \code{\link{gtkActionGroupNew}}.}
 \section{Signals}{\describe{
 \item{\code{connect-proxy(action.group, action, proxy, user.data)}}{
-The connect\_proxy signal is emitted after connecting a proxy to 
+The connect_proxy signal is emitted after connecting a proxy to 
 an action in the group. Note that the proxy may have been connected 
 to a different action before.
   
 This is intended for simple customizations for which a custom action
 class would be too clumsy, e.g. showing tooltips for menuitems in the
 statusbar.
-  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
+  \verb{\link{GtkUIManager}} proxies the signal and provides global notification 
 just before any action is connected to a proxy, which is probably more
 convenient to use.  
 
   Since  2.4
 
 \describe{
-\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{action.group}}{[\verb{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\verb{\link{GtkWidget}}]  the proxy}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{disconnect-proxy(action.group, action, proxy, user.data)}}{
-The disconnect\_proxy signal is emitted after disconnecting a proxy 
+The disconnect_proxy signal is emitted after disconnecting a proxy 
 from an action in the group. 
-  \code{\link{GtkUIManager}} proxies the signal and provides global notification 
+  \verb{\link{GtkUIManager}} proxies the signal and provides global notification 
 just before any action is connected to a proxy, which is probably more
 convenient to use.  
 
   Since  2.4
 
 \describe{
-\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{action.group}}{[\verb{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\verb{\link{GtkWidget}}]  the proxy}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{post-activate(action.group, action, user.data)}}{
-The post\_activate signal is emitted just after the \code{action} in the
+The post_activate signal is emitted just after the \code{action} in the
 \code{action.group} is activated
   
-This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global
+This is intended for \verb{\link{GtkUIManager}} to proxy the signal and provide global
 notification just after any action is activated.  
 
   Since  2.4
 
 \describe{
-\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{action.group}}{[\verb{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{pre-activate(action.group, action, user.data)}}{
-The pre\_activate signal is emitted just before the \code{action} in the
+The pre_activate signal is emitted just before the \code{action} in the
 \code{action.group} is activated
   
-This is intended for \code{\link{GtkUIManager}} to proxy the signal and provide global
+This is intended for \verb{\link{GtkUIManager}} to proxy the signal and provide global
 notification just before any action is activated.  
 
   Since  2.4
 
 \describe{
-\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the group}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{action.group}}{[\verb{\link{GtkActionGroup}}]  the group}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -219,17 +219,17 @@ notification just before any action is activated.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{name} [character : Read / Write / Construct Only]}{
+\item{\verb{name} [character : *                : Read / Write / Construct Only]}{
 
 A name for the action group.  Default value: NULL
 
 }
-\item{\code{sensitive} [logical : Read / Write]}{
+\item{\verb{sensitive} [logical : Read / Write]}{
 
 Whether the action group is enabled.  Default value: TRUE
 
 }
-\item{\code{visible} [logical : Read / Write]}{
+\item{\verb{visible} [logical : Read / Write]}{
 
 Whether the action group is visible.  Default value: TRUE
 

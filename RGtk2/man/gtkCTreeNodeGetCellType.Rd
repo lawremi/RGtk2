@@ -7,9 +7,9 @@
 }
 \usage{gtkCTreeNodeGetCellType(object, node, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{column}}{[integer] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{column}}{[integer] }
 }
 \value{[\code{\link{GtkCellType}}] The type of the given cell.}
 \author{Derived by RGtkGen from GTK+ documentation}

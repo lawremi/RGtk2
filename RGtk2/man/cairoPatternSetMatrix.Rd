@@ -5,8 +5,8 @@
 a transformation from user space to pattern space.}
 \usage{cairoPatternSetMatrix(pattern, matrix)}
 \arguments{
-\item{\code{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
+\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
 }
 \details{When a pattern is first created it always has the identity matrix
 for its transformation matrix, which means that pattern space is

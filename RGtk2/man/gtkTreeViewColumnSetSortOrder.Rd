@@ -4,8 +4,8 @@
 \description{Changes the appearance of the sort indicator. }
 \usage{gtkTreeViewColumnSetSortOrder(object, order)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}}}
-\item{\code{order}}{[\code{\link{GtkSortType}}]  sort order that the sort indicator should indicate}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}}}
+\item{\verb{order}}{[\code{\link{GtkSortType}}]  sort order that the sort indicator should indicate}
 }
 \details{This \emph{does not} actually sort the model.  Use
 \code{\link{gtkTreeViewColumnSetSortColumnId}} if you want automatic sorting

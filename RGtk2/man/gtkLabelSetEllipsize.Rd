@@ -5,8 +5,8 @@
 if there is not enough space to render the entire string.}
 \usage{gtkLabelSetEllipsize(object, mode)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}
-\item{\code{mode}}{[\code{\link{PangoEllipsizeMode}}]  a \code{\link{PangoEllipsizeMode}}}
+\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
+\item{\verb{mode}}{[\code{\link{PangoEllipsizeMode}}]  a \code{\link{PangoEllipsizeMode}}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,9 +8,9 @@ parameters. If the current path is empty, returns an empty
 rectangle ((0,0), (0,0)). Surface dimensions and clipping are not
 taken into account.}
 \usage{cairoStrokeExtents(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{Note that if the line width is set to exactly zero, then
-cairo\_stroke\_extents will return an empty rectangle. Contrast with
+cairo_stroke_extents will return an empty rectangle. Contrast with
 \code{\link{cairoPathExtents}} which can be used to compute the non-empty
 bounds as the line width approaches zero.
   
@@ -19,10 +19,10 @@ See \code{\link{cairoStroke}}, \code{\link{cairoSetLineWidth}}, \code{\link{cair
 \code{\link{cairoStrokePreserve}}.  }
 \value{
 A list containing the following elements:
-\item{\code{x1}}{[numeric]  left of the resulting extents}
-\item{\code{y1}}{[numeric]  top of the resulting extents}
-\item{\code{x2}}{[numeric]  right of the resulting extents}
-\item{\code{y2}}{[numeric]  bottom of the resulting extents}
+\item{\verb{x1}}{[numeric]  left of the resulting extents}
+\item{\verb{y1}}{[numeric]  top of the resulting extents}
+\item{\verb{x2}}{[numeric]  right of the resulting extents}
+\item{\verb{y2}}{[numeric]  bottom of the resulting extents}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

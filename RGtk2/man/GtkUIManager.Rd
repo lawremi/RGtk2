@@ -24,11 +24,11 @@
 \code{\link{gtkUIManagerEnsureUpdate}(object)}\cr
 \code{gtkUIManager()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkUIManager}}
 \section{Interfaces}{GtkUIManager implements
- \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkUIManager}} constructs a user interface (menus and toolbars) from
+ \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkUIManager}} constructs a user interface (menus and toolbars) from
 one or more UI definitions, which reference actions from one or more 
 action groups. }
 \section{UI Definitions}{The UI definitions are specified in an XML format which can be
@@ -73,8 +73,8 @@ Definitions.
 There are some additional restrictions beyond those specified in the
 DTD, e.g. every toolitem must have a toolbar in its anchestry and
 every menuitem must have a menubar or popup in its anchestry. Since
-a \code{GMarkup} parser is used to parse the UI description, it must not only
-be valid XML, but valid \code{GMarkup}. 
+a \verb{GMarkup} parser is used to parse the UI description, it must not only
+be valid XML, but valid \verb{GMarkup}. 
   
 If a name is not specified, it defaults to the action. If an action is 
 not specified either, the element name is used. The name and action 
@@ -113,24 +113,24 @@ of the XML, with the exception that placeholders are merged into their
 parents. The correspondence of XML elements to widgets should be
 almost obvious: 
 \describe{
-\item{menubar}{a \code{\link{GtkMenuBar}}}
-\item{toolbar}{a \code{\link{GtkToolbar}}}
-\item{popup}{a toplevel \code{\link{GtkMenu}}}
-\item{menu}{a \code{\link{GtkMenu}} attached to a menuitem}
-\item{menuitem}{a \code{\link{GtkMenuItem}} subclass, the exact type depends on the
+\item{menubar}{a \verb{\link{GtkMenuBar}}}
+\item{toolbar}{a \verb{\link{GtkToolbar}}}
+\item{popup}{a toplevel \verb{\link{GtkMenu}}}
+\item{menu}{a \verb{\link{GtkMenu}} attached to a menuitem}
+\item{menuitem}{a \verb{\link{GtkMenuItem}} subclass, the exact type depends on the
 action}
-\item{toolitem}{a \code{\link{GtkToolItem}} subclass, the exact type depends on the
+\item{toolitem}{a \verb{\link{GtkToolItem}} subclass, the exact type depends on the
 action. Note that toolitem elements may contain a menu element, but only
-if their associated action specifies a \code{\link{GtkMenuToolButton}} as proxy.}
-\item{separator}{a \code{\link{GtkSeparatorMenuItem}} or
-\code{\link{GtkSeparatorToolItem}}}
+if their associated action specifies a \verb{\link{GtkMenuToolButton}} as proxy.}
+\item{separator}{a \verb{\link{GtkSeparatorMenuItem}} or
+\verb{\link{GtkSeparatorToolItem}}}
 \item{accelerator}{a keyboard accelerator}
 }
   
 The "position" attribute determines where a constructed widget is positioned
 wrt. to its siblings in the partially constructed tree. If it is
 "top", the widget is prepended, otherwise it is appended.}
-\section{UI Merging}{The most remarkable feature of \code{\link{GtkUIManager}} is that it can overlay a set
+\section{UI Merging}{The most remarkable feature of \verb{\link{GtkUIManager}} is that it can overlay a set
 of menuitems and toolitems over another one, and demerge them later.
   
 Merging is done based on the names of the XML elements. Each element is 
@@ -143,7 +143,7 @@ toolitem with the same name has path
 menuitem proxies, but they can also be explicitly added with <accelerator>
 elements in the UI definition. This makes it possible to have accelerators for
 actions even if they have no visible proxies.}
-\section{Smart Separators}{The separators created by \code{\link{GtkUIManager}} are "smart", i.e. they do not show up 
+\section{Smart Separators}{The separators created by \verb{\link{GtkUIManager}} are "smart", i.e. they do not show up 
 in the UI unless they end up between two visible menu or tool items. Separators
 which are located at the very beginning or end of the menu or toolbar 
 containing them, or multiple separators next to each other, are hidden. This 
@@ -156,12 +156,12 @@ turn them from a small, visible separator to an expanding, invisible one.
 Toolitems following an expanding separator are effectively right-aligned.}
 \section{Empty Menus}{Submenus pose similar problems to separators inconnection with merging. It is 
 impossible to know in advance whether they will end up empty after merging. 
-\code{\link{GtkUIManager}} offers two ways to treat empty submenus:
+\verb{\link{GtkUIManager}} offers two ways to treat empty submenus:
 \itemize{
 \item make them disappear by hiding the menu item they're attached to
 \item add an insensitive "Empty" item
 }
-The behaviour is chosen based on the "hide\_if\_empty" property of the action 
+The behaviour is chosen based on the "hide_if_empty" property of the action 
 to which the submenu is associated.}
 \section{GtkUIManager as GtkBuildable}{The GtkUIManager implementation of the GtkBuildable interface accepts
 GtkActionGroup objects as <child> elements in UI definitions.
@@ -196,27 +196,27 @@ other parts of the constructed user interface with the help of the
   </child>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkUIManager}}{
+\section{Structures}{\describe{\item{\verb{GtkUIManager}}{
 The \code{GtkUIManager} struct contains only private
 members and should not be accessed directly.
 
 }}}
 \section{Convenient Construction}{\code{gtkUIManager} is the equivalent of \code{\link{gtkUIManagerNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkUIManagerItemType}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkUIManagerItemType}}{
 These enumeration values are used by \code{\link{gtkUIManagerAddUi}} to determine
 what UI element to create.
 
 \describe{
-\item{\code{auto}}{Pick the type of the UI element according to context.}
-\item{\code{menubar}}{Create a menubar.}
-\item{\code{menu}}{Create a menu.}
-\item{\code{toolbar}}{Create a toolbar.}
-\item{\code{placeholder}}{Insert a placeholder.}
-\item{\code{popup}}{Create a popup menu.}
-\item{\code{menuitem}}{Create a menuitem.}
-\item{\code{toolitem}}{Create a toolitem.}
-\item{\code{separator}}{Create a separator.}
-\item{\code{accelerator}}{Install an accelerator.}
+\item{\verb{auto}}{Pick the type of the UI element according to context.}
+\item{\verb{menubar}}{Create a menubar.}
+\item{\verb{menu}}{Create a menu.}
+\item{\verb{toolbar}}{Create a toolbar.}
+\item{\verb{placeholder}}{Insert a placeholder.}
+\item{\verb{popup}}{Create a popup menu.}
+\item{\verb{menuitem}}{Create a menuitem.}
+\item{\verb{toolitem}}{Create a toolitem.}
+\item{\verb{separator}}{Create a separator.}
+\item{\verb{accelerator}}{Install an accelerator.}
 }
 
 }}}
@@ -228,29 +228,29 @@ changes.
   Since  2.4
 
 \describe{
-\item{\code{merge}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}}}
+\item{\code{merge}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{add-widget(merge, widget, user.data)}}{
-The add\_widget signal is emitted for each generated menubar and toolbar.
+The add_widget signal is emitted for each generated menubar and toolbar.
 It is not emitted for generated popup menus, which can be obtained by 
 \code{\link{gtkUIManagerGetWidget}}.  
 
   Since  2.4
 
 \describe{
-\item{\code{merge}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}}}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the added widget}
+\item{\code{merge}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}}}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the added widget}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{connect-proxy(uimanager, action, proxy, user.data)}}{
-The connect\_proxy signal is emitted after connecting a proxy to 
+The connect_proxy signal is emitted after connecting a proxy to 
 an action in the group. 
   
 This is intended for simple customizations for which a custom action
@@ -260,31 +260,31 @@ statusbar.
   Since  2.4
 
 \describe{
-\item{\code{uimanager}}{[\code{\link{GtkUIManager}}]  the ui manager}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{uimanager}}{[\verb{\link{GtkUIManager}}]  the ui manager}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\verb{\link{GtkWidget}}]  the proxy}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{disconnect-proxy(uimanager, action, proxy, user.data)}}{
-The disconnect\_proxy signal is emitted after disconnecting a proxy 
+The disconnect_proxy signal is emitted after disconnecting a proxy 
 from an action in the group.  
 
   Since  2.4
 
 \describe{
-\item{\code{uimanager}}{[\code{\link{GtkUIManager}}]  the ui manager}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy}
+\item{\code{uimanager}}{[\verb{\link{GtkUIManager}}]  the ui manager}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
+\item{\code{proxy}}{[\verb{\link{GtkWidget}}]  the proxy}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{post-activate(uimanager, action, user.data)}}{
-The post\_activate signal is emitted just after the \code{action}
+The post_activate signal is emitted just after the \code{action}
 is activated.
   
 This is intended for applications to get notification
@@ -293,15 +293,15 @@ just after any action is activated.
   Since  2.4
 
 \describe{
-\item{\code{uimanager}}{[\code{\link{GtkUIManager}}]  the ui manager}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{uimanager}}{[\verb{\link{GtkUIManager}}]  the ui manager}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{pre-activate(uimanager, action, user.data)}}{
-The pre\_activate signal is emitted just before the \code{action}
+The pre_activate signal is emitted just before the \code{action}
 is activated.
   
 This is intended for applications to get notification
@@ -310,8 +310,8 @@ just before any action is activated.
   Since  2.4
 
 \describe{
-\item{\code{uimanager}}{[\code{\link{GtkUIManager}}]  the ui manager}
-\item{\code{action}}{[\code{\link{GtkAction}}]  the action}
+\item{\code{uimanager}}{[\verb{\link{GtkUIManager}}]  the ui manager}
+\item{\code{action}}{[\verb{\link{GtkAction}}]  the action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -319,7 +319,7 @@ just before any action is activated.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{add-tearoffs} [logical : Read / Write]}{
+\item{\verb{add-tearoffs} [logical : Read / Write]}{
 
 The "add-tearoffs" property controls whether generated menus 
 have tearoff menu items. 
@@ -330,7 +330,7 @@ menus never have tearoff menu items.
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{ui} [character : Read]}{
+\item{\verb{ui} [character : *                : Read]}{
 
 An XML string describing the merged UI.  Default value: "<ui>\\n</ui>\\n"
 
@@ -338,5 +338,5 @@ An XML string describing the merged UI.  Default value: "<ui>\\n</ui>\\n"
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkUIManager.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GtkBuilder}}}
+\seealso{\verb{\link{GtkBuilder}}}
 \keyword{internal}

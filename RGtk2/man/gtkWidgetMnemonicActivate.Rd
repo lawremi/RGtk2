@@ -5,8 +5,8 @@
 }}
 \usage{gtkWidgetMnemonicActivate(object, group.cycling)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}] }
-\item{\code{group.cycling}}{[logical] }
+\item{\verb{object}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{group.cycling}}{[logical] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ current versions, it's simply the visual GdkRGB would have chosen as
 the optimal one in those previous versions. GdkRGB can now render to 
 drawables with any visual.}
 \usage{gdkScreenGetRgbVisual(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
 \details{  Since  2.2}
-\value{[\code{\link{GdkVisual}}]  The \code{\link{GdkVisual}} chosen by GdkRGB.}
+\value{[\verb{\link{GdkVisual}}]  The \verb{\link{GdkVisual}} chosen by GdkRGB.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

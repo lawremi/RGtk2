@@ -8,25 +8,25 @@
 \code{\link{gtkRecentChooserDialogNewForManager}(title = NULL, parent = NULL, manager, ..., show = TRUE)}\cr
 \code{gtkRecentChooserDialog(title = NULL, parent = NULL, ..., show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkWindow}
-                                       +----\link{GtkDialog}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkWindow
+                                       +----GtkDialog
                                              +----GtkRecentChooserDialog}}
 \section{Interfaces}{GtkRecentChooserDialog implements
- AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkRecentChooser}}.}
-\section{Detailed Description}{\code{\link{GtkRecentChooserDialog}} is a dialog box suitable for displaying the recently
-used documents.  This widgets works by putting a \code{\link{GtkRecentChooserWidget}} inside
-a \code{\link{GtkDialog}}.  It exposes the \code{GtkRecentChooserIface} interface, so you can use
-all the \code{\link{GtkRecentChooser}} functions on the recent chooser dialog as well as
-those for \code{\link{GtkDialog}}.
+ AtkImplementorIface,  \verb{\link{GtkBuildable}} and  \verb{\link{GtkRecentChooser}}.}
+\section{Detailed Description}{\verb{\link{GtkRecentChooserDialog}} is a dialog box suitable for displaying the recently
+used documents.  This widgets works by putting a \verb{\link{GtkRecentChooserWidget}} inside
+a \verb{\link{GtkDialog}}.  It exposes the \verb{GtkRecentChooserIface} interface, so you can use
+all the \verb{\link{GtkRecentChooser}} functions on the recent chooser dialog as well as
+those for \verb{\link{GtkDialog}}.
   
-Note that \code{\link{GtkRecentChooserDialog}} does not have any methods of its own.
-Instead, you should use the functions that work on a \code{\link{GtkRecentChooser}}.
+Note that \verb{\link{GtkRecentChooserDialog}} does not have any methods of its own.
+Instead, you should use the functions that work on a \verb{\link{GtkRecentChooser}}.
   
  \emph{Typical usage}
 \preformatted{
@@ -41,7 +41,7 @@ if (dialog$run() == GtkResponseType["accept"])
 }
 }  
 Recently used files are supported since GTK+ 2.10.}
-\section{Structures}{\describe{\item{\code{GtkRecentChooserDialog}}{
+\section{Structures}{\describe{\item{\verb{GtkRecentChooserDialog}}{
 \emph{undocumented
 }
 
@@ -50,7 +50,7 @@ Recently used files are supported since GTK+ 2.10.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentChooserDialog.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkRecentChooser}}
-\code{\link{GtkDialog}}
+\verb{\link{GtkRecentChooser}}
+\verb{\link{GtkDialog}}
 }
 \keyword{internal}

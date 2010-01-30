@@ -9,13 +9,13 @@ the rectangles intersect, but not in the intersecting area itself,
 pass \code{NULL} for \code{dest}.}
 \usage{gdkRectangleIntersect(src1, src2)}
 \arguments{
-\item{\code{src1}}{[\code{\link{GdkRectangle}}]  a \code{\link{GdkRectangle}}}
-\item{\code{src2}}{[\code{\link{GdkRectangle}}]  a \code{\link{GdkRectangle}}}
+\item{\verb{src1}}{[\verb{\link{GdkRectangle}}]  a \verb{\link{GdkRectangle}}}
+\item{\verb{src2}}{[\verb{\link{GdkRectangle}}]  a \verb{\link{GdkRectangle}}}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the rectangles intersect.}
-\item{\code{dest}}{[\code{\link{GdkRectangle}}]  return location for the intersection of \code{src1} and \code{src2}, or \code{NULL}}
+\item{\verb{dest}}{[\verb{\link{GdkRectangle}}]  return location for the intersection of \code{src1} and \code{src2}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -36,43 +36,43 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----AtkText}}
 \section{Implementations}{AtkText is implemented by
- \code{\link{AtkNoOpObject}}.}
-\section{Detailed Description}{\code{\link{AtkText}} should be implemented by \code{AtkObjects} on behalf of widgets that
+ \verb{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\verb{\link{AtkText}} should be implemented by \verb{AtkObjects} on behalf of widgets that
 have text content which is either attributed or otherwise non-trivial.
-\code{AtkObjects} whose text content is simple, unattributed, and very brief
+\verb{AtkObjects} whose text content is simple, unattributed, and very brief
 may expose that content via \code{\link{atkObjectGetName}} instead; however if the
 text is editable, multi-line, typically longer than three or four words,
 attributed, selectable, or if the object already uses the 'name' ATK
-property for other information, the \code{\link{AtkText}} interface should be used
+property for other information, the \verb{\link{AtkText}} interface should be used
 to expose the text content.  In the case of editable text content,
-\code{\link{AtkEditableText}} (a subtype of the \code{\link{AtkText}} interface) should be
+\verb{\link{AtkEditableText}} (a subtype of the \verb{\link{AtkText}} interface) should be
 implemented instead.
-  \code{\link{AtkText}} provides not only traversal facilities and change notification
+  \verb{\link{AtkText}} provides not only traversal facilities and change notification
 for text content, but also caret tracking and glyph bounding box
 calculations.  Note that the text strings are exposed as UTF-8, and are
 therefore potentially multi-byte, and caret-to-byte offset mapping makes
 no assumptions about the character length; also bounding box
 glyph-to-offset mapping may be complex for languages which use ligatures.}
 \section{Structures}{\describe{
-\item{\code{AtkText}}{
+\item{\verb{AtkText}}{
 The AtkText structure does not contain any fields.
 
 }
-\item{\code{AtkTextRange}}{
+\item{\verb{AtkTextRange}}{
 A structure used to describe a text range.  
-\strong{\code{AtkTextRange} is a \link{transparent-type}.}
+\strong{\verb{AtkTextRange} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{bounds}}{[\code{\link{AtkTextRectangle}}]  A rectangle giving the bounds of the text range}
-\item{\code{startOffset}}{[integer]  The start offset of a AtkTextRange}
-\item{\code{endOffset}}{[integer]  The end offset of a AtkTextRange}
-\item{\code{content}}{[character]  The text in the text range}
+\item{\verb{bounds}}{[\verb{\link{AtkTextRectangle}}]  A rectangle giving the bounds of the text range}
+\item{\verb{startOffset}}{[integer]  The start offset of a AtkTextRange}
+\item{\verb{endOffset}}{[integer]  The end offset of a AtkTextRange}
+\item{\verb{content}}{[character]  The text in the text range}
 }
 
 }
-\item{\code{AtkTextRectangle}}{
+\item{\verb{AtkTextRectangle}}{
 A structure used to store a rectangle used by AtkText.  
-\strong{\code{AtkTextRectangle} is a \link{transparent-type}.}
+\strong{\verb{AtkTextRectangle} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{x}}{[integer]  The horizontal coordinate of a rectangle}
@@ -82,9 +82,9 @@ A structure used to store a rectangle used by AtkText.
 }
 
 }
-\item{\code{AtkAttribute}}{
+\item{\verb{AtkAttribute}}{
 A string name/value pair representing a text attribute.  
-\strong{\code{AtkAttribute} is a \link{transparent-type}.}
+\strong{\verb{AtkAttribute} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{name}}{[character]  The attribute name. Call \code{atkTextAttrGetName()}}
@@ -97,68 +97,68 @@ is in value.}
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{AtkTextBoundary}}{
+\item{\verb{AtkTextBoundary}}{
 Text boundary types used for specifying boundaries for regions of text  
 
 \describe{
-\item{\code{char}}{ Boundary is the boundary between characters 
+\item{\verb{char}}{ Boundary is the boundary between characters 
 (including non-printing characters)}
-\item{\code{word-start}}{ Boundary is the start (i.e. first character) of a word. }
-\item{\code{word-end}}{ Boundary is the end (i.e. last character) of a word.}
-\item{\code{sentence-start}}{ Boundary is the first character in a sentence.}
-\item{\code{sentence-end}}{ Boundary is the last (terminal) character in a sentence; 
+\item{\verb{word-start}}{ Boundary is the start (i.e. first character) of a word. }
+\item{\verb{word-end}}{ Boundary is the end (i.e. last character) of a word.}
+\item{\verb{sentence-start}}{ Boundary is the first character in a sentence.}
+\item{\verb{sentence-end}}{ Boundary is the last (terminal) character in a sentence; 
 in languages which use "sentence stop" punctuation such as English, the boundary is thus the
 '.', '?', or similar terminal punctuation character.}
-\item{\code{line-start}}{ Boundary is the initial character of the content or a 
+\item{\verb{line-start}}{ Boundary is the initial character of the content or a 
 character immediately following a newline, linefeed, or return character.}
-\item{\code{line-end}}{ Boundary is the linefeed, or return character.}
+\item{\verb{line-end}}{ Boundary is the linefeed, or return character.}
 }
 
 }
-\item{\code{AtkTextClipType}}{
+\item{\verb{AtkTextClipType}}{
 Describes the type of clipping required.  
 
 \describe{
-\item{\code{none}}{ No clipping to be done}
-\item{\code{min}}{ Text clipped by min coordinate is omitted}
-\item{\code{max}}{ Text clipped by max coordinate is omitted}
-\item{\code{both}}{ Only text fully within mix/max bound is retained}
+\item{\verb{none}}{ No clipping to be done}
+\item{\verb{min}}{ Text clipped by min coordinate is omitted}
+\item{\verb{max}}{ Text clipped by max coordinate is omitted}
+\item{\verb{both}}{ Only text fully within mix/max bound is retained}
 }
 
 }
-\item{\code{AtkTextAttribute}}{
+\item{\verb{AtkTextAttribute}}{
 Describes the text attributes supported  
 
 \describe{
-\item{\code{invalid}}{ Invalid attribute}
-\item{\code{left-margin}}{ The pixel width of the left margin}
-\item{\code{right-margin}}{ The pixel width of the right margin}
-\item{\code{indent}}{ The number of pixels that the text is indented}
-\item{\code{invisible}}{ Either "true" or "false" indicating whether text is visible or not}
-\item{\code{editable}}{ Either "true" or "false" indicating whether text is editable or not}
-\item{\code{pixels-above-lines}}{ Pixels of blank space to leave above each line. }
-\item{\code{pixels-below-lines}}{ Pixels of blank space to leave below each line.}
-\item{\code{pixels-inside-wrap}}{ Pixels of blank space to leave between wrapped lines inside the same line (paragraph).}
-\item{\code{bg-full-height}}{ "true" or "false" whether to make the background color for each character the height of the highest font used on the current line, or the height of the font used for the current character.}
-\item{\code{rise}}{ Number of pixels that the characters are risen above the baseline}
-\item{\code{underline}}{ "none", "single", "double" or "low"}
-\item{\code{strikethrough}}{ "true" or "false" whether the text is strikethrough }
-\item{\code{size}}{ The size of the characters. }
-\item{\code{scale}}{ The scale of the characters. The value is a string representation of a double }
-\item{\code{weight}}{ The weight of the characters.}
-\item{\code{language}}{ The language used}
-\item{\code{family-name}}{ The font family name}
-\item{\code{bg-color}}{ The background color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
-\item{\code{fg-color}}{The foreground color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
-\item{\code{bg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the background color.}
-\item{\code{fg-stipple}}{ "true" if a \code{\link{GdkBitmap}} is set for stippling the foreground color.}
-\item{\code{wrap-mode}}{ The wrap mode of the text, if any. Values are "none", "char" or "word" }
-\item{\code{direction}}{ The direction of the text, if set. Values are "none", "ltr" or "rtl" }
-\item{\code{justification}}{ The justification of the text, if set. Values are "left", "right", "center" or "fill" }
-\item{\code{stretch}}{ The stretch of the text, if set. Values are "ultra\_condensed", "extra\_condensed", "condensed", "semi\_condensed", "normal", "semi\_expanded", "expanded", "extra\_expanded" or "ultra\_expanded"}
-\item{\code{variant}}{ The capitalization variant of the text, if set. Values are "normal" or "small\_caps"}
-\item{\code{style}}{ The slant style of the text, if set. Values are "normal", "oblique" or "italic"}
-\item{\code{last-defined}}{ not a valid text attribute, used for finding end of enumeration}
+\item{\verb{invalid}}{ Invalid attribute}
+\item{\verb{left-margin}}{ The pixel width of the left margin}
+\item{\verb{right-margin}}{ The pixel width of the right margin}
+\item{\verb{indent}}{ The number of pixels that the text is indented}
+\item{\verb{invisible}}{ Either "true" or "false" indicating whether text is visible or not}
+\item{\verb{editable}}{ Either "true" or "false" indicating whether text is editable or not}
+\item{\verb{pixels-above-lines}}{ Pixels of blank space to leave above each line. }
+\item{\verb{pixels-below-lines}}{ Pixels of blank space to leave below each line.}
+\item{\verb{pixels-inside-wrap}}{ Pixels of blank space to leave between wrapped lines inside the same line (paragraph).}
+\item{\verb{bg-full-height}}{ "true" or "false" whether to make the background color for each character the height of the highest font used on the current line, or the height of the font used for the current character.}
+\item{\verb{rise}}{ Number of pixels that the characters are risen above the baseline}
+\item{\verb{underline}}{ "none", "single", "double" or "low"}
+\item{\verb{strikethrough}}{ "true" or "false" whether the text is strikethrough }
+\item{\verb{size}}{ The size of the characters. }
+\item{\verb{scale}}{ The scale of the characters. The value is a string representation of a double }
+\item{\verb{weight}}{ The weight of the characters.}
+\item{\verb{language}}{ The language used}
+\item{\verb{family-name}}{ The font family name}
+\item{\verb{bg-color}}{ The background color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
+\item{\verb{fg-color}}{The foreground color. The value is an RGB value of the format "\code{u},\code{u},\code{u}"}
+\item{\verb{bg-stipple}}{ "true" if a \verb{\link{GdkBitmap}} is set for stippling the background color.}
+\item{\verb{fg-stipple}}{ "true" if a \verb{\link{GdkBitmap}} is set for stippling the foreground color.}
+\item{\verb{wrap-mode}}{ The wrap mode of the text, if any. Values are "none", "char" or "word" }
+\item{\verb{direction}}{ The direction of the text, if set. Values are "none", "ltr" or "rtl" }
+\item{\verb{justification}}{ The justification of the text, if set. Values are "left", "right", "center" or "fill" }
+\item{\verb{stretch}}{ The stretch of the text, if set. Values are "ultra_condensed", "extra_condensed", "condensed", "semi_condensed", "normal", "semi_expanded", "expanded", "extra_expanded" or "ultra_expanded"}
+\item{\verb{variant}}{ The capitalization variant of the text, if set. Values are "normal" or "small_caps"}
+\item{\verb{style}}{ The slant style of the text, if set. Values are "normal", "oblique" or "italic"}
+\item{\verb{last-defined}}{ not a valid text attribute, used for finding end of enumeration}
 }
 
 }
@@ -169,7 +169,7 @@ The "text-attributes-changed" signal is emitted when the text attributes of
 the text of an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -180,7 +180,7 @@ The "text-caret-moved" signal is emitted when the caret position of
 the text of an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The new position of the text caret.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -194,7 +194,7 @@ which is either "insert" or "delete" which identifies whether the text
 change was an insertion or a deletion
 
 \describe{
-\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The position (character offset) of the insertion or deletion.}
 \item{\code{arg2}}{[integer] The length (in characters) of text inserted or deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -207,7 +207,7 @@ The "text-selection-changed" signal is emitted when the selected text of
 an object which implements AtkText changes.
 
 \describe{
-\item{\code{atktext}}{[\code{\link{AtkText}}] the object which received the signal.}
+\item{\code{atktext}}{[\verb{\link{AtkText}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

@@ -7,8 +7,8 @@
 \details{  Since  1.6}
 \value{
 A list containing the following elements:
-\item{\code{levels}}{[\code{\link{CairoPsLevel}}]  supported level list}
-\item{\code{nlevels}}{[integer]  list length}
+\item{\verb{levels}}{[\verb{\link{CairoPsLevel}}]  supported level list}
+\item{\verb{nlevels}}{[integer]  list length}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

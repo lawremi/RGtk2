@@ -1,21 +1,21 @@
 \alias{gdkKeymapTranslateKeyboardState}
 \name{gdkKeymapTranslateKeyboardState}
 \title{gdkKeymapTranslateKeyboardState}
-\description{Translates the contents of a \code{\link{GdkEventKey}} into a keyval, effective
+\description{Translates the contents of a \verb{\link{GdkEventKey}} into a keyval, effective
 group, and level. Modifiers that affected the translation and
 are thus unavailable for application use are returned in
 \code{consumed.modifiers}.  See \code{gdkKeyvalGetKeys()} for an explanation of
 groups and levels.  The \code{effective.group} is the group that was
 actually used for the translation; some keys such as Enter are not
 affected by the active keyboard group. The \code{level} is derived from
-\code{state}. For convenience, \code{\link{GdkEventKey}} already contains the translated
+\code{state}. For convenience, \verb{\link{GdkEventKey}} already contains the translated
 keyval, so this function isn't as useful as you might think.}
 \usage{gdkKeymapTranslateKeyboardState(object, hardware.keycode, state, group)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkKeymap}}]  a \code{\link{GdkKeymap}}, or \code{NULL} to use the default}
-\item{\code{hardware.keycode}}{[numeric]  a keycode}
-\item{\code{state}}{[\code{\link{GdkModifierType}}]  a modifier state }
-\item{\code{group}}{[integer]  active keyboard group}
+\item{\verb{object}}{[\verb{\link{GdkKeymap}}]  a \verb{\link{GdkKeymap}}, or \code{NULL} to use the default}
+\item{\verb{hardware.keycode}}{[numeric]  a keycode}
+\item{\verb{state}}{[\code{\link{GdkModifierType}}]  a modifier state }
+\item{\verb{group}}{[integer]  active keyboard group}
 }
 \details{\strong{PLEASE NOTE:} \code{consumed.modifiers} gives modifiers that should be masked out
 from \code{state} when comparing this key press to a hot key. For
@@ -57,10 +57,10 @@ not \code{<Control><Shift>plus},  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there was a keyval bound to the keycode/state/group}
-\item{\code{keyval}}{[numeric]  return location for keyval, or \code{NULL}}
-\item{\code{effective.group}}{[integer]  return location for effective group, or \code{NULL}}
-\item{\code{level}}{[integer]  return location for level, or \code{NULL}}
-\item{\code{consumed.modifiers}}{[\code{\link{GdkModifierType}}]  return location for modifiers that were used to
+\item{\verb{keyval}}{[numeric]  return location for keyval, or \code{NULL}}
+\item{\verb{effective.group}}{[integer]  return location for effective group, or \code{NULL}}
+\item{\verb{level}}{[integer]  return location for level, or \code{NULL}}
+\item{\verb{consumed.modifiers}}{[\code{\link{GdkModifierType}}]  return location for modifiers that were used to
     determine the group or level, or \code{NULL}}
 }
 \note{\code{consumed.modifiers} gives modifiers that should be masked out

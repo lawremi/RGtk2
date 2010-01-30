@@ -7,10 +7,10 @@ for requests for the text, and for converting the text into
 the requested format.}
 \usage{gtkClipboardSetText(object, text, len = -1)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}} object}
-\item{\code{text}}{[character]       a UTF-8 string.}
-\item{\code{len}}{[integer]        length of \code{text}, in bytes, or -1, in which case
-            the length will be determined with \code{\code{strlen()}}.}
+\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}} object}
+\item{\verb{text}}{[character]       a UTF-8 string.}
+\item{\verb{len}}{[integer]        length of \code{text}, in bytes, or -1, in which case
+            the length will be determined with \code{strlen()}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

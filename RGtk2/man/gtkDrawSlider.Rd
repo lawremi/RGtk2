@@ -7,15 +7,15 @@
 }
 \usage{gtkDrawSlider(object, window, state.type, shadow.type, x, y, width, height, orientation)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}] }
-\item{\code{window}}{[\code{\link{GdkWindow}}] }
-\item{\code{state.type}}{[\code{\link{GtkStateType}}] }
-\item{\code{shadow.type}}{[\code{\link{GtkShadowType}}] }
-\item{\code{x}}{[integer] }
-\item{\code{y}}{[integer] }
-\item{\code{width}}{[integer] }
-\item{\code{height}}{[integer] }
-\item{\code{orientation}}{[\code{\link{GtkOrientation}}] }
+\item{\verb{object}}{[\verb{\link{GtkStyle}}] }
+\item{\verb{window}}{[\verb{\link{GdkWindow}}] }
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}] }
+\item{\verb{shadow.type}}{[\code{\link{GtkShadowType}}] }
+\item{\verb{x}}{[integer] }
+\item{\verb{y}}{[integer] }
+\item{\verb{width}}{[integer] }
+\item{\verb{height}}{[integer] }
+\item{\verb{orientation}}{[\code{\link{GtkOrientation}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

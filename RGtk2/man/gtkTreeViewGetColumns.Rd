@@ -1,9 +1,9 @@
 \alias{gtkTreeViewGetColumns}
 \name{gtkTreeViewGetColumns}
 \title{gtkTreeViewGetColumns}
-\description{Returns a \code{list} of all the \code{\link{GtkTreeViewColumn}} s currently in \code{tree.view}.}
+\description{Returns a \verb{list} of all the \verb{\link{GtkTreeViewColumn}} s currently in \code{tree.view}.}
 \usage{gtkTreeViewGetColumns(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}}
-\value{[list]  A list of \code{\link{GtkTreeViewColumn}} s}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}}
+\value{[list]  A list of \verb{\link{GtkTreeViewColumn}} s}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

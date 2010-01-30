@@ -6,6 +6,6 @@ to the identity matrix. That is, the user-space and device-space
 axes will be aligned and one user-space unit will transform to one
 device-space unit.}
 \usage{cairoIdentityMatrix(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

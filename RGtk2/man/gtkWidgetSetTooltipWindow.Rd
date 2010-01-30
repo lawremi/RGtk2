@@ -8,8 +8,8 @@ the default tooltip window. If \code{custom.window} is \code{NULL}, the default
 tooltip window will be used.}
 \usage{gtkWidgetSetTooltipWindow(object, custom.window)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{custom.window}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{custom.window}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}, or \code{NULL}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

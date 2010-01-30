@@ -5,8 +5,8 @@
 \code{\link{gtkTextBufferDeleteMark}} for details.}
 \usage{gtkTextBufferDeleteMarkByName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{name}}{[character]  name of a mark in \code{buffer}}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{name}}{[character]  name of a mark in \code{buffer}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

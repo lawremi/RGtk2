@@ -8,16 +8,16 @@ parameters. \code{arrow.type} determines the direction of the arrow.
 }
 \usage{gtkDrawArrow(object, window, state.type, shadow.type, arrow.type, fill, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  the type of shadow to draw}
-\item{\code{arrow.type}}{[\code{\link{GtkArrowType}}]  the type of arrow to draw}
-\item{\code{fill}}{[logical] \code{TRUE} if the arrow tip should be filled}
-\item{\code{x}}{[integer]  x origin of the rectangle to draw the arrow in}
-\item{\code{y}}{[integer]  y origin of the rectangle to draw the arrow in}
-\item{\code{width}}{[integer]  width of the rectangle to draw the arrow in}
-\item{\code{height}}{[integer]  height of the rectangle to draw the arrow in}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{shadow.type}}{[\code{\link{GtkShadowType}}]  the type of shadow to draw}
+\item{\verb{arrow.type}}{[\code{\link{GtkArrowType}}]  the type of arrow to draw}
+\item{\verb{fill}}{[logical] \code{TRUE} if the arrow tip should be filled}
+\item{\verb{x}}{[integer]  x origin of the rectangle to draw the arrow in}
+\item{\verb{y}}{[integer]  y origin of the rectangle to draw the arrow in}
+\item{\verb{width}}{[integer]  width of the rectangle to draw the arrow in}
+\item{\verb{height}}{[integer]  height of the rectangle to draw the arrow in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

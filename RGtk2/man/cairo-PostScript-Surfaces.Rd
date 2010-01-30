@@ -18,14 +18,14 @@
 }
 \section{Detailed Description}{The PostScript surface is used to render cairo graphics to Adobe
 PostScript files and is a multi-page vector surface backend.}
-\section{Enums and Flags}{\describe{\item{\code{CairoPsLevel}}{
-\code{\link{CairoPsLevel}} is used to describe the language level of the
+\section{Enums and Flags}{\describe{\item{\verb{CairoPsLevel}}{
+\verb{\link{CairoPsLevel}} is used to describe the language level of the
 PostScript Language Reference that a generated PostScript file will
 conform to.  
 
 \describe{
-\item{\code{2}}{ The language level 2 of the PostScript specification.}
-\item{\code{3}}{ The language level 3 of the PostScript specification.}
+\item{\verb{2}}{ The language level 2 of the PostScript specification.}
+\item{\verb{3}}{ The language level 3 of the PostScript specification.}
 }
 
 }}}

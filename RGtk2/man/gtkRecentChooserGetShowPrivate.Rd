@@ -4,7 +4,7 @@
 \description{Returns whether \code{chooser} should display recently used resources
 registered as private.}
 \usage{gtkRecentChooserGetShowPrivate(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRecentChooser}}]  a \verb{\link{GtkRecentChooser}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the recent chooser should show private items,
   \code{FALSE} otherwise.}

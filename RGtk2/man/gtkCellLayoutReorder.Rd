@@ -5,9 +5,9 @@
 into \code{cell.layout} for this to function properly.}
 \usage{gtkCellLayoutReorder(object, cell, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCellLayout}}]  A \code{\link{GtkCellLayout}}.}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}} to reorder.}
-\item{\code{position}}{[integer]  New position to insert \code{cell} at.}
+\item{\verb{object}}{[\verb{\link{GtkCellLayout}}]  A \verb{\link{GtkCellLayout}}.}
+\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}} to reorder.}
+\item{\verb{position}}{[integer]  New position to insert \code{cell} at.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -19,12 +19,12 @@
 \code{\link{gdkPixbufGetOption}(object, key)}\cr
 \code{gdkPixbuf(width, height, filename, colorspace, has.alpha, bits.per.sample, data, preserve.aspect.ratio, rowstride, .errwarn = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GdkPixbuf}}
 \section{Detailed Description}{    The \code{GdkPixbuf} structure contains
     information that describes an image in memory.
   }
-\section{Structures}{\describe{\item{\code{GdkPixbuf}}{
+\section{Structures}{\describe{\item{\verb{GdkPixbuf}}{
     This is the main structure in the \command{gdk-pixbuf} library.  It is
     used to represent images.  It contains information about the
     image's pixel data, its color space, bits per sample, width and
@@ -35,31 +35,31 @@
 }}}
 \section{Convenient Construction}{\code{gdkPixbuf} is the result of collapsing the constructors of \code{GdkPixbuf} (\code{\link{gdkPixbufNew}}, \code{\link{gdkPixbufNewFromFile}}, \code{\link{gdkPixbufNewFromFileAtSize}}, \code{\link{gdkPixbufNewFromFileAtScale}}, \code{\link{gdkPixbufNewFromData}}, \code{\link{gdkPixbufNewFromXpmData}}, NULL) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkPixbufError}}{
-An error code in the \code{GDK_PIXBUF_ERROR} domain. Many \command{gdk-pixbuf}
-operations can cause errors in this domain, or in the \code{G_FILE_ERROR}
+\item{\verb{GdkPixbufError}}{
+An error code in the \verb{GDK_PIXBUF_ERROR} domain. Many \command{gdk-pixbuf}
+operations can cause errors in this domain, or in the \verb{G_FILE_ERROR}
 domain.
 
 \describe{
-\item{\code{corrupt-image}}{An image file was broken somehow.}
-\item{\code{insufficient-memory}}{Not enough memory.}
-\item{\code{bad-option-value}}{A bad option was passed to a pixbuf save module.}
-\item{\code{unknown-type}}{Unknown image type.}
-\item{\code{unsupported-operation}}{Don't know how to perform the
+\item{\verb{corrupt-image}}{An image file was broken somehow.}
+\item{\verb{insufficient-memory}}{Not enough memory.}
+\item{\verb{bad-option-value}}{A bad option was passed to a pixbuf save module.}
+\item{\verb{unknown-type}}{Unknown image type.}
+\item{\verb{unsupported-operation}}{Don't know how to perform the
 given operation on the type of image at hand.}
-\item{\code{failed}}{Generic failure code, something went wrong.}
+\item{\verb{failed}}{Generic failure code, something went wrong.}
 }
 
 }
-\item{\code{GdkColorspace}}{
+\item{\verb{GdkColorspace}}{
     This enumeration defines the color spaces that are supported by
     the \command{gdk-pixbuf} library.  Currently only RGB is supported.
   
 
-\describe{\item{\code{b}}{Indicates a red/green/blue additive color space.}}
+\describe{\item{\verb{b}}{Indicates a red/green/blue additive color space.}}
 
 }
-\item{\code{GdkPixbufAlphaMode}}{
+\item{\verb{GdkPixbufAlphaMode}}{
     These values can be passed to
     \code{\link{gdkPixbufRenderToDrawableAlpha}} to control how the alpha
     channel of an image should be handled.  This function can create a
@@ -71,18 +71,18 @@ given operation on the type of image at hand.}
   
 
 \describe{
-\item{\code{bilevel}}{A bilevel clipping mask (black and white)
+\item{\verb{bilevel}}{A bilevel clipping mask (black and white)
 will be created and used to draw the image.  Pixels below 0.5 opacity
 will be considered fully transparent, and all others will be
 considered fully opaque.}
-\item{\code{full}}{For now falls back to \code{GDK_PIXBUF_ALPHA_BILEVEL}.
+\item{\verb{full}}{For now falls back to \verb{GDK_PIXBUF_ALPHA_BILEVEL}.
 In the future it will do full alpha compositing.}
 }
 
 }
 }}
 \section{Properties}{\describe{
-\item{\code{bits-per-sample} [integer : Read / Write / Construct Only]}{
+\item{\verb{bits-per-sample} [integer : Read / Write / Construct Only]}{
 
 The number of bits per sample. 
 Currently only 8 bit per sample are supported.  
@@ -90,22 +90,22 @@ Currently only 8 bit per sample are supported.
   Allowed values: [1,16]  Default value: 8
 
 }
-\item{\code{colorspace} [\code{\link{GdkColorspace}} : Read / Write / Construct Only]}{
+\item{\verb{colorspace} [\code{\link{GdkColorspace}} : Read / Write / Construct Only]}{
 
-The colorspace in which the samples are interpreted.  Default value: GDK\_COLORSPACE\_RGB
+The colorspace in which the samples are interpreted.  Default value: GDK_COLORSPACE_RGB
 
 }
-\item{\code{has-alpha} [logical : Read / Write / Construct Only]}{
+\item{\verb{has-alpha} [logical : Read / Write / Construct Only]}{
 
 Whether the pixbuf has an alpha channel.  Default value: FALSE
 
 }
-\item{\code{height} [integer : Read / Write / Construct Only]}{
+\item{\verb{height} [integer : Read / Write / Construct Only]}{
 
 The number of rows of the pixbuf.  Allowed values: >= 1  Default value: 1
 
 }
-\item{\code{n-channels} [integer : Read / Write / Construct Only]}{
+\item{\verb{n-channels} [integer : Read / Write / Construct Only]}{
 
 The number of samples per pixel. 
 Currently, only 3 or 4 samples per pixel are supported.  
@@ -113,12 +113,12 @@ Currently, only 3 or 4 samples per pixel are supported.
   Allowed values: >= 0  Default value: 3
 
 }
-\item{\code{pixels} [R object : Read / Write / Construct Only]}{
+\item{\verb{pixels} [R object : Read / Write / Construct Only]}{
 
 A pointer to the pixel data of the pixbuf.
 
 }
-\item{\code{rowstride} [integer : Read / Write / Construct Only]}{
+\item{\verb{rowstride} [integer : Read / Write / Construct Only]}{
 
 The number of bytes between the start of a row and 
 the start of the next row. This number must (obviously)
@@ -127,7 +127,7 @@ be at least as large as the width of the pixbuf.
   Allowed values: >= 1  Default value: 1
 
 }
-\item{\code{width} [integer : Read / Write / Construct Only]}{
+\item{\verb{width} [integer : Read / Write / Construct Only]}{
 
 The number of columns of the pixbuf.  Allowed values: >= 1  Default value: 1
 

@@ -8,9 +8,9 @@ constraint, call \code{\link{gtkWidgetSetSizeRequest}} to set the window's
 request to a smaller value.}
 \usage{gtkWindowResize(object, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{width}}{[integer]  width in pixels to resize the window to}
-\item{\code{height}}{[integer]  height in pixels to resize the window to}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{width}}{[integer]  width in pixels to resize the window to}
+\item{\verb{height}}{[integer]  height in pixels to resize the window to}
 }
 \details{If \code{\link{gtkWindowResize}} is called before showing a window for the
 first time, it overrides any default size set with

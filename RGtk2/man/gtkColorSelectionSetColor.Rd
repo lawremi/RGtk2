@@ -8,8 +8,8 @@ also set the original color to be \code{color} too.
 }
 \usage{gtkColorSelectionSetColor(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkColorSelection}}]  a \code{\link{GtkColorSelection}}.}
-\item{\code{color}}{[numeric]  a list of 4 doubles specifying the red, green, blue and opacity 
+\item{\verb{object}}{[\verb{\link{GtkColorSelection}}]  a \verb{\link{GtkColorSelection}}.}
+\item{\verb{color}}{[numeric]  a list of 4 doubles specifying the red, green, blue and opacity 
   to set the current color to.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

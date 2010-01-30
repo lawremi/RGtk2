@@ -3,7 +3,7 @@
 \title{gtkWidgetGetTooltipMarkup}
 \description{Gets the contents of the tooltip for \code{widget}.}
 \usage{gtkWidgetGetTooltipMarkup(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{  Since  2.12}
 \value{[character]  the tooltip text, or \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}

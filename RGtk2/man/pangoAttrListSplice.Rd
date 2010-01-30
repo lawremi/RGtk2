@@ -5,10 +5,10 @@
 the left, and then merges \code{other} on top of the hole.}
 \usage{pangoAttrListSplice(object, other, pos, len)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoAttrList}}]  a \code{\link{PangoAttrList}}}
-\item{\code{other}}{[\code{\link{PangoAttrList}}]  another \code{\link{PangoAttrList}}}
-\item{\code{pos}}{[integer]  the position in \code{list} at which to insert \code{other}}
-\item{\code{len}}{[integer]  the length of the spliced segment. (Note that this
+\item{\verb{object}}{[\verb{\link{PangoAttrList}}]  a \verb{\link{PangoAttrList}}}
+\item{\verb{other}}{[\verb{\link{PangoAttrList}}]  another \verb{\link{PangoAttrList}}}
+\item{\verb{pos}}{[integer]  the position in \code{list} at which to insert \code{other}}
+\item{\verb{len}}{[integer]  the length of the spliced segment. (Note that this
       must be specified since the attributes in \code{other}
       may only be present at some subsection of this range)}
 }

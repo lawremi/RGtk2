@@ -7,8 +7,8 @@ is \code{FALSE} the keyboard focus is moved to the next widget in the focus
 chain.}
 \usage{gtkTextViewSetAcceptsTab(object, accepts.tab)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  A \code{\link{GtkTextView}}}
-\item{\code{accepts.tab}}{[logical] \code{TRUE} if pressing the Tab key should insert a tab 
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  A \verb{\link{GtkTextView}}}
+\item{\verb{accepts.tab}}{[logical] \code{TRUE} if pressing the Tab key should insert a tab 
    character, \code{FALSE}, if pressing the Tab key should move the 
    keyboard focus.}
 }

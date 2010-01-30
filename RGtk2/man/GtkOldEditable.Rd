@@ -8,17 +8,17 @@
 \code{\link{gtkOldEditableChanged}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkOldEditable
                            +----GtkText}}
 \section{Interfaces}{GtkOldEditable implements
- AtkImplementorIface,  \code{\link{GtkBuildable}} and  \code{\link{GtkEditable}}.}
+ AtkImplementorIface,  \verb{\link{GtkBuildable}} and  \verb{\link{GtkEditable}}.}
 \section{Detailed Description}{GtkOldEditable has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
-\section{Structures}{\describe{\item{\code{GtkOldEditable}}{
+in newly written code. Use the \verb{\link{GtkEditable}} interface instead.}
+\section{Structures}{\describe{\item{\verb{GtkOldEditable}}{
 \strong{WARNING: \code{GtkOldEditable} is deprecated and should not be used in newly-written code.}
 \emph{undocumented
 }
@@ -29,7 +29,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{editable}}{[\code{\link{GtkOldEditable}}] }
+\item{\code{editable}}{[\verb{\link{GtkOldEditable}}] }
 \item{\code{time.}}{[numeric] }
 }
 
@@ -41,7 +41,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -52,7 +52,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -63,7 +63,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -74,7 +74,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -86,7 +86,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -98,7 +98,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -110,7 +110,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -123,7 +123,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -136,7 +136,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -148,7 +148,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -160,7 +160,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -172,7 +172,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -183,7 +183,7 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 
 \describe{
-\item{\code{oldeditable}}{[\code{\link{GtkOldEditable}}] the object which received the signal.}
+\item{\code{oldeditable}}{[\verb{\link{GtkOldEditable}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -192,12 +192,12 @@ in newly written code. Use the \code{\link{GtkEditable}} interface instead.}
 }
 }}
 \section{Properties}{\describe{
-\item{\code{editable} [logical : Read / Write]}{
+\item{\verb{editable} [logical : Read / Write]}{
 
   Default value: FALSE
 
 }
-\item{\code{text-position} [integer : Read / Write]}{
+\item{\verb{text-position} [integer : Read / Write]}{
 
   Default value: 0
 

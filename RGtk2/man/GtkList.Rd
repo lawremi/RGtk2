@@ -30,23 +30,23 @@
 \code{\link{gtkListEndDragSelection}(object)}\cr
 \code{gtkList(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkList}}
 \section{Interfaces}{GtkList implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkList}} widget is a container whose children are displayed
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkList}} widget is a container whose children are displayed
 vertically in order, and can be selected.
 
 The list has many selection modes, which are programmer selective and
 depend on how many elements are able to be selected at the same time.
   
 GtkList has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
-\section{Structures}{\describe{\item{\code{GtkList}}{
+in newly written code. Use \verb{\link{GtkTreeView}} instead.}
+\section{Structures}{\describe{\item{\verb{GtkList}}{
 \strong{WARNING: \code{GtkList} is deprecated and should not be used in newly-written code.}
 \emph{undocumented
 }
@@ -58,8 +58,8 @@ in newly written code. Use \code{\link{GtkTreeView}} instead.}
 The child \code{widget} has just been selected.
 
 \describe{
-\item{\code{list}}{[\code{\link{GtkList}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the newly selected child.}
+\item{\code{list}}{[\verb{\link{GtkList}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the newly selected child.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -69,7 +69,7 @@ The child \code{widget} has just been selected.
 The selection of the widget has just changed.
 
 \describe{
-\item{\code{list}}{[\code{\link{GtkList}}] the object which received the signal.}
+\item{\code{list}}{[\verb{\link{GtkList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -79,17 +79,17 @@ The selection of the widget has just changed.
 The child \code{widget} has just been unselected.
 
 \describe{
-\item{\code{list}}{[\code{\link{GtkList}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the newly unselected child.}
+\item{\code{list}}{[\verb{\link{GtkList}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the newly unselected child.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 }}
-\section{Properties}{\describe{\item{\code{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
 
-  Default value: GTK\_SELECTION\_NONE
+  Default value: GTK_SELECTION_NONE
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkList.html}}

@@ -4,8 +4,8 @@
 \description{Emit a comment into the PostScript output for the given surface.}
 \usage{cairoPsSurfaceDscComment(surface, comment)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PostScript \code{\link{CairoSurface}}}
-\item{\code{comment}}{[char]  a comment string to be emitted into the PostScript output}
+\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a PostScript \verb{\link{CairoSurface}}}
+\item{\verb{comment}}{[char]  a comment string to be emitted into the PostScript output}
 }
 \details{The comment is expected to conform to the PostScript Language
 Document Structuring Conventions (DSC). Please see that manual for

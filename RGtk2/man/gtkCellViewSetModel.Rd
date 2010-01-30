@@ -6,8 +6,8 @@ set, it will remove it before setting the new model.  If \code{model} is
 \code{NULL}, then it will unset the old model.}
 \usage{gtkCellViewSetModel(object, model = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCellView}}]  a \code{\link{GtkCellView}}}
-\item{\code{model}}{[\code{\link{GtkTreeModel}}]  a \code{\link{GtkTreeModel}}}
+\item{\verb{object}}{[\verb{\link{GtkCellView}}]  a \verb{\link{GtkCellView}}}
+\item{\verb{model}}{[\verb{\link{GtkTreeModel}}]  a \verb{\link{GtkTreeModel}}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

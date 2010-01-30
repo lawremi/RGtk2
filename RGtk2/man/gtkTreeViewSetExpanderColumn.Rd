@@ -6,8 +6,8 @@ If \code{column} is \code{NULL}, then the expander arrow is always at the first
 visible column.}
 \usage{gtkTreeViewSetExpanderColumn(object, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{column}}{[\code{\link{GtkTreeViewColumn}}] \code{NULL}, or the column to draw the expander arrow at.}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}] \code{NULL}, or the column to draw the expander arrow at.}
 }
 \details{If you do not want expander arrow to appear in your tree, set the 
 expander column to a hidden column.  }

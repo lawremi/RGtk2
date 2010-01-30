@@ -6,8 +6,8 @@ Note that it depends on the show-menu-images setting whether
 the image will be displayed or not.}
 \usage{gtkImageMenuItemSetImage(object, image = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkImageMenuItem}}]  a \code{\link{GtkImageMenuItem}}.}
-\item{\code{image}}{[\code{\link{GtkWidget}}]  a widget to set as the image for the menu item.}
+\item{\verb{object}}{[\verb{\link{GtkImageMenuItem}}]  a \verb{\link{GtkImageMenuItem}}.}
+\item{\verb{image}}{[\verb{\link{GtkWidget}}]  a widget to set as the image for the menu item.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,8 +6,8 @@ specified key.  If no user data has been attached with the given
 key this function returns \code{NULL}.}
 \usage{cairoScaledFontGetUserData(scaled.font, key)}
 \arguments{
-\item{\code{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}
-\item{\code{key}}{[\code{\link{CairoUserDataKey}}]  the the \code{\link{CairoUserDataKey}} the user data was
+\item{\verb{scaled.font}}{[\verb{\link{CairoScaledFont}}]  a \verb{\link{CairoScaledFont}}}
+\item{\verb{key}}{[\verb{\link{CairoUserDataKey}}]  the the \verb{\link{CairoUserDataKey}} the user data was
 attached to}
 }
 \details{  Since  1.4}

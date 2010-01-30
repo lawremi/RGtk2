@@ -7,6 +7,6 @@ CList in "single" or "browse" selection mode.
 \strong{WARNING: \code{gtk_clist_select_all} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkCListSelectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

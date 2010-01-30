@@ -17,9 +17,9 @@ function as well.
 }
 \usage{gtkWidgetSetUsize(object, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{width}}{[integer]  minimum width, or -1 to unset}
-\item{\code{height}}{[integer]  minimum height, or -1 to unset}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{width}}{[integer]  minimum width, or -1 to unset}
+\item{\verb{height}}{[integer]  minimum height, or -1 to unset}
 }
 \details{Note the inherent danger of setting any fixed size - themes,
 translations into other languages, different fonts, and user action

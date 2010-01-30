@@ -10,14 +10,14 @@ depending on what you're trying to do.
 }
 \usage{gdkWindowSetHints(object, x, y, min.width, min.height, max.width, max.height, flags)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{x}}{[integer]  ignored field, does not matter}
-\item{\code{y}}{[integer]  ignored field, does not matter}
-\item{\code{min.width}}{[integer]  minimum width hint}
-\item{\code{min.height}}{[integer]  minimum height hint}
-\item{\code{max.width}}{[integer]  max width hint}
-\item{\code{max.height}}{[integer]  max height hint}
-\item{\code{flags}}{[integer]  logical OR of GDK\_HINT\_POS, GDK\_HINT\_MIN\_SIZE, and/or GDK\_HINT\_MAX\_SIZE}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{x}}{[integer]  ignored field, does not matter}
+\item{\verb{y}}{[integer]  ignored field, does not matter}
+\item{\verb{min.width}}{[integer]  minimum width hint}
+\item{\verb{min.height}}{[integer]  minimum height hint}
+\item{\verb{max.width}}{[integer]  max width hint}
+\item{\verb{max.height}}{[integer]  max height hint}
+\item{\verb{flags}}{[integer]  logical OR of GDK_HINT_POS, GDK_HINT_MIN_SIZE, and/or GDK_HINT_MAX_SIZE}
 }
 \details{If using GDK directly, use \code{\link{gdkWindowSetGeometryHints}}.  }
 \author{Derived by RGtkGen from GTK+ documentation}

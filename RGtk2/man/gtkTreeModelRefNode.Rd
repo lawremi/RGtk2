@@ -6,8 +6,8 @@ implement.  To be more specific, models may ignore this call as it exists
 primarily for performance reasons.}
 \usage{gtkTreeModelRefNode(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}.}
 }
 \details{This function is primarily meant as a way for views to let caching model 
 know when nodes are being displayed (and hence, whether or not to cache that

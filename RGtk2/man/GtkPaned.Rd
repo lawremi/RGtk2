@@ -13,19 +13,19 @@
 \code{\link{gtkPanedGetPosition}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkPaned
-                                 +----\link{GtkHPaned}
-                                 +----\link{GtkVPaned}}}
+                                 +----GtkHPaned
+                                 +----GtkVPaned}}
 \section{Interfaces}{GtkPaned implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkPaned}} is the base class for widgets with two panes,
-arranged either horizontally (\code{\link{GtkHPaned}}) or
-vertically (\code{\link{GtkVPaned}}). Child widgets are 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkPaned}} is the base class for widgets with two panes,
+arranged either horizontally (\verb{\link{GtkHPaned}}) or
+vertically (\verb{\link{GtkVPaned}}). Child widgets are 
 added to the panes of the widget with
 \code{\link{gtkPanedPack1}} and \code{\link{gtkPanedPack2}}. The division
 beween the two children is set by default from the
@@ -38,14 +38,14 @@ can drag to adjust the division. It does not
 draw any relief around the children or around
 the separator. (The space in which the separator
 is called the gutter.) Often, it is useful
-to put each child inside a \code{\link{GtkFrame}} with the
+to put each child inside a \verb{\link{GtkFrame}} with the
 shadow type set to \code{GTK_SHADOW_IN} so that the
 gutter appears as a ridge. No separator is drawn
 if one of the children is missing.
   
 Each child has two options that can be set, 
 \code{resize} and \code{shrink}. If \code{resize} is true, then when the
-\code{\link{GtkPaned}} is resized, that child will expand
+\verb{\link{GtkPaned}} is resized, that child will expand
 or shrink along with the paned widget. If \code{shrink}
 is true, then when that child can be made smaller
 than its requisition by the user. Setting \code{shrink}
@@ -75,7 +75,7 @@ hpaned$pack2(frame2, FALSE, FALSE)
 frame2$setSizeRequest(50, -1)
 
 }}
-\section{Structures}{\describe{\item{\code{GtkPaned}}{
+\section{Structures}{\describe{\item{\verb{GtkPaned}}{
 \emph{undocumented
 }
 
@@ -92,7 +92,7 @@ The default binding for this signal is Return or Space.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -110,7 +110,7 @@ The default binding for this signal is Escape.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -126,7 +126,7 @@ The default binding is f6.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{reversed}}{[logical]  whether cycling backward or forward}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -144,7 +144,7 @@ The default binding for this signal is f8.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{reversed}}{[logical]  whether cycling backward or forward}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -160,7 +160,7 @@ to move it.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}]  a \code{\link{GtkScrollType}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -178,7 +178,7 @@ The default binding is Tab.
   Since  2.0
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkPaned}}]  the object that received the signal}
+\item{\code{widget}}{[\verb{\link{GtkPaned}}]  the object that received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -186,7 +186,7 @@ The default binding is Tab.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{max-position} [integer : Read]}{
+\item{\verb{max-position} [integer : Read]}{
 
 The largest possible value for the position property. This property is derived from the
 size and shrinkability of the widget's children.  
@@ -194,7 +194,7 @@ size and shrinkability of the widget's children.
   Allowed values: >= 0  Default value: 2147483647  Since  2.4
 
 }
-\item{\code{min-position} [integer : Read]}{
+\item{\verb{min-position} [integer : Read]}{
 
 The smallest possible value for the position property. This property is derived from the
 size and shrinkability of the widget's children.  
@@ -202,18 +202,18 @@ size and shrinkability of the widget's children.
   Allowed values: >= 0  Default value: 0  Since  2.4
 
 }
-\item{\code{position} [integer : Read / Write]}{
+\item{\verb{position} [integer : Read / Write]}{
 
 Position of paned separator in pixels (0 means all the way to the left/top).  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{position-set} [logical : Read / Write]}{
+\item{\verb{position-set} [logical : Read / Write]}{
 
 TRUE if the Position property should be used.  Default value: FALSE
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{handle-size} [integer : Read]}{
+\section{Style Properties}{\describe{\item{\verb{handle-size} [integer : Read]}{
 
 Width of handle.  Allowed values: >= 0  Default value: 5
 

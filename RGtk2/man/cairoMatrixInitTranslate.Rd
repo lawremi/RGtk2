@@ -5,12 +5,12 @@
 \code{ty} in the X and Y dimensions, respectively.}
 \usage{cairoMatrixInitTranslate(tx, ty)}
 \arguments{
-\item{\code{tx}}{[numeric]  amount to translate in the X direction}
-\item{\code{ty}}{[numeric]  amount to translate in the Y direction}
+\item{\verb{tx}}{[numeric]  amount to translate in the X direction}
+\item{\verb{ty}}{[numeric]  amount to translate in the Y direction}
 }
 \value{
 A list containing the following elements:
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

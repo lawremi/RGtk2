@@ -5,8 +5,8 @@
 See \code{\link{gtkStatusIconNewFromStock}} for details.}
 \usage{gtkStatusIconSetFromStock(object, stock.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}
-\item{\code{stock.id}}{[character]  a stock icon id}
+\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}
+\item{\verb{stock.id}}{[character]  a stock icon id}
 }
 \details{  Since  2.10 }
 \author{Derived by RGtkGen from GTK+ documentation}

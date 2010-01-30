@@ -4,8 +4,8 @@
 \description{Sets the base direction for the context.}
 \usage{pangoContextSetBaseDir(object, direction)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{direction}}{[\code{\link{PangoDirection}}]  the new base direction}
+\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{direction}}{[\code{\link{PangoDirection}}]  the new base direction}
 }
 \details{The base direction is used in applying the Unicode bidirectional
 algorithm; if the \code{direction} is \code{PANGO_DIRECTION_LTR} or

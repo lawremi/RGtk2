@@ -3,15 +3,15 @@
 \title{gtkWidgetGetRootWindow}
 \description{Get the root window where this widget is located. This function can
 only be called after the widget has been added to a widget
-heirarchy with \code{\link{GtkWindow}} at the top.}
+heirarchy with \verb{\link{GtkWindow}} at the top.}
 \usage{gtkWidgetGetRootWindow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{The root window is useful for such purposes as creating a popup
-\code{\link{GdkWindow}} associated with the window. In general, you should only
+\verb{\link{GdkWindow}} associated with the window. In general, you should only
 create display specific resources when a widget has been realized,
 and you should free those resources when the widget is unrealized.  
 
   Since  2.2}
-\value{[\code{\link{GdkWindow}}]  the \code{\link{GdkWindow}} root window for the toplevel for this widget.}
+\value{[\verb{\link{GdkWindow}}]  the \verb{\link{GdkWindow}} root window for the toplevel for this widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

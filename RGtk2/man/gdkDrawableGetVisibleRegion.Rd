@@ -6,7 +6,7 @@ This does not necessarily take into account if the window is
 obscured by other windows, but no area outside of this region
 is visible.}
 \usage{gdkDrawableGetVisibleRegion(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}}}}
-\value{[\code{\link{GdkRegion}}]  a \code{\link{GdkRegion}}.}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}}}}
+\value{[\verb{\link{GdkRegion}}]  a \verb{\link{GdkRegion}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

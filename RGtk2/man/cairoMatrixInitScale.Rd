@@ -5,12 +5,12 @@
 in the X and Y dimensions, respectively.}
 \usage{cairoMatrixInitScale(sx, sy)}
 \arguments{
-\item{\code{sx}}{[numeric]  scale factor in the X direction}
-\item{\code{sy}}{[numeric]  scale factor in the Y direction}
+\item{\verb{sx}}{[numeric]  scale factor in the X direction}
+\item{\verb{sy}}{[numeric]  scale factor in the Y direction}
 }
 \value{
 A list containing the following elements:
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

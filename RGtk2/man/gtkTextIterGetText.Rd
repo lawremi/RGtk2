@@ -8,8 +8,8 @@ byte offsets in the buffer. If you want offsets to correspond, see
 \code{\link{gtkTextIterGetSlice}}.}
 \usage{gtkTextIterGetText(object, end)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  iterator at start of a range}
-\item{\code{end}}{[\code{\link{GtkTextIter}}]  iterator at end of a range}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  iterator at start of a range}
+\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  iterator at end of a range}
 }
 \value{[character]  list of characters from the buffer}
 \author{Derived by RGtkGen from GTK+ documentation}

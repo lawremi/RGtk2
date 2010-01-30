@@ -5,11 +5,11 @@
 When the list is later received, \code{callback} will be called. }
 \usage{gtkClipboardRequestTargets(object, callback, user.data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}
-\item{\code{callback}}{[\code{\link{GtkClipboardTargetsReceivedFunc}}]   a function to call when the targets are received,
+\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}
+\item{\verb{callback}}{[\verb{\link{GtkClipboardTargetsReceivedFunc}}]   a function to call when the targets are received,
             or the retrieval fails. (It will always be called
             one way or the other.)}
-\item{\code{user.data}}{[R object]  user data to pass to \code{callback}.}
+\item{\verb{user.data}}{[R object]  user data to pass to \code{callback}.}
 }
 \details{The \code{targets} parameter to \code{callback} will contain the resulting targets if
 the request succeeded, or \code{NULL} if it failed.  

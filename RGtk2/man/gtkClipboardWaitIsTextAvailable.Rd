@@ -7,7 +7,7 @@ if it contains any of the supported text targets. This function
 waits for the data to be received using the main loop, so events, 
 timeouts, etc, may be dispatched during the wait.}
 \usage{gtkClipboardWaitIsTextAvailable(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}}
 \details{This function is a little faster than calling
 \code{\link{gtkClipboardWaitForText}} since it doesn't need to retrieve
 the actual text.  }

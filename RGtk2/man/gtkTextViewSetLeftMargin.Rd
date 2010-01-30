@@ -5,8 +5,8 @@
 Tags in the buffer may override the default.}
 \usage{gtkTextViewSetLeftMargin(object, left.margin)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{left.margin}}{[integer]  left margin in pixels}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{left.margin}}{[integer]  left margin in pixels}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

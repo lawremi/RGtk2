@@ -5,8 +5,8 @@
 search in. }
 \usage{gtkTreeViewSetSearchColumn(object, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{column}}{[integer]  the column of the model to search in, or -1 to disable searching}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{column}}{[integer]  the column of the model to search in, or -1 to disable searching}
 }
 \details{If the sort column is set, users can use the "start-interactive-search"
 key binding to bring up search popup. The enable-search property controls

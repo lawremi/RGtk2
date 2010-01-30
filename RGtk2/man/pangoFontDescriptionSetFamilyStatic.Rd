@@ -7,8 +7,8 @@ copy of \code{family} is made. This function can be used if
 if \code{desc} is only needed temporarily.}
 \usage{pangoFontDescriptionSetFamilyStatic(object, family)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
-\item{\code{family}}{[char]  a string representing the family name.}
+\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
+\item{\verb{family}}{[char]  a string representing the family name.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

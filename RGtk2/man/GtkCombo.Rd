@@ -14,22 +14,22 @@
 \code{\link{gtkComboDisableActivate}(object)}\cr
 \code{gtkCombo(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBox}
-                                 +----\link{GtkHBox}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBox
+                                 +----GtkHBox
                                        +----GtkCombo}}
 \section{Interfaces}{GtkCombo implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkCombo}} widget consists of a single-line text entry field and a drop-down
 list. The drop-down list is displayed when the user clicks on a small arrow
 button to the right of the entry field.
   
-The drop-down list is a \code{\link{GtkList}} widget and can be accessed using the
-\code{list} member of the \code{\link{GtkCombo}}.
+The drop-down list is a \verb{\link{GtkList}} widget and can be accessed using the
+\code{list} member of the \verb{\link{GtkCombo}}.
 List elements can contain arbitrary widgets, but if an element is not a
 plain label, then you must use the \code{gtkListSetItemString()} function.
 This sets the string which will be placed in the text entry field when the
@@ -39,7 +39,7 @@ By default, the user can step through the items in the list using the
 arrow (cursor) keys, though this behaviour can be turned off with
 \code{\link{gtkComboSetUseArrows}}.
   
-As of GTK+ 2.4, \code{\link{GtkCombo}} has been deprecated in favor of \code{\link{GtkComboBox}}.
+As of GTK+ 2.4, \verb{\link{GtkCombo}} has been deprecated in favor of \verb{\link{GtkComboBox}}.
   
  \emph{Creating a   \code{GtkCombo}   widget with simple text 
 items.}
@@ -80,41 +80,41 @@ combo$setItemString(item, "1st Item")
 ## Now we simply add the item to the combo's list.
 combo[["list"]]$add(item)
 }}
-\section{Structures}{\describe{\item{\code{GtkCombo}}{
-\strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
-The \code{\link{GtkFixedChild}} struct contains the following fields.
+\section{Structures}{\describe{\item{\verb{GtkCombo}}{
+\strong{WARNING: \code{GtkCombo} has been deprecated since version 2.4 and should not be used in newly-written code. Use \verb{\link{GtkComboBox}} instead.}
+The \verb{\link{GtkFixedChild}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkWidget}}] the text entry field.}
-\item{\code{list}}{[\code{\link{GtkWidget}}] the list shown in the drop-down window.}
+\item{\verb{entry}}{[\verb{\link{GtkWidget}}] the text entry field.}
+\item{\verb{list}}{[\verb{\link{GtkWidget}}] the list shown in the drop-down window.}
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkCombo} is the equivalent of \code{\link{gtkComboNew}}.}
 \section{Properties}{\describe{
-\item{\code{allow-empty} [logical : Read / Write]}{
+\item{\verb{allow-empty} [logical : Read / Write]}{
 
 Whether an empty value may be entered in this field.  Default value: TRUE
 
 }
-\item{\code{case-sensitive} [logical : Read / Write]}{
+\item{\verb{case-sensitive} [logical : Read / Write]}{
 
 Whether list item matching is case sensitive.  Default value: FALSE
 
 }
-\item{\code{enable-arrow-keys} [logical : Read / Write]}{
+\item{\verb{enable-arrow-keys} [logical : Read / Write]}{
 
 Whether the arrow keys move through the list of items.  Default value: TRUE
 
 }
-\item{\code{enable-arrows-always} [logical : Read / Write]}{
+\item{\verb{enable-arrows-always} [logical : Read / Write]}{
 
 Obsolete property, ignored.  Default value: TRUE
 
 }
-\item{\code{value-in-list} [logical : Read / Write]}{
+\item{\verb{value-in-list} [logical : Read / Write]}{
 
 Whether entered values must already be present in the list.  Default value: FALSE
 

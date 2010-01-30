@@ -2,10 +2,10 @@
 \name{gtkTreeViewGetRubberBanding}
 \title{gtkTreeViewGetRubberBanding}
 \description{Returns whether rubber banding is turned on for \code{tree.view}.  If the
-selection mode is \code{GTK_SELECTION_MULTIPLE}, rubber banding will allow the
+selection mode is \verb{GTK_SELECTION_MULTIPLE}, rubber banding will allow the
 user to select multiple rows by dragging the mouse.}
 \usage{gtkTreeViewGetRubberBanding(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if rubber banding in \code{tree.view} is enabled.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -3,7 +3,7 @@
 \title{gdkWindowGetTypeHint}
 \description{This function returns the type hint set for a window.}
 \usage{gdkWindowGetTypeHint(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  A toplevel \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  A toplevel \verb{\link{GdkWindow}}}}
 \details{  Since  2.10}
 \value{[\code{\link{GdkWindowTypeHint}}]  The type hint set for \code{window}}
 \author{Derived by RGtkGen from GTK+ documentation}

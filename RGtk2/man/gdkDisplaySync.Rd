@@ -8,7 +8,7 @@ display is synchronized with the current state of the program. Calling
 generated from earlier requests are handled before the error trap is 
 removed.}
 \usage{gdkDisplaySync(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
 \details{This is most useful for X11. On windowing systems where requests are
 handled synchronously, this function will do nothing.  
 

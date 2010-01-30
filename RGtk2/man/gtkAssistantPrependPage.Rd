@@ -4,8 +4,8 @@
 \description{Prepends a page to the \code{assistant}.}
 \usage{gtkAssistantPrependPage(object, page)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAssistant}}]  a \code{\link{GtkAssistant}}}
-\item{\code{page}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
+\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}
+\item{\verb{page}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
 }
 \details{  Since  2.10}
 \value{[integer]  the index (starting at 0) of the inserted page}

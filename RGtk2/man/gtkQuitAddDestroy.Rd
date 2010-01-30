@@ -5,9 +5,8 @@
 is quit.}
 \usage{gtkQuitAddDestroy(main.level, object)}
 \arguments{
-\item{\code{main.level}}{[numeric] Level of the mainloop which shall trigger the destruction.}
-\item{\code{object}}{[\code{\link{GtkObject}}] Object to be destroyed.}
+\item{\verb{main.level}}{[numeric] Level of the mainloop which shall trigger the destruction.}
+\item{\verb{object}}{[\verb{\link{GtkObject}}] Object to be destroyed.}
 }
-
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

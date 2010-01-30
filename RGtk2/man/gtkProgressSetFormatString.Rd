@@ -15,8 +15,8 @@ current progress.  The string can contain the following substitution characters:
 }
 \usage{gtkProgressSetFormatString(object, format)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}
-\item{\code{format}}{[character] a string used to display progress text, or \code{NULL}
+\item{\verb{object}}{[\verb{\link{GtkProgress}}] a \verb{\link{GtkProgress}}.}
+\item{\verb{format}}{[character] a string used to display progress text, or \code{NULL}
          to restore to the default format.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

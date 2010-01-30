@@ -1,8 +1,8 @@
 \alias{gtkStyleNew}
 \name{gtkStyleNew}
 \title{gtkStyleNew}
-\description{Creates a new \code{\link{GtkStyle}}.}
+\description{Creates a new \verb{\link{GtkStyle}}.}
 \usage{gtkStyleNew()}
-\value{[\code{\link{GtkStyle}}]  a new \code{\link{GtkStyle}}.}
+\value{[\verb{\link{GtkStyle}}]  a new \verb{\link{GtkStyle}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

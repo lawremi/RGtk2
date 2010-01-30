@@ -4,7 +4,7 @@
 \description{Adds a rule allowing image files in the formats supported
 by GdkPixbuf.}
 \usage{gtkRecentFilterAddPixbufFormats(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRecentFilter}}]  a \code{\link{GtkRecentFilter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}}
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

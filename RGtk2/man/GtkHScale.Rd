@@ -8,22 +8,22 @@
 \code{\link{gtkHScaleNewWithRange}(min, max, step, show = TRUE)}\cr
 \code{gtkHScale(adjustment = NULL, min, max, step, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkRange}
-                           +----\link{GtkScale}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkRange
+                           +----GtkScale
                                  +----GtkHScale}}
 \section{Interfaces}{GtkHScale implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkHScale}} widget is used to allow the user to select a value using
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkHScale}} widget is used to allow the user to select a value using
 a horizontal slider. To create one, use \code{\link{gtkHScaleNewWithRange}}.
   
 The position to show the current value, and the number of decimal places
-shown can be set using the parent \code{\link{GtkScale}} class's functions.}
-\section{Structures}{\describe{\item{\code{GtkHScale}}{
-The \code{\link{GtkHScale}} struct contains private data only, and
+shown can be set using the parent \verb{\link{GtkScale}} class's functions.}
+\section{Structures}{\describe{\item{\verb{GtkHScale}}{
+The \verb{\link{GtkHScale}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}

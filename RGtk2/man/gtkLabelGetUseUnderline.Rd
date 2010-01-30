@@ -4,7 +4,7 @@
 \description{Returns whether an embedded underline in the label indicates a
 mnemonic. See \code{\link{gtkLabelSetUseUnderline}}.}
 \usage{gtkLabelGetUseUnderline(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}}
 \value{[logical] \code{TRUE} whether an embedded underline in the label indicates
               the mnemonic accelerator keys.}
 \author{Derived by RGtkGen from GTK+ documentation}

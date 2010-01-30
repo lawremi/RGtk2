@@ -28,14 +28,14 @@
 \code{\link{gtkTreeStoreMoveAfter}(object, iter, position = NULL)}\cr
 \code{gtkTreeStore(..., types)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkTreeStore}}
 \section{Interfaces}{GtkTreeStore implements
- \code{\link{GtkBuildable}},  \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
-\section{Detailed Description}{The \code{\link{GtkTreeStore}} object is a list model for use with a \code{\link{GtkTreeView}}
-widget.  It implements the \code{\link{GtkTreeModel}} interface, and consequentialy,
+ \verb{\link{GtkBuildable}},  \verb{\link{GtkTreeModel}},  \verb{\link{GtkTreeDragSource}},  \verb{\link{GtkTreeDragDest}} and  \verb{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \verb{\link{GtkTreeStore}} object is a list model for use with a \verb{\link{GtkTreeView}}
+widget.  It implements the \verb{\link{GtkTreeModel}} interface, and consequentialy,
 can use all of the methods available there.  It also implements the
-\code{\link{GtkTreeSortable}} interface so it can be sorted by the view.  Finally,
+\verb{\link{GtkTreeSortable}} interface so it can be sorted by the view.  Finally,
 it also implements the tree drag and
 drop interfaces.}
 \section{GtkTreeStore as GtkBuildable}{The GtkTreeStore implementation of the GtkBuildable interface allows
@@ -51,7 +51,7 @@ column. The "type" attribute specifies the data type for the column.
   </columns>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkTreeStore}}{
+\section{Structures}{\describe{\item{\verb{GtkTreeStore}}{
 \emph{undocumented
 }
 
@@ -60,7 +60,7 @@ column. The "type" attribute specifies the data type for the column.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTreeModel}}
-\code{\link{GtkTreeStore}}
+\verb{\link{GtkTreeModel}}
+\verb{\link{GtkTreeStore}}
 }
 \keyword{internal}

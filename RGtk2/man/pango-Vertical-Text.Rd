@@ -18,11 +18,11 @@ The way this is implemented is through the concept of
 gravity value of east means that glyphs will be rotated ninety degrees
 counterclockwise.  So, to render vertical text one needs to set the gravity
 and rotate the layout using the matrix machinery already in place.  This has
-the huge advantage that most algorithms working on a \code{\link{PangoLayout}} do not need
+the huge advantage that most algorithms working on a \verb{\link{PangoLayout}} do not need
 any change as the assumption that lines run in the X direction and stack in
 the Y direction holds even for vertical text layouts.
   
-Applications should only need to set base gravity on \code{\link{PangoContext}} in use, and
+Applications should only need to set base gravity on \verb{\link{PangoContext}} in use, and
 let Pango decide the gravity assigned to each run of text.  This automatically
 handles text with mixed scripts.  A very common use is to set the context base
 gravity to auto using \code{\link{pangoContextSetBaseGravity}}
@@ -47,13 +47,13 @@ different scripts should react to the set base gravity.
 Font descriptions have a gravity property too, that can be set using
 \code{\link{pangoFontDescriptionSetGravity}} and accessed using
 \code{\link{pangoFontDescriptionGetGravity}}.  However, those are rarely useful
-from application code and are mainly used by \code{\link{PangoLayout}} internally.
+from application code and are mainly used by \verb{\link{PangoLayout}} internally.
   
-Last but not least, one can create \code{\link{PangoAttribute}}s for gravity
+Last but not least, one can create \verb{\link{PangoAttribute}}s for gravity
 and gravity hint using \code{\link{pangoAttrGravityNew}} and
 \code{\link{pangoAttrGravityHintNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{PangoGravity}}{
+\item{\verb{PangoGravity}}{
 The \code{\link{PangoGravity}} type represents the orientation of glyphs in a segment
 of text.  This is useful when rendering vertical text layouts.  In
 those situations, the layout is rotated using a non-identity PangoMatrix,
@@ -68,15 +68,15 @@ See also: \code{\link{PangoGravityHint}}
   Since  1.16
 
 \describe{
-\item{\code{south}}{ Glyphs stand upright (default)}
-\item{\code{east}}{ Glyphs are rotated 90 degrees clockwise}
-\item{\code{north}}{ Glyphs are upside-down}
-\item{\code{west}}{ Glyphs are rotated 90 degrees counter-clockwise}
-\item{\code{auto}}{ Gravity is resolved from the context matrix}
+\item{\verb{south}}{ Glyphs stand upright (default)}
+\item{\verb{east}}{ Glyphs are rotated 90 degrees clockwise}
+\item{\verb{north}}{ Glyphs are upside-down}
+\item{\verb{west}}{ Glyphs are rotated 90 degrees counter-clockwise}
+\item{\verb{auto}}{ Gravity is resolved from the context matrix}
 }
 
 }
-\item{\code{PangoGravityHint}}{
+\item{\verb{PangoGravityHint}}{
 The \code{\link{PangoGravityHint}} defines how horizontal scripts should behave in a
 vertical context.  That is, English excerpt in a vertical paragraph for
 example.
@@ -86,11 +86,11 @@ See \code{\link{PangoGravity}}.
   Since  1.16
 
 \describe{
-\item{\code{natural}}{ scripts will take their natural gravity based
+\item{\verb{natural}}{ scripts will take their natural gravity based
 on the base gravity and the script.  This is the default.}
-\item{\code{strong}}{ always use the base gravity set, regardless of
+\item{\verb{strong}}{ always use the base gravity set, regardless of
 the script.}
-\item{\code{line}}{ for scripts not in their natural direction (eg.
+\item{\verb{line}}{ for scripts not in their natural direction (eg.
 Latin in East gravity), choose per-script gravity such that every script
 respects the line progression.  This means, Latin and Arabic will take
 opposite gravities and both flow top-to-bottom for example.}

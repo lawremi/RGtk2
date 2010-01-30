@@ -3,8 +3,8 @@
 \title{pangoCairoFontMapGetFontType}
 \description{Gets the type of Cairo font backend that \code{fontmap} uses.}
 \usage{pangoCairoFontMapGetFontType(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoCairoFontMap}}]  a \code{\link{PangoCairoFontMap}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoCairoFontMap}}]  a \verb{\link{PangoCairoFontMap}}}}
 \details{  Since  1.18}
-\value{[\code{\link{CairoFontType}}]  the \code{\link{CairoFontType}} cairo font backend type}
+\value{[\verb{\link{CairoFontType}}]  the \verb{\link{CairoFontType}} cairo font backend type}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

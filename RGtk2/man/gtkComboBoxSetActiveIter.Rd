@@ -5,8 +5,8 @@
 \code{iter} must correspond to a path of depth one.}
 \usage{gtkComboBoxSetActiveIter(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkComboBox}}]  A \code{\link{GtkComboBox}}}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}}}
+\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  A \verb{\link{GtkComboBox}}}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

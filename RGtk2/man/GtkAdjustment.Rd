@@ -12,59 +12,59 @@
 \code{\link{gtkAdjustmentValueChanged}(object)}\cr
 \code{gtkAdjustment(value = NULL, lower = NULL, upper = NULL, step.incr = NULL, page.incr = NULL, page.size = NULL)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkAdjustment}}
-\section{Detailed Description}{The \code{\link{GtkAdjustment}} object represents a value which has an associated lower
+\section{Detailed Description}{The \verb{\link{GtkAdjustment}} object represents a value which has an associated lower
 and upper bound, together with step and page increments, and a page size.
 It is used within several GTK+ widgets, including
-\code{\link{GtkSpinButton}}, \code{\link{GtkViewport}}, and \code{\link{GtkRange}} (which is a base class for
-\code{\link{GtkHScrollbar}}, \code{\link{GtkVScrollbar}}, \code{\link{GtkHScale}}, and \code{\link{GtkVScale}}).
+\verb{\link{GtkSpinButton}}, \verb{\link{GtkViewport}}, and \verb{\link{GtkRange}} (which is a base class for
+\verb{\link{GtkHScrollbar}}, \verb{\link{GtkVScrollbar}}, \verb{\link{GtkHScale}}, and \verb{\link{GtkVScale}}).
   
-The \code{\link{GtkAdjustment}} object does not update the value itself. Instead
-it is left up to the owner of the \code{\link{GtkAdjustment}} to control the value.
+The \verb{\link{GtkAdjustment}} object does not update the value itself. Instead
+it is left up to the owner of the \verb{\link{GtkAdjustment}} to control the value.
   
-The owner of the \code{\link{GtkAdjustment}} typically calls the
+The owner of the \verb{\link{GtkAdjustment}} typically calls the
 \code{\link{gtkAdjustmentValueChanged}} and \code{\link{gtkAdjustmentChanged}} functions
 after changing the value and its bounds. This results in the emission of the
-"value\_changed" or "changed" signal respectively.}
-\section{Structures}{\describe{\item{\code{GtkAdjustment}}{
-The \code{\link{GtkAdjustment}} struct contains the following fields.
+"value_changed" or "changed" signal respectively.}
+\section{Structures}{\describe{\item{\verb{GtkAdjustment}}{
+The \verb{\link{GtkAdjustment}} struct contains the following fields.
 
 \tabular{ll}{
-\code{numeric}   lower; \tab the minimum value. \cr
-\code{numeric}   upper; \tab the maximum value. \cr
-\code{numeric}   value; \tab the current value. \cr
-\code{numeric}   step\_increment; \tab the increment to use to make minor changes to the value.
-In a   \code{\link{GtkScrollbar}}   this increment is used when the mouse is clicked on the
+\verb{numeric}   lower; \tab the minimum value. \cr
+\verb{numeric}   upper; \tab the maximum value. \cr
+\verb{numeric}   value; \tab the current value. \cr
+\verb{numeric}   step_increment; \tab the increment to use to make minor changes to the value.
+In a   \verb{\link{GtkScrollbar}}   this increment is used when the mouse is clicked on the
 arrows at the top and bottom of the scrollbar, to scroll by a small amount. \cr
-\code{numeric}   page\_increment; \tab the increment to use to make major changes to the value.
-In a   \code{\link{GtkScrollbar}}   this increment is used when the mouse is clicked in the
+\verb{numeric}   page_increment; \tab the increment to use to make major changes to the value.
+In a   \verb{\link{GtkScrollbar}}   this increment is used when the mouse is clicked in the
 trough, to scroll by a large amount. \cr
-\code{numeric}   page\_size; \tab the page size.
-In a   \code{\link{GtkScrollbar}}   this is the size of the area which is currently visible. \cr
+\verb{numeric}   page_size; \tab the page size.
+In a   \verb{\link{GtkScrollbar}}   this is the size of the area which is currently visible. \cr
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkAdjustment} is the equivalent of \code{\link{gtkAdjustmentNew}}.}
 \section{Signals}{\describe{
 \item{\code{changed(adjustment, user.data)}}{
-Emitted when one or more of the \code{\link{GtkAdjustment}} fields have been changed,
+Emitted when one or more of the \verb{\link{GtkAdjustment}} fields have been changed,
 other than the value field.
 
 \describe{
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}] the object which received the signal.}
+\item{\code{adjustment}}{[\verb{\link{GtkAdjustment}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }
 \item{\code{value-changed(adjustment, user.data)}}{
-Emitted when the \code{\link{GtkAdjustment}} value field has been changed.
+Emitted when the \verb{\link{GtkAdjustment}} value field has been changed.
 
 \describe{
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}] the object which received the signal.}
+\item{\code{adjustment}}{[\verb{\link{GtkAdjustment}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -72,38 +72,38 @@ Emitted when the \code{\link{GtkAdjustment}} value field has been changed.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{lower} [numeric : Read / Write]}{
+\item{\verb{lower} [numeric : Read / Write]}{
 
 The minimum value of the adjustment.  
 
   Default value: 0  Since  2.4
 
 }
-\item{\code{page-increment} [numeric : Read / Write]}{
+\item{\verb{page-increment} [numeric : Read / Write]}{
 
 The page increment of the adjustment.  
 
   Default value: 0  Since  2.4
 
 }
-\item{\code{page-size} [numeric : Read / Write]}{
+\item{\verb{page-size} [numeric : Read / Write]}{
 
 The page size of the adjustment. 
 Note that the page-size is irrelevant and should be set to zero
 if the adjustment is used for a simple scalar value, e.g. in a 
-\code{\link{GtkSpinButton}}.  
+\verb{\link{GtkSpinButton}}.  
 
   Default value: 0  Since  2.4
 
 }
-\item{\code{step-increment} [numeric : Read / Write]}{
+\item{\verb{step-increment} [numeric : Read / Write]}{
 
 The step increment of the adjustment.  
 
   Default value: 0  Since  2.4
 
 }
-\item{\code{upper} [numeric : Read / Write]}{
+\item{\verb{upper} [numeric : Read / Write]}{
 
 The maximum value of the adjustment. 
 Note that values will be restricted by 
@@ -113,7 +113,7 @@ property is nonzero.
   Default value: 0  Since  2.4
 
 }
-\item{\code{value} [numeric : Read / Write]}{
+\item{\verb{value} [numeric : Read / Write]}{
 
 The value of the adjustment.  
 

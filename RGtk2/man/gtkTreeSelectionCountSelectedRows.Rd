@@ -3,7 +3,7 @@
 \title{gtkTreeSelectionCountSelectedRows}
 \description{Returns the number of rows that have been selected in \code{tree}.}
 \usage{gtkTreeSelectionCountSelectedRows(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}}
 \details{  Since  2.2}
 \value{[integer]  The number of rows selected.}
 \author{Derived by RGtkGen from GTK+ documentation}

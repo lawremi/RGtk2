@@ -10,8 +10,8 @@ necessary.
 }
 \usage{gdkPangoContextSetColormap(context, colormap)}
 \arguments{
-\item{\code{context}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{colormap}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}}
+\item{\verb{context}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

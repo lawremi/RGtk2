@@ -7,8 +7,8 @@ Cause the given node and its subnodes to be selected and emit the appropriate si
 }
 \usage{gtkCTreeSelectRecursive(object, node)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

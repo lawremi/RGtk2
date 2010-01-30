@@ -6,13 +6,13 @@ and the height of the line. The coordinate is a buffer coordinate;
 convert to window coordinates with \code{\link{gtkTextViewBufferToWindowCoords}}.}
 \usage{gtkTextViewGetLineYrange(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
 }
 \value{
 A list containing the following elements:
-\item{\code{y}}{[integer]  return location for a y coordinate}
-\item{\code{height}}{[integer]  return location for a height}
+\item{\verb{y}}{[integer]  return location for a y coordinate}
+\item{\verb{height}}{[integer]  return location for a height}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

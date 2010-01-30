@@ -8,8 +8,8 @@ the XML (e.g. <popup>) can be addressed by their XML element name
 (e.g. "popup"). The root element ("/ui") can be omitted in the path.}
 \usage{gtkUIManagerGetWidget(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}}}
-\item{\code{path}}{[character]  a path}
+\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}}}
+\item{\verb{path}}{[character]  a path}
 }
 \details{Note that the widget found by following a path that ends in a <menu>
 element is the menuitem to which the menu is attached, not the menu itself.
@@ -20,7 +20,7 @@ function to some container or explicitly ref them, they will survive the
 destruction of the ui manager.  
 
   Since  2.4}
-\value{[\code{\link{GtkWidget}}]  the widget found by following the path, or \code{NULL} if no widget
+\value{[\verb{\link{GtkWidget}}]  the widget found by following the path, or \code{NULL} if no widget
   was found.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

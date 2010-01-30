@@ -7,9 +7,9 @@ Inserts \code{items} into the \code{list} at the position \code{position}.
 }
 \usage{gtkListInsertItems(object, items, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkList}}] the list widget.}
-\item{\code{items}}{[list] the items.}
-\item{\code{position}}{[integer] the position to insert \code{items}, starting at 0.}
+\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}
+\item{\verb{items}}{[list] the items.}
+\item{\verb{position}}{[integer] the position to insert \code{items}, starting at 0.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

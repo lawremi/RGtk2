@@ -19,7 +19,7 @@
 \code{\link{gdkVisualGetScreen}(object)}\cr
 
 }
-\section{Detailed Description}{A \code{\link{GdkVisual}} describes a particular video hardware display format. It includes
+\section{Detailed Description}{A \verb{\link{GdkVisual}} describes a particular video hardware display format. It includes
 information about the number of bits used for each color, the way the bits are
 translated into an RGB value for display, and the way the bits are stored in 
 memory. For example, a piece of display hardware might support 24-bit color, 
@@ -29,9 +29,9 @@ of an RGB pixel may be in the top 8 bits of the pixel, or may be in the lower
 4 bits.
   
 Usually you can avoid thinking about visuals in GTK+. Visuals are useful to
-interpret the contents of a \code{\link{GdkImage}}, but you should avoid \code{\link{GdkImage}} precisely
-because its contents depend on the display hardware; use \code{\link{GdkPixbuf}} instead, for
-all but the most low-level purposes. Also, anytime you provide a \code{\link{GdkColormap}},
+interpret the contents of a \verb{\link{GdkImage}}, but you should avoid \verb{\link{GdkImage}} precisely
+because its contents depend on the display hardware; use \verb{\link{GdkPixbuf}} instead, for
+all but the most low-level purposes. Also, anytime you provide a \verb{\link{GdkColormap}},
 the visual is implied as part of the colormap (\code{\link{gdkColormapGetVisual}}), so
 you won't have to provide a visual in addition.
   
@@ -39,7 +39,7 @@ There are several standard visuals. The visual returned
 by \code{\link{gdkVisualGetSystem}} is the system's default
 visual. \code{\link{gdkRgbGetVisual}} return the visual most
 suited to displaying full-color image data. If you
-use the calls in \code{GdkRGB}, you should create your windows
+use the calls in \verb{GdkRGB}, you should create your windows
 using this visual (and the colormap returned by
 \code{\link{gdkRgbGetColormap}}).
   
@@ -53,28 +53,28 @@ order of (highest to lowest) \code{GDK_VISUAL_DIRECT_COLOR},
 \code{GDK_VISUAL_TRUE_COLOR}, \code{GDK_VISUAL_PSEUDO_COLOR},
 \code{GDK_VISUAL_STATIC_COLOR}, \code{GDK_VISUAL_GRAYSCALE},
 then \code{GDK_VISUAL_STATIC_GRAY}.}
-\section{Structures}{\describe{\item{\code{GdkVisual}}{
-The \code{GdkVisual} structure contains information about
+\section{Structures}{\describe{\item{\verb{GdkVisual}}{
+The \verb{GdkVisual} structure contains information about
 a particular visual.
 
 \describe{
-\item{\code{type}}{[\code{\link{GdkVisualType}}] inherited portion from \code{\link{GObject}}}
-\item{\code{depth}}{[integer] The type of this visual.}
-\item{\code{byteOrder}}{[\code{\link{GdkByteOrder}}] The number of bits per pixel.}
-\item{\code{colormapSize}}{[integer] The byte-order for this visual.}
-\item{\code{bitsPerRgb}}{[integer] The number of entries in the colormap, for
+\item{\verb{type}}{[\code{\link{GdkVisualType}}] inherited portion from \verb{\link{GObject}}}
+\item{\verb{depth}}{[integer] The type of this visual.}
+\item{\verb{byteOrder}}{[\code{\link{GdkByteOrder}}] The number of bits per pixel.}
+\item{\verb{colormapSize}}{[integer] The byte-order for this visual.}
+\item{\verb{bitsPerRgb}}{[integer] The number of entries in the colormap, for
     visuals of type \code{GDK_VISUAL_PSEUDO_COLOR} or
     \code{GDK_VISUAL_GRAY_SCALE}. For other visual types, it
     is the number of possible levels per color component.
     If the visual has different numbers of levels for
     different components, the value of this field is undefined.}
-\item{\code{redMask}}{[numeric] The number of significant bits per red, green, or blue
+\item{\verb{redMask}}{[numeric] The number of significant bits per red, green, or blue
     when specifying colors for this visual. (For instance, for 
     \code{\link{gdkColormapAllocColor}})}
-\item{\code{redShift}}{[integer] A mask giving the bits in a pixel value that
+\item{\verb{redShift}}{[integer] A mask giving the bits in a pixel value that
     correspond to the red field. Significant only for
     \code{GDK_VISUAL_PSEUDOCOLOR} and \code{GDK_VISUAL_DIRECTCOLOR}.}
-\item{\code{redPrec}}{[integer] The \code{red_shift} and
+\item{\verb{redPrec}}{[integer] The \code{red_shift} and
     \code{red_prec} give an alternate presentation
     of the information in \code{red_mask}.
     \code{red_mask} is a contiguous sequence
@@ -82,55 +82,55 @@ a particular visual.
     number \code{red_shift}. For example,
      shows constructing a pixel value
     out of three 16 bit color values.}
-\item{\code{greenMask}}{[numeric] See above.}
-\item{\code{greenShift}}{[integer] A mask giving the bits in a pixel value that
+\item{\verb{greenMask}}{[numeric] See above.}
+\item{\verb{greenShift}}{[integer] A mask giving the bits in a pixel value that
     correspond to the green field.}
-\item{\code{greenPrec}}{[integer] The \code{green_shift} and
+\item{\verb{greenPrec}}{[integer] The \code{green_shift} and
     \code{green_prec} give an alternate presentation
     of the information in \code{green_mask}.}
-\item{\code{blueMask}}{[numeric] See above.}
-\item{\code{blueShift}}{[integer] A mask giving the bits in a pixel value that
+\item{\verb{blueMask}}{[numeric] See above.}
+\item{\verb{blueShift}}{[integer] A mask giving the bits in a pixel value that
     correspond to the blue field.}
-\item{\code{bluePrec}}{[integer] The \code{blue_shift} and
+\item{\verb{bluePrec}}{[integer] The \code{blue_shift} and
     \code{blue_prec} give an alternate presentation
     of the information in \code{blue_mask}.}
 }
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkVisualType}}{
+\item{\verb{GdkVisualType}}{
 A set of values that describe the manner in which the
 pixel values for a visual are converted into RGB
 values for display.
 
 \describe{
-\item{\code{static-gray}}{Each pixel value indexes a grayscale value directly.}
-\item{\code{grayscale}}{Each pixel is an index into a color map that maps pixel 
+\item{\verb{static-gray}}{Each pixel value indexes a grayscale value directly.}
+\item{\verb{grayscale}}{Each pixel is an index into a color map that maps pixel 
    values into grayscale values. The color map can be changed by an application.}
-\item{\code{static-color}}{Each pixel value is an index into a predefined,
+\item{\verb{static-color}}{Each pixel value is an index into a predefined,
    unmodifiable color map that maps pixel values into RGB values.}
-\item{\code{pseudo-color}}{Each pixel is an index into a color map that maps
+\item{\verb{pseudo-color}}{Each pixel is an index into a color map that maps
    pixel values into rgb values. The color map can be changed by an application.}
-\item{\code{true-color}}{Each pixel value directly contains red, green,
+\item{\verb{true-color}}{Each pixel value directly contains red, green,
    and blue components. The \code{red_mask},
    \code{green_mask}, and 
-   \code{blue_mask} fields of the \code{\link{GdkVisual}}
+   \code{blue_mask} fields of the \verb{\link{GdkVisual}}
    structure describe how the components are assembled into a pixel value.}
-\item{\code{direct-color}}{Each pixel value contains red, green, and blue
+\item{\verb{direct-color}}{Each pixel value contains red, green, and blue
    components as for \code{GDK_VISUAL_TRUE_COLOR}, but the components are mapped via a 
    color table into the final output table instead of being converted directly.}
 }
 
 }
-\item{\code{GdkByteOrder}}{
+\item{\verb{GdkByteOrder}}{
 A set of values describing the possible byte-orders
 for storing pixel values in memory.
 
 \describe{
-\item{\code{lsb-first}}{The values are stored with the least-significant byte
+\item{\verb{lsb-first}}{The values are stored with the least-significant byte
   first. For instance, the 32-bit value 0xffeecc would be stored
   in memory as 0xcc, 0xee, 0xff, 0x00.}
-\item{\code{msb-first}}{The values are stored with the most-significant byte
+\item{\verb{msb-first}}{The values are stored with the most-significant byte
 first. For instance, the 32-bit value 0xffeecc would be stored
 in memory as 0x00, 0xcc, 0xee, 0xff.}
 }
@@ -140,7 +140,7 @@ in memory as 0x00, 0xcc, 0xee, 0xff.}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk/gdk-Visuals.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GdkImage}}
-\code{\link{GdkColormap}}
+\verb{\link{GdkImage}}
+\verb{\link{GdkColormap}}
 }
 \keyword{internal}

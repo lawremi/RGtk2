@@ -5,8 +5,8 @@
 \code{pixbuf}.  If \code{pixbuf} is \code{NULL}, the image will be hidden.}
 \usage{gtkTooltipSetIcon(object, pixbuf)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTooltip}}]  a \code{\link{GtkTooltip}}}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}}, or \code{NULL}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,22 +8,22 @@
 \code{\link{gtkItemToggle}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
                                  +----GtkItem
-                                       +----\link{GtkMenuItem}
-                                       +----\link{GtkListItem}
+                                       +----GtkMenuItem
+                                       +----GtkListItem
                                        +----GtkTreeItem}}
 \section{Interfaces}{GtkItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkItem}} widget is an abstract base class for \code{\link{GtkMenuItem}}, \code{\link{GtkListItem}}
-and \code{GtkTreeItem}.}
-\section{Structures}{\describe{\item{\code{GtkItem}}{
-The \code{\link{GtkItem}} struct contains private data only, and
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkItem}} widget is an abstract base class for \verb{\link{GtkMenuItem}}, \verb{\link{GtkListItem}}
+and \verb{GtkTreeItem}.}
+\section{Structures}{\describe{\item{\verb{GtkItem}}{
+The \verb{\link{GtkItem}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -32,7 +32,7 @@ should be accessed using the functions below.
 Emitted when the item is deselected.
 
 \describe{
-\item{\code{item}}{[\code{\link{GtkItem}}] the object which received the signal.}
+\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -42,7 +42,7 @@ Emitted when the item is deselected.
 Emitted when the item is selected.
 
 \describe{
-\item{\code{item}}{[\code{\link{GtkItem}}] the object which received the signal.}
+\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -52,7 +52,7 @@ Emitted when the item is selected.
 Emitted when the item is toggled.
 
 \describe{
-\item{\code{item}}{[\code{\link{GtkItem}}] the object which received the signal.}
+\item{\code{item}}{[\verb{\link{GtkItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

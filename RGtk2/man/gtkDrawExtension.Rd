@@ -7,15 +7,15 @@ Draws an extension, i.e. a notebook tab.
 }
 \usage{gtkDrawExtension(object, window, state.type, shadow.type, x, y, width, height, gap.side)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  type of shadow to draw}
-\item{\code{x}}{[integer]  x origin of the extension}
-\item{\code{y}}{[integer]  y origin of the extension}
-\item{\code{width}}{[integer]  width of the extension }
-\item{\code{height}}{[integer]  width of the extension }
-\item{\code{gap.side}}{[\code{\link{GtkPositionType}}]  the side on to which the extension is attached}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{shadow.type}}{[\code{\link{GtkShadowType}}]  type of shadow to draw}
+\item{\verb{x}}{[integer]  x origin of the extension}
+\item{\verb{y}}{[integer]  y origin of the extension}
+\item{\verb{width}}{[integer]  width of the extension }
+\item{\verb{height}}{[integer]  width of the extension }
+\item{\verb{gap.side}}{[\code{\link{GtkPositionType}}]  the side on to which the extension is attached}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

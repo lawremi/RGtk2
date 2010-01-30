@@ -5,7 +5,7 @@
 the file selector. If multiple files are selected,
 one of the filenames will be returned at random.}
 \usage{gtkFileChooserGetFilename(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}}
 \details{If the file chooser is in folder mode, this function returns the selected
 folder.  
 

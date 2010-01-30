@@ -7,6 +7,6 @@ newly selected child.
 \strong{WARNING: \code{gtk_list_select_all} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkListSelectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkList}}] the list widget.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

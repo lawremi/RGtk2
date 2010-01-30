@@ -2,15 +2,15 @@
 \name{gtkPixmapGet}
 \title{gtkPixmapGet}
 \description{
-Gets the current \code{\link{GdkPixmap}} and \code{\link{GdkBitmap}} mask.
+Gets the current \verb{\link{GdkPixmap}} and \verb{\link{GdkBitmap}} mask.
 \strong{WARNING: \code{gtk_pixmap_get} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPixmapGet(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPixmap}}] a \code{\link{GtkPixmap}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPixmap}}] a \verb{\link{GtkPixmap}}.}}
 \value{
 A list containing the following elements:
-\item{\code{val}}{[\code{\link{GdkPixmap}}] returns the current \code{\link{GdkPixmap}}.}
-\item{\code{mask}}{[\code{\link{GdkBitmap}}] returns the current \code{\link{GdkBitmap}} mask.}
+\item{\verb{val}}{[\verb{\link{GdkPixmap}}] returns the current \verb{\link{GdkPixmap}}.}
+\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] returns the current \verb{\link{GdkBitmap}} mask.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

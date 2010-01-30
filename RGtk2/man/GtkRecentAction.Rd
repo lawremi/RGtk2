@@ -10,26 +10,26 @@
 \code{\link{gtkRecentActionSetShowNumbers}(object, show.numbers)}\cr
 \code{gtkRecentAction(name, label, tooltip, stock.id)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{GtkAction}
+\section{Hierarchy}{\preformatted{GObject
+   +----GtkAction
          +----GtkRecentAction}}
 \section{Interfaces}{GtkRecentAction implements
- \code{\link{GtkBuildable}} and  \code{\link{GtkRecentChooser}}.}
+ \verb{\link{GtkBuildable}} and  \verb{\link{GtkRecentChooser}}.}
 \section{Detailed Description}{A GtkRecentAction represents a list of recently used files, which
-can be shown by widgets such as \code{\link{GtkRecentChooserDialog}} or 
-\code{\link{GtkRecentChooserMenu}}.
+can be shown by widgets such as \verb{\link{GtkRecentChooserDialog}} or 
+\verb{\link{GtkRecentChooserMenu}}.
   
 To construct a submenu showing recently used files, use a GtkRecentAction 
 as the action for a <menuitem>. To construct a menu toolbutton showing 
 the recently used files in the popup menu, use a GtkRecentAction as the 
 action for a <toolitem> element.}
-\section{Structures}{\describe{\item{\code{GtkRecentAction}}{
+\section{Structures}{\describe{\item{\verb{GtkRecentAction}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkRecentAction} is the equivalent of \code{\link{gtkRecentActionNew}}.}
-\section{Properties}{\describe{\item{\code{show-numbers} [logical : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{show-numbers} [logical : Read / Write]}{
 
 Whether the items should be displayed with a number.  Default value: FALSE
 

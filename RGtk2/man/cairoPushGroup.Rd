@@ -7,7 +7,7 @@ to \code{\link{cairoPopGroup}} or \code{\link{cairoPopGroupToSource}}. These cal
 provide the result of any drawing to the group as a pattern,
 (either as an explicit object, or set as the source pattern).}
 \usage{cairoPushGroup(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{This group functionality can be convenient for performing
 intermediate compositing. One common use of a group is to render
 objects as opaque within the group, (so that they occlude each
@@ -20,10 +20,10 @@ target group onto/from a stack.
   
 The \code{\link{cairoPushGroup}} function calls \code{\link{cairoSave}} so that any
 changes to the graphics state will not be visible outside the
-group, (the pop\_group functions call \code{\link{cairoRestore}}).
+group, (the pop_group functions call \code{\link{cairoRestore}}).
   
 By default the intermediate group will have a content type of
-CAIRO\_CONTENT\_COLOR\_ALPHA. Other content types can be chosen for
+CAIRO_CONTENT_COLOR_ALPHA. Other content types can be chosen for
 the group by using \code{\link{cairoPushGroupWithContent}} instead.
   
 As an example, here is how one might fill and stroke a path with

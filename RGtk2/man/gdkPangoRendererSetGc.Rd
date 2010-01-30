@@ -8,8 +8,8 @@ of the GC which won't be updated to follow changes to the
 original GC.}
 \usage{gdkPangoRendererSetGc(object, gc = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPangoRenderer}}]  a \code{\link{GdkPangoRenderer}}}
-\item{\code{gc}}{[\code{\link{GdkGC}}]  the new GC to use for drawing, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GdkPangoRenderer}}]  a \verb{\link{GdkPangoRenderer}}}
+\item{\verb{gc}}{[\verb{\link{GdkGC}}]  the new GC to use for drawing, or \code{NULL}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

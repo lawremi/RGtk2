@@ -5,8 +5,8 @@
 bounding rectangle of \code{window} resides.}
 \usage{gdkScreenGetMonitorAtWindow(object, window)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}.}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
+\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}.}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
 }
 \details{  Since  2.2}
 \value{[integer]  the monitor number in which most of \code{window} is located,

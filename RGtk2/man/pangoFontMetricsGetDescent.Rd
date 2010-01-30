@@ -7,7 +7,7 @@ of text. (The logical bottom may be above or below the bottom of the
 actual drawn ink. It is necessary to lay out the text to figure
 where the ink will be.)}
 \usage{pangoFontMetricsGetDescent(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} structure}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoFontMetrics}}]  a \verb{\link{PangoFontMetrics}} structure}}
 \value{[integer]  the descent, in Pango units. (1 point == \code{PANGO_SCALE} Pango units.)}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

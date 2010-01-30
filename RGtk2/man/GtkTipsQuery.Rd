@@ -11,26 +11,26 @@
 \code{\link{gtkTipsQuerySetLabels}(object, label.inactive, label.no.tip)}\cr
 \code{gtkTipsQuery(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkMisc}
-                           +----\link{GtkLabel}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkMisc
+                           +----GtkLabel
                                  +----GtkTipsQuery}}
 \section{Interfaces}{GtkTipsQuery implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkTipsQuery}} widget is a subclass of \code{\link{GtkLabel}} which is used to display
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkTipsQuery}} widget is a subclass of \verb{\link{GtkLabel}} which is used to display
 help about widgets in a user interface.
   
 A query is started with a call to \code{\link{gtkTipsQueryStartQuery}}, usually
-when some kind of 'Help' button is pressed. The \code{\link{GtkTipsQuery}} then grabs all
+when some kind of 'Help' button is pressed. The \verb{\link{GtkTipsQuery}} then grabs all
 events, stopping the user interface from functioning normally.
-Then as the user moves the mouse over the widgets, the \code{\link{GtkTipsQuery}} displays
+Then as the user moves the mouse over the widgets, the \verb{\link{GtkTipsQuery}} displays
 each widget's tooltip text.
   
 By connecting to the "widget-entered" or "widget-selected" signals, it is
-possible to customize the \code{\link{GtkTipsQuery}} to perform other actions when widgets
+possible to customize the \verb{\link{GtkTipsQuery}} to perform other actions when widgets
 are entered or selected. For example, a help browser could be opened with
 documentation on the widget selected.
   
@@ -39,9 +39,9 @@ stop the query and return the interface to its normal state.
 The \code{\link{gtkTipsQuerySetCaller}} function can be used to specify a widget
 which the user can select to stop the query (often the same button used to
 start the query).}
-\section{Structures}{\describe{\item{\code{GtkTipsQuery}}{
+\section{Structures}{\describe{\item{\verb{GtkTipsQuery}}{
 \strong{WARNING: \code{GtkTipsQuery} is deprecated and should not be used in newly-written code.}
-The \code{\link{GtkTipsQuery}} struct contains private data only, and
+The \verb{\link{GtkTipsQuery}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -51,7 +51,7 @@ should be accessed using the functions below.
 Emitted when the query is started.
 
 \describe{
-\item{\code{tipsquery}}{[\code{\link{GtkTipsQuery}}] the object which received the signal.}
+\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -61,7 +61,7 @@ Emitted when the query is started.
 Emitted when the query is stopped.
 
 \describe{
-\item{\code{tipsquery}}{[\code{\link{GtkTipsQuery}}] the object which received the signal.}
+\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -71,8 +71,8 @@ Emitted when the query is stopped.
 Emitted when a widget is entered by the pointer while the query is in effect.
 
 \describe{
-\item{\code{tipsquery}}{[\code{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the widget that was entered by the pointer.}
+\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the widget that was entered by the pointer.}
 \item{\code{tip.text}}{[character] the widget's tooltip.}
 \item{\code{tip.private}}{[character] the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -84,11 +84,11 @@ Emitted when a widget is entered by the pointer while the query is in effect.
 Emitted when a widget is selected during a query.
 
 \describe{
-\item{\code{tipsquery}}{[\code{\link{GtkTipsQuery}}] the object which received the signal.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the widget that was selected.}
+\item{\code{tipsquery}}{[\verb{\link{GtkTipsQuery}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the widget that was selected.}
 \item{\code{tip.text}}{[character] the widget's tooltip.}
 \item{\code{tip.private}}{[character] the widget's private tooltip (see \code{\link{gtkTooltipsSetTip}}).}
-\item{\code{event}}{[\code{\link{GdkEventButton}}] the button press or button release event.}
+\item{\code{event}}{[\verb{\link{GdkEventButton}}] the button press or button release event.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -97,30 +97,30 @@ Emitted when a widget is selected during a query.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{caller} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{caller} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 The widget that starts the tips query, usually a button.
 If it is selected while the query is in effect the query is automatically
 stopped.
 
 }
-\item{\code{emit-always} [logical : Read / Write]}{
+\item{\verb{emit-always} [logical : Read / Write]}{
 
 \code{TRUE} if the widget-entered and widget-selected signals are emitted even when
 the widget has no tooltip set.
   Default value: FALSE
 
 }
-\item{\code{label-inactive} [character : Read / Write]}{
+\item{\verb{label-inactive} [character : *                : Read / Write]}{
 
-The text to display in the \code{\link{GtkTipsQuery}} widget when the query is not in
+The text to display in the \verb{\link{GtkTipsQuery}} widget when the query is not in
 effect.
   Default value: NULL
 
 }
-\item{\code{label-no-tip} [character : Read / Write]}{
+\item{\verb{label-no-tip} [character : *                : Read / Write]}{
 
-The text to display in the \code{\link{GtkTipsQuery}} widget when the query is running
+The text to display in the \verb{\link{GtkTipsQuery}} widget when the query is running
 and the widget that the pointer is over has no tooltip.
   Default value: NULL
 

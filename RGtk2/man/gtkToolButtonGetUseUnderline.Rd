@@ -4,7 +4,7 @@
 \description{Returns whether underscores in the label property are used as mnemonics
 on menu items on the overflow menu. See \code{\link{gtkToolButtonSetUseUnderline}}.}
 \usage{gtkToolButtonGetUseUnderline(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkToolButton}}]  a \code{\link{GtkToolButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkToolButton}}]  a \verb{\link{GtkToolButton}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if underscores in the label property are used as
 mnemonics on menu items on the overflow menu.}

@@ -9,10 +9,10 @@ window it is embedded in.  Note also that the XML parse tree is cached
 to speed up creating another GladeXML object for the same file}
 \usage{gladeXMLNew(fname, root = NULL, domain = NULL)}
 \arguments{
-\item{\code{fname}}{[char]  the XML file name.}
-\item{\code{root}}{[char]  the widget node in \code{fname} to start building from (or \code{NULL})}
-\item{\code{domain}}{[char]  the translation domain for the XML file (or \code{NULL} for default)}
+\item{\verb{fname}}{[char]  the XML file name.}
+\item{\verb{root}}{[char]  the widget node in \code{fname} to start building from (or \code{NULL})}
+\item{\verb{domain}}{[char]  the translation domain for the XML file (or \code{NULL} for default)}
 }
-\value{[\code{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
+\value{[\verb{\link{GladeXML}}]  the newly created GladeXML object, or NULL on failure.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

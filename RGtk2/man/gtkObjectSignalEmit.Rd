@@ -27,9 +27,6 @@ gtkObjectSignalEmit(obj, signal, ...)
   GUIs in R. Typically, we only need this when
   we are developing Gtk classes.
 }
-\value{
-
-}
 \references{
   Information on the package is available
   from \url{http://www.omegahat.org/RGtk}.

@@ -8,12 +8,12 @@ but will typically include such values as "Applications" and
 "MimeTypes".}
 \usage{gtkIconThemeListIcons(object, context = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
-\item{\code{context}}{[character]  a string identifying a particular type of icon,
+\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}
+\item{\verb{context}}{[character]  a string identifying a particular type of icon,
           or \code{NULL} to list all icons.}
 }
 \details{  Since  2.4}
-\value{[list]  a \code{list} list holding the names of all the
+\value{[list]  a \verb{list} list holding the names of all the
  icons in the theme.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

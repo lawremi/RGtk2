@@ -6,8 +6,8 @@
 either \code{region} or \code{rect}.}
 \usage{gdkRegionUnionWithRect(object, rect)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkRegion}}]  a \code{\link{GdkRegion}}.}
-\item{\code{rect}}{[\code{\link{GdkRectangle}}]  a \code{\link{GdkRectangle}}.}
+\item{\verb{object}}{[\verb{\link{GdkRegion}}]  a \verb{\link{GdkRegion}}.}
+\item{\verb{rect}}{[\verb{\link{GdkRectangle}}]  a \verb{\link{GdkRectangle}}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,7 @@ if any, otherwise \code{NULL}. The return value is a reference
 to the text, not a copy of it, so will become invalid
 if you change the text in the progress bar.}
 \usage{gtkProgressBarGetText(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkProgressBar}}]  a \code{\link{GtkProgressBar}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkProgressBar}}]  a \verb{\link{GtkProgressBar}}}}
 \value{[character]  text.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

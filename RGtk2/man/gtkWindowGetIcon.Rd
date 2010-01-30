@@ -5,7 +5,7 @@
 called \code{\link{gtkWindowSetIconList}}, gets the first icon in
 the icon list).}
 \usage{gtkWindowGetIcon(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
-\value{[\code{\link{GdkPixbuf}}]  icon for window}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
+\value{[\verb{\link{GdkPixbuf}}]  icon for window}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

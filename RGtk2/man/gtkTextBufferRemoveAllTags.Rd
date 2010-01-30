@@ -8,9 +8,9 @@ probably a bad idea if you have two or more unrelated code sections
 that add tags.}
 \usage{gtkTextBufferRemoveAllTags(object, start, end)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{start}}{[\code{\link{GtkTextIter}}]  one bound of range to be untagged}
-\item{\code{end}}{[\code{\link{GtkTextIter}}]  other bound of range to be untagged}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{start}}{[\verb{\link{GtkTextIter}}]  one bound of range to be untagged}
+\item{\verb{end}}{[\verb{\link{GtkTextIter}}]  other bound of range to be untagged}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

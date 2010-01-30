@@ -9,16 +9,16 @@ roughly), the window will receive expose events for the union of
 all regions that have been invalidated.}
 \usage{gtkWidgetQueueDrawArea(object, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{x}}{[integer]  x coordinate of upper-left corner of rectangle to redraw}
-\item{\code{y}}{[integer]  y coordinate of upper-left corner of rectangle to redraw}
-\item{\code{width}}{[integer]  width of region to draw}
-\item{\code{height}}{[integer]  height of region to draw}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{x}}{[integer]  x coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{y}}{[integer]  y coordinate of upper-left corner of rectangle to redraw}
+\item{\verb{width}}{[integer]  width of region to draw}
+\item{\verb{height}}{[integer]  height of region to draw}
 }
 \details{Normally you would only use this function in widget
 implementations. You might also use it, or
 \code{\link{gdkWindowInvalidateRect}} directly, to schedule a redraw of a
-\code{\link{GtkDrawingArea}} or some portion thereof.
+\verb{\link{GtkDrawingArea}} or some portion thereof.
   
 Frequently you can just call \code{\link{gdkWindowInvalidateRect}} or
 \code{\link{gdkWindowInvalidateRegion}} instead of this function. Those

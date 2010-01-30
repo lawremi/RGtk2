@@ -6,8 +6,8 @@ function by signals on the given proxy widget.  This is used to
 break notification loops for things like check or radio actions.}
 \usage{gtkActionBlockActivateFrom(object, proxy)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  a proxy widget}
+\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}
+\item{\verb{proxy}}{[\verb{\link{GtkWidget}}]  a proxy widget}
 }
 \details{This function is intended for use by action implementations.  
 

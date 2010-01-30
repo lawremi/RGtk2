@@ -1,10 +1,10 @@
 \alias{gtkMenuToolButtonGetMenu}
 \name{gtkMenuToolButtonGetMenu}
 \title{gtkMenuToolButtonGetMenu}
-\description{Gets the \code{\link{GtkMenu}} associated with \code{\link{GtkMenuToolButton}}.}
+\description{Gets the \verb{\link{GtkMenu}} associated with \verb{\link{GtkMenuToolButton}}.}
 \usage{gtkMenuToolButtonGetMenu(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkMenuToolButton}}]  a \code{\link{GtkMenuToolButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkMenuToolButton}}]  a \verb{\link{GtkMenuToolButton}}}}
 \details{  Since  2.6}
-\value{[\code{\link{GtkWidget}}]  the \code{\link{GtkMenu}} associated with \code{\link{GtkMenuToolButton}}}
+\value{[\verb{\link{GtkWidget}}]  the \verb{\link{GtkMenu}} associated with \verb{\link{GtkMenuToolButton}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

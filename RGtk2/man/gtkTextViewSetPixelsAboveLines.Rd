@@ -5,8 +5,8 @@
 Tags in the buffer for \code{text.view} may override the defaults.}
 \usage{gtkTextViewSetPixelsAboveLines(object, pixels.above.lines)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{pixels.above.lines}}{[integer]  pixels above paragraphs}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{pixels.above.lines}}{[integer]  pixels above paragraphs}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

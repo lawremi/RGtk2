@@ -1,10 +1,10 @@
 \alias{gtkFixedGetHasWindow}
 \name{gtkFixedGetHasWindow}
 \title{gtkFixedGetHasWindow}
-\description{Gets whether the \code{\link{GtkFixed}} has its own \code{\link{GdkWindow}}.
+\description{Gets whether the \verb{\link{GtkFixed}} has its own \verb{\link{GdkWindow}}.
 See \code{gdkFixedSetHasWindow()}.}
 \usage{gtkFixedGetHasWindow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFixed}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFixed}}]  a \verb{\link{GtkWidget}}}}
 \value{[logical] \code{TRUE} if \code{fixed} has its own window.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

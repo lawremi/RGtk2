@@ -5,8 +5,8 @@
 opposite limit when the upper or lower limit of the range is exceeded.}
 \usage{gtkSpinButtonSetWrap(object, wrap)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkSpinButton}}]  a \code{\link{GtkSpinButton}} }
-\item{\code{wrap}}{[logical]  a flag indicating if wrapping behavior is performed.}
+\item{\verb{object}}{[\verb{\link{GtkSpinButton}}]  a \verb{\link{GtkSpinButton}} }
+\item{\verb{wrap}}{[logical]  a flag indicating if wrapping behavior is performed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

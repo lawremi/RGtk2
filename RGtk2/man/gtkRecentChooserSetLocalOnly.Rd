@@ -7,8 +7,8 @@ scheme, should be shown in the recently used resources selector.  If
 to be accessible through the operating system native file system.}
 \usage{gtkRecentChooserSetLocalOnly(object, local.only)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentChooser}}]  a \code{\link{GtkRecentChooser}}}
-\item{\code{local.only}}{[logical] \code{TRUE} if only local files can be shown}
+\item{\verb{object}}{[\verb{\link{GtkRecentChooser}}]  a \verb{\link{GtkRecentChooser}}}
+\item{\verb{local.only}}{[logical] \code{TRUE} if only local files can be shown}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

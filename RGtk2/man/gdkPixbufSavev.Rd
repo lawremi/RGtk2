@@ -6,17 +6,17 @@ If \code{error} is set, \code{FALSE} will be returned.
 See \code{\link{gdkPixbufSave}} for more details.}
 \usage{gdkPixbufSavev(object, filename, type, option.keys, option.values, .errwarn = TRUE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}}.}
-\item{\code{filename}}{[char]  name of file to save.}
-\item{\code{type}}{[char]  name of file format.}
-\item{\code{option.keys}}{[char]  name of options to set, \code{NULL}-terminated}
-\item{\code{option.values}}{[char]  values for named options}
+\item{\verb{object}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}}.}
+\item{\verb{filename}}{[char]  name of file to save.}
+\item{\verb{type}}{[char]  name of file format.}
+\item{\verb{option.keys}}{[char]  name of options to set, \code{NULL}-terminated}
+\item{\verb{option.values}}{[char]  values for named options}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether an error was set}
-\item{\code{error}}{[\code{\link{GError}}]  return location for error, or \code{NULL}}
+\item{\verb{error}}{[\verb{\link{GError}}]  return location for error, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

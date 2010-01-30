@@ -9,8 +9,8 @@ moves to the start of the next line. See
 a character offset.}
 \usage{gtkTextIterSetLineOffset(object, char.on.line)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}} }
-\item{\code{char.on.line}}{[integer]  a character offset relative to the start of \code{iter}'s current line}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}} }
+\item{\verb{char.on.line}}{[integer]  a character offset relative to the start of \code{iter}'s current line}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \description{Returns whether the window has been set to have a close button
 via \code{\link{gtkWindowSetDeletable}}.}
 \usage{gtkWindowGetDeletable(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the window has been set to have a close button}
 \author{Derived by RGtkGen from GTK+ documentation}

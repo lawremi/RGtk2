@@ -14,6 +14,6 @@ widgets.
 \strong{WARNING: \code{gtk_preview_set_gamma} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPreviewSetGamma(gamma)}
-\arguments{\item{\code{gamma}}{[numeric] the new gamma value.}}
+\arguments{\item{\verb{gamma}}{[numeric] the new gamma value.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

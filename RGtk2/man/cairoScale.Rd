@@ -7,9 +7,9 @@ the axes takes place after any existing transformation of user
 space.}
 \usage{cairoScale(cr, sx, sy)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{sx}}{[numeric]  scale factor for the X dimension}
-\item{\code{sy}}{[numeric]  scale factor for the Y dimension}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{sx}}{[numeric]  scale factor for the X dimension}
+\item{\verb{sy}}{[numeric]  scale factor for the Y dimension}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

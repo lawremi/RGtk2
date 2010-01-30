@@ -1,11 +1,11 @@
 \alias{gtkPaperSizeIsEqual}
 \name{gtkPaperSizeIsEqual}
 \title{gtkPaperSizeIsEqual}
-\description{Compares two \code{\link{GtkPaperSize}} objects.}
+\description{Compares two \verb{\link{GtkPaperSize}} objects.}
 \usage{gtkPaperSizeIsEqual(object, size2)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPaperSize}}]  a \code{\link{GtkPaperSize}} object}
-\item{\code{size2}}{[\code{\link{GtkPaperSize}}]  another \code{\link{GtkPaperSize}} object}
+\item{\verb{object}}{[\verb{\link{GtkPaperSize}}]  a \verb{\link{GtkPaperSize}} object}
+\item{\verb{size2}}{[\verb{\link{GtkPaperSize}}]  another \verb{\link{GtkPaperSize}} object}
 }
 \details{  Since  2.10}
 \value{[logical] \code{TRUE}, if \code{size1} and \code{size2} 

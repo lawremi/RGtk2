@@ -13,14 +13,14 @@
 \code{\link{gtkCurveSetCurveType}(object, type)}\cr
 \code{gtkCurve(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkDrawingArea}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkDrawingArea
                            +----GtkCurve}}
 \section{Interfaces}{GtkCurve implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -28,17 +28,17 @@
  of general interest. However, we are not accepting new features for
  the widget, and it will eventually move out of the GTK+
  distribution.  
-The \code{\link{GtkCurve}} widget allows the user to edit a curve covering a range of
+The \verb{\link{GtkCurve}} widget allows the user to edit a curve covering a range of
 values. It is typically used to fine-tune color balances in graphics
 applications like the Gimp.
   
-The \code{\link{GtkCurve}} widget has 3 modes of operation - spline, linear and free.
+The \verb{\link{GtkCurve}} widget has 3 modes of operation - spline, linear and free.
 In spline mode the user places points on the curve which are automatically
 connected together into a smooth curve. In linear mode the user places points
 on the curve which are connected by straight lines. In free mode the user can
 draw the points of the curve freely, and they are not connected at all.}
-\section{Structures}{\describe{\item{\code{GtkCurve}}{
-The \code{\link{GtkCurve}} struct contains private data only, and
+\section{Structures}{\describe{\item{\verb{GtkCurve}}{
+The \verb{\link{GtkCurve}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}
@@ -50,34 +50,34 @@ The curve type can be changed explicitly with a call to
 calling \code{\link{gtkCurveReset}} or \code{\link{gtkCurveSetGamma}}.
 
 \describe{
-\item{\code{curve}}{[\code{\link{GtkCurve}}] the object which received the signal.}
+\item{\code{curve}}{[\verb{\link{GtkCurve}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{curve-type} [\code{\link{GtkCurveType}} : Read / Write]}{
+\item{\verb{curve-type} [\code{\link{GtkCurveType}} : Read / Write]}{
 
-Is this curve linear, spline interpolated, or free-form.  Default value: GTK\_CURVE\_TYPE\_LINEAR
+Is this curve linear, spline interpolated, or free-form.  Default value: GTK_CURVE_TYPE_LINEAR
 
 }
-\item{\code{max-x} [numeric : Read / Write]}{
+\item{\verb{max-x} [numeric : Read / Write]}{
 
 Maximum possible X value.  Default value: 1
 
 }
-\item{\code{max-y} [numeric : Read / Write]}{
+\item{\verb{max-y} [numeric : Read / Write]}{
 
 Maximum possible value for Y.  Default value: 1
 
 }
-\item{\code{min-x} [numeric : Read / Write]}{
+\item{\verb{min-x} [numeric : Read / Write]}{
 
 Minimum possible value for X.  Default value: 0
 
 }
-\item{\code{min-y} [numeric : Read / Write]}{
+\item{\verb{min-y} [numeric : Read / Write]}{
 
 Minimum possible value for Y.  Default value: 0
 

@@ -9,9 +9,9 @@ the pointer has no tooltip.
 }
 \usage{gtkTipsQuerySetLabels(object, label.inactive, label.no.tip)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTipsQuery}}] a \code{\link{GtkTipsQuery}}.}
-\item{\code{label.inactive}}{[character] the text to display when the query is not running.}
-\item{\code{label.no.tip}}{[character] the text to display when the query is running but the widget
+\item{\verb{object}}{[\verb{\link{GtkTipsQuery}}] a \verb{\link{GtkTipsQuery}}.}
+\item{\verb{label.inactive}}{[character] the text to display when the query is not running.}
+\item{\verb{label.no.tip}}{[character] the text to display when the query is running but the widget
 beneath the pointer has no tooltip.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

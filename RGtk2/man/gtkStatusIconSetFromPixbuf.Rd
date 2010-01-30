@@ -5,8 +5,8 @@
 See \code{\link{gtkStatusIconNewFromPixbuf}} for details.}
 \usage{gtkStatusIconSetFromPixbuf(object, pixbuf)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}} or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}} or \code{NULL}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -6,8 +6,8 @@ rectangle. The clip mask is interpreted relative to the clip
 origin. (See \code{\link{gdkGCSetClipOrigin}}).}
 \usage{gdkGCSetClipRectangle(object, rectangle)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{rectangle}}{[\code{\link{GdkRectangle}}]  the rectangle to clip to.}
+\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
+\item{\verb{rectangle}}{[\verb{\link{GdkRectangle}}]  the rectangle to clip to.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

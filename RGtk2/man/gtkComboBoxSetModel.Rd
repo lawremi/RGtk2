@@ -5,8 +5,8 @@
 model (if applicable). If model is \code{NULL}, then it will unset the model.}
 \usage{gtkComboBoxSetModel(object, model = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkComboBox}}]  A \code{\link{GtkComboBox}}}
-\item{\code{model}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}}
+\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  A \verb{\link{GtkComboBox}}}
+\item{\verb{model}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}}
 }
 \details{Note that this function does not clear the cell renderers, you have to 
 call \code{\link{gtkCellLayoutClear}} yourself if you need to set up different 

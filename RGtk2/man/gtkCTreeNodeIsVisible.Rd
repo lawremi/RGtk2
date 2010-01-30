@@ -7,8 +7,8 @@
 }
 \usage{gtkCTreeNodeIsVisible(object, node)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
 }
 \value{[\code{\link{GtkVisibility}}] True if the node is currently inside the bounds of the window.
 Note that this function can return true even if the node is not

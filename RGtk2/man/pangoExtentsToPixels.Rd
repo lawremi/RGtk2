@@ -5,8 +5,8 @@
 \code{PANGO_SCALE} factor and performing rounding.}
 \usage{pangoExtentsToPixels(inclusive, nearest)}
 \arguments{
-\item{\code{inclusive}}{[\code{\link{PangoRectangle}}]  rectangle to round to pixels inclusively, or \code{NULL}.}
-\item{\code{nearest}}{[\code{\link{PangoRectangle}}]  rectangle to round to nearest pixels, or \code{NULL}.}
+\item{\verb{inclusive}}{[\verb{\link{PangoRectangle}}]  rectangle to round to pixels inclusively, or \code{NULL}.}
+\item{\verb{nearest}}{[\verb{\link{PangoRectangle}}]  rectangle to round to nearest pixels, or \code{NULL}.}
 }
 \details{The \code{inclusive} rectangle is converted by flooring the x/y coordinates and extending
 width/height, such that the final rectangle completely includes the original

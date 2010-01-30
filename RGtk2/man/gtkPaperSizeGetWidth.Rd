@@ -1,12 +1,12 @@
 \alias{gtkPaperSizeGetWidth}
 \name{gtkPaperSizeGetWidth}
 \title{gtkPaperSizeGetWidth}
-\description{Gets the paper width of the \code{\link{GtkPaperSize}}, in 
+\description{Gets the paper width of the \verb{\link{GtkPaperSize}}, in 
 units of \code{unit}.}
 \usage{gtkPaperSizeGetWidth(object, unit)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPaperSize}}]  a \code{\link{GtkPaperSize}} object}
-\item{\code{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
+\item{\verb{object}}{[\verb{\link{GtkPaperSize}}]  a \verb{\link{GtkPaperSize}} object}
+\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
 }
 \details{  Since  2.10}
 \value{[numeric]  the paper width }

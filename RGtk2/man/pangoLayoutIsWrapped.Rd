@@ -3,7 +3,7 @@
 \title{pangoLayoutIsWrapped}
 \description{Queries whether the layout had to wrap any paragraphs.}
 \usage{pangoLayoutIsWrapped(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{This returns \code{TRUE} if a positive width is set on \code{layout},
 ellipsization mode of \code{layout} is set to \code{PANGO_ELLIPSIZE_NONE},
 and there are paragraphs exceeding the layout width that have

@@ -4,14 +4,13 @@
 
 \author{Michael Lawrence\\
 Fred Hutchinson Cancer Research Center \And Duncan Temple Lang\\
-University of California - Davis}
+University of California, Davis}
 
 \title{\pkg{RGtk2}:\\A Graphical User Interface Toolkit for
 \proglang{R}}
 
 \Plainauthor{Michael Lawrence, Duncan Temple Lang}
-\Plaintitle{RGtk2: A Graphical User Interface Toolkit for R} 
-\Shorttitle{RGtk2} 
+\Plaintitle{\pkg{RGtk2}: A GUI Toolkit for \proglang{R}} 
 
 
 %DTL2:
@@ -45,9 +44,9 @@ University of California - Davis}
 %circumstances.
 
 \Abstract{
-Graphical User Interfaces (GUIs) are growing in popularity as a
+Graphical user interfaces (GUIs) are growing in popularity as a
 complement or alternative to
-the traditional Command Line Interfaces (CLIs) to \proglang{R}.
+the traditional command line interfaces (CLIs) to \proglang{R}.
 \pkg{RGtk2} is an 
 \proglang{R} package for creating  GUIs in \proglang{R}. The package
 provides programmatic access
@@ -67,17 +66,16 @@ illustrating the advanced features of the package. The design of the
 low-level interface from \proglang{R} to \pkg{GTK+} are discussed at
 length.
 We compare \pkg{RGtk2} to alternative GUI toolkits for \proglang{R}. 
-The package is available from CRAN.
 }
 
-\Keywords{graphical user interface, GUI, R, GTK+}
+\Keywords{graphical user interface, GUI, \proglang{R}, \pkg{GTK+}}
+\Plainkeywords{graphical user interface, GUI, R, GTK+}
 
 \Address{Michael Lawrence\\
-Program in Computational Biology\\
-Division of Public Health Sciences\\
-Fred Hutchinson Cancer Research Center\\
-Seattle, WA, USA\\
-E-mail: mflawren@fhcrc.org\\
+Bioinformatics and Computational Biology\\
+Genentech Research and Early Development\\
+South San Francisco, CA, USA\\
+E-mail: michafla@gene.com\\
 }
 
 \begin{document}
@@ -99,12 +97,12 @@ interfaces
 user interface is between a human and a machine. In this paper, the
 machines of
 interest are software, and the central software component is the
-\pkg{R} 
+\proglang{R} 
 platform and language for statistical computing \citep{R}.
 
 % user interfaces
 Two common types of user interfaces in statistical computing are the
-Command Line Interface (CLI) and the Graphical User Interface
+command line interface (CLI) and the graphical user interface
 (GUI). The usual CLI consists of a textual console where the user
 types a sequence of commands at a prompt. The \proglang{R} console is
 an example of a CLI. A GUI is the primary means of interacting with
@@ -125,26 +123,10 @@ burden on the application programmer, reusable widgets are collected
 into \emph{widget toolkits}.
 
 % motivation for guis
-There is often debate over the relative merits of a CLI and a GUI
-lacking a console. The comparison largely depends on the skills and
-needs of the user \citep{gui-cli}. Effective use of a CLI requires the
-user to be proficient in the command language understood by the
-interface. For example, with a CLI, \pkg{R} users need to understand
-the \proglang{R} language. Learning a computer language often demands
-a significant commitment of time and energy; however, given a small
-amount of knowledge, one can use the language to perform arbitrary,
-rich tasks.  A graphical interface is much less general and
-restrictive, but typically makes performing a specific task easier. It
-does this two different ways: a) stream-lining the steps involved in
-the task by providing a constrained context, and b) removing the need
-to remember function names and syntax.  Different users benefit from
-the two different interfaces for different tasks.  And there is little
-doubt that for occasional users of a language and for users focused a
-specific task, a well-designed GUI is easier to learn and more
-accessible than a general purpose programming language.
+There is often debate over the relative merits of a CLI and a GUI lacking a console. The comparison largely depends on the skills and needs of the user \citep{gui-cli}. Effective use of a CLI requires the user to be proficient in the command language understood by the interface. For example, with a CLI, \proglang{R} users need to understand the \proglang{R} language. Learning a computer language often demands a significant commitment of time and energy; however, given a small amount of knowledge, one can use the language to perform arbitrary, rich tasks.  A graphical interface is much less general and restrictive, but typically makes performing a specific task easier. It does this two different ways: a) stream-lining the steps involved in the task by providing a constrained context, and b) removing the need to remember function names and syntax.  Different users benefit from the two different interfaces for different tasks.  And there is little doubt that for occasional users of a language and for users focused a specific task, a well-designed GUI is easier to learn and more accessible than a general purpose programming language.
 
 % GUIs for R
-Considering the widespread use and popular appeal of the \pkg{R}
+Considering the widespread use and popular appeal of the \proglang{R}
 platform and the rich set of state-of-the-art statistical methodology
 it provides, it is desirable to try to make these available to a
 broader set of users by simplifying the knowledge needed to use such
@@ -154,35 +136,7 @@ methods.
 %domination is the goal.  For better science, it is not the number but
 %the quality of users. For many, R is not the right thing - with or
 %without a GUI.
-The CLI has always been the most popular interface to \proglang{R} as
-it is the generic interface provided on all platforms and there has
-been much less focus in the \proglang{R} community on providing
-graphical
-interfaces for specific tasks.  On some platforms, a CLI is a
-component of a larger GUI with menus containing various utilities for
-working with \proglang{R}. Examples of CLI-based \proglang{R} GUIs
-include the official Windows and Mac OS X GUIs, as well as the
-cross-platform \proglang{Java} GUI for \proglang{R} (JGR) \citep{JGR}.
-Although these
-interfaces are GUIs, they are still very much in essence CLIs, in that
-the primary mode of interacting with \proglang{R} is the same. Thus,
-these GUIs appeal mostly to the power users of \proglang{R}.  A
-separate set of GUIs targets the second group of users, those learning
-the \proglang{R} language. Since this group includes many students,
-these GUIs are often designed to teach general statistical concepts in
-addition to \proglang{R}.  A CLI component is usually present in the
-interface, though it is deemphasized by the surrounding GUI, which is
-analogous to a set of ``training wheels'' on a bicycle. Examples of
-these GUIs include Poor Man's GUI (pmg) \citep{pmg} and \proglang{R}
-Commander
-\citep{rcmndr}. The third group of users, those who only require
-\proglang{R} for certain tasks and do not wish to learn the language,
-are targeted by task-specific GUIs. These interfaces usually do not
-contain a command line, as the limited scope of the task does not
-require it. If a task-specific GUI fits a task particularly well, it
-may even appeal to an experienced user. There are many examples of
-task-specific GUIs in \proglang{R}, including exploRase
-\citep{explorase}, limmaGUI \citep{limma} and Rattle \citep{rattle}.
+The CLI has always been the most popular interface to \proglang{R} as it is the generic interface provided on all platforms and there has been much less focus in the \proglang{R} community on providing graphical interfaces for specific tasks.  On some platforms, a CLI is a component of a larger GUI with menus containing various utilities for working with \proglang{R}. Examples of CLI-based \proglang{R} GUIs include the official Windows and Mac OS X GUIs, as well as the cross-platform \proglang{Java} GUI for \proglang{R} \citep[\pkg{JGR},][]{JGR}.  Although these interfaces are GUIs, they are still very much in essence CLIs, in that the primary mode of interacting with \proglang{R} is the same. Thus, these GUIs appeal mostly to the power users of \proglang{R}.  A separate set of GUIs targets the second group of users, those learning the \proglang{R} language. Since this group includes many students, these GUIs are often designed to teach general statistical concepts in addition to \proglang{R}.  A CLI component is usually present in the interface, though it is deemphasized by the surrounding GUI, which is analogous to a set of ``training wheels'' on a bicycle. Examples of these GUIs include Poor Man's GUI \citep[\pkg{pmg},][]{pmg} and \proglang{R} Commander \citep{rcmndr}. The third group of users, those who only require \proglang{R} for certain tasks and do not wish to learn the language, are targeted by task-specific GUIs. These interfaces usually do not contain a command line, as the limited scope of the task does not require it. If a task-specific GUI fits a task particularly well, it may even appeal to an experienced user. There are many examples of task-specific GUIs in \proglang{R}, including exploRase \citep{explorase}, limmaGUI \citep{limma} and Rattle \citep{rattle}.
 
 % GUIs in R
 The task-specific GUIs, as well as more general \proglang{R} GUIs,
@@ -264,13 +218,7 @@ License} (LGPL).
 %DTL2: again, this is debatable and needs evidence.
 % I think it is unnecessary to make claims about popularity and
 % flexibility as they are undefined terms and highly subjective. 
-\pkg{GTK+} provides the same widgets on every platform, though it can
-be customized to emulate platform-specific look and feel. The original
-\pkg{RGtk} is bound to the previous generation of \pkg{GTK+}, version
-1.2. \pkg{RGtk2} is based on \pkg{GTK+ 2.0}, the current
-generation. Henceforth, this paper will only refer to \pkg{RGtk2},
-although many of the fundamental features of \pkg{RGtk2} are inherited
-from \pkg{RGtk}.
+\pkg{GTK+} provides the same widgets on every platform, though it can be customized to emulate platform-specific look and feel. The original \pkg{RGtk} is bound to the previous generation of \pkg{GTK+}, version 1.2. \pkg{RGtk2} is based on \pkg{GTK+ 2.0}, the current generation. Henceforth, this paper will only refer to \pkg{RGtk2}, although many of the fundamental features of \pkg{RGtk2} are inherited from \pkg{RGtk}. The package is available from the Comprehensive \proglang{R} Archive Network (CRAN) at \url{http://CRAN.R-project.org/package=RGtk2}.
 
 % outline
 We continue with the fundamentals of the \pkg{GTK+} GUI and the
@@ -289,7 +237,7 @@ future development.
 
 This section begins with an introduction to the basic widgets and
 elements of the of the \pkg{GTK+} library.  We then turn our attention
-to the \proglang{RGtk2} interface to \pkg{GTK+}, explaining how to
+to the \pkg{RGtk2} interface to \pkg{GTK+}, explaining how to
 create and manipulate widgets and how to respond to user input. The
 section concludes by introducing widget layout, the process of
 determining the size and position of each widget on the screen.
@@ -339,7 +287,7 @@ encapsulates behaviors that all instances of the class share.  Each
 class has a single parent from which it inherits the behaviors of its
 ancestors. A class can override any of its inherited behaviors.  A
 more detailed and technical explanation of \pkg{GObject} is available
-in Section \ref{sec:primer}.
+in Section~\ref{sec:primer}.
 
 \begin{figure}[h!tbp]
 \begin{center}
@@ -366,8 +314,7 @@ the rectangular region of their parents.
 In Figure~\ref{fig:cran-mirror}, for
 example, the label, list of mirrors, and buttons are all contained
 within the top-level window, meaning that the window is the common
-ancestor of the other widgets.  The right panel of Figure
-\ref{fig:widget-hierarchy} shows, in a simplified way, the two
+ancestor of the other widgets.  The right panel of Figure~\ref{fig:widget-hierarchy} shows, in a simplified way, the two
 dimensional nesting of the widgets in the mirror selection
 example. Widgets that can contain other widgets are called
 \emph{containers} and their classes are derived from the
@@ -377,7 +324,7 @@ within containers leads to more complex displays, such as menus,
 tool bars and even buttons which contain labels to display the text. A
 container is responsible for allocating its space to its
 children. This process is called layout management and is described in
-Section \ref{sec:layout}.
+Section~\ref{sec:layout}.
 
 \subsection[GTK+ widgets in R]{\pkg{GTK+} widgets in \proglang{R}}
 \pkg{RGtk2} provides an Application Programming Interface (API) to the
@@ -435,8 +382,7 @@ as introduced by the \pkg{SJava} package \citep{sjava}.
 %introduced in the SJava package.
 
 To demonstrate the basic syntax and features of the \pkg{RGtk2} API,
-we will construct a simple ``Hello World'' GUI, shown in Figure
-\ref{fig:hello-world}.
+we will construct a simple ``Hello World'' GUI, shown in Figure~\ref{fig:hello-world}.
 
 \begin{figure}[h!tbp]
 \begin{center}
@@ -530,7 +476,7 @@ introduces an inefficiency in that the user needs to remember the
 class to which a method belongs. To circumvent this problem, we
 introduce a syntax that is similar to that found in various
 object-oriented languages. The widget variable is given first,
-followed by the \$ operator, then the method name and its
+followed by the \code{\$} operator, then the method name and its
 arguments. This syntax for calling \code{gtkContainerAdd} is
 demonstrated below as we add a button with the label \code{Hello
 World} to our window.  The third statement calls
@@ -540,16 +486,16 @@ is below:
 \begin{Code}
 button <- gtkButton("Hello World")
 window$add(button)
-window$setDefaultSize(200,200)
+window$setDefaultSize(200, 200)
 \end{Code}
 Each method belongs to a separate
 class, but the syntax frees the user from the need to remember the
 exact classes and also saves some typing as 
-the \$ operator finds the most specific/appropriate method based on
+the \code{\$} operator finds the most specific/appropriate method based on
 the class inheritance of the widget.
 Note that we use the lower case form of the first letter when using
-the \$ syntax, but the upper case form in the
-\code{classNameMethodName} function name. The \$ acts as a word
+the \code{\$} syntax, but the upper case form in the
+\code{classNameMethodName} function name. The \code{\$} acts as a word
 separator and we use lower case at the beginning of new words.
 
 
@@ -574,7 +520,7 @@ a widget property by name.  Below we access the value of the
 \code{visible} property of our window:
 \begin{CodeChunk}
 \begin{CodeInput}
-> window["visible"]
+R> window["visible"]
 \end{CodeInput}
 \begin{CodeOutput}
 [1] FALSE
@@ -593,8 +539,8 @@ visible, using both property-setting methods,
 the second corresponding to a call to \code{gtkWidgetShow}, which is
 more conventional:
 \begin{Code}
-window["visible"] <- TRUE # or
-window$show()             # the conventional way
+window["visible"] <- TRUE 
+window$show()
 \end{Code}
 
 For convenience, one might desire to set multiple properties with a
@@ -609,7 +555,7 @@ In the single statement below, we
 set the window icon to the \pkg{RGtk} logo image and set the title to
 \code{"Hello World 1.0"}:
 \begin{Code}
-image <- gdkPixbuf(filename=imagefile("rgtk-logo.gif"))[[1]]
+image <- gdkPixbuf(filename = imagefile("rgtk-logo.gif"))[[1]]
 window$set(icon = image, title = "Hello World 1.0")
 \end{Code}
 The \code{imagefile} function retrieves an image from the \pkg{RGtk2}
@@ -643,7 +589,7 @@ representing a \code{GtkAllocation} with elements \code{x}, \code{y},
 %DTL2: I know that feeling!
 \begin{CodeChunk}
 \begin{CodeInput}
-> window[["allocation"]]
+R> window[["allocation"]]
 \end{CodeInput}
 \begin{CodeOutput}
 $x
@@ -861,13 +807,12 @@ child will fill it. That depends on the minimum size requirement of
 the child, as well as the value of the \code{fill} parameter passed to
 \code{gtkBoxPackStart}. When a widget is packed with the \code{fill}
 parameter set to \code{TRUE}, the widget is sized to consume the
-available space. This results in rows $2$ and $3$ in Figure
-\ref{fig:packing}.
+available space. This results in rows~$2$ and $3$ in Figure~\ref{fig:packing}.
 
 %DTL2: This is the confusing part.
 
 In many cases, it is desirable to give children unequal amounts of
-available space, as in rows 4-9 in Figure~\ref{fig:packing}. This is
+available space, as in rows~4--9 in Figure~\ref{fig:packing}. This is
 evident in the CRAN mirrors dialog, where the mirror list is given
 more space than the \code{Please choose a mirror} label. To create an
 inhomogeneously spaced \code{GtkHBox}, we pass
@@ -887,7 +832,7 @@ extra space through the \code{expand} parameter to
 set to \code{TRUE}, we will call the widget an \emph{expanding}
 widget. All expanding widgets in a box are given an equal portion of
 the entirety of the extra space. If no widgets in a box are expanding,
-as in row 5 of Figure~\ref{fig:packing}, the extra space is left
+as in row~5 of Figure~\ref{fig:packing}, the extra space is left
 undistributed. It is common to mix expanding and non-expanding widgets
 in the same box. For example, in the CRAN mirrors dialog, the box
 first ensures that the mirror list and the label above it are given
@@ -909,7 +854,7 @@ while \code{button\_b} is not:
 box$packStart(button_a, expand = TRUE, fill = FALSE)
 box$packStart(button_b, expand = FALSE, fill = FALSE)
 \end{Code}
-The result is shown in row 6 of Figure~\ref{fig:packing}. 
+The result is shown in row~6 of Figure~\ref{fig:packing}. 
 The figure contains several other permutations of the
 \code{homogeneous}, \code{expand} and \code{fill} settings.
 
@@ -1022,7 +967,7 @@ for queries that can be expressed with a textual message and a
 set of buttons for the response. The dialog is constructed with a
 single function call:
 \begin{Code}
-main_application_window <- NULL # for purposes of this example
+main_application_window <- NULL
 dialog <- gtkMessageDialog(main_application_window,  
                            "destroy-with-parent", "question",
                            "yes-no", "Do you want to upgrade RGtk2?")
@@ -1131,8 +1076,7 @@ underlying \pkg{GTK+} \proglang{C} library. In the snippet below, we
 achieve this by adding a
 check button to the dialog.  The area above the buttons in the
 \code{GtkDialog} is contained within a \code{GtkVBox}, which is stored
-as a field named \code{vbox} in the dialog object. Figure
-\ref{fig:checkbox-dialog} shows
+as a field named \code{vbox} in the dialog object. Figure~\ref{fig:checkbox-dialog} shows
 our custom checkbox dialog and the following code is how to create it:
 \begin{Code}
 dialog <- gtkMessageDialog(main_application_window,
@@ -1148,11 +1092,7 @@ dialog[["vbox"]]$add(check)
 \begin{figure}[tbp]
   \begin{center}
     \includegraphics[width=3in]{radio-dialog.png}
-    \caption{\label{fig:radio-dialog}A screenshot of a message dialog
-with
-      a set of
-      radio buttons on top of the base dialog shown in Figure
-      \ref{fig:upgrade-dialog}.}
+    \caption{\label{fig:radio-dialog}A screenshot of a message dialog       with a set of radio buttons on top of the base dialog shown in       Figure~\ref{fig:upgrade-dialog}.}
   \end{center}
 \end{figure}
 
@@ -1232,7 +1172,7 @@ combo$show()
 for (choice in choices) 
   combo$appendText(choice)
 
-combo$setActive(0) # select "None", the first choice.
+combo$setActive(0)
 frame <- gtkFrame("Install GTK+ system library")
 frame$add(combo)
 dialog[["vbox"]]$add(frame)
@@ -1259,8 +1199,7 @@ dialog <- gtkMessageDialog(NULL, 0, "question", "ok-cancel",
                             "Choose a mirror:", show = FALSE)
 \end{Code}
 For this dialog,
-we assume that there is no main application window (see Section
-\ref{sec:spreadsheet-example}) to serve as the
+we assume that there is no main application window (see Section~\ref{sec:spreadsheet-example}) to serve as the
 parent. 
 % DTL: The concept of an application window needs more explanation.
 % It is defined in section 4 (Sample Application).
@@ -1416,7 +1355,7 @@ levels from two chips in a scatterplot. One solution to the problem of
 overplotting is alpha blending. However, choosing the ideal alpha
 level may be time-consuming and tedious. Linking a slider widget to
 the alpha level of an \proglang{R} scatterplot may accelerate the
-search (See Figures \ref{fig:rgtk2-demo-initial} and
+search (See Figures~\ref{fig:rgtk2-demo-initial} and
 \ref{fig:rgtk2-demo-final}).
 
 
@@ -1462,8 +1401,10 @@ following code generates the data:
 \begin{Code}
 n <- 5000
 backbone <- rnorm(n)
-ma_data <- cbind(backbone+c(rnorm(3*(n/4),sd=0.1), rt(n/4, 80)), 
-  backbone+c(rnorm(3*(n/4),,0.1), rt(n/4, 80)))
+ma_data <- cbind(backbone + c(rnorm(3 * (n / 4), sd = 0.1), 
+                              rt(n/4, 80)), 
+                 backbone + c(rnorm(3 * (n / 4), , 0.1), 
+                              rt(n / 4, 80)))
 ma_data <- apply(ma_data, 2, function(col) col - min(col))
 \end{Code}
 
@@ -1493,7 +1434,7 @@ from a certain range. Here, a horizontal slider, called
 \code{GtkHScale}, is created with a range from 0.1 to 1.0, with a
 step size of 0.1:
 \begin{Code}
-slider <- gtkHScale(min=0.1, max=1.00, step=0.1)
+slider <- gtkHScale(min = 0.1, max = 1.00, step = 0.1)
 \end{Code}
 
 When the user moves the slider, the plot should be updated so that its
@@ -1504,9 +1445,9 @@ of the slider, as in the code below:
 %GtkRange as opposed to the use of the word range in the text meaning 
 % a mathematical interval.
 \begin{Code}
-scale_cb <- function(range) { # 'range' is of type GtkRange
+scale_cb <- function(range) {
               par(pty = "s")
-              plot(ma_data[,1], ma_data[,2], 
+              plot(ma_data[, 1], ma_data[, 2], 
                    col = rgb(0, 0, 0, alpha = range$getValue()),
                    xlab = "Replicate 1", ylab = "Replicate 2", 
                    main = "Mock expression data", pch = 19)
@@ -1531,7 +1472,7 @@ vertical stacking box container, \code{GtkVBox}, and add our box to
 the window.  Here, we would like the graphics to take up all of the
 space not consumed by the slider, so the graphics device is packed to
 \code{expand} and \code{fill}, while the slider is not
-(See section \ref{sec:layout}). The following code performs the
+(See Section~\ref{sec:layout}). The following code performs the
 packing operation:
 %DTL2: connect to previous sentence of make separate figure.
 \begin{Code}
@@ -1569,8 +1510,7 @@ Finally, the value of the slider is initialized to $0.7$,
 slider$setValue(0.7)
 \end{Code}
 which in turn activates the callback, generating the initial plot. The
-initial state of the interface is shown in Figure
-\ref{fig:rgtk2-demo-initial}.  Figure~\ref{fig:rgtk2-demo-final} shows
+initial state of the interface is shown in Figure~\ref{fig:rgtk2-demo-initial}.  Figure~\ref{fig:rgtk2-demo-final} shows
 the plot after the user has moved the slider to set the value of alpha
 to $0.1$.
 
@@ -1709,17 +1649,13 @@ its default size, specified in number of screen pixels:
 \begin{Code}
 main_window <- gtkWindow(show = FALSE)
 main_window["title"] <- "RGtk2 Spreadsheet"
-main_window$setDefaultSize(600,600)
+main_window$setDefaultSize(600, 600)
 \end{Code}
 
 \subsection{Menu bar and tool bar}
+\label{sec:spreadsheet-menubar}
 
-Our spreadsheet application will support three user actions: open,
-save and quit. All three actions will be made available in both the
-menu bar and tool bar. Providing a user action requires (1)
-implementing a callback function, (2) defining the action properties,
-and (3) manifesting the action as a widget in the GUI. We consider
-each of these steps in turn.
+Our spreadsheet application will support three user actions: open, save and quit. All three actions will be made available in both the menu bar and tool bar. Providing a user action requires (1)~implementing a callback function, (2)~defining the action properties, and (3)~manifesting the action as a widget in the GUI. We consider each of these steps in turn.
 
 \subsubsection{Implementing the callbacks}
 
@@ -1749,11 +1685,11 @@ save_cb <- function(widget, window) {
                                  "gtk-save",
                                  GtkResponseType["accept"])
   if (dialog$run() == GtkResponseType["accept"])
-    save_file(dialog$getFilename()) # not implemented
+    save_file(dialog$getFilename())
   dialog$destroy()
 }
 quit_cb <- function(widget, window) 
-              window$destroy() # quick and dirty
+              window$destroy()
 
 \end{Code}
 Each of these functions is a callback which takes the widget
@@ -1768,7 +1704,7 @@ action. The \code{accept} response from the dialog indicates that the
 user has confirmed the file selection by clicking the \code{Open} or
 \code{Save} button.
 
-\subsubsection{Defining the actions}\label{sec:spreadsheet-actions}
+\subsubsection{Defining the actions}
 
 We now define the actions that will delegate to the callbacks
 implemented above. The \code{GtkAction} class represents an operation
@@ -1832,7 +1768,7 @@ Specifying the action definitions as \proglang{R} lists is an example
 of  high-level type conversion, where a native \proglang{R} structure
 is implicitly converted to a complex \pkg{GTK+} object. In this case,
 an \proglang{R} list is being converted to a set of \code{GtkAction}
-objects. See Section \ref{sec:high-level-conversion} for
+objects. See Section~\ref{sec:type-conversion} for
 a technical explanation and justification.
 
 \subsubsection{Creating widgets for the actions}
@@ -1844,7 +1780,7 @@ code, we create a \code{GtkUIManager} instance and register our
 actions with it:
 \begin{Code}
 ui_manager <- gtkUIManager()
-ui_manager$insertActionGroup(action_group, 0) # insert at position 0
+ui_manager$insertActionGroup(action_group, 0)
 \end{Code}
 Next, we specify
 the layout of the menu bar and tool bar containing the actions defined
@@ -1906,9 +1842,9 @@ menu bar and tool bar widgets from the action definitions and layout.
 \begin{Code}
 menubar <- ui_manager$getWidget("/menubar")
 toolbar <- ui_manager$getWidget("/toolbar")
-    # enable keyboard shortcuts 
 main_window$addAccelGroup(ui_manager$getAccelGroup()) 
 \end{Code}
+The final line above enables keyboard shortcuts in the main window.
 
 \subsection{Status bar}
 
@@ -1941,6 +1877,7 @@ statusbar$push(info, "Ready")
 \end{Code}
 
 \subsection{Spreadsheet panel}
+\label{sec:spreadsheet-panel}
 
 Next, we need to create the \code{GtkTreeView} that will display a
 given \code{data.frame} as a table.  The data is first loaded into a
@@ -1949,7 +1886,7 @@ values it displays. Below each sheet is a text entry box for entering
 an expression for filtering the spreadsheet rows. All of the open
 sheets will be placed within notebook-style container.
 
-\subsubsection{Data model}\label{sec:spreadsheet-model}
+\subsubsection{Data model}
 
 The following function, \code{create\_tree\_model}, will create a
 \code{GtkTreeModel} object that obtains its data from an \proglang{R}
@@ -1960,15 +1897,11 @@ The following function, \code{create\_tree\_model}, will create a
 \begin{Code}
 create_tree_model <- function(df) {
   df <- cbind(rownames = rownames(df), df)
-  # add logical visbility column (all visible by default)
   filter_df <- cbind(filter = TRUE, df)
   model <- rGtkDataFrame(filter_df)
-  # create filter
   filter_model <- gtkTreeModelFilterNew(model)
-  # show rows that have TRUE in first column
   filter_model$setVisibleColumn(0)
-  # allow sorting of table
-  sort_model <-  gtkTreeModelSort(filter_model)
+  sort_model <- gtkTreeModelSort(filter_model)
   sort_model
 }
 \end{Code}
@@ -2005,8 +1938,8 @@ create_tree_view <- function(model) {
   sapply(tail(seq_len(ncol(rdf)), -1), function(j) {
     renderer <- gtkCellRendererText()
     column <- gtkTreeViewColumn(colnames(rdf)[j], renderer, 
-                                text = j-1)
-    column$setSortColumnId(j-1)
+                                text = j - 1)
+    column$setSortColumnId(j - 1)
     column$setCellDataFunc(renderer, 
                            function(column, renderer, model, iter) 
     {
@@ -2018,10 +1951,8 @@ create_tree_view <- function(model) {
     })
     tree_view$appendColumn(column)
   })
-  ## sort by clicking column header
   tree_view$setHeadersClickable(TRUE)
-  ## check GTK+ version >= 2.10.x 
-  if (is.null(gtkCheckVersion(2,10,0))) 
+  if (is.null(gtkCheckVersion(2, 10, 0))) 
     tree_view$setGridLines("both")
   tree_view
 }
@@ -2054,13 +1985,12 @@ enter a filter expression:
 \begin{Code}
 create_entry <- function(model)
 {
-  entry <- gtkEntry() # for filter expression
+  entry <- gtkEntry()
   gSignalConnect(entry, "activate", 
                  function(entry) {
-                     # update column used by filter 
-                     # according to logical expression
-                   model[,"filter"] <<- eval(parse(text=entry$text), 
-                                             as.data.frame(model))
+                   model[, "filter"] <<- 
+                    eval(parse(text = entry$text), 
+                         as.data.frame(model))
                  })
   entry
 }
@@ -2091,7 +2021,7 @@ pages without opening multiple windows.
 Below, we create the notebook:
 \begin{Code}
 notebook <- gtkNotebook()
-notebook$setTabPos("bottom") # tabs horizontally along the bottom
+notebook$setTabPos("bottom")
 \end{Code}
 
 \subsection{Integrating the components}
@@ -2124,22 +2054,19 @@ load_spreadsheet <- function(df, name) {
   tree_view <- create_tree_view(model)
   entry <- create_entry(model$getModel()$getModel())
   
-  ## pack widgets
   hbox <- gtkHBox(FALSE, 5)
   hbox$packStart(gtkLabel("Filter expression:"), FALSE, FALSE, 0)
   hbox$packStart(entry, TRUE, TRUE, 0)
   vbox <- gtkVBox(FALSE, 5)
   scrolled_window <- gtkScrolledWindow()
-  scrolled_window$add(tree_view) # support scrolling for the table
+  scrolled_window$add(tree_view)
   vbox$packStart(scrolled_window, TRUE, TRUE, 0)
   vbox$packStart(hbox, FALSE, FALSE, 0)
 
-  ## add page to notebook  
   if (missing(name))
   name <- deparse(substitute(df))
   notebook$appendPage(vbox, gtkLabel(name))
   
-  ## update statusbar
   statusbar$push(info, paste("Dataset", name, "loaded."))
 }
 \end{Code}
@@ -2296,7 +2223,7 @@ modules are \code{GType}, \code{GSignal}, and the base
 following sections. For further details, please see the \pkg{GObject}
 documentation \citep{gobject}.
 
-\subsubsection{GType}\label{sec:gtype}
+\subsubsection{\code{GType}}
 % DTL: This is very detailed but more in a factual way than an
 % informative way, especially the GObject material. When reading it, I
 % wasn't certain what was going on and I know this stuff. In fact,
@@ -2392,11 +2319,11 @@ Two other fundamental \code{GType}s are
 class structure. The \code{GEnumClass} structure stores metadata about
 a particular enumeration, such as the names and nicknames of its
 values. \code{GFlags} is similar as it represents an enumeration
-where the values are intended to be combined bitwise (via AND and OR
+where the values are intended to be combined bitwise (via \code{AND} and \code{OR}
 operations) to represent the presence of one or more settings.
 %DTL2: technically not all have to be powers of two.
 
-\subsubsection{GSignal}
+\subsubsection{\code{GSignal}}
 
 One of the defining characteristics of \pkg{GObject} is its emphasis
 on \emph{signals}, which were introduced earlier in this paper in the
@@ -2469,7 +2396,7 @@ draws a fit of the simple linear model in a separate \proglang{R}
 graphics window in response to the user identifying a point:
 %DTL2: Make a figure or connect to sentence.
 \begin{Code}
-library(rggobi)
+library("rggobi")
 attach(mtcars)
 gg <- ggobi(mtcars)
 model <- lm(mpg ~ hp)
@@ -2478,7 +2405,7 @@ abline(model)
 gSignalConnect(gg, "identify-point", 
                function(gg, plot, id, dataset) {
                 plot(hp, mpg)
-                points(hp[id+1], mpg[id+1], pch=19)
+                points(hp[id + 1], mpg[id + 1], pch = 19)
                 abline(model)
                })
 \end{Code}
@@ -2497,6 +2424,7 @@ integration uses the same basic tools. Please see the \pkg{rggobi}
 documentation for more details.
 
 \subsection[Defining GObject classes]{Defining \pkg{GObject} classes}
+\label{sec:classes}
 
 All of the above examples utilize objects that are implemented in
 \proglang{C}.
@@ -2521,11 +2449,10 @@ for the class. The name of a parameter specifies its role in the
 definition.
 
 \subsubsection{Example of defining a class}
-\label{sec:class-example}
 
 The example below illustrates the definition of a new
 \code{GObject}-derived
-class by revisiting the example in Section \ref{sec:embedded-graphics}
+class by revisiting the example in Section~\ref{sec:embedded-graphics}
 involving the embedded plotting of 
 microarray data.
 %DTL: Put a cross-reference/link back to that example. Is it really
@@ -2756,8 +2683,8 @@ value as
 the alpha setting:
 \begin{Code}
 adj <- gtkAdjustment(0.5, 0.15, 1.00, 0.05, 0.5, 0)
-s <- gObject(tform_scale_type, adjustment = adj, expr =
-expression(x^3))
+s <- gObject(tform_scale_type, adjustment = adj, 
+             expr = expression(x^3))
 gSignalConnect(s, "value-changed", function(scale) {
   plot(ma_data, col = rgb(0,0,0,scale$getTransformedValue()),
     xlab = "Replicate 1", ylab = "Replicate 2", 
@@ -2778,7 +2705,7 @@ vbox <- gtkVBox()
 vbox$packStart(da)
 vbox$packStart(s, FALSE)
 win$add(vbox)
-win$setDefaultSize(400,400)
+win$setDefaultSize(400, 400)
 
 require(cairoDevice)
 asCairoDevice(da)
@@ -2854,7 +2781,7 @@ generation system and the type conversion routines utilized by the
 generated code. It concludes by introducing the system for
 autogenerating the \proglang{R} documentation for the package. The
 explanations assume the reader has a working knowledge of
-the \pkg{GObject} system (see section \ref{sec:primer}).
+the \pkg{GObject} system (see Section~\ref{sec:primer}).
 
 \subsection{Automatic binding generation}
 
@@ -2873,7 +2800,7 @@ generated.
 
 The \pkg{GTK+} API and other \pkg{GObject}-based API's are often
 described by
-a Scheme-based \citep{scheme} format called \proglang{defs}. A
+a \proglang{Scheme}-based \citep{scheme} format called \proglang{defs}. A
 \proglang{defs} file describes the types and functions of an API. The
 autogeneration system for the \pkg{RGtk2} bindings takes
 \proglang{defs} files as its input. This section briefly describes the
@@ -2909,8 +2836,7 @@ expression describes the \code{GtkWidget} class.}
 The \proglang{defs} format supports six different kinds of types:
 objects,
 interfaces, boxed types, enumerations, flags and pointers. Each of
-these correspond to a fundamental \code{GType} (see section
-\ref{sec:gtype}). 
+these correspond to a fundamental \code{GType} (see Section~\ref{sec:primer}). 
 %DTL2:  reference back to the sectin discussing types.
 Every type of definition has
 a field identifying the module in which it is contained (usually the
@@ -2926,8 +2852,7 @@ elements in a list. Object definitions have a field for the parent
 type, while definitions of boxed types specify the copy and free
 functions of the type.  Each enumeration and flag definition contains
 a list of their allowed values.  As an example, the \proglang{defs}
-representation of the \code{GtkWidget} object is given in Figure
-\ref{fig:defs}. 
+representation of the \code{GtkWidget} object is given in Figure~\ref{fig:defs}. 
 %DTL2: reference the figure giving the GtkWidget defs.
 
 In addition to types, the \proglang{defs} format supports definition
@@ -3107,7 +3032,7 @@ function(object, text)
   text <- as.character(text)
 
   w <- .RGtkCall("S_gtk_widget_create_pango_layout", object, 
-    text, PACKAGE = "RGtk2")
+                 text, PACKAGE = "RGtk2")
 
   return(w)
 }
@@ -3194,8 +3119,8 @@ gtkButton <- function (label, stock.id, show = TRUE)
 This then allows the \proglang{R} programmer to use calls such as
 \begin{Code}
 gtkButton()
-gtkButton('my label')
-gtkButton(stock.id = '...')
+gtkButton("my label")
+gtkButton(stock.id = "...")
 \end{Code}
 
 \subsubsection{Callback wrappers}
@@ -3227,8 +3152,7 @@ library.
 
 An example of a function that registers a callback is
 \code{gtkTreeViewColumnSetCellDataFunc}, which is used by the
-\code{create\_tree\_view} function in section
-\ref{sec:spreadsheet-model} to customize the rendering of the numeric
+\code{create\_tree\_view} function in Section~\ref{sec:spreadsheet-panel} to customize the rendering of the numeric
 values as text in the spreadsheet. There are two integral components
 of the bindings that enable support for callback functions. First,
 there is the wrapper for each callback registration function, like
@@ -3275,8 +3199,7 @@ its \proglang{C} equivalent.
 \subsubsection{Virtual function wrappers}
 %DTL2: Somewhat confusing.
 Virtual functions, like \code{format\_value} in the
-\code{RTransformedHScale} class defined in section
-\ref{sec:class-example}, are bound to \proglang{R} in order to support
+\code{RTransformedHScale} class defined in Section~\ref{sec:classes}, are bound to \proglang{R} in order to support
 the extension of \pkg{GObject} classes. Wrappers for virtual functions
 are generated for both directions, from \proglang{R} to \proglang{C},
 like the function wrappers, and from \proglang{C} to \proglang{R},
@@ -3327,7 +3250,7 @@ Although the function wrappers accept the string representations of
 enumerations 
 and flags, as that is likely familiar to \proglang{R} programmers,
 there are
-some cases, such as in the example in Section \ref{sec:dialog-example}
+some cases, such as in the example in Section~\ref{sec:dialog-example}
 involving 
 \code{GtkResponseType} and when performing bitwise operations on
 flags, that the
@@ -3338,6 +3261,7 @@ corresponding to the
 string representation of each value.
 
 \subsection{Type conversion}
+\label{sec:type-conversion}
 
 \subsubsection{Overview}
 
@@ -3377,7 +3301,7 @@ structures, and this is followed by explanations of array and error
 conversion.
 
 \subsubsection{High-level type
-conversion}\label{sec:high-level-conversion}
+conversion}
 
 High-level structure conversion either produces or consumes a native
 \proglang{R} object instead of a low-level \code{externalptr}. The
@@ -3408,8 +3332,7 @@ would introduce an unnecessary inconsistency between \proglang{R} and
 In our experience, if the underlying API requires that a structure be
 initialized directly, it is feasible to perform high-level conversion
 on the structure. An example of this type of high-level conversion may
-be found in the spreadsheet example in Section
-\ref{sec:spreadsheet-example}. The actions for the menu and tool bar
+be found in the spreadsheet example in Section~\ref{sec:spreadsheet-example}. The actions for the menu and tool bar
 are specified as lists; no external references are created.
 
 \subsubsection{Low-level type conversion}
@@ -3531,8 +3454,7 @@ generator
 will assume the integer parameter specifies the length of the array.
 %DTL2: Example....
 A specific example of this is the function
-\code{gtkActionGroupAddActions}, which is called in section
-\ref{sec:spreadsheet-actions} as part of the spreadsheet application
+\code{gtkActionGroupAddActions}, which is called in Section~\ref{sec:spreadsheet-menubar} as part of the spreadsheet application
 example. The function wraps the \proglang{C} function with the
 signature \code{gtk\_action\_group\_add\_actions(GtkActionGroup
 *action\_group, GtkActionEntry *entries, guint n\_entries, gpointer

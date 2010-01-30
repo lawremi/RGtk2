@@ -4,8 +4,8 @@
 \description{Returns the paper width in units of \code{unit}.}
 \usage{gtkPageSetupGetPaperWidth(object, unit)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPageSetup}}]  a \code{\link{GtkPageSetup}}}
-\item{\code{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
+\item{\verb{object}}{[\verb{\link{GtkPageSetup}}]  a \verb{\link{GtkPageSetup}}}
+\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
 }
 \details{Note that this function takes orientation, but 
 not margins into consideration. 

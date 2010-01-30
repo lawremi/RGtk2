@@ -7,12 +7,12 @@ Draws a polygon on \code{window} with the given parameters.
 }
 \usage{gtkDrawPolygon(object, window, state.type, shadow.type, points, fill)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  type of shadow to draw}
-\item{\code{points}}{[\code{\link{GdkPoint}}]  a list of \code{\link{GdkPoint}}s}
-\item{\code{fill}}{[logical] \code{TRUE} if the polygon should be filled}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{shadow.type}}{[\code{\link{GtkShadowType}}]  type of shadow to draw}
+\item{\verb{points}}{[\verb{\link{GdkPoint}}]  a list of \verb{\link{GdkPoint}}s}
+\item{\verb{fill}}{[logical] \code{TRUE} if the polygon should be filled}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

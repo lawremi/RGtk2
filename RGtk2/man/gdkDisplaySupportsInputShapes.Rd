@@ -4,7 +4,7 @@
 \description{Returns \code{TRUE} if \code{\link{gdkWindowInputShapeCombineMask}} can
 be used to modify the input shape of windows on \code{display}.}
 \usage{gdkDisplaySupportsInputShapes(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if windows with modified input shape are supported }
 \author{Derived by RGtkGen from GTK+ documentation}

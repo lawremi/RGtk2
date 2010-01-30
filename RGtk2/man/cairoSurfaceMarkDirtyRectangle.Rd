@@ -6,11 +6,11 @@ the specified rectangle, so that cairo can retain cached contents
 for other parts of the surface.}
 \usage{cairoSurfaceMarkDirtyRectangle(surface, x, y, width, height)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}
-\item{\code{x}}{[integer]  X coordinate of dirty rectangle}
-\item{\code{y}}{[integer]  Y coordinate of dirty rectangle}
-\item{\code{width}}{[integer]  width of dirty rectangle}
-\item{\code{height}}{[integer]  height of dirty rectangle}
+\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}
+\item{\verb{x}}{[integer]  X coordinate of dirty rectangle}
+\item{\verb{y}}{[integer]  Y coordinate of dirty rectangle}
+\item{\verb{width}}{[integer]  width of dirty rectangle}
+\item{\verb{height}}{[integer]  height of dirty rectangle}
 }
 \details{Any cached clip set on the surface will be reset by this function,
 to make sure that future cairo calls have the clip set that they

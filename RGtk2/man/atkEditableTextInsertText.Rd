@@ -4,9 +4,9 @@
 \description{Insert text at a given position.}
 \usage{atkEditableTextInsertText(object, string, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkEditableText}}]  an \code{\link{AtkEditableText}}}
-\item{\code{string}}{[character]  the text to insert}
-\item{\code{position}}{[integer]  The caller initializes this to 
+\item{\verb{object}}{[\verb{\link{AtkEditableText}}]  an \verb{\link{AtkEditableText}}}
+\item{\verb{string}}{[character]  the text to insert}
+\item{\verb{position}}{[integer]  The caller initializes this to 
 the position at which to insert the text. After the call it
 points at the position after the newly inserted text.}
 }

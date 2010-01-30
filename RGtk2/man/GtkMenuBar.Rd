@@ -12,72 +12,72 @@
 \code{\link{gtkMenuBarGetChildPackDirection}(object)}\cr
 \code{gtkMenuBar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkMenuShell}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkMenuShell
                                  +----GtkMenuBar}}
 \section{Interfaces}{GtkMenuBar implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkMenuBar}} is a subclass of \code{\link{GtkMenuShell}} which contains one to many \code{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \code{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \code{gtk_menu_bar_set_shadow_type} function.}
-\section{Structures}{\describe{\item{\code{GtkMenuBar}}{
-The \code{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkMenuBar}} is a subclass of \verb{\link{GtkMenuShell}} which contains one to many \verb{\link{GtkMenuItem}}. The result is a standard menu bar which can hold many menu items. \verb{\link{GtkMenuBar}} allows for a shadow type to be set for aesthetic purposes. The shadow types are defined in the \verb{gtk_menu_bar_set_shadow_type} function.}
+\section{Structures}{\describe{\item{\verb{GtkMenuBar}}{
+The \verb{\link{GtkMenuBar}} struct contains the following fields. (These fields should be considered read-only.  They should never be set by an application.)
 
 }}}
 \section{Convenient Construction}{\code{gtkMenuBar} is the equivalent of \code{\link{gtkMenuBarNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkPackDirection}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkPackDirection}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{ltr}}{\emph{undocumented
+\item{\verb{ltr}}{\emph{undocumented
 }}
-\item{\code{rtl}}{\emph{undocumented
+\item{\verb{rtl}}{\emph{undocumented
 }}
-\item{\code{ttb}}{\emph{undocumented
+\item{\verb{ttb}}{\emph{undocumented
 }}
-\item{\code{btt}}{\emph{undocumented
+\item{\verb{btt}}{\emph{undocumented
 }}
 }
 
 }}}
 \section{Properties}{\describe{
-\item{\code{child-pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
+\item{\verb{child-pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
 
 The pack direction of the menubar. It determines how
 the widgets contained in child menuitems are arranged.  
 
-  Default value: GTK\_PACK\_DIRECTION\_LTR  Since  2.8
+  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
 
 }
-\item{\code{pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
+\item{\verb{pack-direction} [\code{\link{GtkPackDirection}} : Read / Write]}{
 
 The pack direction of the menubar. It determines how
 menuitems are arranged in the menubar.  
 
-  Default value: GTK\_PACK\_DIRECTION\_LTR  Since  2.8
+  Default value: GTK_PACK_DIRECTION_LTR  Since  2.8
 
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{internal-padding} [integer : Read]}{
+\item{\verb{internal-padding} [integer : Read]}{
 
 Amount of border space between the menubar shadow and the menu items.  Allowed values: >= 0  Default value: 1
 
 }
-\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
+\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Style of bevel around the menubar.  Default value: GTK\_SHADOW\_OUT
+Style of bevel around the menubar.  Default value: GTK_SHADOW_OUT
 
 }
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkMenuBar.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkMenuShell}}
-\code{\link{GtkMenu}}
-\code{\link{GtkMenuItem}}
+\verb{\link{GtkMenuShell}}
+\verb{\link{GtkMenu}}
+\verb{\link{GtkMenuItem}}
 }
 \keyword{internal}

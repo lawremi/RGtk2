@@ -9,9 +9,9 @@ a check that the library in use at run-time is compatible with
 the version of Pango the application or module was compiled against.}
 \usage{pangoVersionCheck(required.major, required.minor, required.micro)}
 \arguments{
-\item{\code{required.major}}{[integer]  the required major version.}
-\item{\code{required.minor}}{[integer]  the required minor version.}
-\item{\code{required.micro}}{[integer]  the required major version.}
+\item{\verb{required.major}}{[integer]  the required major version.}
+\item{\verb{required.minor}}{[integer]  the required minor version.}
+\item{\verb{required.micro}}{[integer]  the required major version.}
 }
 \details{Compatibility is defined by two things: first the version
 of the running library is newer than the version

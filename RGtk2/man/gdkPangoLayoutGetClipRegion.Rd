@@ -7,14 +7,14 @@ you would pass to \code{\link{gdkDrawLayoutLine}}. \code{index.ranges} should co
 ranges of bytes in the layout's text.}
 \usage{gdkPangoLayoutGetClipRegion(layout, x.origin, index.ranges)}
 \arguments{
-\item{\code{layout}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}} }
-\item{\code{x.origin}}{[integer]  X pixel where you intend to draw the layout with this clip}
-\item{\code{index.ranges}}{[integer]  list of byte indexes into the layout, where even members of list are start indexes and odd elements are end indexes}
+\item{\verb{layout}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}} }
+\item{\verb{x.origin}}{[integer]  X pixel where you intend to draw the layout with this clip}
+\item{\verb{index.ranges}}{[integer]  list of byte indexes into the layout, where even members of list are start indexes and odd elements are end indexes}
 }
 \details{Note that the regions returned correspond to logical extents of the text
 ranges, not ink extents. So the drawn layout may in fact touch areas out of
 the clip region.  The clip region is mainly useful for highlightling parts
 of text, such as when text is selected.  }
-\value{[\code{\link{GdkRegion}}]  a clip region containing the given ranges}
+\value{[\verb{\link{GdkRegion}}]  a clip region containing the given ranges}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

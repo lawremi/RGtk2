@@ -5,9 +5,9 @@
 an integer, or the default value.}
 \usage{gtkPrintSettingsGetIntWithDefault(object, key, def)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
-\item{\code{def}}{[integer]  the default value}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
+\item{\verb{def}}{[integer]  the default value}
 }
 \details{  Since  2.10}
 \value{[integer]  the integer value of \code{key}}

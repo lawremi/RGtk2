@@ -6,8 +6,8 @@ When a filter is selected, only files that are passed by that
 filter are displayed. }
 \usage{gtkFileChooserAddFilter(object, filter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{filter}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{filter}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}
 }
 \details{Note that the \code{chooser} takes ownership of the filter, so you have to 
 ref and sink it if you want to keep a reference.  

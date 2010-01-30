@@ -3,7 +3,7 @@
 \title{pangoLayoutGetWrap}
 \description{Gets the wrap mode for the layout.}
 \usage{pangoLayoutGetWrap(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{Use \code{\link{pangoLayoutIsWrapped}} to query whether any paragraphs
 were actually wrapped.  }
 \value{[\code{\link{PangoWrapMode}}]  active wrap mode.}

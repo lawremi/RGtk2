@@ -3,6 +3,6 @@
 \title{gtkHandleBoxNew}
 \description{Create a new handle box.}
 \usage{gtkHandleBoxNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkHandleBox}}.}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkHandleBox}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

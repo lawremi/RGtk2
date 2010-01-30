@@ -5,6 +5,5 @@
 when calling \code{\link{gtkQuitAdd}}.}
 \usage{gtkMainLevel()}
 \value{[numeric] the nesting level of the current invocation of the main loop.}
-
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

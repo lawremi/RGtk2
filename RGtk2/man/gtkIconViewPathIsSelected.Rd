@@ -5,8 +5,8 @@
 selected. If \code{path} does not point to a valid location, \code{FALSE} is returned.}
 \usage{gtkIconViewPathIsSelected(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}.}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}} to check selection on.}
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}.}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}} to check selection on.}
 }
 \details{  Since  2.6}
 \value{[logical] \code{TRUE} if \code{path} is selected.}

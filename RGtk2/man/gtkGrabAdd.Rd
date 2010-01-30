@@ -5,6 +5,6 @@
 other widgets in the same application is blocked and mouse as well as 
 keyboard events are delivered to this widget.}
 \usage{gtkGrabAdd(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}] The widget that grabs keyboard and pointer events.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}] The widget that grabs keyboard and pointer events.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

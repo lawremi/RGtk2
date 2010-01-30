@@ -1,8 +1,8 @@
 \alias{gtkInvisibleNew}
 \name{gtkInvisibleNew}
 \title{gtkInvisibleNew}
-\description{Creates a new \code{\link{GtkInvisible}}.}
+\description{Creates a new \verb{\link{GtkInvisible}}.}
 \usage{gtkInvisibleNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkInvisible}}.}
+\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkInvisible}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

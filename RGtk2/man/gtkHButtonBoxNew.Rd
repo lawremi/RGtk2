@@ -3,6 +3,6 @@
 \title{gtkHButtonBoxNew}
 \description{Creates a new horizontal button box.}
 \usage{gtkHButtonBoxNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] a new button box \code{\link{GtkWidget}}.}
+\value{[\verb{\link{GtkWidget}}] a new button box \verb{\link{GtkWidget}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -3,7 +3,7 @@
 \title{gtkEditableGetPosition}
 \description{Retrieves the current cursor position.}
 \usage{gtkEditableGetPosition(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEditable}}] a \code{\link{GtkEditable}} widget.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}}
 \value{[integer] the position of the cursor. The cursor is displayed
            before the character with the given (base 0) index
            in the widget. The value will be less than or

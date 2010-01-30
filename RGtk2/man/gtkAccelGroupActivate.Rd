@@ -5,11 +5,11 @@
 }}
 \usage{gtkAccelGroupActivate(object, accel.quark, acceleratable, accel.key, accel.mods)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAccelGroup}}] }
-\item{\code{accel.quark}}{[numeric] }
-\item{\code{acceleratable}}{[\code{\link{GObject}}] }
-\item{\code{accel.key}}{[numeric] }
-\item{\code{accel.mods}}{[\code{\link{GdkModifierType}}] }
+\item{\verb{object}}{[\verb{\link{GtkAccelGroup}}] }
+\item{\verb{accel.quark}}{[numeric] }
+\item{\verb{acceleratable}}{[\verb{\link{GObject}}] }
+\item{\verb{accel.key}}{[numeric] }
+\item{\verb{accel.mods}}{[\code{\link{GdkModifierType}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

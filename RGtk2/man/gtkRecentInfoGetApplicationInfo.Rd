@@ -5,8 +5,8 @@
 pointed by \code{info}.}
 \usage{gtkRecentInfoGetApplicationInfo(object, app.name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}
-\item{\code{app.name}}{[character]  the name of the application that has registered this item}
+\item{\verb{object}}{[\verb{\link{GtkRecentInfo}}]  a \verb{\link{GtkRecentInfo}}}
+\item{\verb{app.name}}{[character]  the name of the application that has registered this item}
 }
 \details{If the command line contains any escape characters defined inside the
 storage specification, they will be expanded.  
@@ -16,9 +16,9 @@ storage specification, they will be expanded.
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if an application with \code{app.name} has registered this
   resource inside the recently used list, or \code{FALSE} otherwise.}
-\item{\code{app.exec}}{[character]  return location for the string containing the command line}
-\item{\code{count}}{[numeric]  return location for the number of times this item was registered}
-\item{\code{time.}}{[integer]  return location for the timestamp this item was last registered
+\item{\verb{app.exec}}{[character]  return location for the string containing the command line}
+\item{\verb{count}}{[numeric]  return location for the number of times this item was registered}
+\item{\verb{time.}}{[integer]  return location for the timestamp this item was last registered
    for this application}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

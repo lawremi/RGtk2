@@ -5,8 +5,8 @@
 This has the same effect as setting the value to \code{NULL}.}
 \usage{gtkPrintSettingsUnset(object, key)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
 }
 \details{  Since  2.10 }
 \author{Derived by RGtkGen from GTK+ documentation}

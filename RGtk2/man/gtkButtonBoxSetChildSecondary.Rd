@@ -5,9 +5,9 @@
 A typical use of a secondary child is the help button in a dialog.}
 \usage{gtkButtonBoxSetChildSecondary(object, child, is.secondary)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButtonBox}}]  a \code{\link{GtkButtonBox}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  a child of \code{widget}}
-\item{\code{is.secondary}}{[logical]  if \code{TRUE}, the \code{child} appears in a secondary group of the
+\item{\verb{object}}{[\verb{\link{GtkButtonBox}}]  a \verb{\link{GtkButtonBox}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a child of \code{widget}}
+\item{\verb{is.secondary}}{[logical]  if \code{TRUE}, the \code{child} appears in a secondary group of the
                button box.}
 }
 \details{This group appears after the other children if the style

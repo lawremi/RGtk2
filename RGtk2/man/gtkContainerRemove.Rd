@@ -12,8 +12,8 @@ using \code{\link{gtkWidgetDestroy}} since this will remove it from the
 container and help break any circular reference count cycles.}
 \usage{gtkContainerRemove(object, widget)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}}}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  a current child of \code{container}}
+\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  a current child of \code{container}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

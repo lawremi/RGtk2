@@ -5,11 +5,11 @@
 the total extents of the layout's scrollbar area. See
 \code{\link{gtkLayoutSetSize}}.}
 \usage{gtkLayoutGetSize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkLayout}}]  a \code{\link{GtkLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkLayout}}]  a \verb{\link{GtkLayout}}}}
 \value{
 A list containing the following elements:
-\item{\code{width}}{[numeric]  location to store the width set on \code{layout}, or \code{NULL}}
-\item{\code{height}}{[numeric]  location to store the height set on \code{layout}, or \code{NULL}}
+\item{\verb{width}}{[numeric]  location to store the width set on \code{layout}, or \code{NULL}}
+\item{\verb{height}}{[numeric]  location to store the height set on \code{layout}, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

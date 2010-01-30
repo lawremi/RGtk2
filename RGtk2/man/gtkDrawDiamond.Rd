@@ -8,14 +8,14 @@ parameters.
 }
 \usage{gtkDrawDiamond(object, window, state.type, shadow.type, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{shadow.type}}{[\code{\link{GtkShadowType}}]  the type of shadow to draw}
-\item{\code{x}}{[integer]  x origin of the rectangle to draw the diamond in}
-\item{\code{y}}{[integer]  y origin of the rectangle to draw the diamond in}
-\item{\code{width}}{[integer]  width of the rectangle to draw the diamond in}
-\item{\code{height}}{[integer]  height of the rectangle to draw the diamond in}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{shadow.type}}{[\code{\link{GtkShadowType}}]  the type of shadow to draw}
+\item{\verb{x}}{[integer]  x origin of the rectangle to draw the diamond in}
+\item{\verb{y}}{[integer]  y origin of the rectangle to draw the diamond in}
+\item{\verb{width}}{[integer]  width of the rectangle to draw the diamond in}
+\item{\verb{height}}{[integer]  height of the rectangle to draw the diamond in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

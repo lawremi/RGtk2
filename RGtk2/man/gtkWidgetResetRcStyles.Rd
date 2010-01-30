@@ -5,7 +5,7 @@
 they are looked up again, they get the correct values 
 for the currently loaded RC file settings. }
 \usage{gtkWidgetResetRcStyles(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}] a \code{\link{GtkWidget}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}] a \verb{\link{GtkWidget}}.}}
 \details{This function is not useful for applications.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

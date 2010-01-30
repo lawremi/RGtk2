@@ -7,9 +7,9 @@ Get the style of an individual cell.
 }
 \usage{gtkCTreeNodeGetCellStyle(object, node, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{column}}{[integer] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{column}}{[integer] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

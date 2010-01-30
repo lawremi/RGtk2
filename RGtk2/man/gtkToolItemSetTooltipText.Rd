@@ -5,8 +5,8 @@
 See \code{\link{gtkWidgetSetTooltipText}}.}
 \usage{gtkToolItemSetTooltipText(object, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}} }
-\item{\code{text}}{[character]  text to be used as tooltip for \code{tool.item}}
+\item{\verb{object}}{[\verb{\link{GtkToolItem}}]  a \code{\link{gtkToolItem}} }
+\item{\verb{text}}{[character]  text to be used as tooltip for \code{tool.item}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

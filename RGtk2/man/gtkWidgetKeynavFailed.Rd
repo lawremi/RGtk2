@@ -8,8 +8,8 @@ value should be interpreted in a way similar to the return value of
 \code{\link{gtkWidgetChildFocus}}:}
 \usage{gtkWidgetKeynavFailed(object, direction)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
 }
 \details{When \code{TRUE} is returned, stay in the widget, the failed keyboard
 navigation is Ok and/or there is nowhere we can/should move the
@@ -22,7 +22,7 @@ navigation outside the widget, e.g. by calling
 The default ::keynav-failed handler returns \code{TRUE} for 
 \code{GTK_DIR_TAB_FORWARD} and \code{GTK_DIR_TAB_BACKWARD}. For the other 
 values of \code{\link{GtkDirectionType}}, it looks at the 
-\code{"gtk-keynav-cursor-only"} setting and returns \code{FALSE} 
+\verb{"gtk-keynav-cursor-only"} setting and returns \code{FALSE} 
 if the setting is \code{TRUE}. This way the entire user interface
 becomes cursor-navigatable on input devices such as mobile phones
 which only have cursor keys but no tab key.
@@ -33,7 +33,7 @@ navigation.
   
 A use case for providing an own implementation of ::keynav-failed 
 (either by connecting to it or by overriding it) would be a row of
-\code{\link{GtkEntry}} widgets where the user should be able to navigate the
+\verb{\link{GtkEntry}} widgets where the user should be able to navigate the
 entire row with the cursor keys, as e.g. known from user interfaces 
 that require entering license keys.  
 

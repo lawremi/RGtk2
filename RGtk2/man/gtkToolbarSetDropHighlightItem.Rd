@@ -7,9 +7,9 @@ If \code{item} is \code{NULL}, highlighting is turned off. In that case \code{in
 is ignored.}
 \usage{gtkToolbarSetDropHighlightItem(object, tool.item = NULL, index)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}}
-\item{\code{tool.item}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}, or \code{NULL} to turn of highlighting}
-\item{\code{index}}{[integer]  a position on \code{toolbar}}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}}
+\item{\verb{tool.item}}{[\verb{\link{GtkToolItem}}]  a \verb{\link{GtkToolItem}}, or \code{NULL} to turn of highlighting}
+\item{\verb{index}}{[integer]  a position on \code{toolbar}}
 }
 \details{The \code{tool.item} passed to this function must not be part of any widget
 hierarchy. When an item is set as drop highlight item it can not

@@ -13,31 +13,31 @@
 }
 \section{Detailed Description}{Stock items represent commonly-used menu or toolbar items such as
 "Open" or "Exit". Each stock item is identified by a stock ID; 
-stock IDs are just strings, but functions such as \code{GTK_STOCK_OPEN} are
+stock IDs are just strings, but functions such as \verb{GTK_STOCK_OPEN} are
 provided to avoid typing mistakes in the strings.
 Applications can register their own stock items in addition to those
 built-in to GTK+.
   
-Each stock ID can be associated with a \code{\link{GtkStockItem}}, which contains
+Each stock ID can be associated with a \verb{\link{GtkStockItem}}, which contains
 the user-visible label, keyboard accelerator, and translation domain
 of the menu or toolbar item; and/or with an icon stored in a
-\code{\link{GtkIconFactory}}. See GtkIconFactory for
+\verb{\link{GtkIconFactory}}. See GtkIconFactory for
 more information on stock icons. The connection between a
-\code{\link{GtkStockItem}} and stock icons is purely conventional (by virtue of
+\verb{\link{GtkStockItem}} and stock icons is purely conventional (by virtue of
 using the same stock ID); it's possible to register a stock item but
 no icon, and vice versa. Stock icons may have a RTL variant which gets
 used for right-to-left locales. }
-\section{Structures}{\describe{\item{\code{GtkStockItem}}{
+\section{Structures}{\describe{\item{\verb{GtkStockItem}}{
 \emph{undocumented
 }
-\strong{\code{GtkStockItem} is a \link{transparent-type}.}
+\strong{\verb{GtkStockItem} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{stockId}}{[character] }
-\item{\code{label}}{[character] }
-\item{\code{modifier}}{[\code{\link{GdkModifierType}}] }
-\item{\code{keyval}}{[numeric] }
-\item{\code{translationDomain}}{[character] }
+\item{\verb{stockId}}{[character] }
+\item{\verb{label}}{[character] }
+\item{\verb{modifier}}{[\code{\link{GdkModifierType}}] }
+\item{\verb{keyval}}{[numeric] }
+\item{\verb{translationDomain}}{[character] }
 }
 
 }}}

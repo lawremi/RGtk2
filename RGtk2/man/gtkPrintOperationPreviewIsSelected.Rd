@@ -5,8 +5,8 @@
 have been selected for printing.}
 \usage{gtkPrintOperationPreviewIsSelected(object, page.nr)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintOperationPreview}}]  a \code{\link{GtkPrintOperationPreview}}}
-\item{\code{page.nr}}{[integer]  a page number}
+\item{\verb{object}}{[\verb{\link{GtkPrintOperationPreview}}]  a \verb{\link{GtkPrintOperationPreview}}}
+\item{\verb{page.nr}}{[integer]  a page number}
 }
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the page has been selected for printing}

@@ -5,14 +5,14 @@
 indicating the dialog type (error, warning, etc.) and some text which
 is marked up with the Pango text markup language.
 When the user clicks a button a "response" signal is emitted with
-response IDs from \code{\link{GtkResponseType}}. See \code{\link{GtkDialog}} for more details.}
+response IDs from \code{\link{GtkResponseType}}. See \verb{\link{GtkDialog}} for more details.}
 \usage{gtkMessageDialogNewWithMarkup(parent, flags, type, buttons, ..., show = TRUE)}
 \arguments{
-\item{\code{parent}}{[\code{\link{GtkWindow}}]  transient parent, or \code{NULL} for none }
-\item{\code{flags}}{[\code{\link{GtkDialogFlags}}]  flags}
-\item{\code{type}}{[\code{\link{GtkMessageType}}]  type of message}
-\item{\code{buttons}}{[\code{\link{GtkButtonsType}}]  set of buttons to use}
-\item{\code{...}}{ arguments for \code{message.format}}
+\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  transient parent, or \code{NULL} for none }
+\item{\verb{flags}}{[\code{\link{GtkDialogFlags}}]  flags}
+\item{\verb{type}}{[\code{\link{GtkMessageType}}]  type of message}
+\item{\verb{buttons}}{[\code{\link{GtkButtonsType}}]  set of buttons to use}
+\item{\verb{...}}{ arguments for \code{message.format}}
 }
 \details{Special XML characters in the \code{printf()} arguments passed to this
 function will automatically be escaped as necessary.
@@ -30,6 +30,6 @@ dialog$setMarkup(message)
 }  
 
   Since  2.4}
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkMessageDialog}}}
+\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkMessageDialog}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

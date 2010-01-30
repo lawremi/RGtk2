@@ -4,8 +4,8 @@
 \description{See \code{\link{gtkImageNewFromPixbuf}} for details.}
 \usage{gtkImageSetFromPixbuf(object, pixbuf = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkImage}}]  a \code{\link{GtkImage}}}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  a \code{\link{GdkPixbuf}} or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkImage}}]  a \verb{\link{GtkImage}}}
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}]  a \verb{\link{GdkPixbuf}} or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

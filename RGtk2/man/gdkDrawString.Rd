@@ -7,12 +7,12 @@ Draws a string of characters in the given font or fontset.
 }
 \usage{gdkDrawString(object, font, gc, x, y, string)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
-\item{\code{font}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}.}
-\item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{x}}{[integer]  the x coordinate of the left edge of the text.}
-\item{\code{y}}{[integer]  the y coordinate of the baseline of the text.}
-\item{\code{string}}{[character]   the string of characters to draw.}
+\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}} (a \verb{\link{GdkWindow}} or a \verb{\link{GdkPixmap}}).}
+\item{\verb{font}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}.}
+\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
+\item{\verb{x}}{[integer]  the x coordinate of the left edge of the text.}
+\item{\verb{y}}{[integer]  the y coordinate of the baseline of the text.}
+\item{\verb{string}}{[character]   the string of characters to draw.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

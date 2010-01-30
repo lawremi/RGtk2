@@ -6,8 +6,8 @@ manager to decorate and handle the window in a way which is
 suitable to the function of the window in your application.}
 \usage{gtkWindowSetTypeHint(object, hint)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{hint}}{[\code{\link{GdkWindowTypeHint}}]  the window type}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{hint}}{[\code{\link{GdkWindowTypeHint}}]  the window type}
 }
 \details{This function should be called before the window becomes visible.
   \code{\link{gtkDialogNewWithButtons}} and other convenience functions in GTK+

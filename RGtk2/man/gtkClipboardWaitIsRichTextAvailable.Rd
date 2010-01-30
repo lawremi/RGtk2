@@ -8,8 +8,8 @@ waits for the data to be received using the main loop, so events,
 timeouts, etc, may be dispatched during the wait.}
 \usage{gtkClipboardWaitIsRichTextAvailable(object, buffer)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}
-\item{\code{buffer}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
+\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}
+\item{\verb{buffer}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
 }
 \details{This function is a little faster than calling
 \code{\link{gtkClipboardWaitForRichText}} since it doesn't need to retrieve

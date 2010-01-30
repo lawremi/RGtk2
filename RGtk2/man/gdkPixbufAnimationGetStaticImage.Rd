@@ -8,7 +8,7 @@ unanimated image, which might be the first frame, or something more
 sophisticated. If an animation hasn't loaded any frames yet, this
 function will return \code{NULL}.}
 \usage{gdkPixbufAnimationGetStaticImage(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkPixbufAnimation}}]  a \code{\link{GdkPixbufAnimation}}}}
-\value{[\code{\link{GdkPixbuf}}]  unanimated image representing the animation}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbufAnimation}}]  a \verb{\link{GdkPixbufAnimation}}}}
+\value{[\verb{\link{GdkPixbuf}}]  unanimated image representing the animation}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

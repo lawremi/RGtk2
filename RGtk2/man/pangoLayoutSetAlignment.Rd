@@ -5,8 +5,8 @@
 positioned within the horizontal space available.}
 \usage{pangoLayoutSetAlignment(object, alignment)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{alignment}}{[\code{\link{PangoAlignment}}]  the alignment}
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
+\item{\verb{alignment}}{[\code{\link{PangoAlignment}}]  the alignment}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

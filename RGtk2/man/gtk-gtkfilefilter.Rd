@@ -19,12 +19,12 @@
 \code{\link{gtkFileFilterFilter}(object, filter.info)}\cr
 \code{gtkFileFilter()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkFileFilter}}
 \section{Detailed Description}{A GtkFileFilter can be used to restrict the files being shown
-in a \code{\link{GtkFileChooser}}. Files can be filtered based on their name
+in a \verb{\link{GtkFileChooser}}. Files can be filtered based on their name
 (with \code{\link{gtkFileFilterAddPattern}}), on their mime type (with
 \code{\link{gtkFileFilterAddMimeType}}), or by a custom filter function
 (with \code{\link{gtkFileFilterAddCustom}}). 
@@ -32,47 +32,47 @@ in a \code{\link{GtkFileChooser}}. Files can be filtered based on their name
 Filtering by mime types handles aliasing and subclassing of mime
 types; e.g. a filter for text/plain also matches a file with mime 
 type application/rtf, since application/rtf is a subclass of 
-text/plain. Note that \code{\link{GtkFileFilter}} allows wildcards for the 
+text/plain. Note that \verb{\link{GtkFileFilter}} allows wildcards for the 
 subtype of a mime type, so you can e.g. filter for image/*.
   
-Normally, filters are used by adding them to a \code{\link{GtkFileChooser}},
+Normally, filters are used by adding them to a \verb{\link{GtkFileChooser}},
 see \code{\link{gtkFileChooserAddFilter}}, but it is also possible
 to manually use a filter on a file with \code{\link{gtkFileFilterFilter}}.}
 \section{Structures}{\describe{
-\item{\code{GtkFileFilter}}{
+\item{\verb{GtkFileFilter}}{
 The \code{GtkFileFilter} struct contains
 only private fields and should not be directly accessed.
 
 }
-\item{\code{GtkFileFilterInfo}}{
+\item{\verb{GtkFileFilterInfo}}{
 A \code{GtkFileFilterInfo} struct is used
 to pass information about the tested file to 
 \code{\link{gtkFileFilterFilter}}. 
-\strong{\code{GtkFileFilterInfo} is a \link{transparent-type}.}
+\strong{\verb{GtkFileFilterInfo} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{contains}}{[\code{\link{GtkFileFilterFlags}}] Flags indicating which of the following fields need
+\item{\verb{contains}}{[\code{\link{GtkFileFilterFlags}}] Flags indicating which of the following fields need
   are filled}
-\item{\code{filename}}{[character] the filename of the file being tested}
-\item{\code{uri}}{[character] the URI for the file being tested}
-\item{\code{displayName}}{[character] the string that will be used to display the file
+\item{\verb{filename}}{[character] the filename of the file being tested}
+\item{\verb{uri}}{[character] the URI for the file being tested}
+\item{\verb{displayName}}{[character] the string that will be used to display the file
   in the file chooser}
-\item{\code{mimeType}}{[character] the mime type of the file}
+\item{\verb{mimeType}}{[character] the mime type of the file}
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkFileFilter} is the equivalent of \code{\link{gtkFileFilterNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkFileFilterFlags}}{
-These flags indicate what parts of a \code{\link{GtkFileFilterInfo}} struct
+\section{Enums and Flags}{\describe{\item{\verb{GtkFileFilterFlags}}{
+These flags indicate what parts of a \verb{\link{GtkFileFilterInfo}} struct
 are filled or need to be filled. 
 
 \describe{
-\item{\code{filename}}{the filename of the file being tested}
-\item{\code{uri}}{the URI for the file being tested}
-\item{\code{display-name}}{the string that will be used to 
+\item{\verb{filename}}{the filename of the file being tested}
+\item{\verb{uri}}{the URI for the file being tested}
+\item{\verb{display-name}}{the string that will be used to 
   display the file in the file chooser}
-\item{\code{mime-type}}{the mime type of the file}
+\item{\verb{mime-type}}{the mime type of the file}
 }
 
 }}}
@@ -81,7 +81,7 @@ The type of function that is used with custom filters,
 see \code{\link{gtkFileFilterAddCustom}}.
 
 \describe{
-\item{\code{filter.info}}{[\code{\link{GtkFileFilterInfo}}] a \code{\link{GtkFileFilterInfo}} that is filled according
+\item{\code{filter.info}}{[\verb{\link{GtkFileFilterInfo}}] a \verb{\link{GtkFileFilterInfo}} that is filled according
   to the \code{needed} flags passed to \code{\link{gtkFileFilterAddCustom}}}
 \item{\code{data}}{[R object] user data passed to \code{\link{gtkFileFilterAddCustom}}}
 }
@@ -91,5 +91,5 @@ see \code{\link{gtkFileFilterAddCustom}}.
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/gtk-gtkfilefilter.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GtkFileChooser}}}
+\seealso{\verb{\link{GtkFileChooser}}}
 \keyword{internal}

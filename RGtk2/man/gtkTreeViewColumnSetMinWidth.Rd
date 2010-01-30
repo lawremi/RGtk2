@@ -5,8 +5,8 @@
 minimum width is unset.}
 \usage{gtkTreeViewColumnSetMinWidth(object, min.width)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}.}
-\item{\code{min.width}}{[integer]  The minimum width of the column in pixels, or -1.}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}.}
+\item{\verb{min.width}}{[integer]  The minimum width of the column in pixels, or -1.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

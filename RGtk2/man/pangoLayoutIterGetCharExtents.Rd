@@ -6,10 +6,10 @@
 can sensibly be obtained for characters; ink extents make sense only
 down to the level of clusters.}
 \usage{pangoLayoutIterGetCharExtents(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayoutIter}}]  a \verb{\link{PangoLayoutIter}}}}
 \value{
 A list containing the following elements:
-\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  rectangle to fill with logical extents}
+\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  rectangle to fill with logical extents}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

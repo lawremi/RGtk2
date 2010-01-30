@@ -5,10 +5,10 @@
 purposes.}
 \usage{gtkTreeStoreIterIsValid(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
 }
-\details{Checks if the given iter is a valid iter for this \code{\link{GtkTreeStore}}.  
+\details{Checks if the given iter is a valid iter for this \verb{\link{GtkTreeStore}}.  
 
   Since  2.2}
 \value{[logical] \code{TRUE} if the iter is valid, \code{FALSE} if the iter is invalid.}

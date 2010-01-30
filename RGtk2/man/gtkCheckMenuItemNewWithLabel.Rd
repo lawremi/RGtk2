@@ -1,9 +1,9 @@
 \alias{gtkCheckMenuItemNewWithLabel}
 \name{gtkCheckMenuItemNewWithLabel}
 \title{gtkCheckMenuItemNewWithLabel}
-\description{Creates a new \code{\link{GtkCheckMenuItem}} with a label.}
+\description{Creates a new \verb{\link{GtkCheckMenuItem}} with a label.}
 \usage{gtkCheckMenuItemNewWithLabel(label, show = TRUE)}
-\arguments{\item{\code{label}}{[character] the string to use for the label.}}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkCheckMenuItem}}.}
+\arguments{\item{\verb{label}}{[character] the string to use for the label.}}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkCheckMenuItem}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

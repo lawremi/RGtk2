@@ -8,9 +8,9 @@ are displayed.
 }
 \usage{gtkItemFactorySetTranslateFunc(object, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}
-\item{\code{func}}{[\code{\link{GtkTranslateFunc}}]  the \code{\link{GtkTranslateFunc}} function to be used to translate path elements }
-\item{\code{data}}{[R object]  data to pass to \code{func} and \code{notify}}
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}
+\item{\verb{func}}{[\verb{\link{GtkTranslateFunc}}]  the \verb{\link{GtkTranslateFunc}} function to be used to translate path elements }
+\item{\verb{data}}{[R object]  data to pass to \code{func} and \code{notify}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

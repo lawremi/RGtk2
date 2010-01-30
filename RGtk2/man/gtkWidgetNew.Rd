@@ -9,10 +9,10 @@ its properties in one go. For example you might write:
 cast the object yourself.}
 \usage{gtkWidgetNew(type, ..., show = TRUE)}
 \arguments{
-\item{\code{type}}{[\code{\link{GType}}]  type ID of the widget to create}
-\item{\code{...}}{ value of first property, followed by more properties, 
+\item{\verb{type}}{[\verb{\link{GType}}]  type ID of the widget to create}
+\item{\verb{...}}{ value of first property, followed by more properties, 
           \code{NULL}-terminated}
 }
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkWidget}} of type \code{widget.type}}
+\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkWidget}} of type \code{widget.type}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

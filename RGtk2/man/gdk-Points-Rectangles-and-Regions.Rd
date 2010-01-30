@@ -31,22 +31,22 @@
 \code{\link{gdkRegionXor}(object, source2)}\cr
 \code{\link{gdkRegionSpansIntersectForeach}(object, spans, sorted, fun, data)}\cr
 }
-\section{Detailed Description}{GDK provides the \code{\link{GdkPoint}}, \code{\link{GdkRectangle}}, \code{\link{GdkRegion}} and \code{\link{GdkSpan}} data types
+\section{Detailed Description}{GDK provides the \verb{\link{GdkPoint}}, \verb{\link{GdkRectangle}}, \verb{\link{GdkRegion}} and \verb{\link{GdkSpan}} data types
 for representing pixels and sets of pixels on the screen.
-  \code{\link{GdkPoint}} is a simple structure containing an x and y coordinate of a point.
-  \code{\link{GdkRectangle}} is a structure holding the position and size of a rectangle.
+  \verb{\link{GdkPoint}} is a simple structure containing an x and y coordinate of a point.
+  \verb{\link{GdkRectangle}} is a structure holding the position and size of a rectangle.
 The intersection of two rectangles can be computed with
 \code{\link{gdkRectangleIntersect}}. To find the union of two rectangles use
 \code{\link{gdkRectangleUnion}}.
-  \code{\link{GdkRegion}} is an opaque data type holding a set of arbitrary pixels, and is
+  \verb{\link{GdkRegion}} is an opaque data type holding a set of arbitrary pixels, and is
 usually used for clipping graphical operations (see \code{\link{gdkGCSetClipRegion}}).
-  \code{\link{GdkSpan}} is a structure holding a spanline. A spanline is a horizontal line that
+  \verb{\link{GdkSpan}} is a structure holding a spanline. A spanline is a horizontal line that
 is one pixel wide. It is mainly used when rasterizing other graphics primitives.
 It can be intersected to regions by using \code{\link{gdkRegionSpansIntersectForeach}}.}
 \section{Structures}{\describe{
-\item{\code{GdkPoint}}{
+\item{\verb{GdkPoint}}{
 Defines the x and y coordinates of a point.
-\strong{\code{GdkPoint} is a \link{transparent-type}.}
+\strong{\verb{GdkPoint} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{x}}{[integer] the x coordinate of the point.}
@@ -54,55 +54,55 @@ Defines the x and y coordinates of a point.
 }
 
 }
-\item{\code{GdkRectangle}}{
+\item{\verb{GdkRectangle}}{
 Defines the position and size of a rectangle.
-\strong{\code{GdkRectangle} is a \link{transparent-type}.}
+\strong{\verb{GdkRectangle} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{x}}{[integer] the x coordinate of the left edge of the rectangle.}
-\item{\code{y}}{[integer] the y coordinate of the top of the rectangle.}
-\item{\code{width}}{[integer] the width of the rectangle.}
-\item{\code{height}}{[integer] the height of the rectangle.}
+\item{\verb{x}}{[integer] the x coordinate of the left edge of the rectangle.}
+\item{\verb{y}}{[integer] the y coordinate of the top of the rectangle.}
+\item{\verb{width}}{[integer] the width of the rectangle.}
+\item{\verb{height}}{[integer] the height of the rectangle.}
 }
 
 }
-\item{\code{GdkRegion}}{
+\item{\verb{GdkRegion}}{
 A GdkRegion represents a set of pixels on the screen.
 
 }
-\item{\code{GdkSpan}}{
+\item{\verb{GdkSpan}}{
 A GdkSpan represents a horizontal line of pixels starting
 at the pixel with coordinates \code{x}, \code{y} and ending before \code{x} + \code{width}, \code{y}.
-\strong{\code{GdkSpan} is a \link{transparent-type}.}
+\strong{\verb{GdkSpan} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{x}}{[integer] x coordinate of the first pixel.}
-\item{\code{y}}{[integer] y coordinate of the first pixel.}
-\item{\code{width}}{[integer] number of pixels in the span.}
+\item{\verb{x}}{[integer] x coordinate of the first pixel.}
+\item{\verb{y}}{[integer] y coordinate of the first pixel.}
+\item{\verb{width}}{[integer] number of pixels in the span.}
 }
 
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkFillRule}}{
+\item{\verb{GdkFillRule}}{
 The method for determining which pixels are included in a region, when
-creating a \code{\link{GdkRegion}} from a polygon.
+creating a \verb{\link{GdkRegion}} from a polygon.
 The fill rule is only relevant for polygons which overlap themselves.
 
 \describe{
-\item{\code{even-odd-rule}}{areas which are overlapped an odd number of times are
+\item{\verb{even-odd-rule}}{areas which are overlapped an odd number of times are
 included in the region, while areas overlapped an even number of times are not.}
-\item{\code{winding-rule}}{overlapping areas are always included.}
+\item{\verb{winding-rule}}{overlapping areas are always included.}
 }
 
 }
-\item{\code{GdkOverlapType}}{
+\item{\verb{GdkOverlapType}}{
 Specifies the possible values returned by \code{\link{gdkRegionRectIn}}.
 
 \describe{
-\item{\code{in}}{if the rectangle is inside the \code{\link{GdkRegion}}.}
-\item{\code{out}}{if the rectangle is outside the \code{\link{GdkRegion}}.}
-\item{\code{part}}{if the rectangle is partly inside the \code{\link{GdkRegion}}.}
+\item{\verb{in}}{if the rectangle is inside the \verb{\link{GdkRegion}}.}
+\item{\verb{out}}{if the rectangle is outside the \verb{\link{GdkRegion}}.}
+\item{\verb{part}}{if the rectangle is partly inside the \verb{\link{GdkRegion}}.}
 }
 
 }
@@ -112,7 +112,7 @@ This defines the type of the function passed to
 \code{\link{gdkRegionSpansIntersectForeach}}. 
 
 \describe{
-\item{\code{span}}{[\code{\link{GdkSpan}}] a \code{\link{GdkSpan}}.}
+\item{\code{span}}{[\verb{\link{GdkSpan}}] a \verb{\link{GdkSpan}}.}
 \item{\code{data}}{[R object] the user data passed to \code{\link{gdkRegionSpansIntersectForeach}}.}
 }
 

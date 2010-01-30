@@ -5,8 +5,8 @@
 that will appear embedded alongside the expander arrow.}
 \usage{gtkExpanderSetLabelWidget(object, label.widget = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkExpander}}]  a \code{\link{GtkExpander}}}
-\item{\code{label.widget}}{[\code{\link{GtkWidget}}]  the new label widget}
+\item{\verb{object}}{[\verb{\link{GtkExpander}}]  a \verb{\link{GtkExpander}}}
+\item{\verb{label.widget}}{[\verb{\link{GtkWidget}}]  the new label widget}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

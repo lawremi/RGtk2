@@ -1,12 +1,12 @@
 \alias{gtkTextBufferRemoveSelectionClipboard}
 \name{gtkTextBufferRemoveSelectionClipboard}
 \title{gtkTextBufferRemoveSelectionClipboard}
-\description{Removes a \code{\link{GtkClipboard}} added with 
+\description{Removes a \verb{\link{GtkClipboard}} added with 
 \code{\link{gtkTextBufferAddSelectionClipboard}}.}
 \usage{gtkTextBufferRemoveSelectionClipboard(object, clipboard)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{clipboard}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}} added to \code{buffer} by 
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{clipboard}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}} added to \code{buffer} by 
             \code{\link{gtkTextBufferAddSelectionClipboard}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

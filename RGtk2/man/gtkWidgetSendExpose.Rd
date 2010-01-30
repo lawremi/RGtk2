@@ -8,8 +8,8 @@ propagating an expose event to a child \code{NO_WINDOW} widget, and
 that is normally done using \code{\link{gtkContainerPropagateExpose}}.}
 \usage{gtkWidgetSendExpose(object, event)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  a expose \code{\link{GdkEvent}}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{event}}{[\verb{\link{GdkEvent}}]  a expose \verb{\link{GdkEvent}}}
 }
 \details{If you want to force an area of a window to be redrawn, 
 use \code{\link{gdkWindowInvalidateRect}} or \code{\link{gdkWindowInvalidateRegion}}.

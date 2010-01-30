@@ -6,7 +6,7 @@ shape mask for \code{window}. i.e. the union of all masks
 for \code{window} and its children will become the new mask
 for \code{window}. See \code{\link{gdkWindowShapeCombineMask}}.}
 \usage{gdkWindowMergeChildShapes(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
 \details{This function is distinct from \code{\link{gdkWindowSetChildShapes}}
 because it includes \code{window}'s shape mask in the set of shapes to
 be merged.  }

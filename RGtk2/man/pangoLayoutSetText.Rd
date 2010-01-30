@@ -4,9 +4,9 @@
 \description{Sets the text of the layout.}
 \usage{pangoLayoutSetText(object, text, length = -1)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{text}}{[char]  a valid UTF-8 string}
-\item{\code{length}}{[integer]  maximum length of \code{text}, in bytes. -1 indicates that
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
+\item{\verb{text}}{[char]  a valid UTF-8 string}
+\item{\verb{length}}{[integer]  maximum length of \code{text}, in bytes. -1 indicates that
          the string is and the length should be
          calculated.  The text will also be truncated on
          encountering a nul-termination even when \code{length} is

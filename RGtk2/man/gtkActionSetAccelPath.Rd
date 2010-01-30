@@ -6,8 +6,8 @@ with the action will have this accel path, so that their
 accelerators are consistent.}
 \usage{gtkActionSetAccelPath(object, accel.path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}
-\item{\code{accel.path}}{[character]  the accelerator path}
+\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}
+\item{\verb{accel.path}}{[character]  the accelerator path}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -23,32 +23,32 @@
 \code{\link{gdkPangoLayoutLineGetClipRegion}(line, x.origin, index.ranges)}\cr
 \code{gdkPangoRenderer(screen)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{PangoRenderer}
+\section{Hierarchy}{\preformatted{GObject
+   +----PangoRenderer
          +----GdkPangoRenderer}}
 \section{Detailed Description}{Pango is the text layout system used by GDK and GTK+. The functions
 and types in this section are used to render Pango objects to GDK.
 drawables, and also extend the set of Pango attributes to include
 stippling and embossing.
   
-Creating a \code{\link{PangoLayout}} object is the first step in rendering text,
-and requires getting a handle to a \code{\link{PangoContext}}. For GTK+ programs,
+Creating a \verb{\link{PangoLayout}} object is the first step in rendering text,
+and requires getting a handle to a \verb{\link{PangoContext}}. For GTK+ programs,
 you'll usually want to use \code{\link{gtkWidgetGetPangoContext}}, or
 \code{\link{gtkWidgetCreatePangoLayout}}, rather than using the lowlevel
-\code{\link{gdkPangoContextGetForScreen}}. Once you have a \code{\link{PangoLayout}}, you
+\code{\link{gdkPangoContextGetForScreen}}. Once you have a \verb{\link{PangoLayout}}, you
 can set the text and attributes of it with Pango functions like
 \code{\link{pangoLayoutSetText}} and get its size with \code{\link{pangoLayoutGetSize}}.
 (Note that Pango uses a fixed point system internally, so converting
-between Pango units and pixels using PANGO\_SCALE or the \code{pangoPixels()} function.)
+between Pango units and pixels using PANGO_SCALE or the \code{pangoPixels()} function.)
   
 Rendering a Pango layout is done most simply with \code{\link{gdkDrawLayout}};
 you can also draw pieces of the layout with \code{\link{gdkDrawLayout}} or
-\code{\link{gdkDrawGlyphs}}. \code{\link{GdkPangoRenderer}} is a subclass of \code{\link{PangoRenderer}}
+\code{\link{gdkDrawGlyphs}}. \verb{\link{GdkPangoRenderer}} is a subclass of \verb{\link{PangoRenderer}}
 that is used internally to implement these functions. Using it
 directly or subclassing it can be useful in some cases. See the
-\code{\link{GdkPangoRenderer}} documentation for details.
+\verb{\link{GdkPangoRenderer}} documentation for details.
   
- \emph{Using   \code{\link{GdkPangoRenderer}}   to draw transformed text}
+ \emph{Using   \verb{\link{GdkPangoRenderer}}   to draw transformed text}
 \preformatted{
 window <- NULL
 
@@ -135,8 +135,8 @@ window$setDefaultSize(2 * RADIUS, 2 * RADIUS)
 window$showAll()
 }  }
 \section{Structures}{\describe{
-\item{\code{GdkPangoRenderer}}{
-\code{\link{GdkPangoRenderer}} is a subclass of \code{\link{PangoRenderer}} used for rendering
+\item{\verb{GdkPangoRenderer}}{
+\verb{\link{GdkPangoRenderer}} is a subclass of \verb{\link{PangoRenderer}} used for rendering
 Pango objects into GDK drawables. The default renderer for a particular
 screen is obtained with \code{\link{gdkPangoRendererGetDefault}}; Pango
 functions like \code{\link{pangoRendererDrawLayout}} and
@@ -144,37 +144,37 @@ functions like \code{\link{pangoRendererDrawLayout}} and
 the renderer.
   
 In most simple cases, applications can just use \code{\link{gdkDrawLayout}}, and
-don't need to directly use \code{\link{GdkPangoRenderer}} at all. Using the
-\code{\link{GdkPangoRenderer}} directly is most useful when working with a
+don't need to directly use \verb{\link{GdkPangoRenderer}} at all. Using the
+\verb{\link{GdkPangoRenderer}} directly is most useful when working with a
 transformation such as a rotation, because the Pango drawing functions
 take user space coordinates (coordinates before the transformation)
 instead of device coordinates.
   
-In certain cases it can be useful to subclass \code{\link{GdkPangoRenderer}}. Examples
+In certain cases it can be useful to subclass \verb{\link{GdkPangoRenderer}}. Examples
 of reasons to do this are to add handling of custom attributes by
-overriding 'prepare\_run' or to do custom drawing of embedded objects
-by overriding 'draw\_shape'.  
+overriding 'prepare_run' or to do custom drawing of embedded objects
+by overriding 'draw_shape'.  
 
   Since  2.6
 
 }
-\item{\code{GdkPangoAttrEmbossed}}{
+\item{\verb{GdkPangoAttrEmbossed}}{
 A Pango text attribute containing a embossed bitmap to be used when
 rendering the text.
 
-\describe{\item{\code{embossed}}{[logical] the \code{\link{PangoAttribute}}.}}
+\describe{\item{\verb{embossed}}{[logical] the \verb{\link{PangoAttribute}}.}}
 
 }
-\item{\code{GdkPangoAttrStipple}}{
+\item{\verb{GdkPangoAttrStipple}}{
 A Pango text attribute containing a stipple bitmap to be used when
 rendering the text.
 
-\describe{\item{\code{stipple}}{[\code{\link{GdkBitmap}}] the \code{\link{PangoAttribute}}.}}
+\describe{\item{\verb{stipple}}{[\verb{\link{GdkBitmap}}] the \verb{\link{PangoAttribute}}.}}
 
 }
 }}
 \section{Convenient Construction}{\code{gdkPangoRenderer} is the equivalent of \code{\link{gdkPangoRendererNew}}.}
-\section{Properties}{\describe{\item{\code{screen} [\code{\link{GdkScreen}} : Read / Write / Construct Only]}{
+\section{Properties}{\describe{\item{\verb{screen} [\verb{\link{GdkScreen}} : *            : Read / Write / Construct Only]}{
 
 the GdkScreen for the renderer.
 

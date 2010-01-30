@@ -7,10 +7,10 @@ Creates the menu items from the \code{entries}.
 }
 \usage{gtkItemFactoryCreateItems(object, entries, callback.data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}
-\item{\code{entries}}{[\code{\link{GtkItemFactoryEntry}}]  a list of \code{\link{GtkItemFactoryEntry}}s whose \code{callback} members
-   must by of type \code{\link{GtkItemFactoryCallback1}}}
-\item{\code{callback.data}}{[R object]  data passed to the callback functions of all entries}
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}
+\item{\verb{entries}}{[\verb{\link{GtkItemFactoryEntry}}]  a list of \verb{\link{GtkItemFactoryEntry}}s whose \code{callback} members
+   must by of type \verb{\link{GtkItemFactoryCallback1}}}
+\item{\verb{callback.data}}{[R object]  data passed to the callback functions of all entries}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

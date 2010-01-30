@@ -32,17 +32,17 @@
 \code{\link{gtkEntryCompletionGetPopupSingleMatch}(object)}\cr
 \code{gtkEntryCompletion()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkEntryCompletion}}
 \section{Interfaces}{GtkEntryCompletion implements
- \code{\link{GtkBuildable}} and  \code{\link{GtkCellLayout}}.}
-\section{Detailed Description}{\code{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
-\code{\link{GtkEntry}} to provide the completion functionality. It implements the
-\code{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the 
-\code{\link{GtkTreeView}} with completion matches. 
+ \verb{\link{GtkBuildable}} and  \verb{\link{GtkCellLayout}}.}
+\section{Detailed Description}{\verb{\link{GtkEntryCompletion}} is an auxiliary object to be used in conjunction with
+\verb{\link{GtkEntry}} to provide the completion functionality. It implements the
+\verb{\link{GtkCellLayout}} interface, to allow the user to add extra cells to the 
+\verb{\link{GtkTreeView}} with completion matches. 
   
 "Completion functionality" means that when the user modifies the text 
-in the entry, \code{\link{GtkEntryCompletion}} checks which rows in the model match 
+in the entry, \verb{\link{GtkEntryCompletion}} checks which rows in the model match 
 the current content of the entry, and displays a list of matches.
 By default, the matching is done by comparing the entry text 
 case-insensitively against the text column of the model (see 
@@ -58,11 +58,11 @@ and updating the entry in the signal handler. Note that you should return
 To add completion functionality to an entry, use \code{\link{gtkEntrySetCompletion}}.
   
 In addition to regular completion matches, which will be inserted into the
-entry when they are selected, \code{\link{GtkEntryCompletion}} also allows to display 
+entry when they are selected, \verb{\link{GtkEntryCompletion}} also allows to display 
 "actions" in the popup window. Their appearance is similar to menuitems, 
 to differentiate them clearly from completion strings. When an action is 
 selected, the ::action-activated signal is emitted.}
-\section{Structures}{\describe{\item{\code{GtkEntryCompletion}}{
+\section{Structures}{\describe{\item{\verb{GtkEntryCompletion}}{
 The GtkEntryCompletion struct contains only private data.
 
 }}}
@@ -75,9 +75,9 @@ A function which decides whether the row indicated by \code{iter} matches a give
 to the unmodified key via \code{gtk_entry_get_text (GTK_ENTRY (gtk_entry_completion_get_entry (}.
 
 \describe{
-\item{\code{completion}}{[\code{\link{GtkEntryCompletion}}] the \code{\link{GtkEntryCompletion}}}
+\item{\code{completion}}{[\verb{\link{GtkEntryCompletion}}] the \verb{\link{GtkEntryCompletion}}}
 \item{\code{key}}{[character] the string to match, normalized and case-folded}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}] a \code{\link{GtkTreeIter}} indicating the row to match}
+\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] a \verb{\link{GtkTreeIter}} indicating the row to match}
 \item{\code{user.data}}{[R object] user data given to \code{\link{gtkEntryCompletionSetMatchFunc}}}
 }
 
@@ -91,7 +91,7 @@ Gets emitted when an action is activated.
   Since  2.4
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkEntryCompletion}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
 \item{\code{index}}{[integer]  the index of the activated action}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -107,9 +107,9 @@ pointed to by \code{iter}.
   Since  2.12
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} containing the matches}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a \code{\link{GtkTreeIter}} positioned at the selected match}
+\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
+\item{\code{model}}{[\verb{\link{GtkTreeModel}}]  the \verb{\link{GtkTreeModel}} containing the matches}
+\item{\code{iter}}{[\verb{\link{GtkTreeIter}}]  a \verb{\link{GtkTreeIter}} positioned at the selected match}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -123,13 +123,13 @@ whole prefix and select the newly inserted part.
   
 Applications may connect to this signal in order to insert only a
 smaller part of the \code{prefix} into the entry - e.g. the entry used in
-the \code{\link{GtkFileChooser}} inserts only the part of the prefix up to the 
+the \verb{\link{GtkFileChooser}} inserts only the part of the prefix up to the 
 next '/'.  
 
   Since  2.6
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkEntryCompletion}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
 \item{\code{prefix}}{[character]  the common prefix of all possible completions}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -146,9 +146,9 @@ pointed to by \code{iter}.
   Since  2.4
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkEntryCompletion}}]  the object which received the signal}
-\item{\code{model}}{[\code{\link{GtkTreeModel}}]  the \code{\link{GtkTreeModel}} containing the matches}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  a \code{\link{GtkTreeIter}} positioned at the selected match}
+\item{\code{widget}}{[\verb{\link{GtkEntryCompletion}}]  the object which received the signal}
+\item{\code{model}}{[\verb{\link{GtkTreeModel}}]  the \verb{\link{GtkTreeModel}} containing the matches}
+\item{\code{iter}}{[\verb{\link{GtkTreeIter}}]  a \verb{\link{GtkTreeIter}} positioned at the selected match}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -157,7 +157,7 @@ pointed to by \code{iter}.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{inline-completion} [logical : Read / Write]}{
+\item{\verb{inline-completion} [logical : Read / Write]}{
 
 Determines whether the common prefix of the possible completions 
 should be inserted automatically in the entry. Note that this
@@ -167,7 +167,7 @@ match function.
   Default value: FALSE  Since  2.6
 
 }
-\item{\code{inline-selection} [logical : Read / Write]}{
+\item{\verb{inline-selection} [logical : Read / Write]}{
 
 Determines whether the possible completions on the popup
 will appear in the entry as you navigate through them.  
@@ -175,17 +175,17 @@ will appear in the entry as you navigate through them.
   Default value: FALSE  Since  2.12
 
 }
-\item{\code{minimum-key-length} [integer : Read / Write]}{
+\item{\verb{minimum-key-length} [integer : Read / Write]}{
 
 Minimum length of the search key in order to look up matches.  Allowed values: >= 0  Default value: 1
 
 }
-\item{\code{model} [\code{\link{GtkTreeModel}} : Read / Write]}{
+\item{\verb{model} [\verb{\link{GtkTreeModel}} : *         : Read / Write]}{
 
 The model to find matches in.
 
 }
-\item{\code{popup-completion} [logical : Read / Write]}{
+\item{\verb{popup-completion} [logical : Read / Write]}{
 
 Determines whether the possible completions should be 
 shown in a popup window.  
@@ -193,7 +193,7 @@ shown in a popup window.
   Default value: TRUE  Since  2.6
 
 }
-\item{\code{popup-set-width} [logical : Read / Write]}{
+\item{\verb{popup-set-width} [logical : Read / Write]}{
 
 Determines whether the completions popup window will be
 resized to the width of the entry.  
@@ -201,7 +201,7 @@ resized to the width of the entry.
   Default value: TRUE  Since  2.8
 
 }
-\item{\code{popup-single-match} [logical : Read / Write]}{
+\item{\verb{popup-single-match} [logical : Read / Write]}{
 
 Determines whether the completions popup window will shown
 for a single possible completion. You probably want to set
@@ -212,7 +212,7 @@ completion.
   Default value: TRUE  Since  2.8
 
 }
-\item{\code{text-column} [integer : Read / Write]}{
+\item{\verb{text-column} [integer : Read / Write]}{
 
 The column of the model containing the strings.
 Note that the strings must be UTF-8.  

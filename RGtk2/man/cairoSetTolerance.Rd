@@ -10,8 +10,8 @@ appearance. (Reducing the value from the default value of 0.1
 is unlikely to improve appearance significantly.)}
 \usage{cairoSetTolerance(cr, tolerance)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
-\item{\code{tolerance}}{[numeric]  the tolerance, in device units (typically pixels)}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
+\item{\verb{tolerance}}{[numeric]  the tolerance, in device units (typically pixels)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

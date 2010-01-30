@@ -7,9 +7,9 @@ the coordinates by \code{tx} and \code{ty}, then apply the original transformati
 to the coordinates.}
 \usage{cairoMatrixTranslate(matrix, tx, ty)}
 \arguments{
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}}}
-\item{\code{tx}}{[numeric]  amount to translate in the X direction}
-\item{\code{ty}}{[numeric]  amount to translate in the Y direction}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}}}
+\item{\verb{tx}}{[numeric]  amount to translate in the X direction}
+\item{\verb{ty}}{[numeric]  amount to translate in the Y direction}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

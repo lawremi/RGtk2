@@ -3,7 +3,7 @@
 \title{gtkPrintSettingsGetNCopies}
 \description{Gets the value of \code{GTK_PRINT_SETTINGS_N_COPIES}.}
 \usage{gtkPrintSettingsGetNCopies(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}}
 \details{  Since  2.10}
 \value{[integer]  the number of copies to print}
 \author{Derived by RGtkGen from GTK+ documentation}

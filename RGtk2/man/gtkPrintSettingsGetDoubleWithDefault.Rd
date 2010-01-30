@@ -6,9 +6,9 @@ the value that is associated with \code{key}, or \code{default.val}
 if the value does not represent a floating point number.}
 \usage{gtkPrintSettingsGetDoubleWithDefault(object, key, def)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
-\item{\code{def}}{[numeric]  the default value}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
+\item{\verb{def}}{[numeric]  the default value}
 }
 \details{Floating point numbers are parsed with \code{gAsciiStrtod()}.  
 

@@ -8,11 +8,11 @@ scrolling.
 }
 \usage{gtkCTreeNodeMoveto(object, node, column, row.align, col.align)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] The node to be made visible.}
-\item{\code{column}}{[integer] The column to be made visible.}
-\item{\code{row.align}}{[numeric] Where in the window the row should appear.}
-\item{\code{col.align}}{[numeric] Where in the window the column should appear.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] The node to be made visible.}
+\item{\verb{column}}{[integer] The column to be made visible.}
+\item{\verb{row.align}}{[numeric] Where in the window the row should appear.}
+\item{\verb{col.align}}{[numeric] Where in the window the column should appear.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

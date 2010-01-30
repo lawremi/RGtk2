@@ -7,16 +7,16 @@ written incrementally to the stream represented by \code{write.func} and
 to simply direct the PostScript output to a named file.}
 \usage{cairoPsSurfaceCreateForStream(write.func, closure, width.in.points, height.in.points)}
 \arguments{
-\item{\code{write.func}}{[\code{\link{CairoWriteFunc}}]  a \code{\link{CairoWriteFunc}} to accept the output data}
-\item{\code{closure}}{[R object]  the closure argument for \code{write.func}}
-\item{\code{width.in.points}}{[numeric]  width of the surface, in points (1 point == 1/72.0 inch)}
-\item{\code{height.in.points}}{[numeric]  height of the surface, in points (1 point == 1/72.0 inch)}
+\item{\verb{write.func}}{[\verb{\link{CairoWriteFunc}}]  a \verb{\link{CairoWriteFunc}} to accept the output data}
+\item{\verb{closure}}{[R object]  the closure argument for \code{write.func}}
+\item{\verb{width.in.points}}{[numeric]  width of the surface, in points (1 point == 1/72.0 inch)}
+\item{\verb{height.in.points}}{[numeric]  height of the surface, in points (1 point == 1/72.0 inch)}
 }
 \details{Note that the size of individual pages of the PostScript
 output can vary. See \code{\link{cairoPsSurfaceSetSize}}.  
 
   Since  1.2}
-\value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
+\value{[\verb{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 

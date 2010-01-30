@@ -8,11 +8,11 @@ belonging to format will be 0. The contents of bits within a pixel,
 but not belonging to the given format are undefined).}
 \usage{cairoImageSurfaceCreate(format, width, height)}
 \arguments{
-\item{\code{format}}{[\code{\link{CairoFormat}}]  format of pixels in the surface to create}
-\item{\code{width}}{[integer]  width of the surface, in pixels}
-\item{\code{height}}{[integer]  height of the surface, in pixels}
+\item{\verb{format}}{[\verb{\link{CairoFormat}}]  format of pixels in the surface to create}
+\item{\verb{width}}{[integer]  width of the surface, in pixels}
+\item{\verb{height}}{[integer]  height of the surface, in pixels}
 }
-\value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
+\value{[\verb{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 

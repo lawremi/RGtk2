@@ -16,31 +16,31 @@
 \code{\link{gtkToggleButtonSetInconsistent}(object, setting)}\cr
 \code{gtkToggleButton(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkToggleButton
-                                             +----\link{GtkCheckButton}}}
+                                             +----GtkCheckButton}}
 \section{Interfaces}{GtkToggleButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkToggleButton}} is a \code{\link{GtkButton}} which will remain 'pressed-in' when
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkToggleButton}} is a \verb{\link{GtkButton}} which will remain 'pressed-in' when
 clicked. Clicking again will cause the toggle button to return to its
 normal state.
   
 A toggle button is created by calling either \code{\link{gtkToggleButtonNew}} or
 \code{\link{gtkToggleButtonNewWithLabel}}. If using the former, it is advisable to
-pack a widget, (such as a \code{\link{GtkLabel}} and/or a \code{\link{GtkPixmap}}), into the toggle
-button's container. (See \code{\link{GtkButton}} for more information).
+pack a widget, (such as a \verb{\link{GtkLabel}} and/or a \verb{\link{GtkPixmap}}), into the toggle
+button's container. (See \verb{\link{GtkButton}} for more information).
   
-The state of a \code{\link{GtkToggleButton}} can be set specifically using
+The state of a \verb{\link{GtkToggleButton}} can be set specifically using
 \code{\link{gtkToggleButtonSetActive}}, and retrieved using
 \code{\link{gtkToggleButtonGetActive}}.
   
-To simply switch the state of a toggle button, use gtk\_toggle\_button\_toggled.
+To simply switch the state of a toggle button, use gtk_toggle_button_toggled.
   
  \emph{Creating two   \code{GtkToggleButton}   widgets.}
 \preformatted{
@@ -63,36 +63,36 @@ make_toggles <- function() {
   dialog$showAll()
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkToggleButton}}{
-The \code{\link{GtkToggleButton}} struct contains private data only, and should be manipulated using the functions below.
+\section{Structures}{\describe{\item{\verb{GtkToggleButton}}{
+The \verb{\link{GtkToggleButton}} struct contains private data only, and should be manipulated using the functions below.
 
-\describe{\item{\code{drawIndicator}}{[logical] }}
+\describe{\item{\verb{drawIndicator}}{[logical] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkToggleButton} is the result of collapsing the constructors of \code{GtkToggleButton} (\code{\link{gtkToggleButtonNew}}, \code{\link{gtkToggleButtonNewWithLabel}}, \code{\link{gtkToggleButtonNewWithMnemonic}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Signals}{\describe{\item{\code{toggled(togglebutton, user.data)}}{
 Should be connected if you wish to perform an action whenever the
-\code{\link{GtkToggleButton}}'s state is changed.
+\verb{\link{GtkToggleButton}}'s state is changed.
 
 \describe{
-\item{\code{togglebutton}}{[\code{\link{GtkToggleButton}}] the object which received the signal.}
+\item{\code{togglebutton}}{[\verb{\link{GtkToggleButton}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{active} [logical : Read / Write]}{
+\item{\verb{active} [logical : Read / Write]}{
 
 If the toggle button should be pressed in or not.  Default value: FALSE
 
 }
-\item{\code{draw-indicator} [logical : Read / Write]}{
+\item{\verb{draw-indicator} [logical : Read / Write]}{
 
 If the toggle part of the button is displayed.  Default value: FALSE
 
 }
-\item{\code{inconsistent} [logical : Read / Write]}{
+\item{\verb{inconsistent} [logical : Read / Write]}{
 
 If the toggle button is in an "in between" state.  Default value: FALSE
 

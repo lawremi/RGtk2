@@ -5,7 +5,7 @@
 is finished, either successfully (\code{GTK_PRINT_STATUS_FINISHED})
 or unsuccessfully (\code{GTK_PRINT_STATUS_FINISHED_ABORTED}).}
 \usage{gtkPrintOperationIsFinished(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}}
 \details{Note: when you enable print status tracking the print operation
 can be in a non-finished state even after done has been called, as
 the operation status then tracks the print job status on the printer.  

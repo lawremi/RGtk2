@@ -8,8 +8,8 @@ absolute progress value.
 }
 \usage{gtkProgressGetPercentageFromValue(object, value)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}
-\item{\code{value}}{[numeric] an absolute progress value.}
+\item{\verb{object}}{[\verb{\link{GtkProgress}}] a \verb{\link{GtkProgress}}.}
+\item{\verb{value}}{[numeric] an absolute progress value.}
 }
 \value{[numeric] a number between 0.0 and 1.0 indicating the percentage complete
 represented by \code{value}.}

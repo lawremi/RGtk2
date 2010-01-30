@@ -4,7 +4,7 @@
 \description{Returns the amount, in pixels, of extra indentation for child levels
 in \code{tree.view}.}
 \usage{gtkTreeViewGetLevelIndentation(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}.}}
 \details{  Since  2.12}
 \value{[integer]  the amount of extra indentation for child levels in
 \code{tree.view}.  A return value of 0 means that this feature is disabled.}

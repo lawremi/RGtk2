@@ -25,10 +25,10 @@
 \code{\link{gdkRgbSetVerbose}(verbose)}\cr
 }
 \section{Detailed Description}{GdkRGB is a low-level module which renders RGB, grayscale, and indexed
-colormap images to a \code{\link{GdkDrawable}}. It does this as efficiently as
+colormap images to a \verb{\link{GdkDrawable}}. It does this as efficiently as
 possible, handling issues such as colormaps, visuals, dithering,
 temporary buffers, and so on. Most code should use the higher-level
-\code{\link{GdkPixbuf}} features in place of this module; for example,
+\verb{\link{GdkPixbuf}} features in place of this module; for example,
 \code{\link{gdkDrawPixbuf}} uses GdkRGB in its implementation.
   
 GdkRGB allocates a color cube to use when rendering images.  You can
@@ -51,7 +51,7 @@ in cases where a "better" visual than the default is available.
 If GDK is built with the Sun mediaLib library, the GdkRGB functions are
 accelerated using mediaLib, which provides hardware acceleration on Intel,
 AMD, and Sparc chipsets.  If desired, mediaLib support can be turned off
-by setting the GDK\_DISABLE\_MEDIALIB environment variable.
+by setting the GDK_DISABLE_MEDIALIB environment variable.
   
  \emph{A simple example program using GdkRGB}
 \preformatted{
@@ -90,10 +90,10 @@ on_darea_expose <- function(widget, event, buf)
                   0, 0, IMAGE_WIDTH, IMAGE_HEIGHT, "max", buf, IMAGE_WIDTH * 3)
 }
 }}
-\section{Structures}{\describe{\item{\code{GdkRgbCmap}}{
+\section{Structures}{\describe{\item{\verb{GdkRgbCmap}}{
 A private data structure which maps color indices to actual RGB
 colors. This is used only for \code{\link{gdkDrawIndexedImage}}.
-\strong{\code{GdkRgbCmap} is a \link{transparent-type}.}
+\strong{\verb{GdkRgbCmap} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{colors}}{[numeric] The colors, represented as 0xRRGGBB integer values.}
@@ -101,7 +101,7 @@ colors. This is used only for \code{\link{gdkDrawIndexedImage}}.
 }
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{GdkRgbDither}}{
+\section{Enums and Flags}{\describe{\item{\verb{GdkRgbDither}}{
 Selects whether or not GdkRGB applies dithering
 to the image on display. 
   
@@ -109,10 +109,10 @@ Since GdkRGB currently only handles images with 8 bits per component,
 dithering on 24 bit per pixel displays is a moot point.
 
 \describe{
-\item{\code{none}}{Never use dithering.}
-\item{\code{normal}}{Use dithering in 8 bits per pixel (and below)
+\item{\verb{none}}{Never use dithering.}
+\item{\verb{normal}}{Use dithering in 8 bits per pixel (and below)
 only.}
-\item{\code{max}}{Use dithering in 16 bits per pixel and below.}
+\item{\verb{max}}{Use dithering in 16 bits per pixel and below.}
 }
 
 }}}

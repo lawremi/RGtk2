@@ -4,10 +4,10 @@
 \description{\strong{WARNING: }}
 \usage{gtkListStoreIterIsValid(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkListStore}}]  A \code{\link{GtkListStore}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkListStore}}]  A \verb{\link{GtkListStore}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
 }
-\details{Checks if the given iter is a valid iter for this \code{\link{GtkListStore}}.  
+\details{Checks if the given iter is a valid iter for this \verb{\link{GtkListStore}}.  
 
   Since  2.2}
 \value{[logical] \code{TRUE} if the iter is valid, \code{FALSE} if the iter is invalid.}

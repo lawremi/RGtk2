@@ -7,7 +7,7 @@ indication of whether AtkSelectionIface is implemented, they should
 use type checking/interface checking functions or the
 \code{atkGetAccessibleValue()} convenience method.}
 \usage{atkSelectionGetSelectionCount(object)}
-\arguments{\item{\code{object}}{[\code{\link{AtkSelection}}]  a \code{\link{GObject}} instance that implements AtkSelectionIface}}
+\arguments{\item{\verb{object}}{[\verb{\link{AtkSelection}}]  a \verb{\link{GObject}} instance that implements AtkSelectionIface}}
 \value{[integer]  a gint representing the number of items selected, or 0
 if \code{selection} does not implement this interface.}
 \author{Derived by RGtkGen from GTK+ documentation}

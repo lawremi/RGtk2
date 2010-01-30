@@ -7,9 +7,9 @@
 }
 \usage{gtkCTreeNodeNth(object, row)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{row}}{[numeric] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{row}}{[numeric] }
 }
-\value{[\code{\link{GtkCTreeNode}}] The node corresponding to the \code{row} th row.}
+\value{[\verb{\link{GtkCTreeNode}}] The node corresponding to the \code{row} th row.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

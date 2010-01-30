@@ -6,11 +6,11 @@ provided; this pointer can be accessed when later
 rendering the glyph.}
 \usage{pangoAttrShapeNewWithData(ink.rect, logical.rect, data)}
 \arguments{
-\item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]      ink rectangle to assign to each character}
-\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  logical rectangle to assign to each character}
-\item{\code{data}}{[R object]          user data pointer}
+\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]      ink rectangle to assign to each character}
+\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  logical rectangle to assign to each character}
+\item{\verb{data}}{[R object]          user data pointer}
 }
 \details{  Since  1.8}
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
+\value{[\verb{\link{PangoAttribute}}]  the newly allocated \verb{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

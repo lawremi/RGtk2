@@ -20,19 +20,19 @@
 \code{\link{gtkFontButtonGetTitle}(object)}\cr
 \code{gtkFontButton(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkFontButton}}
 \section{Interfaces}{GtkFontButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkFontButton}} is a button which displays the currently selected font an allows to open a font selection 
 dialog to change the font. It is suitable widget for selecting a font in a preference dialog.}
-\section{Structures}{\describe{\item{\code{GtkFontButton}}{
+\section{Structures}{\describe{\item{\verb{GtkFontButton}}{
 The GtkFontButton struct has only private members and should not be used
 directly.
 
@@ -50,21 +50,21 @@ as well, use the notify::font-name signal.
   Since  2.4
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkFontButton}}]  the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkFontButton}}]  the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{font-name} [character : Read / Write]}{
+\item{\verb{font-name} [character : *                : Read / Write]}{
 
 The name of the currently selected font.  
 
   Default value: "Sans 12"  Since  2.4
 
 }
-\item{\code{show-size} [logical : Read / Write]}{
+\item{\verb{show-size} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the selected font size will be shown 
 in the label. For a more WYSIWYG way to show the selected size, see the 
@@ -73,7 +73,7 @@ in the label. For a more WYSIWYG way to show the selected size, see the
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{show-style} [logical : Read / Write]}{
+\item{\verb{show-style} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the name of the selected font style 
 will be shown in the label. For a more WYSIWYG way to show the selected 
@@ -82,14 +82,14 @@ style, see the ::use-font property.
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{title} [character : Read / Write]}{
+\item{\verb{title} [character : *                : Read / Write]}{
 
 The title of the font selection dialog.  
 
   Default value: "Pick a Font"  Since  2.4
 
 }
-\item{\code{use-font} [logical : Read / Write]}{
+\item{\verb{use-font} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the label will be drawn 
 in the selected font.  
@@ -97,7 +97,7 @@ in the selected font.
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{use-size} [logical : Read / Write]}{
+\item{\verb{use-size} [logical : Read / Write]}{
 
 If this property is set to \code{TRUE}, the label will be drawn 
 with the selected font size.  
@@ -109,7 +109,7 @@ with the selected font size.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkFontButton.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkFontSelectionDialog}}
-\code{\link{GtkColorButton}}
+\verb{\link{GtkFontSelectionDialog}}
+\verb{\link{GtkColorButton}}
 }
 \keyword{internal}

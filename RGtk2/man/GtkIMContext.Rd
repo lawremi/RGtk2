@@ -16,11 +16,11 @@
 \code{\link{gtkIMContextDeleteSurrounding}(object, offset, n.chars)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkIMContext
-         +----\link{GtkIMContextSimple}
-         +----\link{GtkIMMulticontext}}}
-\section{Structures}{\describe{\item{\code{GtkIMContext}}{
+         +----GtkIMContextSimple
+         +----GtkIMMulticontext}}
+\section{Structures}{\describe{\item{\verb{GtkIMContext}}{
 \emph{undocumented
 }
 
@@ -31,7 +31,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{arg1}}{[character] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -43,7 +43,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -56,7 +56,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -67,7 +67,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -78,7 +78,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -89,7 +89,7 @@
 }
 
 \describe{
-\item{\code{imcontext}}{[\code{\link{GtkIMContext}}] the object which received the signal.}
+\item{\code{imcontext}}{[\verb{\link{GtkIMContext}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

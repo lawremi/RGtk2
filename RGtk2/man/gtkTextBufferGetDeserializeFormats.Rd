@@ -5,13 +5,13 @@
 with \code{buffer} using \code{\link{gtkTextBufferRegisterDeserializeFormat}} or
 \code{\link{gtkTextBufferRegisterDeserializeTagset}}}
 \usage{gtkTextBufferGetDeserializeFormats(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}}
 \details{  Since  2.10}
 \value{
 A list containing the following elements:
-\item{retval}{[\code{\link{GdkAtom}}]  a list of \code{\link{GdkAtom}}s representing the registered
+\item{retval}{[\verb{\link{GdkAtom}}]  a list of \verb{\link{GdkAtom}}s representing the registered
               formats.}
-\item{\code{n.formats}}{[integer]  return location for the number of formats}
+\item{\verb{n.formats}}{[integer]  return location for the number of formats}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

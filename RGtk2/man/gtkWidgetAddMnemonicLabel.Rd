@@ -9,8 +9,8 @@ its internal state at this point as well, by using a connection
 to the \code{\link{gtkWidgetDestroy}} signal or a weak notifier.}
 \usage{gtkWidgetAddMnemonicLabel(object, label)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{label}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} that acts as a mnemonic label for \code{widget}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{label}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} that acts as a mnemonic label for \code{widget}}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

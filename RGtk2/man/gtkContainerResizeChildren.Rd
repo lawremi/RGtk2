@@ -4,6 +4,6 @@
 \description{\emph{undocumented
 }}
 \usage{gtkContainerResizeChildren(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkContainer}}] }}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkContainer}}] }}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

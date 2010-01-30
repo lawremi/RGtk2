@@ -5,8 +5,8 @@
 2 or more editable and activatable cells.}
 \usage{gtkTreeViewColumnFocusCell(object, cell)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}}
+\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}}
+\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}}}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

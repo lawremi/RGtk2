@@ -8,8 +8,8 @@ item factory.
 }
 \usage{gtkItemFactoryDeleteEntries(object, entries)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}
-\item{\code{entries}}{[\code{\link{GtkItemFactoryEntry}}]  a list of \code{\link{GtkItemFactoryEntry}}s }
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}
+\item{\verb{entries}}{[\verb{\link{GtkItemFactoryEntry}}]  a list of \verb{\link{GtkItemFactoryEntry}}s }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

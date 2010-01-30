@@ -5,6 +5,6 @@
 valid character in the buffer. \code{\link{gtkTextIterGetChar}} called on the
 end iterator returns 0, which is convenient for writing loops.}
 \usage{gtkTextIterForwardToEnd(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

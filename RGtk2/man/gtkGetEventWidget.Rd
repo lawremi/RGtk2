@@ -5,7 +5,7 @@
 returns \code{NULL}, otherwise returns the widget that received the event
 originally.}
 \usage{gtkGetEventWidget(event)}
-\arguments{\item{\code{event}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}}}}
-\value{[\code{\link{GtkWidget}}]  the widget that originally received \code{event}, or \code{NULL}}
+\arguments{\item{\verb{event}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}}}}
+\value{[\verb{\link{GtkWidget}}]  the widget that originally received \code{event}, or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,8 @@ key takes a lot of time and will come up with meaningless results anyway
 (ie, a too large dataset).}
 \usage{gtkEntryCompletionSetMinimumKeyLength(object, length)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  A \code{\link{GtkEntryCompletion}}.}
-\item{\code{length}}{[integer]  The minimum length of the key in order to start completing.}
+\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  A \verb{\link{GtkEntryCompletion}}.}
+\item{\verb{length}}{[integer]  The minimum length of the key in order to start completing.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

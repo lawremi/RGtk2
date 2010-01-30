@@ -9,8 +9,8 @@ complex font matrix can be used to shear the font
 or stretch it unequally along the two axes}
 \usage{cairoSetFontMatrix(cr, matrix)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
-\item{\code{matrix}}{[\code{\link{CairoMatrix}}]  a \code{\link{CairoMatrix}} describing a transform to be applied to
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
+\item{\verb{matrix}}{[\verb{\link{CairoMatrix}}]  a \verb{\link{CairoMatrix}} describing a transform to be applied to
 the current font.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

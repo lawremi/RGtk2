@@ -1,10 +1,10 @@
 \alias{gtkClipboardGetDisplay}
 \name{gtkClipboardGetDisplay}
 \title{gtkClipboardGetDisplay}
-\description{Gets the \code{\link{GdkDisplay}} associated with \code{clipboard}}
+\description{Gets the \verb{\link{GdkDisplay}} associated with \code{clipboard}}
 \usage{gtkClipboardGetDisplay(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}}
 \details{  Since  2.2}
-\value{[\code{\link{GdkDisplay}}]  the \code{\link{GdkDisplay}} associated with \code{clipboard}}
+\value{[\verb{\link{GdkDisplay}}]  the \verb{\link{GdkDisplay}} associated with \code{clipboard}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

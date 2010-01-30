@@ -4,7 +4,7 @@
 \description{Returns whether the button grabs focus when it is clicked with the mouse.
 See \code{\link{gtkFileChooserButtonSetFocusOnClick}}.}
 \usage{gtkFileChooserButtonGetFocusOnClick(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileChooserButton}}]  a \code{\link{GtkFileChooserButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileChooserButton}}]  a \verb{\link{GtkFileChooserButton}}}}
 \details{  Since  2.10}
 \value{[logical] \code{TRUE} if the button grabs focus when it is clicked with
               the mouse.}

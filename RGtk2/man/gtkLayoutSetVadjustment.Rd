@@ -4,9 +4,9 @@
 \description{Sets the vertical scroll adjustment for the layout.}
 \usage{gtkLayoutSetVadjustment(object, adjustment = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkLayout}}]  a \code{\link{GtkLayout}}}
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}]  new scroll adjustment}
+\item{\verb{object}}{[\verb{\link{GtkLayout}}]  a \verb{\link{GtkLayout}}}
+\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  new scroll adjustment}
 }
-\details{See \code{\link{GtkScrolledWindow}}, \code{\link{GtkScrollbar}}, \code{\link{GtkAdjustment}} for details.  }
+\details{See \verb{\link{GtkScrolledWindow}}, \verb{\link{GtkScrollbar}}, \verb{\link{GtkAdjustment}} for details.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

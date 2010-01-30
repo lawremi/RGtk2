@@ -14,8 +14,8 @@ invokes the same action without posting the component or its
 enclosing menus or dialogs.}
 \usage{atkActionGetKeybinding(object, i)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkAction}}]  a \code{\link{GObject}} instance that implements AtkActionIface}
-\item{\code{i}}{[integer]  the action index corresponding to the action to be performed }
+\item{\verb{object}}{[\verb{\link{AtkAction}}]  a \verb{\link{GObject}} instance that implements AtkActionIface}
+\item{\verb{i}}{[integer]  the action index corresponding to the action to be performed }
 }
 \value{[character] a string representing the available keybindings, or \code{NULL}
 if there is no keybinding for this action.}

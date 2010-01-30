@@ -4,8 +4,8 @@
 \description{Sets the base gravity for the context.}
 \usage{pangoContextSetBaseGravity(object, gravity)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{gravity}}{[\code{\link{PangoGravity}}]  the new base gravity}
+\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{gravity}}{[\code{\link{PangoGravity}}]  the new base gravity}
 }
 \details{The base gravity is used in laying vertical text out.  
 

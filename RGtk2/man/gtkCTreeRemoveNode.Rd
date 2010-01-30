@@ -7,8 +7,8 @@ Remove the node and all nodes underneath it from the tree.
 }
 \usage{gtkCTreeRemoveNode(object, node)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] The widget.}
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] The node to be removed.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] The widget.}
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] The node to be removed.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

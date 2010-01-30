@@ -6,9 +6,9 @@ merges it with the current contents of \code{self}. An enclosing <ui>
 element is added if it is missing.}
 \usage{gtkUIManagerAddUiFromString(object, buffer, length = -1, .errwarn = TRUE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}} object}
-\item{\code{buffer}}{[character]  the string to parse}
-\item{\code{length}}{[integer]  the length of \code{buffer} (may be -1 if \code{buffer} is nul-terminated)}
+\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}} object}
+\item{\verb{buffer}}{[character]  the string to parse}
+\item{\verb{length}}{[integer]  the length of \code{buffer} (may be -1 if \code{buffer} is nul-terminated)}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.4}
@@ -17,7 +17,7 @@ A list containing the following elements:
 \item{retval}{[numeric]  The merge id for the merged UI. The merge id can be used
   to unmerge the UI with \code{\link{gtkUIManagerRemoveUi}}. If an error occurred,
   the return value is 0.}
-\item{\code{error}}{[\code{\link{GError}}]  return location for an error}
+\item{\verb{error}}{[\verb{\link{GError}}]  return location for an error}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

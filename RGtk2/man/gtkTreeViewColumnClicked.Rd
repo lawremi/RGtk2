@@ -4,6 +4,6 @@
 \description{Emits the "clicked" signal on the column.  This function will only work if
 \code{tree.column} is clickable.}
 \usage{gtkTreeViewColumnClicked(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

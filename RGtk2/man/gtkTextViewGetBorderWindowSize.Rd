@@ -5,8 +5,8 @@
 \code{\link{gtkTextViewSetBorderWindowSize}}.}
 \usage{gtkTextViewGetBorderWindowSize(object, type)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{type}}{[\code{\link{GtkTextWindowType}}]  window to return size from}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{type}}{[\code{\link{GtkTextWindowType}}]  window to return size from}
 }
 \value{[integer]  width of window}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -16,9 +16,9 @@
 \code{\link{gtkTooltipsGetInfoFromTipWindow}(object)}\cr
 \code{gtkTooltips()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkTooltips}}
 \section{Detailed Description}{Tooltips are the messages that appear next to a widget when the mouse pointer is held over it for a short amount of time. They are especially helpful for adding more verbose descriptions of things such as buttons in a toolbar.
   
@@ -26,12 +26,12 @@ An individual tooltip belongs to a group of tooltips. A group is created with a 
   
 The length of time the user must keep the mouse over a widget before the tip is shown, can be altered with \code{\link{gtkTooltipsSetDelay}}. This is set on a 'per group of tooltips' basis.
   
-To assign a tip to a particular \code{\link{GtkWidget}}, \code{\link{gtkTooltipsSetTip}} is used.
+To assign a tip to a particular \verb{\link{GtkWidget}}, \code{\link{gtkTooltipsSetTip}} is used.
   \strong{PLEASE NOTE:} Tooltips can only be set on widgets which have their own X window and
 receive enter and leave events.
 To check if a widget has its own window use \code{gtkWidgetNoWindow()}.
 To add a tooltip to a widget that doesn't have its own window, place the
-widget inside a \code{\link{GtkEventBox}} and add a tooltip to that instead.  
+widget inside a \verb{\link{GtkEventBox}} and add a tooltip to that instead.  
 The default appearance of all tooltips in a program is determined by the current GTK+ theme that the user has selected.
   
 Information about the tooltip (if any) associated with an arbitrary widget can be retrieved using \code{\link{gtkTooltipsDataGet}}.
@@ -65,14 +65,14 @@ button_bar_tips$setTip(save_button,
                              "a filename.")) 
 }}
 \section{Structures}{\describe{
-\item{\code{GtkTooltips}}{
+\item{\verb{GtkTooltips}}{
 \strong{WARNING: \code{GtkTooltips} is deprecated and should not be used in newly-written code.}
 Holds information about a group of tooltips. Fields should be changed using the functions provided, rather than directly accessing the struct's members.
 
 }
-\item{\code{GtkTooltipsData}}{
+\item{\verb{GtkTooltipsData}}{
 \strong{WARNING: \code{GtkTooltipsData} has been deprecated since version 2.12 and should not be used in newly-written code. }
-\code{tooltips} is the \code{\link{GtkTooltips}} group that this tooltip belongs to. \code{widget} is the \code{\link{GtkWidget}} that this tooltip data is associated with. \code{tip_text} is a string containing the tooltip message itself.  \code{tip_private} is a string that is not shown as the default tooltip. Instead, this message may be more informative and go towards forming a context-sensitive help system for your application. (FIXME: how to actually "switch on" private tips?)
+\code{tooltips} is the \verb{\link{GtkTooltips}} group that this tooltip belongs to. \code{widget} is the \verb{\link{GtkWidget}} that this tooltip data is associated with. \code{tip_text} is a string containing the tooltip message itself.  \code{tip_private} is a string that is not shown as the default tooltip. Instead, this message may be more informative and go towards forming a context-sensitive help system for your application. (FIXME: how to actually "switch on" private tips?)
 
 }
 }}

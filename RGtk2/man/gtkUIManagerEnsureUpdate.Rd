@@ -3,8 +3,8 @@
 \title{gtkUIManagerEnsureUpdate}
 \description{Makes sure that all pending updates to the UI have been completed.}
 \usage{gtkUIManagerEnsureUpdate(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}}}}
-\details{This may occasionally be necessary, since \code{\link{GtkUIManager}} updates the 
+\arguments{\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}}}}
+\details{This may occasionally be necessary, since \verb{\link{GtkUIManager}} updates the 
 UI in an idle function. A typical example where this function is
 useful is to enforce that the menubar and toolbar have been added to 
 the main window before showing it:

@@ -4,10 +4,10 @@
 \description{Constructs the union of the two sets.}
 \usage{atkStateSetOrSets(object, compare.set)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkStateSet}}]  an \code{\link{AtkStateSet}}}
-\item{\code{compare.set}}{[\code{\link{AtkStateSet}}]  another \code{\link{AtkStateSet}}}
+\item{\verb{object}}{[\verb{\link{AtkStateSet}}]  an \verb{\link{AtkStateSet}}}
+\item{\verb{compare.set}}{[\verb{\link{AtkStateSet}}]  another \verb{\link{AtkStateSet}}}
 }
-\value{[\code{\link{AtkStateSet}}]  a new \code{\link{AtkStateSet}} which is the union of the two sets,
+\value{[\verb{\link{AtkStateSet}}]  a new \verb{\link{AtkStateSet}} which is the union of the two sets,
 returning \code{NULL} is empty.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

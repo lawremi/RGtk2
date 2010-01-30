@@ -7,8 +7,8 @@ can use this information to handle modal windows in a special
 way.}
 \usage{gdkWindowSetModalHint(object, modal)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  A toplevel \code{\link{GdkWindow}}}
-\item{\code{modal}}{[logical] \code{TRUE} if the window is modal, \code{FALSE} otherwise.}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  A toplevel \verb{\link{GdkWindow}}}
+\item{\verb{modal}}{[logical] \code{TRUE} if the window is modal, \code{FALSE} otherwise.}
 }
 \details{You should only use this on windows for which you have
 previously called \code{\link{gdkWindowSetTransientFor}}  }

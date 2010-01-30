@@ -32,7 +32,7 @@ X, the support for extended devices is done through the
 \dfn{XInput} extension.
   
 Because handling extended input devices may involve considerable
-overhead, they need to be turned on for each \code{\link{GdkWindow}}
+overhead, they need to be turned on for each \verb{\link{GdkWindow}}
 individually using \code{\link{gdkInputSetExtensionEvents}}.
 (Or, more typically, for GtkWidgets, using \code{\link{gtkWidgetSetExtensionEvents}}).
 As an additional complication, depending on the support from
@@ -72,7 +72,7 @@ settings.
   
 Various aspects of each device may be configured. The easiest way of
 creating a GUI to allow the user to configure such a device
-is to use the \code{\link{GtkInputDialog}} widget in GTK+. 
+is to use the \verb{\link{GtkInputDialog}} widget in GTK+. 
 However, even when using this widget, application writers
 will need to directly query and set the configuration parameters
 in order to save the state between invocations of the application.
@@ -94,7 +94,7 @@ modified in the future to accomodate devices that may have different
 sets of additional valuators than the pressure \code{xtilt}
 and \code{ytilt}.}
 \section{Structures}{\describe{
-\item{\code{GdkDevice}}{
+\item{\verb{GdkDevice}}{
 A \code{GdkDevice} structure contains
 a detailed description of an extended input device. All
 fields are read-only; but you can use \code{\link{gdkDeviceSetSource}},
@@ -102,44 +102,44 @@ fields are read-only; but you can use \code{\link{gdkDeviceSetSource}},
 to configure various aspects of the device.
 
 \describe{
-\item{\code{name}}{[character] the parent instance}
-\item{\code{source}}{[\code{\link{GdkInputSource}}] the name of this device.}
-\item{\code{mode}}{[\code{\link{GdkInputMode}}] the type of this device.}
-\item{\code{hasCursor}}{[logical] the mode of this device}
-\item{\code{numAxes}}{[integer] \code{TRUE} if the pointer follows device motion.}
-\item{\code{axes}}{[\code{\link{GdkDeviceAxis}}] the length of the \code{axes} list.}
-\item{\code{numKeys}}{[integer] a list of \code{\link{GdkDeviceAxis}}, describing the axes of this device.}
-\item{\code{keys}}{[\code{\link{GdkDeviceKey}}] the length of the \code{keys} list.}
+\item{\verb{name}}{[character] the parent instance}
+\item{\verb{source}}{[\code{\link{GdkInputSource}}] the name of this device.}
+\item{\verb{mode}}{[\code{\link{GdkInputMode}}] the type of this device.}
+\item{\verb{hasCursor}}{[logical] the mode of this device}
+\item{\verb{numAxes}}{[integer] \code{TRUE} if the pointer follows device motion.}
+\item{\verb{axes}}{[\verb{\link{GdkDeviceAxis}}] the length of the \code{axes} list.}
+\item{\verb{numKeys}}{[integer] a list of \verb{\link{GdkDeviceAxis}}, describing the axes of this device.}
+\item{\verb{keys}}{[\verb{\link{GdkDeviceKey}}] the length of the \code{keys} list.}
 }
 
 }
-\item{\code{GdkDeviceKey}}{
+\item{\verb{GdkDeviceKey}}{
 The \code{GdkDeviceKey} structure contains information
 about the mapping of one device function button onto a normal X key event. 
 It has the following fields:
 
 \describe{
-\item{\code{keyval}}{[numeric] the keyval to generate when the function button is pressed.
+\item{\verb{keyval}}{[numeric] the keyval to generate when the function button is pressed.
          If this is 0, no keypress will be generated.}
-\item{\code{modifiers}}{[\code{\link{GdkModifierType}}] the modifiers set for the generated key event.}
+\item{\verb{modifiers}}{[\code{\link{GdkModifierType}}] the modifiers set for the generated key event.}
 }
 
 }
-\item{\code{GdkDeviceAxis}}{
+\item{\verb{GdkDeviceAxis}}{
 The \code{GdkDeviceAxis} structure contains information
 about the range and mapping of a device axis.
 
 \describe{
-\item{\code{use}}{[\code{\link{GdkAxisUse}}] specifies how the axis is used.}
-\item{\code{min}}{[numeric] the minimal value that will be reported by this axis.}
-\item{\code{max}}{[numeric] the maximal value that will be reported by this axis.}
+\item{\verb{use}}{[\code{\link{GdkAxisUse}}] specifies how the axis is used.}
+\item{\verb{min}}{[numeric] the minimal value that will be reported by this axis.}
+\item{\verb{max}}{[numeric] the maximal value that will be reported by this axis.}
 }
 
 }
-\item{\code{GdkTimeCoord}}{
-The \code{\link{GdkTimeCoord}} structure stores a single event in a
+\item{\verb{GdkTimeCoord}}{
+The \verb{\link{GdkTimeCoord}} structure stores a single event in a
 motion history. It contains the following fields:
-\strong{\code{GdkTimeCoord} is a \link{transparent-type}.}
+\strong{\verb{GdkTimeCoord} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{time}}{[numeric] The timestamp for this event.}
@@ -149,59 +149,59 @@ motion history. It contains the following fields:
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkInputSource}}{
+\item{\verb{GdkInputSource}}{
 An enumeration describing the type of an input device
 in general terms.
 
 \describe{
-\item{\code{mouse}}{the device is a mouse. (This will be reported for the core
+\item{\verb{mouse}}{the device is a mouse. (This will be reported for the core
                     pointer, even if it is something else, such as a trackball.)}
-\item{\code{pen}}{the device is a stylus of a graphics tablet or similar device.}
-\item{\code{eraser}}{the device is an eraser. Typically, this would be the other end
+\item{\verb{pen}}{the device is a stylus of a graphics tablet or similar device.}
+\item{\verb{eraser}}{the device is an eraser. Typically, this would be the other end
                     of a stylus on a graphics tablet.}
-\item{\code{cursor}}{the device is a graphics tablet "puck" or similar device.}
+\item{\verb{cursor}}{the device is a graphics tablet "puck" or similar device.}
 }
 
 }
-\item{\code{GdkInputMode}}{
+\item{\verb{GdkInputMode}}{
 An enumeration that describes the mode of an input device.
 
 \describe{
-\item{\code{disabled}}{the device is disabled and will not report any events.}
-\item{\code{screen}}{the device is enabled. The device's coordinate space
+\item{\verb{disabled}}{the device is disabled and will not report any events.}
+\item{\verb{screen}}{the device is enabled. The device's coordinate space
                     maps to the entire screen.}
-\item{\code{window}}{the device is enabled. The device's coordinate space
+\item{\verb{window}}{the device is enabled. The device's coordinate space
                     is mapped to a single window. The manner in which this window
                     is chosen is undefined, but it will typically be the same
                     way in which the focus window for key events is determined.}
 }
 
 }
-\item{\code{GdkAxisUse}}{
+\item{\verb{GdkAxisUse}}{
 An enumeration describing the way in which a device
 axis (valuator) maps onto the predefined valuator
 types that GTK+ understands.
 
 \describe{
-\item{\code{ignore}}{the axis is ignored.}
-\item{\code{x}}{the axis is used as the x axis.}
-\item{\code{y}}{the axis is used as the y axis.}
-\item{\code{pressure}}{the axis is used for pressure information.}
-\item{\code{xtilt}}{the axis is used for x tilt information.}
-\item{\code{ytilt}}{the axis is used for x tilt information.}
-\item{\code{wheel}}{the axis is used for wheel information.}
-\item{\code{last}}{a constant equal to the numerically highest axis value.}
+\item{\verb{ignore}}{the axis is ignored.}
+\item{\verb{x}}{the axis is used as the x axis.}
+\item{\verb{y}}{the axis is used as the y axis.}
+\item{\verb{pressure}}{the axis is used for pressure information.}
+\item{\verb{xtilt}}{the axis is used for x tilt information.}
+\item{\verb{ytilt}}{the axis is used for x tilt information.}
+\item{\verb{wheel}}{the axis is used for wheel information.}
+\item{\verb{last}}{a constant equal to the numerically highest axis value.}
 }
 
 }
-\item{\code{GdkExtensionMode}}{
+\item{\verb{GdkExtensionMode}}{
 An enumeration used to specify which extension events
 are desired for a particular widget.
 
 \describe{
-\item{\code{none}}{no extension events are desired.}
-\item{\code{all}}{all extension events are desired.}
-\item{\code{cursor}}{extension events are desired only if a cursor
+\item{\verb{none}}{no extension events are desired.}
+\item{\verb{all}}{all extension events are desired.}
+\item{\verb{cursor}}{extension events are desired only if a cursor
                               will be displayed for the device.}
 }
 

@@ -4,7 +4,7 @@
 \description{Gets the timestamp (seconds from system's Epoch) when the resource
 was last modified.}
 \usage{gtkRecentInfoGetModified(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRecentInfo}}]  a \code{\link{GtkRecentInfo}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRecentInfo}}]  a \verb{\link{GtkRecentInfo}}}}
 \details{  Since  2.10}
 \value{[integer]  the number of seconds elapsed from system's Epoch when
   the resource was last modified, or -1 on failure.}

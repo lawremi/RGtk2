@@ -1,13 +1,13 @@
 \alias{gtkButtonSetRelief}
 \name{gtkButtonSetRelief}
 \title{gtkButtonSetRelief}
-\description{Sets the relief style of the edges of the given \code{\link{GtkButton}} widget.
-Three styles exist, GTK\_RELIEF\_NORMAL, GTK\_RELIEF\_HALF, GTK\_RELIEF\_NONE.
-The default style is, as one can guess, GTK\_RELIEF\_NORMAL.}
+\description{Sets the relief style of the edges of the given \verb{\link{GtkButton}} widget.
+Three styles exist, GTK_RELIEF_NORMAL, GTK_RELIEF_HALF, GTK_RELIEF_NONE.
+The default style is, as one can guess, GTK_RELIEF_NORMAL.}
 \usage{gtkButtonSetRelief(object, newstyle)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButton}}] The \code{\link{GtkButton}} you want to set relief styles of.}
-\item{\code{newstyle}}{[\code{\link{GtkReliefStyle}}] The GtkReliefStyle as described above.}
+\item{\verb{object}}{[\verb{\link{GtkButton}}] The \verb{\link{GtkButton}} you want to set relief styles of.}
+\item{\verb{newstyle}}{[\code{\link{GtkReliefStyle}}] The GtkReliefStyle as described above.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

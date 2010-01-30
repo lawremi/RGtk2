@@ -5,8 +5,8 @@
 on the start time passed to \code{\link{gdkPixbufAnimationGetIter}}.}
 \usage{gdkPixbufAnimationIterAdvance(object, current.time)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbufAnimationIter}}]  a \code{\link{GdkPixbufAnimationIter}}}
-\item{\code{current.time}}{[\code{\link{GTimeVal}}]  current time}
+\item{\verb{object}}{[\verb{\link{GdkPixbufAnimationIter}}]  a \verb{\link{GdkPixbufAnimationIter}}}
+\item{\verb{current.time}}{[\verb{\link{GTimeVal}}]  current time}
 }
 \details{\code{current.time} would normally come from \code{gGetCurrentTime()}, and
 must be greater than or equal to the time passed to

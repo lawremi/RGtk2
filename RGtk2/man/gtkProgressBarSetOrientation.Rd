@@ -5,8 +5,8 @@
 (left-to-right, right-to-left, top-to-bottom, or bottom-to-top).}
 \usage{gtkProgressBarSetOrientation(object, orientation)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}]  a \code{\link{GtkProgressBar}}}
-\item{\code{orientation}}{[\code{\link{GtkProgressBarOrientation}}]  orientation of the progress bar}
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}]  a \verb{\link{GtkProgressBar}}}
+\item{\verb{orientation}}{[\code{\link{GtkProgressBarOrientation}}]  orientation of the progress bar}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,6 +6,6 @@ This function should be called by an implementation of the
 ATK interface if any specific work needs to be done to enable
 focus tracking.}
 \usage{atkFocusTrackerInit(add.function)}
-\arguments{\item{\code{add.function}}{[AtkEventListenerInit]  Function to be called for focus tracker initialization}}
+\arguments{\item{\verb{add.function}}{[AtkEventListenerInit]  Function to be called for focus tracker initialization}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

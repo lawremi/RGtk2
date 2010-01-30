@@ -6,7 +6,7 @@
 is \code{PANGO_GRAVITY_AUTO} for which \code{\link{pangoGravityGetForMatrix}} is used
 to return the gravity from the current context matrix.}
 \usage{pangoContextGetGravity(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}}
 \details{  Since  1.16}
 \value{[\code{\link{PangoGravity}}]  the resolved gravity for the context.}
 \author{Derived by RGtkGen from GTK+ documentation}

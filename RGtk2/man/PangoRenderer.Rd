@@ -22,36 +22,36 @@
 \code{\link{pangoRendererGetLayoutLine}(renderer)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----PangoRenderer
          +----PangoXftRenderer}}
-\section{Detailed Description}{\code{\link{PangoRenderer}} is a base class that contains the necessary logic for
-rendering a \code{\link{PangoLayout}} or \code{\link{PangoLayoutLine}}. By subclassing
-\code{\link{PangoRenderer}} and overriding operations such as \code{draw.glyphs} and
+\section{Detailed Description}{\verb{\link{PangoRenderer}} is a base class that contains the necessary logic for
+rendering a \verb{\link{PangoLayout}} or \verb{\link{PangoLayoutLine}}. By subclassing
+\verb{\link{PangoRenderer}} and overriding operations such as \code{draw.glyphs} and
 \code{draw.rectangle}, renderers for particular font backends and
 destinations can be created.}
-\section{Structures}{\describe{\item{\code{PangoRenderer}}{
-\code{\link{PangoRenderer}} is a base class for objects that are used to
-render Pango objects such as \code{\link{PangoGlyphString}} and
-\code{\link{PangoLayout}}.  
+\section{Structures}{\describe{\item{\verb{PangoRenderer}}{
+\verb{\link{PangoRenderer}} is a base class for objects that are used to
+render Pango objects such as \verb{\link{PangoGlyphString}} and
+\verb{\link{PangoLayout}}.  
 
   Since  1.8
 
-\describe{\item{\code{matrix}}{[\code{\link{PangoMatrix}}]  the current transformation matrix for the Renderer; may
+\describe{\item{\code{matrix}}{[\verb{\link{PangoMatrix}}]  the current transformation matrix for the Renderer; may
    be \code{NULL}, which should be treated the same as the identity matrix.}}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{PangoRenderPart}}{
+\section{Enums and Flags}{\describe{\item{\verb{PangoRenderPart}}{
 \code{\link{PangoRenderPart}} defines different items to render for such
 purposes as setting colors.  
 
   Since  1.8
 
 \describe{
-\item{\code{foreground}}{ the text itself}
-\item{\code{background}}{ the area behind the text}
-\item{\code{underline}}{ underlines}
-\item{\code{strikethrough}}{ strikethrough lines}
+\item{\verb{foreground}}{ the text itself}
+\item{\verb{background}}{ the area behind the text}
+\item{\verb{underline}}{ underlines}
+\item{\verb{strikethrough}}{ strikethrough lines}
 }
 
 }}}

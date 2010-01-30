@@ -5,8 +5,8 @@
 for a particular name.}
 \usage{gtkIconThemeHasIcon(object, icon.name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
-\item{\code{icon.name}}{[character]  the name of an icon}
+\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}
+\item{\verb{icon.name}}{[character]  the name of an icon}
 }
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if \code{icon.theme} includes an

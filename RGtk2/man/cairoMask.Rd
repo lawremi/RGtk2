@@ -7,8 +7,8 @@ areas of \code{pattern} are painted with the source, transparent
 areas are not painted.)}
 \usage{cairoMask(cr, pattern)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

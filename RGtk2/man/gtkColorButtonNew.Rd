@@ -8,6 +8,6 @@ allowing the user to select a color. The swatch will be updated to reflect
 the new color when the user finishes.}
 \usage{gtkColorButtonNew(show = TRUE)}
 \details{  Since  2.4}
-\value{[\code{\link{GtkWidget}}]  a new color button.}
+\value{[\verb{\link{GtkWidget}}]  a new color button.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,8 +7,8 @@ See \code{\link{gtkScrolledWindowGetHadjustment}} for a typical way of obtaining
 the adjustment.}
 \usage{gtkEntrySetCursorHadjustment(object, adjustment)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the cursor 
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the cursor 
              is moved, or \code{NULL}}
 }
 \details{The adjustment has to be in pixel units and in the same coordinate system 

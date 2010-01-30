@@ -4,12 +4,12 @@
 \description{This is called for each unknown element under <child>.}
 \usage{gtkBuildableCustomTagStart(object, builder, child, tagname, parser, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBuildable}}]  a \code{\link{GtkBuildable}}}
-\item{\code{builder}}{[\code{\link{GtkBuilder}}]  a \code{\link{GtkBuilder}} used to construct this object}
-\item{\code{child}}{[\code{\link{GObject}}]  child object or \code{NULL} for non-child tags}
-\item{\code{tagname}}{[character]  name of tag}
-\item{\code{parser}}{[GMarkupParser]  a \code{GMarkupParser} structure to fill in}
-\item{\code{data}}{[R object]  return location for user data that will be passed in 
+\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  a \verb{\link{GtkBuildable}}}
+\item{\verb{builder}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}} used to construct this object}
+\item{\verb{child}}{[\verb{\link{GObject}}]  child object or \code{NULL} for non-child tags}
+\item{\verb{tagname}}{[character]  name of tag}
+\item{\verb{parser}}{[GMarkupParser]  a \verb{GMarkupParser} structure to fill in}
+\item{\verb{data}}{[R object]  return location for user data that will be passed in 
   to parser functions}
 }
 \details{  Since  2.12}

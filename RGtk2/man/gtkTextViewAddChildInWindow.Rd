@@ -4,9 +4,9 @@
 \description{Adds a child at fixed coordinates in one of the text widget's
 windows. The window must have nonzero size (see
 \code{\link{gtkTextViewSetBorderWindowSize}}). Note that the child
-coordinates are given relative to the \code{\link{GdkWindow}} in question, and
+coordinates are given relative to the \verb{\link{GdkWindow}} in question, and
 that these coordinates have no sane relationship to scrolling. When
-placing a child in \code{GTK_TEXT_WINDOW_WIDGET}, scrolling is
+placing a child in \verb{GTK_TEXT_WINDOW_WIDGET}, scrolling is
 irrelevant, the child floats above all scrollable areas. But when
 placing a child in one of the scrollable windows (border windows or
 text window), you'll need to compute the child's correct position
@@ -19,11 +19,11 @@ change or the text buffer changes. See bug 64518 on
 bugzilla.gnome.org for status of fixing this issue.}
 \usage{gtkTextViewAddChildInWindow(object, child, which.window, xpos, ypos)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{which.window}}{[\code{\link{GtkTextWindowType}}]  which window the child should appear in}
-\item{\code{xpos}}{[integer]  X position of child in window coordinates}
-\item{\code{ypos}}{[integer]  Y position of child in window coordinates}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{which.window}}{[\code{\link{GtkTextWindowType}}]  which window the child should appear in}
+\item{\verb{xpos}}{[integer]  X position of child in window coordinates}
+\item{\verb{ypos}}{[integer]  Y position of child in window coordinates}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

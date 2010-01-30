@@ -5,8 +5,8 @@
 to \code{printer}.}
 \usage{gtkPrintSettingsSetPrinter(object, printer)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{printer}}{[character]  the printer name}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{printer}}{[character]  the printer name}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

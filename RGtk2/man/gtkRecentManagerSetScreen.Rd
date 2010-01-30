@@ -11,8 +11,8 @@ storage.
 }
 \usage{gtkRecentManagerSetScreen(object, screen)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentManager}}]  a \code{\link{GtkRecentManager}}}
-\item{\code{screen}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}
+\item{\verb{object}}{[\verb{\link{GtkRecentManager}}]  a \verb{\link{GtkRecentManager}}}
+\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

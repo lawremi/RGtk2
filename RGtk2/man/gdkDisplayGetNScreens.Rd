@@ -3,7 +3,7 @@
 \title{gdkDisplayGetNScreens}
 \description{Gets the number of screen managed by the \code{display}.}
 \usage{gdkDisplayGetNScreens(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}}
 \details{  Since  2.2}
 \value{[integer]  number of screens.}
 \author{Derived by RGtkGen from GTK+ documentation}

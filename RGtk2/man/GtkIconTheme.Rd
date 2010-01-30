@@ -37,9 +37,9 @@
 \code{\link{gtkIconInfoGetDisplayName}(object)}\cr
 \code{gtkIconTheme()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkIconTheme}}
-\section{Detailed Description}{\code{\link{GtkIconTheme}} provides a facility for looking up icons by name
+\section{Detailed Description}{\verb{\link{GtkIconTheme}} provides a facility for looking up icons by name
 and size. The main reason for using a name rather than simply
 providing a filename is to allow different icons to be used
 depending on what \dfn{icon theme} is selecetd
@@ -73,15 +73,15 @@ you want to use, use it, otherwise use a named icon. It turns
 out that internally stock images are generally defined in
 terms of one or more named icons. (An example of the
 more than one case is icons that depend on writing direction;
-GTK\_STOCK\_GO\_FORWARD uses the two themed icons
+GTK_STOCK_GO_FORWARD uses the two themed icons
 "gtk-stock-go-forward-ltr" and "gtk-stock-go-forward-rtl".)
   
-In many cases, named themes are used indirectly, via \code{\link{GtkImage}}
+In many cases, named themes are used indirectly, via \verb{\link{GtkImage}}
 or stock items, rather than directly, but looking up icons
-directly is also simple. The \code{\link{GtkIconTheme}} object acts
+directly is also simple. The \verb{\link{GtkIconTheme}} object acts
 as a database of all the icons in the current theme. You
-can create new \code{\link{GtkIconTheme}} objects, but its much more
-efficient to use the standard icon theme for the \code{\link{GdkScreen}}
+can create new \verb{\link{GtkIconTheme}} objects, but its much more
+efficient to use the standard icon theme for the \verb{\link{GdkScreen}}
 so that the icon information is shared with other people
 looking up icons. In the case where the default screen is
 being used, looking up an icon can be as simple as:
@@ -96,17 +96,17 @@ if (!result[[1]]) {
 }
 }}
 \section{Structures}{\describe{
-\item{\code{GtkIconInfo}}{
+\item{\verb{GtkIconInfo}}{
 Contains information found when looking up an icon in
 an icon theme.
 
 }
-\item{\code{GtkIconTheme}}{
+\item{\verb{GtkIconTheme}}{
 Acts as a database of information about an icon theme.
 Normally, you retrieve the icon theme for a particular
 screen using \code{\link{gtkIconThemeGetForScreen}} and it
 will contain information about current icon theme for
-that screen, but you can also create a new \code{\link{GtkIconTheme}}
+that screen, but you can also create a new \verb{\link{GtkIconTheme}}
 object and set the icon theme name explicitely using
 \code{\link{gtkIconThemeSetCustomTheme}}.
 
@@ -114,28 +114,28 @@ object and set the icon theme name explicitely using
 }}
 \section{Convenient Construction}{\code{gtkIconTheme} is the equivalent of \code{\link{gtkIconThemeNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkIconLookupFlags}}{
+\item{\verb{GtkIconLookupFlags}}{
 Used to specify options for \code{\link{gtkIconThemeLookupIcon}}  
 
 \describe{
-\item{\code{no-svg}}{ Never return SVG icons, even if gdk-pixbuf
+\item{\verb{no-svg}}{ Never return SVG icons, even if gdk-pixbuf
   supports them. Cannot be used together with \code{GTK_ICON_LOOKUP_FORCE_SVG}.}
-\item{\code{force-svg}}{ Return SVG icons, even if gdk-pixbuf
+\item{\verb{force-svg}}{ Return SVG icons, even if gdk-pixbuf
   doesn't support them.
   Cannot be used together with \code{GTK_ICON_LOOKUP_NO_SVG}.}
-\item{\code{use-builtin}}{ When passed to
+\item{\verb{use-builtin}}{ When passed to
   \code{\link{gtkIconThemeLookupIcon}} includes builtin icons
   as well as files. For a builtin icon, \code{\link{gtkIconInfoGetFilename}}
   returns \code{NULL} and you need to call \code{\link{gtkIconInfoGetBuiltinPixbuf}}.}
 }
 
 }
-\item{\code{GtkIconThemeError}}{
+\item{\verb{GtkIconThemeError}}{
 Error codes for GtkIconTheme operations.  
 
 \describe{
-\item{\code{not-found}}{ The icon specified does not exist in the theme}
-\item{\code{failed}}{ An unspecified error occurred.}
+\item{\verb{not-found}}{ The icon specified does not exist in the theme}
+\item{\verb{failed}}{ An unspecified error occurred.}
 }
 
 }
@@ -146,7 +146,7 @@ that a change has occurred in the contents of the current
 icon theme.  
 
 \describe{
-\item{\code{icon.theme}}{[\code{\link{GtkIconTheme}}]  the icon theme}
+\item{\code{icon.theme}}{[\verb{\link{GtkIconTheme}}]  the icon theme}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

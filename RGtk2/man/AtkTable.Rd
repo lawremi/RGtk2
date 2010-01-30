@@ -37,25 +37,25 @@ row/column information.}
 \section{Hierarchy}{\preformatted{GInterface
    +----AtkTable}}
 \section{Implementations}{AtkTable is implemented by
- \code{\link{AtkNoOpObject}}.}
-\section{Detailed Description}{\code{\link{AtkTable}} should be implemented by components which present elements
+ \verb{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\verb{\link{AtkTable}} should be implemented by components which present elements
 ordered via rows and columns.  It may also be used to present
 tree-structured information if the nodes of the trees can be said to
-contain multiple "columns".  Individual elements of an \code{\link{AtkTable}} are
+contain multiple "columns".  Individual elements of an \verb{\link{AtkTable}} are
 typically referred to as "cells", and these cells are exposed by
-\code{\link{AtkTable}} as child \code{AtkObjects} of the \code{\link{AtkTable}}.  Both row/column and
+\verb{\link{AtkTable}} as child \verb{AtkObjects} of the \verb{\link{AtkTable}}.  Both row/column and
 child-index-based access to these children is provided.
   
-Children of \code{\link{AtkTable}} are frequently "lightweight" objects, that is,
+Children of \verb{\link{AtkTable}} are frequently "lightweight" objects, that is,
 they may not have backing widgets in the host UI toolkit.  They are
 therefore often transient.
   
-Since tables are often very complex, \code{\link{AtkTable}} includes provision for
+Since tables are often very complex, \verb{\link{AtkTable}} includes provision for
 offering simplified summary information, as well as row and column
-headers and captions.  Headers and captions are \code{AtkObjects} which may
-implement other interfaces (\code{\link{AtkText}}, \code{\link{AtkImage}}, etc.) as appropriate.
-\code{\link{AtkTable}} summaries may themselves be (simplified) \code{AtkTables}, etc.}
-\section{Structures}{\describe{\item{\code{AtkTable}}{
+headers and captions.  Headers and captions are \verb{AtkObjects} which may
+implement other interfaces (\verb{\link{AtkText}}, \verb{\link{AtkImage}}, etc.) as appropriate.
+\verb{\link{AtkTable}} summaries may themselves be (simplified) \verb{AtkTables}, etc.}
+\section{Structures}{\describe{\item{\verb{AtkTable}}{
 The AtkTable structure does not contain any fields.
 
 }}}
@@ -65,7 +65,7 @@ The "column-deleted" signal is emitted by an object which implements the
 AtkTable interface when a column is deleted.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The index of the first column deleted.}
 \item{\code{arg2}}{[integer] The number of columns deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -78,7 +78,7 @@ The "column-inserted" signal is emitted by an object which implements the
 AtkTable interface when a column is inserted.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The index of the column inserted.}
 \item{\code{arg2}}{[integer] The number of colums inserted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -91,7 +91,7 @@ The "column-reordered" signal is emitted by an object which implements the
 AtkTable interface when the columns are reordered.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -102,7 +102,7 @@ The "model-changed" signal is emitted by an object which implements the
 AtkTable interface when the model displayed by the table changes.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -113,7 +113,7 @@ The "row-deleted" signal is emitted by an object which implements the
 AtkTable interface when a column is inserted.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The index of the first row deleted.}
 \item{\code{arg2}}{[integer] The number of rows deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -126,7 +126,7 @@ The "row-inserted" signal is emitted by an object which implements the
 AtkTable interface when a column is inserted.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] The index of the first row deleted.}
 \item{\code{arg2}}{[integer] The number of rows deleted.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -139,7 +139,7 @@ The "row-reordered" signal is emitted by an object which implements the
 AtkTable interface when the columns are reordered.
 
 \describe{
-\item{\code{atktable}}{[\code{\link{AtkTable}}] the object which received the signal.}
+\item{\code{atktable}}{[\verb{\link{AtkTable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -148,5 +148,5 @@ AtkTable interface when the columns are reordered.
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkTable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{AtkObject}}}
+\seealso{\verb{\link{AtkObject}}}
 \keyword{internal}

@@ -4,11 +4,11 @@
 \description{Runs a page setup dialog, letting the user modify the values from \code{page.setup}. }
 \usage{gtkPrintRunPageSetupDialogAsync(parent, page.setup, settings, done.cb, data)}
 \arguments{
-\item{\code{parent}}{[\code{\link{GtkWindow}}]  transient parent, or \code{NULL}}
-\item{\code{page.setup}}{[\code{\link{GtkPageSetup}}]  an existing \code{\link{GtkPageSetup}}, or \code{NULL}}
-\item{\code{settings}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{done.cb}}{[\code{\link{GtkPageSetupDoneFunc}}]  a function to call when the user saves the modified page setup}
-\item{\code{data}}{[R object]  user data to pass to \code{done.cb}}
+\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  transient parent, or \code{NULL}}
+\item{\verb{page.setup}}{[\verb{\link{GtkPageSetup}}]  an existing \verb{\link{GtkPageSetup}}, or \code{NULL}}
+\item{\verb{settings}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{done.cb}}{[\verb{\link{GtkPageSetupDoneFunc}}]  a function to call when the user saves the modified page setup}
+\item{\verb{data}}{[R object]  user data to pass to \code{done.cb}}
 }
 \details{In contrast to \code{\link{gtkPrintRunPageSetupDialog}}, this function  returns after 
 showing the page setup dialog on platforms that support this, and calls \code{done.cb} 

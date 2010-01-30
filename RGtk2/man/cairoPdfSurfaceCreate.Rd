@@ -5,12 +5,12 @@
 to \code{filename}.}
 \usage{cairoPdfSurfaceCreate(filename, width.in.points, height.in.points)}
 \arguments{
-\item{\code{filename}}{[char]  a filename for the PDF output (must be writable)}
-\item{\code{width.in.points}}{[numeric]  width of the surface, in points (1 point == 1/72.0 inch)}
-\item{\code{height.in.points}}{[numeric]  height of the surface, in points (1 point == 1/72.0 inch)}
+\item{\verb{filename}}{[char]  a filename for the PDF output (must be writable)}
+\item{\verb{width.in.points}}{[numeric]  width of the surface, in points (1 point == 1/72.0 inch)}
+\item{\verb{height.in.points}}{[numeric]  height of the surface, in points (1 point == 1/72.0 inch)}
 }
 \details{  Since  1.2}
-\value{[\code{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
+\value{[\verb{\link{CairoSurface}}]  a pointer to the newly created surface. The caller
 owns the surface and should call \code{\link{cairoSurfaceDestroy}} when done
 with it.
 

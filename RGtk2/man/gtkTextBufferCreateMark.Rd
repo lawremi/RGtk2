@@ -12,17 +12,17 @@ with right gravity (when you type, the cursor stays on the right
 side of the text you're typing).}
 \usage{gtkTextBufferCreateMark(object, mark.name = NULL, where, left.gravity = FALSE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{mark.name}}{[character]  name for mark, or \code{NULL}}
-\item{\code{where}}{[\code{\link{GtkTextIter}}]  location to place mark}
-\item{\code{left.gravity}}{[logical]  whether the mark has left gravity}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{mark.name}}{[character]  name for mark, or \code{NULL}}
+\item{\verb{where}}{[\verb{\link{GtkTextIter}}]  location to place mark}
+\item{\verb{left.gravity}}{[logical]  whether the mark has left gravity}
 }
 \details{The caller of this function does \emph{not} own a 
-reference to the returned \code{\link{GtkTextMark}}, so you can ignore the 
+reference to the returned \verb{\link{GtkTextMark}}, so you can ignore the 
 return value if you like.
   
-Emits the "mark\_set" signal as notification of the mark's initial
+Emits the "mark_set" signal as notification of the mark's initial
 placement.  }
-\value{[\code{\link{GtkTextMark}}]  the new \code{\link{GtkTextMark}} object}
+\value{[\verb{\link{GtkTextMark}}]  the new \verb{\link{GtkTextMark}} object}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

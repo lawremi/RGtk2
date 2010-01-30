@@ -20,15 +20,15 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkEditable}}
 \section{Implementations}{GtkEditable is implemented by
- \code{\link{GtkEntry}},  GtkText,  \code{\link{GtkOldEditable}} and  \code{\link{GtkSpinButton}}.}
-\section{Detailed Description}{The \code{\link{GtkEditable}} interface is an interface which should be implemented by
-text editing widgets, such as \code{\link{GtkEntry}} and \code{GtkText}. It contains functions 
+ \verb{\link{GtkEntry}},  GtkText,  \verb{\link{GtkOldEditable}} and  \verb{\link{GtkSpinButton}}.}
+\section{Detailed Description}{The \verb{\link{GtkEditable}} interface is an interface which should be implemented by
+text editing widgets, such as \verb{\link{GtkEntry}} and \verb{GtkText}. It contains functions 
 for generically manipulating an editable widget, a large number of action 
 signals used for key bindings, and several signals that an application can 
 connect to to modify the behavior of a widget. 
   
 As an example of the latter usage, by connecting
-the following handler to "insert\_text", an application
+the following handler to "insert_text", an application
 can convert all entry into a widget into uppercase.
 
 
@@ -42,17 +42,17 @@ insert_text_handler <- function(editable, text, length, position, id)
   gSignalHandlerUnblock(editable, id)
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkEditable}}{
-The \code{\link{GtkEditable}} structure contains the following fields.
+\section{Structures}{\describe{\item{\verb{GtkEditable}}{
+The \verb{\link{GtkEditable}} structure contains the following fields.
 (These fields should be considered read-only. They should
 never be set by an application.)
 
 \tabular{ll}{
-\code{numeric}   selection\_start; \tab the starting position of the selected characters 
+\verb{numeric}   selection_start; \tab the starting position of the selected characters 
  in the widget. \cr
-\code{numeric}   selection\_end; \tab the end position of the selected characters 
+\verb{numeric}   selection_end; \tab the end position of the selected characters 
  in the widget. \cr
-\code{numeric}   editable; \tab a flag indicating whether or not the widget is
+\verb{numeric}   editable; \tab a flag indicating whether or not the widget is
 editable by the user. \cr
 }
 
@@ -63,7 +63,7 @@ Indicates that the user has changed the contents
 of the widget.
 
 \describe{
-\item{\code{editable}}{[\code{\link{GtkEditable}}] the object which received the signal.}
+\item{\code{editable}}{[\verb{\link{GtkEditable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -81,7 +81,7 @@ and \code{end.pos} parameters are interpreted as for
 \code{\link{gtkEditableDeleteText}}
 
 \describe{
-\item{\code{editable}}{[\code{\link{GtkEditable}}] the object which received the signal.}
+\item{\code{editable}}{[\verb{\link{GtkEditable}}] the object which received the signal.}
 \item{\code{start.pos}}{[integer] the starting position.}
 \item{\code{end.pos}}{[integer] the end position.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -99,10 +99,10 @@ is possible to modify the inserted text, or prevent
 it from being inserted entirely.
 
 \describe{
-\item{\code{editable}}{[\code{\link{GtkEditable}}] the object which received the signal.}
+\item{\code{editable}}{[\verb{\link{GtkEditable}}] the object which received the signal.}
 \item{\code{new.text}}{[character] the new text to insert.}
 \item{\code{new.text.length}}{[integer] the length of the new text, in bytes, 
-  or -1 if new\_text is nul-terminated}
+  or -1 if new_text is nul-terminated}
 \item{\code{position}}{[integer] the position, in characters, at which to insert 
            the new text. this is an in-out parameter. 
            After the signal emission is finished, it should 

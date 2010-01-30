@@ -84,99 +84,99 @@
 \code{\link{gtkCListSetVadjustment}(object, adjustment)}\cr
 \code{gtkCList(columns = 1, titles, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkCList
-                                 +----\link{GtkCTree}}}
+                                 +----GtkCTree}}
 \section{Interfaces}{GtkCList implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkCList}} widget is a very useful multi-columned scrolling list.  
 It can display data in nicely aligned vertical columns, with titles 
 at the top of the list.
   
 GtkCList has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
+in newly written code. Use \verb{\link{GtkTreeView}} instead.}
 \section{Structures}{\describe{
-\item{\code{GtkCList}}{
+\item{\verb{GtkCList}}{
 \strong{WARNING: \code{GtkCList} is deprecated and should not be used in newly-written code.}
-This is the embodiment of the \code{\link{GtkCList}} widget.  This structure contains
+This is the embodiment of the \verb{\link{GtkCList}} widget.  This structure contains
 only private data, and should be accessed only via the CList API.
 
 }
-\item{\code{GtkCListRow}}{
+\item{\verb{GtkCListRow}}{
 \strong{WARNING: \code{GtkCListRow} is deprecated and should not be used in newly-written code.}
-A structure that the \code{\link{GtkCList}} widget uses to keep track of information
+A structure that the \verb{\link{GtkCList}} widget uses to keep track of information
 about its rows.
 
 \describe{
-\item{\code{cell}}{[GtkCell] }
-\item{\code{state}}{[\code{\link{GtkStateType}}] }
-\item{\code{foreground}}{[\code{\link{GdkColor}}] }
-\item{\code{background}}{[\code{\link{GdkColor}}] }
-\item{\code{style}}{[\code{\link{GtkStyle}}] }
-\item{\code{data}}{[Robject] }
-\item{\code{destroy}}{[GtkDestroyNotify] }
-\item{\code{fgSet}}{[numeric] }
-\item{\code{bgSet}}{[numeric] }
-\item{\code{selectable}}{[numeric] }
+\item{\verb{cell}}{[GtkCell] }
+\item{\verb{state}}{[\code{\link{GtkStateType}}] }
+\item{\verb{foreground}}{[\verb{\link{GdkColor}}] }
+\item{\verb{background}}{[\verb{\link{GdkColor}}] }
+\item{\verb{style}}{[\verb{\link{GtkStyle}}] }
+\item{\verb{data}}{[Robject] }
+\item{\verb{destroy}}{[GtkDestroyNotify] }
+\item{\verb{fgSet}}{[numeric] }
+\item{\verb{bgSet}}{[numeric] }
+\item{\verb{selectable}}{[numeric] }
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkCList} is the result of collapsing the constructors of \code{GtkCList} (\code{\link{gtkCListNew}}, \code{\link{gtkCListNewWithTitles}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkCellType}}{
+\item{\verb{GtkCellType}}{
 \strong{WARNING: \code{GtkCellType} is deprecated and should not be used in newly-written code.}
 Identifies the type of element in the current cell of the CList.  Cells can
 contain text, pixmaps, or both. Unfortunately support for \code{GTK_CELL_WIDGET}
 was never completed.
 
 \describe{
-\item{\code{empty}}{\emph{undocumented
+\item{\verb{empty}}{\emph{undocumented
 }}
-\item{\code{text}}{\emph{undocumented
+\item{\verb{text}}{\emph{undocumented
 }}
-\item{\code{pixmap}}{\emph{undocumented
+\item{\verb{pixmap}}{\emph{undocumented
 }}
-\item{\code{pixtext}}{\emph{undocumented
+\item{\verb{pixtext}}{\emph{undocumented
 }}
-\item{\code{widget}}{\emph{undocumented
+\item{\verb{widget}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkButtonAction}}{
+\item{\verb{GtkButtonAction}}{
 \strong{WARNING: \code{GtkButtonAction} is deprecated and should not be used in newly-written code.}
 Values for specifying what mouse button events a CList will
 react to.
 
 \describe{
-\item{\code{ignored}}{\emph{undocumented
+\item{\verb{ignored}}{\emph{undocumented
 }}
-\item{\code{selects}}{\emph{undocumented
+\item{\verb{selects}}{\emph{undocumented
 }}
-\item{\code{drags}}{\emph{undocumented
+\item{\verb{drags}}{\emph{undocumented
 }}
-\item{\code{expands}}{\emph{undocumented
+\item{\verb{expands}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkCListDragPos}}{
+\item{\verb{GtkCListDragPos}}{
 \strong{WARNING: \code{GtkCListDragPos} is deprecated and should not be used in newly-written code.}
 An enumeration for drag operations.
 
 \describe{
-\item{\code{none}}{\emph{undocumented
+\item{\verb{none}}{\emph{undocumented
 }}
-\item{\code{before}}{\emph{undocumented
+\item{\verb{before}}{\emph{undocumented
 }}
-\item{\code{into}}{\emph{undocumented
+\item{\verb{into}}{\emph{undocumented
 }}
-\item{\code{after}}{\emph{undocumented
+\item{\verb{after}}{\emph{undocumented
 }}
 }
 
@@ -186,9 +186,9 @@ An enumeration for drag operations.
 Function prototype for the compare function callback.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} that is affected.}
-\item{\code{ptr1}}{[R object] A \code{R object} to the first node to compare.}
-\item{\code{ptr2}}{[R object] A \code{R object} to the second node to compare.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} that is affected.}
+\item{\code{ptr1}}{[R object] A \verb{R object} to the first node to compare.}
+\item{\code{ptr2}}{[R object] A \verb{R object} to the second node to compare.}
 }
 
 \emph{Returns:} [integer] 0 if the nodes are equal, less than 0 if the first node should
@@ -201,7 +201,7 @@ first.
 This signal is emitted when a column resize is aborted.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -211,7 +211,7 @@ This signal is emitted when a column resize is aborted.
 This signal is emitted when a column title is clicked.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{column}}{[integer] The number of the column.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -223,7 +223,7 @@ This signal is emitted when a selection ends in a
 multiple selection CList.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -233,7 +233,7 @@ multiple selection CList.
 This signal is emitted when the selection is extended.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] A \code{\link{GtkScrollType}} value of any scrolling operation the
 occured during the selection.}
 \item{\code{position}}{[numeric] A value between 0.0 and 1.0.}
@@ -247,7 +247,7 @@ occured during the selection.}
 This signal is emitted when a column is resized.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{column}}{[integer] The number of the column}
 \item{\code{width}}{[integer] The new width of the column.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -259,7 +259,7 @@ This signal is emitted when a column is resized.
 This signal is emitted when a row is moved.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{arg1}}{[integer] The source position of the row.}
 \item{\code{arg2}}{[integer] The destination position of the row.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -271,7 +271,7 @@ This signal is emitted when a row is moved.
 This signal is emitted when the CList is scrolled horizontally.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] A \code{\link{GtkScrollType}} value of how the scroll operation occured.}
 \item{\code{position}}{[numeric] a value between 0.0 and 1.0.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -283,7 +283,7 @@ This signal is emitted when the CList is scrolled horizontally.
 This signal is emitted when the CList is scrolled vertically.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] A \code{\link{GtkScrollType}} value of how the scroll operation occured.}
 \item{\code{position}}{[numeric] A value between 0.0 and 1.0.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -295,7 +295,7 @@ This signal is emitted when the CList is scrolled vertically.
 This signal is emitted when all the rows are selected in a CList.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -307,10 +307,10 @@ It is emitted for every row that is selected in a multi-selection or
 by calling \code{\link{gtkCListSelectAll}}.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{row}}{[integer] The row selected.}
 \item{\code{column}}{[integer] The column where the selection occured.}
-\item{\code{event}}{[\code{\link{GdkEventButton}}] A \code{\link{GdkEvent}} structure for the selection.}
+\item{\code{event}}{[\verb{\link{GdkEventButton}}] A \verb{\link{GdkEvent}} structure for the selection.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -321,9 +321,9 @@ by calling \code{\link{gtkCListSelectAll}}.
 }
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\code{\link{GtkAdjustment}}] }
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
+\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -334,7 +334,7 @@ This signal is emitted when a drag-selection is started in
 a multiple-selection CList.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -344,7 +344,7 @@ a multiple-selection CList.
 This signal is emitted when "add mode" is toggled.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -355,7 +355,7 @@ This signal is emitted when "add mode" is toggled.
 }
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -366,7 +366,7 @@ This signal is emitted when an undo selection occurs in the CList,
 probably via calling \code{\link{gtkCListUndoSelection}}.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -376,7 +376,7 @@ probably via calling \code{\link{gtkCListUndoSelection}}.
 This signal is emitted when all rows are unselected in a CList.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] the object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -389,10 +389,10 @@ by calling \code{\link{gtkCListUnselectAll}}.  It is also emitted for the
 previously selected row in a "single" or "browse" mode CList.
 
 \describe{
-\item{\code{clist}}{[\code{\link{GtkCList}}] The object which received the signal.}
+\item{\code{clist}}{[\verb{\link{GtkCList}}] The object which received the signal.}
 \item{\code{row}}{[integer] The selected row}
 \item{\code{column}}{[integer] The column where the selection occured.}
-\item{\code{event}}{[\code{\link{GdkEventButton}}] }
+\item{\code{event}}{[\verb{\link{GdkEventButton}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -400,50 +400,50 @@ previously selected row in a "single" or "browse" mode CList.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{n-columns} [numeric : Read / Write / Construct Only]}{
+\item{\verb{n-columns} [numeric : Read / Write / Construct Only]}{
 
 An integer value for a column.
   Default value: 0
 
 }
-\item{\code{reorderable} [logical : Read / Write]}{
+\item{\verb{reorderable} [logical : Read / Write]}{
 
 A boolean value for determining if the user can re-order the CList's
 columns.
   Default value: FALSE
 
 }
-\item{\code{row-height} [numeric : Read / Write]}{
+\item{\verb{row-height} [numeric : Read / Write]}{
 
 An integer value representing the height of a row in pixels.
   Default value: 0
 
 }
-\item{\code{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
+\item{\verb{selection-mode} [\code{\link{GtkSelectionMode}} : Read / Write]}{
 
 Sets the type of selection mode for the CList.
-  Default value: GTK\_SELECTION\_NONE
+  Default value: GTK_SELECTION_NONE
 
 }
-\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
+\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
 Sets the shadowing for the CList.
-  Default value: GTK\_SHADOW\_NONE
+  Default value: GTK_SHADOW_NONE
 
 }
-\item{\code{sort-type} [\code{\link{GtkSortType}} : Read / Write]}{
+\item{\verb{sort-type} [\code{\link{GtkSortType}} : Read / Write]}{
 
-  Default value: GTK\_SORT\_ASCENDING
+  Default value: GTK_SORT_ASCENDING
 
 }
-\item{\code{titles-active} [logical : Read / Write]}{
+\item{\verb{titles-active} [logical : Read / Write]}{
 
 A boolean value for setting whether the column titles can be
 clicked.
   Default value: FALSE
 
 }
-\item{\code{use-drag-icons} [logical : Read / Write]}{
+\item{\verb{use-drag-icons} [logical : Read / Write]}{
 
 A boolean value for setting whether to use icons during drag
 operations.

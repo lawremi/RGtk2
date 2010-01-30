@@ -2,19 +2,19 @@
 \name{gtkDialogSetAlternativeButtonOrder}
 \title{gtkDialogSetAlternativeButtonOrder}
 \description{Sets an alternative button order. If the 
-\code{"gtk-alternative-button-order"} setting is set to \code{TRUE}, 
+\verb{"gtk-alternative-button-order"} setting is set to \code{TRUE}, 
 the dialog buttons are reordered according to the order of the 
 response ids passed to this function.}
 \usage{gtkDialogSetAlternativeButtonOrder(object, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkDialog}}]  a \code{\link{GtkDialog}}}
-\item{\code{...}}{ a list of more response ids of \code{dialog}'s buttons, terminated by -1}
+\item{\verb{object}}{[\verb{\link{GtkDialog}}]  a \verb{\link{GtkDialog}}}
+\item{\verb{...}}{ a list of more response ids of \code{dialog}'s buttons, terminated by -1}
 }
 \details{By default, GTK+ dialogs use the button order advocated by the Gnome 
 Human 
 Interface Guidelines (\url{http://developer.gnome.org/projects/gup/hig/2.0/}) with the affirmative button at the far 
 right, and the cancel button left of it. But the builtin GTK+ dialogs
-and \code{\link{GtkMessageDialog}}s do provide an alternative button order,
+and \verb{\link{GtkMessageDialog}}s do provide an alternative button order,
 which is more suitable on some platforms, e.g. Windows.
   
 Use this function after adding all the buttons to your dialog, as the 

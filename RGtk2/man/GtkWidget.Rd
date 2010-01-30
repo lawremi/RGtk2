@@ -154,27 +154,27 @@
 \code{\link{gtkRequisitionCopy}(object)}\cr
 \code{gtkWidget(type, ..., show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkWidget
-                     +----\link{GtkContainer}
-                     +----\link{GtkMisc}
-                     +----\link{GtkCalendar}
-                     +----\link{GtkCellView}
-                     +----\link{GtkDrawingArea}
-                     +----\link{GtkEntry}
-                     +----\link{GtkRuler}
-                     +----\link{GtkRange}
-                     +----\link{GtkSeparator}
-                     +----\link{GtkInvisible}
-                     +----\link{GtkOldEditable}
-                     +----\link{GtkPreview}
-                     +----\link{GtkProgress}}}
+                     +----GtkContainer
+                     +----GtkMisc
+                     +----GtkCalendar
+                     +----GtkCellView
+                     +----GtkDrawingArea
+                     +----GtkEntry
+                     +----GtkRuler
+                     +----GtkRange
+                     +----GtkSeparator
+                     +----GtkInvisible
+                     +----GtkOldEditable
+                     +----GtkPreview
+                     +----GtkProgress}}
 \section{Interfaces}{GtkWidget implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Interface Derivations}{GtkWidget is required by
- \code{\link{GtkFileChooser}} and  \code{\link{GtkCellEditable}}.}
+ \verb{\link{GtkFileChooser}} and  \verb{\link{GtkCellEditable}}.}
 \section{Detailed Description}{\code{GtkWidget} introduces \dfn{style 
 properties} - these are basically object properties that are stored
 not on the object, but in the style object associated to the widget. Style
@@ -217,23 +217,23 @@ internal child "accessible" of a   \code{GtkWidget}  .
 </object>
 }  }
 \section{Structures}{\describe{
-\item{\code{GtkWidget}}{
+\item{\verb{GtkWidget}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{style}}{[\code{\link{GtkStyle}}] The style for the widget. The style contains the colors the widget should be 
+\item{\verb{style}}{[\verb{\link{GtkStyle}}] The style for the widget. The style contains the colors the widget should be 
  drawn in for each state along with graphics contexts used to draw with and the font 
  to use for text.}
-\item{\code{requisition}}{[\code{\link{GtkRequisition}}] The widget's desired size.}
-\item{\code{allocation}}{[\code{\link{GtkAllocation}}] The widget's allocated size.}
-\item{\code{window}}{[\code{\link{GdkWindow}}] The widget's window or its parent window if it does not have a window. (Which 
- will be indicated by the \code{GTK_NO_WINDOW} flag being set).}
-\item{\code{parent}}{[\code{\link{GtkWidget}}] }
+\item{\verb{requisition}}{[\verb{\link{GtkRequisition}}] The widget's desired size.}
+\item{\verb{allocation}}{[\verb{\link{GtkAllocation}}] The widget's allocated size.}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}] The widget's window or its parent window if it does not have a window. (Which 
+ will be indicated by the \verb{GTK_NO_WINDOW} flag being set).}
+\item{\verb{parent}}{[\verb{\link{GtkWidget}}] }
 }
 
 }
-\item{\code{GtkWidgetClass}}{
+\item{\verb{GtkWidgetClass}}{
 \code{activate_signal}
 The signal to emit when a widget of this class is activated,
 \code{\link{gtkWidgetActivate}} handles the emission. Implementation of this
@@ -245,108 +245,108 @@ handles the emission.
 Implementation of this signal is optional.
 
 }
-\item{\code{GtkRequisition}}{
+\item{\verb{GtkRequisition}}{
 A \code{GtkRequisition} represents the desired size of a widget. See 
  for more information.
 
 \describe{
-\item{\code{width}}{[integer] the widget's desired width}
-\item{\code{height}}{[integer] the widget's desired height}
+\item{\verb{width}}{[integer] the widget's desired width}
+\item{\verb{height}}{[integer] the widget's desired height}
 }
 
 }
-\item{\code{GtkSelectionData}}{
+\item{\verb{GtkSelectionData}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{selection}}{[\code{\link{GdkAtom}}] }
-\item{\code{target}}{[\code{\link{GdkAtom}}] }
-\item{\code{type}}{[\code{\link{GdkAtom}}] }
-\item{\code{format}}{[integer] }
-\item{\code{data}}{[raw] }
+\item{\verb{selection}}{[\verb{\link{GdkAtom}}] }
+\item{\verb{target}}{[\verb{\link{GdkAtom}}] }
+\item{\verb{type}}{[\verb{\link{GdkAtom}}] }
+\item{\verb{format}}{[integer] }
+\item{\verb{data}}{[raw] }
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkWidget} is the equivalent of \code{\link{gtkWidgetNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkWidgetFlags}}{
+\item{\verb{GtkWidgetFlags}}{
 Tells about certain properties of the widget.
 
 \describe{
-\item{\code{toplevel}}{        widgets without a real parent, as there are \code{\link{GtkWindow}}s and
-        \code{\link{GtkMenu}}s have this flag set throughout their lifetime.
-        Toplevel widgets always contain their own \code{\link{GdkWindow}}.}
-\item{\code{no-window}}{        Indicative for a widget that does not provide its own \code{\link{GdkWindow}}. 
-        Visible action (e.g. drawing) is performed on the parent's \code{\link{GdkWindow}}.}
-\item{\code{realized}}{        Set by \code{\link{gtkWidgetRealize}}, unset by \code{\link{gtkWidgetUnrealize}}.
-        A realized widget has an associated \code{\link{GdkWindow}}.}
-\item{\code{mapped}}{        Set by \code{\link{gtkWidgetMap}}, unset by \code{\link{gtkWidgetUnmap}}.
+\item{\verb{toplevel}}{        widgets without a real parent, as there are \verb{\link{GtkWindow}}s and
+        \verb{\link{GtkMenu}}s have this flag set throughout their lifetime.
+        Toplevel widgets always contain their own \verb{\link{GdkWindow}}.}
+\item{\verb{no-window}}{        Indicative for a widget that does not provide its own \verb{\link{GdkWindow}}. 
+        Visible action (e.g. drawing) is performed on the parent's \verb{\link{GdkWindow}}.}
+\item{\verb{realized}}{        Set by \code{\link{gtkWidgetRealize}}, unset by \code{\link{gtkWidgetUnrealize}}.
+        A realized widget has an associated \verb{\link{GdkWindow}}.}
+\item{\verb{mapped}}{        Set by \code{\link{gtkWidgetMap}}, unset by \code{\link{gtkWidgetUnmap}}.
         Only realized widgets can be mapped. It means that \code{\link{gdkWindowShow}} 
         has been called on the widgets window(s).}
-\item{\code{visible}}{        Set by \code{\link{gtkWidgetShow}}, unset by \code{\link{gtkWidgetHide}}. Implies that a 
+\item{\verb{visible}}{        Set by \code{\link{gtkWidgetShow}}, unset by \code{\link{gtkWidgetHide}}. Implies that a 
         widget will be mapped as soon as its parent is mapped.}
-\item{\code{sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}}.
+\item{\verb{sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}}.
         The sensitivity of a widget determines whether it will receive
         certain events (e.g. button or key presses). One premise for
         the widget's sensitivity is to have this flag set.}
-\item{\code{parent-sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}} operations on the
+\item{\verb{parent-sensitive}}{        Set and unset by \code{\link{gtkWidgetSetSensitive}} operations on the
         parents of the widget.
         This is the second premise for the widget's sensitivity. Once
         it has \code{GTK_SENSITIVE} and \code{GTK_PARENT_SENSITIVE} set, its state is
         effectively sensitive. This is expressed (and can be examined) by
-        the \code{GTK_WIDGET_IS_SENSITIVE} function.}
-\item{\code{can-focus}}{        Determines whether a widget is able to handle focus grabs.}
-\item{\code{has-focus}}{        Set by \code{\link{gtkWidgetGrabFocus}} for widgets that also
+        the \verb{GTK_WIDGET_IS_SENSITIVE} function.}
+\item{\verb{can-focus}}{        Determines whether a widget is able to handle focus grabs.}
+\item{\verb{has-focus}}{        Set by \code{\link{gtkWidgetGrabFocus}} for widgets that also
         have \code{GTK_CAN_FOCUS} set. The flag will be unset once another widget
         grabs the focus.}
-\item{\code{can-default}}{        The widget is allowed to receive the default action via 
+\item{\verb{can-default}}{        The widget is allowed to receive the default action via 
         \code{\link{gtkWidgetGrabDefault}}.}
-\item{\code{has-default}}{        The widget currently is receiving the default action.}
-\item{\code{has-grab}}{        Set by \code{\link{gtkGrabAdd}}, unset by \code{\link{gtkGrabRemove}}. It means that the 
-        widget is in the grab\_widgets stack, and will be the preferred one for 
+\item{\verb{has-default}}{        The widget currently is receiving the default action.}
+\item{\verb{has-grab}}{        Set by \code{\link{gtkGrabAdd}}, unset by \code{\link{gtkGrabRemove}}. It means that the 
+        widget is in the grab_widgets stack, and will be the preferred one for 
         receiving events other than ones of cosmetic value.}
-\item{\code{rc-style}}{        Indicates that the widget's style has been looked up through the rc 
+\item{\verb{rc-style}}{        Indicates that the widget's style has been looked up through the rc 
         mechanism. It does not imply that the widget actually had a style 
         defined through the rc mechanism.}
-\item{\code{composite-child}}{        Indicates that the widget is a composite child of its parent; see 
+\item{\verb{composite-child}}{        Indicates that the widget is a composite child of its parent; see 
         \code{\link{gtkWidgetPushCompositeChild}}, \code{\link{gtkWidgetPopCompositeChild}}.}
-\item{\code{no-reparent}}{	Unused since before GTK+ 1.2, will be removed in a future version.}
-\item{\code{app-paintable}}{        Set and unset by \code{\link{gtkWidgetSetAppPaintable}}.
+\item{\verb{no-reparent}}{	Unused since before GTK+ 1.2, will be removed in a future version.}
+\item{\verb{app-paintable}}{        Set and unset by \code{\link{gtkWidgetSetAppPaintable}}.
         Must be set on widgets whose window the application directly draws on, 
 	in order to keep GTK+ from overwriting the drawn stuff.}
-\item{\code{receives-default}}{        The widget when focused will receive the default action and have 
+\item{\verb{receives-default}}{        The widget when focused will receive the default action and have 
         \code{GTK_HAS_DEFAULT} set even if there is a different widget set as default.}
-\item{\code{double-buffered}}{        Set and unset by \code{\link{gtkWidgetSetDoubleBuffered}}.
+\item{\verb{double-buffered}}{        Set and unset by \code{\link{gtkWidgetSetDoubleBuffered}}.
         Indicates that exposes done on the widget should be double-buffered.}
-\item{\code{no-show-all}}{\emph{undocumented
+\item{\verb{no-show-all}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkWidgetHelpType}}{
+\item{\verb{GtkWidgetHelpType}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{tooltip}}{\emph{undocumented
+\item{\verb{tooltip}}{\emph{undocumented
 }}
-\item{\code{whats-this}}{\emph{undocumented
+\item{\verb{whats-this}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkTextDirection}}{
+\item{\verb{GtkTextDirection}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{none}}{\emph{undocumented
+\item{\verb{none}}{\emph{undocumented
 }}
-\item{\code{ltr}}{\emph{undocumented
+\item{\verb{ltr}}{\emph{undocumented
 }}
-\item{\code{rtl}}{\emph{undocumented
+\item{\verb{rtl}}{\emph{undocumented
 }}
 }
 
@@ -357,7 +357,7 @@ The type of the callback functions used for e.g. iterating over
 the children of a container, see \code{\link{gtkContainerForeach}}. 
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the widget to operate on}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the widget to operate on}
 \item{\code{data}}{[R object] user-supplied data}
 }
 
@@ -369,7 +369,7 @@ the children of a container, see \code{\link{gtkContainerForeach}}.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -379,14 +379,14 @@ the children of a container, see \code{\link{gtkContainerForeach}}.
 The ::button-press-event signal will be emitted when a button
 (typically from a mouse) is pressed.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the 
-widget needs to enable the \code{GDK_BUTTON_PRESS_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the 
+widget needs to enable the \verb{GDK_BUTTON_PRESS_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventButton}}]  the \code{\link{GdkEventButton}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventButton}}]  the \verb{\link{GdkEventButton}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -398,14 +398,14 @@ This signal will be sent to the grab widget if there is one.
 The ::button-release-event signal will be emitted when a button
 (typically from a mouse) is released.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the 
-widget needs to enable the \code{GDK_BUTTON_RELEASE_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the 
+widget needs to enable the \verb{GDK_BUTTON_RELEASE_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventButton}}]  the \code{\link{GdkEventButton}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventButton}}]  the \verb{\link{GdkEventButton}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -417,11 +417,11 @@ This signal will be sent to the grab widget if there is one.
 Determines whether an accelerator that activates the signal
 identified by \code{signal.id} can currently be activated.
 This signal is present to allow applications and derived
-widgets to override the default \code{\link{GtkWidget}} handling
+widgets to override the default \verb{\link{GtkWidget}} handling
 for determining whether an accelerator can be activated.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
 \item{\code{signal.id}}{[numeric]  the ID of a signal installed on \code{widget}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -435,8 +435,8 @@ child property  that has
 changed on an object. The signal's detail holds the property name.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{pspec}}{[\code{\link{GParamSpec}}]  the \code{\link{GParamSpec}} of the changed child property}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{pspec}}{[\verb{\link{GParamSpec}}]  the \verb{\link{GParamSpec}} of the changed child property}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -448,8 +448,8 @@ receives a message (via a ClientMessage event) from another
 application.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventClient}}]  the \code{\link{GdkEventClient}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventClient}}]  the \verb{\link{GdkEventClient}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -463,7 +463,7 @@ status of \code{widget}s screen changes.
 See \code{\link{gdkScreenIsComposited}}.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -473,13 +473,13 @@ See \code{\link{gdkScreenIsComposited}}.
 The ::configure-event signal will be emitted when the size, position or
 stacking of the \code{widget}'s window has changed.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
 automatically for all new windows.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventConfigure}}]  the \code{\link{GdkEventConfigure}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventConfigure}}]  the \verb{\link{GdkEventConfigure}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -495,8 +495,8 @@ this signal will cause the window to be hidden instead, so that
 it can later be shown again without reconstructing it.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the event which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the event which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -505,18 +505,18 @@ it can later be shown again without reconstructing it.
 
 }
 \item{\code{destroy-event(widget, event, user.data)}}{
-The ::destroy-event signal is emitted when a \code{\link{GdkWindow}} is destroyed.
+The ::destroy-event signal is emitted when a \verb{\link{GdkWindow}} is destroyed.
 You rarely get this signal, because most widgets disconnect themselves 
 from their window before they destroy it, so no widget owns the 
 window at destroy time.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
 automatically for all new windows.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the event which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the event which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -529,7 +529,7 @@ The ::direction-changed signal is emitted when the text direction
 of a widget changes.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
 \item{\code{previous.direction}}{[\code{\link{GtkTextDirection}}]  the previous text direction of \code{widget}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -542,8 +542,8 @@ started. A typical reason to connect to this signal is to set up a
 custom drag icon with \code{\link{gtkDragSourceSetIcon}}.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -556,8 +556,8 @@ handler is responsible for deleting the data that has been dropped. What
 "delete" means depends on the context of the drag operation.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -571,11 +571,11 @@ is indicated by \code{info}. See \code{\link{gtkSelectionDataSet}} and
 \code{\link{gtkSelectionDataSetText}}.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
-\item{\code{data}}{[\code{\link{GtkSelectionData}}]  the \code{\link{GtkSelectionData}} to be filled with the dragged data}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
+\item{\code{data}}{[\verb{\link{GtkSelectionData}}]  the \verb{\link{GtkSelectionData}} to be filled with the dragged data}
 \item{\code{info}}{[numeric]  the info that has been registered with the target in the 
-       \code{\link{GtkTargetList}}}
+       \verb{\link{GtkTargetList}}}
 \item{\code{time}}{[numeric]  the timestamp at which the data was requested}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -587,7 +587,7 @@ The ::drag-data-received signal is emitted on the drop site when the
 dragged data has been received. If the data was received in order to 
 determine whether the drop will be accepted, the handler is expected 
 to call \code{\link{gdkDragStatus}} and \emph{not} finish the drag. 
-If the data was received in response to a \code{"drag-drop"} signal 
+If the data was received in response to a \verb{"drag-drop"} signal 
 (and this is the last target to be received), the handler for this 
 signal is expected to process the received data and then call 
 \code{\link{gtkDragFinish}}, setting the \code{success} parameter depending on whether 
@@ -614,13 +614,13 @@ drag_data_received <- function(widget, drag_context, x, y, data, info, time)
 }  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{x}}{[integer]  where the drop happened}
 \item{\code{y}}{[integer]  where the drop happened}
-\item{\code{data}}{[\code{\link{GtkSelectionData}}]  the received data}
+\item{\code{data}}{[\verb{\link{GtkSelectionData}}]  the received data}
 \item{\code{info}}{[numeric]  the info that has been registered with the target in the 
-       \code{\link{GtkTargetList}}}
+       \verb{\link{GtkTargetList}}}
 \item{\code{time}}{[numeric]  the timestamp at which the data was received}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -635,13 +635,13 @@ zone, it returns \code{FALSE} and no further processing is necessary.
 Otherwise, the handler returns \code{TRUE}. In this case, the handler must 
 ensure that \code{\link{gtkDragFinish}} is called to let the source know that 
 the drop is done. The call to \code{\link{gtkDragFinish}} can be done either 
-directly or in a \code{"drag-data-received"} handler which gets 
+directly or in a \verb{"drag-data-received"} handler which gets 
 triggered by calling \code{\link{gtkDragGetData}} to receive the data for one 
 or more of the supported targets.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{x}}{[integer]  the x coordinate of the current cursor position}
 \item{\code{y}}{[integer]  the y coordinate of the current cursor position}
 \item{\code{time}}{[numeric]  the timestamp of the motion event}
@@ -654,11 +654,11 @@ or more of the supported targets.
 \item{\code{drag-end(widget, drag.context, user.data)}}{
 The ::drag-end signal is emitted on the drag source when a drag is 
 finished.  A typical reason to connect to this signal is to undo 
-things done in \code{"drag-begin"}.  
+things done in \verb{"drag-begin"}.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -674,8 +674,8 @@ animation), otherwise it returns \code{FALSE}.
   Since  2.12
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{result}}{[GtkDragResult]  the result of the drag operation}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -686,12 +686,12 @@ animation), otherwise it returns \code{FALSE}.
 \item{\code{drag-leave(widget, drag.context, time, user.data)}}{
 The ::drag-leave signal is emitted on the drop site when the cursor 
 leaves the widget. A typical reason to connect to this signal is to 
-undo things done in \code{"drag-motion"}, e.g. undo highlighting 
+undo things done in \verb{"drag-motion"}, e.g. undo highlighting 
 with \code{\link{gtkDragUnhighlight}}  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{time}}{[numeric]  the timestamp of the motion event}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -709,11 +709,11 @@ displaying feedback to the user, by calling \code{\link{gdkDragStatus}}. If the
 decision whether the drop will be accepted or rejected can't be made
 based solely on the cursor position and the type of the data, the handler 
 may inspect the dragged data by calling \code{\link{gtkDragGetData}} and defer the 
-\code{\link{gdkDragStatus}} call to the \code{"drag-data-received"} handler. 
+\code{\link{gdkDragStatus}} call to the \verb{"drag-data-received"} handler. 
   
 Note that there is no drag-enter signal. The drag receiver has to keep 
 track of whether he has received any drag-motion signals since the last 
-\code{"drag-leave"} and if not, treat the drag-motion signal as an 
+\verb{"drag-leave"} and if not, treat the drag-motion signal as an 
 "enter" signal. Upon an "enter", the handler will typically highlight 
 the drop site with \code{\link{gtkDragHighlight}}.
   \preformatted{
@@ -766,8 +766,8 @@ drag_data_received <- function(widget, context, x, y, selection_data, info,
 }  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{drag.context}}{[\code{\link{GdkDragContext}}]  the drag context}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{drag.context}}{[\verb{\link{GdkDragContext}}]  the drag context}
 \item{\code{x}}{[integer]  the x coordinate of the current cursor position}
 \item{\code{y}}{[integer]  the y coordinate of the current cursor position}
 \item{\code{time}}{[numeric]  the timestamp of the motion event}
@@ -781,14 +781,14 @@ drag_data_received <- function(widget, context, x, y, selection_data, info,
 The ::enter-notify-event will be emitted when the pointer enters
 the \code{widget}'s window.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_ENTER_NOTIFY_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_ENTER_NOTIFY_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventCrossing}}]  the \code{\link{GdkEventCrossing}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventCrossing}}]  the \verb{\link{GdkEventCrossing}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -800,12 +800,12 @@ This signal will be sent to the grab widget if there is one.
 The GTK+ main loop will emit three signals for each GDK event delivered
 to a widget: one generic ::event signal, another, more specific,
 signal that matches the type of event delivered (e.g. 
-\code{"key-press-event"}) and finally a generic 
-\code{"event-after"} signal.  
+\verb{"key-press-event"}) and finally a generic 
+\verb{"event-after"} signal.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEvent}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEvent}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -822,8 +822,8 @@ the second more specific signal, ::event-after will be emitted
 regardless of the previous two signals handlers return values.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEvent}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEvent}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -831,16 +831,16 @@ regardless of the previous two signals handlers return values.
 }
 \item{\code{expose-event(widget, event, user.data)}}{
 The ::expose-event signal is emitted when an area of a previously
-obscured \code{\link{GdkWindow}} is made visible and needs to be redrawn.
-\code{GTK_NO_WINDOW} widgets will get a synthesized event from their parent 
+obscured \verb{\link{GdkWindow}} is made visible and needs to be redrawn.
+\verb{GTK_NO_WINDOW} widgets will get a synthesized event from their parent 
 widget.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_EXPOSURE_MASK} mask.  
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_EXPOSURE_MASK} mask.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventExpose}}]  the \code{\link{GdkEventExpose}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventExpose}}]  the \verb{\link{GdkEventExpose}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -853,7 +853,7 @@ to enable the \code{GDK_EXPOSURE_MASK} mask.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -865,12 +865,12 @@ to enable the \code{GDK_EXPOSURE_MASK} mask.
 The ::focus-in-event signal will be emitted when the keyboard focus
 enters the \code{widget}'s window.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_FOCUS_CHANGE_MASK} mask.  
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_FOCUS_CHANGE_MASK} mask.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventFocus}}]  the \code{\link{GdkEventFocus}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventFocus}}]  the \verb{\link{GdkEventFocus}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -882,12 +882,12 @@ to enable the \code{GDK_FOCUS_CHANGE_MASK} mask.
 The ::focus-out-event signal will be emitted when the keyboard focus
 leaves the \code{widget}'s window.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_FOCUS_CHANGE_MASK} mask.  
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_FOCUS_CHANGE_MASK} mask.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventFocus}}]  the \code{\link{GdkEventFocus}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventFocus}}]  the \verb{\link{GdkEventFocus}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -906,8 +906,8 @@ application grabs the pointer or keyboard again.
   Since  2.8
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEventGrabBroken}} event}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEventGrabBroken}} event}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -920,7 +920,7 @@ application grabs the pointer or keyboard again.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -937,7 +937,7 @@ grab widget in the grab stack of its window group is not
 its ancestor.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
 \item{\code{was.grabbed}}{[logical] \code{FALSE} if the widget becomes shadowed, \code{TRUE}
               if it becomes unshadowed}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -950,7 +950,7 @@ its ancestor.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -960,12 +960,12 @@ its ancestor.
 The ::hierarchy-changed signal is emitted when the
 anchored state of a widget changes. A widget is
 \dfn{anchored} when its toplevel
-ancestor is a \code{\link{GtkWindow}}. This signal is emitted when
+ancestor is a \verb{\link{GtkWindow}}. This signal is emitted when
 a widget changes from un-anchored to anchored or vice-versa.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
-\item{\code{previous.toplevel}}{[\code{\link{GtkWidget}}]  the previous toplevel ancestor, or \code{NULL}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{previous.toplevel}}{[\verb{\link{GtkWidget}}]  the previous toplevel ancestor, or \code{NULL}
   if the widget was previously unanchored}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -975,14 +975,14 @@ a widget changes from un-anchored to anchored or vice-versa.
 \item{\code{key-press-event(widget, event, user.data)}}{
 The ::key-press-event signal is emitted when a key is pressed.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_KEY_PRESS_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_KEY_PRESS_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventKey}}]  the \code{\link{GdkEventKey}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventKey}}]  the \verb{\link{GdkEventKey}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -993,14 +993,14 @@ This signal will be sent to the grab widget if there is one.
 \item{\code{key-release-event(widget, event, user.data)}}{
 The ::key-release-event signal is emitted when a key is pressed.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_KEY_RELEASE_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_KEY_RELEASE_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventKey}}]  the \code{\link{GdkEventKey}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventKey}}]  the \verb{\link{GdkEventKey}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1015,7 +1015,7 @@ See \code{\link{gtkWidgetKeynavFailed}} for details.
   Since  2.12
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
 \item{\code{direction}}{[\code{\link{GtkDirectionType}}]  the direction of movement}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1029,14 +1029,14 @@ See \code{\link{gtkWidgetKeynavFailed}} for details.
 The ::leave-notify-event will be emitted when the pointer leaves
 the \code{widget}'s window.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_LEAVE_NOTIFY_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_LEAVE_NOTIFY_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventCrossing}}]  the \code{\link{GdkEventCrossing}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventCrossing}}]  the \verb{\link{GdkEventCrossing}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1049,7 +1049,7 @@ This signal will be sent to the grab widget if there is one.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1059,13 +1059,13 @@ This signal will be sent to the grab widget if there is one.
 The ::map-event signal will be emitted when the \code{widget}'s window is
 mapped. A window is mapped when it becomes visible on the screen.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
 automatically for all new windows.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEventAny}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEventAny}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1078,7 +1078,7 @@ automatically for all new windows.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1087,16 +1087,16 @@ automatically for all new windows.
 }
 \item{\code{motion-notify-event(widget, event, user.data)}}{
 The ::motion-notify-event signal is emitted when the pointer moves 
-over the widget's \code{\link{GdkWindow}}.
+over the widget's \verb{\link{GdkWindow}}.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget 
-needs to enable the \code{GDK_POINTER_MOTION_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget 
+needs to enable the \verb{GDK_POINTER_MOTION_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventMotion}}]  the \code{\link{GdkEventMotion}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventMotion}}]  the \verb{\link{GdkEventMotion}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1109,7 +1109,7 @@ This signal will be sent to the grab widget if there is one.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1118,14 +1118,14 @@ This signal will be sent to the grab widget if there is one.
 }
 \item{\code{no-expose-event(widget, event, user.data)}}{
 The ::no-expose-event will be emitted when the \code{widget}'s window is 
-drawn as a copy of another \code{\link{GdkDrawable}} (with \code{\link{gdkDrawDrawable}} or
+drawn as a copy of another \verb{\link{GdkDrawable}} (with \code{\link{gdkDrawDrawable}} or
 \code{gdkWindowCopyArea()}) which was completely unobscured. If the source
-window was partially obscured \code{\link{GdkEventExpose}} events will be generated
+window was partially obscured \verb{\link{GdkEventExpose}} events will be generated
 for those areas.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventNoExpose}}]  the \code{\link{GdkEventNoExpose}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventNoExpose}}]  the \verb{\link{GdkEventNoExpose}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1138,8 +1138,8 @@ The ::parent-set signal is emitted when a new parent
 has been set on a widget.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
-\item{\code{old.parent}}{[\code{\link{GtkObject}}]  the previous parent, or \code{NULL} if the widget 
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{old.parent}}{[\verb{\link{GtkObject}}]  the previous parent, or \code{NULL} if the widget 
   just got its initial parent.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1150,12 +1150,12 @@ has been set on a widget.
 This signal gets emitted whenever a widget should pop up a context 
 menu. This usually happens through the standard key binding mechanism; 
 by pressing a certain key while a widget is focused, the user can cause 
-the widget to pop up a menu.  For example, the \code{\link{GtkEntry}} widget creates 
+the widget to pop up a menu.  For example, the \verb{\link{GtkEntry}} widget creates 
 a menu with clipboard commands. See  
 for an example of how to use this signal.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1166,12 +1166,12 @@ for an example of how to use this signal.
 The ::property-notify-event signal will be emitted when a property on
 the \code{widget}'s window has been changed or deleted.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_PROPERTY_CHANGE_MASK} mask.  
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_PROPERTY_CHANGE_MASK} mask.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventProperty}}]  the \code{\link{GdkEventProperty}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventProperty}}]  the \verb{\link{GdkEventProperty}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1180,14 +1180,14 @@ to enable the \code{GDK_PROPERTY_CHANGE_MASK} mask.
 
 }
 \item{\code{proximity-in-event(widget, event, user.data)}}{
-To receive this signal the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_PROXIMITY_IN_MASK} mask.
+To receive this signal the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_PROXIMITY_IN_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventProximity}}]  the \code{\link{GdkEventProximity}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventProximity}}]  the \verb{\link{GdkEventProximity}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1196,14 +1196,14 @@ This signal will be sent to the grab widget if there is one.
 
 }
 \item{\code{proximity-out-event(widget, event, user.data)}}{
-To receive this signal the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_PROXIMITY_OUT_MASK} mask.
+To receive this signal the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_PROXIMITY_OUT_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventProximity}}]  the \code{\link{GdkEventProximity}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventProximity}}]  the \verb{\link{GdkEventProximity}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1212,7 +1212,7 @@ This signal will be sent to the grab widget if there is one.
 
 }
 \item{\code{query-tooltip(widget, x, y, keyboard.mode, tooltip, user.data)}}{
-Emitted when the \code{"gtk-tooltip-timeout"} has expired with 
+Emitted when the \verb{"gtk-tooltip-timeout"} has expired with 
 the cursor hovering "above" \code{widget}; or emitted when \code{widget} got 
 focus in keyboard mode.
   
@@ -1228,13 +1228,13 @@ destined function calls.
   Since  2.12
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
 \item{\code{x}}{[integer]  the x coordinate of the cursor position where the request has 
     been emitted, relative to \code{widget->window}}
 \item{\code{y}}{[integer]  the y coordinate of the cursor position where the request has 
     been emitted, relative to \code{widget->window}}
 \item{\code{keyboard.mode}}{[logical] \code{TRUE} if the tooltip was trigged using the keyboard}
-\item{\code{tooltip}}{[\code{\link{GtkTooltip}}]  a \code{\link{GtkTooltip}}}
+\item{\code{tooltip}}{[\verb{\link{GtkTooltip}}]  a \verb{\link{GtkTooltip}}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1246,7 +1246,7 @@ destined function calls.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1257,8 +1257,8 @@ The ::screen-changed signal gets emitted when the
 screen of a widget has changed.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
-\item{\code{previous.screen}}{[\code{\link{GdkScreen}}]  the previous screen, or \code{NULL} if the
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{previous.screen}}{[\verb{\link{GdkScreen}}]  the previous screen, or \code{NULL} if the
   widget was not associated with a screen before}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1270,14 +1270,14 @@ The ::scroll-event signal is emitted when a button in the 4 to 7
 range is pressed. Wheel mice are usually configured to generate 
 button press events for buttons 4 and 5 when the wheel is turned.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_BUTTON_PRESS_MASK} mask.
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_BUTTON_PRESS_MASK} mask.
   
 This signal will be sent to the grab widget if there is one.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventScroll}}]  the \code{\link{GdkEventScroll}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventScroll}}]  the \verb{\link{GdkEventScroll}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1290,8 +1290,8 @@ The ::selection-clear-event signal will be emitted when the
 the \code{widget}'s window has lost ownership of a selection.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventSelection}}]  the \code{\link{GdkEventSelection}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventSelection}}]  the \verb{\link{GdkEventSelection}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1304,8 +1304,8 @@ the \code{widget}'s window has lost ownership of a selection.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
-\item{\code{data}}{[\code{\link{GtkSelectionData}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{data}}{[\verb{\link{GtkSelectionData}}] }
 \item{\code{info}}{[numeric] }
 \item{\code{time}}{[numeric] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -1318,8 +1318,8 @@ the \code{widget}'s window has lost ownership of a selection.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
-\item{\code{event}}{[\code{\link{GdkEventSelection}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{event}}{[\verb{\link{GdkEventSelection}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1331,8 +1331,8 @@ the \code{widget}'s window has lost ownership of a selection.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
-\item{\code{data}}{[\code{\link{GtkSelectionData}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{data}}{[\verb{\link{GtkSelectionData}}] }
 \item{\code{time}}{[numeric] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1345,8 +1345,8 @@ another client requests ownership of the selection owned by
 the \code{widget}'s window.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventSelection}}]  the \code{\link{GdkEventSelection}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventSelection}}]  the \verb{\link{GdkEventSelection}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1359,7 +1359,7 @@ the \code{widget}'s window.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1370,7 +1370,7 @@ the \code{widget}'s window.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkWidgetHelpType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1382,8 +1382,8 @@ the \code{widget}'s window.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
-\item{\code{allocation}}{[\code{\link{GtkAllocation}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{allocation}}{[\verb{\link{GtkAllocation}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1394,8 +1394,8 @@ the \code{widget}'s window.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
-\item{\code{requisition}}{[\code{\link{GtkRequisition}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{requisition}}{[\verb{\link{GtkRequisition}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1406,7 +1406,7 @@ the \code{widget}'s window.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{state}}{[\code{\link{GtkStateType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1419,8 +1419,8 @@ on a widget. Note that style-modifying functions like
 \code{\link{gtkWidgetModifyBase}} also cause this signal to be emitted.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object on which the signal is emitted}
-\item{\code{previous.style}}{[\code{\link{GtkStyle}}]  the previous style, or \code{NULL} if the widget 
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object on which the signal is emitted}
+\item{\code{previous.style}}{[\verb{\link{GtkStyle}}]  the previous style, or \code{NULL} if the widget 
   just got its initial style }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -1432,7 +1432,7 @@ on a widget. Note that style-modifying functions like
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1442,13 +1442,13 @@ on a widget. Note that style-modifying functions like
 The ::unmap-event signal will be emitted when the \code{widget}'s window is
 unmapped. A window is unmapped when it becomes invisible on the screen.
   
-To receive this signal, the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
+To receive this signal, the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable this mask
 automatically for all new windows.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  the \code{\link{GdkEventAny}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEvent}}]  the \verb{\link{GdkEventAny}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1461,7 +1461,7 @@ automatically for all new windows.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] the object which received the signal.}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1471,12 +1471,12 @@ automatically for all new windows.
 The ::visibility-notify-event will be emitted when the \code{widget}'s window
 is obscured or unobscured.
   
-To receive this signal the \code{\link{GdkWindow}} associated to the widget needs
-to enable the \code{GDK_VISIBILITY_NOTIFY_MASK} mask.  
+To receive this signal the \verb{\link{GdkWindow}} associated to the widget needs
+to enable the \verb{GDK_VISIBILITY_NOTIFY_MASK} mask.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventVisibility}}]  the \code{\link{GdkEventVisibility}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventVisibility}}]  the \verb{\link{GdkEventVisibility}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1488,13 +1488,13 @@ to enable the \code{GDK_VISIBILITY_NOTIFY_MASK} mask.
 The ::window-state-event will be emitted when the state of the 
 toplevel window associated to the \code{widget} changes.
   
-To receive this signal the \code{\link{GdkWindow}} associated to the widget 
-needs to enable the \code{GDK_STRUCTURE_MASK} mask. GDK will enable 
+To receive this signal the \verb{\link{GdkWindow}} associated to the widget 
+needs to enable the \verb{GDK_STRUCTURE_MASK} mask. GDK will enable 
 this mask automatically for all new windows.  
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the object which received the signal}
-\item{\code{event}}{[\code{\link{GdkEventWindowState}}]  the \code{\link{GdkEventWindowState}} which triggered this signal}
+\item{\code{widget}}{[\verb{\link{GtkWidget}}]  the object which received the signal}
+\item{\code{event}}{[\verb{\link{GdkEventWindowState}}]  the \verb{\link{GdkEventWindowState}} which triggered this signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -1504,51 +1504,51 @@ this mask automatically for all new windows.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{app-paintable} [logical : Read / Write]}{
+\item{\verb{app-paintable} [logical : Read / Write]}{
 
 Whether the application will paint directly on the widget.  Default value: FALSE
 
 }
-\item{\code{can-default} [logical : Read / Write]}{
+\item{\verb{can-default} [logical : Read / Write]}{
 
 Whether the widget can be the default widget.  Default value: FALSE
 
 }
-\item{\code{can-focus} [logical : Read / Write]}{
+\item{\verb{can-focus} [logical : Read / Write]}{
 
 Whether the widget can accept the input focus.  Default value: FALSE
 
 }
-\item{\code{composite-child} [logical : Read]}{
+\item{\verb{composite-child} [logical : Read]}{
 
 Whether the widget is part of a composite widget.  Default value: FALSE
 
 }
-\item{\code{events} [\code{\link{GdkEventMask}} : Read / Write]}{
+\item{\verb{events} [\code{\link{GdkEventMask}} : Read / Write]}{
 
-The event mask that decides what kind of GdkEvents this widget gets.  Default value: GDK\_STRUCTURE\_MASK
-
-}
-\item{\code{extension-events} [\code{\link{GdkExtensionMode}} : Read / Write]}{
-
-The mask that decides what kind of extension events this widget gets.  Default value: GDK\_EXTENSION\_EVENTS\_NONE
+The event mask that decides what kind of GdkEvents this widget gets.  Default value: GDK_STRUCTURE_MASK
 
 }
-\item{\code{has-default} [logical : Read / Write]}{
+\item{\verb{extension-events} [\code{\link{GdkExtensionMode}} : Read / Write]}{
+
+The mask that decides what kind of extension events this widget gets.  Default value: GDK_EXTENSION_EVENTS_NONE
+
+}
+\item{\verb{has-default} [logical : Read / Write]}{
 
 Whether the widget is the default widget.  Default value: FALSE
 
 }
-\item{\code{has-focus} [logical : Read / Write]}{
+\item{\verb{has-focus} [logical : Read / Write]}{
 
 Whether the widget has the input focus.  Default value: FALSE
 
 }
-\item{\code{has-tooltip} [logical : Read / Write]}{
+\item{\verb{has-tooltip} [logical : Read / Write]}{
 
-Enables or disables the emission of \code{"query-tooltip"} on \code{widget}.  
+Enables or disables the emission of \verb{"query-tooltip"} on \code{widget}.  
 A value of \code{TRUE} indicates that \code{widget} can have a tooltip, in this case
-the widget will be queried using \code{"query-tooltip"} to determine
+the widget will be queried using \verb{"query-tooltip"} to determine
 whether it will provide a tooltip or not.
   
 Note that setting this property to \code{TRUE} for the first time will change
@@ -1559,97 +1559,97 @@ property is set to \code{FALSE} again.
   Default value: FALSE  Since  2.12
 
 }
-\item{\code{height-request} [integer : Read / Write]}{
+\item{\verb{height-request} [integer : Read / Write]}{
 
 Override for height request of the widget, or -1 if natural request should be used.  Allowed values: >= -1  Default value: -1
 
 }
-\item{\code{is-focus} [logical : Read / Write]}{
+\item{\verb{is-focus} [logical : Read / Write]}{
 
 Whether the widget is the focus widget within the toplevel.  Default value: FALSE
 
 }
-\item{\code{name} [character : Read / Write]}{
+\item{\verb{name} [character : *                : Read / Write]}{
 
 The name of the widget.  Default value: NULL
 
 }
-\item{\code{no-show-all} [logical : Read / Write]}{
+\item{\verb{no-show-all} [logical : Read / Write]}{
 
-Whether gtk\_widget\_show\_all() should not affect this widget.  Default value: FALSE
+Whether gtk_widget_show_all() should not affect this widget.  Default value: FALSE
 
 }
-\item{\code{parent} [\code{\link{GtkContainer}} : Read / Write]}{
+\item{\verb{parent} [\verb{\link{GtkContainer}} : *         : Read / Write]}{
 
 The parent widget of this widget. Must be a Container widget.
 
 }
-\item{\code{receives-default} [logical : Read / Write]}{
+\item{\verb{receives-default} [logical : Read / Write]}{
 
 If TRUE, the widget will receive the default action when it is focused.  Default value: FALSE
 
 }
-\item{\code{sensitive} [logical : Read / Write]}{
+\item{\verb{sensitive} [logical : Read / Write]}{
 
 Whether the widget responds to input.  Default value: TRUE
 
 }
-\item{\code{style} [\code{\link{GtkStyle}} : Read / Write]}{
+\item{\verb{style} [\verb{\link{GtkStyle}} : *             : Read / Write]}{
 
 The style of the widget, which contains information about how it will look (colors etc).
 
 }
-\item{\code{tooltip-markup} [character : Read / Write]}{
+\item{\verb{tooltip-markup} [character : *                : Read / Write]}{
 
 Sets the text of tooltip to be the given string, which is marked up
 with the Pango text markup language.
 Also see \code{\link{gtkTooltipSetMarkup}}.
   
 This is a convenience property which will take care of getting the
-tooltip shown if the given string is not \code{NULL}: \code{"has-tooltip"}
+tooltip shown if the given string is not \code{NULL}: \verb{"has-tooltip"}
 will automatically be set to \code{TRUE} and there will be taken care of
-\code{"query-tooltip"} in the default signal handler.  
+\verb{"query-tooltip"} in the default signal handler.  
 
   Default value: NULL  Since  2.12
 
 }
-\item{\code{tooltip-text} [character : Read / Write]}{
+\item{\verb{tooltip-text} [character : *                : Read / Write]}{
 
 Sets the text of tooltip to be the given string.
   
 Also see \code{\link{gtkTooltipSetText}}.
   
 This is a convenience property which will take care of getting the
-tooltip shown if the given string is not \code{NULL}: \code{"has-tooltip"}
+tooltip shown if the given string is not \code{NULL}: \verb{"has-tooltip"}
 will automatically be set to \code{TRUE} and there will be taken care of
-\code{"query-tooltip"} in the default signal handler.  
+\verb{"query-tooltip"} in the default signal handler.  
 
   Default value: NULL  Since  2.12
 
 }
-\item{\code{visible} [logical : Read / Write]}{
+\item{\verb{visible} [logical : Read / Write]}{
 
 Whether the widget is visible.  Default value: FALSE
 
 }
-\item{\code{width-request} [integer : Read / Write]}{
+\item{\verb{width-request} [integer : Read / Write]}{
 
 Override for width request of the widget, or -1 if natural request should be used.  Allowed values: >= -1  Default value: -1
 
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{cursor-aspect-ratio} [numeric : Read]}{
+\item{\verb{cursor-aspect-ratio} [numeric : Read]}{
 
 Aspect ratio with which to draw insertion cursor.  Allowed values: [0,1]  Default value: 0.04
 
 }
-\item{\code{cursor-color} [\code{\link{GdkColor}} : Read]}{
+\item{\verb{cursor-color} [\verb{\link{GdkColor}} : *             : Read]}{
 
 Color with which to draw insertion cursor.
 
 }
-\item{\code{draw-border} [\code{\link{GtkBorder}} : Read]}{
+\item{\verb{draw-border} [\verb{\link{GtkBorder}} : *            : Read]}{
 
 The "draw-border" style property defines the size of areas outside 
 the widget's allocation to draw.  
@@ -1657,34 +1657,34 @@ the widget's allocation to draw.
   Since  2.8
 
 }
-\item{\code{focus-line-pattern} [character : Read]}{
+\item{\verb{focus-line-pattern} [character : *                : Read]}{
 
 Dash pattern used to draw the focus indicator.  Default value: "\\001\\001"
 
 }
-\item{\code{focus-line-width} [integer : Read]}{
+\item{\verb{focus-line-width} [integer : Read]}{
 
 Width, in pixels, of the focus indicator line.  Allowed values: >= 0  Default value: 1
 
 }
-\item{\code{focus-padding} [integer : Read]}{
+\item{\verb{focus-padding} [integer : Read]}{
 
 Width, in pixels, between focus indicator and the widget 'box'.  Allowed values: >= 0  Default value: 1
 
 }
-\item{\code{interior-focus} [logical : Read]}{
+\item{\verb{interior-focus} [logical : Read]}{
 
 Whether to draw the focus indicator inside widgets.  Default value: TRUE
 
 }
-\item{\code{link-color} [\code{\link{GdkColor}} : Read]}{
+\item{\verb{link-color} [\verb{\link{GdkColor}} : *             : Read]}{
 
 The "link-color" style property defines the color of unvisited links.  
 
   Since  2.10
 
 }
-\item{\code{scroll-arrow-hlength} [integer : Read]}{
+\item{\verb{scroll-arrow-hlength} [integer : Read]}{
 
 The "scroll-arrow-hlength" style property defines the length of 
 horizontal scroll arrows.  
@@ -1692,7 +1692,7 @@ horizontal scroll arrows.
   Allowed values: >= 1  Default value: 16  Since  2.10
 
 }
-\item{\code{scroll-arrow-vlength} [integer : Read]}{
+\item{\verb{scroll-arrow-vlength} [integer : Read]}{
 
 The "scroll-arrow-vlength" style property defines the length of 
 vertical scroll arrows.  
@@ -1700,35 +1700,35 @@ vertical scroll arrows.
   Allowed values: >= 1  Default value: 16  Since  2.10
 
 }
-\item{\code{secondary-cursor-color} [\code{\link{GdkColor}} : Read]}{
+\item{\verb{secondary-cursor-color} [\verb{\link{GdkColor}} : *             : Read]}{
 
 Color with which to draw the secondary insertion cursor when editing mixed right-to-left and left-to-right text.
 
 }
-\item{\code{separator-height} [integer : Read]}{
+\item{\verb{separator-height} [integer : Read]}{
 
 The "separator-height" style property defines the height of separators.
-This property only takes effect if \code{"wide-separators"} is \code{TRUE}.  
+This property only takes effect if \verb{"wide-separators"} is \code{TRUE}.  
 
   Allowed values: >= 0  Default value: 0  Since  2.10
 
 }
-\item{\code{separator-width} [integer : Read]}{
+\item{\verb{separator-width} [integer : Read]}{
 
 The "separator-width" style property defines the width of separators.
-This property only takes effect if \code{"wide-separators"} is \code{TRUE}.  
+This property only takes effect if \verb{"wide-separators"} is \code{TRUE}.  
 
   Allowed values: >= 0  Default value: 0  Since  2.10
 
 }
-\item{\code{visited-link-color} [\code{\link{GdkColor}} : Read]}{
+\item{\verb{visited-link-color} [\verb{\link{GdkColor}} : *             : Read]}{
 
 The "visited-link-color" style property defines the color of visited links.  
 
   Since  2.10
 
 }
-\item{\code{wide-separators} [logical : Read]}{
+\item{\verb{wide-separators} [logical : Read]}{
 
 The "wide-separators" style property defines whether separators have 
 configurable width and should be drawn using a box instead of a line.  

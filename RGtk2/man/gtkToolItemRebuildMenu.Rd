@@ -6,9 +6,9 @@ overflow menu item for \code{tool.item} has changed. If the
 overflow menu is visible when this function it called,
 the menu will be rebuilt.}
 \usage{gtkToolItemRebuildMenu(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkToolItem}}]  a \code{\link{GtkToolItem}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkToolItem}}]  a \verb{\link{GtkToolItem}}}}
 \details{The function must be called when the tool item
-changes what it will do in response to the "create\_menu\_proxy"
+changes what it will do in response to the "create_menu_proxy"
 signal.  
 
   Since  2.6}

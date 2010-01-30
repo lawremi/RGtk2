@@ -14,39 +14,39 @@ can be queried anytime by the users using cairo*\code{status()} calls.  In
 the mean time, it is safe to call all cairo functions normally even if the
 underlying object is in an error status.  This means that no error handling
 code is required before or after each individual cairo function call.}
-\section{Enums and Flags}{\describe{\item{\code{CairoStatus}}{
-\code{\link{CairoStatus}} is used to indicate errors that can occur when
+\section{Enums and Flags}{\describe{\item{\verb{CairoStatus}}{
+\verb{\link{CairoStatus}} is used to indicate errors that can occur when
 using Cairo. In some cases it is returned directly by functions.
-but when using \code{\link{Cairo}}, the last error, if any, is stored in
+but when using \verb{\link{Cairo}}, the last error, if any, is stored in
 the context and can be retrieved with \code{\link{cairoStatus}}.
   
 New entries may be added in future versions.  Use \code{\link{cairoStatusToString}}
 to get a human-readable representation of an error message.  
 
 \describe{
-\item{\code{success}}{ no error has occurred}
-\item{\code{no-memory}}{ out of memory}
-\item{\code{invalid-restore}}{\code{\link{cairoRestore}} called without matching \code{\link{cairoSave}}}
-\item{\code{invalid-pop-group}}{ no saved group to pop}
-\item{\code{no-current-point}}{ no current point defined}
-\item{\code{invalid-matrix}}{ invalid matrix (not invertible)}
-\item{\code{invalid-status}}{ invalid value for an input \code{\link{CairoStatus}}}
-\item{\code{null-pointer}}{\code{NULL} pointer}
-\item{\code{invalid-string}}{ input string not valid UTF-8}
-\item{\code{invalid-path-data}}{ input path data not valid}
-\item{\code{read-error}}{ error while reading from input stream}
-\item{\code{write-error}}{ error while writing to output stream}
-\item{\code{surface-finished}}{ target surface has been finished}
-\item{\code{surface-type-mismatch}}{ the surface type is not appropriate for the operation}
-\item{\code{pattern-type-mismatch}}{ the pattern type is not appropriate for the operation}
-\item{\code{invalid-content}}{ invalid value for an input \code{\link{CairoContent}}}
-\item{\code{invalid-format}}{ invalid value for an input \code{\link{CairoFormat}}}
-\item{\code{invalid-visual}}{ invalid value for an input Visual*}
-\item{\code{file-not-found}}{ file not found}
-\item{\code{invalid-dash}}{ invalid value for a dash setting}
-\item{\code{invalid-dsc-comment}}{ invalid value for a DSC comment (Since 1.2)}
-\item{\code{invalid-index}}{ invalid index passed to getter (Since 1.4)}
-\item{\code{clip-not-representable}}{ clip region not representable in desired format (Since 1.4)}
+\item{\verb{success}}{ no error has occurred}
+\item{\verb{no-memory}}{ out of memory}
+\item{\verb{invalid-restore}}{\code{\link{cairoRestore}} called without matching \code{\link{cairoSave}}}
+\item{\verb{invalid-pop-group}}{ no saved group to pop}
+\item{\verb{no-current-point}}{ no current point defined}
+\item{\verb{invalid-matrix}}{ invalid matrix (not invertible)}
+\item{\verb{invalid-status}}{ invalid value for an input \verb{\link{CairoStatus}}}
+\item{\verb{null-pointer}}{\code{NULL} pointer}
+\item{\verb{invalid-string}}{ input string not valid UTF-8}
+\item{\verb{invalid-path-data}}{ input path data not valid}
+\item{\verb{read-error}}{ error while reading from input stream}
+\item{\verb{write-error}}{ error while writing to output stream}
+\item{\verb{surface-finished}}{ target surface has been finished}
+\item{\verb{surface-type-mismatch}}{ the surface type is not appropriate for the operation}
+\item{\verb{pattern-type-mismatch}}{ the pattern type is not appropriate for the operation}
+\item{\verb{invalid-content}}{ invalid value for an input \verb{\link{CairoContent}}}
+\item{\verb{invalid-format}}{ invalid value for an input \verb{\link{CairoFormat}}}
+\item{\verb{invalid-visual}}{ invalid value for an input Visual*}
+\item{\verb{file-not-found}}{ file not found}
+\item{\verb{invalid-dash}}{ invalid value for a dash setting}
+\item{\verb{invalid-dsc-comment}}{ invalid value for a DSC comment (Since 1.2)}
+\item{\verb{invalid-index}}{ invalid index passed to getter (Since 1.4)}
+\item{\verb{clip-not-representable}}{ clip region not representable in desired format (Since 1.4)}
 }
 
 }}}

@@ -5,8 +5,8 @@
 is selected}
 \usage{atkTableIsColumnSelected(object, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
-\item{\code{column}}{[integer]  a \code{integer} representing a column in \code{table}}
+\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{column}}{[integer]  a \verb{integer} representing a column in \code{table}}
 }
 \value{[logical]  a gboolean representing if the column is selected, or 0
 if value does not implement this interface.}

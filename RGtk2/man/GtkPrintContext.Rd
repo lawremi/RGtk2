@@ -15,16 +15,16 @@
 \code{\link{gtkPrintContextCreatePangoLayout}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkPrintContext}}
 \section{Detailed Description}{A GtkPrintContext encapsulates context information that is required when
 drawing pages for printing, such as the cairo context and important 
 parameters like page size and resolution. It also lets you easily
-create \code{\link{PangoLayout}} and \code{\link{PangoContext}} objects that match the font metrics 
+create \verb{\link{PangoLayout}} and \verb{\link{PangoContext}} objects that match the font metrics 
 of the cairo surface.
   
 GtkPrintContext objects gets passed to the ::begin-print, ::end-print, 
-::request-page-setup and ::draw-page signals on the \code{\link{GtkPrintOperation}}.
+::request-page-setup and ::draw-page signals on the \verb{\link{GtkPrintOperation}}.
   
  \emph{Using GtkPrintContext in a ::draw-page callback}
 \preformatted{
@@ -72,7 +72,7 @@ draw_page <- function(operation, context, page_nr)
 }
 }  
 Printing support was added in GTK+ 2.10.}
-\section{Structures}{\describe{\item{\code{GtkPrintContext}}{
+\section{Structures}{\describe{\item{\verb{GtkPrintContext}}{
 \emph{undocumented
 }
 

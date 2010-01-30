@@ -5,7 +5,7 @@
 the Pango text markup
 language. See \code{\link{gtkExpanderSetUseMarkup}}.}
 \usage{gtkExpanderGetUseMarkup(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkExpander}}]  a \code{\link{GtkExpander}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkExpander}}]  a \verb{\link{GtkExpander}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the label's text will be parsed for markup}
 \author{Derived by RGtkGen from GTK+ documentation}

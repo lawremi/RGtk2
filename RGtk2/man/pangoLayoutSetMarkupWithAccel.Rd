@@ -6,10 +6,10 @@ markup format). Replaces
 the current text and attribute list.}
 \usage{pangoLayoutSetMarkupWithAccel(object, markup, accel.marker)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{markup}}{[char]  marked-up text
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
+\item{\verb{markup}}{[char]  marked-up text
 (see markup format)}
-\item{\code{accel.marker}}{[numeric]  marker for accelerators in the text}
+\item{\verb{accel.marker}}{[numeric]  marker for accelerators in the text}
 }
 \details{If \code{accel.marker} is nonzero, the given character will mark the
 character following it as an accelerator. For example, \code{accel.marker}
@@ -20,7 +20,7 @@ Two \code{accel.marker} characters following each other produce a single
 literal \code{accel.marker} character.  }
 \value{
 A list containing the following elements:
-\item{\code{accel.char}}{[numeric]  return location for first located accelerator, or \code{NULL}}
+\item{\verb{accel.char}}{[numeric]  return location for first located accelerator, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

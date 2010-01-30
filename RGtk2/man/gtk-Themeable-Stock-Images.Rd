@@ -48,16 +48,16 @@
 \code{\link{gtkIconSourceSetStateWildcarded}(object, setting)}\cr
 \code{gtkIconFactory()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkIconFactory}}
 \section{Detailed Description}{Browse the available stock icons in the list of stock IDs found here. You can also use 
 the \command{gtk-demo} application for this purpose.
   
- An icon factory manages a collection of \code{\link{GtkIconSet}}; a \code{\link{GtkIconSet}} manages a
- set of variants of a particular icon (i.e. a \code{\link{GtkIconSet}} contains variants for
+ An icon factory manages a collection of \verb{\link{GtkIconSet}}; a \verb{\link{GtkIconSet}} manages a
+ set of variants of a particular icon (i.e. a \verb{\link{GtkIconSet}} contains variants for
  different sizes and widget states). Icons in an icon factory are named by a
- stock ID, which is a simple string identifying the icon. Each \code{\link{GtkStyle}} has a
- list of \code{\link{GtkIconFactory}} derived from the current theme; those icon factories
+ stock ID, which is a simple string identifying the icon. Each \verb{\link{GtkStyle}} has a
+ list of \verb{\link{GtkIconFactory}} derived from the current theme; those icon factories
  are consulted first when searching for an icon. If the theme doesn't set a
  particular icon, GTK+ looks for the icon in a list of default icon factories,
  maintained by \code{\link{gtkIconFactoryAddDefault}} and
@@ -70,41 +70,41 @@ will display the icon, or the convenience function
 \code{\link{gtkWidgetRenderIcon}}. These functions take the theme into account when
 looking up the icon to use for a given stock ID.}
 \section{Structures}{\describe{
-\item{\code{GtkIconSource}}{
+\item{\verb{GtkIconSource}}{
 \emph{undocumented
 }
 
 }
-\item{\code{GtkIconFactory}}{
+\item{\verb{GtkIconFactory}}{
 \emph{undocumented
 }
 
 }
-\item{\code{GtkIconSet}}{
+\item{\verb{GtkIconSet}}{
 \emph{undocumented
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkIconFactory} is the equivalent of \code{\link{gtkIconFactoryNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkIconSize}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkIconSize}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{invalid}}{\emph{undocumented
+\item{\verb{invalid}}{\emph{undocumented
 }}
-\item{\code{menu}}{\emph{undocumented
+\item{\verb{menu}}{\emph{undocumented
 }}
-\item{\code{small-toolbar}}{\emph{undocumented
+\item{\verb{small-toolbar}}{\emph{undocumented
 }}
-\item{\code{large-toolbar}}{\emph{undocumented
+\item{\verb{large-toolbar}}{\emph{undocumented
 }}
-\item{\code{button}}{\emph{undocumented
+\item{\verb{button}}{\emph{undocumented
 }}
-\item{\code{dnd}}{\emph{undocumented
+\item{\verb{dnd}}{\emph{undocumented
 }}
-\item{\code{dialog}}{\emph{undocumented
+\item{\verb{dialog}}{\emph{undocumented
 }}
 }
 

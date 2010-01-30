@@ -14,17 +14,17 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----AtkEditableText}}
 \section{Implementations}{AtkEditableText is implemented by
- \code{\link{AtkNoOpObject}}.}
-\section{Detailed Description}{\code{\link{AtkEditableText}} should be implemented by UI components which contain
-text which the user can edit, via the \code{\link{AtkObject}} corresponding to that
-component (see \code{\link{AtkObject}}).
-  \code{\link{AtkEditableText}} is a subclass of \code{\link{AtkText}}, and as such, an object which
-implements \code{\link{AtkEditableText}} is by definition an \code{\link{AtkText}} implementor as well.}
-\section{Structures}{\describe{\item{\code{AtkEditableText}}{
+ \verb{\link{AtkNoOpObject}}.}
+\section{Detailed Description}{\verb{\link{AtkEditableText}} should be implemented by UI components which contain
+text which the user can edit, via the \verb{\link{AtkObject}} corresponding to that
+component (see \verb{\link{AtkObject}}).
+  \verb{\link{AtkEditableText}} is a subclass of \verb{\link{AtkText}}, and as such, an object which
+implements \verb{\link{AtkEditableText}} is by definition an \verb{\link{AtkText}} implementor as well.}
+\section{Structures}{\describe{\item{\verb{AtkEditableText}}{
 The AtkEditableText structure does not contain any fields.
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/atk/AtkEditableText.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{AtkText}}}
+\seealso{\verb{\link{AtkText}}}
 \keyword{internal}

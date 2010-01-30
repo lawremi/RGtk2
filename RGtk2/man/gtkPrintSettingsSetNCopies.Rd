@@ -4,8 +4,8 @@
 \description{Sets the value of \code{GTK_PRINT_SETTINGS_N_COPIES}.}
 \usage{gtkPrintSettingsSetNCopies(object, num.copies)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{num.copies}}{[integer]  the number of copies }
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{num.copies}}{[integer]  the number of copies }
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

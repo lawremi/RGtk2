@@ -8,8 +8,8 @@ Use \code{\link{gtkFileSelectionGetSelections}} to get the list of selected file
 }
 \usage{gtkFileSelectionSetSelectMultiple(object, select.multiple)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileSelection}}]  a \code{\link{GtkFileSelection}}}
-\item{\code{select.multiple}}{[logical]  whether or not the user is allowed to select multiple
+\item{\verb{object}}{[\verb{\link{GtkFileSelection}}]  a \verb{\link{GtkFileSelection}}}
+\item{\verb{select.multiple}}{[logical]  whether or not the user is allowed to select multiple
 files in the file list.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

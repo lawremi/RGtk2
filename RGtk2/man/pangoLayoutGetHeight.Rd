@@ -4,7 +4,7 @@
 \description{Gets the height of layout used for ellipsization.  See
 \code{\link{pangoLayoutSetHeight}} for details.}
 \usage{pangoLayoutGetHeight(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{  Since  1.20}
 \value{[integer]  the height, in Pango units if positive, or
 number of lines if negative.}

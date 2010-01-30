@@ -4,7 +4,7 @@
 \description{Returns whether the  completion popup window will be resized to the 
 width of the entry.}
 \usage{gtkEntryCompletionGetPopupSetWidth(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}}
 \details{  Since  2.8}
 \value{[logical] \code{TRUE} if the popup window will be resized to the width of 
   the entry}

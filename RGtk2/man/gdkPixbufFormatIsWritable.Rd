@@ -3,7 +3,7 @@
 \title{gdkPixbufFormatIsWritable}
 \description{Returns whether pixbufs can be saved in the given format.}
 \usage{gdkPixbufFormatIsWritable(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkPixbufFormat}}]  a \code{\link{GdkPixbufFormat}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkPixbufFormat}}]  a \verb{\link{GdkPixbufFormat}}}}
 \details{  Since  2.2}
 \value{[logical]  whether pixbufs can be saved in the given format.}
 \author{Derived by RGtkGen from GTK+ documentation}

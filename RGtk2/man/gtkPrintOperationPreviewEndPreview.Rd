@@ -3,7 +3,7 @@
 \title{gtkPrintOperationPreviewEndPreview}
 \description{Ends a preview. }
 \usage{gtkPrintOperationPreviewEndPreview(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintOperationPreview}}]  a \code{\link{GtkPrintOperationPreview}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintOperationPreview}}]  a \verb{\link{GtkPrintOperationPreview}}}}
 \details{This function must be called to finish a custom print preview.  
 
   Since  2.10}

@@ -7,8 +7,8 @@ Note that this function uses \code{color->pixel}, use
 color as red, green, blue components.}
 \usage{gdkGCSetBackground(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{color}}{[\code{\link{GdkColor}}]  the new background color.}
+\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  the new background color.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,11 +8,11 @@ example, a linear gradient's control vector is from (x0,y0) to
 on the start circle to the corresponding point on the end circle.}
 \usage{cairoPatternAddColorStopRgb(pattern, offset, red, green, blue)}
 \arguments{
-\item{\code{pattern}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}}}
-\item{\code{offset}}{[numeric]  an offset in the range [0.0 .. 1.0]}
-\item{\code{red}}{[numeric]  red component of color}
-\item{\code{green}}{[numeric]  green component of color}
-\item{\code{blue}}{[numeric]  blue component of color}
+\item{\verb{pattern}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}}}
+\item{\verb{offset}}{[numeric]  an offset in the range [0.0 .. 1.0]}
+\item{\verb{red}}{[numeric]  red component of color}
+\item{\verb{green}}{[numeric]  green component of color}
+\item{\verb{blue}}{[numeric]  blue component of color}
 }
 \details{The color is specified in the same way as in \code{\link{cairoSetSourceRgb}}.
   

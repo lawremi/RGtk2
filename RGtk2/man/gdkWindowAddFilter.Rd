@@ -8,8 +8,8 @@ doing. Pass \code{NULL} for \code{window} to get all events for all windows,
 instead of events for a specific window.}
 \usage{gdkWindowAddFilter(object, fun, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{data}}{[R object]  data to pass to filter callback}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{data}}{[R object]  data to pass to filter callback}
 }
 \details{See \code{\link{gdkDisplayAddClientMessageFilter}} if you are interested
 in X ClientMessage events.  }

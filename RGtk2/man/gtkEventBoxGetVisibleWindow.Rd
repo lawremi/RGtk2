@@ -4,7 +4,7 @@
 \description{Returns whether the event box has a visible window.
 See \code{\link{gtkEventBoxSetVisibleWindow}} for details.}
 \usage{gtkEventBoxGetVisibleWindow(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEventBox}}]  a \code{\link{GtkEventBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEventBox}}]  a \verb{\link{GtkEventBox}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the event box window is visible}
 \author{Derived by RGtkGen from GTK+ documentation}

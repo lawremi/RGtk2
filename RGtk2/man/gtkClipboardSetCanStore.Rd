@@ -5,8 +5,8 @@
 application exits or when \code{\link{gtkClipboardStore}} is called.}
 \usage{gtkClipboardSetCanStore(object, targets)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}
-\item{\code{targets}}{[\code{\link{GtkTargetEntry}}]  list containing information about which forms should be stored
+\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}
+\item{\verb{targets}}{[\verb{\link{GtkTargetEntry}}]  list containing information about which forms should be stored
           or \code{NULL} to indicate that all forms should be stored.}
 }
 \details{This value is reset when the clipboard owner changes.

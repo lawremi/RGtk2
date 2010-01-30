@@ -8,8 +8,8 @@ fit within the width and height of layout set with
 \code{\link{pangoLayoutSetWidth}} and \code{\link{pangoLayoutSetHeight}}.}
 \usage{pangoLayoutSetEllipsize(object, ellipsize)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{ellipsize}}{[\code{\link{PangoEllipsizeMode}}]  the new ellipsization mode for \code{layout}}
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
+\item{\verb{ellipsize}}{[\code{\link{PangoEllipsizeMode}}]  the new ellipsization mode for \code{layout}}
 }
 \details{If the layout contains characters such as newlines that
 force it to be layed out in multiple paragraphs, then whether

@@ -4,9 +4,9 @@
 \description{Creates a new label and sets it as the menu label of \code{child}.}
 \usage{gtkNotebookSetMenuLabelText(object, child, menu.text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the child widget}
-\item{\code{menu.text}}{[character]  the label text}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the child widget}
+\item{\verb{menu.text}}{[character]  the label text}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

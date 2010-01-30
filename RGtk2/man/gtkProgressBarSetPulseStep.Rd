@@ -5,8 +5,8 @@
 bouncing block for each call to \code{\link{gtkProgressBarPulse}}.}
 \usage{gtkProgressBarSetPulseStep(object, fraction)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}]  a \code{\link{GtkProgressBar}}}
-\item{\code{fraction}}{[numeric]  fraction between 0.0 and 1.0}
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}]  a \verb{\link{GtkProgressBar}}}
+\item{\verb{fraction}}{[numeric]  fraction between 0.0 and 1.0}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,10 +7,10 @@ the pointer position corresponds to an unset bit in the
 mask will be passed on the window below \code{window}.}
 \usage{gdkWindowInputShapeCombineMask(object, mask, x, y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{mask}}{[\code{\link{GdkBitmap}}]  shape mask}
-\item{\code{x}}{[integer]  X position of shape mask with respect to \code{window}}
-\item{\code{y}}{[integer]  Y position of shape mask with respect to \code{window}}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{mask}}{[\verb{\link{GdkBitmap}}]  shape mask}
+\item{\verb{x}}{[integer]  X position of shape mask with respect to \code{window}}
+\item{\verb{y}}{[integer]  Y position of shape mask with respect to \code{window}}
 }
 \details{An input shape is typically used with RGBA windows.
 The alpha channel of the window defines which pixels are 

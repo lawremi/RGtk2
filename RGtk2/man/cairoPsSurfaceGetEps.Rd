@@ -3,7 +3,7 @@
 \title{cairoPsSurfaceGetEps}
 \description{Check whether the PostScript surface will output Encapsulated PostScript.}
 \usage{cairoPsSurfaceGetEps(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PostScript \code{\link{CairoSurface}}}}
+\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a PostScript \verb{\link{CairoSurface}}}}
 \details{  Since  1.6}
 \value{[logical] \code{TRUE} if the surface will output Encapsulated PostScript.}
 \author{Derived by RGtkGen from GTK+ documentation}

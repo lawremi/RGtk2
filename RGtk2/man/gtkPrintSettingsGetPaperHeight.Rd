@@ -5,8 +5,8 @@
 converted to \code{unit}.}
 \usage{gtkPrintSettingsGetPaperHeight(object, unit)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{unit}}{[\code{\link{GtkUnit}}]  the unit for the return value}
 }
 \details{  Since  2.10}
 \value{[numeric]  the paper height, in units of \code{unit}}

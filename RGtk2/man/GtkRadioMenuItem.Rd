@@ -14,22 +14,22 @@
 \code{\link{gtkRadioMenuItemGetGroup}(object)}\cr
 \code{gtkRadioMenuItem(group = NULL, label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkItem}
-                                       +----\link{GtkMenuItem}
-                                             +----\link{GtkCheckMenuItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkItem
+                                       +----GtkMenuItem
+                                             +----GtkCheckMenuItem
                                                    +----GtkRadioMenuItem}}
 \section{Interfaces}{GtkRadioMenuItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{A radio menu item is a check menu item that belongs to a group. At each
 instant exactly one of the radio menu items from a group is selected.
   
-The group list does not need to be freed, as each \code{\link{GtkRadioMenuItem}} will 
+The group list does not need to be freed, as each \verb{\link{GtkRadioMenuItem}} will 
 remove itself and its list item when it is destroyed.
   
 The correct way to create a group of radio menu items is approximatively
@@ -46,7 +46,7 @@ for (i in 1:5) {
 }
 
 }}
-\section{Structures}{\describe{\item{\code{GtkRadioMenuItem}}{
+\section{Structures}{\describe{\item{\verb{GtkRadioMenuItem}}{
 The structure contains only private data that must be accessed through
 the interface functions.
 
@@ -57,13 +57,13 @@ the interface functions.
 }
 
 \describe{
-\item{\code{radiomenuitem}}{[\code{\link{GtkRadioMenuItem}}] the object which received the signal.}
+\item{\code{radiomenuitem}}{[\verb{\link{GtkRadioMenuItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{group} [\code{\link{GtkRadioMenuItem}} : Write]}{
+\section{Properties}{\describe{\item{\verb{group} [\verb{\link{GtkRadioMenuItem}} : *     : Write]}{
 
 The radio menu item whose group this widget belongs to.  
 

@@ -32,7 +32,7 @@
 \code{\link{gdkTextHeight}(object, text, text.length = -1)}\cr
 \code{\link{gdkCharHeight}(object, character)}\cr
 }
-\section{Detailed Description}{The \code{\link{GdkFont}} data type represents a font for drawing on
+\section{Detailed Description}{The \verb{\link{GdkFont}} data type represents a font for drawing on
 the screen. These functions provide support for
 loading fonts, and also for determining the dimensions
 of characters and strings when drawn with a particular
@@ -110,18 +110,18 @@ of forms of string input:
 
 \describe{
 \item{8-bit string}{    When using functions like \code{\link{gdkStringWidth}} that
-    take a \code{character}, if the font is of type
+    take a \verb{character}, if the font is of type
     \code{GDK_FONT_FONT} and is an 8-bit font, then each
-    \code{character} indexes the glyphs in the font directly.
+    \verb{character} indexes the glyphs in the font directly.
     }
-\item{16-bit string}{    For functions taking a \code{character}, if the
+\item{16-bit string}{    For functions taking a \verb{character}, if the
     font is of type \code{GDK_FONT_FONT}, and is a 16-bit
-    font, then the \code{character} argument is
-    interpreted as a \code{integer} cast to
-    a \code{character} and each \code{integer}
+    font, then the \verb{character} argument is
+    interpreted as a \verb{integer} cast to
+    a \verb{character} and each \verb{integer}
     indexes the glyphs in the font directly.
     }
-\item{Multibyte string}{    For functions taking a \code{character}, if the
+\item{Multibyte string}{    For functions taking a \verb{character}, if the
     font is of type \code{GDK_FONT_FONTSET}, then the input
     string is interpreted as a \dfn{multibyte}
     encoded according to the current locale. (A multibyte
@@ -135,8 +135,8 @@ of forms of string input:
     }
 \item{Wide character string}{    For a number of the text-measuring functions, GDK
     provides a variant (such as \code{\link{gdkTextWidthWc}}) which
-    takes a \code{numeric} instead of a 
-    \code{character}. The input is then taken to
+    takes a \verb{numeric} instead of a 
+    \verb{character}. The input is then taken to
     be a wide character string in the encoding of the
     current locale. (A wide character string is a string
     in which each character consists of several bytes,
@@ -169,7 +169,7 @@ here).
     right bearing.
     }
 }}
-\section{Structures}{\describe{\item{\code{GdkFont}}{
+\section{Structures}{\describe{\item{\verb{GdkFont}}{
 \strong{WARNING: \code{GdkFont} is deprecated and should not be used in newly-written code.}
 The \code{GdkFont} structure represents a font or fontset. It
 contains the following public fields. A new \code{GdkFont}
@@ -177,23 +177,23 @@ structure is returned by \code{\link{gdkFontLoad}} or \code{\link{gdkFontsetLoad
 and is reference counted with \code{gdkFontRef()} and \code{gdkFontUnref()}
 
 \describe{
-\item{\code{type}}{[\code{\link{GdkFontType}}] a value of type \code{\link{GdkFontType}} which indicates
+\item{\verb{type}}{[\code{\link{GdkFontType}}] a value of type \code{\link{GdkFontType}} which indicates
   whether this font is a single font or a fontset.}
-\item{\code{ascent}}{[integer] the maximum distance that the font, when drawn,
+\item{\verb{ascent}}{[integer] the maximum distance that the font, when drawn,
   ascends above the baseline.}
-\item{\code{descent}}{[integer] the maximum distance that the font, when drawn,
+\item{\verb{descent}}{[integer] the maximum distance that the font, when drawn,
 descends below the baseline.}
 }
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{GdkFontType}}{
+\section{Enums and Flags}{\describe{\item{\verb{GdkFontType}}{
 \strong{WARNING: \code{GdkFontType} is deprecated and should not be used in newly-written code.}
 Indicates the type of a font. The possible values
 are currently:
 
 \describe{
-\item{\code{font}}{the font is a single font.}
-\item{\code{fontset}}{the font is a fontset.}
+\item{\verb{font}}{the font is a single font.}
+\item{\verb{fontset}}{the font is a fontset.}
 }
 
 }}}

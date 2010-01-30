@@ -7,9 +7,9 @@ stroking parameters. Surface dimensions and clipping are not taken
 into account.}
 \usage{cairoInStroke(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{x}}{[numeric]  X coordinate of the point to test}
-\item{\code{y}}{[numeric]  Y coordinate of the point to test}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{x}}{[numeric]  X coordinate of the point to test}
+\item{\verb{y}}{[numeric]  Y coordinate of the point to test}
 }
 \details{See \code{\link{cairoStroke}}, \code{\link{cairoSetLineWidth}}, \code{\link{cairoSetLineJoin}},
 \code{\link{cairoSetLineCap}}, \code{\link{cairoSetDash}}, and

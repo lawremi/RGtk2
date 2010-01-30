@@ -7,10 +7,10 @@ Set the text in a node.
 }
 \usage{gtkCTreeNodeSetText(object, node, column, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{column}}{[integer] The column whose text to change.}
-\item{\code{text}}{[character] The new text.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{column}}{[integer] The column whose text to change.}
+\item{\verb{text}}{[character] The new text.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

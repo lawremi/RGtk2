@@ -5,8 +5,8 @@
 (with \code{printf()}-style).}
 \usage{gtkMessageDialogFormatSecondaryText(object, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMessageDialog}}]  a \code{\link{GtkMessageDialog}}}
-\item{\code{...}}{ arguments for \code{message.format}}
+\item{\verb{object}}{[\verb{\link{GtkMessageDialog}}]  a \verb{\link{GtkMessageDialog}}}
+\item{\verb{...}}{ arguments for \code{message.format}}
 }
 \details{Note that setting a secondary text makes the primary text become
 bold, unless you have provided explicit markup.  

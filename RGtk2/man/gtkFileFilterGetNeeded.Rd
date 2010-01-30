@@ -4,10 +4,10 @@
 \description{Gets the fields that need to be filled in for the structure
 passed to \code{\link{gtkFileFilterFilter}}}
 \usage{gtkFileFilterGetNeeded(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}}
 \details{This function will not typically be used by applications; it
 is intended principally for use in the implementation of
-\code{\link{GtkFileChooser}}.  
+\verb{\link{GtkFileChooser}}.  
 
   Since  2.4}
 \value{[\code{\link{GtkFileFilterFlags}}]  bitfield of flags indicating needed fields when

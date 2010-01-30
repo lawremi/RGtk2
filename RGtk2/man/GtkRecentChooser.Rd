@@ -42,41 +42,41 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkRecentChooser}}
 \section{Implementations}{GtkRecentChooser is implemented by
- \code{\link{GtkRecentChooserMenu}},  \code{\link{GtkRecentChooserDialog}},  \code{\link{GtkRecentChooserWidget}} and  \code{\link{GtkRecentAction}}.}
-\section{Detailed Description}{\code{\link{GtkRecentChooser}} is an interface that can be implemented by widgets
+ \verb{\link{GtkRecentChooserMenu}},  \verb{\link{GtkRecentChooserDialog}},  \verb{\link{GtkRecentChooserWidget}} and  \verb{\link{GtkRecentAction}}.}
+\section{Detailed Description}{\verb{\link{GtkRecentChooser}} is an interface that can be implemented by widgets
 displaying the list of recently used files.  In GTK+, the main objects
-that implement this interface are \code{\link{GtkRecentChooserWidget}},
-\code{\link{GtkRecentChooserDialog}} and \code{\link{GtkRecentChooserMenu}}.
+that implement this interface are \verb{\link{GtkRecentChooserWidget}},
+\verb{\link{GtkRecentChooserDialog}} and \verb{\link{GtkRecentChooserMenu}}.
   
 Recently used files are supported since GTK+ 2.10.}
-\section{Structures}{\describe{\item{\code{GtkRecentChooser}}{
+\section{Structures}{\describe{\item{\verb{GtkRecentChooser}}{
 \emph{undocumented
 }
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkRecentChooserError}}{
+\item{\verb{GtkRecentChooserError}}{
 These identify the various errors that can occur while calling
-\code{\link{GtkRecentChooser}} functions.
+\verb{\link{GtkRecentChooser}} functions.
 
 \describe{
-\item{\code{not-found}}{Indicates that a file does not exist}
-\item{\code{invalid-uri}}{Indicates a malformed URI}
+\item{\verb{not-found}}{Indicates that a file does not exist}
+\item{\verb{invalid-uri}}{Indicates a malformed URI}
 }
 
 }
-\item{\code{GtkRecentSortType}}{
+\item{\verb{GtkRecentSortType}}{
 Used to specify the sorting method to be applyed to the recently
 used resource list.  
 
 \describe{
-\item{\code{none}}{ Do not sort the returned list of recently used
+\item{\verb{none}}{ Do not sort the returned list of recently used
   resources.}
-\item{\code{mru}}{ Sort the returned list with the most recently used
+\item{\verb{mru}}{ Sort the returned list with the most recently used
   items first.}
-\item{\code{lru}}{ Sort the returned list with the least recently used
+\item{\verb{lru}}{ Sort the returned list with the least recently used
   items first.}
-\item{\code{custom}}{ Sort the returned list using a custom sorting
+\item{\verb{custom}}{ Sort the returned list using a custom sorting
   function passed using \code{gtkRecentManagerSetSortFunc()}.}
 }
 
@@ -87,8 +87,8 @@ used resource list.
 }
 
 \describe{
-\item{\code{a}}{[\code{\link{GtkRecentInfo}}] }
-\item{\code{b}}{[\code{\link{GtkRecentInfo}}] }
+\item{\code{a}}{[\verb{\link{GtkRecentInfo}}] }
+\item{\code{b}}{[\verb{\link{GtkRecentInfo}}] }
 \item{\code{user.data}}{[R object] }
 }
 
@@ -104,7 +104,7 @@ in the recently used resources list, or by pressing
   Since  2.10
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkRecentChooser}}]  the object which received the signal}
+\item{\code{chooser}}{[\verb{\link{GtkRecentChooser}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -119,7 +119,7 @@ explicitely calling functions to change the selection.
   Since  2.10
 
 \describe{
-\item{\code{chooser}}{[\code{\link{GtkRecentChooser}}]  the object which received the signal}
+\item{\code{chooser}}{[\verb{\link{GtkRecentChooser}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -127,58 +127,58 @@ explicitely calling functions to change the selection.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{filter} [\code{\link{GtkRecentFilter}} : Read / Write]}{
+\item{\verb{filter} [\verb{\link{GtkRecentFilter}} : *      : Read / Write]}{
 
-The \code{\link{GtkRecentFilter}} object to be used when displaying
+The \verb{\link{GtkRecentFilter}} object to be used when displaying
 the recently used resources.  
 
   Since  2.10
 
 }
-\item{\code{limit} [integer : Read / Write]}{
+\item{\verb{limit} [integer : Read / Write]}{
 
 The maximum number of recently used resources to be displayed,
 or -1 to display all items. By default, the
 GtkSetting:gtk-recent-files-limit setting is respected: you can
-override that limit on a particular instance of \code{\link{GtkRecentChooser}}
+override that limit on a particular instance of \verb{\link{GtkRecentChooser}}
 by setting this property.  
 
   Allowed values: >= -1  Default value: -1  Since  2.10
 
 }
-\item{\code{local-only} [logical : Read / Write]}{
+\item{\verb{local-only} [logical : Read / Write]}{
 
-Whether this \code{\link{GtkRecentChooser}} should display only local (file:)
+Whether this \verb{\link{GtkRecentChooser}} should display only local (file:)
 resources.  
 
   Default value: TRUE  Since  2.10
 
 }
-\item{\code{recent-manager} [\code{\link{GtkRecentManager}} : Write / Construct Only]}{
+\item{\verb{recent-manager} [\verb{\link{GtkRecentManager}} : *     : Write / Construct Only]}{
 
-The \code{\link{GtkRecentManager}} instance used by the \code{\link{GtkRecentChooser}} to
+The \verb{\link{GtkRecentManager}} instance used by the \verb{\link{GtkRecentChooser}} to
 display the list of recently used resources.  
 
   Since  2.10
 
 }
-\item{\code{select-multiple} [logical : Read / Write]}{
+\item{\verb{select-multiple} [logical : Read / Write]}{
 
 Allow the user to select multiple resources.  
 
   Default value: FALSE  Since  2.10
 
 }
-\item{\code{show-icons} [logical : Read / Write]}{
+\item{\verb{show-icons} [logical : Read / Write]}{
 
-Whether this \code{\link{GtkRecentChooser}} should display an icon near the item.  
+Whether this \verb{\link{GtkRecentChooser}} should display an icon near the item.  
 
   Default value: TRUE  Since  2.10
 
 }
-\item{\code{show-not-found} [logical : Read / Write]}{
+\item{\verb{show-not-found} [logical : Read / Write]}{
 
-Whether this \code{\link{GtkRecentChooser}} should display the recently used resources
+Whether this \verb{\link{GtkRecentChooser}} should display the recently used resources
 even if not present anymore. Setting this to \code{FALSE} will perform a
 potentially expensive check on every local resource (every remote
 resource will always be displayed).  
@@ -186,33 +186,33 @@ resource will always be displayed).
   Default value: TRUE  Since  2.10
 
 }
-\item{\code{show-private} [logical : Read / Write]}{
+\item{\verb{show-private} [logical : Read / Write]}{
 
 Whether the private items should be displayed.  Default value: FALSE
 
 }
-\item{\code{show-tips} [logical : Read / Write]}{
+\item{\verb{show-tips} [logical : Read / Write]}{
 
-Whether this \code{\link{GtkRecentChooser}} should display a tooltip containing the
+Whether this \verb{\link{GtkRecentChooser}} should display a tooltip containing the
 full path of the recently used resources.  
 
   Default value: FALSE  Since  2.10
 
 }
-\item{\code{sort-type} [\code{\link{GtkRecentSortType}} : Read / Write]}{
+\item{\verb{sort-type} [\code{\link{GtkRecentSortType}} : Read / Write]}{
 
 Sorting order to be used when displaying the recently used resources.  
 
-  Default value: GTK\_RECENT\_SORT\_NONE  Since  2.10
+  Default value: GTK_RECENT_SORT_NONE  Since  2.10
 
 }
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkRecentChooser.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkRecentManager}}
-\code{\link{GtkRecentChooserDialog}}
-\code{\link{GtkRecentChooserWidget}}
-\code{\link{GtkRecentChooserMenu}}
+\verb{\link{GtkRecentManager}}
+\verb{\link{GtkRecentChooserDialog}}
+\verb{\link{GtkRecentChooserWidget}}
+\verb{\link{GtkRecentChooserMenu}}
 }
 \keyword{internal}

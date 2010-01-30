@@ -5,14 +5,14 @@
 containing \code{child}.}
 \usage{gtkNotebookQueryTabLabelPacking(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the page}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  the page}
 }
 \value{
 A list containing the following elements:
-\item{\code{expand}}{[logical]  location to store the expand value (or NULL)}
-\item{\code{fill}}{[logical]  location to store the fill value (or NULL)}
-\item{\code{pack.type}}{[\code{\link{GtkPackType}}]  location to store the pack\_type (or NULL)}
+\item{\verb{expand}}{[logical]  location to store the expand value (or NULL)}
+\item{\verb{fill}}{[logical]  location to store the fill value (or NULL)}
+\item{\verb{pack.type}}{[\code{\link{GtkPackType}}]  location to store the pack_type (or NULL)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

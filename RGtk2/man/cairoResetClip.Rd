@@ -7,7 +7,7 @@ containing the target surface. Equivalently, if infinity is too
 hard to grasp, one can imagine the clip region being reset to the
 exact bounds of the target surface.}
 \usage{cairoResetClip(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{Note that code meant to be reusable should not call
 \code{\link{cairoResetClip}} as it will cause results unexpected by
 higher-level code which calls \code{\link{cairoClip}}. Consider using

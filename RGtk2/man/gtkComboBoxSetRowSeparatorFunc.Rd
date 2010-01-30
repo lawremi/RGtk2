@@ -6,9 +6,9 @@ whether a row should be drawn as a separator. If the row separator
 function is \code{NULL}, no separators are drawn. This is the default value.}
 \usage{gtkComboBoxSetRowSeparatorFunc(object, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkComboBox}}]  a \code{\link{GtkComboBox}}}
-\item{\code{func}}{[\code{\link{GtkTreeViewRowSeparatorFunc}}]  a \code{\link{GtkTreeViewRowSeparatorFunc}}}
-\item{\code{data}}{[R object]  user data to pass to \code{func}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkComboBox}}]  a \verb{\link{GtkComboBox}}}
+\item{\verb{func}}{[\verb{\link{GtkTreeViewRowSeparatorFunc}}]  a \verb{\link{GtkTreeViewRowSeparatorFunc}}}
+\item{\verb{data}}{[R object]  user data to pass to \code{func}, or \code{NULL}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

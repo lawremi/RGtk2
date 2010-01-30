@@ -9,11 +9,11 @@ for that node's children.
 }
 \usage{gtkCTreePreRecursiveToDepth(object, node, depth, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] The node where to start.}
-\item{\code{depth}}{[integer] The maximum absolute depth for applying the function.  If depth is negative, this function just calls \code{\link{gtkCTreePostRecursive}}.}
-\item{\code{func}}{[\code{\link{GtkCTreeFunc}}] The function to apply to each node.}
-\item{\code{data}}{[R object] A closure argument given to each invocation of the function.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] The node where to start.}
+\item{\verb{depth}}{[integer] The maximum absolute depth for applying the function.  If depth is negative, this function just calls \code{\link{gtkCTreePostRecursive}}.}
+\item{\verb{func}}{[\verb{\link{GtkCTreeFunc}}] The function to apply to each node.}
+\item{\verb{data}}{[R object] A closure argument given to each invocation of the function.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

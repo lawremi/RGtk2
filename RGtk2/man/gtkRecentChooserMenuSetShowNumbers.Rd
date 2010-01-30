@@ -7,8 +7,8 @@ be used inside ten menu item's label.  Only the first the items
 get a number to avoid clashes.}
 \usage{gtkRecentChooserMenuSetShowNumbers(object, show.numbers)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentChooserMenu}}]  a \code{\link{GtkRecentChooserMenu}}}
-\item{\code{show.numbers}}{[logical]  whether to show numbers}
+\item{\verb{object}}{[\verb{\link{GtkRecentChooserMenu}}]  a \verb{\link{GtkRecentChooserMenu}}}
+\item{\verb{show.numbers}}{[logical]  whether to show numbers}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

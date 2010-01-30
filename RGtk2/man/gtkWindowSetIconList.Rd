@@ -1,14 +1,14 @@
 \alias{gtkWindowSetIconList}
 \name{gtkWindowSetIconList}
 \title{gtkWindowSetIconList}
-\description{Sets up the icon representing a \code{\link{GtkWindow}}. The icon is used when
+\description{Sets up the icon representing a \verb{\link{GtkWindow}}. The icon is used when
 the window is minimized (also known as iconified).  Some window
 managers or desktop environments may also place it in the window
 frame, or display it in other contexts.}
 \usage{gtkWindowSetIconList(object, list)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{list}}{[list]  list of \code{\link{GdkPixbuf}}}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{list}}{[list]  list of \verb{\link{GdkPixbuf}}}
 }
 \details{\code{\link{gtkWindowSetIconList}} allows you to pass in the same icon in
 several hand-drawn sizes. The list should contain the natural sizes

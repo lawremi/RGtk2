@@ -13,16 +13,16 @@
 \code{\link{atkHyperlinkIsSelectedLink}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----AtkHyperlink}}
 \section{Interfaces}{AtkHyperlink implements
- \code{\link{AtkAction}}.}
+ \verb{\link{AtkAction}}.}
 \section{Detailed Description}{An ATK object which encapsulates a link or set of links 
 (for instance in the case of client-side image maps) in a hypertext document.
 It may implement the AtkAction interface.  AtkHyperlink may also be used
 to refer to inline embedded content, since it allows specification of a start
 and end offset within the host AtkHypertext object.}
-\section{Structures}{\describe{\item{\code{AtkHyperlink}}{
+\section{Structures}{\describe{\item{\verb{AtkHyperlink}}{
 The AtkHyperlink structure should not be accessed directly.
 
 }}}
@@ -30,29 +30,29 @@ The AtkHyperlink structure should not be accessed directly.
 The signal link-activated is emitted when a link is activated.
 
 \describe{
-\item{\code{atkhyperlink}}{[\code{\link{AtkHyperlink}}] the object which received the signal.}
+\item{\code{atkhyperlink}}{[\verb{\link{AtkHyperlink}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{end-index} [integer : Read]}{
+\item{\verb{end-index} [integer : Read]}{
 
 The end index of the AtkHyperlink object.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{number-of-anchors} [integer : Read]}{
+\item{\verb{number-of-anchors} [integer : Read]}{
 
 The number of anchors associated with the AtkHyperlink object.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{selected-link} [logical : Read]}{
+\item{\verb{selected-link} [logical : Read]}{
 
 Specifies whether the AtkHyperlink object is selected.  Default value: FALSE
 
 }
-\item{\code{start-index} [integer : Read]}{
+\item{\verb{start-index} [integer : Read]}{
 
 The start index of the AtkHyperlink object.  Allowed values: >= 0  Default value: 0
 

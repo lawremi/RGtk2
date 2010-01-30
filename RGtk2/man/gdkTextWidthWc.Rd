@@ -7,8 +7,8 @@ Determines the width of a given wide-character string.
 }
 \usage{gdkTextWidthWc(object, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}}
-\item{\code{text}}{[numeric]  the text to measure.}
+\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}}
+\item{\verb{text}}{[numeric]  the text to measure.}
 }
 \value{[integer]  the width of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

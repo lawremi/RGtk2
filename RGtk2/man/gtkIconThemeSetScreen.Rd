@@ -6,8 +6,8 @@ to track the user's currently configured icon theme,
 which might be different for different screens.}
 \usage{gtkIconThemeSetScreen(object, screen)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconTheme}}]  a \code{\link{GtkIconTheme}}}
-\item{\code{screen}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}
+\item{\verb{object}}{[\verb{\link{GtkIconTheme}}]  a \verb{\link{GtkIconTheme}}}
+\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

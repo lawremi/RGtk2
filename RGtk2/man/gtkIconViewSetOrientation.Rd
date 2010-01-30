@@ -5,8 +5,8 @@
 are drawn beside the icons instead of below.}
 \usage{gtkIconViewSetOrientation(object, orientation)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}
-\item{\code{orientation}}{[\code{\link{GtkOrientation}}]  the relative position of texts and icons }
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
+\item{\verb{orientation}}{[\code{\link{GtkOrientation}}]  the relative position of texts and icons }
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

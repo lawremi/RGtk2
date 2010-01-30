@@ -12,14 +12,14 @@ to the side of the layout. However, the clip region is in line coordinates,
 not layout coordinates.}
 \usage{gdkPangoLayoutLineGetClipRegion(line, x.origin, index.ranges)}
 \arguments{
-\item{\code{line}}{[\code{\link{PangoLayoutLine}}]  a \code{\link{PangoLayoutLine}} }
-\item{\code{x.origin}}{[integer]  X pixel where you intend to draw the layout line with this clip}
-\item{\code{index.ranges}}{[integer]  list of byte indexes into the layout, where even members of list are start indexes and odd elements are end indexes}
+\item{\verb{line}}{[\verb{\link{PangoLayoutLine}}]  a \verb{\link{PangoLayoutLine}} }
+\item{\verb{x.origin}}{[integer]  X pixel where you intend to draw the layout line with this clip}
+\item{\verb{index.ranges}}{[integer]  list of byte indexes into the layout, where even members of list are start indexes and odd elements are end indexes}
 }
 \details{Note that the regions returned correspond to logical extents of the text
 ranges, not ink extents. So the drawn line may in fact touch areas out of
 the clip region.  The clip region is mainly useful for highlightling parts
 of text, such as when text is selected.  }
-\value{[\code{\link{GdkRegion}}]  a clip region containing the given ranges}
+\value{[\verb{\link{GdkRegion}}]  a clip region containing the given ranges}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

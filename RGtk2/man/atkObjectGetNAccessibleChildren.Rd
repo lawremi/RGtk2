@@ -3,7 +3,7 @@
 \title{atkObjectGetNAccessibleChildren}
 \description{Gets the number of accessible children of the accessible.}
 \usage{atkObjectGetNAccessibleChildren(object)}
-\arguments{\item{\code{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}}
 \value{[integer]  an integer representing the number of accessible children
 of the accessible.}
 \author{Derived by RGtkGen from GTK+ documentation}

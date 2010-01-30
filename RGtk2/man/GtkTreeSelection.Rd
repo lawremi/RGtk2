@@ -26,17 +26,17 @@
 \code{\link{gtkTreeSelectionUnselectRange}(object, start.path, end.path)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkTreeSelection}}
-\section{Detailed Description}{The \code{\link{GtkTreeSelection}} object is a helper object to manage the selection
-for a \code{\link{GtkTreeView}} widget.  The \code{\link{GtkTreeSelection}} object is
-automatically created when a new \code{\link{GtkTreeView}} widget is created, and
+\section{Detailed Description}{The \verb{\link{GtkTreeSelection}} object is a helper object to manage the selection
+for a \verb{\link{GtkTreeView}} widget.  The \verb{\link{GtkTreeSelection}} object is
+automatically created when a new \verb{\link{GtkTreeView}} widget is created, and
 cannot exist independentally of this widget.  The primary reason the
-\code{\link{GtkTreeSelection}} objects exists is for cleanliness of code and API.
+\verb{\link{GtkTreeSelection}} objects exists is for cleanliness of code and API.
 That is, there is no conceptual reason all these functions could not be
-methods on the \code{\link{GtkTreeView}} widget instead of a separate function.
+methods on the \verb{\link{GtkTreeView}} widget instead of a separate function.
   
-The \code{\link{GtkTreeSelection}} object is gotten from a \code{\link{GtkTreeView}} by calling
+The \verb{\link{GtkTreeSelection}} object is gotten from a \verb{\link{GtkTreeView}} by calling
 \code{\link{gtkTreeViewGetSelection}}.  It can be manipulated to check the
 selection status of the tree, as well as select and deselect individual
 rows.  Selection is done completely view side.  As a result, multiple
@@ -46,12 +46,12 @@ is not currently displayed by the view without expanding its parents
 first.
   
 One of the important things to remember when monitoring the selection of
-a view is that the \code{"changed"} signal is mostly a hint.  That is, it may
+a view is that the \verb{"changed"} signal is mostly a hint.  That is, it may
 only emit one signal when a range of rows is selected.  Additionally, it
 may on occasion emit a ::changed signal when nothing has happened
-(mostly as a result of programmers calling select\_row on an already
+(mostly as a result of programmers calling select_row on an already
 selected row).}
-\section{Structures}{\describe{\item{\code{GtkTreeSelection}}{
+\section{Structures}{\describe{\item{\verb{GtkTreeSelection}}{
 \emph{undocumented
 }
 
@@ -64,9 +64,9 @@ state might change.  A return value of \code{TRUE} indicates to \code{selection}
 that it is okay to change the selection.
 
 \describe{
-\item{\code{selection}}{[\code{\link{GtkTreeSelection}}] A \code{\link{GtkTreeSelection}}}
-\item{\code{model}}{[\code{\link{GtkTreeModel}}] A \code{\link{GtkTreeModel}} being viewed}
-\item{\code{path}}{[\code{\link{GtkTreePath}}] The \code{\link{GtkTreePath}} of the row in question}
+\item{\code{selection}}{[\verb{\link{GtkTreeSelection}}] A \verb{\link{GtkTreeSelection}}}
+\item{\code{model}}{[\verb{\link{GtkTreeModel}}] A \verb{\link{GtkTreeModel}} being viewed}
+\item{\code{path}}{[\verb{\link{GtkTreePath}}] The \verb{\link{GtkTreePath}} of the row in question}
 \item{\code{path.currently.selected}}{[logical] \code{TRUE}, if the path is currently selected}
 \item{\code{data}}{[R object] user data}
 }
@@ -79,9 +79,9 @@ A function used by \code{\link{gtkTreeSelectionSelectedForeach}} to map all
 selected rows.  It will be called on every selected row in the view.
 
 \describe{
-\item{\code{model}}{[\code{\link{GtkTreeModel}}] The \code{\link{GtkTreeModel}} being viewed}
-\item{\code{path}}{[\code{\link{GtkTreePath}}] The \code{\link{GtkTreePath}} of a selected row}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}] A \code{\link{GtkTreeIter}} pointing to a selected row}
+\item{\code{model}}{[\verb{\link{GtkTreeModel}}] The \verb{\link{GtkTreeModel}} being viewed}
+\item{\code{path}}{[\verb{\link{GtkTreePath}}] The \verb{\link{GtkTreePath}} of a selected row}
+\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] A \verb{\link{GtkTreeIter}} pointing to a selected row}
 \item{\code{data}}{[R object] user data}
 }
 
@@ -95,7 +95,7 @@ of rows are selected, and it may occasionally be emitted when nothing
 has happened.
 
 \describe{
-\item{\code{treeselection}}{[\code{\link{GtkTreeSelection}}] the object which received the signal.}
+\item{\code{treeselection}}{[\verb{\link{GtkTreeSelection}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -104,16 +104,16 @@ has happened.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeSelection.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTreeView}}
-\code{\link{GtkTreeViewColumn}}
-\code{\link{GtkTreeSortable}}
-\code{\link{GtkTreeModelSort}}
-\code{\link{GtkListStore}}
-\code{\link{GtkTreeStore}}
-\code{\link{GtkCellRenderer}}
-\code{\link{GtkCellEditable}}
-\code{\link{GtkCellRendererPixbuf}}
-\code{\link{GtkCellRendererText}}
-\code{\link{GtkCellRendererToggle}}
+\verb{\link{GtkTreeView}}
+\verb{\link{GtkTreeViewColumn}}
+\verb{\link{GtkTreeSortable}}
+\verb{\link{GtkTreeModelSort}}
+\verb{\link{GtkListStore}}
+\verb{\link{GtkTreeStore}}
+\verb{\link{GtkCellRenderer}}
+\verb{\link{GtkCellEditable}}
+\verb{\link{GtkCellRendererPixbuf}}
+\verb{\link{GtkCellRendererText}}
+\verb{\link{GtkCellRendererToggle}}
 }
 \keyword{internal}

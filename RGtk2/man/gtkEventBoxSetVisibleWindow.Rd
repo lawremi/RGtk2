@@ -5,8 +5,8 @@
 window. The default is to use visible windows.}
 \usage{gtkEventBoxSetVisibleWindow(object, visible.window)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEventBox}}]  a \code{\link{GtkEventBox}}}
-\item{\code{visible.window}}{[logical]  boolean value}
+\item{\verb{object}}{[\verb{\link{GtkEventBox}}]  a \verb{\link{GtkEventBox}}}
+\item{\verb{visible.window}}{[logical]  boolean value}
 }
 \details{In an invisible window event box, the window that the
 event box creates is a \code{GDK_INPUT_ONLY} window, which 

@@ -8,6 +8,6 @@ it's simply the visual GdkRGB would have chosen as the optimal one
 in those previous versions. GdkRGB can now render to drawables with
 any visual.}
 \usage{gdkRgbGetVisual()}
-\value{[\code{\link{GdkVisual}}]  The \code{\link{GdkVisual}} chosen by GdkRGB.}
+\value{[\verb{\link{GdkVisual}}]  The \verb{\link{GdkVisual}} chosen by GdkRGB.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,7 +4,7 @@
 \description{Returns the string which are displayed in the documenters 
 tab of the secondary credits dialog.}
 \usage{gtkAboutDialogGetDocumenters(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}}
 \details{  Since  2.6}
 \value{[character]  A string list containing
  the documenters.}

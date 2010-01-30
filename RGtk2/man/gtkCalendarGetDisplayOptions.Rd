@@ -3,7 +3,7 @@
 \title{gtkCalendarGetDisplayOptions}
 \description{Returns the current display options of \code{calendar}.}
 \usage{gtkCalendarGetDisplayOptions(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkCalendar}}]  a \code{\link{GtkCalendar}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkCalendar}}]  a \verb{\link{GtkCalendar}}}}
 \details{  Since  2.4}
 \value{[\code{\link{GtkCalendarDisplayOptions}}]  the display options.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,7 +5,7 @@
 necessarily mean effective sensitivity. See \code{\link{gtkActionIsSensitive}} 
 for that.}
 \usage{gtkActionGetSensitive(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the action itself is sensitive.}
 \author{Derived by RGtkGen from GTK+ documentation}

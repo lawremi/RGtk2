@@ -2,12 +2,12 @@
 \name{gdkRgbFindColor}
 \title{gdkRgbFindColor}
 \description{\code{colormap} should be the colormap for the graphics context and
-drawable you're using to draw. If you're drawing to a \code{\link{GtkWidget}},
+drawable you're using to draw. If you're drawing to a \verb{\link{GtkWidget}},
 call \code{\link{gtkWidgetGetColormap}}.}
 \usage{gdkRgbFindColor(colormap, color)}
 \arguments{
-\item{\code{colormap}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}}
-\item{\code{color}}{[\code{\link{GdkColor}}]  a \code{\link{GdkColor}}}
+\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  a \verb{\link{GdkColor}}}
 }
 \details{\code{color} should have its \code{red}, \code{green}, and \code{blue} fields initialized;
 \code{\link{gdkRgbFindColor}} will fill in the \code{pixel} field with the best

@@ -7,12 +7,12 @@ two \code{\link{pangoExtentsToPixels}} calls, rounding \code{ink.rect} and \code
 such that the rounded rectangles fully contain the unrounded one (that is,
 passes them as first argument to \code{\link{pangoExtentsToPixels}}).}
 \usage{pangoLayoutLineGetPixelExtents(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayoutLine}}]  a \code{\link{PangoLayoutLine}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayoutLine}}]  a \verb{\link{PangoLayoutLine}}}}
 \value{
 A list containing the following elements:
-\item{\code{ink.rect}}{[\code{\link{PangoRectangle}}]     rectangle used to store the extents of the glyph string
+\item{\verb{ink.rect}}{[\verb{\link{PangoRectangle}}]     rectangle used to store the extents of the glyph string
               as drawn, or \code{NULL}}
-\item{\code{logical.rect}}{[\code{\link{PangoRectangle}}]  rectangle used to store the logical extents of the glyph
+\item{\verb{logical.rect}}{[\verb{\link{PangoRectangle}}]  rectangle used to store the logical extents of the glyph
               string, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

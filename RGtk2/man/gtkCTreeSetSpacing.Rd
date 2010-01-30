@@ -7,8 +7,8 @@ The spacing between the tree graphic and the actual node content.
 }
 \usage{gtkCTreeSetSpacing(object, spacing)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{spacing}}{[integer] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{spacing}}{[integer] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Activates the item determined by \code{path}.}
 \usage{gtkIconViewItemActivated(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  The \code{\link{GtkTreePath}} to be activated}
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  The \verb{\link{GtkTreePath}} to be activated}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -14,9 +14,9 @@ alternative to this function. The buffer will add a reference to
 the anchor, so you can unref it after insertion.}
 \usage{gtkTextBufferInsertChildAnchor(object, iter, anchor)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  location to insert the anchor}
-\item{\code{anchor}}{[\code{\link{GtkTextChildAnchor}}]  a \code{\link{GtkTextChildAnchor}}}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  location to insert the anchor}
+\item{\verb{anchor}}{[\verb{\link{GtkTextChildAnchor}}]  a \verb{\link{GtkTextChildAnchor}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

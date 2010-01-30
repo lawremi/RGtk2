@@ -9,8 +9,8 @@ or it may display no preview at all. See
 \code{\link{gtkFileChooserSetPreviewWidget}} for more details.}
 \usage{gtkFileChooserSetPreviewWidgetActive(object, active)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{active}}{[logical]  whether to display the user-specified preview widget}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{active}}{[logical]  whether to display the user-specified preview widget}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

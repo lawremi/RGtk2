@@ -1,9 +1,9 @@
 \alias{gtkAccelLabelNew}
 \name{gtkAccelLabelNew}
 \title{gtkAccelLabelNew}
-\description{Creates a new \code{\link{GtkAccelLabel}}.}
+\description{Creates a new \verb{\link{GtkAccelLabel}}.}
 \usage{gtkAccelLabelNew(string = NULL, show = TRUE)}
-\arguments{\item{\code{string}}{[character] the label string. Must be non-\code{NULL}.}}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkAccelLabel}}.}
+\arguments{\item{\verb{string}}{[character] the label string. Must be non-\code{NULL}.}}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkAccelLabel}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

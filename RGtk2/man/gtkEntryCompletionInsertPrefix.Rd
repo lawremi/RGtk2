@@ -3,7 +3,7 @@
 \title{gtkEntryCompletionInsertPrefix}
 \description{Requests a prefix insertion.}
 \usage{gtkEntryCompletionInsertPrefix(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  a \code{\link{GtkEntryCompletion}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  a \verb{\link{GtkEntryCompletion}}}}
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,10 +1,10 @@
 \alias{gtkPageSetupGetPaperSize}
 \name{gtkPageSetupGetPaperSize}
 \title{gtkPageSetupGetPaperSize}
-\description{Gets the paper size of the \code{\link{GtkPageSetup}}.}
+\description{Gets the paper size of the \verb{\link{GtkPageSetup}}.}
 \usage{gtkPageSetupGetPaperSize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPageSetup}}]  a \code{\link{GtkPageSetup}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPageSetup}}]  a \verb{\link{GtkPageSetup}}}}
 \details{  Since  2.10}
-\value{[\code{\link{GtkPaperSize}}]  the paper size}
+\value{[\verb{\link{GtkPaperSize}}]  the paper size}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

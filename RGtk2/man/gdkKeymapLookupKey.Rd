@@ -8,8 +8,8 @@ this function, since the effective group/level may not be
 the same as the current keyboard state.}
 \usage{gdkKeymapLookupKey(object, key)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkKeymap}}]  a \code{\link{GdkKeymap}} or \code{NULL} to use the default keymap}
-\item{\code{key}}{[\code{\link{GdkKeymapKey}}]  a \code{\link{GdkKeymapKey}} with keycode, group, and level initialized}
+\item{\verb{object}}{[\verb{\link{GdkKeymap}}]  a \verb{\link{GdkKeymap}} or \code{NULL} to use the default keymap}
+\item{\verb{key}}{[\verb{\link{GdkKeymapKey}}]  a \verb{\link{GdkKeymapKey}} with keycode, group, and level initialized}
 }
 \value{[numeric]  a keyval, or 0 if none was mapped to the given \code{key}}
 \author{Derived by RGtkGen from GTK+ documentation}

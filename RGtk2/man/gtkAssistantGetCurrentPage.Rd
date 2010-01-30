@@ -3,7 +3,7 @@
 \title{gtkAssistantGetCurrentPage}
 \description{Returns the page number of the current page}
 \usage{gtkAssistantGetCurrentPage(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAssistant}}]  a \code{\link{GtkAssistant}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}}
 \details{  Since  2.10}
 \value{[integer]  The index (starting from 0) of the current page in
 the \code{assistant}, if the \code{assistant} has no pages, -1 will be returned}

@@ -7,8 +7,8 @@ window icon set with \code{\link{gtkWindowSetDefaultIcon}}
 will be used.}
 \usage{gtkAboutDialogSetLogoIconName(object, icon.name = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}
-\item{\code{icon.name}}{[character]  an icon name, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
+\item{\verb{icon.name}}{[character]  an icon name, or \code{NULL}}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,8 +8,8 @@ item factory.
 }
 \usage{gtkItemFactoryDeleteItem(object, path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}
-\item{\code{path}}{[character]  a path}
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}
+\item{\verb{path}}{[character]  a path}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

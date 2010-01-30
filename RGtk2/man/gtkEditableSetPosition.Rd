@@ -4,8 +4,8 @@
 \description{Sets the cursor position.}
 \usage{gtkEditableSetPosition(object, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEditable}}] a \code{\link{GtkEditable}} widget.}
-\item{\code{position}}{[integer] the position of the cursor. The cursor is displayed
+\item{\verb{object}}{[\verb{\link{GtkEditable}}] a \verb{\link{GtkEditable}} widget.}
+\item{\verb{position}}{[integer] the position of the cursor. The cursor is displayed
            before the character with the given (base 0) index
            in the widget. The value must be less than or
            equal to the number of characters in the widget.

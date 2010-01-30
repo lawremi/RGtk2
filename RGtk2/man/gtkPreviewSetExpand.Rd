@@ -10,14 +10,14 @@ and buffer will be no larger than the size set with
 in the allocation if it is larger. If \code{expand} is \code{TRUE}
 then the window and buffer will expand with the allocation;
 the application is responsible for catching
-the "size\_allocate" signal and providing the data 
+the "size_allocate" signal and providing the data 
 appropriate for this size.
 \strong{WARNING: \code{gtk_preview_set_expand} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPreviewSetExpand(object, expand)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPreview}}] a \code{\link{GtkPreview}}.}
-\item{\code{expand}}{[logical] whether the preview's window should expand or not.}
+\item{\verb{object}}{[\verb{\link{GtkPreview}}] a \verb{\link{GtkPreview}}.}
+\item{\verb{expand}}{[logical] whether the preview's window should expand or not.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

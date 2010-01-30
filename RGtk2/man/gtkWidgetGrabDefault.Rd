@@ -7,6 +7,6 @@ yourself by calling \code{GTK_WIDGET_SET_FLAGS (}. The default widget is activat
 the user presses Enter in a window. Default widgets must be 
 activatable, that is, \code{\link{gtkWidgetActivate}} should affect them.}
 \usage{gtkWidgetGrabDefault(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

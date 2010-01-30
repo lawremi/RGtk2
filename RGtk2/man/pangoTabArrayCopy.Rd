@@ -1,9 +1,9 @@
 \alias{pangoTabArrayCopy}
 \name{pangoTabArrayCopy}
 \title{pangoTabArrayCopy}
-\description{Copies a \code{\link{PangoTabArray}}}
+\description{Copies a \verb{\link{PangoTabArray}}}
 \usage{pangoTabArrayCopy(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoTabArray}}] \code{\link{PangoTabArray}} to copy}}
-\value{[\code{\link{PangoTabArray}}]  the newly allocated \code{\link{PangoTabArray}}.}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoTabArray}}] \verb{\link{PangoTabArray}} to copy}}
+\value{[\verb{\link{PangoTabArray}}]  the newly allocated \verb{\link{PangoTabArray}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

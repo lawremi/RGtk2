@@ -8,8 +8,8 @@ event recorder. Applications should never have any
 reason to use this facility.}
 \usage{gdkDisplaySetPointerHooks(object, new.hooks)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDisplay}}]  a \code{\link{GdkDisplay}}}
-\item{\code{new.hooks}}{[GdkDisplayPointerHooks]  a table of pointers to functions for getting
+\item{\verb{object}}{[\verb{\link{GdkDisplay}}]  a \verb{\link{GdkDisplay}}}
+\item{\verb{new.hooks}}{[GdkDisplayPointerHooks]  a table of pointers to functions for getting
   quantities related to the current pointer position,
   or \code{NULL} to restore the default table.}
 }

@@ -10,10 +10,10 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkCellEditable}}
 \section{Implementations}{GtkCellEditable is implemented by
- \code{\link{GtkEntry}},  \code{\link{GtkComboBox}},  \code{\link{GtkSpinButton}} and  \code{\link{GtkComboBoxEntry}}.}
-\section{Detailed Description}{The \code{\link{GtkCellEditable}} interface must be implemented for widgets
-to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
-\section{Structures}{\describe{\item{\code{GtkCellEditable}}{
+ \verb{\link{GtkEntry}},  \verb{\link{GtkComboBox}},  \verb{\link{GtkSpinButton}} and  \verb{\link{GtkComboBoxEntry}}.}
+\section{Detailed Description}{The \verb{\link{GtkCellEditable}} interface must be implemented for widgets
+to be usable when editing the contents of a \verb{\link{GtkTreeView}} cell.}
+\section{Structures}{\describe{\item{\verb{GtkCellEditable}}{
 \emph{undocumented
 }
 
@@ -23,14 +23,14 @@ to be usable when editing the contents of a \code{\link{GtkTreeView}} cell.}
 This signal is a sign for the cell renderer to update its 
 value from the \code{cell.editable}. 
   
-Implementations of \code{\link{GtkCellEditable}} are responsible for 
+Implementations of \verb{\link{GtkCellEditable}} are responsible for 
 emitting this signal when they are done editing, e.g. 
-\code{\link{GtkEntry}} is emitting it when the user presses Enter.
+\verb{\link{GtkEntry}} is emitting it when the user presses Enter.
   \code{\link{gtkCellEditableEditingDone}} is a convenience method
 for emitting ::editing-done.  
 
 \describe{
-\item{\code{cell.editable}}{[\code{\link{GtkCellEditable}}]  the object on which the signal was emitted}
+\item{\code{cell.editable}}{[\verb{\link{GtkCellEditable}}]  the object on which the signal was emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -40,7 +40,7 @@ for emitting ::editing-done.
 This signal is meant to indicate that the cell is finished 
 editing, and the widget may now be destroyed. 
   
-Implementations of \code{\link{GtkCellEditable}} are responsible for 
+Implementations of \verb{\link{GtkCellEditable}} are responsible for 
 emitting this signal when they are done editing. It must
 be emitted after the \code{\link{gtkCellEditableEditingDone}} signal, 
 to give the cell renderer a chance to update the cell's value 
@@ -49,7 +49,7 @@ before the widget is removed.
 for emitting ::remove-widget.  
 
 \describe{
-\item{\code{cell.editable}}{[\code{\link{GtkCellEditable}}]  the object on which the signal was emitted}
+\item{\code{cell.editable}}{[\verb{\link{GtkCellEditable}}]  the object on which the signal was emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

@@ -9,8 +9,8 @@ the adjustment and \code{\link{gtkContainerSetFocusHadjustment}} for setting
 the horizontal adjustment.}
 \usage{gtkContainerSetFocusVadjustment(object, adjustment)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}}}
-\item{\code{adjustment}}{[\code{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the focus 
+\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
+\item{\verb{adjustment}}{[\verb{\link{GtkAdjustment}}]  an adjustment which should be adjusted when the focus 
   is moved among the descendents of \code{container}}
 }
 \details{The adjustments have to be in pixel units and in the same coordinate 

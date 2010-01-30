@@ -7,11 +7,11 @@ Creates an item for \code{entry}.
 }
 \usage{gtkItemFactoryCreateItem(object, entry, callback.data = NULL, callback.type)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}
-\item{\code{entry}}{[\code{\link{GtkItemFactoryEntry}}]  the \code{\link{GtkItemFactoryEntry}} to create an item for}
-\item{\code{callback.data}}{[R object]  data passed to the callback function of \code{entry}}
-\item{\code{callback.type}}{[numeric]  1 if the callback function of \code{entry} is of type
-   \code{\link{GtkItemFactoryCallback1}}, 2 if it is of type \code{\link{GtkItemFactoryCallback2}} }
+\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}
+\item{\verb{entry}}{[\verb{\link{GtkItemFactoryEntry}}]  the \verb{\link{GtkItemFactoryEntry}} to create an item for}
+\item{\verb{callback.data}}{[R object]  data passed to the callback function of \code{entry}}
+\item{\verb{callback.type}}{[numeric]  1 if the callback function of \code{entry} is of type
+   \verb{\link{GtkItemFactoryCallback1}}, 2 if it is of type \verb{\link{GtkItemFactoryCallback2}} }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

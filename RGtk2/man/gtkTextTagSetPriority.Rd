@@ -1,7 +1,7 @@
 \alias{gtkTextTagSetPriority}
 \name{gtkTextTagSetPriority}
 \title{gtkTextTagSetPriority}
-\description{Sets the priority of a \code{\link{GtkTextTag}}. Valid priorities are
+\description{Sets the priority of a \verb{\link{GtkTextTag}}. Valid priorities are
 start at 0 and go to one less than \code{\link{gtkTextTagTableGetSize}}.
 Each tag in a table has a unique priority; setting the priority
 of one tag shifts the priorities of all the other tags in the
@@ -14,8 +14,8 @@ is the order in which they were added to the table, or created with
 automatically.}
 \usage{gtkTextTagSetPriority(object, priority)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextTag}}]  a \code{\link{GtkTextTag}}}
-\item{\code{priority}}{[integer]  the new priority}
+\item{\verb{object}}{[\verb{\link{GtkTextTag}}]  a \verb{\link{GtkTextTag}}}
+\item{\verb{priority}}{[integer]  the new priority}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

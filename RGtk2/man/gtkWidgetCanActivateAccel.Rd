@@ -10,8 +10,8 @@ that the widget must be sensitive, and the widget and all
 its ancestors mapped.}
 \usage{gtkWidgetCanActivateAccel(object, signal.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{signal.id}}{[numeric]  the ID of a signal installed on \code{widget}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{signal.id}}{[numeric]  the ID of a signal installed on \code{widget}}
 }
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the accelerator can be activated.}

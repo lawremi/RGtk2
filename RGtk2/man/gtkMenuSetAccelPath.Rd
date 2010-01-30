@@ -18,8 +18,8 @@ their accelerators at runtime. More details about accelerator paths
 and their default setups can be found at \code{\link{gtkAccelMapAddEntry}}.}
 \usage{gtkMenuSetAccelPath(object, accel.path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenu}}]        a valid \code{\link{GtkMenu}}}
-\item{\code{accel.path}}{[character]  a valid accelerator path}
+\item{\verb{object}}{[\verb{\link{GtkMenu}}]        a valid \verb{\link{GtkMenu}}}
+\item{\verb{accel.path}}{[character]  a valid accelerator path}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

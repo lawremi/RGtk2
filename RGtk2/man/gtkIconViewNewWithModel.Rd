@@ -1,10 +1,10 @@
 \alias{gtkIconViewNewWithModel}
 \name{gtkIconViewNewWithModel}
 \title{gtkIconViewNewWithModel}
-\description{Creates a new \code{\link{GtkIconView}} widget with the model \code{model}.}
+\description{Creates a new \verb{\link{GtkIconView}} widget with the model \code{model}.}
 \usage{gtkIconViewNewWithModel(model = NULL, show = TRUE)}
-\arguments{\item{\code{model}}{[\code{\link{GtkTreeModel}}]  The model.}}
+\arguments{\item{\verb{model}}{[\verb{\link{GtkTreeModel}}]  The model.}}
 \details{  Since  2.6 }
-\value{[\code{\link{GtkWidget}}]  A newly created \code{\link{GtkIconView}} widget.}
+\value{[\verb{\link{GtkWidget}}]  A newly created \verb{\link{GtkIconView}} widget.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

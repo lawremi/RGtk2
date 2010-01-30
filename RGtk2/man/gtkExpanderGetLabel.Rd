@@ -7,7 +7,7 @@ been set the return value will be \code{NULL}. This will be the
 case if you create an empty button with \code{\link{gtkButtonNew}} to
 use as a container.}
 \usage{gtkExpanderGetLabel(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkExpander}}]  a \code{\link{GtkExpander}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkExpander}}]  a \verb{\link{GtkExpander}}}}
 \details{  Since  2.4}
 \value{[character]  The text of the label widget.}
 \author{Derived by RGtkGen from GTK+ documentation}

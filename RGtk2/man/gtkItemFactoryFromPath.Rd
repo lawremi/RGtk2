@@ -8,8 +8,8 @@ for \code{\link{gtkItemFactoryNew}}.
 \strong{WARNING: \code{gtk_item_factory_from_path} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryFromPath(path)}
-\arguments{\item{\code{path}}{[character]  a string starting with a factory path of the form 
+\arguments{\item{\verb{path}}{[character]  a string starting with a factory path of the form 
   \code{"<name>"}}}
-\value{[\code{\link{GtkItemFactory}}]  the \code{\link{GtkItemFactory}} created for the given factory path, or \code{NULL} }
+\value{[\verb{\link{GtkItemFactory}}]  the \verb{\link{GtkItemFactory}} created for the given factory path, or \code{NULL} }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

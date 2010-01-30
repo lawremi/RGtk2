@@ -15,20 +15,20 @@
 \code{\link{gtkFileSelectionGetSelectMultiple}(object)}\cr
 \code{gtkFileSelection(title = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkWindow}
-                                       +----\link{GtkDialog}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkWindow
+                                       +----GtkDialog
                                              +----GtkFileSelection}}
 \section{Interfaces}{GtkFileSelection implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkFileSelection}} has been superseded by the newer \code{\link{GtkFileChooser}} family
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkFileSelection}} has been superseded by the newer \verb{\link{GtkFileChooser}} family
 of widgets.
-  \code{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
+  \verb{\link{GtkFileSelection}} should be used to retrieve file or directory names from 
 the user. It will create a new dialog window containing a directory list, 
 and a file list corresponding to the current working directory. The filesystem 
 can be navigated using the directory list or the drop-down history menu. 
@@ -78,34 +78,34 @@ create_file_selection <- function() {
   file_selector$show()
 }
 }}
-\section{Structures}{\describe{\item{\code{GtkFileSelection}}{
+\section{Structures}{\describe{\item{\verb{GtkFileSelection}}{
 \strong{WARNING: \code{GtkFileSelection} is deprecated and should not be used in newly-written code.}
-The \code{\link{GtkFileSelection}} struct contains the following \code{\link{GtkWidget}} fields:
+The \verb{\link{GtkFileSelection}} struct contains the following \verb{\link{GtkWidget}} fields:
 
 \describe{
-\item{\code{dirList}}{[\code{\link{GtkWidget}}] }
-\item{\code{fileList}}{[\code{\link{GtkWidget}}] }
-\item{\code{selectionEntry}}{[\code{\link{GtkWidget}}] }
-\item{\code{selectionText}}{[\code{\link{GtkWidget}}] }
-\item{\code{mainVbox}}{[\code{\link{GtkWidget}}] }
-\item{\code{okButton}}{[\code{\link{GtkWidget}}] }
-\item{\code{cancelButton}}{[\code{\link{GtkWidget}}] the two main buttons that signals should be connected 
+\item{\verb{dirList}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{fileList}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{selectionEntry}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{selectionText}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{mainVbox}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{okButton}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{cancelButton}}{[\verb{\link{GtkWidget}}] the two main buttons that signals should be connected 
     to in order to perform an action when the user hits either OK or 
     Cancel.}
-\item{\code{helpButton}}{[\code{\link{GtkWidget}}] }
-\item{\code{historyPulldown}}{[\code{\link{GtkWidget}}] the \code{\link{GtkOptionMenu}} used to create the drop-down 
+\item{\verb{helpButton}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{historyPulldown}}{[\verb{\link{GtkWidget}}] the \verb{\link{GtkOptionMenu}} used to create the drop-down 
     directory history.}
-\item{\code{historyMenu}}{[\code{\link{GtkWidget}}] }
-\item{\code{fileopDialog}}{[\code{\link{GtkWidget}}] }
-\item{\code{fileopEntry}}{[\code{\link{GtkWidget}}] the dialog box used to display the \code{\link{GtkFileSelection}}. 
+\item{\verb{historyMenu}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{fileopDialog}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{fileopEntry}}{[\verb{\link{GtkWidget}}] the dialog box used to display the \verb{\link{GtkFileSelection}}. 
    It can be customized by adding/removing widgets from it using the 
-   standard \code{\link{GtkDialog}} functions.}
-\item{\code{fileopFile}}{[character] }
-\item{\code{fileopCDir}}{[\code{\link{GtkWidget}}] }
-\item{\code{fileopDelFile}}{[\code{\link{GtkWidget}}] }
-\item{\code{fileopRenFile}}{[\code{\link{GtkWidget}}] }
-\item{\code{buttonArea}}{[\code{\link{GtkWidget}}] }
-\item{\code{actionArea}}{[\code{\link{GtkWidget}}] the buttons that appear at the top of the file 
+   standard \verb{\link{GtkDialog}} functions.}
+\item{\verb{fileopFile}}{[character] }
+\item{\verb{fileopCDir}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{fileopDelFile}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{fileopRenFile}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{buttonArea}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{actionArea}}{[\verb{\link{GtkWidget}}] the buttons that appear at the top of the file 
     selection dialog. These "operation buttons" can be hidden and 
     redisplayed with \code{\link{gtkFileSelectionHideFileopButtons}} and  
     \code{\link{gtkFileSelectionShowFileopButtons}} respectively.}
@@ -114,17 +114,17 @@ The \code{\link{GtkFileSelection}} struct contains the following \code{\link{Gtk
 }}}
 \section{Convenient Construction}{\code{gtkFileSelection} is the equivalent of \code{\link{gtkFileSelectionNew}}.}
 \section{Properties}{\describe{
-\item{\code{filename} [character : Read / Write]}{
+\item{\verb{filename} [character : *                : Read / Write]}{
 
 The currently selected filename.  Default value: NULL
 
 }
-\item{\code{select-multiple} [logical : Read / Write]}{
+\item{\verb{select-multiple} [logical : Read / Write]}{
 
 Whether to allow multiple files to be selected.  Default value: FALSE
 
 }
-\item{\code{show-fileops} [logical : Read / Write]}{
+\item{\verb{show-fileops} [logical : Read / Write]}{
 
 Whether buttons for creating/manipulating files should be displayed.  Default value: FALSE
 

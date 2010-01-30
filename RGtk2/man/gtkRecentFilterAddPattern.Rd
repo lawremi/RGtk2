@@ -5,8 +5,8 @@
 display name.}
 \usage{gtkRecentFilterAddPattern(object, pattern)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentFilter}}]  a \code{\link{GtkRecentFilter}}}
-\item{\code{pattern}}{[character]  a file pattern}
+\item{\verb{object}}{[\verb{\link{GtkRecentFilter}}]  a \verb{\link{GtkRecentFilter}}}
+\item{\verb{pattern}}{[character]  a file pattern}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

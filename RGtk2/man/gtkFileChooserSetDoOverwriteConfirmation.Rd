@@ -1,13 +1,13 @@
 \alias{gtkFileChooserSetDoOverwriteConfirmation}
 \name{gtkFileChooserSetDoOverwriteConfirmation}
 \title{gtkFileChooserSetDoOverwriteConfirmation}
-\description{Sets whether a file chooser in GTK\_FILE\_CHOOSER\_ACTION\_SAVE mode will present
+\description{Sets whether a file chooser in GTK_FILE_CHOOSER_ACTION_SAVE mode will present
 a confirmation dialog if the user types a file name that already exists.  This
 is \code{FALSE} by default.}
 \usage{gtkFileChooserSetDoOverwriteConfirmation(object, do.overwrite.confirmation)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{do.overwrite.confirmation}}{[logical]  whether to confirm overwriting in save mode}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{do.overwrite.confirmation}}{[logical]  whether to confirm overwriting in save mode}
 }
 \details{Regardless of this setting, the \code{chooser} will emit the "confirm-overwrite"
 signal when appropriate.

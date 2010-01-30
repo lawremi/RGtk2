@@ -4,7 +4,7 @@
 \description{This function works like \code{\link{gtkWidgetQueueResize}}, 
 except that the widget is not invalidated.}
 \usage{gtkWidgetQueueResizeNoRedraw(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

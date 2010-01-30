@@ -5,8 +5,8 @@
 instead of this low-level function.}
 \usage{gdkWindowSetStartupId(object, startup.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{startup.id}}{[character]  a string with startup-notification identifier}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{startup.id}}{[character]  a string with startup-notification identifier}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

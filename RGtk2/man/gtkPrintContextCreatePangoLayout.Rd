@@ -1,11 +1,11 @@
 \alias{gtkPrintContextCreatePangoLayout}
 \name{gtkPrintContextCreatePangoLayout}
 \title{gtkPrintContextCreatePangoLayout}
-\description{Creates a new \code{\link{PangoLayout}} that is suitable for use
-with the \code{\link{GtkPrintContext}}.}
+\description{Creates a new \verb{\link{PangoLayout}} that is suitable for use
+with the \verb{\link{GtkPrintContext}}.}
 \usage{gtkPrintContextCreatePangoLayout(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintContext}}]  a \code{\link{GtkPrintContext}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintContext}}]  a \verb{\link{GtkPrintContext}}}}
 \details{  Since  2.10}
-\value{[\code{\link{PangoLayout}}]  a new Pango layout for \code{context}}
+\value{[\verb{\link{PangoLayout}}]  a new Pango layout for \code{context}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

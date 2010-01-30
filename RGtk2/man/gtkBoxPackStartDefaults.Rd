@@ -6,11 +6,11 @@ The child is packed after any other child packed with reference
 to the start of \code{box}. }
 \usage{gtkBoxPackStartDefaults(object, widget)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBox}}]  a \code{\link{GtkBox}}}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the \code{\link{GtkWidget}} to be added to \code{box}}
+\item{\verb{object}}{[\verb{\link{GtkBox}}]  a \verb{\link{GtkBox}}}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  the \verb{\link{GtkWidget}} to be added to \code{box}}
 }
-\details{Parameters for how to pack the child \code{widget}, \code{"expand"}, 
-\code{"fill"} and \code{"padding"}, are given their default
+\details{Parameters for how to pack the child \code{widget}, \verb{"expand"}, 
+\verb{"fill"} and \verb{"padding"}, are given their default
 values, \code{TRUE}, \code{TRUE}, and 0, respectively.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,15 +9,15 @@ normally the window will end kept above. Just don't write code
 that crashes if not.}
 \usage{gtkWindowSetKeepAbove(object, setting)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{setting}}{[logical]  whether to keep \code{window} above other windows}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{setting}}{[logical]  whether to keep \code{window} above other windows}
 }
 \details{It's permitted to call this function before showing a window,
 in which case the window will be kept above when it appears onscreen
 initially.
   
-You can track the above state via the "window\_state\_event" signal
-on \code{\link{GtkWidget}}.
+You can track the above state via the "window_state_event" signal
+on \verb{\link{GtkWidget}}.
   
 Note that, according to the Extended Window 
 Manager Hints (\url{http://www.org/Standards/wm-spec}) specification, the above state is mainly meant 

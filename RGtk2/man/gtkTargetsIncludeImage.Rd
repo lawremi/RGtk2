@@ -2,11 +2,11 @@
 \name{gtkTargetsIncludeImage}
 \title{gtkTargetsIncludeImage}
 \description{Determines if any of the targets in \code{targets} can be used to
-provide a \code{\link{GdkPixbuf}}.}
+provide a \verb{\link{GdkPixbuf}}.}
 \usage{gtkTargetsIncludeImage(targets, writable)}
 \arguments{
-\item{\code{targets}}{[\code{\link{GdkAtom}}]  a list of \code{\link{GdkAtom}}s}
-\item{\code{writable}}{[logical]  whether to accept only targets for which GTK+ knows
+\item{\verb{targets}}{[\verb{\link{GdkAtom}}]  a list of \verb{\link{GdkAtom}}s}
+\item{\verb{writable}}{[logical]  whether to accept only targets for which GTK+ knows
   how to convert a pixbuf into the format}
 }
 \details{  Since  2.10}

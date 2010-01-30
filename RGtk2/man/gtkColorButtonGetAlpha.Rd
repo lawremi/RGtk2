@@ -3,7 +3,7 @@
 \title{gtkColorButtonGetAlpha}
 \description{Returns the current alpha value.}
 \usage{gtkColorButtonGetAlpha(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkColorButton}}]  a \code{\link{GtkColorButton}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkColorButton}}]  a \verb{\link{GtkColorButton}}.}}
 \details{  Since  2.4}
 \value{[integer]  an integer between 0 and 65535.}
 \author{Derived by RGtkGen from GTK+ documentation}

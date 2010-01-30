@@ -6,6 +6,6 @@ input context corresponds has gained focus. The input method
 may, for example, change the displayed feedback to reflect
 this change.}
 \usage{gtkIMContextFocusIn(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIMContext}}]  a \code{\link{GtkIMContext}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIMContext}}]  a \verb{\link{GtkIMContext}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

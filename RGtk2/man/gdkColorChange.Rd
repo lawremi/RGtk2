@@ -11,8 +11,8 @@ using \code{\link{gdkColormapAllocColors}} with the
 }
 \usage{gdkColorChange(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}.}
-\item{\code{color}}{[\code{\link{GdkColor}}]  a \code{\link{GdkColor}}, with the color to change
+\item{\verb{object}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}.}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  a \verb{\link{GdkColor}}, with the color to change
 in the \code{pixel} field,
 and the new value in the remaining fields.}
 }

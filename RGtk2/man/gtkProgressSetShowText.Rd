@@ -7,8 +7,8 @@ Controls whether progress text is shown.
 }
 \usage{gtkProgressSetShowText(object, show.text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgress}}] a \code{\link{GtkProgress}}.}
-\item{\code{show.text}}{[logical] a boolean indicating whether the progress text
+\item{\verb{object}}{[\verb{\link{GtkProgress}}] a \verb{\link{GtkProgress}}.}
+\item{\verb{show.text}}{[logical] a boolean indicating whether the progress text
 is shown.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

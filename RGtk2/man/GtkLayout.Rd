@@ -17,30 +17,30 @@
 \code{\link{gtkLayoutSetVadjustment}(object, adjustment = NULL)}\cr
 \code{gtkLayout(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkLayout}}
 \section{Interfaces}{GtkLayout implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkLayout}} is similar to \code{\link{GtkDrawingArea}} in that it's a "blank slate"
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkLayout}} is similar to \verb{\link{GtkDrawingArea}} in that it's a "blank slate"
 and doesn't do anything but paint a blank background by default. It's
 different in that it supports scrolling natively (you can add it to a
-\code{\link{GtkScrolledWindow}}), and it can contain child widgets, since it's a
-\code{\link{GtkContainer}}. However if you're just going to draw, a \code{\link{GtkDrawingArea}}
+\verb{\link{GtkScrolledWindow}}), and it can contain child widgets, since it's a
+\verb{\link{GtkContainer}}. However if you're just going to draw, a \verb{\link{GtkDrawingArea}}
 is a better choice since it has lower overhead.
   
-When handling expose events on a \code{\link{GtkLayout}}, you must draw to 
-GTK\_LAYOUT (layout)->bin\_window, rather than to 
-GTK\_WIDGET (layout)->window, as you would for a drawing
+When handling expose events on a \verb{\link{GtkLayout}}, you must draw to 
+GTK_LAYOUT (layout)->bin_window, rather than to 
+GTK_WIDGET (layout)->window, as you would for a drawing
 area.}
-\section{Structures}{\describe{\item{\code{GtkLayout}}{
+\section{Structures}{\describe{\item{\verb{GtkLayout}}{
 \emph{undocumented
 }
 
-\describe{\item{\code{binWindow}}{[\code{\link{GdkWindow}}] }}
+\describe{\item{\verb{binWindow}}{[\verb{\link{GdkWindow}}] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkLayout} is the equivalent of \code{\link{gtkLayoutNew}}.}
@@ -49,40 +49,40 @@ area.}
 }
 
 \describe{
-\item{\code{layout}}{[\code{\link{GtkLayout}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\code{\link{GtkAdjustment}}] }
+\item{\code{layout}}{[\verb{\link{GtkLayout}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
+\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{hadjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{
+\item{\verb{hadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The GtkAdjustment for the horizontal position.
 
 }
-\item{\code{height} [numeric : Read / Write]}{
+\item{\verb{height} [numeric : Read / Write]}{
 
-The height of the layout.  Allowed values: <= G\_MAXINT  Default value: 100
+The height of the layout.  Allowed values: <= G_MAXINT  Default value: 100
 
 }
-\item{\code{vadjustment} [\code{\link{GtkAdjustment}} : Read / Write]}{
+\item{\verb{vadjustment} [\verb{\link{GtkAdjustment}} : *        : Read / Write]}{
 
 The GtkAdjustment for the vertical position.
 
 }
-\item{\code{width} [numeric : Read / Write]}{
+\item{\verb{width} [numeric : Read / Write]}{
 
-The width of the layout.  Allowed values: <= G\_MAXINT  Default value: 100
+The width of the layout.  Allowed values: <= G_MAXINT  Default value: 100
 
 }
 }}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkLayout.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkDrawingArea}}
-\code{\link{GtkScrolledWindow}}
+\verb{\link{GtkDrawingArea}}
+\verb{\link{GtkScrolledWindow}}
 }
 \keyword{internal}

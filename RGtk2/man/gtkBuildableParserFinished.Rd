@@ -8,8 +8,8 @@ Note that this will be called once for each time
 is called on a builder.}
 \usage{gtkBuildableParserFinished(object, builder)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBuildable}}]  a \code{\link{GtkBuildable}}}
-\item{\code{builder}}{[\code{\link{GtkBuilder}}]  a \code{\link{GtkBuilder}}}
+\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  a \verb{\link{GtkBuildable}}}
+\item{\verb{builder}}{[\verb{\link{GtkBuilder}}]  a \verb{\link{GtkBuilder}}}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

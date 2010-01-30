@@ -6,8 +6,8 @@ of the colormap's visual must match the depth of the drawable
 for which the GC was created.}
 \usage{gdkGCSetColormap(object, colormap)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}}
-\item{\code{colormap}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}}
+\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
+\item{\verb{colormap}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

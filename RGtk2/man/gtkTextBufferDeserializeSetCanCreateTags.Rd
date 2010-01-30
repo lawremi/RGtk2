@@ -8,9 +8,9 @@ functions you register should know how to map the rich text format
 they handler to your text buffers set of tags.}
 \usage{gtkTextBufferDeserializeSetCanCreateTags(object, format, can.create.tags)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{format}}{[\code{\link{GdkAtom}}]  a \code{\link{GdkAtom}} representing a registered rich text format}
-\item{\code{can.create.tags}}{[logical]  whether deserializing this format may create tags}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{format}}{[\verb{\link{GdkAtom}}]  a \verb{\link{GdkAtom}} representing a registered rich text format}
+\item{\verb{can.create.tags}}{[logical]  whether deserializing this format may create tags}
 }
 \details{The ability of creating new (arbitrary!) tags in the receiving buffer
 is meant for special rich text formats like the internal one that

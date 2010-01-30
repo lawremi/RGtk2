@@ -5,6 +5,6 @@
 default size and position of the window. Used
 by GUI builders only.}
 \usage{gtkWindowReshowWithInitialSize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -10,12 +10,12 @@ choice.
 }
 \usage{gdkImageGet(object, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}}}
-\item{\code{x}}{[integer]  x coordinate in \code{window}}
-\item{\code{y}}{[integer]  y coordinate in \code{window}}
-\item{\code{width}}{[integer]  width of area in \code{window}}
-\item{\code{height}}{[integer]  height of area in \code{window}}
+\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}}}
+\item{\verb{x}}{[integer]  x coordinate in \code{window}}
+\item{\verb{y}}{[integer]  y coordinate in \code{window}}
+\item{\verb{width}}{[integer]  width of area in \code{window}}
+\item{\verb{height}}{[integer]  height of area in \code{window}}
 }
-\value{[\code{\link{GdkImage}}]  a new \code{\link{GdkImage}} or \code{NULL}}
+\value{[\verb{\link{GdkImage}}]  a new \verb{\link{GdkImage}} or \code{NULL}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

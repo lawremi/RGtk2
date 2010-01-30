@@ -7,17 +7,17 @@ Gets the text, pixmap and bitmap mask for the specified cell.
 }
 \usage{gtkCListGetPixtext(object, row, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row to query.}
-\item{\code{column}}{[integer] The column to query.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row to query.}
+\item{\verb{column}}{[integer] The column to query.}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[integer] 1 if the retrieval was successful, 0 otherwise.}
-\item{\code{text}}{[character] A pointer to a pointer to store the text.}
-\item{\code{spacing}}{[raw] A pointer to a \code{raw} to store the spacing.}
-\item{\code{pixmap}}{[\code{\link{GdkPixmap}}] A pointer to a \code{\link{GdkPixmap}} pointer to store the cell's pixmap.}
-\item{\code{mask}}{[\code{\link{GdkBitmap}}] A pointer to a \code{\link{GdkBitmap}} pointer to store the cell's bitmap mask.}
+\item{\verb{text}}{[character] A pointer to a pointer to store the text.}
+\item{\verb{spacing}}{[raw] A pointer to a \verb{raw} to store the spacing.}
+\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}] A pointer to a \verb{\link{GdkPixmap}} pointer to store the cell's pixmap.}
+\item{\verb{mask}}{[\verb{\link{GdkBitmap}}] A pointer to a \verb{\link{GdkBitmap}} pointer to store the cell's bitmap mask.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,8 +8,8 @@ when the style is \code{GTK_PROGRESS_DISCRETE}.
 }
 \usage{gtkProgressBarSetDiscreteBlocks(object, blocks)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}] a \code{\link{GtkProgressBar}}.}
-\item{\code{blocks}}{[numeric] number of individual blocks making up the bar.}
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}] a \verb{\link{GtkProgressBar}}.}
+\item{\verb{blocks}}{[numeric] number of individual blocks making up the bar.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

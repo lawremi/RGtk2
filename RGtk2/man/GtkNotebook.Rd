@@ -58,22 +58,22 @@
 \code{\link{gtkNotebookSetWindowCreationHook}(func, data)}\cr
 \code{gtkNotebook(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkNotebook}}
 \section{Interfaces}{GtkNotebook implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkNotebook}} widget is a \code{\link{GtkContainer}} whose children are pages that
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkNotebook}} widget is a \verb{\link{GtkContainer}} whose children are pages that
 can be switched between using tab labels along one edge.
   
-There are many configuration options for \code{\link{GtkNotebook}}. Among other
+There are many configuration options for \verb{\link{GtkNotebook}}. Among other
 things, you can choose on which edge the tabs appear
 (see \code{\link{gtkNotebookSetTabPos}}), whether, if there are too many
 tabs to fit the noteobook should be made bigger or scrolling
-arrows added (see gtk\_notebook\_set\_scrollable), and whether there
+arrows added (see gtk_notebook_set_scrollable), and whether there
 will be a popup menu allowing the users to switch pages.
 (see \code{\link{gtkNotebookPopupEnable}}, \code{gtkNoteobookPopupDisable()})}
 \section{GtkNotebook as GtkBuildable}{The GtkNoteboopk implementation of the GtkBuildable interface
@@ -96,11 +96,11 @@ type attribute.
   </child>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkNotebook}}{
+\section{Structures}{\describe{\item{\verb{GtkNotebook}}{
 \emph{undocumented
 }
 
-\describe{\item{\code{tabPos}}{[\code{\link{GtkPositionType}}] }}
+\describe{\item{\verb{tabPos}}{[\code{\link{GtkPositionType}}] }}
 
 }}}
 \section{Convenient Construction}{\code{gtkNotebook} is the equivalent of \code{\link{gtkNotebookNew}}.}
@@ -114,14 +114,14 @@ the notebook (i.e.: group-id).
 If the function returns \code{NULL}, the drag will be cancelled.
 
 \describe{
-\item{\code{source}}{[\code{\link{GtkNotebook}}] The source \code{\link{GtkNotebook}} of the drag operation}
-\item{\code{page}}{[\code{\link{GtkWidget}}] the child \code{\link{GtkWidget}} affected}
+\item{\code{source}}{[\verb{\link{GtkNotebook}}] The source \verb{\link{GtkNotebook}} of the drag operation}
+\item{\code{page}}{[\verb{\link{GtkWidget}}] the child \verb{\link{GtkWidget}} affected}
 \item{\code{x}}{[integer] the X coordinate where the drop happens}
 \item{\code{y}}{[integer] the Y coordinate where the drop happens}
 \item{\code{data}}{[R object] user data}
 }
 
-\emph{Returns:} [\code{\link{GtkNotebook}}] The created \code{\link{GtkNotebook}} where the tab will be attached, or NULL to cancel the drag
+\emph{Returns:} [\verb{\link{GtkNotebook}}] The created \verb{\link{GtkNotebook}} where the tab will be attached, or NULL to cancel the drag
 
 }}}
 \section{Signals}{\describe{
@@ -130,7 +130,7 @@ If the function returns \code{NULL}, the drag will be cancelled.
 }
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -145,7 +145,7 @@ A handler for this signal can create a window containing
 a notebook where the tab will be attached. It is also 
 responsible for moving/resizing the window and adding the 
 necessary properties to the notebook (e.g. the 
-\code{"group-id"} ).
+\verb{"group-id"} ).
   
 The default handler uses the global window creation hook,
 if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.  
@@ -153,14 +153,14 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
   Since  2.12
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}]  the \code{\link{GtkNotebook}} emitting the signal}
-\item{\code{page}}{[\code{\link{GtkWidget}}]  the tab of \code{notebook} that is being detached}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}]  the \verb{\link{GtkNotebook}} emitting the signal}
+\item{\code{page}}{[\verb{\link{GtkWidget}}]  the tab of \code{notebook} that is being detached}
 \item{\code{x}}{[integer]  the X coordinate where the drop happens}
 \item{\code{y}}{[integer]  the Y coordinate where the drop happens}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
-\emph{Returns:} [\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}} that \code{page} should be added to, or \code{NULL}.
+\emph{Returns:} [\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}} that \code{page} should be added to, or \code{NULL}.
 
 }
 \item{\code{focus-tab(notebook, arg1, user.data)}}{
@@ -168,7 +168,7 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 }
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkNotebookTab}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -180,7 +180,7 @@ if one has been set with \code{\link{gtkNotebookSetWindowCreationHook}}.
 }
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -194,8 +194,8 @@ right after a page is added to the notebook.
   Since  2.10
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}]  the \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the child \code{\link{GtkWidget}} affected}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}]  the \verb{\link{GtkNotebook}}}
+\item{\code{child}}{[\verb{\link{GtkWidget}}]  the child \verb{\link{GtkWidget}} affected}
 \item{\code{page.num}}{[numeric]  the new page number for \code{child}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -209,8 +209,8 @@ right after a page is removed from the notebook.
   Since  2.10
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}]  the \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the child \code{\link{GtkWidget}} affected}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}]  the \verb{\link{GtkNotebook}}}
+\item{\code{child}}{[\verb{\link{GtkWidget}}]  the child \verb{\link{GtkWidget}} affected}
 \item{\code{page.num}}{[numeric]  the \code{child} page number}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -224,8 +224,8 @@ right after a page has been reordered.
   Since  2.10
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}]  the \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  the child \code{\link{GtkWidget}} affected}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}]  the \verb{\link{GtkNotebook}}}
+\item{\code{child}}{[\verb{\link{GtkWidget}}]  the child \verb{\link{GtkWidget}} affected}
 \item{\code{page.num}}{[numeric]  the new page number for \code{child}}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -237,7 +237,7 @@ right after a page has been reordered.
 }
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkDirectionType}}] }
 \item{\code{Param3}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -250,7 +250,7 @@ right after a page has been reordered.
 }
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{arg1}}{[logical] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -261,7 +261,7 @@ right after a page has been reordered.
 Emitted when the user or a function changes the current page.
 
 \describe{
-\item{\code{notebook}}{[\code{\link{GtkNotebook}}] the object which received the signal.}
+\item{\code{notebook}}{[\verb{\link{GtkNotebook}}] the object which received the signal.}
 \item{\code{page}}{[GtkNotebookPage] the new current page}
 \item{\code{page.num}}{[numeric] the index of the page}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -271,71 +271,71 @@ Emitted when the user or a function changes the current page.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{enable-popup} [logical : Read / Write]}{
+\item{\verb{enable-popup} [logical : Read / Write]}{
 
 If TRUE, pressing the right mouse button on the notebook pops up a menu that you can use to go to a page.  Default value: FALSE
 
 }
-\item{\code{group} [R object : Read / Write]}{
+\item{\verb{group} [R object : Read / Write]}{
 
 Group for tabs drag and drop.  
 
   Since  2.12
 
 }
-\item{\code{group-id} [integer : Read / Write]}{
+\item{\verb{group-id} [integer : Read / Write]}{
 
 Group ID for tabs drag and drop.  Allowed values: >= -1  Default value: -1
 
 }
-\item{\code{homogeneous} [logical : Read / Write]}{
+\item{\verb{homogeneous} [logical : Read / Write]}{
 
 Whether tabs should have homogeneous sizes.  Default value: FALSE
 
 }
-\item{\code{page} [integer : Read / Write]}{
+\item{\verb{page} [integer : Read / Write]}{
 
 The index of the current page.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{scrollable} [logical : Read / Write]}{
+\item{\verb{scrollable} [logical : Read / Write]}{
 
 If TRUE, scroll arrows are added if there are too many tabs to fit.  Default value: FALSE
 
 }
-\item{\code{show-border} [logical : Read / Write]}{
+\item{\verb{show-border} [logical : Read / Write]}{
 
 Whether the border should be shown or not.  Default value: TRUE
 
 }
-\item{\code{show-tabs} [logical : Read / Write]}{
+\item{\verb{show-tabs} [logical : Read / Write]}{
 
 Whether tabs should be shown or not.  Default value: TRUE
 
 }
-\item{\code{tab-border} [numeric : Write]}{
+\item{\verb{tab-border} [numeric : Write]}{
 
 Width of the border around the tab labels.  Default value: 2
 
 }
-\item{\code{tab-hborder} [numeric : Read / Write]}{
+\item{\verb{tab-hborder} [numeric : Read / Write]}{
 
 Width of the horizontal border of tab labels.  Default value: 2
 
 }
-\item{\code{tab-pos} [\code{\link{GtkPositionType}} : Read / Write]}{
+\item{\verb{tab-pos} [\code{\link{GtkPositionType}} : Read / Write]}{
 
-Which side of the notebook holds the tabs.  Default value: GTK\_POS\_TOP
+Which side of the notebook holds the tabs.  Default value: GTK_POS_TOP
 
 }
-\item{\code{tab-vborder} [numeric : Read / Write]}{
+\item{\verb{tab-vborder} [numeric : Read / Write]}{
 
 Width of the vertical border of tab labels.  Default value: 2
 
 }
 }}
 \section{Style Properties}{\describe{
-\item{\code{arrow-spacing} [integer : Read]}{
+\item{\verb{arrow-spacing} [integer : Read]}{
 
 The "arrow-spacing" property defines the spacing between the scroll
 arrows and the tabs.  
@@ -343,7 +343,7 @@ arrows and the tabs.
   Allowed values: >= 0  Default value: 0  Since  2.10
 
 }
-\item{\code{has-backward-stepper} [logical : Read]}{
+\item{\verb{has-backward-stepper} [logical : Read]}{
 
 The "has-backward-stepper" property determines whether 
 the standard backward arrow button is displayed.  
@@ -351,7 +351,7 @@ the standard backward arrow button is displayed.
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{has-forward-stepper} [logical : Read]}{
+\item{\verb{has-forward-stepper} [logical : Read]}{
 
 The "has-forward-stepper" property determines whether 
 the standard forward arrow button is displayed.  
@@ -359,7 +359,7 @@ the standard forward arrow button is displayed.
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{has-secondary-backward-stepper} [logical : Read]}{
+\item{\verb{has-secondary-backward-stepper} [logical : Read]}{
 
 The "has-secondary-backward-stepper" property determines whether 
 a second backward arrow button is displayed on the opposite end 
@@ -368,7 +368,7 @@ of the tab area.
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{has-secondary-forward-stepper} [logical : Read]}{
+\item{\verb{has-secondary-forward-stepper} [logical : Read]}{
 
 The "has-secondary-forward-stepper" property determines whether 
 a second forward arrow button is displayed on the opposite end 
@@ -377,14 +377,14 @@ of the tab area.
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{tab-curvature} [integer : Read]}{
+\item{\verb{tab-curvature} [integer : Read]}{
 
 The "tab-curvature" property defines size of tab curvature.  
 
   Allowed values: >= 0  Default value: 1  Since  2.10
 
 }
-\item{\code{tab-overlap} [integer : Read]}{
+\item{\verb{tab-overlap} [integer : Read]}{
 
 The "tab-overlap" property defines size of tab overlap
 area.  

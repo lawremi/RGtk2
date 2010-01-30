@@ -4,10 +4,10 @@
 \description{Create a new foreground color attribute.}
 \usage{pangoAttrForegroundNew(red, green, blue)}
 \arguments{
-\item{\code{red}}{[integer]  the red value (ranging from 0 to 65535)}
-\item{\code{green}}{[integer]  the green value}
-\item{\code{blue}}{[integer]  the blue value}
+\item{\verb{red}}{[integer]  the red value (ranging from 0 to 65535)}
+\item{\verb{green}}{[integer]  the green value}
+\item{\verb{blue}}{[integer]  the blue value}
 }
-\value{[\code{\link{PangoAttribute}}]  the newly allocated \code{\link{PangoAttribute}}.}
+\value{[\verb{\link{PangoAttribute}}]  the newly allocated \verb{\link{PangoAttribute}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

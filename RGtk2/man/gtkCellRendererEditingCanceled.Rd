@@ -7,7 +7,7 @@ signal.
 \strong{WARNING: \code{gtk_cell_renderer_editing_canceled} has been deprecated since version 2.6 and should not be used in newly-written code. Use \code{\link{gtkCellRendererStopEditing}} instead}
 }
 \usage{gtkCellRendererEditingCanceled(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}}}}
 \details{This function is for use only by implementations of cell renderers that 
 need to notify the client program that an editing process was canceled 
 and the changes were not committed.  

@@ -39,21 +39,21 @@
 \code{\link{gtkEntryGetCursorHadjustment}(object)}\cr
 \code{gtkEntry(max = 0, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkEntry
-                           +----\link{GtkSpinButton}}}
+                           +----GtkSpinButton}}
 \section{Interfaces}{GtkEntry implements
- AtkImplementorIface,  \code{\link{GtkBuildable}},  \code{\link{GtkCellEditable}} and  \code{\link{GtkEditable}}.}
-\section{Detailed Description}{The \code{\link{GtkEntry}} widget is a single line text entry
+ AtkImplementorIface,  \verb{\link{GtkBuildable}},  \verb{\link{GtkCellEditable}} and  \verb{\link{GtkEditable}}.}
+\section{Detailed Description}{The \verb{\link{GtkEntry}} widget is a single line text entry
 widget. A fairly large set of key bindings are supported
 by default. If the entered text is longer than the allocation
 of the widget, the widget will scroll so that the cursor
 position is visible. }
-\section{Structures}{\describe{\item{\code{GtkEntry}}{
-The \code{\link{GtkEntry}} struct contains only private data.
+\section{Structures}{\describe{\item{\verb{GtkEntry}}{
+The \verb{\link{GtkEntry}} struct contains only private data.
 
 }}}
 \section{Convenient Construction}{\code{gtkEntry} is the result of collapsing the constructors of \code{GtkEntry} (\code{\link{gtkEntryNew}}, \code{\link{gtkEntryNewWithMaxLength}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.}
@@ -63,7 +63,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -74,7 +74,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -85,7 +85,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -96,7 +96,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -107,7 +107,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkDeleteType}}] }
 \item{\code{arg2}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -120,7 +120,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{arg1}}{[character] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -132,7 +132,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{arg1}}{[\code{\link{GtkMovementStep}}] }
 \item{\code{arg2}}{[integer] }
 \item{\code{arg3}}{[logical] }
@@ -146,7 +146,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -157,8 +157,8 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkMenu}}] }
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkMenu}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -169,7 +169,7 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 
 \describe{
-\item{\code{entry}}{[\code{\link{GtkEntry}}] the object which received the signal.}
+\item{\code{entry}}{[\verb{\link{GtkEntry}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -177,84 +177,84 @@ The \code{\link{GtkEntry}} struct contains only private data.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{activates-default} [logical : Read / Write]}{
+\item{\verb{activates-default} [logical : Read / Write]}{
 
 Whether to activate the default widget (such as the default button in a dialog) when Enter is pressed.  Default value: FALSE
 
 }
-\item{\code{cursor-position} [integer : Read]}{
+\item{\verb{cursor-position} [integer : Read]}{
 
 The current position of the insertion cursor in chars.  Allowed values: [0,65535]  Default value: 0
 
 }
-\item{\code{editable} [logical : Read / Write]}{
+\item{\verb{editable} [logical : Read / Write]}{
 
 Whether the entry contents can be edited.  Default value: TRUE
 
 }
-\item{\code{has-frame} [logical : Read / Write]}{
+\item{\verb{has-frame} [logical : Read / Write]}{
 
 FALSE removes outside bevel from entry.  Default value: TRUE
 
 }
-\item{\code{inner-border} [\code{\link{GtkBorder}} : Read / Write]}{
+\item{\verb{inner-border} [\verb{\link{GtkBorder}} : *            : Read / Write]}{
 
 Sets the text area's border between the text and the frame.  
 
   Since  2.10
 
 }
-\item{\code{invisible-char} [numeric : Read / Write]}{
+\item{\verb{invisible-char} [numeric : Read / Write]}{
 
 The character to use when masking entry contents (in "password mode").  Default value: '*'
 
 }
-\item{\code{max-length} [integer : Read / Write]}{
+\item{\verb{max-length} [integer : Read / Write]}{
 
 Maximum number of characters for this entry. Zero if no maximum.  Allowed values: [0,65535]  Default value: 0
 
 }
-\item{\code{scroll-offset} [integer : Read]}{
+\item{\verb{scroll-offset} [integer : Read]}{
 
 Number of pixels of the entry scrolled off the screen to the left.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{selection-bound} [integer : Read]}{
+\item{\verb{selection-bound} [integer : Read]}{
 
 The position of the opposite end of the selection from the cursor in chars.  Allowed values: [0,65535]  Default value: 0
 
 }
-\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
+\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read / Write]}{
 
 Which kind of shadow to draw around the entry when 
-\code{"has-frame"} is set to \code{TRUE}.  
+\verb{"has-frame"} is set to \code{TRUE}.  
 
-  Default value: GTK\_SHADOW\_IN  Since  2.12
+  Default value: GTK_SHADOW_IN  Since  2.12
 
 }
-\item{\code{text} [character : Read / Write]}{
+\item{\verb{text} [character : *                : Read / Write]}{
 
 The contents of the entry.  Default value: ""
 
 }
-\item{\code{truncate-multiline} [logical : Read / Write]}{
+\item{\verb{truncate-multiline} [logical : Read / Write]}{
 
 When \code{TRUE}, pasted multi-line text is truncated to the first line.  
 
   Default value: FALSE  Since  2.10
 
 }
-\item{\code{visibility} [logical : Read / Write]}{
+\item{\verb{visibility} [logical : Read / Write]}{
 
 FALSE displays the "invisible char" instead of the actual text (password mode).  Default value: TRUE
 
 }
-\item{\code{width-chars} [integer : Read / Write]}{
+\item{\verb{width-chars} [integer : Read / Write]}{
 
 Number of characters to leave space for in the entry.  Allowed values: >= -1  Default value: -1
 
 }
-\item{\code{xalign} [numeric : Read / Write]}{
+\item{\verb{xalign} [numeric : Read / Write]}{
 
 The horizontal alignment, from 0 (left) to 1 (right). 
 Reversed for RTL layouts.  
@@ -263,7 +263,7 @@ Reversed for RTL layouts.
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{inner-border} [\code{\link{GtkBorder}} : Read]}{
+\section{Style Properties}{\describe{\item{\verb{inner-border} [\verb{\link{GtkBorder}} : *            : Read]}{
 
 Sets the text area's border between the text and the frame.  
 

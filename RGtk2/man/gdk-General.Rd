@@ -24,18 +24,18 @@
 }
 \section{Detailed Description}{This section describes the GDK initialization functions and miscellaneous
 utility functions.}
-\section{Enums and Flags}{\describe{\item{\code{GdkGrabStatus}}{
+\section{Enums and Flags}{\describe{\item{\verb{GdkGrabStatus}}{
 Returned by \code{\link{gdkPointerGrab}} and \code{\link{gdkKeyboardGrab}} to indicate 
 success or the reason for the failure of the grab attempt.
 
 \describe{
-\item{\code{success}}{the resource was successfully grabbed.}
-\item{\code{already-grabbed}}{the resource is actively grabbed by another client.}
-\item{\code{invalid-time}}{the resource was grabbed more recently than the 
+\item{\verb{success}}{the resource was successfully grabbed.}
+\item{\verb{already-grabbed}}{the resource is actively grabbed by another client.}
+\item{\verb{invalid-time}}{the resource was grabbed more recently than the 
   specified time.}
-\item{\code{not-viewable}}{the grab window or the \code{confine.to} window are not
+\item{\verb{not-viewable}}{the grab window or the \code{confine.to} window are not
   viewable.}
-\item{\code{frozen}}{the resource is frozen by an active grab of another client.}
+\item{\verb{frozen}}{the resource is frozen by an active grab of another client.}
 }
 
 }}}

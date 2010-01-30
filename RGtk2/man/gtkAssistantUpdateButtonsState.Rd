@@ -3,7 +3,7 @@
 \title{gtkAssistantUpdateButtonsState}
 \description{Forces \code{assistant} to recompute the buttons state.}
 \usage{gtkAssistantUpdateButtonsState(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAssistant}}]  a \code{\link{GtkAssistant}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}}
 \details{GTK+ automatically takes care of this in most situations, 
 e.g. when the user goes to a different page, or when the
 visibility or completeness of a page changes.

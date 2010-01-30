@@ -10,12 +10,12 @@ to be between 0.0 and 1.0. 0.0 means left/top alignment, 1.0 means
 right/bottom alignment, 0.5 means center.}
 \usage{gtkTreeViewScrollToCell(object, path, column = NULL, use.align = FALSE, row.align = 0, col.align = 0)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}.}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  The path of the row to move to, or \code{NULL}.}
-\item{\code{column}}{[\code{\link{GtkTreeViewColumn}}]  The \code{\link{GtkTreeViewColumn}} to move horizontally to, or \code{NULL}.}
-\item{\code{use.align}}{[logical]  whether to use alignment arguments, or \code{FALSE}.}
-\item{\code{row.align}}{[numeric]  The vertical alignment of the row specified by \code{path}.}
-\item{\code{col.align}}{[numeric]  The horizontal alignment of the column specified by \code{column}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}.}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  The path of the row to move to, or \code{NULL}.}
+\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  The \verb{\link{GtkTreeViewColumn}} to move horizontally to, or \code{NULL}.}
+\item{\verb{use.align}}{[logical]  whether to use alignment arguments, or \code{FALSE}.}
+\item{\verb{row.align}}{[numeric]  The vertical alignment of the row specified by \code{path}.}
+\item{\verb{col.align}}{[numeric]  The horizontal alignment of the column specified by \code{column}.}
 }
 \details{If \code{use.align} is \code{FALSE}, then the alignment arguments are ignored, and the
 tree does the minimum amount of work to scroll the cell onto the screen.

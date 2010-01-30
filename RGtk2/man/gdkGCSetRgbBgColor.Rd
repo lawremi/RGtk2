@@ -8,8 +8,8 @@ then for pseudo-color colormaps (colormaps with a small modifiable
 number of colors), a colorcube will be allocated in the colormap.}
 \usage{gdkGCSetRgbBgColor(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}}
-\item{\code{color}}{[\code{\link{GdkColor}}]  an unallocated \code{\link{GdkColor}}.}
+\item{\verb{object}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  an unallocated \verb{\link{GdkColor}}.}
 }
 \details{Calling this function for a GC without a colormap is an error.  }
 \author{Derived by RGtkGen from GTK+ documentation}

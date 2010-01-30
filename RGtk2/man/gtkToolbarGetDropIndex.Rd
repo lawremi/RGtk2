@@ -7,9 +7,9 @@ this function returns the position a new item should be
 inserted.}
 \usage{gtkToolbarGetDropIndex(object, x, y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}}
-\item{\code{x}}{[integer]  x coordinate of a point on the toolbar}
-\item{\code{y}}{[integer]  y coordinate of a point on the toolbar}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}}
+\item{\verb{x}}{[integer]  x coordinate of a point on the toolbar}
+\item{\verb{y}}{[integer]  y coordinate of a point on the toolbar}
 }
 \details{\code{x} and \code{y} are in \code{toolbar} coordinates.  
 

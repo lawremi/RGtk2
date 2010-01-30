@@ -6,8 +6,8 @@ The constructed dialog is associated with the parent window and
 reused for future invocations of this function.}
 \usage{gtkShowAboutDialog(parent, ...)}
 \arguments{
-\item{\code{parent}}{[\code{\link{GtkWindow}}]  transient parent, or \code{NULL} for none}
-\item{\code{...}}{ value of first property, followed by more properties, \code{NULL}-terminated}
+\item{\verb{parent}}{[\verb{\link{GtkWindow}}]  transient parent, or \code{NULL} for none}
+\item{\verb{...}}{ value of first property, followed by more properties, \code{NULL}-terminated}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

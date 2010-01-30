@@ -30,7 +30,7 @@
 \code{\link{gtkStatusIconGetGeometry}(object)}\cr
 \code{gtkStatusIcon()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkStatusIcon}}
 \section{Detailed Description}{The "system tray" or notification area is normally used for transient icons 
 that indicate some special state. For example, a system tray icon might 
@@ -38,10 +38,10 @@ appear to tell the user that they have new mail, or have an incoming instant
 message, or something along those lines. The basic idea is that creating an 
 icon in the notification area is less annoying than popping up a dialog. 
   
-A \code{\link{GtkStatusIcon}} object can be used to display an icon in a "system tray".
+A \verb{\link{GtkStatusIcon}} object can be used to display an icon in a "system tray".
 The icon can have a tooltip, and the user can interact with it by
 activating it or popping up a context menu. Critical information should
-not solely be displayed in a \code{\link{GtkStatusIcon}}, since it may not be
+not solely be displayed in a \verb{\link{GtkStatusIcon}}, since it may not be
 visible (e.g. when the user doesn't have a notification area on his panel).
 This can be checked with \code{\link{gtkStatusIconIsEmbedded}}.
   
@@ -50,9 +50,9 @@ specification (\url{http://www.freedesktop.org/wiki/Standards/systemtray-spec}).
 be found e.g. in the GNOME and KDE panel applications.
   
 Note that a GtkStatusIcon is \emph{not} a widget, but just
-a \code{\link{GObject}}. Making it a widget would be impractical, since the system tray
+a \verb{\link{GObject}}. Making it a widget would be impractical, since the system tray
 on Win32 doesn't allow to embed arbitrary widgets.}
-\section{Structures}{\describe{\item{\code{GtkStatusIcon}}{
+\section{Structures}{\describe{\item{\verb{GtkStatusIcon}}{
 \emph{undocumented
 }
 
@@ -66,7 +66,7 @@ If and how status icons can activated is platform-dependent.
   Since  2.10
 
 \describe{
-\item{\code{status.icon}}{[\code{\link{GtkStatusIcon}}]  the object which received the signal}
+\item{\code{status.icon}}{[\verb{\link{GtkStatusIcon}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -83,7 +83,7 @@ passed as the last to arguments to \code{\link{gtkMenuPopup}}.
   Since  2.10
 
 \describe{
-\item{\code{status.icon}}{[\code{\link{GtkStatusIcon}}]  the object which received the signal}
+\item{\code{status.icon}}{[\verb{\link{GtkStatusIcon}}]  the object which received the signal}
 \item{\code{button}}{[numeric]  the button that was pressed, or 0 if the 
   signal is not emitted in response to a button press event}
 \item{\code{activate.time}}{[numeric]  the timestamp of the event that
@@ -100,7 +100,7 @@ changes, e.g. because the notification area got resized.
   Since  2.10
 
 \describe{
-\item{\code{status.icon}}{[\code{\link{GtkStatusIcon}}]  the object which received the signal}
+\item{\code{status.icon}}{[\verb{\link{GtkStatusIcon}}]  the object which received the signal}
 \item{\code{size}}{[integer]  the new size}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -111,62 +111,62 @@ size. Otherwise, GTK+ will scale the icon as necessary.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{blinking} [logical : Read / Write]}{
+\item{\verb{blinking} [logical : Read / Write]}{
 
 Whether or not the status icon is blinking.  Default value: FALSE
 
 }
-\item{\code{embedded} [logical : Read]}{
+\item{\verb{embedded} [logical : Read]}{
 
 \code{TRUE} if the statusicon is embedded in a notification area.  
 
   Default value: FALSE  Since  2.12
 
 }
-\item{\code{file} [character : Write]}{
+\item{\verb{file} [character : *                : Write]}{
 
 Filename to load and display.  Default value: NULL
 
 }
-\item{\code{icon-name} [character : Read / Write]}{
+\item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The name of the icon from the icon theme.  Default value: NULL
 
 }
-\item{\code{orientation} [\code{\link{GtkOrientation}} : Read]}{
+\item{\verb{orientation} [\code{\link{GtkOrientation}} : Read]}{
 
 The orientation of the tray in which the statusicon 
 is embedded.  
 
-  Default value: GTK\_ORIENTATION\_HORIZONTAL  Since  2.12
+  Default value: GTK_ORIENTATION_HORIZONTAL  Since  2.12
 
 }
-\item{\code{pixbuf} [\code{\link{GdkPixbuf}} : Read / Write]}{
+\item{\verb{pixbuf} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 A GdkPixbuf to display.
 
 }
-\item{\code{screen} [\code{\link{GdkScreen}} : Read / Write]}{
+\item{\verb{screen} [\verb{\link{GdkScreen}} : *            : Read / Write]}{
 
 The screen where this status icon will be displayed.
 
 }
-\item{\code{size} [integer : Read]}{
+\item{\verb{size} [integer : Read]}{
 
 The size of the icon.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{stock} [character : Read / Write]}{
+\item{\verb{stock} [character : *                : Read / Write]}{
 
 Stock ID for a stock image to display.  Default value: NULL
 
 }
-\item{\code{storage-type} [\code{\link{GtkImageType}} : Read]}{
+\item{\verb{storage-type} [\code{\link{GtkImageType}} : Read]}{
 
-The representation being used for image data.  Default value: GTK\_IMAGE\_EMPTY
+The representation being used for image data.  Default value: GTK_IMAGE_EMPTY
 
 }
-\item{\code{visible} [logical : Read / Write]}{
+\item{\verb{visible} [logical : Read / Write]}{
 
 Whether or not the status icon is visible.  Default value: TRUE
 

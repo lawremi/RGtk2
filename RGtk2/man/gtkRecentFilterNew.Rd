@@ -1,7 +1,7 @@
 \alias{gtkRecentFilterNew}
 \name{gtkRecentFilterNew}
 \title{gtkRecentFilterNew}
-\description{Creates a new \code{\link{GtkRecentFilter}} with no rules added to it.
+\description{Creates a new \verb{\link{GtkRecentFilter}} with no rules added to it.
 Such filter does not accept any recently used resources, so is not
 particularly useful until you add rules with
 \code{\link{gtkRecentFilterAddPattern}}, \code{\link{gtkRecentFilterAddMimeType}},
@@ -14,6 +14,6 @@ filter$addPattern("*")
 }  
 
   Since  2.10}
-\value{[\code{\link{GtkRecentFilter}}]  a new \code{\link{GtkRecentFilter}}}
+\value{[\verb{\link{GtkRecentFilter}}]  a new \verb{\link{GtkRecentFilter}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

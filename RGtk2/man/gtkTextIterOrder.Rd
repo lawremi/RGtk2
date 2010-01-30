@@ -9,8 +9,8 @@ in those cases. There are some exceptions, such as \code{\link{gtkTextIterInRang
 that expect a pre-sorted range.}
 \usage{gtkTextIterOrder(object, second)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{second}}{[\code{\link{GtkTextIter}}]  another \code{\link{GtkTextIter}}}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{second}}{[\verb{\link{GtkTextIter}}]  another \verb{\link{GtkTextIter}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

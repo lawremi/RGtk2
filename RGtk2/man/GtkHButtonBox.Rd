@@ -11,22 +11,22 @@
 \code{\link{gtkHButtonBoxSetLayoutDefault}(layout)}\cr
 \code{gtkHButtonBox(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBox}
-                                 +----\link{GtkButtonBox}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBox
+                                 +----GtkButtonBox
                                        +----GtkHButtonBox}}
 \section{Interfaces}{GtkHButtonBox implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{A button box should be used to provide a consistent layout of buttons
 throughout your application. The layout/spacing can be altered by the
 programmer, or if desired, by the user to alter the 'feel' of a
 program to a small degree.
   
-A \code{\link{GtkHButtonBox}} is created with \code{\link{gtkHButtonBoxNew}}. Buttons are
+A \verb{\link{GtkHButtonBox}} is created with \code{\link{gtkHButtonBoxNew}}. Buttons are
 packed into a button box the same way widgets are added to any other
 container, using \code{\link{gtkContainerAdd}}. You can also use
 \code{\link{gtkBoxPackStart}} or \code{\link{gtkBoxPackEnd}}, but for button boxes both
@@ -38,7 +38,7 @@ on it.
 The spacing between buttons can be set with \code{\link{gtkBoxSetSpacing}}. The
 arrangement and layout of the buttons can be changed with
 \code{\link{gtkButtonBoxSetLayout}}.}
-\section{Structures}{\describe{\item{\code{GtkHButtonBox}}{
+\section{Structures}{\describe{\item{\verb{GtkHButtonBox}}{
 GtkHButtonBox does not contain any public fields.
 
 }}}

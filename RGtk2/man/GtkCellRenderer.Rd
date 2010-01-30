@@ -16,72 +16,72 @@
 \code{\link{gtkCellRendererSetFixedSize}(object, width, height)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkCellRenderer
-                     +----\link{GtkCellRendererText}
-                     +----\link{GtkCellRendererPixbuf}
-                     +----\link{GtkCellRendererProgress}
-                     +----\link{GtkCellRendererToggle}}}
-\section{Detailed Description}{The \code{\link{GtkCellRenderer}} is a base class of a set of objects used for
-rendering a cell to a \code{\link{GdkDrawable}}.  These objects are used primarily by
-the \code{\link{GtkTreeView}} widget, though they aren't tied to them in any
-specific way.  It is worth noting that \code{\link{GtkCellRenderer}} is not a
-\code{\link{GtkWidget}} and cannot be treated as such.
+                     +----GtkCellRendererText
+                     +----GtkCellRendererPixbuf
+                     +----GtkCellRendererProgress
+                     +----GtkCellRendererToggle}}
+\section{Detailed Description}{The \verb{\link{GtkCellRenderer}} is a base class of a set of objects used for
+rendering a cell to a \verb{\link{GdkDrawable}}.  These objects are used primarily by
+the \verb{\link{GtkTreeView}} widget, though they aren't tied to them in any
+specific way.  It is worth noting that \verb{\link{GtkCellRenderer}} is not a
+\verb{\link{GtkWidget}} and cannot be treated as such.
   
-The primary use of a \code{\link{GtkCellRenderer}} is for drawing a certain graphical
-elements on a \code{\link{GdkDrawable}}.  Typically, one cell renderer is used to
+The primary use of a \verb{\link{GtkCellRenderer}} is for drawing a certain graphical
+elements on a \verb{\link{GdkDrawable}}.  Typically, one cell renderer is used to
 draw many cells on the screen.  To this extent, it isn't expected that a
 CellRenderer keep any permanent state around.  Instead, any state is set
-just prior to use using \code{\link{GObject}}s property system.  Then, the
+just prior to use using \verb{\link{GObject}}s property system.  Then, the
 cell is measured using \code{\link{gtkCellRendererGetSize}}.  Finally, the cell
 is rendered in the correct location using \code{\link{gtkCellRendererRender}}.
   
 There are a number of rules that must be followed when writing a new
-\code{\link{GtkCellRenderer}}.  First and formost, it's important that a certain set
+\verb{\link{GtkCellRenderer}}.  First and formost, it's important that a certain set
 of properties will always yield a cell renderer of the same size,
-barring a \code{\link{GtkStyle}} change.  The \code{\link{GtkCellRenderer}} also has a number of
+barring a \verb{\link{GtkStyle}} change.  The \verb{\link{GtkCellRenderer}} also has a number of
 generic properties that are expected to be honored by all children.
   
 Beyond merely rendering a cell, cell renderers can optionally 
 provide active user interface elements. A cell renderer can be 
-\dfn{activatable} like \code{\link{GtkCellRendererToggle}}, 
+\dfn{activatable} like \verb{\link{GtkCellRendererToggle}}, 
 which toggles when it gets activated by a mouse click, or it can be 
-\dfn{editable} like \code{\link{GtkCellRendererText}}, which 
-allows the user to edit the text using a \code{\link{GtkEntry}}.
+\dfn{editable} like \verb{\link{GtkCellRendererText}}, which 
+allows the user to edit the text using a \verb{\link{GtkEntry}}.
 To make a cell renderer activatable or editable, you have to 
 implement the \code{activate} or \code{start.editing} virtual functions, 
 respectively.}
-\section{Structures}{\describe{\item{\code{GtkCellRenderer}}{
+\section{Structures}{\describe{\item{\verb{GtkCellRenderer}}{
 \emph{undocumented
 }
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkCellRendererState}}{
+\item{\verb{GtkCellRendererState}}{
 Tells how a cell is to be rendererd.
 
 \describe{
-\item{\code{selected}}{The cell is currently selected, and
+\item{\verb{selected}}{The cell is currently selected, and
 probably has a selection colored background to render to.}
-\item{\code{prelit}}{The mouse is hovering over the cell.}
-\item{\code{insensitive}}{The cell is drawn in an insensitive manner}
-\item{\code{sorted}}{The cell is in a sorted row}
-\item{\code{focused}}{The cell is in the focus row.}
+\item{\verb{prelit}}{The mouse is hovering over the cell.}
+\item{\verb{insensitive}}{The cell is drawn in an insensitive manner}
+\item{\verb{sorted}}{The cell is in a sorted row}
+\item{\verb{focused}}{The cell is in the focus row.}
 }
 
 }
-\item{\code{GtkCellRendererMode}}{
+\item{\verb{GtkCellRendererMode}}{
 Identifies how the user can interact with a particular cell.
 
 \describe{
-\item{\code{inert}}{The cell is just for display
+\item{\verb{inert}}{The cell is just for display
 and cannot be interacted with.  Note that this doesn't mean that eg. the
 row being drawn can't be selected -- just that a particular element of
 it cannot be individually modified.}
-\item{\code{activatable}}{The cell can be clicked.}
-\item{\code{editable}}{The cell can be edited or otherwise modified.}
+\item{\verb{activatable}}{The cell can be clicked.}
+\item{\verb{editable}}{The cell can be edited or otherwise modified.}
 }
 
 }
@@ -97,7 +97,7 @@ See also: \code{\link{gtkCellRendererStopEditing}}.
   Since  2.4
 
 \describe{
-\item{\code{renderer}}{[\code{\link{GtkCellRenderer}}]  the object which received the signal}
+\item{\code{renderer}}{[\verb{\link{GtkCellRenderer}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -106,8 +106,8 @@ See also: \code{\link{gtkCellRendererStopEditing}}.
 \item{\code{editing-started(renderer, editable, path, user.data)}}{
 This signal gets emitted when a cell starts to be edited.
 The indended use of this signal is to do special setup
-on \code{editable}, e.g. adding a \code{\link{GtkEntryCompletion}} or setting
-up additional columns in a \code{\link{GtkComboBox}}.
+on \code{editable}, e.g. adding a \verb{\link{GtkEntryCompletion}} or setting
+up additional columns in a \verb{\link{GtkComboBox}}.
   
 Note that GTK+ doesn't guarantee that cell renderers will
 continue to use the same kind of widget for editing in future
@@ -126,8 +126,8 @@ text_editing_started <- function(cell, editable, path, data)
   Since  2.6
 
 \describe{
-\item{\code{renderer}}{[\code{\link{GtkCellRenderer}}]  the object which received the signal}
-\item{\code{editable}}{[\code{\link{GtkCellEditable}}]  the \code{\link{GtkCellEditable}}}
+\item{\code{renderer}}{[\verb{\link{GtkCellRenderer}}]  the object which received the signal}
+\item{\code{editable}}{[\verb{\link{GtkCellEditable}}]  the \verb{\link{GtkCellEditable}}}
 \item{\code{path}}{[character]  the path identifying the edited cell}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -136,72 +136,72 @@ text_editing_started <- function(cell, editable, path, data)
 }
 }}
 \section{Properties}{\describe{
-\item{\code{cell-background} [character : Write]}{
+\item{\verb{cell-background} [character : *                : Write]}{
 
 Cell background color as a string.  Default value: NULL
 
 }
-\item{\code{cell-background-gdk} [\code{\link{GdkColor}} : Read / Write]}{
+\item{\verb{cell-background-gdk} [\verb{\link{GdkColor}} : *             : Read / Write]}{
 
 Cell background color as a GdkColor.
 
 }
-\item{\code{cell-background-set} [logical : Read / Write]}{
+\item{\verb{cell-background-set} [logical : Read / Write]}{
 
 Whether this tag affects the cell background color.  Default value: FALSE
 
 }
-\item{\code{height} [integer : Read / Write]}{
+\item{\verb{height} [integer : Read / Write]}{
 
 The fixed height.  Allowed values: >= -1  Default value: -1
 
 }
-\item{\code{is-expanded} [logical : Read / Write]}{
+\item{\verb{is-expanded} [logical : Read / Write]}{
 
 Row is an expander row, and is expanded.  Default value: FALSE
 
 }
-\item{\code{is-expander} [logical : Read / Write]}{
+\item{\verb{is-expander} [logical : Read / Write]}{
 
 Row has children.  Default value: FALSE
 
 }
-\item{\code{mode} [\code{\link{GtkCellRendererMode}} : Read / Write]}{
+\item{\verb{mode} [\code{\link{GtkCellRendererMode}} : Read / Write]}{
 
-Editable mode of the CellRenderer.  Default value: GTK\_CELL\_RENDERER\_MODE\_INERT
+Editable mode of the CellRenderer.  Default value: GTK_CELL_RENDERER_MODE_INERT
 
 }
-\item{\code{sensitive} [logical : Read / Write]}{
+\item{\verb{sensitive} [logical : Read / Write]}{
 
 Display the cell sensitive.  Default value: TRUE
 
 }
-\item{\code{visible} [logical : Read / Write]}{
+\item{\verb{visible} [logical : Read / Write]}{
 
 Display the cell.  Default value: TRUE
 
 }
-\item{\code{width} [integer : Read / Write]}{
+\item{\verb{width} [integer : Read / Write]}{
 
 The fixed width.  Allowed values: >= -1  Default value: -1
 
 }
-\item{\code{xalign} [numeric : Read / Write]}{
+\item{\verb{xalign} [numeric : Read / Write]}{
 
 The x-align.  Allowed values: [0,1]  Default value: 0.5
 
 }
-\item{\code{xpad} [numeric : Read / Write]}{
+\item{\verb{xpad} [numeric : Read / Write]}{
 
 The xpad.  Default value: 0
 
 }
-\item{\code{yalign} [numeric : Read / Write]}{
+\item{\verb{yalign} [numeric : Read / Write]}{
 
 The y-align.  Allowed values: [0,1]  Default value: 0.5
 
 }
-\item{\code{ypad} [numeric : Read / Write]}{
+\item{\verb{ypad} [numeric : Read / Write]}{
 
 The ypad.  Default value: 0
 
@@ -210,8 +210,8 @@ The ypad.  Default value: 0
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkCellRenderer.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkCellRendererText}}
-\code{\link{GtkCellRendererPixbuf}}
-\code{\link{GtkCellRendererToggle}}
+\verb{\link{GtkCellRendererText}}
+\verb{\link{GtkCellRendererPixbuf}}
+\verb{\link{GtkCellRendererToggle}}
 }
 \keyword{internal}

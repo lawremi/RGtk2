@@ -7,8 +7,8 @@
 }
 \usage{gtkCTreeSetExpanderStyle(object, expander.style)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{expander.style}}{[\code{\link{GtkCTreeExpanderStyle}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{expander.style}}{[\code{\link{GtkCTreeExpanderStyle}}] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

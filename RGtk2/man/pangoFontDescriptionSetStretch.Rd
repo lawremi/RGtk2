@@ -5,8 +5,8 @@
 specifies how narrow or wide the font should be.}
 \usage{pangoFontDescriptionSetStretch(object, stretch)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
-\item{\code{stretch}}{[\code{\link{PangoStretch}}]  the stretch for the font description}
+\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
+\item{\verb{stretch}}{[\code{\link{PangoStretch}}]  the stretch for the font description}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

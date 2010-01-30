@@ -41,11 +41,11 @@ can be measured or drawn to the screen. The following
 structures are used to store information about
 glyphs.}
 \section{Structures}{\describe{
-\item{\code{PangoRectangle}}{
-The \code{\link{PangoRectangle}} structure represents a rectangle. It is frequently
+\item{\verb{PangoRectangle}}{
+The \verb{\link{PangoRectangle}} structure represents a rectangle. It is frequently
 used to represent the logical or ink extents of a single glyph or section
 of text. (See, for instance, \code{\link{pangoFontGetGlyphExtents}})
-\strong{\code{PangoRectangle} is a \link{transparent-type}.}
+\strong{\verb{PangoRectangle} is a \link{transparent-type}.}
 
 \describe{
 \item{\code{x}}{[integer] X coordinate of the left side of the rectangle.}
@@ -55,7 +55,7 @@ of text. (See, for instance, \code{\link{pangoFontGetGlyphExtents}})
 }
 
 }
-\item{\code{PangoMatrix}}{
+\item{\verb{PangoMatrix}}{
 A structure specifying a transformation between user-space
 coordinates and device coordinates. The transformation
 is given by
@@ -75,67 +75,67 @@ y_device = x_user * matrix->yx + y_user * matrix->yy + matrix->y0;
 }
 
 }
-\item{\code{PangoGlyphInfo}}{
-The \code{\link{PangoGlyphInfo}} structure represents a single glyph together with
+\item{\verb{PangoGlyphInfo}}{
+The \verb{\link{PangoGlyphInfo}} structure represents a single glyph together with
 positioning information and visual attributes.
 It contains the following fields.
 
 \describe{
-\item{\code{glyph}}{[numeric] the glyph itself.}
-\item{\code{geometry}}{[\code{\link{PangoGlyphGeometry}}] the positional information about the glyph.}
-\item{\code{attr}}{[\code{\link{PangoGlyphVisAttr}}] the visual attributes of the glyph.}
+\item{\verb{glyph}}{[numeric] the glyph itself.}
+\item{\verb{geometry}}{[\verb{\link{PangoGlyphGeometry}}] the positional information about the glyph.}
+\item{\verb{attr}}{[\verb{\link{PangoGlyphVisAttr}}] the visual attributes of the glyph.}
 }
 
 }
-\item{\code{PangoGlyphGeometry}}{
-The \code{\link{PangoGlyphGeometry}} structure contains width and positioning
+\item{\verb{PangoGlyphGeometry}}{
+The \verb{\link{PangoGlyphGeometry}} structure contains width and positioning
 information for a single glyph. 
 
 \describe{
-\item{\code{width}}{[integer] the logical width to use for the the character.}
-\item{\code{xOffset}}{[integer] horizontal offset from nominal character position.}
-\item{\code{yOffset}}{[integer] vertical offset from nominal character position.}
+\item{\verb{width}}{[integer] the logical width to use for the the character.}
+\item{\verb{xOffset}}{[integer] horizontal offset from nominal character position.}
+\item{\verb{yOffset}}{[integer] vertical offset from nominal character position.}
 }
 
 }
-\item{\code{PangoGlyphVisAttr}}{
+\item{\verb{PangoGlyphVisAttr}}{
 The PangoGlyphVisAttr is used to communicate information between
 the shaping phase and the rendering phase.  More attributes may be
 added in the future.
 
-\describe{\item{\code{isClusterStart}}{[numeric] set for the first logical glyph in each cluster. (Clusters
+\describe{\item{\verb{isClusterStart}}{[numeric] set for the first logical glyph in each cluster. (Clusters
 		   are stored in visual order, within the cluster, glyphs
 		   are always ordered in logical order, since visual
 		   order is meaningless; that is, in Arabic text, accent glyphs
 		   follow the glyphs for the base character.)}}
 
 }
-\item{\code{PangoGlyphString}}{
-The \code{\link{PangoGlyphString}} structure is used to store strings
+\item{\verb{PangoGlyphString}}{
+The \verb{\link{PangoGlyphString}} structure is used to store strings
 of glyphs with geometry and visual attribute information.
 The storage for the glyph information is owned
 by the structure which simplifies memory management.
 
 \describe{
-\item{\code{numGlyphs}}{[integer] the number of glyphs in the string.}
-\item{\code{glyphs}}{[\code{\link{PangoGlyphInfo}}] a list of \code{\link{PangoGlyphInfo}} structures of length \code{num_glyphs}.}
-\item{\code{logClusters}}{[integer] for each glyph, byte index of the starting character for the
+\item{\verb{numGlyphs}}{[integer] the number of glyphs in the string.}
+\item{\verb{glyphs}}{[\verb{\link{PangoGlyphInfo}}] a list of \verb{\link{PangoGlyphInfo}} structures of length \code{num_glyphs}.}
+\item{\verb{logClusters}}{[integer] for each glyph, byte index of the starting character for the
 cluster. The indices are relative to the start of the text
 corresponding to the PangoGlyphString.}
 }
 
 }
-\item{\code{PangoGlyphItem}}{
-A \code{\link{PangoGlyphItem}} is a pair of a \code{\link{PangoItem}} and the glyphs
+\item{\verb{PangoGlyphItem}}{
+A \verb{\link{PangoGlyphItem}} is a pair of a \verb{\link{PangoItem}} and the glyphs
 resulting from shaping the text corresponding to an item.
-As an example of the usage of \code{\link{PangoGlyphItem}}, the results
-of shaping text with \code{\link{PangoLayout}} is a list of \code{\link{PangoLayoutLine}},
-each of which contains a list of \code{\link{PangoGlyphItem}}.
+As an example of the usage of \verb{\link{PangoGlyphItem}}, the results
+of shaping text with \verb{\link{PangoLayout}} is a list of \verb{\link{PangoLayoutLine}},
+each of which contains a list of \verb{\link{PangoGlyphItem}}.
 
 \describe{
-\item{\code{item}}{[\code{\link{PangoItem}}] a \code{\link{PangoItem}} structure that provides information
+\item{\verb{item}}{[\verb{\link{PangoItem}}] a \verb{\link{PangoItem}} structure that provides information
        about a segment of text.}
-\item{\code{glyphs}}{[\code{\link{PangoGlyphString}}] the glyphs obtained by shaping the text
+\item{\verb{glyphs}}{[\verb{\link{PangoGlyphString}}] the glyphs obtained by shaping the text
          corresponding to \code{item}.}
 }
 

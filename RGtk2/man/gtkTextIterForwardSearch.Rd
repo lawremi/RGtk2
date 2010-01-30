@@ -9,23 +9,23 @@ may wish to use \code{limit} to avoid locking up your UI on large
 buffers.}
 \usage{gtkTextIterForwardSearch(object, str, flags, limit = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  start of search}
-\item{\code{str}}{[character]  a search string}
-\item{\code{flags}}{[\code{\link{GtkTextSearchFlags}}]  flags affecting how the search is done}
-\item{\code{limit}}{[\code{\link{GtkTextIter}}]  bound for the search, or \code{NULL} for the end of the buffer}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  start of search}
+\item{\verb{str}}{[character]  a search string}
+\item{\verb{flags}}{[\code{\link{GtkTextSearchFlags}}]  flags affecting how the search is done}
+\item{\verb{limit}}{[\verb{\link{GtkTextIter}}]  bound for the search, or \code{NULL} for the end of the buffer}
 }
-\details{If the \code{GTK_TEXT_SEARCH_VISIBLE_ONLY} flag is present, the match may
+\details{If the \verb{GTK_TEXT_SEARCH_VISIBLE_ONLY} flag is present, the match may
 have invisible text interspersed in \code{str}. i.e. \code{str} will be a
 possibly-noncontiguous subsequence of the matched range. similarly,
-if you specify \code{GTK_TEXT_SEARCH_TEXT_ONLY}, the match may have
+if you specify \verb{GTK_TEXT_SEARCH_TEXT_ONLY}, the match may have
 pixbufs or child widgets mixed inside the matched range. If these
 flags are not given, the match must be exact; the special 0xFFFC
 character in \code{str} will match embedded pixbufs or child widgets.  }
 \value{
 A list containing the following elements:
 \item{retval}{[logical]  whether a match was found}
-\item{\code{match.start}}{[\code{\link{GtkTextIter}}]  return location for start of match, or \code{NULL}}
-\item{\code{match.end}}{[\code{\link{GtkTextIter}}]  return location for end of match, or \code{NULL}}
+\item{\verb{match.start}}{[\verb{\link{GtkTextIter}}]  return location for start of match, or \code{NULL}}
+\item{\verb{match.end}}{[\verb{\link{GtkTextIter}}]  return location for end of match, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,10 +7,10 @@ for rendering on them, print surfaces to disable hinting of
 metrics and so forth. The result can then be used with
 \code{\link{cairoScaledFontCreate}}.}
 \usage{cairoSurfaceGetFontOptions(surface)}
-\arguments{\item{\code{surface}}{[\code{\link{CairoSurface}}]  a \code{\link{CairoSurface}}}}
+\arguments{\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a \verb{\link{CairoSurface}}}}
 \value{
 A list containing the following elements:
-\item{\code{options}}{[\code{\link{CairoFontOptions}}]  a \code{\link{CairoFontOptions}} object into which to store
+\item{\verb{options}}{[\verb{\link{CairoFontOptions}}]  a \verb{\link{CairoFontOptions}} object into which to store
   the retrieved options. All existing values are overwritten}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -7,10 +7,10 @@ simply making sure that the \code{fontsel} is inserted in a toplevel window befo
 you call this function.}
 \usage{gtkFontSelectionSetFontName(object, fontname)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFontSelection}}]  a \code{\link{GtkFontSelection}}}
-\item{\code{fontname}}{[character]  a font name like "Helvetica 12" or "Times Bold 18"}
+\item{\verb{object}}{[\verb{\link{GtkFontSelection}}]  a \verb{\link{GtkFontSelection}}}
+\item{\verb{fontname}}{[character]  a font name like "Helvetica 12" or "Times Bold 18"}
 }
-\value{[logical] \code{TRUE} if the font could be set successfully; \code{FALSE} if no such
+\value{[logical] \verb{TRUE} if the font could be set successfully; \verb{FALSE} if no such
 font exists or if the \code{fontsel} doesn't belong to a particular screen yet.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,12 +7,12 @@ The rectangle position is in buffer coordinates; use
 coordinates to coordinates for one of the windows in the text view.}
 \usage{gtkTextViewGetIterLocation(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
 }
 \value{
 A list containing the following elements:
-\item{\code{location}}{[\code{\link{GdkRectangle}}]  bounds of the character at \code{iter}}
+\item{\verb{location}}{[\verb{\link{GdkRectangle}}]  bounds of the character at \code{iter}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

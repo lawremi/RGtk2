@@ -4,8 +4,8 @@
 \description{Returns the integer value of \code{key}, or 0.}
 \usage{gtkPrintSettingsGetInt(object, key)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
 }
 \details{  Since  2.10}
 \value{[integer]  the integer value of \code{key} }

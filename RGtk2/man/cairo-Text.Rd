@@ -27,8 +27,8 @@
 \item 
 \item 
 }}
-\section{Structures}{\describe{\item{\code{CairoGlyph}}{
-The \code{\link{CairoGlyph}} structure holds information about a single glyph
+\section{Structures}{\describe{\item{\verb{CairoGlyph}}{
+The \verb{\link{CairoGlyph}} structure holds information about a single glyph
 when drawing or measuring text. A font is (in simple terms) a
 collection of shapes used to draw text. A glyph is one of these
 shapes. There can be multiple glyphs for a single character
@@ -42,34 +42,34 @@ underlying font system.
 Note that the offsets given by \code{x} and \code{y} are not cumulative. When
 drawing or measuring text, each glyph is individually positioned
 with respect to the overall origin  
-\strong{\code{CairoGlyph} is a \link{transparent-type}.}
+\strong{\verb{CairoGlyph} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{index}}{[numeric]  the offset in the X direction between the origin used for
+\item{\verb{index}}{[numeric]  the offset in the X direction between the origin used for
     drawing or measuring the string and the origin of this glyph.}
-\item{\code{x}}{[numeric]  the offset in the Y direction between the origin used for
+\item{\verb{x}}{[numeric]  the offset in the Y direction between the origin used for
     drawing or measuring the string and the origin of this glyph.}
-\item{\code{y}}{[numeric] }
+\item{\verb{y}}{[numeric] }
 }
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{CairoFontSlant}}{
+\item{\verb{CairoFontSlant}}{
 Specifies variants of a font face based on their slant.  
 
 \describe{
-\item{\code{normal}}{ Upright font style}
-\item{\code{italic}}{ Italic font style}
-\item{\code{oblique}}{ Oblique font style}
+\item{\verb{normal}}{ Upright font style}
+\item{\verb{italic}}{ Italic font style}
+\item{\verb{oblique}}{ Oblique font style}
 }
 
 }
-\item{\code{CairoFontWeight}}{
+\item{\verb{CairoFontWeight}}{
 Specifies variants of a font face based on their weight.  
 
 \describe{
-\item{\code{normal}}{ Normal font weight}
-\item{\code{bold}}{ Bold font weight}
+\item{\verb{normal}}{ Normal font weight}
+\item{\verb{bold}}{ Bold font weight}
 }
 
 }

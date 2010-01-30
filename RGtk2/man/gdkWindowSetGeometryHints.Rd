@@ -6,8 +6,8 @@ are set, hints not flagged in \code{geom.mask} are unset.
 To unset all hints, use a \code{geom.mask} of 0 and a \code{geometry} of \code{NULL}.}
 \usage{gdkWindowSetGeometryHints(object, geometry)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{geometry}}{[\code{\link{GdkGeometry}}]  geometry hints}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{geometry}}{[\verb{\link{GdkGeometry}}]  geometry hints}
 }
 \details{This function provides hints to the windowing system about
 acceptable sizes for a toplevel window. The purpose of 

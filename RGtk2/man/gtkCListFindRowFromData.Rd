@@ -7,8 +7,8 @@ Searches the CList for the row with the specified data.
 }
 \usage{gtkCListFindRowFromData(object, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to search.}
-\item{\code{data}}{[R object] The data to search for a match.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to search.}
+\item{\verb{data}}{[R object] The data to search for a match.}
 }
 \value{[integer] The number of the matching row, or -1 if no match could be found.}
 \author{Derived by RGtkGen from GTK+ documentation}

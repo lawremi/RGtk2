@@ -10,8 +10,8 @@ image quality since the window manager may only need to scale the
 icon by a small amount or not at all.}
 \usage{gdkWindowSetIconList(object, pixbufs)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  The \code{\link{GdkWindow}} toplevel window to set the icon of.}
-\item{\code{pixbufs}}{[list]  A list of pixbufs, of different sizes.}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  The \verb{\link{GdkWindow}} toplevel window to set the icon of.}
+\item{\verb{pixbufs}}{[list]  A list of pixbufs, of different sizes.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Sets or updates the currently-displayed font in font picker dialog.}
 \usage{gtkFontButtonSetFontName(object, fontname)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFontButton}}]  a \code{\link{GtkFontButton}}}
-\item{\code{fontname}}{[character]  Name of font to display in font selection dialog}
+\item{\verb{object}}{[\verb{\link{GtkFontButton}}]  a \verb{\link{GtkFontButton}}}
+\item{\verb{fontname}}{[character]  Name of font to display in font selection dialog}
 }
 \details{  Since  2.4}
 \value{[logical]  Return value of \code{\link{gtkFontSelectionDialogSetFontName}} if the

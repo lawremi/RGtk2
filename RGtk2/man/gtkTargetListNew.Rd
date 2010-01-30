@@ -1,9 +1,9 @@
 \alias{gtkTargetListNew}
 \name{gtkTargetListNew}
 \title{gtkTargetListNew}
-\description{Creates a new \code{\link{GtkTargetList}} from a list of \code{\link{GtkTargetEntry}}.}
+\description{Creates a new \verb{\link{GtkTargetList}} from a list of \verb{\link{GtkTargetEntry}}.}
 \usage{gtkTargetListNew(targets)}
-\arguments{\item{\code{targets}}{[\code{\link{GtkTargetEntry}}]  Pointer to a list of \code{\link{GtkTargetEntry}}}}
-\value{[\code{\link{GtkTargetList}}]  the new \code{\link{GtkTargetList}}.}
+\arguments{\item{\verb{targets}}{[\verb{\link{GtkTargetEntry}}]  Pointer to a list of \verb{\link{GtkTargetEntry}}}}
+\value{[\verb{\link{GtkTargetList}}]  the new \verb{\link{GtkTargetList}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

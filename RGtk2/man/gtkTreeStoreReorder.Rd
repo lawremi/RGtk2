@@ -6,9 +6,9 @@ indicated by \code{new.order}. Note that this function only works with
 unsorted stores.}
 \usage{gtkTreeStoreReorder(object, parent, new.order)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeStore}}]  A \code{\link{GtkTreeStore}}.}
-\item{\code{parent}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
-\item{\code{new.order}}{[integer]  a list of integers mapping the new position of each child
+\item{\verb{object}}{[\verb{\link{GtkTreeStore}}]  A \verb{\link{GtkTreeStore}}.}
+\item{\verb{parent}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
+\item{\verb{new.order}}{[integer]  a list of integers mapping the new position of each child
      to its old position before the re-ordering,
      i.e. \code{new.order}\code{[newpos] = oldpos}.}
 }

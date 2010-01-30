@@ -3,6 +3,6 @@
 \title{gtkVRulerNew}
 \description{Creates a new vertical ruler}
 \usage{gtkVRulerNew(show = TRUE)}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkVRuler}}.}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkVRuler}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

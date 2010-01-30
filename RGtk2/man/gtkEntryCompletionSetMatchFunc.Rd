@@ -6,9 +6,9 @@ is used to determine if a row should or should not be in the completion
 list.}
 \usage{gtkEntryCompletionSetMatchFunc(object, func, func.data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  A \code{\link{GtkEntryCompletion}}.}
-\item{\code{func}}{[\code{\link{GtkEntryCompletionMatchFunc}}]  The \code{\link{GtkEntryCompletionMatchFunc}} to use.}
-\item{\code{func.data}}{[R object]  The user data for \code{func}.}
+\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  A \verb{\link{GtkEntryCompletion}}.}
+\item{\verb{func}}{[\verb{\link{GtkEntryCompletionMatchFunc}}]  The \verb{\link{GtkEntryCompletionMatchFunc}} to use.}
+\item{\verb{func.data}}{[R object]  The user data for \code{func}.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

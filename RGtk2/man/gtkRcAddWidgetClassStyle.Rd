@@ -2,7 +2,7 @@
 \name{gtkRcAddWidgetClassStyle}
 \title{gtkRcAddWidgetClassStyle}
 \description{
-Adds a \code{\link{GtkRcStyle}} that will be looked up by a match against
+Adds a \verb{\link{GtkRcStyle}} that will be looked up by a match against
 the widget's class pathname. This is equivalent to a:
 \code{
 widget_class PATTERN style STYLE
@@ -12,8 +12,8 @@ statement in a RC file.
 }
 \usage{gtkRcAddWidgetClassStyle(object, pattern)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRcStyle}}] the \code{\link{GtkRcStyle}} to use for widgets matching \code{pattern}}
-\item{\code{pattern}}{[character] the pattern}
+\item{\verb{object}}{[\verb{\link{GtkRcStyle}}] the \verb{\link{GtkRcStyle}} to use for widgets matching \code{pattern}}
+\item{\verb{pattern}}{[character] the pattern}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

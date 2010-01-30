@@ -5,8 +5,8 @@
 in a RC file. }
 \usage{gtkRcParseColor(scanner, color)}
 \arguments{
-\item{\code{scanner}}{[GScanner]  a \code{GScanner}}
-\item{\code{color}}{[\code{\link{GdkColor}}]  a pointer to a \code{GtkColor} structure in which to store the result}
+\item{\verb{scanner}}{[GScanner]  a \verb{GScanner}}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  a pointer to a \verb{GtkColor} structure in which to store the result}
 }
 \details{Note that theme engines should use \code{\link{gtkRcParseColorFull}} in 
 order to support symbolic colors.  }

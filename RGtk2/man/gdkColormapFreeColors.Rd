@@ -4,8 +4,8 @@
 \description{Frees previously allocated colors.}
 \usage{gdkColormapFreeColors(object, colors)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkColormap}}]  a \code{\link{GdkColormap}}.}
-\item{\code{colors}}{[\code{\link{GdkColor}}]  the colors to free.}
+\item{\verb{object}}{[\verb{\link{GdkColormap}}]  a \verb{\link{GdkColormap}}.}
+\item{\verb{colors}}{[\verb{\link{GdkColor}}]  the colors to free.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

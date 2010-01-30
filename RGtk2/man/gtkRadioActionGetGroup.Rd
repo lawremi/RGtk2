@@ -5,7 +5,7 @@
 Note that the returned list is only valid until the next change
 to the group. }
 \usage{gtkRadioActionGetGroup(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkRadioAction}}]  the action object}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkRadioAction}}]  the action object}}
 \details{A common way to set up a group of radio group is the following:
 \preformatted{
 while (more_actions) {

@@ -3,9 +3,9 @@
 \title{gtkWindowHasToplevelFocus}
 \description{Returns whether the input focus is within this GtkWindow.
 For real toplevel windows, this is identical to \code{\link{gtkWindowIsActive}},
-but for embedded windows, like \code{\link{GtkPlug}}, the results will differ.}
+but for embedded windows, like \verb{\link{GtkPlug}}, the results will differ.}
 \usage{gtkWindowHasToplevelFocus(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the input focus is within this GtkWindow}
 \author{Derived by RGtkGen from GTK+ documentation}

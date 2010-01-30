@@ -5,7 +5,7 @@
 A toplevel window is a child of the root window (see
 \code{\link{gdkGetDefaultRootWindow}}).}
 \usage{gdkScreenGetToplevelWindows(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkScreen}}]  The \code{\link{GdkScreen}} where the toplevels are located.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  The \verb{\link{GdkScreen}} where the toplevels are located.}}
 \details{.  
 
   Since  2.2}

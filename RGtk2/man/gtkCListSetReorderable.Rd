@@ -7,8 +7,8 @@ Sets whether the CList's rows are re-orderable using drag-and-drop.
 }
 \usage{gtkCListSetReorderable(object, reorderable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{reorderable}}{[logical] \code{TRUE} or \code{FALSE}.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{reorderable}}{[logical] \code{TRUE} or \code{FALSE}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

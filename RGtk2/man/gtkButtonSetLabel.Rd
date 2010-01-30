@@ -6,8 +6,8 @@ also used to select the stock item if \code{\link{gtkButtonSetUseStock}}
 is used.}
 \usage{gtkButtonSetLabel(object, label)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButton}}]  a \code{\link{GtkButton}}}
-\item{\code{label}}{[character]  a string}
+\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}
+\item{\verb{label}}{[character]  a string}
 }
 \details{This will also clear any previously set labels.  }
 \author{Derived by RGtkGen from GTK+ documentation}

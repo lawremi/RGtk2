@@ -5,7 +5,7 @@
 drawn correctly. On X11 this function returns whether a
 compositing manager is running for \code{widget}'s screen.}
 \usage{gtkWidgetIsComposited(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{Please note that the semantics of this call will change
 in the future if used on a widget that has a composited
 window in its heirarchy (as set by

@@ -1,7 +1,7 @@
 \alias{gtkTreeViewGetBackgroundArea}
 \name{gtkTreeViewGetBackgroundArea}
 \title{gtkTreeViewGetBackgroundArea}
-\description{Fills the bounding rectangle in bin\_window coordinates for the cell at the
+\description{Fills the bounding rectangle in bin_window coordinates for the cell at the
 row specified by \code{path} and the column specified by \code{column}.  If \code{path} is
 \code{NULL}, or points to a node not found in the tree, the \code{y} and \code{height} fields of
 the rectangle will be filled with 0. If \code{column} is \code{NULL}, the \code{x} and \code{width}
@@ -12,13 +12,13 @@ returned by \code{\link{gtkTreeViewGetCellArea}}, which returns only the cell
 itself, excluding surrounding borders and the tree expander area.}
 \usage{gtkTreeViewGetBackgroundArea(object, path, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  a \code{\link{GtkTreeView}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  a \code{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates}
-\item{\code{column}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordiantes}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  a \verb{\link{GtkTreeView}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  a \verb{\link{GtkTreePath}} for the row, or \code{NULL} to get only horizontal coordinates}
+\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}} for the column, or \code{NULL} to get only vertical coordiantes}
 }
 \value{
 A list containing the following elements:
-\item{\code{rect}}{[\code{\link{GdkRectangle}}]  rectangle to fill with cell background rect}
+\item{\verb{rect}}{[\verb{\link{GdkRectangle}}]  rectangle to fill with cell background rect}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

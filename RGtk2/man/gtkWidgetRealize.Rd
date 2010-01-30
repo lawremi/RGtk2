@@ -7,7 +7,7 @@ is realized.  Normally realization happens implicitly; if you show
 a widget and all its parent containers, then the widget will be
 realized and mapped automatically.}
 \usage{gtkWidgetRealize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{Realizing a widget requires all
 the widget's parent widgets to be realized; calling
 \code{\link{gtkWidgetRealize}} realizes the widget's parents in addition to

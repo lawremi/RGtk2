@@ -5,8 +5,8 @@
 PostScript.}
 \usage{cairoPsSurfaceSetEps(surface, eps)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a PostScript \code{\link{CairoSurface}}}
-\item{\code{eps}}{[logical] \code{TRUE} to output EPS format PostScript}
+\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a PostScript \verb{\link{CairoSurface}}}
+\item{\verb{eps}}{[logical] \code{TRUE} to output EPS format PostScript}
 }
 \details{This function should only be called before any drawing operations
 have been performed on the current page. The simplest way to do

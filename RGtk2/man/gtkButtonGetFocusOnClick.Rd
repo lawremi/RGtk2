@@ -4,7 +4,7 @@
 \description{Returns whether the button grabs focus when it is clicked with the mouse.
 See \code{\link{gtkButtonSetFocusOnClick}}.}
 \usage{gtkButtonGetFocusOnClick(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkButton}}]  a \code{\link{GtkButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}}
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if the button grabs focus when it is clicked with
               the mouse.}

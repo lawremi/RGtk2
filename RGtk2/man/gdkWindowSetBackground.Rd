@@ -7,8 +7,8 @@ you're an application - or \code{\link{gtkStyleSetBackground}} - if you're
 implementing a custom widget.)}
 \usage{gdkWindowSetBackground(object, color)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{color}}{[\code{\link{GdkColor}}]  an allocated \code{\link{GdkColor}}}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  an allocated \verb{\link{GdkColor}}}
 }
 \details{The \code{color} must be allocated; \code{\link{gdkRgbFindColor}} is the best way
 to allocate a color.

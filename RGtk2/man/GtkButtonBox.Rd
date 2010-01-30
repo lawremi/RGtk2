@@ -13,19 +13,19 @@
 \code{\link{gtkButtonBoxSetChildSecondary}(object, child, is.secondary)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBox}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBox
                                  +----GtkButtonBox
-                                       +----\link{GtkHButtonBox}
-                                       +----\link{GtkVButtonBox}}}
+                                       +----GtkHButtonBox
+                                       +----GtkVButtonBox}}
 \section{Interfaces}{GtkButtonBox implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{The primary purpose of this class is to keep track of the various properties
-of \code{\link{GtkHButtonBox}} and \code{\link{GtkVButtonBox}} widgets.
+of \verb{\link{GtkHButtonBox}} and \verb{\link{GtkVButtonBox}} widgets.
   \code{\link{gtkButtonBoxGetChildSize}} retrieves the minimum width and height 
 for widgets in a given button box. \code{\link{gtkButtonBoxSetChildSize}} 
 allows those properties to be changed.
@@ -41,32 +41,32 @@ used to spread the buttons in a button box across the container, respectively.
 The main purpose of GtkButtonBox is to make sure the children have all the same size.
 Therefore it ignores the homogeneous property which it inherited from GtkBox, and always
 behaves as if homogeneous was \code{TRUE}.}
-\section{Structures}{\describe{\item{\code{GtkButtonBox}}{
+\section{Structures}{\describe{\item{\verb{GtkButtonBox}}{
 This is a read-only struct; no members should be modified directly.
 
 }}}
-\section{Properties}{\describe{\item{\code{layout-style} [\code{\link{GtkButtonBoxStyle}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{layout-style} [\code{\link{GtkButtonBoxStyle}} : Read / Write]}{
 
-How to layout the buttons in the box. Possible values are default, spread, edge, start and end.  Default value: GTK\_BUTTONBOX\_DEFAULT\_STYLE
+How to layout the buttons in the box. Possible values are default, spread, edge, start and end.  Default value: GTK_BUTTONBOX_DEFAULT_STYLE
 
 }}}
 \section{Style Properties}{\describe{
-\item{\code{child-internal-pad-x} [integer : Read]}{
+\item{\verb{child-internal-pad-x} [integer : Read]}{
 
 Amount to increase child's size on either side.  Allowed values: >= 0  Default value: 4
 
 }
-\item{\code{child-internal-pad-y} [integer : Read]}{
+\item{\verb{child-internal-pad-y} [integer : Read]}{
 
 Amount to increase child's size on the top and bottom.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{child-min-height} [integer : Read]}{
+\item{\verb{child-min-height} [integer : Read]}{
 
 Minimum height of buttons inside the box.  Allowed values: >= 0  Default value: 27
 
 }
-\item{\code{child-min-width} [integer : Read]}{
+\item{\verb{child-min-width} [integer : Read]}{
 
 Minimum width of buttons inside the box.  Allowed values: >= 0  Default value: 85
 

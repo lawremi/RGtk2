@@ -4,10 +4,10 @@
 \description{\strong{WARNING: This function is slow. Only use it for debugging and/or testing purposes.}}
 \usage{gtkTreeModelSortIterIsValid(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModelSort}}]  A \code{\link{GtkTreeModelSort}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  A \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModelSort}}]  A \verb{\link{GtkTreeModelSort}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  A \verb{\link{GtkTreeIter}}.}
 }
-\details{Checks if the given iter is a valid iter for this \code{\link{GtkTreeModelSort}}.  
+\details{Checks if the given iter is a valid iter for this \verb{\link{GtkTreeModelSort}}.  
 
   Since  2.2}
 \value{[logical] \code{TRUE} if the iter is valid, \code{FALSE} if the iter is invalid.}

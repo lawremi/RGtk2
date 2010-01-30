@@ -17,9 +17,9 @@
     This interface can be used by applications in which blocking is
     acceptable while an image is being loaded.  It can also be used to
     load small images in general.  Applications that need progressive
-    loading can use the \code{\link{GdkPixbufLoader}} functionality instead.
+    loading can use the \verb{\link{GdkPixbufLoader}} functionality instead.
   }
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-file-loading.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GdkPixbufLoader}}}
+\seealso{\verb{\link{GdkPixbufLoader}}}
 \keyword{internal}

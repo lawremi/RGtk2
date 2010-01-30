@@ -7,7 +7,7 @@ to \code{\link{gtkIconThemeLookupIcon}}, there may be
 no filename if a builtin icon is returned; in this
 case, you should use \code{\link{gtkIconInfoGetBuiltinPixbuf}}.}
 \usage{gtkIconInfoGetFilename(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconInfo}}]  a \code{\link{GtkIconInfo}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconInfo}}]  a \verb{\link{GtkIconInfo}}}}
 \details{  Since  2.4}
 \value{[character]  the filename for the icon, or \code{NULL}
  if \code{\link{gtkIconInfoGetBuiltinPixbuf}} should

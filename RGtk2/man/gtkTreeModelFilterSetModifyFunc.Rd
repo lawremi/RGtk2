@@ -10,10 +10,10 @@ should be displayed at the location specified using the parameters of the
 modify function.}
 \usage{gtkTreeModelFilterSetModifyFunc(object, types, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModelFilter}}]  A \code{\link{GtkTreeModelFilter}}.}
-\item{\code{types}}{[\code{\link{GType}}]  The \code{\link{GType}}s of the columns.}
-\item{\code{func}}{[\code{\link{GtkTreeModelFilterModifyFunc}}]  A \code{\link{GtkTreeModelFilterModifyFunc}}}
-\item{\code{data}}{[R object]  User data to pass to the modify function, or \code{NULL}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModelFilter}}]  A \verb{\link{GtkTreeModelFilter}}.}
+\item{\verb{types}}{[\verb{\link{GType}}]  The \verb{\link{GType}}s of the columns.}
+\item{\verb{func}}{[\verb{\link{GtkTreeModelFilterModifyFunc}}]  A \verb{\link{GtkTreeModelFilterModifyFunc}}}
+\item{\verb{data}}{[R object]  User data to pass to the modify function, or \code{NULL}.}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

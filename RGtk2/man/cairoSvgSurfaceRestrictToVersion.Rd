@@ -5,8 +5,8 @@
 for a list of available version values that can be used here.}
 \usage{cairoSvgSurfaceRestrictToVersion(surface, version)}
 \arguments{
-\item{\code{surface}}{[\code{\link{CairoSurface}}]  a SVG \code{\link{CairoSurface}}}
-\item{\code{version}}{[\code{\link{CairoSvgVersion}}]  SVG version}
+\item{\verb{surface}}{[\verb{\link{CairoSurface}}]  a SVG \verb{\link{CairoSurface}}}
+\item{\verb{version}}{[\verb{\link{CairoSvgVersion}}]  SVG version}
 }
 \details{This function should only be called before any drawing operations
 have been performed on the given surface. The simplest way to do

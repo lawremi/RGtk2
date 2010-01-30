@@ -9,8 +9,8 @@ that is, the screen which has the root window
 to which \code{event->motion.x_root} and
 \code{event->motion.y_root} are relative.}
 \usage{gdkEventGetScreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}}}}
 \details{  Since  2.2}
-\value{[\code{\link{GdkScreen}}]  the screen for the event}
+\value{[\verb{\link{GdkScreen}}]  the screen for the event}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

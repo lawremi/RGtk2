@@ -7,9 +7,9 @@ are not already set are affected. If \code{TRUE}, then fields that are
 already set will be replaced as well.}
 \usage{pangoFontDescriptionMerge(object, desc.to.merge, replace.existing)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
-\item{\code{desc.to.merge}}{[\code{\link{PangoFontDescription}}]  the \code{\link{PangoFontDescription}} to merge from}
-\item{\code{replace.existing}}{[logical]  if \code{TRUE}, replace fields in \code{desc} with the
+\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
+\item{\verb{desc.to.merge}}{[\verb{\link{PangoFontDescription}}]  the \verb{\link{PangoFontDescription}} to merge from}
+\item{\verb{replace.existing}}{[logical]  if \code{TRUE}, replace fields in \code{desc} with the
   corresponding values from \code{desc.to.merge}, even if they
   are already exist.}
 }

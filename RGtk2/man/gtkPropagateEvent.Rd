@@ -13,8 +13,8 @@ widget.  \code{\link{gtkPropagateEvent}} is a bit higher-level, and
 \code{\link{gtkMainDoEvent}} is the highest level.}
 \usage{gtkPropagateEvent(object, event)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  an event}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{event}}{[\verb{\link{GdkEvent}}]  an event}
 }
 \details{All that said, you most likely don't want to use any of these
 functions; synthesizing events is rarely needed. Consider asking on

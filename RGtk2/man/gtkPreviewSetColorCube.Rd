@@ -9,10 +9,10 @@ display.
 }
 \usage{gtkPreviewSetColorCube(nred.shades, ngreen.shades, nblue.shades, ngray.shades)}
 \arguments{
-\item{\code{nred.shades}}{[numeric] ignored}
-\item{\code{ngreen.shades}}{[numeric] ignored}
-\item{\code{nblue.shades}}{[numeric] ignored}
-\item{\code{ngray.shades}}{[numeric] ignored}
+\item{\verb{nred.shades}}{[numeric] ignored}
+\item{\verb{ngreen.shades}}{[numeric] ignored}
+\item{\verb{nblue.shades}}{[numeric] ignored}
+\item{\verb{ngray.shades}}{[numeric] ignored}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

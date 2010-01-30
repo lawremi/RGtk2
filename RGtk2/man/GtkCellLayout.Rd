@@ -17,9 +17,9 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkCellLayout}}
 \section{Implementations}{GtkCellLayout is implemented by
- \code{\link{GtkTreeViewColumn}},  \code{\link{GtkIconView}},  \code{\link{GtkCellView}},  \code{\link{GtkEntryCompletion}},  \code{\link{GtkComboBox}} and  \code{\link{GtkComboBoxEntry}}.}
-\section{Detailed Description}{\code{\link{GtkCellLayout}} is an interface to be implemented by all objects which
-want to provide a \code{GtkTreeViewColumn-like} API for packing cells, setting
+ \verb{\link{GtkTreeViewColumn}},  \verb{\link{GtkIconView}},  \verb{\link{GtkCellView}},  \verb{\link{GtkEntryCompletion}},  \verb{\link{GtkComboBox}} and  \verb{\link{GtkComboBoxEntry}}.}
+\section{Detailed Description}{\verb{\link{GtkCellLayout}} is an interface to be implemented by all objects which
+want to provide a \verb{GtkTreeViewColumn-like} API for packing cells, setting
 attributes and data funcs. 
   
 One of the notable features provided by implementations of GtkCellLayout
@@ -32,8 +32,8 @@ cell renderer. Finally, it is possible to specify a function with
 \code{\link{gtkCellLayoutSetCellDataFunc}} that is called to determine the value 
 of the attribute for each cell that is rendered.}
 \section{GtkCellLayouts as GtkBuildable}{Implementations of GtkCellLayout which also implement the GtkBuildable 
-interface (\code{\link{GtkCellView}}, \code{\link{GtkIconView}}, \code{\link{GtkComboBox}}, \code{\link{GtkComboBoxEntry}}, 
-\code{\link{GtkEntryCompletion}}, \code{\link{GtkTreeViewColumn}}) accept GtkCellRenderer objects
+interface (\verb{\link{GtkCellView}}, \verb{\link{GtkIconView}}, \verb{\link{GtkComboBox}}, \verb{\link{GtkComboBoxEntry}}, 
+\verb{\link{GtkEntryCompletion}}, \verb{\link{GtkTreeViewColumn}}) accept GtkCellRenderer objects
 as <child> elements in UI definitions. They support a custom 
 <attributes> element for their children, which can contain 
 multiple <attribute> elements. Each <attribute> element has 
@@ -49,7 +49,7 @@ content of the element is the attribute value.
   </child>"
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkCellLayout}}{
+\section{Structures}{\describe{\item{\verb{GtkCellLayout}}{
 \emph{undocumented
 }
 
@@ -59,10 +59,10 @@ A function which should set the value of \code{cell.layout}'s cell renderer(s)
 as appropriate. 
 
 \describe{
-\item{\code{cell.layout}}{[\code{\link{GtkCellLayout}}] a \code{\link{GtkCellLayout}}}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}] the cell renderer whose value is to be set}
-\item{\code{tree.model}}{[\code{\link{GtkTreeModel}}] the model}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}] a \code{\link{GtkTreeIter}} indicating the row to set the value for}
+\item{\code{cell.layout}}{[\verb{\link{GtkCellLayout}}] a \verb{\link{GtkCellLayout}}}
+\item{\code{cell}}{[\verb{\link{GtkCellRenderer}}] the cell renderer whose value is to be set}
+\item{\code{tree.model}}{[\verb{\link{GtkTreeModel}}] the model}
+\item{\code{iter}}{[\verb{\link{GtkTreeIter}}] a \verb{\link{GtkTreeIter}} indicating the row to set the value for}
 \item{\code{data}}{[R object] user data passed to \code{\link{gtkCellLayoutSetCellDataFunc}}}
 }
 

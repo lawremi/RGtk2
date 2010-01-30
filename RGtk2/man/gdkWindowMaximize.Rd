@@ -4,7 +4,7 @@
 \description{Maximizes the window. If the window was already maximized, then
 this function does nothing.}
 \usage{gdkWindowMaximize(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}}
 \details{On X11, asks the window manager to maximize \code{window}, if the window
 manager supports this operation. Not all window managers support
 this, and some deliberately ignore it or don't have a concept of

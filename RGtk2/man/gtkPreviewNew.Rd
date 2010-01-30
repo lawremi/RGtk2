@@ -6,8 +6,8 @@ Create a new preview widget.
 \strong{WARNING: \code{gtk_preview_new} is deprecated and should not be used in newly-written code.}
 }
 \usage{gtkPreviewNew(type, show = TRUE)}
-\arguments{\item{\code{type}}{[\code{\link{GtkPreviewType}}] the type data contained by the widget. 
+\arguments{\item{\verb{type}}{[\code{\link{GtkPreviewType}}] the type data contained by the widget. 
 (Grayscale or RGB)}}
-\value{[\code{\link{GtkWidget}}] a new \code{\link{GtkPreview}}}
+\value{[\verb{\link{GtkWidget}}] a new \verb{\link{GtkPreview}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

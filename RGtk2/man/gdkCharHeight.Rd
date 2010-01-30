@@ -10,8 +10,8 @@ relation to the baseline. See \code{\link{gdkTextExtents}}.
 }
 \usage{gdkCharHeight(object, character)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}}
-\item{\code{character}}{[character]  the character to measure.}
+\item{\verb{object}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}}
+\item{\verb{character}}{[character]  the character to measure.}
 }
 \value{[integer]  the height of the character in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

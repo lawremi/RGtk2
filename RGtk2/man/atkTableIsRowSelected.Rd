@@ -5,8 +5,8 @@
 is selected}
 \usage{atkTableIsRowSelected(object, row)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
-\item{\code{row}}{[integer]  a \code{integer} representing a row in \code{table}}
+\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{row}}{[integer]  a \verb{integer} representing a row in \code{table}}
 }
 \value{[logical]  a gboolean representing if the row is selected, or 0
 if value does not implement this interface.}

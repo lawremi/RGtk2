@@ -5,8 +5,8 @@
 automatically wrapped.}
 \usage{gtkAboutDialogSetWrapLicense(object, wrap.license)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}
-\item{\code{wrap.license}}{[logical]  whether to wrap the license}
+\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}
+\item{\verb{wrap.license}}{[logical]  whether to wrap the license}
 }
 \details{  Since  2.8}
 \author{Derived by RGtkGen from GTK+ documentation}

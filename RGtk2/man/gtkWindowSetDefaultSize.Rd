@@ -9,9 +9,9 @@ be used to set these explicitly), the default size will be clamped
 to the nearest permitted size.}
 \usage{gtkWindowSetDefaultSize(object, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{width}}{[integer]  width in pixels, or -1 to unset the default width}
-\item{\code{height}}{[integer]  height in pixels, or -1 to unset the default height}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{width}}{[integer]  width in pixels, or -1 to unset the default width}
+\item{\verb{height}}{[integer]  height in pixels, or -1 to unset the default height}
 }
 \details{Unlike \code{\link{gtkWidgetSetSizeRequest}}, which sets a size request for
 a widget and thus would keep users from shrinking the window, this

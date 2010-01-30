@@ -8,10 +8,10 @@ it. Additionally, if \code{start.editing} is \code{TRUE}, then editing should be
 started in the specified cell.  }
 \usage{gtkIconViewSetCursor(object, path, cell, start.editing)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  A \code{\link{GtkIconView}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}}}
-\item{\code{cell}}{[\code{\link{GtkCellRenderer}}]  One of the cell renderers of \code{icon.view}, or \code{NULL}}
-\item{\code{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  A \verb{\link{GtkIconView}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}}
+\item{\verb{cell}}{[\verb{\link{GtkCellRenderer}}]  One of the cell renderers of \code{icon.view}, or \code{NULL}}
+\item{\verb{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
 }
 \details{This function is often followed by \code{gtk_widget_grab_focus 
 (icon_view)} in order to give keyboard focus to the widget.  

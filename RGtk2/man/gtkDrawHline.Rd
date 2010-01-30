@@ -8,12 +8,12 @@ using the given style and state.
 }
 \usage{gtkDrawHline(object, window, state.type, x1, x2, y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{x1}}{[integer]  the starting x coordinate}
-\item{\code{x2}}{[integer]  the ending x coordinate}
-\item{\code{y}}{[integer]  the y coordinate}
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{x1}}{[integer]  the starting x coordinate}
+\item{\verb{x2}}{[integer]  the ending x coordinate}
+\item{\verb{y}}{[integer]  the y coordinate}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

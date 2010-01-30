@@ -5,9 +5,9 @@
 area of the assistant when \code{page} is the current page.}
 \usage{gtkAssistantSetPageSideImage(object, page, pixbuf = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAssistant}}]  a \code{\link{GtkAssistant}}}
-\item{\code{page}}{[\code{\link{GtkWidget}}]  a page of \code{assistant}}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}]  the new header image \code{page}}
+\item{\verb{object}}{[\verb{\link{GtkAssistant}}]  a \verb{\link{GtkAssistant}}}
+\item{\verb{page}}{[\verb{\link{GtkWidget}}]  a page of \code{assistant}}
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}]  the new header image \code{page}}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

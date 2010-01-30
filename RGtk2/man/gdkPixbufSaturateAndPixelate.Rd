@@ -11,10 +11,10 @@ pixelated image. \code{src} and \code{dest} must have the same image format, siz
 rowstride.}
 \usage{gdkPixbufSaturateAndPixelate(object, dest, saturation, pixelate)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPixbuf}}]  source image}
-\item{\code{dest}}{[\code{\link{GdkPixbuf}}]  place to write modified version of \code{src}}
-\item{\code{saturation}}{[numeric]  saturation factor}
-\item{\code{pixelate}}{[logical]  whether to pixelate}
+\item{\verb{object}}{[\verb{\link{GdkPixbuf}}]  source image}
+\item{\verb{dest}}{[\verb{\link{GdkPixbuf}}]  place to write modified version of \code{src}}
+\item{\verb{saturation}}{[numeric]  saturation factor}
+\item{\verb{pixelate}}{[logical]  whether to pixelate}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

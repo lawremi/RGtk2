@@ -9,10 +9,10 @@ be deleted, and when precomposed character and accent combinations
 are involved, less than one character will be deleted.}
 \usage{gtkTextBufferBackspace(object, iter, interactive, default.editable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a position in \code{buffer}}
-\item{\code{interactive}}{[logical]  whether the deletion is caused by user interaction}
-\item{\code{default.editable}}{[logical]  whether the buffer is editable by default}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a position in \code{buffer}}
+\item{\verb{interactive}}{[logical]  whether the deletion is caused by user interaction}
+\item{\verb{default.editable}}{[logical]  whether the buffer is editable by default}
 }
 \details{Because the buffer is modified, all outstanding iterators become 
 invalid after calling this function; however, the \code{iter} will be

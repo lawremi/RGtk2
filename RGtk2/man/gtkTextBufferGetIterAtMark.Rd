@@ -4,12 +4,12 @@
 \description{Initializes \code{iter} with the current position of \code{mark}.}
 \usage{gtkTextBufferGetIterAtMark(object, mark)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{mark}}{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}} in \code{buffer}}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{mark}}{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}} in \code{buffer}}
 }
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  iterator to initialize}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  iterator to initialize}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

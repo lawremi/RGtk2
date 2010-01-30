@@ -1,11 +1,11 @@
 \alias{atkTableGetColumnAtIndex}
 \name{atkTableGetColumnAtIndex}
 \title{atkTableGetColumnAtIndex}
-\description{Gets a \code{integer} representing the column at the specified \code{index.}.}
+\description{Gets a \verb{integer} representing the column at the specified \code{index.}.}
 \usage{atkTableGetColumnAtIndex(object, index)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableInterface}
-\item{\code{index}}{[integer]  a \code{integer} representing an index in \code{table}}
+\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableInterface}
+\item{\verb{index}}{[integer]  a \verb{integer} representing an index in \code{table}}
 }
 \value{[integer]  a gint representing the column at the specified index,
 or -1 if the table does not implement this interface}

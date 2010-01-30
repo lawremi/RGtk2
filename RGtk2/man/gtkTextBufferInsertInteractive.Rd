@@ -7,10 +7,10 @@ want to prevent insertions at ineditable locations if the insertion
 results from a user action (is interactive).}
 \usage{gtkTextBufferInsertInteractive(object, iter, text, default.editable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a position in \code{buffer}}
-\item{\code{text}}{[character]  some UTF-8 text}
-\item{\code{default.editable}}{[logical]  default editability of buffer}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a position in \code{buffer}}
+\item{\verb{text}}{[character]  some UTF-8 text}
+\item{\verb{default.editable}}{[logical]  default editability of buffer}
 }
 \details{\code{default.editable} indicates the editability of text that doesn't
 have a tag affecting editability applied to it. Typically the

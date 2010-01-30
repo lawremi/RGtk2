@@ -7,8 +7,8 @@ settings you wish to use if no tags are in effect. You'd typically
 obtain the defaults from \code{\link{gtkTextViewGetDefaultAttributes}}.}
 \usage{gtkTextIterGetAttributes(object, values)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}
-\item{\code{values}}{[\code{\link{GtkTextAttributes}}]  a \code{\link{GtkTextAttributes}} to be filled in}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}
+\item{\verb{values}}{[\verb{\link{GtkTextAttributes}}]  a \verb{\link{GtkTextAttributes}} to be filled in}
 }
 \details{\code{\link{gtkTextIterGetAttributes}} will modify \code{values}, applying the
 effects of any tags present at \code{iter}. If any tags affected \code{values},

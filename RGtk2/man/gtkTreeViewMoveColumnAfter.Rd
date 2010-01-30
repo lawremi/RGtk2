@@ -5,9 +5,9 @@
 \code{column} is placed in the first position.}
 \usage{gtkTreeViewMoveColumnAfter(object, column, base.column = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{column}}{[\code{\link{GtkTreeViewColumn}}]  The \code{\link{GtkTreeViewColumn}} to be moved.}
-\item{\code{base.column}}{[\code{\link{GtkTreeViewColumn}}]  The \code{\link{GtkTreeViewColumn}} to be moved relative to, or \code{NULL}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{column}}{[\verb{\link{GtkTreeViewColumn}}]  The \verb{\link{GtkTreeViewColumn}} to be moved.}
+\item{\verb{base.column}}{[\verb{\link{GtkTreeViewColumn}}]  The \verb{\link{GtkTreeViewColumn}} to be moved relative to, or \code{NULL}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

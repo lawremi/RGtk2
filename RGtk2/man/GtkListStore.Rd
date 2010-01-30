@@ -26,26 +26,26 @@
 \code{\link{gtkListStoreMoveAfter}(object, iter, position = NULL)}\cr
 \code{gtkListStore(..., value)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkListStore}}
 \section{Interfaces}{GtkListStore implements
- \code{\link{GtkBuildable}},  \code{\link{GtkTreeModel}},  \code{\link{GtkTreeDragSource}},  \code{\link{GtkTreeDragDest}} and  \code{\link{GtkTreeSortable}}.}
-\section{Detailed Description}{The \code{\link{GtkListStore}} object is a list model for use with a \code{\link{GtkTreeView}}
-widget.  It implements the \code{\link{GtkTreeModel}} interface, and consequentialy,
+ \verb{\link{GtkBuildable}},  \verb{\link{GtkTreeModel}},  \verb{\link{GtkTreeDragSource}},  \verb{\link{GtkTreeDragDest}} and  \verb{\link{GtkTreeSortable}}.}
+\section{Detailed Description}{The \verb{\link{GtkListStore}} object is a list model for use with a \verb{\link{GtkTreeView}}
+widget.  It implements the \verb{\link{GtkTreeModel}} interface, and consequentialy,
 can use all of the methods available there.  It also implements the
-\code{\link{GtkTreeSortable}} interface so it can be sorted by the view.
+\verb{\link{GtkTreeSortable}} interface so it can be sorted by the view.
 Finally, it also implements the tree drag and
 drop interfaces.
   
-The \code{\link{GtkListStore}} can accept most GObject types as a column type, though
+The \verb{\link{GtkListStore}} can accept most GObject types as a column type, though
 it can't accept all custom types.  Internally, it will keep a copy of
 data passed in (such as a string or a boxed pointer).  Columns that
-accept \code{\link{GObject}}s are handled a little differently.  The
-\code{\link{GtkListStore}} will keep a reference to the object instead of copying the
+accept \verb{\link{GObject}}s are handled a little differently.  The
+\verb{\link{GtkListStore}} will keep a reference to the object instead of copying the
 value.  As a result, if the object is modified, it is up to the
 application writer to call \code{gtk.tree.model.row.changed} to emit the
-"row\_changed" signal.  This most commonly affects lists with
-\code{\link{GdkPixbuf}}s stored.
+"row_changed" signal.  This most commonly affects lists with
+\verb{\link{GdkPixbuf}}s stored.
   
  \emph{Creating a simple list store.}
 \preformatted{
@@ -64,27 +64,27 @@ iter <- list_store$getIter(path)$iter
 list_store$set(iter, 2, TRUE)
 
 }}
-\section{Performance Considerations}{Internally, the \code{\link{GtkListStore}} was implemented with a linked list with a
+\section{Performance Considerations}{Internally, the \verb{\link{GtkListStore}} was implemented with a linked list with a
 tail pointer prior to GTK+ 2.6.  As a result, it was fast at data
 insertion and deletion, and not fast at random data access.  The
-\code{\link{GtkListStore}} sets the \code{GTK_TREE_MODEL_ITERS_PERSIST} flag, which means
-that \code{\link{GtkTreeIter}}s can be cached while the row exists.  Thus, if
+\verb{\link{GtkListStore}} sets the \verb{GTK_TREE_MODEL_ITERS_PERSIST} flag, which means
+that \verb{\link{GtkTreeIter}}s can be cached while the row exists.  Thus, if
 access to a particular row is needed often and your code is expected to
 run on older versions of GTK+, it is worth keeping the iter around.
   
 It is important to note that only the methods 
 \code{\link{gtkListStoreInsertWithValues}} and \code{\link{gtkListStoreInsertWithValuesv}} 
 are atomic, in the sense that the row is being appended to the store and the 
-values filled in in a single operation with regard to \code{\link{GtkTreeModel}} signaling.
+values filled in in a single operation with regard to \verb{\link{GtkTreeModel}} signaling.
 In contrast, using e.g. \code{\link{gtkListStoreAppend}} and then \code{\link{gtkListStoreSet}} 
 will first create a row, which triggers the \code{\link{gtkTreeModelRowInserted}} signal 
-on \code{\link{GtkListStore}}. The row, however, is still empty, and any signal handler 
+on \verb{\link{GtkListStore}}. The row, however, is still empty, and any signal handler 
 connecting to "row-inserted" on this particular store should be prepared
 for the situation that the row might be empty. This is especially important 
-if you are wrapping the \code{\link{GtkListStore}} inside a \code{\link{GtkTreeModelFilter}} and are
-using a \code{\link{GtkTreeModelFilterVisibleFunc}}. Using any of the non-atomic operations 
-to append rows to the \code{\link{GtkListStore}} will cause the 
-\code{\link{GtkTreeModelFilterVisibleFunc}} to be visited with an empty row first; the 
+if you are wrapping the \verb{\link{GtkListStore}} inside a \verb{\link{GtkTreeModelFilter}} and are
+using a \verb{\link{GtkTreeModelFilterVisibleFunc}}. Using any of the non-atomic operations 
+to append rows to the \verb{\link{GtkListStore}} will cause the 
+\verb{\link{GtkTreeModelFilterVisibleFunc}} to be visited with an empty row first; the 
 function must be prepared for that.}
 \section{GtkListStore as GtkBuildable}{The GtkListStore implementation of the GtkBuildable interface allows
 to specify the model columns with a <columns> element that may
@@ -124,7 +124,7 @@ and common wisdom is to separate the two, as far as possible.
   </data>
 </object>
 }}
-\section{Structures}{\describe{\item{\code{GtkListStore}}{
+\section{Structures}{\describe{\item{\verb{GtkListStore}}{
 \emph{undocumented
 }
 
@@ -133,7 +133,7 @@ and common wisdom is to separate the two, as far as possible.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkListStore.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTreeModel}}
-\code{\link{GtkTreeStore}}
+\verb{\link{GtkTreeModel}}
+\verb{\link{GtkTreeStore}}
 }
 \keyword{internal}

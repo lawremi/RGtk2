@@ -1,11 +1,11 @@
 \alias{pangoCairoFontGetScaledFont}
 \name{pangoCairoFontGetScaledFont}
 \title{pangoCairoFontGetScaledFont}
-\description{Gets the \code{\link{CairoScaledFont}} used by \code{font}.}
+\description{Gets the \verb{\link{CairoScaledFont}} used by \code{font}.}
 \usage{pangoCairoFontGetScaledFont(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoCairoFont}}]  a \code{\link{PangoFont}} from a \code{\link{PangoCairoFontMap}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoCairoFont}}]  a \verb{\link{PangoFont}} from a \verb{\link{PangoCairoFontMap}}}}
 \details{  Since  1.18}
-\value{[\code{\link{CairoScaledFont}}]  the \code{\link{CairoScaledFont}} used by \code{font},
+\value{[\verb{\link{CairoScaledFont}}]  the \verb{\link{CairoScaledFont}} used by \code{font},
               or \code{NULL} if \code{font} is \code{NULL}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

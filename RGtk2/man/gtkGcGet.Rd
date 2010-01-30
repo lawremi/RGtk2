@@ -1,17 +1,17 @@
 \alias{gtkGcGet}
 \name{gtkGcGet}
 \title{gtkGcGet}
-\description{Gets a \code{\link{GdkGC}} with the given depth, colormap and \code{\link{GdkGCValues}}.
-If a \code{\link{GdkGC}} with the given properties already exists then it is returned,
-otherwise a new \code{\link{GdkGC}} is created.
-The returned \code{\link{GdkGC}} should be released with \code{\link{gtkGcRelease}} when it is no
+\description{Gets a \verb{\link{GdkGC}} with the given depth, colormap and \verb{\link{GdkGCValues}}.
+If a \verb{\link{GdkGC}} with the given properties already exists then it is returned,
+otherwise a new \verb{\link{GdkGC}} is created.
+The returned \verb{\link{GdkGC}} should be released with \code{\link{gtkGcRelease}} when it is no
 longer needed.}
 \usage{gtkGcGet(depth, colormap, values)}
 \arguments{
-\item{\code{depth}}{[integer] the depth of the \code{\link{GdkGC}} to create.}
-\item{\code{colormap}}{[\code{\link{GdkColormap}}] the \code{\link{GdkColormap}} (FIXME: I don't know why this is needed).}
-\item{\code{values}}{[\code{\link{GdkGCValues}}] a \code{\link{GdkGCValues}} struct containing settings for the \code{\link{GdkGC}}.}
+\item{\verb{depth}}{[integer] the depth of the \verb{\link{GdkGC}} to create.}
+\item{\verb{colormap}}{[\verb{\link{GdkColormap}}] the \verb{\link{GdkColormap}} (FIXME: I don't know why this is needed).}
+\item{\verb{values}}{[\verb{\link{GdkGCValues}}] a \verb{\link{GdkGCValues}} struct containing settings for the \verb{\link{GdkGC}}.}
 }
-\value{[\code{\link{GdkGC}}] a \code{\link{GdkGC}}.}
+\value{[\verb{\link{GdkGC}}] a \verb{\link{GdkGC}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

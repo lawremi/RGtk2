@@ -5,9 +5,9 @@
 conceptually the final point reached by the path so far.}
 \usage{cairoGetCurrentPoint(cr, x, y)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{x}}{[numeric]  return value for X coordinate of the current point}
-\item{\code{y}}{[numeric]  return value for Y coordinate of the current point}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{x}}{[numeric]  return value for X coordinate of the current point}
+\item{\verb{y}}{[numeric]  return value for Y coordinate of the current point}
 }
 \details{The current point is returned in the user-space coordinate
 system. If there is no defined current point or if \code{cr} is in an

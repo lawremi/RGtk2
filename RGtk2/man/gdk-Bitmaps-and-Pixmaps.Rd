@@ -15,28 +15,28 @@
 \code{\link{gdkPixmapColormapCreateFromXpmD}(drawable, colormap, transparent.color, data)}\cr
 \code{gdkPixmap(drawable, data, transparent.color, height, width, depth, filename, colormap, fg, bg)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{GdkDrawable}
+\section{Hierarchy}{\preformatted{GObject
+   +----GdkDrawable
          +----GdkPixmap}}
 \section{Detailed Description}{Pixmaps are offscreen drawables. They can be drawn upon with the
 standard drawing primitives, then copied to another drawable (such as
-a \code{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
+a \verb{\link{GdkWindow}}) with \code{gdkPixmapDraw()}. The depth of a pixmap
 is the number of bits per pixels. Bitmaps are simply pixmaps
 with a depth of 1. (That is, they are monochrome bitmaps - each
 pixel can be either on or off).}
 \section{Structures}{\describe{
-\item{\code{GdkPixmap}}{
+\item{\verb{GdkPixmap}}{
 An opaque structure representing an offscreen drawable.
-Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}},
-and \code{\link{GdkWindow}}, can often be used interchangeably. 
-The type \code{\link{GdkDrawable}} refers generically to any of
+Pointers to structures of type \verb{\link{GdkPixmap}}, \verb{\link{GdkBitmap}},
+and \verb{\link{GdkWindow}}, can often be used interchangeably. 
+The type \verb{\link{GdkDrawable}} refers generically to any of
 these types.
 
 }
-\item{\code{GdkBitmap}}{
+\item{\verb{GdkBitmap}}{
 An opaque structure representing an offscreen drawable of depth
-1. Pointers to structures of type \code{\link{GdkPixmap}}, \code{\link{GdkBitmap}}, and
-\code{\link{GdkWindow}}, can often be used interchangeably.  The type \code{\link{GdkDrawable}}
+1. Pointers to structures of type \verb{\link{GdkPixmap}}, \verb{\link{GdkBitmap}}, and
+\verb{\link{GdkWindow}}, can often be used interchangeably.  The type \verb{\link{GdkDrawable}}
 refers generically to any of these types.
 
 }

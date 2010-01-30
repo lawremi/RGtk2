@@ -1,18 +1,18 @@
 \alias{cairoPatternCreateRgba}
 \name{cairoPatternCreateRgba}
 \title{cairoPatternCreateRgba}
-\description{Creates a new \code{\link{CairoPattern}} corresponding to a translucent color.
+\description{Creates a new \verb{\link{CairoPattern}} corresponding to a translucent color.
 The color components are floating point numbers in the range 0 to
 1.  If the values passed in are outside that range, they will be
 clamped.}
 \usage{cairoPatternCreateRgba(red, green, blue, alpha)}
 \arguments{
-\item{\code{red}}{[numeric]  red component of the color}
-\item{\code{green}}{[numeric]  green component of the color}
-\item{\code{blue}}{[numeric]  blue component of the color}
-\item{\code{alpha}}{[numeric]  alpha component of the color}
+\item{\verb{red}}{[numeric]  red component of the color}
+\item{\verb{green}}{[numeric]  green component of the color}
+\item{\verb{blue}}{[numeric]  blue component of the color}
+\item{\verb{alpha}}{[numeric]  alpha component of the color}
 }
-\value{[\code{\link{CairoPattern}}]  the newly created \code{\link{CairoPattern}} if successful, or
+\value{[\verb{\link{CairoPattern}}]  the newly created \verb{\link{CairoPattern}} if successful, or
 an error pattern in case of no memory.
 
 This function will always return a valid pointer, but if an error

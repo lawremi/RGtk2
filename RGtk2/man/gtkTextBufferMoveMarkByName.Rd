@@ -5,9 +5,9 @@
 See \code{\link{gtkTextBufferMoveMark}} for details.}
 \usage{gtkTextBufferMoveMarkByName(object, name, where)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{name}}{[character]  name of a mark}
-\item{\code{where}}{[\code{\link{GtkTextIter}}]  new location for mark}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{name}}{[character]  name of a mark}
+\item{\verb{where}}{[\verb{\link{GtkTextIter}}]  new location for mark}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

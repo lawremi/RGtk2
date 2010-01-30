@@ -6,8 +6,8 @@ up with the Pango text markup
 language.}
 \usage{gtkMessageDialogSetMarkup(object, str)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMessageDialog}}]  a \code{\link{GtkMessageDialog}}}
-\item{\code{str}}{[character]  markup string (see Pango markup format)}
+\item{\verb{object}}{[\verb{\link{GtkMessageDialog}}]  a \verb{\link{GtkMessageDialog}}}
+\item{\verb{str}}{[character]  markup string (see Pango markup format)}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

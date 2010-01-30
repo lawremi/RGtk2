@@ -10,8 +10,8 @@ not be able to exchange tabs with any other notebook.
 }
 \usage{gtkNotebookSetGroupId(object, group.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{group.id}}{[integer]  a group identificator, or -1 to unset it}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{group.id}}{[integer]  a group identificator, or -1 to unset it}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

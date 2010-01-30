@@ -7,9 +7,9 @@
 }
 \usage{gtkCTreeIsAncestor(object, node, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{child}}{[\code{\link{GtkCTreeNode}}] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{child}}{[\verb{\link{GtkCTreeNode}}] }
 }
 \value{[logical] True is \code{node} is an ancestor of \code{child}.}
 \author{Derived by RGtkGen from GTK+ documentation}

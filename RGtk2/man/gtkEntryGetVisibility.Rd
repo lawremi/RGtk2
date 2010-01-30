@@ -4,7 +4,7 @@
 \description{Retrieves whether the text in \code{entry} is visible. See
 \code{\link{gtkEntrySetVisibility}}.}
 \usage{gtkEntryGetVisibility(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}}
 \value{[logical] \code{TRUE} if the text is currently visible}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

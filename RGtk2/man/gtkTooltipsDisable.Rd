@@ -6,6 +6,6 @@ Causes all tooltips in \code{tooltips} to become inactive. Any widgets that have
 \strong{WARNING: \code{gtk_tooltips_disable} has been deprecated since version 2.12 and should not be used in newly-written code. }
 }
 \usage{gtkTooltipsDisable(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTooltips}}] a \code{\link{GtkTooltips}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTooltips}}] a \verb{\link{GtkTooltips}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

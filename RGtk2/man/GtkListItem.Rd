@@ -10,23 +10,23 @@
 \code{\link{gtkListItemDeselect}(object)}\cr
 \code{gtkListItem(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkItem
                                        +----GtkListItem}}
 \section{Interfaces}{GtkListItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkListItem}} widget is used for each item in a \code{\link{GtkList}}.
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkListItem}} widget is used for each item in a \verb{\link{GtkList}}.
   
 GtkList has has been deprecated since GTK+ 2.0 and should not be used
-in newly written code. Use \code{\link{GtkTreeView}} instead.}
-\section{Structures}{\describe{\item{\code{GtkListItem}}{
+in newly written code. Use \verb{\link{GtkTreeView}} instead.}
+\section{Structures}{\describe{\item{\verb{GtkListItem}}{
 \strong{WARNING: \code{GtkListItem} is deprecated and should not be used in newly-written code.}
-The \code{\link{GtkListItem}} struct contains private data only, and should
+The \verb{\link{GtkListItem}} struct contains private data only, and should
 only be accessed using the functions below.
 
 }}}
@@ -37,7 +37,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -48,7 +48,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
 \item{\code{position}}{[numeric] }
 \item{\code{auto.start.selection}}{[logical] }
@@ -62,7 +62,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
 \item{\code{position}}{[numeric] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -75,7 +75,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{scroll.type}}{[\code{\link{GtkScrollType}}] }
 \item{\code{position}}{[numeric] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -88,7 +88,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -99,7 +99,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -110,7 +110,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -121,7 +121,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -132,7 +132,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -143,7 +143,7 @@ only be accessed using the functions below.
 }
 
 \describe{
-\item{\code{listitem}}{[\code{\link{GtkListItem}}] the object which received the signal.}
+\item{\code{listitem}}{[\verb{\link{GtkListItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

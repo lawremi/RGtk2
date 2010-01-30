@@ -7,8 +7,8 @@ setting for the label is ignored if the label is selectable,
 wrapped, or ellipsized.}
 \usage{gtkLabelSetAngle(object, angle)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}
-\item{\code{angle}}{[numeric]  the angle that the baseline of the label makes with
+\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}
+\item{\verb{angle}}{[numeric]  the angle that the baseline of the label makes with
   the horizontal, in degrees, measured counterclockwise}
 }
 \details{  Since  2.6}

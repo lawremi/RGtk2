@@ -9,8 +9,8 @@ menu item is selected.
 }
 \usage{gtkCheckMenuItemSetShowToggle(object, always)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCheckMenuItem}}] a \code{\link{GtkCheckMenuItem}}.}
-\item{\code{always}}{[logical] boolean value indicating whether to always show the check box.}
+\item{\verb{object}}{[\verb{\link{GtkCheckMenuItem}}] a \verb{\link{GtkCheckMenuItem}}.}
+\item{\verb{always}}{[logical] boolean value indicating whether to always show the check box.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

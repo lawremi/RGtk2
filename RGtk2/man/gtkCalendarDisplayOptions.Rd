@@ -7,8 +7,8 @@ Sets display options (whether to display the heading and the month headings).
 }
 \usage{gtkCalendarDisplayOptions(object, flags)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCalendar}}]  a \code{\link{GtkCalendar}}.}
-\item{\code{flags}}{[\code{\link{GtkCalendarDisplayOptions}}]  the display options to set.}
+\item{\verb{object}}{[\verb{\link{GtkCalendar}}]  a \verb{\link{GtkCalendar}}.}
+\item{\verb{flags}}{[\code{\link{GtkCalendarDisplayOptions}}]  the display options to set.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

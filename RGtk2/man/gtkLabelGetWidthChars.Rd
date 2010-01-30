@@ -4,7 +4,7 @@
 \description{Retrieves the desired width of \code{label}, in characters. See
 \code{\link{gtkLabelSetWidthChars}}.}
 \usage{gtkLabelGetWidthChars(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkLabel}}]  a \code{\link{GtkLabel}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkLabel}}]  a \verb{\link{GtkLabel}}}}
 \details{  Since  2.6}
 \value{[integer]  the width of the label in characters.}
 \author{Derived by RGtkGen from GTK+ documentation}

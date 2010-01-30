@@ -1,10 +1,10 @@
 \alias{gtkCheckMenuItemGetDrawAsRadio}
 \name{gtkCheckMenuItemGetDrawAsRadio}
 \title{gtkCheckMenuItemGetDrawAsRadio}
-\description{Returns whether \code{check.menu.item} looks like a \code{\link{GtkRadioMenuItem}}}
+\description{Returns whether \code{check.menu.item} looks like a \verb{\link{GtkRadioMenuItem}}}
 \usage{gtkCheckMenuItemGetDrawAsRadio(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkCheckMenuItem}}]  a \code{\link{GtkCheckMenuItem}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkCheckMenuItem}}]  a \verb{\link{GtkCheckMenuItem}}}}
 \details{  Since  2.4}
-\value{[logical]  Whether \code{check.menu.item} looks like a \code{\link{GtkRadioMenuItem}}}
+\value{[logical]  Whether \code{check.menu.item} looks like a \verb{\link{GtkRadioMenuItem}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

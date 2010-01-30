@@ -6,9 +6,9 @@ Note that the table may not be modified while iterating
 over it (you can't add/remove tags).}
 \usage{gtkTextTagTableForeach(object, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextTagTable}}]  a \code{\link{GtkTextTagTable}}}
-\item{\code{func}}{[\code{\link{GtkTextTagTableForeach}}]  a function to call on each tag}
-\item{\code{data}}{[R object]  user data}
+\item{\verb{object}}{[\verb{\link{GtkTextTagTable}}]  a \verb{\link{GtkTextTagTable}}}
+\item{\verb{func}}{[\verb{\link{GtkTextTagTableForeach}}]  a function to call on each tag}
+\item{\verb{data}}{[R object]  user data}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

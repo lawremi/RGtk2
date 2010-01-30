@@ -8,11 +8,11 @@ of up/down segments and the resulting rectangle is centered
 in the original rectangle)}
 \usage{pangoRendererDrawErrorUnderline(object, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoRenderer}}]  a \code{\link{PangoRenderer}}}
-\item{\code{x}}{[integer]  X coordinate of underline, in Pango units in user coordinate system}
-\item{\code{y}}{[integer]  Y coordinate of underline, in Pango units in user coordinate system}
-\item{\code{width}}{[integer]  width of underline, in Pango units in user coordinate system}
-\item{\code{height}}{[integer]  height of underline, in Pango units in user coordinate system}
+\item{\verb{object}}{[\verb{\link{PangoRenderer}}]  a \verb{\link{PangoRenderer}}}
+\item{\verb{x}}{[integer]  X coordinate of underline, in Pango units in user coordinate system}
+\item{\verb{y}}{[integer]  Y coordinate of underline, in Pango units in user coordinate system}
+\item{\verb{width}}{[integer]  width of underline, in Pango units in user coordinate system}
+\item{\verb{height}}{[integer]  height of underline, in Pango units in user coordinate system}
 }
 \details{This should be called while \code{renderer} is already active.  Use
 \code{\link{pangoRendererActivate}} to activate a renderer.  

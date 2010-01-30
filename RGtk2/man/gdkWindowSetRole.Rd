@@ -5,8 +5,8 @@
 of this low-level function.}
 \usage{gdkWindowSetRole(object, role)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{role}}{[character]  a string indicating its role}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{role}}{[character]  a string indicating its role}
 }
 \details{The window manager and session manager use a window's role to
 distinguish it from other kinds of window in the same application.

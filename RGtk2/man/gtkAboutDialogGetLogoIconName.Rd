@@ -3,7 +3,7 @@
 \title{gtkAboutDialogGetLogoIconName}
 \description{Returns the icon name displayed as logo in the about dialog.}
 \usage{gtkAboutDialogGetLogoIconName(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAboutDialog}}]  a \code{\link{GtkAboutDialog}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAboutDialog}}]  a \verb{\link{GtkAboutDialog}}}}
 \details{  Since  2.6}
 \value{[character]  the icon name displayed as logo. If you want to keep a reference
   to it, you have to call \code{gStrdup()} on it.}

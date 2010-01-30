@@ -4,9 +4,9 @@
 \description{Activates the menu item within the menu shell.}
 \usage{gtkMenuShellActivateItem(object, menu.item, force.deactivate)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenuShell}}] a \code{\link{GtkMenuShell}}.}
-\item{\code{menu.item}}{[\code{\link{GtkWidget}}] The \code{\link{GtkMenuItem}} to activate.}
-\item{\code{force.deactivate}}{[logical] If TRUE, force the deactivation of the menu shell
+\item{\verb{object}}{[\verb{\link{GtkMenuShell}}] a \verb{\link{GtkMenuShell}}.}
+\item{\verb{menu.item}}{[\verb{\link{GtkWidget}}] The \verb{\link{GtkMenuItem}} to activate.}
+\item{\verb{force.deactivate}}{[logical] If TRUE, force the deactivation of the menu shell
 after the menu item is activated.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

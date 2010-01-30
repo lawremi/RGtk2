@@ -7,7 +7,7 @@ baseline of the top of the underline. Since most fonts have
 underline positions beneath the baseline, this value is typically
 negative.}
 \usage{pangoFontMetricsGetUnderlinePosition(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoFontMetrics}}]  a \code{\link{PangoFontMetrics}} structure}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoFontMetrics}}]  a \verb{\link{PangoFontMetrics}} structure}}
 \details{  Since  1.6}
 \value{[integer]  the suggested underline position, in Pango units.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -4,8 +4,8 @@
 \description{Sets the currently-selected font.}
 \usage{gtkFontSelectionDialogSetFontName(object, fontname)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFontSelectionDialog}}] a \code{\link{GtkFontSelectionDialog}}.}
-\item{\code{fontname}}{[character] a fontname.}
+\item{\verb{object}}{[\verb{\link{GtkFontSelectionDialog}}] a \verb{\link{GtkFontSelectionDialog}}.}
+\item{\verb{fontname}}{[character] a fontname.}
 }
 \value{[logical] \code{TRUE} if the font was found.}
 \author{Derived by RGtkGen from GTK+ documentation}

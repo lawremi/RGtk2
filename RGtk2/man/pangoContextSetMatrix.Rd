@@ -9,8 +9,8 @@ with the matrix, though they may change slightly for different
 matrices, depending on how the text is fit to the pixel grid.}
 \usage{pangoContextSetMatrix(object, matrix)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoContext}}]  a \code{\link{PangoContext}}}
-\item{\code{matrix}}{[\code{\link{PangoMatrix}}]  a \code{\link{PangoMatrix}}, or \code{NULL} to unset any existing matrix.
+\item{\verb{object}}{[\verb{\link{PangoContext}}]  a \verb{\link{PangoContext}}}
+\item{\verb{matrix}}{[\verb{\link{PangoMatrix}}]  a \verb{\link{PangoMatrix}}, or \code{NULL} to unset any existing matrix.
  (No matrix set is the same as setting the identity matrix.)}
 }
 \details{  Since  1.6}

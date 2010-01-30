@@ -7,8 +7,8 @@ also be displayed as a tearoff menu which persists until it is closed
 or reattached.}
 \usage{gtkMenuSetTearoffState(object, torn.off)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenu}}] a \code{\link{GtkMenu}}.}
-\item{\code{torn.off}}{[logical] If \code{TRUE}, menu is displayed as a tearoff menu.}
+\item{\verb{object}}{[\verb{\link{GtkMenu}}] a \verb{\link{GtkMenu}}.}
+\item{\verb{torn.off}}{[logical] If \code{TRUE}, menu is displayed as a tearoff menu.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

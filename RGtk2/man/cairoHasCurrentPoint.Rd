@@ -4,7 +4,7 @@
 \description{Returns whether a current point is defined on the current path.
 See \code{\link{cairoGetCurrentPoint}} for details on the current point.}
 \usage{cairoHasCurrentPoint(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{  Since  1.6}
 \value{[logical]  whether a current point is defined.}
 \author{Derived by RGtkGen from GTK+ documentation}

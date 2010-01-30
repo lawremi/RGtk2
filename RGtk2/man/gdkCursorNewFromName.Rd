@@ -5,11 +5,11 @@
 theme.}
 \usage{gdkCursorNewFromName(display, name)}
 \arguments{
-\item{\code{display}}{[\code{\link{GdkDisplay}}]  the \code{\link{GdkDisplay}} for which the cursor will be created}
-\item{\code{name}}{[character]  the name of the cursor}
+\item{\verb{display}}{[\verb{\link{GdkDisplay}}]  the \verb{\link{GdkDisplay}} for which the cursor will be created}
+\item{\verb{name}}{[character]  the name of the cursor}
 }
 \details{  Since  2.8}
-\value{[\code{\link{GdkCursor}}]  a new \code{\link{GdkCursor}}, or \code{NULL} if there is no cursor with 
+\value{[\verb{\link{GdkCursor}}]  a new \verb{\link{GdkCursor}}, or \code{NULL} if there is no cursor with 
   the given name }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

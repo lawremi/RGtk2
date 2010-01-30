@@ -1,13 +1,13 @@
 \alias{pangoAttrListChange}
 \name{pangoAttrListChange}
 \title{pangoAttrListChange}
-\description{Insert the given attribute into the \code{\link{PangoAttrList}}. It will
+\description{Insert the given attribute into the \verb{\link{PangoAttrList}}. It will
 replace any attributes of the same type on that segment
 and be merged with any adjoining attributes that are identical.}
 \usage{pangoAttrListChange(object, attr)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoAttrList}}]  a \code{\link{PangoAttrList}}}
-\item{\code{attr}}{[\code{\link{PangoAttribute}}]  the attribute to insert. Ownership of this value is
+\item{\verb{object}}{[\verb{\link{PangoAttrList}}]  a \verb{\link{PangoAttrList}}}
+\item{\verb{attr}}{[\verb{\link{PangoAttribute}}]  the attribute to insert. Ownership of this value is
        assumed by the list.}
 }
 \details{This function is slower than \code{\link{pangoAttrListInsert}} for

@@ -6,9 +6,9 @@ background, underline, etc.), overriding any attributes on the layouts
 renderered with this renderer.}
 \usage{gdkPangoRendererSetOverrideColor(object, part, color = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkPangoRenderer}}]  a \code{\link{GdkPangoRenderer}}}
-\item{\code{part}}{[\code{\link{PangoRenderPart}}]  the part to render to set the color of}
-\item{\code{color}}{[\code{\link{GdkColor}}]  the color to use, or \code{NULL} to unset a previously
+\item{\verb{object}}{[\verb{\link{GdkPangoRenderer}}]  a \verb{\link{GdkPangoRenderer}}}
+\item{\verb{part}}{[\code{\link{PangoRenderPart}}]  the part to render to set the color of}
+\item{\verb{color}}{[\verb{\link{GdkColor}}]  the color to use, or \code{NULL} to unset a previously
         set override color.}
 }
 \details{  Since  2.6}

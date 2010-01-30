@@ -11,27 +11,27 @@
 \code{\link{gtkPlugGetId}(object)}\cr
 \code{gtkPlug(socket.id, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkWindow}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkWindow
                                        +----GtkPlug}}
 \section{Interfaces}{GtkPlug implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{Together with \code{\link{GtkSocket}}, \code{\link{GtkPlug}} provides the ability
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{Together with \verb{\link{GtkSocket}}, \verb{\link{GtkPlug}} provides the ability
 to embed widgets from one process into another process
 in a fashion that is transparent to the user. One
-process creates a \code{\link{GtkSocket}} widget and, passes the
+process creates a \verb{\link{GtkSocket}} widget and, passes the
 ID of that widgets window to the other process, 
-which then creates a \code{\link{GtkPlug}} with that window ID.
-Any widgets contained in the \code{\link{GtkPlug}} then will appear
+which then creates a \verb{\link{GtkPlug}} with that window ID.
+Any widgets contained in the \verb{\link{GtkPlug}} then will appear
 inside the first applications window.
-  \strong{PLEASE NOTE:} The \code{\link{GtkPlug}} and \code{\link{GtkSocket}} widgets are currently not available 
+  \strong{PLEASE NOTE:} The \verb{\link{GtkPlug}} and \verb{\link{GtkSocket}} widgets are currently not available 
 on all platforms supported by GTK+.}
-\section{Structures}{\describe{\item{\code{GtkPlug}}{
+\section{Structures}{\describe{\item{\verb{GtkPlug}}{
 \emph{undocumented
 }
 
@@ -42,13 +42,13 @@ Gets emitted when the plug becomes embedded in a socket
 and when the embedding ends.  
 
 \describe{
-\item{\code{plug}}{[\code{\link{GtkPlug}}]  the object on which the signal was emitted}
+\item{\code{plug}}{[\verb{\link{GtkPlug}}]  the object on which the signal was emitted}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{embedded} [logical : Read]}{
+\section{Properties}{\describe{\item{\verb{embedded} [logical : Read]}{
 
 \code{TRUE} if the plug is embedded in a socket.  
 

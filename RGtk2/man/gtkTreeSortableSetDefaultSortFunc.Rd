@@ -7,13 +7,13 @@ If the current sort column id of \code{sortable} is
 this function.}
 \usage{gtkTreeSortableSetDefaultSortFunc(object, sort.func, user.data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeSortable}}]  A \code{\link{GtkTreeSortable}}}
-\item{\code{sort.func}}{[\code{\link{GtkTreeIterCompareFunc}}]  The comparison function}
-\item{\code{user.data}}{[R object]  User data to pass to \code{sort.func}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkTreeSortable}}]  A \verb{\link{GtkTreeSortable}}}
+\item{\verb{sort.func}}{[\verb{\link{GtkTreeIterCompareFunc}}]  The comparison function}
+\item{\verb{user.data}}{[R object]  User data to pass to \code{sort.func}, or \code{NULL}}
 }
 \details{If \code{sort.func} is \code{NULL}, then there will be no default comparison function.
 This means that once the model  has been sorted, it can't go back to the
 default state. In this case, when the current sort column id of \code{sortable} is
-GTK\_TREE\_SORTABLE\_DEFAULT\_SORT\_COLUMN\_ID, the model will be unsorted.  }
+GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID, the model will be unsorted.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

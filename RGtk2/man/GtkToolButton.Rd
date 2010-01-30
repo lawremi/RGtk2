@@ -20,38 +20,38 @@
 \code{\link{gtkToolButtonGetLabelWidget}(object)}\cr
 \code{gtkToolButton(icon.widget = NULL, label = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkToolItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkToolItem
                                        +----GtkToolButton
-                                             +----\link{GtkMenuToolButton}
-                                             +----\link{GtkToggleToolButton}}}
+                                             +----GtkMenuToolButton
+                                             +----GtkToggleToolButton}}
 \section{Interfaces}{GtkToolButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkToolButton}}s are \code{GtkToolItems} containing buttons.
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkToolButton}}s are \verb{GtkToolItems} containing buttons.
   
-Use \code{\link{gtkToolButtonNew}} to create a new \code{\link{GtkToolButton}}. Use
-\code{gtkToolButtonNewWithStock()} to create a \code{\link{GtkToolButton}}
+Use \code{\link{gtkToolButtonNew}} to create a new \verb{\link{GtkToolButton}}. Use
+\code{gtkToolButtonNewWithStock()} to create a \verb{\link{GtkToolButton}}
 containing a stock item.
   
-The label of a \code{\link{GtkToolButton}} is determined by the properties
-"label\_widget", "label", and "stock\_id". If "label\_widget" is
+The label of a \verb{\link{GtkToolButton}} is determined by the properties
+"label_widget", "label", and "stock_id". If "label_widget" is
 non-\code{NULL}, then that widget is used as the label. Otherwise, if
 "label" is non-\code{NULL}, that string is used as the label. Otherwise, if
-"stock\_id" is non-\code{NULL}, the label is determined by the stock
+"stock_id" is non-\code{NULL}, the label is determined by the stock
 item. Otherwise, the button does not have a label.
   
-The icon of a \code{\link{GtkToolButton}} is determined by the properties
-"icon\_widget" and "stock\_id". If "icon\_widget" is non-\code{NULL}, then
-that widget is used as the icon. Otherwise, if "stock\_id" is
+The icon of a \verb{\link{GtkToolButton}} is determined by the properties
+"icon_widget" and "stock_id". If "icon_widget" is non-\code{NULL}, then
+that widget is used as the icon. Otherwise, if "stock_id" is
 non-\code{NULL}, the icon is determined by the stock item. Otherwise,
 the button does not have a label.}
-\section{Structures}{\describe{\item{\code{GtkToolButton}}{
-The \code{\link{GtkToolButton}} struct contains only private. It should only be
+\section{Structures}{\describe{\item{\verb{GtkToolButton}}{
+The \verb{\link{GtkToolButton}} struct contains only private. It should only be
 accessed with the function described below.
 
 }}}
@@ -61,49 +61,49 @@ This signal is emitted when the tool button is clicked with the mouse
 or activated with the keyboard.  
 
 \describe{
-\item{\code{toolbutton}}{[\code{\link{GtkToolButton}}]  the object that emitted the signal}
+\item{\code{toolbutton}}{[\verb{\link{GtkToolButton}}]  the object that emitted the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{icon-name} [character : Read / Write]}{
+\item{\verb{icon-name} [character : *                : Read / Write]}{
 
 The name of the themed icon displayed on the item.
 This property only has an effect if not overridden by "label", 
-"icon\_widget" or "stock\_id" properties.  
+"icon_widget" or "stock_id" properties.  
 
   Default value: NULL  Since  2.8 
 
 }
-\item{\code{icon-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{icon-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 Icon widget to display in the item.
 
 }
-\item{\code{label} [character : Read / Write]}{
+\item{\verb{label} [character : *                : Read / Write]}{
 
 Text to show in the item.  Default value: NULL
 
 }
-\item{\code{label-widget} [\code{\link{GtkWidget}} : Read / Write]}{
+\item{\verb{label-widget} [\verb{\link{GtkWidget}} : *            : Read / Write]}{
 
 Widget to use as the item label.
 
 }
-\item{\code{stock-id} [character : Read / Write]}{
+\item{\verb{stock-id} [character : *                : Read / Write]}{
 
 The stock icon displayed on the item.  Default value: NULL
 
 }
-\item{\code{use-underline} [logical : Read / Write]}{
+\item{\verb{use-underline} [logical : Read / Write]}{
 
 If set, an underline in the label property indicates that the next character should be used for the mnemonic accelerator key in the overflow menu.  Default value: FALSE
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{icon-spacing} [integer : Read / Write]}{
+\section{Style Properties}{\describe{\item{\verb{icon-spacing} [integer : Read / Write]}{
 
 Spacing in pixels between the icon and label.  Allowed values: >= 0  Default value: 0
 

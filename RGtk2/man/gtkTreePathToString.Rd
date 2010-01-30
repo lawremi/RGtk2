@@ -4,7 +4,7 @@
 \description{Generates a string representation of the path.  This string is a ':'
 separated list of numbers.  For example, "4:10:0:3" would be an acceptable return value for this string.}
 \usage{gtkTreePathToString(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}}}
 \value{[character]  A newly-allocated string.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

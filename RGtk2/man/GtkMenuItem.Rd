@@ -20,27 +20,27 @@
 \code{\link{gtkMenuItemGetSubmenu}(object)}\cr
 \code{gtkMenuItem(label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkItem
                                        +----GtkMenuItem
-                                             +----\link{GtkCheckMenuItem}
-                                             +----\link{GtkImageMenuItem}
-                                             +----\link{GtkSeparatorMenuItem}
-                                             +----\link{GtkTearoffMenuItem}}}
+                                             +----GtkCheckMenuItem
+                                             +----GtkImageMenuItem
+                                             +----GtkSeparatorMenuItem
+                                             +----GtkTearoffMenuItem}}
 \section{Interfaces}{GtkMenuItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkMenuItem}} widget and the derived widgets are the only valid
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkMenuItem}} widget and the derived widgets are the only valid
 childs for menus. Their function is to correctly handle highlighting,
 alignment, events and submenus.
   
-As it derives from \code{\link{GtkBin}} it can hold any valid child widget, altough
+As it derives from \verb{\link{GtkBin}} it can hold any valid child widget, altough
 only a few are really useful.}
-\section{Structures}{\describe{\item{\code{GtkMenuItem}}{
+\section{Structures}{\describe{\item{\verb{GtkMenuItem}}{
 \emph{undocumented
 }
 
@@ -51,7 +51,7 @@ only a few are really useful.}
 Emitted when the item is activated.
 
 \describe{
-\item{\code{menuitem}}{[\code{\link{GtkMenuItem}}] the object which received the signal.}
+\item{\code{menuitem}}{[\verb{\link{GtkMenuItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -62,7 +62,7 @@ Emitted when the item is activated, but also if the menu item has a
 submenu. For normal applications, the relevant signal is "activate".
 
 \describe{
-\item{\code{menuitem}}{[\code{\link{GtkMenuItem}}] the object which received the signal.}
+\item{\code{menuitem}}{[\verb{\link{GtkMenuItem}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -73,7 +73,7 @@ submenu. For normal applications, the relevant signal is "activate".
 }
 
 \describe{
-\item{\code{menuitem}}{[\code{\link{GtkMenuItem}}] the object which received the signal.}
+\item{\code{menuitem}}{[\verb{\link{GtkMenuItem}}] the object which received the signal.}
 \item{\code{arg1}}{[integer] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -85,7 +85,7 @@ submenu. For normal applications, the relevant signal is "activate".
 }
 
 \describe{
-\item{\code{menuitem}}{[\code{\link{GtkMenuItem}}] the object which received the signal.}
+\item{\code{menuitem}}{[\verb{\link{GtkMenuItem}}] the object which received the signal.}
 \item{\code{arg1}}{[R object] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -93,7 +93,7 @@ submenu. For normal applications, the relevant signal is "activate".
 
 }
 }}
-\section{Properties}{\describe{\item{\code{submenu} [\code{\link{GtkMenu}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{submenu} [\verb{\link{GtkMenu}} : *              : Read / Write]}{
 
 The submenu attached to the menu item, or NULL if it has none.  
 
@@ -101,22 +101,22 @@ The submenu attached to the menu item, or NULL if it has none.
 
 }}}
 \section{Style Properties}{\describe{
-\item{\code{arrow-spacing} [integer : Read]}{
+\item{\verb{arrow-spacing} [integer : Read]}{
 
 Space between label and arrow.  Allowed values: >= 0  Default value: 10
 
 }
-\item{\code{horizontal-padding} [integer : Read]}{
+\item{\verb{horizontal-padding} [integer : Read]}{
 
 Padding to left and right of the menu item.  Allowed values: >= 0  Default value: 3
 
 }
-\item{\code{selected-shadow-type} [\code{\link{GtkShadowType}} : Read]}{
+\item{\verb{selected-shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Shadow type when item is selected.  Default value: GTK\_SHADOW\_NONE
+Shadow type when item is selected.  Default value: GTK_SHADOW_NONE
 
 }
-\item{\code{toggle-spacing} [integer : Read]}{
+\item{\verb{toggle-spacing} [integer : Read]}{
 
 Space between icon and label.  Allowed values: >= 0  Default value: 5
 

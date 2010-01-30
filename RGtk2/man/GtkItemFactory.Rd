@@ -35,23 +35,23 @@
 \code{\link{gtkItemFactorySetTranslateFunc}(object, func, data = NULL)}\cr
 \code{gtkItemFactory(container.type, path, accel.group = NULL)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
+         +----GtkObject
                +----GtkItemFactory}}
-\section{Detailed Description}{As of GTK+ 2.4, \code{\link{GtkItemFactory}} has been deprecated in favour of \code{\link{GtkUIManager}}.}
+\section{Detailed Description}{As of GTK+ 2.4, \verb{\link{GtkItemFactory}} has been deprecated in favour of \verb{\link{GtkUIManager}}.}
 \section{Structures}{\describe{
-\item{\code{GtkItemFactory}}{
+\item{\verb{GtkItemFactory}}{
 \strong{WARNING: \code{GtkItemFactory} is deprecated and should not be used in newly-written code.}
 \emph{undocumented
 }
 
 }
-\item{\code{GtkItemFactoryEntry}}{
+\item{\verb{GtkItemFactoryEntry}}{
 \strong{WARNING: \code{GtkItemFactoryEntry} is deprecated and should not be used in newly-written code.}
 \emph{undocumented
 }
-\strong{\code{GtkItemFactoryEntry} is a \link{transparent-type}.}
+\strong{\verb{GtkItemFactoryEntry} is a \link{transparent-type}.}
 
 }
 }}
@@ -69,13 +69,13 @@
 
 }
 \item{\code{GtkTranslateFunc(path, func.data)}}{
-The function used to translate messages in e.g. \code{\link{GtkIconFactory}}
-and \code{\link{GtkActionGroup}}. 
+The function used to translate messages in e.g. \verb{\link{GtkIconFactory}}
+and \verb{\link{GtkActionGroup}}. 
 
 \describe{
-\item{\code{path}}{[character] The id of the message. In \code{\link{GtkItemFactory}} this will be a path
-  from a \code{\link{GtkItemFactoryEntry}}, in \code{\link{GtkActionGroup}}, it will be a label
-  or tooltip from a \code{\link{GtkActionEntry}}.}
+\item{\code{path}}{[character] The id of the message. In \verb{\link{GtkItemFactory}} this will be a path
+  from a \verb{\link{GtkItemFactoryEntry}}, in \verb{\link{GtkActionGroup}}, it will be a label
+  or tooltip from a \verb{\link{GtkActionEntry}}.}
 \item{\code{func.data}}{[R object] user data passed in when registering the function}
 }
 
@@ -97,7 +97,7 @@ and \code{\link{GtkActionGroup}}.
 \describe{
 \item{\code{callback.data}}{[R object] }
 \item{\code{callback.action}}{[numeric] }
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
 }
 
 
@@ -107,7 +107,7 @@ and \code{\link{GtkActionGroup}}.
 }
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
+\item{\code{widget}}{[\verb{\link{GtkWidget}}] }
 \item{\code{callback.data}}{[R object] }
 \item{\code{callback.action}}{[numeric] }
 }

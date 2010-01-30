@@ -7,9 +7,9 @@ force a widget to be either larger or smaller than it normally
 would be.}
 \usage{gtkWidgetSetSizeRequest(object, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{width}}{[integer]  width \code{widget} should request, or -1 to unset}
-\item{\code{height}}{[integer]  height \code{widget} should request, or -1 to unset}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{width}}{[integer]  width \code{widget} should request, or -1 to unset}
+\item{\verb{height}}{[integer]  height \code{widget} should request, or -1 to unset}
 }
 \details{In most cases, \code{\link{gtkWindowSetDefaultSize}} is a better choice for
 toplevel windows than this function; setting the default size will

@@ -9,8 +9,8 @@ visual, removing duplicates.}
 \details{.  }
 \value{
 A list containing the following elements:
-\item{\code{visual.types}}{[\code{\link{GdkVisualType}}]  return location for the available visual types}
-\item{\code{count}}{[integer]  return location for the number of available visual types}
+\item{\verb{visual.types}}{[\code{\link{GdkVisualType}}]  return location for the available visual types}
+\item{\verb{count}}{[integer]  return location for the number of available visual types}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

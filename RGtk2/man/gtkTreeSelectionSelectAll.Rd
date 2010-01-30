@@ -1,9 +1,9 @@
 \alias{gtkTreeSelectionSelectAll}
 \name{gtkTreeSelectionSelectAll}
 \title{gtkTreeSelectionSelectAll}
-\description{Selects all the nodes. \code{selection} must be set to \code{GTK_SELECTION_MULTIPLE}
+\description{Selects all the nodes. \code{selection} must be set to \verb{GTK_SELECTION_MULTIPLE}
 mode.}
 \usage{gtkTreeSelectionSelectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

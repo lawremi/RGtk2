@@ -7,12 +7,12 @@ FIXME
 }
 \usage{gtkCTreeExportToGnode(object, parent, sibling, node, func, data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{parent}}{[GNode] }
-\item{\code{sibling}}{[GNode] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] }
-\item{\code{func}}{[\code{\link{GtkCTreeGNodeFunc}}] }
-\item{\code{data}}{[R object] }
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{parent}}{[GNode] }
+\item{\verb{sibling}}{[GNode] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] }
+\item{\verb{func}}{[\verb{\link{GtkCTreeGNodeFunc}}] }
+\item{\verb{data}}{[R object] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

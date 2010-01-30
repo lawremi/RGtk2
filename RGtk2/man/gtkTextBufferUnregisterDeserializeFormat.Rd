@@ -6,8 +6,8 @@ registered using \code{\link{gtkTextBufferRegisterDeserializeFormat}} or
 \code{\link{gtkTextBufferRegisterDeserializeTagset}}.}
 \usage{gtkTextBufferUnregisterDeserializeFormat(object, format)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{format}}{[\code{\link{GdkAtom}}]  a \code{\link{GdkAtom}} representing a registered rich text format.}
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{format}}{[\verb{\link{GdkAtom}}]  a \verb{\link{GdkAtom}} representing a registered rich text format.}
 }
 \details{  Since  2.10}
 \author{Derived by RGtkGen from GTK+ documentation}

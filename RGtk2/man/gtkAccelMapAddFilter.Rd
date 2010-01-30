@@ -3,7 +3,7 @@
 \title{gtkAccelMapAddFilter}
 \description{Adds a filter to the global list of accel path filters.}
 \usage{gtkAccelMapAddFilter(filter.pattern)}
-\arguments{\item{\code{filter.pattern}}{[character]  a pattern (see \code{GPatternSpec})}}
+\arguments{\item{\verb{filter.pattern}}{[character]  a pattern (see \verb{GPatternSpec})}}
 \details{Accel map entries whose accel path matches one of the filters
 are skipped by \code{\link{gtkAccelMapForeach}}.
   

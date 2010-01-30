@@ -8,8 +8,8 @@ mode.  Larger numbers make the visible block smaller.
 }
 \usage{gtkProgressBarSetActivityBlocks(object, blocks)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}] a \code{\link{GtkProgressBar}}.}
-\item{\code{blocks}}{[numeric] number of blocks which can fit within the progress bar area.}
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}] a \verb{\link{GtkProgressBar}}.}
+\item{\verb{blocks}}{[numeric] number of blocks which can fit within the progress bar area.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

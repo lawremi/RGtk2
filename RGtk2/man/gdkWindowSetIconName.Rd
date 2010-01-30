@@ -7,8 +7,8 @@ idea from a user interface standpoint. But you can set such a name
 with this function, if you like.}
 \usage{gdkWindowSetIconName(object, name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{name}}{[character]  name of window while iconified (minimized)}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{name}}{[character]  name of window while iconified (minimized)}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 GtkWidget:has-tooltip for more information.}
 \usage{gtkWidgetSetHasTooltip(object, has.tooltip)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{has.tooltip}}{[logical]  whether or not \code{widget} has a tooltip.}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{has.tooltip}}{[logical]  whether or not \code{widget} has a tooltip.}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

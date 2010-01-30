@@ -3,6 +3,6 @@
 \title{gtkMenuPopdown}
 \description{Removes the menu from the screen.}
 \usage{gtkMenuPopdown(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkMenu}}] a \code{\link{GtkMenu}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkMenu}}] a \verb{\link{GtkMenu}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

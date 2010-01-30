@@ -6,7 +6,7 @@ This function only returns children created via GDK,
 so for example it's useless when used with the root window;
 it only returns windows an application created itself.}
 \usage{gdkWindowGetChildren(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
 \details{, but the elements in the
 list need not be.  }
 \value{[list]  list of child windows inside \code{window}}

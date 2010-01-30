@@ -8,13 +8,13 @@ event, you have to convert those to buffer coordinates with
 \code{\link{gtkTextViewWindowToBufferCoords}}.}
 \usage{gtkTextViewGetIterAtLocation(object, x, y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{x}}{[integer]  x position, in buffer coordinates}
-\item{\code{y}}{[integer]  y position, in buffer coordinates}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{x}}{[integer]  x position, in buffer coordinates}
+\item{\verb{y}}{[integer]  y position, in buffer coordinates}
 }
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

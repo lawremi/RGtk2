@@ -3,7 +3,7 @@
 \title{pangoLayoutIsEllipsized}
 \description{Queries whether the layout had to ellipsize any paragraphs.}
 \usage{pangoLayoutIsEllipsized(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}}
 \details{This returns \code{TRUE} if the ellipsization mode for \code{layout}
 is not \code{PANGO_ELLIPSIZE_NONE}, a positive width is set on \code{layout},
 and there are paragraphs exceeding that width that have to be

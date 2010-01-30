@@ -5,16 +5,16 @@
 function, and likely the only one you will need to use.}
 \usage{gdkDrawRgbImage(object, gc, x, y, width, height, dith, rgb.buf, rowstride)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDrawable}}] The \code{\link{GdkDrawable}} to draw in (usually a \code{\link{GdkWindow}}).}
-\item{\code{gc}}{[\code{\link{GdkGC}}] The graphics context (all GDK drawing operations require one; its
+\item{\verb{object}}{[\verb{\link{GdkDrawable}}] The \verb{\link{GdkDrawable}} to draw in (usually a \verb{\link{GdkWindow}}).}
+\item{\verb{gc}}{[\verb{\link{GdkGC}}] The graphics context (all GDK drawing operations require one; its
 contents are ignored).}
-\item{\code{x}}{[integer] The x coordinate of the top-left corner in the drawable.}
-\item{\code{y}}{[integer] The y coordinate of the top-left corner in the drawable.}
-\item{\code{width}}{[integer] The width of the rectangle to be drawn.}
-\item{\code{height}}{[integer] The height of the rectangle to be drawn.}
-\item{\code{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
-\item{\code{rgb.buf}}{[raw] The pixel data, represented as packed 24-bit data.}
-\item{\code{rowstride}}{[integer] The number of bytes from the start of one row in \code{rgb.buf} to the
+\item{\verb{x}}{[integer] The x coordinate of the top-left corner in the drawable.}
+\item{\verb{y}}{[integer] The y coordinate of the top-left corner in the drawable.}
+\item{\verb{width}}{[integer] The width of the rectangle to be drawn.}
+\item{\verb{height}}{[integer] The height of the rectangle to be drawn.}
+\item{\verb{dith}}{[\code{\link{GdkRgbDither}}] A \code{\link{GdkRgbDither}} value, selecting the desired dither mode.}
+\item{\verb{rgb.buf}}{[raw] The pixel data, represented as packed 24-bit data.}
+\item{\verb{rowstride}}{[integer] The number of bytes from the start of one row in \code{rgb.buf} to the
 start of the next.}
 }
 \details{The \code{rowstride} parameter allows for lines to be aligned more flexibly.

@@ -7,32 +7,32 @@
 \code{\link{gtkCellRendererProgressNew}()}\cr
 \code{gtkCellRendererProgress()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkCellRenderer}
+         +----GtkObject
+               +----GtkCellRenderer
                      +----GtkCellRendererProgress}}
-\section{Detailed Description}{\code{\link{GtkCellRendererProgress}} renders a numeric value as a progress par in a cell.
+\section{Detailed Description}{\verb{\link{GtkCellRendererProgress}} renders a numeric value as a progress par in a cell.
 Additionally, it can display a text on top of the progress bar.
   
-The \code{\link{GtkCellRendererProgress}} cell renderer was added in GTK+ 2.6.}
-\section{Structures}{\describe{\item{\code{GtkCellRendererProgress}}{
+The \verb{\link{GtkCellRendererProgress}} cell renderer was added in GTK+ 2.6.}
+\section{Structures}{\describe{\item{\verb{GtkCellRendererProgress}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkCellRendererProgress} is the equivalent of \code{\link{gtkCellRendererProgressNew}}.}
 \section{Properties}{\describe{
-\item{\code{orientation} [\code{\link{GtkProgressBarOrientation}} : Read / Write]}{
+\item{\verb{orientation} [\code{\link{GtkProgressBarOrientation}} : Read / Write]}{
 
 The "orientation" property controls the direction and growth
 direction of the progress bar (left-to-right, right-to-left,
 top-to-bottom or bottom-to-top).  
 
-  Default value: GTK\_PROGRESS\_LEFT\_TO\_RIGHT  Since  2.12
+  Default value: GTK_PROGRESS_LEFT_TO_RIGHT  Since  2.12
 
 }
-\item{\code{pulse} [integer : Read / Write]}{
+\item{\verb{pulse} [integer : Read / Write]}{
 
 Setting this to a non-negative value causes the cell renderer to
 enter "activity mode", where a block bounces back and forth to 
@@ -48,7 +48,7 @@ to zero. To indicate completion, set the property to \code{G_MAXINT}.
   Allowed values: >= -1  Default value: -1  Since  2.12
 
 }
-\item{\code{text} [character : Read / Write]}{
+\item{\verb{text} [character : *                : Read / Write]}{
 
 The "text" property determines the label which will be drawn
 over the progress bar. Setting this property to \code{NULL} causes the default 
@@ -58,7 +58,7 @@ no label to be displayed.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{text-xalign} [numeric : Read / Write]}{
+\item{\verb{text-xalign} [numeric : Read / Write]}{
 
 The "text-xalign" property controls the horizontal alignment of the
 text in the progress bar.  Valid values range from 0 (left) to 1
@@ -67,7 +67,7 @@ text in the progress bar.  Valid values range from 0 (left) to 1
   Allowed values: [0,1]  Default value: 0.5  Since  2.12
 
 }
-\item{\code{text-yalign} [numeric : Read / Write]}{
+\item{\verb{text-yalign} [numeric : Read / Write]}{
 
 The "text-yalign" property controls the vertical alignment of the
 text in the progress bar.  Valid values range from 0 (top) to 1
@@ -76,7 +76,7 @@ text in the progress bar.  Valid values range from 0 (top) to 1
   Allowed values: [0,1]  Default value: 0.5  Since  2.12
 
 }
-\item{\code{value} [integer : Read / Write]}{
+\item{\verb{value} [integer : Read / Write]}{
 
 The "value" property determines the percentage to which the
 progress bar will be "filled in".  

@@ -11,8 +11,8 @@ case, where GDK delivers them in an idle handler). Occasionally
 this is useful to produce nicer scrolling behavior, for example.}
 \usage{gdkWindowProcessUpdates(object, update.children)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{update.children}}{[logical]  whether to also process updates for child windows}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{update.children}}{[logical]  whether to also process updates for child windows}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

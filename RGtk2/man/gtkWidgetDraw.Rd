@@ -14,8 +14,8 @@ a better choice if you want to draw a region of a widget.
 }
 \usage{gtkWidgetDraw(object, area)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{area}}{[\code{\link{GdkRectangle}}]  area to draw}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{area}}{[\verb{\link{GdkRectangle}}]  area to draw}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

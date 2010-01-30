@@ -15,9 +15,9 @@ users.
   equivalent to calling \code{\link{gtkRecentManagerGetDefault}}.}
 }
 \usage{gtkRecentManagerGetForScreen(screen)}
-\arguments{\item{\code{screen}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}}
+\arguments{\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
 \details{  Since  2.10}
-\value{[\code{\link{GtkRecentManager}}]  A unique \code{\link{GtkRecentManager}} associated with the given
+\value{[\verb{\link{GtkRecentManager}}]  A unique \verb{\link{GtkRecentManager}} associated with the given
   screen. This recent manager is associated to the with the screen
   and can be used as long as the screen is open. Do not ref or
   unref it.}

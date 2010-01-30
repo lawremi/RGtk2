@@ -6,12 +6,12 @@ If \code{canceled} is \code{TRUE}, the cell renderer will emit the
 \code{\link{gtkCellRendererEditingCanceled}} signal. }
 \usage{gtkCellRendererStopEditing(object, canceled)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}}
-\item{\code{canceled}}{[logical] \code{TRUE} if the editing has been canceled}
+\item{\verb{object}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}}}
+\item{\verb{canceled}}{[logical] \code{TRUE} if the editing has been canceled}
 }
 \details{This function should be called by cell renderer implementations 
 in response to the \code{\link{gtkCellEditableEditingDone}} signal of 
-\code{\link{GtkCellEditable}}.  
+\verb{\link{GtkCellEditable}}.  
 
   Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -8,14 +8,14 @@ change the focus tab order. So you may want to investigate those
 functions instead.}
 \usage{gtkWidgetChildFocus(object, direction)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{direction}}{[\code{\link{GtkDirectionType}}]  direction of focus movement}
 }
 \details{\code{\link{gtkWidgetChildFocus}} is called by containers as the user moves
 around the window using keyboard shortcuts. \code{direction} indicates
 what kind of motion is taking place (up, down, left, right, tab
 forward, tab backward). \code{\link{gtkWidgetChildFocus}} emits the
-\code{"focus"}" signal; widgets override the default handler
+\verb{"focus"}" signal; widgets override the default handler
 for this signal in order to implement appropriate focus behavior.
   
 The default ::focus handler for a widget should return \code{TRUE} if

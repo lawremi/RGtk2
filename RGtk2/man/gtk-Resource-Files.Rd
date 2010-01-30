@@ -34,7 +34,7 @@
 \code{\link{gtkRcStyleCopy}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkRcStyle}}
 \section{Detailed Description}{GTK+ provides resource file mechanism for configuring
 various aspects of the operation of a GTK+ program
@@ -55,18 +55,18 @@ The set of these \dfn{default} files
 can be retrieved with \code{\link{gtkRcGetDefaultFiles}}
 and modified with \code{\link{gtkRcAddDefaultFile}} and
 \code{\link{gtkRcSetDefaultFiles}}.
-Additionally, the \env{GTK2\_RC\_FILES} environment variable
-can be set to a \code{G_SEARCHPATH_SEPARATOR_S-separated} list of files
+Additionally, the \env{GTK2_RC_FILES} environment variable
+can be set to a \verb{G_SEARCHPATH_SEPARATOR_S-separated} list of files
 in order to overwrite the set of default files at runtime.
   
 For each RC file, in addition to the file itself, GTK+ will look for 
 a locale-specific file that will be parsed after the main file. 
 For instance, if \env{LANG} is set to \code{ja_JP.ujis},
 when loading the default file \file{~/.gtkrc} then GTK+ looks 
-for \file{~/.gtkrc.ja\_JP} and \file{~/.gtkrc.ja}, 
+for \file{~/.gtkrc.ja_JP} and \file{~/.gtkrc.ja}, 
 and parses the first of those that exists.}
 \section{Optimizing RC Style Matches}{  
-Everytime a widget is created and added to the layout hierarchy of a \code{\link{GtkWindow}}
+Everytime a widget is created and added to the layout hierarchy of a \verb{\link{GtkWindow}}
 ("anchored" to be exact), a list of matching RC styles out of all RC styles read
 in so far is composed.
 For this, every RC style is matched against the widgets class path,
@@ -111,117 +111,117 @@ matches:
   
 \item   When using wildcards, use of \code{"?"} should be preferred
   over \code{"*"}. This can reduce the matching complexity from
-  O(n\^2) to O(n). For example \code{"Gtk*Box"} can be turned into
-  \code{"Gtk?Box"} and will still match \code{\link{GtkHBox}} and \code{\link{GtkVBox}}.
+  O(n^2) to O(n). For example \code{"Gtk*Box"} can be turned into
+  \code{"Gtk?Box"} and will still match \verb{\link{GtkHBox}} and \verb{\link{GtkVBox}}.
   
 \item   The use of \code{"*"} wildcards should be restricted as much
   as possible, because matching \code{"A*B*C*RestString"} can
-  result in matching complexities of O(n\^2) worst case.
+  result in matching complexities of O(n^2) worst case.
   
 }}
-\section{Structures}{\describe{\item{\code{GtkRcStyle}}{
-The \code{\link{GtkRcStyle}} structure is used to represent a set
+\section{Structures}{\describe{\item{\verb{GtkRcStyle}}{
+The \verb{\link{GtkRcStyle}} structure is used to represent a set
 of information about the appearance of a widget.
 This can later be composited together with other
-\code{\link{GtkRcStyle}} structures to form a \code{\link{GtkStyle}}.
+\verb{\link{GtkRcStyle}} structures to form a \verb{\link{GtkStyle}}.
 
 }}}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkRcFlags}}{
+\item{\verb{GtkRcFlags}}{
 The \code{\link{GtkRcFlags}} enumeration is used as a bitmask
-to specify which fields of a \code{\link{GtkRcStyle}} have been
+to specify which fields of a \verb{\link{GtkRcStyle}} have been
 set for each state.
 
 \describe{
-\item{\code{fg}}{If present, the foreground color has been set for this state.}
-\item{\code{bg}}{If present, the background color has been set for this state.}
-\item{\code{text}}{If present, the text color has been set for this state.}
-\item{\code{base}}{If present, the base color has been set for this state.}
+\item{\verb{fg}}{If present, the foreground color has been set for this state.}
+\item{\verb{bg}}{If present, the background color has been set for this state.}
+\item{\verb{text}}{If present, the text color has been set for this state.}
+\item{\verb{base}}{If present, the base color has been set for this state.}
 }
 
 }
-\item{\code{GtkRcTokenType}}{
+\item{\verb{GtkRcTokenType}}{
 The \code{\link{GtkRcTokenType}} enumeration represents the tokens
 in the RC file. It is exposed so that theme engines
 can reuse these tokens when parsing the theme-engine
 specific portions of a RC file.
 
 \describe{
-\item{\code{invalid}}{\emph{undocumented
+\item{\verb{invalid}}{\emph{undocumented
 }}
-\item{\code{include}}{\emph{undocumented
+\item{\verb{include}}{\emph{undocumented
 }}
-\item{\code{normal}}{\emph{undocumented
+\item{\verb{normal}}{\emph{undocumented
 }}
-\item{\code{active}}{\emph{undocumented
+\item{\verb{active}}{\emph{undocumented
 }}
-\item{\code{prelight}}{\emph{undocumented
+\item{\verb{prelight}}{\emph{undocumented
 }}
-\item{\code{selected}}{\emph{undocumented
+\item{\verb{selected}}{\emph{undocumented
 }}
-\item{\code{insensitive}}{\emph{undocumented
+\item{\verb{insensitive}}{\emph{undocumented
 }}
-\item{\code{fg}}{\emph{undocumented
+\item{\verb{fg}}{\emph{undocumented
 }}
-\item{\code{bg}}{\emph{undocumented
+\item{\verb{bg}}{\emph{undocumented
 }}
-\item{\code{text}}{\emph{undocumented
+\item{\verb{text}}{\emph{undocumented
 }}
-\item{\code{base}}{\emph{undocumented
+\item{\verb{base}}{\emph{undocumented
 }}
-\item{\code{xthickness}}{\emph{undocumented
+\item{\verb{xthickness}}{\emph{undocumented
 }}
-\item{\code{ythickness}}{\emph{undocumented
+\item{\verb{ythickness}}{\emph{undocumented
 }}
-\item{\code{font}}{\emph{undocumented
+\item{\verb{font}}{\emph{undocumented
 }}
-\item{\code{fontset}}{\emph{undocumented
+\item{\verb{fontset}}{\emph{undocumented
 }}
-\item{\code{font-name}}{\emph{undocumented
+\item{\verb{font-name}}{\emph{undocumented
 }}
-\item{\code{bg-pixmap}}{\emph{undocumented
+\item{\verb{bg-pixmap}}{\emph{undocumented
 }}
-\item{\code{pixmap-path}}{\emph{undocumented
+\item{\verb{pixmap-path}}{\emph{undocumented
 }}
-\item{\code{style}}{\emph{undocumented
+\item{\verb{style}}{\emph{undocumented
 }}
-\item{\code{binding}}{\emph{undocumented
+\item{\verb{binding}}{\emph{undocumented
 }}
-\item{\code{bind}}{\emph{undocumented
+\item{\verb{bind}}{\emph{undocumented
 }}
-\item{\code{widget}}{\emph{undocumented
+\item{\verb{widget}}{\emph{undocumented
 }}
-\item{\code{widget-class}}{\emph{undocumented
+\item{\verb{widget-class}}{\emph{undocumented
 }}
-\item{\code{class}}{\emph{undocumented
+\item{\verb{class}}{\emph{undocumented
 }}
-\item{\code{lowest}}{\emph{undocumented
+\item{\verb{lowest}}{\emph{undocumented
 }}
-\item{\code{gtk}}{\emph{undocumented
+\item{\verb{gtk}}{\emph{undocumented
 }}
-\item{\code{application}}{\emph{undocumented
+\item{\verb{application}}{\emph{undocumented
 }}
-\item{\code{theme}}{\emph{undocumented
+\item{\verb{theme}}{\emph{undocumented
 }}
-\item{\code{rc}}{\emph{undocumented
+\item{\verb{rc}}{\emph{undocumented
 }}
-\item{\code{highest}}{\emph{undocumented
+\item{\verb{highest}}{\emph{undocumented
 }}
-\item{\code{engine}}{\emph{undocumented
+\item{\verb{engine}}{\emph{undocumented
 }}
-\item{\code{module-path}}{\emph{undocumented
+\item{\verb{module-path}}{\emph{undocumented
 }}
-\item{\code{im-module-path}}{\emph{undocumented
+\item{\verb{im-module-path}}{\emph{undocumented
 }}
-\item{\code{im-module-file}}{\emph{undocumented
+\item{\verb{im-module-file}}{\emph{undocumented
 }}
-\item{\code{stock}}{\emph{undocumented
+\item{\verb{stock}}{\emph{undocumented
 }}
-\item{\code{ltr}}{\emph{undocumented
+\item{\verb{ltr}}{\emph{undocumented
 }}
-\item{\code{rtl}}{\emph{undocumented
+\item{\verb{rtl}}{\emph{undocumented
 }}
-\item{\code{last}}{\emph{undocumented
+\item{\verb{last}}{\emph{undocumented
 }}
 }
 

@@ -12,22 +12,22 @@
 \code{\link{gtkOptionMenuGetHistory}(object)}\cr
 \code{gtkOptionMenu(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkButton
                                        +----GtkOptionMenu}}
 \section{Interfaces}{GtkOptionMenu implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
-list of valid choices.  The \code{\link{GtkOptionMenu}} displays the selected 
-choice.  When activated the \code{\link{GtkOptionMenu}} displays a popup \code{\link{GtkMenu}} 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkOptionMenu}} is a widget that allows the user to choose from a
+list of valid choices.  The \verb{\link{GtkOptionMenu}} displays the selected 
+choice.  When activated the \verb{\link{GtkOptionMenu}} displays a popup \verb{\link{GtkMenu}} 
 which allows the user to make a new choice.
   
-Using a \code{\link{GtkOptionMenu}} is simple; build a \code{\link{GtkMenu}}, by calling
+Using a \verb{\link{GtkOptionMenu}} is simple; build a \verb{\link{GtkMenu}}, by calling
 \code{\link{gtkMenuNew}}, then appending menu items to it with 
 \code{\link{gtkMenuShellAppend}}. Set that menu on the option menu 
 with \code{\link{gtkOptionMenuSetMenu}}. Set the selected menu item with
@@ -35,10 +35,10 @@ with \code{\link{gtkOptionMenuSetMenu}}. Set the selected menu item with
 the option menu; in the "changed" signal, check the new selected 
 menu item with \code{\link{gtkOptionMenuGetHistory}}.
   
-As of GTK+ 2.4, \code{\link{GtkOptionMenu}} has been deprecated in favor of \code{\link{GtkComboBox}}.}
-\section{Structures}{\describe{\item{\code{GtkOptionMenu}}{
-\strong{WARNING: \code{GtkOptionMenu} has been deprecated since version 2.4 and should not be used in newly-written code. Use \code{\link{GtkComboBox}} instead.}
-The \code{\link{GtkOptionMenu}} struct contains private data only, and 
+As of GTK+ 2.4, \verb{\link{GtkOptionMenu}} has been deprecated in favor of \verb{\link{GtkComboBox}}.}
+\section{Structures}{\describe{\item{\verb{GtkOptionMenu}}{
+\strong{WARNING: \code{GtkOptionMenu} has been deprecated since version 2.4 and should not be used in newly-written code. Use \verb{\link{GtkComboBox}} instead.}
+The \verb{\link{GtkOptionMenu}} struct contains private data only, and 
 should be accessed using the functions below.
 
 }}}
@@ -48,24 +48,24 @@ should be accessed using the functions below.
 }
 
 \describe{
-\item{\code{optionmenu}}{[\code{\link{GtkOptionMenu}}] the object which received the signal.}
+\item{\code{optionmenu}}{[\verb{\link{GtkOptionMenu}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{menu} [\code{\link{GtkMenu}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{menu} [\verb{\link{GtkMenu}} : *              : Read / Write]}{
 
 The menu of options.
 
 }}}
 \section{Style Properties}{\describe{
-\item{\code{indicator-size} [\code{\link{GtkRequisition}} : Read]}{
+\item{\verb{indicator-size} [\verb{\link{GtkRequisition}} : *       : Read]}{
 
 Size of dropdown indicator.
 
 }
-\item{\code{indicator-spacing} [\code{\link{GtkBorder}} : Read]}{
+\item{\verb{indicator-spacing} [\verb{\link{GtkBorder}} : *            : Read]}{
 
 Spacing around indicator.
 

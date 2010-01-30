@@ -11,11 +11,11 @@ be removed in the future.}
 }
 \usage{gtkItemFactoryAddForeign(accel.widget, full.path, accel.group, keyval, modifiers)}
 \arguments{
-\item{\code{accel.widget}}{[\code{\link{GtkWidget}}]      widget to install an accelerator on }
-\item{\code{full.path}}{[character] 	      the full path for the \code{accel.widget} }
-\item{\code{accel.group}}{[\code{\link{GtkAccelGroup}}]       the accelerator group to install the accelerator in}
-\item{\code{keyval}}{[numeric]            key value of the accelerator}
-\item{\code{modifiers}}{[\code{\link{GdkModifierType}}]         modifier combination of the accelerator}
+\item{\verb{accel.widget}}{[\verb{\link{GtkWidget}}]      widget to install an accelerator on }
+\item{\verb{full.path}}{[character] 	      the full path for the \code{accel.widget} }
+\item{\verb{accel.group}}{[\verb{\link{GtkAccelGroup}}]       the accelerator group to install the accelerator in}
+\item{\verb{keyval}}{[numeric]            key value of the accelerator}
+\item{\verb{modifiers}}{[\code{\link{GdkModifierType}}]         modifier combination of the accelerator}
 }
 \details{This function can be used to make widgets participate in the accel
 saving/restoring functionality provided by \code{\link{gtkAccelMapSave}} and

@@ -8,9 +8,9 @@ Sets a new default size for the children of a given button box.
 }
 \usage{gtkButtonBoxSetChildSize(object, min.width, min.height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButtonBox}}] a \code{\link{GtkButtonBox}}.}
-\item{\code{min.width}}{[integer] a default width for buttons in \code{widget}.}
-\item{\code{min.height}}{[integer] a default height for buttons in \code{widget}.}
+\item{\verb{object}}{[\verb{\link{GtkButtonBox}}] a \verb{\link{GtkButtonBox}}.}
+\item{\verb{min.width}}{[integer] a default width for buttons in \code{widget}.}
+\item{\verb{min.height}}{[integer] a default height for buttons in \code{widget}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

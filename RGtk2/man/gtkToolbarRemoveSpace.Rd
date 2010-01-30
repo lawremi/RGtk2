@@ -7,8 +7,8 @@ Removes a space from the specified position.
 }
 \usage{gtkToolbarRemoveSpace(object, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}.}
-\item{\code{position}}{[integer]  the index of the space to remove.}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}.}
+\item{\verb{position}}{[integer]  the index of the space to remove.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

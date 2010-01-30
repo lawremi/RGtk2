@@ -4,8 +4,8 @@
 \description{Determine whether a particular index is covered by \code{coverage}}
 \usage{pangoCoverageGet(object, index)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoCoverage}}]  a \code{\link{PangoCoverage}}}
-\item{\code{index}}{[integer]  the index to check}
+\item{\verb{object}}{[\verb{\link{PangoCoverage}}]  a \verb{\link{PangoCoverage}}}
+\item{\verb{index}}{[integer]  the index to check}
 }
 \value{[\code{\link{PangoCoverageLevel}}]  the coverage level of \code{coverage} for character \code{index.}.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -5,8 +5,8 @@
 is mapped and \code{widget} has been shown with \code{\link{gtkWidgetShow}}. }
 \usage{gtkWidgetSetChildVisible(object, is.visible)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{is.visible}}{[logical]  if \code{TRUE}, \code{widget} should be mapped along with its parent.}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{is.visible}}{[logical]  if \code{TRUE}, \code{widget} should be mapped along with its parent.}
 }
 \details{The child visibility can be set for widget before it is added to
 a container with \code{\link{gtkWidgetSetParent}}, to avoid mapping

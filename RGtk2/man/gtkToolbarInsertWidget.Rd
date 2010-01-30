@@ -7,11 +7,11 @@ Inserts a widget in the toolbar at the given position.
 }
 \usage{gtkToolbarInsertWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL, position)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} to add to the toolbar. }
-\item{\code{tooltip.text}}{[char]  the element's tooltip.}
-\item{\code{tooltip.private.text}}{[char]  used for context-sensitive help about this toolbar element.}
-\item{\code{position}}{[integer]  the number of widgets to insert this widget after.}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}.}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} to add to the toolbar. }
+\item{\verb{tooltip.text}}{[char]  the element's tooltip.}
+\item{\verb{tooltip.private.text}}{[char]  used for context-sensitive help about this toolbar element.}
+\item{\verb{position}}{[integer]  the number of widgets to insert this widget after.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

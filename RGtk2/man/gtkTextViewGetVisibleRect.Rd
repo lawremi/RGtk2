@@ -5,10 +5,10 @@
 region of the buffer, in buffer coordinates. Convert to window coordinates
 with \code{\link{gtkTextViewBufferToWindowCoords}}.}
 \usage{gtkTextViewGetVisibleRect(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}}
 \value{
 A list containing the following elements:
-\item{\code{visible.rect}}{[\code{\link{GdkRectangle}}]  rectangle to fill}
+\item{\verb{visible.rect}}{[\verb{\link{GdkRectangle}}]  rectangle to fill}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -7,11 +7,11 @@ specifies how the glyphs should be rotated.  If \code{gravity} is
 the font description.}
 \usage{pangoFontDescriptionSetGravity(object, gravity)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
-\item{\code{gravity}}{[\code{\link{PangoGravity}}]  the gravity for the font description.}
+\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
+\item{\verb{gravity}}{[\code{\link{PangoGravity}}]  the gravity for the font description.}
 }
 \details{This function is seldom useful to the user.  Gravity should normally
-be set on a \code{\link{PangoContext}}.  
+be set on a \verb{\link{PangoContext}}.  
 
   Since  1.16}
 \author{Derived by RGtkGen from GTK+ documentation}

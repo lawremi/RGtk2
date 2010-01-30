@@ -1,9 +1,9 @@
 \alias{gtkPrintContextGetHeight}
 \name{gtkPrintContextGetHeight}
 \title{gtkPrintContextGetHeight}
-\description{Obtains the height of the \code{\link{GtkPrintContext}}, in pixels.}
+\description{Obtains the height of the \verb{\link{GtkPrintContext}}, in pixels.}
 \usage{gtkPrintContextGetHeight(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintContext}}]  a \code{\link{GtkPrintContext}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintContext}}]  a \verb{\link{GtkPrintContext}}}}
 \details{  Since  2.10}
 \value{[numeric]  the height of \code{context}}
 \author{Derived by RGtkGen from GTK+ documentation}

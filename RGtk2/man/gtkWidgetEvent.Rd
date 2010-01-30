@@ -11,8 +11,8 @@ use \code{\link{gdkWindowInvalidateRect}} to invalidate a region of the
 window.}
 \usage{gtkWidgetEvent(object, event)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{event}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{event}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}}}
 }
 \value{[logical]  return from the event signal emission (\code{TRUE} if 
               the event was handled)}

@@ -7,14 +7,14 @@
 \code{\link{gtkHRulerNew}(show = TRUE)}\cr
 \code{gtkHRuler(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkRuler}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkRuler
                            +----GtkHRuler}}
 \section{Interfaces}{GtkHRuler implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{\strong{PLEASE NOTE:}  This widget is considered too specialized/little-used for
  GTK+, and will in the future be moved to some other package.  If
  your application needs this widget, feel free to use it, as the
@@ -25,11 +25,11 @@
 The HRuler widget is a widget arranged horizontally creating a ruler that is
 utilized around other widgets such as a text widget. The ruler is used to show
 the location of the mouse on the window and to show the size of the window in
-specified units. The available units of measurement are GTK\_PIXELS, GTK\_INCHES
-and GTK\_CENTIMETERS. GTK\_PIXELS is the default. 
+specified units. The available units of measurement are GTK_PIXELS, GTK_INCHES
+and GTK_CENTIMETERS. GTK_PIXELS is the default. 
 rulers.}
-\section{Structures}{\describe{\item{\code{GtkHRuler}}{
-The \code{\link{GtkHRuler}} struct contains private data and should be accessed
+\section{Structures}{\describe{\item{\verb{GtkHRuler}}{
+The \verb{\link{GtkHRuler}} struct contains private data and should be accessed
 with the functions below.
 
 }}}

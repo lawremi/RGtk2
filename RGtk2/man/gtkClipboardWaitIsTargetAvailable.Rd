@@ -6,8 +6,8 @@ function can be used to determine if a "Paste" menu item should be
 insensitive or not.}
 \usage{gtkClipboardWaitIsTargetAvailable(object, target)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkClipboard}}]  a \code{\link{GtkClipboard}}}
-\item{\code{target}}{[\code{\link{GdkAtom}}]     A \code{\link{GdkAtom}} indicating which target to look for.}
+\item{\verb{object}}{[\verb{\link{GtkClipboard}}]  a \verb{\link{GtkClipboard}}}
+\item{\verb{target}}{[\verb{\link{GdkAtom}}]     A \verb{\link{GdkAtom}} indicating which target to look for.}
 }
 \details{If you want to see if there's text available on the clipboard, use
 \code{\link{gtkClipboardWaitIsTextAvailable}} instead.  

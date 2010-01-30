@@ -7,6 +7,6 @@ gets replaced. The stock items are copied. Use
 \code{\link{gtkStockAddStatic}} if \code{items} is persistent and GTK+ need not
 copy the list.}
 \usage{gtkStockAdd(items)}
-\arguments{\item{\code{items}}{[\code{\link{GtkStockItem}}]  a \code{\link{GtkStockItem}} or list of items}}
+\arguments{\item{\verb{items}}{[\verb{\link{GtkStockItem}}]  a \verb{\link{GtkStockItem}} or list of items}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

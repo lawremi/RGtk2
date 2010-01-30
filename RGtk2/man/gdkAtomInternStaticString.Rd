@@ -3,9 +3,9 @@
 \title{gdkAtomInternStaticString}
 \description{Finds or creates an atom corresponding to a given string.}
 \usage{gdkAtomInternStaticString(atom.name)}
-\arguments{\item{\code{atom.name}}{[character]  a static string}}
+\arguments{\item{\verb{atom.name}}{[character]  a static string}}
 \details{Note that this function is identical to \code{\link{gdkAtomIntern}} except
-that if a new \code{\link{GdkAtom}} is created the string itself is used rather 
+that if a new \verb{\link{GdkAtom}} is created the string itself is used rather 
 than a copy. This saves memory, but can only be used if the string 
 will \emph{always} exist. It can be used with statically
 allocated strings in the main program, but not with statically 
@@ -14,6 +14,6 @@ ever unload the module again (e.g. do not use this function in
 GTK+ theme engines).  
 
   Since  2.10}
-\value{[\code{\link{GdkAtom}}]  the atom corresponding to \code{atom.name}}
+\value{[\verb{\link{GdkAtom}}]  the atom corresponding to \code{atom.name}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

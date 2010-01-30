@@ -2,11 +2,11 @@
 \name{gtkTreeRowReferenceInserted}
 \title{gtkTreeRowReferenceInserted}
 \description{Lets a set of row reference created by \code{\link{gtkTreeRowReferenceNewProxy}}
-know that the model emitted the "row\_inserted" signal.}
+know that the model emitted the "row_inserted" signal.}
 \usage{gtkTreeRowReferenceInserted(proxy, path)}
 \arguments{
-\item{\code{proxy}}{[\code{\link{GObject}}]  A \code{\link{GObject}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  The row position that was inserted}
+\item{\verb{proxy}}{[\verb{\link{GObject}}]  A \verb{\link{GObject}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  The row position that was inserted}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

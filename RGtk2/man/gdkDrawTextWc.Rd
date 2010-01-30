@@ -9,11 +9,11 @@ characters (discarding the high bytes) before output.
 }
 \usage{gdkDrawTextWc(object, font, gc, x, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}} (a \code{\link{GdkWindow}} or a \code{\link{GdkPixmap}}).}
-\item{\code{font}}{[\code{\link{GdkFont}}]  a \code{\link{GdkFont}}.}
-\item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}.}
-\item{\code{x}}{[integer]  the x coordinate of the left edge of the text.}
-\item{\code{text}}{[numeric]  the wide characters to draw.}
+\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}} (a \verb{\link{GdkWindow}} or a \verb{\link{GdkPixmap}}).}
+\item{\verb{font}}{[\verb{\link{GdkFont}}]  a \verb{\link{GdkFont}}.}
+\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}.}
+\item{\verb{x}}{[integer]  the x coordinate of the left edge of the text.}
+\item{\verb{text}}{[numeric]  the wide characters to draw.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -8,11 +8,11 @@ number of up/down segments and the resulting rectangle is centered in the
 original rectangle)}
 \usage{pangoCairoShowErrorUnderline(cr, x, y, width, height)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a Cairo context}
-\item{\code{x}}{[numeric]  The X coordinate of one corner of the rectangle}
-\item{\code{y}}{[numeric]  The Y coordinate of one corner of the rectangle}
-\item{\code{width}}{[numeric]  Non-negative width of the rectangle}
-\item{\code{height}}{[numeric]  Non-negative height of the rectangle}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a Cairo context}
+\item{\verb{x}}{[numeric]  The X coordinate of one corner of the rectangle}
+\item{\verb{y}}{[numeric]  The Y coordinate of one corner of the rectangle}
+\item{\verb{width}}{[numeric]  Non-negative width of the rectangle}
+\item{\verb{height}}{[numeric]  Non-negative height of the rectangle}
 }
 \details{  Since  1.14}
 \author{Derived by RGtkGen from GTK+ documentation}

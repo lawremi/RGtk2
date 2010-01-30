@@ -10,8 +10,8 @@ See also \code{\link{gtkAccelMapAddEntry}} on the specifics of accelerator paths
 and \code{\link{gtkMenuSetAccelPath}} for a more convenient variant of this function.}
 \usage{gtkMenuItemSetAccelPath(object, accel.path)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenuItem}}]   a valid \code{\link{GtkMenuItem}}}
-\item{\code{accel.path}}{[character]  accelerator path, corresponding to this menu item's
+\item{\verb{object}}{[\verb{\link{GtkMenuItem}}]   a valid \verb{\link{GtkMenuItem}}}
+\item{\verb{accel.path}}{[character]  accelerator path, corresponding to this menu item's
              functionality, or \code{NULL} to unset the current path.}
 }
 \details{This function is basically a convenience wrapper that handles calling

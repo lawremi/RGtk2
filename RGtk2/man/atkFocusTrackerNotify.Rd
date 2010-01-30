@@ -4,6 +4,6 @@
 \description{Cause the focus tracker functions which have been specified to be
 executed for the object.}
 \usage{atkFocusTrackerNotify(object)}
-\arguments{\item{\code{object}}{[\code{\link{AtkObject}}]  an \code{\link{AtkObject}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkObject}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

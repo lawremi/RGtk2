@@ -7,9 +7,9 @@ Checks the type of cell at the location specified.
 }
 \usage{gtkCListGetCellType(object, row, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row}}{[integer] The row of the cell.}
-\item{\code{column}}{[integer] The column of the cell.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row}}{[integer] The row of the cell.}
+\item{\verb{column}}{[integer] The column of the cell.}
 }
 \value{[\code{\link{GtkCellType}}] A \code{\link{GtkCellType}} value describing the cell.}
 \author{Derived by RGtkGen from GTK+ documentation}

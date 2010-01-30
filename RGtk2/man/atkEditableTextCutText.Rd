@@ -5,9 +5,9 @@
 to the clipboard and then delete from the widget.}
 \usage{atkEditableTextCutText(object, start.pos, end.pos)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkEditableText}}]  an \code{\link{AtkEditableText}}}
-\item{\code{start.pos}}{[integer]  start position}
-\item{\code{end.pos}}{[integer]  end position}
+\item{\verb{object}}{[\verb{\link{AtkEditableText}}]  an \verb{\link{AtkEditableText}}}
+\item{\verb{start.pos}}{[integer]  start position}
+\item{\verb{end.pos}}{[integer]  end position}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

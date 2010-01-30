@@ -5,8 +5,8 @@
 that is associated with \code{key}. }
 \usage{gtkPrintSettingsGetBool(object, key)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}
-\item{\code{key}}{[character]  a key}
+\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}
+\item{\verb{key}}{[character]  a key}
 }
 \details{The string "true" represents \code{TRUE}, any other 
 string \code{FALSE}.  

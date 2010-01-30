@@ -2,10 +2,10 @@
 \name{cairoScaledFontGetType}
 \title{cairoScaledFontGetType}
 \description{This function returns the type of the backend used to create
-a scaled font. See \code{\link{CairoFontType}} for available types.}
+a scaled font. See \verb{\link{CairoFontType}} for available types.}
 \usage{cairoScaledFontGetType(scaled.font)}
-\arguments{\item{\code{scaled.font}}{[\code{\link{CairoScaledFont}}]  a \code{\link{CairoScaledFont}}}}
+\arguments{\item{\verb{scaled.font}}{[\verb{\link{CairoScaledFont}}]  a \verb{\link{CairoScaledFont}}}}
 \details{  Since  1.2}
-\value{[\code{\link{CairoFontType}}]  The type of \code{scaled.font}.}
+\value{[\verb{\link{CairoFontType}}]  The type of \code{scaled.font}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

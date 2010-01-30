@@ -5,8 +5,8 @@
  the Pango text markup language.}
 \usage{gtkWidgetSetTooltipMarkup(object, markup)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{markup}}{[character]  the contents of the tooltip for \code{widget}, or \code{NULL}}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{markup}}{[character]  the contents of the tooltip for \code{widget}, or \code{NULL}}
 }
 \details{This function will take care of setting GtkWidget:has-tooltip to \code{TRUE}
 and of the default handler for the GtkWidget::query-tooltip signal.

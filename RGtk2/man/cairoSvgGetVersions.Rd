@@ -5,8 +5,8 @@
 \code{\link{cairoSvgSurfaceRestrictToVersion}}.}
 \usage{cairoSvgGetVersions(versions, num.versions)}
 \arguments{
-\item{\code{versions}}{[\code{\link{CairoSvgVersion}}]  supported version list}
-\item{\code{num.versions}}{[integer]  list length}
+\item{\verb{versions}}{[\verb{\link{CairoSvgVersion}}]  supported version list}
+\item{\verb{num.versions}}{[integer]  list length}
 }
 \details{  Since  1.2}
 \author{Derived by RGtkGen from GTK+ documentation}

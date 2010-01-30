@@ -4,8 +4,8 @@
 \description{Sets whether the action should have proxies like a radio action.}
 \usage{gtkToggleActionSetDrawAsRadio(object, draw.as.radio)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToggleAction}}]  the action object}
-\item{\code{draw.as.radio}}{[logical]  whether the action should have proxies like a radio 
+\item{\verb{object}}{[\verb{\link{GtkToggleAction}}]  the action object}
+\item{\verb{draw.as.radio}}{[logical]  whether the action should have proxies like a radio 
    action}
 }
 \details{  Since  2.4}

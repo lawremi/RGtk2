@@ -7,22 +7,22 @@
 \code{\link{gtkSeparatorMenuItemNew}(show = TRUE)}\cr
 \code{gtkSeparatorMenuItem(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkItem}
-                                       +----\link{GtkMenuItem}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkItem
+                                       +----GtkMenuItem
                                              +----GtkSeparatorMenuItem}}
 \section{Interfaces}{GtkSeparatorMenuItem implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkSeparatorMenuItem}} is a separator used to group
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkSeparatorMenuItem}} is a separator used to group
 items within a menu. It displays a horizontal line with a shadow to
 make it appear sunken into the interface.}
-\section{Structures}{\describe{\item{\code{GtkSeparatorMenuItem}}{
-The \code{\link{GtkSeparatorMenuItem}} struct contains private data only, and
+\section{Structures}{\describe{\item{\verb{GtkSeparatorMenuItem}}{
+The \verb{\link{GtkSeparatorMenuItem}} struct contains private data only, and
 should be accessed using the functions below.
 
 }}}

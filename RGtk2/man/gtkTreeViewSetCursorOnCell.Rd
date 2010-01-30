@@ -14,11 +14,11 @@ widget.  Please note that editing can only happen when the widget is
 realized.}
 \usage{gtkTreeViewSetCursorOnCell(object, path, focus.column = NULL, focus.cell = NULL, start.editing = FALSE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeView}}]  A \code{\link{GtkTreeView}}}
-\item{\code{path}}{[\code{\link{GtkTreePath}}]  A \code{\link{GtkTreePath}}}
-\item{\code{focus.column}}{[\code{\link{GtkTreeViewColumn}}]  A \code{\link{GtkTreeViewColumn}}, or \code{NULL}}
-\item{\code{focus.cell}}{[\code{\link{GtkCellRenderer}}]  A \code{\link{GtkCellRenderer}}, or \code{NULL}}
-\item{\code{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
+\item{\verb{object}}{[\verb{\link{GtkTreeView}}]  A \verb{\link{GtkTreeView}}}
+\item{\verb{path}}{[\verb{\link{GtkTreePath}}]  A \verb{\link{GtkTreePath}}}
+\item{\verb{focus.column}}{[\verb{\link{GtkTreeViewColumn}}]  A \verb{\link{GtkTreeViewColumn}}, or \code{NULL}}
+\item{\verb{focus.cell}}{[\verb{\link{GtkCellRenderer}}]  A \verb{\link{GtkCellRenderer}}, or \code{NULL}}
+\item{\verb{start.editing}}{[logical] \code{TRUE} if the specified cell should start being edited.}
 }
 \details{  Since  2.2}
 \author{Derived by RGtkGen from GTK+ documentation}

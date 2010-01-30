@@ -9,11 +9,11 @@ images for all of GTK+'s stock icons are registered
 as built-icons.}
 \usage{gtkIconThemeAddBuiltinIcon(icon.name, size, pixbuf)}
 \arguments{
-\item{\code{icon.name}}{[character]  the name of the icon to register}
-\item{\code{size}}{[integer]  the size at which to register the icon (different
+\item{\verb{icon.name}}{[character]  the name of the icon to register}
+\item{\verb{size}}{[integer]  the size at which to register the icon (different
        images can be registered for the same icon name
        at different sizes.)}
-\item{\code{pixbuf}}{[\code{\link{GdkPixbuf}}] \code{\link{GdkPixbuf}} that contains the image to use
+\item{\verb{pixbuf}}{[\verb{\link{GdkPixbuf}}] \verb{\link{GdkPixbuf}} that contains the image to use
          for \code{icon.name}.}
 }
 \details{In general, if you use \code{\link{gtkIconThemeAddBuiltinIcon}}

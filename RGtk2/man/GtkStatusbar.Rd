@@ -13,18 +13,18 @@
 \code{\link{gtkStatusbarGetHasResizeGrip}(object)}\cr
 \code{gtkStatusbar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBox}
-                                 +----\link{GtkHBox}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBox
+                                 +----GtkHBox
                                        +----GtkStatusbar}}
 \section{Interfaces}{GtkStatusbar implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkStatusbar}} is usually placed along the bottom of an application's main
-\code{\link{GtkWindow}}. It may provide a regular commentary of the application's status
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkStatusbar}} is usually placed along the bottom of an application's main
+\verb{\link{GtkWindow}}. It may provide a regular commentary of the application's status
 (as is usually the case in a web browser, for example), or may be used to
 simply output a message when the status changes, (when an upload is complete
 in an FTP client, for example). 
@@ -50,9 +50,9 @@ Status bars are created using \code{\link{gtkStatusbarNew}}.
 Messages are added to the bar's stack with \code{\link{gtkStatusbarPush}}.
   
 The message at the top of the stack can be removed using \code{\link{gtkStatusbarPop}}. 
-A message can be removed from anywhere in the stack if its message\_id was 
+A message can be removed from anywhere in the stack if its message_id was 
 recorded at the time it was added. This is done using \code{\link{gtkStatusbarRemove}}.}
-\section{Structures}{\describe{\item{\code{GtkStatusbar}}{
+\section{Structures}{\describe{\item{\verb{GtkStatusbar}}{
 Contains private data that should be modified with the functions described 
 below.
 
@@ -63,7 +63,7 @@ below.
 Is emitted whenever a new message is popped off a statusbar's stack.  
 
 \describe{
-\item{\code{statusbar}}{[\code{\link{GtkStatusbar}}]  the object which received the signal.}
+\item{\code{statusbar}}{[\verb{\link{GtkStatusbar}}]  the object which received the signal.}
 \item{\code{context.id}}{[numeric]  the context id of the relevant message/statusbar.}
 \item{\code{text}}{[character]  the message that was just popped.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -75,7 +75,7 @@ Is emitted whenever a new message is popped off a statusbar's stack.
 Is emitted whenever a new message gets pushed onto a statusbar's stack.  
 
 \describe{
-\item{\code{statusbar}}{[\code{\link{GtkStatusbar}}]  the object which received the signal.}
+\item{\code{statusbar}}{[\verb{\link{GtkStatusbar}}]  the object which received the signal.}
 \item{\code{context.id}}{[numeric]  the context id of the relevant message/statusbar.}
 \item{\code{text}}{[character]  the message that was pushed.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -84,16 +84,16 @@ Is emitted whenever a new message gets pushed onto a statusbar's stack.
 
 }
 }}
-\section{Properties}{\describe{\item{\code{has-resize-grip} [logical : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{has-resize-grip} [logical : Read / Write]}{
 
 Whether the statusbar has a grip for resizing the toplevel window.  
 
   Default value: TRUE  Since  2.4
 
 }}}
-\section{Style Properties}{\describe{\item{\code{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
+\section{Style Properties}{\describe{\item{\verb{shadow-type} [\code{\link{GtkShadowType}} : Read]}{
 
-Style of bevel around the statusbar text.  Default value: GTK\_SHADOW\_IN
+Style of bevel around the statusbar text.  Default value: GTK_SHADOW_IN
 
 }}}
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkStatusbar.html}}

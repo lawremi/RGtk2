@@ -9,8 +9,8 @@ filters is empty is useful if you want to restrict the displayed
 set of files without letting the user change it.}
 \usage{gtkFileChooserSetFilter(object, filter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{filter}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{filter}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

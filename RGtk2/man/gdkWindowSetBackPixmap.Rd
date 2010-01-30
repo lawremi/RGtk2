@@ -9,9 +9,9 @@ origin of the parent window (useful to align tiles in a parent with tiles
 in a child).}
 \usage{gdkWindowSetBackPixmap(object, pixmap = NULL, parent.relative)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{pixmap}}{[\code{\link{GdkPixmap}}]  a \code{\link{GdkPixmap}}, or \code{NULL}}
-\item{\code{parent.relative}}{[logical]  whether the tiling origin is at the origin of \code{window}'s parent}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{pixmap}}{[\verb{\link{GdkPixmap}}]  a \verb{\link{GdkPixmap}}, or \code{NULL}}
+\item{\verb{parent.relative}}{[logical]  whether the tiling origin is at the origin of \code{window}'s parent}
 }
 \details{A background pixmap of \code{NULL} means that the window will have no
 background.  A window with no background will never have its

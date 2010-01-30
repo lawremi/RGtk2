@@ -6,13 +6,13 @@ order.  It returns \code{TRUE} unless the \code{sort.column.id} is
 \code{GTK_TREE_SORTABLE_DEFAULT_SORT_COLUMN_ID} or 
 \code{GTK_TREE_SORTABLE_UNSORTED_SORT_COLUMN_ID}.}
 \usage{gtkTreeSortableGetSortColumnId(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeSortable}}]  A \code{\link{GtkTreeSortable}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSortable}}]  A \verb{\link{GtkTreeSortable}}}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the sort column is not one of the special sort
   column ids.}
-\item{\code{sort.column.id}}{[integer]  The sort column id to be filled in}
-\item{\code{order}}{[\code{\link{GtkSortType}}]  The \code{\link{GtkSortType}} to be filled in}
+\item{\verb{sort.column.id}}{[integer]  The sort column id to be filled in}
+\item{\verb{order}}{[\code{\link{GtkSortType}}]  The \code{\link{GtkSortType}} to be filled in}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

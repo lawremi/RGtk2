@@ -5,7 +5,7 @@
 column is selected for sorting.
 See \code{\link{gtkTreeViewColumnSetSortColumnId}}.}
 \usage{gtkTreeViewColumnGetSortColumnId(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeViewColumn}}]  a \code{\link{GtkTreeViewColumn}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeViewColumn}}]  a \verb{\link{GtkTreeViewColumn}}}}
 \value{[integer]  the current \code{sort.column.id} for this column, or -1 if
               this column can't be used for sorting.}
 \author{Derived by RGtkGen from GTK+ documentation}

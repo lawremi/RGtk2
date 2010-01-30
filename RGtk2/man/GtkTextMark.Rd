@@ -13,13 +13,13 @@
 \code{\link{gtkTextMarkGetLeftGravity}(object)}\cr
 \code{gtkTextMark(name, left.gravity)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkTextMark}}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   
-A \code{\link{GtkTextMark}} is like a bookmark in a text buffer; it preserves a position in
+A \verb{\link{GtkTextMark}} is like a bookmark in a text buffer; it preserves a position in
 the text. You can convert the mark to an iterator using
 \code{\link{gtkTextBufferGetIterAtMark}}. Unlike iterators, marks remain valid across
 buffer mutations, because their behavior is defined when text is inserted or
@@ -39,22 +39,22 @@ of the memory; marks can be deleted from the buffer at any time with
 essentially useless.
   
 Marks optionally have names; these can be convenient to avoid passing the 
-\code{\link{GtkTextMark}} object around.
+\verb{\link{GtkTextMark}} object around.
   
 Marks are typically created using the \code{\link{gtkTextBufferCreateMark}} function.}
-\section{Structures}{\describe{\item{\code{GtkTextMark}}{
+\section{Structures}{\describe{\item{\verb{GtkTextMark}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkTextMark} is the equivalent of \code{\link{gtkTextMarkNew}}.}
 \section{Properties}{\describe{
-\item{\code{left-gravity} [logical : Read / Write / Construct Only]}{
+\item{\verb{left-gravity} [logical : Read / Write / Construct Only]}{
 
 Whether the mark has left gravity.  Default value: FALSE
 
 }
-\item{\code{name} [character : Read / Write / Construct Only]}{
+\item{\verb{name} [character : *                : Read / Write / Construct Only]}{
 
 Mark name.  Default value: NULL
 

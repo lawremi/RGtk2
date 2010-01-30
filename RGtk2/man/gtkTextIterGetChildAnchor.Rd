@@ -5,7 +5,7 @@
 anchor is returned (with no new reference count added). Otherwise,
 \code{NULL} is returned.}
 \usage{gtkTextIterGetChildAnchor(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}}
-\value{[\code{\link{GtkTextChildAnchor}}]  the anchor at \code{iter}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
+\value{[\verb{\link{GtkTextChildAnchor}}]  the anchor at \code{iter}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 }}
 \usage{gtkStyleLookupIconSet(object, stock.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}] }
-\item{\code{stock.id}}{[character] }
+\item{\verb{object}}{[\verb{\link{GtkStyle}}] }
+\item{\verb{stock.id}}{[character] }
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

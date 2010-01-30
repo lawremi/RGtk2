@@ -6,7 +6,7 @@ line, there's a position with a \code{NULL} run, so this function can return
 \code{NULL}. The \code{NULL} run at the end of each line ensures that all lines have
 at least one run, even lines consisting of only a newline.}
 \usage{pangoLayoutIterGetRunReadonly(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayoutIter}}]  a \verb{\link{PangoLayoutIter}}}}
 \details{This is a faster alternative to \code{\link{pangoLayoutIterGetRun}},
 but the user is not expected
 to modify the contents of the run (glyphs, glyph widths, etc.).  

@@ -14,11 +14,11 @@
 \section{Hierarchy}{\preformatted{GInterface
    +----GtkTreeSortable}}
 \section{Implementations}{GtkTreeSortable is implemented by
- \code{\link{GtkTreeModelSort}},  \code{\link{GtkTreeStore}} and  \code{\link{GtkListStore}}.}
-\section{Detailed Description}{\code{\link{GtkTreeSortable}} is an interface to be implemented by tree models which
-support sorting. The \code{\link{GtkTreeView}} uses the methods provided by this interface
+ \verb{\link{GtkTreeModelSort}},  \verb{\link{GtkTreeStore}} and  \verb{\link{GtkListStore}}.}
+\section{Detailed Description}{\verb{\link{GtkTreeSortable}} is an interface to be implemented by tree models which
+support sorting. The \verb{\link{GtkTreeView}} uses the methods provided by this interface
 to sort the model.}
-\section{Structures}{\describe{\item{\code{GtkTreeSortable}}{
+\section{Structures}{\describe{\item{\verb{GtkTreeSortable}}{
 \emph{undocumented
 }
 
@@ -27,7 +27,7 @@ to sort the model.}
 A GtkTreeIterCompareFunc should return a negative integer, zero, or a positive
 integer if \code{a} sorts before \code{b}, \code{a} sorts with \code{b}, or \code{a} sorts after \code{b}
 respectively. If two iters compare as equal, their order in the sorted model 
-is undefined. In order to ensure that the \code{\link{GtkTreeSortable}} behaves as 
+is undefined. In order to ensure that the \verb{\link{GtkTreeSortable}} behaves as 
 expected, the GtkTreeIterCompareFunc must define a partial order on 
 the model, i.e. it must be reflexive, antisymmetric and transitive.
   
@@ -36,9 +36,9 @@ for the "price" column could be one which returns
 \code{price_of(}.
 
 \describe{
-\item{\code{model}}{[\code{\link{GtkTreeModel}}] The \code{\link{GtkTreeModel}} the comparison is within}
-\item{\code{a}}{[\code{\link{GtkTreeIter}}] A \code{\link{GtkTreeIter}} in \code{model}}
-\item{\code{b}}{[\code{\link{GtkTreeIter}}] Another \code{\link{GtkTreeIter}} in \code{model}}
+\item{\code{model}}{[\verb{\link{GtkTreeModel}}] The \verb{\link{GtkTreeModel}} the comparison is within}
+\item{\code{a}}{[\verb{\link{GtkTreeIter}}] A \verb{\link{GtkTreeIter}} in \code{model}}
+\item{\code{b}}{[\verb{\link{GtkTreeIter}}] Another \verb{\link{GtkTreeIter}} in \code{model}}
 \item{\code{user.data}}{[R object] Data passed when the compare func is assigned e.g. by
 \code{\link{gtkTreeSortableSetSortFunc}}}
 }
@@ -50,7 +50,7 @@ for the "price" column could be one which returns
 }
 
 \describe{
-\item{\code{treesortable}}{[\code{\link{GtkTreeSortable}}] the object which received the signal.}
+\item{\code{treesortable}}{[\verb{\link{GtkTreeSortable}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -59,7 +59,7 @@ for the "price" column could be one which returns
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTreeSortable.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTreeModel}}
-\code{\link{GtkTreeView}}
+\verb{\link{GtkTreeModel}}
+\verb{\link{GtkTreeView}}
 }
 \keyword{internal}

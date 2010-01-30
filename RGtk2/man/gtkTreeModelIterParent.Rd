@@ -7,13 +7,13 @@ is returned.  \code{child} will remain a valid node after this function has been
 called.}
 \usage{gtkTreeModelIterParent(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}}
-\item{\code{child}}{[\code{\link{GtkTreeIter}}]  The \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}}
+\item{\verb{child}}{[\verb{\link{GtkTreeIter}}]  The \verb{\link{GtkTreeIter}}.}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE}, if \code{iter} is set to the parent of \code{child}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  The new \code{\link{GtkTreeIter}} to set to the parent.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  The new \verb{\link{GtkTreeIter}} to set to the parent.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

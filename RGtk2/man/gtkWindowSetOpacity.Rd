@@ -9,8 +9,8 @@ running. See \code{\link{gtkWidgetIsComposited}}. On Windows it should work
 always.}
 \usage{gtkWindowSetOpacity(object, opacity)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{opacity}}{[numeric]  desired opacity, between 0 and 1}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{opacity}}{[numeric]  desired opacity, between 0 and 1}
 }
 \details{Note that setting a window's opacity after the window has been
 shown causes it to flicker once on Windows.  

@@ -22,44 +22,44 @@
 \code{\link{gtkPreviewReset}()}\cr
 \code{gtkPreview(type, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkPreview}}
 \section{Interfaces}{GtkPreview implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkPreview}} widget provides a simple interface 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkPreview}} widget provides a simple interface 
 used to display images as RGB or grayscale data.
-It's deprecated; just use a \code{\link{GdkPixbuf}} displayed by a \code{\link{GtkImage}}, or
-perhaps a \code{\link{GtkDrawingArea}}. \code{\link{GtkPreview}} has no advantage over those 
+It's deprecated; just use a \verb{\link{GdkPixbuf}} displayed by a \verb{\link{GtkImage}}, or
+perhaps a \verb{\link{GtkDrawingArea}}. \verb{\link{GtkPreview}} has no advantage over those 
 approaches.}
 \section{Structures}{\describe{
-\item{\code{GtkPreview}}{
+\item{\verb{GtkPreview}}{
 \strong{WARNING: \code{GtkPreview} is deprecated and should not be used in newly-written code.}
-The \code{\link{GtkPreview}} struct contains private data only, and
+The \verb{\link{GtkPreview}} struct contains private data only, and
 should be accessed using the functions below.
 
 }
-\item{\code{GtkPreviewInfo}}{
+\item{\verb{GtkPreviewInfo}}{
 \strong{WARNING: \code{GtkPreviewInfo} is deprecated and should not be used in newly-written code.}
 Contains information about global properties
 of preview widgets.
 
-The \code{\link{GtkPreviewInfo}} struct contains the following fields.
+The \verb{\link{GtkPreviewInfo}} struct contains the following fields.
 (These fields should be considered read-only. They should never be set by
 an application.)
 
 \tabular{ll}{
-\code{\link{GdkVisual}}   *visual; \tab the visual used by all previews. \cr
-\code{\link{GdkColormap}}   *cmap; \tab the colormap used by all previews. \cr
+\verb{\link{GdkVisual}}   *visual; \tab the visual used by all previews. \cr
+\verb{\link{GdkColormap}}   *cmap; \tab the colormap used by all previews. \cr
 gdouble gamma; \tab the gamma correction value used by all previews (See   \code{\link{gtkPreviewSetGamma}}  ). \cr
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkPreview} is the equivalent of \code{\link{gtkPreviewNew}}.}
-\section{Properties}{\describe{\item{\code{expand} [logical : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{expand} [logical : Read / Write]}{
 
 Whether the preview widget should take up the entire space it is allocated.  Default value: FALSE
 

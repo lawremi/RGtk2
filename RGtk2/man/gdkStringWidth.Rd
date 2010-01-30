@@ -10,8 +10,8 @@ should be drawn)
 }
 \usage{gdkStringWidth(object, string)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkFont}}]   a \code{\link{GdkFont}}}
-\item{\code{string}}{[character]  the string to measure}
+\item{\verb{object}}{[\verb{\link{GdkFont}}]   a \verb{\link{GdkFont}}}
+\item{\verb{string}}{[character]  the string to measure}
 }
 \value{[integer]  the width of the string in pixels.}
 \author{Derived by RGtkGen from GTK+ documentation}

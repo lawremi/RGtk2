@@ -1,10 +1,10 @@
 \alias{gtkStatusIconGetScreen}
 \name{gtkStatusIconGetScreen}
 \title{gtkStatusIconGetScreen}
-\description{Returns the \code{\link{GdkScreen}} associated with \code{status.icon}.}
+\description{Returns the \verb{\link{GdkScreen}} associated with \code{status.icon}.}
 \usage{gtkStatusIconGetScreen(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}}
 \details{  Since  2.12}
-\value{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}.}
+\value{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

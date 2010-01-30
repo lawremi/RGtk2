@@ -6,14 +6,14 @@ This can be used to interpret the results of getting
 the standard TARGETS target that is always supplied for
 any selection.}
 \usage{gtkSelectionDataGetTargets(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkSelectionData}}]  a \code{\link{GtkSelectionData}} object}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkSelectionData}}]  a \verb{\link{GtkSelectionData}} object}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if \code{selection.data} contains a valid
    list of targets, otherwise \code{FALSE}.}
-\item{\code{targets}}{[\code{\link{GdkAtom}}]  location to store a list of targets. The result
+\item{\verb{targets}}{[\verb{\link{GdkAtom}}]  location to store a list of targets. The result
           stored here must be freed with \code{gFree()}.}
-\item{\code{n.atoms}}{[integer]  location to store number of items in \code{targets}.}
+\item{\verb{n.atoms}}{[integer]  location to store number of items in \code{targets}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

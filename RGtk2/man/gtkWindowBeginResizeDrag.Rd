@@ -8,12 +8,12 @@ system. Otherwise, GDK will try to emulate window resizing,
 potentially not all that well, depending on the windowing system.}
 \usage{gtkWindowBeginResizeDrag(object, edge, button, root.x, root.y, timestamp)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{edge}}{[\code{\link{GdkWindowEdge}}]  position of the resize control}
-\item{\code{button}}{[integer]  mouse button that initiated the drag}
-\item{\code{root.x}}{[integer]  X position where the user clicked to initiate the drag, in root window coordinates}
-\item{\code{root.y}}{[integer]  Y position where the user clicked to initiate the drag}
-\item{\code{timestamp}}{[numeric]  timestamp from the click event that initiated the drag}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{edge}}{[\code{\link{GdkWindowEdge}}]  position of the resize control}
+\item{\verb{button}}{[integer]  mouse button that initiated the drag}
+\item{\verb{root.x}}{[integer]  X position where the user clicked to initiate the drag, in root window coordinates}
+\item{\verb{root.y}}{[integer]  Y position where the user clicked to initiate the drag}
+\item{\verb{timestamp}}{[numeric]  timestamp from the click event that initiated the drag}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -5,8 +5,8 @@
 See \code{\link{gtkStatusIconNewFromFile}} for details.}
 \usage{gtkStatusIconSetFromFile(object, filename)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}
-\item{\code{filename}}{[character]  a filename}
+\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}
+\item{\verb{filename}}{[character]  a filename}
 }
 \details{  Since  2.10 }
 \author{Derived by RGtkGen from GTK+ documentation}

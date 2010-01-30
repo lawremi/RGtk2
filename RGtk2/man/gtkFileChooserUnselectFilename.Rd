@@ -6,8 +6,8 @@ is not in the current directory, does not exist, or
 is otherwise not currently selected, does nothing.}
 \usage{gtkFileChooserUnselectFilename(object, filename)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{filename}}{[char]  the filename to unselect}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{filename}}{[char]  the filename to unselect}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

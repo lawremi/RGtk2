@@ -7,8 +7,8 @@ text, icon, tooltip, etc), and attaches a callback so that the
 action gets activated when the proxy widget does.}
 \usage{gtkActionConnectProxy(object, proxy)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkAction}}]  the action object}
-\item{\code{proxy}}{[\code{\link{GtkWidget}}]  the proxy widget}
+\item{\verb{object}}{[\verb{\link{GtkAction}}]  the action object}
+\item{\verb{proxy}}{[\verb{\link{GtkWidget}}]  the proxy widget}
 }
 \details{If the widget is already connected to an action, it is disconnected
 first.  

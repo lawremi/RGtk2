@@ -11,8 +11,8 @@ function before calling \code{\link{gtkWindowPresent}} or any equivalent
 function generating a window map event.}
 \usage{gtkWindowSetStartupId(object, startup.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}
-\item{\code{startup.id}}{[character]  a string with startup-notification identifier}
+\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}
+\item{\verb{startup.id}}{[character]  a string with startup-notification identifier}
 }
 \details{This function is only useful on X11, not with other GTK+ targets.  
 

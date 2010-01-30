@@ -9,7 +9,7 @@
 \alias{CairoLineJoin}
 \alias{CairoOperator}
 \name{cairo-cairo-t}
-\title{cairo\_t}
+\title{cairo_t}
 \description{The cairo drawing context}
 \section{Methods and Functions}{
 \code{\link{cairoCreate}(target)}\cr
@@ -69,52 +69,52 @@
 \code{\link{cairoGetUserData}(cr, key)}\cr
 \code{cairo(target)}
 }
-\section{Detailed Description}{\code{\link{Cairo}} is the main object used when drawing with cairo. To
-    draw with cairo, you create a \code{\link{Cairo}}, set the target surface,
-    and drawing options for the \code{\link{Cairo}}, create shapes with
+\section{Detailed Description}{\verb{\link{Cairo}} is the main object used when drawing with cairo. To
+    draw with cairo, you create a \verb{\link{Cairo}}, set the target surface,
+    and drawing options for the \verb{\link{Cairo}}, create shapes with
     functions like \code{\link{cairoMoveTo}} and \code{\link{cairoLineTo}}, and then
     draw shapes with \code{\link{cairoStroke}} or \code{\link{cairoFill}}.
-    \code{\link{Cairo}}'s can be pushed to a stack via \code{\link{cairoSave}}.
+    \verb{\link{Cairo}}'s can be pushed to a stack via \code{\link{cairoSave}}.
     They may then safely be changed, without loosing the current state.
     Use \code{\link{cairoRestore}} to restore to the saved state.
   }
 \section{Structures}{\describe{
-\item{\code{Cairo}}{
-A \code{\link{Cairo}} contains the current state of the rendering device,
+\item{\verb{Cairo}}{
+A \verb{\link{Cairo}} contains the current state of the rendering device,
 including coordinates of yet to be drawn shapes.
   
-Cairo contexts, as \code{\link{Cairo}} objects are named, are central to
-cairo and all drawing with cairo is always done to a \code{\link{Cairo}}
+Cairo contexts, as \verb{\link{Cairo}} objects are named, are central to
+cairo and all drawing with cairo is always done to a \verb{\link{Cairo}}
 object.
   
-Memory management of \code{\link{Cairo}} is done with
+Memory management of \verb{\link{Cairo}} is done with
 \code{cairoReference()} and \code{cairoDestroy()}.  
 
 }
-\item{\code{CairoRectangle}}{
+\item{\verb{CairoRectangle}}{
 A data structure for holding a rectangle.  
 
   Since  1.4
-\strong{\code{CairoRectangle} is a \link{transparent-type}.}
+\strong{\verb{CairoRectangle} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{x}}{[numeric]  X coordinate of the left side of the rectangle}
-\item{\code{y}}{[numeric]  Y coordinate of the the top side of the rectangle}
-\item{\code{width}}{[numeric]  width of the rectangle}
-\item{\code{height}}{[numeric]  height of the rectangle}
+\item{\verb{x}}{[numeric]  X coordinate of the left side of the rectangle}
+\item{\verb{y}}{[numeric]  Y coordinate of the the top side of the rectangle}
+\item{\verb{width}}{[numeric]  width of the rectangle}
+\item{\verb{height}}{[numeric]  height of the rectangle}
 }
 
 }
-\item{\code{CairoRectangleList}}{
+\item{\verb{CairoRectangleList}}{
 A data structure for holding a dynamically allocated
 array of rectangles.  
 
   Since  1.4
-\strong{\code{CairoRectangleList} is a \link{transparent-type}.}
+\strong{\verb{CairoRectangleList} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{status}}{[\code{\link{CairoStatus}}]  Error status of the rectangle list}
-\item{\code{rectangles}}{[\code{\link{CairoRectangle}}]  list containing the rectangles}
+\item{\code{status}}{[\verb{\link{CairoStatus}}]  Error status of the rectangle list}
+\item{\code{rectangles}}{[\verb{\link{CairoRectangle}}]  list containing the rectangles}
 \item{\code{num_rectangles}}{[integer]  Number of rectangles in this list}
 }
 
@@ -122,23 +122,23 @@ array of rectangles.
 }}
 \section{Convenient Construction}{\code{cairo} is the equivalent of \code{\link{cairoCreate}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{CairoAntialias}}{
+\item{\verb{CairoAntialias}}{
 Specifies the type of antialiasing to do when rendering text or shapes.  
 
 \describe{
-\item{\code{default}}{ Use the default antialiasing for
+\item{\verb{default}}{ Use the default antialiasing for
   the subsystem and target device}
-\item{\code{none}}{ Use a bilevel alpha mask}
-\item{\code{gray}}{ Perform single-color antialiasing (using
+\item{\verb{none}}{ Use a bilevel alpha mask}
+\item{\verb{gray}}{ Perform single-color antialiasing (using
  shades of gray for black text on a white background, for example).}
-\item{\code{subpixel}}{ Perform antialiasing by taking
+\item{\verb{subpixel}}{ Perform antialiasing by taking
  advantage of the order of subpixel elements on devices
  such as LCD panels}
 }
 
 }
-\item{\code{CairoFillRule}}{
-\code{\link{CairoFillRule}} is used to select how paths are filled. For both
+\item{\verb{CairoFillRule}}{
+\verb{\link{CairoFillRule}} is used to select how paths are filled. For both
 fill rules, whether or not a point is included in the fill is
 determined by taking a ray from that point to infinity and looking
 at intersections with the path. The ray can be in any direction,
@@ -150,43 +150,43 @@ is just a description of the rule that is applied.)
 New entries may be added in future versions.  
 
 \describe{
-\item{\code{winding}}{ If the path crosses the ray from
+\item{\verb{winding}}{ If the path crosses the ray from
 left-to-right, counts +1. If the path crosses the ray
 from right to left, counts -1. (Left and right are determined
 from the perspective of looking along the ray from the starting
 point.) If the total count is non-zero, the point will be filled.}
-\item{\code{even-odd}}{ Counts the total number of
+\item{\verb{even-odd}}{ Counts the total number of
 intersections, without regard to the orientation of the contour. If
 the total number of intersections is odd, the point will be
 filled.}
 }
 
 }
-\item{\code{CairoLineCap}}{
+\item{\verb{CairoLineCap}}{
 Specifies how to render the endpoint of a line when stroking.  
 
 \describe{
-\item{\code{butt}}{ start(stop) the line exactly at the start(end) point}
-\item{\code{round}}{ use a round ending, the center of the circle is the end point}
-\item{\code{square}}{ use squared ending, the center of the square is the end point}
+\item{\verb{butt}}{ start(stop) the line exactly at the start(end) point}
+\item{\verb{round}}{ use a round ending, the center of the circle is the end point}
+\item{\verb{square}}{ use squared ending, the center of the square is the end point}
 }
 
 }
-\item{\code{CairoLineJoin}}{
+\item{\verb{CairoLineJoin}}{
 Specifies how to render the junction of two lines when stroking.  
 
 \describe{
-\item{\code{miter}}{ use a sharp (angled) corner, see
+\item{\verb{miter}}{ use a sharp (angled) corner, see
 \code{\link{cairoSetMiterLimit}}}
-\item{\code{round}}{ use a rounded join, the center of the circle is the
+\item{\verb{round}}{ use a rounded join, the center of the circle is the
 joint point}
-\item{\code{bevel}}{ use a cut-off join, the join is cut off at half
+\item{\verb{bevel}}{ use a cut-off join, the join is cut off at half
 the line width from the joint point}
 }
 
 }
-\item{\code{CairoOperator}}{
-\code{\link{CairoOperator}} is used to set the compositing operator for all cairo
+\item{\verb{CairoOperator}}{
+\verb{\link{CairoOperator}} is used to set the compositing operator for all cairo
 drawing operations.
   
 The operators marked as \dfn{unbounded} modify their
@@ -203,28 +203,28 @@ the mathematical definitions, see
 http://cairographics.org/operators/ (\url{http://cairographics.org/operators/}).  
 
 \describe{
-\item{\code{clear}}{ clear destination layer (bounded)}
-\item{\code{source}}{ replace destination layer (bounded)}
-\item{\code{over}}{ draw source layer on top of destination layer
+\item{\verb{clear}}{ clear destination layer (bounded)}
+\item{\verb{source}}{ replace destination layer (bounded)}
+\item{\verb{over}}{ draw source layer on top of destination layer
 (bounded)}
-\item{\code{in}}{ draw source where there was destination content
+\item{\verb{in}}{ draw source where there was destination content
 (unbounded)}
-\item{\code{out}}{ draw source where there was no destination
+\item{\verb{out}}{ draw source where there was no destination
 content (unbounded)}
-\item{\code{atop}}{ draw source on top of destination content and
+\item{\verb{atop}}{ draw source on top of destination content and
 only there}
-\item{\code{dest}}{ ignore the source}
-\item{\code{dest-over}}{ draw destination on top of source}
-\item{\code{dest-in}}{ leave destination only where there was
+\item{\verb{dest}}{ ignore the source}
+\item{\verb{dest-over}}{ draw destination on top of source}
+\item{\verb{dest-in}}{ leave destination only where there was
 source content (unbounded)}
-\item{\code{dest-out}}{ leave destination only where there was no
+\item{\verb{dest-out}}{ leave destination only where there was no
 source content}
-\item{\code{dest-atop}}{ leave destination on top of source content
+\item{\verb{dest-atop}}{ leave destination on top of source content
 and only there (unbounded)}
-\item{\code{xor}}{ source and destination are shown where there is only
+\item{\verb{xor}}{ source and destination are shown where there is only
 one of them}
-\item{\code{add}}{ source and destination layers are accumulated}
-\item{\code{saturate}}{ like over, but assuming source and dest are
+\item{\verb{add}}{ source and destination layers are accumulated}
+\item{\verb{saturate}}{ like over, but assuming source and dest are
 disjoint geometries}
 }
 

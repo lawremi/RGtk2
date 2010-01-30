@@ -32,7 +32,7 @@
    with the Sun mediaLib library, these functions are instead accelerated
    using mediaLib, which provides hardware acceleration on Intel, AMD,
    and Sparc chipsets.  If desired, mediaLib support can be turned off by
-   setting the GDK\_DISABLE\_MEDIALIB environment variable.  
+   setting the GDK_DISABLE_MEDIALIB environment variable.  
     
     The following example demonstrates handling an expose event by
     rendering the appropriate area of a source image (which is scaled
@@ -68,7 +68,7 @@ expose_cb <- function(widget, event, data)
 }
 }}
 \section{Enums and Flags}{\describe{
-\item{\code{GdkInterpType}}{
+\item{\verb{GdkInterpType}}{
     This enumeration describes the different interpolation modes that
     can be used with the scaling functions. \code{GDK.INTERP.NEAREST} is 
     the fastest scaling method, but has horrible quality when 
@@ -81,20 +81,20 @@ expose_cb <- function(widget, event, data)
   
 
 \describe{
-\item{\code{nearest}}{Nearest neighbor sampling; this is the fastest
+\item{\verb{nearest}}{Nearest neighbor sampling; this is the fastest
 and lowest quality mode. Quality is normally unacceptable when scaling 
 down, but may be OK when scaling up.}
-\item{\code{tiles}}{This is an accurate simulation of the PostScript
+\item{\verb{tiles}}{This is an accurate simulation of the PostScript
 image operator without any interpolation enabled.  Each pixel is
 rendered as a tiny parallelogram of solid color, the edges of which
 are implemented with antialiasing.  It resembles nearest neighbor for
 enlargement, and bilinear for reduction.}
-\item{\code{bilinear}}{Best quality/speed balance; use this mode by
+\item{\verb{bilinear}}{Best quality/speed balance; use this mode by
 default. Bilinear interpolation.  For enlargement, it is
 equivalent to point-sampling the ideal bilinear-interpolated image.
 For reduction, it is equivalent to laying down small tiles and
 integrating over the coverage area.}
-\item{\code{hyper}}{This is the slowest and highest quality
+\item{\verb{hyper}}{This is the slowest and highest quality
 reconstruction function. It is derived from the hyperbolic filters in
 Wolberg's "Digital Image Warping", and is formally defined as the
 hyperbolic-filter sampling the ideal hyperbolic-filter interpolated
@@ -102,15 +102,15 @@ image (the filter is designed to be idempotent for 1:1 pixel mapping).}
 }
 
 }
-\item{\code{GdkPixbufRotation}}{
+\item{\verb{GdkPixbufRotation}}{
 The possible rotations which can be passed to \code{\link{gdkPixbufRotateSimple}}.
 To make them easier to use, their numerical values are the actual degrees.
 
 \describe{
-\item{\code{none}}{No rotation.}
-\item{\code{counterclockwise}}{Rotate by 90 degrees.}
-\item{\code{upsidedown}}{Rotate by 180 degrees.}
-\item{\code{clockwise}}{Rotate by 270 degrees.}
+\item{\verb{none}}{No rotation.}
+\item{\verb{counterclockwise}}{Rotate by 90 degrees.}
+\item{\verb{upsidedown}}{Rotate by 180 degrees.}
+\item{\verb{clockwise}}{Rotate by 270 degrees.}
 }
 
 }

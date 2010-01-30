@@ -4,10 +4,10 @@
 \description{Pushes a new message onto a statusbar's stack.}
 \usage{gtkStatusbarPush(object, context.id, text)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStatusbar}}]  a \code{\link{GtkStatusbar}}}
-\item{\code{context.id}}{[numeric]  the message's context id, as returned by
+\item{\verb{object}}{[\verb{\link{GtkStatusbar}}]  a \verb{\link{GtkStatusbar}}}
+\item{\verb{context.id}}{[numeric]  the message's context id, as returned by
              \code{\link{gtkStatusbarGetContextId}}}
-\item{\code{text}}{[character]  the message to add to the statusbar}
+\item{\verb{text}}{[character]  the message to add to the statusbar}
 }
 \value{[numeric]  a message id that can be used with 
          \code{\link{gtkStatusbarRemove}}.}

@@ -7,8 +7,8 @@ Sets whether the tabs must have all the same size or not.
 }
 \usage{gtkNotebookSetHomogeneousTabs(object, homogeneous)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{homogeneous}}{[logical] \code{TRUE} if all tabs should be the same size.}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{homogeneous}}{[logical] \code{TRUE} if all tabs should be the same size.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

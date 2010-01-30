@@ -5,9 +5,9 @@
 column.}
 \usage{gtkTableSetColSpacing(object, column, spacing)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTable}}] a \code{\link{GtkTable}}.}
-\item{\code{column}}{[numeric] the column whose spacing should be changed.}
-\item{\code{spacing}}{[numeric] number of pixels that the spacing should take up.}
+\item{\verb{object}}{[\verb{\link{GtkTable}}] a \verb{\link{GtkTable}}.}
+\item{\verb{column}}{[numeric] the column whose spacing should be changed.}
+\item{\verb{spacing}}{[numeric] number of pixels that the spacing should take up.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

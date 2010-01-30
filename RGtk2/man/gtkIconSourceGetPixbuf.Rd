@@ -9,7 +9,7 @@ for the GtkIconSource passed to the GtkStyle::\code{renderIcon()}
 virtual function. The reference count on the pixbuf is
 not incremented.}
 \usage{gtkIconSourceGetPixbuf(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}}
-\value{[\code{\link{GdkPixbuf}}]  source pixbuf}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}}
+\value{[\verb{\link{GdkPixbuf}}]  source pixbuf}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

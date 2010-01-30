@@ -1,8 +1,8 @@
 \alias{gtkGcRelease}
 \name{gtkGcRelease}
 \title{gtkGcRelease}
-\description{Releases a \code{\link{GdkGC}} allocated using \code{\link{gtkGcGet}}.}
+\description{Releases a \verb{\link{GdkGC}} allocated using \code{\link{gtkGcGet}}.}
 \usage{gtkGcRelease(gc)}
-\arguments{\item{\code{gc}}{[\code{\link{GdkGC}}] a \code{\link{GdkGC}}.}}
+\arguments{\item{\verb{gc}}{[\verb{\link{GdkGC}}] a \verb{\link{GdkGC}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

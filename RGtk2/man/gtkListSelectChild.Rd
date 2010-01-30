@@ -8,8 +8,8 @@ emitted.
 }
 \usage{gtkListSelectChild(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkList}}] the list widget}
-\item{\code{child}}{[\code{\link{GtkWidget}}] the child to select.}
+\item{\verb{object}}{[\verb{\link{GtkList}}] the list widget}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}] the child to select.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

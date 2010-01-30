@@ -44,36 +44,36 @@ it is not generally necessary to allocate colors
 directly.
   
 In previous revisions of this interface, a number
-of functions that take a \code{\link{GdkColormap}} parameter
+of functions that take a \verb{\link{GdkColormap}} parameter
 were replaced with functions whose names began
-with "gdk\_colormap\_". This process will probably
+with "gdk_colormap_". This process will probably
 be extended somewhat in the future - 
 \code{\link{gdkColorWhite}}, \code{\link{gdkColorBlack}}, and 
 \code{\link{gdkColorChange}} will probably become aliases.}
 \section{Structures}{\describe{
-\item{\code{GdkColor}}{
-The \code{\link{GdkColor}} structure is used to describe an 
+\item{\verb{GdkColor}}{
+The \verb{\link{GdkColor}} structure is used to describe an 
 allocated or unallocated color.
-\strong{\code{GdkColor} is a \link{transparent-type}.}
+\strong{\verb{GdkColor} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{pixel}}{[numeric] For allocated colors, the value used to
+\item{\verb{pixel}}{[numeric] For allocated colors, the value used to
   draw this color on the screen.}
-\item{\code{red}}{[integer] The red component of the color. This is
+\item{\verb{red}}{[integer] The red component of the color. This is
   a value between 0 and 65535, with 65535 indicating
   full intensitiy.}
-\item{\code{green}}{[integer] The blue component of the color.}
-\item{\code{blue}}{[integer] The green component of the color.}
+\item{\verb{green}}{[integer] The blue component of the color.}
+\item{\verb{blue}}{[integer] The green component of the color.}
 }
 
 }
-\item{\code{GdkColormap}}{
+\item{\verb{GdkColormap}}{
 The colormap structure contains the following public fields.
 
 \describe{
 \item{\code{size}}{[integer] For pseudo-color colormaps, the number of colors
   in the colormap.}
-\item{\code{colors}}{[\code{\link{GdkColor}}] An list containing the current values in the
+\item{\code{colors}}{[\verb{\link{GdkColor}}] An list containing the current values in the
   colormap. This can be used to map from pixel values
   back to RGB values. This is only meaningful for
   pseudo-color colormaps.}

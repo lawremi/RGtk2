@@ -2,7 +2,7 @@
 \name{gtkColorSelectionSetUpdatePolicy}
 \title{gtkColorSelectionSetUpdatePolicy}
 \description{
-Sets the policy controlling when the color\_changed signals are emitted.
+Sets the policy controlling when the color_changed signals are emitted.
 The available policies are:
 \itemize{
 \item \code{GTK_UPDATE_CONTINUOUS} - signals are sent continuously as the color
@@ -17,8 +17,8 @@ time.
 }
 \usage{gtkColorSelectionSetUpdatePolicy(object, policy)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkColorSelection}}] a \code{\link{GtkColorSelection}}.}
-\item{\code{policy}}{[\code{\link{GtkUpdateType}}] a \code{\link{GtkUpdateType}} value indicating the desired policy.}
+\item{\verb{object}}{[\verb{\link{GtkColorSelection}}] a \verb{\link{GtkColorSelection}}.}
+\item{\verb{policy}}{[\code{\link{GtkUpdateType}}] a \code{\link{GtkUpdateType}} value indicating the desired policy.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

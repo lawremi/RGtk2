@@ -8,46 +8,46 @@
 \code{\link{gtkAspectFrameSet}(object, xalign = 0, yalign = 0, ratio = 1, obey.child = 1)}\cr
 \code{gtkAspectFrame(label = NULL, xalign = NULL, yalign = NULL, ratio = NULL, obey.child = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkFrame}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkFrame
                                        +----GtkAspectFrame}}
 \section{Interfaces}{GtkAspectFrame implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkAspectFrame}} is useful when you want
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkAspectFrame}} is useful when you want
 pack a widget so that it can resize but always retains
 the same aspect ratio. For instance, one might be
-drawing a small preview of a larger image. \code{\link{GtkAspectFrame}}
-derives from \code{\link{GtkFrame}}, so it can draw a label and
+drawing a small preview of a larger image. \verb{\link{GtkAspectFrame}}
+derives from \verb{\link{GtkFrame}}, so it can draw a label and
 a frame around the child. The frame will be
 "shrink-wrapped" to the size of the child.}
-\section{Structures}{\describe{\item{\code{GtkAspectFrame}}{
+\section{Structures}{\describe{\item{\verb{GtkAspectFrame}}{
 \emph{undocumented
 }
 
 }}}
 \section{Convenient Construction}{\code{gtkAspectFrame} is the equivalent of \code{\link{gtkAspectFrameNew}}.}
 \section{Properties}{\describe{
-\item{\code{obey-child} [logical : Read / Write]}{
+\item{\verb{obey-child} [logical : Read / Write]}{
 
 Force aspect ratio to match that of the frame's child.  Default value: TRUE
 
 }
-\item{\code{ratio} [numeric : Read / Write]}{
+\item{\verb{ratio} [numeric : Read / Write]}{
 
-Aspect ratio if obey\_child is FALSE.  Allowed values: [0.0001,10000]  Default value: 0.5
+Aspect ratio if obey_child is FALSE.  Allowed values: [0.0001,10000]  Default value: 0.5
 
 }
-\item{\code{xalign} [numeric : Read / Write]}{
+\item{\verb{xalign} [numeric : Read / Write]}{
 
 X alignment of the child.  Allowed values: [0,1]  Default value: 0.5
 
 }
-\item{\code{yalign} [numeric : Read / Write]}{
+\item{\verb{yalign} [numeric : Read / Write]}{
 
 Y alignment of the child.  Allowed values: [0,1]  Default value: 0.5
 

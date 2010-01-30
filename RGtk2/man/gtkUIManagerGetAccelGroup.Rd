@@ -1,10 +1,10 @@
 \alias{gtkUIManagerGetAccelGroup}
 \name{gtkUIManagerGetAccelGroup}
 \title{gtkUIManagerGetAccelGroup}
-\description{Returns the \code{\link{GtkAccelGroup}} associated with \code{self}.}
+\description{Returns the \verb{\link{GtkAccelGroup}} associated with \code{self}.}
 \usage{gtkUIManagerGetAccelGroup(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}} object}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}} object}}
 \details{  Since  2.4}
-\value{[\code{\link{GtkAccelGroup}}]  the \code{\link{GtkAccelGroup}}.}
+\value{[\verb{\link{GtkAccelGroup}}]  the \verb{\link{GtkAccelGroup}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

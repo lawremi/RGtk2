@@ -5,7 +5,7 @@
 If you feel a need to use this function, your code probably
 needs reorganization. }
 \usage{gtkWidgetGetChildVisible(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{This function is only useful for container implementations and
 never should be called by an application.  }
 \value{[logical] \code{TRUE} if the widget is mapped with the parent.}

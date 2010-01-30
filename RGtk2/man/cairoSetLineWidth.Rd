@@ -7,8 +7,8 @@ user space, (though device-space pen may be an ellipse in general
 due to scaling/shear/rotation of the CTM).}
 \usage{cairoSetLineWidth(cr, width)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a \code{\link{Cairo}}}
-\item{\code{width}}{[numeric]  a line width}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a \verb{\link{Cairo}}}
+\item{\verb{width}}{[numeric]  a line width}
 }
 \details{Note: When the description above refers to user space and CTM it
 refers to the user space and CTM in effect at the time of the

@@ -7,9 +7,9 @@
 \code{\link{gtkContainerForeach}}, rather than \code{\link{gtkContainerForall}}.}
 \usage{gtkContainerForeach(object, callback, callback.data = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkContainer}}]  a \code{\link{GtkContainer}}}
-\item{\code{callback}}{[\code{\link{GtkCallback}}]  a callback}
-\item{\code{callback.data}}{[R object]  callback user data}
+\item{\verb{object}}{[\verb{\link{GtkContainer}}]  a \verb{\link{GtkContainer}}}
+\item{\verb{callback}}{[\verb{\link{GtkCallback}}]  a callback}
+\item{\verb{callback.data}}{[R object]  callback user data}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

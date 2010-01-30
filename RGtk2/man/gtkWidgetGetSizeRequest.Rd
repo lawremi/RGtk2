@@ -9,11 +9,11 @@ and the natural requisition of the widget will be used intead. See
 actually use, call \code{\link{gtkWidgetSizeRequest}} instead of
 this function.}
 \usage{gtkWidgetGetSizeRequest(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \value{
 A list containing the following elements:
-\item{\code{width}}{[integer]  return location for width, or \code{NULL}}
-\item{\code{height}}{[integer]  return location for height, or \code{NULL}}
+\item{\verb{width}}{[integer]  return location for width, or \code{NULL}}
+\item{\verb{height}}{[integer]  return location for height, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -1,10 +1,10 @@
 \alias{gtkPrintSettingsCopy}
 \name{gtkPrintSettingsCopy}
 \title{gtkPrintSettingsCopy}
-\description{Copies a \code{\link{GtkPrintSettings}} object.}
+\description{Copies a \verb{\link{GtkPrintSettings}} object.}
 \usage{gtkPrintSettingsCopy(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintSettings}}]  a \code{\link{GtkPrintSettings}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintSettings}}]  a \verb{\link{GtkPrintSettings}}}}
 \details{  Since  2.10}
-\value{[\code{\link{GtkPrintSettings}}]  a newly allocated copy of \code{other}}
+\value{[\verb{\link{GtkPrintSettings}}]  a newly allocated copy of \code{other}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

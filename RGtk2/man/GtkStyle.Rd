@@ -63,42 +63,42 @@
 \code{\link{gtkBorderCopy}(object)}\cr
 \code{gtkStyle()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkStyle}}
 \section{Structures}{\describe{
-\item{\code{GtkStyle}}{
+\item{\verb{GtkStyle}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{fg}}{[\code{\link{GdkColor}}] }
-\item{\code{bg}}{[\code{\link{GdkColor}}] }
-\item{\code{light}}{[\code{\link{GdkColor}}] }
-\item{\code{dark}}{[\code{\link{GdkColor}}] }
-\item{\code{mid}}{[\code{\link{GdkColor}}] }
-\item{\code{text}}{[\code{\link{GdkColor}}] }
-\item{\code{base}}{[\code{\link{GdkColor}}] }
-\item{\code{textAa}}{[\code{\link{GdkColor}}] }
-\item{\code{white}}{[\code{\link{GdkColor}}] }
-\item{\code{black}}{[\code{\link{GdkColor}}] }
-\item{\code{fontDesc}}{[\code{\link{PangoFontDescription}}] }
-\item{\code{xthickness}}{[integer] }
-\item{\code{ythickness}}{[integer] }
-\item{\code{fgGc}}{[\code{\link{GdkGC}}] }
-\item{\code{bgGc}}{[\code{\link{GdkGC}}] }
-\item{\code{lightGc}}{[\code{\link{GdkGC}}] }
-\item{\code{darkGc}}{[\code{\link{GdkGC}}] }
-\item{\code{midGc}}{[\code{\link{GdkGC}}] }
-\item{\code{textGc}}{[\code{\link{GdkGC}}] }
-\item{\code{baseGc}}{[\code{\link{GdkGC}}] }
-\item{\code{textAaGc}}{[\code{\link{GdkGC}}] }
-\item{\code{whiteGc}}{[\code{\link{GdkGC}}] }
-\item{\code{blackGc}}{[\code{\link{GdkGC}}] }
-\item{\code{bgPixmap}}{[\code{\link{GdkPixmap}}] }
+\item{\verb{fg}}{[\verb{\link{GdkColor}}] }
+\item{\verb{bg}}{[\verb{\link{GdkColor}}] }
+\item{\verb{light}}{[\verb{\link{GdkColor}}] }
+\item{\verb{dark}}{[\verb{\link{GdkColor}}] }
+\item{\verb{mid}}{[\verb{\link{GdkColor}}] }
+\item{\verb{text}}{[\verb{\link{GdkColor}}] }
+\item{\verb{base}}{[\verb{\link{GdkColor}}] }
+\item{\verb{textAa}}{[\verb{\link{GdkColor}}] }
+\item{\verb{white}}{[\verb{\link{GdkColor}}] }
+\item{\verb{black}}{[\verb{\link{GdkColor}}] }
+\item{\verb{fontDesc}}{[\verb{\link{PangoFontDescription}}] }
+\item{\verb{xthickness}}{[integer] }
+\item{\verb{ythickness}}{[integer] }
+\item{\verb{fgGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{bgGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{lightGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{darkGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{midGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{textGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{baseGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{textAaGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{whiteGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{blackGc}}{[\verb{\link{GdkGC}}] }
+\item{\verb{bgPixmap}}{[\verb{\link{GdkPixmap}}] }
 }
 
 }
-\item{\code{GtkBorder}}{
+\item{\verb{GtkBorder}}{
 \emph{undocumented
 }
 
@@ -110,7 +110,7 @@
 }
 
 \describe{
-\item{\code{pspec}}{[\code{\link{GParamSpec}}] }
+\item{\code{pspec}}{[\verb{\link{GParamSpec}}] }
 \item{\code{rc.string}}{[character] }
 \item{\code{property.value}}{[R object] }
 }
@@ -127,7 +127,7 @@ deal with styles that have been already realized.
   Since  2.4
 
 \describe{
-\item{\code{style}}{[\code{\link{GtkStyle}}]  the object which received the signal}
+\item{\code{style}}{[\verb{\link{GtkStyle}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -136,13 +136,13 @@ deal with styles that have been already realized.
 \item{\code{unrealize(style, user.data)}}{
 Emitted when the aspects of the style specific to a particular colormap
 and depth are being cleaned up. A connection to this signal can be useful
-if a widget wants to cache objects like a \code{\link{GdkGC}} as object data on \code{\link{GtkStyle}}.
+if a widget wants to cache objects like a \verb{\link{GdkGC}} as object data on \verb{\link{GtkStyle}}.
 This signal provides a convenient place to free such cached objects.  
 
   Since  2.4
 
 \describe{
-\item{\code{style}}{[\code{\link{GtkStyle}}]  the object which received the signal}
+\item{\code{style}}{[\verb{\link{GtkStyle}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 

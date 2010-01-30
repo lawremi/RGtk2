@@ -7,11 +7,11 @@ ask for the paste data and return, and at some point later after
 the main loop runs, the paste data will be inserted.)}
 \usage{gtkTextBufferPasteClipboard(object, clipboard, override.location = NULL, default.editable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextBuffer}}]  a \code{\link{GtkTextBuffer}}}
-\item{\code{clipboard}}{[\code{\link{GtkClipboard}}]  the \code{\link{GtkClipboard}} to paste from}
-\item{\code{override.location}}{[\code{\link{GtkTextIter}}]  location to insert pasted text, or \code{NULL} for 
+\item{\verb{object}}{[\verb{\link{GtkTextBuffer}}]  a \verb{\link{GtkTextBuffer}}}
+\item{\verb{clipboard}}{[\verb{\link{GtkClipboard}}]  the \verb{\link{GtkClipboard}} to paste from}
+\item{\verb{override.location}}{[\verb{\link{GtkTextIter}}]  location to insert pasted text, or \code{NULL} for 
                     at the cursor}
-\item{\code{default.editable}}{[logical]  whether the buffer is editable by default}
+\item{\verb{default.editable}}{[logical]  whether the buffer is editable by default}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

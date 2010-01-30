@@ -8,7 +8,7 @@ is popped down again.
 \strong{WARNING: \code{gtk_item_factory_popup_data} has been deprecated since version 2.4 and should not be used in newly-written code. }
 }
 \usage{gtkItemFactoryPopupData(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkItemFactory}}]  a \code{\link{GtkItemFactory}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkItemFactory}}]  a \verb{\link{GtkItemFactory}}}}
 \value{[R object] \code{popup.data} associated with \code{ifactory}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

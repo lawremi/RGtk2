@@ -16,5 +16,5 @@
   }
 \references{\url{http://developer.gnome.org/doc/API/2.0/gdk-pixbuf/gdk-pixbuf-util.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
-\seealso{\code{\link{GdkPixbuf}}}
+\seealso{\verb{\link{GdkPixbuf}}}
 \keyword{internal}

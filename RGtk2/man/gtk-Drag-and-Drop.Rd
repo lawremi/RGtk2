@@ -52,22 +52,22 @@ As well as the functions listed here, applications
 may need to use some facilities provided for
 Selections.
 Also, the Drag and Drop API makes use of signals
-in the \code{\link{GtkWidget}} class.}
+in the \verb{\link{GtkWidget}} class.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkDestDefaults}}{
+\item{\verb{GtkDestDefaults}}{
 The \code{\link{GtkDestDefaults}} enumeration specifies the various
 types of action that will be taken on behalf
 of the user for a drag destination site.
 
 \describe{
-\item{\code{motion}}{   If set for a widget, GTK+, during a drag over this
+\item{\verb{motion}}{   If set for a widget, GTK+, during a drag over this
    widget will check if the drag matches this widget's
    list of possible targets and actions.
    GTK+ will then call \code{\link{gdkDragStatus}} as appropriate.}
-\item{\code{highlight}}{   If set for a widget, GTK+ will draw a highlight on
+\item{\verb{highlight}}{   If set for a widget, GTK+ will draw a highlight on
    this widget as long as a drag is over this widget
    and the widget drag format and action are acceptable.}
-\item{\code{drop}}{   If set for a widget, when a drop occurs, GTK+ will
+\item{\verb{drop}}{   If set for a widget, when a drop occurs, GTK+ will
    will check if the drag matches this widget's
    list of possible targets and actions. If so, 
    GTK+ will call \code{\link{gtkDragGetData}} on behalf 
@@ -76,19 +76,19 @@ of the user for a drag destination site.
    was a move, then if the drag was successful, then
    \code{TRUE} will be passed for the \code{delete} parameter
    to \code{\link{gtkDragFinish}}.}
-\item{\code{all}}{   If set, specifies that all default actions should
+\item{\verb{all}}{   If set, specifies that all default actions should
    be taken.}
 }
 
 }
-\item{\code{GtkTargetFlags}}{
+\item{\verb{GtkTargetFlags}}{
 The \code{\link{GtkTargetFlags}} enumeration is used to specify
-constraints on an entry in a \code{GtkTargetTable}. 
+constraints on an entry in a \verb{GtkTargetTable}. 
 
 \describe{
-\item{\code{app}}{   If this is set, the target will only be selected
+\item{\verb{app}}{   If this is set, the target will only be selected
    for drags within a single application.}
-\item{\code{widget}}{   If this is set, the target will only be selected
+\item{\verb{widget}}{   If this is set, the target will only be selected
    for drags within a single widget.}
 }
 

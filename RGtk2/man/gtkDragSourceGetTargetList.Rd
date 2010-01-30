@@ -4,8 +4,8 @@
 \description{Gets the list of targets this widget can provide for
 drag-and-drop.}
 \usage{gtkDragSourceGetTargetList(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
 \details{  Since  2.4}
-\value{[\code{\link{GtkTargetList}}]  the \code{\link{GtkTargetList}}, or \code{NULL} if none}
+\value{[\verb{\link{GtkTargetList}}]  the \verb{\link{GtkTargetList}}, or \code{NULL} if none}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

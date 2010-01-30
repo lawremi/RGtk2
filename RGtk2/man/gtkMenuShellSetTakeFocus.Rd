@@ -6,8 +6,8 @@ focus so that it will receive all keyboard events which is needed to enable
 keyboard navigation in menus.}
 \usage{gtkMenuShellSetTakeFocus(object, take.focus)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenuShell}}]  a \code{\link{GtkMenuShell}}}
-\item{\code{take.focus}}{[logical] \code{TRUE} if the menu shell should take the keyboard focus on popup.}
+\item{\verb{object}}{[\verb{\link{GtkMenuShell}}]  a \verb{\link{GtkMenuShell}}}
+\item{\verb{take.focus}}{[logical] \code{TRUE} if the menu shell should take the keyboard focus on popup.}
 }
 \details{Setting \code{take.focus} to \code{FALSE} is useful only for special applications
 like virtual keyboard implementations which should not take keyboard

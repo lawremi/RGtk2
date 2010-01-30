@@ -11,9 +11,9 @@ the text.
 }
 \usage{gtkEntrySelectRegion(object, start, end)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{start}}{[integer]  the starting position}
-\item{\code{end}}{[integer]  the end position}
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{start}}{[integer]  the starting position}
+\item{\verb{end}}{[integer]  the end position}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

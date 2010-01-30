@@ -5,12 +5,12 @@
 using \code{\link{gdkDrawLayout}} instead.}
 \usage{gdkDrawGlyphs(object, gc, font, x, y, glyphs)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDrawable}}]  a \code{\link{GdkDrawable}}}
-\item{\code{gc}}{[\code{\link{GdkGC}}]  a \code{\link{GdkGC}}}
-\item{\code{font}}{[\code{\link{PangoFont}}]  font to be used}
-\item{\code{x}}{[integer]  X coordinate of baseline origin}
-\item{\code{y}}{[integer]  Y coordinate of baseline origin}
-\item{\code{glyphs}}{[\code{\link{PangoGlyphString}}]  the glyph string to draw}
+\item{\verb{object}}{[\verb{\link{GdkDrawable}}]  a \verb{\link{GdkDrawable}}}
+\item{\verb{gc}}{[\verb{\link{GdkGC}}]  a \verb{\link{GdkGC}}}
+\item{\verb{font}}{[\verb{\link{PangoFont}}]  font to be used}
+\item{\verb{x}}{[integer]  X coordinate of baseline origin}
+\item{\verb{y}}{[integer]  Y coordinate of baseline origin}
+\item{\verb{glyphs}}{[\verb{\link{PangoGlyphString}}]  the glyph string to draw}
 }
 \details{A glyph is a single image in a font. This function draws a sequence of
 glyphs.  To obtain a sequence of glyphs you have to understand a

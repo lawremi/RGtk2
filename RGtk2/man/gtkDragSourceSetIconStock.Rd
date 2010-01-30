@@ -5,8 +5,8 @@
 to a stock icon.}
 \usage{gtkDragSourceSetIconStock(object, stock.id)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{stock.id}}{[character]  the ID of the stock icon to use}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{stock.id}}{[character]  the ID of the stock icon to use}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

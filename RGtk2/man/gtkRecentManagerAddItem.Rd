@@ -5,8 +5,8 @@
 resources list.}
 \usage{gtkRecentManagerAddItem(object, uri)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkRecentManager}}]  a \code{\link{GtkRecentManager}}}
-\item{\code{uri}}{[character]  a valid URI}
+\item{\verb{object}}{[\verb{\link{GtkRecentManager}}]  a \verb{\link{GtkRecentManager}}}
+\item{\verb{uri}}{[character]  a valid URI}
 }
 \details{This function automatically retrieves some of the needed
 metadata and setting other metadata to common default values; it

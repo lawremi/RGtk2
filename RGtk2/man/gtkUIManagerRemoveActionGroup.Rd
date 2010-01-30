@@ -5,8 +5,8 @@
 with \code{self}.}
 \usage{gtkUIManagerRemoveActionGroup(object, action.group)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkUIManager}}]  a \code{\link{GtkUIManager}} object}
-\item{\code{action.group}}{[\code{\link{GtkActionGroup}}]  the action group to be removed}
+\item{\verb{object}}{[\verb{\link{GtkUIManager}}]  a \verb{\link{GtkUIManager}} object}
+\item{\verb{action.group}}{[\verb{\link{GtkActionGroup}}]  the action group to be removed}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

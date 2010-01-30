@@ -4,7 +4,7 @@
 \description{Gets the edge used for determining reattachment of the handle box. See
 \code{\link{gtkHandleBoxSetSnapEdge}}.}
 \usage{gtkHandleBoxGetSnapEdge(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkHandleBox}}]  a \code{\link{GtkHandleBox}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkHandleBox}}]  a \verb{\link{GtkHandleBox}}}}
 \value{[\code{\link{GtkPositionType}}]  the edge used for determining reattachment, or (GtkPositionType)-1 if this
               is determined (as per default) from the handle position. }
 \author{Derived by RGtkGen from GTK+ documentation}

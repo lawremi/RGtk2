@@ -5,7 +5,7 @@
 filename is not a copy, and should not be modified or expected to
 persist beyond the lifetime of the icon source.}
 \usage{gtkIconSourceGetFilename(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkIconSource}}]  a \code{\link{GtkIconSource}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkIconSource}}]  a \verb{\link{GtkIconSource}}}}
 \value{[character]  image filename.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

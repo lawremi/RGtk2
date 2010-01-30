@@ -6,7 +6,7 @@ moves in visual order, not logical order, so indexes may not be
 sequential. Also, the index may be equal to the length of the text
 in the layout, if on the \code{NULL} run (see \code{\link{pangoLayoutIterGetRun}}).}
 \usage{pangoLayoutIterGetIndex(object)}
-\arguments{\item{\code{object}}{[\code{\link{PangoLayoutIter}}]  a \code{\link{PangoLayoutIter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{PangoLayoutIter}}]  a \verb{\link{PangoLayoutIter}}}}
 \value{[integer]  current byte index.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

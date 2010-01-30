@@ -7,9 +7,9 @@ Swaps the two specified rows with each other.
 }
 \usage{gtkCListSwapRows(object, row1, row2)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{row1}}{[integer] Number of the first row.}
-\item{\code{row2}}{[integer] Number of the second row.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{row1}}{[integer] Number of the first row.}
+\item{\verb{row2}}{[integer] Number of the second row.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

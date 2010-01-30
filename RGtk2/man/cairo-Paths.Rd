@@ -28,38 +28,38 @@
 }
 \section{Detailed Description}{Paths are the most basic drawing tools and are primarily used to implicitly
 generate simple masks.}
-\section{Structures}{\describe{\item{\code{CairoPath}}{
+\section{Structures}{\describe{\item{\verb{CairoPath}}{
 A data structure for holding a path. This data structure serves as
 the return value for \code{\link{cairoCopyPath}} and
 \code{\link{cairoCopyPathFlat}} as well the input value for
 \code{\link{cairoAppendPath}}.
   
-See \code{\link{CairoPathData}} for hints on how to iterate over the
+See \verb{\link{CairoPathData}} for hints on how to iterate over the
 actual data within the path.
   
-The num\_data member gives the number of elements in the data
+The num_data member gives the number of elements in the data
 array. This number is larger than the number of independent path
-portions (defined in \code{\link{CairoPathDataType}}), since the data
+portions (defined in \verb{\link{CairoPathDataType}}), since the data
 includes both headers and coordinates for each portion.  
-\strong{\code{CairoPath} is a \link{transparent-type}.}
+\strong{\verb{CairoPath} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{status}}{[\code{\link{CairoStatus}}]  the current error status}
-\item{\code{data}}{[\code{\link{CairoPathData}}]  the elements in the path}
-\item{\code{numData}}{[integer]  the number of elements in the data list}
+\item{\verb{status}}{[\verb{\link{CairoStatus}}]  the current error status}
+\item{\verb{data}}{[\verb{\link{CairoPathData}}]  the elements in the path}
+\item{\verb{numData}}{[integer]  the number of elements in the data list}
 }
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{CairoPathDataType}}{
-\code{\link{CairoPathData}} is used to describe the type of one portion
-of a path when represented as a \code{\link{CairoPath}}.
-See \code{\link{CairoPathData}} for details.  
+\section{Enums and Flags}{\describe{\item{\verb{CairoPathDataType}}{
+\verb{\link{CairoPathData}} is used to describe the type of one portion
+of a path when represented as a \verb{\link{CairoPath}}.
+See \verb{\link{CairoPathData}} for details.  
 
 \describe{
-\item{\code{move-to}}{ A move-to operation}
-\item{\code{line-to}}{ A line-to operation}
-\item{\code{curve-to}}{ A curve-to operation}
-\item{\code{close-path}}{ A close-path operation}
+\item{\verb{move-to}}{ A move-to operation}
+\item{\verb{line-to}}{ A line-to operation}
+\item{\verb{curve-to}}{ A curve-to operation}
+\item{\verb{close-path}}{ A close-path operation}
 }
 
 }}}

@@ -8,8 +8,8 @@ the justification may be done in more complex ways, like extending
 the characters.}
 \usage{pangoLayoutSetJustify(object, justify)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoLayout}}]  a \code{\link{PangoLayout}}}
-\item{\code{justify}}{[logical]  whether the lines in the layout should be justified.}
+\item{\verb{object}}{[\verb{\link{PangoLayout}}]  a \verb{\link{PangoLayout}}}
+\item{\verb{justify}}{[logical]  whether the lines in the layout should be justified.}
 }
 \details{Note that this setting is not implemented and so is ignored in Pango
 older than 1.18.  }

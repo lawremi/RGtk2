@@ -1,11 +1,11 @@
 \alias{gtkBinGetChild}
 \name{gtkBinGetChild}
 \title{gtkBinGetChild}
-\description{Gets the child of the \code{\link{GtkBin}}, or \code{NULL} if the bin contains
+\description{Gets the child of the \verb{\link{GtkBin}}, or \code{NULL} if the bin contains
 no child widget. The returned widget does not have a reference
 added, so you do not need to unref it.}
 \usage{gtkBinGetChild(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkBin}}]  a \code{\link{GtkBin}}}}
-\value{[\code{\link{GtkWidget}}]  pointer to child of the \code{\link{GtkBin}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkBin}}]  a \verb{\link{GtkBin}}}}
+\value{[\verb{\link{GtkWidget}}]  pointer to child of the \verb{\link{GtkBin}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

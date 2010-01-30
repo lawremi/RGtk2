@@ -9,8 +9,8 @@ visual, removing duplicates.}
 \details{.  }
 \value{
 A list containing the following elements:
-\item{\code{depths}}{[integer]  return location for available depths }
-\item{\code{count}}{[integer]  return location for number of available depths}
+\item{\verb{depths}}{[integer]  return location for available depths }
+\item{\verb{count}}{[integer]  return location for number of available depths}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

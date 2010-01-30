@@ -3,7 +3,7 @@
 \title{gtkButtonGetUseStock}
 \description{Returns whether the button label is a stock item.}
 \usage{gtkButtonGetUseStock(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkButton}}]  a \code{\link{GtkButton}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkButton}}]  a \verb{\link{GtkButton}}}}
 \value{[logical] \code{TRUE} if the button label is used to
               select a stock item instead of being
               used directly as the label text.}

@@ -6,8 +6,8 @@ the horizontal positioning of the contents when the displayed
 text is shorter than the width of the entry.}
 \usage{gtkEntrySetAlignment(object, xalign)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkEntry}}]  a \code{\link{GtkEntry}}}
-\item{\code{xalign}}{[numeric]  The horizontal alignment, from 0 (left) to 1 (right).
+\item{\verb{object}}{[\verb{\link{GtkEntry}}]  a \verb{\link{GtkEntry}}}
+\item{\verb{xalign}}{[numeric]  The horizontal alignment, from 0 (left) to 1 (right).
          Reversed for RTL layouts}
 }
 \details{  Since  2.4}

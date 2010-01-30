@@ -29,7 +29,7 @@ for (f in files) allDefs <- mergeDefs(getDefs(f), allDefs)
 # generating the documentation
 src_dir <- "/home/larman/research/src"
 subs <- c("atk-1.22.0/docs", "pango-1.20.0/docs",
-    file.path("gtk+-2.12.8/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
+    file.path("gtk+-2.12.12/docs/reference", c("gdk", "gtk", "gdk-pixbuf")), 
 	"cairo-1.5.12/doc/public", "libglade-2.6.2/doc")
 doc_dirs <- file.path(src_dir, subs, "xml")
 doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
@@ -37,9 +37,10 @@ doc_files <- sapply(doc_dirs, dir, pattern = "xml", full.names = T)
 #defs <- getDefs(files[1])
 #doc_file <- doc_files[[1]][11]
 #genDoc(doc_file, defs, file.path(path, "docgen"))
-doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtkprintjob.xml")-1))]
+doc_files[[4]] <- doc_files[[4]][-(1:(which(sapply(doc_files[[4]], basename) == "gtkbuilder.xml")-1))]
 #source("genDoc.S")
 genDocs(doc_files[4], allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = T)
+
 genDocs(doc_files, allDefs, file.path(path, "docgen"), libraryDescriptions, verbose = TRUE)
 
 # exporting/importing routines for each API

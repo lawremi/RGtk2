@@ -8,8 +8,8 @@ an option to create a new folder might be shown if the action is
 \code{GTK_FILE_CHOOSER_ACTION_OPEN}.}
 \usage{gtkFileChooserSetAction(object, action)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{action}}{[\code{\link{GtkFileChooserAction}}]  the action that the file selector is performing}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{action}}{[\code{\link{GtkFileChooserAction}}]  the action that the file selector is performing}
 }
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}

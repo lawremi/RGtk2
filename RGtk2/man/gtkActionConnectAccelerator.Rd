@@ -5,7 +5,7 @@
 accel path and group. See \code{\link{gtkActionSetAccelPath}} and 
 \code{\link{gtkActionSetAccelGroup}}}
 \usage{gtkActionConnectAccelerator(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkAction}}]  a \code{\link{GtkAction}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkAction}}]  a \verb{\link{GtkAction}}}}
 \details{Since multiple proxies may independently trigger the installation
 of the accelerator, the \code{action} counts the number of times this
 function has been called and doesn't remove the accelerator until

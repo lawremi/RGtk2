@@ -7,10 +7,10 @@ Adds a widget to the end of the given toolbar.
 }
 \usage{gtkToolbarAppendWidget(object, widget, tooltip.text = NULL, tooltip.private.text = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkToolbar}}]  a \code{\link{GtkToolbar}}.}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}} to add to the toolbar. }
-\item{\code{tooltip.text}}{[char]  the element's tooltip.}
-\item{\code{tooltip.private.text}}{[char]  used for context-sensitive help about this toolbar element.}
+\item{\verb{object}}{[\verb{\link{GtkToolbar}}]  a \verb{\link{GtkToolbar}}.}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}} to add to the toolbar. }
+\item{\verb{tooltip.text}}{[char]  the element's tooltip.}
+\item{\verb{tooltip.private.text}}{[char]  used for context-sensitive help about this toolbar element.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

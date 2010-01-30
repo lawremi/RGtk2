@@ -4,9 +4,9 @@
 \description{Sets the specified column header to \code{header}.}
 \usage{atkTableSetColumnHeader(object, column, header)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
-\item{\code{column}}{[integer]  a \code{integer} representing a column in \code{table}}
-\item{\code{header}}{[\code{\link{AtkObject}}]  an \code{\link{AtkTable}}}
+\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{column}}{[integer]  a \verb{integer} representing a column in \code{table}}
+\item{\verb{header}}{[\verb{\link{AtkObject}}]  an \verb{\link{AtkTable}}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

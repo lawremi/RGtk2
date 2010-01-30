@@ -4,7 +4,7 @@
 \description{Returns the status of the print operation. 
 Also see \code{\link{gtkPrintOperationGetStatusString}}.}
 \usage{gtkPrintOperationGetStatus(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkPrintOperation}}]  a \code{\link{GtkPrintOperation}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkPrintOperation}}]  a \verb{\link{GtkPrintOperation}}}}
 \details{  Since  2.10}
 \value{[\code{\link{GtkPrintStatus}}]  the status of the print operation}
 \author{Derived by RGtkGen from GTK+ documentation}

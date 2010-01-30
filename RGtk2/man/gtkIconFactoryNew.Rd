@@ -1,12 +1,12 @@
 \alias{gtkIconFactoryNew}
 \name{gtkIconFactoryNew}
 \title{gtkIconFactoryNew}
-\description{Creates a new \code{\link{GtkIconFactory}}. An icon factory manages a collection
-of \code{\link{GtkIconSet}}s; a \code{\link{GtkIconSet}} manages a set of variants of a
-particular icon (i.e. a \code{\link{GtkIconSet}} contains variants for different
+\description{Creates a new \verb{\link{GtkIconFactory}}. An icon factory manages a collection
+of \verb{\link{GtkIconSet}}s; a \verb{\link{GtkIconSet}} manages a set of variants of a
+particular icon (i.e. a \verb{\link{GtkIconSet}} contains variants for different
 sizes and widget states). Icons in an icon factory are named by a
 stock ID, which is a simple string identifying the icon. Each
-\code{\link{GtkStyle}} has a list of \code{\link{GtkIconFactory}}s derived from the current
+\verb{\link{GtkStyle}} has a list of \verb{\link{GtkIconFactory}}s derived from the current
 theme; those icon factories are consulted first when searching for
 an icon. If the theme doesn't set a particular icon, GTK+ looks for
 the icon in a list of default icon factories, maintained by
@@ -15,6 +15,6 @@ the icon in a list of default icon factories, maintained by
 add a default icon factory with their icons, which will allow
 themes to override the icons for the application.}
 \usage{gtkIconFactoryNew()}
-\value{[\code{\link{GtkIconFactory}}]  a new \code{\link{GtkIconFactory}}}
+\value{[\verb{\link{GtkIconFactory}}]  a new \verb{\link{GtkIconFactory}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

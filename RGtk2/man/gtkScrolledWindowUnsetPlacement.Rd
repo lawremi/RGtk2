@@ -5,7 +5,7 @@
 for the scrolled window. If no window placement is set for a scrolled
 window, it obeys the "gtk-scrolled-window-placement" XSETTING.}
 \usage{gtkScrolledWindowUnsetPlacement(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkScrolledWindow}}]  a \code{\link{GtkScrolledWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkScrolledWindow}}]  a \verb{\link{GtkScrolledWindow}}}}
 \details{See also \code{\link{gtkScrolledWindowSetPlacement}} and
 \code{\link{gtkScrolledWindowGetPlacement}}.  
 

@@ -4,7 +4,7 @@
 \description{Returns the height of \code{screen} in millimeters. 
 Note that on some X servers this value will not be correct.}
 \usage{gdkScreenGetHeightMm(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkScreen}}]  a \code{\link{GdkScreen}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkScreen}}]  a \verb{\link{GdkScreen}}}}
 \details{  Since  2.2}
 \value{[integer]  the heigth of \code{screen} in millimeters.}
 \author{Derived by RGtkGen from GTK+ documentation}

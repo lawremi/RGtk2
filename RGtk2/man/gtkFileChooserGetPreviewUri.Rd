@@ -4,7 +4,7 @@
 \description{Gets the URI that should be previewed in a custom preview
 widget. See \code{\link{gtkFileChooserSetPreviewWidget}}.}
 \usage{gtkFileChooserGetPreviewUri(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}}
 \details{  Since  2.4}
 \value{[char]  the URI for the file to preview, or \code{NULL} if no file is
 selected.}

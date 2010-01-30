@@ -3,7 +3,7 @@
 \title{gtkWindowGetFocusOnMap}
 \description{Gets the value set by \code{\link{gtkWindowSetFocusOnMap}}.}
 \usage{gtkWindowGetFocusOnMap(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \details{  Since  2.6}
 \value{[logical] \code{TRUE} if window should receive the input focus when
 mapped.}

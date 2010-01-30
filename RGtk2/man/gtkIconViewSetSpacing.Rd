@@ -6,8 +6,8 @@ which is inserted between the cells (i.e. the icon and
 the text) of an item.}
 \usage{gtkIconViewSetSpacing(object, spacing)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkIconView}}]  a \code{\link{GtkIconView}}}
-\item{\code{spacing}}{[integer]  the spacing}
+\item{\verb{object}}{[\verb{\link{GtkIconView}}]  a \verb{\link{GtkIconView}}}
+\item{\verb{spacing}}{[integer]  the spacing}
 }
 \details{  Since  2.6}
 \author{Derived by RGtkGen from GTK+ documentation}

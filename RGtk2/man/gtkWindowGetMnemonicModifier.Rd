@@ -4,7 +4,7 @@
 \description{Returns the mnemonic modifier for this window. See
 \code{\link{gtkWindowSetMnemonicModifier}}.}
 \usage{gtkWindowGetMnemonicModifier(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWindow}}]  a \code{\link{GtkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWindow}}]  a \verb{\link{GtkWindow}}}}
 \value{[\code{\link{GdkModifierType}}]  the modifier mask used to activate
               mnemonics on this window.}
 \author{Derived by RGtkGen from GTK+ documentation}

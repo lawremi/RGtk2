@@ -4,8 +4,8 @@
 \description{Gets the values of a multiple style properties of \code{widget}.}
 \usage{gtkWidgetStyleGet(object, ...)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{...}}{ pairs of property names and locations to 
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{...}}{ pairs of property names and locations to 
   return the property values, starting with the location for 
   \code{first.property.name}, terminated by \code{NULL}.}
 }

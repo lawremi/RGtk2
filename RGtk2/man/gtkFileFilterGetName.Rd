@@ -3,7 +3,7 @@
 \title{gtkFileFilterGetName}
 \description{Gets the human-readable name for the filter. See \code{\link{gtkFileFilterSetName}}.}
 \usage{gtkFileFilterGetName(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkFileFilter}}]  a \code{\link{GtkFileFilter}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkFileFilter}}]  a \verb{\link{GtkFileFilter}}}}
 \details{  Since  2.4}
 \value{[character]  The human-readable name of the filter,
   or \code{NULL}.}

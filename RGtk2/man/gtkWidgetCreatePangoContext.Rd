@@ -1,11 +1,11 @@
 \alias{gtkWidgetCreatePangoContext}
 \name{gtkWidgetCreatePangoContext}
 \title{gtkWidgetCreatePangoContext}
-\description{Creates a new \code{\link{PangoContext}} with the appropriate font map,
+\description{Creates a new \verb{\link{PangoContext}} with the appropriate font map,
 font description, and base direction for drawing text for
 this widget. See also \code{\link{gtkWidgetGetPangoContext}}.}
 \usage{gtkWidgetCreatePangoContext(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}}
-\value{[\code{\link{PangoContext}}]  the new \code{\link{PangoContext}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}}
+\value{[\verb{\link{PangoContext}}]  the new \verb{\link{PangoContext}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

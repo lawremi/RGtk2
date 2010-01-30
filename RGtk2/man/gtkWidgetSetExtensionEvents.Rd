@@ -5,8 +5,8 @@
 and \code{\link{gdkInputSetExtensionEvents}}.}
 \usage{gtkWidgetSetExtensionEvents(object, mode)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkWidget}}]  a \code{\link{GtkWidget}}}
-\item{\code{mode}}{[\code{\link{GdkExtensionMode}}]  bitfield of extension events to receive}
+\item{\verb{object}}{[\verb{\link{GtkWidget}}]  a \verb{\link{GtkWidget}}}
+\item{\verb{mode}}{[\code{\link{GdkExtensionMode}}]  bitfield of extension events to receive}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

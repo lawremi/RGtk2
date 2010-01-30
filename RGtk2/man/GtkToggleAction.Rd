@@ -12,15 +12,15 @@
 \code{\link{gtkToggleActionGetDrawAsRadio}(object)}\cr
 \code{gtkToggleAction(name = NULL, label = NULL, tooltip = NULL, stock.id = NULL)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{GtkAction}
+\section{Hierarchy}{\preformatted{GObject
+   +----GtkAction
          +----GtkToggleAction
-               +----\link{GtkRadioAction}}}
+               +----GtkRadioAction}}
 \section{Interfaces}{GtkToggleAction implements
- \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{A \code{\link{GtkToggleAction}} corresponds roughly to a \code{\link{GtkCheckMenuItem}}. It has an
+ \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{A \verb{\link{GtkToggleAction}} corresponds roughly to a \verb{\link{GtkCheckMenuItem}}. It has an
 "active" state specifying whether the action has been checked or not.}
-\section{Structures}{\describe{\item{\code{GtkToggleAction}}{
+\section{Structures}{\describe{\item{\verb{GtkToggleAction}}{
 The \code{GtkToggleAction} struct contains only 
 private members and should not be accessed directly.
 
@@ -31,21 +31,21 @@ private members and should not be accessed directly.
 }
 
 \describe{
-\item{\code{toggleaction}}{[\code{\link{GtkToggleAction}}] the object which received the signal.}
+\item{\code{toggleaction}}{[\verb{\link{GtkToggleAction}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
 \section{Properties}{\describe{
-\item{\code{active} [logical : Read / Write]}{
+\item{\verb{active} [logical : Read / Write]}{
 
 If the toggle action should be active in or not.  
 
   Default value: FALSE  Since  2.10
 
 }
-\item{\code{draw-as-radio} [logical : Read / Write]}{
+\item{\verb{draw-as-radio} [logical : Read / Write]}{
 
 Whether the proxies for this action look like radio action proxies.  Default value: FALSE
 

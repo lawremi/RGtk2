@@ -5,9 +5,9 @@
 notebook or widget.}
 \usage{gtkNotebookSetTabDetachable(object, child, detachable)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  a child \code{\link{GtkWidget}}}
-\item{\code{detachable}}{[logical]  whether the tab is detachable or not}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a child \verb{\link{GtkWidget}}}
+\item{\verb{detachable}}{[logical]  whether the tab is detachable or not}
 }
 \details{Note that 2 notebooks must share a common group identificator
 (see \code{\link{gtkNotebookSetGroupId}}) to allow automatic tabs
@@ -15,7 +15,7 @@ interchange between them.
   
 If you want a widget to interact with a notebook through DnD
 (i.e.: accept dragged tabs from it) it must be set as a drop
-destination and accept the target "GTK\_NOTEBOOK\_TAB". The notebook
+destination and accept the target "GTK_NOTEBOOK_TAB". The notebook
 will fill the selection with a GtkWidget** pointing to the child
 widget that corresponds to the dropped tab.
   \preformatted{

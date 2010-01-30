@@ -7,9 +7,9 @@ for \code{desc} than \code{old.match}, or if \code{old.match} is \code{NULL}, de
 weight and style; other attributes must match exactly.}
 \usage{pangoFontDescriptionBetterMatch(object, old.match = NULL, new.match)}
 \arguments{
-\item{\code{object}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
-\item{\code{old.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}, or \code{NULL}}
-\item{\code{new.match}}{[\code{\link{PangoFontDescription}}]  a \code{\link{PangoFontDescription}}}
+\item{\verb{object}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
+\item{\verb{old.match}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}, or \code{NULL}}
+\item{\verb{new.match}}{[\verb{\link{PangoFontDescription}}]  a \verb{\link{PangoFontDescription}}}
 }
 \value{[logical] \code{TRUE} if \code{new.match} is a better match}
 \author{Derived by RGtkGen from GTK+ documentation}

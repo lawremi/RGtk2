@@ -6,8 +6,8 @@ separated list of numbers. For example, "4:10:0:3" would be an
 acceptable return value for this string.}
 \usage{gtkTreeModelGetStringFromIter(object, iter)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTreeModel}}]  A \code{\link{GtkTreeModel}}.}
-\item{\code{iter}}{[\code{\link{GtkTreeIter}}]  An \code{\link{GtkTreeIter}}.}
+\item{\verb{object}}{[\verb{\link{GtkTreeModel}}]  A \verb{\link{GtkTreeModel}}.}
+\item{\verb{iter}}{[\verb{\link{GtkTreeIter}}]  An \verb{\link{GtkTreeIter}}.}
 }
 \details{  Since  2.2}
 \value{[character]  A newly-allocated string.}

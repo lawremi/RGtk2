@@ -2,12 +2,12 @@
 \name{cairoShowText}
 \title{cairoShowText}
 \description{A drawing operator that generates the shape from a string of UTF-8
-characters, rendered according to the current font\_face, font\_size
-(font\_matrix), and font\_options.}
+characters, rendered according to the current font_face, font_size
+(font_matrix), and font_options.}
 \usage{cairoShowText(cr, utf8)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{utf8}}{[char]  a string of text encoded in UTF-8}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{utf8}}{[char]  a string of text encoded in UTF-8}
 }
 \details{This function first computes a set of glyphs for the string of
 text. The first glyph is placed so that its origin is at the

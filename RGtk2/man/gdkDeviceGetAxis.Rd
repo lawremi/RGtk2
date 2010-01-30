@@ -5,14 +5,14 @@
 and locates the value in the list for a given axis use.}
 \usage{gdkDeviceGetAxis(object, axes, use)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkDevice}}]  a \code{\link{GdkDevice}}}
-\item{\code{axes}}{[numeric]  pointer to a list of axes}
-\item{\code{use}}{[\code{\link{GdkAxisUse}}]  the use to look for}
+\item{\verb{object}}{[\verb{\link{GdkDevice}}]  a \verb{\link{GdkDevice}}}
+\item{\verb{axes}}{[numeric]  pointer to a list of axes}
+\item{\verb{use}}{[\code{\link{GdkAxisUse}}]  the use to look for}
 }
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the given axis use was found, otherwise \code{FALSE}}
-\item{\code{value}}{[numeric]  location to store the found value.}
+\item{\verb{value}}{[numeric]  location to store the found value.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

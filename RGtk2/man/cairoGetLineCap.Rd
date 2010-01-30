@@ -3,7 +3,7 @@
 \title{cairoGetLineCap}
 \description{Gets the current line cap style, as set by \code{\link{cairoSetLineCap}}.}
 \usage{cairoGetLineCap(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
-\value{[\code{\link{CairoLineCap}}]  the current line cap style.}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
+\value{[\verb{\link{CairoLineCap}}]  the current line cap style.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

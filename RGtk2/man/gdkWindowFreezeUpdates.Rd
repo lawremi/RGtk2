@@ -7,6 +7,6 @@ events.  The window will begin receiving expose events again when
 has been called more than once, \code{\link{gdkWindowThawUpdates}} must be called
 an equal number of times to begin processing exposes.}
 \usage{gdkWindowFreezeUpdates(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

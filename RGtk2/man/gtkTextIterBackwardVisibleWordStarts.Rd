@@ -4,8 +4,8 @@
 \description{Calls \code{\link{gtkTextIterBackwardVisibleWordStart}} up to \code{count} times.}
 \usage{gtkTextIterBackwardVisibleWordStarts(object, count)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{count}}{[integer]  number of times to move}
+\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{count}}{[integer]  number of times to move}
 }
 \details{  Since  2.4}
 \value{[logical] \code{TRUE} if \code{iter} moved and is not the end iterator }

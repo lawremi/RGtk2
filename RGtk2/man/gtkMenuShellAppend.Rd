@@ -1,11 +1,11 @@
 \alias{gtkMenuShellAppend}
 \name{gtkMenuShellAppend}
 \title{gtkMenuShellAppend}
-\description{Adds a new \code{\link{GtkMenuItem}} to the end of the menu shell's item list.}
+\description{Adds a new \verb{\link{GtkMenuItem}} to the end of the menu shell's item list.}
 \usage{gtkMenuShellAppend(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkMenuShell}}] a \code{\link{GtkMenuShell}}.}
-\item{\code{child}}{[\code{\link{GtkWidget}}] The \code{\link{GtkMenuItem}} to add.}
+\item{\verb{object}}{[\verb{\link{GtkMenuShell}}] a \verb{\link{GtkMenuShell}}.}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}] The \verb{\link{GtkMenuItem}} to add.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

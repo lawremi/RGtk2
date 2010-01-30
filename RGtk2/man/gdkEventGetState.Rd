@@ -6,11 +6,11 @@ stores an empty state (0). Returns \code{TRUE} if there was a state field
 in the event. \code{event} may be \code{NULL}, in which case it's treated
 as if the event had no state field.}
 \usage{gdkEventGetState(object)}
-\arguments{\item{\code{object}}{[\code{\link{GdkEvent}}]  a \code{\link{GdkEvent}} or NULL}}
+\arguments{\item{\verb{object}}{[\verb{\link{GdkEvent}}]  a \verb{\link{GdkEvent}} or NULL}}
 \value{
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if there was a state field in the event }
-\item{\code{state}}{[\code{\link{GdkModifierType}}]  return location for state}
+\item{\verb{state}}{[\code{\link{GdkModifierType}}]  return location for state}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

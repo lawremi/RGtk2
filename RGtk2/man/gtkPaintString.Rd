@@ -7,16 +7,16 @@ Draws a text string on \code{window} with the given parameters.
 }
 \usage{gtkPaintString(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, string)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{area}}{[\code{\link{GdkRectangle}}]  clip rectangle, or \code{NULL} if the
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{area}}{[\verb{\link{GdkRectangle}}]  clip rectangle, or \code{NULL} if the
        output should not be clipped}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the widget (may be \code{NULL})}
-\item{\code{detail}}{[character]  a style detail (may be \code{NULL})}
-\item{\code{x}}{[integer]  x origin}
-\item{\code{y}}{[integer]  y origin}
-\item{\code{string}}{[character]  the string to draw}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  the widget (may be \code{NULL})}
+\item{\verb{detail}}{[character]  a style detail (may be \code{NULL})}
+\item{\verb{x}}{[integer]  x origin}
+\item{\verb{y}}{[integer]  y origin}
+\item{\verb{string}}{[character]  the string to draw}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

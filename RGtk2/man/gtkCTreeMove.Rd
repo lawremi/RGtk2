@@ -7,10 +7,10 @@ Move a node in the tree to another location.
 }
 \usage{gtkCTreeMove(object, node, new.parent = NULL, new.sibling = NULL)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCTree}}] }
-\item{\code{node}}{[\code{\link{GtkCTreeNode}}] The node to be moved.}
-\item{\code{new.parent}}{[\code{\link{GtkCTreeNode}}] The new parent-to-be of the node.}
-\item{\code{new.sibling}}{[\code{\link{GtkCTreeNode}}] The new sibling-to-be of the node.}
+\item{\verb{object}}{[\verb{\link{GtkCTree}}] }
+\item{\verb{node}}{[\verb{\link{GtkCTreeNode}}] The node to be moved.}
+\item{\verb{new.parent}}{[\verb{\link{GtkCTreeNode}}] The new parent-to-be of the node.}
+\item{\verb{new.sibling}}{[\verb{\link{GtkCTreeNode}}] The new sibling-to-be of the node.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

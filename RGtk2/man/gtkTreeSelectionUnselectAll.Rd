@@ -3,6 +3,6 @@
 \title{gtkTreeSelectionUnselectAll}
 \description{Unselects all the nodes.}
 \usage{gtkTreeSelectionUnselectAll(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTreeSelection}}]  A \code{\link{GtkTreeSelection}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTreeSelection}}]  A \verb{\link{GtkTreeSelection}}.}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

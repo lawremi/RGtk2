@@ -9,9 +9,9 @@ box.
 }
 \usage{gtkButtonBoxSetChildIpadding(object, ipad.x, ipad.y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButtonBox}}] a \code{\link{GtkButtonBox}}.}
-\item{\code{ipad.x}}{[integer] the horizontal padding that should be used by each button in \code{widget}.}
-\item{\code{ipad.y}}{[integer] the vertical padding that should be used by each button in \code{widget}.}
+\item{\verb{object}}{[\verb{\link{GtkButtonBox}}] a \verb{\link{GtkButtonBox}}.}
+\item{\verb{ipad.x}}{[integer] the horizontal padding that should be used by each button in \code{widget}.}
+\item{\verb{ipad.y}}{[integer] the vertical padding that should be used by each button in \code{widget}.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

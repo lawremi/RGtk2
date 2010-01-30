@@ -4,10 +4,10 @@
 \description{Sets a new cairo context on a print context. }
 \usage{gtkPrintContextSetCairoContext(object, cr, dpi.x, dpi.y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPrintContext}}]  a \code{\link{GtkPrintContext}}}
-\item{\code{cr}}{[\code{\link{Cairo}}]  the cairo context}
-\item{\code{dpi.x}}{[numeric]  the horizontal resolution to use with \code{cr}}
-\item{\code{dpi.y}}{[numeric]  the vertical resolution to use with \code{cr}}
+\item{\verb{object}}{[\verb{\link{GtkPrintContext}}]  a \verb{\link{GtkPrintContext}}}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  the cairo context}
+\item{\verb{dpi.x}}{[numeric]  the horizontal resolution to use with \code{cr}}
+\item{\verb{dpi.y}}{[numeric]  the vertical resolution to use with \code{cr}}
 }
 \details{This function is intended to be used when implementing
 an internal print preview, it is not needed for printing,

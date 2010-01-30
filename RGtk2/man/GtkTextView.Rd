@@ -70,28 +70,28 @@
 \code{gtkTextView(buffer = NULL, show = TRUE)}\cr\code{gtkTextChildAnchor()}
 }
 \section{Hierarchy}{\preformatted{
-\link{GObject}
+GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkTextView
-\link{GObject}
+GObject
    +----GtkTextChildAnchor
 }}
 \section{Interfaces}{GtkTextView implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
 \section{Detailed Description}{You may wish to begin by reading the text widget
 conceptual overview which gives an overview of all the objects and data
 types related to the text widget and how they work together.
   }
 \section{Structures}{\describe{
-\item{\code{GtkTextView}}{
+\item{\verb{GtkTextView}}{
 \emph{undocumented
 }
 
 }
-\item{\code{GtkTextChildAnchor}}{
+\item{\verb{GtkTextChildAnchor}}{
 A \code{GtkTextChildAnchor} is a spot in the buffer 
 where child widgets can be "anchored" (inserted inline, as if they were 
 characters). The anchor can have multiple widgets anchored, to allow for 
@@ -103,24 +103,24 @@ multiple views.
 \code{gtkTextView} is the result of collapsing the constructors of \code{GtkTextView} (\code{\link{gtkTextViewNew}}, \code{\link{gtkTextViewNewWithBuffer}}) and accepts a subset of its arguments matching the required arguments of one of its delegate constructors.
 \code{gtkTextChildAnchor} is the equivalent of \code{\link{gtkTextChildAnchorNew}}.
 }
-\section{Enums and Flags}{\describe{\item{\code{GtkTextWindowType}}{
+\section{Enums and Flags}{\describe{\item{\verb{GtkTextWindowType}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{private}}{\emph{undocumented
+\item{\verb{private}}{\emph{undocumented
 }}
-\item{\code{widget}}{\emph{undocumented
+\item{\verb{widget}}{\emph{undocumented
 }}
-\item{\code{text}}{\emph{undocumented
+\item{\verb{text}}{\emph{undocumented
 }}
-\item{\code{left}}{\emph{undocumented
+\item{\verb{left}}{\emph{undocumented
 }}
-\item{\code{right}}{\emph{undocumented
+\item{\verb{right}}{\emph{undocumented
 }}
-\item{\code{top}}{\emph{undocumented
+\item{\verb{top}}{\emph{undocumented
 }}
-\item{\code{bottom}}{\emph{undocumented
+\item{\verb{bottom}}{\emph{undocumented
 }}
 }
 
@@ -135,7 +135,7 @@ The default bindings for this signal are
 Backspace and Shift-Backspace.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -150,7 +150,7 @@ The default bindings for this signal are
 Ctrl-c and Ctrl-Insert.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -165,7 +165,7 @@ The default bindings for this signal are
 Ctrl-x and Shift-Delete.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -186,7 +186,7 @@ deleting a word and Ctrl-Backspace for deleting a word
 backwords.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{type}}{[\code{\link{GtkDeleteType}}]  the granularity of the deletion, as a \code{\link{GtkDeleteType}}}
 \item{\code{count}}{[integer]  the number of \code{type} units to delete}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -199,7 +199,7 @@ backwords.
 }
 
 \describe{
-\item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
+\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{arg1}}{[character] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -230,7 +230,7 @@ There are too many key combinations to list them all here.
 }  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{step}}{[\code{\link{GtkMovementStep}}]  the granularity of the move, as a \code{\link{GtkMovementStep}}}
 \item{\code{count}}{[integer]  the number of \code{step} units to move}
 \item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
@@ -249,7 +249,7 @@ is visible in a containing scrolled window.
 There are no default bindings for this signal.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{step}}{[\code{\link{GtkScrollStep}}]  the granularity of the move, as a \code{\link{GtkMovementStep}}}
 \item{\code{count}}{[integer]  the number of \code{step} units to move}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -264,11 +264,11 @@ which can be bound to key combinations to allow the user
 to initiate horizontal cursor movement by pages.  
   
 This signal should not be used anymore, instead use the
-\code{"move-cursor"} signal with the \code{GTK_MOVEMENT_HORIZONTAL_PAGES}
+\verb{"move-cursor"} signal with the \verb{GTK_MOVEMENT_HORIZONTAL_PAGES}
 granularity.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{count}}{[integer]  the number of \code{step} units to move}
 \item{\code{extend.selection}}{[logical] \code{TRUE} if the move should extend the selection}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
@@ -286,7 +286,7 @@ The default bindings for this signal are
 Ctrl-v and Shift-Insert.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -297,8 +297,8 @@ Ctrl-v and Shift-Insert.
 }
 
 \describe{
-\item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkMenu}}] }
+\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkMenu}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -314,7 +314,7 @@ The default bindings for this signal are Ctrl-a and Ctrl-/
 for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{select}}{[logical] \code{TRUE} to select, \code{FALSE} to unselect}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
@@ -326,7 +326,7 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 }
 
 \describe{
-\item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
+\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -337,9 +337,9 @@ for selecting and Shift-Ctrl-a and Ctrl-\\ for unselecting.
 }
 
 \describe{
-\item{\code{textview}}{[\code{\link{GtkTextView}}] the object which received the signal.}
-\item{\code{arg1}}{[\code{\link{GtkAdjustment}}] }
-\item{\code{arg2}}{[\code{\link{GtkAdjustment}}] }
+\item{\code{textview}}{[\verb{\link{GtkTextView}}] the object which received the signal.}
+\item{\code{arg1}}{[\verb{\link{GtkAdjustment}}] }
+\item{\code{arg2}}{[\verb{\link{GtkAdjustment}}] }
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -353,7 +353,7 @@ which gets emitted to toggle the visibility of the cursor.
 The default binding for this signal is F7.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -367,7 +367,7 @@ which gets emitted to change the editability of the text view.
 The default bindings for this signal is Insert.  
 
 \describe{
-\item{\code{text.view}}{[\code{\link{GtkTextView}}]  the object which received the signal}
+\item{\code{text.view}}{[\verb{\link{GtkTextView}}]  the object which received the signal}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -375,78 +375,78 @@ The default bindings for this signal is Insert.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{accepts-tab} [logical : Read / Write]}{
+\item{\verb{accepts-tab} [logical : Read / Write]}{
 
 Whether Tab will result in a tab character being entered.  Default value: TRUE
 
 }
-\item{\code{buffer} [\code{\link{GtkTextBuffer}} : Read / Write]}{
+\item{\verb{buffer} [\verb{\link{GtkTextBuffer}} : *        : Read / Write]}{
 
 The buffer which is displayed.
 
 }
-\item{\code{cursor-visible} [logical : Read / Write]}{
+\item{\verb{cursor-visible} [logical : Read / Write]}{
 
 If the insertion cursor is shown.  Default value: TRUE
 
 }
-\item{\code{editable} [logical : Read / Write]}{
+\item{\verb{editable} [logical : Read / Write]}{
 
 Whether the text can be modified by the user.  Default value: TRUE
 
 }
-\item{\code{indent} [integer : Read / Write]}{
+\item{\verb{indent} [integer : Read / Write]}{
 
 Amount to indent the paragraph, in pixels.  Default value: 0
 
 }
-\item{\code{justification} [\code{\link{GtkJustification}} : Read / Write]}{
+\item{\verb{justification} [\code{\link{GtkJustification}} : Read / Write]}{
 
-Left, right, or center justification.  Default value: GTK\_JUSTIFY\_LEFT
+Left, right, or center justification.  Default value: GTK_JUSTIFY_LEFT
 
 }
-\item{\code{left-margin} [integer : Read / Write]}{
+\item{\verb{left-margin} [integer : Read / Write]}{
 
 Width of the left margin in pixels.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{overwrite} [logical : Read / Write]}{
+\item{\verb{overwrite} [logical : Read / Write]}{
 
 Whether entered text overwrites existing contents.  Default value: FALSE
 
 }
-\item{\code{pixels-above-lines} [integer : Read / Write]}{
+\item{\verb{pixels-above-lines} [integer : Read / Write]}{
 
 Pixels of blank space above paragraphs.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{pixels-below-lines} [integer : Read / Write]}{
+\item{\verb{pixels-below-lines} [integer : Read / Write]}{
 
 Pixels of blank space below paragraphs.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{pixels-inside-wrap} [integer : Read / Write]}{
+\item{\verb{pixels-inside-wrap} [integer : Read / Write]}{
 
 Pixels of blank space between wrapped lines in a paragraph.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{right-margin} [integer : Read / Write]}{
+\item{\verb{right-margin} [integer : Read / Write]}{
 
 Width of the right margin in pixels.  Allowed values: >= 0  Default value: 0
 
 }
-\item{\code{tabs} [\code{\link{PangoTabArray}} : Read / Write]}{
+\item{\verb{tabs} [\verb{\link{PangoTabArray}} : *        : Read / Write]}{
 
 Custom tabs for this text.
 
 }
-\item{\code{wrap-mode} [\code{\link{GtkWrapMode}} : Read / Write]}{
+\item{\verb{wrap-mode} [\code{\link{GtkWrapMode}} : Read / Write]}{
 
-Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK\_WRAP\_NONE
+Whether to wrap lines never, at word boundaries, or at character boundaries.  Default value: GTK_WRAP_NONE
 
 }
 }}
-\section{Style Properties}{\describe{\item{\code{error-underline-color} [\code{\link{GdkColor}} : Read]}{
+\section{Style Properties}{\describe{\item{\verb{error-underline-color} [\verb{\link{GdkColor}} : *             : Read]}{
 
 Color with which to draw error-indication underlines.
 
@@ -454,7 +454,7 @@ Color with which to draw error-indication underlines.
 \references{\url{http://developer.gnome.org/doc/API/2.0/gtk/GtkTextView.html}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \seealso{
-\code{\link{GtkTextBuffer}}
-\code{\link{GtkTextIter}}
+\verb{\link{GtkTextBuffer}}
+\verb{\link{GtkTextIter}}
 }
 \keyword{internal}

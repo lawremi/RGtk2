@@ -5,7 +5,7 @@
 with \code{\link{gtkTextBufferDeleteMark}}. See \code{\link{gtkTextBufferAddMark}}
 for a way to add it to a buffer again.}
 \usage{gtkTextMarkGetDeleted(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextMark}}]  a \code{\link{GtkTextMark}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextMark}}]  a \verb{\link{GtkTextMark}}}}
 \value{[logical]  whether the mark is deleted}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

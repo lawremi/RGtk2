@@ -4,9 +4,9 @@
 \description{Adds a relationship of the specified type with the specified target.}
 \usage{atkObjectAddRelationship(object, relationship, target)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkObject}}]  The \code{\link{AtkObject}} to which an AtkRelation is to be added. }
-\item{\code{relationship}}{[\code{\link{AtkRelationType}}]  The \code{\link{AtkRelationType}} of the relation}
-\item{\code{target}}{[\code{\link{AtkObject}}]  The \code{\link{AtkObject}} which is to be the target of the relation.}
+\item{\verb{object}}{[\verb{\link{AtkObject}}]  The \verb{\link{AtkObject}} to which an AtkRelation is to be added. }
+\item{\verb{relationship}}{[\code{\link{AtkRelationType}}]  The \code{\link{AtkRelationType}} of the relation}
+\item{\verb{target}}{[\verb{\link{AtkObject}}]  The \verb{\link{AtkObject}} which is to be the target of the relation.}
 }
 \value{[logical] TRUE if the relationship is added.}
 \author{Derived by RGtkGen from GTK+ documentation}

@@ -78,7 +78,7 @@
 \code{\link{gtkPrintSettingsToKeyFile}(object, key.file, group.name)}\cr
 \code{gtkPrintSettings()}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GtkPrintSettings}}
 \section{Detailed Description}{A GtkPrintSettings object represents the settings of a print dialog in 
 a system-independent way. The main use for this object is that once 
@@ -93,95 +93,95 @@ so that moving such a document between systems still works.
   
 Printing support was added in GTK+ 2.10.}
 \section{Structures}{\describe{
-\item{\code{GtkPrintSettings}}{
+\item{\verb{GtkPrintSettings}}{
 \emph{undocumented
 }
 
 }
-\item{\code{GtkPageRange}}{
+\item{\verb{GtkPageRange}}{
 \emph{undocumented
 }
-\strong{\code{GtkPageRange} is a \link{transparent-type}.}
+\strong{\verb{GtkPageRange} is a \link{transparent-type}.}
 
 \describe{
-\item{\code{start}}{[integer] }
-\item{\code{end}}{[integer] }
+\item{\verb{start}}{[integer] }
+\item{\verb{end}}{[integer] }
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkPrintSettings} is the equivalent of \code{\link{gtkPrintSettingsNew}}.}
 \section{Enums and Flags}{\describe{
-\item{\code{GtkPageOrientation}}{
+\item{\verb{GtkPageOrientation}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{portrait}}{\emph{undocumented
+\item{\verb{portrait}}{\emph{undocumented
 }}
-\item{\code{landscape}}{\emph{undocumented
+\item{\verb{landscape}}{\emph{undocumented
 }}
-\item{\code{reverse-portrait}}{\emph{undocumented
+\item{\verb{reverse-portrait}}{\emph{undocumented
 }}
-\item{\code{reverse-landscape}}{\emph{undocumented
+\item{\verb{reverse-landscape}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkPrintDuplex}}{
+\item{\verb{GtkPrintDuplex}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{simplex}}{\emph{undocumented
+\item{\verb{simplex}}{\emph{undocumented
 }}
-\item{\code{horizontal}}{\emph{undocumented
+\item{\verb{horizontal}}{\emph{undocumented
 }}
-\item{\code{vertical}}{\emph{undocumented
+\item{\verb{vertical}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkPrintQuality}}{
+\item{\verb{GtkPrintQuality}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{low}}{\emph{undocumented
+\item{\verb{low}}{\emph{undocumented
 }}
-\item{\code{normal}}{\emph{undocumented
+\item{\verb{normal}}{\emph{undocumented
 }}
-\item{\code{high}}{\emph{undocumented
+\item{\verb{high}}{\emph{undocumented
 }}
-\item{\code{draft}}{\emph{undocumented
+\item{\verb{draft}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkPrintPages}}{
+\item{\verb{GtkPrintPages}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{all}}{\emph{undocumented
+\item{\verb{all}}{\emph{undocumented
 }}
-\item{\code{current}}{\emph{undocumented
+\item{\verb{current}}{\emph{undocumented
 }}
-\item{\code{ranges}}{\emph{undocumented
+\item{\verb{ranges}}{\emph{undocumented
 }}
 }
 
 }
-\item{\code{GtkPageSet}}{
+\item{\verb{GtkPageSet}}{
 \emph{undocumented
 }
 
 \describe{
-\item{\code{all}}{\emph{undocumented
+\item{\verb{all}}{\emph{undocumented
 }}
-\item{\code{even}}{\emph{undocumented
+\item{\verb{even}}{\emph{undocumented
 }}
-\item{\code{odd}}{\emph{undocumented
+\item{\verb{odd}}{\emph{undocumented
 }}
 }
 

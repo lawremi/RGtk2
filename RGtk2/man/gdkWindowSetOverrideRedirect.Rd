@@ -7,11 +7,11 @@ be entirely under the control of the application. The window manager
 can't see the override redirect window at all.}
 \usage{gdkWindowSetOverrideRedirect(object, override.redirect)}
 \arguments{
-\item{\code{object}}{[\code{\link{GdkWindow}}]  a toplevel \code{\link{GdkWindow}}}
-\item{\code{override.redirect}}{[logical] \code{TRUE} if window should be override redirect}
+\item{\verb{object}}{[\verb{\link{GdkWindow}}]  a toplevel \verb{\link{GdkWindow}}}
+\item{\verb{override.redirect}}{[logical] \code{TRUE} if window should be override redirect}
 }
 \details{Override redirect should only be used for short-lived temporary
-windows, such as popup menus. \code{\link{GtkMenu}} uses an override redirect
+windows, such as popup menus. \verb{\link{GtkMenu}} uses an override redirect
 window in its implementation, for example.  }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,8 +4,8 @@
 \description{Returns whether \code{child} should appear in a secondary group of children.}
 \usage{gtkButtonBoxGetChildSecondary(object, child)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkButtonBox}}]  a \code{\link{GtkButtonBox}}}
-\item{\code{child}}{[\code{\link{GtkWidget}}]  a child of \code{widget} }
+\item{\verb{object}}{[\verb{\link{GtkButtonBox}}]  a \verb{\link{GtkButtonBox}}}
+\item{\verb{child}}{[\verb{\link{GtkWidget}}]  a child of \code{widget} }
 }
 \details{  Since  2.4}
 \value{[logical]  whether \code{child} should appear in a secondary group of children.}

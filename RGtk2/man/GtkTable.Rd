@@ -22,15 +22,15 @@
 \code{\link{gtkTableGetDefaultColSpacing}(object)}\cr
 \code{gtkTable(rows = NULL, columns = NULL, homogeneous = NULL, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
                            +----GtkTable}}
 \section{Interfaces}{GtkTable implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkTable}} functions allow the programmer to arrange widgets in rows and
 columns, making it easy to align many widgets next to each other,
 horizontally and vertically.
   
@@ -47,24 +47,24 @@ The gaps between \emph{all} rows or columns can be changed by calling
   \code{\link{gtkTableSetHomogeneous}}, can be used to set whether all cells in the
 table will resize themselves to the size of the largest widget in the table.}
 \section{Structures}{\describe{
-\item{\code{GtkTable}}{
+\item{\verb{GtkTable}}{
 The \code{GtkTable} structure holds the data for the actual table itself. 
 
-\code{children} is a \code{list} of all the widgets the table contains. \code{rows} and \code{columns} are pointers to \code{\link{GtkTableRowCol}} structures, which contain the default spacing and expansion details for the \code{\link{GtkTable}}'s rows and columns, respectively.
+\code{children} is a \verb{list} of all the widgets the table contains. \code{rows} and \code{columns} are pointers to \verb{\link{GtkTableRowCol}} structures, which contain the default spacing and expansion details for the \verb{\link{GtkTable}}'s rows and columns, respectively.
   \code{nrows} and \code{ncols} are 16bit integers storing the number of rows and columns the table has. 
 
 \describe{
-\item{\code{children}}{[list] }
-\item{\code{rows}}{[\code{\link{GtkTableRowCol}}] }
-\item{\code{cols}}{[\code{\link{GtkTableRowCol}}] }
-\item{\code{nrows}}{[integer] }
-\item{\code{ncols}}{[integer] }
+\item{\verb{children}}{[list] }
+\item{\verb{rows}}{[\verb{\link{GtkTableRowCol}}] }
+\item{\verb{cols}}{[\verb{\link{GtkTableRowCol}}] }
+\item{\verb{nrows}}{[integer] }
+\item{\verb{ncols}}{[integer] }
 }
 
 }
-\item{\code{GtkTableChild}}{
+\item{\verb{GtkTableChild}}{
 The \code{widget} field is a pointer to the widget that 
-this \code{\link{GtkTableChild}} structure is keeping track of.
+this \verb{\link{GtkTableChild}} structure is keeping track of.
 The \code{left_attach},
 \code{right_attach},
 \code{top_attach}, and
@@ -74,61 +74,61 @@ numbers which make up the invisible rectangle that the child widget is packed in
 specify the space between this widget and the surrounding table cells.
 
 \describe{
-\item{\code{widget}}{[\code{\link{GtkWidget}}] }
-\item{\code{leftAttach}}{[integer] }
-\item{\code{rightAttach}}{[integer] }
-\item{\code{topAttach}}{[integer] }
-\item{\code{bottomAttach}}{[integer] }
-\item{\code{xpadding}}{[integer] }
-\item{\code{ypadding}}{[integer] }
-\item{\code{xexpand}}{[numeric] }
-\item{\code{yexpand}}{[numeric] }
-\item{\code{xshrink}}{[numeric] }
-\item{\code{yshrink}}{[numeric] }
-\item{\code{xfill}}{[numeric] }
-\item{\code{yfill}}{[numeric] }
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}] }
+\item{\verb{leftAttach}}{[integer] }
+\item{\verb{rightAttach}}{[integer] }
+\item{\verb{topAttach}}{[integer] }
+\item{\verb{bottomAttach}}{[integer] }
+\item{\verb{xpadding}}{[integer] }
+\item{\verb{ypadding}}{[integer] }
+\item{\verb{xexpand}}{[numeric] }
+\item{\verb{yexpand}}{[numeric] }
+\item{\verb{xshrink}}{[numeric] }
+\item{\verb{yshrink}}{[numeric] }
+\item{\verb{xfill}}{[numeric] }
+\item{\verb{yfill}}{[numeric] }
 }
 
 }
-\item{\code{GtkTableRowCol}}{
+\item{\verb{GtkTableRowCol}}{
 These fields should be considered read-only and not be modified directly.
 
 \describe{
-\item{\code{requisition}}{[integer] }
-\item{\code{allocation}}{[integer] }
-\item{\code{spacing}}{[integer] }
-\item{\code{needExpand}}{[numeric] }
-\item{\code{needShrink}}{[numeric] }
-\item{\code{expand}}{[numeric] }
-\item{\code{shrink}}{[numeric] }
-\item{\code{empty}}{[numeric] }
+\item{\verb{requisition}}{[integer] }
+\item{\verb{allocation}}{[integer] }
+\item{\verb{spacing}}{[integer] }
+\item{\verb{needExpand}}{[numeric] }
+\item{\verb{needShrink}}{[numeric] }
+\item{\verb{expand}}{[numeric] }
+\item{\verb{shrink}}{[numeric] }
+\item{\verb{empty}}{[numeric] }
 }
 
 }
 }}
 \section{Convenient Construction}{\code{gtkTable} is the equivalent of \code{\link{gtkTableNew}}.}
 \section{Properties}{\describe{
-\item{\code{column-spacing} [numeric : Read / Write]}{
+\item{\verb{column-spacing} [numeric : Read / Write]}{
 
 The amount of space between two consecutive columns.  Default value: 0
 
 }
-\item{\code{homogeneous} [logical : Read / Write]}{
+\item{\verb{homogeneous} [logical : Read / Write]}{
 
 If TRUE, the table cells are all the same width/height.  Default value: FALSE
 
 }
-\item{\code{n-columns} [numeric : Read / Write]}{
+\item{\verb{n-columns} [numeric : Read / Write]}{
 
 The number of columns in the table.  Default value: 0
 
 }
-\item{\code{n-rows} [numeric : Read / Write]}{
+\item{\verb{n-rows} [numeric : Read / Write]}{
 
 The number of rows in the table.  Default value: 0
 
 }
-\item{\code{row-spacing} [numeric : Read / Write]}{
+\item{\verb{row-spacing} [numeric : Read / Write]}{
 
 The amount of space between two consecutive rows.  Default value: 0
 

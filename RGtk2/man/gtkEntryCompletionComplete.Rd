@@ -5,7 +5,7 @@
 current list with completions, using the current key. The completion list
 view will be updated accordingly.}
 \usage{gtkEntryCompletionComplete(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkEntryCompletion}}]  A \code{\link{GtkEntryCompletion}}.}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkEntryCompletion}}]  A \verb{\link{GtkEntryCompletion}}.}}
 \details{  Since  2.4}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

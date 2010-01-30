@@ -14,26 +14,26 @@
 \code{\link{gtkMenuToolButtonSetArrowTooltipMarkup}(object, markup)}\cr
 \code{gtkMenuToolButton(icon.widget, label, show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkToolItem}
-                                       +----\link{GtkToolButton}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkToolItem
+                                       +----GtkToolButton
                                              +----GtkMenuToolButton}}
 \section{Interfaces}{GtkMenuToolButton implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{  A \code{\link{GtkMenuToolButton}} is a \code{\link{GtkToolItem}} that contains a button and
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{  A \verb{\link{GtkMenuToolButton}} is a \verb{\link{GtkToolItem}} that contains a button and
   a small additional button with an arrow. When clicked, the arrow
   button pops up a dropdown menu.
   
   Use \code{\link{gtkMenuToolButtonNew}} to create a new
-  \code{\link{GtkMenuToolButton}}. Use \code{\link{gtkMenuToolButtonNewFromStock}} to
-  create a new \code{\link{GtkMenuToolButton}} containing a stock item.}
-\section{Structures}{\describe{\item{\code{GtkMenuToolButton}}{
-  The \code{\link{GtkMenuToolButton}} struct contains only private data and
+  \verb{\link{GtkMenuToolButton}}. Use \code{\link{gtkMenuToolButtonNewFromStock}} to
+  create a new \verb{\link{GtkMenuToolButton}} containing a stock item.}
+\section{Structures}{\describe{\item{\verb{GtkMenuToolButton}}{
+  The \verb{\link{GtkMenuToolButton}} struct contains only private data and
   should only be accessed through the functions described below.
 
 }}}
@@ -43,13 +43,13 @@
 }
 
 \describe{
-\item{\code{menutoolbutton}}{[\code{\link{GtkMenuToolButton}}] the object which received the signal.}
+\item{\code{menutoolbutton}}{[\verb{\link{GtkMenuToolButton}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
 
 }}}
-\section{Properties}{\describe{\item{\code{menu} [\code{\link{GtkMenu}} : Read / Write]}{
+\section{Properties}{\describe{\item{\verb{menu} [\verb{\link{GtkMenu}} : *              : Read / Write]}{
 
 The dropdown menu.
 

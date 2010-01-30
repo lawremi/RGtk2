@@ -7,9 +7,9 @@ Sets the title for the specified column.
 }
 \usage{gtkCListSetColumnTitle(object, column, title)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkCList}}] The \code{\link{GtkCList}} to affect.}
-\item{\code{column}}{[integer] The column whose title should be changed.}
-\item{\code{title}}{[character] A string to be the column's title.}
+\item{\verb{object}}{[\verb{\link{GtkCList}}] The \verb{\link{GtkCList}} to affect.}
+\item{\verb{column}}{[integer] The column whose title should be changed.}
+\item{\verb{title}}{[character] A string to be the column's title.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

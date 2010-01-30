@@ -3,12 +3,12 @@
 \title{gtkFileChooserSetUri}
 \description{Sets the file referred to by \code{uri} as the current file for the file chooser,
 by changing to the URI's parent folder and actually selecting the URI in the
-list.  If the \code{chooser} is \code{GTK_FILE_CHOOSER_ACTION_SAVE} mode, the URI's base
+list.  If the \code{chooser} is \verb{GTK_FILE_CHOOSER_ACTION_SAVE} mode, the URI's base
 name will also appear in the dialog's file name entry.}
 \usage{gtkFileChooserSetUri(object, uri)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{uri}}{[char]  the URI to set as current}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{uri}}{[char]  the URI to set as current}
 }
 \details{If the URI isn't in the current folder of \code{chooser}, then the current folder
 of \code{chooser} will be changed to the folder containing \code{uri}. This is equivalent

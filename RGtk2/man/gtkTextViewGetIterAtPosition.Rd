@@ -9,9 +9,9 @@ those to buffer coordinates with
 \code{\link{gtkTextViewWindowToBufferCoords}}.}
 \usage{gtkTextViewGetIterAtPosition(object, x, y)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkTextView}}]  a \code{\link{GtkTextView}}}
-\item{\code{x}}{[integer]  x position, in buffer coordinates}
-\item{\code{y}}{[integer]  y position, in buffer coordinates}
+\item{\verb{object}}{[\verb{\link{GtkTextView}}]  a \verb{\link{GtkTextView}}}
+\item{\verb{x}}{[integer]  x position, in buffer coordinates}
+\item{\verb{y}}{[integer]  y position, in buffer coordinates}
 }
 \details{Note that this is different from \code{\link{gtkTextViewGetIterAtLocation}},
 which returns cursor locations, i.e. positions \emph{between}
@@ -20,8 +20,8 @@ characters.
   Since  2.6}
 \value{
 A list containing the following elements:
-\item{\code{iter}}{[\code{\link{GtkTextIter}}]  a \code{\link{GtkTextIter}}}
-\item{\code{trailing}}{[integer]  location to store an integer indicating where
+\item{\verb{iter}}{[\verb{\link{GtkTextIter}}]  a \verb{\link{GtkTextIter}}}
+\item{\verb{trailing}}{[integer]  location to store an integer indicating where
    in the grapheme the user clicked. It will either be
    zero, or the number of characters in the grapheme. 
    0 represents the trailing edge of the grapheme.}

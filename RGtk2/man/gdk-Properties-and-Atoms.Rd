@@ -39,20 +39,20 @@ The functions in this section are used to add, remove
 and change properties on windows, to convert atoms
 to and from strings and to manipulate some types of
 data commonly stored in X window properties.}
-\section{Structures}{\describe{\item{\code{GdkAtom}}{
+\section{Structures}{\describe{\item{\verb{GdkAtom}}{
 An opaque type representing a string as an index into a table
 of strings on the X server.
-\strong{\code{GdkAtom} is a \link{transparent-type}.}
+\strong{\verb{GdkAtom} is a \link{transparent-type}.}
 
 }}}
-\section{Enums and Flags}{\describe{\item{\code{GdkPropMode}}{
+\section{Enums and Flags}{\describe{\item{\verb{GdkPropMode}}{
 Describes how existing data is combined with new data when
 using \code{\link{gdkPropertyChange}}.
 
 \describe{
-\item{\code{replace}}{the new data replaces the existing data.}
-\item{\code{prepend}}{the new data is prepended to the existing data.}
-\item{\code{append}}{the new data is appended to the existing data.}
+\item{\verb{replace}}{the new data replaces the existing data.}
+\item{\verb{prepend}}{the new data is prepended to the existing data.}
+\item{\verb{append}}{the new data is appended to the existing data.}
 }
 
 }}}

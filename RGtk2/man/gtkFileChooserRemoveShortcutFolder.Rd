@@ -4,8 +4,8 @@
 \description{Removes a folder from a file chooser's list of shortcut folders.}
 \usage{gtkFileChooserRemoveShortcutFolder(object, folder, .errwarn = TRUE)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkFileChooser}}]  a \code{\link{GtkFileChooser}}}
-\item{\code{folder}}{[char]  filename of the folder to remove}
+\item{\verb{object}}{[\verb{\link{GtkFileChooser}}]  a \verb{\link{GtkFileChooser}}}
+\item{\verb{folder}}{[char]  filename of the folder to remove}
 \item{.errwarn}{Whether to issue a warning on error or fail silently}
 }
 \details{  Since  2.4}
@@ -15,7 +15,7 @@ A list containing the following elements:
 In the latter case, the \code{error} will be set as appropriate.
 
 See also: \code{\link{gtkFileChooserAddShortcutFolder}}}
-\item{\code{error}}{[\code{\link{GError}}]  location to store error, or \code{NULL}}
+\item{\verb{error}}{[\verb{\link{GError}}]  location to store error, or \code{NULL}}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -6,7 +6,7 @@ points on the current path. If the current path is empty, returns
 an empty rectangle ((0,0), (0,0)). Stroke parameters, fill rule,
 surface dimensions and clipping are not taken into account.}
 \usage{cairoPathExtents(cr)}
-\arguments{\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}}
+\arguments{\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}}
 \details{Contrast with \code{\link{cairoFillExtents}} and \code{\link{cairoStrokeExtents}} which
 return the extents of only the area that would be "inked" by
 the corresponding drawing operations.
@@ -26,10 +26,10 @@ considered as contributing to the extents. However, a lone
   Since  1.6}
 \value{
 A list containing the following elements:
-\item{\code{x1}}{[numeric]  left of the resulting extents}
-\item{\code{y1}}{[numeric]  top of the resulting extents}
-\item{\code{x2}}{[numeric]  right of the resulting extents}
-\item{\code{y2}}{[numeric]  bottom of the resulting extents}
+\item{\verb{x1}}{[numeric]  left of the resulting extents}
+\item{\verb{y1}}{[numeric]  top of the resulting extents}
+\item{\verb{x2}}{[numeric]  right of the resulting extents}
+\item{\verb{y2}}{[numeric]  bottom of the resulting extents}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

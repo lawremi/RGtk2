@@ -5,11 +5,11 @@
 the buildable.}
 \usage{gtkBuildableCustomTagEnd(object, builder, child, tagname, data)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkBuildable}}]  A \code{\link{GtkBuildable}}}
-\item{\code{builder}}{[\code{\link{GtkBuilder}}] \code{\link{GtkBuilder}} used to construct this object}
-\item{\code{child}}{[\code{\link{GObject}}]  child object or \code{NULL} for non-child tags}
-\item{\code{tagname}}{[character]  name of tag}
-\item{\code{data}}{[R object]  user data that will be passed in to parser functions}
+\item{\verb{object}}{[\verb{\link{GtkBuildable}}]  A \verb{\link{GtkBuildable}}}
+\item{\verb{builder}}{[\verb{\link{GtkBuilder}}] \verb{\link{GtkBuilder}} used to construct this object}
+\item{\verb{child}}{[\verb{\link{GObject}}]  child object or \code{NULL} for non-child tags}
+\item{\verb{tagname}}{[character]  name of tag}
+\item{\verb{data}}{[R object]  user data that will be passed in to parser functions}
 }
 \details{  Since  2.12}
 \author{Derived by RGtkGen from GTK+ documentation}

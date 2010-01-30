@@ -5,11 +5,11 @@
 path at position (\code{x}, \code{y}) in user-space coordinates.}
 \usage{cairoRectangle(cr, x, y, width, height)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{x}}{[numeric]  the X coordinate of the top left corner of the rectangle}
-\item{\code{y}}{[numeric]  the Y coordinate to the top left corner of the rectangle}
-\item{\code{width}}{[numeric]  the width of the rectangle}
-\item{\code{height}}{[numeric]  the height of the rectangle}
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{x}}{[numeric]  the X coordinate of the top left corner of the rectangle}
+\item{\verb{y}}{[numeric]  the Y coordinate to the top left corner of the rectangle}
+\item{\verb{width}}{[numeric]  the width of the rectangle}
+\item{\verb{height}}{[numeric]  the height of the rectangle}
 }
 \details{This function is logically equivalent to:
 \preformatted{

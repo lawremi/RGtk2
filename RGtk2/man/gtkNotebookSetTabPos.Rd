@@ -5,8 +5,8 @@
 notebook are drawn.}
 \usage{gtkNotebookSetTabPos(object, pos)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkNotebook}}]  a \code{\link{GtkNotebook}}.}
-\item{\code{pos}}{[\code{\link{GtkPositionType}}]  the edge to draw the tabs at.}
+\item{\verb{object}}{[\verb{\link{GtkNotebook}}]  a \verb{\link{GtkNotebook}}.}
+\item{\verb{pos}}{[\code{\link{GtkPositionType}}]  the edge to draw the tabs at.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

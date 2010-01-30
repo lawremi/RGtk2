@@ -1,12 +1,12 @@
 \alias{gtkViewportNew}
 \name{gtkViewportNew}
 \title{gtkViewportNew}
-\description{Creates a new \code{\link{GtkViewport}} with the given adjustments.}
+\description{Creates a new \verb{\link{GtkViewport}} with the given adjustments.}
 \usage{gtkViewportNew(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 \arguments{
-\item{\code{hadjustment}}{[\code{\link{GtkAdjustment}}]  horizontal adjustment.}
-\item{\code{vadjustment}}{[\code{\link{GtkAdjustment}}]  vertical adjustment.}
+\item{\verb{hadjustment}}{[\verb{\link{GtkAdjustment}}]  horizontal adjustment.}
+\item{\verb{vadjustment}}{[\verb{\link{GtkAdjustment}}]  vertical adjustment.}
 }
-\value{[\code{\link{GtkWidget}}]  a new \code{\link{GtkViewport}}.}
+\value{[\verb{\link{GtkWidget}}]  a new \verb{\link{GtkViewport}}.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

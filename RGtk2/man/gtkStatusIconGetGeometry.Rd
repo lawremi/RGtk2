@@ -5,7 +5,7 @@
 on screen. This information can be used to e.g. position 
 popups like notification bubbles. }
 \usage{gtkStatusIconGetGeometry(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkStatusIcon}}]  a \code{\link{GtkStatusIcon}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkStatusIcon}}]  a \verb{\link{GtkStatusIcon}}}}
 \details{See \code{\link{gtkStatusIconPositionMenu}} for a more convenient 
 alternative for positioning menus.
   
@@ -20,11 +20,11 @@ is embedded in a notification area, see
 A list containing the following elements:
 \item{retval}{[logical] \code{TRUE} if the location information has 
               been filled in}
-\item{\code{screen}}{[\code{\link{GdkScreen}}]  return location for the screen, or \code{NULL} if the
+\item{\verb{screen}}{[\verb{\link{GdkScreen}}]  return location for the screen, or \code{NULL} if the
          information is not needed }
-\item{\code{area}}{[\code{\link{GdkRectangle}}]  return location for the area occupied by the status 
+\item{\verb{area}}{[\verb{\link{GdkRectangle}}]  return location for the area occupied by the status 
        icon, or \code{NULL}}
-\item{\code{orientation}}{[\code{\link{GtkOrientation}}]  return location for the orientation of the panel 
+\item{\verb{orientation}}{[\code{\link{GtkOrientation}}]  return location for the orientation of the panel 
    in which the status icon is embedded, or \code{NULL}. A panel 
    at the top or bottom of the screen is horizontal, a panel 
    at the left or right is vertical.}

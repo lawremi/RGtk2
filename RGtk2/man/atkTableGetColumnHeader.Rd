@@ -4,10 +4,10 @@
 \description{Gets the column header of a specified column in an accessible table.}
 \usage{atkTableGetColumnHeader(object, column)}
 \arguments{
-\item{\code{object}}{[\code{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
-\item{\code{column}}{[integer]  a \code{integer} representing a column in the table}
+\item{\verb{object}}{[\verb{\link{AtkTable}}]  a GObject instance that implements AtkTableIface}
+\item{\verb{column}}{[integer]  a \verb{integer} representing a column in the table}
 }
-\value{[\code{\link{AtkObject}}]  a AtkObject* representing the specified column header, or
+\value{[\verb{\link{AtkObject}}]  a AtkObject* representing the specified column header, or
 \code{NULL} if value does not implement this interface.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -9,8 +9,8 @@ each iteration.
 }
 \usage{gtkProgressBarSetActivityStep(object, step)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkProgressBar}}] a \code{\link{GtkProgressBar}}.}
-\item{\code{step}}{[numeric] the amount which the progress is incremented in activity
+\item{\verb{object}}{[\verb{\link{GtkProgressBar}}] a \verb{\link{GtkProgressBar}}.}
+\item{\verb{step}}{[numeric] the amount which the progress is incremented in activity
 mode.}
 }
 \author{Derived by RGtkGen from GTK+ documentation}

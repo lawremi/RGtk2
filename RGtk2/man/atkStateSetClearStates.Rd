@@ -3,6 +3,6 @@
 \title{atkStateSetClearStates}
 \description{Removes all states from the state set.}
 \usage{atkStateSetClearStates(object)}
-\arguments{\item{\code{object}}{[\code{\link{AtkStateSet}}]  an \code{\link{AtkStateSet}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{AtkStateSet}}]  an \verb{\link{AtkStateSet}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

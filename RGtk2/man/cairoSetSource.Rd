@@ -6,8 +6,8 @@ will then be used for any subsequent drawing operation until a new
 source pattern is set.}
 \usage{cairoSetSource(cr, source)}
 \arguments{
-\item{\code{cr}}{[\code{\link{Cairo}}]  a cairo context}
-\item{\code{source}}{[\code{\link{CairoPattern}}]  a \code{\link{CairoPattern}} to be used as the source for
+\item{\verb{cr}}{[\verb{\link{Cairo}}]  a cairo context}
+\item{\verb{source}}{[\verb{\link{CairoPattern}}]  a \verb{\link{CairoPattern}} to be used as the source for
 subsequent drawing operations.}
 }
 \details{Note: The pattern's transformation matrix will be locked to the

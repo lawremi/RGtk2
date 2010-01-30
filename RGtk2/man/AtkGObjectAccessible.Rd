@@ -8,14 +8,14 @@ implementing accessible objects.}
 \code{\link{atkGObjectAccessibleGetObject}(object)}\cr
 
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
-   +----\link{AtkObject}
+\section{Hierarchy}{\preformatted{GObject
+   +----AtkObject
          +----AtkGObjectAccessible}}
 \section{Detailed Description}{This object class is derived from AtkObject. It can be used as a basis for
 implementing accessible objects for GObjects which are not derived from
 GtkWidget. One example of its use is in providing an accessible object
 for GnomeCanvasItem in the GAIL library.}
-\section{Structures}{\describe{\item{\code{AtkGObjectAccessible}}{
+\section{Structures}{\describe{\item{\verb{AtkGObjectAccessible}}{
 The AtkGObjectAccessible structure should not be accessed directly.
 
 }}}

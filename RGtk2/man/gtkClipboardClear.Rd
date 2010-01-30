@@ -6,6 +6,6 @@ be called between the time you call \code{\link{gtkClipboardSetWithOwner}}
 or \code{\link{gtkClipboardSetWithData}},
 and when the \code{clear.func} you supplied is called. Otherwise.}
 \usage{gtkClipboardClear(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkClipboard}}]   a \code{\link{GtkClipboard}}}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkClipboard}}]   a \verb{\link{GtkClipboard}}}}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

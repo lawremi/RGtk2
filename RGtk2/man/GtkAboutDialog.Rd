@@ -43,25 +43,25 @@
 \code{\link{gtkShowAboutDialog}(parent, ...)}\cr
 \code{gtkAboutDialog(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
-                     +----\link{GtkContainer}
-                           +----\link{GtkBin}
-                                 +----\link{GtkWindow}
-                                       +----\link{GtkDialog}
+         +----GtkObject
+               +----GtkWidget
+                     +----GtkContainer
+                           +----GtkBin
+                                 +----GtkWindow
+                                       +----GtkDialog
                                              +----GtkAboutDialog}}
 \section{Interfaces}{GtkAboutDialog implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{The \code{\link{GtkAboutDialog}} offers a simple way to display information about
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{The \verb{\link{GtkAboutDialog}} offers a simple way to display information about
 a program like its logo, name, copyright, website and license. It is
 also possible to give credits to the authors, documenters, translators
 and artists who have worked on the program. An about dialog is typically
 opened when the user selects the \code{About} option from 
 the \code{Help} menu. All parts of the dialog are optional.
   
-About dialog often contain links and email addresses. \code{\link{GtkAboutDialog}} 
+About dialog often contain links and email addresses. \verb{\link{GtkAboutDialog}} 
 supports this by offering global hooks, which are called when the user
 clicks on a link or email address, see \code{\link{gtkAboutDialogSetEmailHook}}
 and \code{\link{gtkAboutDialogSetUrlHook}}. Email addresses in the 
@@ -70,7 +70,7 @@ authors, documenters and artists properties are recognized by looking for
 recognized by looking for \code{http://url}, with 
 \code{url} extending to the next space, tab or line break.
   
-To make constructing a \code{\link{GtkAboutDialog}} as convenient as possible, you can
+To make constructing a \verb{\link{GtkAboutDialog}} as convenient as possible, you can
 use the function \code{\link{gtkShowAboutDialog}} which constructs and shows a dialog 
 and keeps it around so that it can be shown again.
   
@@ -78,15 +78,15 @@ Note that GTK+ sets a default title of \code{_("About \%s")}
 on the dialog window (where \%s is replaced by the name of the 
 application, but in order to ensure proper translation of the title, 
 applications should set the title property explicitly when constructing 
-a \code{\link{GtkAboutDialog}}, as shown in the following example:
+a \verb{\link{GtkAboutDialog}}, as shown in the following example:
   \preformatted{
 gtkShowAboutDialog(NULL, "name" = "ExampleCode", "logo" = example_logo,
                    "title" = "About ExampleCode")
 }  
-Note that prior to GTK+ 2.12, the \code{"program-name"} property
+Note that prior to GTK+ 2.12, the \verb{"program-name"} property
 was called "name". This was changed to avoid the conflict with the
-\code{"name"} property.}
-\section{Structures}{\describe{\item{\code{GtkAboutDialog}}{
+\verb{"name"} property.}
+\section{Structures}{\describe{\item{\verb{GtkAboutDialog}}{
 The \code{GtkAboutDialog} struct contains
 only private fields and should not be directly accessed.
 
@@ -97,7 +97,7 @@ The type of a function which is called when a URL or email
 link is activated. 
 
 \describe{
-\item{\code{about}}{[\code{\link{GtkAboutDialog}}] the \code{\link{GtkAboutDialog}} in which the link was activated}
+\item{\code{about}}{[\verb{\link{GtkAboutDialog}}] the \verb{\link{GtkAboutDialog}} in which the link was activated}
 \item{\code{link.}}{[character] the URL or email address to which the activated link points}
 \item{\code{data}}{[R object] user data that was passed when the function was registered
   with \code{\link{gtkAboutDialogSetEmailHook}} or 
@@ -107,7 +107,7 @@ link is activated.
 
 }}}
 \section{Properties}{\describe{
-\item{\code{artists} [character list : Read / Write]}{
+\item{\verb{artists} [character list : *                : Read / Write]}{
 
 The people who contributed artwork to the program, as a list of strings.
 Each string may contain email addresses and URLs, which will be displayed
@@ -116,7 +116,7 @@ as links, see the introduction for more details.
   Since  2.6
 
 }
-\item{\code{authors} [character list : Read / Write]}{
+\item{\verb{authors} [character list : *                : Read / Write]}{
 
 The authors of the program, as a list of strings.
 Each string may contain email addresses and URLs, which will be displayed
@@ -125,7 +125,7 @@ as links, see the introduction for more details.
   Since  2.6
 
 }
-\item{\code{comments} [character : Read / Write]}{
+\item{\verb{comments} [character : *                : Read / Write]}{
 
 Comments about the program. This string is displayed in a label 
 in the main dialog, thus it should be a short explanation of
@@ -134,14 +134,14 @@ the main purpose of the program, not a detailed list of features.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{copyright} [character : Read / Write]}{
+\item{\verb{copyright} [character : *                : Read / Write]}{
 
 Copyright information for the program.  
 
   Default value: NULL  Since  2.6
 
 }
-\item{\code{documenters} [character list : Read / Write]}{
+\item{\verb{documenters} [character list : *                : Read / Write]}{
 
 The people documenting the program, as a list of strings.
 Each string may contain email addresses and URLs, which will be displayed
@@ -150,7 +150,7 @@ as links, see the introduction for more details.
   Since  2.6
 
 }
-\item{\code{license} [character : Read / Write]}{
+\item{\verb{license} [character : *                : Read / Write]}{
 
 The license of the program. This string is displayed in a 
 text view in a secondary dialog, therefore it is fine to use
@@ -161,7 +161,7 @@ otherwise the text itself must contain the intended linebreaks.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{logo} [\code{\link{GdkPixbuf}} : Read / Write]}{
+\item{\verb{logo} [\verb{\link{GdkPixbuf}} : *            : Read / Write]}{
 
 A logo for the about box. If this is not set, it defaults to 
 \code{\link{gtkWindowGetDefaultIconList}}.  
@@ -169,7 +169,7 @@ A logo for the about box. If this is not set, it defaults to
   Since  2.6
 
 }
-\item{\code{logo-icon-name} [character : Read / Write]}{
+\item{\verb{logo-icon-name} [character : *                : Read / Write]}{
 
 A named icon to use as the logo for the about box. This property
 overrides the logo property.  
@@ -177,7 +177,7 @@ overrides the logo property.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{program-name} [character : Read / Write]}{
+\item{\verb{program-name} [character : *                : Read / Write]}{
 
 The name of the program. 
 If this is not set, it defaults to \code{gGetApplicationName()}.  
@@ -185,7 +185,7 @@ If this is not set, it defaults to \code{gGetApplicationName()}.
   Default value: NULL  Since  2.12
 
 }
-\item{\code{translator-credits} [character : Read / Write]}{
+\item{\verb{translator-credits} [character : *                : Read / Write]}{
 
 Credits to the translators. This string should be marked as translatable.
 The string may contain email addresses and URLs, which will be displayed
@@ -194,14 +194,14 @@ as links, see the introduction for more details.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{version} [character : Read / Write]}{
+\item{\verb{version} [character : *                : Read / Write]}{
 
 The version of the program.  
 
   Default value: NULL  Since  2.6
 
 }
-\item{\code{website} [character : Read / Write]}{
+\item{\verb{website} [character : *                : Read / Write]}{
 
 The URL for the link to the website of the program. 
 This should be a string starting with "http://.  
@@ -209,7 +209,7 @@ This should be a string starting with "http://.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{website-label} [character : Read / Write]}{
+\item{\verb{website-label} [character : *                : Read / Write]}{
 
 The label for the link to the website of the program. If this is not set, 
 it defaults to the URL specified in the 
@@ -218,7 +218,7 @@ website property.
   Default value: NULL  Since  2.6
 
 }
-\item{\code{wrap-license} [logical : Read / Write]}{
+\item{\verb{wrap-license} [logical : Read / Write]}{
 
 Whether to wrap the text in the license dialog.  
 

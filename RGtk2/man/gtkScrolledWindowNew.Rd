@@ -8,9 +8,9 @@ to pass \code{NULL} for the adjustments, which will cause the scrolled window
 to create them for you.}
 \usage{gtkScrolledWindowNew(hadjustment = NULL, vadjustment = NULL, show = TRUE)}
 \arguments{
-\item{\code{hadjustment}}{[\code{\link{GtkAdjustment}}] Horizontal adjustment.}
-\item{\code{vadjustment}}{[\code{\link{GtkAdjustment}}] Vertical adjustment.}
+\item{\verb{hadjustment}}{[\verb{\link{GtkAdjustment}}] Horizontal adjustment.}
+\item{\verb{vadjustment}}{[\verb{\link{GtkAdjustment}}] Vertical adjustment.}
 }
-\value{[\code{\link{GtkWidget}}] New scrolled window.}
+\value{[\verb{\link{GtkWidget}}] New scrolled window.}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

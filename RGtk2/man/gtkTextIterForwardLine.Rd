@@ -6,7 +6,7 @@ last line of the buffer, moves the iter to the end of the current line.
 If after the operation, the iter is at the end of the buffer and not
 dereferencable, returns \code{FALSE}. Otherwise, returns \code{TRUE}.}
 \usage{gtkTextIterForwardLine(object)}
-\arguments{\item{\code{object}}{[\code{\link{GtkTextIter}}]  an iterator}}
+\arguments{\item{\verb{object}}{[\verb{\link{GtkTextIter}}]  an iterator}}
 \value{[logical]  whether \code{iter} can be dereferenced}
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}

@@ -4,9 +4,9 @@
 \description{This function adds the page setup from \code{setup} to \code{key.file}.}
 \usage{gtkPageSetupToKeyFile(object, key.file, group.name)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkPageSetup}}]  a \code{\link{GtkPageSetup}}}
-\item{\code{key.file}}{[GKeyFile]  the \code{GKeyFile} to save the page setup to}
-\item{\code{group.name}}{[character]  the group to add the settings to in \code{key.file}, 
+\item{\verb{object}}{[\verb{\link{GtkPageSetup}}]  a \verb{\link{GtkPageSetup}}}
+\item{\verb{key.file}}{[GKeyFile]  the \verb{GKeyFile} to save the page setup to}
+\item{\verb{group.name}}{[character]  the group to add the settings to in \code{key.file}, 
      or \code{NULL} to use the default name "Page Setup"}
 }
 \details{  Since  2.12}

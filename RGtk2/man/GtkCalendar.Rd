@@ -19,14 +19,14 @@
 \code{\link{gtkCalendarThaw}(object)}\cr
 \code{gtkCalendar(show = TRUE)}
 }
-\section{Hierarchy}{\preformatted{\link{GObject}
+\section{Hierarchy}{\preformatted{GObject
    +----GInitiallyUnowned
-         +----\link{GtkObject}
-               +----\link{GtkWidget}
+         +----GtkObject
+               +----GtkWidget
                      +----GtkCalendar}}
 \section{Interfaces}{GtkCalendar implements
- AtkImplementorIface and  \code{\link{GtkBuildable}}.}
-\section{Detailed Description}{\code{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
+ AtkImplementorIface and  \verb{\link{GtkBuildable}}.}
+\section{Detailed Description}{\verb{\link{GtkCalendar}} is a widget that displays a calendar, one month at a time. 
 It can be created with \code{\link{gtkCalendarNew}}.
   
 The month and year currently displayed can be altered with 
@@ -40,9 +40,9 @@ Alternative, all marks can be cleared with \code{\link{gtkCalendarClearMarks}}.
 The way in which the calendar itself is displayed can be altered using
 \code{\link{gtkCalendarSetDisplayOptions}}.
   
-The selected date can be retrieved from a \code{\link{GtkCalendar}} using
+The selected date can be retrieved from a \verb{\link{GtkCalendar}} using
 \code{\link{gtkCalendarGetDate}}.}
-\section{Structures}{\describe{\item{\code{GtkCalendar}}{
+\section{Structures}{\describe{\item{\verb{GtkCalendar}}{
 \code{num_marked_dates} is an integer containing the
 number of days that have a mark over them.
   \code{marked_date} is a list containing the day numbers
@@ -56,16 +56,16 @@ struct should only be modified using the functions provided below.
 
 }}}
 \section{Convenient Construction}{\code{gtkCalendar} is the equivalent of \code{\link{gtkCalendarNew}}.}
-\section{Enums and Flags}{\describe{\item{\code{GtkCalendarDisplayOptions}}{
-These options can be used to influence the display and behaviour of a \code{\link{GtkCalendar}}.
+\section{Enums and Flags}{\describe{\item{\verb{GtkCalendarDisplayOptions}}{
+These options can be used to influence the display and behaviour of a \verb{\link{GtkCalendar}}.
 
 \describe{
-\item{\code{show-heading}}{Specifies that the month and year should be displayed.}
-\item{\code{show-day-names}}{Specifies that three letter day descriptions should be present.}
-\item{\code{no-month-change}}{Prevents the user from switching months with the calendar.}
-\item{\code{show-week-numbers}}{Displays each week numbers of the current year, down the left side 
+\item{\verb{show-heading}}{Specifies that the month and year should be displayed.}
+\item{\verb{show-day-names}}{Specifies that three letter day descriptions should be present.}
+\item{\verb{no-month-change}}{Prevents the user from switching months with the calendar.}
+\item{\verb{show-week-numbers}}{Displays each week numbers of the current year, down the left side 
  of the calendar.}
-\item{\code{week-start-monday}}{Since GTK+ 2.4, this option is deprecated and ignored by GTK+. 
+\item{\verb{week-start-monday}}{Since GTK+ 2.4, this option is deprecated and ignored by GTK+. 
  The information on which day the calendar week starts is derived from the locale.}
 }
 
@@ -75,7 +75,7 @@ These options can be used to influence the display and behaviour of a \code{\lin
 Emitted when the user selects a day.
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -86,7 +86,7 @@ Emitted when the user selects a day.
 }
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -97,7 +97,7 @@ Emitted when the user clicks a button to change the selected month on a
 calendar.
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -108,7 +108,7 @@ calendar.
 }
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -119,7 +119,7 @@ calendar.
 }
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -130,7 +130,7 @@ calendar.
 }
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -141,7 +141,7 @@ calendar.
 }
 
 \describe{
-\item{\code{calendar}}{[\code{\link{GtkCalendar}}] the object which received the signal.}
+\item{\code{calendar}}{[\verb{\link{GtkCalendar}}] the object which received the signal.}
 \item{\code{user.data}}{[R object] user data set when the signal handler was connected.}
 }
 
@@ -149,45 +149,45 @@ calendar.
 }
 }}
 \section{Properties}{\describe{
-\item{\code{day} [integer : Read / Write]}{
+\item{\verb{day} [integer : Read / Write]}{
 
 The selected day (as a number between 1 and 31, or 0 to unselect the currently selected day).  Allowed values: [0,31]  Default value: 0
 
 }
-\item{\code{month} [integer : Read / Write]}{
+\item{\verb{month} [integer : Read / Write]}{
 
 The selected month (as a number between 0 and 11).  Allowed values: [0,11]  Default value: 0
 
 }
-\item{\code{no-month-change} [logical : Read / Write]}{
+\item{\verb{no-month-change} [logical : Read / Write]}{
 
 Determines whether the selected month can be changed.  
 
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{show-day-names} [logical : Read / Write]}{
+\item{\verb{show-day-names} [logical : Read / Write]}{
 
 Determines whether day names are displayed.  
 
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{show-heading} [logical : Read / Write]}{
+\item{\verb{show-heading} [logical : Read / Write]}{
 
 Determines whether a heading is displayed.  
 
   Default value: TRUE  Since  2.4
 
 }
-\item{\code{show-week-numbers} [logical : Read / Write]}{
+\item{\verb{show-week-numbers} [logical : Read / Write]}{
 
 Determines whether week numbers are displayed.  
 
   Default value: FALSE  Since  2.4
 
 }
-\item{\code{year} [integer : Read / Write]}{
+\item{\verb{year} [integer : Read / Write]}{
 
 The selected year.  Allowed values: >= 0  Default value: 0
 

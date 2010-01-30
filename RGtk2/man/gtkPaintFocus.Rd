@@ -5,17 +5,17 @@
 given style.}
 \usage{gtkPaintFocus(object, window, state.type, area = NULL, widget = NULL, detail = NULL, x, y, width, height)}
 \arguments{
-\item{\code{object}}{[\code{\link{GtkStyle}}]  a \code{\link{GtkStyle}}}
-\item{\code{window}}{[\code{\link{GdkWindow}}]  a \code{\link{GdkWindow}}}
-\item{\code{state.type}}{[\code{\link{GtkStateType}}]  a state}
-\item{\code{area}}{[\code{\link{GdkRectangle}}]  clip rectangle, or \code{NULL} if the
+\item{\verb{object}}{[\verb{\link{GtkStyle}}]  a \verb{\link{GtkStyle}}}
+\item{\verb{window}}{[\verb{\link{GdkWindow}}]  a \verb{\link{GdkWindow}}}
+\item{\verb{state.type}}{[\code{\link{GtkStateType}}]  a state}
+\item{\verb{area}}{[\verb{\link{GdkRectangle}}]  clip rectangle, or \code{NULL} if the
        output should not be clipped}
-\item{\code{widget}}{[\code{\link{GtkWidget}}]  the widget (may be \code{NULL})}
-\item{\code{detail}}{[character]  a style detail (may be \code{NULL})}
-\item{\code{x}}{[integer]  the x origin of the rectangle around which to draw a focus indicator}
-\item{\code{y}}{[integer]  the y origin of the rectangle around which to draw a focus indicator}
-\item{\code{width}}{[integer]  the width of the rectangle around which to draw a focus indicator}
-\item{\code{height}}{[integer]  the height of the rectangle around which to draw a focus indicator}
+\item{\verb{widget}}{[\verb{\link{GtkWidget}}]  the widget (may be \code{NULL})}
+\item{\verb{detail}}{[character]  a style detail (may be \code{NULL})}
+\item{\verb{x}}{[integer]  the x origin of the rectangle around which to draw a focus indicator}
+\item{\verb{y}}{[integer]  the y origin of the rectangle around which to draw a focus indicator}
+\item{\verb{width}}{[integer]  the width of the rectangle around which to draw a focus indicator}
+\item{\verb{height}}{[integer]  the height of the rectangle around which to draw a focus indicator}
 }
 \author{Derived by RGtkGen from GTK+ documentation}
 \keyword{internal}
