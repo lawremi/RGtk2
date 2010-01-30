@@ -21,10 +21,8 @@ R_gtk_eventHandler(void *userData)
   // still need the gtk_events_pending()?
   
   // It seems we do; if the events are not flushed, this handler is
-  // continually invoked, at least on non-Windows systems.
-#ifndef G_OS_WIN32
+  // continually invoked.
   while (gtk_events_pending())
-#endif
     gtk_main_iteration();
 }
 
