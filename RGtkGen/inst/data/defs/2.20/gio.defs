@@ -245,6 +245,7 @@
  )
 )
 
+
 (define-method make_pollfd
  (of-object "GCancellable")
  (c-name "g_cancellable_make_pollfd")
