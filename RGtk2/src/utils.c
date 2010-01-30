@@ -199,3 +199,29 @@ getNumericType(USER_OBJECT_ s)
   /* Instead, get the numeric type for an R type name */
   asRNumeric(str2type(asCString(s)));
 }
+
+/* Provide bindtextdomain() for the libintl linked to RGtk2.
+   Windows-specific fix. Code taken directly from R, errors.c.
+*/
+
+
+#include <libintl.h>
+
+/* bindtextdomain(domain, dirname) */
+SEXP RGtk2_bindtextdomain(SEXP args)
+{
+  char *res;
+  if(!isString(CAR(args)) || LENGTH(CAR(args)) != 1)
+    error("invalid 'domain' value");
+  if(isNull(CADR(args))) {
+    res = bindtextdomain(translateChar(STRING_ELT(CAR(args),0)), NULL);
+  } else {
+    if(!isString(CADR(args)) || LENGTH(CADR(args)) != 1)
+      error("invalid 'dirname' value");
+    res = bindtextdomain(translateChar(STRING_ELT(CAR(args),0)),
+                         translateChar(STRING_ELT(CADR(args),0)));
+  }
+  if(res) return mkString(res);
+  /* else this failed */
+  return R_NilValue;
+}

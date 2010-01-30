@@ -218,3 +218,8 @@ function(name)
 
 # .Call("R_getSignalNames", gtkButton())
 
+## Binding to RGtk2's bindtextdomain(), which is different from R's on Windows
+rgtk2_bindtextdomain <- function(domain, dirname = NULL) {
+  base::bindtextdomain(domain, dirname)
+  .External("RGtk2_bindtextdomain", domain, dirname, PACKAGE = "RGtk2")
+}
