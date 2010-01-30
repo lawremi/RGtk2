@@ -243,7 +243,8 @@ c("pango_context_new", "pango_fontset_simple_new",
   "gdk_pixmap_foreign_new_for_display", "gdk_pixmap_lookup",
   "gdk_pixmap_lookup_for_display", "pango_font_find_shaper",
   "gtk_disable_setlocale", "gdk_pixmap_foreign_new_for_screen",
-  "atk_misc_threads_enter", "atk_misc_threads_leave")
+  "atk_misc_threads_enter", "atk_misc_threads_leave", "gtk_init_check",
+  "gtk_input_add_full", "gtk_set_locale")
 
 useless_funcs <- c("pango_default_break", "gdk_colormap_change",
                    "gdk_color_copy", "gdk_colors_alloc", "gdk_color_hash",
@@ -339,7 +340,7 @@ undocumentedConcepts <- c("engines", "freetype-fonts", "modules", "opentype",
                           "cairo-glitz", "cairo-quartz", "cairo-win32",
                           "cairo-win32-fonts", "cairo-xcb-xrender", "cairo-xcb",
                           "cairo-xlib-xrender", "cairo-xlib", "glade-build",
-                          "glade-parser", "glade-init", "gtkmain", "atsui-fonts", "utils",
+                          "glade-parser", "glade-init", "atsui-fonts", "utils",
                           "gtkpagesetupunixdialog", "gtkprinter", "gtkprintjob",
                           "gtkprintunixdialog", "cairo-beos", "pango-vertical",
                           "atk-AtkMisc")
